@@ -1,0 +1,101 @@
+﻿using StateSmith.Compiling;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using StateSmith.Common;
+
+namespace StateSmith.output.C99BalancedCoder1
+{
+    public class CEnumBuilder
+    {
+        readonly CodeGenContext ctx;
+        readonly CNameMangler mangler;
+
+        public CEnumBuilder(CodeGenContext ctx)
+        {
+            this.ctx = ctx;
+            mangler = ctx.mangler;
+        }
+
+        public void OutputEventIdCode()
+        {
+            OutputFile file = new(ctx, ctx.hFileSb);
+            string smName = ctx.sm.Name;
+
+            file.Append($"enum {mangler.SmEventEnumAttribute}{mangler.SmEventEnum}");
+            file.StartCodeBlock();
+            List<string> nonDoEvents = GetNonDoEvents(out var hadDoEvent);
+
+            int enumOffset = 0;
+
+            if (hadDoEvent)
+            {
+                enumOffset = 1;
+                file.AddLine($"{mangler.SmEventEnumValue(TriggerHelper.TRIGGER_DO)} = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
+            }
+
+            for (int i = 0; i < nonDoEvents.Count; i++)
+            {
+                string evt = nonDoEvents[i];
+                file.AddLine($"{mangler.SmEventEnumValue(evt)} = {i + enumOffset},");
+            }
+
+            file.FinishCodeBlock(";");
+            file.FinishLine();
+
+            OutputEventIdCount(file, nonDoEvents.Count + enumOffset);
+        }
+
+        private List<string> GetNonDoEvents(out bool hadDoEvent)
+        {
+            var nonDoEvents = ctx.sm.GetEventListCopy();
+            hadDoEvent = nonDoEvents.RemoveAll((e) => TriggerHelper.IsDoEvent(e)) > 0;
+            return nonDoEvents;
+        }
+
+        protected void OutputEventIdCount(OutputFile file, int count)
+        {
+            var enumValueName = mangler.SmEventEnumCount;
+            OutputAnonEnum(file, enumValueName, count);
+        }
+
+        public void OutputStateIdCode()
+        {
+            OutputFile file = new(ctx, ctx.hFileSb);
+            string smName = ctx.sm.Name;
+
+            file.Append($"enum {mangler.SmStateEnumAttribute}{mangler.SmStateEnum}");
+            file.StartCodeBlock();
+
+            var namedVertices = ctx.sm.GetNamedVerticesCopy();
+            for (int i = 0; i < namedVertices.Count; i++)
+            {
+                NamedVertex namedVertex = namedVertices[i];
+                file.AddLine($"{mangler.SmStateEnumValue(namedVertex)} = {i},");
+            }
+
+            file.FinishCodeBlock(";");
+            file.FinishLine();
+
+            OutputStateIdCount(file, smName, namedVertices.Count);
+        }
+
+        protected void OutputStateIdCount(OutputFile file, string smName, int count)
+        {
+            var enumValueName = mangler.SmStateEnumCount;
+            OutputAnonEnum(file, enumValueName, count);
+        }
+
+        private static void OutputAnonEnum(OutputFile file, string enumValueName, int count)
+        {
+            // We put the count in a separate anonymous enum because it isn't really apart of the EventId enum values.
+            // If we put it in there and people used the enum type in a switch statement, some compilers will warn if the
+            // count enum value wasn't handled in the switch.
+            // A define could be used instead. Reading: https://stackoverflow.com/questions/10157181/in-which-situations-anonymous-enum-should-be-used
+            file.Append($"enum");
+            file.StartCodeBlock();
+            file.AddLine($"{enumValueName} = {count}");
+            file.FinishCodeBlock(";");
+        }
+    }
+}

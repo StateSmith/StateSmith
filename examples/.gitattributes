@@ -1,0 +1,15 @@
+* text=auto eol=lf
+
+*.cs text diff=csharp
+*.csproj text merge=union
+*.ico binary
+*.resx text merge=union
+*.sln text eol=crlf merge=union
+*.snk binary
+*.xls binary
+
+# *.c text eol=lf
+# *.h text eol=lf
+# *.hpp text eol=lf
+# *.cpp text eol=lf
+# *.ino text eol=lf
