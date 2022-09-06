@@ -2,46 +2,46 @@
 #pragma once
 #include <stdint.h>
 
-enum __attribute__((packed)) ButtonSm1_EventId
+enum __attribute__((packed)) ButtonSm1Cpp_EventId
 {
-    ButtonSm1_EventId_DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
+    ButtonSm1Cpp_EventId_DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
 };
 
 enum
 {
-    ButtonSm1_EventIdCount = 1
+    ButtonSm1Cpp_EventIdCount = 1
 };
 
-enum __attribute__((packed)) ButtonSm1_StateId
+enum __attribute__((packed)) ButtonSm1Cpp_StateId
 {
-    ButtonSm1_StateId_ROOT = 0,
-    ButtonSm1_StateId_NOT_PRESSED = 1,
-    ButtonSm1_StateId_PRESSED = 2,
-    ButtonSm1_StateId_CONFIRMING_HELD = 3,
-    ButtonSm1_StateId_HELD = 4,
+    ButtonSm1Cpp_StateId_ROOT = 0,
+    ButtonSm1Cpp_StateId_NOT_PRESSED = 1,
+    ButtonSm1Cpp_StateId_PRESSED = 2,
+    ButtonSm1Cpp_StateId_CONFIRMING_HELD = 3,
+    ButtonSm1Cpp_StateId_HELD = 4,
 };
 
 enum
 {
-    ButtonSm1_StateIdCount = 5
+    ButtonSm1Cpp_StateIdCount = 5
 };
 
-typedef struct ButtonSm1 ButtonSm1;
-typedef void (*ButtonSm1_Func)(ButtonSm1* sm);
+typedef struct ButtonSm1Cpp ButtonSm1Cpp;
+typedef void (*ButtonSm1Cpp_Func)(ButtonSm1Cpp* sm);
 
-struct ButtonSm1
+struct ButtonSm1Cpp
 {
     // Used internally by state machine. Feel free to inspect, but don't modify.
-    enum ButtonSm1_StateId state_id;
+    enum ButtonSm1Cpp_StateId state_id;
     
     // Used internally by state machine. Don't modify.
-    ButtonSm1_Func ancestor_event_handler;
+    ButtonSm1Cpp_Func ancestor_event_handler;
     
     // Used internally by state machine. Don't modify.
-    ButtonSm1_Func current_event_handlers[ButtonSm1_EventIdCount];
+    ButtonSm1Cpp_Func current_event_handlers[ButtonSm1Cpp_EventIdCount];
     
     // Used internally by state machine. Don't modify.
-    ButtonSm1_Func current_state_exit_handler;
+    ButtonSm1Cpp_Func current_state_exit_handler;
     
     // User variables. Can be used for inputs, outputs, user variables...
     struct
@@ -63,11 +63,11 @@ struct ButtonSm1
 };
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
-void ButtonSm1_ctor(ButtonSm1* self);
+void ButtonSm1Cpp_ctor(ButtonSm1Cpp* self);
 
 // Starts the state machine. Must be called before dispatching events. Not thread safe.
-void ButtonSm1_start(ButtonSm1* self);
+void ButtonSm1Cpp_start(ButtonSm1Cpp* self);
 
 // Dispatches an event to the state machine. Not thread safe.
-void ButtonSm1_dispatch_event(ButtonSm1* self, enum ButtonSm1_EventId event_id);
+void ButtonSm1Cpp_dispatch_event(ButtonSm1Cpp* self, enum ButtonSm1Cpp_EventId event_id);
 

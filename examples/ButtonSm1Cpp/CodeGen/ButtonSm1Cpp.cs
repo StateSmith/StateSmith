@@ -8,12 +8,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
 
-namespace StateSmithTest.ExampleButtonSm1Cpp
-{
+namespace ExampleButtonSm1Cpp
+{   
     public class ButtonSm1Cpp
     {
+         public static void GenFile()
+        {
+            MyGlueFile myGlueFile = new MyGlueFile();
+
+            var directory = DirectoryHelper.CodeDirectory;
+            var diagramFile = directory + "ButtonSm1Cpp.graphml";
+
+            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
+            settings.mangler = new MyMangler();
+            SmRunner runner = new SmRunner(settings);
+
+            runner.Run();
+        }
+
         public class MyGlueFile : IRenderConfigC
         {
             string IRenderConfigC.CFileIncludes => StringUtils.DeIndentTrim(@"
@@ -78,22 +91,6 @@ namespace StateSmithTest.ExampleButtonSm1Cpp
             // packing attributes for gcc
             public override string SmStateEnumAttribute => "__attribute__((packed)) ";
             public override string SmEventEnumAttribute => "__attribute__((packed)) ";
-        }
-
-
-        [Fact]
-        public void GenFile()
-        {
-            MyGlueFile myGlueFile = new MyGlueFile();
-
-            var directory = "../../../../../examples/ButtonSm1/";
-            var diagramFile = directory + "ButtonSm1.graphml";
-
-            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
-            settings.mangler = new MyMangler();
-            SmRunner runner = new SmRunner(settings);
-
-            runner.Run();
         }
     }
 }
