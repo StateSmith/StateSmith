@@ -10,7 +10,7 @@ namespace StateSmithTest
     {
         public static Compiler SetupTiny2Sm()
         {
-            const string filepath = "../../../../../examples/Tiny2.graphml";
+            const string filepath = "../../../test-input/Tiny2.graphml";
             Compiler compiler = new Compiler();
             compiler.CompileFile(filepath);
             compiler.rootVertices.Count.Should().Be(1);
