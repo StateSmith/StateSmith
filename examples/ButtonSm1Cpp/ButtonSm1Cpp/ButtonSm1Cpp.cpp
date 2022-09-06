@@ -76,7 +76,7 @@ static void NOT_PRESSED_enter(ButtonSm1Cpp* self)
     // state behavior:
     {
         // uml action: reset_debounce_timer();
-        self->vars.debounce_started_at_ms = (2047 & millis());
+        self->vars.debounce_started_at_ms = millis();
     } // end of behavior code
 }
 
@@ -97,7 +97,7 @@ static void NOT_PRESSED_do(ButtonSm1Cpp* self)
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // uml guard: is_pressed && is_debounced
         // uml transition target: CONFIRMING_HELD
-        if (self->vars.input_is_pressed && (( (2047 & ((2047 & millis()) - self->vars.debounce_started_at_ms)) >= 20 )))
+        if (self->vars.input_is_pressed && (( (millis() - self->vars.debounce_started_at_ms) >= 20 )))
         {
             // Transition to target state CONFIRMING_HELD
             {
@@ -134,7 +134,7 @@ static void PRESSED_enter(ButtonSm1Cpp* self)
         // uml action: reset_debounce_timer();
         //             is_pressed = true;
         //             output_event(press);
-        self->vars.debounce_started_at_ms = (2047 & millis());
+        self->vars.debounce_started_at_ms = millis();
         self->vars.input_is_pressed = true;
         self->vars.output_event_press = true;
     } // end of behavior code
@@ -161,9 +161,9 @@ static void PRESSED_do(ButtonSm1Cpp* self)
         //             }
         //             output_event(release);
         // uml transition target: NOT_PRESSED
-        if ((!self->vars.input_is_pressed) && (( (2047 & ((2047 & millis()) - self->vars.debounce_started_at_ms)) >= 20 )))
+        if ((!self->vars.input_is_pressed) && (( (millis() - self->vars.debounce_started_at_ms) >= 20 )))
         {
-            if ((2047 & ((2047 & millis()) - self->vars.debounce_started_at_ms)) <= 200) {
+            if ((millis() - self->vars.debounce_started_at_ms) <= 200) {
               self->vars.output_event_tap = true;
             }
             self->vars.output_event_release = true;
@@ -215,7 +215,7 @@ static void CONFIRMING_HELD_do(ButtonSm1Cpp* self)
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // uml guard: debounce_ms() > 800
         // uml transition target: HELD
-        if ((2047 & ((2047 & millis()) - self->vars.debounce_started_at_ms)) > 800)
+        if ((millis() - self->vars.debounce_started_at_ms) > 800)
         {
             // Transition to target state HELD
             {

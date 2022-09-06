@@ -46,13 +46,10 @@ struct ButtonSm1Cpp
     // User variables. Can be used for inputs, outputs, user variables...
     struct
     {
-        // Note! This example below uses bitfields just to show that you can. They aren't required and might not
-        // save you any actual RAM depending on the compiler struct padding/alignment/enum size... One day, we will be able choose where the vars
-        // structure is positioned relative to the other state machine fields.
-        // You can convert any of the fields below from bitfields and the code will still work fine.
+        // Note! This example below uses bitfields just to show that you can. They aren't required.
         
-        /** used by state machine. If you change bitfield size, also update `time_ms` expansion masking. */
-        uint16_t debounce_started_at_ms : 11;
+        // This can be made to be 11 bits if RAM is at a premium. See laser tag menu example.
+        uint32_t debounce_started_at_ms;
         
         uint16_t input_is_pressed : 1; // input
         uint16_t output_event_press : 1; // output
