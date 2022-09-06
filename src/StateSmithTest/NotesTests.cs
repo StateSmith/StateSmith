@@ -10,13 +10,11 @@ namespace StateSmithTest
 {
     public class NotesTests
     {
-        const string testInputDirectory = "../../../test-input/";
-
         [Fact]
         public void ValidNotesCommentingOutStates()
         {
             Compiler compiler = new Compiler();
-            const string filepath = testInputDirectory + "Tiny2-with-noted-out-states.graphml";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny2-with-noted-out-states.graphml";
             compiler.CompileFile(filepath); //should not throw
         }
 
@@ -24,7 +22,7 @@ namespace StateSmithTest
         public void EdgeToNotes()
         {
             Compiler compiler = new Compiler();
-            const string filepath = testInputDirectory + "bad-edge-to-notes.graphml";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "bad-edge-to-notes.graphml";
 
             Action action = () => compiler.CompileFile(filepath);
 
@@ -39,7 +37,7 @@ namespace StateSmithTest
         public void EdgeFromNotes()
         {
             Compiler compiler = new Compiler();
-            const string filepath = testInputDirectory + "/bad-edge-from-notes.graphml";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/bad-edge-from-notes.graphml";
 
             Action action = () => compiler.CompileFile(filepath);
 

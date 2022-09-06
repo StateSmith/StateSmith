@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
@@ -8,9 +9,11 @@ namespace StateSmithTest
 {
     class ExamplesTestHelpers
     {
+        public static string TestInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../test-input/";
+
         public static Compiler SetupTiny2Sm()
         {
-            const string filepath = "../../../test-input/Tiny2.graphml";
+            string filepath = TestInputDirectoryPath + "Tiny2.graphml";
             Compiler compiler = new Compiler();
             compiler.CompileFile(filepath);
             compiler.rootVertices.Count.Should().Be(1);

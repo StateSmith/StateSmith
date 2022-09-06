@@ -15,7 +15,7 @@ namespace StateSmithTest.roslyn
         [Fact]
         public void Test()
         {
-            var filepath = "../../../roslyn/ExampleCAndJs.cs";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/roslyn/ExampleCAndJs.cs";
 
             var compiler = new ExternalCodeCompiler();
 

@@ -17,7 +17,7 @@ namespace StateSmithTest
         [Fact]
         public void Tiny1()
         {
-            const string filepath = "../../../test-input//Tiny1.graphml";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny1.graphml";
 
             Compiler compiler = new Compiler();
             compiler.CompileFile(filepath);
@@ -130,7 +130,7 @@ namespace StateSmithTest
         [Fact]
         public void ExpandedTiny1()
         {
-            const string filepath = "../../../test-input/Tiny1.graphml";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/Tiny1.graphml";
 
             Compiler compiler = new Compiler();
             var expander = new Expander();

@@ -14,7 +14,7 @@ namespace StateSmithTest
         [Fact]
         public void Test()
         {
-            var filepath = "../../../roslyn/ExampleExpansions123.cs";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/roslyn/ExampleExpansions123.cs";
 
             var compiler = new ExternalCodeCompiler();
 

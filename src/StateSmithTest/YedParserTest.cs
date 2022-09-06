@@ -23,7 +23,7 @@ namespace StateSmithTest
             this.output = output;
         }
 
-        private string filepath = "../../../../../examples/LaserTagMenu1/ButtonSm1.graphml";
+        private string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/ButtonSm1.graphml";
 
         private DiagramNode GetAndAssertNode(string id, string label, int childCount, DiagramNode parent)
         {
