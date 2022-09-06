@@ -7,12 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
 
-namespace StateSmithTest.ExampleLaserTagMenu1
+namespace ExampleLaserTagMenu1
 {
     public class LaserTagMenu1Sm
     {
+        public static void GenFile()
+        {
+            MyGlueFile myGlueFile = new MyGlueFile();
+
+            var codeDirectory = DirectoryHelper.CodeDirectory;
+            var diagramFile = codeDirectory + "LaserTagMenu1Sm.graphml";
+
+            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: codeDirectory);
+            SmRunner runner = new SmRunner(settings);
+
+            runner.Run();
+        }
+
         public class MyGlueFile : IRenderConfigC
         {
             // These are required for user specified variables
@@ -87,21 +99,6 @@ namespace StateSmithTest.ExampleLaserTagMenu1
                 public string save_option_as_class() => $"App_save_player_class({option_value})";
                 #pragma warning restore IDE1006 // Naming Styles
             }
-        }
-
-
-        [Fact]
-        public void GenFile()
-        {
-            MyGlueFile myGlueFile = new MyGlueFile();
-
-            var directory = "../../../../../examples/LaserTagMenu1/";
-            var diagramFile = directory + "LaserTagMenu1Sm.graphml";
-
-            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
-            SmRunner runner = new SmRunner(settings);
-
-            runner.Run();
         }
     }
 }

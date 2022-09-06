@@ -3,12 +3,25 @@ using StateSmith.output;
 using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
 using StateSmith.Runner;
-using Xunit;
 
-namespace StateSmithTest.ExampleLaserTagMenu1
+namespace ExampleLaserTagMenu1
 {
     public class ButtonSm1
     {
+        public static void GenFile()
+        {
+            MyGlueFile myGlueFile = new MyGlueFile();
+
+            var codeDirectory = DirectoryHelper.CodeDirectory;
+            var diagramFile = codeDirectory + "ButtonSm1.graphml";
+
+            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: codeDirectory);
+            settings.mangler = new MyMangler();
+            SmRunner runner = new SmRunner(settings);
+
+            runner.Run();
+        }
+
         public class MyGlueFile : IRenderConfigC
         {
             // These are required for user specified variables
@@ -69,22 +82,6 @@ namespace StateSmithTest.ExampleLaserTagMenu1
             // packing attributes for gcc
             public override string SmStateEnumAttribute => "__attribute__((packed)) ";
             public override string SmEventEnumAttribute => "__attribute__((packed)) ";
-        }
-
-
-        [Fact]
-        public void GenFile()
-        {
-            MyGlueFile myGlueFile = new MyGlueFile();
-
-            var directory = "../../../../../examples/LaserTagMenu1/";
-            var diagramFile = directory + "ButtonSm1.graphml";
-
-            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
-            settings.mangler = new MyMangler();
-            SmRunner runner = new SmRunner(settings);
-
-            runner.Run();
         }
     }
 }
