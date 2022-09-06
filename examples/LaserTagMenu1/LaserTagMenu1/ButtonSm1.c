@@ -132,10 +132,8 @@ static void PRESSED_enter(ButtonSm1* self)
     // state behavior:
     {
         // uml action: reset_debounce_timer();
-        //             is_pressed = true;
         //             output_event(press);
         self->vars.debounce_started_at_ms = (2047 & PortApi_get_time_ms());
-        self->vars.input_is_pressed = true;
         self->vars.output_event_press = true;
     } // end of behavior code
 }

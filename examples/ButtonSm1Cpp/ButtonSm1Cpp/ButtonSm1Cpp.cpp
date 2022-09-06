@@ -132,10 +132,8 @@ static void PRESSED_enter(ButtonSm1Cpp* self)
     // state behavior:
     {
         // uml action: reset_debounce_timer();
-        //             is_pressed = true;
         //             output_event(press);
         self->vars.debounce_started_at_ms = millis();
-        self->vars.input_is_pressed = true;
         self->vars.output_event_press = true;
     } // end of behavior code
 }
