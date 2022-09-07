@@ -11,7 +11,8 @@ struct ButtonSm1Cpp buttonSms[BUTTON_COUNT];
 void setup()
 {
   Serial.begin(115200);
-  Serial.println("We have booted!");
+  Serial.println("Keyboard keys 1,2,3,4 have a binding to switches above when simulation pane has focus.");
+  Serial.println();
 
   for (uint8_t i = 0; i < BUTTON_COUNT; i++)
   {
