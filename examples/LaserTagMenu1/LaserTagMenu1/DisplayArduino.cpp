@@ -1,14 +1,16 @@
+// This code is just for a quick proof of concept. Not high quality code.
+
 #include "Display.h"
 #include "App.h"
 #include <stddef.h>
 
 #include <LiquidCrystal.h>
-// #include <HardwareSerial.h>
 #include "Arduino.h"
 
 // https://stackoverflow.com/a/4415646/7331858
 #define COUNT_OF(x) ((sizeof(x)/sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
-#define BLANK_LINE "                "
+
+#define BLANK_LINE "                " // long enough to blank LCD display
 
 #define CHAR_CODE_UP_ARROW    ((char)1)
 #define CHAR_CODE_DOWN_ARROW  ((char)2)
@@ -173,6 +175,17 @@ void Display_show_home_screen_3(void)
     g_lcd.setCursor(0, 1);
     g_lcd.print("FIXIN WRENCH");
 }
+
+void Display_class_saved(void)
+{
+    g_lcd.clear();
+    g_lcd.print("YOUR CLASS SAVED");
+    g_lcd.setCursor(0, 1);
+    g_lcd.print("YOU BE ");
+    g_lcd.print(player_class_to_string(App_get_player_class()));
+    g_lcd.print(CHAR_CODE_SMILEY);
+}
+
 
 void Display_show_back_press_count(uint8_t count)
 {

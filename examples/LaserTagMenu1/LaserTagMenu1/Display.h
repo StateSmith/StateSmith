@@ -19,6 +19,8 @@ void Display_show_home_screen_1(void);
 void Display_show_home_screen_2(void);
 void Display_show_home_screen_3(void);
 
+void Display_class_saved(void);
+
 void Display_show_back_press_taunt(const char *taunt);
 void Display_show_random_back_press_taunt(void);
 void Display_show_back_press_count(uint8_t count);

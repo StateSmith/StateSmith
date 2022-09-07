@@ -33,6 +33,10 @@ static void MENUS_GROUP_exit(LaserTagMenu1Sm* self);
 static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self);
 static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self);
 
+static void CLASS_SAVED_enter(LaserTagMenu1Sm* self);
+static void CLASS_SAVED_exit(LaserTagMenu1Sm* self);
+static void CLASS_SAVED_do(LaserTagMenu1Sm* self);
+
 static void MAIN_MENU_enter(LaserTagMenu1Sm* self);
 static void MAIN_MENU_exit(LaserTagMenu1Sm* self);
 
@@ -549,6 +553,68 @@ static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self)
         // Mark event as handled. Required because of transition.
         // self->ancestor_event_handler = NULL; // already done at top of function
         return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
+    } // end of behavior code
+}
+
+
+static void CLASS_SAVED_enter(LaserTagMenu1Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = CLASS_SAVED_exit;
+    self->current_event_handlers[LaserTagMenu1Sm_EventId_DO] = CLASS_SAVED_do;
+    
+    // state behavior:
+    {
+        // uml action: Display_class_saved();
+        Display_class_saved();
+    } // end of behavior code
+    
+    // state behavior:
+    {
+        // uml action: reset_timer1();
+        self->vars.timer1_started_at_ms = PortApi_get_time_ms();
+    } // end of behavior code
+}
+
+static void CLASS_SAVED_exit(LaserTagMenu1Sm* self)
+{
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = MENUS_GROUP_exit;
+    self->current_event_handlers[LaserTagMenu1Sm_EventId_DO] = NULL;  // no ancestor listens to this event
+}
+
+static void CLASS_SAVED_do(LaserTagMenu1Sm* self)
+{
+    // setup handler for next ancestor that listens to `do` event
+    self->ancestor_event_handler = NULL; // no ancestor state handles `do` event
+    
+    // state behavior:
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // uml guard: after_timer1_ms(4000)
+        // uml transition target: MM_SELECT_CLASS_OPTION
+        if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 4000 ))
+        {
+            // Transition to target state MM_SELECT_CLASS_OPTION
+            {
+                // First, exit up to Least Common Ancestor MENUS_GROUP.
+                while (self->current_state_exit_handler != MENUS_GROUP_exit)
+                {
+                    self->current_state_exit_handler(self);
+                }
+                
+                // Enter towards target
+                MAIN_MENU_enter(self);
+                MM_SELECT_CLASS_OPTION_enter(self);
+                
+                // update state_id
+                self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
+            } // end of transition code
+            
+            // Mark event as handled. Required because of transition.
+            // self->ancestor_event_handler = NULL; // already done at top of function
+            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
+        } // end of guard code
     } // end of behavior code
 }
 
@@ -1293,10 +1359,10 @@ static void MM_SELECT_CLASS_ok_press(LaserTagMenu1Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // uml action: save_option_as_class();
-        // uml transition target: MM_SELECT_CLASS_OPTION
+        // uml transition target: CLASS_SAVED
         App_save_player_class(self->vars.option_value);
         
-        // Transition to target state MM_SELECT_CLASS_OPTION
+        // Transition to target state CLASS_SAVED
         {
             // First, exit up to Least Common Ancestor MENUS_GROUP.
             while (self->current_state_exit_handler != MENUS_GROUP_exit)
@@ -1305,11 +1371,10 @@ static void MM_SELECT_CLASS_ok_press(LaserTagMenu1Sm* self)
             }
             
             // Enter towards target
-            MAIN_MENU_enter(self);
-            MM_SELECT_CLASS_OPTION_enter(self);
+            CLASS_SAVED_enter(self);
             
             // update state_id
-            self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
+            self->state_id = LaserTagMenu1Sm_StateId_CLASS_SAVED;
         } // end of transition code
         
         // Mark event as handled. Required because of transition.
