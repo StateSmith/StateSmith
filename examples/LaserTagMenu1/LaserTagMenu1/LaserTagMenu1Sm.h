@@ -92,3 +92,6 @@ void LaserTagMenu1Sm_start(LaserTagMenu1Sm* self);
 // Dispatches an event to the state machine. Not thread safe.
 void LaserTagMenu1Sm_dispatch_event(LaserTagMenu1Sm* self, enum LaserTagMenu1Sm_EventId event_id);
 
+// Converts a state id to a string. Thread safe.
+const char* LaserTagMenu1Sm_state_id_to_string(const enum LaserTagMenu1Sm_StateId id);
+

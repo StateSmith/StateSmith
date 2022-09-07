@@ -73,6 +73,9 @@ void Tiny2_start(Tiny2* self);
 
 // Dispatches an event to the state machine. Not thread safe.
 void Tiny2_dispatch_event(Tiny2* self, enum Tiny2_EventId event_id);
+
+// Converts a state id to a string. Thread safe.
+const char* Tiny2_state_id_to_string(const enum Tiny2_StateId id);
 ".ConvertLineEndingsToN();
 
             string code = file.ToString();

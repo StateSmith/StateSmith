@@ -9,7 +9,7 @@ void PortApi_debug_msg(const char* const message)
 
 void PortApi_debug_printf(const char * format, ...)
 {
-  char buffer[64];
+  char buffer[128];
   va_list args;
   va_start(args, format);
   vsnprintf(buffer, sizeof(buffer), format, args); // ignore return code for example application

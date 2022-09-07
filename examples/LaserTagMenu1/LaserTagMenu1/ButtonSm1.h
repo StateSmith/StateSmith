@@ -71,3 +71,6 @@ void ButtonSm1_start(ButtonSm1* self);
 // Dispatches an event to the state machine. Not thread safe.
 void ButtonSm1_dispatch_event(ButtonSm1* self, enum ButtonSm1_EventId event_id);
 
+// Converts a state id to a string. Thread safe.
+const char* ButtonSm1_state_id_to_string(const enum ButtonSm1_StateId id);
+

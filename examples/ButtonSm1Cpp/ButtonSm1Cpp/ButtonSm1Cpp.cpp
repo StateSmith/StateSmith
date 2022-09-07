@@ -54,6 +54,19 @@ void ButtonSm1Cpp_dispatch_event(ButtonSm1Cpp* self, enum ButtonSm1Cpp_EventId e
     }
 }
 
+const char* ButtonSm1Cpp_state_id_to_string(const enum ButtonSm1Cpp_StateId id)
+{
+    switch (id)
+    {
+        case ButtonSm1Cpp_StateId_ROOT: return "ROOT";
+        case ButtonSm1Cpp_StateId_NOT_PRESSED: return "NOT_PRESSED";
+        case ButtonSm1Cpp_StateId_PRESSED: return "PRESSED";
+        case ButtonSm1Cpp_StateId_CONFIRMING_HELD: return "CONFIRMING_HELD";
+        case ButtonSm1Cpp_StateId_HELD: return "HELD";
+        default: return "?";
+    }
+}
+
 static void ROOT_enter(ButtonSm1Cpp* self)
 {
     // setup trigger/event handlers

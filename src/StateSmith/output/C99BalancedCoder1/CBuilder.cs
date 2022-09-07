@@ -44,6 +44,7 @@ namespace StateSmith.output.C99BalancedCoder1
             OutputFuncCtor();
             OutputFuncStart();
             OutputFuncDispatchEvent();
+            OutputFuncStateIdToString();
 
             OutputTriggerHandlers();
         }
@@ -77,6 +78,26 @@ namespace StateSmith.output.C99BalancedCoder1
             file.Append($"void {mangler.SmFuncCtor}({mangler.SmStructTypedefName}* self)");
             file.StartCodeBlock();
             file.AddLine("memset(self, 0, sizeof(*self));");
+            file.FinishCodeBlock();
+            file.AddLine();
+        }
+
+        internal void OutputFuncStateIdToString()
+        {
+            file.Append($"const char* {mangler.SmFuncToString}(const enum {mangler.SmStateEnum} id)");  // todolow share function prototype string generation
+            file.StartCodeBlock();
+            {
+                file.Append("switch (id)");
+                file.StartCodeBlock();
+                {
+                    foreach (var state in ctx.sm.GetNamedVerticesCopy())
+                    {
+                        file.AddLine($"case {mangler.SmStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
+                    }
+                    file.AddLine("default: return \"?\";");
+                }
+                file.FinishCodeBlock();
+            }
             file.FinishCodeBlock();
             file.AddLine();
         }

@@ -119,6 +119,10 @@ namespace StateSmith.output.C99BalancedCoder1
             file.AddLine();
             file.AddLine("// Dispatches an event to the state machine. Not thread safe.");
             file.AddLine($"void {mangler.SmFuncDispatchEvent}({mangler.SmStructTypedefName}* self, enum {mangler.SmEventEnum} event_id);");
+
+            file.AddLine();
+            file.AddLine("// Converts a state id to a string. Thread safe.");
+            file.AddLine($"const char* {mangler.SmFuncToString}(const enum {mangler.SmStateEnum} id);");
         }
     }
 }

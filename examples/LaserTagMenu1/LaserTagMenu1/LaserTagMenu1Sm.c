@@ -169,6 +169,43 @@ void LaserTagMenu1Sm_dispatch_event(LaserTagMenu1Sm* self, enum LaserTagMenu1Sm_
     }
 }
 
+const char* LaserTagMenu1Sm_state_id_to_string(const enum LaserTagMenu1Sm_StateId id)
+{
+    switch (id)
+    {
+        case LaserTagMenu1Sm_StateId_ROOT: return "ROOT";
+        case LaserTagMenu1Sm_StateId_HOME: return "HOME";
+        case LaserTagMenu1Sm_StateId_HOME1: return "HOME1";
+        case LaserTagMenu1Sm_StateId_HOME2: return "HOME2";
+        case LaserTagMenu1Sm_StateId_HOME3: return "HOME3";
+        case LaserTagMenu1Sm_StateId_MENUS_GROUP: return "MENUS_GROUP";
+        case LaserTagMenu1Sm_StateId_CLASS_SAVED: return "CLASS_SAVED";
+        case LaserTagMenu1Sm_StateId_MAIN_MENU: return "MAIN_MENU";
+        case LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_OPTION: return "MM_BACK_PRESS_EATER_OPTION";
+        case LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION: return "MM_SELECT_CLASS_OPTION";
+        case LaserTagMenu1Sm_StateId_MM_SHOW_INFO_OPTION: return "MM_SHOW_INFO_OPTION";
+        case LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER: return "MM_BACK_PRESS_EATER";
+        case LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_1: return "MM_BACK_PRESS_EATER_1";
+        case LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_2: return "MM_BACK_PRESS_EATER_2";
+        case LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_3: return "MM_BACK_PRESS_EATER_3";
+        case LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_4: return "MM_BACK_PRESS_EATER_4";
+        case LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_5: return "MM_BACK_PRESS_EATER_5";
+        case LaserTagMenu1Sm_StateId_MM_SELECT_CLASS: return "MM_SELECT_CLASS";
+        case LaserTagMenu1Sm_StateId_MM_SC_ENGINEER: return "MM_SC_ENGINEER";
+        case LaserTagMenu1Sm_StateId_MM_SC_MID: return "MM_SC_MID";
+        case LaserTagMenu1Sm_StateId_MM_SC_ARCHER: return "MM_SC_ARCHER";
+        case LaserTagMenu1Sm_StateId_MM_SC_HEAVY: return "MM_SC_HEAVY";
+        case LaserTagMenu1Sm_StateId_MM_SC_WIZARD: return "MM_SC_WIZARD";
+        case LaserTagMenu1Sm_StateId_MM_SC_SPY: return "MM_SC_SPY";
+        case LaserTagMenu1Sm_StateId_MM_SHOW_INFO: return "MM_SHOW_INFO";
+        case LaserTagMenu1Sm_StateId_MM_SHOW_INFO_1: return "MM_SHOW_INFO_1";
+        case LaserTagMenu1Sm_StateId_MM_SHOW_INFO_2: return "MM_SHOW_INFO_2";
+        case LaserTagMenu1Sm_StateId_MM_SHOW_INFO_3: return "MM_SHOW_INFO_3";
+        case LaserTagMenu1Sm_StateId_WELCOME_SCREEN: return "WELCOME_SCREEN";
+        default: return "?";
+    }
+}
+
 static void ROOT_enter(LaserTagMenu1Sm* self)
 {
     // setup trigger/event handlers

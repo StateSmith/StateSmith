@@ -3,13 +3,29 @@
 #include "Buttons.h"
 #include "LaserTagMenu1Sm.h"
 #include <stdbool.h>
+#include "PortApi.h"
+
+
+////////////////////////////////////////////////
+// global vars
+////////////////////////////////////////////////
 
 static struct LaserTagMenu1Sm g_menu_sm;
 static enum PlayerClass g_player_class;
+static enum LaserTagMenu1Sm_StateId g_sm_last_state_id;
 
+
+////////////////////////////////////////////////
+// prototypes
+////////////////////////////////////////////////
 
 static void dispatch_button_events(void);
+static void detect_sm_state_change(void);
 
+
+////////////////////////////////////////////////
+// functions
+////////////////////////////////////////////////
 
 void App_setup()
 {
@@ -19,7 +35,10 @@ void App_setup()
     Buttons_setup();
 
     LaserTagMenu1Sm_ctor(&g_menu_sm);
+    g_sm_last_state_id = g_menu_sm.state_id;
+
     LaserTagMenu1Sm_start(&g_menu_sm);
+    detect_sm_state_change();
 }
 
 void App_step()
@@ -28,6 +47,7 @@ void App_step()
 
     dispatch_button_events();
     LaserTagMenu1Sm_dispatch_event(&g_menu_sm, LaserTagMenu1Sm_EventId_DO);
+    detect_sm_state_change();
 
     Display_step();
 }
@@ -108,5 +128,14 @@ static void dispatch_button_events(void)
             back_sm->vars.output_event_held = false;
             LaserTagMenu1Sm_dispatch_event(&g_menu_sm, LaserTagMenu1Sm_EventId_BACK_HELD);
         }
+    }
+}
+
+static void detect_sm_state_change(void)
+{
+    if (g_menu_sm.state_id != g_sm_last_state_id)
+    {
+        PortApi_debug_printf("State changed from %s to %s\n", LaserTagMenu1Sm_state_id_to_string(g_sm_last_state_id), LaserTagMenu1Sm_state_id_to_string(g_menu_sm.state_id));
+        g_sm_last_state_id = g_menu_sm.state_id;
     }
 }
