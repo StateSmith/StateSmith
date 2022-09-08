@@ -1386,6 +1386,37 @@ static void MM_BACK_PRESS_EATER_5_do(LaserTagMenu1Sm* self)
     // state behavior:
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // uml guard: after_timer1_ms(2000) && back_press_eat_count > 25
+        // uml action: back_press_eat_count = 0;
+        // uml transition target: MM_BACK_PRESS_EATER_2
+        if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 2000 ) && self->vars.back_press_eat_count > 25)
+        {
+            self->vars.back_press_eat_count = 0;
+            
+            // Transition to target state MM_BACK_PRESS_EATER_2
+            {
+                // First, exit up to Least Common Ancestor MM_BACK_PRESS_EATER.
+                while (self->current_state_exit_handler != MM_BACK_PRESS_EATER_exit)
+                {
+                    self->current_state_exit_handler(self);
+                }
+                
+                // Enter towards target
+                MM_BACK_PRESS_EATER_2_enter(self);
+                
+                // update state_id
+                self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_2;
+            } // end of transition code
+            
+            // Mark event as handled. Required because of transition.
+            // self->ancestor_event_handler = NULL; // already done at top of function
+            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
+        } // end of guard code
+    } // end of behavior code
+    
+    // state behavior:
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // uml guard: after_timer1_ms(2000)
         // uml transition target: MM_BACK_PRESS_EATER_5
         if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 2000 ))

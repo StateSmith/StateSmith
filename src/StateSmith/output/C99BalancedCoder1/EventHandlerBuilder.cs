@@ -4,6 +4,7 @@ using System;
 using StateSmith.Compiling;
 using StateSmith.Common;
 using StateSmith.Input.antlr4;
+using System.Linq;
 
 namespace StateSmith.output.C99BalancedCoder1
 {
@@ -46,7 +47,7 @@ namespace StateSmith.output.C99BalancedCoder1
             }
             noAncestorHandlesEvent = nextHandlingState == null;
     
-            var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName);
+            var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName).OrderBy((b) => b.order);
             foreach (var b in behaviorsWithTrigger)
             {
                 bool requiredConsumeEventCode = TriggerHelper.IsEvent(triggerName);
