@@ -148,6 +148,12 @@ namespace StateSmith.output.C99BalancedCoder1
             
             foreach (var state in namedVertices)
             {
+                
+                file.AddLine("////////////////////////////////////////////////////////////////////////////////");
+                file.AddLine($"// event handlers for state {mangler.SmStateName(state)}");
+                file.AddLine("////////////////////////////////////////////////////////////////////////////////");
+                file.AddLine();
+
                 OutputFuncStateEnter(state);
                 OutputFuncStateExit(state);
 
