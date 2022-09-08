@@ -31,13 +31,13 @@ namespace StateSmith.output.C99BalancedCoder1
             if (hadDoEvent)
             {
                 enumOffset = 1;
-                file.AddLine($"{mangler.SmEventEnumValue(TriggerHelper.TRIGGER_DO)} = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
+                file.AppendLine($"{mangler.SmEventEnumValue(TriggerHelper.TRIGGER_DO)} = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
             }
 
             for (int i = 0; i < nonDoEvents.Count; i++)
             {
                 string evt = nonDoEvents[i];
-                file.AddLine($"{mangler.SmEventEnumValue(evt)} = {i + enumOffset},");
+                file.AppendLine($"{mangler.SmEventEnumValue(evt)} = {i + enumOffset},");
             }
 
             file.FinishCodeBlock(";");
@@ -71,7 +71,7 @@ namespace StateSmith.output.C99BalancedCoder1
             for (int i = 0; i < namedVertices.Count; i++)
             {
                 NamedVertex namedVertex = namedVertices[i];
-                file.AddLine($"{mangler.SmStateEnumValue(namedVertex)} = {i},");
+                file.AppendLine($"{mangler.SmStateEnumValue(namedVertex)} = {i},");
             }
 
             file.FinishCodeBlock(";");
@@ -94,7 +94,7 @@ namespace StateSmith.output.C99BalancedCoder1
             // A define could be used instead. Reading: https://stackoverflow.com/questions/10157181/in-which-situations-anonymous-enum-should-be-used
             file.Append($"enum");
             file.StartCodeBlock();
-            file.AddLine($"{enumValueName} = {count}");
+            file.AppendLine($"{enumValueName} = {count}");
             file.FinishCodeBlock(";");
         }
     }

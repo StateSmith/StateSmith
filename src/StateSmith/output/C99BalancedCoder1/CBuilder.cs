@@ -28,16 +28,16 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void Generate()
         {
-            file.AddLinesIfNotBlank(ctx.renderConfig.CFileTop);
+            file.AppendLinesIfNotBlank(ctx.renderConfig.CFileTop);
 
-            file.AddLine($"#include \"{mangler.HFileName}\"");
-            file.AddLinesIfNotBlank(ctx.renderConfig.CFileIncludes);
-            file.AddLine("#include <stdbool.h> // required for `consume_event` flag");
+            file.AppendLine($"#include \"{mangler.HFileName}\"");
+            file.AppendLinesIfNotBlank(ctx.renderConfig.CFileIncludes);
+            file.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
 
             //file.AddLine($"#include \"stddef.h\"");
             //file.AddLine($"#include \"stdint.h\"");
-            file.AddLine($"#include <string.h> // for memset");
-            file.AddLine();
+            file.AppendLine($"#include <string.h> // for memset");
+            file.AppendLine();
 
             OutputTriggerHandlerPrototypes();
 
@@ -66,7 +66,7 @@ namespace StateSmith.output.C99BalancedCoder1
                     OutputTriggerHandlerPrototype(state, eventName);
                 }
 
-                file.AddLine();
+                file.AppendLine();
             }
         }
 
@@ -77,9 +77,9 @@ namespace StateSmith.output.C99BalancedCoder1
         {
             file.Append($"void {mangler.SmFuncCtor}({mangler.SmStructTypedefName}* self)");
             file.StartCodeBlock();
-            file.AddLine("memset(self, 0, sizeof(*self));");
+            file.AppendLine("memset(self, 0, sizeof(*self));");
             file.FinishCodeBlock();
-            file.AddLine();
+            file.AppendLine();
         }
 
         internal void OutputFuncStateIdToString()
@@ -92,21 +92,21 @@ namespace StateSmith.output.C99BalancedCoder1
                 {
                     foreach (var state in ctx.sm.GetNamedVerticesCopy())
                     {
-                        file.AddLine($"case {mangler.SmStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
+                        file.AppendLine($"case {mangler.SmStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
                     }
-                    file.AddLine("default: return \"?\";");
+                    file.AppendLine("default: return \"?\";");
                 }
                 file.FinishCodeBlock();
             }
             file.FinishCodeBlock();
-            file.AddLine();
+            file.AppendLine();
         }
 
         internal void OutputFuncStart()
         {
             file.Append($"void {mangler.SmFuncStart}({mangler.SmStructTypedefName}* self)");
             file.StartCodeBlock();
-            file.AddLine("ROOT_enter(self);");
+            file.AppendLine("ROOT_enter(self);");
 
             var initialState = sm.Children.OfType<InitialState>().Single();
             var initial_transition = initialState.Behaviors.Single();
@@ -119,27 +119,27 @@ namespace StateSmith.output.C99BalancedCoder1
             NamedVertex transitionTarget = (NamedVertex)initial_transition.TransitionTarget;
             eventHandlerBuilder.OutputCodeForNonSelfTransition(sm, transitionTarget);
             file.FinishCodeBlock();
-            file.AddLine();
+            file.AppendLine();
         }
 
         internal void OutputFuncDispatchEvent()
         {
             file.Append($"void {mangler.SmFuncDispatchEvent}({mangler.SmStructTypedefName}* self, enum {mangler.SmEventEnum} event_id)");
             file.StartCodeBlock();
-            file.AddLine($"{mangler.SmFuncTypedef} behavior_func = self->current_event_handlers[event_id];");
-            file.AddLine();
+            file.AppendLine($"{mangler.SmFuncTypedef} behavior_func = self->current_event_handlers[event_id];");
+            file.AppendLine();
             //file.AddLine("self->current_event = event_id;");
             //file.AddLine();
             file.Append("while (behavior_func != NULL)");
             {
                 file.StartCodeBlock();
-                file.AddLine("self->ancestor_event_handler = NULL;");
-                file.AddLine("behavior_func(self);");
-                file.AddLine("behavior_func = self->ancestor_event_handler;");
+                file.AppendLine("self->ancestor_event_handler = NULL;");
+                file.AppendLine("behavior_func(self);");
+                file.AppendLine("behavior_func = self->ancestor_event_handler;");
                 file.FinishCodeBlock();
             }
             file.FinishCodeBlock();
-            file.AddLine();
+            file.AppendLine();
         }
 
         internal void OutputTriggerHandlers()
@@ -149,10 +149,10 @@ namespace StateSmith.output.C99BalancedCoder1
             foreach (var state in namedVertices)
             {
                 
-                file.AddLine("////////////////////////////////////////////////////////////////////////////////");
-                file.AddLine($"// event handlers for state {mangler.SmStateName(state)}");
-                file.AddLine("////////////////////////////////////////////////////////////////////////////////");
-                file.AddLine();
+                file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
+                file.AppendLine($"// event handlers for state {mangler.SmStateName(state)}");
+                file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
+                file.AppendLine();
 
                 OutputFuncStateEnter(state);
                 OutputFuncStateExit(state);
@@ -169,10 +169,10 @@ namespace StateSmith.output.C99BalancedCoder1
                         eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, eventName);
                     }
                     file.FinishCodeBlock();
-                    file.AddLine();
+                    file.AppendLine();
                 }
 
-                file.AddLine();
+                file.AppendLine();
             }
         }
 
@@ -182,9 +182,9 @@ namespace StateSmith.output.C99BalancedCoder1
 
             file.StartCodeBlock();
             {
-                file.AddLine($"// setup trigger/event handlers");
+                file.AppendLine($"// setup trigger/event handlers");
                 string stateExitHandlerName = mangler.SmFuncTriggerHandler(state, TriggerHelper.TRIGGER_EXIT);
-                file.AddLine($"self->current_state_exit_handler = {stateExitHandlerName};");
+                file.AppendLine($"self->current_state_exit_handler = {stateExitHandlerName};");
 
                 string[] eventNames = GetEvents(state).ToArray();
                 Array.Sort(eventNames);
@@ -193,13 +193,13 @@ namespace StateSmith.output.C99BalancedCoder1
                 {
                     string handlerName = mangler.SmFuncTriggerHandler(state, eventName);
                     string eventEnumValueName = mangler.SmEventEnumValue(eventName);
-                    file.AddLine($"self->current_event_handlers[{eventEnumValueName}] = {handlerName};");
+                    file.AppendLine($"self->current_event_handlers[{eventEnumValueName}] = {handlerName};");
                 }
 
                 eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_ENTER);
             }
             file.FinishCodeBlock();
-            file.AddLine();
+            file.AppendLine();
         }
 
         internal void OutputFuncStateExit(NamedVertex state)
@@ -212,14 +212,14 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 if (state.Parent == null)
                 {
-                    file.AddLine($"// State machine root is a special case. It cannot be exited.");
-                    file.AddLine($"(void)self;  // nothing to see here compiler. move along!");
+                    file.AppendLine($"// State machine root is a special case. It cannot be exited.");
+                    file.AppendLine($"(void)self;  // nothing to see here compiler. move along!");
                 }
                 else
                 {
-                    file.AddLine($"// adjust function pointers for this state's exit");
+                    file.AppendLine($"// adjust function pointers for this state's exit");
                     string parentExitHandler = mangler.SmFuncTriggerHandler((NamedVertex)state.Parent, TriggerHelper.TRIGGER_EXIT);
-                    file.AddLine($"self->current_state_exit_handler = {parentExitHandler};");
+                    file.AppendLine($"self->current_state_exit_handler = {parentExitHandler};");
 
                     string[] eventNames = GetEvents(state).ToArray();
                     Array.Sort(eventNames);
@@ -231,23 +231,23 @@ namespace StateSmith.output.C99BalancedCoder1
                         if (ancestor != null)
                         {
                             string handlerName = mangler.SmFuncTriggerHandler(ancestor, eventName);
-                            file.AddLine($"self->current_event_handlers[{eventEnumValueName}] = {handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
+                            file.AppendLine($"self->current_event_handlers[{eventEnumValueName}] = {handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
                         }
                         else
                         {
-                            file.AddLine($"self->current_event_handlers[{eventEnumValueName}] = NULL;  // no ancestor listens to this event");
+                            file.AppendLine($"self->current_event_handlers[{eventEnumValueName}] = NULL;  // no ancestor listens to this event");
                         }
                     }
                 }
             }
             file.FinishCodeBlock();
-            file.AddLine();
+            file.AppendLine();
         }
 
         internal void OutputTriggerHandlerPrototype(NamedVertex state, string eventName)
         {
             OutputTriggerHandlerSignature(state, eventName);
-            file.AddLine(";");
+            file.AppendLine(";");
         }
 
         internal void OutputTriggerHandlerSignature(NamedVertex state, string eventName)

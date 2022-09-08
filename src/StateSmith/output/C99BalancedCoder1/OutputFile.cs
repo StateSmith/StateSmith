@@ -60,25 +60,25 @@ namespace StateSmith.output.C99BalancedCoder1
             }
         }
 
-        public void AddLines(string codeLines)
+        public void AppendLines(string codeLines)
         {
             var lines = StringUtils.SplitIntoLines(codeLines);
             foreach (var line in lines)
             {
-                AddLine(line);
+                AppendLine(line);
             }
         }
 
-        public void AddLinesIfNotBlank(string code)
+        public void AppendLinesIfNotBlank(string code)
         {
             if (code.Length == 0)
             {
                 return;
             }
-            AddLines(code);
+            AppendLines(code);
         }
 
-        public void AddLine(string codeLine = "")
+        public void AppendLine(string codeLine = "")
         {
             Append(codeLine);
             FinishLine();
