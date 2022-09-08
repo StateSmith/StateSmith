@@ -1,12 +1,31 @@
 #include "ButtonSm1Cpp.h"
+#include <assert.h>
+
+////////////////////////////////////////////////////////////////////////////////
+// defines
+////////////////////////////////////////////////////////////////////////////////
 
 // https://stackoverflow.com/a/4415646/7331858
 #define COUNT_OF(x) ((sizeof(x) / sizeof(0 [x])) / ((size_t)(!(sizeof(x) % sizeof(0 [x])))))
 
-const uint8_t buttonPins[] = {7, 6, 5, 4};
-#define BUTTON_COUNT COUNT_OF(buttonPins)
+#define BUTTON_COUNT 4
 
-struct ButtonSm1Cpp buttonSms[BUTTON_COUNT];
+
+////////////////////////////////////////////////////////////////////////////////
+// global vars
+////////////////////////////////////////////////////////////////////////////////
+
+// setup input pins for buttons
+static const uint8_t g_button_pins[] = {7, 6, 5, 4};
+static_assert(COUNT_OF(g_button_pins) == BUTTON_COUNT, "button mapping needs updating");
+
+// button state machines
+static struct ButtonSm1Cpp g_button_sms[BUTTON_COUNT];
+
+
+////////////////////////////////////////////////////////////////////////////////
+// functions
+////////////////////////////////////////////////////////////////////////////////
 
 void setup()
 {
@@ -16,9 +35,12 @@ void setup()
 
   for (uint8_t i = 0; i < BUTTON_COUNT; i++)
   {
-    pinMode(buttonPins[i], INPUT_PULLUP);
-    ButtonSm1Cpp_ctor(&buttonSms[i]);
-    ButtonSm1Cpp_start(&buttonSms[i]);
+    pinMode(g_button_pins[i], INPUT_PULLUP);
+    static_assert(COUNT_OF(g_button_pins) == BUTTON_COUNT, "required for safe array access");
+
+    ButtonSm1Cpp_ctor(&g_button_sms[i]);
+    ButtonSm1Cpp_start(&g_button_sms[i]);
+    static_assert(COUNT_OF(g_button_sms) == BUTTON_COUNT, "required for safe array access");
   }
 }
 
@@ -26,8 +48,10 @@ void loop()
 {
   for (uint8_t i = 0; i < BUTTON_COUNT; i++)
   {
-    ButtonSm1Cpp &sm = buttonSms[i];
-    sm.vars.input_is_pressed = (digitalRead(buttonPins[i]) == LOW);
+    ButtonSm1Cpp &sm = g_button_sms[i];
+    sm.vars.input_is_pressed = (digitalRead(g_button_pins[i]) == LOW);
+    static_assert(COUNT_OF(g_button_pins) == BUTTON_COUNT, "required for safe array access");
+
     ButtonSm1Cpp_dispatch_event(&sm, ButtonSm1Cpp_EventId_DO);
 
     const uint8_t button_label = i + 1;

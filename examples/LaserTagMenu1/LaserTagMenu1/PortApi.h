@@ -12,7 +12,7 @@ void PortApi_debug_msg(const char* const message);
 
 bool PortApi_digital_read(uint8_t input_pin);
 
-bool PortApi_enable_pullup(uint8_t input_pin);
+void PortApi_enable_pullup(uint8_t input_pin);
 
 uint32_t PortApi_get_time_ms(void);
 

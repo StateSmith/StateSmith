@@ -5,6 +5,12 @@
 extern "C" {
 #endif
 
+// must be called before any other Display functions
+void Display_setup(void);
+
+// call periodically
+void Display_step(void);
+
 void Display_top_line(const char* const str);
 void Display_bot_line(const char* const str);
 

@@ -23,7 +23,7 @@ bool PortApi_digital_read(uint8_t input_pin)
     return digitalRead(input_pin);
 }
 
-bool PortApi_enable_pullup(uint8_t input_pin)
+void PortApi_enable_pullup(uint8_t input_pin)
 {
     pinMode(input_pin, INPUT_PULLUP);
 }
