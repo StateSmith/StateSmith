@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StateSmith" Version="0.5.2-alpha" />
+    <!-- use project reference instead of package reference if you want to debug  -->
+    <ProjectReference Include="..\..\..\src\StateSmith\StateSmith.csproj" />
+    <!-- <PackageReference Include="StateSmith" Version="0.5.2-alpha" /> -->
   </ItemGroup>
 
 </Project>

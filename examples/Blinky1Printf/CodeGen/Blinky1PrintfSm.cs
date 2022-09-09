@@ -22,7 +22,7 @@ namespace Blinky1
             MyGlueFile myGlueFile = new();
             RunnerSettings settings = new(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
             settings.mangler = new MyMangler();
-            // settings.style = new MyStyler();
+            settings.style = new MyStyler();
 
             SmRunner runner = new(settings);
 

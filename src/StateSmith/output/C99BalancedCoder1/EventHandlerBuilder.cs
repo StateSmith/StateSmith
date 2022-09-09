@@ -170,7 +170,7 @@ namespace StateSmith.output.C99BalancedCoder1
         internal void OutputCodeForNonSelfTransition(NamedVertex state, NamedVertex target)
         {
             file.Append("// Transition to target state " + target.Name);
-            file.StartCodeBlock();
+            file.StartCodeBlock(forceNewLine: true);
             {
                 var transitionPath = state.FindTransitionPathTo(target);
                 if (transitionPath.leastCommonAncestor == state)

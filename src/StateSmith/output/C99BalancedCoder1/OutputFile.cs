@@ -18,16 +18,16 @@ namespace StateSmith.output.C99BalancedCoder1
             styler = codeGenContext.style;
         }
 
-        public void StartCodeBlock()
+        public void StartCodeBlock(bool forceNewLine = false)
         {
-            if (styler.BracesOnNewLines)
+            if (styler.BracesOnNewLines || forceNewLine)
             {
                 FinishLine();
                 Append("{");
             }
             else
             {
-                Append(" {");
+                AppendWithoutIndent(" {");
             }
 
             FinishLine();
@@ -44,18 +44,25 @@ namespace StateSmith.output.C99BalancedCoder1
             indentLevel++;
         }
 
-        public void FinishCodeBlock(string codeAfterBrace="")
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="codeAfterBrace"></param>
+        /// <param name="forceNewLine">probably the only time this should be false is when rendering in if/else</param>
+        /// <exception cref="InvalidOperationException"></exception>
+        public void FinishCodeBlock(string codeAfterBrace = "", bool forceNewLine = true)
         {
             indentLevel--;
+            if (indentLevel < 0)
+            {
+                throw new InvalidOperationException("indent went negative");
+            }
+
             Append("}");
             sb.Append(codeAfterBrace); // this part shouldn't be indented
 
-            if (styler.BracesOnNewLines)
+            if (styler.BracesOnNewLines || forceNewLine)
             {
-                if (indentLevel < 0)
-                {
-                    throw new InvalidOperationException("indent went negative");
-                }
                 FinishLine();
             }
         }
@@ -95,6 +102,11 @@ namespace StateSmith.output.C99BalancedCoder1
                     FinishLine();
                 }
             }
+        }
+
+        public void AppendWithoutIndent(string code = "")
+        {
+            sb.Append(code);
         }
 
         public void Append(string code = "")

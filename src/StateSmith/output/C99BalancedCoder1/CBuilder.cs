@@ -96,9 +96,9 @@ namespace StateSmith.output.C99BalancedCoder1
                     }
                     file.AppendLine("default: return \"?\";");
                 }
-                file.FinishCodeBlock();
+                file.FinishCodeBlock(forceNewLine: true);
             }
-            file.FinishCodeBlock();
+            file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }
 
@@ -118,7 +118,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
             NamedVertex transitionTarget = (NamedVertex)initial_transition.TransitionTarget;
             eventHandlerBuilder.OutputCodeForNonSelfTransition(sm, transitionTarget);
-            file.FinishCodeBlock();
+            file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }
 
@@ -136,9 +136,9 @@ namespace StateSmith.output.C99BalancedCoder1
                 file.AppendLine("self->ancestor_event_handler = NULL;");
                 file.AppendLine("behavior_func(self);");
                 file.AppendLine("behavior_func = self->ancestor_event_handler;");
-                file.FinishCodeBlock();
+                file.FinishCodeBlock(forceNewLine: true);
             }
-            file.FinishCodeBlock();
+            file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }
 
@@ -168,7 +168,7 @@ namespace StateSmith.output.C99BalancedCoder1
                     {
                         eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, eventName);
                     }
-                    file.FinishCodeBlock();
+                    file.FinishCodeBlock(forceNewLine: false);
                     file.AppendLine();
                 }
 
@@ -198,7 +198,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_ENTER);
             }
-            file.FinishCodeBlock();
+            file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }
 
@@ -240,7 +240,7 @@ namespace StateSmith.output.C99BalancedCoder1
                     }
                 }
             }
-            file.FinishCodeBlock();
+            file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }
 
