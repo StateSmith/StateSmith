@@ -204,7 +204,7 @@ namespace StateSmith.output.C99BalancedCoder1
         private void OutputPathExitToLcaCode(TransitionPath transitionPath)
         {
             NamedVertex leastCommonAncestor = ((NamedVertex)transitionPath.leastCommonAncestor);
-            file.AppendLine($"// First, exit up to Least Common Ancestor {leastCommonAncestor.Name}.");
+            file.AppendLine($"// First, exit up to Least Common Ancestor {mangler.SmStateName(leastCommonAncestor)}.");
             string lcaExitHandler = mangler.SmFuncTriggerHandler(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
             file.Append($"while (self->current_state_exit_handler != {lcaExitHandler})");
             file.StartCodeBlock();

@@ -109,7 +109,7 @@ static void LED_OFF_do(blinky1_printf_sm* self) {
     if (( (app_timer_get_ms() - self->vars.timer_started_at_ms) >= 500 )) {
       // Transition to target state LED_ON
       {
-        // First, exit up to Least Common Ancestor blinky1_printf_sm.
+        // First, exit up to Least Common Ancestor ROOT.
         while (self->current_state_exit_handler != ROOT_exit) {
           self->current_state_exit_handler(self);
         }
@@ -164,7 +164,7 @@ static void LED_ON_do(blinky1_printf_sm* self) {
     if ((app_timer_get_ms() - self->vars.timer_started_at_ms) > 1000) {
       // Transition to target state LED_OFF
       {
-        // First, exit up to Least Common Ancestor blinky1_printf_sm.
+        // First, exit up to Least Common Ancestor ROOT.
         while (self->current_state_exit_handler != ROOT_exit) {
           self->current_state_exit_handler(self);
         }
