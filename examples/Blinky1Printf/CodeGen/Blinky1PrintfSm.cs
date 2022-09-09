@@ -1,4 +1,5 @@
-﻿using StateSmith.Input.Expansions;
+﻿using StateSmith.Compiling;
+using StateSmith.Input.Expansions;
 using StateSmith.output;
 using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
@@ -16,11 +17,12 @@ namespace Blinky1
         public static void GenFile()
         {
             var directory = AppDomain.CurrentDomain.BaseDirectory + "../../../../src/";
-            var diagramFile = directory + nameof(Blinky1PrintfSm)+ ".graphml";
+            var diagramFile = directory + "blinky1_printf_sm.graphml";
 
             MyGlueFile myGlueFile = new();
             RunnerSettings settings = new(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
             settings.mangler = new MyMangler();
+            // settings.style = new MyStyler();
 
             SmRunner runner = new(settings);
 
@@ -85,6 +87,25 @@ namespace Blinky1
         /// </summary>
         class MyMangler : CNameMangler
         {
+            public override string SmEventEnum => $"{SmName}_event_id";
+            public override string SmEventEnumValue(string evt) => $"{SmName.ToUpper()}_EVENT_ID_{evt.ToUpper()}";
+            public override string SmEventEnumCount => $"{SmName.ToUpper()}_EVENT_ID_COUNT";
+
+            public override string SmStateEnum => $"{SmName}_state_id";
+            public override string SmStateEnumCount => $"{SmName.ToUpper()}_STATE_ID_COUNT";
+            public override string SmStateEnumValue(NamedVertex namedVertex)
+            {
+                string stateName = SmStateName(namedVertex);
+                return $"{SmName.ToUpper()}_STATE_ID_{stateName.ToUpper()}";
+            }
+
+            public override string SmFuncTypedef => $"{SmStructName}_func";
+        }
+
+        class MyStyler : CodeStyleSettings
+        {
+            public override bool BracesOnNewLines => false;
+            public override string Indent1 => "  "; 
         }
     }
 }

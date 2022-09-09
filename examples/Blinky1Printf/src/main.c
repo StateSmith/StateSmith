@@ -4,15 +4,15 @@
 #include <stdbool.h>
 
 #include "led.h"
-#include "Blinky1PrintfSm.h"
+#include "blinky1_printf_sm.h"
 #include "app_timer.h"
 
-// gcc -Wall -std=c11 main.c led.c app_timer.c Blinky1PrintfSm.c  && ./a.out
+// gcc -Wall -std=c11 main.c led.c app_timer.c blinky1_printf_sm.c  && ./a.out
 
 int main(void)
 {
-    Blinky1PrintfSm sm;
-    Blinky1PrintfSm_ctor(&sm);
+    blinky1_printf_sm sm;
+    blinky1_printf_sm_ctor(&sm);
 
     if (false)
     {
@@ -22,11 +22,11 @@ int main(void)
         app_timer_sleep_ms(1000);
     }
 
-    Blinky1PrintfSm_start(&sm);
+    blinky1_printf_sm_start(&sm);
 
     while (true)
     {
-        Blinky1PrintfSm_dispatch_event(&sm, Blinky1PrintfSm_EventId_DO);
+        blinky1_printf_sm_dispatch_event(&sm, BLINKY1_PRINTF_SM_EVENT_ID_DO);
         app_timer_sleep_ms(100);
     }
 }
