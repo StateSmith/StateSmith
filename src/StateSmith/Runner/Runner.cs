@@ -53,6 +53,9 @@ namespace StateSmith.Runner
         {
             compiler.CompileFile(settings.diagramFile);
             compiler.SetupRoots();
+            compiler.SupportParentAlias();
+            compiler.Validate();
+
             compiler.SimplifyInitialStates();
             compiler.DefaultToDoEventIfNoTrigger();
             compiler.FinalizeTrees();

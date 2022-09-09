@@ -275,8 +275,7 @@ enter / menu_at_bottom();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></
                       <y:Geometry height="518.2581905131578" width="595.3810871080038" x="647.9219983742023" y="422.54442728782885"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                      <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="595.3810871080038" x="0.0" xml:space="preserve" y="0.0">     MM_SELECT_CLASS
-enter / Display_menu_header("SELECT CLASS");</y:NodeLabel>
+                      <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="595.3810871080038" x="0.0" xml:space="preserve" y="0.0">     MM_SELECT_CLASS</y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                       <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                       <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
@@ -286,8 +285,7 @@ enter / Display_menu_header("SELECT CLASS");</y:NodeLabel>
                       <y:Geometry height="124.8564453125" width="356.55010435880115" x="756.9235086948017" y="834.9464170483171"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                      <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="356.55010435880115" x="0.0" xml:space="preserve" y="0.0">     MM_SELECT_CLASS
-enter / Display_menu_header("SELECT CLASS");</y:NodeLabel>
+                      <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="356.55010435880115" x="0.0" xml:space="preserve" y="0.0">     MM_SELECT_CLASS</y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                       <y:State closed="true" closedHeight="124.8564453125" closedWidth="356.55010435880115" innerGraphDisplayEnabled="false"/>
                       <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
@@ -436,6 +434,32 @@ down to the bottom.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Labe
                       <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                       <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="53.80000000000007" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="394.55010435880115" x="0.0" xml:space="preserve" y="1.1368683772161603E-13">$NOTES
 set_menu_option_and_class() is a short cut<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                      <y:Shape type="roundrectangle"/>
+                    </y:ShapeNode>
+                  </data>
+                </node>
+                <node id="n0::n3::n1::n6">
+                  <data key="d6">
+                    <y:ShapeNode>
+                      <y:Geometry height="46.200000000000045" width="309.55010435880115" x="862.2780008823017" y="848.0028623608171"/>
+                      <y:Fill color="#FFFF99" transparent="false"/>
+                      <y:BorderStyle color="#9E9E10" raised="false" type="dashed" width="1.0"/>
+                      <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="46.200000000000045" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="309.55010435880115" x="0.0" xml:space="preserve" y="0.0">$PARENT_ALIAS
+enter / Display_menu_header("SELECT CLASS");<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                      <y:Shape type="roundrectangle"/>
+                    </y:ShapeNode>
+                  </data>
+                </node>
+                <node id="n0::n3::n1::n7">
+                  <data key="d6">
+                    <y:ShapeNode>
+                      <y:Geometry height="67.36000000000013" width="461.1101043588013" x="862.2780008823017" y="771.5957920483169"/>
+                      <y:Fill color="#CCFFFF" transparent="false"/>
+                      <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+                      <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="67.36000000000013" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="461.1101043588013" x="0.0" xml:space="preserve" y="0.0">$NOTES
+A parent alias is a convenient way of referring to state MM_SELECT_CLASS
+but from within it. Very useful because the MM_SELECT_CLASS group is collapsed.
+See https://github.com/StateSmith/StateSmith/issues/2<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                     </y:ShapeNode>
                   </data>
@@ -937,7 +961,6 @@ is parsed as a decimal number.<y:LabelModel><y:SmartNodeLabelModel distance="4.0
                   </data>
                 </edge>
                 <edge id="n0::n3::n3::e6" source="n0::n3::n3::n5" target="n0::n3::n3::n2">
-                  <data key="d9"/>
                   <data key="d10">
                     <y:QuadCurveEdge straightness="0.1">
                       <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">

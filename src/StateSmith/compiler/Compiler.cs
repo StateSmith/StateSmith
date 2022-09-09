@@ -85,6 +85,16 @@ namespace StateSmith.Compiling
             }
         }
 
+        // https://github.com/StateSmith/StateSmith/issues/2
+        public void SupportParentAlias()
+        {
+            foreach (var v in rootVertices)
+            {
+                var processor = new ParentAliasStateProcessor();
+                v.Accept(processor);
+            }
+        }
+
         public void DefaultToDoEventIfNoTrigger()
         {
             foreach (var v in rootVertices)
