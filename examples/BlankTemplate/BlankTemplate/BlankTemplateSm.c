@@ -104,7 +104,7 @@ static void STATE_1_do(BlankTemplateSm* self)
         // uml transition target: STATE_2
         // Transition to target state STATE_2
         {
-            // First, exit up to Least Common Ancestor BlankTemplateSm.
+            // First, exit up to Least Common Ancestor ROOT.
             while (self->current_state_exit_handler != ROOT_exit)
             {
                 self->current_state_exit_handler(self);
@@ -153,7 +153,7 @@ static void STATE_2_do(BlankTemplateSm* self)
         // uml transition target: STATE_1
         // Transition to target state STATE_1
         {
-            // First, exit up to Least Common Ancestor BlankTemplateSm.
+            // First, exit up to Least Common Ancestor ROOT.
             while (self->current_state_exit_handler != ROOT_exit)
             {
                 self->current_state_exit_handler(self);

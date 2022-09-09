@@ -122,7 +122,7 @@ static void NOT_PRESSED_do(ButtonSm1* self)
         {
             // Transition to target state CONFIRMING_HELD
             {
-                // First, exit up to Least Common Ancestor ButtonSm1.
+                // First, exit up to Least Common Ancestor ROOT.
                 while (self->current_state_exit_handler != ROOT_exit)
                 {
                     self->current_state_exit_handler(self);
@@ -193,7 +193,7 @@ static void PRESSED_do(ButtonSm1* self)
             
             // Transition to target state NOT_PRESSED
             {
-                // First, exit up to Least Common Ancestor ButtonSm1.
+                // First, exit up to Least Common Ancestor ROOT.
                 while (self->current_state_exit_handler != ROOT_exit)
                 {
                     self->current_state_exit_handler(self);

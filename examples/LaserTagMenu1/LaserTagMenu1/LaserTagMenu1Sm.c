@@ -252,7 +252,7 @@ static void HOME_ok_press(LaserTagMenu1Sm* self)
         // uml transition target: MM_SELECT_CLASS_OPTION
         // Transition to target state MM_SELECT_CLASS_OPTION
         {
-            // First, exit up to Least Common Ancestor LaserTagMenu1Sm.
+            // First, exit up to Least Common Ancestor ROOT.
             while (self->current_state_exit_handler != ROOT_exit)
             {
                 self->current_state_exit_handler(self);
@@ -566,7 +566,7 @@ static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self)
         // uml transition target: HOME1
         // Transition to target state HOME1
         {
-            // First, exit up to Least Common Ancestor LaserTagMenu1Sm.
+            // First, exit up to Least Common Ancestor ROOT.
             while (self->current_state_exit_handler != ROOT_exit)
             {
                 self->current_state_exit_handler(self);
@@ -597,7 +597,7 @@ static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self)
         // uml transition target: HOME1
         // Transition to target state HOME1
         {
-            // First, exit up to Least Common Ancestor LaserTagMenu1Sm.
+            // First, exit up to Least Common Ancestor ROOT.
             while (self->current_state_exit_handler != ROOT_exit)
             {
                 self->current_state_exit_handler(self);
@@ -2371,7 +2371,7 @@ static void WELCOME_SCREEN_do(LaserTagMenu1Sm* self)
         {
             // Transition to target state HOME1
             {
-                // First, exit up to Least Common Ancestor LaserTagMenu1Sm.
+                // First, exit up to Least Common Ancestor ROOT.
                 while (self->current_state_exit_handler != ROOT_exit)
                 {
                     self->current_state_exit_handler(self);
