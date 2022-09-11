@@ -1,2 +1,1 @@
-    B
-exit / exit = stuff();
+EVENT via exit 1

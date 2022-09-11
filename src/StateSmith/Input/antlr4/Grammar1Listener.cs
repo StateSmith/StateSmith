@@ -231,6 +231,26 @@ public interface IGrammar1Listener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExit_point([NotNull] Grammar1Parser.Exit_pointContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.via_entry_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterVia_entry_type([NotNull] Grammar1Parser.Via_entry_typeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.via_entry_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitVia_entry_type([NotNull] Grammar1Parser.Via_entry_typeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.via_exit_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterVia_exit_type([NotNull] Grammar1Parser.Via_exit_typeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.via_exit_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitVia_exit_type([NotNull] Grammar1Parser.Via_exit_typeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="Grammar1Parser.transition_via"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -240,6 +260,16 @@ public interface IGrammar1Listener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitTransition_via([NotNull] Grammar1Parser.Transition_viaContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.transition_vias"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTransition_vias([NotNull] Grammar1Parser.Transition_viasContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.transition_vias"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTransition_vias([NotNull] Grammar1Parser.Transition_viasContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="Grammar1Parser.behavior"/>.
 	/// </summary>

@@ -276,6 +276,30 @@ public partial class Grammar1BaseListener : IGrammar1Listener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExit_point([NotNull] Grammar1Parser.Exit_pointContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.via_entry_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVia_entry_type([NotNull] Grammar1Parser.Via_entry_typeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.via_entry_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVia_entry_type([NotNull] Grammar1Parser.Via_entry_typeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.via_exit_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVia_exit_type([NotNull] Grammar1Parser.Via_exit_typeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.via_exit_type"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVia_exit_type([NotNull] Grammar1Parser.Via_exit_typeContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="Grammar1Parser.transition_via"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -287,6 +311,18 @@ public partial class Grammar1BaseListener : IGrammar1Listener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTransition_via([NotNull] Grammar1Parser.Transition_viaContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.transition_vias"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTransition_vias([NotNull] Grammar1Parser.Transition_viasContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.transition_vias"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTransition_vias([NotNull] Grammar1Parser.Transition_viasContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="Grammar1Parser.behavior"/>.
 	/// <para>The default implementation does nothing.</para>

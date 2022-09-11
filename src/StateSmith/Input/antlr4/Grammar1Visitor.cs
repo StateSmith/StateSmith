@@ -152,11 +152,29 @@ public interface IGrammar1Visitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitExit_point([NotNull] Grammar1Parser.Exit_pointContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="Grammar1Parser.via_entry_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVia_entry_type([NotNull] Grammar1Parser.Via_entry_typeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Grammar1Parser.via_exit_type"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVia_exit_type([NotNull] Grammar1Parser.Via_exit_typeContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="Grammar1Parser.transition_via"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTransition_via([NotNull] Grammar1Parser.Transition_viaContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Grammar1Parser.transition_vias"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTransition_vias([NotNull] Grammar1Parser.Transition_viasContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="Grammar1Parser.behavior"/>.
 	/// </summary>

@@ -1,6 +1,8 @@
+using System;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
+using StateSmith.Compiling;
 using StateSmith.Input.Expansions;
 using System.Collections.Generic;
 
@@ -86,7 +88,40 @@ namespace StateSmith.Input.antlr4
             currentBehavior.order = context.order()?.number()?.GetText();
             currentBehavior.guardCode = context.guard()?.guard_code()?.GetText().Trim();
             currentBehavior.actionCode = GetActionCodeText(context.action()?.action_code());
+            AddAnyVias(context);
+
             behaviors.Add(currentBehavior);
+        }
+
+        private void AddAnyVias(Grammar1Parser.BehaviorContext context)
+        {
+            Grammar1Parser.Transition_viaContext[] vias = context.transition_vias()?.transition_via();
+
+            if (vias == null)
+            {
+                return;
+            }
+
+            foreach (var via in vias)
+            {
+                if (via.via_entry_type() != null)
+                {
+                    if (currentBehavior.viaEntry != null)
+                    {
+                        throw new ArgumentException("can't have multiple `via entry` statements");  // todolow throw as more specific exception type with more info
+                    }
+                    currentBehavior.viaEntry = via.point_label().GetText();
+                }
+
+                if (via.via_exit_type() != null)
+                {
+                    if (currentBehavior.viaExit != null)
+                    {
+                        throw new ArgumentException("can't have multiple `via exit` statements");  // todolow throw as more specific exception type with more info
+                    }
+                    currentBehavior.viaExit = via.point_label().GetText();
+                }
+            }
         }
 
         private string GetActionCodeText(Grammar1Parser.Action_codeContext action_codeContext)

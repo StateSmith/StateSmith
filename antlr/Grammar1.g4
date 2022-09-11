@@ -169,10 +169,24 @@ exit_point:
     optional_any_space
     ;
 
+via_entry_type: 'entry';
+via_exit_type: 'exit';
+
 // supports entry and exit points
 // https://github.com/StateSmith/StateSmith/issues/3
 transition_via:
-    'via' some_ws IDENTIFIER
+    optional_any_space 
+    'via'
+    some_ws
+    ( via_entry_type | via_exit_type )
+    some_ws
+    point_label
+    ;
+
+// plural because it might have an entry and exit via in some rare cases
+transition_vias:
+    transition_via
+    ( some_ws transition_via)*
     ;
 
 behavior:
@@ -186,8 +200,7 @@ behavior:
         |
         action
     )
-    transition_via? // consider making this only valid for transition behaviors. Currently, we need to validate this after parsing.
-    // FIXME validate after parsing
+    transition_vias?
     ;
 
 
