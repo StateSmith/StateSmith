@@ -139,7 +139,10 @@ point_label:
 // https://github.com/StateSmith/StateSmith/issues/3
 entry_point:
     optional_any_space
-    '$entry_'
+    'entry'
+    optional_any_space
+    ':'
+    optional_any_space
     point_label
     optional_any_space
     ;
