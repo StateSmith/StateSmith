@@ -7,6 +7,14 @@ grammar Grammar1;
 
     NOTES!
     Lexing rules are very important and should be used with care!
+
+    https://riptutorial.com/antlr/example/11235/priority-rules
+    Several lexer rules can match the same input text. In that case, the token type will be chosen as follows:
+
+    - First, select the lexer rule which matches the longest input
+    - If the text matches an implicitly defined token (like '{'), use the implicit rule
+    - If several lexer rules match the same input length, choose the first one, based on definition order
+
  */
 optional_any_space: (HWS | line_end_with_hs)*;
 ohs: HWS? ;
@@ -15,6 +23,10 @@ some_ws: (HWS | LINE_ENDER)+ ;
 
 node:
     notes_node
+    |
+    exit_point
+    |
+    entry_point
     |
     state_defn
     |
@@ -117,6 +129,49 @@ nl_behavior:
     behavior 
     ;
 
+// https://github.com/StateSmith/StateSmith/issues/3
+point_label:
+    DIGIT IDENTIFIER?
+    |
+    IDENTIFIER
+    ;
+
+// https://github.com/StateSmith/StateSmith/issues/3
+entry_point:
+    optional_any_space
+    '$entry_'
+    point_label
+    optional_any_space
+    ;
+
+// NOTE! We can't a rule like below because the IDENTIFIER lexer token will match all of example
+// input like `$entry_first` and because it matches more than `$entry_` it wins causing this to fail.
+// There might be a way to do it, but it is much simpler instead to require `entry` to be
+// split from the identifier.
+    // entry_point:
+    //     optional_any_space
+    //     '$entry_'
+    //     point_label
+    //     optional_any_space
+    //     ;
+
+// https://github.com/StateSmith/StateSmith/issues/3
+exit_point:
+    optional_any_space
+    'exit'
+    optional_any_space
+    ':'
+    optional_any_space
+    point_label
+    optional_any_space
+    ;
+
+// supports entry and exit points
+// https://github.com/StateSmith/StateSmith/issues/3
+transition_via:
+    'via' some_ws IDENTIFIER
+    ;
+
 behavior:
     order?
     ( 
@@ -128,6 +183,8 @@ behavior:
         |
         action
     )
+    transition_via? // consider making this only valid for transition behaviors. Currently, we need to validate this after parsing.
+    // FIXME validate after parsing
     ;
 
 
@@ -249,7 +306,8 @@ member_access:
 
 //checked for expansions
 expandable_identifier:
-    ohs IDENTIFIER
+    ohs 
+    (IDENTIFIER | 'exit') // 'exit' lexer token required because of exit point rule
     ;
 
 

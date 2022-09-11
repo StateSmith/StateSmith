@@ -1,1 +1,2 @@
-mult(2, 4)
+    B
+exit / exit = stuff();

@@ -217,6 +217,14 @@ namespace StateSmithTest
         }
 
         [Fact]
+        public void ExitPointNode()
+        {
+            string input = @"exit:1";
+            var node = (ExitPointNode)ParseNodeWithNoErrors(input);
+            node.label.Should().Be("1");
+        }
+
+        [Fact]
         public void NotesNode()
         {
             string input = "$NOTES this is my note!!! /* Not an actual comment test\n" +

@@ -201,6 +201,46 @@ public interface IGrammar1Listener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNl_behavior([NotNull] Grammar1Parser.Nl_behaviorContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.point_label"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPoint_label([NotNull] Grammar1Parser.Point_labelContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.point_label"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPoint_label([NotNull] Grammar1Parser.Point_labelContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.entry_point"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterEntry_point([NotNull] Grammar1Parser.Entry_pointContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.entry_point"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitEntry_point([NotNull] Grammar1Parser.Entry_pointContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.exit_point"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterExit_point([NotNull] Grammar1Parser.Exit_pointContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.exit_point"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitExit_point([NotNull] Grammar1Parser.Exit_pointContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="Grammar1Parser.transition_via"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterTransition_via([NotNull] Grammar1Parser.Transition_viaContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="Grammar1Parser.transition_via"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTransition_via([NotNull] Grammar1Parser.Transition_viaContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="Grammar1Parser.behavior"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

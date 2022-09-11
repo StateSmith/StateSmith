@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using StateSmith.Input.Expansions;
@@ -45,6 +45,20 @@ namespace StateSmith.Input.antlr4
             var notesNode = new NotesNode();
             notesNode.notes = context.notes_text()?.GetText()?.Trim();
             node = notesNode;
+        }
+
+        public override void EnterEntry_point([NotNull] Grammar1Parser.Entry_pointContext context)
+        {
+            var n = new EntryPointNode();
+            n.label = context.point_label().GetText();
+            node = n;
+        }
+
+        public override void EnterExit_point([NotNull] Grammar1Parser.Exit_pointContext context)
+        {
+            var n = new ExitPointNode();
+            n.label = context.point_label().GetText();
+            node = n;
         }
 
         //---------------------------

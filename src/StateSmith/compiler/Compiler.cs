@@ -363,6 +363,28 @@ namespace StateSmith.Compiling
                         ConvertBehaviors(thisVertex, stateNode);
                         break;
                     }
+
+                case EntryPointNode pointNode:
+                    {
+                        thisVertex = new EntryPoint(pointNode.label);
+                        
+                        if (diagramNode.children.Count > 0)
+                        {
+                            throw new DiagramNodeException(diagramNode, $"entry points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
+                        }
+                        break;
+                    }
+
+                case ExitPointNode pointNode:
+                    {
+                        thisVertex = new ExitPoint(pointNode.label);
+                        
+                        if (diagramNode.children.Count > 0)
+                        {
+                            throw new DiagramNodeException(diagramNode, $"exit points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
+                        }
+                        break;
+                    }
             }
 
             thisVertex.DiagramId = diagramNode.id;

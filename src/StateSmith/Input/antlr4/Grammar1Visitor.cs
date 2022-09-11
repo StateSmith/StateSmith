@@ -134,6 +134,30 @@ public interface IGrammar1Visitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNl_behavior([NotNull] Grammar1Parser.Nl_behaviorContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="Grammar1Parser.point_label"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPoint_label([NotNull] Grammar1Parser.Point_labelContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Grammar1Parser.entry_point"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEntry_point([NotNull] Grammar1Parser.Entry_pointContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Grammar1Parser.exit_point"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExit_point([NotNull] Grammar1Parser.Exit_pointContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="Grammar1Parser.transition_via"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTransition_via([NotNull] Grammar1Parser.Transition_viaContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="Grammar1Parser.behavior"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
