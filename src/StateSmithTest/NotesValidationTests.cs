@@ -38,21 +38,21 @@ namespace StateSmithTest.InitialStateProcessor
         public void IncomingTransitions()
         {
             s1.AddTransitionTo(notesVertex);
-            ExpectValidationException(exceptionMessagePart: "Notes vertices cannot have any incoming transitions");
+            ExpectVertexValidationException(exceptionMessagePart: "Notes vertices cannot have any incoming transitions");
         }
 
         [Fact]
         public void NoBehaviors()
         {
             notesVertex.AddBehavior(new Behavior());
-            ExpectValidationException(exceptionMessagePart: "Notes vertices cannot have any behaviors");
+            ExpectVertexValidationException(exceptionMessagePart: "Notes vertices cannot have any behaviors");
         }
 
         [Fact]
         public void NoChildren()
         {
             notesVertex.AddChild(new State("blah"));
-            ExpectValidationException(exceptionMessagePart: "Notes vertices cannot have any children");
+            ExpectVertexValidationException(exceptionMessagePart: "Notes vertices cannot have any children");
         }
     }
 }

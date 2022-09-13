@@ -106,5 +106,10 @@ namespace StateSmith.compiler
             ThrowIfNotSingle<T>(list);
             return list[0];
         }
+
+        public static IEnumerable<Behavior> TransitionBehaviors(this Vertex vertex)
+        {
+            return vertex.Behaviors.Where(b => b.HasTransition());
+        }
     }
 }

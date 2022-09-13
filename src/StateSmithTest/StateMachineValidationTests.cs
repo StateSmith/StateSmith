@@ -38,7 +38,7 @@ namespace StateSmithTest.InitialStateProcessor
         public void NoNestingYet()
         {
             s1.AddChild(new Statemachine("sm2"));
-            ExpectValidationException(exceptionMessagePart: "State machines cannot be nested, yet");
+            ExpectVertexValidationException(exceptionMessagePart: "State machines cannot be nested, yet");
         }
     }
 }

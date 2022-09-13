@@ -87,6 +87,16 @@ namespace StateSmith.Compiling
             }
         }
 
+        // https://github.com/StateSmith/StateSmith/issues/3
+        public void SupportEntryExitPoints()
+        {
+            foreach (var v in rootVertices)
+            {
+                var processor = new EntryExitProcessor();
+                v.Accept(processor);
+            }
+        }
+
         // https://github.com/StateSmith/StateSmith/issues/2
         public void SupportParentAlias()
         {
