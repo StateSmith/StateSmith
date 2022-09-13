@@ -5,19 +5,19 @@ using Xunit;
 using FluentAssertions;
 using StateSmith.Compiling;
 
-namespace StateSmithTest.InitialStateProcessor
-{
 
+namespace StateSmithTest
+{
     public class ValidationTestHelper
     {
-        protected Compiler compiler;
+        public Compiler compiler;
 
         public ValidationTestHelper()
         {
             compiler = new Compiler();
         }
 
-        protected void ExpectValidationException(string exceptionMessagePart)
+        public void ExpectValidationException(string exceptionMessagePart)
         {
             compiler.SetupRoots();
 
@@ -26,7 +26,7 @@ namespace StateSmithTest.InitialStateProcessor
                 .Where(e => e.Message.Contains(exceptionMessagePart));
         }
 
-        protected void ExpectValidationExceptionWildcard(string wildcardMessage)
+        public void ExpectValidationExceptionWildcard(string wildcardMessage)
         {
             compiler.SetupRoots();
 

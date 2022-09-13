@@ -27,7 +27,7 @@ namespace StateSmith.Compiling
             {
                 foreach (var trigger in behavior.triggers)
                 {
-                    TriggerHelper.MaybeAddTrigger(statemachine, behavior, trigger);
+                    TriggerHelper.MaybeAddEvent(statemachine, behavior, trigger);
                 }
             }
         }

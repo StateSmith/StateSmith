@@ -192,15 +192,16 @@ transition_vias:
 behavior:
     order?
     ( 
-        triggers guard action?
+        triggers guard action? transition_vias?
         |
-        triggers action?
+        triggers action? transition_vias?
         |
-        guard action?
+        guard action? transition_vias?
         |
-        action
+        action transition_vias?
+        |
+        transition_vias
     )
-    transition_vias?
     ;
 
 

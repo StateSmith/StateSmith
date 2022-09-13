@@ -71,8 +71,10 @@ namespace StateSmith.Compiling
         {
             foreach (var v in rootVertices)
             {
-                var validator = new VertexValidator();
+                var validator = new SpecificVertexValidator();
                 v.Accept(validator);
+                var validator2 = new VertexValidator();
+                v.Accept(validator2);
             }
         }
 
@@ -262,9 +264,13 @@ namespace StateSmith.Compiling
             }
         }
 
-        private static void SetupDescendants(NamedVertex parentVertex)
+        private static void SetupDescendants(NamedVertex root)
         {
-            VisitVertices<NamedVertex>(parentVertex, vertex => {
+            VisitVertices<Vertex>(root, vertex => {
+                root.ResetNamedDescendantsMap();
+            });
+
+            VisitVertices<NamedVertex>(root, vertex => {
                 //add this vertex to ancestors
                 var parent = vertex.Parent;
                 while (parent != null)
@@ -438,7 +444,9 @@ namespace StateSmith.Compiling
             {
                 actionCode = nodeBehavior.actionCode,
                 guardCode = nodeBehavior.guardCode,
-                triggers = nodeBehavior.triggers
+                triggers = nodeBehavior.triggers,
+                viaEntry = nodeBehavior.viaEntry,
+                viaExit = nodeBehavior.viaExit,
             };
 
             if (nodeBehavior.order != null)

@@ -9,12 +9,11 @@ using Antlr4.Runtime.Misc;
 using Xunit.Abstractions;
 using StateSmith.Input.antlr4;
 
-
 namespace StateSmithTest.Antlr;
 
-public class EntryExitTests : CommonTestHelper
+public class EntryExitParseTests : CommonTestHelper
 {
-    public EntryExitTests(ITestOutputHelper output)
+    public EntryExitParseTests(ITestOutputHelper output)
     {
         this.output = output;
     }

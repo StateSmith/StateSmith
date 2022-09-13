@@ -13,6 +13,9 @@ namespace StateSmith.compiler.Visitors
         public abstract void Visit(NotesVertex v);
         public abstract void Visit(InitialState v);
 
+        public virtual void Visit(EntryPoint v) => Visit((Vertex)v);
+        public virtual void Visit(ExitPoint v) => Visit((Vertex)v);
+
         public static void VisitVertexChildren(Vertex v, VertexVisitor visitor)
         {
             //copy list so that we can remove children while iterating.
