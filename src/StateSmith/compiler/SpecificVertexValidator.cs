@@ -64,38 +64,43 @@ namespace StateSmith.Compiling
             //note that transitions to state nodes within a notes node are caught when converting from Diagram nodes to Vertices
         }
 
-        public override void Visit(EntryPoint v)
+        public override void Visit(EntryPoint entryPoint)
         {
-            if (v.Children.Count > 0)
+            if (entryPoint.Children.Count > 0)
             {
-                throw new VertexValidationException(v, "An entry point cannot have child states.");
+                throw new VertexValidationException(entryPoint, "An entry point cannot have child states.");
             }
 
-            if (v.IncomingTransitions.Count > 0)
+            if (entryPoint.IncomingTransitions.Count > 0)
             {
-                throw new VertexValidationException(v, "An entry point cannot have any incoming transitions.");
+                throw new VertexValidationException(entryPoint, "An entry point cannot have any incoming transitions.");
             }
 
-            if (v.Behaviors.Count != 1)
+            if (entryPoint.Behaviors.Count != 1)
             {
-                throw new VertexValidationException(v, $"An entry point must have only a single behavior (instead of {v.Behaviors.Count}) which is an outgoing transition (for now).");
+                throw new VertexValidationException(entryPoint, $"An entry point must have only a single behavior (instead of {entryPoint.Behaviors.Count}) which is an outgoing transition (for now).");
             }
 
-            var b = v.Behaviors[0];
+            var b = entryPoint.Behaviors[0];
 
             if (!b.HasTransition())
             {
-                throw new VertexValidationException(v, "An entry point must have a single outgoing transition (for now).");
+                throw new VertexValidationException(entryPoint, "An entry point must have a single outgoing transition (for now).");
             }
 
             if (b.triggers.Count > 0)
             {
-                throw new VertexValidationException(v, "An entry point transition cannot have a trigger/event.");
+                throw new VertexValidationException(entryPoint, "An entry point transition cannot have a trigger/event.");
             }
 
             if (b.HasGuardCode())
             {
-                throw new VertexValidationException(v, "An entry point transition cannot have any guard code (for now).");
+                throw new VertexValidationException(entryPoint, "An entry point transition cannot have any guard code (for now).");
+            }
+
+            if (entryPoint.Behaviors[0].TransitionTarget == entryPoint.Parent)
+            {
+                throw new VertexValidationException(entryPoint, $"An state's entry point transition cannot target itself.");
             }
         }
 

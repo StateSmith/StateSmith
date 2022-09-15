@@ -1,20 +1,47 @@
 using StateSmith.compiler.Visitors;
+using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace StateSmith.Compiling
 {
     public class EntryExitProcessor : DummyVertexVisitor
     {
-        // handle exit points first as they are generally more useful
 
-        // find an exit point
-        // find parent transition that matches exit point label
+        public override void Visit(EntryPoint entryPoint)
+        {
+            NamedVertex parentState = (NamedVertex)entryPoint.Parent;    // todolow - provide nicer exception or validate somewhere else
 
-        // foreach incoming transition
-        // copy parent transition action code to incoming transition
-        // re-target incoming transition to new destination
+            var entryPointTransition = entryPoint.Behaviors.Single();
 
-        // remove exit point
+            var transitionsToReTarget = GetParentEntryTransitions(entryPoint, parentState);
+
+            foreach (var transition in transitionsToReTarget.ToList())
+            {
+                // retarget to entryPoint target and copy behavior
+                transition.actionCode = transition.actionCode ?? "";
+                transition.actionCode += entryPointTransition.actionCode ?? "";
+                transition.RetargetTo(entryPointTransition.TransitionTarget);
+                transition.viaEntry = null;
+            }
+
+            // remove entry point behavior prior to removing
+            entryPoint._behaviors.Clear();
+            parentState.RemoveChild(entryPoint);
+        }
+
+        private IEnumerable<Behavior> GetParentEntryTransitions(EntryPoint entryPoint, NamedVertex parentState)
+        {
+            var matching = parentState.IncomingTransitions.Where(b => b.viaEntry == entryPoint.label);
+
+            switch (matching.Count())
+            {
+                case 0: throw new VertexValidationException(entryPoint, $"No transitions match entry point with `via entry {entryPoint.label}`.");
+                default: break;
+            }
+
+            return matching;
+        }
 
         public override void Visit(ExitPoint exitPoint)
         {
@@ -27,6 +54,7 @@ namespace StateSmith.Compiling
                 // copy parent transition action code to incoming transition
                 transitionToReTarget.actionCode = transitionToReTarget.actionCode ?? "";
                 transitionToReTarget.actionCode += parentExitTransition.actionCode ?? "";
+                transitionToReTarget.viaEntry = parentExitTransition.viaEntry;
                 transitionToReTarget.RetargetTo(parentExitTransition.TransitionTarget);
             }
 
@@ -40,12 +68,9 @@ namespace StateSmith.Compiling
 
             switch (matching.Count())
             {
-                case 0:
-                    throw new VertexValidationException(exitPoint, $"No transitions match exit point with `via exit {exitPoint.label}`.");
-                case 1:
-                    break;
-                default:
-                    throw new VertexValidationException(exitPoint, $"Too many transitions match exit point with `via exit {exitPoint.label}`.");
+                case 0: throw new VertexValidationException(exitPoint, $"No transitions match exit point with `via exit {exitPoint.label}`.");
+                case 1: break;
+                default: throw new VertexValidationException(exitPoint, $"Too many transitions match exit point with `via exit {exitPoint.label}`.");
             }
 
             var parentExitTransition = matching.First();
