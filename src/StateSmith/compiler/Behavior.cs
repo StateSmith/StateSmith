@@ -49,6 +49,15 @@ namespace StateSmith.Compiling
             }
         }
 
+        public string GetOrderString()
+        {
+            if (order == DEFAULT_ORDER)
+            {
+                return "default";
+            }
+            return order.ToString();
+        }
+
         [MemberNotNullWhen(true, nameof(TransitionTarget))]
         public bool HasTransition()
         {

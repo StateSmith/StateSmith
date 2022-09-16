@@ -4,6 +4,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Text;
+using StateSmith.output;
 
 namespace StateSmith.Input
 {
@@ -33,10 +34,12 @@ namespace StateSmith.Input
         /// <param name="stringBuilder"></param>
         internal void Describe(StringBuilder stringBuilder)
         {
+            string indentedLabel = StringUtils.ReplaceNewLineChars(label.Trim(), "\n\t        ");
+
             string message =
                     $"{nameof(DiagramEdge)}\n" +
                     $"\tid: {id}\n" +
-                    $"\tlabel: `{label.Trim()}`\n" +
+                    $"\tlabel: `{indentedLabel}`\n" +
                     $"\tsource.id: {source?.id ?? "null"}\n" +
                     $"\ttarget.id: {target?.id ?? "null"}\n" +
                     "";
