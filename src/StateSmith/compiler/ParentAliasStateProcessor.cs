@@ -38,6 +38,7 @@ namespace StateSmith.Compiling
                 parent.AddBehavior(b);
             }
 
+            alias._behaviors.Clear();
             parent.RemoveChild(alias);
         }
     }

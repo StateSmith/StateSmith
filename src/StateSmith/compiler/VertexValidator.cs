@@ -1,135 +1,78 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using StateSmith.compiler;
 using StateSmith.compiler.Visitors;
+using System.Linq;
 
 namespace StateSmith.Compiling
 {
-    public class VertexValidator : VertexVisitor
+    public class VertexValidator : OnlyVertexVisitor
     {
-        public override void Visit(InitialState initialState)
-        {
-            ValidateInitialState(initialState);
-            //no children to validate
-        }
-
         public override void Visit(Vertex v)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Visit(NamedVertex v)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Visit(State v)
-        {
-            //FIXME finish
-            VisitChildren(v);
-        }
-
-        public override void Visit(OrthoState v)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void Visit(Statemachine v)
-        {
-            if (v.Parent != null)
+            foreach (var b in v.Behaviors)
             {
-                throw new VertexValidationException(v, "State machines cannot be nested, yet. See https://github.com/adamfk/StateSmith/issues/7");
+                ValidateBehavior(v, b);
             }
+
             VisitChildren(v);
+        }
+
+        private static void ValidateBehavior(Vertex v, Behavior b)
+        {
+            if (b.HasTransition() == false)
+            {
+                if (b.viaEntry != null || b.viaExit != null)
+                {
+                    throw new VertexValidationException(v, "via entry/exit can only be specified on transitions");
+                }
+            }
+            else
+            {
+                ValidateViaEntry(b);
+
+                ValidateViaExit(v, b);
+            }
+
+        }
+
+        private static void ValidateViaExit(Vertex v, Behavior b)
+        {
+            string exitLabel = b.viaExit;
+            if (exitLabel == null)
+            {
+                return;
+            }
+
+            // find exit point with matching label
+            var matchingExitPoints = v.Children.OfType<ExitPoint>().Where(point => point.label == exitLabel);
+
+            switch (matchingExitPoints.Count())
+            {
+                case 0: throw new BehaviorValidationException(b, $"no matching exit point found with label `{exitLabel}`.");
+                case 1: break; // happy path
+                default: throw new BehaviorValidationException(b, $"multiple matching exit points found with label `{exitLabel}`.");
+            }
+        }
+
+        private static void ValidateViaEntry(Behavior b)
+        {
+            string entryLabel = b.viaEntry;
+            if (entryLabel == null)
+            {
+                return;
+            }
+
+            var matchingEntryPoints = b.TransitionTarget.Children.OfType<EntryPoint>().Where(point => point.label == entryLabel);
+
+            switch (matchingEntryPoints.Count())
+            {
+                case 0: throw new BehaviorValidationException(b, $"no matching entry point found with label `{entryLabel}`.");
+                case 1: break; // happy path
+                default: throw new BehaviorValidationException(b, $"multiple matching entry points found with label `{entryLabel}`.");
+            }
         }
 
         public override void Visit(NotesVertex v)
         {
-            if (v.IncomingTransitions.Count > 0)
-            {
-                throw new VertexValidationException(v, "Notes vertices cannot have any incoming transitions");
-            }
-
-            if (v.Behaviors.Count > 0)
-            {
-                throw new VertexValidationException(v, "Notes vertices cannot have any behaviors");
-            }
-
-            if (v.Children.Count > 0)
-            {
-                throw new VertexValidationException(v, "Notes vertices cannot have any children");
-            }
-
-            //note that transitions to state nodes within a notes node are caught when converting from Diagram nodes to Vertices
+            // ignore
         }
-
-
-        public static void ValidateInitialState(InitialState initialState)
-        {
-            if (initialState.Children.Count > 0)
-            {
-                throw new VertexValidationException(initialState, "Initial states vertices cannot contain children.");
-            }
-
-            var parent = initialState.Parent;
-            if (parent == null)
-            {
-                throw new VertexValidationException(initialState, "Initial states must have a parent state.");
-            }
-
-            // Ensure that containing state only has a single initial state.
-            // This seems like it might be inefficient, but it isn't because we throw if more than 1 initial state
-            // so any additional initial states are not visited.
-            // This approach also has the added benefit of being simpler to implement. Instead of StateMachine, State, OrthoState all
-            // implementing the check top down, we can do the check in one place with 1/3rd of the test code.
-            var siblingCount = parent.Children<InitialState>().Count();
-            if (siblingCount > 1)
-            {
-                throw new VertexValidationException(parent, $"A state can only have a single initial state, not {siblingCount}.");
-            }
-
-            if (initialState.Behaviors.Count != 1)
-            {
-                throw new VertexValidationException(initialState, "Initial states must have exactly one behavior for now");
-            }
-
-            var behavior = initialState.Behaviors[0];
-
-            if (behavior.TransitionTarget == null)
-            {
-                throw new VertexValidationException(initialState, "Initial states must have a transition target");
-            }
-
-            if (behavior.HasGuardCode())
-            {
-                throw new VertexValidationException(initialState, "Initial states cannot have guard code for now. See https://github.com/adamfk/StateSmith/issues/8");
-            }
-
-            if (behavior.HasAtLeastOneTrigger())
-            {
-                throw new VertexValidationException(initialState, "Initial states cannot have triggers"); //todolow create example of using guard to check current event
-            }
-
-            if (initialState.IncomingTransitions.Count > 0)
-            {
-                throw new VertexValidationException(initialState, "Initial states cannot have any incoming transitions for now"); //todolow
-            }
-
-            if (!parent.ContainsVertex(behavior.TransitionTarget))
-            {
-                throw new VertexValidationException(initialState, "Initial state transition must remain within parent");
-            }
-
-            if (behavior.TransitionTarget == parent)
-            {
-                throw new VertexValidationException(initialState, "Initial state transition cannot target parent");
-            }
-
-            if (behavior.TransitionTarget == initialState)
-            {
-                throw new VertexValidationException(initialState, "Initial state transition cannot be to self");
-            }
-        }
-
     }
 }

@@ -16,5 +16,7 @@ namespace StateSmith.Input.antlr4
         public string order;
         public string guardCode;
         public string actionCode;
+        public string viaEntry;
+        public string viaExit;
     }
 }

@@ -57,6 +57,8 @@ namespace StateSmith.Runner
             compiler.Validate();
 
             compiler.SimplifyInitialStates();
+            compiler.SupportEntryExitPoints();
+            compiler.Validate();
             compiler.DefaultToDoEventIfNoTrigger();
             compiler.FinalizeTrees();
             compiler.Validate();

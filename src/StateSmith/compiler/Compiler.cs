@@ -71,8 +71,10 @@ namespace StateSmith.Compiling
         {
             foreach (var v in rootVertices)
             {
-                var validator = new VertexValidator();
+                var validator = new SpecificVertexValidator();
                 v.Accept(validator);
+                var validator2 = new VertexValidator();
+                v.Accept(validator2);
             }
         }
 
@@ -81,6 +83,16 @@ namespace StateSmith.Compiling
             foreach (var v in rootVertices)
             {
                 var processor = new InitialStateProcessor();
+                v.Accept(processor);
+            }
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/3
+        public void SupportEntryExitPoints()
+        {
+            foreach (var v in rootVertices)
+            {
+                var processor = new EntryExitProcessor();
                 v.Accept(processor);
             }
         }
@@ -262,9 +274,13 @@ namespace StateSmith.Compiling
             }
         }
 
-        private static void SetupDescendants(NamedVertex parentVertex)
+        private static void SetupDescendants(NamedVertex root)
         {
-            VisitVertices<NamedVertex>(parentVertex, vertex => {
+            VisitVertices<Vertex>(root, vertex => {
+                root.ResetNamedDescendantsMap();
+            });
+
+            VisitVertices<NamedVertex>(root, vertex => {
                 //add this vertex to ancestors
                 var parent = vertex.Parent;
                 while (parent != null)
@@ -363,6 +379,28 @@ namespace StateSmith.Compiling
                         ConvertBehaviors(thisVertex, stateNode);
                         break;
                     }
+
+                case EntryPointNode pointNode:
+                    {
+                        thisVertex = new EntryPoint(pointNode.label);
+                        
+                        if (diagramNode.children.Count > 0)
+                        {
+                            throw new DiagramNodeException(diagramNode, $"entry points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
+                        }
+                        break;
+                    }
+
+                case ExitPointNode pointNode:
+                    {
+                        thisVertex = new ExitPoint(pointNode.label);
+                        
+                        if (diagramNode.children.Count > 0)
+                        {
+                            throw new DiagramNodeException(diagramNode, $"exit points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
+                        }
+                        break;
+                    }
             }
 
             thisVertex.DiagramId = diagramNode.id;
@@ -416,7 +454,9 @@ namespace StateSmith.Compiling
             {
                 actionCode = nodeBehavior.actionCode,
                 guardCode = nodeBehavior.guardCode,
-                triggers = nodeBehavior.triggers
+                triggers = nodeBehavior.triggers,
+                viaEntry = nodeBehavior.viaEntry,
+                viaExit = nodeBehavior.viaExit,
             };
 
             if (nodeBehavior.order != null)

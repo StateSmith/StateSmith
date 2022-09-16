@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 ## Added
+- Support `entry` and `exit` points https://github.com/StateSmith/StateSmith/issues/3
 - Initial support for `$PARENT_ALIAS` nodes. https://github.com/StateSmith/StateSmith/issues/2
 
 ## [0.5.3-alpha]

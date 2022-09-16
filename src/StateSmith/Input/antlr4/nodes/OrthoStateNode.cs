@@ -10,4 +10,15 @@ namespace StateSmith.Input.antlr4
     {
         public string order;
     }
+
+    public class EntryPointNode : Node
+    {
+        public string label;
+    }
+
+    public class ExitPointNode : Node
+    {
+        public string label;
+    }
+
 }

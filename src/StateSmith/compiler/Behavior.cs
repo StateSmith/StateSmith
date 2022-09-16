@@ -30,9 +30,11 @@ namespace StateSmith.Compiling
         public string? guardCode;
         public string? actionCode;
 
-        //https://github.com/adamfk/StateSmith/issues/5
-        //FIXME keep original guardCode and actionCode before expansions. Will likely want to output into generated code.
-        //Also will allow re-rendering behaviors quickly for different expansions.
+        // https://github.com/StateSmith/StateSmith/issues/3
+        public string? viaEntry;
+
+        // https://github.com/StateSmith/StateSmith/issues/3
+        public string? viaExit;
 
         public Behavior() { }
 

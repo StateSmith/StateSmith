@@ -1,1 +1,1 @@
-mult(2, 4)
+EVENT via exit 1
