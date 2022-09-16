@@ -28,7 +28,7 @@ namespace StateSmithTest
 
             action.Should()
                 .Throw<DiagramEdgeException>()
-                .WithMessage($"*Failed while converting {nameof(DiagramEdge)} to state transition*")
+                .WithMessage($"*Failed while converting {nameof(DiagramEdge)} with id:* to state transition*")
                 .WithInnerException<DiagramNodeException>()
                 .WithMessage($"*Could not find State for {nameof(DiagramNode)} with id*");
         }
@@ -43,7 +43,7 @@ namespace StateSmithTest
 
             action.Should()
                 .Throw<DiagramEdgeException>()
-                .WithMessage($"*Failed while converting {nameof(DiagramEdge)} to state transition*")
+                .WithMessage($"*Failed while converting {nameof(DiagramEdge)} with id:* to state transition*")
                 .WithInnerException<DiagramNodeException>()
                 .WithMessage($"*Could not find State for {nameof(DiagramNode)} with id*");
         }

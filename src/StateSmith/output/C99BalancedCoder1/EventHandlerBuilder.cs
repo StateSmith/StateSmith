@@ -247,7 +247,7 @@ namespace StateSmith.output.C99BalancedCoder1
             {
                 if (b.TransitionTarget != null)
                 {
-                    throw new VertexValidationException(state, "Enter behaviors can not transition to another state");
+                    throw new BehaviorValidationException(b, "Transitions cannot have an enter or exit trigger.");
                 }
             }
         }
