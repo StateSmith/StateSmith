@@ -23,6 +23,16 @@ namespace StateSmith.compiler.Visitors
             throw new NotImplementedException();
         }
 
+        public override void Visit(EntryPoint v)
+        {
+            stringBuilder.Append($"{v.GetType().Name}{{{v.label}}}");
+        }
+
+        public override void Visit(ExitPoint v)
+        {
+            stringBuilder.Append($"{v.GetType().Name}{{{v.label}}}");
+        }
+
         public override void Visit(NamedVertex v)
         {
             stringBuilder.Append($"{v.GetType().Name}{{{v.Name}}}");
