@@ -103,7 +103,7 @@ Follow the printed usage instructions to send different events to your state mac
 That's how the state machine should function. Let's check out the initial design.
 
 # Open the diagram
-Open the file `src/Tutorial1Sm.graphml` using the [yEd editor](https://www.yworks.com/products/yed). If you haven't used yEd before, see the yed training markdown file at https://github.com/StateSmith/StateSmith/. There's a few important points in there.
+Open the file `src/Tutorial1Sm.graphml` using the [yEd editor](https://www.yworks.com/products/yed). If you haven't used yEd before, see [yed-training.md](./../yed-training.md). There's a few important points in there.
 
 You should see this in the center of the screen.
 
@@ -119,7 +119,7 @@ When the `OFF` state is entered, it calls the c code `light_off();`. This is dec
 
 ![picture 3](images/light_h_file.png)
 
-When the `INCREASE` event is dispatched to the state machine, it transitions to state `ON1` and runs the code `light_on_1();`.
+When the `INCREASE` event is dispatched to the state machine, it transitions to state `ON1` and runs the code `light_on1();`.
 
 Note that the only auto generated files in this example are `Tutorial1Sm.c/.h`. The other few files are user supplied code.
 
@@ -148,7 +148,7 @@ With the new edge selected, press F2 to edit its label (or right click). Give it
 
 Repeat the above process to draw a transition from `ON1` to `ON2` and give that edge the label `INCREASE`.
 
-You can drag the edge labels around. By default yEd slightly restricts where you can move the edge labe. You can modify that in the edge's properties (right click on it) or you can do it in bulk as explained in the yed training.
+You can drag the edge labels around. By default yEd slightly restricts where you can move the edge label. You can modify that in the edge's properties (right click on it) or you can do it in bulk as explained in the yed training.
 
 Your design should look like this:
 
@@ -227,7 +227,7 @@ BOOM
 enter / light_boom();
 ```
 
-Now add a transition from `ON3` to `BOOM`. We only want this transition to happen if `count >= 3` so we use the guard condition beside the event `INCREASE`.
+Now add a transition from `ON3` to `BOOM`. We only want this transition to happen if `count >= 3` so we use a guard condition beside the event `INCREASE`.
 
 ```
 INCREASE [ count >= 3 ]
@@ -239,7 +239,7 @@ Save the diagram and run `./compile_and_run.sh` and you should see the expected 
 
 ![picture 8](images/expected-error-count-var.png)  
 
-The problem is that there is no `count` variable in our program yet. Unless otherwise told with expansions, StateSmith outputs the same code that you write.
+The problem is that there is no `count` variable in our program yet. Without expansions, StateSmith outputs the same code that you write.
 
 ![picture 9](images/count-var-error-source.png)  
 
@@ -256,11 +256,13 @@ Save `CodeGen.cs` and run `./compile_and_run.sh` and you should now see your add
 
 
 Let's fix this by editing the section below:
+
 ![](./images/add-include.gif)
 
 Save `CodeGen.cs` and run `./compile_and_run.sh`. At this point, the compiler should be happy with `Tutorial1Sm.h` as it now includes `<stdint.h>` for our `count` variable, but the compiler still doesn't know how to deal with `count`.
 
 We can now either update our diagram as shown below to use `self->vars.count`, or we can use a StateSmith expansion.
+
 ![picture 11](images/var-without-expansion.png)  
 
 I usually prefer to use an expansion. It's super easy.
@@ -286,5 +288,6 @@ Note: the generated code keeps the original diagram text before the expansion wa
 
 ![picture 12](images/after-expansion1.png)  
 
-
+# Want to explore more?
+See [examples](../../examples/README.md).
 
