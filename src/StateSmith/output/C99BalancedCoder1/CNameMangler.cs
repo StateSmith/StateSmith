@@ -96,6 +96,10 @@ namespace StateSmith.output.C99BalancedCoder1
         public virtual string SmFuncDispatchEvent => $"{SmName}_dispatch_event";
 
 
+        public virtual string SmFuncToString => $"{SmName}_state_id_to_string";
+        public virtual string SmStateToString(NamedVertex state) => $"{SmStateName(state).ToUpper()}";
+
+
         public virtual string SmFuncTriggerHandler(NamedVertex state, string triggerName)
         {
             return $"{SmStateName(state)}_{triggerName.ToLower()}";

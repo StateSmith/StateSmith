@@ -13,21 +13,23 @@ namespace StateSmith.Compiling
 {
     public class DiagramEdgeException : Exception
     {
-        DiagramEdge Edge { get; }
+        public DiagramEdge edge;
 
-        public DiagramEdgeException(DiagramEdge edge) : base()
+        public DiagramEdgeException(DiagramEdge edge, string message, Exception ex = null) : base(message, ex)
         {
-            Edge = edge;
+            this.edge = edge;
         }
+    }
 
-        public DiagramEdgeException(DiagramEdge edge, string message) : base(message)
-        {
-            Edge = edge;
-        }
+    public class DiagramEdgeParseException : DiagramEdgeException
+    {
+        public Vertex sourceVertex;
+        public Vertex targetVertex;
 
-        public DiagramEdgeException(DiagramEdge edge, string message, Exception innerException) : base(message, innerException)
+        public DiagramEdgeParseException(DiagramEdge edge, Vertex sourceVertex, Vertex targetVertex, string message) : base(edge, message)
         {
-            Edge = edge;
+            this.sourceVertex = sourceVertex;
+            this.targetVertex = targetVertex;
         }
     }
 }

@@ -36,14 +36,14 @@ namespace StateSmithTest.InitialStateProcessor
         public void Children()
         {
             initialStateVertex.AddChild(new State("s100"));
-            ExpectValidationException(exceptionMessagePart: "children");
+            ExpectVertexValidationException(exceptionMessagePart: "children");
         }
 
         [Fact]
         public void Parent()
         {
             initialStateVertex._parent = null;
-            ExpectValidationException(exceptionMessagePart: "parent");
+            ExpectVertexValidationException(exceptionMessagePart: "parent");
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace StateSmithTest.InitialStateProcessor
         {
             var badInitialState = s1.AddChild(new InitialState());
             badInitialState.AddTransitionTo(s2);
-            ExpectValidationException(exceptionMessagePart: "transition must remain within parent");
+            ExpectVertexValidationException(exceptionMessagePart: "transition must remain within parent");
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace StateSmithTest.InitialStateProcessor
         {
             var badInitialState = s1.AddChild(new InitialState());
             badInitialState.AddTransitionTo(s1);
-            ExpectValidationException(exceptionMessagePart: "cannot target parent");
+            ExpectVertexValidationException(exceptionMessagePart: "cannot target parent");
         }
 
         [Fact]
@@ -67,24 +67,24 @@ namespace StateSmithTest.InitialStateProcessor
         {
             var badInitialState = s1.AddChild(new InitialState());
             badInitialState.AddTransitionTo(badInitialState);
-            ExpectValidationException(exceptionMessagePart: "cannot have any incoming transitions");
+            ExpectVertexValidationException(exceptionMessagePart: "cannot have any incoming transitions");
         }
 
         [Fact]
         public void TooManySiblings()
         {
             initialStateVertex.Parent.AddChild(new InitialState());
-            ExpectValidationExceptionWildcard("*can only have a single initial state*2*");
+            ExpectVertexValidationExceptionWildcard("*can only have a single initial state*2*");
 
             initialStateVertex.Parent.AddChild(new InitialState());
-            ExpectValidationExceptionWildcard("*can only have a single initial state*3*");
+            ExpectVertexValidationExceptionWildcard("*can only have a single initial state*3*");
         }
 
         [Fact]
         public void SingleBehavior()
         {
             initialStateVertex.AddTransitionTo(s1);
-            ExpectValidationException(exceptionMessagePart: "exactly one behavior");
+            ExpectVertexValidationException(exceptionMessagePart: "exactly one behavior");
         }
 
         [Fact]
@@ -92,28 +92,28 @@ namespace StateSmithTest.InitialStateProcessor
         {
             var badInitialState = s1.AddChild(new InitialState());
             badInitialState.AddBehavior(new Behavior());
-            ExpectValidationException(exceptionMessagePart: "must have a transition target");
+            ExpectVertexValidationException(exceptionMessagePart: "must have a transition target");
         }
 
         [Fact]
         public void GuardCode()
         {
             initialStateVertex.Behaviors[0].guardCode = "some_code()";
-            ExpectValidationException(exceptionMessagePart: "guard code");
+            ExpectVertexValidationException(exceptionMessagePart: "guard code");
         }
 
         [Fact]
         public void Trigger()
         {
             initialStateVertex.Behaviors[0].triggers.Add("do");
-            ExpectValidationException(exceptionMessagePart: "trigger");
+            ExpectVertexValidationException(exceptionMessagePart: "trigger");
         }
 
         [Fact]
         public void IncomingTransitions()
         {
             s1.AddTransitionTo(initialStateVertex);
-            ExpectValidationException(exceptionMessagePart: "incoming");
+            ExpectVertexValidationException(exceptionMessagePart: "incoming");
         }
     }
 }

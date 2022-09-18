@@ -27,7 +27,11 @@ namespace StateSmith.Compiling
             var parentIncomingTransitions = parent.IncomingTransitions.ToList();
             foreach (var incomingTransition in parentIncomingTransitions)
             {
-                //transitions to parent will be moved to transitions to initial state target
+                //transitions to parent will be moved to transitions to initial state target only if they don't have an entry point specified
+                if (incomingTransition.viaEntry?.Length > 0)
+                {
+                    continue;
+                }
 
                 //validate behavior variables. TODO low cleanup. Seems confusing.
                 if (incomingTransition.TransitionTarget != parent)

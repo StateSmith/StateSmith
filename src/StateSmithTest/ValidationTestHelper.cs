@@ -5,28 +5,45 @@ using Xunit;
 using FluentAssertions;
 using StateSmith.Compiling;
 
-namespace StateSmithTest.InitialStateProcessor
-{
 
+namespace StateSmithTest
+{
     public class ValidationTestHelper
     {
-        protected Compiler compiler;
+        public Compiler compiler;
 
         public ValidationTestHelper()
         {
             compiler = new Compiler();
         }
 
-        protected void ExpectValidationException(string exceptionMessagePart)
+        public void ExpectBehaviorValidationException(string exceptionMessagePart, Action? additionalAction = null)
         {
             compiler.SetupRoots();
 
-            Action action = () => compiler.Validate();
+            Action action = () =>
+            {
+                compiler.Validate();
+                additionalAction?.Invoke();
+            };
+            action.Should().Throw<BehaviorValidationException>()
+                .Where(e => e.Message.Contains(exceptionMessagePart));
+        }
+
+        public void ExpectVertexValidationException(string exceptionMessagePart, Action? additionalAction = null)
+        {
+            compiler.SetupRoots();
+
+            Action action = () =>
+            {
+                compiler.Validate();
+                additionalAction?.Invoke();
+            };
             action.Should().Throw<VertexValidationException>()
                 .Where(e => e.Message.Contains(exceptionMessagePart));
         }
 
-        protected void ExpectValidationExceptionWildcard(string wildcardMessage)
+        public void ExpectVertexValidationExceptionWildcard(string wildcardMessage)
         {
             compiler.SetupRoots();
 

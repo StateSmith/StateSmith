@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/CodeGen/CodeGen.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/CodeGen/CodeGen.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build c code",
+            "command": "gcc",
+            "type": "process",
+            "args": [
+                "-g",
+                "-Wall",
+                "-std=c11",
+                "${workspaceFolder}/src/main.c",
+                "${workspaceFolder}/src/light.c",
+                "${workspaceFolder}/src/Tutorial1Sm.c",
+                "-o",
+                "${workspaceFolder}/src/a.out",
+            ],
+            "problemMatcher": "$gcc"
+        },
+    ]
+}

@@ -14,7 +14,7 @@ namespace StateSmithTest
         public void ValidNotesCommentingOutStates()
         {
             Compiler compiler = new Compiler();
-            const string filepath = "../../../../../examples/Tiny2-with-noted-out-states.graphml";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny2-with-noted-out-states.graphml";
             compiler.CompileFile(filepath); //should not throw
         }
 
@@ -22,13 +22,13 @@ namespace StateSmithTest
         public void EdgeToNotes()
         {
             Compiler compiler = new Compiler();
-            const string filepath = "../../../../../examples/bad-edge-to-notes.graphml";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "bad-edge-to-notes.graphml";
 
             Action action = () => compiler.CompileFile(filepath);
 
             action.Should()
                 .Throw<DiagramEdgeException>()
-                .WithMessage($"*Failed while converting {nameof(DiagramEdge)} to state transition*")
+                .WithMessage($"*Failed while converting {nameof(DiagramEdge)} with id:* to state transition*")
                 .WithInnerException<DiagramNodeException>()
                 .WithMessage($"*Could not find State for {nameof(DiagramNode)} with id*");
         }
@@ -37,13 +37,13 @@ namespace StateSmithTest
         public void EdgeFromNotes()
         {
             Compiler compiler = new Compiler();
-            const string filepath = "../../../../../examples/bad-edge-from-notes.graphml";
+            string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/bad-edge-from-notes.graphml";
 
             Action action = () => compiler.CompileFile(filepath);
 
             action.Should()
                 .Throw<DiagramEdgeException>()
-                .WithMessage($"*Failed while converting {nameof(DiagramEdge)} to state transition*")
+                .WithMessage($"*Failed while converting {nameof(DiagramEdge)} with id:* to state transition*")
                 .WithInnerException<DiagramNodeException>()
                 .WithMessage($"*Could not find State for {nameof(DiagramNode)} with id*");
         }

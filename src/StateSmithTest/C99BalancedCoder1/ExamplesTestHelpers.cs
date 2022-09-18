@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
@@ -8,19 +9,33 @@ namespace StateSmithTest
 {
     class ExamplesTestHelpers
     {
+        public static string TestInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../test-input/";
+
         public static Compiler SetupTiny2Sm()
         {
-            const string filepath = "../../../../../examples/Tiny2.graphml";
-            Compiler compiler = new Compiler();
-            compiler.CompileFile(filepath);
-            compiler.rootVertices.Count.Should().Be(1);
+            const string relativePath = "Tiny2.graphml";
+            return SetupAndValidateCompilerForTestInputFile(relativePath);
+        }
 
-            FinishSettingUpCompiler(compiler);
+        public static Compiler SetupAndValidateCompilerForTestInputFile(string relativePath)
+        {
+            Compiler compiler = CreateCompilerForTestInputFile(relativePath);
+
+            FinishSettingUpCompilerAndValidate(compiler);
 
             return compiler;
         }
 
-        private static void FinishSettingUpCompiler(Compiler compiler)
+        public static Compiler CreateCompilerForTestInputFile(string relativePath)
+        {
+            string filepath = TestInputDirectoryPath + relativePath;
+            Compiler compiler = new Compiler();
+            compiler.CompileFile(filepath);
+            compiler.rootVertices.Count.Should().Be(1);
+            return compiler;
+        }
+
+        public static void FinishSettingUpCompilerAndValidate(Compiler compiler)
         {
             compiler.SetupRoots();
             compiler.FinalizeTrees();
@@ -62,7 +77,7 @@ namespace StateSmithTest
                 triggers = new List<string>() { "enter", "exit", "ZIP" }
             });
 
-            FinishSettingUpCompiler(compiler);
+            FinishSettingUpCompilerAndValidate(compiler);
 
             return new CodeGenContext(sm);
         }

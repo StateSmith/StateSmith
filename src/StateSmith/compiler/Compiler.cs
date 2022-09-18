@@ -71,8 +71,10 @@ namespace StateSmith.Compiling
         {
             foreach (var v in rootVertices)
             {
-                var validator = new VertexValidator();
+                var validator = new SpecificVertexValidator();
                 v.Accept(validator);
+                var validator2 = new VertexValidator();
+                v.Accept(validator2);
             }
         }
 
@@ -81,6 +83,26 @@ namespace StateSmith.Compiling
             foreach (var v in rootVertices)
             {
                 var processor = new InitialStateProcessor();
+                v.Accept(processor);
+            }
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/3
+        public void SupportEntryExitPoints()
+        {
+            foreach (var v in rootVertices)
+            {
+                var processor = new EntryExitProcessor();
+                v.Accept(processor);
+            }
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/2
+        public void SupportParentAlias()
+        {
+            foreach (var v in rootVertices)
+            {
+                var processor = new ParentAliasStateProcessor();
                 v.Accept(processor);
             }
         }
@@ -122,23 +144,12 @@ namespace StateSmith.Compiling
             }
             catch (Exception ex)
             {
-                DiagramEdgeException diagramEdgeException = new DiagramEdgeException(edge, $"Failed while converting {nameof(DiagramEdge)} to state transition", ex);
+                if (ex is DiagramEdgeParseException)
+                {
+                    throw;  // let it continue
+                }
 
-                //TODO low move this functionality to StateSmith runner/cli or something
-                StringBuilder sb = new StringBuilder();
-                sb.Append(diagramEdgeException);
-                sb.Append("\n\n");
-                edge.Describe(sb);
-                sb.Append("\n==========================\n");
-                sb.Append("EDGE SOURCE NODE:\n");
-                DiagramNode.FullyDescribe(edge.source, sb);
-                sb.Append("\n==========================\n");
-                sb.Append("EDGE TARGET NODE:\n");
-                DiagramNode.FullyDescribe(edge.target, sb);
-
-                string dumpInfo = sb.ToString();
-                File.WriteAllText("dump_info.txt", dumpInfo);
-
+                DiagramEdgeException diagramEdgeException = new DiagramEdgeException(edge, $"Failed while converting {nameof(DiagramEdge)} with id: `{edge.id}` to state transition", ex);
                 throw diagramEdgeException;
             }
         }
@@ -225,17 +236,7 @@ namespace StateSmith.Compiling
         {
             if (labelParser.HasError())
             {
-                string fromString = VertexPathDescriber.Describe(sourceVertex);
-                string toString = VertexPathDescriber.Describe(targetVertex);
-                string fullMessage = $"Failed parsing edge from `{fromString}` to `{toString}`. Diagram id:{edge.id}.\n";
-                foreach (var error in labelParser.GetErrors())
-                {
-                    fullMessage += error.BuildMessage() + "\n";
-                }
-
-                Console.WriteLine(fullMessage);
-
-                throw new ArgumentException(fullMessage);
+                throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, ParserErrorsToReasonStrings(labelParser, "\n"));
             }
         }
 
@@ -252,9 +253,13 @@ namespace StateSmith.Compiling
             }
         }
 
-        private static void SetupDescendants(NamedVertex parentVertex)
+        private static void SetupDescendants(NamedVertex root)
         {
-            VisitVertices<NamedVertex>(parentVertex, vertex => {
+            VisitVertices<Vertex>(root, vertex => {
+                root.ResetNamedDescendantsMap();
+            });
+
+            VisitVertices<NamedVertex>(root, vertex => {
                 //add this vertex to ancestors
                 var parent = vertex.Parent;
                 while (parent != null)
@@ -353,6 +358,28 @@ namespace StateSmith.Compiling
                         ConvertBehaviors(thisVertex, stateNode);
                         break;
                     }
+
+                case EntryPointNode pointNode:
+                    {
+                        thisVertex = new EntryPoint(pointNode.label);
+                        
+                        if (diagramNode.children.Count > 0)
+                        {
+                            throw new DiagramNodeException(diagramNode, $"entry points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
+                        }
+                        break;
+                    }
+
+                case ExitPointNode pointNode:
+                    {
+                        thisVertex = new ExitPoint(pointNode.label);
+                        
+                        if (diagramNode.children.Count > 0)
+                        {
+                            throw new DiagramNodeException(diagramNode, $"exit points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
+                        }
+                        break;
+                    }
             }
 
             thisVertex.DiagramId = diagramNode.id;
@@ -378,17 +405,34 @@ namespace StateSmith.Compiling
         {
             if (labelParser.HasError())
             {
+                string reasons = ParserErrorsToReasonStrings(labelParser, separator: "\n           ");
+
                 string parentPath = VertexPathDescriber.Describe(parentVertex);
-                string fullMessage = $"Failed parsing node label. Parent path: `{parentPath}`.\n<label>\n{diagramNode.label}\n</label>\nDiagram id:`{diagramNode.id}`.\n";
-                foreach (var error in labelParser.GetErrors())
-                {
-                    fullMessage += error.BuildMessage() + "\n";
-                }
-
-                Console.WriteLine(fullMessage);
-
+                string fullMessage = $@"Failed parsing node label
+Parent path: `{parentPath}`
+Label: `{diagramNode.label}`
+Diagram id: `{diagramNode.id}`
+Reason(s): {reasons}
+";
                 throw new ArgumentException(fullMessage);
             }
+        }
+
+        private static string ParserErrorsToReasonStrings(LabelParser labelParser, string separator)
+        {
+            var reasons = "";
+            var needsSeparator = false;
+            foreach (var error in labelParser.GetErrors())
+            {
+                if (needsSeparator)
+                {
+                    reasons += separator;
+                }
+                reasons += error.BuildMessage() + ".";
+                needsSeparator = true;
+            }
+
+            return reasons;
         }
 
         private void ConvertBehaviors(Vertex vertex, StateNode stateNode)
@@ -406,7 +450,9 @@ namespace StateSmith.Compiling
             {
                 actionCode = nodeBehavior.actionCode,
                 guardCode = nodeBehavior.guardCode,
-                triggers = nodeBehavior.triggers
+                triggers = nodeBehavior.triggers,
+                viaEntry = nodeBehavior.viaEntry,
+                viaExit = nodeBehavior.viaExit,
             };
 
             if (nodeBehavior.order != null)
