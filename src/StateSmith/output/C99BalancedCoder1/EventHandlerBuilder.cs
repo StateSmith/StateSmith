@@ -96,7 +96,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
                         if (forceConsumeEvent)
                         {
-                            OutputConsumeEventCode(nextHandlingState);
+                            OutputConsumeEventCode(nextHandlingState, becauseOfTransition: true);
                         }
                         else
                         {
@@ -108,7 +108,7 @@ namespace StateSmith.output.C99BalancedCoder1
                             file.Append("if (consume_event)");
                             file.StartCodeBlock();
                             {
-                                OutputConsumeEventCode(nextHandlingState);
+                                OutputConsumeEventCode(nextHandlingState, becauseOfTransition: false);
                             }
                             file.FinishCodeBlock();
                         }
@@ -125,9 +125,15 @@ namespace StateSmith.output.C99BalancedCoder1
             }
         }
 
-        private void OutputConsumeEventCode(NamedVertex? nextHandlingState)
+        private void OutputConsumeEventCode(NamedVertex? nextHandlingState, bool becauseOfTransition)
         {
-            file.AppendLine("// Mark event as handled. Required because of transition.");
+            file.Append("// Mark event as handled.");
+            if (becauseOfTransition)
+            {
+                file.AppendWithoutIndent(" Required because of transition.");
+            }
+            file.FinishLine();
+
             if (nextHandlingState != null)
             {
                 file.AppendLine("self->ancestor_event_handler = NULL;");

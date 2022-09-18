@@ -1060,7 +1060,7 @@ static void MM_BACK_PRESS_EATER_back_press(LaserTagMenu1Sm* self)
         
         if (consume_event)
         {
-            // Mark event as handled. Required because of transition.
+            // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
     } // end of behavior code
@@ -1372,7 +1372,7 @@ static void MM_BACK_PRESS_EATER_5_back_press(LaserTagMenu1Sm* self)
         
         if (consume_event)
         {
-            // Mark event as handled. Required because of transition.
+            // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
     } // end of behavior code
