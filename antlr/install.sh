@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# exit when any command fails
+set -e
+
 jar_file=antlr-4.9.2-complete.jar
 
 mkdir -p lib

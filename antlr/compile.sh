@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# exit when any command fails
+set -e
+
 # ensure to use setup.bash first
 # call like this: . compile.sh
 # see https://stackoverflow.com/questions/9772036/pass-all-variables-from-one-shell-script-to-another
