@@ -5,10 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.5.5-alpha]
-- Correct generated comment regarding marking event as handled when not for a transition
+### Fixed
+- Fix generated comment regarding marking event as handled when not for a transition
 
 ## [0.5.4-alpha]
-## Added
+### Added
 - Support `entry` and `exit` points https://github.com/StateSmith/StateSmith/issues/3
 - Initial support for `$PARENT_ALIAS` nodes. https://github.com/StateSmith/StateSmith/issues/2
 - Improve exception error messages
