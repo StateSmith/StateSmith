@@ -73,7 +73,7 @@ namespace ExampleLaserTagMenu1
 
                 // Display short cuts
                 public string menu_at_top() => "Display_" + AutoNameCopy() + "()";   // ends up as "Display_menu_at_top()"
-                public string menu_at_mid() => "Display_" + AutoNameCopy() + "()";
+                public string menu_at_mid() => $"Display_{AutoNameCopy()}()";
                 public string menu_at_bottom() => "Display_" + AutoNameCopy() + "()";
                 public string show_home_screen_1() => "Display_" + AutoNameCopy() + "()";
                 public string show_home_screen_2() => "Display_" + AutoNameCopy() + "()";
@@ -86,10 +86,7 @@ namespace ExampleLaserTagMenu1
 
                 public string dont_consume_event() => "consume_event = false";
 
-                public string set_option_class(string class_name)
-                {
-                    return $"{option_value} = PlayerClass_{class_name}";
-                }
+                public string set_option_class(string class_name) => $"{option_value} = PlayerClass_{class_name}";
 
                 public string set_menu_option_and_class(string class_name)
                 {
