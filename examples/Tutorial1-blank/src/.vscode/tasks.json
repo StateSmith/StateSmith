@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build c code",
+            "command": "gcc",
+            "type": "process",
+            "args": [
+                "-g",
+                "-Wall",
+                "-std=c11",
+                "${workspaceFolder}/main.c",
+                "${workspaceFolder}/light.c",
+                "${workspaceFolder}/Tutorial1Sm.c",
+                "-o",
+                "${workspaceFolder}/a.out",
+            ],
+            "problemMatcher": "$gcc"
+        },
+    ]
+}

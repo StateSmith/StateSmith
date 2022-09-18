@@ -83,7 +83,7 @@ namespace Blinky1
 
         /// <summary>
         /// This class mangles names. If you would like to customize the generated code names,
-        /// here is where you do it. Override the relevant method.
+        /// here is where you do it. Simply override the relevant method.
         /// </summary>
         class MyMangler : CNameMangler
         {

@@ -77,7 +77,7 @@ enter / {
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
                 <y:GroupNode>
-                  <y:Geometry height="323.62925000669304" width="348.2597377609771" x="331.5096334021759" y="508.5132837397358"/>
+                  <y:Geometry height="323.62925000669304" width="348.2597377609771" x="331.5096334021759" y="474.5132837397358"/>
                   <y:Fill color="#F5F5F5" transparent="false"/>
                   <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
                   <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="95.88232421875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="348.2597377609771" x="0.0" xml:space="preserve" y="0.0">    PRESSED
@@ -111,7 +111,7 @@ enter / {
             <node id="n0::n2::n0">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="48.86532890365439" width="292.7501043588012" x="346.5096334021759" y="664.7572203615865"/>
+                  <y:Geometry height="48.86532890365439" width="292.7501043588012" x="346.5096334021759" y="630.7572203615865"/>
                   <y:Fill color="#FFFFFF" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.86532890365439" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="292.7501043588012" x="0.0" xml:space="preserve" y="8.526512829121202E-14">CONFIRMING_HELD
@@ -125,7 +125,7 @@ enter / {
               <data key="d5" xml:space="preserve"><![CDATA[pseudo_initial]]></data>
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="19.0" width="20.0" x="482.8846855815765" y="619.3956079584858"/>
+                  <y:Geometry height="19.0" width="20.0" x="482.8846855815765" y="585.3956079584858"/>
                   <y:Fill color="#000000" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="false" width="70.708984375" x="-25.3544921875" xml:space="preserve" y="0.1494140625">$initial_state<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -136,7 +136,7 @@ enter / {
             <node id="n0::n2::n2">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="68.30601993355472" width="292.7501043588012" x="346.5096334021759" y="748.836513812874"/>
+                  <y:Geometry height="68.30601993355472" width="292.7501043588012" x="346.5096334021759" y="714.836513812874"/>
                   <y:Fill color="#FFFFFF" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="68.30601993355472" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="292.7501043588012" x="0.0" xml:space="preserve" y="8.526512829121202E-14">HELD
@@ -167,7 +167,8 @@ enter / {
               <y:Path sx="67.11531441842351" sy="43.87335548172763" tx="54.360497717335534" ty="-161.79665874308233"/>
               <y:LineStyle color="#000000" type="line" width="1.0"/>
               <y:Arrows source="none" target="standard"/>
-              <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="166.10546875" x="0.0" xml:space="preserve" y="4.999987392929029">[is_pressed &amp;&amp; is_debounced]<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+              <y:EdgeLabel alignment="left" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="111.408203125" x="8.2958984375" xml:space="preserve" y="26.42681884765625">[ is_pressed 
+  &amp;&amp; is_debounced ]<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
             </y:QuadCurveEdge>
           </data>
         </edge>
@@ -177,7 +178,7 @@ enter / {
               <y:Path sx="-85.63950228266447" sy="-161.80915874308232" tx="-72.88468558157649" ty="43.87335548172763"/>
               <y:LineStyle color="#000000" type="line" width="1.0"/>
               <y:Arrows source="none" target="standard"/>
-              <y:EdgeLabel alignment="left" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="92.20703125" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="183.455078125" x="-226.92753906250027" xml:space="preserve" y="-110.40428105418857">[is_released &amp;&amp; is_debounced] / {
+              <y:EdgeLabel alignment="left" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="92.20703125" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="183.455078125" x="-190.7275390625" xml:space="preserve" y="-100.59451293945312">[is_released &amp;&amp; is_debounced] / {
   if (debounce_ms() &lt;= 200) {
     output_event(tap);
   }
