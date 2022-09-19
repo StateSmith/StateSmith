@@ -474,7 +474,7 @@ static void ON3_increase(Tutorial1Sm* self)
         
         if (consume_event)
         {
-            // Mark event as handled. Required because of transition.
+            // Mark event as handled.
             // self->ancestor_event_handler = NULL; // already done at top of function
         }
     } // end of behavior code
