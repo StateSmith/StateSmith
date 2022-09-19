@@ -6,6 +6,14 @@ StateSmith will one day generate code for multiple different languages, but for 
 ![picture 5](images/workflow-1.png)  
 
 
+## Demo
+Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showing a Laser Tag menu implemented with StateSmith and running in an Arduino simulation.
+
+[![picture 1](images/main-lasertag-demo1.png)](https://www.youtube.com/watch?v=9czSDothuzM)
+
+
+
+
 ## Quick Start 🚀
 Want to jump right in and just try it!?
 See [quick-start.md](./docs/quickstart1/quick-start.md)
