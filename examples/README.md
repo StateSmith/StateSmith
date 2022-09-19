@@ -63,3 +63,25 @@ struct ButtonSm1Cpp
 - Button debouncing.
 
 ![](./images/wokwi-lasertagmenu1sm.png)
+
+Here's the menu layout:
+```
+APP
+├── HOME
+│   ├── HOME1
+│   ├── HOME2
+│   └── HOME3
+└── MAIN MENU
+        ├── SELECT CLASS
+        │   ├── ENGINEER
+        │   ├── HEAVY
+        │   ├── ARCHER
+        │   ├── WIZARD
+        │   └── SPY
+        │── SHOW INFO
+        │   ├── INFO 1
+        │   ├── INFO 2
+        │   └── INFO 3
+        └── EAT BACK PRESSES
+            └── <stuff to show event handling>
+```

@@ -59,7 +59,29 @@ There are a bunch of [examples](./examples/README.md). Below is one of them.
 
 ![picture 7](images/wokwi-lasertagmenu1sm.png)  
 
-You can interact with the generated laser tag menu code [here](https://wokwi.com/projects/341718036538982996).
+You can interact with the generated laser tag menu code using the [wokwi simulation](https://wokwi.com/projects/341718036538982996).
+
+Here's the menu layout:
+```
+APP
+├── HOME
+│   ├── HOME1
+│   ├── HOME2
+│   └── HOME3
+└── MAIN MENU
+        ├── SELECT CLASS
+        │   ├── ENGINEER
+        │   ├── HEAVY
+        │   ├── ARCHER
+        │   ├── WIZARD
+        │   └── SPY
+        │── SHOW INFO
+        │   ├── INFO 1
+        │   ├── INFO 2
+        │   └── INFO 3
+        └── EAT BACK PRESSES
+            └── <stuff to show event handling>
+```
 
 Here's the [design diagram](images/yed-LaserTagMenu1Sm-outer.png). To view inside collapsed states like `MM_SELECT_CLASS`, you'll need to open the diagram using the UI (see below).
 
