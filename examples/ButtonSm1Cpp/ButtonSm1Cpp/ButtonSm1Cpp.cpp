@@ -116,9 +116,11 @@ static void NOT_PRESSED_do(ButtonSm1Cpp* self)
     // state behavior:
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml guard: is_pressed && is_debounced
+        // uml guard: is_pressed
+        //              && is_debounced
         // uml transition target: CONFIRMING_HELD
-        if (self->vars.input_is_pressed && (( (millis() - self->vars.debounce_started_at_ms) >= 20 )))
+        if (self->vars.input_is_pressed
+  && (( (millis() - self->vars.debounce_started_at_ms) >= 20 )))
         {
             // Transition to target state CONFIRMING_HELD
             {
