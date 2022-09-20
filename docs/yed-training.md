@@ -39,7 +39,7 @@ By default, mouse wheel zooms in/out. Right click and drag pans.
 
 How to add or remove an existing node to/from groups see http://yed.yworks.com/support/qa/6053/is-it-possible-to-add-move-an-object-to-existing-group
 
-When pasting, right click and consider using `Paste into selected group`.
+When pasting copied shapes, sometimes right click paste will work better. There's also `Paste into selected group`.
 
 ## Auto label placement
 The auto label placement can be pretty helpful when applied to edges. It also changes the label positioning model to `Free` which allows more customized placement. Wish I could make that the default.
