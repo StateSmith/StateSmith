@@ -25,9 +25,9 @@ You'll be controlling a console light bulb's brightness in no time!
 See also the [examples](./examples/README.md).
 
 ## Need help? Suggestion? Brainstorm?
-Feel free to open a github issue: https://github.com/StateSmith/StateSmith/issues
+Feel free to open a [github issue](https://github.com/StateSmith/StateSmith/issues).
 
-Or you can use the project's discussion space: https://github.com/StateSmith/StateSmith/discussions
+Or you can use the project's [discussion space](https://github.com/StateSmith/StateSmith/discussions).
 
 ## Why StateSmith?
 I couldn't find a state machine code generator that was suitable for low level embedded application use, had an attractive license, and was enjoyable to use.
