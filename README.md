@@ -1,7 +1,7 @@
 # StateSmith
 StateSmith is a cross platform, free/open source tool for generating state machines. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, kernels, or servers. It avoids dynamic memory allocations for the safety or performance inclined.
 
-StateSmith will one day generate code for multiple different languages, but for now, the focus is on good old `C` with zero dependencies.
+StateSmith will one day generate code for multiple different languages, but for now, the focus is on good old `C` (or `C++`) with zero dependencies.
 
 ![picture 5](images/workflow-1.png)  
 
@@ -24,6 +24,10 @@ You'll be controlling a console light bulb's brightness in no time!
 
 See also the [examples](./examples/README.md).
 
+## Need help? Suggestion? Brainstorm?
+Feel free to open a [github issue](https://github.com/StateSmith/StateSmith/issues).
+
+Or you can use the project's [discussion space](https://github.com/StateSmith/StateSmith/discussions).
 
 ## Why StateSmith?
 I couldn't find a state machine code generator that was suitable for low level embedded application use, had an attractive license, and was enjoyable to use.
