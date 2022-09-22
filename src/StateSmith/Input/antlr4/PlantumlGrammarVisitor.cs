@@ -80,17 +80,29 @@ public interface IPlantumlGrammarVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitEdge([NotNull] PlantumlGrammarParser.EdgeContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.transition_event_guard_code"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTransition_event_guard_code([NotNull] PlantumlGrammarParser.Transition_event_guard_codeContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.transition"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitTransition([NotNull] PlantumlGrammarParser.TransitionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_contents_string"/>.
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_composite"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitState_contents_string([NotNull] PlantumlGrammarParser.State_contents_stringContext context);
+	Result VisitState_composite([NotNull] PlantumlGrammarParser.State_compositeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.rest_of_line"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRest_of_line([NotNull] PlantumlGrammarParser.Rest_of_lineContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_contents"/>.
 	/// </summary>

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # exit when any command fails
-set -e
+# set -e
 
 # ensure to use setup.bash first
 # call like this: . compile.sh

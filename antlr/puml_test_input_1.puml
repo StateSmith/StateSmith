@@ -1,11 +1,22 @@
-@startuml some_name_here
+@startuml
+scale 350 width
+[*] --> NotShooting
 
-[*] --> State1
-State1 --> [*]
-State1 : this is a string
-State1 : this is another string
+state NotShooting       {
+  [*] --> Idle
+  Idle --> Configuring : EvConfig
+  Configuring --> Idle : EvConfig
+}
 
-State1 -> State2
-State2 --> [*]
+state Configuring {
+  [*] --> NewValueSelection
+  NewValueSelection --> NewValuePreview : EvNewValue
+  NewValuePreview --> NewValueSelection : EvNewValueRejected
+  NewValuePreview --> NewValueSelection : EvNewValueSaved
 
+  state NewValuePreview {
+     State1 -> State2
+  }
+
+}
 @enduml

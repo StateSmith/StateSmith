@@ -30,16 +30,42 @@ edge:
     '->' | '-->'
     ;
 
+transition_event_guard_code:
+    rest_of_line
+    ;
+
 // State1 -> State2
 // State2 --> [*]
 transition:
     vertex ohs
     edge ohs
     vertex
+    (
+        ohs
+        ':'
+        ohs
+        transition_event_guard_code
+    )?
     ;
 
-state_contents_string:
-    .*?
+
+// state NotShooting {
+//   [*] --> Idle
+//   Idle --> Configuring : EvConfig
+//   Configuring --> Idle : EvConfig
+// }
+state_composite:
+    'state'
+    HWS+
+    IDENTIFIER ohs '{' ohs LINE_ENDER
+    diagram_element*
+    '}'
+;
+
+rest_of_line:
+    (
+        IDENTIFIER | HWS | DIGIT // fixme add more stuff that's allowed
+    )*
     ;
 
 // State1 : this is a string
@@ -49,22 +75,25 @@ state_contents:
     ohs
     ':'
     ohs
-    state_contents_string
+    rest_of_line
     ;
 
 ignore:
     'hide empty description'
     |
-    'scale ' .*?
+    'scale ' rest_of_line
     ;
 
 diagram_element:
+    ohs
     (
         ignore
         |
         state_contents
         |
         transition
+        |
+        state_composite
     )
     ohs
     LINE_ENDER
@@ -76,7 +105,7 @@ startuml:
     START_UML
     (
         HWS+
-        .*?
+        IDENTIFIER
     )?
     ;
 
