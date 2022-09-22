@@ -1,6 +1,10 @@
 grammar PlantumlGrammar;
 
 /*
+TODO
+    - skinparam
+    - notes
+
 @startuml
 
 [*] --> State1
@@ -24,6 +28,10 @@ state_id: IDENTIFIER;
 
 vertex:
     start_end_state | state_id
+    (
+        ohs
+        stereotype
+    )?
     ;
 
 edge:
@@ -56,6 +64,12 @@ state_child_states:
     '}'
     ;
 
+stereotype:
+    '<<'
+    (IDENTIFIER | 'state' | 'as')
+    '>>'
+    ;
+
 // ex: state "Accumulate Enough Data\nLong State Name" as long1
 // ex:
 //      state NotShooting {
@@ -70,6 +84,10 @@ state_explicit:
         STRING HWS+ 'as' HWS+   // ex: "Accumulate Enough Data\nLong State Name" as
     )?
     IDENTIFIER // ex: long1
+    (
+        ohs
+        stereotype
+    )?
     ohs
     state_child_states?
     ;

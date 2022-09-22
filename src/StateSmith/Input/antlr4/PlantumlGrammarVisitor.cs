@@ -98,6 +98,12 @@ public interface IPlantumlGrammarVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitState_child_states([NotNull] PlantumlGrammarParser.State_child_statesContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.stereotype"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStereotype([NotNull] PlantumlGrammarParser.StereotypeContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_explicit"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

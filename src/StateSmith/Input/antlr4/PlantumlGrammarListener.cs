@@ -141,6 +141,16 @@ public interface IPlantumlGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitState_child_states([NotNull] PlantumlGrammarParser.State_child_statesContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.stereotype"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStereotype([NotNull] PlantumlGrammarParser.StereotypeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.stereotype"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStereotype([NotNull] PlantumlGrammarParser.StereotypeContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.state_explicit"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
