@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace StateSmith.Input.antlr4
 {
-    public class NodeEdgeWalker : Grammar1BaseListener
+    public class NodeEdgeWalker : StateSmithLabelGrammarBaseListener
     {
         public Node node;
         public StateNode stateNode;
@@ -20,20 +20,20 @@ namespace StateSmith.Input.antlr4
         NodeBehavior currentBehavior;
         public List<NodeBehavior> behaviors = new List<NodeBehavior>();
 
-        public override void EnterStatemachine_defn([NotNull] Grammar1Parser.Statemachine_defnContext context)
+        public override void EnterStatemachine_defn([NotNull] StateSmithLabelGrammarParser.Statemachine_defnContext context)
         {
             var stateMachineNode = new StateMachineNode();
             stateMachineNode.name = context.IDENTIFIER().GetText();
             node = stateMachineNode;
         }
 
-        public override void EnterState_defn([NotNull] Grammar1Parser.State_defnContext context)
+        public override void EnterState_defn([NotNull] StateSmithLabelGrammarParser.State_defnContext context)
         {
             stateNode = new StateNode();
             node = stateNode;
         }
 
-        public override void EnterOrtho_defn([NotNull] Grammar1Parser.Ortho_defnContext context)
+        public override void EnterOrtho_defn([NotNull] StateSmithLabelGrammarParser.Ortho_defnContext context)
         {
             orthoStateNode = new OrthoStateNode();
             node = orthoStateNode;
@@ -42,21 +42,21 @@ namespace StateSmith.Input.antlr4
             orthoStateNode.order = context.ortho_order()?.number()?.GetText();
         }
 
-        public override void EnterNotes_node([NotNull] Grammar1Parser.Notes_nodeContext context)
+        public override void EnterNotes_node([NotNull] StateSmithLabelGrammarParser.Notes_nodeContext context)
         {
             var notesNode = new NotesNode();
             notesNode.notes = context.notes_text()?.GetText()?.Trim();
             node = notesNode;
         }
 
-        public override void EnterEntry_point([NotNull] Grammar1Parser.Entry_pointContext context)
+        public override void EnterEntry_point([NotNull] StateSmithLabelGrammarParser.Entry_pointContext context)
         {
             var n = new EntryPointNode();
             n.label = context.point_label().GetText();
             node = n;
         }
 
-        public override void EnterExit_point([NotNull] Grammar1Parser.Exit_pointContext context)
+        public override void EnterExit_point([NotNull] StateSmithLabelGrammarParser.Exit_pointContext context)
         {
             var n = new ExitPointNode();
             n.label = context.point_label().GetText();
@@ -65,7 +65,7 @@ namespace StateSmith.Input.antlr4
 
         //---------------------------
 
-        public override void EnterState_id([NotNull] Grammar1Parser.State_idContext context)
+        public override void EnterState_id([NotNull] StateSmithLabelGrammarParser.State_idContext context)
         {
             string stateName;
             if (context.global_id() == null)
@@ -82,7 +82,7 @@ namespace StateSmith.Input.antlr4
         }
 
 
-        public override void EnterBehavior([NotNull] Grammar1Parser.BehaviorContext context)
+        public override void EnterBehavior([NotNull] StateSmithLabelGrammarParser.BehaviorContext context)
         {
             currentBehavior = new NodeBehavior();
             currentBehavior.order = context.order()?.number()?.GetText();
@@ -93,9 +93,9 @@ namespace StateSmith.Input.antlr4
             behaviors.Add(currentBehavior);
         }
 
-        private void AddAnyVias(Grammar1Parser.BehaviorContext context)
+        private void AddAnyVias(StateSmithLabelGrammarParser.BehaviorContext context)
         {
-            Grammar1Parser.Transition_viaContext[] vias = context.transition_vias()?.transition_via();
+            StateSmithLabelGrammarParser.Transition_viaContext[] vias = context.transition_vias()?.transition_via();
 
             if (vias == null)
             {
@@ -124,7 +124,7 @@ namespace StateSmith.Input.antlr4
             }
         }
 
-        private string GetActionCodeText(Grammar1Parser.Action_codeContext action_codeContext)
+        private string GetActionCodeText(StateSmithLabelGrammarParser.Action_codeContext action_codeContext)
         {
             if (action_codeContext == null || action_codeContext.ChildCount == 0)
             {
@@ -137,7 +137,7 @@ namespace StateSmith.Input.antlr4
         }
 
 
-        private string TryGetBracedActionCode(Grammar1Parser.Action_codeContext action_codeContext)
+        private string TryGetBracedActionCode(StateSmithLabelGrammarParser.Action_codeContext action_codeContext)
         {
             var any_code = action_codeContext.braced_expression()?.any_code();
 
@@ -156,12 +156,12 @@ namespace StateSmith.Input.antlr4
             return visitor.stringBuilder.ToString().Trim();
         }
 
-        public override void EnterTrigger_id([NotNull] Grammar1Parser.Trigger_idContext context)
+        public override void EnterTrigger_id([NotNull] StateSmithLabelGrammarParser.Trigger_idContext context)
         {
             currentBehavior.triggers.Add(context.expandable_identifier().GetText());
         }
 
-        public override void ExitBehavior([NotNull] Grammar1Parser.BehaviorContext context)
+        public override void ExitBehavior([NotNull] StateSmithLabelGrammarParser.BehaviorContext context)
         {
             currentBehavior = null;
         }

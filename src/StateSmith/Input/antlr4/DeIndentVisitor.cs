@@ -8,7 +8,7 @@ using System.Text;
 namespace StateSmith.Input.antlr4
 {
 
-    public class DeIndentVisitor : Grammar1BaseVisitor<int>
+    public class DeIndentVisitor : StateSmithLabelGrammarBaseVisitor<int>
     {
         /// <summary>
         /// It is more efficient to just use a StringBuilder field rather than
@@ -31,7 +31,7 @@ namespace StateSmith.Input.antlr4
             return UNUSED;
         }
 
-        public override int VisitExpandable_identifier([NotNull] Grammar1Parser.Expandable_identifierContext context)
+        public override int VisitExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context)
         {
             Append(context.ohs()?.GetText() ?? "");
             string identifier = context.IDENTIFIER().GetText();
@@ -50,7 +50,7 @@ namespace StateSmith.Input.antlr4
             return str.Substring(deIndentSize);
         }
 
-        public override int VisitLine_end_with_hs([NotNull] Grammar1Parser.Line_end_with_hsContext context)
+        public override int VisitLine_end_with_hs([NotNull] StateSmithLabelGrammarParser.Line_end_with_hsContext context)
         {
             var trailingSpace = context.ohs()?.GetText() ?? "";
 

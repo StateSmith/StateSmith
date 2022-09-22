@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Grammar1.g4 by ANTLR 4.9.2
+// Generated from StateSmithLabelGrammar.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -32,7 +32,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.9.2")]
 [System.CLSCompliant(false)]
-public partial class Grammar1Parser : Parser {
+public partial class StateSmithLabelGrammarParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -99,31 +99,31 @@ public partial class Grammar1Parser : Parser {
 		}
 	}
 
-	public override string GrammarFileName { get { return "Grammar1.g4"; } }
+	public override string GrammarFileName { get { return "StateSmithLabelGrammar.g4"; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 
 	public override string SerializedAtn { get { return new string(_serializedATN); } }
 
-	static Grammar1Parser() {
+	static StateSmithLabelGrammarParser() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
 		for (int i = 0; i < _ATN.NumberOfDecisions; i++) {
 			decisionToDFA[i] = new DFA(_ATN.GetDecisionState(i), i);
 		}
 	}
 
-		public Grammar1Parser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
+		public StateSmithLabelGrammarParser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
 
-		public Grammar1Parser(ITokenStream input, TextWriter output, TextWriter errorOutput)
+		public StateSmithLabelGrammarParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
 		: base(input, output, errorOutput)
 	{
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
 	public partial class Optional_any_spaceContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(Grammar1Parser.HWS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(StateSmithLabelGrammarParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
-			return GetToken(Grammar1Parser.HWS, i);
+			return GetToken(StateSmithLabelGrammarParser.HWS, i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public Line_end_with_hsContext[] line_end_with_hs() {
 			return GetRuleContexts<Line_end_with_hsContext>();
@@ -138,17 +138,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_optional_any_space; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterOptional_any_space(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitOptional_any_space(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitOptional_any_space(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -206,7 +206,7 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class OhsContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(Grammar1Parser.HWS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(StateSmithLabelGrammarParser.HWS, 0); }
 		public OhsContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -214,17 +214,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_ohs; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterOhs(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitOhs(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitOhs(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -261,13 +261,13 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class Some_wsContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(Grammar1Parser.HWS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(StateSmithLabelGrammarParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
-			return GetToken(Grammar1Parser.HWS, i);
+			return GetToken(StateSmithLabelGrammarParser.HWS, i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(Grammar1Parser.LINE_ENDER); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(StateSmithLabelGrammarParser.LINE_ENDER); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER(int i) {
-			return GetToken(Grammar1Parser.LINE_ENDER, i);
+			return GetToken(StateSmithLabelGrammarParser.LINE_ENDER, i);
 		}
 		public Some_wsContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -276,17 +276,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_some_ws; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterSome_ws(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitSome_ws(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitSome_ws(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -367,17 +367,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_node; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterNode(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitNode(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNode(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -459,9 +459,9 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs(int i) {
 			return GetRuleContext<OhsContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(Grammar1Parser.COLON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(Grammar1Parser.IDENTIFIER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(Grammar1Parser.Eof, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(StateSmithLabelGrammarParser.COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(StateSmithLabelGrammarParser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(StateSmithLabelGrammarParser.Eof, 0); }
 		public Statemachine_defnContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -469,17 +469,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_statemachine_defn; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterStatemachine_defn(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitStatemachine_defn(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitStatemachine_defn(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -529,17 +529,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_notes_text; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterNotes_text(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitNotes_text(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNotes_text(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -586,7 +586,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Optional_any_spaceContext optional_any_space() {
 			return GetRuleContext<Optional_any_spaceContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(Grammar1Parser.Eof, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(StateSmithLabelGrammarParser.Eof, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Some_wsContext some_ws() {
 			return GetRuleContext<Some_wsContext>(0);
 		}
@@ -600,17 +600,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_notes_node; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterNotes_node(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitNotes_node(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNotes_node(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -675,17 +675,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_state_behaviors; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterState_behaviors(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitState_behaviors(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitState_behaviors(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -741,14 +741,14 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs(int i) {
 			return GetRuleContext<OhsContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(Grammar1Parser.COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(StateSmithLabelGrammarParser.COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public State_idContext state_id() {
 			return GetRuleContext<State_idContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public State_behaviorsContext state_behaviors() {
 			return GetRuleContext<State_behaviorsContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(Grammar1Parser.Eof, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(StateSmithLabelGrammarParser.Eof, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Ortho_orderContext ortho_order() {
 			return GetRuleContext<Ortho_orderContext>(0);
 		}
@@ -759,17 +759,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_ortho_defn; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterOrtho_defn(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitOrtho_defn(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitOrtho_defn(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -834,7 +834,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public State_behaviorsContext state_behaviors() {
 			return GetRuleContext<State_behaviorsContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(Grammar1Parser.Eof, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(StateSmithLabelGrammarParser.Eof, 0); }
 		public State_defnContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -842,17 +842,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_state_defn; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterState_defn(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitState_defn(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitState_defn(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -887,7 +887,7 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class Global_idContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(Grammar1Parser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(StateSmithLabelGrammarParser.IDENTIFIER, 0); }
 		public Global_idContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -895,17 +895,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_global_id; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterGlobal_id(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitGlobal_id(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitGlobal_id(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -939,7 +939,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Global_idContext global_id() {
 			return GetRuleContext<Global_idContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(Grammar1Parser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(StateSmithLabelGrammarParser.IDENTIFIER, 0); }
 		public State_idContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -947,17 +947,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_state_id; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterState_id(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitState_id(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitState_id(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1011,17 +1011,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_ortho_order; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterOrtho_order(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitOrtho_order(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitOrtho_order(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1056,7 +1056,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Optional_any_spaceContext optional_any_space(int i) {
 			return GetRuleContext<Optional_any_spaceContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(Grammar1Parser.Eof, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(StateSmithLabelGrammarParser.Eof, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Edge_behaviorsContext edge_behaviors() {
 			return GetRuleContext<Edge_behaviorsContext>(0);
 		}
@@ -1067,17 +1067,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_edge; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterEdge(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitEdge(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitEdge(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1136,17 +1136,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_edge_behaviors; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterEdge_behaviors(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitEdge_behaviors(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitEdge_behaviors(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1200,17 +1200,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_nl_behaviors; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterNl_behaviors(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitNl_behaviors(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNl_behaviors(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1274,17 +1274,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_nl_behavior; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterNl_behavior(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitNl_behavior(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNl_behavior(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1317,8 +1317,8 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class Point_labelContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DIGIT() { return GetToken(Grammar1Parser.DIGIT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(Grammar1Parser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DIGIT() { return GetToken(StateSmithLabelGrammarParser.DIGIT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(StateSmithLabelGrammarParser.IDENTIFIER, 0); }
 		public Point_labelContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -1326,17 +1326,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_point_label; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterPoint_label(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitPoint_label(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitPoint_label(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1397,7 +1397,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Optional_any_spaceContext optional_any_space(int i) {
 			return GetRuleContext<Optional_any_spaceContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(Grammar1Parser.COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(StateSmithLabelGrammarParser.COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Point_labelContext point_label() {
 			return GetRuleContext<Point_labelContext>(0);
 		}
@@ -1408,17 +1408,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_entry_point; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterEntry_point(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitEntry_point(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitEntry_point(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1465,7 +1465,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Optional_any_spaceContext optional_any_space(int i) {
 			return GetRuleContext<Optional_any_spaceContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(Grammar1Parser.COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(StateSmithLabelGrammarParser.COLON, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Point_labelContext point_label() {
 			return GetRuleContext<Point_labelContext>(0);
 		}
@@ -1476,17 +1476,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_exit_point; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterExit_point(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitExit_point(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitExit_point(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1534,17 +1534,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_via_entry_type; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterVia_entry_type(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitVia_entry_type(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitVia_entry_type(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1580,17 +1580,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_via_exit_type; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterVia_exit_type(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitVia_exit_type(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitVia_exit_type(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1644,17 +1644,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_transition_via; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterTransition_via(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitTransition_via(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTransition_via(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1728,17 +1728,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_transition_vias; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterTransition_vias(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitTransition_vias(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTransition_vias(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1808,17 +1808,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_behavior; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterBehavior(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitBehavior(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitBehavior(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1970,7 +1970,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public NumberContext number() {
 			return GetRuleContext<NumberContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERIOD() { return GetToken(Grammar1Parser.PERIOD, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERIOD() { return GetToken(StateSmithLabelGrammarParser.PERIOD, 0); }
 		public OrderContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -1978,17 +1978,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_order; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterOrder(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitOrder(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitOrder(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2036,17 +2036,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_triggers; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterTriggers(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitTriggers(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTriggers(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2101,17 +2101,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_trigger_id; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterTrigger_id(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitTrigger_id(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTrigger_id(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2160,9 +2160,9 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Trigger_idContext trigger_id(int i) {
 			return GetRuleContext<Trigger_idContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(Grammar1Parser.COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(StateSmithLabelGrammarParser.COMMA); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
-			return GetToken(Grammar1Parser.COMMA, i);
+			return GetToken(StateSmithLabelGrammarParser.COMMA, i);
 		}
 		public Trigger_listContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -2171,17 +2171,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_trigger_list; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterTrigger_list(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitTrigger_list(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTrigger_list(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2256,17 +2256,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_guard; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterGuard(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitGuard(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitGuard(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2314,17 +2314,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_guard_code; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterGuard_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitGuard_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitGuard_code(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2371,17 +2371,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_action; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterAction(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitAction(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitAction(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2429,17 +2429,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_action_code; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterAction_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitAction_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitAction_code(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2511,17 +2511,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_naked_action_code; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterNaked_action_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitNaked_action_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNaked_action_code(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2569,13 +2569,13 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class Member_access_operatorContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERIOD() { return GetToken(Grammar1Parser.PERIOD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COLON() { return GetTokens(Grammar1Parser.COLON); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERIOD() { return GetToken(StateSmithLabelGrammarParser.PERIOD, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COLON() { return GetTokens(StateSmithLabelGrammarParser.COLON); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON(int i) {
-			return GetToken(Grammar1Parser.COLON, i);
+			return GetToken(StateSmithLabelGrammarParser.COLON, i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DASH() { return GetToken(Grammar1Parser.DASH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GT() { return GetToken(Grammar1Parser.GT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DASH() { return GetToken(StateSmithLabelGrammarParser.DASH, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GT() { return GetToken(StateSmithLabelGrammarParser.GT, 0); }
 		public Member_access_operatorContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -2583,17 +2583,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_member_access_operator; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterMember_access_operator(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitMember_access_operator(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitMember_access_operator(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2659,7 +2659,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Member_access_operatorContext member_access_operator() {
 			return GetRuleContext<Member_access_operatorContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(Grammar1Parser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(StateSmithLabelGrammarParser.IDENTIFIER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Member_function_callContext member_function_call() {
 			return GetRuleContext<Member_function_callContext>(0);
 		}
@@ -2670,17 +2670,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_member_access; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterMember_access(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitMember_access(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitMember_access(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2732,7 +2732,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs() {
 			return GetRuleContext<OhsContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(Grammar1Parser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(StateSmithLabelGrammarParser.IDENTIFIER, 0); }
 		public Expandable_identifierContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -2740,17 +2740,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_expandable_identifier; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterExpandable_identifier(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitExpandable_identifier(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitExpandable_identifier(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2802,17 +2802,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_group_expression; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterGroup_expression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitGroup_expression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitGroup_expression(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2857,17 +2857,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_square_brace_expression; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterSquare_brace_expression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitSquare_brace_expression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitSquare_brace_expression(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2913,17 +2913,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_braced_expression; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterBraced_expression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitBraced_expression(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitBraced_expression(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2958,11 +2958,11 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class Line_commentContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_COMMENT() { return GetToken(Grammar1Parser.LINE_COMMENT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_COMMENT() { return GetToken(StateSmithLabelGrammarParser.LINE_COMMENT, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Line_end_with_hsContext line_end_with_hs() {
 			return GetRuleContext<Line_end_with_hsContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(Grammar1Parser.Eof, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(StateSmithLabelGrammarParser.Eof, 0); }
 		public Line_commentContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -2970,17 +2970,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_line_comment; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterLine_comment(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitLine_comment(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitLine_comment(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3027,7 +3027,7 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class Star_commentContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STAR_COMMENT() { return GetToken(Grammar1Parser.STAR_COMMENT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STAR_COMMENT() { return GetToken(StateSmithLabelGrammarParser.STAR_COMMENT, 0); }
 		public Star_commentContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -3035,17 +3035,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_star_comment; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterStar_comment(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitStar_comment(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitStar_comment(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3086,9 +3086,9 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Optional_any_spaceContext optional_any_space(int i) {
 			return GetRuleContext<Optional_any_spaceContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(Grammar1Parser.COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(StateSmithLabelGrammarParser.COMMA); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
-			return GetToken(Grammar1Parser.COMMA, i);
+			return GetToken(StateSmithLabelGrammarParser.COMMA, i);
 		}
 		public Function_argsContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -3097,17 +3097,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_function_args; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterFunction_args(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitFunction_args(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFunction_args(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3170,17 +3170,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_function_arg_code; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterFunction_arg_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitFunction_arg_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFunction_arg_code(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3241,17 +3241,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_function_arg; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterFunction_arg(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitFunction_arg(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitFunction_arg(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3292,17 +3292,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_leading_optional_any_space; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterLeading_optional_any_space(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitLeading_optional_any_space(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitLeading_optional_any_space(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3341,17 +3341,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_trailing_optional_any_space; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterTrailing_optional_any_space(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitTrailing_optional_any_space(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTrailing_optional_any_space(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3396,17 +3396,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_braced_function_args; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterBraced_function_args(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitBraced_function_args(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitBraced_function_args(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3454,7 +3454,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs() {
 			return GetRuleContext<OhsContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(Grammar1Parser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(StateSmithLabelGrammarParser.IDENTIFIER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Braced_function_argsContext braced_function_args() {
 			return GetRuleContext<Braced_function_argsContext>(0);
 		}
@@ -3465,17 +3465,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_expandable_function_call; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterExpandable_function_call(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitExpandable_function_call(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitExpandable_function_call(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3511,7 +3511,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs() {
 			return GetRuleContext<OhsContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(Grammar1Parser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(StateSmithLabelGrammarParser.IDENTIFIER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Braced_function_argsContext braced_function_args() {
 			return GetRuleContext<Braced_function_argsContext>(0);
 		}
@@ -3522,17 +3522,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_member_function_call; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterMember_function_call(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitMember_function_call(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitMember_function_call(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3581,17 +3581,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_any_code; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterAny_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitAny_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitAny_code(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3648,17 +3648,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_code_element; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterCode_element(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitCode_element(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitCode_element(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3724,7 +3724,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Group_expressionContext group_expression() {
 			return GetRuleContext<Group_expressionContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(Grammar1Parser.HWS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(StateSmithLabelGrammarParser.HWS, 0); }
 		public Naked_action_code_elementsContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -3732,17 +3732,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_naked_action_code_elements; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterNaked_action_code_elements(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitNaked_action_code_elements(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNaked_action_code_elements(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -3866,7 +3866,7 @@ public partial class Grammar1Parser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Braced_expressionContext braced_expression() {
 			return GetRuleContext<Braced_expressionContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(Grammar1Parser.HWS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(StateSmithLabelGrammarParser.HWS, 0); }
 		public Code_line_elementContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -3874,17 +3874,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_code_line_element; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterCode_line_element(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitCode_line_element(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitCode_line_element(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -4006,17 +4006,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_code_line; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterCode_line(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitCode_line(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitCode_line(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -4045,7 +4045,7 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class Line_end_with_hsContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(Grammar1Parser.LINE_ENDER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(StateSmithLabelGrammarParser.LINE_ENDER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs() {
 			return GetRuleContext<OhsContext>(0);
 		}
@@ -4056,17 +4056,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_line_end_with_hs; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterLine_end_with_hs(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitLine_end_with_hs(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitLine_end_with_hs(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -4097,13 +4097,13 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class NumberContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] DIGIT() { return GetTokens(Grammar1Parser.DIGIT); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] DIGIT() { return GetTokens(StateSmithLabelGrammarParser.DIGIT); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DIGIT(int i) {
-			return GetToken(Grammar1Parser.DIGIT, i);
+			return GetToken(StateSmithLabelGrammarParser.DIGIT, i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERIOD() { return GetToken(Grammar1Parser.PERIOD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DASH() { return GetToken(Grammar1Parser.DASH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PLUS() { return GetToken(Grammar1Parser.PLUS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERIOD() { return GetToken(StateSmithLabelGrammarParser.PERIOD, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DASH() { return GetToken(StateSmithLabelGrammarParser.DASH, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PLUS() { return GetToken(StateSmithLabelGrammarParser.PLUS, 0); }
 		public NumberContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -4111,17 +4111,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_number; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterNumber(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitNumber(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNumber(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -4247,8 +4247,8 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class StringContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(Grammar1Parser.STRING, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TICK_STRING() { return GetToken(Grammar1Parser.TICK_STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(StateSmithLabelGrammarParser.STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TICK_STRING() { return GetToken(StateSmithLabelGrammarParser.TICK_STRING, 0); }
 		public StringContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -4256,17 +4256,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_string; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterString(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitString(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitString(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -4303,13 +4303,13 @@ public partial class Grammar1Parser : Parser {
 	}
 
 	public partial class Code_symbolContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERIOD() { return GetToken(Grammar1Parser.PERIOD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PLUS() { return GetToken(Grammar1Parser.PLUS, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DASH() { return GetToken(Grammar1Parser.DASH, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(Grammar1Parser.COLON, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GT() { return GetToken(Grammar1Parser.GT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LT() { return GetToken(Grammar1Parser.LT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OTHER_SYMBOLS() { return GetToken(Grammar1Parser.OTHER_SYMBOLS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PERIOD() { return GetToken(StateSmithLabelGrammarParser.PERIOD, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode PLUS() { return GetToken(StateSmithLabelGrammarParser.PLUS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DASH() { return GetToken(StateSmithLabelGrammarParser.DASH, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COLON() { return GetToken(StateSmithLabelGrammarParser.COLON, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode GT() { return GetToken(StateSmithLabelGrammarParser.GT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LT() { return GetToken(StateSmithLabelGrammarParser.LT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OTHER_SYMBOLS() { return GetToken(StateSmithLabelGrammarParser.OTHER_SYMBOLS, 0); }
 		public Code_symbolContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -4317,17 +4317,17 @@ public partial class Grammar1Parser : Parser {
 		public override int RuleIndex { get { return RULE_code_symbol; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.EnterCode_symbol(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IGrammar1Listener typedListener = listener as IGrammar1Listener;
+			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
 			if (typedListener != null) typedListener.ExitCode_symbol(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IGrammar1Visitor<TResult> typedVisitor = visitor as IGrammar1Visitor<TResult>;
+			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitCode_symbol(this);
 			else return visitor.VisitChildren(this);
 		}

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace StateSmith.Input.antlr4
 {
-    public class ExpandingVisitor : Grammar1BaseVisitor<string>
+    public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
     {
         public Expander expander;
 
@@ -26,7 +26,7 @@ namespace StateSmith.Input.antlr4
             return "";
         }
 
-        public override string VisitExpandable_identifier([NotNull] Grammar1Parser.Expandable_identifierContext context)
+        public override string VisitExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context)
         {
             string result = context.ohs()?.GetText() ?? "";
             string identifier = context.IDENTIFIER().GetText();
@@ -36,7 +36,7 @@ namespace StateSmith.Input.antlr4
             return result;
         }
 
-        public override string VisitExpandable_function_call([NotNull] Grammar1Parser.Expandable_function_callContext context)
+        public override string VisitExpandable_function_call([NotNull] StateSmithLabelGrammarParser.Expandable_function_callContext context)
         {
             var result = context.ohs()?.Accept(this) ?? "";
 
@@ -55,7 +55,7 @@ namespace StateSmith.Input.antlr4
             return result;
         }
 
-        private string ExpandFunctionCall(Grammar1Parser.Expandable_function_callContext context, string result, string functionName)
+        private string ExpandFunctionCall(StateSmithLabelGrammarParser.Expandable_function_callContext context, string result, string functionName)
         {
             //We can't just visit the `function_args` rule because it includes commas and additional white space.
             //We need to manually visit each `function_arg_code` rule

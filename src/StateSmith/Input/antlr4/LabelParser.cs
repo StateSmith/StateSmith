@@ -44,7 +44,7 @@ namespace StateSmith.Input.antlr4
 
         public Node ParseNodeLabel(string stateLabel)
         {
-            Grammar1Parser parser = BuildParserForString(stateLabel);
+            StateSmithLabelGrammarParser parser = BuildParserForString(stateLabel);
 
             IParseTree tree = parser.node();
             NodeEdgeWalker walker = WalkTree(tree);
@@ -70,16 +70,16 @@ namespace StateSmith.Input.antlr4
 
         public List<NodeBehavior> ParseEdgeLabel(string edgeLabel)
         {
-            Grammar1Parser parser = BuildParserForString(edgeLabel);
+            StateSmithLabelGrammarParser parser = BuildParserForString(edgeLabel);
 
             IParseTree tree = parser.edge();
             NodeEdgeWalker walker = WalkTree(tree);
             return walker.behaviors;
         }
 
-        public string ParseAndVisitAnyCode(Grammar1BaseVisitor<string> visitor, string code)
+        public string ParseAndVisitAnyCode(StateSmithLabelGrammarBaseVisitor<string> visitor, string code)
         {
-            Grammar1Parser parser = BuildParserForString(code);
+            StateSmithLabelGrammarParser parser = BuildParserForString(code);
             IParseTree tree = parser.any_code();
             return visitor.Visit(tree);
         }
@@ -91,12 +91,12 @@ namespace StateSmith.Input.antlr4
             return walker;
         }
 
-        private Grammar1Parser BuildParserForString(string inputString)
+        private StateSmithLabelGrammarParser BuildParserForString(string inputString)
         {
             ICharStream stream = CharStreams.fromString(inputString);
-            ITokenSource lexer = new Grammar1Lexer(stream);
+            ITokenSource lexer = new StateSmithLabelGrammarLexer(stream);
             ITokenStream tokens = new CommonTokenStream(lexer);
-            Grammar1Parser parser = new Grammar1Parser(tokens)
+            StateSmithLabelGrammarParser parser = new StateSmithLabelGrammarParser(tokens)
             {
                 BuildParseTree = true
             };
