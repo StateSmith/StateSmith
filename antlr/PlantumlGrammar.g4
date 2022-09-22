@@ -49,18 +49,30 @@ transition:
     ;
 
 
-// state NotShooting {
-//   [*] --> Idle
-//   Idle --> Configuring : EvConfig
-//   Configuring --> Idle : EvConfig
-// }
-state_composite:
-    'state'
-    HWS+
-    IDENTIFIER ohs '{' ohs LINE_ENDER
+
+state_child_states:
+    '{' ohs LINE_ENDER   
     diagram_element*
     '}'
-;
+    ;
+
+// ex: state "Accumulate Enough Data\nLong State Name" as long1
+// ex:
+//      state NotShooting {
+//        [*] --> Idle
+//        Idle --> Configuring : EvConfig
+//        Configuring --> Idle : EvConfig
+//      }
+state_explicit:
+    'state'
+    HWS+
+    (
+        STRING HWS+ 'as' HWS+   // ex: "Accumulate Enough Data\nLong State Name" as
+    )?
+    IDENTIFIER // ex: long1
+    ohs
+    state_child_states?
+    ;
 
 rest_of_line:
     (
@@ -85,7 +97,7 @@ ignore:
     ;
 
 diagram_element:
-    ohs
+    optional_any_space
     (
         ignore
         |
@@ -93,7 +105,7 @@ diagram_element:
         |
         transition
         |
-        state_composite
+        state_explicit
     )
     ohs
     LINE_ENDER
@@ -128,3 +140,8 @@ HWS : [ \t]+ ;
 LINE_ENDER: [\r\n]+;
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
 DIGIT :   [0-9]  ;
+
+fragment ESCAPED_CHAR: '\\' . ;
+fragment NON_QUOTE_CHAR: ~["] ;
+fragment STRING_CHAR: ESCAPED_CHAR | NON_QUOTE_CHAR ;
+STRING: '"' STRING_CHAR* '"' ;

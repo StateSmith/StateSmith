@@ -92,11 +92,17 @@ public interface IPlantumlGrammarVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTransition([NotNull] PlantumlGrammarParser.TransitionContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_composite"/>.
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_child_states"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitState_composite([NotNull] PlantumlGrammarParser.State_compositeContext context);
+	Result VisitState_child_states([NotNull] PlantumlGrammarParser.State_child_statesContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_explicit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitState_explicit([NotNull] PlantumlGrammarParser.State_explicitContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.rest_of_line"/>.
 	/// </summary>

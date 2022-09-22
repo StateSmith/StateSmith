@@ -156,17 +156,29 @@ public partial class PlantumlGrammarBaseListener : IPlantumlGrammarListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTransition([NotNull] PlantumlGrammarParser.TransitionContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.state_composite"/>.
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.state_child_states"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterState_composite([NotNull] PlantumlGrammarParser.State_compositeContext context) { }
+	public virtual void EnterState_child_states([NotNull] PlantumlGrammarParser.State_child_statesContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.state_composite"/>.
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.state_child_states"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitState_composite([NotNull] PlantumlGrammarParser.State_compositeContext context) { }
+	public virtual void ExitState_child_states([NotNull] PlantumlGrammarParser.State_child_statesContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.state_explicit"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterState_explicit([NotNull] PlantumlGrammarParser.State_explicitContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.state_explicit"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitState_explicit([NotNull] PlantumlGrammarParser.State_explicitContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.rest_of_line"/>.
 	/// <para>The default implementation does nothing.</para>
