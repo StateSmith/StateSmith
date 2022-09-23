@@ -1,17 +1,35 @@
 @startuml
-state Somp {
-  state "blah blah" as entry1 <<state>> {
 
-  }
-  state entry2 <<entryPoint>>
+[*] -up-> First
+First -right-> Second
+Second --> Third
+Third -left-> Last
+
+State S1
+State S2
+S1 -[#DD00AA]-> S2
+S1 -left[#yellow]-> S3
+S1 -up[#red,dashed]-> S4
+S1 -right[dotted,#blue]-> S5
+
+X1 -[dashed]-> X2
+Z1 -[dotted]-> Z2
+Y1 -[#blue,bold]-> Y2
+
+
+state Somp {
+  state entry1 <<expansionInput>>
+  state entry2 <<expansionInput>>
   state sin
   entry1 --> sin
   entry2 -> sin
   sin -> sin2
-  sin2 --> exitA <<exitPoint>>
+  sin2 --> exitA <<expansionOutput>>
 }
 
 [*] --> entry1
 exitA --> Foo
 Foo1 -> entry2
+
+
 @enduml

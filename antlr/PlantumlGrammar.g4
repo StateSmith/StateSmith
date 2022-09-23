@@ -1,6 +1,12 @@
 grammar PlantumlGrammar;
 
 /*
+# IMPORTANT notes
+Wild card and negations are context sensitive.
+If you write `(.*?)` in a LEXER rule, it will match any characters lazily.
+If you write `(.*?)` in a parser rule, it will match any lexed tokens lazily.
+
+
 TODO
     - skinparam
     - notes
@@ -35,7 +41,18 @@ vertex:
     ;
 
 edge:
-    '->' | '-->'
+    '->'
+    |
+    //ex: `-->`, `Third -left-> Last`, `S1 -right[dotted,#blue]-> S5`
+    '-' IDENTIFIER? 
+    (
+        '['
+            (
+                ~(']' | LINE_ENDER)
+            )*
+        ']'
+    )?
+    '->' 
     ;
 
 transition_event_guard_code:
@@ -66,7 +83,7 @@ state_child_states:
 
 stereotype:
     '<<'
-    (IDENTIFIER | 'state' | 'as')
+    (IDENTIFIER | 'state' | 'State' | 'as')
     '>>'
     ;
 
@@ -78,7 +95,7 @@ stereotype:
 //        Configuring --> Idle : EvConfig
 //      }
 state_explicit:
-    'state'
+    ('state' | 'State')
     HWS+
     (
         STRING HWS+ 'as' HWS+   // ex: "Accumulate Enough Data\nLong State Name" as
@@ -94,7 +111,7 @@ state_explicit:
 
 rest_of_line:
     (
-        IDENTIFIER | HWS | DIGIT // fixme add more stuff that's allowed
+        IDENTIFIER | HWS | DIGIT // todo fixme add more stuff that's allowed
     )*
     ;
 
