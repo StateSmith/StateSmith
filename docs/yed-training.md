@@ -27,7 +27,13 @@ Open the Pallette from `Windows > Pallette` and open the `Edge Types` tab. Choos
 yEd will not detect when a .graphml changes from something like changing git branches. yEd loads the diagram into RAM and then writes to disk. It's a one way street. If you do any git operations or file modifications outside of yEd, make sure to close and re-open the file in yEd.
 
 ## yEd hidden edges
+Issue https://github.com/StateSmith/StateSmith/issues/29
+
 One particularly annoying yEd bug is that it is possible to accidentally draw an edge from a substate to its parent that disappears. The edge is still there, you just can't see it. If you notice this happen, you can open the `Neighborhood` view with the state selected. It will show the hidden edge and allow you to select and delete it. Auto edge routing will sometimes move the edge so that it becomes visible too. This bug really makes me want a new UI we can control better and fix bugs in.
+
+You can also accidentally draw an edge from a state to itself in such a way that yEd makes it invisible. In this case, the `Neighborhood` view can't help. You can either auto route the edges connected to that node (or just all edges) so that you can see it again, or you can manually edit the .xml file.
+
+
 
 # Training
 I plan to make a short youtube video going over just what you need with yEd, but in the mean time, try opening
