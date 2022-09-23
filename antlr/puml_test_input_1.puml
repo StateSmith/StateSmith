@@ -9,6 +9,11 @@ skinparam state {
  BorderColor Black
 }
 
+state start1  <<start>>
+state choice1 <<choice>>
+state fork1   <<fork>>
+state join2   <<join>>
+state end3    <<end>>
 
 note left of Active : this is a short\nnote "quoted" <<>>
 

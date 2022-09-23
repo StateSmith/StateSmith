@@ -219,6 +219,10 @@ identifier
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
 DIGIT :   [0-9]  ;
 
+SYMBOLS: 
+    [-~`!@#$%^&*()_+=\\|{};:'",<.>/?] | '[' | ']';
+
+
 fragment ESCAPED_CHAR: '\\' . ;
 fragment NON_QUOTE_CHAR: ~["] ;
 fragment STRING_CHAR: ESCAPED_CHAR | NON_QUOTE_CHAR ;

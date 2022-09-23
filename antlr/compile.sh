@@ -10,6 +10,6 @@ antlr4 StateSmithLabelGrammar.g4 -o out
 antlr4 StateSmithLabelGrammar.g4 -Dlanguage=CSharp -visitor -o ../src/StateSmith/Input/antlr4/
 
 antlr4 PlantUML.g4 -o out
-antlr4 PlantUML.g4 -Dlanguage=CSharp -visitor -o ../src/StateSmith/Input/PlantUML/
+antlr4 PlantUML.g4 -Dlanguage=CSharp -visitor -o ../src/StateSmith/Input/PlantUML/antlr4/
 
 javac out/*.java

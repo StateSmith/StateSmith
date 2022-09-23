@@ -15,6 +15,8 @@ namespace StateSmith.Compiling
 {
     public class Compiler
     {
+        public const string InitialStateString = "$initial_state";
+
         public List<Vertex> rootVertices = new List<Vertex>();
         private List<string> eventNames = new List<string>();
         private Dictionary<Input.DiagramNode, Vertex> diagramVertexMap = new Dictionary<Input.DiagramNode, Vertex>();
@@ -343,7 +345,7 @@ namespace StateSmith.Compiling
                         }
                         else
                         {
-                            if (string.Equals(stateNode.stateName, "$initial_state", StringComparison.OrdinalIgnoreCase))
+                            if (string.Equals(stateNode.stateName, InitialStateString, StringComparison.OrdinalIgnoreCase))
                             {
                                 thisVertex = new InitialState();
                             }

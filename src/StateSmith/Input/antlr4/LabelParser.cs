@@ -3,41 +3,10 @@ using Antlr4.Runtime.Tree;
 using StateSmith.Input.Expansions;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace StateSmith.Input.antlr4
 {
-    public class Error
-    {
-        public IToken offendingSymbol;
-        public int line;
-        public int column;
-        public string message;
-        public RecognitionException exception;
-
-        public string BuildMessage()
-        {
-            return $"{message} at line {line} column {column}. Offending symbol: `{offendingSymbol.Text}`";
-        }
-    }
-
-    public class ErrorListener : IAntlrErrorListener<IToken>
-    {
-        public List<Error> errors = new List<Error>();
-
-        public void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
-        {
-            errors.Add(new Error() {
-                offendingSymbol = offendingSymbol,
-                line = line,
-                column = charPositionInLine,
-                message = msg,
-                exception = e
-            });
-        }
-    }
-
     public class LabelParser
     {
         public ErrorListener errorListener = new ErrorListener();
