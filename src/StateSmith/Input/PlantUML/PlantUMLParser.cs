@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from PlantumlGrammar.g4 by ANTLR 4.9.2
+// Generated from PlantUML.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -32,7 +32,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.9.2")]
 [System.CLSCompliant(false)]
-public partial class PlantumlGrammarParser : Parser {
+public partial class PlantUMLParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -78,31 +78,31 @@ public partial class PlantumlGrammarParser : Parser {
 		}
 	}
 
-	public override string GrammarFileName { get { return "PlantumlGrammar.g4"; } }
+	public override string GrammarFileName { get { return "PlantUML.g4"; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 
 	public override string SerializedAtn { get { return new string(_serializedATN); } }
 
-	static PlantumlGrammarParser() {
+	static PlantUMLParser() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
 		for (int i = 0; i < _ATN.NumberOfDecisions; i++) {
 			decisionToDFA[i] = new DFA(_ATN.GetDecisionState(i), i);
 		}
 	}
 
-		public PlantumlGrammarParser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
+		public PlantUMLParser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
 
-		public PlantumlGrammarParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
+		public PlantUMLParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
 		: base(input, output, errorOutput)
 	{
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
 	}
 
 	public partial class Optional_any_spaceContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantumlGrammarParser.HWS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantUMLParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
-			return GetToken(PlantumlGrammarParser.HWS, i);
+			return GetToken(PlantUMLParser.HWS, i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public Line_end_with_hsContext[] line_end_with_hs() {
 			return GetRuleContexts<Line_end_with_hsContext>();
@@ -117,17 +117,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_optional_any_space; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterOptional_any_space(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitOptional_any_space(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitOptional_any_space(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -183,7 +183,7 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class OhsContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(PlantumlGrammarParser.HWS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(PlantUMLParser.HWS, 0); }
 		public OhsContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -191,17 +191,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_ohs; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterOhs(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitOhs(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitOhs(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -238,13 +238,13 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class Some_wsContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantumlGrammarParser.HWS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantUMLParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
-			return GetToken(PlantumlGrammarParser.HWS, i);
+			return GetToken(PlantUMLParser.HWS, i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(PlantumlGrammarParser.LINE_ENDER); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(PlantUMLParser.LINE_ENDER); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER(int i) {
-			return GetToken(PlantumlGrammarParser.LINE_ENDER, i);
+			return GetToken(PlantUMLParser.LINE_ENDER, i);
 		}
 		public Some_wsContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -253,17 +253,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_some_ws; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterSome_ws(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitSome_ws(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitSome_ws(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -312,7 +312,7 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class Line_end_with_hsContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(PlantumlGrammarParser.LINE_ENDER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(PlantUMLParser.LINE_ENDER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs() {
 			return GetRuleContext<OhsContext>(0);
 		}
@@ -323,17 +323,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_line_end_with_hs; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterLine_end_with_hs(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitLine_end_with_hs(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitLine_end_with_hs(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -371,17 +371,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_start_end_state; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterStart_end_state(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitStart_end_state(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitStart_end_state(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -420,17 +420,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_state_id; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterState_id(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitState_id(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitState_id(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -478,17 +478,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_vertex; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterVertex(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitVertex(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitVertex(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -550,10 +550,10 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class EdgeContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(PlantumlGrammarParser.IDENTIFIER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(PlantumlGrammarParser.LINE_ENDER); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(PlantUMLParser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(PlantUMLParser.LINE_ENDER); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER(int i) {
-			return GetToken(PlantumlGrammarParser.LINE_ENDER, i);
+			return GetToken(PlantUMLParser.LINE_ENDER, i);
 		}
 		public EdgeContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -562,17 +562,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_edge; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterEdge(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitEdge(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitEdge(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -672,17 +672,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_transition_event_guard_code; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterTransition_event_guard_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitTransition_event_guard_code(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTransition_event_guard_code(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -736,17 +736,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_transition; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterTransition(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitTransition(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitTransition(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -802,7 +802,7 @@ public partial class PlantumlGrammarParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs() {
 			return GetRuleContext<OhsContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(PlantumlGrammarParser.LINE_ENDER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(PlantUMLParser.LINE_ENDER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Diagram_elementContext[] diagram_element() {
 			return GetRuleContexts<Diagram_elementContext>();
 		}
@@ -816,17 +816,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_state_child_states; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterState_child_states(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitState_child_states(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitState_child_states(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -886,17 +886,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_stereotype; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterStereotype(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitStereotype(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitStereotype(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -938,11 +938,11 @@ public partial class PlantumlGrammarParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs(int i) {
 			return GetRuleContext<OhsContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantumlGrammarParser.HWS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantUMLParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
-			return GetToken(PlantumlGrammarParser.HWS, i);
+			return GetToken(PlantUMLParser.HWS, i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(PlantumlGrammarParser.STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(PlantUMLParser.STRING, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public StereotypeContext stereotype() {
 			return GetRuleContext<StereotypeContext>(0);
 		}
@@ -956,17 +956,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_state_explicit; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterState_explicit(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitState_explicit(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitState_explicit(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1083,9 +1083,9 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class Rest_of_lineContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(PlantumlGrammarParser.LINE_ENDER); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(PlantUMLParser.LINE_ENDER); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER(int i) {
-			return GetToken(PlantumlGrammarParser.LINE_ENDER, i);
+			return GetToken(PlantUMLParser.LINE_ENDER, i);
 		}
 		public Rest_of_lineContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1094,17 +1094,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_rest_of_line; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterRest_of_line(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitRest_of_line(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitRest_of_line(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1175,17 +1175,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_state_contents; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterState_contents(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitState_contents(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitState_contents(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1222,7 +1222,7 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class IgnoreContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(PlantumlGrammarParser.HWS, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS() { return GetToken(PlantUMLParser.HWS, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Rest_of_lineContext rest_of_line() {
 			return GetRuleContext<Rest_of_lineContext>(0);
 		}
@@ -1239,17 +1239,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_ignore; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterIgnore(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitIgnore(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitIgnore(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1349,7 +1349,7 @@ public partial class PlantumlGrammarParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs(int i) {
 			return GetRuleContext<OhsContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(PlantumlGrammarParser.LINE_ENDER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(PlantUMLParser.LINE_ENDER, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public IgnoreContext ignore() {
 			return GetRuleContext<IgnoreContext>(0);
 		}
@@ -1372,17 +1372,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_diagram_element; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterDiagram_element(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitDiagram_element(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitDiagram_element(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1457,9 +1457,9 @@ public partial class PlantumlGrammarParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Rest_of_lineContext rest_of_line() {
 			return GetRuleContext<Rest_of_lineContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantumlGrammarParser.HWS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantUMLParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
-			return GetToken(PlantumlGrammarParser.HWS, i);
+			return GetToken(PlantUMLParser.HWS, i);
 		}
 		public Note_shortContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1468,17 +1468,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_note_short; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterNote_short(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitNote_short(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNote_short(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1563,17 +1563,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_note_multiline_contents; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterNote_multiline_contents(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitNote_multiline_contents(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNote_multiline_contents(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1621,9 +1621,9 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class Note_multilineContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(PlantumlGrammarParser.LINE_ENDER); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] LINE_ENDER() { return GetTokens(PlantUMLParser.LINE_ENDER); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER(int i) {
-			return GetToken(PlantumlGrammarParser.LINE_ENDER, i);
+			return GetToken(PlantUMLParser.LINE_ENDER, i);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs() {
 			return GetRuleContext<OhsContext>(0);
@@ -1638,17 +1638,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_note_multiline; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterNote_multiline(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitNote_multiline(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNote_multiline(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1717,13 +1717,13 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class Note_floatingContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(PlantumlGrammarParser.STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(PlantUMLParser.STRING, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Rest_of_lineContext rest_of_line() {
 			return GetRuleContext<Rest_of_lineContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantumlGrammarParser.HWS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantUMLParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
-			return GetToken(PlantumlGrammarParser.HWS, i);
+			return GetToken(PlantUMLParser.HWS, i);
 		}
 		public Note_floatingContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1732,17 +1732,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_note_floating; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterNote_floating(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitNote_floating(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNote_floating(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1806,17 +1806,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_note; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterNote(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitNote(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitNote(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1865,13 +1865,13 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class StartumlContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode START_UML() { return GetToken(PlantumlGrammarParser.START_UML, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode START_UML() { return GetToken(PlantUMLParser.START_UML, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public IdentifierContext identifier() {
 			return GetRuleContext<IdentifierContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantumlGrammarParser.HWS); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] HWS() { return GetTokens(PlantUMLParser.HWS); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HWS(int i) {
-			return GetToken(PlantumlGrammarParser.HWS, i);
+			return GetToken(PlantUMLParser.HWS, i);
 		}
 		public StartumlContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -1880,17 +1880,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_startuml; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterStartuml(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitStartuml(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitStartuml(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -1956,9 +1956,9 @@ public partial class PlantumlGrammarParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public OhsContext ohs() {
 			return GetRuleContext<OhsContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(PlantumlGrammarParser.LINE_ENDER, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode END_UML() { return GetToken(PlantumlGrammarParser.END_UML, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(PlantumlGrammarParser.Eof, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LINE_ENDER() { return GetToken(PlantUMLParser.LINE_ENDER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode END_UML() { return GetToken(PlantUMLParser.END_UML, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode Eof() { return GetToken(PlantUMLParser.Eof, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public Diagram_elementContext[] diagram_element() {
 			return GetRuleContexts<Diagram_elementContext>();
 		}
@@ -1972,17 +1972,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_diagram; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterDiagram(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitDiagram(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitDiagram(this);
 			else return visitor.VisitChildren(this);
 		}
@@ -2038,7 +2038,7 @@ public partial class PlantumlGrammarParser : Parser {
 	}
 
 	public partial class IdentifierContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(PlantumlGrammarParser.IDENTIFIER, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IDENTIFIER() { return GetToken(PlantUMLParser.IDENTIFIER, 0); }
 		public IdentifierContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -2046,17 +2046,17 @@ public partial class PlantumlGrammarParser : Parser {
 		public override int RuleIndex { get { return RULE_identifier; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.EnterIdentifier(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IPlantumlGrammarListener typedListener = listener as IPlantumlGrammarListener;
+			IPlantUMLListener typedListener = listener as IPlantUMLListener;
 			if (typedListener != null) typedListener.ExitIdentifier(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
-			IPlantumlGrammarVisitor<TResult> typedVisitor = visitor as IPlantumlGrammarVisitor<TResult>;
+			IPlantUMLVisitor<TResult> typedVisitor = visitor as IPlantUMLVisitor<TResult>;
 			if (typedVisitor != null) return typedVisitor.VisitIdentifier(this);
 			else return visitor.VisitChildren(this);
 		}

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from PlantumlGrammar.g4 by ANTLR 4.9.2
+// Generated from PlantUML.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -29,7 +29,7 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.9.2")]
 [System.CLSCompliant(false)]
-public partial class PlantumlGrammarLexer : Lexer {
+public partial class PlantUMLLexer : Lexer {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
@@ -54,10 +54,10 @@ public partial class PlantumlGrammarLexer : Lexer {
 	};
 
 
-	public PlantumlGrammarLexer(ICharStream input)
+	public PlantUMLLexer(ICharStream input)
 	: this(input, Console.Out, Console.Error) { }
 
-	public PlantumlGrammarLexer(ICharStream input, TextWriter output, TextWriter errorOutput)
+	public PlantUMLLexer(ICharStream input, TextWriter output, TextWriter errorOutput)
 	: base(input, output, errorOutput)
 	{
 		Interpreter = new LexerATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
@@ -84,7 +84,7 @@ public partial class PlantumlGrammarLexer : Lexer {
 		}
 	}
 
-	public override string GrammarFileName { get { return "PlantumlGrammar.g4"; } }
+	public override string GrammarFileName { get { return "PlantUML.g4"; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 
@@ -94,7 +94,7 @@ public partial class PlantumlGrammarLexer : Lexer {
 
 	public override string SerializedAtn { get { return new string(_serializedATN); } }
 
-	static PlantumlGrammarLexer() {
+	static PlantUMLLexer() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
 		for (int i = 0; i < _ATN.NumberOfDecisions; i++) {
 			decisionToDFA[i] = new DFA(_ATN.GetDecisionState(i), i);

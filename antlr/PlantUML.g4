@@ -1,4 +1,4 @@
-grammar PlantumlGrammar;
+grammar PlantUML;
 
 /*
 # IMPORTANT notes

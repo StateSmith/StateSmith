@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from PlantumlGrammar.g4 by ANTLR 4.9.2
+// Generated from PlantUML.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -25,7 +25,7 @@ using IToken = Antlr4.Runtime.IToken;
 using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 
 /// <summary>
-/// This class provides an empty implementation of <see cref="IPlantumlGrammarVisitor{Result}"/>,
+/// This class provides an empty implementation of <see cref="IPlantUMLVisitor{Result}"/>,
 /// which can be extended to create a visitor which only needs to handle a subset
 /// of the available methods.
 /// </summary>
@@ -33,9 +33,9 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.9.2")]
 [System.Diagnostics.DebuggerNonUserCode]
 [System.CLSCompliant(false)]
-public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IPlantumlGrammarVisitor<Result> {
+public partial class PlantUMLBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IPlantUMLVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.optional_any_space"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.optional_any_space"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -43,9 +43,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitOptional_any_space([NotNull] PlantumlGrammarParser.Optional_any_spaceContext context) { return VisitChildren(context); }
+	public virtual Result VisitOptional_any_space([NotNull] PlantUMLParser.Optional_any_spaceContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.ohs"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.ohs"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -53,9 +53,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitOhs([NotNull] PlantumlGrammarParser.OhsContext context) { return VisitChildren(context); }
+	public virtual Result VisitOhs([NotNull] PlantUMLParser.OhsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.some_ws"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.some_ws"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -63,9 +63,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitSome_ws([NotNull] PlantumlGrammarParser.Some_wsContext context) { return VisitChildren(context); }
+	public virtual Result VisitSome_ws([NotNull] PlantUMLParser.Some_wsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.line_end_with_hs"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.line_end_with_hs"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -73,9 +73,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLine_end_with_hs([NotNull] PlantumlGrammarParser.Line_end_with_hsContext context) { return VisitChildren(context); }
+	public virtual Result VisitLine_end_with_hs([NotNull] PlantUMLParser.Line_end_with_hsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.start_end_state"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.start_end_state"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -83,9 +83,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStart_end_state([NotNull] PlantumlGrammarParser.Start_end_stateContext context) { return VisitChildren(context); }
+	public virtual Result VisitStart_end_state([NotNull] PlantUMLParser.Start_end_stateContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_id"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.state_id"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -93,9 +93,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitState_id([NotNull] PlantumlGrammarParser.State_idContext context) { return VisitChildren(context); }
+	public virtual Result VisitState_id([NotNull] PlantUMLParser.State_idContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.vertex"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.vertex"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -103,9 +103,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitVertex([NotNull] PlantumlGrammarParser.VertexContext context) { return VisitChildren(context); }
+	public virtual Result VisitVertex([NotNull] PlantUMLParser.VertexContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.edge"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.edge"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -113,9 +113,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitEdge([NotNull] PlantumlGrammarParser.EdgeContext context) { return VisitChildren(context); }
+	public virtual Result VisitEdge([NotNull] PlantUMLParser.EdgeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.transition_event_guard_code"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.transition_event_guard_code"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -123,9 +123,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTransition_event_guard_code([NotNull] PlantumlGrammarParser.Transition_event_guard_codeContext context) { return VisitChildren(context); }
+	public virtual Result VisitTransition_event_guard_code([NotNull] PlantUMLParser.Transition_event_guard_codeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.transition"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.transition"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -133,9 +133,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTransition([NotNull] PlantumlGrammarParser.TransitionContext context) { return VisitChildren(context); }
+	public virtual Result VisitTransition([NotNull] PlantUMLParser.TransitionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_child_states"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.state_child_states"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -143,9 +143,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitState_child_states([NotNull] PlantumlGrammarParser.State_child_statesContext context) { return VisitChildren(context); }
+	public virtual Result VisitState_child_states([NotNull] PlantUMLParser.State_child_statesContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.stereotype"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.stereotype"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -153,9 +153,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStereotype([NotNull] PlantumlGrammarParser.StereotypeContext context) { return VisitChildren(context); }
+	public virtual Result VisitStereotype([NotNull] PlantUMLParser.StereotypeContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_explicit"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.state_explicit"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -163,9 +163,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitState_explicit([NotNull] PlantumlGrammarParser.State_explicitContext context) { return VisitChildren(context); }
+	public virtual Result VisitState_explicit([NotNull] PlantUMLParser.State_explicitContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.rest_of_line"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.rest_of_line"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -173,9 +173,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitRest_of_line([NotNull] PlantumlGrammarParser.Rest_of_lineContext context) { return VisitChildren(context); }
+	public virtual Result VisitRest_of_line([NotNull] PlantUMLParser.Rest_of_lineContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.state_contents"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.state_contents"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -183,9 +183,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitState_contents([NotNull] PlantumlGrammarParser.State_contentsContext context) { return VisitChildren(context); }
+	public virtual Result VisitState_contents([NotNull] PlantUMLParser.State_contentsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.ignore"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.ignore"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -193,9 +193,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitIgnore([NotNull] PlantumlGrammarParser.IgnoreContext context) { return VisitChildren(context); }
+	public virtual Result VisitIgnore([NotNull] PlantUMLParser.IgnoreContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.diagram_element"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.diagram_element"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -203,9 +203,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitDiagram_element([NotNull] PlantumlGrammarParser.Diagram_elementContext context) { return VisitChildren(context); }
+	public virtual Result VisitDiagram_element([NotNull] PlantUMLParser.Diagram_elementContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note_short"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_short"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -213,9 +213,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNote_short([NotNull] PlantumlGrammarParser.Note_shortContext context) { return VisitChildren(context); }
+	public virtual Result VisitNote_short([NotNull] PlantUMLParser.Note_shortContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note_multiline_contents"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -223,9 +223,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNote_multiline_contents([NotNull] PlantumlGrammarParser.Note_multiline_contentsContext context) { return VisitChildren(context); }
+	public virtual Result VisitNote_multiline_contents([NotNull] PlantUMLParser.Note_multiline_contentsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note_multiline"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_multiline"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -233,9 +233,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNote_multiline([NotNull] PlantumlGrammarParser.Note_multilineContext context) { return VisitChildren(context); }
+	public virtual Result VisitNote_multiline([NotNull] PlantUMLParser.Note_multilineContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note_floating"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_floating"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -243,9 +243,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNote_floating([NotNull] PlantumlGrammarParser.Note_floatingContext context) { return VisitChildren(context); }
+	public virtual Result VisitNote_floating([NotNull] PlantUMLParser.Note_floatingContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.note"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -253,9 +253,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNote([NotNull] PlantumlGrammarParser.NoteContext context) { return VisitChildren(context); }
+	public virtual Result VisitNote([NotNull] PlantUMLParser.NoteContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.startuml"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.startuml"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -263,9 +263,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitStartuml([NotNull] PlantumlGrammarParser.StartumlContext context) { return VisitChildren(context); }
+	public virtual Result VisitStartuml([NotNull] PlantUMLParser.StartumlContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.diagram"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.diagram"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -273,9 +273,9 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitDiagram([NotNull] PlantumlGrammarParser.DiagramContext context) { return VisitChildren(context); }
+	public virtual Result VisitDiagram([NotNull] PlantUMLParser.DiagramContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.identifier"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.identifier"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -283,5 +283,5 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitIdentifier([NotNull] PlantumlGrammarParser.IdentifierContext context) { return VisitChildren(context); }
+	public virtual Result VisitIdentifier([NotNull] PlantUMLParser.IdentifierContext context) { return VisitChildren(context); }
 }
