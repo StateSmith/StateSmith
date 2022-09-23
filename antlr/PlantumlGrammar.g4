@@ -111,7 +111,7 @@ state_explicit:
 
 rest_of_line:
     (
-        IDENTIFIER | HWS | DIGIT // todo fixme add more stuff that's allowed
+        ~LINE_ENDER
     )*
     ;
 
