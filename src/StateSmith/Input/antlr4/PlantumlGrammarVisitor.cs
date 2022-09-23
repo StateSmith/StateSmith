@@ -175,4 +175,10 @@ public interface IPlantumlGrammarVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDiagram([NotNull] PlantumlGrammarParser.DiagramContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIdentifier([NotNull] PlantumlGrammarParser.IdentifierContext context);
 }

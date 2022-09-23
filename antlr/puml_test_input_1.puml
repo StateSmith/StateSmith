@@ -1,5 +1,15 @@
 @startuml
 
+skinparam xxxxParam1 value1
+skinparam xxxxParam2 value2
+
+skinparam state {
+ FontName<<class_ortho>>    Impact
+ BorderColor<<class_ortho>> #AA0000
+ BorderColor Black
+}
+
+
 note left of Active : this is a short\nnote "quoted" <<>>
 
 note right of Inactive
@@ -15,6 +25,7 @@ note "This is a floating note" as N1
 
 
 [*] -up-> First
+state -> state
 First -right-> Second
 Second --> Third
 Third -left-> Last

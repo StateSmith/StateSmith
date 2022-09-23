@@ -270,4 +270,14 @@ public interface IPlantumlGrammarListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitDiagram([NotNull] PlantumlGrammarParser.DiagramContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIdentifier([NotNull] PlantumlGrammarParser.IdentifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIdentifier([NotNull] PlantumlGrammarParser.IdentifierContext context);
 }

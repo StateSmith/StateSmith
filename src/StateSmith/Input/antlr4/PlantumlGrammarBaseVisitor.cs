@@ -274,4 +274,14 @@ public partial class PlantumlGrammarBaseVisitor<Result> : AbstractParseTreeVisit
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitDiagram([NotNull] PlantumlGrammarParser.DiagramContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.identifier"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitIdentifier([NotNull] PlantumlGrammarParser.IdentifierContext context) { return VisitChildren(context); }
 }

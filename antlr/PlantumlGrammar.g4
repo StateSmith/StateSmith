@@ -6,22 +6,9 @@ Wild card and negations are context sensitive.
 If you write `(.*?)` in a LEXER rule, it will match any characters lazily.
 If you write `(.*?)` in a parser rule, it will match any lexed tokens lazily.
 
+Investigate semantic predicates: https://github.com/antlr/antlr4/blob/master/doc/predicates.md
 
-TODO
-    - skinparam
-
-@startuml
-
-[*] --> State1
-State1 --> [*]
-State1 : this is a string
-State1 : this is another string
-
-State1 -> State2
-State2 --> [*]
-
-@enduml
- */
+*/
 
 optional_any_space: (HWS | line_end_with_hs)*;
 ohs: HWS? ;
@@ -29,7 +16,7 @@ some_ws: (HWS | LINE_ENDER)+ ;
 line_end_with_hs: LINE_ENDER ohs;
 
 start_end_state: '[*]';
-state_id: IDENTIFIER;
+state_id: identifier;
 
 vertex:
     start_end_state | state_id
@@ -82,7 +69,7 @@ state_child_states:
 
 stereotype:
     '<<'
-    (IDENTIFIER | 'state' | 'State' | 'note'| 'as')
+    identifier
     '>>'
     ;
 
@@ -99,7 +86,7 @@ state_explicit:
     (
         STRING HWS+ 'as' HWS+   // ex: "Accumulate Enough Data\nLong State Name" as
     )?
-    IDENTIFIER // ex: long1
+    identifier // ex: long1
     (
         ohs
         stereotype
@@ -117,7 +104,7 @@ rest_of_line:
 // State1 : this is a string
 // State1 : this is another string
 state_contents:
-    IDENTIFIER
+    identifier
     ohs
     ':'
     ohs
@@ -127,7 +114,11 @@ state_contents:
 ignore:
     'hide empty description'
     |
-    'scale ' rest_of_line
+    'scale' HWS rest_of_line
+    |
+    'skinparam' HWS identifier ohs '{' .*? '}'
+    |
+    'skinparam' HWS rest_of_line
     ;
 
 diagram_element:
@@ -194,7 +185,7 @@ startuml:
     START_UML
     (
         HWS+
-        IDENTIFIER
+        identifier
     )?
     ;
 
@@ -215,6 +206,16 @@ END_UML: '@enduml';
 
 HWS : [ \t]+ ;
 LINE_ENDER: [\r\n]+;
+identifier
+    : IDENTIFIER
+    | 'state'
+    | 'State'
+    | 'note'
+    | 'as'
+    | 'scale'
+    | 'skinparam'
+    | 'note'
+    ;
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
 DIGIT :   [0-9]  ;
 

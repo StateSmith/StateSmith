@@ -323,6 +323,18 @@ public partial class PlantumlGrammarBaseListener : IPlantumlGrammarListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDiagram([NotNull] PlantumlGrammarParser.DiagramContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIdentifier([NotNull] PlantumlGrammarParser.IdentifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIdentifier([NotNull] PlantumlGrammarParser.IdentifierContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>
