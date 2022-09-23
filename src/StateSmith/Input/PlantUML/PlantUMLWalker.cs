@@ -23,6 +23,29 @@ namespace StateSmith.Input.PlantUML
             currentState = root;
         }
 
+        public override void EnterState_explicit([NotNull] PlantUMLParser.State_explicitContext context)
+        {
+            var id = context.identifier().GetText();
+
+            string label = id;
+
+            if (context.STRING() != null)
+            {
+                label = context.STRING().GetText();
+                label = label.Substring(1, label.Length - 2);   // remove quotes
+            }
+
+            var state = GetOrAddState(id);
+            currentState = state;
+            state.id = id;
+            state.label = label;
+        }
+
+        public override void ExitState_explicit([NotNull] PlantUMLParser.State_explicitContext context)
+        {
+            currentState = currentState.parent;
+        }
+
         private DiagramNode GetOrAddInitialState(PlantUMLParser.VertexContext vertexContext)
         {
             if (!stateInitalStateMap.TryGetValue(currentState, out var initialState))
@@ -33,10 +56,16 @@ namespace StateSmith.Input.PlantUML
                     id = vertexContext.start_end_state().Start.Line + ":" + vertexContext.start_end_state().Start.Column
                 };
                 stateInitalStateMap.Add(currentState, initialState);
-                currentState.children.Add(initialState);
+                AddState(initialState);
             }
 
             return initialState;
+        }
+
+        private void AddState(DiagramNode state)
+        {
+            currentState.children.Add(state);
+            state.parent = currentState;
         }
 
         private DiagramNode GetOrAddState(string id)
@@ -49,7 +78,7 @@ namespace StateSmith.Input.PlantUML
                     id = id
                 };
                 nodeMap.Add(id, state);
-                currentState.children.Add(state);
+                AddState(state);
             }
 
             return state;

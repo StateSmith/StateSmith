@@ -62,8 +62,10 @@ transition:
 
 
 state_child_states:
-    '{' ohs LINE_ENDER   
-    diagram_element*
+    '{' ohs LINE_ENDER
+        optional_any_space
+        diagram_element*
+        optional_any_space
     '}'
     ;
 

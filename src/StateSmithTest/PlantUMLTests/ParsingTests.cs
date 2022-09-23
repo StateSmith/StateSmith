@@ -98,8 +98,63 @@ State1 -> State2 : EVENT2 [guard2] / tx_action();
         translator.Edges[1].label.Should().Be("EVENT2 [guard2] / tx_action();");
     }
 
+    private void AssertNodeHasNoKids(DiagramNode node)
+    {
+        node.children.Should().BeEquivalentTo(new List<DiagramNode> {  });
+    }
 
+    [Fact]
+    public void CompositeStatesWithLongName()
+    {
+        // mod from https://plantuml.com/state-diagram#3b0649c72650c313
+        ParseAssertNoError(@"
+@startuml
+state A {
+  state X {
+  }
+  state Y {
+    state ""Y_1"" as State1 {
+        State1 : exit / some_exit_action(); x++; y--;
+    }
+  }
+}
+ 
+state B {
+  state Z {
+  }
+}
 
+X --> Z
+Z --> Y
+@enduml
+");
+        DiagramNode root = translator.Root;
+        DiagramNode stateA = root.children[0];
+        DiagramNode stateB = root.children[1];
+
+        DiagramNode stateX = stateA.children[0];
+        DiagramNode stateY = stateA.children[1];
+
+        DiagramNode state1 = stateY.children[0];
+
+        DiagramNode stateZ = stateB.children[0];
+
+        root.children.Should().BeEquivalentTo(new List<DiagramNode> { stateA, stateB });
+        stateA.children.Should().BeEquivalentTo(new List<DiagramNode>{ stateX, stateY });
+        stateB.children.Should().BeEquivalentTo(new List<DiagramNode>{ stateZ });
+        stateY.children.Should().BeEquivalentTo(new List<DiagramNode>{ state1 });
+        AssertNodeHasNoKids(stateX);
+        AssertNodeHasNoKids(stateZ);
+
+        state1.label.Should().Be("Y_1\nexit / some_exit_action(); x++; y--;");
+
+        translator.Edges.Count.Should().Be(2);
+        translator.Edges[0].source.Should().Be(stateX);
+        translator.Edges[0].target.Should().Be(stateZ);
+        //
+        translator.Edges[1].source.Should().Be(stateZ);
+        translator.Edges[1].target.Should().Be(stateY);
+    }
 
     private void ParseAssertNoError(string input)
     {

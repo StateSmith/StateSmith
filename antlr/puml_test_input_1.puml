@@ -1,65 +1,16 @@
 @startuml
-
-skinparam xxxxParam1 value1
-skinparam xxxxParam2 value2
-
-skinparam state {
- FontName<<class_ortho>>    Impact
- BorderColor<<class_ortho>> #AA0000
- BorderColor Black
+state A {
+  state X {
+  }
+  state Y { d
+  }
+}
+ 
+state B {
+  state Z {
+  }
 }
 
-state start1  <<start>>
-state choice1 <<choice>>
-state fork1   <<fork>>
-state join2   <<join>>
-state end3    <<end>>
-
-note left of Active : this is a short\nnote "quoted" <<>>
-
-note right of Inactive
-A note can also
-be defined on
-several lines
-end note
-
-note left of Inactive
-end note
-
-note "This is a floating note" as N1
-
-
-[*] -up-> First
-state -> state
-First -right-> Second
-Second --> Third
-Third -left-> Last
-
-State S1
-State S2
-S1 -[#DD00AA]-> S2
-S1 -left[#yellow]-> S3
-S1 -up[#red,dashed]-> S4
-S1 -right[dotted,#blue]-> S5
-
-X1 -[dashed]-> X2
-Z1 -[dotted]-> Z2
-Y1 -[#blue,bold]-> Y2
-
-
-state Somp {
-  state entry1 <<expansionInput>>
-  state entry2 <<expansionInput>>
-  state sin
-  entry1 --> sin
-  entry2 -> sin
-  sin -> sin2
-  sin2 --> exitA <<expansionOutput>>
-}
-
-[*] --> entry1
-exitA --> Foo
-Foo1 -> entry2
-
-
+X --> Z
+Z --> Y
 @enduml
