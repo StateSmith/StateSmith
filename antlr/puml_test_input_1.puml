@@ -1,5 +1,19 @@
 @startuml
 
+note left of Active : this is a short\nnote "quoted" <<>>
+
+note right of Inactive
+A note can also
+be defined on
+several lines
+end note
+
+note left of Inactive
+end note
+
+note "This is a floating note" as N1
+
+
 [*] -up-> First
 First -right-> Second
 Second --> Third

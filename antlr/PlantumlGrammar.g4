@@ -9,7 +9,6 @@ If you write `(.*?)` in a parser rule, it will match any lexed tokens lazily.
 
 TODO
     - skinparam
-    - notes
 
 @startuml
 
@@ -83,7 +82,7 @@ state_child_states:
 
 stereotype:
     '<<'
-    (IDENTIFIER | 'state' | 'State' | 'as')
+    (IDENTIFIER | 'state' | 'State' | 'note'| 'as')
     '>>'
     ;
 
@@ -141,11 +140,54 @@ diagram_element:
         transition
         |
         state_explicit
+        |
+        note
     )
     ohs
     LINE_ENDER
     ohs
     ;
+
+note_short:
+    'note'
+    HWS+
+    ~':'+
+    ':'
+    ohs
+    rest_of_line
+    ;
+
+
+note_multiline_contents:
+    .+?
+    ;
+
+note_multiline:
+    'note'
+    ~(':' | LINE_ENDER)+ LINE_ENDER
+    (
+        note_multiline_contents
+        LINE_ENDER
+    )?
+    ohs
+    'end note'
+    ;
+
+note_floating:
+    'note'
+    HWS+
+    STRING
+    rest_of_line
+    ;
+
+note:
+    note_short
+    |
+    note_multiline
+    |
+    note_floating
+    ;
+
 
 // @startuml some_name_here
 startuml:

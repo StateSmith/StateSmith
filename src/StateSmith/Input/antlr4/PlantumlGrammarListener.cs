@@ -201,6 +201,56 @@ public interface IPlantumlGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitDiagram_element([NotNull] PlantumlGrammarParser.Diagram_elementContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.note_short"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNote_short([NotNull] PlantumlGrammarParser.Note_shortContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.note_short"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNote_short([NotNull] PlantumlGrammarParser.Note_shortContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.note_multiline_contents"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNote_multiline_contents([NotNull] PlantumlGrammarParser.Note_multiline_contentsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.note_multiline_contents"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNote_multiline_contents([NotNull] PlantumlGrammarParser.Note_multiline_contentsContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.note_multiline"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNote_multiline([NotNull] PlantumlGrammarParser.Note_multilineContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.note_multiline"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNote_multiline([NotNull] PlantumlGrammarParser.Note_multilineContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.note_floating"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNote_floating([NotNull] PlantumlGrammarParser.Note_floatingContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.note_floating"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNote_floating([NotNull] PlantumlGrammarParser.Note_floatingContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.note"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNote([NotNull] PlantumlGrammarParser.NoteContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantumlGrammarParser.note"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNote([NotNull] PlantumlGrammarParser.NoteContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantumlGrammarParser.startuml"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

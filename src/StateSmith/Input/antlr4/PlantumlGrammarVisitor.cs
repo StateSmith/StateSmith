@@ -134,6 +134,36 @@ public interface IPlantumlGrammarVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitDiagram_element([NotNull] PlantumlGrammarParser.Diagram_elementContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note_short"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNote_short([NotNull] PlantumlGrammarParser.Note_shortContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note_multiline_contents"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNote_multiline_contents([NotNull] PlantumlGrammarParser.Note_multiline_contentsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note_multiline"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNote_multiline([NotNull] PlantumlGrammarParser.Note_multilineContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note_floating"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNote_floating([NotNull] PlantumlGrammarParser.Note_floatingContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.note"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNote([NotNull] PlantumlGrammarParser.NoteContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantumlGrammarParser.startuml"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
