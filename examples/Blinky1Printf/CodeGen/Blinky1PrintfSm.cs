@@ -17,7 +17,17 @@ namespace Blinky1
         public static void GenFile()
         {
             var directory = AppDomain.CurrentDomain.BaseDirectory + "../../../../src/";
+
+            // You can use this example with the yEd file or an equivalent PlantUML file.
+            // See https://github.com/StateSmith/StateSmith/issues/21
+            bool usePlantUmlInput = true;
+            
             var diagramFile = directory + "blinky1_printf_sm.graphml";
+
+            if (usePlantUmlInput)
+            {
+                diagramFile = directory + "blinky1_printf_sm.plantuml";
+            }
 
             MyGlueFile myGlueFile = new();
             RunnerSettings settings = new(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);

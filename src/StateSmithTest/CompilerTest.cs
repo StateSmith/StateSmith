@@ -20,7 +20,7 @@ namespace StateSmithTest
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny1.graphml";
 
             Compiler compiler = new Compiler();
-            compiler.CompileFile(filepath);
+            compiler.CompileYedFile(filepath);
 
             compiler.rootVertices.Count.Should().Be(2);
 
@@ -140,7 +140,7 @@ namespace StateSmithTest
             expanderFileReflection.AddAllExpansions(userExpansions);
             //FIXME add events
             //FIXME check for valid events in diagram
-            compiler.CompileFile(filepath);
+            compiler.CompileYedFile(filepath);
             compiler.ExpandAllBehaviors(expander);
 
             compiler.rootVertices.Count.Should().Be(2);

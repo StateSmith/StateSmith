@@ -1,4 +1,4 @@
-@startuml blink1_printf_sm
+@startuml blinky1_printf_sm
 skinparam state {
  BorderColor<<on_style>> #AA0000
  BackgroundColor<<on_style>> #ffcccc
@@ -11,18 +11,16 @@ skinparam state {
 
 LED_OFF : enter / turn_led_off();
 LED_OFF : enter / reset_timer();
-LED_OFF --> LED_ON : [ elapsed_ms > 1000 ]
+LED_OFF --> LED_ON : [ after_ms(500) ]
 
 state LED_ON<<on_style>>
 LED_ON : enter / {\n  turn_led_on();\n  reset_timer();\n}
-LED_ON --> LED_OFF : [ after_ms(500) ]
+LED_ON --> LED_OFF : [ elapsed_ms > 1000 ]
 
 note "See https://github.com/StateSmith/StateSmith/issues/21" as N1
 
-note left of LED_ON : this is a short\nnote
-
 note right of LED_ON
-A long note on the right
+A note on the right
 endnote
 
 @enduml

@@ -16,12 +16,6 @@ public class ParsingTests
 {
     private PlantUMLToNodesEdges translator = new();
 
-    public ParsingTests()
-    {
-
-    }
-
-
     [Fact]
     public void DiagramName()
     {
@@ -62,7 +56,7 @@ State1 --> [*]
 @enduml
 ");
 
-        action.Should().Throw<ArgumentException>()
+        action.Should().Throw<InvalidOperationException>()
             .WithMessage("StateSmith doesn't support end states. Location Details { line: 3, column: 0, text: `State1 --> [*]`. }");
     }
 
@@ -158,13 +152,113 @@ Z --> Y
 
     private void ParseAssertNoError(string input)
     {
-        translator.ParseDiagram(input);
+        translator.ParseDiagramText(input);
         translator.HasError().Should().BeFalse();
     }
 
     private void ParseAssertHasAtLeastOneError(string input)
     {
-        translator.ParseDiagram(input);
+        translator.ParseDiagramText(input);
         translator.HasError().Should().BeTrue();
+    }
+
+
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/3
+    /// </summary>
+    [Fact]
+    public void EntryExitStates()
+    {
+        // input modified from https://plantuml.com/state-diagram#3b0649c72650c313
+        ParseAssertNoError(@"
+@startuml
+state Somp {
+  state entry1 <<entryPoint>>
+  state entry2 <<entryPoint>>
+  state sin
+  entry1 --> sin
+  entry2 -> sin
+  sin -> sin2
+  sin2 --> exitA <<exitPoint>>
+}
+
+[*] --> entry1 : / initial_tx_action();
+exitA --> Foo
+Foo1 -> entry2 : EV1 [guard()] / action_e2();
+@enduml
+
+");
+
+        DiagramNode root = translator.Root;
+
+        DiagramNode initial = root.children[1];
+        DiagramNode Foo = GetVertexById("Foo");
+        DiagramNode Foo1 = GetVertexById("Foo1");
+
+        DiagramNode Somp = GetVertexById("Somp");
+        DiagramNode entry1 = GetVertexById("entry1");
+        DiagramNode entry2 = GetVertexById("entry2");
+        DiagramNode exitA = GetVertexById("exitA");
+        DiagramNode sin = GetVertexById("sin");
+        DiagramNode sin2 = GetVertexById("sin2");
+
+        entry1.label.Should().Be("entry : entry1");
+        entry2.label.Should().Be("entry : entry2");
+        exitA.label.Should().Be("exit : exitA");
+
+        int i = 0;
+        AssertEdge(translator.Edges[i++], source: entry1, target: sin, label: "");
+        AssertEdge(translator.Edges[i++], source: entry2, target: sin, label: "");
+        AssertEdge(translator.Edges[i++], source: sin, target: sin2, label: "");
+        AssertEdge(translator.Edges[i++], source: sin2, target: exitA, label: "");
+        // following edges need re-routing and label adjustments
+        AssertEdge(translator.Edges[i++], source: initial, target: /* was entry1 */ Somp, label: "/ initial_tx_action();via entry entry1");
+        AssertEdge(translator.Edges[i++], source: /* was exitA */ Somp, target: Foo, label: "via exit exitA");
+        AssertEdge(translator.Edges[i++], source: Foo1, target: /* was entry2 */ Somp, label: "EV1 [guard()] / action_e2();via entry entry2");
+
+        // ensure entry and exit validation works
+
+        Compiler compiler = new();
+        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
+        compiler.SetupRoots();
+        compiler.SupportParentAlias();
+        compiler.Validate();
+
+        compiler.SimplifyInitialStates();
+        compiler.SupportEntryExitPoints();
+        compiler.Validate();
+    }
+
+    [Fact]
+    public void UnescapeNewlines()
+    {
+        // input modified from https://plantuml.com/state-diagram#3b0649c72650c313
+        ParseAssertNoError(@"
+@startuml
+s1 :  / { initial_tx_action(); \n x++; }
+[*]-->s1:[\n guard1\n && guard2 ]
+@enduml
+
+");
+
+        translator.Edges[0].label.Should().Be("[\n guard1\n && guard2 ]");
+        translator.Root.children[0].label.Should().Be("s1\n/ { initial_tx_action(); \n x++; }");
+    }
+
+    private DiagramNode GetVertexById(string id)
+    {
+        return translator.GetDiagramNode(id);
+    }
+
+    private static void AssertEdge(DiagramEdge diagramEdge, DiagramNode source, DiagramNode target)
+    {
+        diagramEdge.source.Should().Be(source);
+        diagramEdge.target.Should().Be(target);
+    }
+
+    private static void AssertEdge(DiagramEdge diagramEdge, DiagramNode source, DiagramNode target, string label)
+    {
+        AssertEdge(diagramEdge, source, target);
+        diagramEdge.label.Should().Be(label);
     }
 }

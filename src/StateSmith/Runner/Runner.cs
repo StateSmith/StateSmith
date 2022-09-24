@@ -10,6 +10,7 @@ using System.IO;
 using StateSmith.Input.Expansions;
 using StateSmith.Input;
 using StateSmith.compiler.Visitors;
+using StateSmith.Input.PlantUML;
 
 #nullable enable
 
@@ -24,6 +25,9 @@ namespace StateSmith.Runner
         Statemachine sm = new("non_null_dummy");
         Compiler compiler = new();
         ExceptionPrinter exceptionPrinter;
+
+        protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
+        protected HashSet<string> YedFileExtensions = new() { ".graphml" };
 
 
         protected void OutputStageMessage(string message)
@@ -110,8 +114,7 @@ namespace StateSmith.Runner
         private void RunCompiler()
         {
             OutputCompilingDiagramMessage();
-
-            compiler.CompileFile(settings.diagramFile);
+            CompileFile();
             compiler.SetupRoots();
             compiler.SupportParentAlias();
             compiler.Validate();
@@ -122,6 +125,45 @@ namespace StateSmith.Runner
             compiler.DefaultToDoEventIfNoTrigger();
             compiler.FinalizeTrees();
             compiler.Validate();
+        }
+
+        private void CompileFile()
+        {
+            string diagramFile = settings.diagramFile;
+            var fileExtension = Path.GetExtension(diagramFile);
+
+            if (InputFileIsYedFormat(fileExtension))
+            {
+                compiler.CompileYedFile(settings.diagramFile);
+            }
+            else if (InputFileIsPlantUML(fileExtension))
+            {
+                PlantUMLToNodesEdges translator = new();
+                translator.ParseDiagramFile(settings.diagramFile);
+
+                if (translator.HasError())
+                {
+                    string reasons = Compiler.ParserErrorsToReasonStrings(translator.GetErrors(), separator: "\n           ");
+                    throw new FormatException("PlantUML input failed parsing. Details:\n" + reasons);
+                }
+
+                compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
+            }
+            else
+            {
+                throw new ArgumentException($"Unsupported file extension `{fileExtension}`. \n  - yEd supports: {string.Join(", ", YedFileExtensions)}\n  - PlantUML supports: {string.Join(", ", PlantUmlFileExtensions)}");
+            }
+        }
+
+
+        private bool InputFileIsPlantUML(string fileExtension)
+        {
+            return PlantUmlFileExtensions.Contains(fileExtension);
+        }
+
+        private bool InputFileIsYedFormat(string fileExtension)
+        {
+            return YedFileExtensions.Contains(fileExtension);
         }
     }
 }

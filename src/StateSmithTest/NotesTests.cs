@@ -15,7 +15,7 @@ namespace StateSmithTest
         {
             Compiler compiler = new Compiler();
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny2-with-noted-out-states.graphml";
-            compiler.CompileFile(filepath); //should not throw
+            compiler.CompileYedFile(filepath); //should not throw
         }
 
         [Fact]
@@ -24,7 +24,7 @@ namespace StateSmithTest
             Compiler compiler = new Compiler();
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "bad-edge-to-notes.graphml";
 
-            Action action = () => compiler.CompileFile(filepath);
+            Action action = () => compiler.CompileYedFile(filepath);
 
             action.Should()
                 .Throw<DiagramEdgeException>()
@@ -39,7 +39,7 @@ namespace StateSmithTest
             Compiler compiler = new Compiler();
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/bad-edge-from-notes.graphml";
 
-            Action action = () => compiler.CompileFile(filepath);
+            Action action = () => compiler.CompileYedFile(filepath);
 
             action.Should()
                 .Throw<DiagramEdgeException>()

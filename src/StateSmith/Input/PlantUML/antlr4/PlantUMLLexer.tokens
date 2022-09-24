@@ -41,6 +41,6 @@ STRING=26
 'scale'=15
 'skinparam'=16
 'note'=17
-'end note'=18
+'endnote'=18
 '@startuml'=19
 '@enduml'=20

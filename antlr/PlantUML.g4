@@ -29,7 +29,9 @@ vertex:
 edge:
     '->'
     |
-    //ex: `-->`, `Third -left-> Last`, `S1 -right[dotted,#blue]-> S5`
+    //ex: `-->`
+    //ex: `Third -left-> Last`
+    //ex: `S1 -right[dotted,#blue]-> S5`
     '-' IDENTIFIER? 
     (
         '['
@@ -141,10 +143,11 @@ diagram_element:
     ohs
     ;
 
+// note left of Active : this is a short\nnote
 note_short:
     'note'
     HWS+
-    ~':'+
+    (~':')+
     ':'
     ohs
     rest_of_line
@@ -157,15 +160,17 @@ note_multiline_contents:
 
 note_multiline:
     'note'
-    ~(':' | LINE_ENDER)+ LINE_ENDER
+    HWS+
+    (~(':' | LINE_ENDER))+ LINE_ENDER
     (
         note_multiline_contents
         LINE_ENDER
     )?
     ohs
-    'end note'
+    'endnote'
     ;
 
+// note left of Active : this is a short\nnote
 note_floating:
     'note'
     HWS+
