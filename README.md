@@ -6,6 +6,12 @@ StateSmith will one day generate code for multiple different languages, but for 
 ![picture 5](images/workflow-1.png)  
 
 
+# PlantUML input coming!
+A fair number of people would like to avoid using a GUI for designing their state machines so I'm adding support for PlantUML input
+https://github.com/StateSmith/StateSmith/issues/21 .
+
+StateSmith will continue to support GUI diagram files which are super helpful for larger designs.
+
 ## Demo
 Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showing a Laser Tag menu implemented with StateSmith and running in an Arduino simulation.
 
