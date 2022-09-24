@@ -87,7 +87,13 @@ namespace StateSmith.Input.PlantUML
 
         public override void EnterDiagram([NotNull] PlantUMLParser.DiagramContext context)
         {
-            root.id = context.startuml().identifier()?.GetText() ?? "ROOT";
+            root.id = context.startuml().identifier()?.GetText() ?? "";
+
+            if (root.id == "")
+            {
+                ThrowValidationFailure("PlantUML diagrams need a name and should start like `@startuml MySmName`", context.startuml());
+            }
+
             root.label = "$STATEMACHINE : " + root.id;
         }
 
@@ -129,7 +135,7 @@ namespace StateSmith.Input.PlantUML
             return escapedString.Trim().Replace(@"\n", "\n");
         }
 
-        private static void ThrowValidationFailure(string message, PlantUMLParser.TransitionContext context)
+        private static void ThrowValidationFailure(string message, Antlr4.Runtime.ParserRuleContext context)
         {
             int line = context.Start.Line;
             int column = context.Start.Column;

@@ -38,25 +38,28 @@ public class ParsingTests
     }
 
     [Fact]
-    public void DiagramNameDefaultToRoot()
+    public void NoDiagramNameThrows()
     {
-        ParseAssertNoError(@"
+        Action action = () => ParseAssertNoError(@"
 @startuml
+State1 --> State2
 @enduml
 ");
-        translator.Root.id.Should().Be("ROOT");
+
+        action.Should().Throw<Exception>()
+            .WithMessage("PlantUML diagrams need a name and should start like `@startuml MySmName`. Location Details { line: 2, column: 0, text: `@startuml`. }");
     }
 
     [Fact]
     public void ThrowOnEndState()
     {
         Action action = () => ParseAssertNoError(@"
-@startuml
+@startuml SomeName
 State1 --> [*]
 @enduml
 ");
 
-        action.Should().Throw<InvalidOperationException>()
+        action.Should().Throw<Exception>()
             .WithMessage("StateSmith doesn't support end states. Location Details { line: 3, column: 0, text: `State1 --> [*]`. }");
     }
 
@@ -64,7 +67,7 @@ State1 --> [*]
     public void TwoStates()
     {
         ParseAssertNoError(@"
-@startuml
+@startuml SomeSmName
 
 [*] --> State1
 State1 : enter / some_action();
@@ -102,7 +105,7 @@ State1 -> State2 : EVENT2 [guard2] / tx_action();
     {
         // mod from https://plantuml.com/state-diagram#3b0649c72650c313
         ParseAssertNoError(@"
-@startuml
+@startuml DiagramName
 state A {
   state X {
   }
@@ -171,7 +174,7 @@ Z --> Y
     {
         // input modified from https://plantuml.com/state-diagram#3b0649c72650c313
         ParseAssertNoError(@"
-@startuml
+@startuml SompySm
 state Somp {
   state entry1 <<entryPoint>>
   state entry2 <<entryPoint>>
@@ -234,7 +237,7 @@ Foo1 -> entry2 : EV1 [guard()] / action_e2();
     {
         // input modified from https://plantuml.com/state-diagram#3b0649c72650c313
         ParseAssertNoError(@"
-@startuml
+@startuml SomeSmName
 s1 :  / { initial_tx_action(); \n x++; }
 [*]-->s1:[\n guard1\n && guard2 ]
 @enduml
