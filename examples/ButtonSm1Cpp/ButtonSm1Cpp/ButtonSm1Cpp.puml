@@ -1,4 +1,4 @@
-@startuml ButtonSm1
+@startuml ButtonSm1Cpp
 
 [*] -> NOT_PRESSED
 state NOT_PRESSED {
@@ -21,7 +21,7 @@ and makes it hard to read. Does anyone know how to left align it?
 PRESSED --> NOT_PRESSED : [is_released && is_debounced] / {\n  if (debounce_ms() <= 200) {\n    output_event(tap);\n  }\n  output_event(release);\n}
 '/
 
-PRESSED --> NOT_PRESSED : [is_released && is_debounced] / output_release_events()
+PRESSED --> NOT_PRESSED : [is_released && is_debounced] / release_events();
 
 NOT_PRESSED --> PRESSED : [ is_pressed\n  && is_debounced ]
 

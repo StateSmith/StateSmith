@@ -20,6 +20,14 @@ namespace ExampleButtonSm1Cpp
             var directory = DirectoryHelper.CodeDirectory;
             var diagramFile = directory + "ButtonSm1Cpp.graphml";
 
+            // You can use this example with the yEd file or an equivalent PlantUML file.
+            // See https://github.com/StateSmith/StateSmith/issues/21
+            bool usePlantUmlInput = true;
+            if (usePlantUmlInput)
+            {
+                diagramFile = directory + "ButtonSm1Cpp.puml";
+            }
+
             RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
             settings.mangler = new MyMangler();
             SmRunner runner = new SmRunner(settings);
@@ -73,6 +81,13 @@ namespace ExampleButtonSm1Cpp
                 public string after_debounce_ms(string ms) => $"( {debounce_ms()} >= {ms} )";
 
                 public string is_debounced => $"({after_debounce_ms("20")})";
+
+                // expansion for plantuml. I can't get it to render multiline action code nicely (it center aligns it).
+                public string release_events() => StringUtils.DeIndentTrim($@"
+                    if ({debounce_ms()} <= 200) {{
+                      {output_event("tap")};
+                    }}
+                    {output_event("release")}");
 
                 #pragma warning restore IDE1006 // Naming Styles
             }

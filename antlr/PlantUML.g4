@@ -123,6 +123,14 @@ ignore:
     'skinparam' HWS identifier ohs '{' .*? '}'
     |
     'skinparam' HWS rest_of_line
+    |
+    // 'Line comments use a single apostrophe
+    SINGLE_QUOTE rest_of_line
+    |
+    // block comment    /' ... '/
+    '/' SINGLE_QUOTE
+    .*?
+    SINGLE_QUOTE '/'
     ;
 
 diagram_element:
@@ -227,8 +235,8 @@ IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
 DIGIT :   [0-9]  ;
 
 SYMBOLS: 
-    [-~`!@#$%^&*()_+=\\|{};:'",<.>/?] | '[' | ']';
-
+    [-~`!@#$%^&*()_+=\\|{};:",<.>/?] | '[' | ']';
+SINGLE_QUOTE: ['];
 
 fragment ESCAPED_CHAR: '\\' . ;
 fragment NON_QUOTE_CHAR: ~["] ;
