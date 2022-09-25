@@ -1,8 +1,8 @@
 # PlantUML input
 
-All the features I've ever needed are supported (I used to generate PlantUML diagrams), but we can add more if needed.
+Initial support has been added and is working in the examples below. Please open a ticket or comment on [issue 21](https://github.com/StateSmith/StateSmith/issues/21) if you run into any problems or need additional features.
 
-https://plantuml.com/state-diagram
+The workflow is the exact same. Just feed StateSmith a PlantUML input file (extension must be one of ".pu", ".puml", ".plantuml") instead of the yEd .graphml file.
 
 ## Examples
 - [blinky1_printf_sm.plantuml](../examples/Blinky1Printf/src/blinky1_printf_sm.plantuml)
@@ -40,3 +40,6 @@ StateSmith Runner - finished with failure.
 
 ## Grammar
 ANTLR4 grammar: [../antlr/PlantUML.g4](../antlr/PlantUML.g4)
+
+## New to PlantUML?
+https://plantuml.com/state-diagram

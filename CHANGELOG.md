@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WIP
 ### Added
-- Support PlantUML input as an alternative to yEd. Input file extension must be one of ".pu", ".puml", ".plantuml"
+- Support [PlantUML input](./docs/plantuml-input.md) as an alternative to yEd input.
+  Input file extension must be one of ".pu", ".puml", ".plantuml"
   https://github.com/StateSmith/StateSmith/issues/21
 
 ## [0.5.5-alpha]
