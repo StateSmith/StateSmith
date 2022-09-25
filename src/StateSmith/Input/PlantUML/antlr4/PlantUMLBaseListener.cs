@@ -36,6 +36,18 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class PlantUMLBaseListener : IPlantUMLListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantUMLParser.line_ending_ows"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLine_ending_ows([NotNull] PlantUMLParser.Line_ending_owsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantUMLParser.line_ending_ows"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLine_ending_ows([NotNull] PlantUMLParser.Line_ending_owsContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.optional_any_space"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -59,30 +71,6 @@ public partial class PlantUMLBaseListener : IPlantUMLListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitOhs([NotNull] PlantUMLParser.OhsContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="PlantUMLParser.some_ws"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterSome_ws([NotNull] PlantUMLParser.Some_wsContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="PlantUMLParser.some_ws"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitSome_ws([NotNull] PlantUMLParser.Some_wsContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="PlantUMLParser.line_end_with_hs"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLine_end_with_hs([NotNull] PlantUMLParser.Line_end_with_hsContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="PlantUMLParser.line_end_with_hs"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLine_end_with_hs([NotNull] PlantUMLParser.Line_end_with_hsContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.start_end_state"/>.
 	/// <para>The default implementation does nothing.</para>

@@ -31,6 +31,16 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IPlantUMLListener : IParseTreeListener {
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantUMLParser.line_ending_ows"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterLine_ending_ows([NotNull] PlantUMLParser.Line_ending_owsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantUMLParser.line_ending_ows"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitLine_ending_ows([NotNull] PlantUMLParser.Line_ending_owsContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.optional_any_space"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -50,26 +60,6 @@ public interface IPlantUMLListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitOhs([NotNull] PlantUMLParser.OhsContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="PlantUMLParser.some_ws"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterSome_ws([NotNull] PlantUMLParser.Some_wsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="PlantUMLParser.some_ws"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitSome_ws([NotNull] PlantUMLParser.Some_wsContext context);
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="PlantUMLParser.line_end_with_hs"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterLine_end_with_hs([NotNull] PlantUMLParser.Line_end_with_hsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="PlantUMLParser.line_end_with_hs"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitLine_end_with_hs([NotNull] PlantUMLParser.Line_end_with_hsContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.start_end_state"/>.
 	/// </summary>

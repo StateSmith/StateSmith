@@ -32,6 +32,12 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IPlantUMLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.line_ending_ows"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLine_ending_ows([NotNull] PlantUMLParser.Line_ending_owsContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantUMLParser.optional_any_space"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -43,18 +49,6 @@ public interface IPlantUMLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitOhs([NotNull] PlantUMLParser.OhsContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantUMLParser.some_ws"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSome_ws([NotNull] PlantUMLParser.Some_wsContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantUMLParser.line_end_with_hs"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLine_end_with_hs([NotNull] PlantUMLParser.Line_end_with_hsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantUMLParser.start_end_state"/>.
 	/// </summary>

@@ -6,14 +6,28 @@ Wild card and negations are context sensitive.
 If you write `(.*?)` in a LEXER rule, it will match any characters lazily.
 If you write `(.*?)` in a parser rule, it will match any lexed tokens lazily.
 
-Investigate semantic predicates: https://github.com/antlr/antlr4/blob/master/doc/predicates.md
+Don't use (.*?) parse rules unless absolutely necessary. They can hide parse errors.
+Saw this with multiline comment (when it was a parse rule instead of a lexer rule).
+    /' blah1 '/
+    invalid parse line
+    /' blah2 '/
+blah1 stretched over the invalid parse line to join with blah2.
+We don't want want. We want to detect invalid diagram elements.
 
+Investigate semantic predicates: https://github.com/antlr/antlr4/blob/master/doc/predicates.md
 */
 
-optional_any_space: (HWS | line_end_with_hs)*;
-ohs: HWS? ;
-some_ws: (HWS | LINE_ENDER)+ ;
-line_end_with_hs: LINE_ENDER ohs;
+// line ending with optional white space before and after
+line_ending_ows:
+    optional_any_space
+    LINE_ENDER
+    optional_any_space
+    ;
+
+optional_any_space: (HWS | LINE_ENDER)*;
+
+// optional  horizontal white space
+ohs: HWS* ;
 
 start_end_state: '[*]';
 state_id: identifier;
@@ -62,8 +76,7 @@ transition:
     ;
 
 state_child_states:
-    '{' ohs LINE_ENDER
-        optional_any_space
+    '{'
         diagram_element*
         optional_any_space
     '}'
@@ -124,15 +137,10 @@ ignore:
     |
     // 'Line comments use a single apostrophe
     SINGLE_QUOTE rest_of_line
-    |
-    // block comment    /' ... '/
-    '/' SINGLE_QUOTE
-    .*? // todo use less greedy. can hide diagram errors.
-    SINGLE_QUOTE '/'
     ;
 
 diagram_element:
-    optional_any_space
+    line_ending_ows+
     (
         ignore
         |
@@ -144,9 +152,6 @@ diagram_element:
         |
         note
     )
-    ohs
-    LINE_ENDER
-    ohs
     ;
 
 // note left of Active : this is a short\nnote
@@ -204,10 +209,11 @@ startuml:
 
 diagram:
     optional_any_space
-    startuml ohs LINE_ENDER
+    startuml ohs
     
     diagram_element*
 
+    line_ending_ows+
     END_UML optional_any_space
     EOF
     ;
@@ -218,7 +224,7 @@ START_UML: '@startuml';
 END_UML: '@enduml';
 
 HWS : [ \t]+ ;
-LINE_ENDER: [\r\n]+;
+LINE_ENDER: '\r\n' | '\r' | '\n';
 identifier
     : IDENTIFIER
     | 'state'
@@ -231,6 +237,15 @@ identifier
     ;
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
 DIGIT :   [0-9]  ;
+
+fragment BLOCK_COMMENT_START : '/' SINGLE_QUOTE;
+fragment BLOCK_COMMENT_END : SINGLE_QUOTE '/';
+BLOCK_COMMENT :
+    BLOCK_COMMENT_START
+    .*?
+    BLOCK_COMMENT_END
+    -> skip
+    ;
 
 SYMBOLS: 
     [-~`!@#$%^&*()_+=\\|{};:",<.>/?] | '[' | ']';
