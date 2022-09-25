@@ -5,6 +5,8 @@ state NOT_PRESSED {
   NOT_PRESSED : enter / {\n  reset_debounce_timer();\n}
 }
 
+note "This is a PlantUML diagram" as N1
+
 state PRESSED {
   PRESSED : enter / {\n  reset_debounce_timer();\n  output_event(press);\n}
 
@@ -22,6 +24,7 @@ PRESSED --> NOT_PRESSED : [is_released && is_debounced] / {\n  if (debounce_ms()
 '/
 
 PRESSED --> NOT_PRESSED : [is_released && is_debounced] / release_events();
+note on link : Multiline action code doesn't render well\nin PlantUML so we use the `release_events()`\nexpansion.
 
 NOT_PRESSED --> PRESSED : [ is_pressed\n  && is_debounced ]
 

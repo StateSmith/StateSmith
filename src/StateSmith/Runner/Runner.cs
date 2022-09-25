@@ -143,8 +143,8 @@ namespace StateSmith.Runner
 
                 if (translator.HasError())
                 {
-                    string reasons = Compiler.ParserErrorsToReasonStrings(translator.GetErrors(), separator: "\n           ");
-                    throw new FormatException("PlantUML input failed parsing. Details:\n" + reasons);
+                    string reasons = Compiler.ParserErrorsToReasonStrings(translator.GetErrors(), separator: "\n  - ");
+                    throw new FormatException("PlantUML input failed parsing. Reason(s):\n  - " + reasons);
                 }
 
                 compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);

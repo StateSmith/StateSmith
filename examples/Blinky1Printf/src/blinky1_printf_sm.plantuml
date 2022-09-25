@@ -17,10 +17,9 @@ state LED_ON<<on_style>>
 LED_ON : enter / {\n  turn_led_on();\n  reset_timer();\n}
 LED_ON --> LED_OFF : [ elapsed_ms > 1000 ]
 
-note "See https://github.com/StateSmith/StateSmith/issues/21" as N1
+note "PlantUML diagram\nSee github issue 21" as N1
 
 note right of LED_ON
 A note on the right
 endnote
-
 @enduml

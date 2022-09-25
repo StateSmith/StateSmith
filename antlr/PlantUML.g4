@@ -61,8 +61,6 @@ transition:
     )?
     ;
 
-
-
 state_child_states:
     '{' ohs LINE_ENDER
         optional_any_space
@@ -120,7 +118,7 @@ ignore:
     |
     'scale' HWS rest_of_line
     |
-    'skinparam' HWS identifier ohs '{' .*? '}'
+    'skinparam' HWS identifier ohs '{' (~'}')* '}'
     |
     'skinparam' HWS rest_of_line
     |
@@ -129,7 +127,7 @@ ignore:
     |
     // block comment    /' ... '/
     '/' SINGLE_QUOTE
-    .*?
+    .*? // todo use less greedy. can hide diagram errors.
     SINGLE_QUOTE '/'
     ;
 
