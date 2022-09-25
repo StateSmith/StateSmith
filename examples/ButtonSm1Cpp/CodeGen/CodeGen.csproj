@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <!-- use project reference instead of package reference if you want to debug  -->
-    <!-- <ProjectReference Include="..\..\..\src\StateSmith\StateSmith.csproj" /> -->
-    <PackageReference Include="StateSmith" Version="0.5.5-alpha" />
+    <ProjectReference Include="..\..\..\src\StateSmith\StateSmith.csproj" />
+    <!-- <PackageReference Include="StateSmith" Version="0.5.5-alpha" /> -->
   </ItemGroup>
 
 </Project>

@@ -5,6 +5,10 @@ StateSmith will one day generate code for multiple different languages, but for 
 
 ![picture 5](images/workflow-1.png)  
 
+# What's new?
+See [main changelog](CHANGELOG.md) or [dev changelog](https://github.com/StateSmith/StateSmith/blob/dev/CHANGELOG.md).
+
+Pinned issues and feature branches show what's in the works.
 
 ## Demo
 Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showing a Laser Tag menu implemented with StateSmith and running in an Arduino simulation.

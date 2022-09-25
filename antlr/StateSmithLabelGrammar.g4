@@ -1,4 +1,4 @@
-grammar Grammar1;
+grammar StateSmithLabelGrammar;
 
 /*
     todolow allow tags

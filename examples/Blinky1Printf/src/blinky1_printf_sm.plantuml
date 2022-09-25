@@ -1,0 +1,25 @@
+@startuml blinky1_printf_sm
+skinparam state {
+ BorderColor<<on_style>> #AA0000
+ BackgroundColor<<on_style>> #ffcccc
+ FontColor<<on_style>> darkred
+
+ BorderColor Black
+}
+
+[*] -> LED_OFF
+
+LED_OFF : enter / turn_led_off();
+LED_OFF : enter / reset_timer();
+LED_OFF --> LED_ON : [ after_ms(500) ]
+
+state LED_ON<<on_style>>
+LED_ON : enter / {\n  turn_led_on();\n  reset_timer();\n}
+LED_ON --> LED_OFF : [ elapsed_ms > 1000 ]
+
+note "PlantUML diagram\nSee github issue 21" as N1
+
+note right of LED_ON
+A note on the right
+endnote
+@enduml
