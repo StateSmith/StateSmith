@@ -5,6 +5,8 @@ Initial support has been added and is working in the examples below. Please open
 The workflow is the exact same. Just feed StateSmith a PlantUML input file (extension must be one of ".pu", ".puml", ".plantuml") instead of the yEd .graphml file.
 
 ## Examples
+The examples below default to using yEd files. Simply edit the `.cs` code gen script in the example to use the PlantUML file instead. They have a bool `usePlantUmlInput` flag you can set to true.
+
 - [blinky1_printf_sm.plantuml](../examples/Blinky1Printf/src/blinky1_printf_sm.plantuml)
 - [ButtonSm1Cpp.puml](../examples/ButtonSm1Cpp/ButtonSm1Cpp/ButtonSm1Cpp.puml)
 
