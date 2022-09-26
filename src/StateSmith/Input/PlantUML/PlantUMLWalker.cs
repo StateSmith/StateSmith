@@ -54,7 +54,7 @@ namespace StateSmith.Input.PlantUML
                 initialState = new DiagramNode
                 {
                     label = Compiling.Compiler.InitialStateString,
-                    id = vertexContext.start_end_state().Start.Line + "_" + vertexContext.start_end_state().Start.Column
+                    id = $"line:{vertexContext.start_end_state().Start.Line}_column:{vertexContext.start_end_state().Start.Column}"
                 };
                 nodeInitalStateMap.Add(currentNode, initialState);
                 AddNode(initialState);

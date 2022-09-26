@@ -206,12 +206,13 @@ namespace StateSmith.Compiling
 
             if (nodeBehaviors.Count == 0)
             {
-                sourceVertex.AddBehavior(new Behavior(owningVertex: sourceVertex, transitionTarget: targetVertex));
+                sourceVertex.AddBehavior(new Behavior(owningVertex: sourceVertex, transitionTarget: targetVertex, diagramId: edge.id));
             }
 
             foreach (var nodeBehavior in nodeBehaviors)
             {
                 var behavior = ConvertBehavior(owningVertex: sourceVertex, targetVertex: targetVertex, nodeBehavior: nodeBehavior);
+                behavior.DiagramId = edge.id;
                 sourceVertex.AddBehavior(behavior);
             }
         }
@@ -458,6 +459,7 @@ Reason(s): {reasons}
         {
             var behavior = new Behavior(owningVertex: owningVertex, transitionTarget: targetVertex)
             {
+                DiagramId = owningVertex.DiagramId, // may be overwritten for edges
                 actionCode = nodeBehavior.actionCode,
                 guardCode = nodeBehavior.guardCode,
                 triggers = nodeBehavior.triggers,

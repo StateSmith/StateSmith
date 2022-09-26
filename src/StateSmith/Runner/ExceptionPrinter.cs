@@ -114,7 +114,9 @@ message += $@"
     Action: `{behavior.actionCode}`
     Via Entry: `{behavior.viaEntry}`
     Via Exit : `{behavior.viaExit}`
+    Diagram Id: `{behavior.DiagramId}`
 ";
+
                         return message;
                     }
             }
