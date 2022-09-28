@@ -134,11 +134,11 @@ public interface IPlantUMLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNote_short([NotNull] PlantUMLParser.Note_shortContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents_line"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNote_multiline_contents([NotNull] PlantUMLParser.Note_multiline_contentsContext context);
+	Result VisitNote_multiline_contents_line([NotNull] PlantUMLParser.Note_multiline_contents_lineContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_multiline"/>.
 	/// </summary>

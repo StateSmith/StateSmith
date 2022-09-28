@@ -63,12 +63,16 @@ namespace StateSmith.Input.antlr4
         private StateSmithLabelGrammarParser BuildParserForString(string inputString)
         {
             ICharStream stream = CharStreams.fromString(inputString);
-            ITokenSource lexer = new StateSmithLabelGrammarLexer(stream);
+            var lexer = new StateSmithLabelGrammarLexer(stream);
+            lexer.RemoveErrorListeners(); // prevent antlr4 error output to console
+            lexer.AddErrorListener(errorListener);
+
             ITokenStream tokens = new CommonTokenStream(lexer);
             StateSmithLabelGrammarParser parser = new StateSmithLabelGrammarParser(tokens)
             {
                 BuildParseTree = true
             };
+            parser.RemoveErrorListeners(); // prevent antlr4 error output to console
             parser.AddErrorListener(errorListener);
 
             return parser;

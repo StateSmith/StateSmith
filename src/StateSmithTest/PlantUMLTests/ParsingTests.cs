@@ -248,6 +248,186 @@ s1 :  / { initial_tx_action(); \n x++; }
         translator.Root.children[0].label.Should().Be("s1\n/ { initial_tx_action(); \n x++; }");
     }
 
+    [Fact]
+    public void LotsOfNotesAndComments()
+    {
+        ParseAssertNoError(@"
+@startuml ButtonSm1Cpp
+
+state BetweenNotes1
+
+note ""This is a PlantUML diagram"" as N1
+
+state BetweenNotes2
+
+note left of Active : this is a short\nnote
+
+state BetweenNotes3
+
+note right of Inactive
+  A note can also
+  state DontFindMe1
+state DontFindMe2
+end note
+
+'state DontFindMe2
+
+    state BetweenNotes4
+
+        note right of Inactive
+          A note can also
+          state DontFindMe1
+            state DontFindMe2
+        end note
+
+state BetweenNotes5
+
+  note right of Inactive
+    A note can also
+    state DontFindMe1
+state DontFindMe2
+  endnote
+
+state BetweenNotes6
+
+/'
+Shouldn't find this
+state DontFindMe1
+state DontFindMe2
+
+'/
+
+    /'
+    Shouldn't find this
+    state DontFindMe1
+    state DontFindMe2
+    '/
+
+
+state BetweenNotes7
+
+@enduml
+");
+
+        for (int i = 1; i <= 7; i++)
+        {
+            GetVertexById("BetweenNotes" + i);
+        }
+
+        Action a;
+        a = () => GetVertexById("DontFindMe1");
+        a.Should().Throw<Exception>();
+        a = () => GetVertexById("DontFindMe2");
+        a.Should().Throw<Exception>();
+    }
+
+    [Fact]
+    public void SkinparamBlock()
+    {
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+            }
+
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+
+            }
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+            }
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state
+            {
+            }
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state
+        
+            {
+            }
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+@startuml blinky1_printf_sm
+skinparam state {
+ BorderColor<<on_style>> #AA0000
+ BackgroundColor<<on_style>> #ffcccc
+ FontColor<<on_style>> darkred
+ 
+ BorderColor Black
+}
+
+@enduml
+");
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+
+                BorderColor<<on_style>> #AA0000
+                BackgroundColor<<on_style>> #ffcccc
+                FontColor<<on_style>> darkred
+ 
+                BorderColor Black
+
+            }
+            @enduml
+        ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+                BackgroundColor<<on_style>> #ffcccc
+            '}
+            }
+
+            @enduml
+        ");
+    }
+
+    [Fact]
+    public void SkinparamBlockBad()
+    {
+        ParseAssertHasAtLeastOneError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+                BackgroundColor<<on_style>> #ffcccc
+                [*] --> B
+            }
+            @enduml
+            ");
+    }
+
+    [Fact]
+    public void SkinparamBlockBad2()
+    {
+        ParseAssertHasAtLeastOneError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+                BackgroundColor<<on_style>> #ffcccc
+            }'
+            LED_ON : enter / { action(); }
+            @enduml
+            ");
+    }
+
+
     private DiagramNode GetVertexById(string id)
     {
         return translator.GetDiagramNode(id);

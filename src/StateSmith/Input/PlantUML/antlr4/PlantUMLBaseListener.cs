@@ -240,17 +240,17 @@ public partial class PlantUMLBaseListener : IPlantUMLListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNote_short([NotNull] PlantUMLParser.Note_shortContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents"/>.
+	/// Enter a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents_line"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNote_multiline_contents([NotNull] PlantUMLParser.Note_multiline_contentsContext context) { }
+	public virtual void EnterNote_multiline_contents_line([NotNull] PlantUMLParser.Note_multiline_contents_lineContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents"/>.
+	/// Exit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents_line"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNote_multiline_contents([NotNull] PlantUMLParser.Note_multiline_contentsContext context) { }
+	public virtual void ExitNote_multiline_contents_line([NotNull] PlantUMLParser.Note_multiline_contents_lineContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.note_multiline"/>.
 	/// <para>The default implementation does nothing.</para>
