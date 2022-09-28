@@ -20,7 +20,7 @@ namespace StateSmithTest
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny1.graphml";
 
             Compiler compiler = new Compiler();
-            compiler.CompileFile(filepath);
+            compiler.CompileYedFile(filepath);
 
             compiler.rootVertices.Count.Should().Be(2);
 
@@ -50,7 +50,7 @@ namespace StateSmithTest
                 var owner = Tiny1InitialState;
                 var behaviors = owner.Behaviors;
                 behaviors.Count.Should().Be(1);
-                behaviors[0].ShouldBeExactly(owningVertex: owner, transitionTarget: A, actionCode: "initial_action();");
+                behaviors[0].ShouldBeExactly(owningVertex: owner, transitionTarget: A, actionCode: "initial_action();", diagramId: "n0::e0");
             }
 
 
@@ -63,7 +63,7 @@ namespace StateSmithTest
                 var behaviors = owner.Behaviors;
                 behaviors.Count.Should().Be(2);
                 behaviors[0].ShouldBeExactly(owningVertex: owner, triggers: TriggerList("enter"), actionCode: "a_count += 1;");
-                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: B, triggers: TriggerList("EVENT1"));
+                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: B, triggers: TriggerList("EVENT1"), diagramId: "n0::e1");
             }
 
             ////////////
@@ -75,7 +75,7 @@ namespace StateSmithTest
                 var behaviors = owner.Behaviors;
                 behaviors.Count.Should().Be(2);
                 behaviors[0].ShouldBeExactly(owningVertex: owner, triggers: new List<string>() { "exit" }, actionCode: "b_exit();");
-                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: C2, triggers: TriggerList("EVENT2"), guardCode: "some_guard(200)");
+                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: C2, triggers: TriggerList("EVENT2"), guardCode: "some_guard(200)", diagramId: "n0::e3");
             }
 
 
@@ -88,7 +88,7 @@ namespace StateSmithTest
                 var behaviors = owner.Behaviors;
                 behaviors.Count.Should().Be(2);
                 behaviors[0].ShouldBeExactly(owningVertex: owner, triggers: new List<string>() { "EVENT2" }, actionCode: "set_mode(SAUCEY);");
-                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: A, triggers: TriggerList("EVENT1"), order: 1);
+                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: A, triggers: TriggerList("EVENT1"), order: 1, diagramId: "n0::e2");
             }
         }
 
@@ -140,7 +140,7 @@ namespace StateSmithTest
             expanderFileReflection.AddAllExpansions(userExpansions);
             //FIXME add events
             //FIXME check for valid events in diagram
-            compiler.CompileFile(filepath);
+            compiler.CompileYedFile(filepath);
             compiler.ExpandAllBehaviors(expander);
 
             compiler.rootVertices.Count.Should().Be(2);
@@ -166,7 +166,7 @@ namespace StateSmithTest
                 var owner = Tiny1InitialState;
                 var behaviors = owner.Behaviors;
                 behaviors.Count.Should().Be(1);
-                behaviors[0].ShouldBeExactly(owningVertex: owner, transitionTarget: A, actionCode: "initial_action();");
+                behaviors[0].ShouldBeExactly(owningVertex: owner, transitionTarget: A, actionCode: "initial_action();", diagramId: "n0::e0");
             }
 
 
@@ -179,7 +179,7 @@ namespace StateSmithTest
                 var behaviors = owner.Behaviors;
                 behaviors.Count.Should().Be(2);
                 behaviors[0].ShouldBeExactly(owningVertex: owner, triggers: TriggerList("enter"), actionCode: "sm->vars.a_count += 1;");
-                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: B, triggers: TriggerList("EVENT1"));
+                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: B, triggers: TriggerList("EVENT1"), diagramId: "n0::e1");
             }
 
             ////////////
@@ -191,7 +191,7 @@ namespace StateSmithTest
                 var behaviors = owner.Behaviors;
                 behaviors.Count.Should().Be(2);
                 behaviors[0].ShouldBeExactly(owningVertex: owner, triggers: new List<string>() { "exit" }, actionCode: "b_exit_count++;");
-                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: C2, triggers: TriggerList("EVENT2"), guardCode: "some_guard(1200)");
+                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: C2, triggers: TriggerList("EVENT2"), guardCode: "some_guard(1200)", diagramId: "n0::e3");
             }
 
 
@@ -204,7 +204,7 @@ namespace StateSmithTest
                 var behaviors = owner.Behaviors;
                 behaviors.Count.Should().Be(2);
                 behaviors[0].ShouldBeExactly(owningVertex: owner, triggers: new List<string>() { "EVENT2" }, actionCode: "set_mode(MODE_SAUCEY);");
-                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: A, triggers: TriggerList("EVENT1"), order: 1);
+                behaviors[1].ShouldBeExactly(owningVertex: owner, transitionTarget: A, triggers: TriggerList("EVENT1"), order: 1, diagramId: "n0::e2");
             }
         }
     }

@@ -1,0 +1,31 @@
+@startuml ButtonSm1Cpp
+
+[*] -> NOT_PRESSED
+state NOT_PRESSED {
+  NOT_PRESSED : enter / {\n  reset_debounce_timer();\n}
+}
+
+note "This is a PlantUML diagram" as N1
+
+state PRESSED {
+  PRESSED : enter / {\n  reset_debounce_timer();\n  output_event(press);\n}
+
+  HELD : enter / {\n  output_event(held);\n}
+
+  [*] -down-> CONFIRMING_HELD
+  CONFIRMING_HELD -down-> HELD : [debounce_ms() > 800]
+}
+
+/'
+Note:
+I couldn't get the below transition to match the yEd diagram. PlantUML center aligns the below label
+and makes it hard to read. Does anyone know how to left align it?
+PRESSED --> NOT_PRESSED : [is_released && is_debounced] / {\n  if (debounce_ms() <= 200) {\n    output_event(tap);\n  }\n  output_event(release);\n}
+'/
+
+PRESSED --> NOT_PRESSED : [is_released && is_debounced] / release_events();
+note on link : Multiline action code doesn't render well\nin PlantUML so we use the `release_events()`\nexpansion.
+
+NOT_PRESSED --> PRESSED : [ is_pressed\n  && is_debounced ]
+
+@enduml

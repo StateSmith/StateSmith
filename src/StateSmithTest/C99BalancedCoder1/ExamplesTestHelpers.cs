@@ -30,7 +30,7 @@ namespace StateSmithTest
         {
             string filepath = TestInputDirectoryPath + relativePath;
             Compiler compiler = new Compiler();
-            compiler.CompileFile(filepath);
+            compiler.CompileYedFile(filepath);
             compiler.rootVertices.Count.Should().Be(1);
             return compiler;
         }

@@ -15,19 +15,28 @@ namespace StateSmith.Compiling
 {
     public class Compiler
     {
+        public const string InitialStateString = "$initial_state";
+
         public List<Vertex> rootVertices = new List<Vertex>();
         private List<string> eventNames = new List<string>();
         private Dictionary<Input.DiagramNode, Vertex> diagramVertexMap = new Dictionary<Input.DiagramNode, Vertex>();
 
-        public void CompileFile(string filepath)
+        /// <summary>
+        /// If you want to support an input source other than a yEd file, see <see cref="CompileDiagramNodesEdges(List{DiagramNode}, List{DiagramEdge})"/> instead.
+        /// </summary>
+        /// <param name="filepath"></param>
+        public void CompileYedFile(string filepath)
         {
             YedParser yedParser = new YedParser();
-
             yedParser.Parse(filepath);
-
             CompileDiagramNodesEdges(yedParser.GetRootNodes(), yedParser.GetEdges());
         }
 
+        /// <summary>
+        /// Call this method when you want to support a custom input source.
+        /// </summary>
+        /// <param name="rootNodes"></param>
+        /// <param name="edges"></param>
         public void CompileDiagramNodesEdges(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
         {
             foreach (var node in rootNodes)
@@ -197,12 +206,13 @@ namespace StateSmith.Compiling
 
             if (nodeBehaviors.Count == 0)
             {
-                sourceVertex.AddBehavior(new Behavior(owningVertex: sourceVertex, transitionTarget: targetVertex));
+                sourceVertex.AddBehavior(new Behavior(owningVertex: sourceVertex, transitionTarget: targetVertex, diagramId: edge.id));
             }
 
             foreach (var nodeBehavior in nodeBehaviors)
             {
                 var behavior = ConvertBehavior(owningVertex: sourceVertex, targetVertex: targetVertex, nodeBehavior: nodeBehavior);
+                behavior.DiagramId = edge.id;
                 sourceVertex.AddBehavior(behavior);
             }
         }
@@ -236,7 +246,7 @@ namespace StateSmith.Compiling
         {
             if (labelParser.HasError())
             {
-                throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, ParserErrorsToReasonStrings(labelParser, "\n"));
+                throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, ParserErrorsToReasonStrings(labelParser.GetErrors(), "\n"));
             }
         }
 
@@ -343,7 +353,7 @@ namespace StateSmith.Compiling
                         }
                         else
                         {
-                            if (string.Equals(stateNode.stateName, "$initial_state", StringComparison.OrdinalIgnoreCase))
+                            if (string.Equals(stateNode.stateName, InitialStateString, StringComparison.OrdinalIgnoreCase))
                             {
                                 thisVertex = new InitialState();
                             }
@@ -405,7 +415,7 @@ namespace StateSmith.Compiling
         {
             if (labelParser.HasError())
             {
-                string reasons = ParserErrorsToReasonStrings(labelParser, separator: "\n           ");
+                string reasons = ParserErrorsToReasonStrings(labelParser.GetErrors(), separator: "\n           ");
 
                 string parentPath = VertexPathDescriber.Describe(parentVertex);
                 string fullMessage = $@"Failed parsing node label
@@ -418,17 +428,18 @@ Reason(s): {reasons}
             }
         }
 
-        private static string ParserErrorsToReasonStrings(LabelParser labelParser, string separator)
+        // todolow move out of compiler
+        public static string ParserErrorsToReasonStrings(List<Error> errors, string separator)
         {
             var reasons = "";
             var needsSeparator = false;
-            foreach (var error in labelParser.GetErrors())
+            foreach (var error in errors)
             {
                 if (needsSeparator)
                 {
                     reasons += separator;
                 }
-                reasons += error.BuildMessage() + ".";
+                reasons += error.BuildMessage();
                 needsSeparator = true;
             }
 
@@ -448,6 +459,7 @@ Reason(s): {reasons}
         {
             var behavior = new Behavior(owningVertex: owningVertex, transitionTarget: targetVertex)
             {
+                DiagramId = owningVertex.DiagramId, // may be overwritten for edges
                 actionCode = nodeBehavior.actionCode,
                 guardCode = nodeBehavior.guardCode,
                 triggers = nodeBehavior.triggers,

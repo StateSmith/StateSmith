@@ -38,7 +38,7 @@ namespace StateSmith.Compiling
 
         public Behavior() { }
 
-        public Behavior(Vertex owningVertex, Vertex? transitionTarget = null)
+        public Behavior(Vertex owningVertex, Vertex? transitionTarget = null, string? diagramId = null)
         {
             _owningVertex = owningVertex;
 
@@ -47,6 +47,8 @@ namespace StateSmith.Compiling
                 _transitionTarget = transitionTarget;
                 transitionTarget.AddIncomingTransition(this);
             }
+
+            DiagramId = diagramId;
         }
 
         public string GetOrderString()
@@ -76,6 +78,18 @@ namespace StateSmith.Compiling
             return IsCodePresent(actionCode);
         }
 
+        [MemberNotNullWhen(true, nameof(viaExit))]
+        public bool HasViaExit()
+        {
+            return IsCodePresent(viaExit);
+        }
+
+        [MemberNotNullWhen(true, nameof(viaEntry))]
+        public bool HasViaEntry()
+        {
+            return IsCodePresent(viaEntry);
+        }
+
         private static bool IsCodePresent(string? code)
         {
             return code != null && code.Trim().Length > 0;  //trim not ideal for performance, but fine for now
@@ -84,6 +98,11 @@ namespace StateSmith.Compiling
         public bool HasAtLeastOneTrigger()
         {
             return triggers.Count > 0;
+        }
+
+        public bool IsBlankTransition()
+        {
+            return (HasTransition() && !HasAtLeastOneTrigger() && !HasGuardCode() && !HasActionCode() && order == DEFAULT_ORDER && !HasViaEntry() && !HasViaExit());
         }
 
         /// <summary>

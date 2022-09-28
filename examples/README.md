@@ -1,5 +1,7 @@
 The best way to learn something is by doing. This directory has a bunch of examples you can explore.
 
+🌿 A few of the below examples also have PlantUML files.
+
 # [Tutorial1-blank](./Tutorial1-blank/)
 - This is the starting point for [quick-start.md](../docs/quickstart1/quick-start.md).
 - Recommended to start here.
@@ -16,25 +18,32 @@ The best way to learn something is by doing. This directory has a bunch of examp
 ![picture 1](images/blinky1-intro-image.png)  ![picture 4](images/blink1-design.png)  
 
 
-# [blinky1_printf_sm](./Blinky1Printf/)
+# [blinky1_printf_sm](./Blinky1Printf/) 🌿
 - Blinks an LED on a console.
+- Has PlantUML 🌿 and yEd diagram files. Search for `usePlantUmlInput` and set it to true.
 - User code changes StateSmith name mangling to more conventional snake case naming.
 - Illustrates how to get started using timers in a state machine.
 - Can be compiled and run on any platform with a console.
 
 ![](./images/blinky1printf-led.gif)
-![picture 1](./images/blink1printf-design.png) 
+![picture 1](./images/blinky1printf-design.png) 
+![picture 3](images/blinky1printf-design-plantuml.png)  
+
 
 
 # [ButtonSm1Cpp](./ButtonSm1Cpp/)
 - Debounces buttons and outputs PRESS, HELD, and RELEASE events.
 - Shows how to run 4 instances of a state machine.
+- Has PlantUML 🌿 and yEd diagram files. Search for `usePlantUmlInput` and set it to true.
 - Uses bitfields in user variables.
 - Online Arduino simulation.
 
 ![picture 5](images/buttonsm1cpp-simulation.png)  
 
-![picture 6](images/buttonsm1cpp-design.png)  
+![picture 6](images/buttonsm1cpp-design.png)
+![picture](images/buttonsm1cpp-design-puml.png)  
+
+
 
 ```c
 struct ButtonSm1Cpp

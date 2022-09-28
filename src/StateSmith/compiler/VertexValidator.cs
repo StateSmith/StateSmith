@@ -1,4 +1,5 @@
 using StateSmith.compiler.Visitors;
+using System;
 using System.Linq;
 
 namespace StateSmith.Compiling
@@ -9,31 +10,55 @@ namespace StateSmith.Compiling
         {
             foreach (var b in v.Behaviors)
             {
-                ValidateBehavior(v, b);
+                ValidateBehavior(b);
             }
 
             VisitChildren(v);
         }
 
-        private static void ValidateBehavior(Vertex v, Behavior b)
+        private static void ValidateBehavior(Behavior b)
         {
             if (b.HasTransition() == false)
             {
                 if (b.viaEntry != null || b.viaExit != null)
                 {
-                    throw new VertexValidationException(v, "via entry/exit can only be specified on transitions");
+                    throw new VertexValidationException(b.OwningVertex, "via entry/exit can only be specified on transitions");
                 }
             }
             else
             {
                 ValidateViaEntry(b);
 
-                ValidateViaExit(v, b);
+                ValidateViaExit(b);
             }
 
+            DetectYedHiddenEdges(b);
         }
 
-        private static void ValidateViaExit(Vertex v, Behavior b)
+        /// <summary>
+        /// https://github.com/StateSmith/StateSmith/issues/29
+        /// </summary>
+        /// <param name="b"></param>
+        /// <exception cref="BehaviorValidationException"></exception>
+        private static void DetectYedHiddenEdges(Behavior b)
+        {
+            if (b.IsBlankTransition() == false)
+            {
+                return;
+            }
+
+            if (b.TransitionTarget == b.OwningVertex)
+            {
+                throw new BehaviorValidationException(b, "yEd hidden self-to-self edge detected. See https://github.com/StateSmith/StateSmith/issues/29 .");
+            }
+
+            if (b.TransitionTarget.ContainsVertex(b.OwningVertex))
+            {
+                throw new BehaviorValidationException(b, "yEd hidden edge to ancestor detected. See https://github.com/StateSmith/StateSmith/issues/29 .");
+            }
+        }
+
+        private static void ValidateViaExit(Behavior b)
         {
             string exitLabel = b.viaExit;
             if (exitLabel == null)
@@ -42,7 +67,7 @@ namespace StateSmith.Compiling
             }
 
             // find exit point with matching label
-            var matchingExitPoints = v.Children.OfType<ExitPoint>().Where(point => point.label == exitLabel);
+            var matchingExitPoints = b.OwningVertex.Children.OfType<ExitPoint>().Where(point => point.label == exitLabel);
 
             switch (matchingExitPoints.Count())
             {
