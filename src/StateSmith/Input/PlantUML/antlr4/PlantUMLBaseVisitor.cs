@@ -205,7 +205,7 @@ public partial class PlantUMLBaseVisitor<Result> : AbstractParseTreeVisitor<Resu
 	/// <return>The visitor result.</return>
 	public virtual Result VisitNote_short([NotNull] PlantUMLParser.Note_shortContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents"/>.
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents_line"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -213,7 +213,7 @@ public partial class PlantUMLBaseVisitor<Result> : AbstractParseTreeVisitor<Resu
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNote_multiline_contents([NotNull] PlantUMLParser.Note_multiline_contentsContext context) { return VisitChildren(context); }
+	public virtual Result VisitNote_multiline_contents_line([NotNull] PlantUMLParser.Note_multiline_contents_lineContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_multiline"/>.
 	/// <para>

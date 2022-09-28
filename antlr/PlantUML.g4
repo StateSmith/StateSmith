@@ -157,28 +157,37 @@ diagram_element:
 // note left of Active : this is a short\nnote
 note_short:
     'note'
-    HWS+
-    (~':')+
+    (
+        HWS+
+        identifier
+    )+
+    ohs
     ':'
     ohs
     rest_of_line
     ;
 
-
-note_multiline_contents:
-    .+?
+// starts with line ender
+note_multiline_contents_line:
+    LINE_ENDER ~(ENDNOTE | LINE_ENDER)*
     ;
 
+// note right of Inactive
+//   A note can also
+//   be defined on
+//   several lines
+// end note
 note_multiline:
     'note'
     HWS+
-    (~(':' | LINE_ENDER))+ LINE_ENDER
-    (
-        note_multiline_contents
-        LINE_ENDER
-    )?
+    identifier // ex: right
+    HWS+
+    identifier // ex: of
+    HWS+
+    identifier // ex: Inactive
     ohs
-    'endnote'
+    (note_multiline_contents_line)*
+    ENDNOTE
     ;
 
 // note left of Active : this is a short\nnote
@@ -230,10 +239,10 @@ identifier
     | 'state'
     | 'State'
     | 'note'
+    | 'end'
     | 'as'
     | 'scale'
     | 'skinparam'
-    | 'note'
     ;
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
 DIGIT :   [0-9]  ;
@@ -255,3 +264,6 @@ fragment ESCAPED_CHAR: '\\' . ;
 fragment NON_QUOTE_CHAR: ~["] ;
 fragment STRING_CHAR: ESCAPED_CHAR | NON_QUOTE_CHAR ;
 STRING: '"' STRING_CHAR* '"' ;
+
+// starts with line ender
+ENDNOTE: LINE_ENDER HWS* ('end' HWS* 'note');
