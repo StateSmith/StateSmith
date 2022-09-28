@@ -115,12 +115,15 @@ namespace StateSmith.Input.PlantUML
         {
             ICharStream stream = CharStreams.fromString(inputString);
             var lexer = new PlantUMLLexer(stream);
+            lexer.RemoveErrorListeners(); // prevent antlr4 error output to console
             lexer.AddErrorListener(errorListener);
+
             ITokenStream tokens = new CommonTokenStream(lexer);
             PlantUMLParser parser = new(tokens)
             {
                 BuildParseTree = true
             };
+            parser.RemoveErrorListeners(); // prevent antlr4 error output to console
             parser.AddErrorListener(errorListener);
 
             return parser;

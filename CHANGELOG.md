@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Better error reporting regarding diagram edge IDs.
 - Improve PlantUML parsing https://github.com/StateSmith/StateSmith/issues/21
   - `notes`, and improve parsing of malformed `skinparam` blocks.
+- Prevent antlr4 error output to console.
 
 
 ### Fixed
