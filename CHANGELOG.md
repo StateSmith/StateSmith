@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [WIP]
+### Added
+- detect yEd hidden edges https://github.com/StateSmith/StateSmith/issues/29
+- Better error reporting regarding diagram edge IDs.
+- Improve PlantUML parsing https://github.com/StateSmith/StateSmith/issues/21
+  - `notes`, and improve parsing of malformed `skinparam` blocks.
+- Prevent antlr4 error output to console.
+
+
+### Fixed
+- Now throws useful lexer stage exceptions instead of printing them and not recognizing the failure. https://github.com/StateSmith/StateSmith/issues/31 
+
 ## [0.5.6-alpha]
 ### Added
 - Support [PlantUML input](./docs/plantuml-input.md) as an alternative to yEd input.

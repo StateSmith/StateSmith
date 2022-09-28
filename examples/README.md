@@ -20,7 +20,7 @@ The best way to learn something is by doing. This directory has a bunch of examp
 
 # [blinky1_printf_sm](./Blinky1Printf/) 🌿
 - Blinks an LED on a console.
-- Has PlantUML 🌿 and yEd diagram files.
+- Has PlantUML 🌿 and yEd diagram files. Search for `usePlantUmlInput` and set it to true.
 - User code changes StateSmith name mangling to more conventional snake case naming.
 - Illustrates how to get started using timers in a state machine.
 - Can be compiled and run on any platform with a console.
@@ -34,7 +34,7 @@ The best way to learn something is by doing. This directory has a bunch of examp
 # [ButtonSm1Cpp](./ButtonSm1Cpp/)
 - Debounces buttons and outputs PRESS, HELD, and RELEASE events.
 - Shows how to run 4 instances of a state machine.
-- Has PlantUML 🌿 and yEd diagram files.
+- Has PlantUML 🌿 and yEd diagram files. Search for `usePlantUmlInput` and set it to true.
 - Uses bitfields in user variables.
 - Online Arduino simulation.
 

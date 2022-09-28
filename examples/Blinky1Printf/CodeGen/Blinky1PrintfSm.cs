@@ -21,7 +21,7 @@ namespace Blinky1
 
             // You can use this example with the yEd file or an equivalent PlantUML file.
             // See https://github.com/StateSmith/StateSmith/issues/21
-            bool usePlantUmlInput = true;
+            bool usePlantUmlInput = false;
             if (usePlantUmlInput)
             {
                 diagramFile = directory + "blinky1_printf_sm.plantuml";

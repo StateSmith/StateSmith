@@ -201,15 +201,15 @@ public interface IPlantUMLListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNote_short([NotNull] PlantUMLParser.Note_shortContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents"/>.
+	/// Enter a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents_line"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNote_multiline_contents([NotNull] PlantUMLParser.Note_multiline_contentsContext context);
+	void EnterNote_multiline_contents_line([NotNull] PlantUMLParser.Note_multiline_contents_lineContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents"/>.
+	/// Exit a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents_line"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNote_multiline_contents([NotNull] PlantUMLParser.Note_multiline_contentsContext context);
+	void ExitNote_multiline_contents_line([NotNull] PlantUMLParser.Note_multiline_contents_lineContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.note_multiline"/>.
 	/// </summary>

@@ -1,4 +1,5 @@
-﻿using Antlr4.Runtime.Misc;
+﻿using Antlr4.Runtime;
+using Antlr4.Runtime.Misc;
 using System;
 using System.Collections.Generic;
 
@@ -25,9 +26,8 @@ namespace StateSmith.Input.PlantUML
 
         public override void EnterState_explicit([NotNull] PlantUMLParser.State_explicitContext context)
         {
-            var id = context.identifier().GetText();
-
-            string label = id;
+            string pumlId = context.identifier().GetText();
+            string label = pumlId;
 
             if (context.STRING() != null)
             {
@@ -35,10 +35,9 @@ namespace StateSmith.Input.PlantUML
                 label = label.Substring(1, label.Length - 2);   // remove quotes
             }
 
-            var node = GetOrAddNode(id);
+            var node = GetOrAddNode(pumlId, context.identifier());
             HandleStereotype(node, context.stereotype());
             currentNode = node;
-            node.id = id;
             node.label = label;
         }
 
@@ -54,7 +53,7 @@ namespace StateSmith.Input.PlantUML
                 initialState = new DiagramNode
                 {
                     label = Compiling.Compiler.InitialStateString,
-                    id = vertexContext.start_end_state().Start.Line + "_" + vertexContext.start_end_state().Start.Column
+                    id = MakeId(vertexContext.start_end_state())
                 };
                 nodeInitalStateMap.Add(currentNode, initialState);
                 AddNode(initialState);
@@ -63,22 +62,27 @@ namespace StateSmith.Input.PlantUML
             return initialState;
         }
 
+        private static string MakeId(ParserRuleContext vertexContext)
+        {
+            return $"line_{vertexContext.Start.Line}_column_{vertexContext.Start.Column}";
+        }
+
         private void AddNode(DiagramNode state)
         {
             currentNode.children.Add(state);
             state.parent = currentNode;
         }
 
-        private DiagramNode GetOrAddNode(string id)
+        private DiagramNode GetOrAddNode(string pumlId, ParserRuleContext context)
         {
-            if (!nodeMap.TryGetValue(id, out var state))
+            if (!nodeMap.TryGetValue(pumlId, out var state))
             {
                 state = new DiagramNode
                 {
-                    label = id,
-                    id = id
+                    label = pumlId,
+                    id = MakeId(context)
                 };
-                nodeMap.Add(id, state);
+                nodeMap.Add(pumlId, state);
                 AddNode(state);
             }
 
@@ -107,7 +111,8 @@ namespace StateSmith.Input.PlantUML
             {
                 source = source,
                 target = destination,
-                label = label
+                label = label,
+                id = MakeId(context)
             };
 
             if (destination.label == Compiling.Compiler.InitialStateString)
@@ -121,7 +126,7 @@ namespace StateSmith.Input.PlantUML
 
         public override void EnterState_contents([NotNull] PlantUMLParser.State_contentsContext context)
         {
-            var state = GetOrAddNode(context.identifier().GetText());
+            var state = GetOrAddNode(context.identifier().GetText(), context.identifier());
             state.label += "\n" + Decode(context.rest_of_line().GetText());
         }
 
@@ -152,7 +157,7 @@ namespace StateSmith.Input.PlantUML
             }
             else
             {
-                node = GetOrAddNode(vertexContext.state_id().GetText());
+                node = GetOrAddNode(vertexContext.state_id().GetText(), vertexContext.state_id());
             }
 
             HandleStereotype(node, vertexContext.stereotype());

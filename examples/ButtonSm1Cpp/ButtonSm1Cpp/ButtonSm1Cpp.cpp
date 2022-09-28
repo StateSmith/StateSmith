@@ -181,7 +181,10 @@ static void PRESSED_do(ButtonSm1Cpp* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // uml guard: is_released && is_debounced
-        // uml action: release_events();
+        // uml action: if (debounce_ms() <= 200) {
+        //               output_event(tap);
+        //             }
+        //             output_event(release);
         // uml transition target: NOT_PRESSED
         if ((!self->vars.input_is_pressed) && (( (millis() - self->vars.debounce_started_at_ms) >= 20 )))
         {
