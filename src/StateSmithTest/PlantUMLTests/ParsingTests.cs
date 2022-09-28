@@ -321,6 +321,113 @@ state BetweenNotes7
         a.Should().Throw<Exception>();
     }
 
+    [Fact]
+    public void SkinparamBlock()
+    {
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+            }
+
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+
+            }
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+            }
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state
+            {
+            }
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state
+        
+            {
+            }
+            @enduml
+            ");
+
+        ParseAssertNoError(@"
+@startuml blinky1_printf_sm
+skinparam state {
+ BorderColor<<on_style>> #AA0000
+ BackgroundColor<<on_style>> #ffcccc
+ FontColor<<on_style>> darkred
+ 
+ BorderColor Black
+}
+
+@enduml
+");
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+
+                BorderColor<<on_style>> #AA0000
+                BackgroundColor<<on_style>> #ffcccc
+                FontColor<<on_style>> darkred
+ 
+                BorderColor Black
+
+            }
+            @enduml
+        ");
+
+        ParseAssertNoError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+                BackgroundColor<<on_style>> #ffcccc
+            '}
+            }
+
+            @enduml
+        ");
+    }
+
+    [Fact]
+    public void SkinparamBlockBad()
+    {
+        ParseAssertHasAtLeastOneError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+                BackgroundColor<<on_style>> #ffcccc
+                [*] --> B
+            }
+            @enduml
+            ");
+    }
+
+    [Fact]
+    public void SkinparamBlockBad2()
+    {
+        ParseAssertHasAtLeastOneError(@"
+            @startuml blinky1_printf_sm
+            skinparam state {
+                BackgroundColor<<on_style>> #ffcccc
+            }'
+            LED_ON : enter / { action(); }
+            @enduml
+            ");
+    }
+
+
     private DiagramNode GetVertexById(string id)
     {
         return translator.GetDiagramNode(id);

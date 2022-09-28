@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - detect yEd hidden edges https://github.com/StateSmith/StateSmith/issues/29
 - Better error reporting regarding diagram edge IDs.
-- Improve PlantUML parsing of notes https://github.com/StateSmith/StateSmith/issues/21
+- Improve PlantUML parsing https://github.com/StateSmith/StateSmith/issues/21
+  - `notes`, and improve parsing of malformed `skinparam` blocks.
+
 
 ## [0.5.6-alpha]
 ### Added

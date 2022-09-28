@@ -50,7 +50,7 @@ edge:
     (
         '['
             (
-                ~(']' | LINE_ENDER)
+                ~('[' | ']' | LINE_ENDER)
             )*
         ']'
     )?
@@ -131,12 +131,24 @@ ignore:
     |
     'scale' HWS rest_of_line
     |
-    'skinparam' HWS identifier ohs '{' (~'}')* '}'
+    'skinparam' HWS identifier optional_any_space
+        '{' ohs LINE_ENDER
+            (
+                ohs 
+                ( 
+                    identifier
+                    stereotype?
+                    HWS+
+                    (
+                        identifier | DIGIT | '#'
+                    )+
+                )?
+                LINE_ENDER
+            )*
+        ohs
+        '}'
     |
     'skinparam' HWS rest_of_line
-    |
-    // 'Line comments use a single apostrophe
-    SINGLE_QUOTE rest_of_line
     ;
 
 diagram_element:
@@ -253,6 +265,12 @@ BLOCK_COMMENT :
     BLOCK_COMMENT_START
     .*?
     BLOCK_COMMENT_END
+    -> skip
+    ;
+
+// 'Line comments use a single apostrophe
+LINE_COMMENT:
+    LINE_ENDER HWS* SINGLE_QUOTE ~[\r\n]*
     -> skip
     ;
 
