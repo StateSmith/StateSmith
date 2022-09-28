@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `notes`, and improve parsing of malformed `skinparam` blocks.
 
 
+### Fixed
+- Now throws useful lexer stage exceptions instead of printing them and not recognizing the failure. https://github.com/StateSmith/StateSmith/issues/31 
+
 ## [0.5.6-alpha]
 ### Added
 - Support [PlantUML input](./docs/plantuml-input.md) as an alternative to yEd input.

@@ -114,7 +114,8 @@ namespace StateSmith.Input.PlantUML
         private PlantUMLParser BuildParserForString(string inputString)
         {
             ICharStream stream = CharStreams.fromString(inputString);
-            ITokenSource lexer = new PlantUMLLexer(stream);
+            var lexer = new PlantUMLLexer(stream);
+            lexer.AddErrorListener(errorListener);
             ITokenStream tokens = new CommonTokenStream(lexer);
             PlantUMLParser parser = new(tokens)
             {

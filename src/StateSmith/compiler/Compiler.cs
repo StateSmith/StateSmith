@@ -439,7 +439,7 @@ Reason(s): {reasons}
                 {
                     reasons += separator;
                 }
-                reasons += error.BuildMessage() + ".";
+                reasons += error.BuildMessage();
                 needsSeparator = true;
             }
 
