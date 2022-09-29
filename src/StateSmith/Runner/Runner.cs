@@ -1,4 +1,4 @@
-﻿using StateSmith.output.C99BalancedCoder1;
+using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
 using System;
 using System.Collections.Generic;
@@ -63,6 +63,7 @@ namespace StateSmith.Runner
                     throw;
                 }
 
+                Environment.ExitCode = -1; // lets calling process know that code gen failed
                 exceptionPrinter.PrintException(e);
                 OutputStageMessage("finished with failure.");
             }
