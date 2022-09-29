@@ -26,6 +26,9 @@ namespace StateSmithTest.C99BalancedCoder1
             });
 
             compiler.rootVertices = new List<Vertex>() { sm };
+            var s1 = sm.AddChild(new State(name: "s1"));
+            var initialStateVertex = sm.AddChild(new InitialState());
+            initialStateVertex.AddTransitionTo(s1);
 
             compiler.SetupRoots();
             compiler.FinalizeTrees();
