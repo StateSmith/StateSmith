@@ -1,4 +1,4 @@
-using StateSmith.output.C99BalancedCoder1;
+﻿using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
 using System;
 using System.Collections.Generic;
@@ -64,11 +64,22 @@ namespace StateSmith.Runner
                 }
 
                 Environment.ExitCode = -1; // lets calling process know that code gen failed
+
                 exceptionPrinter.PrintException(e);
+                DumpErrorDetailsToFile(e);
                 OutputStageMessage("finished with failure.");
             }
 
             System.Console.WriteLine();
+        }
+
+        private void DumpErrorDetailsToFile(Exception e)
+        {
+            var errorDetailFilePath = settings.diagramFile + ".err.txt";
+            //errorDetailFilePath = Path.GetFullPath(errorDetailFilePath); // if you want the full path but with resolved "../../"
+            errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
+            exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
+            Console.Error.WriteLine("Additional exception detail dumped to file: " + errorDetailFilePath);
         }
 
         protected void RunRest()

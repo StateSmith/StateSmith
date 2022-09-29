@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [WIP]
 ### Added
 - Runner - set process exit code to -1 on failure.
+- Runner - output additional exception details to `<diagram_file_path>.err.txt`.
+  This is useful for generic assert like exceptions that don't yet have useful error messages.
+  https://github.com/StateSmith/StateSmith/issues/38
 
 ---
 
