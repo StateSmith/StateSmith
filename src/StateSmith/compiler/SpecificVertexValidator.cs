@@ -41,6 +41,14 @@ namespace StateSmith.Compiling
             {
                 throw new VertexValidationException(v, "State machines cannot be nested, yet. See https://github.com/adamfk/StateSmith/issues/7");
             }
+
+            // require initial state
+            int initialStateCount = v.Children.OfType<InitialState>().Count();
+            if (initialStateCount != 1)
+            {
+                throw new VertexValidationException(v, $"State machines must have exactly 1 initial state. Actual count: {initialStateCount}.");
+            }
+
             VisitChildren(v);
         }
 

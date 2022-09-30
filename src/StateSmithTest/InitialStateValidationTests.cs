@@ -10,6 +10,7 @@ namespace StateSmithTest.InitialStateProcessor
     public class InitialStateValidationTests : ValidationTestHelper
     {
         InitialState initialStateVertex;
+        private Statemachine sm;
         State s1;
         State s2;
 
@@ -21,8 +22,7 @@ namespace StateSmithTest.InitialStateProcessor
 
         private Vertex BuildTestGraph()
         {
-            var sm = new Statemachine(name: "root");
-
+            sm = new Statemachine(name: "root");
             s1 = sm.AddChild(new State(name: "s1"));
             s2 = sm.AddChild(new State(name: "s2"));
 
@@ -71,12 +71,24 @@ namespace StateSmithTest.InitialStateProcessor
         }
 
         [Fact]
+        public void StateMachineMustHaveExactly1()
+        {
+            sm.RemoveChild(initialStateVertex);
+            ExpectVertexValidationExceptionWildcard("State machines must have exactly 1 initial state. Actual count: 0.");
+
+            sm.AddChild(new InitialState());
+            sm.AddChild(new InitialState());
+            ExpectVertexValidationExceptionWildcard("State machines must have exactly 1 initial state. Actual count: 2.");
+        }
+
+        [Fact]
         public void TooManySiblings()
         {
-            initialStateVertex.Parent.AddChild(new InitialState());
+            s2.AddChild(new InitialState());
+            s2.AddChild(new InitialState());
             ExpectVertexValidationExceptionWildcard("*can only have a single initial state*2*");
 
-            initialStateVertex.Parent.AddChild(new InitialState());
+            s2.AddChild(new InitialState());
             ExpectVertexValidationExceptionWildcard("*can only have a single initial state*3*");
         }
 
