@@ -14,5 +14,18 @@ namespace StateSmith.compiler
                 throw new ArgumentException("List could not remove item: " + item);
             }
         }
+
+        public static void RunOrWrapException(this Action action, Func<Exception, Exception> exceptionBuilder)
+        {
+            try
+            {
+                action();
+            }
+            catch (Exception e)
+            {
+                var newException = exceptionBuilder(e);
+                throw newException;
+            }
+        }
     }
 }

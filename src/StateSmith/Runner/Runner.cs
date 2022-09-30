@@ -1,4 +1,4 @@
-﻿using StateSmith.output.C99BalancedCoder1;
+using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ using StateSmith.Input.Expansions;
 using StateSmith.Input;
 using StateSmith.compiler.Visitors;
 using StateSmith.Input.PlantUML;
+using StateSmith.compiler;
 
 #nullable enable
 
@@ -84,14 +85,7 @@ namespace StateSmith.Runner
 
         protected void RunRest()
         {
-            if (settings.stateMachineName != null)
-            {
-                sm = (Statemachine)compiler.GetVertex(settings.stateMachineName);
-            }
-            else
-            {
-                sm = compiler.rootVertices.OfType<Statemachine>().Single();
-            }
+            FindStateMachine();
 
             CodeGenContext codeGenContext = new(sm, settings.renderConfig);
             settings.mangler.SetStateMachine(sm);
@@ -114,11 +108,30 @@ namespace StateSmith.Runner
             File.WriteAllText($"{settings.outputDirectory}{settings.mangler.CFileName}", cFileContents);
         }
 
+        private void FindStateMachine()
+        {
+            if (settings.stateMachineName != null)
+            {
+                var action = () => { sm = (Statemachine)compiler.GetVertex(settings.stateMachineName); };
+                action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{settings.stateMachineName}`.", e));
+            }
+            else
+            {
+                var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Single(); };
+                action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {compiler.rootVertices.OfType<Statemachine>().Count()}.", e));
+            }
+
+            OutputStageMessage($"Generating code for state machine `{sm.Name}`.");
+        }
+
         private void OutputCompilingDiagramMessage()
         {
             string filePath = Path.GetRelativePath(AppDomain.CurrentDomain.BaseDirectory + "../../../..", settings.diagramFile);
             filePath = filePath.Replace('\\', '/');
-            OutputStageMessage($"Compiling file: `{filePath}`");
+            OutputStageMessage($"Compiling file: `{filePath}` "
+                + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
+                + "."
+            );
         }
 
 
