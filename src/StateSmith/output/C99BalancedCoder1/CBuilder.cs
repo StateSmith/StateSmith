@@ -119,7 +119,7 @@ namespace StateSmith.output.C99BalancedCoder1
             eventHandlerBuilder.OutputAnyActionCode(initial_transition);
 
             NamedVertex transitionTarget = (NamedVertex)initial_transition.TransitionTarget;
-            eventHandlerBuilder.OutputCodeForNonSelfTransition(sm, transitionTarget);
+            eventHandlerBuilder.OutputCodeForNonSelfTransition(sm, transitionTarget, skipStateExiting: true);
             file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }

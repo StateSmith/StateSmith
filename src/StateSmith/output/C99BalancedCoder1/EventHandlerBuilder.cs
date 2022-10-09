@@ -173,15 +173,15 @@ namespace StateSmith.output.C99BalancedCoder1
             }
         }
 
-        internal void OutputCodeForNonSelfTransition(NamedVertex state, NamedVertex target)
+        internal void OutputCodeForNonSelfTransition(NamedVertex state, NamedVertex target, bool skipStateExiting = false)
         {
             file.Append("// Transition to target state " + target.Name);
             file.StartCodeBlock(forceNewLine: true);
             {
                 var transitionPath = state.FindTransitionPathTo(target);
-                if (transitionPath.leastCommonAncestor == state)
+                if (skipStateExiting)
                 {
-                    file.AppendLine($"// target state {target.Name} is a child of this state. No need to exit this state.");
+                    file.AppendLine($"// No need exit any states in this handler.");
                 }
                 else
                 {

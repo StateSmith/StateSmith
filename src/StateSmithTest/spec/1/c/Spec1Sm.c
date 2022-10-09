@@ -38,7 +38,7 @@ void Spec1Sm_start(Spec1Sm* self)
     trace("Transition action `` for Spec1Sm.InitialState to S.");trace("Transition action `` for S.InitialState to S1.");trace("Transition action `` for S1.InitialState to S11.");
     // Transition to target state S11
     {
-        // target state S11 is a child of this state. No need to exit this state.
+        // No need exit any states in this handler.
         
         // Enter towards target
         S_enter(self);

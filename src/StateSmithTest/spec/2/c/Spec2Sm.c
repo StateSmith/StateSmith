@@ -102,7 +102,7 @@ void Spec2Sm_start(Spec2Sm* self)
     trace("Transition action `` for Spec2Sm.InitialState to DECIDE.");
     // Transition to target state DECIDE
     {
-        // target state DECIDE is a child of this state. No need to exit this state.
+        // No need exit any states in this handler.
         
         // Enter towards target
         DECIDE_enter(self);
@@ -1377,7 +1377,11 @@ static void TEST4_ROOT_ev2(Spec2Sm* self)
             
             // Transition to target state TEST4_S1
             {
-                // target state TEST4_S1 is a child of this state. No need to exit this state.
+                // First, exit up to Least Common Ancestor TEST4_ROOT.
+                while (self->current_state_exit_handler != TEST4_ROOT_exit)
+                {
+                    self->current_state_exit_handler(self);
+                }
                 
                 // Enter towards target
                 TEST4_S1_enter(self);
