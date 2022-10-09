@@ -1,4 +1,5 @@
 ﻿using StateSmith.compiler;
+using StateSmith.output;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -37,6 +38,13 @@ namespace StateSmith.Compiling
         public string? viaExit;
 
         public Behavior() { }
+
+        public Behavior(string trigger, string? guardCode = null, string? actionCode = null)
+        {
+            this.triggers.Add(trigger);
+            this.guardCode = guardCode;
+            this.actionCode = actionCode;
+        }
 
         public Behavior(Vertex owningVertex, Vertex? transitionTarget = null, string? diagramId = null)
         {
@@ -125,6 +133,61 @@ namespace StateSmith.Compiling
         public TransitionPath FindTransitionPath()
         {
             return OwningVertex.FindTransitionPathTo(TransitionTarget);
+        }
+
+        public string DescribeAsUml()
+        {
+            string result = "";
+            string joiner = "";
+
+            if (order != DEFAULT_ORDER)
+            {
+                result += joiner + order + ".";
+                joiner = " ";
+            }
+
+            if (HasAtLeastOneTrigger())
+            {
+                result += joiner + string.Join(", ", triggers);
+                joiner = " ";
+            }
+
+            if (HasGuardCode())
+            {
+                result += joiner + "[" + StringUtils.ReplaceNewLineChars(guardCode.Trim(), "\\n") + "]";
+                joiner = " ";
+            }
+
+            if (HasActionCode())
+            {
+                result += joiner + "/ { " + StringUtils.ReplaceNewLineChars(actionCode.Trim(), "\\n") + " }";
+                joiner = " ";
+            }
+
+            if (HasViaExit())
+            {
+                result += joiner + "via exit " + viaExit;
+                joiner = " ";
+            }
+
+            if (HasViaEntry())
+            {
+                result += joiner + "via entry " + viaEntry;
+                joiner = " ";
+            }
+
+            if (TransitionTarget != null)
+            {
+                NamedVertex target = (NamedVertex)TransitionTarget;   // will need to be updated when we allow transitioning to other types of vertices
+                result += joiner + "TransitionTo(" + Vertex.Describe(target) + ")";
+            }
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            return DescribeAsUml();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using StateSmith.Common;
 using StateSmith.compiler;
 using StateSmith.compiler.Visitors;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -51,10 +52,18 @@ namespace StateSmith.Compiling
 
         public IReadOnlyList<Behavior> IncomingTransitions => _incomingTransitions;
 
-        public void AddBehavior(Behavior behavior)
+        public void AddBehavior(Behavior behavior, int index = -1)
         {
             behavior._owningVertex = this;
-            _behaviors.Add(behavior);
+
+            if (index >= 0)
+            {
+                _behaviors.Insert(index, behavior);
+            }
+            else
+            {
+                _behaviors.Add(behavior);
+            }
         }
 
         public abstract void Accept(VertexVisitor visitor);
@@ -288,6 +297,31 @@ namespace StateSmith.Compiling
             path.toEnter.Reverse();
 
             return path;
+        }
+
+        public static string Describe(Vertex? v)
+        {
+            if (v == null)
+            {
+                return "<null>";
+            }
+
+            switch (v)
+            {
+                case NamedVertex namedVertex:
+                    return namedVertex.Name;
+
+                case InitialState:
+                    return Describe(v.Parent) + "." + nameof(InitialState);
+
+                case EntryPoint e:
+                    return $"{Describe(v.Parent)}.{nameof(EntryPoint)}({e.label})";
+
+                case ExitPoint e:
+                    return $"{Describe(v.Parent)}.{nameof(ExitPoint)}({e.label})";
+
+                default: throw new ArgumentException("Unsupported type " + v.GetType().FullName);
+            }
         }
     }
 
