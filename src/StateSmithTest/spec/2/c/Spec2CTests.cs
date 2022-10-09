@@ -1,4 +1,4 @@
-﻿using Spec.Spec2;
+using Spec.Spec2;
 using StateSmith.Input.Expansions;
 using StateSmith.output;
 using StateSmith.output.C99BalancedCoder1;
@@ -172,6 +172,98 @@ public class Spec2CTests : Spec2CFixture
             Enter TEST3_S3.
         ");
         Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void TestParentChildTransitions()
+    {
+        var testEvents = "";
+        var ex = "";
+
+        // should see transition to S1 without exiting ROOT
+        testEvents += "EV2 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV2
+            ===================================================
+            State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`. Behavior running.
+            Transition action `` for TEST4_ROOT to TEST4_S1.
+            Enter TEST4_S1.
+            ") + "\n\n";
+
+
+        // Already in S1. Root handler should exit S1, then re-enter S1.
+        testEvents += "EV2 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV2
+            ===================================================
+            State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`. Behavior running.
+            Transition action `` for TEST4_ROOT to TEST4_S1.
+            Exit TEST4_S1.
+            Enter TEST4_S1.
+            ") + "\n\n";
+
+        // Should transition from S1 to S2
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`. Behavior running.
+            Transition action `` for TEST4_S1 to TEST4_S2.
+            Exit TEST4_S1.
+            Enter TEST4_S2.
+            ") + "\n\n";
+
+        // Root handler should cause transition to S1.
+        testEvents += "EV2 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV2
+            ===================================================
+            State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`. Behavior running.
+            Transition action `` for TEST4_ROOT to TEST4_S1.
+            Exit TEST4_S2.
+            Enter TEST4_S1.
+            ") + "\n\n";
+
+        // S1 to S2
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`. Behavior running.
+            Transition action `` for TEST4_S1 to TEST4_S2.
+            Exit TEST4_S1.
+            Enter TEST4_S2.
+            ") + "\n\n";
+
+        // S2 to S3
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`. Behavior running.
+            Transition action `` for TEST4_S2 to TEST4_S3.
+            Exit TEST4_S2.
+            Enter TEST4_S3.
+            ") + "\n\n";
+
+        // S3 to ROOT
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`. Behavior running.
+            Transition action `` for TEST4_S3 to TEST4_ROOT.
+            Exit TEST4_S3.
+            ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: "EV4", testEvents: testEvents);
+
+        ex = ex.Trim();
+
+        // uncomment below line if you want to see the whole output
+        //output.Should().Be("");
+
+        Assert.Equal(ex, output);
     }
 }
 
