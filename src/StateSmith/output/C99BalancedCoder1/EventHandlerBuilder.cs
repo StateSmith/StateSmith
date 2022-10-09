@@ -220,7 +220,7 @@ namespace StateSmith.output.C99BalancedCoder1
             file.FinishCodeBlock();
         }
 
-        private void OutputAnyActionCode(Behavior b)
+        internal void OutputAnyActionCode(Behavior b)
         {
             if (b.HasActionCode())
             {

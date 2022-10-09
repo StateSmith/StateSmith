@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - validation - helpful error messages for when state machine design is not found.
 - Add Describe() methods for Behavior and Vertex.
 
+### Fixed
+- Root initial transition actions are now output. Had been ignored previously. Other initial transition actions were output properly. https://github.com/StateSmith/StateSmith/issues/47
+
 ---
 
 ## [0.5.7-alpha]
