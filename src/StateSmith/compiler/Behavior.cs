@@ -28,8 +28,8 @@ namespace StateSmith.Compiling
 
         public List<string> triggers = new List<string>();
         public double order = DEFAULT_ORDER;
-        public string? guardCode;
-        public string? actionCode;
+        public string guardCode = "";
+        public string actionCode = "";
 
         // https://github.com/StateSmith/StateSmith/issues/3
         public string? viaEntry;
@@ -39,7 +39,7 @@ namespace StateSmith.Compiling
 
         public Behavior() { }
 
-        public Behavior(string trigger, string? guardCode = null, string? actionCode = null)
+        public Behavior(string trigger, string guardCode = "", string actionCode = "")
         {
             this.triggers.Add(trigger);
             this.guardCode = guardCode;
@@ -154,13 +154,13 @@ namespace StateSmith.Compiling
 
             if (HasGuardCode())
             {
-                result += joiner + "[" + StringUtils.ReplaceNewLineChars(guardCode.Trim(), "\\n") + "]";
+                result += joiner + "[" + StringUtils.ReplaceNewLineChars(guardCode.Trim(), @"\n") + "]";
                 joiner = " ";
             }
 
             if (HasActionCode())
             {
-                result += joiner + "/ { " + StringUtils.ReplaceNewLineChars(actionCode.Trim(), "\\n") + " }";
+                result += joiner + "/ { " + StringUtils.ReplaceNewLineChars(actionCode.Trim(), @"\n") + " }";
                 joiner = " ";
             }
 
@@ -178,8 +178,7 @@ namespace StateSmith.Compiling
 
             if (TransitionTarget != null)
             {
-                NamedVertex target = (NamedVertex)TransitionTarget;   // will need to be updated when we allow transitioning to other types of vertices
-                result += joiner + "TransitionTo(" + Vertex.Describe(target) + ")";
+                result += joiner + "TransitionTo(" + Vertex.Describe(TransitionTarget) + ")";
             }
 
             return result;

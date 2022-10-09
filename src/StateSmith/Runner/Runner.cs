@@ -27,6 +27,8 @@ namespace StateSmith.Runner
         Compiler compiler = new();
         ExceptionPrinter exceptionPrinter;
 
+        public Action<Statemachine> postParentAliasValidation = (_) => { };
+
         protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
         protected HashSet<string> YedFileExtensions = new() { ".graphml" };
 
@@ -85,8 +87,6 @@ namespace StateSmith.Runner
 
         protected void RunRest()
         {
-            FindStateMachine();
-
             CodeGenContext codeGenContext = new(sm, settings.renderConfig);
             settings.mangler.SetStateMachine(sm);
             codeGenContext.mangler = settings.mangler;
@@ -134,15 +134,18 @@ namespace StateSmith.Runner
             );
         }
 
-
-
         private void RunCompiler()
         {
             OutputCompilingDiagramMessage();
             CompileFile();
             compiler.SetupRoots();
+            FindStateMachine();
+            compiler.rootVertices = new List<Vertex>{ sm };
+
             compiler.SupportParentAlias();
             compiler.Validate();
+            postParentAliasValidation = new TracingModder().AddTracingBehaviors;
+            postParentAliasValidation(sm);
 
             compiler.SimplifyInitialStates();
             compiler.SupportEntryExitPoints();

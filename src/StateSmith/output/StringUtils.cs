@@ -67,5 +67,24 @@ namespace StateSmith.output
             output = Regex.Replace(output, @"^[ \t]*(\r\n|\r|\n)", "");
             return output;
         }
+
+        internal static string EscapeCharsForString(string str)
+        {
+            if (str == null) return null;
+
+            str = Regex.Replace(str, @"(\\|"")", "\\$1");
+            return str;
+        }
+
+        internal static string RemoveEverythingBeforeRequiredMatch(string str, string match)
+        {
+            var index = str.LastIndexOf(match);
+            if (index < 0)
+            {
+                throw new ArgumentException($"match `{match}` not found");
+            }
+
+            return str.Substring(index + match.Length);
+        }
     }
 }
