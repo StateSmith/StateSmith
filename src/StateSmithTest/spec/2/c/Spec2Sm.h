@@ -43,21 +43,23 @@ enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST4_S10 = 20,
     Spec2Sm_StateId_TEST4_S10_1 = 21,
     Spec2Sm_StateId_TEST4_S2 = 22,
-    Spec2Sm_StateId_TEST4_S3 = 23,
-    Spec2Sm_StateId_TEST5_PARENT_CHILD_TRANSITIONS_ALIAS = 24,
-    Spec2Sm_StateId_TEST5_ROOT = 25,
-    Spec2Sm_StateId_TEST5_S1 = 26,
-    Spec2Sm_StateId_TEST5_S2 = 27,
-    Spec2Sm_StateId_TEST5_S3 = 28,
-    Spec2Sm_StateId_TEST6_VARIABLES = 29,
-    Spec2Sm_StateId_TEST6_ROOT = 30,
-    Spec2Sm_StateId_TEST6_S1 = 31,
-    Spec2Sm_StateId_TEST6_S2 = 32,
+    Spec2Sm_StateId_TEST4_S20 = 23,
+    Spec2Sm_StateId_TEST4_S20_1 = 24,
+    Spec2Sm_StateId_TEST4_S3 = 25,
+    Spec2Sm_StateId_TEST5_PARENT_CHILD_TRANSITIONS_ALIAS = 26,
+    Spec2Sm_StateId_TEST5_ROOT = 27,
+    Spec2Sm_StateId_TEST5_S1 = 28,
+    Spec2Sm_StateId_TEST5_S2 = 29,
+    Spec2Sm_StateId_TEST5_S3 = 30,
+    Spec2Sm_StateId_TEST6_VARIABLES = 31,
+    Spec2Sm_StateId_TEST6_ROOT = 32,
+    Spec2Sm_StateId_TEST6_S1 = 33,
+    Spec2Sm_StateId_TEST6_S2 = 34,
 };
 
 enum
 {
-    Spec2Sm_StateIdCount = 33
+    Spec2Sm_StateIdCount = 35
 };
 
 typedef struct Spec2Sm Spec2Sm;

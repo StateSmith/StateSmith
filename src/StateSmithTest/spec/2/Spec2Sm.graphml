@@ -769,7 +769,7 @@ transition occurs first.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y
                 <y:ProxyAutoBoundsNode>
                   <y:Realizers active="0">
                     <y:GroupNode>
-                      <y:Geometry height="315.33691859835506" width="500.1895308687238" x="185.37120258339888" y="848.967504535855"/>
+                      <y:Geometry height="428.6169185983548" width="500.1895308687238" x="185.37120258339888" y="848.967504535855"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
                       <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="500.1895308687238" x="0.0" xml:space="preserve" y="0.0">    TEST4_ROOT
@@ -777,7 +777,7 @@ enter / clear_output();</y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                       <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                       <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-                      <y:BorderInsets bottom="28" bottomF="27.903120464144877" left="17" leftF="16.800000000000125" right="46" rightF="45.939244123684944" top="0" topF="0.0"/>
+                      <y:BorderInsets bottom="43" bottomF="42.50641704831719" left="17" leftF="16.800000000000125" right="46" rightF="45.939244123684944" top="0" topF="0.0"/>
                     </y:GroupNode>
                     <y:GroupNode>
                       <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
@@ -874,12 +874,69 @@ enter / clear_output();</y:NodeLabel>
                     </node>
                   </graph>
                 </node>
+                <node id="n0::n5::n1::n4" yfiles.foldertype="group">
+                  <data key="d4" xml:space="preserve"/>
+                  <data key="d5"/>
+                  <data key="d6">
+                    <y:ProxyAutoBoundsNode>
+                      <y:Realizers active="0">
+                        <y:GroupNode>
+                          <y:Geometry height="142.25316825957748" width="194.45028674503868" x="430.17120258339907" y="1077.8248378263152"/>
+                          <y:Fill color="#F5F5F5" transparent="false"/>
+                          <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
+                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="194.45028674503868" x="0.0" xml:space="preserve" y="0.0">TEST4_S20</y:NodeLabel>
+                          <y:Shape type="roundrectangle"/>
+                          <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
+                          <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
+                          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="5.6843418860808015E-14" right="0" rightF="0.0" top="0" topF="0.0"/>
+                        </y:GroupNode>
+                        <y:GroupNode>
+                          <y:Geometry height="58.799999999999955" width="182.0" x="430.171202583399" y="904.720434223355"/>
+                          <y:Fill color="#F5F5F5" transparent="false"/>
+                          <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
+                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="182.0" x="0.0" xml:space="preserve" y="0.0">TEST4_S20</y:NodeLabel>
+                          <y:Shape type="roundrectangle"/>
+                          <y:State closed="true" closedHeight="58.799999999999955" closedWidth="182.0" innerGraphDisplayEnabled="false"/>
+                          <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
+                          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+                        </y:GroupNode>
+                      </y:Realizers>
+                    </y:ProxyAutoBoundsNode>
+                  </data>
+                  <graph edgedefault="directed" id="n0::n5::n1::n4:">
+                    <node id="n0::n5::n1::n4::n0">
+                      <data key="d6">
+                        <y:ShapeNode>
+                          <y:Geometry height="46.200000000000045" width="164.45028674503868" x="445.1712025833991" y="1158.8780060858926"/>
+                          <y:Fill color="#FFFFFF" transparent="false"/>
+                          <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+                          <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="46.200000000000045" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="164.45028674503868" x="0.0" xml:space="preserve" y="0.0">TEST4_S20_1
+<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                          <y:Shape type="roundrectangle"/>
+                        </y:ShapeNode>
+                      </data>
+                    </node>
+                    <node id="n0::n5::n1::n4::n1">
+                      <data key="d4" xml:space="preserve"/>
+                      <data key="d5" xml:space="preserve"><![CDATA[pseudo_initial]]></data>
+                      <data key="d6">
+                        <y:ShapeNode>
+                          <y:Geometry height="19.0" width="20.0" x="517.3963459559185" y="1115.2013026700652"/>
+                          <y:Fill color="#000000" transparent="false"/>
+                          <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+                          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="false" width="70.708984375" x="-25.3544921875" xml:space="preserve" y="0.1494140625">$initial_state<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                          <y:Shape type="ellipse"/>
+                        </y:ShapeNode>
+                      </data>
+                    </node>
+                  </graph>
+                </node>
               </graph>
             </node>
             <edge id="n0::n5::e0" source="n0::n5::n0" target="n0::n5::n1">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
-                  <y:Path sx="0.0" sy="9.5" tx="-161.1268392650424" ty="-141.54641166449193"/>
+                  <y:Path sx="0.0" sy="9.5" tx="-161.1268392650424" ty="-192.3948108453587"/>
                   <y:LineStyle color="#000000" type="line" width="1.0"/>
                   <y:Arrows source="none" target="standard"/>
                 </y:QuadCurveEdge>
@@ -922,26 +979,27 @@ enter / clear_output();</y:NodeLabel>
             <edge id="n0::n5::e1" source="n0::n5::n1::n2" target="n0::n5::n1">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
-                  <y:Path sx="-36.362571686259685" sy="23.100000000000136" tx="-67.92085052422706" ty="141.54641166449193">
-                    <y:Point x="263.0337742696587" y="1207.58442313421"/>
-                    <y:Point x="348.75891764217806" y="1207.58442313421"/>
+                  <y:Path sx="-36.362571686259685" sy="23.100000000000136" tx="-250.0909680177611" ty="78.26664043561982">
+                    <y:Point x="263.0337742696587" y="1183.0800000000002"/>
+                    <y:Point x="128.63377426965872" y="1192.2244231342102"/>
+                    <y:Point x="117.07891764217806" y="1141.5426042706522"/>
                   </y:Path>
                   <y:LineStyle color="#000000" type="line" width="1.0"/>
                   <y:Arrows source="none" target="standard"/>
-                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.681640625" x="-8.68932568209857E-6" xml:space="preserve" y="4.953792904440206">EV1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.681640625" x="0.12112652447035543" xml:space="preserve" y="4.853404179002382">EV1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
                 </y:QuadCurveEdge>
               </data>
             </edge>
             <edge id="n0::n5::e2" source="n0::n5::n1" target="n0::n5::n1::n0">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
-                  <y:Path sx="-244.80596801776107" sy="-31.555963835032344" tx="-82.22514337251937" ty="-2.0398914441612988">
+                  <y:Path sx="-250.08096801776105" sy="-93.8189008925669" tx="-82.22514337251937" ty="-2.0398914441612988">
                     <y:Point x="175.37120258339888" y="961.9007598908713"/>
                     <y:Point x="175.37120258339888" y="925.7805427791938"/>
                   </y:Path>
                   <y:LineStyle color="#000000" type="line" width="1.0"/>
                   <y:Arrows source="none" target="standard"/>
-                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.681640625" x="-33.86049911738829" xml:space="preserve" y="-18.25922175057326">EV2<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.681640625" x="-43.88429992675805" xml:space="preserve" y="-33.15144287109365">EV2<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
                 </y:QuadCurveEdge>
               </data>
             </edge>
@@ -949,13 +1007,51 @@ enter / clear_output();</y:NodeLabel>
               <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
-                  <y:Path sx="240.31403198223893" sy="0.0" tx="74.14365404408136" ty="-9.778006085892684">
+                  <y:Path sx="250.14403198223897" sy="-56.63999999999987" tx="74.14365404408136" ty="-9.778006085892684">
                     <y:Point x="751.9399999999997" y="1006.6359638350325"/>
                     <y:Point x="751.9399999999997" y="968.0400000000002"/>
                   </y:Path>
                   <y:LineStyle color="#000000" type="line" width="1.0"/>
                   <y:Arrows source="none" target="standard"/>
-                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.681640625" x="29.023315944811202" xml:space="preserve" y="20.6493915694075">EV3<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="right" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.681640625" x="28.969971218248702" xml:space="preserve" y="20.6493915694075">EV3<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="right" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+                </y:QuadCurveEdge>
+              </data>
+            </edge>
+            <edge id="n0::n5::n1::e3" source="n0::n5::n1::n4" target="n0::n5::n1::n4">
+              <data key="d9"/>
+              <data key="d10">
+                <y:QuadCurveEdge straightness="0.1">
+                  <y:Path sx="0.0" sy="0.0" tx="48.88365404408137" ty="41.03064126253038">
+                    <y:Point x="520.3563459559184" y="1241.0735356975702"/>
+                    <y:Point x="576.2799999999997" y="1241.0735356975702"/>
+                  </y:Path>
+                  <y:LineStyle color="#000000" type="line" width="1.0"/>
+                  <y:Arrows source="none" target="standard"/>
+                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.681640625" x="-17.156532462050336" xml:space="preserve" y="11.65776421319515">EV4<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="16.659179687499996" distanceToCenter="false" position="center" ratio="1.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+                </y:QuadCurveEdge>
+              </data>
+            </edge>
+            <edge id="n0::n5::n1::n4::e0" source="n0::n5::n1::n4::n1" target="n0::n5::n1::n4::n0">
+              <data key="d9"/>
+              <data key="d10">
+                <y:QuadCurveEdge straightness="0.1">
+                  <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+                  <y:LineStyle color="#000000" type="line" width="1.0"/>
+                  <y:Arrows source="none" target="standard"/>
+                </y:QuadCurveEdge>
+              </data>
+            </edge>
+            <edge id="n0::n5::e4" source="n0::n5::n1" target="n0::n5::n1::n4">
+              <data key="d9"/>
+              <data key="d10">
+                <y:QuadCurveEdge straightness="0.1">
+                  <y:Path sx="243.51403198223898" sy="135.80403616496778" tx="97.25365404408137" ty="11.728578043896505">
+                    <y:Point x="749.3799999999998" y="1199.0800000000002"/>
+                    <y:Point x="749.3799999999998" y="1160.6800000000003"/>
+                  </y:Path>
+                  <y:LineStyle color="#000000" type="line" width="1.0"/>
+                  <y:Arrows source="none" target="standard"/>
+                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.681640625" x="50.44201171874977" xml:space="preserve" y="19.161102155375374">EV4<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="19.16105821006265" distanceToCenter="false" position="right" ratio="0.9999999999999989" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
                 </y:QuadCurveEdge>
               </data>
             </edge>
