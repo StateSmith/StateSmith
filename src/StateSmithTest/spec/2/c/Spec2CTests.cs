@@ -311,6 +311,7 @@ public class Spec2CTests : Spec2CFixture
         Assert.Equal(ex, output);
     }
 
+    // https://github.com/StateSmith/StateSmith/issues/49
     [Fact]
     public void Test4_ParentChildTransitions_SelfTransitionWithInitialState()
     {
