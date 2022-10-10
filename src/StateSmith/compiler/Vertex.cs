@@ -193,7 +193,7 @@ namespace StateSmith.Compiling
 
         /// <summary>
         /// Finds least common ancestor (LCA) with node <paramref name="v"/>.
-        /// <c>this.FindLcaWith(this) == this</c>
+        /// <c>this.FindLcaWith(this) == this.Parent</c>
         /// </summary>
         /// <param name="v"></param>
         /// <returns></returns>
@@ -262,7 +262,7 @@ namespace StateSmith.Compiling
                 return new TransitionPath()
                 {
                     toExit = new List<Vertex>() { this },
-                    leastCommonAncestor = this,
+                    leastCommonAncestor = Parent,
                     toEnter = new List<Vertex>() { this },
                 };
             }

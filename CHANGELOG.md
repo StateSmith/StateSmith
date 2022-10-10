@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Root initial transition actions are now output. Had been ignored previously. Other initial transition actions were output properly. https://github.com/StateSmith/StateSmith/issues/47
 - Parent to child transition now exits current child first. https://github.com/StateSmith/StateSmith/issues/46
+- Parent to self transition now exits current child first. https://github.com/StateSmith/StateSmith/issues/48
 
 ---
 

@@ -1125,8 +1125,20 @@ static void TEST2_S2_ev2(Spec2Sm* self)
             trace("Transition action `` for TEST2_S2 to TEST2_S2.");
             
             // self transition
-            TEST2_S2_exit(self);
-            TEST2_S2_enter(self);
+            // Transition to target state TEST2_S2
+            {
+                // First, exit up to Least Common Ancestor TEST2_ROOT.
+                while (self->current_state_exit_handler != TEST2_ROOT_exit)
+                {
+                    self->current_state_exit_handler(self);
+                }
+                
+                // Enter towards target
+                TEST2_S2_enter(self);
+                
+                // update state_id
+                self->state_id = Spec2Sm_StateId_TEST2_S2;
+            } // end of transition code
             
             // Mark event as handled. Required because of transition.
             self->ancestor_event_handler = NULL;
@@ -1715,8 +1727,20 @@ static void TEST4_S10_ev4(Spec2Sm* self)
             trace("Transition action `` for TEST4_S10 to TEST4_S10.");
             
             // self transition
-            TEST4_S10_exit(self);
-            TEST4_S10_enter(self);
+            // Transition to target state TEST4_S10
+            {
+                // First, exit up to Least Common Ancestor TEST4_ROOT.
+                while (self->current_state_exit_handler != TEST4_ROOT_exit)
+                {
+                    self->current_state_exit_handler(self);
+                }
+                
+                // Enter towards target
+                TEST4_S10_enter(self);
+                
+                // update state_id
+                self->state_id = Spec2Sm_StateId_TEST4_S10;
+            } // end of transition code
             
             // Mark event as handled. Required because of transition.
             // self->ancestor_event_handler = NULL; // already done at top of function
