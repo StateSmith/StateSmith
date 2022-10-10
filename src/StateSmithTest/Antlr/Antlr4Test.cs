@@ -8,6 +8,7 @@ using Antlr4.Runtime.Tree;
 using Antlr4.Runtime.Misc;
 using Xunit.Abstractions;
 using StateSmith.Input.antlr4;
+using StateSmith.output;
 
 //todolow look into this: https://www.antlr.org/api/Java/org/antlr/v4/runtime/TokenStreamRewriter.html
 
@@ -93,7 +94,7 @@ public class Antlr4Test : CommonTestHelper
     [Fact]
     public void DeIndentMultilineAction()
     {
-        string input = @"
+        string input = StringUtils.ConvertToSlashNLines(@"
                 OVEN_OFF
                 event / { var += 3;
                     if (func(123))
@@ -102,18 +103,18 @@ public class Antlr4Test : CommonTestHelper
                         a = ""hello there"";
                     }
                 }
-            ";
+            ");
         var textState = (StateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("OVEN_OFF");
         textState.behaviors.Count.Should().Be(1);
         textState.behaviors[0].order.Should().Be(null);
         textState.behaviors[0].triggers.Count.Should().Be(1);
         textState.behaviors[0].guardCode.Should().Be(null);
-        textState.behaviors[0].actionCode.Should().Be("var += 3;\r\n" +
-                                                      "if (func(123))\r\n" +
-                                                      "    stuff( func(8 * 2) );\r\n" +
-                                                      "if (true) {\r\n" +
-                                                      "    a = \"hello there\";\r\n" +
+        textState.behaviors[0].actionCode.Should().Be("var += 3;\n" +
+                                                      "if (func(123))\n" +
+                                                      "    stuff( func(8 * 2) );\n" +
+                                                      "if (true) {\n" +
+                                                      "    a = \"hello there\";\n" +
                                                       "}"
                                                       );
     }
@@ -121,7 +122,7 @@ public class Antlr4Test : CommonTestHelper
     [Fact]
     public void EdgeDeIndentMultilineAction()
     {
-        string input = @"
+        string input = StringUtils.ConvertToSlashNLines(@"
                 event / { var += 3;
                     if (func(123))
                         stuff( func(8 * 2) );
@@ -129,18 +130,19 @@ public class Antlr4Test : CommonTestHelper
                         a = ""hello there"";
                     }
                 }
-            ";
+            ");
+
         var behaviors = parser.ParseEdgeLabel(input);
         AssertNoErrors();
         behaviors.Count.Should().Be(1);
         behaviors[0].order.Should().Be(null);
         behaviors[0].triggers.Count.Should().Be(1);
         behaviors[0].guardCode.Should().Be(null);
-        behaviors[0].actionCode.Should().Be("var += 3;\r\n" +
-                                            "if (func(123))\r\n" +
-                                            "    stuff( func(8 * 2) );\r\n" +
-                                            "if (true) {\r\n" +
-                                            "    a = \"hello there\";\r\n" +
+        behaviors[0].actionCode.Should().Be("var += 3;\n" +
+                                            "if (func(123))\n" +
+                                            "    stuff( func(8 * 2) );\n" +
+                                            "if (true) {\n" +
+                                            "    a = \"hello there\";\n" +
                                             "}"
                                             );
     }

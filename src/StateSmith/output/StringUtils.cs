@@ -37,6 +37,12 @@ namespace StateSmith.output
             return Regex.Replace(str, @"\r\n|\r|\n", replacment);
         }
 
+        public static string ConvertToSlashNLines(string str)
+        {
+            // TODOLOW compile common regex
+            return Regex.Replace(str, @"\r\n|\r", "\n");
+        }
+
         public static string DeIndentTrim(string str)
         {
             var output = DeIndent(str);
