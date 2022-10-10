@@ -273,6 +273,44 @@ public class Spec2CTests : Spec2CFixture
         Assert.Equal(ex, output);
     }
 
+    [Fact]
+    public void Test4_ParentChildTransitions_SelfTransition()
+    {
+        var testEvents = "";
+        var ex = "";
+
+        // 
+        testEvents += "EV3 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV3
+            ===================================================
+            State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`. Behavior running.
+            Transition action `` for TEST4_ROOT to TEST4_S10_1.
+            Enter TEST4_S10.
+            Enter TEST4_S10_1.
+            ") + "\n\n";
+
+        testEvents += "EV4 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV4
+            ===================================================
+            State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`. Behavior running.
+            Transition action `` for TEST4_S10 to TEST4_S10.
+            Exit TEST4_S10_1.
+            Exit TEST4_S10.
+            Enter TEST4_S10.
+            ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: "EV4", testEvents: testEvents);
+
+        ex = ex.Trim();
+
+        // uncomment below line if you want to see the whole output
+        //output.Should().Be("");
+
+        Assert.Equal(ex, output);
+    }
+
     /// <summary>
     /// Same as <see cref="TestParentChildTransitions"/>, but designed with parent alias nodes instead.
     /// </summary>
