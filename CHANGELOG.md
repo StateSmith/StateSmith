@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   https://github.com/StateSmith/StateSmith/issues/38
 - validation - new exception: `State machines must have exactly 1 initial state. Actual count: 0.`
 - validation - helpful error messages for when state machine design is not found.
+- Add Describe() methods for Behavior and Vertex.
+- Add `TracingModder` class.
+
+### Fixed
+- Root initial transition actions are now output. Had been ignored previously. Other initial transition actions were output properly. https://github.com/StateSmith/StateSmith/issues/47
+- Parent to child transition now exits current child first. https://github.com/StateSmith/StateSmith/issues/46
+- Parent to self transition now exits current child first. https://github.com/StateSmith/StateSmith/issues/48
 
 ---
 

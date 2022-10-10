@@ -66,7 +66,7 @@ namespace StateSmithTest
         {
             root.FindLcaWith(new State("blah blah")).Should().Be(null, because: "there's no path between the two");
 
-            root.FindLcaWith(root).Should().Be(root);
+            root.FindLcaWith(root).Should().Be(null);
             root.FindLcaWith(root_initialState).Should().Be(root);
             root.FindLcaWith(S1).Should().Be(root);
             root.FindLcaWith(S1_1).Should().Be(root);
@@ -76,7 +76,7 @@ namespace StateSmithTest
             root.FindLcaWith(S2).Should().Be(root);
 
             root_initialState.FindLcaWith(root).Should().Be(root);
-            root_initialState.FindLcaWith(root_initialState).Should().Be(root_initialState);
+            root_initialState.FindLcaWith(root_initialState).Should().Be(root);
             root_initialState.FindLcaWith(S1).Should().Be(root);
             root_initialState.FindLcaWith(S1_1).Should().Be(root);
             root_initialState.FindLcaWith(S1_1_1).Should().Be(root);
@@ -86,7 +86,7 @@ namespace StateSmithTest
 
             S1.FindLcaWith(root).Should().Be(root);
             S1.FindLcaWith(root_initialState).Should().Be(root);
-            S1.FindLcaWith(S1).Should().Be(S1);
+            S1.FindLcaWith(S1).Should().Be(root);
             S1.FindLcaWith(S1_1).Should().Be(S1);
             S1.FindLcaWith(S1_1_1).Should().Be(S1);
             S1.FindLcaWith(S1_1_2).Should().Be(S1);
@@ -96,7 +96,7 @@ namespace StateSmithTest
             S1_1.FindLcaWith(root).Should().Be(root);
             S1_1.FindLcaWith(root_initialState).Should().Be(root);
             S1_1.FindLcaWith(S1).Should().Be(S1);
-            S1_1.FindLcaWith(S1_1).Should().Be(S1_1);
+            S1_1.FindLcaWith(S1_1).Should().Be(S1);
             S1_1.FindLcaWith(S1_1_1).Should().Be(S1_1);
             S1_1.FindLcaWith(S1_1_2).Should().Be(S1_1);
             S1_1.FindLcaWith(S1_2).Should().Be(S1);
@@ -106,7 +106,7 @@ namespace StateSmithTest
             S1_1_1.FindLcaWith(root_initialState).Should().Be(root);
             S1_1_1.FindLcaWith(S1).Should().Be(S1);
             S1_1_1.FindLcaWith(S1_1).Should().Be(S1_1);
-            S1_1_1.FindLcaWith(S1_1_1).Should().Be(S1_1_1);
+            S1_1_1.FindLcaWith(S1_1_1).Should().Be(S1_1);
             S1_1_1.FindLcaWith(S1_1_2).Should().Be(S1_1);
             S1_1_1.FindLcaWith(S1_2).Should().Be(S1);
             S1_1_1.FindLcaWith(S2).Should().Be(root);
@@ -116,7 +116,7 @@ namespace StateSmithTest
             S1_1_2.FindLcaWith(S1).Should().Be(S1);
             S1_1_2.FindLcaWith(S1_1).Should().Be(S1_1);
             S1_1_2.FindLcaWith(S1_1_1).Should().Be(S1_1);
-            S1_1_2.FindLcaWith(S1_1_2).Should().Be(S1_1_2);
+            S1_1_2.FindLcaWith(S1_1_2).Should().Be(S1_1);
             S1_1_2.FindLcaWith(S1_2).Should().Be(S1);
             S1_1_2.FindLcaWith(S2).Should().Be(root);
 
@@ -126,7 +126,7 @@ namespace StateSmithTest
             S1_2.FindLcaWith(S1_1).Should().Be(S1);
             S1_2.FindLcaWith(S1_1_1).Should().Be(S1);
             S1_2.FindLcaWith(S1_1_2).Should().Be(S1);
-            S1_2.FindLcaWith(S1_2).Should().Be(S1_2);
+            S1_2.FindLcaWith(S1_2).Should().Be(S1);
             S1_2.FindLcaWith(S2).Should().Be(root);
 
             S2.FindLcaWith(root).Should().Be(root);
@@ -136,7 +136,7 @@ namespace StateSmithTest
             S2.FindLcaWith(S1_1_1).Should().Be(root);
             S2.FindLcaWith(S1_1_2).Should().Be(root);
             S2.FindLcaWith(S1_2).Should().Be(root);
-            S2.FindLcaWith(S2).Should().Be(S2);
+            S2.FindLcaWith(S2).Should().Be(root);
         }
 
         [Fact]
