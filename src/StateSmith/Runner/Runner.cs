@@ -27,6 +27,9 @@ namespace StateSmith.Runner
         Compiler compiler = new();
         ExceptionPrinter exceptionPrinter;
 
+        /// <summary>
+        /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
+        /// </summary>
         public Action<Statemachine> postParentAliasValidation = (_) => { };
 
         protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
@@ -144,7 +147,6 @@ namespace StateSmith.Runner
 
             compiler.SupportParentAlias();
             compiler.Validate();
-            postParentAliasValidation = new TracingModder().AddTracingBehaviors;
             postParentAliasValidation(sm);
 
             compiler.SimplifyInitialStates();

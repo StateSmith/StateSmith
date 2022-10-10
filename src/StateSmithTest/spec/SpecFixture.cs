@@ -18,6 +18,7 @@ public class SpecFixture
         RunnerSettings settings = new(renderConfigC, diagramFile: diagramFile, outputDirectory: srcDirectory);
         SmRunner runner = new(settings);
         settings.propagateExceptions = true;
+        runner.postParentAliasValidation = new TracingModder().AddTracingBehaviors;
         runner.Run();
     }
 }
