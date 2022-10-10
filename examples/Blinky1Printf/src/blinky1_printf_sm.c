@@ -25,7 +25,7 @@ void blinky1_printf_sm_start(blinky1_printf_sm* self) {
   ROOT_enter(self);
   // Transition to target state LED_OFF
   {
-    // target state LED_OFF is a child of this state. No need to exit this state.
+    // No need exit any states in this handler.
     
     // Enter towards target
     LED_OFF_enter(self);

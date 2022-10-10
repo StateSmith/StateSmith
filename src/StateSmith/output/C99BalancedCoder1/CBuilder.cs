@@ -116,8 +116,10 @@ namespace StateSmith.output.C99BalancedCoder1
                 throw new VertexValidationException(initialState, "Initial states must have a single transition");
             }
 
+            eventHandlerBuilder.OutputAnyActionCode(initial_transition);
+
             NamedVertex transitionTarget = (NamedVertex)initial_transition.TransitionTarget;
-            eventHandlerBuilder.OutputCodeForNonSelfTransition(sm, transitionTarget);
+            eventHandlerBuilder.OutputCodeForTransition(sm, transitionTarget, skipStateExiting: true);
             file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }

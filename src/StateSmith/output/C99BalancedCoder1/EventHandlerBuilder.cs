@@ -160,32 +160,26 @@ namespace StateSmith.output.C99BalancedCoder1
 
             NamedVertex target = (NamedVertex)b.TransitionTarget;   // will need to be updated when we allow transitioning to other types of vertices
 
-            if (target != state)
+            if (target == state)
             {
-                OutputCodeForNonSelfTransition(state, target);
-            }
-            else
-            {
-                // self transition
                 file.AppendLine("// self transition");
-                file.AppendLine($"{mangler.SmFuncTriggerHandler(state, TriggerHelper.TRIGGER_EXIT)}(self);");
-                file.AppendLine($"{mangler.SmFuncTriggerHandler(state, TriggerHelper.TRIGGER_ENTER)}(self);");
             }
+            OutputCodeForTransition(state, target);
         }
 
-        internal void OutputCodeForNonSelfTransition(NamedVertex state, NamedVertex target)
+        internal void OutputCodeForTransition(NamedVertex state, NamedVertex target, bool skipStateExiting = false)
         {
             file.Append("// Transition to target state " + target.Name);
             file.StartCodeBlock(forceNewLine: true);
             {
                 var transitionPath = state.FindTransitionPathTo(target);
-                if (transitionPath.leastCommonAncestor == state)
+                if (skipStateExiting)
                 {
-                    file.AppendLine($"// target state {target.Name} is a child of this state. No need to exit this state.");
+                    file.AppendLine($"// No need exit any states in this handler.");
                 }
                 else
                 {
-                    OutputPathExitToLcaCode(transitionPath);
+                    OutputPathExitToLcaCode((NamedVertex)transitionPath.leastCommonAncestor);
                 }
 
                 file.AppendLine();
@@ -206,10 +200,8 @@ namespace StateSmith.output.C99BalancedCoder1
         /// <summary>
         /// LCA means Least Common Ancestor
         /// </summary>
-        /// <param name="transitionPath"></param>
-        private void OutputPathExitToLcaCode(TransitionPath transitionPath)
+        private void OutputPathExitToLcaCode(NamedVertex leastCommonAncestor)
         {
-            NamedVertex leastCommonAncestor = ((NamedVertex)transitionPath.leastCommonAncestor);
             file.AppendLine($"// First, exit up to Least Common Ancestor {mangler.SmStateName(leastCommonAncestor)}.");
             string lcaExitHandler = mangler.SmFuncTriggerHandler(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
             file.Append($"while (self->current_state_exit_handler != {lcaExitHandler})");
@@ -220,7 +212,7 @@ namespace StateSmith.output.C99BalancedCoder1
             file.FinishCodeBlock();
         }
 
-        private void OutputAnyActionCode(Behavior b)
+        internal void OutputAnyActionCode(Behavior b)
         {
             if (b.HasActionCode())
             {

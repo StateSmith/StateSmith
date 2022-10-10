@@ -6,33 +6,54 @@ using StateSmith.Input;
 using System;
 using System.Text;
 using System.Linq;
+using System.IO;
 
 namespace StateSmith.Runner
 {
     public class ExceptionPrinter
     {
-        public void PrintException(Exception exception, int depth = 0)
+        public void DumpExceptionDetails(Exception exception, string filePath)
+        {
+            StringBuilder sb = new();
+            BuildExceptionDetails(sb, exception, additionalDetail: true);
+            File.WriteAllText(filePath, sb.ToString());
+        }
+
+        public void PrintException(Exception exception)
+        {
+            StringBuilder sb = new();
+            BuildExceptionDetails(sb, exception);
+            Console.Error.Write(sb.ToString());
+        }
+
+        public void BuildExceptionDetails(StringBuilder sb, Exception exception, bool additionalDetail = false, int depth = 0)
         {
             if (depth > 0)
             {
-                Console.Error.WriteLine("==========================");
-                Console.Error.WriteLine("Caused by below exception:");
+                sb.AppendLine("==========================");
+                sb.AppendLine("Caused by below exception:");
             }
 
             string? customMessage = TryBuildingCustomExceptionDetails(exception);
             if (customMessage != null)
             {
-                Console.Error.WriteLine(customMessage);
+                sb.AppendLine(customMessage);
             }
-            else
+
+            if (additionalDetail || customMessage == null)
             {
-                Console.Error.Write($"Exception {exception.GetType().Name} : ");
-                Console.Error.WriteLine($"{exception.Message}");
+                sb.Append($"Exception {exception.GetType().Name} : ");
+                sb.AppendLine($"{exception.Message}");
+            }
+
+            if (additionalDetail)
+            {
+                sb.AppendLine($"{exception.StackTrace}");
             }
 
             if (exception.InnerException != null)
             {
-                PrintException(exception.InnerException, depth + 1);
+                BuildExceptionDetails(sb, exception.InnerException, additionalDetail, depth + 1);
             }
         }
 

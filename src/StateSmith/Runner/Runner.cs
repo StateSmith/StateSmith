@@ -1,4 +1,4 @@
-﻿using StateSmith.output.C99BalancedCoder1;
+using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ using StateSmith.Input.Expansions;
 using StateSmith.Input;
 using StateSmith.compiler.Visitors;
 using StateSmith.Input.PlantUML;
+using StateSmith.compiler;
 
 #nullable enable
 
@@ -25,6 +26,11 @@ namespace StateSmith.Runner
         Statemachine sm = new("non_null_dummy");
         Compiler compiler = new();
         ExceptionPrinter exceptionPrinter;
+
+        /// <summary>
+        /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
+        /// </summary>
+        public Action<Statemachine> postParentAliasValidation = (_) => { };
 
         protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
         protected HashSet<string> YedFileExtensions = new() { ".graphml" };
@@ -63,24 +69,27 @@ namespace StateSmith.Runner
                     throw;
                 }
 
+                Environment.ExitCode = -1; // lets calling process know that code gen failed
+
                 exceptionPrinter.PrintException(e);
+                DumpErrorDetailsToFile(e);
                 OutputStageMessage("finished with failure.");
             }
 
             System.Console.WriteLine();
         }
 
+        private void DumpErrorDetailsToFile(Exception e)
+        {
+            var errorDetailFilePath = settings.diagramFile + ".err.txt";
+            //errorDetailFilePath = Path.GetFullPath(errorDetailFilePath); // if you want the full path but with resolved "../../"
+            errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
+            exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
+            Console.Error.WriteLine("Additional exception detail dumped to file: " + errorDetailFilePath);
+        }
+
         protected void RunRest()
         {
-            if (settings.stateMachineName != null)
-            {
-                sm = (Statemachine)compiler.GetVertex(settings.stateMachineName);
-            }
-            else
-            {
-                sm = compiler.rootVertices.OfType<Statemachine>().Single();
-            }
-
             CodeGenContext codeGenContext = new(sm, settings.renderConfig);
             settings.mangler.SetStateMachine(sm);
             codeGenContext.mangler = settings.mangler;
@@ -102,22 +111,43 @@ namespace StateSmith.Runner
             File.WriteAllText($"{settings.outputDirectory}{settings.mangler.CFileName}", cFileContents);
         }
 
+        private void FindStateMachine()
+        {
+            if (settings.stateMachineName != null)
+            {
+                var action = () => { sm = (Statemachine)compiler.GetVertex(settings.stateMachineName); };
+                action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{settings.stateMachineName}`.", e));
+            }
+            else
+            {
+                var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Single(); };
+                action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {compiler.rootVertices.OfType<Statemachine>().Count()}.", e));
+            }
+
+            OutputStageMessage($"Generating code for state machine `{sm.Name}`.");
+        }
+
         private void OutputCompilingDiagramMessage()
         {
             string filePath = Path.GetRelativePath(AppDomain.CurrentDomain.BaseDirectory + "../../../..", settings.diagramFile);
             filePath = filePath.Replace('\\', '/');
-            OutputStageMessage($"Compiling file: `{filePath}`");
+            OutputStageMessage($"Compiling file: `{filePath}` "
+                + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
+                + "."
+            );
         }
-
-
 
         private void RunCompiler()
         {
             OutputCompilingDiagramMessage();
             CompileFile();
             compiler.SetupRoots();
+            FindStateMachine();
+            compiler.rootVertices = new List<Vertex>{ sm };
+
             compiler.SupportParentAlias();
             compiler.Validate();
+            postParentAliasValidation(sm);
 
             compiler.SimplifyInitialStates();
             compiler.SupportEntryExitPoints();

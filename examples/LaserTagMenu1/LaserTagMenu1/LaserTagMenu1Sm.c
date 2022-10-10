@@ -147,7 +147,7 @@ void LaserTagMenu1Sm_start(LaserTagMenu1Sm* self)
     ROOT_enter(self);
     // Transition to target state WELCOME_SCREEN
     {
-        // target state WELCOME_SCREEN is a child of this state. No need to exit this state.
+        // No need exit any states in this handler.
         
         // Enter towards target
         WELCOME_SCREEN_enter(self);
@@ -1422,8 +1422,20 @@ static void MM_BACK_PRESS_EATER_5_do(LaserTagMenu1Sm* self)
         if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 2000 ))
         {
             // self transition
-            MM_BACK_PRESS_EATER_5_exit(self);
-            MM_BACK_PRESS_EATER_5_enter(self);
+            // Transition to target state MM_BACK_PRESS_EATER_5
+            {
+                // First, exit up to Least Common Ancestor MM_BACK_PRESS_EATER.
+                while (self->current_state_exit_handler != MM_BACK_PRESS_EATER_exit)
+                {
+                    self->current_state_exit_handler(self);
+                }
+                
+                // Enter towards target
+                MM_BACK_PRESS_EATER_5_enter(self);
+                
+                // update state_id
+                self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_5;
+            } // end of transition code
             
             // Mark event as handled. Required because of transition.
             // self->ancestor_event_handler = NULL; // already done at top of function
