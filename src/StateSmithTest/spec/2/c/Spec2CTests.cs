@@ -367,6 +367,43 @@ public class Spec2CTests : Spec2CFixture
 
         Assert.Equal(ex, output);
     }
+
+    [Fact]
+    public void Test6_Variables()
+    {
+        var testEvents = "";
+        var ex = "";
+
+        // 
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
+            State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior skipped.
+            ") + "\n\n";
+
+        // 
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
+            State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior running.
+            Transition action `` for TEST6_S1 to TEST6_S2.
+            Exit TEST6_S1.
+            Enter TEST6_S2.
+            ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: "EV6", testEvents: testEvents);
+
+        ex = ex.Trim();
+
+        // uncomment below line if you want to see the whole output
+        //output.Should().Be("");
+
+        Assert.Equal(ex, output);
+    }
 }
 
 
