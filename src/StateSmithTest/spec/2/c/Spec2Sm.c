@@ -54,6 +54,7 @@ static void TEST2_S1_1_ev1(Spec2Sm* self);
 static void TEST2_S2_enter(Spec2Sm* self);
 static void TEST2_S2_exit(Spec2Sm* self);
 static void TEST2_S2_ev1(Spec2Sm* self);
+static void TEST2_S2_ev2(Spec2Sm* self);
 
 static void TEST3_BEHAVIOR_ORDERING_enter(Spec2Sm* self);
 static void TEST3_BEHAVIOR_ORDERING_exit(Spec2Sm* self);
@@ -991,6 +992,7 @@ static void TEST2_S2_enter(Spec2Sm* self)
     // setup trigger/event handlers
     self->current_state_exit_handler = TEST2_S2_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST2_S2_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST2_S2_ev2;
     
     // state behavior:
     {
@@ -1010,6 +1012,7 @@ static void TEST2_S2_exit(Spec2Sm* self)
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST2_ROOT_ev1;  // the next ancestor that handles this event is TEST2_ROOT
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST2_ROOT_ev2;  // the next ancestor that handles this event is TEST2_ROOT
 }
 
 static void TEST2_S2_ev1(Spec2Sm* self)
@@ -1033,6 +1036,32 @@ static void TEST2_S2_ev1(Spec2Sm* self)
                 // Mark event as handled.
                 self->ancestor_event_handler = NULL;
             }
+        } // end of guard code
+    } // end of behavior code
+}
+
+static void TEST2_S2_ev2(Spec2Sm* self)
+{
+    // setup handler for next ancestor that listens to `EV2` event
+    self->ancestor_event_handler = TEST2_ROOT_ev2;
+    
+    // state behavior:
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // uml guard: trace_guard("State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`.", true)
+        // uml action: trace("Transition action `` for TEST2_S2 to TEST2_S2.");
+        // uml transition target: TEST2_S2
+        if (trace_guard("State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`.", true))
+        {
+            trace("Transition action `` for TEST2_S2 to TEST2_S2.");
+            
+            // self transition
+            TEST2_S2_exit(self);
+            TEST2_S2_enter(self);
+            
+            // Mark event as handled. Required because of transition.
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
         } // end of guard code
     } // end of behavior code
 }

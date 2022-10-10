@@ -82,7 +82,7 @@ public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
 public class Spec2CTests : Spec2CFixture
 {
     [Fact]
-    public void TestDoEventHandling()
+    public void Test1_DoEventHandling()
     {
         var output = Run(initialEventToSelectTest: "EV1", testEvents: "DO EV1 DO");
 
@@ -111,9 +111,9 @@ public class Spec2CTests : Spec2CFixture
     }
 
     [Fact]
-    public void TestRegularEventHandling()
+    public void Test2_RegularEventHandling()
     {
-        var output = Run(initialEventToSelectTest: "EV2", testEvents: "EV2 EV1 DO EV1");
+        var output = Run(initialEventToSelectTest: "EV2", testEvents: "EV2 EV1 DO EV1 EV2");
 
         // uncomment below line if you want to see the whole output
         //output.Should().Be("");
@@ -139,12 +139,19 @@ public class Spec2CTests : Spec2CFixture
             ===================================================
             State TEST2_S2: check behavior `EV1 / { consume_event = false; }`. Behavior running.
             State TEST2_ROOT: check behavior `EV1`. Behavior running.
+
+            Dispatch event EV2
+            ===================================================
+            State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`. Behavior running.
+            Transition action `` for TEST2_S2 to TEST2_S2.
+            Exit TEST2_S2.
+            Enter TEST2_S2.
         ");
         Assert.Equal(expected, output);
     }
 
     [Fact]
-    public void TestBehaviorOrdering()
+    public void Test3_BehaviorOrdering()
     {
         var output = Run(initialEventToSelectTest: "EV3", testEvents: "EV1 EV1");
 
@@ -175,7 +182,7 @@ public class Spec2CTests : Spec2CFixture
     }
 
     [Fact]
-    public void TestParentChildTransitions()
+    public void Test4_ParentChildTransitions()
     {
         var testEvents = "";
         var ex = "";
@@ -270,7 +277,7 @@ public class Spec2CTests : Spec2CFixture
     /// Same as <see cref="TestParentChildTransitions"/>, but designed with parent alias nodes instead.
     /// </summary>
     [Fact]
-    public void TestParentAliasChildTransitions()
+    public void Test5_ParentAliasChildTransitions()
     {
         var testEvents = "";
         var ex = "";
