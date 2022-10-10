@@ -32,7 +32,7 @@ void ButtonSm1Cpp_start(ButtonSm1Cpp* self)
     ROOT_enter(self);
     // Transition to target state NOT_PRESSED
     {
-        // target state NOT_PRESSED is a child of this state. No need to exit this state.
+        // No need exit any states in this handler.
         
         // Enter towards target
         NOT_PRESSED_enter(self);

@@ -25,7 +25,7 @@ void BlankTemplateSm_start(BlankTemplateSm* self)
     ROOT_enter(self);
     // Transition to target state STATE_1
     {
-        // target state STATE_1 is a child of this state. No need to exit this state.
+        // No need exit any states in this handler.
         
         // Enter towards target
         STATE_1_enter(self);

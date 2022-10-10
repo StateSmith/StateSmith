@@ -27,7 +27,7 @@ void Tutorial1Sm_start(Tutorial1Sm* self)
     ROOT_enter(self);
     // Transition to target state OFF
     {
-        // target state OFF is a child of this state. No need to exit this state.
+        // No need exit any states in this handler.
         
         // Enter towards target
         OFF_enter(self);
