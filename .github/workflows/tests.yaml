@@ -1,0 +1,25 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET SDK 6.0.x
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Install dependencies
+        run: dotnet restore src/StateSmith.sln
+
+      - name: Build
+        run: dotnet build --configuration Debug --no-restore src/StateSmith.sln
+
+      - name: Test
+        run: dotnet test --no-restore src/StateSmith.sln
