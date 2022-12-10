@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace StateSmith.output.C99BalancedCoder1
 {
-    // FIXME test
     public class EventHandlerBuilder
     {
         private readonly CodeGenContext ctx;
@@ -168,6 +167,11 @@ namespace StateSmith.output.C99BalancedCoder1
         }
 
         internal void OutputCodeForTransition(NamedVertex state, NamedVertex target, bool skipStateExiting = false)
+        {
+            OutputTransitionsBeforeExit(state, target, skipStateExiting);
+        }
+
+        private void OutputTransitionsBeforeExit(NamedVertex state, NamedVertex target, bool skipStateExiting)
         {
             file.Append("// Transition to target state " + target.Name);
             file.StartCodeBlock(forceNewLine: true);

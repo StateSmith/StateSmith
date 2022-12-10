@@ -127,6 +127,17 @@ namespace StateSmith.Compiling
         }
 
         /// <summary>
+        /// Must have had an original target
+        /// </summary>
+        /// <param name="newTarget"></param>
+        public void RetargetOwner(Vertex newOwner)
+        {
+            var oldOwner = OwningVertex;
+            oldOwner._behaviors.Remove(this);
+            newOwner.AddBehavior(this);
+        }
+
+        /// <summary>
         /// Throws if no transition target
         /// </summary>
         /// <returns></returns>

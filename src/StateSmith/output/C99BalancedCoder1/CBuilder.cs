@@ -14,7 +14,7 @@ namespace StateSmith.output.C99BalancedCoder1
         private readonly Statemachine sm;
         private readonly CNameMangler mangler;
         private readonly OutputFile file;
-        EventHandlerBuilder eventHandlerBuilder;
+        EventHandlerBuilder2 eventHandlerBuilder;
 
         public CBuilder(CodeGenContext ctx)
         {
@@ -109,17 +109,11 @@ namespace StateSmith.output.C99BalancedCoder1
             file.AppendLine("ROOT_enter(self);");
 
             var initialState = sm.Children.OfType<InitialState>().Single();
-            var initial_transition = initialState.Behaviors.Single();
 
-            if (initial_transition.TransitionTarget == null)
-            {
-                throw new VertexValidationException(initialState, "Initial states must have a single transition");
-            }
+            var getToInitialStateBehavior = new Behavior(sm, initialState);
 
-            eventHandlerBuilder.OutputAnyActionCode(initial_transition);
+            eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior);
 
-            NamedVertex transitionTarget = (NamedVertex)initial_transition.TransitionTarget;
-            eventHandlerBuilder.OutputCodeForTransition(sm, transitionTarget, skipStateExiting: true);
             file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }

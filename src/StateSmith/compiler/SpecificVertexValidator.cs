@@ -79,11 +79,6 @@ namespace StateSmith.Compiling
                 throw new VertexValidationException(entryPoint, "An entry point cannot have child states.");
             }
 
-            if (entryPoint.IncomingTransitions.Count > 0)
-            {
-                throw new VertexValidationException(entryPoint, "An entry point cannot have any incoming transitions.");
-            }
-
             if (entryPoint.Behaviors.Count != 1)
             {
                 throw new VertexValidationException(entryPoint, $"An entry point must have only a single behavior (instead of {entryPoint.Behaviors.Count}) which is an outgoing transition (for now).");
@@ -122,11 +117,6 @@ namespace StateSmith.Compiling
             if (v.IncomingTransitions.Count == 0)
             {
                 throw new VertexValidationException(v, "An exit point must at least one incoming transition (for now).");
-            }
-
-            if (v.Behaviors.Count > 0)
-            {
-                throw new VertexValidationException(v, "An exit point cannot have any behaviors/transitions (for now).");
             }
         }
 

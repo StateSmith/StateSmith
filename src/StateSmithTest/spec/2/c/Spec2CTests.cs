@@ -98,9 +98,38 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`. Behavior running.
-            Transition action `` for TEST1_S1_1 to TEST1_S2.
             Exit TEST1_S1_1.
             Exit TEST1_S1.
+            Transition action `` for TEST1_S1_1 to TEST1_S2.
+            Enter TEST1_S2.
+
+            Dispatch event DO
+            ===================================================
+            State TEST1_S2: check behavior `do / { consume_event = true; }`. Behavior running.
+        ");
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void Test1_DoEventHandling_v2()
+    {
+        var output = Run(initialEventToSelectTest: "EV1", testEvents: "DO EV1 DO");
+
+        // uncomment below line if you want to see the whole output
+        //output.Should().Be("");
+
+        var expected = PrepExpectedOutput(@"
+            Dispatch event DO
+            ===================================================
+            State TEST1_S1_1: check behavior `do`. Behavior running.
+            State TEST1_ROOT: check behavior `do`. Behavior running.
+
+            Dispatch event EV1
+            ===================================================
+            State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`. Behavior running.
+            Exit TEST1_S1_1.
+            Exit TEST1_S1.
+            Transition action `` for TEST1_S1_1 to TEST1_S2.
             Enter TEST1_S2.
 
             Dispatch event DO
@@ -130,9 +159,9 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event DO
             ===================================================
             State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`. Behavior running.
-            Transition action `` for TEST2_S1_1 to TEST2_S2.
             Exit TEST2_S1_1.
             Exit TEST2_S1.
+            Transition action `` for TEST2_S1_1 to TEST2_S2.
             Enter TEST2_S2.
 
             Dispatch event EV1
@@ -143,8 +172,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV2
             ===================================================
             State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`. Behavior running.
-            Transition action `` for TEST2_S2 to TEST2_S2.
             Exit TEST2_S2.
+            Transition action `` for TEST2_S2 to TEST2_S2.
             Enter TEST2_S2.
         ");
         Assert.Equal(expected, output);
@@ -162,8 +191,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`. Behavior running.
-            Transition action `` for TEST3_S1 to TEST3_S2.
             Exit TEST3_S1.
+            Transition action `` for TEST3_S1 to TEST3_S2.
             Enter TEST3_S2.
 
             Dispatch event EV1
@@ -173,9 +202,9 @@ public class Spec2CTests : Spec2CFixture
             State TEST3_S2: check behavior `1.1. EV1 / { trace(""2 woot!""); }`. Behavior running.
             2 woot!
             State TEST3_S2: check behavior `2. EV1 / { trace(""3 woot!""); } TransitionTo(TEST3_S3)`. Behavior running.
+            Exit TEST3_S2.
             Transition action `trace(""3 woot!"");` for TEST3_S2 to TEST3_S3.
             3 woot!
-            Exit TEST3_S2.
             Enter TEST3_S3.
         ");
         Assert.Equal(expected, output);
@@ -204,8 +233,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV2
             ===================================================
             State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`. Behavior running.
-            Transition action `` for TEST4_ROOT to TEST4_S1.
             Exit TEST4_S1.
+            Transition action `` for TEST4_ROOT to TEST4_S1.
             Enter TEST4_S1.
             ") + "\n\n";
 
@@ -215,8 +244,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`. Behavior running.
-            Transition action `` for TEST4_S1 to TEST4_S2.
             Exit TEST4_S1.
+            Transition action `` for TEST4_S1 to TEST4_S2.
             Enter TEST4_S2.
             ") + "\n\n";
 
@@ -226,8 +255,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV2
             ===================================================
             State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`. Behavior running.
-            Transition action `` for TEST4_ROOT to TEST4_S1.
             Exit TEST4_S2.
+            Transition action `` for TEST4_ROOT to TEST4_S1.
             Enter TEST4_S1.
             ") + "\n\n";
 
@@ -237,8 +266,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`. Behavior running.
-            Transition action `` for TEST4_S1 to TEST4_S2.
             Exit TEST4_S1.
+            Transition action `` for TEST4_S1 to TEST4_S2.
             Enter TEST4_S2.
             ") + "\n\n";
 
@@ -248,8 +277,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`. Behavior running.
-            Transition action `` for TEST4_S2 to TEST4_S3.
             Exit TEST4_S2.
+            Transition action `` for TEST4_S2 to TEST4_S3.
             Enter TEST4_S3.
             ") + "\n\n";
 
@@ -259,8 +288,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`. Behavior running.
-            Transition action `` for TEST4_S3 to TEST4_ROOT.
             Exit TEST4_S3.
+            Transition action `` for TEST4_S3 to TEST4_ROOT.
             ") + "\n\n";
 
         var output = Run(initialEventToSelectTest: "EV4", testEvents: testEvents);
@@ -295,9 +324,9 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV4
             ===================================================
             State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`. Behavior running.
-            Transition action `` for TEST4_S10 to TEST4_S10.
             Exit TEST4_S10_1.
             Exit TEST4_S10.
+            Transition action `` for TEST4_S10 to TEST4_S10.
             Enter TEST4_S10.
             ") + "\n\n";
 
@@ -312,7 +341,7 @@ public class Spec2CTests : Spec2CFixture
     }
 
     // https://github.com/StateSmith/StateSmith/issues/49
-    [Fact(Skip ="Not corrected yet. See GH issue #49.")]
+    [Fact]
     public void Test4_ParentChildTransitions_SelfTransitionWithInitialState()
     {
         var testEvents = "";
@@ -325,8 +354,8 @@ public class Spec2CTests : Spec2CFixture
             ===================================================
             State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`. Behavior running.
             Transition action `` for TEST4_ROOT to TEST4_S20.
-            Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.
             Enter TEST4_S20.
+            Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.
             Enter TEST4_S20_1.
             ") + "\n\n";
 
@@ -335,10 +364,11 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV4
             ===================================================
             State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`. Behavior running.
-            Transition action `` for TEST4_S20 to TEST4_S20.
             Exit TEST4_S20_1.
             Exit TEST4_S20.
+            Transition action `` for TEST4_S20 to TEST4_S20.
             Enter TEST4_S20.
+            Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.
             Enter TEST4_S20_1.
             ") + "\n\n";
 
@@ -378,8 +408,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV2
             ===================================================
             State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`. Behavior running.
-            Transition action `` for TEST5_ROOT to TEST5_S1.
             Exit TEST5_S1.
+            Transition action `` for TEST5_ROOT to TEST5_S1.
             Enter TEST5_S1.
             ") + "\n\n";
 
@@ -389,8 +419,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`. Behavior running.
-            Transition action `` for TEST5_S1 to TEST5_S2.
             Exit TEST5_S1.
+            Transition action `` for TEST5_S1 to TEST5_S2.
             Enter TEST5_S2.
             ") + "\n\n";
 
@@ -400,8 +430,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV2
             ===================================================
             State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`. Behavior running.
-            Transition action `` for TEST5_ROOT to TEST5_S1.
             Exit TEST5_S2.
+            Transition action `` for TEST5_ROOT to TEST5_S1.
             Enter TEST5_S1.
             ") + "\n\n";
 
@@ -411,8 +441,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`. Behavior running.
-            Transition action `` for TEST5_S1 to TEST5_S2.
             Exit TEST5_S1.
+            Transition action `` for TEST5_S1 to TEST5_S2.
             Enter TEST5_S2.
             ") + "\n\n";
 
@@ -422,8 +452,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`. Behavior running.
-            Transition action `` for TEST5_S2 to TEST5_S3.
             Exit TEST5_S2.
+            Transition action `` for TEST5_S2 to TEST5_S3.
             Enter TEST5_S3.
             ") + "\n\n";
 
@@ -433,8 +463,8 @@ public class Spec2CTests : Spec2CFixture
             Dispatch event EV1
             ===================================================
             State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`. Behavior running.
-            Transition action `` for TEST5_S3 to TEST5_ROOT.
             Exit TEST5_S3.
+            Transition action `` for TEST5_S3 to TEST5_ROOT.
             ") + "\n\n";
 
         var output = Run(initialEventToSelectTest: "EV5", testEvents: testEvents);
@@ -469,8 +499,8 @@ public class Spec2CTests : Spec2CFixture
             ===================================================
             State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
             State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior running.
-            Transition action `` for TEST6_S1 to TEST6_S2.
             Exit TEST6_S1.
+            Transition action `` for TEST6_S1 to TEST6_S2.
             Enter TEST6_S2.
             ") + "\n\n";
 

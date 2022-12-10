@@ -1,4 +1,4 @@
-using StateSmith.output.C99BalancedCoder1;
+﻿using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
 using System;
 using System.Collections.Generic;
@@ -147,10 +147,16 @@ namespace StateSmith.Runner
 
             compiler.SupportParentAlias();
             compiler.Validate();
+            compiler.SupportEntryExitPoints();
+            compiler.Validate();
             postParentAliasValidation(sm);
 
-            compiler.SimplifyInitialStates();
-            compiler.SupportEntryExitPoints();
+            //if (settings.transitionsBeforeExit)
+            //{
+            //    compiler.SimplifyInitialStates();   // FIXME remove
+            //}
+
+
             compiler.Validate();
             compiler.DefaultToDoEventIfNoTrigger();
             compiler.FinalizeTrees();

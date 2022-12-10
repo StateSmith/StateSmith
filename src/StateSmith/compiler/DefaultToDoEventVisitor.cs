@@ -20,7 +20,7 @@ namespace StateSmith.Compiling
 
         public override void Visit(Vertex v)
         {
-            throw new System.NotImplementedException("should not happen");
+            //throw new System.NotImplementedException("should not happen");
         }
 
         public override void Visit(NotesVertex v)
