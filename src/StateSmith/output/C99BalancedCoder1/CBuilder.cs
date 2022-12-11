@@ -40,8 +40,14 @@ namespace StateSmith.output.C99BalancedCoder1
             file.AppendLine();
 
             OutputTriggerHandlerPrototypes();
+            OutputHelperPrototypes();
+            file.AppendLine();
+            file.AppendLine();
 
             OutputFuncCtor();
+            
+            OutputExitUpToFunction();
+
             OutputFuncStart();
             OutputFuncDispatchEvent();
             OutputFuncStateIdToString();
@@ -68,6 +74,11 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 file.AppendLine();
             }
+        }
+
+        internal void OutputHelperPrototypes()
+        {
+            file.AppendLine($"static void {mangler.SmFuncExitUpTo}({mangler.SmStructTypedefName}* self, const {mangler.SmFuncTypedef} desired_state_exit_handler);");
         }
 
         /// <summary>
@@ -113,6 +124,22 @@ namespace StateSmith.output.C99BalancedCoder1
             var getToInitialStateBehavior = new Behavior(sm, initialState);
 
             eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior);
+
+            file.FinishCodeBlock(forceNewLine: true);
+            file.AppendLine();
+        }
+
+        internal void OutputExitUpToFunction()
+        {
+            file.Append($"static void {mangler.SmFuncExitUpTo}({mangler.SmStructTypedefName}* self, const {mangler.SmFuncTypedef} desired_state_exit_handler)");
+            file.StartCodeBlock();
+
+            file.Append($"while (self->current_state_exit_handler != desired_state_exit_handler)");
+            file.StartCodeBlock();
+            {
+                file.AppendLine("self->current_state_exit_handler(self);");
+            }
+            file.FinishCodeBlock(forceNewLine: true);
 
             file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();

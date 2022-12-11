@@ -142,9 +142,20 @@ static void TEST6_S1_ev1(Spec2Sm* self);
 static void TEST6_S2_enter(Spec2Sm* self);
 static void TEST6_S2_exit(Spec2Sm* self);
 
+static void exit_up_to_state_handler(Spec2Sm* self, const Spec2Sm_Func desired_state_exit_handler);
+
+
 void Spec2Sm_ctor(Spec2Sm* self)
 {
     memset(self, 0, sizeof(*self));
+}
+
+static void exit_up_to_state_handler(Spec2Sm* self, const Spec2Sm_Func desired_state_exit_handler)
+{
+    while (self->current_state_exit_handler != desired_state_exit_handler)
+    {
+        self->current_state_exit_handler(self);
+    }
 }
 
 void Spec2Sm_start(Spec2Sm* self)
@@ -156,11 +167,7 @@ void Spec2Sm_start(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
-        // We have to use a while loop exit until we reach ROOT.
-        while (self->current_state_exit_handler != ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
         // Enter towards target
         // ROOT.InitialState behavior
@@ -749,11 +756,7 @@ static void TEST1_S1_1_ev1(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST1_S1_1 or one of its sub states.
-        // We have to use a while loop exit until we reach TEST1_ROOT.
-        while (self->current_state_exit_handler != TEST1_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, TEST1_ROOT_exit);  // Exit until we reach TEST1_ROOT state.
         trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");
         
         // Enter towards target
@@ -1028,11 +1031,7 @@ static void TEST2_S1_1_do(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST2_S1_1 or one of its sub states.
-        // We have to use a while loop exit until we reach TEST2_ROOT.
-        while (self->current_state_exit_handler != TEST2_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, TEST2_ROOT_exit);  // Exit until we reach TEST2_ROOT state.
         trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");
         
         // Enter towards target
@@ -1529,11 +1528,7 @@ static void TEST4_ROOT_ev2(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
-        // We have to use a while loop exit until we reach TEST4_ROOT.
-        while (self->current_state_exit_handler != TEST4_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
         trace("Transition action `` for TEST4_ROOT to TEST4_S1.");
         
         // Enter towards target
@@ -1558,11 +1553,7 @@ static void TEST4_ROOT_ev3(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
-        // We have to use a while loop exit until we reach TEST4_ROOT.
-        while (self->current_state_exit_handler != TEST4_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
         trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
         
         // Enter towards target
@@ -1588,11 +1579,7 @@ static void TEST4_ROOT_ev4(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
-        // We have to use a while loop exit until we reach TEST4_ROOT.
-        while (self->current_state_exit_handler != TEST4_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
         trace("Transition action `` for TEST4_ROOT to TEST4_S20.");
         
         // Enter towards target
@@ -1719,11 +1706,7 @@ static void TEST4_S10_ev4(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_S10 or one of its sub states.
-        // We have to use a while loop exit until we reach TEST4_ROOT.
-        while (self->current_state_exit_handler != TEST4_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
         trace("Transition action `` for TEST4_S10 to TEST4_S10.");
         
         // Enter towards target
@@ -1871,11 +1854,7 @@ static void TEST4_S20_ev4(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_S20 or one of its sub states.
-        // We have to use a while loop exit until we reach TEST4_ROOT.
-        while (self->current_state_exit_handler != TEST4_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
         trace("Transition action `` for TEST4_S20 to TEST4_S20.");
         
         // Enter towards target
@@ -2070,11 +2049,7 @@ static void TEST5_ROOT_ev2(Spec2Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST5_ROOT or one of its sub states.
-        // We have to use a while loop exit until we reach TEST5_ROOT.
-        while (self->current_state_exit_handler != TEST5_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, TEST5_ROOT_exit);  // Exit until we reach TEST5_ROOT state.
         trace("Transition action `` for TEST5_ROOT to TEST5_S1.");
         
         // Enter towards target

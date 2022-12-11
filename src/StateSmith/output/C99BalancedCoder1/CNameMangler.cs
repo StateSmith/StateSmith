@@ -95,6 +95,7 @@ namespace StateSmith.output.C99BalancedCoder1
         public virtual string SmFuncStart => $"{SmName}_start";
         public virtual string SmFuncDispatchEvent => $"{SmName}_dispatch_event";
 
+        public virtual string SmFuncExitUpTo => $"exit_up_to_state_handler";
 
         public virtual string SmFuncToString => $"{SmName}_state_id_to_string";
         public virtual string SmStateToString(NamedVertex state) => $"{SmStateName(state).ToUpper()}";

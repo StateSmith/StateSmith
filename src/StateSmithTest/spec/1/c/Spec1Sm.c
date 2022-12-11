@@ -27,9 +27,20 @@ static void T11_ev2(Spec1Sm* self);
 static void T111_enter(Spec1Sm* self);
 static void T111_exit(Spec1Sm* self);
 
+static void exit_up_to_state_handler(Spec1Sm* self, const Spec1Sm_Func desired_state_exit_handler);
+
+
 void Spec1Sm_ctor(Spec1Sm* self)
 {
     memset(self, 0, sizeof(*self));
+}
+
+static void exit_up_to_state_handler(Spec1Sm* self, const Spec1Sm_Func desired_state_exit_handler)
+{
+    while (self->current_state_exit_handler != desired_state_exit_handler)
+    {
+        self->current_state_exit_handler(self);
+    }
 }
 
 void Spec1Sm_start(Spec1Sm* self)
@@ -41,11 +52,7 @@ void Spec1Sm_start(Spec1Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
-        // We have to use a while loop exit until we reach ROOT.
-        while (self->current_state_exit_handler != ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
         // Enter towards target
         // ROOT.InitialState behavior
@@ -361,11 +368,7 @@ static void T11_ev2(Spec1Sm* self)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
         // At this point, StateSmith doesn't know what the active leaf state is. It could be T11 or one of its sub states.
-        // We have to use a while loop exit until we reach S.
-        while (self->current_state_exit_handler != S_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        exit_up_to_state_handler(self, S_exit);  // Exit until we reach S state.
         trace("Transition action `` for T11 to S1.");
         
         // Enter towards target

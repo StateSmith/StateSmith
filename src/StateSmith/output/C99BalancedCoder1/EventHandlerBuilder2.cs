@@ -201,13 +201,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 string ancestorExitHandler = mangler.SmFuncTriggerHandler(ancestorState, TriggerHelper.TRIGGER_EXIT);
 
                 file.AppendLine($"// At this point, StateSmith doesn't know what the active leaf state is. It could be {Vertex.Describe(source)} or one of its sub states.");
-                file.AppendLine($"// We have to use a while loop exit until we reach {Vertex.Describe(ancestorState)}.");
-                file.Append($"while (self->current_state_exit_handler != {ancestorExitHandler})");
-                file.StartCodeBlock();
-                {
-                    file.AppendLine("self->current_state_exit_handler(self);");
-                }
-                file.FinishCodeBlock();
+                file.AppendLine($"{mangler.SmFuncExitUpTo}(self, {ancestorExitHandler});  // Exit until we reach {Vertex.Describe(ancestorState)} state.");
             }
         }
 
