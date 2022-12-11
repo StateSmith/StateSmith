@@ -35,8 +35,8 @@ void Spec1Sm_ctor(Spec1Sm* self)
 void Spec1Sm_start(Spec1Sm* self)
 {
     ROOT_enter(self);
-    // Spec1Sm behavior
-    // uml transition target: Spec1Sm.InitialState
+    // ROOT behavior
+    // uml transition target: ROOT.InitialState
     if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
@@ -46,12 +46,12 @@ void Spec1Sm_start(Spec1Sm* self)
         }
         
         // Enter towards target
-        // Spec1Sm.InitialState behavior
-        // uml action: trace("Transition action `` for Spec1Sm.InitialState to S.");
+        // ROOT.InitialState behavior
+        // uml action: trace("Transition action `` for ROOT.InitialState to S.");
         // uml transition target: S
         if (true)
         {
-            trace("Transition action `` for Spec1Sm.InitialState to S.");
+            trace("Transition action `` for ROOT.InitialState to S.");
             
             // Enter towards target
             S_enter(self);
@@ -120,7 +120,7 @@ static void ROOT_enter(Spec1Sm* self)
     // setup trigger/event handlers
     self->current_state_exit_handler = ROOT_exit;
     
-    // Spec1Sm behavior
+    // ROOT behavior
     // uml action: trace("Enter Spec1Sm.");
     if (true)
     {
@@ -131,7 +131,7 @@ static void ROOT_enter(Spec1Sm* self)
 static void ROOT_exit(Spec1Sm* self)
 {
     
-    // Spec1Sm behavior
+    // ROOT behavior
     // uml action: trace("Exit Spec1Sm.");
     if (true)
     {

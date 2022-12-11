@@ -21,7 +21,9 @@ namespace StateSmithTest
         [Fact]
         public void DescribeAsUml_WithEverythingSimple()
         {
+            var root = new State("Root");
             var s1 = new State("s1");
+            root.AddChild(s1);
 
             var b = new Behavior();
             b.order = 1.25;

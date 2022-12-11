@@ -62,7 +62,7 @@ public class Spec1CTests
             Start Statemachine
             ===================================================
             Enter Spec1Sm.
-            Transition action `` for Spec1Sm.InitialState to S.
+            Transition action `` for ROOT.InitialState to S.
             Enter S.
             Transition action `` for S.InitialState to S1.
             Enter S1.

@@ -308,6 +308,9 @@ namespace StateSmith.Compiling
 
             switch (v)
             {
+                case Statemachine sm:
+                    return "ROOT";
+
                 case NamedVertex namedVertex:
                     return namedVertex.Name;
 

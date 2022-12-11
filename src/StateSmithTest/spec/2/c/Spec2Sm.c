@@ -150,8 +150,8 @@ void Spec2Sm_ctor(Spec2Sm* self)
 void Spec2Sm_start(Spec2Sm* self)
 {
     ROOT_enter(self);
-    // Spec2Sm behavior
-    // uml transition target: Spec2Sm.InitialState
+    // ROOT behavior
+    // uml transition target: ROOT.InitialState
     if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
@@ -161,12 +161,12 @@ void Spec2Sm_start(Spec2Sm* self)
         }
         
         // Enter towards target
-        // Spec2Sm.InitialState behavior
-        // uml action: trace("Transition action `` for Spec2Sm.InitialState to DECIDE.");
+        // ROOT.InitialState behavior
+        // uml action: trace("Transition action `` for ROOT.InitialState to DECIDE.");
         // uml transition target: DECIDE
         if (true)
         {
-            trace("Transition action `` for Spec2Sm.InitialState to DECIDE.");
+            trace("Transition action `` for ROOT.InitialState to DECIDE.");
             
             // Enter towards target
             DECIDE_enter(self);
@@ -243,7 +243,7 @@ static void ROOT_enter(Spec2Sm* self)
     // setup trigger/event handlers
     self->current_state_exit_handler = ROOT_exit;
     
-    // Spec2Sm behavior
+    // ROOT behavior
     // uml action: trace("Enter Spec2Sm.");
     if (true)
     {
@@ -254,7 +254,7 @@ static void ROOT_enter(Spec2Sm* self)
 static void ROOT_exit(Spec2Sm* self)
 {
     
-    // Spec2Sm behavior
+    // ROOT behavior
     // uml action: trace("Exit Spec2Sm.");
     if (true)
     {
