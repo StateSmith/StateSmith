@@ -309,7 +309,7 @@ static void DECIDE_exit(Spec2Sm* self)
 
 static void DECIDE_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // DECIDE behavior
     // uml guard: trace_guard("State DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)
@@ -357,7 +357,7 @@ static void DECIDE_ev1(Spec2Sm* self)
 
 static void DECIDE_ev2(Spec2Sm* self)
 {
-// No ancestor state handles `EV2` event.
+    // No ancestor state handles `EV2` event.
     
     // DECIDE behavior
     // uml guard: trace_guard("State DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", true)
@@ -405,7 +405,7 @@ static void DECIDE_ev2(Spec2Sm* self)
 
 static void DECIDE_ev3(Spec2Sm* self)
 {
-// No ancestor state handles `EV3` event.
+    // No ancestor state handles `EV3` event.
     
     // DECIDE behavior
     // uml guard: trace_guard("State DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", true)
@@ -452,7 +452,7 @@ static void DECIDE_ev3(Spec2Sm* self)
 
 static void DECIDE_ev4(Spec2Sm* self)
 {
-// No ancestor state handles `EV4` event.
+    // No ancestor state handles `EV4` event.
     
     // DECIDE behavior
     // uml guard: trace_guard("State DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", true)
@@ -489,7 +489,7 @@ static void DECIDE_ev4(Spec2Sm* self)
 
 static void DECIDE_ev5(Spec2Sm* self)
 {
-// No ancestor state handles `EV5` event.
+    // No ancestor state handles `EV5` event.
     
     // DECIDE behavior
     // uml guard: trace_guard("State DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", true)
@@ -526,7 +526,7 @@ static void DECIDE_ev5(Spec2Sm* self)
 
 static void DECIDE_ev6(Spec2Sm* self)
 {
-// No ancestor state handles `EV6` event.
+    // No ancestor state handles `EV6` event.
     
     // DECIDE behavior
     // uml guard: trace_guard("State DECIDE: check behavior `EV6 TransitionTo(TEST6_VARIABLES)`.", true)
@@ -637,7 +637,7 @@ static void TEST1_ROOT_exit(Spec2Sm* self)
 
 static void TEST1_ROOT_do(Spec2Sm* self)
 {
-// No ancestor state handles `do` event.
+    // No ancestor state handles `do` event.
     
     // TEST1_ROOT behavior
     // uml guard: trace_guard("State TEST1_ROOT: check behavior `do`.", true)
@@ -749,7 +749,7 @@ static void TEST1_S1_1_do(Spec2Sm* self)
 
 static void TEST1_S1_1_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST1_S1_1 behavior
     // uml guard: trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true)
@@ -900,7 +900,7 @@ static void TEST2_ROOT_exit(Spec2Sm* self)
 
 static void TEST2_ROOT_do(Spec2Sm* self)
 {
-// No ancestor state handles `do` event.
+    // No ancestor state handles `do` event.
     
     // TEST2_ROOT behavior
     // uml guard: trace_guard("State TEST2_ROOT: check behavior `do`.", true)
@@ -917,7 +917,7 @@ static void TEST2_ROOT_do(Spec2Sm* self)
 
 static void TEST2_ROOT_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST2_ROOT behavior
     // uml guard: trace_guard("State TEST2_ROOT: check behavior `EV1`.", true)
@@ -934,7 +934,7 @@ static void TEST2_ROOT_ev1(Spec2Sm* self)
 
 static void TEST2_ROOT_ev2(Spec2Sm* self)
 {
-// No ancestor state handles `EV2` event.
+    // No ancestor state handles `EV2` event.
     
     // TEST2_ROOT behavior
     // uml guard: trace_guard("State TEST2_ROOT: check behavior `EV2`.", true)
@@ -1224,7 +1224,7 @@ static void TEST3_ROOT_exit(Spec2Sm* self)
 
 static void TEST3_ROOT_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST3_ROOT behavior
     // uml guard: trace_guard("State TEST3_ROOT: check behavior `EV1`.", true)
@@ -1531,7 +1531,7 @@ static void TEST4_ROOT_exit(Spec2Sm* self)
 
 static void TEST4_ROOT_ev2(Spec2Sm* self)
 {
-// No ancestor state handles `EV2` event.
+    // No ancestor state handles `EV2` event.
     
     // TEST4_ROOT behavior
     // uml guard: trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true)
@@ -1558,7 +1558,7 @@ static void TEST4_ROOT_ev2(Spec2Sm* self)
 
 static void TEST4_ROOT_ev3(Spec2Sm* self)
 {
-// No ancestor state handles `EV3` event.
+    // No ancestor state handles `EV3` event.
     
     // TEST4_ROOT behavior
     // uml guard: trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true)
@@ -1586,7 +1586,7 @@ static void TEST4_ROOT_ev3(Spec2Sm* self)
 
 static void TEST4_ROOT_ev4(Spec2Sm* self)
 {
-// No ancestor state handles `EV4` event.
+    // No ancestor state handles `EV4` event.
     
     // TEST4_ROOT behavior
     // uml guard: trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)
@@ -1656,7 +1656,7 @@ static void TEST4_S1_exit(Spec2Sm* self)
 
 static void TEST4_S1_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST4_S1 behavior
     // uml guard: trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", true)
@@ -1808,7 +1808,7 @@ static void TEST4_S2_exit(Spec2Sm* self)
 
 static void TEST4_S2_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST4_S2 behavior
     // uml guard: trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", true)
@@ -1970,7 +1970,7 @@ static void TEST4_S3_exit(Spec2Sm* self)
 
 static void TEST4_S3_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST4_S3 behavior
     // uml guard: trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)
@@ -2068,7 +2068,7 @@ static void TEST5_ROOT_exit(Spec2Sm* self)
 
 static void TEST5_ROOT_ev2(Spec2Sm* self)
 {
-// No ancestor state handles `EV2` event.
+    // No ancestor state handles `EV2` event.
     
     // TEST5_ROOT behavior
     // uml guard: trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true)
@@ -2128,7 +2128,7 @@ static void TEST5_S1_exit(Spec2Sm* self)
 
 static void TEST5_S1_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST5_S1 behavior
     // uml guard: trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", true)
@@ -2188,7 +2188,7 @@ static void TEST5_S2_exit(Spec2Sm* self)
 
 static void TEST5_S2_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST5_S2 behavior
     // uml guard: trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", true)
@@ -2248,7 +2248,7 @@ static void TEST5_S3_exit(Spec2Sm* self)
 
 static void TEST5_S3_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST5_S3 behavior
     // uml guard: trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", true)
@@ -2377,7 +2377,7 @@ static void TEST6_S1_exit(Spec2Sm* self)
 
 static void TEST6_S1_ev1(Spec2Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // TEST6_S1 behavior
     // uml guard: trace_guard("State TEST6_S1: check behavior `1. EV1 / { count++; }`.", true)

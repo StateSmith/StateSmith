@@ -233,7 +233,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
             if (nextHandlingState == null)
             {
-                file.FinishLine($"// No ancestor state handles `{triggerName}` event.");
+                file.AppendLine($"// No ancestor state handles `{triggerName}` event.");
             }
             else
             {

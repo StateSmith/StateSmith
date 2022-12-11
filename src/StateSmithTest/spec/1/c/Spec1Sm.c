@@ -238,7 +238,7 @@ static void S11_exit(Spec1Sm* self)
 
 static void S11_ev1(Spec1Sm* self)
 {
-// No ancestor state handles `EV1` event.
+    // No ancestor state handles `EV1` event.
     
     // S11 behavior
     // uml guard: trace_guard("State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`.", true)
@@ -353,7 +353,7 @@ static void T11_exit(Spec1Sm* self)
 
 static void T11_ev2(Spec1Sm* self)
 {
-// No ancestor state handles `EV2` event.
+    // No ancestor state handles `EV2` event.
     
     // T11 behavior
     // uml guard: trace_guard("State T11: check behavior `EV2 TransitionTo(S1)`.", true)
