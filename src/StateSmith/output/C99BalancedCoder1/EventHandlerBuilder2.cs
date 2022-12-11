@@ -320,6 +320,11 @@ namespace StateSmith.output.C99BalancedCoder1
         {
             if (hasConsumeEventVar)
             {
+                if (noAncestorHandlesEvent)
+                {
+                    file.AppendLine("// note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.");
+                }
+                
                 file.Append("bool consume_event = ");
                 if (TriggerHelper.IsDoEvent(triggerName))
                 {
@@ -330,13 +335,6 @@ namespace StateSmith.output.C99BalancedCoder1
                     file.FinishLine("true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.");
                 }
                 file.AppendLine("(void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.");
-
-                if (noAncestorHandlesEvent)
-                {
-                    file.AppendLine("// note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.");
-                }
-
-                file.AppendLine();
             }
         }
     }

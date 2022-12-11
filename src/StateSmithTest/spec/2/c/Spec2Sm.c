@@ -651,10 +651,9 @@ static void TEST1_ROOT_do(Spec2Sm* self)
     // uml guard: trace_guard("State TEST1_ROOT: check behavior `do`.", true)
     if (trace_guard("State TEST1_ROOT: check behavior `do`.", true))
     {
+        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = false; // the `do` event is special in that it normally is not consumed.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        
         
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST1_ROOT
@@ -746,7 +745,6 @@ static void TEST1_S1_1_do(Spec2Sm* self)
         bool consume_event = false; // the `do` event is special in that it normally is not consumed.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
-        
         if (consume_event)
         {
             // Mark event as handled.
@@ -825,7 +823,6 @@ static void TEST1_S2_do(Spec2Sm* self)
     {
         bool consume_event = false; // the `do` event is special in that it normally is not consumed.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
         consume_event = true;
         
         if (consume_event)
@@ -912,10 +909,9 @@ static void TEST2_ROOT_do(Spec2Sm* self)
     // uml guard: trace_guard("State TEST2_ROOT: check behavior `do`.", true)
     if (trace_guard("State TEST2_ROOT: check behavior `do`.", true))
     {
+        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = false; // the `do` event is special in that it normally is not consumed.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        
         
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST2_ROOT
@@ -929,10 +925,9 @@ static void TEST2_ROOT_ev1(Spec2Sm* self)
     // uml guard: trace_guard("State TEST2_ROOT: check behavior `EV1`.", true)
     if (trace_guard("State TEST2_ROOT: check behavior `EV1`.", true))
     {
+        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        
         
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST2_ROOT
@@ -946,10 +941,9 @@ static void TEST2_ROOT_ev2(Spec2Sm* self)
     // uml guard: trace_guard("State TEST2_ROOT: check behavior `EV2`.", true)
     if (trace_guard("State TEST2_ROOT: check behavior `EV2`.", true))
     {
+        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        
         
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST2_ROOT
@@ -1067,7 +1061,6 @@ static void TEST2_S1_1_ev1(Spec2Sm* self)
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
-        
         if (consume_event)
         {
             // Mark event as handled.
@@ -1123,7 +1116,6 @@ static void TEST2_S2_ev1(Spec2Sm* self)
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
         consume_event = false;
         
         if (consume_event)
@@ -1232,10 +1224,9 @@ static void TEST3_ROOT_ev1(Spec2Sm* self)
     // uml guard: trace_guard("State TEST3_ROOT: check behavior `EV1`.", true)
     if (trace_guard("State TEST3_ROOT: check behavior `EV1`.", true))
     {
+        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        
         
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST3_ROOT
@@ -1314,7 +1305,6 @@ static void TEST3_S1_ev1(Spec2Sm* self)
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
         trace("failed");
         
         if (consume_event)
@@ -1370,7 +1360,6 @@ static void TEST3_S2_ev1(Spec2Sm* self)
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
         trace("1 woot!");
         
         if (consume_event)
@@ -1387,7 +1376,6 @@ static void TEST3_S2_ev1(Spec2Sm* self)
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
         trace("2 woot!");
         
         if (consume_event)
@@ -2360,10 +2348,9 @@ static void TEST6_S1_ev1(Spec2Sm* self)
     // uml action: count++;
     if (trace_guard("State TEST6_S1: check behavior `1. EV1 / { count++; }`.", true))
     {
+        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        
         self->vars.count++;
         
         // No ancestor handles event. Ignore `consume_event` flag.
