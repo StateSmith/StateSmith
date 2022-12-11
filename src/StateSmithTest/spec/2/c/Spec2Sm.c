@@ -268,6 +268,7 @@ static void ROOT_exit(Spec2Sm* self)
     {
         trace("Exit Spec2Sm.");
     } // end of behavior code
+    
     // State machine root is a special case. It cannot be exited.
     (void)self;  // nothing to see here compiler. move along!
 }
@@ -304,6 +305,7 @@ static void DECIDE_exit(Spec2Sm* self)
     {
         trace("Exit DECIDE.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -592,6 +594,7 @@ static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm* self)
     {
         trace("Exit TEST1_DO_EVENT_TESTING.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
 }
@@ -623,6 +626,7 @@ static void TEST1_ROOT_exit(Spec2Sm* self)
     {
         trace("Exit TEST1_ROOT.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST1_DO_EVENT_TESTING_exit;
     self->current_event_handlers[Spec2Sm_EventId_DO] = NULL;  // no ancestor listens to this event
@@ -671,6 +675,7 @@ static void TEST1_S1_exit(Spec2Sm* self)
     {
         trace("Exit TEST1_S1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST1_ROOT_exit;
 }
@@ -711,6 +716,7 @@ static void TEST1_S1_1_exit(Spec2Sm* self)
     {
         trace("Exit TEST1_S1_1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST1_S1_exit;
     self->current_event_handlers[Spec2Sm_EventId_DO] = TEST1_ROOT_do;  // the next ancestor that handles this event is TEST1_ROOT
@@ -790,6 +796,7 @@ static void TEST1_S2_exit(Spec2Sm* self)
     {
         trace("Exit TEST1_S2.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST1_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_DO] = TEST1_ROOT_do;  // the next ancestor that handles this event is TEST1_ROOT
@@ -844,6 +851,7 @@ static void TEST2_REGULAR_EVENT_TESTING_exit(Spec2Sm* self)
     {
         trace("Exit TEST2_REGULAR_EVENT_TESTING.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
 }
@@ -877,6 +885,7 @@ static void TEST2_ROOT_exit(Spec2Sm* self)
     {
         trace("Exit TEST2_ROOT.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_REGULAR_EVENT_TESTING_exit;
     self->current_event_handlers[Spec2Sm_EventId_DO] = NULL;  // no ancestor listens to this event
@@ -961,6 +970,7 @@ static void TEST2_S1_exit(Spec2Sm* self)
     {
         trace("Exit TEST2_S1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_ROOT_exit;
 }
@@ -1001,6 +1011,7 @@ static void TEST2_S1_1_exit(Spec2Sm* self)
     {
         trace("Exit TEST2_S1_1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_S1_exit;
     self->current_event_handlers[Spec2Sm_EventId_DO] = TEST2_ROOT_do;  // the next ancestor that handles this event is TEST2_ROOT
@@ -1082,6 +1093,7 @@ static void TEST2_S2_exit(Spec2Sm* self)
     {
         trace("Exit TEST2_S2.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST2_ROOT_ev1;  // the next ancestor that handles this event is TEST2_ROOT
@@ -1163,6 +1175,7 @@ static void TEST3_BEHAVIOR_ORDERING_exit(Spec2Sm* self)
     {
         trace("Exit TEST3_BEHAVIOR_ORDERING.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
 }
@@ -1194,6 +1207,7 @@ static void TEST3_ROOT_exit(Spec2Sm* self)
     {
         trace("Exit TEST3_ROOT.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST3_BEHAVIOR_ORDERING_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -1251,6 +1265,7 @@ static void TEST3_S1_exit(Spec2Sm* self)
     {
         trace("Exit TEST3_S1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST3_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST3_ROOT_ev1;  // the next ancestor that handles this event is TEST3_ROOT
@@ -1326,6 +1341,7 @@ static void TEST3_S2_exit(Spec2Sm* self)
     {
         trace("Exit TEST3_S2.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST3_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST3_ROOT_ev1;  // the next ancestor that handles this event is TEST3_ROOT
@@ -1419,6 +1435,7 @@ static void TEST3_S3_exit(Spec2Sm* self)
     {
         trace("Exit TEST3_S3.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST3_ROOT_exit;
 }
@@ -1449,6 +1466,7 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
 }
@@ -1490,6 +1508,7 @@ static void TEST4_ROOT_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_ROOT.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
@@ -1610,6 +1629,7 @@ static void TEST4_S1_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_S1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -1667,6 +1687,7 @@ static void TEST4_S10_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_S10.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV4] = TEST4_ROOT_ev4;  // the next ancestor that handles this event is TEST4_ROOT
@@ -1724,6 +1745,7 @@ static void TEST4_S10_1_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_S10_1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_S10_exit;
 }
@@ -1755,6 +1777,7 @@ static void TEST4_S2_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_S2.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -1812,6 +1835,7 @@ static void TEST4_S20_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_S20.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV4] = TEST4_ROOT_ev4;  // the next ancestor that handles this event is TEST4_ROOT
@@ -1879,6 +1903,7 @@ static void TEST4_S20_1_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_S20_1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_S20_exit;
 }
@@ -1910,6 +1935,7 @@ static void TEST4_S3_exit(Spec2Sm* self)
     {
         trace("Exit TEST4_S3.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -1965,6 +1991,7 @@ static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(Spec2Sm* self)
     {
         trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
 }
@@ -2004,6 +2031,7 @@ static void TEST5_ROOT_exit(Spec2Sm* self)
     {
         trace("Exit TEST5_ROOT.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
@@ -2061,6 +2089,7 @@ static void TEST5_S1_exit(Spec2Sm* self)
     {
         trace("Exit TEST5_S1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST5_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -2118,6 +2147,7 @@ static void TEST5_S2_exit(Spec2Sm* self)
     {
         trace("Exit TEST5_S2.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST5_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -2175,6 +2205,7 @@ static void TEST5_S3_exit(Spec2Sm* self)
     {
         trace("Exit TEST5_S3.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST5_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -2230,6 +2261,7 @@ static void TEST6_VARIABLES_exit(Spec2Sm* self)
     {
         trace("Exit TEST6_VARIABLES.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
 }
@@ -2260,6 +2292,7 @@ static void TEST6_ROOT_exit(Spec2Sm* self)
     {
         trace("Exit TEST6_ROOT.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST6_VARIABLES_exit;
 }
@@ -2299,6 +2332,7 @@ static void TEST6_S1_exit(Spec2Sm* self)
     {
         trace("Exit TEST6_S1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST6_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -2369,6 +2403,7 @@ static void TEST6_S2_exit(Spec2Sm* self)
     {
         trace("Exit TEST6_S2.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST6_ROOT_exit;
 }

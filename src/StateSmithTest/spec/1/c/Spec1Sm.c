@@ -145,6 +145,7 @@ static void ROOT_exit(Spec1Sm* self)
     {
         trace("Exit Spec1Sm.");
     } // end of behavior code
+    
     // State machine root is a special case. It cannot be exited.
     (void)self;  // nothing to see here compiler. move along!
 }
@@ -175,6 +176,7 @@ static void S_exit(Spec1Sm* self)
     {
         trace("Exit S.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
 }
@@ -205,6 +207,7 @@ static void S1_exit(Spec1Sm* self)
     {
         trace("Exit S1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = S_exit;
 }
@@ -236,6 +239,7 @@ static void S11_exit(Spec1Sm* self)
     {
         trace("Exit S11.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = S1_exit;
     self->current_event_handlers[Spec1Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
@@ -314,6 +318,7 @@ static void T1_exit(Spec1Sm* self)
     {
         trace("Exit T1.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = S_exit;
 }
@@ -345,6 +350,7 @@ static void T11_exit(Spec1Sm* self)
     {
         trace("Exit T11.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = T1_exit;
     self->current_event_handlers[Spec1Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
@@ -411,6 +417,7 @@ static void T111_exit(Spec1Sm* self)
     {
         trace("Exit T111.");
     } // end of behavior code
+    
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = T11_exit;
 }

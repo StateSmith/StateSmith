@@ -231,15 +231,18 @@ namespace StateSmith.output.C99BalancedCoder1
 
             file.StartCodeBlock();
             {
+                var changeTracker = file.GetChangeTracker();
                 eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_EXIT, newLineDesired: false);
 
                 if (state.Parent == null)
                 {
+                    changeTracker.OutputNewLineOnChange();
                     file.AppendLine($"// State machine root is a special case. It cannot be exited.");
                     file.AppendLine($"(void)self;  // nothing to see here compiler. move along!");
                 }
                 else
                 {
+                    changeTracker.OutputNewLineOnChange();
                     file.AppendLine($"// adjust function pointers for this state's exit");
                     string parentExitHandler = mangler.SmFuncTriggerHandler((NamedVertex)state.Parent, TriggerHelper.TRIGGER_EXIT);
                     file.AppendLine($"self->current_state_exit_handler = {parentExitHandler};");

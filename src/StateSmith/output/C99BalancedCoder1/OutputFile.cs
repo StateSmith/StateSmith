@@ -4,6 +4,43 @@ using System.Text.RegularExpressions;
 
 namespace StateSmith.output.C99BalancedCoder1
 {
+    public class OutputFileChangeTracker
+    {
+        private OutputFile outputFile;
+        private int lastStringBufferLength;
+
+        public OutputFileChangeTracker(OutputFile outputFile)
+        {
+            this.outputFile = outputFile;
+            Reset();
+        }
+
+        public bool TestChanged()
+        {
+            return outputFile.GetStringBufferLength() != lastStringBufferLength;
+        }
+
+        public void Reset()
+        {
+            lastStringBufferLength = outputFile.GetStringBufferLength();
+        }
+
+        public bool PopChanged()
+        {
+            bool changed = TestChanged();
+            Reset();
+            return changed;
+        }
+
+        public void OutputNewLineOnChange()
+        {
+            if (PopChanged())
+            {
+                outputFile.AppendLine();
+            }
+        }
+    }
+
     public class OutputFile
     {
         readonly CodeGenContext ctx;
@@ -16,6 +53,11 @@ namespace StateSmith.output.C99BalancedCoder1
             ctx = codeGenContext;
             sb = fileStringBuilder;
             styler = codeGenContext.style;
+        }
+
+        public OutputFileChangeTracker GetChangeTracker()
+        {
+            return new OutputFileChangeTracker(this);
         }
 
         public void StartCodeBlock(bool forceNewLine = false)
@@ -124,6 +166,11 @@ namespace StateSmith.output.C99BalancedCoder1
         public override string ToString()
         {
             return sb.ToString();
+        }
+
+        public int GetStringBufferLength()
+        {
+            return sb.Length;
         }
     }
 }
