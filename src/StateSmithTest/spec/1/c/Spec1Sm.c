@@ -40,6 +40,8 @@ void Spec1Sm_start(Spec1Sm* self)
     if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
+        // We have to use a while loop exit until we reach ROOT.
         while (self->current_state_exit_handler != ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -247,10 +249,8 @@ static void S11_ev1(Spec1Sm* self)
     if (trace_guard("State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != S1_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is S11 and it is exiting directly to its parent S1.
+        S11_exit(self);
         trace("Transition action `` for S11 to S1.ExitPoint(1).");
         
         // Enter towards target
@@ -259,10 +259,8 @@ static void S11_ev1(Spec1Sm* self)
         // uml transition target: T11.EntryPoint(1)
         if (true)
         {
-            while (self->current_state_exit_handler != S_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
+            // Optimize away while-exit-loop because we know that the active leaf state is S1 and it is exiting directly to its parent S.
+            S1_exit(self);
             trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");
             
             // Enter towards target
@@ -362,6 +360,8 @@ static void T11_ev2(Spec1Sm* self)
     if (trace_guard("State T11: check behavior `EV2 TransitionTo(S1)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be T11 or one of its sub states.
+        // We have to use a while loop exit until we reach S.
         while (self->current_state_exit_handler != S_exit)
         {
             self->current_state_exit_handler(self);

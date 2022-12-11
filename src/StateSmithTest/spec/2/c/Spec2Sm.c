@@ -155,6 +155,8 @@ void Spec2Sm_start(Spec2Sm* self)
     if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
+        // We have to use a while loop exit until we reach ROOT.
         while (self->current_state_exit_handler != ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -318,10 +320,8 @@ static void DECIDE_ev1(Spec2Sm* self)
     if (trace_guard("State DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is DECIDE and it is exiting directly to its parent ROOT.
+        DECIDE_exit(self);
         trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING.");
         
         // Enter towards target
@@ -366,10 +366,8 @@ static void DECIDE_ev2(Spec2Sm* self)
     if (trace_guard("State DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is DECIDE and it is exiting directly to its parent ROOT.
+        DECIDE_exit(self);
         trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING.");
         
         // Enter towards target
@@ -414,10 +412,8 @@ static void DECIDE_ev3(Spec2Sm* self)
     if (trace_guard("State DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is DECIDE and it is exiting directly to its parent ROOT.
+        DECIDE_exit(self);
         trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING.");
         
         // Enter towards target
@@ -461,10 +457,8 @@ static void DECIDE_ev4(Spec2Sm* self)
     if (trace_guard("State DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is DECIDE and it is exiting directly to its parent ROOT.
+        DECIDE_exit(self);
         trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.");
         
         // Enter towards target
@@ -498,10 +492,8 @@ static void DECIDE_ev5(Spec2Sm* self)
     if (trace_guard("State DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is DECIDE and it is exiting directly to its parent ROOT.
+        DECIDE_exit(self);
         trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
         
         // Enter towards target
@@ -535,10 +527,8 @@ static void DECIDE_ev6(Spec2Sm* self)
     if (trace_guard("State DECIDE: check behavior `EV6 TransitionTo(TEST6_VARIABLES)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is DECIDE and it is exiting directly to its parent ROOT.
+        DECIDE_exit(self);
         trace("Transition action `` for DECIDE to TEST6_VARIABLES.");
         
         // Enter towards target
@@ -758,6 +748,8 @@ static void TEST1_S1_1_ev1(Spec2Sm* self)
     if (trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST1_S1_1 or one of its sub states.
+        // We have to use a while loop exit until we reach TEST1_ROOT.
         while (self->current_state_exit_handler != TEST1_ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -1035,6 +1027,8 @@ static void TEST2_S1_1_do(Spec2Sm* self)
     if (trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST2_S1_1 or one of its sub states.
+        // We have to use a while loop exit until we reach TEST2_ROOT.
         while (self->current_state_exit_handler != TEST2_ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -1142,10 +1136,8 @@ static void TEST2_S2_ev2(Spec2Sm* self)
     if (trace_guard("State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST2_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST2_S2 and it is exiting directly to its parent TEST2_ROOT.
+        TEST2_S2_exit(self);
         trace("Transition action `` for TEST2_S2 to TEST2_S2.");
         
         // Enter towards target
@@ -1292,10 +1284,8 @@ static void TEST3_S1_ev1(Spec2Sm* self)
     if (trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST3_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST3_S1 and it is exiting directly to its parent TEST3_ROOT.
+        TEST3_S1_exit(self);
         trace("Transition action `` for TEST3_S1 to TEST3_S2.");
         
         // Enter towards target
@@ -1405,10 +1395,8 @@ static void TEST3_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\"); } TransitionTo(TEST3_S3)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST3_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST3_S2 and it is exiting directly to its parent TEST3_ROOT.
+        TEST3_S2_exit(self);
         trace("Transition action `trace(\"3 woot!\");` for TEST3_S2 to TEST3_S3.");
         trace("3 woot!");
         
@@ -1540,6 +1528,8 @@ static void TEST4_ROOT_ev2(Spec2Sm* self)
     if (trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
+        // We have to use a while loop exit until we reach TEST4_ROOT.
         while (self->current_state_exit_handler != TEST4_ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -1567,6 +1557,8 @@ static void TEST4_ROOT_ev3(Spec2Sm* self)
     if (trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
+        // We have to use a while loop exit until we reach TEST4_ROOT.
         while (self->current_state_exit_handler != TEST4_ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -1595,6 +1587,8 @@ static void TEST4_ROOT_ev4(Spec2Sm* self)
     if (trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
+        // We have to use a while loop exit until we reach TEST4_ROOT.
         while (self->current_state_exit_handler != TEST4_ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -1665,10 +1659,8 @@ static void TEST4_S1_ev1(Spec2Sm* self)
     if (trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST4_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST4_S1 and it is exiting directly to its parent TEST4_ROOT.
+        TEST4_S1_exit(self);
         trace("Transition action `` for TEST4_S1 to TEST4_S2.");
         
         // Enter towards target
@@ -1726,6 +1718,8 @@ static void TEST4_S10_ev4(Spec2Sm* self)
     if (trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_S10 or one of its sub states.
+        // We have to use a while loop exit until we reach TEST4_ROOT.
         while (self->current_state_exit_handler != TEST4_ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -1817,10 +1811,8 @@ static void TEST4_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST4_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST4_S2 and it is exiting directly to its parent TEST4_ROOT.
+        TEST4_S2_exit(self);
         trace("Transition action `` for TEST4_S2 to TEST4_S3.");
         
         // Enter towards target
@@ -1878,6 +1870,8 @@ static void TEST4_S20_ev4(Spec2Sm* self)
     if (trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_S20 or one of its sub states.
+        // We have to use a while loop exit until we reach TEST4_ROOT.
         while (self->current_state_exit_handler != TEST4_ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -1979,10 +1973,8 @@ static void TEST4_S3_ev1(Spec2Sm* self)
     if (trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST4_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST4_S3 and it is exiting directly to its parent TEST4_ROOT.
+        TEST4_S3_exit(self);
         trace("Transition action `` for TEST4_S3 to TEST4_ROOT.");
         
         // Enter towards target
@@ -2077,6 +2069,8 @@ static void TEST5_ROOT_ev2(Spec2Sm* self)
     if (trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST5_ROOT or one of its sub states.
+        // We have to use a while loop exit until we reach TEST5_ROOT.
         while (self->current_state_exit_handler != TEST5_ROOT_exit)
         {
             self->current_state_exit_handler(self);
@@ -2137,10 +2131,8 @@ static void TEST5_S1_ev1(Spec2Sm* self)
     if (trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST5_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST5_S1 and it is exiting directly to its parent TEST5_ROOT.
+        TEST5_S1_exit(self);
         trace("Transition action `` for TEST5_S1 to TEST5_S2.");
         
         // Enter towards target
@@ -2197,10 +2189,8 @@ static void TEST5_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST5_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST5_S2 and it is exiting directly to its parent TEST5_ROOT.
+        TEST5_S2_exit(self);
         trace("Transition action `` for TEST5_S2 to TEST5_S3.");
         
         // Enter towards target
@@ -2257,10 +2247,8 @@ static void TEST5_S3_ev1(Spec2Sm* self)
     if (trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST5_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST5_S3 and it is exiting directly to its parent TEST5_ROOT.
+        TEST5_S3_exit(self);
         trace("Transition action `` for TEST5_S3 to TEST5_ROOT.");
         
         // Enter towards target
@@ -2400,10 +2388,8 @@ static void TEST6_S1_ev1(Spec2Sm* self)
     if (trace_guard("State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`.", self->vars.count >= 2))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        while (self->current_state_exit_handler != TEST6_ROOT_exit)
-        {
-            self->current_state_exit_handler(self);
-        }
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST6_S1 and it is exiting directly to its parent TEST6_ROOT.
+        TEST6_S1_exit(self);
         trace("Transition action `` for TEST6_S1 to TEST6_S2.");
         
         // Enter towards target

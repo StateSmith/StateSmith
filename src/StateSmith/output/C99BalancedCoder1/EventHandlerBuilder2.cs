@@ -104,7 +104,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 if (IsExitingRequired(source))
                 {
-                    ExitUntilStateReached((NamedVertex)transitionPath.leastCommonAncestor);
+                    ExitUntilStateReached(source, (NamedVertex)transitionPath.leastCommonAncestor);
                 }
 
                 OutputAnyActionCode(behavior);
@@ -178,21 +178,55 @@ namespace StateSmith.output.C99BalancedCoder1
             return true;
         }
 
-        private void OutputExitUpToSelf(NamedVertex state)
+        //private void OutputExitUpToSelf(NamedVertex state)
+        //{
+        //    file.Append("// Exit up to node that is the transition source");
+        //    ExitUntilStateReached(state);
+        //}
+
+        private void ExitUntilStateReached(Vertex source, NamedVertex ancestorState)
         {
-            file.Append("// Exit up to node that is the transition source");
-            ExitUntilStateReached(state);
+            bool canUseDirectExit = CanUseDirectExit(ref source, ancestorState);
+
+            if (canUseDirectExit)
+            {
+                NamedVertex leafActiveState = (NamedVertex)source;
+                string sourceExitHandler = mangler.SmFuncTriggerHandler(leafActiveState, TriggerHelper.TRIGGER_EXIT);
+                file.AppendLine($"// Optimize away while-exit-loop because we know that the active leaf state is {Vertex.Describe(leafActiveState)} and it is exiting directly to its parent {Vertex.Describe(ancestorState)}.");
+                file.AppendLine($"{sourceExitHandler}(self);");
+            }
+            else
+            {
+                // We don't know what the leaf active state is (some child of source). We must use 
+                string ancestorExitHandler = mangler.SmFuncTriggerHandler(ancestorState, TriggerHelper.TRIGGER_EXIT);
+
+                file.AppendLine($"// At this point, StateSmith doesn't know what the active leaf state is. It could be {Vertex.Describe(source)} or one of its sub states.");
+                file.AppendLine($"// We have to use a while loop exit until we reach {Vertex.Describe(ancestorState)}.");
+                file.Append($"while (self->current_state_exit_handler != {ancestorExitHandler})");
+                file.StartCodeBlock();
+                {
+                    file.AppendLine("self->current_state_exit_handler(self);");
+                }
+                file.FinishCodeBlock();
+            }
         }
 
-        private void ExitUntilStateReached(NamedVertex state)
+        private static bool CanUseDirectExit(ref Vertex source, NamedVertex ancestorState)
         {
-            string exitHandler = mangler.SmFuncTriggerHandler(state, TriggerHelper.TRIGGER_EXIT);
-            file.Append($"while (self->current_state_exit_handler != {exitHandler})");
-            file.StartCodeBlock();
+            bool canUseDirectExit = false; // if true, requires while loop exit
+
+            if (source is ExitPoint)
             {
-                file.AppendLine("self->current_state_exit_handler(self);");
+                source = source.Parent;  // an exit point is really a part of its parent state.
+                canUseDirectExit = true;
             }
-            file.FinishCodeBlock();
+
+            if (source is NamedVertex && source.Children.Any() == false && ancestorState == source.Parent)
+            {
+                canUseDirectExit = true;
+            }
+
+            return canUseDirectExit;
         }
 
         /// <summary>
