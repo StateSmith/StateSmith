@@ -184,8 +184,8 @@ void Spec2Sm_start(Spec2Sm* self)
             self->state_id = Spec2Sm_StateId_DECIDE;
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior
-    } // end of behavior
+        } // end of behavior for ROOT.InitialState
+    } // end of behavior for ROOT
 }
 
 void Spec2Sm_dispatch_event(Spec2Sm* self, enum Spec2Sm_EventId event_id)
@@ -257,7 +257,7 @@ static void ROOT_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter Spec2Sm.");
-    } // end of behavior code
+    } // end of behavior for ROOT
 }
 
 static void ROOT_exit(Spec2Sm* self)
@@ -267,7 +267,7 @@ static void ROOT_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit Spec2Sm.");
-    } // end of behavior code
+    } // end of behavior for ROOT
     
     // State machine root is a special case. It cannot be exited.
     (void)self;  // nothing to see here compiler. move along!
@@ -294,7 +294,7 @@ static void DECIDE_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter DECIDE.");
-    } // end of behavior code
+    } // end of behavior for DECIDE
 }
 
 static void DECIDE_exit(Spec2Sm* self)
@@ -304,7 +304,7 @@ static void DECIDE_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit DECIDE.");
-    } // end of behavior code
+    } // end of behavior for DECIDE
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -357,9 +357,9 @@ static void DECIDE_ev1(Spec2Sm* self)
                 self->state_id = Spec2Sm_StateId_TEST1_S1_1;
                 self->ancestor_event_handler = NULL;
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior
-        } // end of behavior
-    } // end of behavior
+            } // end of behavior for TEST1_ROOT.InitialState
+        } // end of behavior for TEST1_DO_EVENT_TESTING.InitialState
+    } // end of behavior for DECIDE
 }
 
 static void DECIDE_ev2(Spec2Sm* self)
@@ -403,9 +403,9 @@ static void DECIDE_ev2(Spec2Sm* self)
                 self->state_id = Spec2Sm_StateId_TEST2_S1_1;
                 self->ancestor_event_handler = NULL;
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior
-        } // end of behavior
-    } // end of behavior
+            } // end of behavior for TEST2_ROOT.InitialState
+        } // end of behavior for TEST2_REGULAR_EVENT_TESTING.InitialState
+    } // end of behavior for DECIDE
 }
 
 static void DECIDE_ev3(Spec2Sm* self)
@@ -448,9 +448,9 @@ static void DECIDE_ev3(Spec2Sm* self)
                 self->state_id = Spec2Sm_StateId_TEST3_S1;
                 self->ancestor_event_handler = NULL;
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior
-        } // end of behavior
-    } // end of behavior
+            } // end of behavior for TEST3_ROOT.InitialState
+        } // end of behavior for TEST3_BEHAVIOR_ORDERING.InitialState
+    } // end of behavior for DECIDE
 }
 
 static void DECIDE_ev4(Spec2Sm* self)
@@ -484,8 +484,8 @@ static void DECIDE_ev4(Spec2Sm* self)
             self->state_id = Spec2Sm_StateId_TEST4_ROOT;
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior
-    } // end of behavior
+        } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.InitialState
+    } // end of behavior for DECIDE
 }
 
 static void DECIDE_ev5(Spec2Sm* self)
@@ -519,8 +519,8 @@ static void DECIDE_ev5(Spec2Sm* self)
             self->state_id = Spec2Sm_StateId_TEST5_ROOT;
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior
-    } // end of behavior
+        } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState
+    } // end of behavior for DECIDE
 }
 
 static void DECIDE_ev6(Spec2Sm* self)
@@ -563,9 +563,9 @@ static void DECIDE_ev6(Spec2Sm* self)
                 self->state_id = Spec2Sm_StateId_TEST6_S1;
                 self->ancestor_event_handler = NULL;
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior
-        } // end of behavior
-    } // end of behavior
+            } // end of behavior for TEST6_ROOT.InitialState
+        } // end of behavior for TEST6_VARIABLES.InitialState
+    } // end of behavior for DECIDE
 }
 
 
@@ -583,7 +583,7 @@ static void TEST1_DO_EVENT_TESTING_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST1_DO_EVENT_TESTING.");
-    } // end of behavior code
+    } // end of behavior for TEST1_DO_EVENT_TESTING
 }
 
 static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm* self)
@@ -593,7 +593,7 @@ static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST1_DO_EVENT_TESTING.");
-    } // end of behavior code
+    } // end of behavior for TEST1_DO_EVENT_TESTING
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -615,7 +615,7 @@ static void TEST1_ROOT_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST1_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST1_ROOT
 }
 
 static void TEST1_ROOT_exit(Spec2Sm* self)
@@ -625,7 +625,7 @@ static void TEST1_ROOT_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST1_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST1_ROOT
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST1_DO_EVENT_TESTING_exit;
@@ -646,7 +646,7 @@ static void TEST1_ROOT_do(Spec2Sm* self)
         
         
         // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior code
+    } // end of behavior for TEST1_ROOT
 }
 
 
@@ -664,7 +664,7 @@ static void TEST1_S1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST1_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST1_S1
 }
 
 static void TEST1_S1_exit(Spec2Sm* self)
@@ -674,7 +674,7 @@ static void TEST1_S1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST1_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST1_S1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST1_ROOT_exit;
@@ -697,7 +697,7 @@ static void TEST1_S1_1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST1_S1_1.");
-    } // end of behavior code
+    } // end of behavior for TEST1_S1_1
     
     // TEST1_S1_1 behavior
     // uml guard: trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output(); }`.", true)
@@ -705,7 +705,7 @@ static void TEST1_S1_1_enter(Spec2Sm* self)
     if (trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output(); }`.", true))
     {
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
-    } // end of behavior code
+    } // end of behavior for TEST1_S1_1
 }
 
 static void TEST1_S1_1_exit(Spec2Sm* self)
@@ -715,7 +715,7 @@ static void TEST1_S1_1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST1_S1_1.");
-    } // end of behavior code
+    } // end of behavior for TEST1_S1_1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST1_S1_exit;
@@ -741,7 +741,7 @@ static void TEST1_S1_1_do(Spec2Sm* self)
             // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
-    } // end of behavior code
+    } // end of behavior for TEST1_S1_1
 }
 
 static void TEST1_S1_1_ev1(Spec2Sm* self)
@@ -766,7 +766,7 @@ static void TEST1_S1_1_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST1_S2;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST1_S1_1
 }
 
 
@@ -785,7 +785,7 @@ static void TEST1_S2_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST1_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST1_S2
 }
 
 static void TEST1_S2_exit(Spec2Sm* self)
@@ -795,7 +795,7 @@ static void TEST1_S2_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST1_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST1_S2
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST1_ROOT_exit;
@@ -822,7 +822,7 @@ static void TEST1_S2_do(Spec2Sm* self)
             // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
-    } // end of behavior code
+    } // end of behavior for TEST1_S2
 }
 
 
@@ -840,7 +840,7 @@ static void TEST2_REGULAR_EVENT_TESTING_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST2_REGULAR_EVENT_TESTING.");
-    } // end of behavior code
+    } // end of behavior for TEST2_REGULAR_EVENT_TESTING
 }
 
 static void TEST2_REGULAR_EVENT_TESTING_exit(Spec2Sm* self)
@@ -850,7 +850,7 @@ static void TEST2_REGULAR_EVENT_TESTING_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST2_REGULAR_EVENT_TESTING.");
-    } // end of behavior code
+    } // end of behavior for TEST2_REGULAR_EVENT_TESTING
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -874,7 +874,7 @@ static void TEST2_ROOT_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST2_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST2_ROOT
 }
 
 static void TEST2_ROOT_exit(Spec2Sm* self)
@@ -884,7 +884,7 @@ static void TEST2_ROOT_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST2_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST2_ROOT
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_REGULAR_EVENT_TESTING_exit;
@@ -907,7 +907,7 @@ static void TEST2_ROOT_do(Spec2Sm* self)
         
         
         // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior code
+    } // end of behavior for TEST2_ROOT
 }
 
 static void TEST2_ROOT_ev1(Spec2Sm* self)
@@ -924,7 +924,7 @@ static void TEST2_ROOT_ev1(Spec2Sm* self)
         
         
         // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior code
+    } // end of behavior for TEST2_ROOT
 }
 
 static void TEST2_ROOT_ev2(Spec2Sm* self)
@@ -941,7 +941,7 @@ static void TEST2_ROOT_ev2(Spec2Sm* self)
         
         
         // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior code
+    } // end of behavior for TEST2_ROOT
 }
 
 
@@ -959,7 +959,7 @@ static void TEST2_S1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST2_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST2_S1
 }
 
 static void TEST2_S1_exit(Spec2Sm* self)
@@ -969,7 +969,7 @@ static void TEST2_S1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST2_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST2_S1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_ROOT_exit;
@@ -992,7 +992,7 @@ static void TEST2_S1_1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST2_S1_1.");
-    } // end of behavior code
+    } // end of behavior for TEST2_S1_1
     
     // TEST2_S1_1 behavior
     // uml guard: trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output(); }`.", true)
@@ -1000,7 +1000,7 @@ static void TEST2_S1_1_enter(Spec2Sm* self)
     if (trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output(); }`.", true))
     {
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
-    } // end of behavior code
+    } // end of behavior for TEST2_S1_1
 }
 
 static void TEST2_S1_1_exit(Spec2Sm* self)
@@ -1010,7 +1010,7 @@ static void TEST2_S1_1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST2_S1_1.");
-    } // end of behavior code
+    } // end of behavior for TEST2_S1_1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_S1_exit;
@@ -1041,7 +1041,7 @@ static void TEST2_S1_1_do(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST2_S2;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST2_S1_1
 }
 
 static void TEST2_S1_1_ev1(Spec2Sm* self)
@@ -1062,7 +1062,7 @@ static void TEST2_S1_1_ev1(Spec2Sm* self)
             // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
-    } // end of behavior code
+    } // end of behavior for TEST2_S1_1
 }
 
 
@@ -1082,7 +1082,7 @@ static void TEST2_S2_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST2_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST2_S2
 }
 
 static void TEST2_S2_exit(Spec2Sm* self)
@@ -1092,7 +1092,7 @@ static void TEST2_S2_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST2_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST2_S2
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST2_ROOT_exit;
@@ -1120,7 +1120,7 @@ static void TEST2_S2_ev1(Spec2Sm* self)
             // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
-    } // end of behavior code
+    } // end of behavior for TEST2_S2
 }
 
 static void TEST2_S2_ev2(Spec2Sm* self)
@@ -1146,7 +1146,7 @@ static void TEST2_S2_ev2(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST2_S2;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST2_S2
 }
 
 
@@ -1164,7 +1164,7 @@ static void TEST3_BEHAVIOR_ORDERING_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST3_BEHAVIOR_ORDERING.");
-    } // end of behavior code
+    } // end of behavior for TEST3_BEHAVIOR_ORDERING
 }
 
 static void TEST3_BEHAVIOR_ORDERING_exit(Spec2Sm* self)
@@ -1174,7 +1174,7 @@ static void TEST3_BEHAVIOR_ORDERING_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST3_BEHAVIOR_ORDERING.");
-    } // end of behavior code
+    } // end of behavior for TEST3_BEHAVIOR_ORDERING
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -1196,7 +1196,7 @@ static void TEST3_ROOT_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST3_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST3_ROOT
 }
 
 static void TEST3_ROOT_exit(Spec2Sm* self)
@@ -1206,7 +1206,7 @@ static void TEST3_ROOT_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST3_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST3_ROOT
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST3_BEHAVIOR_ORDERING_exit;
@@ -1227,7 +1227,7 @@ static void TEST3_ROOT_ev1(Spec2Sm* self)
         
         
         // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior code
+    } // end of behavior for TEST3_ROOT
 }
 
 
@@ -1246,7 +1246,7 @@ static void TEST3_S1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST3_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST3_S1
     
     // TEST3_S1 behavior
     // uml guard: trace_guard("State TEST3_S1: check behavior `enter / { clear_output(); }`.", true)
@@ -1254,7 +1254,7 @@ static void TEST3_S1_enter(Spec2Sm* self)
     if (trace_guard("State TEST3_S1: check behavior `enter / { clear_output(); }`.", true))
     {
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
-    } // end of behavior code
+    } // end of behavior for TEST3_S1
 }
 
 static void TEST3_S1_exit(Spec2Sm* self)
@@ -1264,7 +1264,7 @@ static void TEST3_S1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST3_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST3_S1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST3_ROOT_exit;
@@ -1294,7 +1294,7 @@ static void TEST3_S1_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST3_S2;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST3_S1
     
     // TEST3_S1 behavior
     // uml guard: trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\"); }`.", true)
@@ -1311,7 +1311,7 @@ static void TEST3_S1_ev1(Spec2Sm* self)
             // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
-    } // end of behavior code
+    } // end of behavior for TEST3_S1
 }
 
 
@@ -1330,7 +1330,7 @@ static void TEST3_S2_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST3_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST3_S2
 }
 
 static void TEST3_S2_exit(Spec2Sm* self)
@@ -1340,7 +1340,7 @@ static void TEST3_S2_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST3_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST3_S2
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST3_ROOT_exit;
@@ -1367,7 +1367,7 @@ static void TEST3_S2_ev1(Spec2Sm* self)
             // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
-    } // end of behavior code
+    } // end of behavior for TEST3_S2
     
     // TEST3_S2 behavior
     // uml guard: trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\"); }`.", true)
@@ -1384,7 +1384,7 @@ static void TEST3_S2_ev1(Spec2Sm* self)
             // Mark event as handled.
             self->ancestor_event_handler = NULL;
         }
-    } // end of behavior code
+    } // end of behavior for TEST3_S2
     
     // TEST3_S2 behavior
     // uml guard: trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\"); } TransitionTo(TEST3_S3)`.", true)
@@ -1406,7 +1406,7 @@ static void TEST3_S2_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST3_S3;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST3_S2
 }
 
 
@@ -1424,7 +1424,7 @@ static void TEST3_S3_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST3_S3.");
-    } // end of behavior code
+    } // end of behavior for TEST3_S3
 }
 
 static void TEST3_S3_exit(Spec2Sm* self)
@@ -1434,7 +1434,7 @@ static void TEST3_S3_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST3_S3.");
-    } // end of behavior code
+    } // end of behavior for TEST3_S3
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST3_ROOT_exit;
@@ -1455,7 +1455,7 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");
-    } // end of behavior code
+    } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
 }
 
 static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm* self)
@@ -1465,7 +1465,7 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
-    } // end of behavior code
+    } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -1489,7 +1489,7 @@ static void TEST4_ROOT_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST4_ROOT
     
     // TEST4_ROOT behavior
     // uml guard: trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output(); }`.", true)
@@ -1497,7 +1497,7 @@ static void TEST4_ROOT_enter(Spec2Sm* self)
     if (trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output(); }`.", true))
     {
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
-    } // end of behavior code
+    } // end of behavior for TEST4_ROOT
 }
 
 static void TEST4_ROOT_exit(Spec2Sm* self)
@@ -1507,7 +1507,7 @@ static void TEST4_ROOT_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST4_ROOT
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
@@ -1538,7 +1538,7 @@ static void TEST4_ROOT_ev2(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST4_S1;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST4_ROOT
 }
 
 static void TEST4_ROOT_ev3(Spec2Sm* self)
@@ -1564,7 +1564,7 @@ static void TEST4_ROOT_ev3(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST4_S10_1;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST4_ROOT
 }
 
 static void TEST4_ROOT_ev4(Spec2Sm* self)
@@ -1598,8 +1598,8 @@ static void TEST4_ROOT_ev4(Spec2Sm* self)
             self->state_id = Spec2Sm_StateId_TEST4_S20_1;
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior
-    } // end of behavior
+        } // end of behavior for TEST4_S20.InitialState
+    } // end of behavior for TEST4_ROOT
 }
 
 
@@ -1618,7 +1618,7 @@ static void TEST4_S1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S1
 }
 
 static void TEST4_S1_exit(Spec2Sm* self)
@@ -1628,7 +1628,7 @@ static void TEST4_S1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
@@ -1657,7 +1657,7 @@ static void TEST4_S1_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST4_S2;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST4_S1
 }
 
 
@@ -1676,7 +1676,7 @@ static void TEST4_S10_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_S10.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S10
 }
 
 static void TEST4_S10_exit(Spec2Sm* self)
@@ -1686,7 +1686,7 @@ static void TEST4_S10_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_S10.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S10
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
@@ -1716,7 +1716,7 @@ static void TEST4_S10_ev4(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST4_S10;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST4_S10
 }
 
 
@@ -1734,7 +1734,7 @@ static void TEST4_S10_1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_S10_1.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S10_1
 }
 
 static void TEST4_S10_1_exit(Spec2Sm* self)
@@ -1744,7 +1744,7 @@ static void TEST4_S10_1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_S10_1.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S10_1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_S10_exit;
@@ -1766,7 +1766,7 @@ static void TEST4_S2_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S2
 }
 
 static void TEST4_S2_exit(Spec2Sm* self)
@@ -1776,7 +1776,7 @@ static void TEST4_S2_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S2
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
@@ -1805,7 +1805,7 @@ static void TEST4_S2_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST4_S3;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST4_S2
 }
 
 
@@ -1824,7 +1824,7 @@ static void TEST4_S20_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_S20.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S20
 }
 
 static void TEST4_S20_exit(Spec2Sm* self)
@@ -1834,7 +1834,7 @@ static void TEST4_S20_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_S20.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S20
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
@@ -1873,8 +1873,8 @@ static void TEST4_S20_ev4(Spec2Sm* self)
             self->state_id = Spec2Sm_StateId_TEST4_S20_1;
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior
-    } // end of behavior
+        } // end of behavior for TEST4_S20.InitialState
+    } // end of behavior for TEST4_S20
 }
 
 
@@ -1892,7 +1892,7 @@ static void TEST4_S20_1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_S20_1.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S20_1
 }
 
 static void TEST4_S20_1_exit(Spec2Sm* self)
@@ -1902,7 +1902,7 @@ static void TEST4_S20_1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_S20_1.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S20_1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_S20_exit;
@@ -1924,7 +1924,7 @@ static void TEST4_S3_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST4_S3.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S3
 }
 
 static void TEST4_S3_exit(Spec2Sm* self)
@@ -1934,7 +1934,7 @@ static void TEST4_S3_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST4_S3.");
-    } // end of behavior code
+    } // end of behavior for TEST4_S3
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST4_ROOT_exit;
@@ -1962,7 +1962,7 @@ static void TEST4_S3_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST4_ROOT;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST4_S3
 }
 
 
@@ -1980,7 +1980,7 @@ static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
-    } // end of behavior code
+    } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
 }
 
 static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(Spec2Sm* self)
@@ -1990,7 +1990,7 @@ static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
-    } // end of behavior code
+    } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -2012,7 +2012,7 @@ static void TEST5_ROOT_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST5_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST5_ROOT
     
     // TEST5_ROOT behavior
     // uml guard: trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output(); }`.", true)
@@ -2020,7 +2020,7 @@ static void TEST5_ROOT_enter(Spec2Sm* self)
     if (trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output(); }`.", true))
     {
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
-    } // end of behavior code
+    } // end of behavior for TEST5_ROOT
 }
 
 static void TEST5_ROOT_exit(Spec2Sm* self)
@@ -2030,7 +2030,7 @@ static void TEST5_ROOT_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST5_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST5_ROOT
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit;
@@ -2059,7 +2059,7 @@ static void TEST5_ROOT_ev2(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST5_S1;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST5_ROOT
 }
 
 
@@ -2078,7 +2078,7 @@ static void TEST5_S1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST5_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST5_S1
 }
 
 static void TEST5_S1_exit(Spec2Sm* self)
@@ -2088,7 +2088,7 @@ static void TEST5_S1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST5_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST5_S1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST5_ROOT_exit;
@@ -2117,7 +2117,7 @@ static void TEST5_S1_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST5_S2;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST5_S1
 }
 
 
@@ -2136,7 +2136,7 @@ static void TEST5_S2_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST5_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST5_S2
 }
 
 static void TEST5_S2_exit(Spec2Sm* self)
@@ -2146,7 +2146,7 @@ static void TEST5_S2_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST5_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST5_S2
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST5_ROOT_exit;
@@ -2175,7 +2175,7 @@ static void TEST5_S2_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST5_S3;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST5_S2
 }
 
 
@@ -2194,7 +2194,7 @@ static void TEST5_S3_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST5_S3.");
-    } // end of behavior code
+    } // end of behavior for TEST5_S3
 }
 
 static void TEST5_S3_exit(Spec2Sm* self)
@@ -2204,7 +2204,7 @@ static void TEST5_S3_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST5_S3.");
-    } // end of behavior code
+    } // end of behavior for TEST5_S3
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST5_ROOT_exit;
@@ -2232,7 +2232,7 @@ static void TEST5_S3_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST5_ROOT;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST5_S3
 }
 
 
@@ -2250,7 +2250,7 @@ static void TEST6_VARIABLES_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST6_VARIABLES.");
-    } // end of behavior code
+    } // end of behavior for TEST6_VARIABLES
 }
 
 static void TEST6_VARIABLES_exit(Spec2Sm* self)
@@ -2260,7 +2260,7 @@ static void TEST6_VARIABLES_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST6_VARIABLES.");
-    } // end of behavior code
+    } // end of behavior for TEST6_VARIABLES
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -2281,7 +2281,7 @@ static void TEST6_ROOT_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST6_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST6_ROOT
 }
 
 static void TEST6_ROOT_exit(Spec2Sm* self)
@@ -2291,7 +2291,7 @@ static void TEST6_ROOT_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST6_ROOT.");
-    } // end of behavior code
+    } // end of behavior for TEST6_ROOT
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST6_VARIABLES_exit;
@@ -2313,7 +2313,7 @@ static void TEST6_S1_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST6_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST6_S1
     
     // TEST6_S1 behavior
     // uml guard: trace_guard("State TEST6_S1: check behavior `enter / { clear_output(); }`.", true)
@@ -2321,7 +2321,7 @@ static void TEST6_S1_enter(Spec2Sm* self)
     if (trace_guard("State TEST6_S1: check behavior `enter / { clear_output(); }`.", true))
     {
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
-    } // end of behavior code
+    } // end of behavior for TEST6_S1
 }
 
 static void TEST6_S1_exit(Spec2Sm* self)
@@ -2331,7 +2331,7 @@ static void TEST6_S1_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST6_S1.");
-    } // end of behavior code
+    } // end of behavior for TEST6_S1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST6_ROOT_exit;
@@ -2354,7 +2354,7 @@ static void TEST6_S1_ev1(Spec2Sm* self)
         self->vars.count++;
         
         // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior code
+    } // end of behavior for TEST6_S1
     
     // TEST6_S1 behavior
     // uml guard: trace_guard("State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`.", count >= 2)
@@ -2374,7 +2374,7 @@ static void TEST6_S1_ev1(Spec2Sm* self)
         self->state_id = Spec2Sm_StateId_TEST6_S2;
         self->ancestor_event_handler = NULL;
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior
+    } // end of behavior for TEST6_S1
 }
 
 
@@ -2392,7 +2392,7 @@ static void TEST6_S2_enter(Spec2Sm* self)
     if (true)
     {
         trace("Enter TEST6_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST6_S2
 }
 
 static void TEST6_S2_exit(Spec2Sm* self)
@@ -2402,7 +2402,7 @@ static void TEST6_S2_exit(Spec2Sm* self)
     if (true)
     {
         trace("Exit TEST6_S2.");
-    } // end of behavior code
+    } // end of behavior for TEST6_S2
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST6_ROOT_exit;

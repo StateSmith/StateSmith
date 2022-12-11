@@ -87,10 +87,10 @@ void Spec1Sm_start(Spec1Sm* self)
                     self->state_id = Spec1Sm_StateId_S11;
                     self->ancestor_event_handler = NULL;
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior
-            } // end of behavior
-        } // end of behavior
-    } // end of behavior
+                } // end of behavior for S1.InitialState
+            } // end of behavior for S.InitialState
+        } // end of behavior for ROOT.InitialState
+    } // end of behavior for ROOT
 }
 
 void Spec1Sm_dispatch_event(Spec1Sm* self, enum Spec1Sm_EventId event_id)
@@ -134,7 +134,7 @@ static void ROOT_enter(Spec1Sm* self)
     if (true)
     {
         trace("Enter Spec1Sm.");
-    } // end of behavior code
+    } // end of behavior for ROOT
 }
 
 static void ROOT_exit(Spec1Sm* self)
@@ -144,7 +144,7 @@ static void ROOT_exit(Spec1Sm* self)
     if (true)
     {
         trace("Exit Spec1Sm.");
-    } // end of behavior code
+    } // end of behavior for ROOT
     
     // State machine root is a special case. It cannot be exited.
     (void)self;  // nothing to see here compiler. move along!
@@ -165,7 +165,7 @@ static void S_enter(Spec1Sm* self)
     if (true)
     {
         trace("Enter S.");
-    } // end of behavior code
+    } // end of behavior for S
 }
 
 static void S_exit(Spec1Sm* self)
@@ -175,7 +175,7 @@ static void S_exit(Spec1Sm* self)
     if (true)
     {
         trace("Exit S.");
-    } // end of behavior code
+    } // end of behavior for S
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -196,7 +196,7 @@ static void S1_enter(Spec1Sm* self)
     if (true)
     {
         trace("Enter S1.");
-    } // end of behavior code
+    } // end of behavior for S1
 }
 
 static void S1_exit(Spec1Sm* self)
@@ -206,7 +206,7 @@ static void S1_exit(Spec1Sm* self)
     if (true)
     {
         trace("Exit S1.");
-    } // end of behavior code
+    } // end of behavior for S1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = S_exit;
@@ -228,7 +228,7 @@ static void S11_enter(Spec1Sm* self)
     if (true)
     {
         trace("Enter S11.");
-    } // end of behavior code
+    } // end of behavior for S11
 }
 
 static void S11_exit(Spec1Sm* self)
@@ -238,7 +238,7 @@ static void S11_exit(Spec1Sm* self)
     if (true)
     {
         trace("Exit S11.");
-    } // end of behavior code
+    } // end of behavior for S11
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = S1_exit;
@@ -287,9 +287,9 @@ static void S11_ev1(Spec1Sm* self)
                 self->state_id = Spec1Sm_StateId_T111;
                 self->ancestor_event_handler = NULL;
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior
-        } // end of behavior
-    } // end of behavior
+            } // end of behavior for T11.EntryPoint(1)
+        } // end of behavior for S1.ExitPoint(1)
+    } // end of behavior for S11
 }
 
 
@@ -307,7 +307,7 @@ static void T1_enter(Spec1Sm* self)
     if (true)
     {
         trace("Enter T1.");
-    } // end of behavior code
+    } // end of behavior for T1
 }
 
 static void T1_exit(Spec1Sm* self)
@@ -317,7 +317,7 @@ static void T1_exit(Spec1Sm* self)
     if (true)
     {
         trace("Exit T1.");
-    } // end of behavior code
+    } // end of behavior for T1
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = S_exit;
@@ -339,7 +339,7 @@ static void T11_enter(Spec1Sm* self)
     if (true)
     {
         trace("Enter T11.");
-    } // end of behavior code
+    } // end of behavior for T11
 }
 
 static void T11_exit(Spec1Sm* self)
@@ -349,7 +349,7 @@ static void T11_exit(Spec1Sm* self)
     if (true)
     {
         trace("Exit T11.");
-    } // end of behavior code
+    } // end of behavior for T11
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = T1_exit;
@@ -387,8 +387,8 @@ static void T11_ev2(Spec1Sm* self)
             self->state_id = Spec1Sm_StateId_S11;
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior
-    } // end of behavior
+        } // end of behavior for S1.InitialState
+    } // end of behavior for T11
 }
 
 
@@ -406,7 +406,7 @@ static void T111_enter(Spec1Sm* self)
     if (true)
     {
         trace("Enter T111.");
-    } // end of behavior code
+    } // end of behavior for T111
 }
 
 static void T111_exit(Spec1Sm* self)
@@ -416,7 +416,7 @@ static void T111_exit(Spec1Sm* self)
     if (true)
     {
         trace("Exit T111.");
-    } // end of behavior code
+    } // end of behavior for T111
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = T11_exit;

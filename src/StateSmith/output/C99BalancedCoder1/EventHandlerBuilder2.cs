@@ -144,7 +144,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 }
 
             }
-            file.FinishCodeBlock(" // end of behavior");
+            file.FinishCodeBlock($" // end of behavior for {Vertex.Describe(behavior.OwningVertex)}");
         }
 
         private void OutputAnyActionCode(Behavior behavior)
@@ -293,7 +293,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 MaybeOutputConsumeEventCode(noAncestorHandlesEvent, hasConsumeEventVar);
             }
-            file.FinishCodeBlock(" // end of behavior code");
+            file.FinishCodeBlock($" // end of behavior for {Vertex.Describe(b.OwningVertex)}");
         }
 
         private void MaybeOutputConsumeEventCode(bool noAncestorHandlesEvent, bool hasConsumeEventVar)
