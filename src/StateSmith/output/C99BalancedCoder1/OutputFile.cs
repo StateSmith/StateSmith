@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace StateSmith.output.C99BalancedCoder1
 {
@@ -48,11 +49,18 @@ namespace StateSmith.output.C99BalancedCoder1
         private readonly CodeStyleSettings styler;
         int indentLevel = 0;
 
+        private bool lineBreakBeforeMoreCode = false;
+
         public OutputFile(CodeGenContext codeGenContext, StringBuilder fileStringBuilder)
         {
             ctx = codeGenContext;
             sb = fileStringBuilder;
             styler = codeGenContext.style;
+        }
+
+        public void RequestNewLineBeforeMoreCode()
+        {
+            lineBreakBeforeMoreCode = true;
         }
 
         public OutputFileChangeTracker GetChangeTracker()
@@ -99,6 +107,8 @@ namespace StateSmith.output.C99BalancedCoder1
             {
                 throw new InvalidOperationException("indent went negative");
             }
+
+            lineBreakBeforeMoreCode = false;
 
             Append("}");
             sb.Append(codeAfterBrace); // this part shouldn't be indented
@@ -153,6 +163,12 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void Append(string code = "")
         {
+            if (lineBreakBeforeMoreCode)
+            {
+                lineBreakBeforeMoreCode = false;
+                AppendLine();
+            }
+
             styler.Indent(sb, indentLevel);
             sb.Append(code);
         }

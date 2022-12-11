@@ -55,6 +55,7 @@ void Spec1Sm_start(Spec1Sm* self)
         exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
         // Enter towards target
+        
         // ROOT.InitialState behavior
         // uml action: trace("Transition action `` for ROOT.InitialState to S.");
         // uml transition target: S
@@ -64,6 +65,7 @@ void Spec1Sm_start(Spec1Sm* self)
             
             // Enter towards target
             S_enter(self);
+            
             // S.InitialState behavior
             // uml action: trace("Transition action `` for S.InitialState to S1.");
             // uml transition target: S1
@@ -73,6 +75,7 @@ void Spec1Sm_start(Spec1Sm* self)
                 
                 // Enter towards target
                 S1_enter(self);
+                
                 // S1.InitialState behavior
                 // uml action: trace("Transition action `` for S1.InitialState to S11.");
                 // uml transition target: S11
@@ -261,6 +264,7 @@ static void S11_ev1(Spec1Sm* self)
         trace("Transition action `` for S11 to S1.ExitPoint(1).");
         
         // Enter towards target
+        
         // S1.ExitPoint(1) behavior
         // uml action: trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");
         // uml transition target: T11.EntryPoint(1)
@@ -273,6 +277,7 @@ static void S11_ev1(Spec1Sm* self)
             // Enter towards target
             T1_enter(self);
             T11_enter(self);
+            
             // T11.EntryPoint(1) behavior
             // uml action: trace("Transition action `` for T11.EntryPoint(1) to T111.");
             // uml transition target: T111
@@ -373,6 +378,7 @@ static void T11_ev2(Spec1Sm* self)
         
         // Enter towards target
         S1_enter(self);
+        
         // S1.InitialState behavior
         // uml action: trace("Transition action `` for S1.InitialState to S11.");
         // uml transition target: S11

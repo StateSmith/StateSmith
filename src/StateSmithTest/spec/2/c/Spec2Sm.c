@@ -170,6 +170,7 @@ void Spec2Sm_start(Spec2Sm* self)
         exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
         // Enter towards target
+        
         // ROOT.InitialState behavior
         // uml action: trace("Transition action `` for ROOT.InitialState to DECIDE.");
         // uml transition target: DECIDE
@@ -333,6 +334,7 @@ static void DECIDE_ev1(Spec2Sm* self)
         
         // Enter towards target
         TEST1_DO_EVENT_TESTING_enter(self);
+        
         // TEST1_DO_EVENT_TESTING.InitialState behavior
         // uml action: trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");
         // uml transition target: TEST1_ROOT
@@ -342,6 +344,7 @@ static void DECIDE_ev1(Spec2Sm* self)
             
             // Enter towards target
             TEST1_ROOT_enter(self);
+            
             // TEST1_ROOT.InitialState behavior
             // uml action: trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");
             // uml transition target: TEST1_S1_1
@@ -379,6 +382,7 @@ static void DECIDE_ev2(Spec2Sm* self)
         
         // Enter towards target
         TEST2_REGULAR_EVENT_TESTING_enter(self);
+        
         // TEST2_REGULAR_EVENT_TESTING.InitialState behavior
         // uml action: trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");
         // uml transition target: TEST2_ROOT
@@ -388,6 +392,7 @@ static void DECIDE_ev2(Spec2Sm* self)
             
             // Enter towards target
             TEST2_ROOT_enter(self);
+            
             // TEST2_ROOT.InitialState behavior
             // uml action: trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");
             // uml transition target: TEST2_S1_1
@@ -425,6 +430,7 @@ static void DECIDE_ev3(Spec2Sm* self)
         
         // Enter towards target
         TEST3_BEHAVIOR_ORDERING_enter(self);
+        
         // TEST3_BEHAVIOR_ORDERING.InitialState behavior
         // uml action: trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");
         // uml transition target: TEST3_ROOT
@@ -434,6 +440,7 @@ static void DECIDE_ev3(Spec2Sm* self)
             
             // Enter towards target
             TEST3_ROOT_enter(self);
+            
             // TEST3_ROOT.InitialState behavior
             // uml action: trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");
             // uml transition target: TEST3_S1
@@ -470,6 +477,7 @@ static void DECIDE_ev4(Spec2Sm* self)
         
         // Enter towards target
         TEST4_PARENT_CHILD_TRANSITIONS_enter(self);
+        
         // TEST4_PARENT_CHILD_TRANSITIONS.InitialState behavior
         // uml action: trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_ROOT.");
         // uml transition target: TEST4_ROOT
@@ -505,6 +513,7 @@ static void DECIDE_ev5(Spec2Sm* self)
         
         // Enter towards target
         TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(self);
+        
         // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState behavior
         // uml action: trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");
         // uml transition target: TEST5_ROOT
@@ -540,6 +549,7 @@ static void DECIDE_ev6(Spec2Sm* self)
         
         // Enter towards target
         TEST6_VARIABLES_enter(self);
+        
         // TEST6_VARIABLES.InitialState behavior
         // uml action: trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");
         // uml transition target: TEST6_ROOT
@@ -549,6 +559,7 @@ static void DECIDE_ev6(Spec2Sm* self)
             
             // Enter towards target
             TEST6_ROOT_enter(self);
+            
             // TEST6_ROOT.InitialState behavior
             // uml action: trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1.");
             // uml transition target: TEST6_S1
@@ -1584,6 +1595,7 @@ static void TEST4_ROOT_ev4(Spec2Sm* self)
         
         // Enter towards target
         TEST4_S20_enter(self);
+        
         // TEST4_S20.InitialState behavior
         // uml action: trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
         // uml transition target: TEST4_S20_1
@@ -1859,6 +1871,7 @@ static void TEST4_S20_ev4(Spec2Sm* self)
         
         // Enter towards target
         TEST4_S20_enter(self);
+        
         // TEST4_S20.InitialState behavior
         // uml action: trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
         // uml transition target: TEST4_S20_1

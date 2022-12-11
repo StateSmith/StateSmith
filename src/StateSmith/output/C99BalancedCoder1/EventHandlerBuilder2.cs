@@ -120,6 +120,8 @@ namespace StateSmith.output.C99BalancedCoder1
                     }
                 }
 
+                file.RequestNewLineBeforeMoreCode();
+
                 if (target is PseudoStateVertex pseudoStateVertex)
                 {
                     OutputTransitionsForPseudoState(pseudoStateVertex);
@@ -135,7 +137,6 @@ namespace StateSmith.output.C99BalancedCoder1
                     else
                     {
                         // no initial state, this is the final state.
-                        file.AppendLine();
                         file.AppendLine("// update state_id");
                         file.AppendLine($"self->state_id = {mangler.SmStateEnumValue(namedVertexTarget)};");
                         file.AppendLine("self->ancestor_event_handler = NULL;"); // todolow - only do if owning state actually needs it.
@@ -228,7 +229,7 @@ namespace StateSmith.output.C99BalancedCoder1
         /// </summary>
         /// <param name="state"></param>
         /// <param name="triggerName"></param>
-        public void OutputStateBehaviorsForTrigger(NamedVertex state, string triggerName, bool newLineDesired = true)
+        public void OutputStateBehaviorsForTrigger(NamedVertex state, string triggerName)
         {
             bool noAncestorHandlesEvent = true;
 
@@ -240,11 +241,6 @@ namespace StateSmith.output.C99BalancedCoder1
             var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName).OrderBy((b) => b.order);
             foreach (var b in behaviorsWithTrigger)
             {
-                if (newLineDesired)
-                {
-                    file.AppendLine();
-                }
-
                 if (b.HasTransition())
                 {
                     OutputTransitionCode(b);
@@ -254,7 +250,7 @@ namespace StateSmith.output.C99BalancedCoder1
                     OutputNonTransitionCode(b, triggerName, noAncestorHandlesEvent);
                 }
 
-                newLineDesired = true;
+                file.RequestNewLineBeforeMoreCode();
             }
         }
 
@@ -275,6 +271,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 file.FinishLine($"{mangler.SmFuncTriggerHandler(nextHandlingState, triggerName)};");
             }
 
+            file.RequestNewLineBeforeMoreCode();
             return noAncestorHandlesEvent;
         }
 
