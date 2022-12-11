@@ -262,7 +262,6 @@ static void ROOT_enter(Spec2Sm* self)
 
 static void ROOT_exit(Spec2Sm* self)
 {
-    
     // ROOT behavior
     // uml action: trace("Exit Spec2Sm.");
     if (true)
@@ -299,7 +298,6 @@ static void DECIDE_enter(Spec2Sm* self)
 
 static void DECIDE_exit(Spec2Sm* self)
 {
-    
     // DECIDE behavior
     // uml action: trace("Exit DECIDE.");
     if (true)
@@ -588,7 +586,6 @@ static void TEST1_DO_EVENT_TESTING_enter(Spec2Sm* self)
 
 static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm* self)
 {
-    
     // TEST1_DO_EVENT_TESTING behavior
     // uml action: trace("Exit TEST1_DO_EVENT_TESTING.");
     if (true)
@@ -620,7 +617,6 @@ static void TEST1_ROOT_enter(Spec2Sm* self)
 
 static void TEST1_ROOT_exit(Spec2Sm* self)
 {
-    
     // TEST1_ROOT behavior
     // uml action: trace("Exit TEST1_ROOT.");
     if (true)
@@ -669,7 +665,6 @@ static void TEST1_S1_enter(Spec2Sm* self)
 
 static void TEST1_S1_exit(Spec2Sm* self)
 {
-    
     // TEST1_S1 behavior
     // uml action: trace("Exit TEST1_S1.");
     if (true)
@@ -710,7 +705,6 @@ static void TEST1_S1_1_enter(Spec2Sm* self)
 
 static void TEST1_S1_1_exit(Spec2Sm* self)
 {
-    
     // TEST1_S1_1 behavior
     // uml action: trace("Exit TEST1_S1_1.");
     if (true)
@@ -790,7 +784,6 @@ static void TEST1_S2_enter(Spec2Sm* self)
 
 static void TEST1_S2_exit(Spec2Sm* self)
 {
-    
     // TEST1_S2 behavior
     // uml action: trace("Exit TEST1_S2.");
     if (true)
@@ -845,7 +838,6 @@ static void TEST2_REGULAR_EVENT_TESTING_enter(Spec2Sm* self)
 
 static void TEST2_REGULAR_EVENT_TESTING_exit(Spec2Sm* self)
 {
-    
     // TEST2_REGULAR_EVENT_TESTING behavior
     // uml action: trace("Exit TEST2_REGULAR_EVENT_TESTING.");
     if (true)
@@ -879,7 +871,6 @@ static void TEST2_ROOT_enter(Spec2Sm* self)
 
 static void TEST2_ROOT_exit(Spec2Sm* self)
 {
-    
     // TEST2_ROOT behavior
     // uml action: trace("Exit TEST2_ROOT.");
     if (true)
@@ -964,7 +955,6 @@ static void TEST2_S1_enter(Spec2Sm* self)
 
 static void TEST2_S1_exit(Spec2Sm* self)
 {
-    
     // TEST2_S1 behavior
     // uml action: trace("Exit TEST2_S1.");
     if (true)
@@ -1005,7 +995,6 @@ static void TEST2_S1_1_enter(Spec2Sm* self)
 
 static void TEST2_S1_1_exit(Spec2Sm* self)
 {
-    
     // TEST2_S1_1 behavior
     // uml action: trace("Exit TEST2_S1_1.");
     if (true)
@@ -1087,7 +1076,6 @@ static void TEST2_S2_enter(Spec2Sm* self)
 
 static void TEST2_S2_exit(Spec2Sm* self)
 {
-    
     // TEST2_S2 behavior
     // uml action: trace("Exit TEST2_S2.");
     if (true)
@@ -1169,7 +1157,6 @@ static void TEST3_BEHAVIOR_ORDERING_enter(Spec2Sm* self)
 
 static void TEST3_BEHAVIOR_ORDERING_exit(Spec2Sm* self)
 {
-    
     // TEST3_BEHAVIOR_ORDERING behavior
     // uml action: trace("Exit TEST3_BEHAVIOR_ORDERING.");
     if (true)
@@ -1201,7 +1188,6 @@ static void TEST3_ROOT_enter(Spec2Sm* self)
 
 static void TEST3_ROOT_exit(Spec2Sm* self)
 {
-    
     // TEST3_ROOT behavior
     // uml action: trace("Exit TEST3_ROOT.");
     if (true)
@@ -1259,7 +1245,6 @@ static void TEST3_S1_enter(Spec2Sm* self)
 
 static void TEST3_S1_exit(Spec2Sm* self)
 {
-    
     // TEST3_S1 behavior
     // uml action: trace("Exit TEST3_S1.");
     if (true)
@@ -1335,7 +1320,6 @@ static void TEST3_S2_enter(Spec2Sm* self)
 
 static void TEST3_S2_exit(Spec2Sm* self)
 {
-    
     // TEST3_S2 behavior
     // uml action: trace("Exit TEST3_S2.");
     if (true)
@@ -1429,7 +1413,6 @@ static void TEST3_S3_enter(Spec2Sm* self)
 
 static void TEST3_S3_exit(Spec2Sm* self)
 {
-    
     // TEST3_S3 behavior
     // uml action: trace("Exit TEST3_S3.");
     if (true)
@@ -1460,7 +1443,6 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_enter(Spec2Sm* self)
 
 static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm* self)
 {
-    
     // TEST4_PARENT_CHILD_TRANSITIONS behavior
     // uml action: trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
     if (true)
@@ -1502,7 +1484,6 @@ static void TEST4_ROOT_enter(Spec2Sm* self)
 
 static void TEST4_ROOT_exit(Spec2Sm* self)
 {
-    
     // TEST4_ROOT behavior
     // uml action: trace("Exit TEST4_ROOT.");
     if (true)
@@ -1623,7 +1604,6 @@ static void TEST4_S1_enter(Spec2Sm* self)
 
 static void TEST4_S1_exit(Spec2Sm* self)
 {
-    
     // TEST4_S1 behavior
     // uml action: trace("Exit TEST4_S1.");
     if (true)
@@ -1681,7 +1661,6 @@ static void TEST4_S10_enter(Spec2Sm* self)
 
 static void TEST4_S10_exit(Spec2Sm* self)
 {
-    
     // TEST4_S10 behavior
     // uml action: trace("Exit TEST4_S10.");
     if (true)
@@ -1739,7 +1718,6 @@ static void TEST4_S10_1_enter(Spec2Sm* self)
 
 static void TEST4_S10_1_exit(Spec2Sm* self)
 {
-    
     // TEST4_S10_1 behavior
     // uml action: trace("Exit TEST4_S10_1.");
     if (true)
@@ -1771,7 +1749,6 @@ static void TEST4_S2_enter(Spec2Sm* self)
 
 static void TEST4_S2_exit(Spec2Sm* self)
 {
-    
     // TEST4_S2 behavior
     // uml action: trace("Exit TEST4_S2.");
     if (true)
@@ -1829,7 +1806,6 @@ static void TEST4_S20_enter(Spec2Sm* self)
 
 static void TEST4_S20_exit(Spec2Sm* self)
 {
-    
     // TEST4_S20 behavior
     // uml action: trace("Exit TEST4_S20.");
     if (true)
@@ -1897,7 +1873,6 @@ static void TEST4_S20_1_enter(Spec2Sm* self)
 
 static void TEST4_S20_1_exit(Spec2Sm* self)
 {
-    
     // TEST4_S20_1 behavior
     // uml action: trace("Exit TEST4_S20_1.");
     if (true)
@@ -1929,7 +1904,6 @@ static void TEST4_S3_enter(Spec2Sm* self)
 
 static void TEST4_S3_exit(Spec2Sm* self)
 {
-    
     // TEST4_S3 behavior
     // uml action: trace("Exit TEST4_S3.");
     if (true)
@@ -1985,7 +1959,6 @@ static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(Spec2Sm* self)
 
 static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(Spec2Sm* self)
 {
-    
     // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
     // uml action: trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
     if (true)
@@ -2025,7 +1998,6 @@ static void TEST5_ROOT_enter(Spec2Sm* self)
 
 static void TEST5_ROOT_exit(Spec2Sm* self)
 {
-    
     // TEST5_ROOT behavior
     // uml action: trace("Exit TEST5_ROOT.");
     if (true)
@@ -2083,7 +2055,6 @@ static void TEST5_S1_enter(Spec2Sm* self)
 
 static void TEST5_S1_exit(Spec2Sm* self)
 {
-    
     // TEST5_S1 behavior
     // uml action: trace("Exit TEST5_S1.");
     if (true)
@@ -2141,7 +2112,6 @@ static void TEST5_S2_enter(Spec2Sm* self)
 
 static void TEST5_S2_exit(Spec2Sm* self)
 {
-    
     // TEST5_S2 behavior
     // uml action: trace("Exit TEST5_S2.");
     if (true)
@@ -2199,7 +2169,6 @@ static void TEST5_S3_enter(Spec2Sm* self)
 
 static void TEST5_S3_exit(Spec2Sm* self)
 {
-    
     // TEST5_S3 behavior
     // uml action: trace("Exit TEST5_S3.");
     if (true)
@@ -2255,7 +2224,6 @@ static void TEST6_VARIABLES_enter(Spec2Sm* self)
 
 static void TEST6_VARIABLES_exit(Spec2Sm* self)
 {
-    
     // TEST6_VARIABLES behavior
     // uml action: trace("Exit TEST6_VARIABLES.");
     if (true)
@@ -2286,7 +2254,6 @@ static void TEST6_ROOT_enter(Spec2Sm* self)
 
 static void TEST6_ROOT_exit(Spec2Sm* self)
 {
-    
     // TEST6_ROOT behavior
     // uml action: trace("Exit TEST6_ROOT.");
     if (true)
@@ -2326,7 +2293,6 @@ static void TEST6_S1_enter(Spec2Sm* self)
 
 static void TEST6_S1_exit(Spec2Sm* self)
 {
-    
     // TEST6_S1 behavior
     // uml action: trace("Exit TEST6_S1.");
     if (true)
@@ -2397,7 +2363,6 @@ static void TEST6_S2_enter(Spec2Sm* self)
 
 static void TEST6_S2_exit(Spec2Sm* self)
 {
-    
     // TEST6_S2 behavior
     // uml action: trace("Exit TEST6_S2.");
     if (true)

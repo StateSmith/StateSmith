@@ -139,7 +139,6 @@ static void ROOT_enter(Spec1Sm* self)
 
 static void ROOT_exit(Spec1Sm* self)
 {
-    
     // ROOT behavior
     // uml action: trace("Exit Spec1Sm.");
     if (true)
@@ -170,7 +169,6 @@ static void S_enter(Spec1Sm* self)
 
 static void S_exit(Spec1Sm* self)
 {
-    
     // S behavior
     // uml action: trace("Exit S.");
     if (true)
@@ -201,7 +199,6 @@ static void S1_enter(Spec1Sm* self)
 
 static void S1_exit(Spec1Sm* self)
 {
-    
     // S1 behavior
     // uml action: trace("Exit S1.");
     if (true)
@@ -233,7 +230,6 @@ static void S11_enter(Spec1Sm* self)
 
 static void S11_exit(Spec1Sm* self)
 {
-    
     // S11 behavior
     // uml action: trace("Exit S11.");
     if (true)
@@ -312,7 +308,6 @@ static void T1_enter(Spec1Sm* self)
 
 static void T1_exit(Spec1Sm* self)
 {
-    
     // T1 behavior
     // uml action: trace("Exit T1.");
     if (true)
@@ -344,7 +339,6 @@ static void T11_enter(Spec1Sm* self)
 
 static void T11_exit(Spec1Sm* self)
 {
-    
     // T11 behavior
     // uml action: trace("Exit T11.");
     if (true)
@@ -411,7 +405,6 @@ static void T111_enter(Spec1Sm* self)
 
 static void T111_exit(Spec1Sm* self)
 {
-    
     // T111 behavior
     // uml action: trace("Exit T111.");
     if (true)

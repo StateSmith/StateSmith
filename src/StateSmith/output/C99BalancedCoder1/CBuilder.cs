@@ -231,7 +231,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
             file.StartCodeBlock();
             {
-                eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_EXIT);
+                eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_EXIT, newLineDesired: false);
 
                 if (state.Parent == null)
                 {

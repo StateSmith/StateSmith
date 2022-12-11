@@ -228,7 +228,7 @@ namespace StateSmith.output.C99BalancedCoder1
         /// </summary>
         /// <param name="state"></param>
         /// <param name="triggerName"></param>
-        public void OutputStateBehaviorsForTrigger(NamedVertex state, string triggerName)
+        public void OutputStateBehaviorsForTrigger(NamedVertex state, string triggerName, bool newLineDesired = true)
         {
             bool noAncestorHandlesEvent = true;
 
@@ -240,7 +240,10 @@ namespace StateSmith.output.C99BalancedCoder1
             var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName).OrderBy((b) => b.order);
             foreach (var b in behaviorsWithTrigger)
             {
-                file.AppendLine();
+                if (newLineDesired)
+                {
+                    file.AppendLine();
+                }
 
                 if (b.HasTransition())
                 {
@@ -250,6 +253,8 @@ namespace StateSmith.output.C99BalancedCoder1
                 {
                     OutputNonTransitionCode(b, triggerName, noAncestorHandlesEvent);
                 }
+
+                newLineDesired = true;
             }
         }
 
