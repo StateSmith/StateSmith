@@ -238,7 +238,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 noAncestorHandlesEvent = OutputNextAncestorHandler(state, triggerName);
             }
 
-            var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName).OrderBy((b) => b.order);
+            var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName);
             foreach (var b in behaviorsWithTrigger)
             {
                 if (b.HasTransition())

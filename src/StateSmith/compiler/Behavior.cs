@@ -10,6 +10,7 @@ namespace StateSmith.Compiling
     public class Behavior
     {
         public const double DEFAULT_ORDER = 1e6;
+        public const double ELSE_ORDER = DEFAULT_ORDER * 10;
 
         /// <summary>
         /// Only populated for transitions.
@@ -151,7 +152,12 @@ namespace StateSmith.Compiling
             string result = "";
             string joiner = "";
 
-            if (order != DEFAULT_ORDER)
+            if (order == ELSE_ORDER)
+            {
+                result += joiner + "else";
+                joiner = " ";
+            }
+            else if (order != DEFAULT_ORDER)
             {
                 result += joiner + order + ".";
                 joiner = " ";

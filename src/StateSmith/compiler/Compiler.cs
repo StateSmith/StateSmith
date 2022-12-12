@@ -116,6 +116,16 @@ namespace StateSmith.Compiling
             }
         }
 
+        // https://github.com/StateSmith/StateSmith/issues/59
+        public void SupportElseTrigger()
+        {
+            foreach (var v in rootVertices)
+            {
+                var processor = new OrderAndElseProcessor();
+                v.Accept(processor);
+            }
+        }
+
         public void DefaultToDoEventIfNoTrigger()
         {
             foreach (var v in rootVertices)

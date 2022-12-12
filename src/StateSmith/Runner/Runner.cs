@@ -145,6 +145,7 @@ namespace StateSmith.Runner
             FindStateMachine();
             compiler.rootVertices = new List<Vertex>{ sm };
 
+            compiler.SupportElseTrigger();
             compiler.SupportParentAlias();
             compiler.Validate();
             compiler.SupportEntryExitPoints();

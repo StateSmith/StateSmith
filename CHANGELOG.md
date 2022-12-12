@@ -10,13 +10,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Transition actions are now run after states are exited (instead of before) https://github.com/StateSmith/StateSmith/issues/6
+- Reserved `else` "trigger" name for `else` functionality https://github.com/StateSmith/StateSmith/issues/59
 
 ### Added
 - Support initial/entry/exit multiple https://github.com/StateSmith/StateSmith/issues/40
   - Allow multiple transitions from initial state.
   - Initial state must have a default transition (always true).
   - Allow incoming transitions to initial state.
-
+- Allow specifying `else` on transitions https://github.com/StateSmith/StateSmith/issues/59
 
 
 ## [0.5.9-alpha]

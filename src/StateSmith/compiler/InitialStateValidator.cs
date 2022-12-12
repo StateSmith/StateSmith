@@ -48,7 +48,7 @@ public class InitialStateValidator
 
         if (!hasDefaultTransition)
         {
-            throw new VertexValidationException(initialState, "initial state must have at least one transition without a guard clause (default transition). https://github.com/adamfk/StateSmith/issues/8");
+            throw new VertexValidationException(initialState, "initial state must have at least one transition without a guard clause (default transition). https://github.com/StateSmith/StateSmith/issues/59");
         }
     }
 

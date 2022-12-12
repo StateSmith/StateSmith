@@ -39,6 +39,22 @@ namespace StateSmithTest
         }
 
         [Fact]
+        public void DescribeAsUml_Else()
+        {
+            var root = new State("Root");
+            var s1 = new State("s1");
+            root.AddChild(s1);
+
+            var b = new Behavior();
+            b.order = Behavior.ELSE_ORDER;
+            b.actionCode = "x = 0;";
+
+            b._transitionTarget = s1;
+
+            b.DescribeAsUml().Should().Be("else / { x = 0; } TransitionTo(s1)");
+        }
+
+        [Fact]
         public void DescribeAsUml_MultilineGuard()
         {
             var b = new Behavior();
