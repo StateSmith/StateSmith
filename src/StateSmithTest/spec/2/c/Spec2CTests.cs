@@ -292,7 +292,8 @@ public class Spec2CTests : Spec2CFixture
             Transition action `` for TEST4_S3 to TEST4_ROOT.
             ") + "\n\n";
 
-        var output = Run(initialEventToSelectTest: "EV4", testEvents: testEvents);
+        const string InitialEventToSelectTest = "EV4";
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
 
         ex = ex.Trim();
 
@@ -330,7 +331,8 @@ public class Spec2CTests : Spec2CFixture
             Enter TEST4_S10.
             ") + "\n\n";
 
-        var output = Run(initialEventToSelectTest: "EV4", testEvents: testEvents);
+        const string InitialEventToSelectTest = "EV4";
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
 
         ex = ex.Trim();
 
@@ -372,7 +374,8 @@ public class Spec2CTests : Spec2CFixture
             Enter TEST4_S20_1.
             ") + "\n\n";
 
-        var output = Run(initialEventToSelectTest: "EV4", testEvents: testEvents);
+        const string InitialEventToSelectTest = "EV4";
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
 
         ex = ex.Trim();
 
@@ -467,7 +470,8 @@ public class Spec2CTests : Spec2CFixture
             Transition action `` for TEST5_S3 to TEST5_ROOT.
             ") + "\n\n";
 
-        var output = Run(initialEventToSelectTest: "EV5", testEvents: testEvents);
+        const string InitialEventToSelectTest = "EV5";
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
 
         ex = ex.Trim();
 
@@ -480,6 +484,8 @@ public class Spec2CTests : Spec2CFixture
     [Fact]
     public void Test6_Variables()
     {
+        const string InitialEventToSelectTest = "EV6";
+
         var testEvents = "";
         var ex = "";
 
@@ -504,7 +510,93 @@ public class Spec2CTests : Spec2CFixture
             Enter TEST6_S2.
             ") + "\n\n";
 
-        var output = Run(initialEventToSelectTest: "EV6", testEvents: testEvents);
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+
+        ex = ex.Trim();
+
+        // uncomment below line if you want to see the whole output
+        //output.Should().Be("");
+
+        Assert.Equal(ex, output);
+    }
+
+    [Fact]
+    public void Test7_Choice_1()
+    {
+        int incCount = 1;
+        var expectedState = "TEST7_G_S1";
+        Test7_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test7_Choice_2()
+    {
+        int incCount = 2;
+        var expectedState = "TEST7_G_S2";
+        Test7_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test7_Choice_3()
+    {
+        int incCount = 0;
+        var expectedState = "TEST7_G_S3";
+        Test7_RunWithXIncrementEvents(expectedState, incCount);
+
+        incCount = 3;
+        Test7_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    private void Test7_RunWithXIncrementEvents(string expectedState, int incCount)
+    {
+        const string InitialEventToSelectTest = "EV7";
+
+        var testEvents = "";
+        var ex = "";
+
+        ex += PrepExpectedOutput(@"
+            Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.
+            Enter TEST7_S1.
+        ") + "\n\n";
+
+        for (int i = 0; i < incCount; i++)
+        {
+            // 
+            testEvents += "EV5 ";
+            ex += PrepExpectedOutput(@"
+            Dispatch event EV5
+            ===================================================
+            State TEST7_ROOT: check behavior `EV5 / { count++; }`. Behavior running.
+            ") + "\n\n";
+        }
+
+        // 
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@$"
+            Dispatch event EV1
+            ===================================================
+            State TEST7_S1: check behavior `EV1 TransitionTo(TEST7_G)`. Behavior running.
+            Exit TEST7_S1.
+            Transition action `` for TEST7_S1 to TEST7_G.
+            Enter TEST7_G.
+            Transition action `` for TEST7_G.InitialState to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+
+        // 
+        testEvents += "EV2 ";
+        ex += PrepExpectedOutput(@$"
+            Dispatch event EV2
+            ===================================================
+            State TEST7_G: check behavior `EV2 TransitionTo(TEST7_ROOT.InitialState)`. Behavior running.
+            Exit {expectedState}.
+            Exit TEST7_G.
+            Transition action `` for TEST7_G to TEST7_ROOT.InitialState.
+            Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.
+            Enter TEST7_S1.
+            ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
 
         ex = ex.Trim();
 

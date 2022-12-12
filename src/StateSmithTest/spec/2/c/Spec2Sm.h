@@ -11,11 +11,12 @@ enum Spec2Sm_EventId
     Spec2Sm_EventId_EV4 = 4,
     Spec2Sm_EventId_EV5 = 5,
     Spec2Sm_EventId_EV6 = 6,
+    Spec2Sm_EventId_EV7 = 7,
 };
 
 enum
 {
-    Spec2Sm_EventIdCount = 7
+    Spec2Sm_EventIdCount = 8
 };
 
 enum Spec2Sm_StateId
@@ -55,11 +56,18 @@ enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST6_ROOT = 32,
     Spec2Sm_StateId_TEST6_S1 = 33,
     Spec2Sm_StateId_TEST6_S2 = 34,
+    Spec2Sm_StateId_TEST7_CHOICE = 35,
+    Spec2Sm_StateId_TEST7_ROOT = 36,
+    Spec2Sm_StateId_TEST7_G = 37,
+    Spec2Sm_StateId_TEST7_G_S1 = 38,
+    Spec2Sm_StateId_TEST7_G_S2 = 39,
+    Spec2Sm_StateId_TEST7_G_S3 = 40,
+    Spec2Sm_StateId_TEST7_S1 = 41,
 };
 
 enum
 {
-    Spec2Sm_StateIdCount = 35
+    Spec2Sm_StateIdCount = 42
 };
 
 typedef struct Spec2Sm Spec2Sm;

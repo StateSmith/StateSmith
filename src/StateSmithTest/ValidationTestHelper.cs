@@ -51,5 +51,11 @@ namespace StateSmithTest
             action.Should().Throw<VertexValidationException>()
                 .WithMessage(wildcardMessage);
         }
+
+        public void ExpectValid()
+        {
+            compiler.SetupRoots();
+            compiler.Validate();
+        }
     }
 }

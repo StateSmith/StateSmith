@@ -4,6 +4,7 @@ using System.Text;
 using Xunit;
 using FluentAssertions;
 using StateSmith.Compiling;
+using System.Linq;
 
 namespace StateSmithTest.InitialStateProcessor
 {
@@ -63,14 +64,6 @@ namespace StateSmithTest.InitialStateProcessor
         }
 
         [Fact]
-        public void TargetSelf()
-        {
-            var badInitialState = s1.AddChild(new InitialState());
-            badInitialState.AddTransitionTo(badInitialState);
-            ExpectVertexValidationException(exceptionMessagePart: "cannot have any incoming transitions");
-        }
-
-        [Fact]
         public void StateMachineMustHaveExactly1()
         {
             sm.RemoveChild(initialStateVertex);
@@ -93,10 +86,32 @@ namespace StateSmithTest.InitialStateProcessor
         }
 
         [Fact]
-        public void SingleBehavior()
+        public void NoDefaultTransition()
+        {
+            initialStateVertex.Behaviors.Single().guardCode = "x > 100";
+            ExpectVertexValidationExceptionWildcard("*default transition*");
+        }
+
+        [Fact]
+        public void GuardOkWithDefaultTransition()
+        {
+            initialStateVertex.Behaviors.Single().guardCode = "x > 100";
+            initialStateVertex.AddTransitionTo(s1); // default no-guard transition
+            ExpectValid();
+        }
+
+        [Fact]
+        public void TrueGuardOkAsDefaultTransition()
+        {
+            initialStateVertex.Behaviors.Single().guardCode = "true";
+            ExpectValid();
+        }
+
+        [Fact]
+        public void MultipleBehavior()
         {
             initialStateVertex.AddTransitionTo(s1);
-            ExpectVertexValidationException(exceptionMessagePart: "exactly one behavior");
+            ExpectValid();
         }
 
         [Fact]
@@ -105,13 +120,6 @@ namespace StateSmithTest.InitialStateProcessor
             var badInitialState = s1.AddChild(new InitialState());
             badInitialState.AddBehavior(new Behavior());
             ExpectVertexValidationException(exceptionMessagePart: "must have a transition target");
-        }
-
-        [Fact]
-        public void GuardCode()
-        {
-            initialStateVertex.Behaviors[0].guardCode = "some_code()";
-            ExpectVertexValidationException(exceptionMessagePart: "guard code");
         }
 
         [Fact]
@@ -125,7 +133,7 @@ namespace StateSmithTest.InitialStateProcessor
         public void IncomingTransitions()
         {
             s1.AddTransitionTo(initialStateVertex);
-            ExpectVertexValidationException(exceptionMessagePart: "incoming");
+            ExpectValid();
         }
     }
 }
