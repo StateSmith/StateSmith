@@ -75,9 +75,7 @@ namespace StateSmith.output.C99BalancedCoder1
             Vertex source = behavior.OwningVertex;
             Vertex target = behavior._transitionTarget;
 
-            file.AppendLine($"// {Vertex.Describe(source)} behavior");
-            DescribeBehaviorWithUmlComment(behavior);
-            file.Append($"if ({GetTransitionGuardCondition(behavior)})");
+            OutputStartOfBehaviorCode(behavior);
             file.StartCodeBlock();
             {
                 if (behavior.OwningVertex is NamedVertex)
@@ -130,7 +128,14 @@ namespace StateSmith.output.C99BalancedCoder1
                 }
 
             }
-            file.FinishCodeBlock($" // end of behavior for {Vertex.Describe(behavior.OwningVertex)}");
+            OutputEndOfBehaviorCode(behavior);
+        }
+
+        private void OutputStartOfBehaviorCode(Behavior behavior)
+        {
+            file.AppendLine($"// {Vertex.Describe(behavior.OwningVertex)} behavior");
+            DescribeBehaviorWithUmlComment(behavior);
+            file.Append($"if ({GetTransitionGuardCondition(behavior)})");
         }
 
         private void OutputAnyActionCode(Behavior behavior)
@@ -149,6 +154,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 if (initialStateBehavior.HasTransition())
                 {
                     OutputTransitionCode(initialStateBehavior);
+                    file.RequestNewLineBeforeMoreCode();
                 }
             }
         }
@@ -264,9 +270,7 @@ namespace StateSmith.output.C99BalancedCoder1
         {
             bool hasConsumeEventVar = TriggerHelper.IsEvent(triggerName);
 
-            file.AppendLine($"// {Vertex.Describe(b.OwningVertex)} behavior");
-            DescribeBehaviorWithUmlComment(b);
-            file.Append($"if ({GetTransitionGuardCondition(b)})");
+            OutputStartOfBehaviorCode(b);
             file.StartCodeBlock();
             {
                 MaybeOutputConsumeEventVariable(triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
@@ -275,6 +279,11 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 MaybeOutputConsumeEventCode(noAncestorHandlesEvent, hasConsumeEventVar);
             }
+            OutputEndOfBehaviorCode(b);
+        }
+
+        private void OutputEndOfBehaviorCode(Behavior b)
+        {
             file.FinishCodeBlock($" // end of behavior for {Vertex.Describe(b.OwningVertex)}");
         }
 

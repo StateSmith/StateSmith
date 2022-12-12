@@ -2740,6 +2740,7 @@ static void TEST7_S1_ev1(Spec2Sm* self)
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST7_G.InitialState
+        
         // TEST7_G.InitialState behavior
         // uml: [count == 2] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2."); } TransitionTo(TEST7_G_S2)
         if (self->vars.count == 2)
@@ -2754,6 +2755,7 @@ static void TEST7_S1_ev1(Spec2Sm* self)
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST7_G.InitialState
+        
         // TEST7_G.InitialState behavior
         // uml: else / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3."); } TransitionTo(TEST7_G_S3)
         if (true)
