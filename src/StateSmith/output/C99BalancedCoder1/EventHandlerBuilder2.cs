@@ -62,22 +62,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
         private void DescribeBehaviorWithUmlComment(Behavior b)
         {
-            if (b.HasGuardCode())
-            {
-                string sanitizedGuardCode = StringUtils.ReplaceNewLineChars(b.guardCode, "\n//            ");
-                file.AppendLines($"// uml guard: {sanitizedGuardCode}");
-            }
-
-            if (b.HasActionCode())
-            {
-                string sanitized = StringUtils.ReplaceNewLineChars(b.actionCode.Trim(), "\n//             ");
-                file.AppendLines($"// uml action: {sanitized}");
-            }
-
-            if (b.TransitionTarget != null)
-            {
-                file.AppendLine($"// uml transition target: {Vertex.Describe(b.TransitionTarget)}");
-            }
+            file.AppendLine($"// uml: {b.DescribeAsUml()}");
         }
 
         public void OutputTransitionCode(Behavior behavior)
