@@ -167,6 +167,7 @@ static void TEST7_G_S3_exit(Spec2Sm* self);
 static void TEST7_S1_enter(Spec2Sm* self);
 static void TEST7_S1_exit(Spec2Sm* self);
 static void TEST7_S1_ev1(Spec2Sm* self);
+static void TEST7_S1_ev3(Spec2Sm* self);
 
 static void exit_up_to_state_handler(Spec2Sm* self, const Spec2Sm_Func desired_state_exit_handler);
 
@@ -2687,6 +2688,7 @@ static void TEST7_S1_enter(Spec2Sm* self)
     // setup trigger/event handlers
     self->current_state_exit_handler = TEST7_S1_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7_S1_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = TEST7_S1_ev3;
     
     // TEST7_S1 behavior
     // uml: enter / { trace("Enter TEST7_S1."); }
@@ -2708,6 +2710,7 @@ static void TEST7_S1_exit(Spec2Sm* self)
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST7_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = NULL;  // no ancestor listens to this event
 }
 
 static void TEST7_S1_ev1(Spec2Sm* self)
@@ -2722,6 +2725,69 @@ static void TEST7_S1_ev1(Spec2Sm* self)
         // Optimize away while-exit-loop because we know that the active leaf state is TEST7_S1 and it is exiting directly to its parent TEST7_ROOT.
         TEST7_S1_exit(self);
         trace("Transition action `` for TEST7_S1 to TEST7_G.");
+        
+        // Enter towards target
+        TEST7_G_enter(self);
+        
+        // TEST7_G.InitialState behavior
+        // uml: [count == 1] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1."); } TransitionTo(TEST7_G_S1)
+        if (self->vars.count == 1)
+        {
+            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");
+            
+            // Enter towards target
+            TEST7_G_S1_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST7_G_S1;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7_G.InitialState
+        
+        // TEST7_G.InitialState behavior
+        // uml: [count == 2] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2."); } TransitionTo(TEST7_G_S2)
+        if (self->vars.count == 2)
+        {
+            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");
+            
+            // Enter towards target
+            TEST7_G_S2_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST7_G_S2;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7_G.InitialState
+        
+        // TEST7_G.InitialState behavior
+        // uml: else / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3."); } TransitionTo(TEST7_G_S3)
+        if (true)
+        {
+            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");
+            
+            // Enter towards target
+            TEST7_G_S3_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST7_G_S3;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7_G.InitialState
+    } // end of behavior for TEST7_S1
+}
+
+static void TEST7_S1_ev3(Spec2Sm* self)
+{
+    // No ancestor state handles `EV3` event.
+    
+    // TEST7_S1 behavior
+    // uml: EV3 [trace_guard("State TEST7_S1: check behavior `EV3 TransitionTo(TEST7_G.InitialState)`.", true)] / { trace("Transition action `` for TEST7_S1 to TEST7_G.InitialState."); } TransitionTo(TEST7_G.InitialState)
+    if (trace_guard("State TEST7_S1: check behavior `EV3 TransitionTo(TEST7_G.InitialState)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // Optimize away while-exit-loop because we know that the active leaf state is TEST7_S1 and it is exiting directly to its parent TEST7_ROOT.
+        TEST7_S1_exit(self);
+        trace("Transition action `` for TEST7_S1 to TEST7_G.InitialState.");
         
         // Enter towards target
         TEST7_G_enter(self);

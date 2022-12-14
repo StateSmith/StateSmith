@@ -521,6 +521,14 @@ public class Spec2CTests : Spec2CFixture
     }
 
     [Fact]
+    public void Test7_Choice_1_DirectToInitial()
+    {
+        int incCount = 1;
+        var expectedState = "TEST7_G_S1";
+        Test7_RunWithXIncrementEvents(expectedState, incCount, directToInitialState: true);
+    }
+
+    [Fact]
     public void Test7_Choice_1()
     {
         int incCount = 1;
@@ -547,7 +555,7 @@ public class Spec2CTests : Spec2CFixture
         Test7_RunWithXIncrementEvents(expectedState, incCount);
     }
 
-    private void Test7_RunWithXIncrementEvents(string expectedState, int incCount)
+    private void Test7_RunWithXIncrementEvents(string expectedState, int incCount, bool directToInitialState = false)
     {
         const string InitialEventToSelectTest = "EV7";
 
@@ -570,9 +578,26 @@ public class Spec2CTests : Spec2CFixture
             ") + "\n\n";
         }
 
-        // 
-        testEvents += "EV1 ";
-        ex += PrepExpectedOutput(@$"
+        if (directToInitialState)
+        {
+            // 
+            testEvents += "EV3 ";
+            ex += PrepExpectedOutput(@$"
+            Dispatch event EV3
+            ===================================================
+            State TEST7_S1: check behavior `EV3 TransitionTo(TEST7_G.InitialState)`. Behavior running.
+            Exit TEST7_S1.
+            Transition action `` for TEST7_S1 to TEST7_G.InitialState.
+            Enter TEST7_G.
+            Transition action `` for TEST7_G.InitialState to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+        }
+        else
+        {
+            // 
+            testEvents += "EV1 ";
+            ex += PrepExpectedOutput(@$"
             Dispatch event EV1
             ===================================================
             State TEST7_S1: check behavior `EV1 TransitionTo(TEST7_G)`. Behavior running.
@@ -582,6 +607,8 @@ public class Spec2CTests : Spec2CFixture
             Transition action `` for TEST7_G.InitialState to {expectedState}.
             Enter {expectedState}.
             ") + "\n\n";
+        }
+
 
         // 
         testEvents += "EV2 ";
