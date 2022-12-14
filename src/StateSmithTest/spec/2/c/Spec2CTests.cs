@@ -807,6 +807,14 @@ public class Spec2CTests : Spec2CFixture
         Test9_RunWithXIncrementEvents(expectedState, incCount);
     }
 
+    [Fact]
+    public void Test9_Choice_4()
+    {
+        int incCount = 4;
+        var expectedState = "TEST9_G_S4";
+        Test9_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
     private void Test9_RunWithXIncrementEvents(string expectedState, int incCount)
     {
         const string InitialEventToSelectTest = "EV9";

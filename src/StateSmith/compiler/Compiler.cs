@@ -117,7 +117,7 @@ namespace StateSmith.Compiling
         }
 
         // https://github.com/StateSmith/StateSmith/issues/59
-        public void SupportElseTrigger()
+        public void SupportElseTriggerAndOrderBehaviors()
         {
             foreach (var v in rootVertices)
             {

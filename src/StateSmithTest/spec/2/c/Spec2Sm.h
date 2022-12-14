@@ -77,13 +77,14 @@ enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST9_G_S1 = 51,
     Spec2Sm_StateId_TEST9_G_S2 = 52,
     Spec2Sm_StateId_TEST9_G_S3 = 53,
-    Spec2Sm_StateId_TEST9_S1 = 54,
-    Spec2Sm_StateId_TEST9_S1_1 = 55,
+    Spec2Sm_StateId_TEST9_G_S4 = 54,
+    Spec2Sm_StateId_TEST9_S1 = 55,
+    Spec2Sm_StateId_TEST9_S1_1 = 56,
 };
 
 enum
 {
-    Spec2Sm_StateIdCount = 56
+    Spec2Sm_StateIdCount = 57
 };
 
 typedef struct Spec2Sm Spec2Sm;

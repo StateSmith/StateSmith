@@ -27,7 +27,7 @@ public class OrderAndElseProcessorTests
         ");
 
         compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SupportElseTrigger();
+        compiler.SupportElseTriggerAndOrderBehaviors();
     }
 
     // https://github.com/StateSmith/StateSmith/issues/59
@@ -43,7 +43,7 @@ public class OrderAndElseProcessorTests
         ");
 
         compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SupportElseTrigger();
+        compiler.SupportElseTriggerAndOrderBehaviors();
     }
 
     // https://github.com/StateSmith/StateSmith/issues/59
@@ -59,7 +59,7 @@ public class OrderAndElseProcessorTests
         ");
 
         compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SupportElseTrigger();
+        compiler.SupportElseTriggerAndOrderBehaviors();
 
         var initialState = compiler.rootVertices.Single().Children.OfType<InitialState>().Single();
         initialState.Behaviors[0].actionCode.Should().Be("a++;");
@@ -80,7 +80,7 @@ public class OrderAndElseProcessorTests
         ");
 
         compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SupportElseTrigger();
+        compiler.SupportElseTriggerAndOrderBehaviors();
 
         var state = compiler.GetVertex("State0");
         state.Behaviors[0].actionCode.Should().Be("a++;");
@@ -101,7 +101,7 @@ public class OrderAndElseProcessorTests
         ");
 
         compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        Action action = () => compiler.SupportElseTrigger();
+        Action action = () => compiler.SupportElseTriggerAndOrderBehaviors();
         action.Should().Throw<Exception>();
     }
 
@@ -118,7 +118,7 @@ public class OrderAndElseProcessorTests
         ");
 
         compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        Action action = () => compiler.SupportElseTrigger();
+        Action action = () => compiler.SupportElseTriggerAndOrderBehaviors();
         action.Should().Throw<Exception>();
     }
 
@@ -136,7 +136,7 @@ public class OrderAndElseProcessorTests
         ");
 
         compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        Action action = () => compiler.SupportElseTrigger();
+        Action action = () => compiler.SupportElseTriggerAndOrderBehaviors();
         action.Should().Throw<Exception>();
     }
 

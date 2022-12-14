@@ -19,7 +19,7 @@ namespace StateSmith.Compiling
             VisitChildren(v);
         }
 
-        private static void SortBehaviorsByOrder(Vertex v)
+        public static void SortBehaviorsByOrder(Vertex v)
         {
             v._behaviors = v.Behaviors.OrderBy((b) => b.order).ToList();
         }

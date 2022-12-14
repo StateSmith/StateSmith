@@ -215,6 +215,9 @@ static void TEST9_G_S2_exit(Spec2Sm* self);
 static void TEST9_G_S3_enter(Spec2Sm* self);
 static void TEST9_G_S3_exit(Spec2Sm* self);
 
+static void TEST9_G_S4_enter(Spec2Sm* self);
+static void TEST9_G_S4_exit(Spec2Sm* self);
+
 static void TEST9_S1_enter(Spec2Sm* self);
 static void TEST9_S1_exit(Spec2Sm* self);
 
@@ -338,6 +341,7 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
         case Spec2Sm_StateId_TEST9_G_S1: return "TEST9_G_S1";
         case Spec2Sm_StateId_TEST9_G_S2: return "TEST9_G_S2";
         case Spec2Sm_StateId_TEST9_G_S3: return "TEST9_G_S3";
+        case Spec2Sm_StateId_TEST9_G_S4: return "TEST9_G_S4";
         case Spec2Sm_StateId_TEST9_S1: return "TEST9_S1";
         case Spec2Sm_StateId_TEST9_S1_1: return "TEST9_S1_1";
         default: return "?";
@@ -3703,6 +3707,37 @@ static void TEST9_G_S3_exit(Spec2Sm* self)
 
 
 ////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST9_G_S4
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST9_G_S4_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST9_G_S4_exit;
+    
+    // TEST9_G_S4 behavior
+    // uml: enter / { trace("Enter TEST9_G_S4."); }
+    if (true)
+    {
+        trace("Enter TEST9_G_S4.");
+    } // end of behavior for TEST9_G_S4
+}
+
+static void TEST9_G_S4_exit(Spec2Sm* self)
+{
+    // TEST9_G_S4 behavior
+    // uml: exit / { trace("Exit TEST9_G_S4."); }
+    if (true)
+    {
+        trace("Exit TEST9_G_S4.");
+    } // end of behavior for TEST9_G_S4
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST9_ROOT_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
 // event handlers for state TEST9_S1
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -3786,6 +3821,23 @@ static void TEST9_S1_1_ev1(Spec2Sm* self)
         trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).");
         
         // Enter towards target
+        
+        // TEST9_S1.ExitPoint(1) behavior
+        // uml: [count == 4] / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4."); } TransitionTo(TEST9_G_S4)
+        if (self->vars.count == 4)
+        {
+            // Optimize away while-exit-loop because we know that the active leaf state is TEST9_S1 and it is exiting directly to its parent TEST9_ROOT.
+            TEST9_S1_exit(self);
+            trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");
+            
+            // Enter towards target
+            TEST9_G_S4_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST9_G_S4;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST9_S1.ExitPoint(1)
         
         // TEST9_S1.ExitPoint(1) behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1."); } TransitionTo(TEST9_G_S1)
