@@ -72,37 +72,7 @@ namespace StateSmith.Compiling
 
         public override void Visit(EntryPoint entryPoint)
         {
-            if (entryPoint.Children.Count > 0)
-            {
-                throw new VertexValidationException(entryPoint, "An entry point cannot have child states.");
-            }
-
-            if (entryPoint.Behaviors.Count != 1)
-            {
-                throw new VertexValidationException(entryPoint, $"An entry point must have only a single behavior (instead of {entryPoint.Behaviors.Count}) which is an outgoing transition (for now).");
-            }
-
-            var b = entryPoint.Behaviors[0];
-
-            if (!b.HasTransition())
-            {
-                throw new VertexValidationException(entryPoint, "An entry point must have a single outgoing transition (for now).");
-            }
-
-            if (b.triggers.Count > 0)
-            {
-                throw new VertexValidationException(entryPoint, "An entry point transition cannot have a trigger/event.");
-            }
-
-            if (b.HasGuardCode())
-            {
-                throw new VertexValidationException(entryPoint, "An entry point transition cannot have any guard code (for now).");
-            }
-
-            if (entryPoint.Behaviors[0].TransitionTarget == entryPoint.Parent)
-            {
-                throw new VertexValidationException(entryPoint, $"An state's entry point transition cannot target itself.");
-            }
+            EntryPointValidator.Validate(entryPoint);
         }
 
         public override void Visit(ExitPoint v)

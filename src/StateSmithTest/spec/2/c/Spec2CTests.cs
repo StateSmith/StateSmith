@@ -520,6 +520,8 @@ public class Spec2CTests : Spec2CFixture
         Assert.Equal(ex, output);
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////
+
     [Fact]
     public void Test7_Choice_1_DirectToInitial()
     {
@@ -621,6 +623,149 @@ public class Spec2CTests : Spec2CFixture
             Transition action `` for TEST7_G to TEST7_ROOT.InitialState.
             Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.
             Enter TEST7_S1.
+            ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+
+        ex = ex.Trim();
+
+        // uncomment below line if you want to see the whole output
+        //output.Should().Be("");
+
+        Assert.Equal(ex, output);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    [Fact]
+    public void Test8_Choice_1_Direct1()
+    {
+        int incCount = 1;
+        var expectedState = "TEST8_G_S1";
+        Test8_RunWithXIncrementEvents(expectedState, incCount, variation: 1);
+    }
+
+    [Fact]
+    public void Test8_Choice_1_Direct2()
+    {
+        int incCount = 1;
+        var expectedState = "TEST8_G_S1";
+        Test8_RunWithXIncrementEvents(expectedState, incCount, variation: 2);
+    }
+
+    [Fact]
+    public void Test8_Choice_1()
+    {
+        int incCount = 1;
+        var expectedState = "TEST8_G_S1";
+        Test8_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test8_Choice_2()
+    {
+        int incCount = 2;
+        var expectedState = "TEST8_G_S2";
+        Test8_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test8_Choice_3()
+    {
+        int incCount = 0;
+        var expectedState = "TEST8_G_S3";
+        Test8_RunWithXIncrementEvents(expectedState, incCount);
+
+        incCount = 3;
+        Test8_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    private void Test8_RunWithXIncrementEvents(string expectedState, int incCount, int variation = 0)
+    {
+        const string InitialEventToSelectTest = "EV8";
+
+        var testEvents = "";
+        var ex = "";
+
+        ex += PrepExpectedOutput(@"
+            Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.
+            Enter TEST8_S1.
+        ") + "\n\n";
+
+        for (int i = 0; i < incCount; i++)
+        {
+            // 
+            testEvents += "EV5 ";
+            ex += PrepExpectedOutput(@"
+            Dispatch event EV5
+            ===================================================
+            State TEST8_ROOT: check behavior `EV5 / { count++; }`. Behavior running.
+            ") + "\n\n";
+        }
+
+        if (variation == 0)
+        {
+            // 
+            testEvents += "EV1 ";
+            ex += PrepExpectedOutput(@$"
+            Dispatch event EV1
+            ===================================================
+            State TEST8_S1: check behavior `EV1 TransitionTo(TEST8_G.EntryPoint(1))`. Behavior running.
+            Exit TEST8_S1.
+            Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).
+            Enter TEST8_G.
+            Transition action `` for TEST8_G.EntryPoint(1) to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+        }
+        else if (variation == 1)
+        {
+            // 
+            testEvents += "EV6 ";
+            ex += PrepExpectedOutput(@$"
+            Dispatch event EV6
+            ===================================================
+            State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.EntryPoint(3))`. Behavior running.
+            Exit TEST8_S1.
+            Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).
+            Enter TEST8_G.
+            Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).
+            Transition action `` for TEST8_G.EntryPoint(1) to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+        }
+        else if (variation == 2)
+        {
+            // 
+            testEvents += "EV3 ";
+            ex += PrepExpectedOutput(@$"
+            Dispatch event EV3
+            ===================================================
+            State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.EntryPoint(3))`. Behavior running.
+            Exit TEST8_S1.
+            Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).
+            Enter TEST8_G.
+            Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).
+            Transition action `` for TEST8_G.EntryPoint(1) to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+        }
+        else
+        {
+            throw new Exception("unsupported variation " + variation);
+        }
+
+        // 
+        testEvents += "EV2 ";
+        ex += PrepExpectedOutput(@$"
+            Dispatch event EV2
+            ===================================================
+            State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`. Behavior running.
+            Exit {expectedState}.
+            Exit TEST8_G.
+            Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).
+            Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.
+            Enter TEST8_S1.
             ") + "\n\n";
 
         var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
