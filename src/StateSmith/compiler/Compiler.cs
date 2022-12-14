@@ -1,6 +1,5 @@
 ﻿using StateSmith.Input.antlr4;
 using StateSmith.Input.Expansions;
-using StateSmith.Input.Yed;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,17 +19,6 @@ namespace StateSmith.Compiling
         public List<Vertex> rootVertices = new List<Vertex>();
         private List<string> eventNames = new List<string>();
         private Dictionary<Input.DiagramNode, Vertex> diagramVertexMap = new Dictionary<Input.DiagramNode, Vertex>();
-
-        /// <summary>
-        /// If you want to support an input source other than a yEd file, see <see cref="CompileDiagramNodesEdges(List{DiagramNode}, List{DiagramEdge})"/> instead.
-        /// </summary>
-        /// <param name="filepath"></param>
-        public void CompileYedFile(string filepath)
-        {
-            YedParser yedParser = new YedParser();
-            yedParser.Parse(filepath);
-            CompileDiagramNodesEdges(yedParser.GetRootNodes(), yedParser.GetEdges());
-        }
 
         /// <summary>
         /// Call this method when you want to support a custom input source.
@@ -481,8 +469,8 @@ Reason(s): {reasons}
             var behavior = new Behavior(owningVertex: owningVertex, transitionTarget: targetVertex)
             {
                 DiagramId = owningVertex.DiagramId, // may be overwritten for edges
-                actionCode = nodeBehavior.actionCode,
-                guardCode = nodeBehavior.guardCode,
+                actionCode = nodeBehavior.actionCode ?? "",
+                guardCode = nodeBehavior.guardCode ?? "",
                 triggers = nodeBehavior.triggers,
                 viaEntry = nodeBehavior.viaEntry,
                 viaExit = nodeBehavior.viaExit,

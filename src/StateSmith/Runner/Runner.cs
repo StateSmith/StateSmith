@@ -23,14 +23,8 @@ namespace StateSmith.Runner
     public class SmRunner
     {
         RunnerSettings settings;
-        Statemachine sm = new("non_null_dummy");
-        Compiler compiler = new();
+        public CompilerRunner compilerRunner = new();
         ExceptionPrinter exceptionPrinter;
-
-        /// <summary>
-        /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
-        /// </summary>
-        public Action<Statemachine> postParentAliasValidation = (_) => { };
 
         protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
         protected HashSet<string> YedFileExtensions = new() { ".graphml" };
@@ -51,7 +45,7 @@ namespace StateSmith.Runner
         protected void RunInner()
         {
             RunCompiler();
-            RunRest();
+            RunCodeGen();
         }
 
         public void Run()
@@ -88,10 +82,10 @@ namespace StateSmith.Runner
             Console.Error.WriteLine("Additional exception detail dumped to file: " + errorDetailFilePath);
         }
 
-        protected void RunRest()
+        protected void RunCodeGen()
         {
-            CodeGenContext codeGenContext = new(sm, settings.renderConfig);
-            settings.mangler.SetStateMachine(sm);
+            CodeGenContext codeGenContext = new(compilerRunner.sm, settings.renderConfig);
+            settings.mangler.SetStateMachine(compilerRunner.sm);
             codeGenContext.mangler = settings.mangler;
             codeGenContext.style = settings.style;
 
@@ -115,16 +109,14 @@ namespace StateSmith.Runner
         {
             if (settings.stateMachineName != null)
             {
-                var action = () => { sm = (Statemachine)compiler.GetVertex(settings.stateMachineName); };
-                action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{settings.stateMachineName}`.", e));
+                compilerRunner.FindStateMachineByName(settings.stateMachineName);
             }
             else
             {
-                var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Single(); };
-                action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {compiler.rootVertices.OfType<Statemachine>().Count()}.", e));
+                compilerRunner.FindSingleStateMachine();
             }
 
-            OutputStageMessage($"Generating code for state machine `{sm.Name}`.");
+            OutputStageMessage($"Generating code for state machine `{compilerRunner.sm.Name}`.");
         }
 
         private void OutputCompilingDiagramMessage()
@@ -141,20 +133,7 @@ namespace StateSmith.Runner
         {
             OutputCompilingDiagramMessage();
             CompileFile();
-            compiler.SetupRoots();
-            FindStateMachine();
-            compiler.rootVertices = new List<Vertex>{ sm };
-
-            compiler.SupportParentAlias();
-            compiler.SupportEntryExitPoints();
-            compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
-            compiler.Validate();
-            postParentAliasValidation(sm);
-
-            compiler.Validate();
-            compiler.DefaultToDoEventIfNoTrigger();
-            compiler.FinalizeTrees();
-            compiler.Validate();
+            compilerRunner.FinishRunningCompiler();
         }
 
         private void CompileFile()
@@ -164,20 +143,11 @@ namespace StateSmith.Runner
 
             if (InputFileIsYedFormat(fileExtension))
             {
-                compiler.CompileYedFile(settings.diagramFile);
+                compilerRunner.CompileYedFileNodesToVertices(settings.diagramFile);
             }
             else if (InputFileIsPlantUML(fileExtension))
             {
-                PlantUMLToNodesEdges translator = new();
-                translator.ParseDiagramFile(settings.diagramFile);
-
-                if (translator.HasError())
-                {
-                    string reasons = Compiler.ParserErrorsToReasonStrings(translator.GetErrors(), separator: "\n  - ");
-                    throw new FormatException("PlantUML input failed parsing. Reason(s):\n  - " + reasons);
-                }
-
-                compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
+                compilerRunner.CompilePlantUmlFileNodesToVertices(settings.diagramFile);
             }
             else
             {
