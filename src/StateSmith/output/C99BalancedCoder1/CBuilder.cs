@@ -14,7 +14,7 @@ namespace StateSmith.output.C99BalancedCoder1
         private readonly Statemachine sm;
         private readonly CNameMangler mangler;
         private readonly OutputFile file;
-        EventHandlerBuilder2 eventHandlerBuilder;
+        EventHandlerBuilder eventHandlerBuilder;
 
         public CBuilder(CodeGenContext ctx)
         {
