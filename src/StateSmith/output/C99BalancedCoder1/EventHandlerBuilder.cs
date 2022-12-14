@@ -24,26 +24,6 @@ namespace StateSmith.output.C99BalancedCoder1
             this.file = file;
         }
 
-        //// todolow - deduplicate
-        //private void StartGuardCodeIfNeeded(Behavior b)
-        //{
-        //    if (b.HasGuardCode())
-        //    {
-        //        var expandedGuardCode = ExpandingVisitor.ParseAndExpandCode(ctx.expander, b.guardCode);
-        //        file.Append($"if ({expandedGuardCode})");
-        //        file.StartCodeBlock();
-        //    }
-        //}
-
-        //// todolow - deduplicate
-        //private void FinishGuardCodeIfNeeded(Behavior b)
-        //{
-        //    if (b.HasGuardCode())
-        //    {
-        //        file.FinishCodeBlock(" // end of guard code");
-        //    }
-        //}
-
         private string GetTransitionGuardCondition(Behavior b)
         {
             string expandedGuardCode;
