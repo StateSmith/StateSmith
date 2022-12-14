@@ -77,15 +77,7 @@ namespace StateSmith.Compiling
 
         public override void Visit(ExitPoint v)
         {
-            if (v.Children.Count > 0)
-            {
-                throw new VertexValidationException(v, "An exit point cannot have child states.");
-            }
-
-            if (v.IncomingTransitions.Count == 0)
-            {
-                throw new VertexValidationException(v, "An exit point must at least one incoming transition (for now).");
-            }
+            ExitPointValidator.Validate(v);
         }
 
         public static void ValidateInitialState(InitialState initialState)

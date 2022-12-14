@@ -777,6 +777,82 @@ public class Spec2CTests : Spec2CFixture
 
         Assert.Equal(ex, output);
     }
+
+    //---------------------------------------------------------------------------------------------------
+
+    [Fact]
+    public void Test9_Choice_1()
+    {
+        int incCount = 1;
+        var expectedState = "TEST9_G_S1";
+        Test9_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test9_Choice_2()
+    {
+        int incCount = 2;
+        var expectedState = "TEST9_G_S2";
+        Test9_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test9_Choice_3()
+    {
+        int incCount = 0;
+        var expectedState = "TEST9_G_S3";
+        Test9_RunWithXIncrementEvents(expectedState, incCount);
+
+        incCount = 3;
+        Test9_RunWithXIncrementEvents(expectedState, incCount);
+    }
+
+    private void Test9_RunWithXIncrementEvents(string expectedState, int incCount)
+    {
+        const string InitialEventToSelectTest = "EV9";
+
+        var testEvents = "";
+        var ex = "";
+
+        // ex += PrepExpectedOutput(@"
+        //     Transition action `` for TEST9_ROOT.EntryPoint(1) to TEST9_S1.
+        //     Enter TEST9_S1.
+        // ") + "\n\n";
+
+        for (int i = 0; i < incCount; i++)
+        {
+            // 
+            testEvents += "EV5 ";
+            ex += PrepExpectedOutput(@"
+            Dispatch event EV5
+            ===================================================
+            State TEST9_ROOT: check behavior `EV5 / { count++; }`. Behavior running.
+            ") + "\n\n";
+        }
+
+        // 
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@$"
+        Dispatch event EV1
+        ===================================================
+        State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.ExitPoint(1))`. Behavior running.
+        Exit TEST9_S1_1.
+        Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).
+        Exit TEST9_S1.
+        Transition action `` for TEST9_S1.ExitPoint(1) to {expectedState}.
+        Enter {expectedState}.
+        ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+
+        ex = ex.Trim();
+
+        // uncomment below line if you want to see the whole output
+        //output.Should().Be("");
+
+        Assert.Equal(ex, output);
+    }
+
 }
 
 

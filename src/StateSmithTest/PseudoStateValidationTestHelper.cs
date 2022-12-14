@@ -3,11 +3,12 @@ using Xunit;
 using StateSmith.Compiling;
 using System.Linq;
 
-namespace StateSmithTest.InitialStateProcessor
+namespace StateSmithTest.PseudoStateTests
 {
     public abstract class PseudoStateValidationTestHelper : ValidationTestHelper
     {
         abstract protected PseudoStateVertex CreateS2PseudoState();
+        abstract protected void AddBlankS2PseudoStateTransition();
 
         protected PseudoStateVertex s2_pseudoState;
 
@@ -33,7 +34,6 @@ namespace StateSmithTest.InitialStateProcessor
             rootInitialState.AddTransitionTo(s1);
 
             s2_pseudoState = s2.AddChild(CreateS2PseudoState());
-            s2_pseudoState.AddTransitionTo(s2_1);
 
             return sm;
         }
@@ -50,13 +50,6 @@ namespace StateSmithTest.InitialStateProcessor
         {
             s2_pseudoState._parent = null;
             ExpectVertexValidationException(exceptionMessagePart: "parent");
-        }
-
-        [Fact]
-        public void TargetOutsideOfParent()
-        {
-            s2_pseudoState.Behaviors.Single().RetargetTo(s1);
-            ExpectVertexValidationException(exceptionMessagePart: "transition must remain within parent");
         }
 
         [Fact]
@@ -77,7 +70,7 @@ namespace StateSmithTest.InitialStateProcessor
         public void GuardOkWithDefaultTransition()
         {
             s2_pseudoState.Behaviors.Single().guardCode = "x > 100";
-            s2_pseudoState.AddTransitionTo(s2_1); // default no-guard transition
+            AddBlankS2PseudoStateTransition(); // default no-guard transition
             ExpectValid();
         }
 
@@ -91,7 +84,7 @@ namespace StateSmithTest.InitialStateProcessor
         [Fact]
         public void MultipleBehavior()
         {
-            s2_pseudoState.AddTransitionTo(s2_1);
+            AddBlankS2PseudoStateTransition();
             ExpectValid();
         }
 
@@ -114,6 +107,26 @@ namespace StateSmithTest.InitialStateProcessor
         {
             s1.AddTransitionTo(s2_pseudoState);
             ExpectValid();
+        }
+    }
+
+    public abstract class EntryInitialValidationTestHelper : PseudoStateValidationTestHelper
+    {
+        public EntryInitialValidationTestHelper()
+        {
+            s2_pseudoState.AddTransitionTo(s2_1);
+        }
+
+        protected override void AddBlankS2PseudoStateTransition()
+        {
+            s2_pseudoState.AddTransitionTo(s2_1);
+        }
+
+        [Fact]
+        public void TargetOutsideOfParent()
+        {
+            s2_pseudoState.Behaviors.Single().RetargetTo(s1);
+            ExpectVertexValidationException(exceptionMessagePart: "transition must remain within parent");
         }
     }
 }

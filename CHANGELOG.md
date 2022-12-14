@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Allow multiple transitions from entry point.
   - Entry point must have a default transition (always true).
   - Allow incoming transitions to entry point.
+  - Allow multiple transitions from exit point.
+  - Exit point must have a default transition (always true).
 - Allow specifying `else` on transitions https://github.com/StateSmith/StateSmith/issues/59
 
 

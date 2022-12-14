@@ -7,7 +7,7 @@ public class InitialStateValidator
 {
     public static void Validate(InitialState initialState)
     {
-        PseudoStateValidator.Validate(initialState);
+        PseudoStateValidator.ValidateParentAndNoChildren(initialState);
 
         var parent = initialState.Parent;
 

@@ -4,9 +4,9 @@ using Xunit;
 using FluentAssertions;
 using StateSmith.Compiling;
 
-namespace StateSmithTest.InitialStateProcessor
+namespace StateSmithTest.PseudoStateTests
 {
-    public class InitialStateValidationTests : PseudoStateValidationTestHelper
+    public class InitialStateValidationTests : EntryInitialValidationTestHelper
     {
         override protected InitialState CreateS2PseudoState()
         {

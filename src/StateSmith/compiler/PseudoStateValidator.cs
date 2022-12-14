@@ -30,7 +30,48 @@ public class PseudoStateValidator
         }
     }
 
+    public static void ValdiateExitingBehaviors(PseudoStateVertex state)
+    {
+        bool hasDefaultTransition = false;
+        var parent = state.Parent;
+
+        foreach (var b in state.Behaviors)
+        {
+            ValidateExitingBehavior(state, parent: parent, b);
+
+            if (IsSuitableForDefaultTransition(b))
+            {
+                hasDefaultTransition = true;
+            }
+        }
+
+        if (!hasDefaultTransition)
+        {
+            throw new VertexValidationException(state, $"{GetTypeNameForMessage(state)} must have at least one transition without a guard clause (default transition). https://github.com/StateSmith/StateSmith/issues/59");
+        }
+    }
+
     public static void ValidateEnteringBehavior(PseudoStateVertex state, Vertex parent, Behavior behavior)
+    {
+        ValidateBehavior(state, parent, behavior);
+
+        if (!parent.ContainsVertex(behavior.TransitionTarget))
+        {
+            throw new VertexValidationException(state, $"{GetTypeNameForMessage(state)} transition must remain within parent");
+        }
+    }
+
+    public static void ValidateExitingBehavior(PseudoStateVertex state, Vertex parent, Behavior behavior)
+    {
+        ValidateBehavior(state, parent, behavior);
+
+        if (parent.ContainsVertex(behavior.TransitionTarget))
+        {
+            throw new VertexValidationException(state, $"{GetTypeNameForMessage(state)} transition must not target within parent");
+        }
+    }
+
+    private static void ValidateBehavior(PseudoStateVertex state, Vertex parent, Behavior behavior)
     {
         if (behavior.TransitionTarget == null)
         {
@@ -40,11 +81,6 @@ public class PseudoStateValidator
         if (behavior.HasAtLeastOneTrigger())
         {
             throw new VertexValidationException(state, $"{GetTypeNameForMessage(state)}s cannot have triggers"); //todolow create example of using guard to check current event
-        }
-
-        if (!parent.ContainsVertex(behavior.TransitionTarget))
-        {
-            throw new VertexValidationException(state, $"{GetTypeNameForMessage(state)} transition must remain within parent");
         }
 
         if (behavior.TransitionTarget == parent)
@@ -58,7 +94,7 @@ public class PseudoStateValidator
         }
     }
 
-    public static void Validate(PseudoStateVertex state)
+    public static void ValidateParentAndNoChildren(PseudoStateVertex state)
     {
         if (state.Parent == null)
         {

@@ -147,16 +147,9 @@ namespace StateSmith.Runner
 
             compiler.SupportElseTrigger();
             compiler.SupportParentAlias();
-            compiler.Validate();
             compiler.SupportEntryExitPoints();
             compiler.Validate();
             postParentAliasValidation(sm);
-
-            //if (settings.transitionsBeforeExit)
-            //{
-            //    compiler.SimplifyInitialStates();   // FIXME remove
-            //}
-
 
             compiler.Validate();
             compiler.DefaultToDoEventIfNoTrigger();

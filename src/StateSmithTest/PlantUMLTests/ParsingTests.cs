@@ -225,8 +225,6 @@ Foo1 -> entry2 : EV1 [guard()] / action_e2();
         compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
         compiler.SetupRoots();
         compiler.SupportParentAlias();
-        compiler.Validate();
-
         compiler.SimplifyInitialStates();
         compiler.SupportEntryExitPoints();
         compiler.Validate();
