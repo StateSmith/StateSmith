@@ -861,6 +861,160 @@ public class Spec2CTests : Spec2CFixture
         Assert.Equal(ex, output);
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    [Fact]
+    public void Test10_Choice_0()
+    {
+        int incCount = 0;
+        var expectedState = "TEST10_G_S0";
+        Test10_RunWithXIncrementEventsOverVariations(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test10_Choice_1()
+    {
+        int incCount = 1;
+        var expectedState = "TEST10_G_S1";
+        Test10_RunWithXIncrementEventsOverVariations(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test10_Choice_2()
+    {
+        int incCount = 2;
+        var expectedState = "TEST10_G_S2";
+        Test10_RunWithXIncrementEventsOverVariations(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test10_Choice_3()
+    {
+        int incCount = 3;
+        var expectedState = "TEST10_G_S3";
+        Test10_RunWithXIncrementEventsOverVariations(expectedState, incCount);
+    }
+
+    [Fact]
+    public void Test10_Choice_4()
+    {
+        int incCount = 4;
+        var expectedState = "TEST10_G_S4";
+        Test10_RunWithXIncrementEventsOverVariations(expectedState, incCount);
+    }
+
+    private void Test10_RunWithXIncrementEventsOverVariations(string expectedState, int incCount)
+    {
+        for (int i = 1; i <= 3; i++)
+        {
+            Test10_RunWithXIncrementEvents33(expectedState, incCount, variation: i);
+        }
+    }
+
+    private void Test10_RunWithXIncrementEvents33(string expectedState, int incCount, int variation)
+    {
+        const string InitialEventToSelectTest = "EV10";
+
+        var testEvents = "";
+        var ex = "";
+
+        for (int i = 0; i < incCount; i++)
+        {
+            // 
+            testEvents += "EV5 ";
+            ex += PrepExpectedOutput(@"
+            Dispatch event EV5
+            ===================================================
+            State TEST10_ROOT: check behavior `EV5 / { count++; }`. Behavior running.
+            ") + "\n\n";
+        }
+
+        if (variation == 1)
+        {
+            // 
+            testEvents += "EV1 ";
+            ex += PrepExpectedOutput(@$"
+            Dispatch event EV1
+            ===================================================
+            State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.EntryPoint(1))`. Behavior running.
+            Exit TEST10_S1.
+            Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).
+            Enter TEST10_G.
+            Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().
+            Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).
+            ") + "\n";
+        }
+        else if (variation == 2)
+        {
+            // 
+            testEvents += "EV2 ";
+            ex += PrepExpectedOutput(@$"
+            Dispatch event EV2
+            ===================================================
+            State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.ChoicePoint())`. Behavior running.
+            Exit TEST10_S1.
+            Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().
+            Enter TEST10_G.
+            Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).
+            ") + "\n";
+        }
+        else if (variation == 3)
+        {
+            // 
+            testEvents += "EV3 ";
+            ex += PrepExpectedOutput(@$"
+            Dispatch event EV3
+            ===================================================
+            State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`. Behavior running.
+            Exit TEST10_S1.
+            Transition action `` for TEST10_S1 to TEST10_G.
+            Enter TEST10_G.
+            Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().
+            Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).
+            ") + "\n";
+        }
+        else
+        {
+            throw new Exception("unsupported variation " + variation);
+        }
+
+        if (incCount == 0)
+        {
+            ex += PrepExpectedOutput(@$"
+            Transition action `` for TEST10_G.ChoicePoint(1) to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+        }
+        else if (incCount == 1 || incCount == 2)
+        {
+            ex += PrepExpectedOutput(@$"
+            Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).
+            Transition action `` for TEST10_G.ChoicePoint(lower) to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+        }
+        else if (incCount == 3 || incCount == 4)
+        {
+            ex += PrepExpectedOutput(@$"
+            Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).
+            Transition action `` for TEST10_G.ChoicePoint(upper) to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+        }
+        else
+        {
+            throw new Exception("unsupported incCount " + incCount);
+        }
+
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+
+        ex = ex.Trim();
+
+        // uncomment below line if you want to see the whole output
+        //output.Should().Be("");
+
+        Assert.Equal(ex, output);
+    }
 }
 
 

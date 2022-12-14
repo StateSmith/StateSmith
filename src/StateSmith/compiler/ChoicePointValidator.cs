@@ -1,10 +1,11 @@
 ﻿namespace StateSmith.Compiling;
 
-public class EntryPointValidator
+public class ChoicePointValidator
 {
-    public static void Validate(EntryPoint state)
+    public static void Validate(ChoicePoint state)
     {
         PseudoStateValidator.ValidateParentAndNoChildren(state);
         PseudoStateValidator.ValdiateEnteringBehaviors(state);
     }
 }
+

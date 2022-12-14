@@ -323,6 +323,9 @@ namespace StateSmith.Compiling
                 case ExitPoint e:
                     return $"{Describe(v.Parent)}.{nameof(ExitPoint)}({e.label})";
 
+                case ChoicePoint point:
+                    return $"{Describe(v.Parent)}.{nameof(ChoicePoint)}({point.label})";
+
                 default: throw new ArgumentException("Unsupported type " + v.GetType().FullName);
             }
         }

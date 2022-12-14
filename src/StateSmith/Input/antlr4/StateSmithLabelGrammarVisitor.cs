@@ -146,6 +146,12 @@ public interface IStateSmithLabelGrammarVisitor<Result> : IParseTreeVisitor<Resu
 	/// <return>The visitor result.</return>
 	Result VisitEntry_point([NotNull] StateSmithLabelGrammarParser.Entry_pointContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.choice"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitChoice([NotNull] StateSmithLabelGrammarParser.ChoiceContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.exit_point"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

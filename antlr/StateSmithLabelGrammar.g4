@@ -28,6 +28,8 @@ node:
     |
     entry_point
     |
+    choice
+    |
     state_defn
     |
     ortho_defn
@@ -144,6 +146,20 @@ entry_point:
     ':'
     optional_any_space
     point_label
+    optional_any_space
+    ;
+
+
+// https://github.com/StateSmith/StateSmith/issues/40
+choice:
+    optional_any_space
+    '$choice'
+    (
+        optional_any_space
+        ':'
+        optional_any_space
+        point_label
+    )?
     optional_any_space
     ;
 

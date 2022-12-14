@@ -400,6 +400,17 @@ namespace StateSmith.Compiling
                         }
                         break;
                     }
+
+                case ChoiceNode pointNode:
+                    {
+                        thisVertex = new ChoicePoint(pointNode.label);
+
+                        if (diagramNode.children.Count > 0)
+                        {
+                            throw new DiagramNodeException(diagramNode, $"choice points cannot have children.");
+                        }
+                        break;
+                    }
             }
 
             thisVertex.DiagramId = diagramNode.id;

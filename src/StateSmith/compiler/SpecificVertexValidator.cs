@@ -70,6 +70,11 @@ namespace StateSmith.Compiling
             //note that transitions to state nodes within a notes node are caught when converting from Diagram nodes to Vertices
         }
 
+        public override void Visit(ChoicePoint v)
+        {
+            ChoicePointValidator.Validate(v);
+        }
+
         public override void Visit(EntryPoint entryPoint)
         {
             EntryPointValidator.Validate(entryPoint);
