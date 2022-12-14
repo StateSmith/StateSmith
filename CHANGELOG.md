@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Support `$choice` pseudo states/points https://github.com/StateSmith/StateSmith/issues/40
+  - supported in PlantUML as well.
 - Support initial/entry/exit multiple https://github.com/StateSmith/StateSmith/issues/40
   - Allow multiple transitions from initial state.
   - Initial state must have a default transition (always true).

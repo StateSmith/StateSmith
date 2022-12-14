@@ -8,6 +8,9 @@ using StateSmith.Input.PlantUML;
 using StateSmith.Compiling;
 using StateSmith.Input;
 using FluentAssertions;
+using StateSmith.Runner;
+using StateSmithTest;
+using StateSmith.compiler;
 
 namespace StateSmithTest.PlantUMLTests;
 
@@ -221,13 +224,49 @@ Foo1 -> entry2 : EV1 [guard()] / action_e2();
 
         // ensure entry and exit validation works
 
-        Compiler compiler = new();
-        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SetupRoots();
-        compiler.SupportParentAlias();
-        compiler.SimplifyInitialStates();
-        compiler.SupportEntryExitPoints();
-        compiler.Validate();
+        CompilerRunner compilerRunner = new();
+        compilerRunner.CompileNodesToVertices(new List<DiagramNode> { translator.Root }, translator.Edges);
+        compilerRunner.FinishRunningCompiler();
+    }
+
+
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/40
+    /// </summary>
+    [Fact]
+    public void ChoicePoints()
+    {
+        var plantUmlText = @"
+@startuml ExampleSm
+state c1 <<choice>>
+[*] --> c1
+c1 --> s1 : [id <= 10]
+c1 --> s2 : else
+@enduml
+";
+        CompilerRunner compilerRunner = new();
+        compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        compilerRunner.FinishRunningCompiler();
+        var compiler = compilerRunner.compiler;
+
+        Statemachine root = compilerRunner.sm;
+        InitialState initial = root.ChildType<InitialState>();
+        ChoicePoint c1 = root.ChildType<ChoicePoint>();
+        State s1 = root.Child<State>("s1");
+        State s2 = root.Child<State>("s2");
+
+        c1.label.Should().Be("c1");
+
+        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+
+        initial.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            new Behavior(){ _transitionTarget = c1 },
+        }, behaviorMatcher);
+
+        c1.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            new Behavior(){ _transitionTarget = s1, guardCode = "id <= 10" },
+            new Behavior(){ _transitionTarget = s2 },
+        }, behaviorMatcher);
     }
 
     [Fact]
