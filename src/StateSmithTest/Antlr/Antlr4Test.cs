@@ -212,4 +212,19 @@ public class Antlr4Test : CommonTestHelper
         node.notes.Should().Be("this is my note!!! /* Not an actual comment test\n" +
                         "Another line of 2134 \"notes\"");
     }
+
+    // https://github.com/StateSmith/StateSmith/issues/60
+    [Fact]
+    public void SingleLetter_e_Function()
+    {
+        string input = @"
+            S2_1
+            enter / e();
+            ";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        textState.stateName.Should().Be("S2_1");
+        textState.behaviors.Count.Should().Be(1);
+        textState.behaviors[0].triggers.Should().BeEquivalentTo(new string[] { "enter" });
+        textState.behaviors[0].actionCode.Should().Be("e();");
+    }
 }

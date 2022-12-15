@@ -453,7 +453,9 @@ code_line:
 LINE_ENDER: [\r\n]+;
 line_end_with_hs: LINE_ENDER ohs;
 
-IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
+IDENTIFIER  :  (LITTLE_E | IDENTIFIER_NON_DIGIT)   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+LITTLE_E: 'e';
 
 number :
     (DASH | PLUS)?
@@ -463,7 +465,7 @@ number :
         DIGIT+
     )?
     (
-        'e' DIGIT+
+       LITTLE_E DIGIT+
     )?
     ;
 
@@ -486,7 +488,6 @@ string: STRING | TICK_STRING;
 //todolow js backtick strings. template literals.
 
 
-fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
 
 
 DIGIT :   [0-9]  ;

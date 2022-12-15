@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## WIP
 ### Fixed
 - https://github.com/StateSmith/StateSmith/issues/49
+- StateSmith grammar fix for parsing 'e()'. https://github.com/StateSmith/StateSmith/issues/60
 
 ### Changed
 - Transition actions are now run after states are exited (instead of before) https://github.com/StateSmith/StateSmith/issues/6
