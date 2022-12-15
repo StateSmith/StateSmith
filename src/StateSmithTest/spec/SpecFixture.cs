@@ -30,6 +30,7 @@ public class SpecGenericVarExpansions : UserExpansionScriptBase
 {
     #pragma warning disable IDE1006 // Naming Styles
     public string clear_output() => "trace(\"IGNORE_OUTPUT_BEFORE_THIS\");";
+    public string clear_dispatch_output() => "trace(\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\");";
     #pragma warning restore IDE1006 // Naming Styles
 }
 

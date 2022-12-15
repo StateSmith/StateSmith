@@ -82,12 +82,15 @@ namespace StateSmith.output
             return str;
         }
 
-        internal static string RemoveEverythingBeforeRequiredMatch(string str, string match)
+        internal static string RemoveEverythingBefore(string str, string match, bool requireMatch = false)
         {
             var index = str.LastIndexOf(match);
             if (index < 0)
             {
-                throw new ArgumentException($"match `{match}` not found");
+                if (requireMatch)
+                    throw new ArgumentException($"match `{match}` not found");
+                else
+                    return str;
             }
 
             return str.Substring(index + match.Length);

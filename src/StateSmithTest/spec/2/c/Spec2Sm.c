@@ -120,6 +120,49 @@ static void TEST3_S3_exit(Spec2Sm* self);
 static void TEST4_PARENT_CHILD_TRANSITIONS_enter(Spec2Sm* self);
 static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm* self);
 
+static void TEST4_B_AND_OTHERS_enter(Spec2Sm* self);
+static void TEST4_B_AND_OTHERS_exit(Spec2Sm* self);
+
+static void TEST4B_LOCAL_enter(Spec2Sm* self);
+static void TEST4B_LOCAL_exit(Spec2Sm* self);
+
+static void TEST4B_G_enter(Spec2Sm* self);
+static void TEST4B_G_exit(Spec2Sm* self);
+static void TEST4B_G_ev1(Spec2Sm* self);
+
+static void TEST4B_G_1_enter(Spec2Sm* self);
+static void TEST4B_G_1_exit(Spec2Sm* self);
+static void TEST4B_G_1_ev2(Spec2Sm* self);
+
+static void TEST4C_LOCAL_TO_ALIAS_enter(Spec2Sm* self);
+static void TEST4C_LOCAL_TO_ALIAS_exit(Spec2Sm* self);
+
+static void TEST4C_G_enter(Spec2Sm* self);
+static void TEST4C_G_exit(Spec2Sm* self);
+static void TEST4C_G_ev1(Spec2Sm* self);
+
+static void TEST4C_G_1_enter(Spec2Sm* self);
+static void TEST4C_G_1_exit(Spec2Sm* self);
+static void TEST4C_G_1_ev2(Spec2Sm* self);
+
+static void TEST4D_EXTERNAL_enter(Spec2Sm* self);
+static void TEST4D_EXTERNAL_exit(Spec2Sm* self);
+
+static void TEST4D_G_enter(Spec2Sm* self);
+static void TEST4D_G_exit(Spec2Sm* self);
+static void TEST4D_G_ev1(Spec2Sm* self);
+
+static void TEST4D_G_1_enter(Spec2Sm* self);
+static void TEST4D_G_1_exit(Spec2Sm* self);
+static void TEST4D_G_1_ev2(Spec2Sm* self);
+
+static void TEST4_DECIDE_enter(Spec2Sm* self);
+static void TEST4_DECIDE_exit(Spec2Sm* self);
+static void TEST4_DECIDE_ev1(Spec2Sm* self);
+static void TEST4_DECIDE_ev2(Spec2Sm* self);
+static void TEST4_DECIDE_ev3(Spec2Sm* self);
+static void TEST4_DECIDE_ev4(Spec2Sm* self);
+
 static void TEST4_ROOT_enter(Spec2Sm* self);
 static void TEST4_ROOT_exit(Spec2Sm* self);
 static void TEST4_ROOT_ev2(Spec2Sm* self);
@@ -383,6 +426,17 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
         case Spec2Sm_StateId_TEST3_S2: return "TEST3_S2";
         case Spec2Sm_StateId_TEST3_S3: return "TEST3_S3";
         case Spec2Sm_StateId_TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS";
+        case Spec2Sm_StateId_TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS";
+        case Spec2Sm_StateId_TEST4B_LOCAL: return "TEST4B_LOCAL";
+        case Spec2Sm_StateId_TEST4B_G: return "TEST4B_G";
+        case Spec2Sm_StateId_TEST4B_G_1: return "TEST4B_G_1";
+        case Spec2Sm_StateId_TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS";
+        case Spec2Sm_StateId_TEST4C_G: return "TEST4C_G";
+        case Spec2Sm_StateId_TEST4C_G_1: return "TEST4C_G_1";
+        case Spec2Sm_StateId_TEST4D_EXTERNAL: return "TEST4D_EXTERNAL";
+        case Spec2Sm_StateId_TEST4D_G: return "TEST4D_G";
+        case Spec2Sm_StateId_TEST4D_G_1: return "TEST4D_G_1";
+        case Spec2Sm_StateId_TEST4_DECIDE: return "TEST4_DECIDE";
         case Spec2Sm_StateId_TEST4_ROOT: return "TEST4_ROOT";
         case Spec2Sm_StateId_TEST4_S1: return "TEST4_S1";
         case Spec2Sm_StateId_TEST4_S10: return "TEST4_S10";
@@ -693,16 +747,16 @@ static void DECIDE_ev4(Spec2Sm* self)
         TEST4_PARENT_CHILD_TRANSITIONS_enter(self);
         
         // TEST4_PARENT_CHILD_TRANSITIONS.InitialState behavior
-        // uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_ROOT."); } TransitionTo(TEST4_ROOT)
+        // uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE."); } TransitionTo(TEST4_DECIDE)
         if (true)
         {
-            trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_ROOT.");
+            trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");
             
             // Enter towards target
-            TEST4_ROOT_enter(self);
+            TEST4_DECIDE_enter(self);
             
             // update state_id
-            self->state_id = Spec2Sm_StateId_TEST4_ROOT;
+            self->state_id = Spec2Sm_StateId_TEST4_DECIDE;
             self->ancestor_event_handler = NULL;
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.InitialState
@@ -2520,6 +2574,658 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm* self)
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4_B_AND_OTHERS
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4_B_AND_OTHERS_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4_B_AND_OTHERS_exit;
+    
+    // TEST4_B_AND_OTHERS behavior
+    // uml: enter / { trace("Enter TEST4_B_AND_OTHERS."); }
+    if (true)
+    {
+        trace("Enter TEST4_B_AND_OTHERS.");
+    } // end of behavior for TEST4_B_AND_OTHERS
+    
+    // TEST4_B_AND_OTHERS behavior
+    // uml: enter [trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
+    if (trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true))
+    {
+        trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+    } // end of behavior for TEST4_B_AND_OTHERS
+}
+
+static void TEST4_B_AND_OTHERS_exit(Spec2Sm* self)
+{
+    // TEST4_B_AND_OTHERS behavior
+    // uml: exit / { trace("Exit TEST4_B_AND_OTHERS."); }
+    if (true)
+    {
+        trace("Exit TEST4_B_AND_OTHERS.");
+    } // end of behavior for TEST4_B_AND_OTHERS
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4B_LOCAL
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4B_LOCAL_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4B_LOCAL_exit;
+    
+    // TEST4B_LOCAL behavior
+    // uml: enter / { trace("Enter TEST4B_LOCAL."); }
+    if (true)
+    {
+        trace("Enter TEST4B_LOCAL.");
+    } // end of behavior for TEST4B_LOCAL
+}
+
+static void TEST4B_LOCAL_exit(Spec2Sm* self)
+{
+    // TEST4B_LOCAL behavior
+    // uml: exit / { trace("Exit TEST4B_LOCAL."); }
+    if (true)
+    {
+        trace("Exit TEST4B_LOCAL.");
+    } // end of behavior for TEST4B_LOCAL
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4_B_AND_OTHERS_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4B_G
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4B_G_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4B_G_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST4B_G_ev1;
+    
+    // TEST4B_G behavior
+    // uml: enter / { trace("Enter TEST4B_G."); }
+    if (true)
+    {
+        trace("Enter TEST4B_G.");
+    } // end of behavior for TEST4B_G
+}
+
+static void TEST4B_G_exit(Spec2Sm* self)
+{
+    // TEST4B_G behavior
+    // uml: exit / { trace("Exit TEST4B_G."); }
+    if (true)
+    {
+        trace("Exit TEST4B_G.");
+    } // end of behavior for TEST4B_G
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4B_LOCAL_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST4B_G_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST4B_G behavior
+    // uml: EV1 [trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true)] / { trace("Transition action `` for TEST4B_G to TEST4B_G_1."); } TransitionTo(TEST4B_G_1)
+    if (trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4B_G or one of its sub states.
+        exit_up_to_state_handler(self, TEST4B_G_exit);  // Exit until we reach TEST4B_G state.
+        trace("Transition action `` for TEST4B_G to TEST4B_G_1.");
+        
+        // Enter towards target
+        TEST4B_G_1_enter(self);
+        
+        // update state_id
+        self->state_id = Spec2Sm_StateId_TEST4B_G_1;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST4B_G
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4B_G_1
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4B_G_1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4B_G_1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST4B_G_1_ev2;
+    
+    // TEST4B_G_1 behavior
+    // uml: enter / { trace("Enter TEST4B_G_1."); }
+    if (true)
+    {
+        trace("Enter TEST4B_G_1.");
+    } // end of behavior for TEST4B_G_1
+}
+
+static void TEST4B_G_1_exit(Spec2Sm* self)
+{
+    // TEST4B_G_1 behavior
+    // uml: exit / { trace("Exit TEST4B_G_1."); }
+    if (true)
+    {
+        trace("Exit TEST4B_G_1.");
+    } // end of behavior for TEST4B_G_1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4B_G_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST4B_G_1_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST4B_G_1 behavior
+    // uml: EV2 [trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", true)] / { trace("Transition action `` for TEST4B_G_1 to TEST4B_G."); } TransitionTo(TEST4B_G)
+    if (trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // Avoid exit-while-loop here because we know that the active leaf state is TEST4B_G_1 and it is the only state being exited at this point.
+        TEST4B_G_1_exit(self);
+        trace("Transition action `` for TEST4B_G_1 to TEST4B_G.");
+        
+        // Enter towards target
+        
+        // update state_id
+        self->state_id = Spec2Sm_StateId_TEST4B_G;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST4B_G_1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4C_LOCAL_TO_ALIAS
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4C_LOCAL_TO_ALIAS_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4C_LOCAL_TO_ALIAS_exit;
+    
+    // TEST4C_LOCAL_TO_ALIAS behavior
+    // uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS."); }
+    if (true)
+    {
+        trace("Enter TEST4C_LOCAL_TO_ALIAS.");
+    } // end of behavior for TEST4C_LOCAL_TO_ALIAS
+}
+
+static void TEST4C_LOCAL_TO_ALIAS_exit(Spec2Sm* self)
+{
+    // TEST4C_LOCAL_TO_ALIAS behavior
+    // uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS."); }
+    if (true)
+    {
+        trace("Exit TEST4C_LOCAL_TO_ALIAS.");
+    } // end of behavior for TEST4C_LOCAL_TO_ALIAS
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4_B_AND_OTHERS_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4C_G
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4C_G_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4C_G_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST4C_G_ev1;
+    
+    // TEST4C_G behavior
+    // uml: enter / { trace("Enter TEST4C_G."); }
+    if (true)
+    {
+        trace("Enter TEST4C_G.");
+    } // end of behavior for TEST4C_G
+}
+
+static void TEST4C_G_exit(Spec2Sm* self)
+{
+    // TEST4C_G behavior
+    // uml: exit / { trace("Exit TEST4C_G."); }
+    if (true)
+    {
+        trace("Exit TEST4C_G.");
+    } // end of behavior for TEST4C_G
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4C_LOCAL_TO_ALIAS_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST4C_G_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST4C_G behavior
+    // uml: EV1 [trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true)] / { trace("Transition action `` for TEST4C_G to TEST4C_G_1."); } TransitionTo(TEST4C_G_1)
+    if (trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4C_G or one of its sub states.
+        exit_up_to_state_handler(self, TEST4C_G_exit);  // Exit until we reach TEST4C_G state.
+        trace("Transition action `` for TEST4C_G to TEST4C_G_1.");
+        
+        // Enter towards target
+        TEST4C_G_1_enter(self);
+        
+        // update state_id
+        self->state_id = Spec2Sm_StateId_TEST4C_G_1;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST4C_G
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4C_G_1
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4C_G_1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4C_G_1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST4C_G_1_ev2;
+    
+    // TEST4C_G_1 behavior
+    // uml: enter / { trace("Enter TEST4C_G_1."); }
+    if (true)
+    {
+        trace("Enter TEST4C_G_1.");
+    } // end of behavior for TEST4C_G_1
+}
+
+static void TEST4C_G_1_exit(Spec2Sm* self)
+{
+    // TEST4C_G_1 behavior
+    // uml: exit / { trace("Exit TEST4C_G_1."); }
+    if (true)
+    {
+        trace("Exit TEST4C_G_1.");
+    } // end of behavior for TEST4C_G_1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4C_G_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST4C_G_1_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST4C_G_1 behavior
+    // uml: EV2 [trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", true)] / { trace("Transition action `` for TEST4C_G_1 to TEST4C_G."); } TransitionTo(TEST4C_G)
+    if (trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // Avoid exit-while-loop here because we know that the active leaf state is TEST4C_G_1 and it is the only state being exited at this point.
+        TEST4C_G_1_exit(self);
+        trace("Transition action `` for TEST4C_G_1 to TEST4C_G.");
+        
+        // Enter towards target
+        
+        // update state_id
+        self->state_id = Spec2Sm_StateId_TEST4C_G;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST4C_G_1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4D_EXTERNAL
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4D_EXTERNAL_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4D_EXTERNAL_exit;
+    
+    // TEST4D_EXTERNAL behavior
+    // uml: enter / { trace("Enter TEST4D_EXTERNAL."); }
+    if (true)
+    {
+        trace("Enter TEST4D_EXTERNAL.");
+    } // end of behavior for TEST4D_EXTERNAL
+}
+
+static void TEST4D_EXTERNAL_exit(Spec2Sm* self)
+{
+    // TEST4D_EXTERNAL behavior
+    // uml: exit / { trace("Exit TEST4D_EXTERNAL."); }
+    if (true)
+    {
+        trace("Exit TEST4D_EXTERNAL.");
+    } // end of behavior for TEST4D_EXTERNAL
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4_B_AND_OTHERS_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4D_G
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4D_G_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4D_G_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST4D_G_ev1;
+    
+    // TEST4D_G behavior
+    // uml: enter / { trace("Enter TEST4D_G."); }
+    if (true)
+    {
+        trace("Enter TEST4D_G.");
+    } // end of behavior for TEST4D_G
+}
+
+static void TEST4D_G_exit(Spec2Sm* self)
+{
+    // TEST4D_G behavior
+    // uml: exit / { trace("Exit TEST4D_G."); }
+    if (true)
+    {
+        trace("Exit TEST4D_G.");
+    } // end of behavior for TEST4D_G
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4D_EXTERNAL_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST4D_G_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST4D_G behavior
+    // uml: EV1 [trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint()."); } TransitionTo(TEST4D_EXTERNAL.ChoicePoint())
+    if (trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4D_G or one of its sub states.
+        exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);  // Exit until we reach TEST4D_EXTERNAL state.
+        trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");
+        
+        // Enter towards target
+        
+        // TEST4D_EXTERNAL.ChoicePoint() behavior
+        // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1."); } TransitionTo(TEST4D_G_1)
+        if (true)
+        {
+            // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4D_EXTERNAL.ChoicePoint() or one of its sub states.
+            exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);  // Exit until we reach TEST4D_EXTERNAL state.
+            trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");
+            
+            // Enter towards target
+            TEST4D_G_enter(self);
+            TEST4D_G_1_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST4D_G_1;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
+    } // end of behavior for TEST4D_G
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4D_G_1
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4D_G_1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4D_G_1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST4D_G_1_ev2;
+    
+    // TEST4D_G_1 behavior
+    // uml: enter / { trace("Enter TEST4D_G_1."); }
+    if (true)
+    {
+        trace("Enter TEST4D_G_1.");
+    } // end of behavior for TEST4D_G_1
+}
+
+static void TEST4D_G_1_exit(Spec2Sm* self)
+{
+    // TEST4D_G_1 behavior
+    // uml: exit / { trace("Exit TEST4D_G_1."); }
+    if (true)
+    {
+        trace("Exit TEST4D_G_1.");
+    } // end of behavior for TEST4D_G_1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4D_G_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST4D_G_1_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST4D_G_1 behavior
+    // uml: EV2 [trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint()."); } TransitionTo(TEST4D_EXTERNAL.ChoicePoint())
+    if (trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4D_G_1 or one of its sub states.
+        exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);  // Exit until we reach TEST4D_EXTERNAL state.
+        trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");
+        
+        // Enter towards target
+        
+        // TEST4D_EXTERNAL.ChoicePoint() behavior
+        // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G."); } TransitionTo(TEST4D_G)
+        if (true)
+        {
+            // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4D_EXTERNAL.ChoicePoint() or one of its sub states.
+            exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);  // Exit until we reach TEST4D_EXTERNAL state.
+            trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");
+            
+            // Enter towards target
+            TEST4D_G_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST4D_G;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
+    } // end of behavior for TEST4D_G_1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST4_DECIDE
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST4_DECIDE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST4_DECIDE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST4_DECIDE_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST4_DECIDE_ev2;
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = TEST4_DECIDE_ev3;
+    self->current_event_handlers[Spec2Sm_EventId_EV4] = TEST4_DECIDE_ev4;
+    
+    // TEST4_DECIDE behavior
+    // uml: enter / { trace("Enter TEST4_DECIDE."); }
+    if (true)
+    {
+        trace("Enter TEST4_DECIDE.");
+    } // end of behavior for TEST4_DECIDE
+}
+
+static void TEST4_DECIDE_exit(Spec2Sm* self)
+{
+    // TEST4_DECIDE behavior
+    // uml: exit / { trace("Exit TEST4_DECIDE."); }
+    if (true)
+    {
+        trace("Exit TEST4_DECIDE.");
+    } // end of behavior for TEST4_DECIDE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV4] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST4_DECIDE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST4_DECIDE behavior
+    // uml: EV1 [trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT."); } TransitionTo(TEST4_ROOT)
+    if (trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_DECIDE and it is the only state being exited at this point.
+        TEST4_DECIDE_exit(self);
+        trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.");
+        
+        // Enter towards target
+        TEST4_ROOT_enter(self);
+        
+        // update state_id
+        self->state_id = Spec2Sm_StateId_TEST4_ROOT;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST4_DECIDE
+}
+
+static void TEST4_DECIDE_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST4_DECIDE behavior
+    // uml: EV2 [trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL."); } TransitionTo(TEST4B_LOCAL)
+    if (trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_DECIDE and it is the only state being exited at this point.
+        TEST4_DECIDE_exit(self);
+        trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.");
+        
+        // Enter towards target
+        TEST4_B_AND_OTHERS_enter(self);
+        TEST4B_LOCAL_enter(self);
+        
+        // TEST4B_LOCAL.InitialState behavior
+        // uml: / { trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G."); } TransitionTo(TEST4B_G)
+        if (true)
+        {
+            trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");
+            
+            // Enter towards target
+            TEST4B_G_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST4B_G;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST4B_LOCAL.InitialState
+    } // end of behavior for TEST4_DECIDE
+}
+
+static void TEST4_DECIDE_ev3(Spec2Sm* self)
+{
+    // No ancestor state handles `EV3` event.
+    
+    // TEST4_DECIDE behavior
+    // uml: EV3 [trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS."); } TransitionTo(TEST4C_LOCAL_TO_ALIAS)
+    if (trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_DECIDE and it is the only state being exited at this point.
+        TEST4_DECIDE_exit(self);
+        trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.");
+        
+        // Enter towards target
+        TEST4_B_AND_OTHERS_enter(self);
+        TEST4C_LOCAL_TO_ALIAS_enter(self);
+        
+        // TEST4C_LOCAL_TO_ALIAS.InitialState behavior
+        // uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G."); } TransitionTo(TEST4C_G)
+        if (true)
+        {
+            trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");
+            
+            // Enter towards target
+            TEST4C_G_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST4C_G;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST4C_LOCAL_TO_ALIAS.InitialState
+    } // end of behavior for TEST4_DECIDE
+}
+
+static void TEST4_DECIDE_ev4(Spec2Sm* self)
+{
+    // No ancestor state handles `EV4` event.
+    
+    // TEST4_DECIDE behavior
+    // uml: EV4 [trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL."); } TransitionTo(TEST4D_EXTERNAL)
+    if (trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_DECIDE and it is the only state being exited at this point.
+        TEST4_DECIDE_exit(self);
+        trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.");
+        
+        // Enter towards target
+        TEST4_B_AND_OTHERS_enter(self);
+        TEST4D_EXTERNAL_enter(self);
+        
+        // TEST4D_EXTERNAL.InitialState behavior
+        // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G."); } TransitionTo(TEST4D_G)
+        if (true)
+        {
+            trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");
+            
+            // Enter towards target
+            TEST4D_G_enter(self);
+            
+            // update state_id
+            self->state_id = Spec2Sm_StateId_TEST4D_G;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST4D_EXTERNAL.InitialState
+    } // end of behavior for TEST4_DECIDE
 }
 
 

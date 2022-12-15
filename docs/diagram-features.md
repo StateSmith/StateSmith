@@ -224,18 +224,72 @@ https://github.com/StateSmith/StateSmith/issues/2
 ## UML difference - local transitions only (for now)
 UML distinguishes between local and external transitions (see below). Local transitions don't exit the parent, external transitions do.
 
-StateSmith currently doesn’t support graphically determining local versus external transitions because of limitations using the free yEd tool - you can’t draw the diagrams shown in (a) below. In StateSmith, all the diagrams below would be implemented using local transitions.
+StateSmith currently doesn’t support graphically determining local versus external transitions due to limitations of drawing tools. You can’t draw the diagrams shown in (a) below with yEd, and you can't draw the diagrams shown in (b) with PlantUML. Because of these drawing tool limitations, StateSmith considers all the transitions in the image below to be local. Don't worry though, there are a few easy ways to make achieve the desired effect with clarity using StateSmith.
 
 ![picture 14](../images/docs-local-vs-external-transitions.png)  
 
-In the yEd drawing below, these would all be local transitions. The parent state is not exited for any of them.
+You can achieve unambiguous external transitions as shown below.
 
-![picture 17](../images/docs-local-vs-external-transitions-yed-1.png)  
+![picture 9](./images/external-transition-using-choice-points.png)  
 
-If you want the `PARENT` state to be exited, you'll have to transition to another state outside of `PARENT` as an interim measure as shown below. This will be improved in the future.
+Here's the test output for the above diagram when trace information is added:
 
-![picture 18](../images/docs-local-vs-external-transitions-workaround1.png)  
+```
+Dispatch event EV1
+===================================================
+State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
+Exit TEST4D_G.
+Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().
+Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.
+Enter TEST4D_G.
+Enter TEST4D_G_1.
 
+Dispatch event EV2
+===================================================
+State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
+Exit TEST4D_G_1.
+Exit TEST4D_G.
+Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().
+Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.
+Enter TEST4D_G.
+```
+
+The transitions in the below diagrams are local. The "TEST4C" example is arguably more clear, but they are both effectively the same.
+
+![picture 10](./images/local-transition-example.png)
+![picture 11](./images/local-transition-to-alias-example.png)  
+
+Here's the test output for the above "4B" diagram when trace information is added:
+
+```
+Dispatch event EV1
+===================================================
+State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`. Behavior running.
+Transition action `` for TEST4B_G to TEST4B_G_1.
+Enter TEST4B_G_1.
+
+Dispatch event EV2
+===================================================
+State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`. Behavior running.
+Exit TEST4B_G_1.
+Transition action `` for TEST4B_G_1 to TEST4B_G.
+```
+
+Here's the test output for the above "4C" diagram when trace information is added:
+
+```
+Dispatch event EV1
+===================================================
+State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`. Behavior running.
+Transition action `` for TEST4C_G to TEST4C_G_1.
+Enter TEST4C_G_1.
+
+Dispatch event EV2
+===================================================
+State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`. Behavior running.
+Exit TEST4C_G_1.
+Transition action `` for TEST4C_G_1 to TEST4C_G.
+```
 
 ---
 

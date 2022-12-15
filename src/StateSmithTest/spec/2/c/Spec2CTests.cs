@@ -66,7 +66,8 @@ public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
         BashRunner.RunCommand(process);
 
         string output = process.StdOutput;
-        output = StringUtils.RemoveEverythingBeforeRequiredMatch(output, "\nIGNORE_OUTPUT_BEFORE_THIS").Trim();
+        output = StringUtils.RemoveEverythingBefore(output, "\nIGNORE_OUTPUT_BEFORE_THIS\n").Trim();
+        output = Regex.Replace(output, @"[\s\S]*\nCLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\n[\s\S]*?\n\n", "").Trim();
 
         return output;
     }
@@ -210,9 +211,12 @@ public class Spec2CTests : Spec2CFixture
         Assert.Equal(expected, output);
     }
 
+    //-------------------------------------------------------------------------------------
+
     [Fact]
     public void Test4_ParentChildTransitions()
     {
+        const string InitialEventToSelectTest = "EV4 EV1";
         var testEvents = "";
         var ex = "";
 
@@ -292,7 +296,6 @@ public class Spec2CTests : Spec2CFixture
             Transition action `` for TEST4_S3 to TEST4_ROOT.
             ") + "\n\n";
 
-        const string InitialEventToSelectTest = "EV4";
         var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
 
         ex = ex.Trim();
@@ -306,6 +309,8 @@ public class Spec2CTests : Spec2CFixture
     [Fact]
     public void Test4_ParentChildTransitions_SelfTransition()
     {
+        const string InitialEventToSelectTest = "EV4 EV1";
+
         var testEvents = "";
         var ex = "";
 
@@ -331,7 +336,6 @@ public class Spec2CTests : Spec2CFixture
             Enter TEST4_S10.
             ") + "\n\n";
 
-        const string InitialEventToSelectTest = "EV4";
         var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
 
         ex = ex.Trim();
@@ -346,6 +350,7 @@ public class Spec2CTests : Spec2CFixture
     [Fact]
     public void Test4_ParentChildTransitions_SelfTransitionWithInitialState()
     {
+        const string InitialEventToSelectTest = "EV4 EV1";
         var testEvents = "";
         var ex = "";
 
@@ -374,7 +379,6 @@ public class Spec2CTests : Spec2CFixture
             Enter TEST4_S20_1.
             ") + "\n\n";
 
-        const string InitialEventToSelectTest = "EV4";
         var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
 
         ex = ex.Trim();
@@ -384,6 +388,118 @@ public class Spec2CTests : Spec2CFixture
 
         Assert.Equal(ex, output);
     }
+
+    //-------------------------------------------------------------------------------------
+
+    [Fact]
+    public void Test4B_LocalTransitionExample()
+    {
+        const string InitialEventToSelectTest = "EV4 EV2";
+        var testEvents = "";
+        var ex = "";
+
+        // 
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`. Behavior running.
+            Transition action `` for TEST4B_G to TEST4B_G_1.
+            Enter TEST4B_G_1.
+        ") + "\n\n";
+
+        testEvents += "EV2 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV2
+            ===================================================
+            State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`. Behavior running.
+            Exit TEST4B_G_1.
+            Transition action `` for TEST4B_G_1 to TEST4B_G.
+        ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+
+        ex = ex.Trim();
+      
+        // output.Should().Be(""); // uncomment line if you want to see the whole output
+        Assert.Equal(ex, output);
+    }
+
+    [Fact]
+    public void Test4C_LocalTransitionAliasExample()
+    {
+        const string InitialEventToSelectTest = "EV4 EV3";
+        var testEvents = "";
+        var ex = "";
+
+        // 
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`. Behavior running.
+            Transition action `` for TEST4C_G to TEST4C_G_1.
+            Enter TEST4C_G_1.
+        ") + "\n\n";
+
+        testEvents += "EV2 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV2
+            ===================================================
+            State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`. Behavior running.
+            Exit TEST4C_G_1.
+            Transition action `` for TEST4C_G_1 to TEST4C_G.
+        ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+
+        ex = ex.Trim();
+      
+        // output.Should().Be(""); // uncomment line if you want to see the whole output
+        Assert.Equal(ex, output);
+    }
+
+    [Fact]
+    public void Test4D_ExternalTransitionExample()
+    {
+        const string InitialEventToSelectTest = "EV4 EV4";
+        var testEvents = "";
+        var ex = "";
+
+        // 
+        testEvents += "EV1 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
+            Exit TEST4D_G.
+            Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().
+            Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.
+            Enter TEST4D_G.
+            Enter TEST4D_G_1.
+        ") + "\n\n";
+
+        testEvents += "EV2 ";
+        ex += PrepExpectedOutput(@"
+            Dispatch event EV2
+            ===================================================
+            State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
+            Exit TEST4D_G_1.
+            Exit TEST4D_G.
+            Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().
+            Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.
+            Enter TEST4D_G.
+        ") + "\n\n";
+
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+
+        ex = ex.Trim();
+      
+        // output.Should().Be(""); // uncomment line if you want to see the whole output
+        Assert.Equal(ex, output);
+    }
+
+    //-------------------------------------------------------------------------------------
 
     /// <summary>
     /// Same as <see cref="TestParentChildTransitions"/>, but designed with parent alias nodes instead.
