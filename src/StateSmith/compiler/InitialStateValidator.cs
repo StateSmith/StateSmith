@@ -22,6 +22,6 @@ public class InitialStateValidator
             throw new VertexValidationException(parent, $"A state can only have a single initial state, not {siblingCount}.");
         }
 
-        PseudoStateValidator.ValdiateEnteringBehaviors(initialState);
+        PseudoStateValidator.ValidateEnteringBehaviors(initialState);
     }
 }

@@ -254,7 +254,7 @@ static void S11_ev1(Spec1Sm* self)
     if (trace_guard("State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`.", true))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Optimize away while-exit-loop because we know that the active leaf state is S11 and it is exiting directly to its parent S1.
+        // Avoid exit-while-loop here because we know that the active leaf state is S11 and it is the only state being exited at this point.
         S11_exit(self);
         trace("Transition action `` for S11 to S1.ExitPoint(1).");
         
@@ -264,7 +264,7 @@ static void S11_ev1(Spec1Sm* self)
         // uml: / { trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1)."); } TransitionTo(T11.EntryPoint(1))
         if (true)
         {
-            // Optimize away while-exit-loop because we know that the active leaf state is S1 and it is exiting directly to its parent S.
+            // Avoid exit-while-loop here because we know that the active leaf state is S1 and it is the only state being exited at this point.
             S1_exit(self);
             trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");
             

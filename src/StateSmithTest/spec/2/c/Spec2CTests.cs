@@ -817,15 +817,10 @@ public class Spec2CTests : Spec2CFixture
 
     private void Test9_RunWithXIncrementEvents(string expectedState, int incCount)
     {
-        const string InitialEventToSelectTest = "EV9";
+        const string InitialEventToSelectTest = "EV9 EV1 ";
 
         var testEvents = "";
         var ex = "";
-
-        // ex += PrepExpectedOutput(@"
-        //     Transition action `` for TEST9_ROOT.EntryPoint(1) to TEST9_S1.
-        //     Enter TEST9_S1.
-        // ") + "\n\n";
 
         for (int i = 0; i < incCount; i++)
         {
@@ -855,10 +850,35 @@ public class Spec2CTests : Spec2CFixture
 
         ex = ex.Trim();
 
-        // uncomment below line if you want to see the whole output
-        //output.Should().Be("");
 
         Assert.Equal(ex, output);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    [Fact]
+    public void Test9A_ExitPointTargetsParent()
+    {
+        var output = Run(initialEventToSelectTest: "EV9 EV2", testEvents: "EV1");
+        //output.Should().Be(""); // uncomment line if you want to see the whole output.
+
+        var expected = PrepExpectedOutput(@"
+            Dispatch event EV1
+            ===================================================
+            State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.ExitPoint(1))`. Behavior running.
+            Exit TEST9A_S1_1.
+            State TEST9A_S1_1: check behavior `exit / { count = 100; }`. Behavior running.
+            Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).
+            Exit TEST9A_S1.
+            Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.
+            Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.
+            Enter TEST9A_S1_1.
+            State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`. Behavior skipped.
+        ");
+
+        // output.Should().Be("");  // uncomment line if you want to see the whole output.
+
+        Assert.Equal(expected, output);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////

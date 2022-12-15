@@ -215,7 +215,7 @@ namespace StateSmith.output.C99BalancedCoder1
             {
                 NamedVertex leafActiveState = (NamedVertex)source;
                 string sourceExitHandler = mangler.SmFuncTriggerHandler(leafActiveState, TriggerHelper.TRIGGER_EXIT);
-                file.AppendLine($"// Optimize away while-exit-loop because we know that the active leaf state is {Vertex.Describe(leafActiveState)} and it is exiting directly to its parent {Vertex.Describe(ancestorState)}.");
+                file.AppendLine($"// Avoid exit-while-loop here because we know that the active leaf state is {Vertex.Describe(leafActiveState)} and it is the only state being exited at this point.");
                 file.AppendLine($"{sourceExitHandler}(self);");
             }
             else

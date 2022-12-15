@@ -29,6 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optimize pseudo state transitions to avoid code duplication.
   - Especially important for when History states are eventually implemented as the code de-duplication
   savings can rack up big there.
+- Improve entry and exit point validations.
+  - Detect duplicate labels in the same scope.
+  - Allow exit points to target parent state. Same as a self transition on parent.
 
 ## [0.5.9-alpha]
 ### Added

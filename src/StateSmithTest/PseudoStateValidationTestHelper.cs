@@ -17,6 +17,7 @@ namespace StateSmithTest.PseudoStateTests
         protected State s1;
         protected State s2;
         protected State s2_1;
+        protected State s2_1_1;
 
         public PseudoStateValidationTestHelper()
         {
@@ -31,6 +32,7 @@ namespace StateSmithTest.PseudoStateTests
             s1 = sm.AddChild(new State(name: "s1"));
             s2 = sm.AddChild(new State(name: "s2"));
             s2_1 = s2.AddChild(new State(name: "s2_1"));
+            s2_1_1 = s2_1.AddChild(new State(name: "s2_1_1"));
             rootInitialState.AddTransitionTo(s1);
 
             s2_pseudoState = s2.AddChild(CreateS2PseudoState());
@@ -50,13 +52,6 @@ namespace StateSmithTest.PseudoStateTests
         {
             s2_pseudoState._parent = null;
             ExpectVertexValidationException(exceptionMessagePart: "parent");
-        }
-
-        [Fact]
-        public void TargetParent()
-        {
-            s2_pseudoState.Behaviors.Single().RetargetTo(s2_pseudoState.Parent);
-            ExpectVertexValidationException(exceptionMessagePart: "cannot target parent");
         }
 
         [Fact]
@@ -127,6 +122,13 @@ namespace StateSmithTest.PseudoStateTests
         {
             s2_pseudoState.Behaviors.Single().RetargetTo(s1);
             ExpectVertexValidationException(exceptionMessagePart: "transition must remain within parent");
+        }
+
+        [Fact]
+        public void TargetParent()
+        {
+            s2_pseudoState.Behaviors.Single().RetargetTo(s2_pseudoState.Parent);
+            ExpectVertexValidationException(exceptionMessagePart: "cannot target parent");
         }
     }
 }

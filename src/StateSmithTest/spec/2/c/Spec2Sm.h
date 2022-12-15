@@ -85,18 +85,22 @@ enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST8_G_S3 = 58,
     Spec2Sm_StateId_TEST8_S1 = 59,
     Spec2Sm_StateId_TEST9_EXIT_CHOICE = 60,
-    Spec2Sm_StateId_TEST9_ROOT = 61,
-    Spec2Sm_StateId_TEST9_G_S1 = 62,
-    Spec2Sm_StateId_TEST9_G_S2 = 63,
-    Spec2Sm_StateId_TEST9_G_S3 = 64,
-    Spec2Sm_StateId_TEST9_G_S4 = 65,
-    Spec2Sm_StateId_TEST9_S1 = 66,
-    Spec2Sm_StateId_TEST9_S1_1 = 67,
+    Spec2Sm_StateId_TEST9_DECIDE = 61,
+    Spec2Sm_StateId_TEST9_ROOT = 62,
+    Spec2Sm_StateId_TEST9_G_S1 = 63,
+    Spec2Sm_StateId_TEST9_G_S2 = 64,
+    Spec2Sm_StateId_TEST9_G_S3 = 65,
+    Spec2Sm_StateId_TEST9_G_S4 = 66,
+    Spec2Sm_StateId_TEST9_S1 = 67,
+    Spec2Sm_StateId_TEST9_S1_1 = 68,
+    Spec2Sm_StateId_TEST9A_ROOT = 69,
+    Spec2Sm_StateId_TEST9A_S1 = 70,
+    Spec2Sm_StateId_TEST9A_S1_1 = 71,
 };
 
 enum
 {
-    Spec2Sm_StateIdCount = 68
+    Spec2Sm_StateIdCount = 72
 };
 
 typedef struct Spec2Sm Spec2Sm;

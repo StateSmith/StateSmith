@@ -5,7 +5,7 @@ public class ChoicePointValidator
     public static void Validate(ChoicePoint state)
     {
         PseudoStateValidator.ValidateParentAndNoChildren(state);
-        PseudoStateValidator.ValdiateBehaviors(state);
+        PseudoStateValidator.ValidateBehaviors(state);
     }
 }
 

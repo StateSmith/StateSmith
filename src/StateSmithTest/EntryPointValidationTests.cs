@@ -15,5 +15,23 @@ namespace StateSmithTest.PseudoStateTests
         {
             return new EntryPoint("1");
         }
+
+        [Fact]
+        public void SameNameOkIfNotInSameScope()
+        {
+            var duplicateNamed = new EntryPoint("1");
+            s2_1.AddChild(duplicateNamed);
+            duplicateNamed.AddTransitionTo(s2_1_1);
+            ExpectValid();
+        }
+
+        [Fact]
+        public void ErrorIfDuplicateNameInParent()
+        {
+            var duplicateNamed = new EntryPoint("1");
+            s2.AddChild(duplicateNamed);
+            duplicateNamed.AddTransitionTo(s2_1);
+            ExpectVertexValidationExceptionWildcard("*duplicate*");
+        }
     }
 }

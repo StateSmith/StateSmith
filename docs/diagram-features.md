@@ -269,6 +269,7 @@ states have been exited and before states are entered. StateSmith 0.5.9 would ru
 The design below comes from the [wikipedia UML state machine page](https://en.wikipedia.org/wiki/UML_state_machine#Transition_execution_sequence).
 
 When event `T1` is dispatched to `S1_1`, the state machine outputs the following: `g() a(); b(); t(); c(); d(); e();`
+
 ![picture 2](./images/Spec1bSm.png)
 
 Additional info: https://github.com/StateSmith/StateSmith/issues/6

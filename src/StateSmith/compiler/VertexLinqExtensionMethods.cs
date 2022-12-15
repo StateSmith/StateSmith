@@ -83,6 +83,24 @@ namespace StateSmith.compiler
             return vertex.Children.OfType<T>();
         }
 
+        // does not return self
+        public static IEnumerable<Vertex> Siblings(this Vertex vertex)
+        {
+            return vertex.Parent.Children.Where(v => v != vertex);
+        }
+
+        // does not return self
+        public static IEnumerable<T> Siblings<T>(this Vertex vertex) where T : Vertex
+        {
+            return vertex.Parent.Children.OfType<T>().Where(v => v != vertex);
+        }
+
+        // does not return self
+        public static IEnumerable<T> SiblingsOfMyType<T>(this T vertex) where T : Vertex
+        {
+            return vertex.Siblings<T>();
+        }
+
         public static IEnumerable<NamedVertex> NamedChildren(this Vertex vertex, string name)
         {
             return vertex.Children.OfType<NamedVertex>().Where(v => v.Name == name);
