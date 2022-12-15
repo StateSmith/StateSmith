@@ -182,7 +182,6 @@ static void TEST7_INITIAL_CHOICE_exit(Spec2Sm* self);
 
 static void TEST7_ROOT_enter(Spec2Sm* self);
 static void TEST7_ROOT_exit(Spec2Sm* self);
-static void TEST7_ROOT_ev4(Spec2Sm* self);
 static void TEST7_ROOT_ev5(Spec2Sm* self);
 
 static void TEST7_G_enter(Spec2Sm* self);
@@ -208,7 +207,6 @@ static void TEST8_ENTRY_CHOICE_exit(Spec2Sm* self);
 
 static void TEST8_ROOT_enter(Spec2Sm* self);
 static void TEST8_ROOT_exit(Spec2Sm* self);
-static void TEST8_ROOT_ev4(Spec2Sm* self);
 static void TEST8_ROOT_ev5(Spec2Sm* self);
 
 static void TEST8_G_enter(Spec2Sm* self);
@@ -235,7 +233,6 @@ static void TEST9_EXIT_CHOICE_exit(Spec2Sm* self);
 
 static void TEST9_ROOT_enter(Spec2Sm* self);
 static void TEST9_ROOT_exit(Spec2Sm* self);
-static void TEST9_ROOT_ev4(Spec2Sm* self);
 static void TEST9_ROOT_ev5(Spec2Sm* self);
 
 static void TEST9_G_S1_enter(Spec2Sm* self);
@@ -3429,7 +3426,6 @@ static void TEST7_ROOT_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
     self->current_state_exit_handler = TEST7_ROOT_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV4] = TEST7_ROOT_ev4;
     self->current_event_handlers[Spec2Sm_EventId_EV5] = TEST7_ROOT_ev5;
     
     // TEST7_ROOT behavior
@@ -3458,25 +3454,7 @@ static void TEST7_ROOT_exit(Spec2Sm* self)
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST7_INITIAL_CHOICE_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV4] = NULL;  // no ancestor listens to this event
     self->current_event_handlers[Spec2Sm_EventId_EV5] = NULL;  // no ancestor listens to this event
-}
-
-static void TEST7_ROOT_ev4(Spec2Sm* self)
-{
-    // No ancestor state handles `EV4` event.
-    
-    // TEST7_ROOT behavior
-    // uml: EV4 [trace_guard("State TEST7_ROOT: check behavior `EV4 / { count--; }`.", true)] / { count--; }
-    if (trace_guard("State TEST7_ROOT: check behavior `EV4 / { count--; }`.", true))
-    {
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        self->vars.count--;
-        
-        // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior for TEST7_ROOT
 }
 
 static void TEST7_ROOT_ev5(Spec2Sm* self)
@@ -3855,7 +3833,6 @@ static void TEST8_ROOT_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
     self->current_state_exit_handler = TEST8_ROOT_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV4] = TEST8_ROOT_ev4;
     self->current_event_handlers[Spec2Sm_EventId_EV5] = TEST8_ROOT_ev5;
     
     // TEST8_ROOT behavior
@@ -3884,25 +3861,7 @@ static void TEST8_ROOT_exit(Spec2Sm* self)
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST8_ENTRY_CHOICE_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV4] = NULL;  // no ancestor listens to this event
     self->current_event_handlers[Spec2Sm_EventId_EV5] = NULL;  // no ancestor listens to this event
-}
-
-static void TEST8_ROOT_ev4(Spec2Sm* self)
-{
-    // No ancestor state handles `EV4` event.
-    
-    // TEST8_ROOT behavior
-    // uml: EV4 [trace_guard("State TEST8_ROOT: check behavior `EV4 / { count--; }`.", true)] / { count--; }
-    if (trace_guard("State TEST8_ROOT: check behavior `EV4 / { count--; }`.", true))
-    {
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        self->vars.count--;
-        
-        // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior for TEST8_ROOT
 }
 
 static void TEST8_ROOT_ev5(Spec2Sm* self)
@@ -4366,7 +4325,6 @@ static void TEST9_ROOT_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
     self->current_state_exit_handler = TEST9_ROOT_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV4] = TEST9_ROOT_ev4;
     self->current_event_handlers[Spec2Sm_EventId_EV5] = TEST9_ROOT_ev5;
     
     // TEST9_ROOT behavior
@@ -4388,25 +4346,7 @@ static void TEST9_ROOT_exit(Spec2Sm* self)
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST9_EXIT_CHOICE_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV4] = NULL;  // no ancestor listens to this event
     self->current_event_handlers[Spec2Sm_EventId_EV5] = NULL;  // no ancestor listens to this event
-}
-
-static void TEST9_ROOT_ev4(Spec2Sm* self)
-{
-    // No ancestor state handles `EV4` event.
-    
-    // TEST9_ROOT behavior
-    // uml: EV4 [trace_guard("State TEST9_ROOT: check behavior `EV4 / { count--; }`.", true)] / { count--; }
-    if (trace_guard("State TEST9_ROOT: check behavior `EV4 / { count--; }`.", true))
-    {
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        self->vars.count--;
-        
-        // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior for TEST9_ROOT
 }
 
 static void TEST9_ROOT_ev5(Spec2Sm* self)

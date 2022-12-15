@@ -167,6 +167,36 @@ Feature is implemented. See issue for details: https://github.com/StateSmith/Sta
 
 ---
 
+## Choice Pseudo States / Choice Points With `else`
+StateSmith now supports Choice Pseudo States / Choice Points with `else`.
+
+Choice points are not states. They can only be passed through during a transition.
+This requires that they always have a default transition which is usually specified as `else`, but
+it could also just be a default true transition with a higher order. In fact, `else` is just converted to a very large order number (see `Behavior.ELSE_ORDER`).
+
+![picture 4](images/choice-points.png)
+
+A choice point can have any shape as long its label matches either `$choice` or `$choice : some_label`. StateSmith also supports [PlantUML choice states](https://plantuml.com/state-diagram#8bd6f7be727fb20e).
+
+You can choose to hide a `$choice` label.
+
+https://github.com/StateSmith/StateSmith/issues/40
+
+---
+
+## Initial States, Entry Points and Exit Points now behave like Choice Points
+StateSmith 0.5.9 had a limitation of a single transition for initial states, entry points, exit points, but this has been lifted. These pseudo states now behave a lot like Choice Points.
+
+![picture 8](images/initial-state-choice.png)  
+
+![picture 6](./images/entry-point-choice.png)  
+
+![picture 7](./images/exit-point-choice.png)  
+
+https://github.com/StateSmith/StateSmith/issues/40
+
+---
+
 ## `$PARENT_ALIAS`
 A parent alias is a convenient way of referring to a state but from within it.
 Very useful when a group is collapsed.
@@ -230,7 +260,7 @@ If no event is specified on a transition, StateSmith will automatically assume i
 
 --- 
 
-## Transition action code runs after state has exited
+## Transition action code runs after states exited
 StateSmith now follows the UML specification which states that a transition's action code is run after
 states have been exited and before states are entered. StateSmith 0.5.9 would run transition action code before exiting states.
 
