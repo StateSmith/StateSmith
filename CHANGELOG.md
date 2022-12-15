@@ -27,7 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Exit point must have a default transition (always true).
 - Allow specifying `else` on transitions https://github.com/StateSmith/StateSmith/issues/59
 - Optimize pseudo state transitions to avoid code duplication.
-
+  - Especially important for when History states are eventually implemented as the code de-duplication
+  savings can rack up big there.
 
 ## [0.5.9-alpha]
 ### Added
