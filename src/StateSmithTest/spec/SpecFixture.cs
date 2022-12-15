@@ -13,12 +13,15 @@ public class SpecFixture
 {
     public static string SpecInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../spec/";
 
-    public static void CompileAndRun(IRenderConfigC renderConfigC, string diagramFile, string srcDirectory)
+    public static void CompileAndRun(IRenderConfigC renderConfigC, string diagramFile, string srcDirectory, bool useTracingModder = true)
     {
         RunnerSettings settings = new(renderConfigC, diagramFile: diagramFile, outputDirectory: srcDirectory);
         SmRunner runner = new(settings);
         settings.propagateExceptions = true;
-        runner.compilerRunner.postParentAliasValidation = new TracingModder().AddTracingBehaviors;
+        if (useTracingModder)
+        {
+            runner.compilerRunner.postParentAliasValidation = new TracingModder().AddTracingBehaviors;
+        }
         runner.Run();
     }
 }

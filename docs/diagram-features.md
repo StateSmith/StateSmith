@@ -230,9 +230,13 @@ If no event is specified on a transition, StateSmith will automatically assume i
 
 --- 
 
-## When should action code on a transition run?
-UML says that transition code should run after all states in a transition have exited.
+## Transition action code runs after state has exited
+StateSmith now follows the UML specification which states that a transition's action code is run after
+states have been exited and before states are entered. StateSmith 0.5.9 would run transition action code before exiting states.
 
-Many existing state machines and frameworks run the code before states are exited. It seems mainly for convenience, but people may be used to this.
+The design below comes from the [wikipedia UML state machine page](https://en.wikipedia.org/wiki/UML_state_machine#Transition_execution_sequence).
 
-See https://github.com/StateSmith/StateSmith/issues/6
+When event `T1` is dispatched to `S1_1`, the state machine outputs the following: `g() a(); b(); t(); c(); d(); e();`
+![picture 2](./images/Spec1bSm.png)
+
+Additional info: https://github.com/StateSmith/StateSmith/issues/6
