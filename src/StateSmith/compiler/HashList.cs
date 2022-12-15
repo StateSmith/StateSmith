@@ -14,11 +14,16 @@ namespace StateSmith.Compiling
 
         public List<V> GetValuesOrEmpty(K key)
         {
-            if (dictionary.ContainsKey(key))
+            if (Contains(key))
             {
                 return GetValues(key);
             }
             return new List<V>();
+        }
+
+        public bool Contains(K key)
+        {
+            return dictionary.ContainsKey(key);
         }
 
         public void AddIfMissing(K key, V value)

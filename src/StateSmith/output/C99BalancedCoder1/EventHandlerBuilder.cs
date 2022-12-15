@@ -15,7 +15,6 @@ namespace StateSmith.output.C99BalancedCoder1
         private readonly Statemachine sm;
         private readonly CNameMangler mangler;
         private readonly OutputFile file;
-        private readonly PseudoStateLoopTracker pseudoStateLoopTracker = new();
 
         public EventHandlerBuilder(CodeGenContext ctx, OutputFile file)
         {
@@ -57,7 +56,6 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void OutputTransitionCode(Behavior behavior)
         {
-            pseudoStateLoopTracker.Reset();
             OutputTransitionCodeInner(behavior);
         }
 
@@ -166,18 +164,36 @@ namespace StateSmith.output.C99BalancedCoder1
 
         private void OutputTransitionsForPseudoState(Behavior b, PseudoStateVertex pseudoState)
         {
-            pseudoStateLoopTracker.Push(b, pseudoState);
+            string? transitionFunction = ctx.pseudoStateHandlerBuilder.MaybeGetFunctionName(pseudoState);
 
-            foreach (Behavior initialStateBehavior in pseudoState.Behaviors)
+            if (transitionFunction != null)
             {
-                if (initialStateBehavior.HasTransition())
+                file.AppendLine($"// Finish transition by calling pseudo state transition function.");
+                file.AppendLine(transitionFunction + "(self);");
+                file.AppendLine($"return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.");
+            }
+            else
+            {
+                RenderPseudoStateTransitionsInner(pseudoState);
+            }
+        }
+
+        public void RenderPseudoStateTransitionFunctionInner(PseudoStateVertex pseudoState)
+        {
+            ctx.pseudoStateHandlerBuilder.GetFunctionName(pseudoState); // just throws if not found
+            RenderPseudoStateTransitionsInner(pseudoState);
+        }
+
+        private void RenderPseudoStateTransitionsInner(PseudoStateVertex pseudoState)
+        {
+            foreach (Behavior pseudoStateBehavior in pseudoState.Behaviors)
+            {
+                if (pseudoStateBehavior.HasTransition())
                 {
-                    OutputTransitionCodeInner(initialStateBehavior);
+                    OutputTransitionCodeInner(pseudoStateBehavior);
                     file.RequestNewLineBeforeMoreCode();
                 }
             }
-
-            pseudoStateLoopTracker.Pop();
         }
 
         private static bool IsExitingRequired(Vertex source)

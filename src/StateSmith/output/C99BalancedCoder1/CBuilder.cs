@@ -28,6 +28,11 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void Generate()
         {
+            ctx.pseudoStateHandlerBuilder.output = file;
+            ctx.pseudoStateHandlerBuilder.mangler = mangler;
+            ctx.pseudoStateHandlerBuilder.Gather(sm);
+            ctx.pseudoStateHandlerBuilder.MapParents();
+
             file.AppendLinesIfNotBlank(ctx.renderConfig.CFileTop);
 
             file.AppendLine($"#include \"{mangler.HFileName}\"");
@@ -41,7 +46,6 @@ namespace StateSmith.output.C99BalancedCoder1
 
             OutputTriggerHandlerPrototypes();
             OutputHelperPrototypes();
-            file.AppendLine();
             file.AppendLine();
 
             OutputFuncCtor();
@@ -79,6 +83,9 @@ namespace StateSmith.output.C99BalancedCoder1
         internal void OutputHelperPrototypes()
         {
             file.AppendLine($"static void {mangler.SmFuncExitUpTo}({mangler.SmStructTypedefName}* self, const {mangler.SmFuncTypedef} desired_state_exit_handler);");
+            file.RequestNewLineBeforeMoreCode();
+
+            ctx.pseudoStateHandlerBuilder.OutputAllPrototypes();
         }
 
         /// <summary>
@@ -171,32 +178,38 @@ namespace StateSmith.output.C99BalancedCoder1
             
             foreach (var state in namedVertices)
             {
-                
-                file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
-                file.AppendLine($"// event handlers for state {mangler.SmStateName(state)}");
-                file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
-                file.AppendLine();
-
-                OutputFuncStateEnter(state);
-                OutputFuncStateExit(state);
-
-                // fixme output event handlers
-                string[] eventNames = GetEvents(state).ToArray();
-                Array.Sort(eventNames);
-
-                foreach (var eventName in eventNames)
-                {
-                    OutputTriggerHandlerSignature(state, eventName);
-                    file.StartCodeBlock();
-                    {
-                        eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, eventName);
-                    }
-                    file.FinishCodeBlock(forceNewLine: false);
-                    file.AppendLine();
-                }
-
-                file.AppendLine();
+                OutputNamedStateHandlers(state);
             }
+        }
+
+        private void OutputNamedStateHandlers(NamedVertex state)
+        {
+            file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
+            file.AppendLine($"// event handlers for state {mangler.SmStateName(state)}");
+            file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
+            file.AppendLine();
+
+            OutputFuncStateEnter(state);
+            OutputFuncStateExit(state);
+
+            // fixme output event handlers
+            string[] eventNames = GetEvents(state).ToArray();
+            Array.Sort(eventNames);
+
+            foreach (var eventName in eventNames)
+            {
+                OutputTriggerHandlerSignature(state, eventName);
+                file.StartCodeBlock();
+                {
+                    eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, eventName);
+                }
+                file.FinishCodeBlock(forceNewLine: false);
+                file.RequestNewLineBeforeMoreCode();
+            }
+
+            ctx.pseudoStateHandlerBuilder.OutputFunctionsForParent(state, eventHandlerBuilder.RenderPseudoStateTransitionFunctionInner);
+
+            file.AppendLine();
         }
 
         internal void OutputFuncStateEnter(NamedVertex state)

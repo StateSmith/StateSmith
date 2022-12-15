@@ -14,7 +14,7 @@ namespace StateSmithTest.C99BalancedCoder1;
 public class EventHandlerBuilderTest
 {
     [Fact]
-    public void Test1()
+    public void InfiniteLoopDetection1()
     {
         var plantUmlText = @"
 @startuml ExampleSm
@@ -32,12 +32,12 @@ c3 --> s3 : [c]
 c3 --> c1 : else
 @enduml
 ";
-        var expectedWildcardPattern = "*loop*ROOT.ChoicePoint(c1) -> ROOT.ChoicePoint(c2) -> ROOT.ChoicePoint(c3)*";
+        var expectedWildcardPattern = "*loop*ROOT.ChoicePoint(c1) -> ROOT.ChoicePoint(c2) -> ROOT.ChoicePoint(c3) -> ROOT.ChoicePoint(c1)*";
         CompileAndExpectException(plantUmlText: plantUmlText, expectedWildcardPattern);
     }
 
     [Fact]
-    public void Test2()
+    public void InfiniteLoopDetection2()
     {
         var plantUmlText = @"
 @startuml ExampleSm
@@ -59,7 +59,7 @@ state group1 {
 }
 @enduml
 ";
-        var expectedWildcardPattern = "*loop*group1.InitialState -> group1.ChoicePoint(c1) -> group1.ChoicePoint(c2) -> ROOT.ChoicePoint(c3)*";
+        var expectedWildcardPattern = "*loop*group1.InitialState -> group1.ChoicePoint(c1) -> group1.ChoicePoint(c2) -> ROOT.ChoicePoint(c3) -> group1.InitialState*";
         CompileAndExpectException(plantUmlText: plantUmlText, expectedWildcardPattern);
     }
 
@@ -68,16 +68,10 @@ state group1 {
     {
         CompilerRunner compilerRunner = new();
         compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
-        compilerRunner.FinishRunningCompiler();
 
-        Statemachine sm = compilerRunner.sm;
-        InitialState initial = sm.ChildType<InitialState>();
-
-        CodeGenContext ctx = new CodeGenContext(sm);
-        OutputFile outputFile = new OutputFile(ctx, new System.Text.StringBuilder());
-        EventHandlerBuilder eh = new EventHandlerBuilder(ctx, outputFile);
-
-        Action action = () => eh.OutputTransitionCode(initial.Behaviors.Single());
-        action.Should().Throw<BehaviorValidationException>().WithMessage(expectedWildcardPattern);
+        Action action = () => {
+            compilerRunner.FinishRunningCompiler();
+        };
+        action.Should().Throw<VertexValidationException>().WithMessage(expectedWildcardPattern);
     }
 }

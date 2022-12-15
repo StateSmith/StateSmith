@@ -710,7 +710,7 @@ public class Spec2CTests : Spec2CFixture
             ex += PrepExpectedOutput(@$"
             Dispatch event EV1
             ===================================================
-            State TEST8_S1: check behavior `EV1 TransitionTo(TEST8_G.EntryPoint(1))`. Behavior running.
+            State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.EntryPoint(1))`. Behavior running.
             Exit TEST8_S1.
             Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).
             Enter TEST8_G.

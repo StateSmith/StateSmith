@@ -13,7 +13,7 @@ public class PseudoStateLoopTracker
 {
     private readonly List<Vertex> vertices = new(); // could be made a bit more efficient with a hashmap/dictionary, but the list size should be small.
     
-    public void Push(Behavior b, PseudoStateVertex pseudoState)
+    public void Push(PseudoStateVertex pseudoState)
     {
         if (vertices.Contains(pseudoState))
         {
@@ -25,7 +25,9 @@ public class PseudoStateLoopTracker
                 joiner = " -> ";
             }
 
-            throw new BehaviorValidationException(b, "transition infinite loop detected: " + chainString);
+            chainString += joiner + Vertex.Describe(pseudoState);
+
+            throw new VertexValidationException(pseudoState, "transition infinite loop detected: " + chainString);
         }
 
         vertices.Add(pseudoState);
