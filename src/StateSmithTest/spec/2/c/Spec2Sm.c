@@ -42,6 +42,12 @@ static void TEST1_S2_do(Spec2Sm* self);
 static void TEST10_CHOICE_POINT_enter(Spec2Sm* self);
 static void TEST10_CHOICE_POINT_exit(Spec2Sm* self);
 
+static void TEST10_A_enter(Spec2Sm* self);
+static void TEST10_A_exit(Spec2Sm* self);
+
+static void TEST10_A_1_enter(Spec2Sm* self);
+static void TEST10_A_1_exit(Spec2Sm* self);
+
 static void TEST10_ROOT_enter(Spec2Sm* self);
 static void TEST10_ROOT_exit(Spec2Sm* self);
 static void TEST10_ROOT_ev5(Spec2Sm* self);
@@ -64,6 +70,7 @@ static void TEST10_G_S3_exit(Spec2Sm* self);
 static void TEST10_S1_enter(Spec2Sm* self);
 static void TEST10_S1_exit(Spec2Sm* self);
 static void TEST10_S1_ev1(Spec2Sm* self);
+static void TEST10_S1_ev10(Spec2Sm* self);
 static void TEST10_S1_ev2(Spec2Sm* self);
 static void TEST10_S1_ev3(Spec2Sm* self);
 
@@ -258,6 +265,14 @@ static void exit_up_to_state_handler(Spec2Sm* self, const Spec2Sm_Func desired_s
 
 static void TEST8_ROOT_EntryPoint_1__transition(Spec2Sm* self);
 
+static void TEST10_A_ChoicePoint__transition(Spec2Sm* self);
+
+static void TEST10_A_ChoicePoint__transition_kid_index3(Spec2Sm* self);
+
+static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self);
+
+static void TEST10_A_ChoicePoint_a__transition_kid_index7(Spec2Sm* self);
+
 static void TEST8_G_EntryPoint_1__transition(Spec2Sm* self);
 
 static void TEST8_G_EntryPoint_3__transition(Spec2Sm* self);
@@ -332,6 +347,8 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
         case Spec2Sm_StateId_TEST1_S1_1: return "TEST1_S1_1";
         case Spec2Sm_StateId_TEST1_S2: return "TEST1_S2";
         case Spec2Sm_StateId_TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT";
+        case Spec2Sm_StateId_TEST10_A: return "TEST10_A";
+        case Spec2Sm_StateId_TEST10_A_1: return "TEST10_A_1";
         case Spec2Sm_StateId_TEST10_ROOT: return "TEST10_ROOT";
         case Spec2Sm_StateId_TEST10_G: return "TEST10_G";
         case Spec2Sm_StateId_TEST10_G_S0: return "TEST10_G_S0";
@@ -1151,6 +1168,187 @@ static void TEST10_CHOICE_POINT_exit(Spec2Sm* self)
 
 
 ////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST10_A
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST10_A_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST10_A_exit;
+    
+    // TEST10_A behavior
+    // uml: enter / { trace("Enter TEST10_A."); }
+    if (true)
+    {
+        trace("Enter TEST10_A.");
+    } // end of behavior for TEST10_A
+}
+
+static void TEST10_A_exit(Spec2Sm* self)
+{
+    // TEST10_A behavior
+    // uml: exit / { trace("Exit TEST10_A."); }
+    if (true)
+    {
+        trace("Exit TEST10_A.");
+    } // end of behavior for TEST10_A
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST10_CHOICE_POINT_exit;
+}
+
+static void TEST10_A_ChoicePoint__transition(Spec2Sm* self)
+{
+    // TEST10_A.ChoicePoint() behavior
+    // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
+    if (self->vars.count == 1)
+    {
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint() or one of its sub states.
+        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
+        
+        // Enter towards target
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST10_A_ChoicePoint__transition_kid_index3(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST10_A.ChoicePoint()
+    
+    // TEST10_A.ChoicePoint() behavior
+    // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
+    if (true)
+    {
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint() or one of its sub states.
+        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
+        
+        // Enter towards target
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST10_A_ChoicePoint__transition_kid_index3(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST10_A.ChoicePoint()
+}
+
+static void TEST10_A_ChoicePoint__transition_kid_index3(Spec2Sm* self)
+{
+    // TEST10_A.ChoicePoint() behavior
+    // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
+    if (self->vars.count == 1)
+    {
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint() or one of its sub states.
+        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
+        
+        // Enter towards target
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST10_A_ChoicePoint_a__transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST10_A.ChoicePoint()
+    
+    // TEST10_A.ChoicePoint() behavior
+    // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
+    if (true)
+    {
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint() or one of its sub states.
+        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
+        
+        // Enter towards target
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST10_A_ChoicePoint_a__transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST10_A.ChoicePoint()
+}
+
+static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self)
+{
+    // TEST10_A.ChoicePoint(a) behavior
+    // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
+    if (self->vars.count == 1)
+    {
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint(a) or one of its sub states.
+        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
+        
+        // Enter towards target
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST10_A_ChoicePoint_a__transition_kid_index7(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST10_A.ChoicePoint(a)
+    
+    // TEST10_A.ChoicePoint(a) behavior
+    // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
+    if (true)
+    {
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint(a) or one of its sub states.
+        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
+        
+        // Enter towards target
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST10_A_ChoicePoint_a__transition_kid_index7(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST10_A.ChoicePoint(a)
+}
+
+static void TEST10_A_ChoicePoint_a__transition_kid_index7(Spec2Sm* self)
+{
+    // TEST10_A.ChoicePoint(a) behavior
+    // uml: / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)
+    if (true)
+    {
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint(a) or one of its sub states.
+        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");
+        
+        // Enter towards target
+        TEST10_A_1_enter(self);
+        
+        // update state_id
+        self->state_id = Spec2Sm_StateId_TEST10_A_1;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST10_A.ChoicePoint(a)
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST10_A_1
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST10_A_1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST10_A_1_exit;
+    
+    // TEST10_A_1 behavior
+    // uml: enter / { trace("Enter TEST10_A_1."); }
+    if (true)
+    {
+        trace("Enter TEST10_A_1.");
+    } // end of behavior for TEST10_A_1
+}
+
+static void TEST10_A_1_exit(Spec2Sm* self)
+{
+    // TEST10_A_1 behavior
+    // uml: exit / { trace("Exit TEST10_A_1."); }
+    if (true)
+    {
+        trace("Exit TEST10_A_1.");
+    } // end of behavior for TEST10_A_1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST10_A_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
 // event handlers for state TEST10_ROOT
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -1485,6 +1683,7 @@ static void TEST10_S1_enter(Spec2Sm* self)
     // setup trigger/event handlers
     self->current_state_exit_handler = TEST10_S1_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST10_S1_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV10] = TEST10_S1_ev10;
     self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST10_S1_ev2;
     self->current_event_handlers[Spec2Sm_EventId_EV3] = TEST10_S1_ev3;
     
@@ -1515,6 +1714,7 @@ static void TEST10_S1_exit(Spec2Sm* self)
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST10_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV10] = NULL;  // no ancestor listens to this event
     self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
     self->current_event_handlers[Spec2Sm_EventId_EV3] = NULL;  // no ancestor listens to this event
 }
@@ -1547,6 +1747,64 @@ static void TEST10_S1_ev1(Spec2Sm* self)
             TEST10_G_ChoicePoint__transition(self);
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST10_G.EntryPoint(1)
+    } // end of behavior for TEST10_S1
+}
+
+static void TEST10_S1_ev10(Spec2Sm* self)
+{
+    // No ancestor state handles `EV10` event.
+    
+    // TEST10_S1 behavior
+    // uml: EV10 [trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_A."); } TransitionTo(TEST10_A)
+    if (trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true))
+    {
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_S1 or one of its sub states.
+        exit_up_to_state_handler(self, TEST10_CHOICE_POINT_exit);  // Exit until we reach TEST10_CHOICE_POINT state.
+        trace("Transition action `` for TEST10_S1 to TEST10_A.");
+        
+        // Enter towards target
+        TEST10_A_enter(self);
+        
+        // TEST10_A.InitialState behavior
+        // uml: [count == 1] / { trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
+        if (self->vars.count == 1)
+        {
+            trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+            
+            // Enter towards target
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST10_A_ChoicePoint__transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST10_A.InitialState
+        
+        // TEST10_A.InitialState behavior
+        // uml: [count == 0] / { trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");\ncount++; } TransitionTo(TEST10_A.ChoicePoint())
+        if (self->vars.count == 0)
+        {
+            trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+            self->vars.count++;
+            
+            // Enter towards target
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST10_A_ChoicePoint__transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST10_A.InitialState
+        
+        // TEST10_A.InitialState behavior
+        // uml: else / { trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
+        if (true)
+        {
+            trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+            
+            // Enter towards target
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST10_A_ChoicePoint__transition_kid_index3(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST10_A.InitialState
     } // end of behavior for TEST10_S1
 }
 

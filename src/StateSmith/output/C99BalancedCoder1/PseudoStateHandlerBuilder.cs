@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using StateSmith.compiler.Visitors;
 using StateSmith.Compiling;
@@ -38,9 +38,20 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void Add(PseudoStateVertex pseudoStateVertex)
         {
+            string functionName = CreateUniqueName(pseudoStateVertex);
+            functionNameMap.Add(pseudoStateVertex, functionName);
+        }
+
+        private string CreateUniqueName(PseudoStateVertex pseudoStateVertex)
+        {
             var functionName = Vertex.Describe(pseudoStateVertex);
             functionName = Regex.Replace(functionName, @"[.()]+", "_") + "_transition";
-            functionNameMap.Add(pseudoStateVertex, functionName);
+            while (functionNameMap.ContainsValue((functionName)))
+            {
+                functionName += "_kid_index" + pseudoStateVertex.FindIndexInParentKids();
+            }
+
+            return functionName;
         }
 
         public Dictionary<PseudoStateVertex, string>.ValueCollection GetAllFunctionNames()

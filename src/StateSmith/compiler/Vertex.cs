@@ -163,6 +163,21 @@ namespace StateSmith.Compiling
             }
         }
 
+        public int FindIndexInParentKids()
+        {
+            if (Parent == null)
+            {
+                return -1;
+            }
+
+            return Parent.FindChildIndex(this);
+        }
+
+        public int FindChildIndex(Vertex child)
+        {
+            return _children.IndexOf(child);
+        }
+
         /// <summary>
         /// Tests whether this vertex contains vertex <paramref name="v"/>. True if this vertex is the same as <paramref name="v"/>, 
         /// or is an ancestor of <paramref name="v"/>.
