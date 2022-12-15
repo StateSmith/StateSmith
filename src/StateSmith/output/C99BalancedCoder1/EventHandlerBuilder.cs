@@ -15,6 +15,7 @@ namespace StateSmith.output.C99BalancedCoder1
         private readonly Statemachine sm;
         private readonly CNameMangler mangler;
         private readonly OutputFile file;
+        private readonly PseudoStateLoopTracker pseudoStateLoopTracker = new();
 
         public EventHandlerBuilder(CodeGenContext ctx, OutputFile file)
         {
@@ -22,6 +23,42 @@ namespace StateSmith.output.C99BalancedCoder1
             sm = ctx.sm;
             mangler = ctx.mangler;
             this.file = file;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="triggerName"></param>
+        public void OutputStateBehaviorsForTrigger(NamedVertex state, string triggerName)
+        {
+            bool noAncestorHandlesEvent = true;
+
+            if (TriggerHelper.IsEvent(triggerName))
+            {
+                noAncestorHandlesEvent = OutputNextAncestorHandler(state, triggerName);
+            }
+
+            var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName);
+            foreach (var b in behaviorsWithTrigger)
+            {
+                if (b.HasTransition())
+                {
+                    OutputTransitionCode(b);
+                }
+                else
+                {
+                    OutputNonTransitionCode(b, triggerName, noAncestorHandlesEvent);
+                }
+
+                file.RequestNewLineBeforeMoreCode();
+            }
+        }
+
+        public void OutputTransitionCode(Behavior behavior)
+        {
+            pseudoStateLoopTracker.Reset();
+            OutputTransitionCodeInner(behavior);
         }
 
         private string GetTransitionGuardCondition(Behavior b)
@@ -45,7 +82,7 @@ namespace StateSmith.output.C99BalancedCoder1
             file.AppendLine($"// uml: {b.DescribeAsUml()}");
         }
 
-        public void OutputTransitionCode(Behavior behavior)
+        private void OutputTransitionCodeInner(Behavior behavior)
         {
             if (behavior._transitionTarget == null)
             {
@@ -87,7 +124,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 if (target is PseudoStateVertex pseudoStateVertex)
                 {
-                    OutputTransitionsForPseudoState(pseudoStateVertex);
+                    OutputTransitionsForPseudoState(behavior, pseudoStateVertex);
                 }
                 else if (target is NamedVertex namedVertexTarget)
                 {
@@ -95,7 +132,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
                     if (initialState != null)
                     {
-                        OutputTransitionsForPseudoState(initialState);
+                        OutputTransitionsForPseudoState(behavior, initialState);
                     }
                     else
                     {
@@ -127,16 +164,20 @@ namespace StateSmith.output.C99BalancedCoder1
             }
         }
 
-        private void OutputTransitionsForPseudoState(PseudoStateVertex pseudoState)
+        private void OutputTransitionsForPseudoState(Behavior b, PseudoStateVertex pseudoState)
         {
+            pseudoStateLoopTracker.Push(b, pseudoState);
+
             foreach (Behavior initialStateBehavior in pseudoState.Behaviors)
             {
                 if (initialStateBehavior.HasTransition())
                 {
-                    OutputTransitionCode(initialStateBehavior);
+                    OutputTransitionCodeInner(initialStateBehavior);
                     file.RequestNewLineBeforeMoreCode();
                 }
             }
+
+            pseudoStateLoopTracker.Pop();
         }
 
         private static bool IsExitingRequired(Vertex source)
@@ -149,12 +190,6 @@ namespace StateSmith.output.C99BalancedCoder1
 
             return true;
         }
-
-        //private void OutputExitUpToSelf(NamedVertex state)
-        //{
-        //    file.Append("// Exit up to node that is the transition source");
-        //    ExitUntilStateReached(state);
-        //}
 
         private void ExitUntilStateReached(Vertex source, NamedVertex ancestorState)
         {
@@ -193,36 +228,6 @@ namespace StateSmith.output.C99BalancedCoder1
             }
 
             return canUseDirectExit;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="state"></param>
-        /// <param name="triggerName"></param>
-        public void OutputStateBehaviorsForTrigger(NamedVertex state, string triggerName)
-        {
-            bool noAncestorHandlesEvent = true;
-
-            if (TriggerHelper.IsEvent(triggerName))
-            {
-                noAncestorHandlesEvent = OutputNextAncestorHandler(state, triggerName);
-            }
-
-            var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName);
-            foreach (var b in behaviorsWithTrigger)
-            {
-                if (b.HasTransition())
-                {
-                    OutputTransitionCode(b);
-                }
-                else
-                {
-                    OutputNonTransitionCode(b, triggerName, noAncestorHandlesEvent);
-                }
-
-                file.RequestNewLineBeforeMoreCode();
-            }
         }
 
         private bool OutputNextAncestorHandler(NamedVertex state, string triggerName)

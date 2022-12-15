@@ -1674,7 +1674,6 @@ EV4 / count--;</y:NodeLabel>
               </data>
             </edge>
             <edge id="n0::n8::n2::e3" source="n0::n8::n2::n2" target="n0::n8::n2::n0::n1">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="67.3062867450385" sy="23.100000000000023" tx="0.0" ty="-9.5"/>
@@ -1850,8 +1849,8 @@ EV4 / count--;</y:NodeLabel>
                           <y:BorderStyle color="#27AE27" type="line" width="2.0"/>
                           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.685546875" x="-44.685546875" xml:space="preserve" y="-15.24704233914531">entry:1<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.31529876528902334" nodeRatioX="-0.5" nodeRatioY="-0.5" offsetX="-4.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                           <y:StyleProperties>
-                            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+                            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
                             <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="EVENT_TYPE_PLAIN"/>
@@ -1867,8 +1866,8 @@ EV4 / count--;</y:NodeLabel>
                           <y:BorderStyle color="#27AE27" type="line" width="2.0"/>
                           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.685546875" x="-44.685546875" xml:space="preserve" y="-15.24704233914531">entry:3<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.31529876528902334" nodeRatioX="-0.5" nodeRatioY="-0.5" offsetX="-4.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                           <y:StyleProperties>
-                            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+                            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
                             <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="EVENT_TYPE_PLAIN"/>
@@ -1898,8 +1897,8 @@ EV4 / count--;</y:NodeLabel>
                       <y:BorderStyle color="#27AE27" type="line" width="2.0"/>
                       <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.685546875" x="-5.3427734375" xml:space="preserve" y="-22.701171875">entry:1<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.0" nodeRatioY="-0.5" offsetX="0.0" offsetY="-4.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                       <y:StyleProperties>
-                        <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
                         <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+                        <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
                         <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
                         <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
                         <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="EVENT_TYPE_PLAIN"/>
@@ -1949,7 +1948,6 @@ EV4 / count--;</y:NodeLabel>
               </data>
             </edge>
             <edge id="n0::n9::n2::e3" source="n0::n9::n2::n1" target="n0::n9::n2::n0::n4">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="69.82876284961867" sy="23.100000000000023" tx="2.5224761045801642" ty="-14.78125"/>
@@ -1994,7 +1992,6 @@ EV4 / count--;</y:NodeLabel>
               </data>
             </edge>
             <edge id="n0::n9::n2::n0::e3" source="n0::n9::n2::n0::n4" target="n0::n9::n2::n0::n3">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="0.0" sy="15.0" tx="0.0" ty="-15.0"/>
@@ -2005,7 +2002,6 @@ EV4 / count--;</y:NodeLabel>
               </data>
             </edge>
             <edge id="n0::n9::n2::e4" source="n0::n9::n2::n1" target="n0::n9::n2::n0">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="50.87371505877894" sy="23.100000000000023" tx="-20.016571686259624" ty="-136.00916765394777"/>
@@ -2094,7 +2090,6 @@ EV4 / count--;</y:NodeLabel>
               <graph edgedefault="directed" id="n0::n10::n1:">
                 <node id="n0::n10::n1::n0" yfiles.foldertype="group">
                   <data key="d4" xml:space="preserve"/>
-                  <data key="d5"/>
                   <data key="d6">
                     <y:ProxyAutoBoundsNode>
                       <y:Realizers active="0">
@@ -2132,8 +2127,8 @@ EV4 / count--;</y:NodeLabel>
                           <y:BorderStyle color="#B11F1F" type="line" width="1.0"/>
                           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="32.681640625" x="-1.3408203125" xml:space="preserve" y="-22.701171875">exit:1<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.0" nodeRatioY="-0.5" offsetX="0.0" offsetY="-4.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                           <y:StyleProperties>
-                            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_END"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+                            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_END"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
                             <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="EVENT_TYPE_PLAIN"/>
@@ -2232,7 +2227,6 @@ exit points in the future.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/><
               </graph>
             </node>
             <edge id="n0::n10::e0" source="n0::n10::n0" target="n0::n10::n1::n0::n2">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="0.0" sy="0.0" tx="-1.4210854715202004E-13" ty="2.2737367544323206E-13"/>
@@ -2242,7 +2236,6 @@ exit points in the future.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/><
               </data>
             </edge>
             <edge id="n0::n10::n1::e0" source="n0::n10::n1::n0" target="n0::n10::n1::n1">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="-146.49887246118445" sy="62.83823242187509" tx="33.97724609375001" ty="-23.100000000000136"/>
@@ -2253,7 +2246,6 @@ exit points in the future.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/><
               </data>
             </edge>
             <edge id="n0::n10::n1::e1" source="n0::n10::n1::n0" target="n0::n10::n1::n2">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="-9.104585716145834" sy="62.83823242187509" tx="1.1612460937500373" ty="-23.100000000000136"/>
@@ -2264,7 +2256,6 @@ exit points in the future.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/><
               </data>
             </edge>
             <edge id="n0::n10::n1::e2" source="n0::n10::n1::n0" target="n0::n10::n1::n3">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="157.38445493514268" sy="62.83823242187509" tx="0.0" ty="-23.100000000000136"/>
@@ -2275,7 +2266,6 @@ exit points in the future.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/><
               </data>
             </edge>
             <edge id="n0::n10::n1::e3" source="n0::n10::n1::n0::n0" target="n0::n10::n1::n4">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="0.0" sy="0.0" tx="-22.81740157803563" ty="-8.100000000000023"/>
@@ -2286,7 +2276,6 @@ exit points in the future.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/><
               </data>
             </edge>
             <edge id="n0::n10::n1::n0::e0" source="n0::n10::n1::n0::n1" target="n0::n10::n1::n0::n0">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="71.56914337251939" sy="-1.7000000000000455" tx="-15.0" ty="0.0"/>
@@ -2297,7 +2286,6 @@ exit points in the future.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/><
               </data>
             </edge>
             <edge id="n0::n10::n1::n0::e1" source="n0::n10::n1::n0::n2" target="n0::n10::n1::n0::n1">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="10.0" sy="0.0" tx="-71.5691433725193" ty="0.0"/>
@@ -2356,7 +2344,7 @@ exit points in the future.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/><
                 <y:ProxyAutoBoundsNode>
                   <y:Realizers active="0">
                     <y:GroupNode>
-                      <y:Geometry height="597.1014167095402" width="817.9528647595631" x="78.00719045449102" y="814.7247181203954"/>
+                      <y:Geometry height="664.1014167095402" width="817.9528647595631" x="78.00719045449102" y="814.7247181203954"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
                       <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="817.9528647595631" x="0.0" xml:space="preserve" y="0.0">    TEST10_ROOT
@@ -2451,19 +2439,6 @@ EV5 / count++;</y:NodeLabel>
                     <node id="n0::n11::n1::n0::n3">
                       <data key="d6">
                         <y:ShapeNode>
-                          <y:Geometry height="46.200000000000045" width="97.01828674503855" x="569.2635521469524" y="1335.6261348299356"/>
-                          <y:Fill color="#FFFFFF" transparent="false"/>
-                          <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-                          <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="46.200000000000045" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="97.01828674503855" x="0.0" xml:space="preserve" y="0.0">TEST10_G_S4
-<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                          <y:Shape type="roundrectangle"/>
-                        </y:ShapeNode>
-                      </data>
-                    </node>
-                    <node id="n0::n11::n1::n0::n4">
-                      <data key="d5"/>
-                      <data key="d6">
-                        <y:ShapeNode>
                           <y:Geometry height="37.61241599999994" width="39.423654044081616" x="543.5857541028709" y="1232.2694193565812"/>
                           <y:Fill color="#FFFFFF" transparent="false"/>
                           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
@@ -2472,8 +2447,7 @@ EV5 / count++;</y:NodeLabel>
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n5">
-                      <data key="d5"/>
+                    <node id="n0::n11::n1::n0::n4">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="37.61241599999971" width="39.423654044081616" x="330.3978673578324" y="1232.2694193565815"/>
@@ -2484,7 +2458,7 @@ EV5 / count++;</y:NodeLabel>
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n6">
+                    <node id="n0::n11::n1::n0::n5">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="46.200000000000045" width="97.01828674503855" x="114.52183889199102" y="1133.1756273565813"/>
@@ -2496,7 +2470,7 @@ EV5 / count++;</y:NodeLabel>
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n7">
+                    <node id="n0::n11::n1::n0::n6">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="46.200000000000045" width="158.55010435880115" x="582.8912025833993" y="1025.270134829936"/>
@@ -2509,7 +2483,7 @@ its $choice label hidden.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n8">
+                    <node id="n0::n11::n1::n0::n7">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="75.6400000000001" width="170.71010435880123" x="687.2499508552529" y="1221.2694193565812"/>
@@ -2524,7 +2498,7 @@ in larger designs.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Label
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n9">
+                    <node id="n0::n11::n1::n0::n8">
                       <data key="d6">
                         <y:GenericNode configuration="com.yworks.bpmn.Event.withShadow">
                           <y:Geometry height="24.5" width="20.0" x="365.5993441279755" y="1026.6139268299362"/>
@@ -2532,8 +2506,8 @@ in larger designs.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Label
                           <y:BorderStyle color="#27AE27" type="line" width="2.0"/>
                           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="40.685546875" x="-10.3427734375" xml:space="preserve" y="-22.701171875">entry:1<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.5" nodeRatioX="0.0" nodeRatioY="-0.5" offsetX="0.0" offsetY="-4.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                           <y:StyleProperties>
-                            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+                            <y:Property class="com.yworks.yfiles.bpmn.view.EventCharEnum" name="com.yworks.bpmn.characteristic" value="EVENT_CHARACTERISTIC_START"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
                             <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
                             <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="EVENT_TYPE_PLAIN"/>
@@ -2541,7 +2515,7 @@ in larger designs.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Label
                         </y:GenericNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n10">
+                    <node id="n0::n11::n1::n0::n9">
                       <data key="d4" xml:space="preserve"/>
                       <data key="d5" xml:space="preserve"><![CDATA[pseudo_initial]]></data>
                       <data key="d6">
@@ -2554,8 +2528,7 @@ in larger designs.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Label
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n11">
-                      <data key="d5"/>
+                    <node id="n0::n11::n1::n0::n10">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="37.612415999999826" width="39.423654044081616" x="428.145867266595" y="1020.0577188299362"/>
@@ -2566,7 +2539,7 @@ in larger designs.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Label
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n12">
+                    <node id="n0::n11::n1::n0::n11">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="25.40000000000009" width="69.33828674503872" x="418.67516418339943" y="1143.5756273565814"/>
@@ -2577,7 +2550,7 @@ in larger designs.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Label
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n11::n1::n0::n13">
+                    <node id="n0::n11::n1::n0::n12">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="46.200000000000045" width="158.55010435880115" x="518.0134509284381" y="1123.2697770932584"/>
@@ -2604,10 +2577,21 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                     </y:ShapeNode>
                   </data>
                 </node>
+                <node id="n0::n11::n1::n2">
+                  <data key="d6">
+                    <y:ShapeNode>
+                      <y:Geometry height="46.200000000000045" width="97.01828674503855" x="579.5452685422008" y="1417.6261348299356"/>
+                      <y:Fill color="#FFFFFF" transparent="false"/>
+                      <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+                      <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="46.200000000000045" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="97.01828674503855" x="0.0" xml:space="preserve" y="0.0">TEST10_S4
+<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                      <y:Shape type="roundrectangle"/>
+                    </y:ShapeNode>
+                  </data>
+                </node>
               </graph>
             </node>
-            <edge id="n0::n11::n1::e0" source="n0::n11::n1::n1" target="n0::n11::n1::n0::n11">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::e0" source="n0::n11::n1::n1" target="n0::n11::n1::n0::n10">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="26.390029968956128" sy="18.797908268223612" tx="1.1526816362386398" ty="-17.70413179190905"/>
@@ -2617,7 +2601,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e0" source="n0::n11::n1::n0::n12" target="n0::n11::n1::n0::n5">
+            <edge id="n0::n11::n1::n0::e0" source="n0::n11::n1::n0::n11" target="n0::n11::n1::n0::n4">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="-31.48173153720444" sy="12.61220611292265" tx="-1.7666437046287342" ty="-17.149957999999742"/>
@@ -2627,8 +2611,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e1" source="n0::n11::n1::n0::n12" target="n0::n11::n1::n0::n4">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::n0::e1" source="n0::n11::n1::n0::n11" target="n0::n11::n1::n0::n3">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="30.288309753272756" sy="12.711275866890219" tx="0.0" ty="-18.819680812499882"/>
@@ -2638,8 +2621,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e2" source="n0::n11::n1::n0::n12" target="n0::n11::n1::n0::n6">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::n0::e2" source="n0::n11::n1::n0::n11" target="n0::n11::n1::n0::n5">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="-22.78300297872582" sy="-0.7290871142936298" tx="48.4814532730299" ty="0.0"/>
@@ -2649,8 +2631,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e3" source="n0::n11::n1::n0::n4" target="n0::n11::n1::n0::n2">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::n0::e3" source="n0::n11::n1::n0::n3" target="n0::n11::n1::n0::n2">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="-13.539672664218756" sy="5.89995799999997" tx="0.0" ty="-23.111816406249545"/>
@@ -2660,19 +2641,17 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e4" source="n0::n11::n1::n0::n4" target="n0::n11::n1::n0::n3">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::e1" source="n0::n11::n1::n0::n3" target="n0::n11::n1::n2">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="12.838899022040778" sy="6.58745799999997" tx="0.0" ty="-23.111816406249545"/>
                   <y:LineStyle color="#000000" type="line" width="1.0"/>
                   <y:Arrows source="none" target="standard"/>
-                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.013671875" x="5.007671717635276" xml:space="preserve" y="17.131872796382822">else<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="26.013671875" x="0.07141337852738161" xml:space="preserve" y="19.88641875871349">else<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e5" source="n0::n11::n1::n0::n5" target="n0::n11::n1::n0::n0">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::n0::e4" source="n0::n11::n1::n0::n4" target="n0::n11::n1::n0::n0">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="-11.796016036738195" sy="7.52495799999997" tx="0.0" ty="-23.111816406249545"/>
@@ -2682,8 +2661,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e6" source="n0::n11::n1::n0::n5" target="n0::n11::n1::n0::n1">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::n0::e5" source="n0::n11::n1::n0::n4" target="n0::n11::n1::n0::n1">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="11.831810985302695" sy="7.52495799999997" tx="0.0" ty="-23.111816406249545"/>
@@ -2693,8 +2671,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::e1" source="n0::n11::n1::n1" target="n0::n11::n1::n0">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::e2" source="n0::n11::n1::n1" target="n0::n11::n1::n0">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="147.67565404408174" sy="9.934979571101124" tx="84.05505294697747" ty="-216.41705881546147"/>
@@ -2704,8 +2681,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::e2" source="n0::n11::n1::n1" target="n0::n11::n1::n0">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::e3" source="n0::n11::n1::n1" target="n0::n11::n1::n0">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="-142.43634595591834" sy="4.011764452991291" tx="-206.0569470530226" ty="-199.3873088154619"/>
@@ -2715,8 +2691,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e7" source="n0::n11::n1::n0::n10" target="n0::n11::n1::n0::n11">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::n0::e6" source="n0::n11::n1::n0::n9" target="n0::n11::n1::n0::n10">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="0.0" sy="0.0" tx="-19.701494675747824" ty="0.0"/>
@@ -2725,8 +2700,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e8" source="n0::n11::n1::n0::n9" target="n0::n11::n1::n0::n11">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::n0::e7" source="n0::n11::n1::n0::n8" target="n0::n11::n1::n0::n10">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -2735,8 +2709,7 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n11::n1::n0::e9" source="n0::n11::n1::n0::n11" target="n0::n11::n1::n0::n12">
-              <data key="d9"/>
+            <edge id="n0::n11::n1::n0::e8" source="n0::n11::n1::n0::n10" target="n0::n11::n1::n0::n11">
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="0.0" sy="0.0" tx="-5.486613267283019" ty="0.8663374434177058"/>
@@ -2746,7 +2719,6 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
               </data>
             </edge>
             <edge id="n0::n11::e0" source="n0::n11::n0" target="n0::n11::n1::n1">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -2837,7 +2809,6 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
           </data>
         </edge>
         <edge id="n0::e8" source="n0::n1" target="n0::n9">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="67.12514337251935" sy="287.05539248021114" tx="-220.0" ty="0.0"/>
@@ -2848,7 +2819,6 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
           </data>
         </edge>
         <edge id="n0::e9" source="n0::n1" target="n0::n10">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="67.12514337251935" sy="409.05539248021114" tx="-220.0" ty="0.0"/>
@@ -2859,7 +2829,6 @@ enter / clear_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:
           </data>
         </edge>
         <edge id="n0::e10" source="n0::n1" target="n0::n11">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="67.12514337251935" sy="531.0553924802111" tx="-220.0" ty="0.0"/>

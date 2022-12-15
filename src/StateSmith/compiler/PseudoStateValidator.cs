@@ -30,6 +30,27 @@ public class PseudoStateValidator
         }
     }
 
+    public static void ValdiateBehaviors(PseudoStateVertex state)
+    {
+        bool hasDefaultTransition = false;
+        var parent = state.Parent;
+
+        foreach (var b in state.Behaviors)
+        {
+            ValidateBehavior(state, parent: parent, b);
+
+            if (IsSuitableForDefaultTransition(b))
+            {
+                hasDefaultTransition = true;
+            }
+        }
+
+        if (!hasDefaultTransition)
+        {
+            throw new VertexValidationException(state, $"{GetTypeNameForMessage(state)} must have at least one transition without a guard clause (default transition). https://github.com/StateSmith/StateSmith/issues/59");
+        }
+    }
+
     public static void ValdiateExitingBehaviors(PseudoStateVertex state)
     {
         bool hasDefaultTransition = false;

@@ -899,7 +899,7 @@ public class Spec2CTests : Spec2CFixture
     public void Test10_Choice_4()
     {
         int incCount = 4;
-        var expectedState = "TEST10_G_S4";
+        var expectedState = "TEST10_S4";
         Test10_RunWithXIncrementEventsOverVariations(expectedState, incCount);
     }
 
@@ -993,10 +993,19 @@ public class Spec2CTests : Spec2CFixture
             Enter {expectedState}.
             ") + "\n\n";
         }
-        else if (incCount == 3 || incCount == 4)
+        else if (incCount == 3)
         {
             ex += PrepExpectedOutput(@$"
             Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).
+            Transition action `` for TEST10_G.ChoicePoint(upper) to {expectedState}.
+            Enter {expectedState}.
+            ") + "\n\n";
+        }
+        else if (incCount == 4)
+        {
+            ex += PrepExpectedOutput(@$"
+            Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).
+            Exit TEST10_G.
             Transition action `` for TEST10_G.ChoicePoint(upper) to {expectedState}.
             Enter {expectedState}.
             ") + "\n\n";
