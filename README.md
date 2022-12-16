@@ -75,7 +75,7 @@ There are a bunch of [examples](./examples/README.md). Below is one of them.
 
 ![picture 7](images/wokwi-lasertagmenu1sm.png)  
 
-You can interact with the generated laser tag menu code using the [wokwi simulation](https://wokwi.com/projects/341718036538982996).
+You can interact with the generated laser tag menu code using the [wokwi simulation](https://wokwi.com/projects/351165738904453719).
 
 Here's the menu layout:
 ```
@@ -120,10 +120,28 @@ Why use yEd? I like that we just type in text. Some of the other strict UML Stat
 See [./docs/yed-training.md](./docs/yed-training.md)
 
 
-
-
 # Is StateSmith ready for use? 🧪
-StateSmith is generating working code, and has some decent test coverage, but I'm sure we are going to uncover some bugs.
+StateSmith is generating working code, and has decent test (188+) and behavior specification coverage. There are 33+ specification integration tests that read a diagram file, generate executable .c state machine code, then compile and execute that .c code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
+
+![picture 1](images/test-coverage-2022-12.png)  
+
+Every aspect of state behavior is printed during specification testing with the help of the `TracingModder` class which modifies the state machine design before the code generation step.
+```
+Dispatch event EV1
+===================================================
+State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
+State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior skipped.
+
+Dispatch event EV1
+===================================================
+State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
+State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior running.
+Exit TEST6_S1.
+Transition action `` for TEST6_S1 to TEST6_S2.
+Enter TEST6_S2.
+```
+*Note that there isn't a stable API yet for user modification of state machine designs, but it is coming (super useful).*
+
 
 Release 0.5.4-alpha added a lot of helpful error messages for when the input design is incorrect in some way:
 ```c

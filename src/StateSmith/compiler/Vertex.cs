@@ -163,6 +163,21 @@ namespace StateSmith.Compiling
             }
         }
 
+        public int FindIndexInParentKids()
+        {
+            if (Parent == null)
+            {
+                return -1;
+            }
+
+            return Parent.FindChildIndex(this);
+        }
+
+        public int FindChildIndex(Vertex child)
+        {
+            return _children.IndexOf(child);
+        }
+
         /// <summary>
         /// Tests whether this vertex contains vertex <paramref name="v"/>. True if this vertex is the same as <paramref name="v"/>, 
         /// or is an ancestor of <paramref name="v"/>.
@@ -308,6 +323,9 @@ namespace StateSmith.Compiling
 
             switch (v)
             {
+                case Statemachine sm:
+                    return "ROOT";
+
                 case NamedVertex namedVertex:
                     return namedVertex.Name;
 
@@ -319,6 +337,9 @@ namespace StateSmith.Compiling
 
                 case ExitPoint e:
                     return $"{Describe(v.Parent)}.{nameof(ExitPoint)}({e.label})";
+
+                case ChoicePoint point:
+                    return $"{Describe(v.Parent)}.{nameof(ChoicePoint)}({point.label})";
 
                 default: throw new ArgumentException("Unsupported type " + v.GetType().FullName);
             }

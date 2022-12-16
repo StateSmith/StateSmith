@@ -17,9 +17,29 @@ public class SimpleProcess
     public bool throwOnExitCode = true;
 }
 
+public class BashRunnerException : InvalidOperationException
+{
+    public BashRunnerException(string? message) : base(message)
+    {
+    }
+}
+
 public class BashRunner
 {
     public static void RunCommand(SimpleProcess simpleProcess, int timeoutMs = 3000)
+    {
+        try
+        {
+            RunCommandSimple(simpleProcess, timeoutMs);
+        }
+        catch (BashRunnerException)
+        {
+            // WSL2 seems to fail the first time it is invoked, so just try and run it again
+            RunCommandSimple(simpleProcess, timeoutMs);
+        }
+    }
+
+    public static void RunCommandSimple(SimpleProcess simpleProcess, int timeoutMs = 3000)
     {
         Process cmd = new();
         cmd.StartInfo.WorkingDirectory = simpleProcess.WorkingDirectory;
@@ -51,7 +71,7 @@ public class BashRunner
 
         if (cmd.ExitCode != 0)
         {
-            throw new InvalidOperationException("Exit code: " + cmd.ExitCode + ".\nOutput:\n" + simpleProcess.StdOutput + "\nError Output:\n" + simpleProcess.StdError);
+            throw new BashRunnerException("Exit code: " + cmd.ExitCode + ".\nOutput:\n" + simpleProcess.StdOutput + "\nError Output:\n" + simpleProcess.StdError);
         }
     }
 }

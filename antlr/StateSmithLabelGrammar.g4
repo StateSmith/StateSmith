@@ -28,6 +28,8 @@ node:
     |
     entry_point
     |
+    choice
+    |
     state_defn
     |
     ortho_defn
@@ -144,6 +146,20 @@ entry_point:
     ':'
     optional_any_space
     point_label
+    optional_any_space
+    ;
+
+
+// https://github.com/StateSmith/StateSmith/issues/40
+choice:
+    optional_any_space
+    '$choice'
+    (
+        optional_any_space
+        ':'
+        optional_any_space
+        point_label
+    )?
     optional_any_space
     ;
 
@@ -437,7 +453,9 @@ code_line:
 LINE_ENDER: [\r\n]+;
 line_end_with_hs: LINE_ENDER ohs;
 
-IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
+IDENTIFIER  :  (LITTLE_E | IDENTIFIER_NON_DIGIT)   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+LITTLE_E: 'e';
 
 number :
     (DASH | PLUS)?
@@ -447,7 +465,7 @@ number :
         DIGIT+
     )?
     (
-        'e' DIGIT+
+       LITTLE_E DIGIT+
     )?
     ;
 
@@ -470,7 +488,6 @@ BACKTICK_STRING: BACKTICK STRING_CHAR* BACKTICK ;
 string: STRING | TICK_STRING | BACKTICK_STRING;
 
 
-fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
 
 
 DIGIT :   [0-9]  ;

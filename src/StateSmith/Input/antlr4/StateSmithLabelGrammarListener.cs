@@ -221,6 +221,16 @@ public interface IStateSmithLabelGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitEntry_point([NotNull] StateSmithLabelGrammarParser.Entry_pointContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.choice"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterChoice([NotNull] StateSmithLabelGrammarParser.ChoiceContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.choice"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitChoice([NotNull] StateSmithLabelGrammarParser.ChoiceContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.exit_point"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

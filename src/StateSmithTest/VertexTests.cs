@@ -15,7 +15,7 @@ namespace StateSmithTest
         public void Describe_Statemachine()
         {
             var v = new Statemachine("Sm1");
-            Vertex.Describe(v).Should().Be("Sm1");
+            Vertex.Describe(v).Should().Be("ROOT");
         }
 
         [Fact]

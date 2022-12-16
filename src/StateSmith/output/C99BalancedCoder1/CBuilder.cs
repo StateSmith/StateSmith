@@ -28,6 +28,11 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void Generate()
         {
+            ctx.pseudoStateHandlerBuilder.output = file;
+            ctx.pseudoStateHandlerBuilder.mangler = mangler;
+            ctx.pseudoStateHandlerBuilder.Gather(sm);
+            ctx.pseudoStateHandlerBuilder.MapParents();
+
             file.AppendLinesIfNotBlank(ctx.renderConfig.CFileTop);
 
             file.AppendLine($"#include \"{mangler.HFileName}\"");
@@ -40,8 +45,13 @@ namespace StateSmith.output.C99BalancedCoder1
             file.AppendLine();
 
             OutputTriggerHandlerPrototypes();
+            OutputHelperPrototypes();
+            file.AppendLine();
 
             OutputFuncCtor();
+            
+            OutputExitUpToFunction();
+
             OutputFuncStart();
             OutputFuncDispatchEvent();
             OutputFuncStateIdToString();
@@ -68,6 +78,14 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 file.AppendLine();
             }
+        }
+
+        internal void OutputHelperPrototypes()
+        {
+            file.AppendLine($"static void {mangler.SmFuncExitUpTo}({mangler.SmStructTypedefName}* self, const {mangler.SmFuncTypedef} desired_state_exit_handler);");
+            file.RequestNewLineBeforeMoreCode();
+
+            ctx.pseudoStateHandlerBuilder.OutputAllPrototypes();
         }
 
         /// <summary>
@@ -109,17 +127,27 @@ namespace StateSmith.output.C99BalancedCoder1
             file.AppendLine("ROOT_enter(self);");
 
             var initialState = sm.Children.OfType<InitialState>().Single();
-            var initial_transition = initialState.Behaviors.Single();
 
-            if (initial_transition.TransitionTarget == null)
+            var getToInitialStateBehavior = new Behavior(sm, initialState);
+
+            eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior);
+
+            file.FinishCodeBlock(forceNewLine: true);
+            file.AppendLine();
+        }
+
+        internal void OutputExitUpToFunction()
+        {
+            file.Append($"static void {mangler.SmFuncExitUpTo}({mangler.SmStructTypedefName}* self, const {mangler.SmFuncTypedef} desired_state_exit_handler)");
+            file.StartCodeBlock();
+
+            file.Append($"while (self->current_state_exit_handler != desired_state_exit_handler)");
+            file.StartCodeBlock();
             {
-                throw new VertexValidationException(initialState, "Initial states must have a single transition");
+                file.AppendLine("self->current_state_exit_handler(self);");
             }
+            file.FinishCodeBlock(forceNewLine: true);
 
-            eventHandlerBuilder.OutputAnyActionCode(initial_transition);
-
-            NamedVertex transitionTarget = (NamedVertex)initial_transition.TransitionTarget;
-            eventHandlerBuilder.OutputCodeForTransition(sm, transitionTarget, skipStateExiting: true);
             file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();
         }
@@ -150,32 +178,38 @@ namespace StateSmith.output.C99BalancedCoder1
             
             foreach (var state in namedVertices)
             {
-                
-                file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
-                file.AppendLine($"// event handlers for state {mangler.SmStateName(state)}");
-                file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
-                file.AppendLine();
-
-                OutputFuncStateEnter(state);
-                OutputFuncStateExit(state);
-
-                // fixme output event handlers
-                string[] eventNames = GetEvents(state).ToArray();
-                Array.Sort(eventNames);
-
-                foreach (var eventName in eventNames)
-                {
-                    OutputTriggerHandlerSignature(state, eventName);
-                    file.StartCodeBlock();
-                    {
-                        eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, eventName);
-                    }
-                    file.FinishCodeBlock(forceNewLine: false);
-                    file.AppendLine();
-                }
-
-                file.AppendLine();
+                OutputNamedStateHandlers(state);
             }
+        }
+
+        private void OutputNamedStateHandlers(NamedVertex state)
+        {
+            file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
+            file.AppendLine($"// event handlers for state {mangler.SmStateName(state)}");
+            file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
+            file.AppendLine();
+
+            OutputFuncStateEnter(state);
+            OutputFuncStateExit(state);
+
+            // fixme output event handlers
+            string[] eventNames = GetEvents(state).ToArray();
+            Array.Sort(eventNames);
+
+            foreach (var eventName in eventNames)
+            {
+                OutputTriggerHandlerSignature(state, eventName);
+                file.StartCodeBlock();
+                {
+                    eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, eventName);
+                }
+                file.FinishCodeBlock(forceNewLine: false);
+                file.RequestNewLineBeforeMoreCode();
+            }
+
+            ctx.pseudoStateHandlerBuilder.OutputFunctionsForParent(state, eventHandlerBuilder.RenderPseudoStateTransitionFunctionInner);
+
+            file.AppendLine();
         }
 
         internal void OutputFuncStateEnter(NamedVertex state)
@@ -198,6 +232,7 @@ namespace StateSmith.output.C99BalancedCoder1
                     file.AppendLine($"self->current_event_handlers[{eventEnumValueName}] = {handlerName};");
                 }
 
+                file.RequestNewLineBeforeMoreCode();
                 eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_ENTER);
             }
             file.FinishCodeBlock(forceNewLine: true);

@@ -4,8 +4,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [WIP]
+## [0.6.0-alpha]
+### Fixed
+- Fix parent self transition involving initial state incorrect https://github.com/StateSmith/StateSmith/issues/49
+- StateSmith grammar fix for parsing 'e()'. https://github.com/StateSmith/StateSmith/issues/60
+
+### Changed
+- Transition actions are now run after states are exited (instead of before) https://github.com/StateSmith/StateSmith/issues/6
+- Reserved `else` "trigger" name for `else` functionality https://github.com/StateSmith/StateSmith/issues/59
+
 ### Added
+- Support `$choice` pseudo states/points https://github.com/StateSmith/StateSmith/issues/40
+  - supported in PlantUML as well.
+- Support multiple transitions for initial states, entry points, exit points. https://github.com/StateSmith/StateSmith/issues/40
+  - Allow multiple transitions from initial state.
+  - Initial state must have a default transition (always true).
+  - Allow incoming transitions to initial state.
+  - Allow multiple transitions from entry point.
+  - Entry point must have a default transition (always true).
+  - Allow incoming transitions to entry point.
+  - Allow multiple transitions from exit point.
+  - Exit point must have a default transition (always true).
+- Allow specifying `else` on transitions https://github.com/StateSmith/StateSmith/issues/59
+- Optimize pseudo state transitions to avoid code duplication.
+  - Especially important for when History states are eventually implemented as the code de-duplication
+  savings can rack up big there.
+- Improve entry and exit point validations.
+  - Detect duplicate labels in the same scope.
+  - Allow exit points to target parent state. Same as a self transition on parent.
 - grammar - support backtick strings and other ASCII symbols https://github.com/StateSmith/StateSmith/issues/42
 
 ## [0.5.9-alpha]

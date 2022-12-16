@@ -213,6 +213,21 @@ public class Antlr4Test : CommonTestHelper
                         "Another line of 2134 \"notes\"");
     }
 
+    // https://github.com/StateSmith/StateSmith/issues/60
+    [Fact]
+    public void SingleLetter_e_Function()
+    {
+        string input = @"
+            S2_1
+            enter / e();
+            ";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        textState.stateName.Should().Be("S2_1");
+        textState.behaviors.Count.Should().Be(1);
+        textState.behaviors[0].triggers.Should().BeEquivalentTo(new string[] { "enter" });
+        textState.behaviors[0].actionCode.Should().Be("e();");
+    }
+    
     /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/42
     /// </summary>

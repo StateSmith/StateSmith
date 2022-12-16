@@ -15,24 +15,49 @@ static void STATE_2_enter(BlankTemplateSm* self);
 static void STATE_2_exit(BlankTemplateSm* self);
 static void STATE_2_do(BlankTemplateSm* self);
 
+static void exit_up_to_state_handler(BlankTemplateSm* self, const BlankTemplateSm_Func desired_state_exit_handler);
+
+
 void BlankTemplateSm_ctor(BlankTemplateSm* self)
 {
     memset(self, 0, sizeof(*self));
 }
 
+static void exit_up_to_state_handler(BlankTemplateSm* self, const BlankTemplateSm_Func desired_state_exit_handler)
+{
+    while (self->current_state_exit_handler != desired_state_exit_handler)
+    {
+        self->current_state_exit_handler(self);
+    }
+}
+
 void BlankTemplateSm_start(BlankTemplateSm* self)
 {
     ROOT_enter(self);
-    // Transition to target state STATE_1
+    // ROOT behavior
+    // uml: TransitionTo(ROOT.InitialState)
+    if (true)
     {
-        // No need exit any states in this handler.
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
         // Enter towards target
-        STATE_1_enter(self);
         
-        // update state_id
-        self->state_id = BlankTemplateSm_StateId_STATE_1;
-    } // end of transition code
+        // ROOT.InitialState behavior
+        // uml: TransitionTo(STATE_1)
+        if (true)
+        {
+            
+            // Enter towards target
+            STATE_1_enter(self);
+            
+            // update state_id
+            self->state_id = BlankTemplateSm_StateId_STATE_1;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for ROOT.InitialState
+    } // end of behavior for ROOT
 }
 
 void BlankTemplateSm_dispatch_event(BlankTemplateSm* self, enum BlankTemplateSm_EventId event_id)
@@ -95,32 +120,24 @@ static void STATE_1_exit(BlankTemplateSm* self)
 
 static void STATE_1_do(BlankTemplateSm* self)
 {
-    // setup handler for next ancestor that listens to `do` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `do` event
+    // No ancestor state handles `do` event.
     
-    // state behavior:
+    // STATE_1 behavior
+    // uml: do TransitionTo(STATE_2)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: STATE_2
-        // Transition to target state STATE_2
-        {
-            // First, exit up to Least Common Ancestor ROOT.
-            while (self->current_state_exit_handler != ROOT_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            STATE_2_enter(self);
-            
-            // update state_id
-            self->state_id = BlankTemplateSm_StateId_STATE_2;
-        } // end of transition code
+        // Avoid exit-while-loop here because we know that the active leaf state is STATE_1 and it is the only state being exited at this point.
+        STATE_1_exit(self);
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        STATE_2_enter(self);
+        
+        // update state_id
+        self->state_id = BlankTemplateSm_StateId_STATE_2;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for STATE_1
 }
 
 
@@ -144,32 +161,24 @@ static void STATE_2_exit(BlankTemplateSm* self)
 
 static void STATE_2_do(BlankTemplateSm* self)
 {
-    // setup handler for next ancestor that listens to `do` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `do` event
+    // No ancestor state handles `do` event.
     
-    // state behavior:
+    // STATE_2 behavior
+    // uml: do TransitionTo(STATE_1)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: STATE_1
-        // Transition to target state STATE_1
-        {
-            // First, exit up to Least Common Ancestor ROOT.
-            while (self->current_state_exit_handler != ROOT_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            STATE_1_enter(self);
-            
-            // update state_id
-            self->state_id = BlankTemplateSm_StateId_STATE_1;
-        } // end of transition code
+        // Avoid exit-while-loop here because we know that the active leaf state is STATE_2 and it is the only state being exited at this point.
+        STATE_2_exit(self);
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        STATE_1_enter(self);
+        
+        // update state_id
+        self->state_id = BlankTemplateSm_StateId_STATE_1;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for STATE_2
 }
 
 

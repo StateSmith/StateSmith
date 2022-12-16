@@ -2,7 +2,7 @@ using StateSmith.compiler.Visitors;
 
 namespace StateSmith.Compiling
 {
-    public class ExitPoint : Vertex
+    public class ExitPoint : PseudoStateVertex
     {
         public string label;
 

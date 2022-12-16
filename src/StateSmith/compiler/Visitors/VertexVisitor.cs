@@ -13,6 +13,7 @@ namespace StateSmith.compiler.Visitors
         public abstract void Visit(NotesVertex v);
         public abstract void Visit(InitialState v);
 
+        public virtual void Visit(ChoicePoint v) => Visit((Vertex)v);
         public virtual void Visit(EntryPoint v) => Visit((Vertex)v);
         public virtual void Visit(ExitPoint v) => Visit((Vertex)v);
 

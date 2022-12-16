@@ -10,6 +10,7 @@ namespace StateSmith.Compiling
     public class Behavior
     {
         public const double DEFAULT_ORDER = 1e6;
+        public const double ELSE_ORDER = DEFAULT_ORDER * 10;
 
         /// <summary>
         /// Only populated for transitions.
@@ -127,6 +128,17 @@ namespace StateSmith.Compiling
         }
 
         /// <summary>
+        /// Must have had an original target
+        /// </summary>
+        /// <param name="newTarget"></param>
+        public void RetargetOwner(Vertex newOwner)
+        {
+            var oldOwner = OwningVertex;
+            oldOwner._behaviors.Remove(this);
+            newOwner.AddBehavior(this);
+        }
+
+        /// <summary>
         /// Throws if no transition target
         /// </summary>
         /// <returns></returns>
@@ -140,7 +152,12 @@ namespace StateSmith.Compiling
             string result = "";
             string joiner = "";
 
-            if (order != DEFAULT_ORDER)
+            if (order == ELSE_ORDER)
+            {
+                result += joiner + "else";
+                joiner = " ";
+            }
+            else if (order != DEFAULT_ORDER)
             {
                 result += joiner + order + ".";
                 joiner = " ";

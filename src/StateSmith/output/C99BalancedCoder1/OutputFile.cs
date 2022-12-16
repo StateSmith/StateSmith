@@ -1,9 +1,47 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace StateSmith.output.C99BalancedCoder1
 {
+    public class OutputFileChangeTracker
+    {
+        private OutputFile outputFile;
+        private int lastStringBufferLength;
+
+        public OutputFileChangeTracker(OutputFile outputFile)
+        {
+            this.outputFile = outputFile;
+            Reset();
+        }
+
+        public bool TestChanged()
+        {
+            return outputFile.GetStringBufferLength() != lastStringBufferLength;
+        }
+
+        public void Reset()
+        {
+            lastStringBufferLength = outputFile.GetStringBufferLength();
+        }
+
+        public bool PopChanged()
+        {
+            bool changed = TestChanged();
+            Reset();
+            return changed;
+        }
+
+        public void OutputNewLineOnChange()
+        {
+            if (PopChanged())
+            {
+                outputFile.AppendLine();
+            }
+        }
+    }
+
     public class OutputFile
     {
         readonly CodeGenContext ctx;
@@ -11,11 +49,23 @@ namespace StateSmith.output.C99BalancedCoder1
         private readonly CodeStyleSettings styler;
         int indentLevel = 0;
 
+        private bool lineBreakBeforeMoreCode = false;
+
         public OutputFile(CodeGenContext codeGenContext, StringBuilder fileStringBuilder)
         {
             ctx = codeGenContext;
             sb = fileStringBuilder;
             styler = codeGenContext.style;
+        }
+
+        public void RequestNewLineBeforeMoreCode()
+        {
+            lineBreakBeforeMoreCode = true;
+        }
+
+        public OutputFileChangeTracker GetChangeTracker()
+        {
+            return new OutputFileChangeTracker(this);
         }
 
         public void StartCodeBlock(bool forceNewLine = false)
@@ -57,6 +107,8 @@ namespace StateSmith.output.C99BalancedCoder1
             {
                 throw new InvalidOperationException("indent went negative");
             }
+
+            lineBreakBeforeMoreCode = false;
 
             Append("}");
             sb.Append(codeAfterBrace); // this part shouldn't be indented
@@ -111,6 +163,12 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void Append(string code = "")
         {
+            if (lineBreakBeforeMoreCode)
+            {
+                lineBreakBeforeMoreCode = false;
+                AppendLine();
+            }
+
             styler.Indent(sb, indentLevel);
             sb.Append(code);
         }
@@ -124,6 +182,11 @@ namespace StateSmith.output.C99BalancedCoder1
         public override string ToString()
         {
             return sb.ToString();
+        }
+
+        public int GetStringBufferLength()
+        {
+            return sb.Length;
         }
     }
 }

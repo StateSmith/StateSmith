@@ -63,6 +63,13 @@ namespace StateSmith.Input.antlr4
             node = n;
         }
 
+        public override void EnterChoice([NotNull] StateSmithLabelGrammarParser.ChoiceContext context)
+        {
+            var n = new ChoiceNode();
+            n.label = context.point_label()?.GetText() ?? "";
+            node = n;
+        }
+
         //---------------------------
 
         public override void EnterState_id([NotNull] StateSmithLabelGrammarParser.State_idContext context)

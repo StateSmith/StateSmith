@@ -2,7 +2,7 @@
 
 namespace StateSmith.Compiling
 {
-    public class InitialState : Vertex
+    public class InitialState : PseudoStateVertex
     {
         public override void Accept(VertexVisitor visitor)
         {
