@@ -15,6 +15,7 @@ namespace StateSmith.output.C99BalancedCoder1
         public Statemachine sm;
         public Expander expander = new();
         public IRenderConfigC renderConfig;
+        public PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
 
         internal CodeGenContext(Statemachine sm)
         {

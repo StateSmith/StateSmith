@@ -167,6 +167,38 @@ Feature is implemented. See issue for details: https://github.com/StateSmith/Sta
 
 ---
 
+## Choice Pseudo States / Choice Points With `else`
+StateSmith now supports Choice Pseudo States / Choice Points with `else`.
+
+Choice points are not states. They can only be passed through during a transition.
+This requires that they always have a default transition which is usually specified as `else`, but
+it could also just be a default true transition with a higher order. In fact, `else` is just converted to a very large order number (see `Behavior.ELSE_ORDER`).
+
+![picture 4](images/choice-points.png)
+
+A choice diagram node can have any shape as long its text matches either `$choice` or `$choice : some_label`. StateSmith also supports [PlantUML choice states](https://plantuml.com/state-diagram#8bd6f7be727fb20e).
+
+Choice point labels are optional and do not have to be unique.
+
+You can choose to hide a `$choice` label.
+
+https://github.com/StateSmith/StateSmith/issues/40
+
+---
+
+## Initial States, Entry Points and Exit Points now behave like Choice Points
+StateSmith 0.5.9 had a limitation of a single transition for initial states, entry points, exit points, but this has been lifted. These pseudo states now behave a lot like Choice Points.
+
+![picture 8](images/initial-state-choice.png)  
+
+![picture 6](./images/entry-point-choice.png)  
+
+![picture 7](./images/exit-point-choice.png)  
+
+https://github.com/StateSmith/StateSmith/issues/40
+
+---
+
 ## `$PARENT_ALIAS`
 A parent alias is a convenient way of referring to a state but from within it.
 Very useful when a group is collapsed.
@@ -192,18 +224,72 @@ https://github.com/StateSmith/StateSmith/issues/2
 ## UML difference - local transitions only (for now)
 UML distinguishes between local and external transitions (see below). Local transitions don't exit the parent, external transitions do.
 
-StateSmith currently doesn’t support graphically determining local versus external transitions because of limitations using the free yEd tool - you can’t draw the diagrams shown in (a) below. In StateSmith, all the diagrams below would be implemented using local transitions.
+StateSmith currently doesn’t support graphically determining local versus external transitions due to limitations of drawing tools. You can’t draw the diagrams shown in (a) below with yEd, and you can't draw the diagrams shown in (b) with PlantUML. Because of these drawing tool limitations, StateSmith considers all the transitions in the image below to be local. Don't worry though, there are a few easy ways to make achieve the desired effect with clarity using StateSmith.
 
 ![picture 14](../images/docs-local-vs-external-transitions.png)  
 
-In the yEd drawing below, these would all be local transitions. The parent state is not exited for any of them.
+You can achieve unambiguous external transitions as shown below.
 
-![picture 17](../images/docs-local-vs-external-transitions-yed-1.png)  
+![picture 9](./images/external-transition-using-choice-points.png)  
 
-If you want the `PARENT` state to be exited, you'll have to transition to another state outside of `PARENT` as an interim measure as shown below. This will be improved in the future.
+Here's the test output for the above diagram when trace information is added:
 
-![picture 18](../images/docs-local-vs-external-transitions-workaround1.png)  
+```
+Dispatch event EV1
+===================================================
+State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
+Exit TEST4D_G.
+Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().
+Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.
+Enter TEST4D_G.
+Enter TEST4D_G_1.
 
+Dispatch event EV2
+===================================================
+State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
+Exit TEST4D_G_1.
+Exit TEST4D_G.
+Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().
+Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.
+Enter TEST4D_G.
+```
+
+The transitions in the below diagrams are local. The "TEST4C" example is arguably more clear, but they are both effectively the same.
+
+![picture 10](./images/local-transition-example.png)
+![picture 11](./images/local-transition-to-alias-example.png)  
+
+Here's the test output for the above "4B" diagram when trace information is added:
+
+```
+Dispatch event EV1
+===================================================
+State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`. Behavior running.
+Transition action `` for TEST4B_G to TEST4B_G_1.
+Enter TEST4B_G_1.
+
+Dispatch event EV2
+===================================================
+State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`. Behavior running.
+Exit TEST4B_G_1.
+Transition action `` for TEST4B_G_1 to TEST4B_G.
+```
+
+Here's the test output for the above "4C" diagram when trace information is added:
+
+```
+Dispatch event EV1
+===================================================
+State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`. Behavior running.
+Transition action `` for TEST4C_G to TEST4C_G_1.
+Enter TEST4C_G_1.
+
+Dispatch event EV2
+===================================================
+State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`. Behavior running.
+Exit TEST4C_G_1.
+Transition action `` for TEST4C_G_1 to TEST4C_G.
+```
 
 ---
 
@@ -230,9 +316,14 @@ If no event is specified on a transition, StateSmith will automatically assume i
 
 --- 
 
-## When should action code on a transition run?
-UML says that transition code should run after all states in a transition have exited.
+## Transition action code runs after states exited
+StateSmith now follows the UML specification which states that a transition's action code is run after
+states have been exited and before states are entered. StateSmith 0.5.9 would run transition action code before exiting states.
 
-Many existing state machines and frameworks run the code before states are exited. It seems mainly for convenience, but people may be used to this.
+The design below comes from the [wikipedia UML state machine page](https://en.wikipedia.org/wiki/UML_state_machine#Transition_execution_sequence).
 
-See https://github.com/StateSmith/StateSmith/issues/6
+When event `T1` is dispatched to `S1_1`, the state machine outputs the following: `g() a(); b(); t(); c(); d(); e();`
+
+![picture 2](./images/Spec1bSm.png)
+
+Additional info: https://github.com/StateSmith/StateSmith/issues/6

@@ -6,8 +6,9 @@ using FluentAssertions;
 using StateSmith;
 using StateSmith.Compiling;
 using StateSmith.compiler;
-using static StateSmithTest.VertexTestHelpers;
+using static StateSmithTest.VertexTestHelper;
 using StateSmith.Input.Expansions;
+using StateSmith.Runner;
 
 namespace StateSmithTest
 {
@@ -19,8 +20,9 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny1.graphml";
 
-            Compiler compiler = new Compiler();
-            compiler.CompileYedFile(filepath);
+            CompilerRunner compilerRunner = new CompilerRunner();
+            Compiler compiler = compilerRunner.compiler;
+            compilerRunner.CompileYedFileNodesToVertices(filepath);
 
             compiler.rootVertices.Count.Should().Be(2);
 
@@ -132,7 +134,8 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/Tiny1.graphml";
 
-            Compiler compiler = new Compiler();
+            CompilerRunner compilerRunner = new();
+            Compiler compiler = compilerRunner.compiler;
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new ExpanderFileReflection(expander);
             Tiny1Expansions userExpansions = new Tiny1Expansions();
@@ -140,7 +143,7 @@ namespace StateSmithTest
             expanderFileReflection.AddAllExpansions(userExpansions);
             //FIXME add events
             //FIXME check for valid events in diagram
-            compiler.CompileYedFile(filepath);
+            compilerRunner.CompileYedFileNodesToVertices(filepath);
             compiler.ExpandAllBehaviors(expander);
 
             compiler.rootVertices.Count.Should().Be(2);

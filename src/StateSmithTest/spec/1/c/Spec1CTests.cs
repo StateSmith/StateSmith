@@ -51,7 +51,7 @@ public class Spec1CTests
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandText = "./a.out EV2 EV1 EV2 EV1 EV2"
+            CommandText = "./a.out EV2 EV1 EV2 "
         };
         BashRunner.RunCommand(process);
 
@@ -62,11 +62,11 @@ public class Spec1CTests
             Start Statemachine
             ===================================================
             Enter Spec1Sm.
-            Transition action `` for Spec1Sm.InitialState to S.
-            Transition action `` for S.InitialState to S1.
-            Transition action `` for S1.InitialState to S11.
+            Transition action `` for ROOT.InitialState to S.
             Enter S.
+            Transition action `` for S.InitialState to S1.
             Enter S1.
+            Transition action `` for S1.InitialState to S11.
             Enter S11.
 
             Dispatch event EV2
@@ -75,47 +75,24 @@ public class Spec1CTests
             Dispatch event EV1
             ===================================================
             State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`. Behavior running.
-            Transition action `` for S11 to S1.ExitPoint(1).
-            Transition action `` for S1 to T11.
-            Transition action `` for T11.EntryPoint(1) to T111.
             Exit S11.
+            Transition action `` for S11 to S1.ExitPoint(1).
             Exit S1.
+            Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).
             Enter T1.
             Enter T11.
+            Transition action `` for T11.EntryPoint(1) to T111.
             Enter T111.
 
             Dispatch event EV2
             ===================================================
             State T11: check behavior `EV2 TransitionTo(S1)`. Behavior running.
-            Transition action `` for T11 to S1.
-            Transition action `` for S1.InitialState to S11.
             Exit T111.
             Exit T11.
             Exit T1.
-            Enter S1.
-            Enter S11.
-
-            Dispatch event EV1
-            ===================================================
-            State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`. Behavior running.
-            Transition action `` for S11 to S1.ExitPoint(1).
-            Transition action `` for S1 to T11.
-            Transition action `` for T11.EntryPoint(1) to T111.
-            Exit S11.
-            Exit S1.
-            Enter T1.
-            Enter T11.
-            Enter T111.
-
-            Dispatch event EV2
-            ===================================================
-            State T11: check behavior `EV2 TransitionTo(S1)`. Behavior running.
             Transition action `` for T11 to S1.
-            Transition action `` for S1.InitialState to S11.
-            Exit T111.
-            Exit T11.
-            Exit T1.
             Enter S1.
+            Transition action `` for S1.InitialState to S11.
             Enter S11.
         ");
 

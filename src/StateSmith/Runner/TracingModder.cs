@@ -10,8 +10,6 @@ using System.Threading.Tasks;
 
 namespace StateSmith.Runner
 {
-
-
     public class TracingModder : NamedVisitor
     {
         public void AddTracingBehaviors(Statemachine statemachine)

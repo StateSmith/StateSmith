@@ -5,26 +5,31 @@ using Xunit;
 using FluentAssertions;
 using StateSmith.Compiling;
 using StateSmith.Input;
+using StateSmith.Runner;
 
 namespace StateSmithTest
 {
     public class NotesTests
     {
+        CompilerRunner compilerRunner = new();
+
+        private void CompileYedFile(string filepath)
+        {
+            compilerRunner.CompileYedFileNodesToVertices(filepath);
+        }
+
         [Fact]
         public void ValidNotesCommentingOutStates()
         {
-            Compiler compiler = new Compiler();
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny2-with-noted-out-states.graphml";
-            compiler.CompileYedFile(filepath); //should not throw
+            CompileYedFile(filepath); //should not throw
         }
 
         [Fact]
         public void EdgeToNotes()
         {
-            Compiler compiler = new Compiler();
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "bad-edge-to-notes.graphml";
-
-            Action action = () => compiler.CompileYedFile(filepath);
+            Action action = () => CompileYedFile(filepath);
 
             action.Should()
                 .Throw<DiagramEdgeException>()
@@ -36,10 +41,8 @@ namespace StateSmithTest
         [Fact]
         public void EdgeFromNotes()
         {
-            Compiler compiler = new Compiler();
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/bad-edge-from-notes.graphml";
-
-            Action action = () => compiler.CompileYedFile(filepath);
+            Action action = () => CompileYedFile(filepath);
 
             action.Should()
                 .Throw<DiagramEdgeException>()

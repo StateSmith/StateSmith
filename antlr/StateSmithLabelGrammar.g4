@@ -28,6 +28,8 @@ node:
     |
     entry_point
     |
+    choice
+    |
     state_defn
     |
     ortho_defn
@@ -144,6 +146,20 @@ entry_point:
     ':'
     optional_any_space
     point_label
+    optional_any_space
+    ;
+
+
+// https://github.com/StateSmith/StateSmith/issues/40
+choice:
+    optional_any_space
+    '$choice'
+    (
+        optional_any_space
+        ':'
+        optional_any_space
+        point_label
+    )?
     optional_any_space
     ;
 
@@ -437,7 +453,9 @@ code_line:
 LINE_ENDER: [\r\n]+;
 line_end_with_hs: LINE_ENDER ohs;
 
-IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
+IDENTIFIER  :  (LITTLE_E | IDENTIFIER_NON_DIGIT)   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+LITTLE_E: 'e';
 
 number :
     (DASH | PLUS)?
@@ -447,7 +465,7 @@ number :
         DIGIT+
     )?
     (
-        'e' DIGIT+
+       LITTLE_E DIGIT+
     )?
     ;
 
@@ -464,17 +482,19 @@ STAR_COMMENT: '/*' .*? '*/' ;
 fragment ESCAPED_CHAR: '\\' . ;
 fragment NON_QUOTE_CHAR: ~["] ;
 fragment STRING_CHAR: ESCAPED_CHAR | NON_QUOTE_CHAR ;
-STRING: '"' STRING_CHAR* '"' ;
-TICK_STRING: ['] STRING_CHAR* ['] ;
-string: STRING | TICK_STRING;
-//todolow js backtick strings. template literals.
+STRING: DOUBLE_QUOTE STRING_CHAR* DOUBLE_QUOTE ;
+TICK_STRING: SINGLE_QUOTE STRING_CHAR* SINGLE_QUOTE ;
+BACKTICK_STRING: BACKTICK STRING_CHAR* BACKTICK ;
+string: STRING | TICK_STRING | BACKTICK_STRING;
 
 
-fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
 
 
 DIGIT :   [0-9]  ;
 
+DOUBLE_QUOTE: '"';
+SINGLE_QUOTE: '\'';
+BACKTICK: '`';
 PERIOD: '.' ;
 COMMA: ',' ;
 PLUS : '+' ;
@@ -483,7 +503,7 @@ COLON : ':' ;
 GT : '>' ;
 LT : '<' ;
 OTHER_SYMBOLS: 
-    [~!%^&*=:;/?|];  //don't include braces/parenthesis as those need to be grouped
+    [~!%^&*=:;/?|\\@#$];  //don't include braces/parenthesis as those need to be grouped
 
 code_symbol:
     PERIOD |

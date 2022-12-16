@@ -4,6 +4,7 @@ using System.Linq;
 using FluentAssertions;
 using StateSmith.Compiling;
 using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Runner;
 
 namespace StateSmithTest
 {
@@ -19,27 +20,19 @@ namespace StateSmithTest
 
         public static Compiler SetupAndValidateCompilerForTestInputFile(string relativePath)
         {
-            Compiler compiler = CreateCompilerForTestInputFile(relativePath);
+            CompilerRunner compilerRunner = CreateCompilerForTestInputFile(relativePath);
 
-            FinishSettingUpCompilerAndValidate(compiler);
+            compilerRunner.FinishRunningCompiler();
 
-            return compiler;
+            return compilerRunner.compiler;
         }
 
-        public static Compiler CreateCompilerForTestInputFile(string relativePath)
+        public static CompilerRunner CreateCompilerForTestInputFile(string relativePath)
         {
             string filepath = TestInputDirectoryPath + relativePath;
-            Compiler compiler = new Compiler();
-            compiler.CompileYedFile(filepath);
-            compiler.rootVertices.Count.Should().Be(1);
-            return compiler;
-        }
-
-        public static void FinishSettingUpCompilerAndValidate(Compiler compiler)
-        {
-            compiler.SetupRoots();
-            compiler.FinalizeTrees();
-            compiler.Validate();
+            CompilerRunner compilerRunner = new();
+            compilerRunner.CompileYedFileNodesToVertices(filepath);
+            return compilerRunner;
         }
 
         public static CodeGenContext SetupCtxForTiny2Sm()
@@ -51,7 +44,7 @@ namespace StateSmithTest
 
         public static CodeGenContext SetupCtxForSimple1()
         {
-            Compiler compiler = new Compiler();
+            CompilerRunner compilerRunner = new();
 
             var sm = new Statemachine("Simple1");
             var s1 = sm.AddChild(new State(name: "s1"));
@@ -59,9 +52,6 @@ namespace StateSmithTest
 
             var initialStateVertex = sm.AddChild(new InitialState());
             initialStateVertex.AddTransitionTo(s1);
-
-            compiler.rootVertices = new List<Vertex>() { sm };
-            compiler.SetupRoots();
 
             sm.AddBehavior(new Behavior()
             {
@@ -77,7 +67,8 @@ namespace StateSmithTest
                 triggers = new List<string>() { "enter", "exit", "ZIP" }
             });
 
-            FinishSettingUpCompilerAndValidate(compiler);
+            compilerRunner.SetStateMachineRoot(sm);
+            compilerRunner.FinishRunningCompiler();
 
             return new CodeGenContext(sm);
         }

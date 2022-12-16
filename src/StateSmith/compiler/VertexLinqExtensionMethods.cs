@@ -10,7 +10,7 @@ namespace StateSmith.compiler
     /// <summary>
     /// Helper extension methods
     /// </summary>
-    public static class VertexLinqHelpers
+    public static class VertexLinqExtensionMethods
     {
         public static List<NamedVertex> Descendants(this IEnumerable<Vertex> vertices, string name)
         {
@@ -83,6 +83,24 @@ namespace StateSmith.compiler
             return vertex.Children.OfType<T>();
         }
 
+        // does not return self
+        public static IEnumerable<Vertex> Siblings(this Vertex vertex)
+        {
+            return vertex.Parent.Children.Where(v => v != vertex);
+        }
+
+        // does not return self
+        public static IEnumerable<T> Siblings<T>(this Vertex vertex) where T : Vertex
+        {
+            return vertex.Parent.Children.OfType<T>().Where(v => v != vertex);
+        }
+
+        // does not return self
+        public static IEnumerable<T> SiblingsOfMyType<T>(this T vertex) where T : Vertex
+        {
+            return vertex.Siblings<T>();
+        }
+
         public static IEnumerable<NamedVertex> NamedChildren(this Vertex vertex, string name)
         {
             return vertex.Children.OfType<NamedVertex>().Where(v => v.Name == name);
@@ -98,6 +116,11 @@ namespace StateSmith.compiler
              var list = vertex.Children.OfType<NamedVertex>().Where(v => v.Name == name).ToList();
             ThrowIfNotSingle(name, list);
             return list[0];
+        }
+
+        public static T Child<T>(this Vertex vertex, string name) where T : NamedVertex
+        {
+            return (T)vertex.Child(name);
         }
 
         public static T ChildType<T>(this Vertex vertex) where T : Vertex

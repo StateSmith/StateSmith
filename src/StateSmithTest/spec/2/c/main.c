@@ -20,8 +20,13 @@ const char * const event_names[] = {
     [Spec2Sm_EventId_EV4] = "EV4",
     [Spec2Sm_EventId_EV5] = "EV5",
     [Spec2Sm_EventId_EV6] = "EV6",
+    [Spec2Sm_EventId_EV7] = "EV7",
+    [Spec2Sm_EventId_EV8] = "EV8",
+    [Spec2Sm_EventId_EV9] = "EV9",
+    [Spec2Sm_EventId_EV10] = "EV10",
 };
 static_assert(COUNT_OF(event_names) == Spec2Sm_EventIdCount, "above mapping outdated");
+static_assert(Spec2Sm_EventIdCount == 11, "above mapping outdated");
 
 
 int main(int arg_count, char** args)

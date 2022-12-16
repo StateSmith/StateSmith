@@ -21,7 +21,9 @@ namespace StateSmithTest
         [Fact]
         public void DescribeAsUml_WithEverythingSimple()
         {
+            var root = new State("Root");
             var s1 = new State("s1");
+            root.AddChild(s1);
 
             var b = new Behavior();
             b.order = 1.25;
@@ -34,6 +36,22 @@ namespace StateSmithTest
             b._transitionTarget = s1;
 
             b.DescribeAsUml().Should().Be("1.25. EV1 [x > 10] / { x = 0; } via exit exit1 via entry entry1 TransitionTo(s1)");
+        }
+
+        [Fact]
+        public void DescribeAsUml_Else()
+        {
+            var root = new State("Root");
+            var s1 = new State("s1");
+            root.AddChild(s1);
+
+            var b = new Behavior();
+            b.order = Behavior.ELSE_ORDER;
+            b.actionCode = "x = 0;";
+
+            b._transitionTarget = s1;
+
+            b.DescribeAsUml().Should().Be("else / { x = 0; } TransitionTo(s1)");
         }
 
         [Fact]

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using static StateSmithTest.VertexTestHelpers;
+using static StateSmithTest.VertexTestHelper;
 
 namespace StateSmithTest.C99BalancedCoder1
 {

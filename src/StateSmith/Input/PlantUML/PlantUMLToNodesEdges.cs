@@ -16,6 +16,7 @@ namespace StateSmith.Input.PlantUML
     {
         private const string PlantUmlEntryPointText = "entryPoint";
         private const string PlantUmlExitPointText = "exitPoint";
+        private const string PlantUmlChoicePointText = "choice";
 
         private PlantUMLWalker walker = new();
 
@@ -36,6 +37,7 @@ namespace StateSmith.Input.PlantUML
             IParseTree tree = parser.diagram();
             ParseTreeWalker.Default.Walk(walker, tree);
             PostProcessForEntryExit();
+            PostProcessForChoicePoint();
         }
 
         private bool IsNodeEntryPoint(DiagramNode node)
@@ -57,6 +59,17 @@ namespace StateSmith.Input.PlantUML
 
             return false;
         }
+
+        private bool IsNodeChoicePoint(DiagramNode node)
+        {
+            if (walker.nodeStereoTypeLookup.TryGetValue(node, out var stereotype))
+            {
+                return stereotype == PlantUmlChoicePointText;
+            }
+
+            return false;
+        }
+       
 
         /// <summary>
         /// See https://github.com/StateSmith/StateSmith/issues/3
@@ -95,6 +108,22 @@ namespace StateSmith.Input.PlantUML
                 }
             }
         }
+
+        /// See https://github.com/StateSmith/StateSmith/issues/40
+        private void PostProcessForChoicePoint()
+        {
+            foreach (var item in walker.nodeStereoTypeLookup)
+            {
+                var node = item.Key;
+                var stereotype = item.Value;
+
+                if (stereotype == PlantUmlChoicePointText)
+                {
+                    node.label = "$choice : " + node.label;
+                }
+            }
+        }
+
 
         public DiagramNode GetDiagramNode(string id)
         {

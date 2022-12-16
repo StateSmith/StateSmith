@@ -6,8 +6,12 @@ namespace StateSmith.Compiling
 {
     public class VertexValidator : OnlyVertexVisitor
     {
+        PseudoLoopDetector pseudoLoopDetector = new();
+
         public override void Visit(Vertex v)
         {
+            pseudoLoopDetector.CheckVertexBehaviors(v);
+
             foreach (var b in v.Behaviors)
             {
                 ValidateBehavior(b);
