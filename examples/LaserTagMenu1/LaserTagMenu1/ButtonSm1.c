@@ -22,24 +22,49 @@ static void CONFIRMING_HELD_do(ButtonSm1* self);
 static void HELD_enter(ButtonSm1* self);
 static void HELD_exit(ButtonSm1* self);
 
+static void exit_up_to_state_handler(ButtonSm1* self, const ButtonSm1_Func desired_state_exit_handler);
+
+
 void ButtonSm1_ctor(ButtonSm1* self)
 {
     memset(self, 0, sizeof(*self));
 }
 
+static void exit_up_to_state_handler(ButtonSm1* self, const ButtonSm1_Func desired_state_exit_handler)
+{
+    while (self->current_state_exit_handler != desired_state_exit_handler)
+    {
+        self->current_state_exit_handler(self);
+    }
+}
+
 void ButtonSm1_start(ButtonSm1* self)
 {
     ROOT_enter(self);
-    // Transition to target state NOT_PRESSED
+    // ROOT behavior
+    // uml: TransitionTo(ROOT.InitialState)
+    if (true)
     {
-        // No need exit any states in this handler.
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
         // Enter towards target
-        NOT_PRESSED_enter(self);
         
-        // update state_id
-        self->state_id = ButtonSm1_StateId_NOT_PRESSED;
-    } // end of transition code
+        // ROOT.InitialState behavior
+        // uml: TransitionTo(NOT_PRESSED)
+        if (true)
+        {
+            
+            // Enter towards target
+            NOT_PRESSED_enter(self);
+            
+            // update state_id
+            self->state_id = ButtonSm1_StateId_NOT_PRESSED;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for ROOT.InitialState
+    } // end of behavior for ROOT
 }
 
 void ButtonSm1_dispatch_event(ButtonSm1* self, enum ButtonSm1_EventId event_id)
@@ -94,11 +119,12 @@ static void NOT_PRESSED_enter(ButtonSm1* self)
     self->current_state_exit_handler = NOT_PRESSED_exit;
     self->current_event_handlers[ButtonSm1_EventId_DO] = NOT_PRESSED_do;
     
-    // state behavior:
+    // NOT_PRESSED behavior
+    // uml: enter / { reset_debounce_timer(); }
+    if (true)
     {
-        // uml action: reset_debounce_timer();
         self->vars.debounce_started_at_ms = (2047 & PortApi_get_time_ms());
-    } // end of behavior code
+    } // end of behavior for NOT_PRESSED
 }
 
 static void NOT_PRESSED_exit(ButtonSm1* self)
@@ -110,37 +136,33 @@ static void NOT_PRESSED_exit(ButtonSm1* self)
 
 static void NOT_PRESSED_do(ButtonSm1* self)
 {
-    // setup handler for next ancestor that listens to `do` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `do` event
+    // No ancestor state handles `do` event.
     
-    // state behavior:
+    // NOT_PRESSED behavior
+    // uml: do [is_pressed && is_debounced] TransitionTo(PRESSED)
+    if (self->vars.input_is_pressed && (( (2047 & ((2047 & PortApi_get_time_ms()) - self->vars.debounce_started_at_ms)) >= 20 )))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml guard: is_pressed && is_debounced
-        // uml transition target: CONFIRMING_HELD
-        if (self->vars.input_is_pressed && (( (2047 & ((2047 & PortApi_get_time_ms()) - self->vars.debounce_started_at_ms)) >= 20 )))
+        // Avoid exit-while-loop here because we know that the active leaf state is NOT_PRESSED and it is the only state being exited at this point.
+        NOT_PRESSED_exit(self);
+        
+        // Enter towards target
+        PRESSED_enter(self);
+        
+        // PRESSED.InitialState behavior
+        // uml: TransitionTo(CONFIRMING_HELD)
+        if (true)
         {
-            // Transition to target state CONFIRMING_HELD
-            {
-                // First, exit up to Least Common Ancestor ROOT.
-                while (self->current_state_exit_handler != ROOT_exit)
-                {
-                    self->current_state_exit_handler(self);
-                }
-                
-                // Enter towards target
-                PRESSED_enter(self);
-                CONFIRMING_HELD_enter(self);
-                
-                // update state_id
-                self->state_id = ButtonSm1_StateId_CONFIRMING_HELD;
-            } // end of transition code
             
-            // Mark event as handled. Required because of transition.
-            // self->ancestor_event_handler = NULL; // already done at top of function
-            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-        } // end of guard code
-    } // end of behavior code
+            // Enter towards target
+            CONFIRMING_HELD_enter(self);
+            
+            // update state_id
+            self->state_id = ButtonSm1_StateId_CONFIRMING_HELD;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for PRESSED.InitialState
+    } // end of behavior for NOT_PRESSED
 }
 
 
@@ -154,13 +176,13 @@ static void PRESSED_enter(ButtonSm1* self)
     self->current_state_exit_handler = PRESSED_exit;
     self->current_event_handlers[ButtonSm1_EventId_DO] = PRESSED_do;
     
-    // state behavior:
+    // PRESSED behavior
+    // uml: enter / { reset_debounce_timer();\noutput_event(press); }
+    if (true)
     {
-        // uml action: reset_debounce_timer();
-        //             output_event(press);
         self->vars.debounce_started_at_ms = (2047 & PortApi_get_time_ms());
         self->vars.output_event_press = true;
-    } // end of behavior code
+    } // end of behavior for PRESSED
 }
 
 static void PRESSED_exit(ButtonSm1* self)
@@ -172,45 +194,28 @@ static void PRESSED_exit(ButtonSm1* self)
 
 static void PRESSED_do(ButtonSm1* self)
 {
-    // setup handler for next ancestor that listens to `do` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `do` event
+    // No ancestor state handles `do` event.
     
-    // state behavior:
+    // PRESSED behavior
+    // uml: do [is_released && is_debounced] / { if (debounce_ms() <= 200) {\n  output_event(tap);\n}\noutput_event(release); } TransitionTo(NOT_PRESSED)
+    if ((!self->vars.input_is_pressed) && (( (2047 & ((2047 & PortApi_get_time_ms()) - self->vars.debounce_started_at_ms)) >= 20 )))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml guard: is_released && is_debounced
-        // uml action: if (debounce_ms() <= 200) {
-        //               output_event(tap);
-        //             }
-        //             output_event(release);
-        // uml transition target: NOT_PRESSED
-        if ((!self->vars.input_is_pressed) && (( (2047 & ((2047 & PortApi_get_time_ms()) - self->vars.debounce_started_at_ms)) >= 20 )))
-        {
-            if ((2047 & ((2047 & PortApi_get_time_ms()) - self->vars.debounce_started_at_ms)) <= 200) {
-              self->vars.output_event_tap = true;
-            }
-            self->vars.output_event_release = true;
-            
-            // Transition to target state NOT_PRESSED
-            {
-                // First, exit up to Least Common Ancestor ROOT.
-                while (self->current_state_exit_handler != ROOT_exit)
-                {
-                    self->current_state_exit_handler(self);
-                }
-                
-                // Enter towards target
-                NOT_PRESSED_enter(self);
-                
-                // update state_id
-                self->state_id = ButtonSm1_StateId_NOT_PRESSED;
-            } // end of transition code
-            
-            // Mark event as handled. Required because of transition.
-            // self->ancestor_event_handler = NULL; // already done at top of function
-            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-        } // end of guard code
-    } // end of behavior code
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be PRESSED or one of its sub states.
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
+        if ((2047 & ((2047 & PortApi_get_time_ms()) - self->vars.debounce_started_at_ms)) <= 200) {
+          self->vars.output_event_tap = true;
+        }
+        self->vars.output_event_release = true;
+        
+        // Enter towards target
+        NOT_PRESSED_enter(self);
+        
+        // update state_id
+        self->state_id = ButtonSm1_StateId_NOT_PRESSED;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for PRESSED
 }
 
 
@@ -234,36 +239,25 @@ static void CONFIRMING_HELD_exit(ButtonSm1* self)
 
 static void CONFIRMING_HELD_do(ButtonSm1* self)
 {
-    // setup handler for next ancestor that listens to `do` event
+    // Setup handler for next ancestor that listens to `do` event.
     self->ancestor_event_handler = PRESSED_do;
     
-    // state behavior:
+    // CONFIRMING_HELD behavior
+    // uml: do [debounce_ms() > 800] TransitionTo(HELD)
+    if ((2047 & ((2047 & PortApi_get_time_ms()) - self->vars.debounce_started_at_ms)) > 800)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml guard: debounce_ms() > 800
-        // uml transition target: HELD
-        if ((2047 & ((2047 & PortApi_get_time_ms()) - self->vars.debounce_started_at_ms)) > 800)
-        {
-            // Transition to target state HELD
-            {
-                // First, exit up to Least Common Ancestor PRESSED.
-                while (self->current_state_exit_handler != PRESSED_exit)
-                {
-                    self->current_state_exit_handler(self);
-                }
-                
-                // Enter towards target
-                HELD_enter(self);
-                
-                // update state_id
-                self->state_id = ButtonSm1_StateId_HELD;
-            } // end of transition code
-            
-            // Mark event as handled. Required because of transition.
-            self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-        } // end of guard code
-    } // end of behavior code
+        // Avoid exit-while-loop here because we know that the active leaf state is CONFIRMING_HELD and it is the only state being exited at this point.
+        CONFIRMING_HELD_exit(self);
+        
+        // Enter towards target
+        HELD_enter(self);
+        
+        // update state_id
+        self->state_id = ButtonSm1_StateId_HELD;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for CONFIRMING_HELD
 }
 
 
@@ -276,11 +270,12 @@ static void HELD_enter(ButtonSm1* self)
     // setup trigger/event handlers
     self->current_state_exit_handler = HELD_exit;
     
-    // state behavior:
+    // HELD behavior
+    // uml: enter / { output_event(held); }
+    if (true)
     {
-        // uml action: output_event(held);
         self->vars.output_event_held = true;
-    } // end of behavior code
+    } // end of behavior for HELD
 }
 
 static void HELD_exit(ButtonSm1* self)

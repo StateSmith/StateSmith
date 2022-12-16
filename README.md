@@ -75,7 +75,7 @@ There are a bunch of [examples](./examples/README.md). Below is one of them.
 
 ![picture 7](images/wokwi-lasertagmenu1sm.png)  
 
-You can interact with the generated laser tag menu code using the [wokwi simulation](https://wokwi.com/projects/341718036538982996).
+You can interact with the generated laser tag menu code using the [wokwi simulation](https://wokwi.com/projects/351165738904453719).
 
 Here's the menu layout:
 ```

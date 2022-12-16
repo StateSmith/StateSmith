@@ -16,24 +16,49 @@ static void LED_ON_enter(Blinky1Sm* self);
 static void LED_ON_exit(Blinky1Sm* self);
 static void LED_ON_do(Blinky1Sm* self);
 
+static void exit_up_to_state_handler(Blinky1Sm* self, const Blinky1Sm_Func desired_state_exit_handler);
+
+
 void Blinky1Sm_ctor(Blinky1Sm* self)
 {
     memset(self, 0, sizeof(*self));
 }
 
+static void exit_up_to_state_handler(Blinky1Sm* self, const Blinky1Sm_Func desired_state_exit_handler)
+{
+    while (self->current_state_exit_handler != desired_state_exit_handler)
+    {
+        self->current_state_exit_handler(self);
+    }
+}
+
 void Blinky1Sm_start(Blinky1Sm* self)
 {
     ROOT_enter(self);
-    // Transition to target state LED_OFF
+    // ROOT behavior
+    // uml: TransitionTo(ROOT.InitialState)
+    if (true)
     {
-        // No need exit any states in this handler.
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
         // Enter towards target
-        LED_OFF_enter(self);
         
-        // update state_id
-        self->state_id = Blinky1Sm_StateId_LED_OFF;
-    } // end of transition code
+        // ROOT.InitialState behavior
+        // uml: TransitionTo(LED_OFF)
+        if (true)
+        {
+            
+            // Enter towards target
+            LED_OFF_enter(self);
+            
+            // update state_id
+            self->state_id = Blinky1Sm_StateId_LED_OFF;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for ROOT.InitialState
+    } // end of behavior for ROOT
 }
 
 void Blinky1Sm_dispatch_event(Blinky1Sm* self, enum Blinky1Sm_EventId event_id)
@@ -86,17 +111,19 @@ static void LED_OFF_enter(Blinky1Sm* self)
     self->current_state_exit_handler = LED_OFF_exit;
     self->current_event_handlers[Blinky1Sm_EventId_DO] = LED_OFF_do;
     
-    // state behavior:
+    // LED_OFF behavior
+    // uml: enter / { turn_led_off(); }
+    if (true)
     {
-        // uml action: turn_led_off();
         digitalWrite(LED_BUILTIN, LOW);;
-    } // end of behavior code
+    } // end of behavior for LED_OFF
     
-    // state behavior:
+    // LED_OFF behavior
+    // uml: enter / { reset_timer(); }
+    if (true)
     {
-        // uml action: reset_timer();
         self->vars.timer_started_at_ms = millis();
-    } // end of behavior code
+    } // end of behavior for LED_OFF
 }
 
 static void LED_OFF_exit(Blinky1Sm* self)
@@ -108,36 +135,24 @@ static void LED_OFF_exit(Blinky1Sm* self)
 
 static void LED_OFF_do(Blinky1Sm* self)
 {
-    // setup handler for next ancestor that listens to `do` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `do` event
+    // No ancestor state handles `do` event.
     
-    // state behavior:
+    // LED_OFF behavior
+    // uml: do [after_ms(500)] TransitionTo(LED_ON)
+    if (( (millis() - self->vars.timer_started_at_ms) >= 500 ))
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml guard: after_ms(500)
-        // uml transition target: LED_ON
-        if (( (millis() - self->vars.timer_started_at_ms) >= 500 ))
-        {
-            // Transition to target state LED_ON
-            {
-                // First, exit up to Least Common Ancestor ROOT.
-                while (self->current_state_exit_handler != ROOT_exit)
-                {
-                    self->current_state_exit_handler(self);
-                }
-                
-                // Enter towards target
-                LED_ON_enter(self);
-                
-                // update state_id
-                self->state_id = Blinky1Sm_StateId_LED_ON;
-            } // end of transition code
-            
-            // Mark event as handled. Required because of transition.
-            // self->ancestor_event_handler = NULL; // already done at top of function
-            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-        } // end of guard code
-    } // end of behavior code
+        // Avoid exit-while-loop here because we know that the active leaf state is LED_OFF and it is the only state being exited at this point.
+        LED_OFF_exit(self);
+        
+        // Enter towards target
+        LED_ON_enter(self);
+        
+        // update state_id
+        self->state_id = Blinky1Sm_StateId_LED_ON;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for LED_OFF
 }
 
 
@@ -151,13 +166,13 @@ static void LED_ON_enter(Blinky1Sm* self)
     self->current_state_exit_handler = LED_ON_exit;
     self->current_event_handlers[Blinky1Sm_EventId_DO] = LED_ON_do;
     
-    // state behavior:
+    // LED_ON behavior
+    // uml: enter / { turn_led_on();\nreset_timer(); }
+    if (true)
     {
-        // uml action: turn_led_on();
-        //             reset_timer();
         digitalWrite(LED_BUILTIN, HIGH);;
         self->vars.timer_started_at_ms = millis();
-    } // end of behavior code
+    } // end of behavior for LED_ON
 }
 
 static void LED_ON_exit(Blinky1Sm* self)
@@ -169,36 +184,24 @@ static void LED_ON_exit(Blinky1Sm* self)
 
 static void LED_ON_do(Blinky1Sm* self)
 {
-    // setup handler for next ancestor that listens to `do` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `do` event
+    // No ancestor state handles `do` event.
     
-    // state behavior:
+    // LED_ON behavior
+    // uml: do [elapsed_ms > 1000] TransitionTo(LED_OFF)
+    if ((millis() - self->vars.timer_started_at_ms) > 1000)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml guard: elapsed_ms > 1000
-        // uml transition target: LED_OFF
-        if ((millis() - self->vars.timer_started_at_ms) > 1000)
-        {
-            // Transition to target state LED_OFF
-            {
-                // First, exit up to Least Common Ancestor ROOT.
-                while (self->current_state_exit_handler != ROOT_exit)
-                {
-                    self->current_state_exit_handler(self);
-                }
-                
-                // Enter towards target
-                LED_OFF_enter(self);
-                
-                // update state_id
-                self->state_id = Blinky1Sm_StateId_LED_OFF;
-            } // end of transition code
-            
-            // Mark event as handled. Required because of transition.
-            // self->ancestor_event_handler = NULL; // already done at top of function
-            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-        } // end of guard code
-    } // end of behavior code
+        // Avoid exit-while-loop here because we know that the active leaf state is LED_ON and it is the only state being exited at this point.
+        LED_ON_exit(self);
+        
+        // Enter towards target
+        LED_OFF_enter(self);
+        
+        // update state_id
+        self->state_id = Blinky1Sm_StateId_LED_OFF;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for LED_ON
 }
 
 

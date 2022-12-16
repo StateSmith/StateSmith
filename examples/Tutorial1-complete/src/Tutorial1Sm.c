@@ -34,24 +34,49 @@ static void ON3_exit(Tutorial1Sm* self);
 static void ON3_dim(Tutorial1Sm* self);
 static void ON3_increase(Tutorial1Sm* self);
 
+static void exit_up_to_state_handler(Tutorial1Sm* self, const Tutorial1Sm_Func desired_state_exit_handler);
+
+
 void Tutorial1Sm_ctor(Tutorial1Sm* self)
 {
     memset(self, 0, sizeof(*self));
 }
 
+static void exit_up_to_state_handler(Tutorial1Sm* self, const Tutorial1Sm_Func desired_state_exit_handler)
+{
+    while (self->current_state_exit_handler != desired_state_exit_handler)
+    {
+        self->current_state_exit_handler(self);
+    }
+}
+
 void Tutorial1Sm_start(Tutorial1Sm* self)
 {
     ROOT_enter(self);
-    // Transition to target state OFF
+    // ROOT behavior
+    // uml: TransitionTo(ROOT.InitialState)
+    if (true)
     {
-        // No need exit any states in this handler.
+        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
         // Enter towards target
-        OFF_enter(self);
         
-        // update state_id
-        self->state_id = Tutorial1Sm_StateId_OFF;
-    } // end of transition code
+        // ROOT.InitialState behavior
+        // uml: TransitionTo(OFF)
+        if (true)
+        {
+            
+            // Enter towards target
+            OFF_enter(self);
+            
+            // update state_id
+            self->state_id = Tutorial1Sm_StateId_OFF;
+            self->ancestor_event_handler = NULL;
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for ROOT.InitialState
+    } // end of behavior for ROOT
 }
 
 void Tutorial1Sm_dispatch_event(Tutorial1Sm* self, enum Tutorial1Sm_EventId event_id)
@@ -107,11 +132,12 @@ static void BOOM_enter(Tutorial1Sm* self)
     // setup trigger/event handlers
     self->current_state_exit_handler = BOOM_exit;
     
-    // state behavior:
+    // BOOM behavior
+    // uml: enter / { light_boom(); }
+    if (true)
     {
-        // uml action: light_boom();
         light_boom();
-    } // end of behavior code
+    } // end of behavior for BOOM
 }
 
 static void BOOM_exit(Tutorial1Sm* self)
@@ -131,11 +157,12 @@ static void OFF_enter(Tutorial1Sm* self)
     self->current_state_exit_handler = OFF_exit;
     self->current_event_handlers[Tutorial1Sm_EventId_INCREASE] = OFF_increase;
     
-    // state behavior:
+    // OFF behavior
+    // uml: enter / { light_off(); }
+    if (true)
     {
-        // uml action: light_off();
         light_off();
-    } // end of behavior code
+    } // end of behavior for OFF
 }
 
 static void OFF_exit(Tutorial1Sm* self)
@@ -147,33 +174,25 @@ static void OFF_exit(Tutorial1Sm* self)
 
 static void OFF_increase(Tutorial1Sm* self)
 {
-    // setup handler for next ancestor that listens to `INCREASE` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `INCREASE` event
+    // No ancestor state handles `INCREASE` event.
     
-    // state behavior:
+    // OFF behavior
+    // uml: INCREASE TransitionTo(ON1)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: ON1
-        // Transition to target state ON1
-        {
-            // First, exit up to Least Common Ancestor ROOT.
-            while (self->current_state_exit_handler != ROOT_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            ON_GROUP_enter(self);
-            ON1_enter(self);
-            
-            // update state_id
-            self->state_id = Tutorial1Sm_StateId_ON1;
-        } // end of transition code
+        // Avoid exit-while-loop here because we know that the active leaf state is OFF and it is the only state being exited at this point.
+        OFF_exit(self);
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        ON_GROUP_enter(self);
+        ON1_enter(self);
+        
+        // update state_id
+        self->state_id = Tutorial1Sm_StateId_ON1;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for OFF
 }
 
 
@@ -197,32 +216,24 @@ static void ON_GROUP_exit(Tutorial1Sm* self)
 
 static void ON_GROUP_off(Tutorial1Sm* self)
 {
-    // setup handler for next ancestor that listens to `OFF` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `OFF` event
+    // No ancestor state handles `OFF` event.
     
-    // state behavior:
+    // ON_GROUP behavior
+    // uml: OFF TransitionTo(OFF)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: OFF
-        // Transition to target state OFF
-        {
-            // First, exit up to Least Common Ancestor ROOT.
-            while (self->current_state_exit_handler != ROOT_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            OFF_enter(self);
-            
-            // update state_id
-            self->state_id = Tutorial1Sm_StateId_OFF;
-        } // end of transition code
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ON_GROUP or one of its sub states.
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        OFF_enter(self);
+        
+        // update state_id
+        self->state_id = Tutorial1Sm_StateId_OFF;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for ON_GROUP
 }
 
 
@@ -237,11 +248,12 @@ static void ON1_enter(Tutorial1Sm* self)
     self->current_event_handlers[Tutorial1Sm_EventId_DIM] = ON1_dim;
     self->current_event_handlers[Tutorial1Sm_EventId_INCREASE] = ON1_increase;
     
-    // state behavior:
+    // ON1 behavior
+    // uml: enter / { light_on1(); }
+    if (true)
     {
-        // uml action: light_on1();
         light_on1();
-    } // end of behavior code
+    } // end of behavior for ON1
 }
 
 static void ON1_exit(Tutorial1Sm* self)
@@ -254,62 +266,46 @@ static void ON1_exit(Tutorial1Sm* self)
 
 static void ON1_dim(Tutorial1Sm* self)
 {
-    // setup handler for next ancestor that listens to `DIM` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `DIM` event
+    // No ancestor state handles `DIM` event.
     
-    // state behavior:
+    // ON1 behavior
+    // uml: DIM TransitionTo(OFF)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: OFF
-        // Transition to target state OFF
-        {
-            // First, exit up to Least Common Ancestor ROOT.
-            while (self->current_state_exit_handler != ROOT_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            OFF_enter(self);
-            
-            // update state_id
-            self->state_id = Tutorial1Sm_StateId_OFF;
-        } // end of transition code
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ON1 or one of its sub states.
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        OFF_enter(self);
+        
+        // update state_id
+        self->state_id = Tutorial1Sm_StateId_OFF;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for ON1
 }
 
 static void ON1_increase(Tutorial1Sm* self)
 {
-    // setup handler for next ancestor that listens to `INCREASE` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `INCREASE` event
+    // No ancestor state handles `INCREASE` event.
     
-    // state behavior:
+    // ON1 behavior
+    // uml: INCREASE TransitionTo(ON2)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: ON2
-        // Transition to target state ON2
-        {
-            // First, exit up to Least Common Ancestor ON_GROUP.
-            while (self->current_state_exit_handler != ON_GROUP_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            ON2_enter(self);
-            
-            // update state_id
-            self->state_id = Tutorial1Sm_StateId_ON2;
-        } // end of transition code
+        // Avoid exit-while-loop here because we know that the active leaf state is ON1 and it is the only state being exited at this point.
+        ON1_exit(self);
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        ON2_enter(self);
+        
+        // update state_id
+        self->state_id = Tutorial1Sm_StateId_ON2;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for ON1
 }
 
 
@@ -324,11 +320,12 @@ static void ON2_enter(Tutorial1Sm* self)
     self->current_event_handlers[Tutorial1Sm_EventId_DIM] = ON2_dim;
     self->current_event_handlers[Tutorial1Sm_EventId_INCREASE] = ON2_increase;
     
-    // state behavior:
+    // ON2 behavior
+    // uml: enter / { light_on2(); }
+    if (true)
     {
-        // uml action: light_on2();
         light_on2();
-    } // end of behavior code
+    } // end of behavior for ON2
 }
 
 static void ON2_exit(Tutorial1Sm* self)
@@ -341,62 +338,46 @@ static void ON2_exit(Tutorial1Sm* self)
 
 static void ON2_dim(Tutorial1Sm* self)
 {
-    // setup handler for next ancestor that listens to `DIM` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `DIM` event
+    // No ancestor state handles `DIM` event.
     
-    // state behavior:
+    // ON2 behavior
+    // uml: DIM TransitionTo(ON1)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: ON1
-        // Transition to target state ON1
-        {
-            // First, exit up to Least Common Ancestor ON_GROUP.
-            while (self->current_state_exit_handler != ON_GROUP_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            ON1_enter(self);
-            
-            // update state_id
-            self->state_id = Tutorial1Sm_StateId_ON1;
-        } // end of transition code
+        // Avoid exit-while-loop here because we know that the active leaf state is ON2 and it is the only state being exited at this point.
+        ON2_exit(self);
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        ON1_enter(self);
+        
+        // update state_id
+        self->state_id = Tutorial1Sm_StateId_ON1;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for ON2
 }
 
 static void ON2_increase(Tutorial1Sm* self)
 {
-    // setup handler for next ancestor that listens to `INCREASE` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `INCREASE` event
+    // No ancestor state handles `INCREASE` event.
     
-    // state behavior:
+    // ON2 behavior
+    // uml: INCREASE TransitionTo(ON3)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: ON3
-        // Transition to target state ON3
-        {
-            // First, exit up to Least Common Ancestor ON_GROUP.
-            while (self->current_state_exit_handler != ON_GROUP_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            ON3_enter(self);
-            
-            // update state_id
-            self->state_id = Tutorial1Sm_StateId_ON3;
-        } // end of transition code
+        // Avoid exit-while-loop here because we know that the active leaf state is ON2 and it is the only state being exited at this point.
+        ON2_exit(self);
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        ON3_enter(self);
+        
+        // update state_id
+        self->state_id = Tutorial1Sm_StateId_ON3;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for ON2
 }
 
 
@@ -411,13 +392,13 @@ static void ON3_enter(Tutorial1Sm* self)
     self->current_event_handlers[Tutorial1Sm_EventId_DIM] = ON3_dim;
     self->current_event_handlers[Tutorial1Sm_EventId_INCREASE] = ON3_increase;
     
-    // state behavior:
+    // ON3 behavior
+    // uml: enter / { count = 0;\nlight_on3(); }
+    if (true)
     {
-        // uml action: count = 0;
-        //             light_on3();
         self->vars.count = 0;
         light_on3();
-    } // end of behavior code
+    } // end of behavior for ON3
 }
 
 static void ON3_exit(Tutorial1Sm* self)
@@ -430,82 +411,58 @@ static void ON3_exit(Tutorial1Sm* self)
 
 static void ON3_dim(Tutorial1Sm* self)
 {
-    // setup handler for next ancestor that listens to `DIM` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `DIM` event
+    // No ancestor state handles `DIM` event.
     
-    // state behavior:
+    // ON3 behavior
+    // uml: DIM TransitionTo(ON2)
+    if (true)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml transition target: ON2
-        // Transition to target state ON2
-        {
-            // First, exit up to Least Common Ancestor ON_GROUP.
-            while (self->current_state_exit_handler != ON_GROUP_exit)
-            {
-                self->current_state_exit_handler(self);
-            }
-            
-            // Enter towards target
-            ON2_enter(self);
-            
-            // update state_id
-            self->state_id = Tutorial1Sm_StateId_ON2;
-        } // end of transition code
+        // Avoid exit-while-loop here because we know that the active leaf state is ON3 and it is the only state being exited at this point.
+        ON3_exit(self);
         
-        // Mark event as handled. Required because of transition.
-        // self->ancestor_event_handler = NULL; // already done at top of function
-        return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-    } // end of behavior code
+        // Enter towards target
+        ON2_enter(self);
+        
+        // update state_id
+        self->state_id = Tutorial1Sm_StateId_ON2;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for ON3
 }
 
 static void ON3_increase(Tutorial1Sm* self)
 {
-    // setup handler for next ancestor that listens to `INCREASE` event
-    self->ancestor_event_handler = NULL; // no ancestor state handles `INCREASE` event
+    // No ancestor state handles `INCREASE` event.
     
-    // state behavior:
+    // ON3 behavior
+    // uml: 1. INCREASE / { count++; }
+    if (true)
     {
+        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        
-        // uml action: count++;
         self->vars.count++;
         
-        if (consume_event)
-        {
-            // Mark event as handled.
-            // self->ancestor_event_handler = NULL; // already done at top of function
-        }
-    } // end of behavior code
+        // No ancestor handles event. Ignore `consume_event` flag.
+    } // end of behavior for ON3
     
-    // state behavior:
+    // ON3 behavior
+    // uml: 2. INCREASE [count >= 3] TransitionTo(BOOM)
+    if (self->vars.count >= 3)
     {
         // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // uml guard: count >= 3
-        // uml transition target: BOOM
-        if (self->vars.count >= 3)
-        {
-            // Transition to target state BOOM
-            {
-                // First, exit up to Least Common Ancestor ROOT.
-                while (self->current_state_exit_handler != ROOT_exit)
-                {
-                    self->current_state_exit_handler(self);
-                }
-                
-                // Enter towards target
-                BOOM_enter(self);
-                
-                // update state_id
-                self->state_id = Tutorial1Sm_StateId_BOOM;
-            } // end of transition code
-            
-            // Mark event as handled. Required because of transition.
-            // self->ancestor_event_handler = NULL; // already done at top of function
-            return; // event processing immediately stops when a transition occurs. No other behaviors for this state are checked.
-        } // end of guard code
-    } // end of behavior code
+        // At this point, StateSmith doesn't know what the active leaf state is. It could be ON3 or one of its sub states.
+        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
+        
+        // Enter towards target
+        BOOM_enter(self);
+        
+        // update state_id
+        self->state_id = Tutorial1Sm_StateId_BOOM;
+        self->ancestor_event_handler = NULL;
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for ON3
 }
 
 
