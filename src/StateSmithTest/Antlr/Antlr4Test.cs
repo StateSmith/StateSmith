@@ -227,4 +227,67 @@ public class Antlr4Test : CommonTestHelper
         textState.behaviors[0].triggers.Should().BeEquivalentTo(new string[] { "enter" });
         textState.behaviors[0].actionCode.Should().Be("e();");
     }
+    
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/42
+    /// </summary>
+    [Fact]
+    public void NotesNodeWithBackticks()
+    {
+        string input = "$NOTES this is my `note`";
+        var node = (NotesNode)ParseNodeWithNoErrors(input);
+        node.notes.Should().Be("this is my `note`");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/42
+    /// </summary>
+    [Fact]
+    public void NotesNodeWithSingleBacktick()
+    {
+        string input = "$NOTES this is my `note";
+        var node = (NotesNode)ParseNodeWithNoErrors(input);
+        node.notes.Should().Be("this is my `note");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/42
+    /// </summary>
+    [Fact]
+    public void NotesNodeWithCharacters()
+    {
+        string input = "$NOTES ~!@#$%^&*()_+`-=[]{}\\|;:'\",<.>/?";
+        var node = (NotesNode)ParseNodeWithNoErrors(input);
+        node.notes.Should().Be("~!@#$%^&*()_+`-=[]{}\\|;:'\",<.>/?");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/42
+    /// </summary>
+    [Fact]
+    public void NotesNodeWithUnbalancedCharacters()
+    {
+        var node = (NotesNode)ParseNodeWithNoErrors("$NOTES ([{<");
+        node.notes.Should().Be("([{<");
+
+        node = (NotesNode)ParseNodeWithNoErrors("$NOTES )]}>");
+        node.notes.Should().Be(")]}>");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/42
+    /// </summary>
+    [Fact]
+    public void NotesNodeWithAsciiChars()
+    {
+        var input = "a\r\t\n"; // start with non-whitespace character so that parser doesnt' strip it
+
+        for (char c = ' '; c <= '~'; c++)
+        {
+            input += c;
+        }
+
+        var node = (NotesNode)ParseNodeWithNoErrors("$NOTES " + input);
+        node.notes.Should().Be(input);
+    }
 }

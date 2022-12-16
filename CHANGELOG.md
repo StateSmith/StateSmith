@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WIP
 ### Fixed
-- https://github.com/StateSmith/StateSmith/issues/49
+- Fix parent self transition involving initial state incorrect https://github.com/StateSmith/StateSmith/issues/49
 - StateSmith grammar fix for parsing 'e()'. https://github.com/StateSmith/StateSmith/issues/60
 
 ### Changed
@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improve entry and exit point validations.
   - Detect duplicate labels in the same scope.
   - Allow exit points to target parent state. Same as a self transition on parent.
+- grammar - support backtick strings and other ASCII symbols https://github.com/StateSmith/StateSmith/issues/42
 
 ## [0.5.9-alpha]
 ### Added

@@ -39,8 +39,9 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, LINE_ENDER=16, 
 		IDENTIFIER=17, LITTLE_E=18, LINE_COMMENT=19, STAR_COMMENT=20, STRING=21, 
-		TICK_STRING=22, DIGIT=23, PERIOD=24, COMMA=25, PLUS=26, DASH=27, COLON=28, 
-		GT=29, LT=30, OTHER_SYMBOLS=31, HWS=32;
+		TICK_STRING=22, BACKTICK_STRING=23, DIGIT=24, DOUBLE_QUOTE=25, SINGLE_QUOTE=26, 
+		BACKTICK=27, PERIOD=28, COMMA=29, PLUS=30, DASH=31, COLON=32, GT=33, LT=34, 
+		OTHER_SYMBOLS=35, HWS=36;
 	public const int
 		RULE_optional_any_space = 0, RULE_ohs = 1, RULE_some_ws = 2, RULE_node = 3, 
 		RULE_statemachine_defn = 4, RULE_notes_text = 5, RULE_notes_node = 6, 
@@ -79,14 +80,15 @@ public partial class StateSmithLabelGrammarParser : Parser {
 	private static readonly string[] _LiteralNames = {
 		null, "'$STATEMACHINE'", "'$NOTES'", "'$ORTHO'", "'#'", "'entry'", "'$choice'", 
 		"'exit'", "'via'", "'('", "')'", "'['", "']'", "'/'", "'{'", "'}'", null, 
-		null, "'e'", null, null, null, null, null, "'.'", "','", "'+'", "'-'", 
-		"':'", "'>'", "'<'"
+		null, "'e'", null, null, null, null, null, null, "'\"'", "'''", "'`'", 
+		"'.'", "','", "'+'", "'-'", "':'", "'>'", "'<'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, "LINE_ENDER", "IDENTIFIER", "LITTLE_E", "LINE_COMMENT", 
-		"STAR_COMMENT", "STRING", "TICK_STRING", "DIGIT", "PERIOD", "COMMA", "PLUS", 
-		"DASH", "COLON", "GT", "LT", "OTHER_SYMBOLS", "HWS"
+		"STAR_COMMENT", "STRING", "TICK_STRING", "BACKTICK_STRING", "DIGIT", "DOUBLE_QUOTE", 
+		"SINGLE_QUOTE", "BACKTICK", "PERIOD", "COMMA", "PLUS", "DASH", "COLON", 
+		"GT", "LT", "OTHER_SYMBOLS", "HWS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -2546,6 +2548,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 			case STAR_COMMENT:
 			case STRING:
 			case TICK_STRING:
+			case BACKTICK_STRING:
 			case DIGIT:
 			case PERIOD:
 			case PLUS:
@@ -3696,7 +3699,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 			State = 443;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__8) | (1L << T__10) | (1L << T__13) | (1L << LINE_ENDER) | (1L << IDENTIFIER) | (1L << LINE_COMMENT) | (1L << STAR_COMMENT) | (1L << STRING) | (1L << TICK_STRING) | (1L << DIGIT) | (1L << PERIOD) | (1L << PLUS) | (1L << DASH) | (1L << COLON) | (1L << GT) | (1L << LT) | (1L << OTHER_SYMBOLS) | (1L << HWS))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__6) | (1L << T__8) | (1L << T__10) | (1L << T__13) | (1L << LINE_ENDER) | (1L << IDENTIFIER) | (1L << LINE_COMMENT) | (1L << STAR_COMMENT) | (1L << STRING) | (1L << TICK_STRING) | (1L << BACKTICK_STRING) | (1L << DIGIT) | (1L << PERIOD) | (1L << PLUS) | (1L << DASH) | (1L << COLON) | (1L << GT) | (1L << LT) | (1L << OTHER_SYMBOLS) | (1L << HWS))) != 0)) {
 				{
 				{
 				State = 440;
@@ -4336,6 +4339,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 	public partial class StringContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(StateSmithLabelGrammarParser.STRING, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TICK_STRING() { return GetToken(StateSmithLabelGrammarParser.TICK_STRING, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BACKTICK_STRING() { return GetToken(StateSmithLabelGrammarParser.BACKTICK_STRING, 0); }
 		public StringContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -4369,7 +4373,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 			{
 			State = 504;
 			_la = TokenStream.LA(1);
-			if ( !(_la==STRING || _la==TICK_STRING) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << STRING) | (1L << TICK_STRING) | (1L << BACKTICK_STRING))) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -4452,7 +4456,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '\"', '\x1FF', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', '&', '\x1FF', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
 		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 
@@ -4559,9 +4563,9 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		':', '<', '>', '@', '\x42', '\x44', '\x46', 'H', 'J', 'L', 'N', 'P', 'R', 
 		'T', 'V', 'X', 'Z', '\\', '^', '`', '\x62', '\x64', '\x66', 'h', 'j', 
 		'l', 'n', 'p', 'r', 't', 'v', 'x', '\x2', '\a', '\x4', '\x2', '\x12', 
-		'\x12', '\"', '\"', '\x4', '\x2', '\t', '\t', '\x13', '\x13', '\x3', '\x2', 
-		'\x1C', '\x1D', '\x3', '\x2', '\x17', '\x18', '\x4', '\x2', '\x1A', '\x1A', 
-		'\x1C', '!', '\x2', '\x20B', '\x2', '~', '\x3', '\x2', '\x2', '\x2', '\x4', 
+		'\x12', '&', '&', '\x4', '\x2', '\t', '\t', '\x13', '\x13', '\x3', '\x2', 
+		' ', '!', '\x3', '\x2', '\x17', '\x19', '\x4', '\x2', '\x1E', '\x1E', 
+		' ', '%', '\x2', '\x20B', '\x2', '~', '\x3', '\x2', '\x2', '\x2', '\x4', 
 		'\x82', '\x3', '\x2', '\x2', '\x2', '\x6', '\x85', '\x3', '\x2', '\x2', 
 		'\x2', '\b', '\x90', '\x3', '\x2', '\x2', '\x2', '\n', '\x92', '\x3', 
 		'\x2', '\x2', '\x2', '\f', '\x9E', '\x3', '\x2', '\x2', '\x2', '\xE', 
@@ -4597,12 +4601,12 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'p', '\x1DD', '\x3', '\x2', '\x2', '\x2', 'r', '\x1DF', '\x3', '\x2', 
 		'\x2', '\x2', 't', '\x1E3', '\x3', '\x2', '\x2', '\x2', 'v', '\x1FA', 
 		'\x3', '\x2', '\x2', '\x2', 'x', '\x1FC', '\x3', '\x2', '\x2', '\x2', 
-		'z', '}', '\a', '\"', '\x2', '\x2', '{', '}', '\x5', 'r', ':', '\x2', 
-		'|', 'z', '\x3', '\x2', '\x2', '\x2', '|', '{', '\x3', '\x2', '\x2', '\x2', 
+		'z', '}', '\a', '&', '\x2', '\x2', '{', '}', '\x5', 'r', ':', '\x2', '|', 
+		'z', '\x3', '\x2', '\x2', '\x2', '|', '{', '\x3', '\x2', '\x2', '\x2', 
 		'}', '\x80', '\x3', '\x2', '\x2', '\x2', '~', '|', '\x3', '\x2', '\x2', 
 		'\x2', '~', '\x7F', '\x3', '\x2', '\x2', '\x2', '\x7F', '\x3', '\x3', 
 		'\x2', '\x2', '\x2', '\x80', '~', '\x3', '\x2', '\x2', '\x2', '\x81', 
-		'\x83', '\a', '\"', '\x2', '\x2', '\x82', '\x81', '\x3', '\x2', '\x2', 
+		'\x83', '\a', '&', '\x2', '\x2', '\x82', '\x81', '\x3', '\x2', '\x2', 
 		'\x2', '\x82', '\x83', '\x3', '\x2', '\x2', '\x2', '\x83', '\x5', '\x3', 
 		'\x2', '\x2', '\x2', '\x84', '\x86', '\t', '\x2', '\x2', '\x2', '\x85', 
 		'\x84', '\x3', '\x2', '\x2', '\x2', '\x86', '\x87', '\x3', '\x2', '\x2', 
@@ -4619,7 +4623,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\x2', '\x2', '\x2', '\x91', '\t', '\x3', '\x2', '\x2', '\x2', '\x92', 
 		'\x93', '\x5', '\x2', '\x2', '\x2', '\x93', '\x94', '\a', '\x3', '\x2', 
 		'\x2', '\x94', '\x95', '\x5', '\x4', '\x3', '\x2', '\x95', '\x96', '\a', 
-		'\x1E', '\x2', '\x2', '\x96', '\x97', '\x5', '\x4', '\x3', '\x2', '\x97', 
+		'\"', '\x2', '\x2', '\x96', '\x97', '\x5', '\x4', '\x3', '\x2', '\x97', 
 		'\x98', '\a', '\x13', '\x2', '\x2', '\x98', '\x99', '\x5', '\x2', '\x2', 
 		'\x2', '\x99', '\x9A', '\a', '\x2', '\x2', '\x3', '\x9A', '\v', '\x3', 
 		'\x2', '\x2', '\x2', '\x9B', '\x9D', '\v', '\x2', '\x2', '\x2', '\x9C', 
@@ -4642,7 +4646,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\x2', '\xB4', '\xB6', '\x5', '\x1A', '\xE', '\x2', '\xB5', '\xB4', '\x3', 
 		'\x2', '\x2', '\x2', '\xB5', '\xB6', '\x3', '\x2', '\x2', '\x2', '\xB6', 
 		'\xB7', '\x3', '\x2', '\x2', '\x2', '\xB7', '\xB8', '\x5', '\x4', '\x3', 
-		'\x2', '\xB8', '\xB9', '\a', '\x1E', '\x2', '\x2', '\xB9', '\xBA', '\x5', 
+		'\x2', '\xB8', '\xB9', '\a', '\"', '\x2', '\x2', '\xB9', '\xBA', '\x5', 
 		'\x4', '\x3', '\x2', '\xBA', '\xBB', '\x5', '\x18', '\r', '\x2', '\xBB', 
 		'\xBC', '\x5', '\x10', '\t', '\x2', '\xBC', '\xBD', '\a', '\x2', '\x2', 
 		'\x3', '\xBD', '\x13', '\x3', '\x2', '\x2', '\x2', '\xBE', '\xBF', '\x5', 
@@ -4669,26 +4673,26 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\xDC', '!', '\x3', '\x2', '\x2', '\x2', '\xDD', '\xDE', '\x5', 'r', ':', 
 		'\x2', '\xDE', '\xDF', '\x5', '\x2', '\x2', '\x2', '\xDF', '\xE0', '\x5', 
 		'\x34', '\x1B', '\x2', '\xE0', '#', '\x3', '\x2', '\x2', '\x2', '\xE1', 
-		'\xE3', '\a', '\x19', '\x2', '\x2', '\xE2', '\xE4', '\a', '\x13', '\x2', 
+		'\xE3', '\a', '\x1A', '\x2', '\x2', '\xE2', '\xE4', '\a', '\x13', '\x2', 
 		'\x2', '\xE3', '\xE2', '\x3', '\x2', '\x2', '\x2', '\xE3', '\xE4', '\x3', 
 		'\x2', '\x2', '\x2', '\xE4', '\xE7', '\x3', '\x2', '\x2', '\x2', '\xE5', 
 		'\xE7', '\a', '\x13', '\x2', '\x2', '\xE6', '\xE1', '\x3', '\x2', '\x2', 
 		'\x2', '\xE6', '\xE5', '\x3', '\x2', '\x2', '\x2', '\xE7', '%', '\x3', 
 		'\x2', '\x2', '\x2', '\xE8', '\xE9', '\x5', '\x2', '\x2', '\x2', '\xE9', 
 		'\xEA', '\a', '\a', '\x2', '\x2', '\xEA', '\xEB', '\x5', '\x2', '\x2', 
-		'\x2', '\xEB', '\xEC', '\a', '\x1E', '\x2', '\x2', '\xEC', '\xED', '\x5', 
+		'\x2', '\xEB', '\xEC', '\a', '\"', '\x2', '\x2', '\xEC', '\xED', '\x5', 
 		'\x2', '\x2', '\x2', '\xED', '\xEE', '\x5', '$', '\x13', '\x2', '\xEE', 
 		'\xEF', '\x5', '\x2', '\x2', '\x2', '\xEF', '\'', '\x3', '\x2', '\x2', 
 		'\x2', '\xF0', '\xF1', '\x5', '\x2', '\x2', '\x2', '\xF1', '\xF7', '\a', 
 		'\b', '\x2', '\x2', '\xF2', '\xF3', '\x5', '\x2', '\x2', '\x2', '\xF3', 
-		'\xF4', '\a', '\x1E', '\x2', '\x2', '\xF4', '\xF5', '\x5', '\x2', '\x2', 
+		'\xF4', '\a', '\"', '\x2', '\x2', '\xF4', '\xF5', '\x5', '\x2', '\x2', 
 		'\x2', '\xF5', '\xF6', '\x5', '$', '\x13', '\x2', '\xF6', '\xF8', '\x3', 
 		'\x2', '\x2', '\x2', '\xF7', '\xF2', '\x3', '\x2', '\x2', '\x2', '\xF7', 
 		'\xF8', '\x3', '\x2', '\x2', '\x2', '\xF8', '\xF9', '\x3', '\x2', '\x2', 
 		'\x2', '\xF9', '\xFA', '\x5', '\x2', '\x2', '\x2', '\xFA', ')', '\x3', 
 		'\x2', '\x2', '\x2', '\xFB', '\xFC', '\x5', '\x2', '\x2', '\x2', '\xFC', 
 		'\xFD', '\a', '\t', '\x2', '\x2', '\xFD', '\xFE', '\x5', '\x2', '\x2', 
-		'\x2', '\xFE', '\xFF', '\a', '\x1E', '\x2', '\x2', '\xFF', '\x100', '\x5', 
+		'\x2', '\xFE', '\xFF', '\a', '\"', '\x2', '\x2', '\xFF', '\x100', '\x5', 
 		'\x2', '\x2', '\x2', '\x100', '\x101', '\x5', '$', '\x13', '\x2', '\x101', 
 		'\x102', '\x5', '\x2', '\x2', '\x2', '\x102', '+', '\x3', '\x2', '\x2', 
 		'\x2', '\x103', '\x104', '\a', '\a', '\x2', '\x2', '\x104', '-', '\x3', 
@@ -4736,7 +4740,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\x137', '\x3', '\x2', '\x2', '\x2', '\x139', '\x35', '\x3', '\x2', '\x2', 
 		'\x2', '\x13A', '\x13B', '\x5', '\x4', '\x3', '\x2', '\x13B', '\x13C', 
 		'\x5', 't', ';', '\x2', '\x13C', '\x13D', '\x5', '\x4', '\x3', '\x2', 
-		'\x13D', '\x13E', '\a', '\x1A', '\x2', '\x2', '\x13E', '\x37', '\x3', 
+		'\x13D', '\x13E', '\a', '\x1E', '\x2', '\x2', '\x13E', '\x37', '\x3', 
 		'\x2', '\x2', '\x2', '\x13F', '\x142', '\x5', ':', '\x1E', '\x2', '\x140', 
 		'\x142', '\x5', '<', '\x1F', '\x2', '\x141', '\x13F', '\x3', '\x2', '\x2', 
 		'\x2', '\x141', '\x140', '\x3', '\x2', '\x2', '\x2', '\x142', '\x39', 
@@ -4745,7 +4749,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\x2', '\x2', '\x146', '\x147', '\x5', '\x4', '\x3', '\x2', '\x147', '\x148', 
 		'\a', '\v', '\x2', '\x2', '\x148', '\x149', '\x5', '\x2', '\x2', '\x2', 
 		'\x149', '\x151', '\x5', ':', '\x1E', '\x2', '\x14A', '\x14B', '\x5', 
-		'\x2', '\x2', '\x2', '\x14B', '\x14C', '\a', '\x1B', '\x2', '\x2', '\x14C', 
+		'\x2', '\x2', '\x2', '\x14B', '\x14C', '\a', '\x1F', '\x2', '\x2', '\x14C', 
 		'\x14D', '\x5', '\x2', '\x2', '\x2', '\x14D', '\x14E', '\x5', ':', '\x1E', 
 		'\x2', '\x14E', '\x150', '\x3', '\x2', '\x2', '\x2', '\x14F', '\x14A', 
 		'\x3', '\x2', '\x2', '\x2', '\x150', '\x153', '\x3', '\x2', '\x2', '\x2', 
@@ -4768,9 +4772,9 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\x168', '\x3', '\x2', '\x2', '\x2', '\x16A', '\x16B', '\x3', '\x2', '\x2', 
 		'\x2', '\x16B', '\x169', '\x3', '\x2', '\x2', '\x2', '\x16B', '\x16C', 
 		'\x3', '\x2', '\x2', '\x2', '\x16C', 'G', '\x3', '\x2', '\x2', '\x2', 
-		'\x16D', '\x173', '\a', '\x1A', '\x2', '\x2', '\x16E', '\x16F', '\a', 
-		'\x1E', '\x2', '\x2', '\x16F', '\x173', '\a', '\x1E', '\x2', '\x2', '\x170', 
-		'\x171', '\a', '\x1D', '\x2', '\x2', '\x171', '\x173', '\a', '\x1F', '\x2', 
+		'\x16D', '\x173', '\a', '\x1E', '\x2', '\x2', '\x16E', '\x16F', '\a', 
+		'\"', '\x2', '\x2', '\x16F', '\x173', '\a', '\"', '\x2', '\x2', '\x170', 
+		'\x171', '\a', '!', '\x2', '\x2', '\x171', '\x173', '\a', '#', '\x2', 
 		'\x2', '\x172', '\x16D', '\x3', '\x2', '\x2', '\x2', '\x172', '\x16E', 
 		'\x3', '\x2', '\x2', '\x2', '\x172', '\x170', '\x3', '\x2', '\x2', '\x2', 
 		'\x173', 'I', '\x3', '\x2', '\x2', '\x2', '\x174', '\x175', '\x5', '\x2', 
@@ -4795,7 +4799,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\x2', '\x2', '\x2', '\x191', '\x192', '\a', '\x16', '\x2', '\x2', '\x192', 
 		'W', '\x3', '\x2', '\x2', '\x2', '\x193', '\x19A', '\x5', '\\', '/', '\x2', 
 		'\x194', '\x195', '\x5', '\x2', '\x2', '\x2', '\x195', '\x196', '\a', 
-		'\x1B', '\x2', '\x2', '\x196', '\x197', '\x5', '\\', '/', '\x2', '\x197', 
+		'\x1F', '\x2', '\x2', '\x196', '\x197', '\x5', '\\', '/', '\x2', '\x197', 
 		'\x199', '\x3', '\x2', '\x2', '\x2', '\x198', '\x194', '\x3', '\x2', '\x2', 
 		'\x2', '\x199', '\x19C', '\x3', '\x2', '\x2', '\x2', '\x19A', '\x198', 
 		'\x3', '\x2', '\x2', '\x2', '\x19A', '\x19B', '\x3', '\x2', '\x2', '\x2', 
@@ -4831,7 +4835,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\x33', '\x2', '\x1C7', '\x1CE', '\x5', 'J', '&', '\x2', '\x1C8', '\x1CE', 
 		'\x5', 'L', '\'', '\x2', '\x1C9', '\x1CE', '\x5', 't', ';', '\x2', '\x1CA', 
 		'\x1CE', '\x5', 'x', '=', '\x2', '\x1CB', '\x1CE', '\x5', 'N', '(', '\x2', 
-		'\x1CC', '\x1CE', '\a', '\"', '\x2', '\x2', '\x1CD', '\x1C4', '\x3', '\x2', 
+		'\x1CC', '\x1CE', '\a', '&', '\x2', '\x2', '\x1CD', '\x1C4', '\x3', '\x2', 
 		'\x2', '\x2', '\x1CD', '\x1C5', '\x3', '\x2', '\x2', '\x2', '\x1CD', '\x1C6', 
 		'\x3', '\x2', '\x2', '\x2', '\x1CD', '\x1C7', '\x3', '\x2', '\x2', '\x2', 
 		'\x1CD', '\x1C8', '\x3', '\x2', '\x2', '\x2', '\x1CD', '\x1C9', '\x3', 
@@ -4844,7 +4848,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\'', '\x2', '\x1D5', '\x1DC', '\x5', 't', ';', '\x2', '\x1D6', '\x1DC', 
 		'\x5', 'x', '=', '\x2', '\x1D7', '\x1DC', '\x5', 'N', '(', '\x2', '\x1D8', 
 		'\x1DC', '\x5', 'P', ')', '\x2', '\x1D9', '\x1DC', '\x5', 'R', '*', '\x2', 
-		'\x1DA', '\x1DC', '\a', '\"', '\x2', '\x2', '\x1DB', '\x1CF', '\x3', '\x2', 
+		'\x1DA', '\x1DC', '\a', '&', '\x2', '\x2', '\x1DB', '\x1CF', '\x3', '\x2', 
 		'\x2', '\x2', '\x1DB', '\x1D0', '\x3', '\x2', '\x2', '\x2', '\x1DB', '\x1D1', 
 		'\x3', '\x2', '\x2', '\x2', '\x1DB', '\x1D2', '\x3', '\x2', '\x2', '\x2', 
 		'\x1DB', '\x1D3', '\x3', '\x2', '\x2', '\x2', '\x1DB', '\x1D4', '\x3', 
@@ -4858,18 +4862,18 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		'\x1E1', 's', '\x3', '\x2', '\x2', '\x2', '\x1E2', '\x1E4', '\t', '\x4', 
 		'\x2', '\x2', '\x1E3', '\x1E2', '\x3', '\x2', '\x2', '\x2', '\x1E3', '\x1E4', 
 		'\x3', '\x2', '\x2', '\x2', '\x1E4', '\x1E6', '\x3', '\x2', '\x2', '\x2', 
-		'\x1E5', '\x1E7', '\a', '\x19', '\x2', '\x2', '\x1E6', '\x1E5', '\x3', 
+		'\x1E5', '\x1E7', '\a', '\x1A', '\x2', '\x2', '\x1E6', '\x1E5', '\x3', 
 		'\x2', '\x2', '\x2', '\x1E7', '\x1E8', '\x3', '\x2', '\x2', '\x2', '\x1E8', 
 		'\x1E6', '\x3', '\x2', '\x2', '\x2', '\x1E8', '\x1E9', '\x3', '\x2', '\x2', 
 		'\x2', '\x1E9', '\x1F0', '\x3', '\x2', '\x2', '\x2', '\x1EA', '\x1EC', 
-		'\a', '\x1A', '\x2', '\x2', '\x1EB', '\x1ED', '\a', '\x19', '\x2', '\x2', 
+		'\a', '\x1E', '\x2', '\x2', '\x1EB', '\x1ED', '\a', '\x1A', '\x2', '\x2', 
 		'\x1EC', '\x1EB', '\x3', '\x2', '\x2', '\x2', '\x1ED', '\x1EE', '\x3', 
 		'\x2', '\x2', '\x2', '\x1EE', '\x1EC', '\x3', '\x2', '\x2', '\x2', '\x1EE', 
 		'\x1EF', '\x3', '\x2', '\x2', '\x2', '\x1EF', '\x1F1', '\x3', '\x2', '\x2', 
 		'\x2', '\x1F0', '\x1EA', '\x3', '\x2', '\x2', '\x2', '\x1F0', '\x1F1', 
 		'\x3', '\x2', '\x2', '\x2', '\x1F1', '\x1F8', '\x3', '\x2', '\x2', '\x2', 
 		'\x1F2', '\x1F4', '\a', '\x14', '\x2', '\x2', '\x1F3', '\x1F5', '\a', 
-		'\x19', '\x2', '\x2', '\x1F4', '\x1F3', '\x3', '\x2', '\x2', '\x2', '\x1F5', 
+		'\x1A', '\x2', '\x2', '\x1F4', '\x1F3', '\x3', '\x2', '\x2', '\x2', '\x1F5', 
 		'\x1F6', '\x3', '\x2', '\x2', '\x2', '\x1F6', '\x1F4', '\x3', '\x2', '\x2', 
 		'\x2', '\x1F6', '\x1F7', '\x3', '\x2', '\x2', '\x2', '\x1F7', '\x1F9', 
 		'\x3', '\x2', '\x2', '\x2', '\x1F8', '\x1F2', '\x3', '\x2', '\x2', '\x2', 

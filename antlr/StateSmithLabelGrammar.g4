@@ -482,16 +482,19 @@ STAR_COMMENT: '/*' .*? '*/' ;
 fragment ESCAPED_CHAR: '\\' . ;
 fragment NON_QUOTE_CHAR: ~["] ;
 fragment STRING_CHAR: ESCAPED_CHAR | NON_QUOTE_CHAR ;
-STRING: '"' STRING_CHAR* '"' ;
-TICK_STRING: ['] STRING_CHAR* ['] ;
-string: STRING | TICK_STRING;
-//todolow js backtick strings. template literals.
+STRING: DOUBLE_QUOTE STRING_CHAR* DOUBLE_QUOTE ;
+TICK_STRING: SINGLE_QUOTE STRING_CHAR* SINGLE_QUOTE ;
+BACKTICK_STRING: BACKTICK STRING_CHAR* BACKTICK ;
+string: STRING | TICK_STRING | BACKTICK_STRING;
 
 
 
 
 DIGIT :   [0-9]  ;
 
+DOUBLE_QUOTE: '"';
+SINGLE_QUOTE: '\'';
+BACKTICK: '`';
 PERIOD: '.' ;
 COMMA: ',' ;
 PLUS : '+' ;
@@ -500,7 +503,7 @@ COLON : ':' ;
 GT : '>' ;
 LT : '<' ;
 OTHER_SYMBOLS: 
-    [~!%^&*=:;/?|];  //don't include braces/parenthesis as those need to be grouped
+    [~!%^&*=:;/?|\\@#$];  //don't include braces/parenthesis as those need to be grouped
 
 code_symbol:
     PERIOD |
