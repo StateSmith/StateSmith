@@ -59,7 +59,7 @@ void BlankTemplateSm_start(BlankTemplateSm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = BlankTemplateSm_StateId_STATE_1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
@@ -140,7 +140,7 @@ static void STATE_1_do(BlankTemplateSm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = BlankTemplateSm_StateId_STATE_2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for STATE_1
 }
@@ -181,7 +181,7 @@ static void STATE_2_do(BlankTemplateSm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = BlankTemplateSm_StateId_STATE_1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for STATE_2
 }

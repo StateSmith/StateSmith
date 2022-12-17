@@ -257,6 +257,7 @@ static void TEST8_ENTRY_CHOICE_exit(Spec2Sm* self);
 
 static void TEST8_ROOT_enter(Spec2Sm* self);
 static void TEST8_ROOT_exit(Spec2Sm* self);
+static void TEST8_ROOT_ev3(Spec2Sm* self);
 static void TEST8_ROOT_ev5(Spec2Sm* self);
 
 static void TEST8_G_enter(Spec2Sm* self);
@@ -380,7 +381,7 @@ void Spec2Sm_start(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_DECIDE;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
@@ -612,7 +613,7 @@ static void DECIDE_ev1(Spec2Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST1_S1_1;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST1_ROOT.InitialState
         } // end of behavior for TEST1_DO_EVENT_TESTING.InitialState
@@ -650,7 +651,7 @@ static void DECIDE_ev10(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST10_S1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST10_CHOICE_POINT.InitialState
     } // end of behavior for DECIDE
@@ -698,7 +699,7 @@ static void DECIDE_ev2(Spec2Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST2_S1_1;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST2_ROOT.InitialState
         } // end of behavior for TEST2_REGULAR_EVENT_TESTING.InitialState
@@ -746,7 +747,7 @@ static void DECIDE_ev3(Spec2Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST3_S1;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST3_ROOT.InitialState
         } // end of behavior for TEST3_BEHAVIOR_ORDERING.InitialState
@@ -783,7 +784,7 @@ static void DECIDE_ev4(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4_DECIDE;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.InitialState
     } // end of behavior for DECIDE
@@ -819,7 +820,7 @@ static void DECIDE_ev5(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST5_ROOT;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState
     } // end of behavior for DECIDE
@@ -866,7 +867,7 @@ static void DECIDE_ev6(Spec2Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST6_S1;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST6_ROOT.InitialState
         } // end of behavior for TEST6_VARIABLES.InitialState
@@ -914,7 +915,7 @@ static void DECIDE_ev7(Spec2Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST7_S1;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST7_ROOT.InitialState
         } // end of behavior for TEST7_INITIAL_CHOICE.InitialState
@@ -987,7 +988,7 @@ static void DECIDE_ev9(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_DECIDE;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST9_EXIT_CHOICE.InitialState
     } // end of behavior for DECIDE
@@ -1179,7 +1180,7 @@ static void TEST1_S1_1_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST1_S2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST1_S1_1
 }
@@ -2145,7 +2146,7 @@ static void TEST2_ROOT_ev1(Spec2Sm* self)
     {
         // Step 1: execute action ``
         // Step 2: determine if ancestor gets to handle event next.
-        self->ancestor_event_handler = NULL;  // consume event
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
     } // end of behavior for TEST2_ROOT
 }
 
@@ -2159,7 +2160,7 @@ static void TEST2_ROOT_ev2(Spec2Sm* self)
     {
         // Step 1: execute action ``
         // Step 2: determine if ancestor gets to handle event next.
-        self->ancestor_event_handler = NULL;  // consume event
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
     } // end of behavior for TEST2_ROOT
 }
 
@@ -2433,7 +2434,7 @@ static void TEST3_ROOT_ev1(Spec2Sm* self)
     {
         // Step 1: execute action ``
         // Step 2: determine if ancestor gets to handle event next.
-        self->ancestor_event_handler = NULL;  // consume event
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
     } // end of behavior for TEST3_ROOT
 }
 
@@ -2794,7 +2795,7 @@ static void TEST4B_G_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4B_G_1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4B_G
 }
@@ -2850,7 +2851,7 @@ static void TEST4B_G_1_ev2(Spec2Sm* self)
         // Already in target. No entering required.
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4B_G;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4B_G_1
 }
@@ -2938,7 +2939,7 @@ static void TEST4C_G_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4C_G_1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4C_G
 }
@@ -2994,7 +2995,7 @@ static void TEST4C_G_1_ev2(Spec2Sm* self)
         // Already in target. No entering required.
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4C_G;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4C_G_1
 }
@@ -3095,7 +3096,7 @@ static void TEST4D_G_ev1(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4D_G_1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
     } // end of behavior for TEST4D_G
@@ -3165,7 +3166,7 @@ static void TEST4D_G_1_ev2(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4D_G;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
     } // end of behavior for TEST4D_G_1
@@ -3229,7 +3230,7 @@ static void TEST4_DECIDE_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_ROOT;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4_DECIDE
 }
@@ -3265,7 +3266,7 @@ static void TEST4_DECIDE_ev2(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4B_G;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST4B_LOCAL.InitialState
     } // end of behavior for TEST4_DECIDE
@@ -3302,7 +3303,7 @@ static void TEST4_DECIDE_ev3(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4C_G;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST4C_LOCAL_TO_ALIAS.InitialState
     } // end of behavior for TEST4_DECIDE
@@ -3339,7 +3340,7 @@ static void TEST4_DECIDE_ev4(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4D_G;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST4D_EXTERNAL.InitialState
     } // end of behavior for TEST4_DECIDE
@@ -3409,7 +3410,7 @@ static void TEST4_ROOT_ev2(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4_ROOT
 }
@@ -3434,7 +3435,7 @@ static void TEST4_ROOT_ev3(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S10_1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4_ROOT
 }
@@ -3469,7 +3470,7 @@ static void TEST4_ROOT_ev4(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4_S20_1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST4_S20.InitialState
     } // end of behavior for TEST4_ROOT
@@ -3527,7 +3528,7 @@ static void TEST4_S1_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4_S1
 }
@@ -3673,7 +3674,7 @@ static void TEST4_S2_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S3;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4_S2
 }
@@ -3830,7 +3831,7 @@ static void TEST4_S3_ev1(Spec2Sm* self)
         // Already in target. No entering required.
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_ROOT;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST4_S3
 }
@@ -3926,7 +3927,7 @@ static void TEST5_ROOT_ev2(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST5_S1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST5_ROOT
 }
@@ -3983,7 +3984,7 @@ static void TEST5_S1_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST5_S2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST5_S1
 }
@@ -4040,7 +4041,7 @@ static void TEST5_S2_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST5_S3;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST5_S2
 }
@@ -4096,7 +4097,7 @@ static void TEST5_S3_ev1(Spec2Sm* self)
         // Already in target. No entering required.
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST5_ROOT;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST5_S3
 }
@@ -4237,7 +4238,7 @@ static void TEST6_S1_ev1(Spec2Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST6_S2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for TEST6_S1
 }
@@ -4427,7 +4428,7 @@ static void TEST7_G_ev2(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_S1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST7_ROOT.InitialState
     } // end of behavior for TEST7_G
@@ -4592,7 +4593,7 @@ static void TEST7_S1_ev1(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST7_G.InitialState
         
@@ -4610,7 +4611,7 @@ static void TEST7_S1_ev1(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S2;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST7_G.InitialState
         
@@ -4627,7 +4628,7 @@ static void TEST7_S1_ev1(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S3;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST7_G.InitialState
     } // end of behavior for TEST7_S1
@@ -4665,7 +4666,7 @@ static void TEST7_S1_ev3(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST7_G.InitialState
         
@@ -4683,7 +4684,7 @@ static void TEST7_S1_ev3(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S2;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST7_G.InitialState
         
@@ -4700,7 +4701,7 @@ static void TEST7_S1_ev3(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S3;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST7_G.InitialState
     } // end of behavior for TEST7_S1
@@ -4746,6 +4747,7 @@ static void TEST8_ROOT_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
     self->current_state_exit_handler = TEST8_ROOT_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = TEST8_ROOT_ev3;
     self->current_event_handlers[Spec2Sm_EventId_EV5] = TEST8_ROOT_ev5;
     
     // TEST8_ROOT behavior
@@ -4775,7 +4777,22 @@ static void TEST8_ROOT_exit(Spec2Sm* self)
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST8_ENTRY_CHOICE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = NULL;  // no ancestor listens to this event
     self->current_event_handlers[Spec2Sm_EventId_EV5] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST8_ROOT_ev3(Spec2Sm* self)
+{
+    // No ancestor state handles `EV3` event.
+    
+    // TEST8_ROOT behavior
+    // uml: EV3 [trace_guard("State TEST8_ROOT: check behavior `EV3`.", true)]
+    if (trace_guard("State TEST8_ROOT: check behavior `EV3`.", true))
+    {
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+    } // end of behavior for TEST8_ROOT
 }
 
 static void TEST8_ROOT_ev5(Spec2Sm* self)
@@ -5075,7 +5092,7 @@ static void TEST8_S1_exit(Spec2Sm* self)
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = TEST8_ROOT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
-    self->current_event_handlers[Spec2Sm_EventId_EV3] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = TEST8_ROOT_ev3;  // the next ancestor that handles this event is TEST8_ROOT
     self->current_event_handlers[Spec2Sm_EventId_EV6] = NULL;  // no ancestor listens to this event
 }
 
@@ -5119,7 +5136,8 @@ static void TEST8_S1_ev1(Spec2Sm* self)
 
 static void TEST8_S1_ev3(Spec2Sm* self)
 {
-    // No ancestor state handles `EV3` event.
+    // Setup handler for next ancestor that listens to `EV3` event.
+    self->ancestor_event_handler = TEST8_ROOT_ev3;
     
     // TEST8_S1 behavior
     // uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.EntryPoint(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3)."); } TransitionTo(TEST8_G.EntryPoint(3))
@@ -5272,7 +5290,7 @@ static void TEST9_DECIDE_ev1(Spec2Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST9_S1_1;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST9_S1.InitialState
         } // end of behavior for TEST9_ROOT.InitialState
@@ -5321,7 +5339,7 @@ static void TEST9_DECIDE_ev2(Spec2Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST9A_S1_1;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST9A_S1.InitialState
         } // end of behavior for TEST9A_ROOT.InitialState
@@ -5608,7 +5626,7 @@ static void TEST9_S1_1_ev1(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_G_S4;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST9_S1.ExitPoint(1)
         
@@ -5627,7 +5645,7 @@ static void TEST9_S1_1_ev1(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_G_S1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST9_S1.ExitPoint(1)
         
@@ -5646,7 +5664,7 @@ static void TEST9_S1_1_ev1(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_G_S2;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST9_S1.ExitPoint(1)
         
@@ -5664,7 +5682,7 @@ static void TEST9_S1_1_ev1(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_G_S3;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST9_S1.ExitPoint(1)
     } // end of behavior for TEST9_S1_1
@@ -5824,7 +5842,7 @@ static void TEST9A_S1_1_ev1(Spec2Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST9A_S1_1;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST9A_S1.InitialState
         } // end of behavior for TEST9A_S1.ExitPoint(1)

@@ -181,7 +181,7 @@ void LaserTagMenu1Sm_start(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_WELCOME_SCREEN;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
@@ -299,7 +299,7 @@ static void HOME_ok_press(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for MAIN_MENU.InitialState
     } // end of behavior for HOME
@@ -350,7 +350,7 @@ static void HOME1_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for HOME1
 }
@@ -372,7 +372,7 @@ static void HOME1_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME3;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for HOME1
 }
@@ -422,7 +422,7 @@ static void HOME2_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME3;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for HOME2
 }
@@ -444,7 +444,7 @@ static void HOME2_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for HOME2
 }
@@ -494,7 +494,7 @@ static void HOME3_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for HOME3
 }
@@ -516,7 +516,7 @@ static void HOME3_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for HOME3
 }
@@ -569,7 +569,7 @@ static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_HOME1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for HOME.InitialState
     } // end of behavior for MENUS_GROUP
@@ -602,7 +602,7 @@ static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_HOME1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for HOME.InitialState
     } // end of behavior for MENUS_GROUP
@@ -660,7 +660,7 @@ static void CLASS_SAVED_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for CLASS_SAVED
 }
@@ -751,7 +751,7 @@ static void MM_BACK_PRESS_EATER_OPTION_ok_press(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for MM_BACK_PRESS_EATER.InitialState
     } // end of behavior for MM_BACK_PRESS_EATER_OPTION
@@ -774,7 +774,7 @@ static void MM_BACK_PRESS_EATER_OPTION_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_OPTION;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_BACK_PRESS_EATER_OPTION
 }
@@ -825,7 +825,7 @@ static void MM_SELECT_CLASS_OPTION_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_OPTION;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SELECT_CLASS_OPTION
 }
@@ -857,7 +857,7 @@ static void MM_SELECT_CLASS_OPTION_ok_press(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ENGINEER;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for MM_SELECT_CLASS.InitialState
     } // end of behavior for MM_SELECT_CLASS_OPTION
@@ -917,7 +917,7 @@ static void MM_SHOW_INFO_OPTION_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_OPTION;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SHOW_INFO_OPTION
 }
@@ -949,7 +949,7 @@ static void MM_SHOW_INFO_OPTION_ok_press(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for MM_SHOW_INFO.InitialState
     } // end of behavior for MM_SHOW_INFO_OPTION
@@ -972,7 +972,7 @@ static void MM_SHOW_INFO_OPTION_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SHOW_INFO_OPTION
 }
@@ -1070,7 +1070,7 @@ static void MM_BACK_PRESS_EATER_1_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_BACK_PRESS_EATER_1
 }
@@ -1126,7 +1126,7 @@ static void MM_BACK_PRESS_EATER_2_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_3;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_BACK_PRESS_EATER_2
 }
@@ -1182,7 +1182,7 @@ static void MM_BACK_PRESS_EATER_3_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_4;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_BACK_PRESS_EATER_3
 }
@@ -1238,7 +1238,7 @@ static void MM_BACK_PRESS_EATER_4_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_5;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_BACK_PRESS_EATER_4
 }
@@ -1320,7 +1320,7 @@ static void MM_BACK_PRESS_EATER_5_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_BACK_PRESS_EATER_5
     
@@ -1338,7 +1338,7 @@ static void MM_BACK_PRESS_EATER_5_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_5;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_BACK_PRESS_EATER_5
 }
@@ -1424,7 +1424,7 @@ static void MM_SELECT_CLASS_ok_press(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_CLASS_SAVED;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for MM_SELECT_CLASS.ExitPoint(saved)
     } // end of behavior for MM_SELECT_CLASS
@@ -1476,7 +1476,7 @@ static void MM_SC_ENGINEER_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_HEAVY;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_ENGINEER
 }
@@ -1526,7 +1526,7 @@ static void MM_SC_MID_down_held(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_SPY;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_MID
 }
@@ -1548,7 +1548,7 @@ static void MM_SC_MID_up_held(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ENGINEER;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_MID
 }
@@ -1598,7 +1598,7 @@ static void MM_SC_ARCHER_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_WIZARD;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_ARCHER
 }
@@ -1620,7 +1620,7 @@ static void MM_SC_ARCHER_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_HEAVY;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_ARCHER
 }
@@ -1671,7 +1671,7 @@ static void MM_SC_HEAVY_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ARCHER;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_HEAVY
 }
@@ -1693,7 +1693,7 @@ static void MM_SC_HEAVY_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ENGINEER;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_HEAVY
 }
@@ -1743,7 +1743,7 @@ static void MM_SC_WIZARD_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_SPY;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_WIZARD
 }
@@ -1765,7 +1765,7 @@ static void MM_SC_WIZARD_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ARCHER;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_WIZARD
 }
@@ -1815,7 +1815,7 @@ static void MM_SC_SPY_up_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_WIZARD;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SC_SPY
 }
@@ -1911,7 +1911,7 @@ static void MM_SHOW_INFO_1_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SHOW_INFO_1
 }
@@ -1933,7 +1933,7 @@ static void MM_SHOW_INFO_1_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_2;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SHOW_INFO_1
 }
@@ -1986,7 +1986,7 @@ static void MM_SHOW_INFO_2_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_3;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SHOW_INFO_2
 }
@@ -2008,7 +2008,7 @@ static void MM_SHOW_INFO_2_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_3;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SHOW_INFO_2
 }
@@ -2061,7 +2061,7 @@ static void MM_SHOW_INFO_3_do(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SHOW_INFO_3
 }
@@ -2083,7 +2083,7 @@ static void MM_SHOW_INFO_3_down_press(LaserTagMenu1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_1;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for MM_SHOW_INFO_3
 }
@@ -2149,7 +2149,7 @@ static void WELCOME_SCREEN_do(LaserTagMenu1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_HOME1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for HOME.InitialState
     } // end of behavior for WELCOME_SCREEN

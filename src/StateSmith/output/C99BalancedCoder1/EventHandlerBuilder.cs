@@ -43,7 +43,7 @@ namespace StateSmith.output.C99BalancedCoder1
             {
                 if (b.HasTransition())
                 {
-                    OutputTransitionCode(b);
+                    OutputTransitionCode(b, noAncestorHandlesEvent);
                 }
                 else
                 {
@@ -54,9 +54,9 @@ namespace StateSmith.output.C99BalancedCoder1
             }
         }
 
-        public void OutputTransitionCode(Behavior behavior)
+        public void OutputTransitionCode(Behavior behavior, bool noAncestorHandlesEvent)
         {
-            OutputTransitionCodeInner(behavior);
+            OutputTransitionCodeInner(behavior, noAncestorHandlesEvent);
         }
 
         private void OutputGuardStart(Behavior b)
@@ -66,10 +66,6 @@ namespace StateSmith.output.C99BalancedCoder1
                 string expandedGuardCode = ExpandingVisitor.ParseAndExpandCode(ctx.expander, b.guardCode);
                 file.Append($"if ({expandedGuardCode})");
             }
-            else
-            {
-                var x = 2;
-            }
         }
 
         private void DescribeBehaviorWithUmlComment(Behavior b)
@@ -77,7 +73,7 @@ namespace StateSmith.output.C99BalancedCoder1
             file.AppendLine($"// uml: {b.DescribeAsUml()}");
         }
 
-        private void OutputTransitionCodeInner(Behavior behavior)
+        private void OutputTransitionCodeInner(Behavior behavior, bool noAncestorHandlesEvent)
         {
             if (behavior._transitionTarget == null)
             {
@@ -111,16 +107,16 @@ namespace StateSmith.output.C99BalancedCoder1
                 file.AppendLine($"// Step 3: Enter/move towards transition target `{Vertex.Describe(target)}`.");
                 EnterTowardsTarget(transitionPath);
 
-                FinishTransitionOrContinuePseudo(behavior, target);
+                FinishTransitionOrContinuePseudo(behavior, target, noAncestorHandlesEvent);
             }
             OutputEndOfBehaviorCode(behavior);
         }
 
-        private void FinishTransitionOrContinuePseudo(Behavior behavior, Vertex target)
+        private void FinishTransitionOrContinuePseudo(Behavior behavior, Vertex target, bool noAncestorHandlesEvent)
         {
             if (target is PseudoStateVertex pseudoStateVertex)
             {
-                OutputTransitionsForPseudoState(behavior, pseudoStateVertex);
+                OutputTransitionsForPseudoState(behavior, pseudoStateVertex, noAncestorHandlesEvent);
             }
             else if (target is NamedVertex namedVertexTarget)
             {
@@ -128,14 +124,21 @@ namespace StateSmith.output.C99BalancedCoder1
 
                 if (initialState != null)
                 {
-                    OutputTransitionsForPseudoState(behavior, initialState);
+                    OutputTransitionsForPseudoState(behavior, initialState, noAncestorHandlesEvent);
                 }
                 else
                 {
                     // no initial state, this is the final state.
                     file.AppendLine("// Step 4: complete transition. Ends event dispatch. No other behaviors are checked.");
                     file.AppendLine($"self->state_id = {mangler.SmStateEnumValue(namedVertexTarget)};");
-                    file.AppendLine("self->ancestor_event_handler = NULL;"); // todolow - only do if owning state actually needs it.
+                    if (noAncestorHandlesEvent)
+                    {
+                        file.AppendLine("// No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.");
+                    }
+                    else
+                    {
+                        file.AppendLine("self->ancestor_event_handler = NULL;");
+                    }
                     file.AppendLine($"return;");
                 }
             }
@@ -193,7 +196,7 @@ namespace StateSmith.output.C99BalancedCoder1
             }
         }
 
-        private void OutputTransitionsForPseudoState(Behavior b, PseudoStateVertex pseudoState)
+        private void OutputTransitionsForPseudoState(Behavior b, PseudoStateVertex pseudoState, bool noAncestorHandlesEvent)
         {
             string? transitionFunction = ctx.pseudoStateHandlerBuilder.MaybeGetFunctionName(pseudoState);
 
@@ -205,23 +208,24 @@ namespace StateSmith.output.C99BalancedCoder1
             }
             else
             {
-                RenderPseudoStateTransitionsInner(pseudoState);
+                RenderPseudoStateTransitionsInner(pseudoState, noAncestorHandlesEvent);
             }
         }
 
         public void RenderPseudoStateTransitionFunctionInner(PseudoStateVertex pseudoState)
         {
             ctx.pseudoStateHandlerBuilder.GetFunctionName(pseudoState); // just throws if not found
-            RenderPseudoStateTransitionsInner(pseudoState);
+            const bool NoAncestorHandlesEvent = false; // assume ancestor might handle event because the pseudo state transition code can be called from multiple states.
+            RenderPseudoStateTransitionsInner(pseudoState, noAncestorHandlesEvent: NoAncestorHandlesEvent);
         }
 
-        private void RenderPseudoStateTransitionsInner(PseudoStateVertex pseudoState)
+        private void RenderPseudoStateTransitionsInner(PseudoStateVertex pseudoState, bool noAncestorHandlesEvent)
         {
             foreach (Behavior pseudoStateBehavior in pseudoState.Behaviors)
             {
                 if (pseudoStateBehavior.HasTransition())
                 {
-                    OutputTransitionCodeInner(pseudoStateBehavior);
+                    OutputTransitionCodeInner(pseudoStateBehavior, noAncestorHandlesEvent);
                     file.RequestNewLineBeforeMoreCode();
                 }
             }
@@ -344,13 +348,21 @@ namespace StateSmith.output.C99BalancedCoder1
             }
             else
             {
+
                 if (TriggerHelper.IsDoEvent(triggerName))
                 {
                     file.AppendLine("// Don't consume special `do` event.");
                 }
                 else
                 {
-                    file.AppendLine("self->ancestor_event_handler = NULL;  // consume event");
+                    if (noAncestorHandlesEvent)
+                    {
+                        file.AppendLine("// No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.");
+                    }
+                    else
+                    {
+                        file.AppendLine("self->ancestor_event_handler = NULL;  // consume event");
+                    }
                 }
             }
         }

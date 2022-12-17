@@ -60,7 +60,7 @@ void Blinky1Sm_start(Blinky1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Blinky1Sm_StateId_LED_OFF;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
@@ -156,7 +156,7 @@ static void LED_OFF_do(Blinky1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Blinky1Sm_StateId_LED_ON;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for LED_OFF
 }
@@ -206,7 +206,7 @@ static void LED_ON_do(Blinky1Sm* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Blinky1Sm_StateId_LED_OFF;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for LED_ON
 }

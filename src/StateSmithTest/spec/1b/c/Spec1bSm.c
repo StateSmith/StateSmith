@@ -88,7 +88,7 @@ void Spec1bSm_start(Spec1bSm* self)
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     self->state_id = Spec1bSm_StateId_S1_1;
-                    self->ancestor_event_handler = NULL;
+                    // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                     return;
                 } // end of behavior for S1.InitialState
             } // end of behavior for S.InitialState
@@ -211,7 +211,7 @@ static void S1_t1(Spec1bSm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec1bSm_StateId_S2_1;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for S2.InitialState
     } // end of behavior for S1
