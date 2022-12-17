@@ -6,9 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WIP
 ### Added
-- Improved generated code clarity by showing step 1,2,3...
-- Improved generated code clarity by removing `if (true)` for behaviors with no guard clause.
-- Improved generated code by only nulling `ancestor_event_handler` when actually needed. https://github.com/StateSmith/StateSmith/issues/14
+- Improve generated code clarity by showing step 1,2,3...
+- Improve generated code clarity by removing `if (true)` for behaviors with no guard clause.
+- Improve generated code by only nulling `ancestor_event_handler` when actually needed. https://github.com/StateSmith/StateSmith/issues/14
+- Throw helpful exception message when duplicate state name used. Previously relied on c compiler and user to catch the problem.
+```
+VertexValidationException: Duplicate state name `OPTION` also used by state `Statemachine{LaserTagMenu1Sm}.State{MENUS_GROUP}.State{MAIN_MENU}.State{OPTION}`.
+    Vertex
+    Path: Statemachine{LaserTagMenu1Sm}.State{MENUS_GROUP}.State{MM_SHOW_INFO}.State{OPTION}
+    Diagram Id: n0::n3::n2::n2
+    Children count: 0
+    Behaviors count: 3
+    Incoming transitions count: 2
+```
 
 ---
 
