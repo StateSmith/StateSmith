@@ -358,7 +358,6 @@ void Spec2Sm_start(Spec2Sm* self)
     ROOT_enter(self);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -370,7 +369,6 @@ void Spec2Sm_start(Spec2Sm* self)
         
         // ROOT.InitialState behavior
         // uml: / { trace("Transition action `` for ROOT.InitialState to DECIDE."); } TransitionTo(DECIDE)
-        if (true)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -502,7 +500,6 @@ static void ROOT_enter(Spec2Sm* self)
     
     // ROOT behavior
     // uml: enter / { trace("Enter Spec2Sm."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter Spec2Sm.");`
         trace("Enter Spec2Sm.");
@@ -513,7 +510,6 @@ static void ROOT_exit(Spec2Sm* self)
 {
     // ROOT behavior
     // uml: exit / { trace("Exit Spec2Sm."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit Spec2Sm.");`
         trace("Exit Spec2Sm.");
@@ -545,7 +541,6 @@ static void DECIDE_enter(Spec2Sm* self)
     
     // DECIDE behavior
     // uml: enter / { trace("Enter DECIDE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter DECIDE.");`
         trace("Enter DECIDE.");
@@ -556,7 +551,6 @@ static void DECIDE_exit(Spec2Sm* self)
 {
     // DECIDE behavior
     // uml: exit / { trace("Exit DECIDE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit DECIDE.");`
         trace("Exit DECIDE.");
@@ -595,7 +589,6 @@ static void DECIDE_ev1(Spec2Sm* self)
         
         // TEST1_DO_EVENT_TESTING.InitialState behavior
         // uml: / { trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT."); } TransitionTo(TEST1_ROOT)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST1_DO_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -607,7 +600,6 @@ static void DECIDE_ev1(Spec2Sm* self)
             
             // TEST1_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1."); } TransitionTo(TEST1_S1_1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -646,7 +638,6 @@ static void DECIDE_ev10(Spec2Sm* self)
         
         // TEST10_CHOICE_POINT.InitialState behavior
         // uml: / { trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1."); } TransitionTo(TEST10_S1)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -684,7 +675,6 @@ static void DECIDE_ev2(Spec2Sm* self)
         
         // TEST2_REGULAR_EVENT_TESTING.InitialState behavior
         // uml: / { trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT."); } TransitionTo(TEST2_ROOT)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST2_REGULAR_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -696,7 +686,6 @@ static void DECIDE_ev2(Spec2Sm* self)
             
             // TEST2_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1."); } TransitionTo(TEST2_S1_1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -735,7 +724,6 @@ static void DECIDE_ev3(Spec2Sm* self)
         
         // TEST3_BEHAVIOR_ORDERING.InitialState behavior
         // uml: / { trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT."); } TransitionTo(TEST3_ROOT)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST3_BEHAVIOR_ORDERING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -747,7 +735,6 @@ static void DECIDE_ev3(Spec2Sm* self)
             
             // TEST3_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1."); } TransitionTo(TEST3_S1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -785,7 +772,6 @@ static void DECIDE_ev4(Spec2Sm* self)
         
         // TEST4_PARENT_CHILD_TRANSITIONS.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE."); } TransitionTo(TEST4_DECIDE)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -822,7 +808,6 @@ static void DECIDE_ev5(Spec2Sm* self)
         
         // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState behavior
         // uml: / { trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -859,7 +844,6 @@ static void DECIDE_ev6(Spec2Sm* self)
         
         // TEST6_VARIABLES.InitialState behavior
         // uml: / { trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT."); } TransitionTo(TEST6_ROOT)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST6_VARIABLES` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -871,7 +855,6 @@ static void DECIDE_ev6(Spec2Sm* self)
             
             // TEST6_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1."); } TransitionTo(TEST6_S1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -909,7 +892,6 @@ static void DECIDE_ev7(Spec2Sm* self)
         
         // TEST7_INITIAL_CHOICE.InitialState behavior
         // uml: / { trace("Transition action `` for TEST7_INITIAL_CHOICE.InitialState to TEST7_ROOT."); } TransitionTo(TEST7_ROOT)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST7_INITIAL_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -921,7 +903,6 @@ static void DECIDE_ev7(Spec2Sm* self)
             
             // TEST7_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1."); } TransitionTo(TEST7_S1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -959,7 +940,6 @@ static void DECIDE_ev8(Spec2Sm* self)
         
         // TEST8_ENTRY_CHOICE.InitialState behavior
         // uml: / { trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1)."); } TransitionTo(TEST8_ROOT.EntryPoint(1))
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST8_ENTRY_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -996,7 +976,6 @@ static void DECIDE_ev9(Spec2Sm* self)
         
         // TEST9_EXIT_CHOICE.InitialState behavior
         // uml: / { trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE."); } TransitionTo(TEST9_DECIDE)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -1026,7 +1005,6 @@ static void TEST1_DO_EVENT_TESTING_enter(Spec2Sm* self)
     
     // TEST1_DO_EVENT_TESTING behavior
     // uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.");`
         trace("Enter TEST1_DO_EVENT_TESTING.");
@@ -1037,7 +1015,6 @@ static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm* self)
 {
     // TEST1_DO_EVENT_TESTING behavior
     // uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.");`
         trace("Exit TEST1_DO_EVENT_TESTING.");
@@ -1060,7 +1037,6 @@ static void TEST1_ROOT_enter(Spec2Sm* self)
     
     // TEST1_ROOT behavior
     // uml: enter / { trace("Enter TEST1_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST1_ROOT.");`
         trace("Enter TEST1_ROOT.");
@@ -1071,7 +1047,6 @@ static void TEST1_ROOT_exit(Spec2Sm* self)
 {
     // TEST1_ROOT behavior
     // uml: exit / { trace("Exit TEST1_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST1_ROOT.");`
         trace("Exit TEST1_ROOT.");
@@ -1108,7 +1083,6 @@ static void TEST1_S1_enter(Spec2Sm* self)
     
     // TEST1_S1 behavior
     // uml: enter / { trace("Enter TEST1_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST1_S1.");`
         trace("Enter TEST1_S1.");
@@ -1119,7 +1093,6 @@ static void TEST1_S1_exit(Spec2Sm* self)
 {
     // TEST1_S1 behavior
     // uml: exit / { trace("Exit TEST1_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST1_S1.");`
         trace("Exit TEST1_S1.");
@@ -1143,7 +1116,6 @@ static void TEST1_S1_1_enter(Spec2Sm* self)
     
     // TEST1_S1_1 behavior
     // uml: enter / { trace("Enter TEST1_S1_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST1_S1_1.");`
         trace("Enter TEST1_S1_1.");
@@ -1162,7 +1134,6 @@ static void TEST1_S1_1_exit(Spec2Sm* self)
 {
     // TEST1_S1_1 behavior
     // uml: exit / { trace("Exit TEST1_S1_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST1_S1_1.");`
         trace("Exit TEST1_S1_1.");
@@ -1226,7 +1197,6 @@ static void TEST1_S2_enter(Spec2Sm* self)
     
     // TEST1_S2 behavior
     // uml: enter / { trace("Enter TEST1_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST1_S2.");`
         trace("Enter TEST1_S2.");
@@ -1237,7 +1207,6 @@ static void TEST1_S2_exit(Spec2Sm* self)
 {
     // TEST1_S2 behavior
     // uml: exit / { trace("Exit TEST1_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST1_S2.");`
         trace("Exit TEST1_S2.");
@@ -1282,7 +1251,6 @@ static void TEST10_CHOICE_POINT_enter(Spec2Sm* self)
     
     // TEST10_CHOICE_POINT behavior
     // uml: enter / { trace("Enter TEST10_CHOICE_POINT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.");`
         trace("Enter TEST10_CHOICE_POINT.");
@@ -1293,7 +1261,6 @@ static void TEST10_CHOICE_POINT_exit(Spec2Sm* self)
 {
     // TEST10_CHOICE_POINT behavior
     // uml: exit / { trace("Exit TEST10_CHOICE_POINT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.");`
         trace("Exit TEST10_CHOICE_POINT.");
@@ -1315,7 +1282,6 @@ static void TEST10_A_enter(Spec2Sm* self)
     
     // TEST10_A behavior
     // uml: enter / { trace("Enter TEST10_A."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_A.");`
         trace("Enter TEST10_A.");
@@ -1326,7 +1292,6 @@ static void TEST10_A_exit(Spec2Sm* self)
 {
     // TEST10_A behavior
     // uml: exit / { trace("Exit TEST10_A."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_A.");`
         trace("Exit TEST10_A.");
@@ -1358,7 +1323,6 @@ static void TEST10_A_ChoicePoint__transition(Spec2Sm* self)
     
     // TEST10_A.ChoicePoint() behavior
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
-    if (true)
     {
         // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, TEST10_A_exit);
@@ -1397,7 +1361,6 @@ static void TEST10_A_ChoicePoint__transition_kid_index3(Spec2Sm* self)
     
     // TEST10_A.ChoicePoint() behavior
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
-    if (true)
     {
         // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, TEST10_A_exit);
@@ -1436,7 +1399,6 @@ static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self)
     
     // TEST10_A.ChoicePoint(a) behavior
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
-    if (true)
     {
         // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, TEST10_A_exit);
@@ -1457,7 +1419,6 @@ static void TEST10_A_ChoicePoint_a__transition_kid_index7(Spec2Sm* self)
 {
     // TEST10_A.ChoicePoint(a) behavior
     // uml: / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)
-    if (true)
     {
         // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, TEST10_A_exit);
@@ -1487,7 +1448,6 @@ static void TEST10_A_1_enter(Spec2Sm* self)
     
     // TEST10_A_1 behavior
     // uml: enter / { trace("Enter TEST10_A_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_A_1.");`
         trace("Enter TEST10_A_1.");
@@ -1498,7 +1458,6 @@ static void TEST10_A_1_exit(Spec2Sm* self)
 {
     // TEST10_A_1 behavior
     // uml: exit / { trace("Exit TEST10_A_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_A_1.");`
         trace("Exit TEST10_A_1.");
@@ -1521,7 +1480,6 @@ static void TEST10_ROOT_enter(Spec2Sm* self)
     
     // TEST10_ROOT behavior
     // uml: enter / { trace("Enter TEST10_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_ROOT.");`
         trace("Enter TEST10_ROOT.");
@@ -1532,7 +1490,6 @@ static void TEST10_ROOT_exit(Spec2Sm* self)
 {
     // TEST10_ROOT behavior
     // uml: exit / { trace("Exit TEST10_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_ROOT.");`
         trace("Exit TEST10_ROOT.");
@@ -1574,7 +1531,6 @@ static void TEST10_G_enter(Spec2Sm* self)
     
     // TEST10_G behavior
     // uml: enter / { trace("Enter TEST10_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_G.");`
         trace("Enter TEST10_G.");
@@ -1585,7 +1541,6 @@ static void TEST10_G_exit(Spec2Sm* self)
 {
     // TEST10_G behavior
     // uml: exit / { trace("Exit TEST10_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_G.");`
         trace("Exit TEST10_G.");
@@ -1599,7 +1554,6 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
 {
     // TEST10_G.ChoicePoint() behavior
     // uml: / { trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1)."); } TransitionTo(TEST10_G.ChoicePoint(1))
-    if (true)
     {
         // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, TEST10_G_exit);
@@ -1663,7 +1617,6 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
             
             // TEST10_G.ChoicePoint(lower) behavior
             // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2."); } TransitionTo(TEST10_G_S2)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
                 exit_up_to_state_handler(self, TEST10_G_exit);
@@ -1683,7 +1636,6 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
         
         // TEST10_G.ChoicePoint(1) behavior
         // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper)."); } TransitionTo(TEST10_G.ChoicePoint(upper))
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
             exit_up_to_state_handler(self, TEST10_G_exit);
@@ -1715,7 +1667,6 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
             
             // TEST10_G.ChoicePoint(upper) behavior
             // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
                 exit_up_to_state_handler(self, TEST10_ROOT_exit);
@@ -1747,7 +1698,6 @@ static void TEST10_G_S0_enter(Spec2Sm* self)
     
     // TEST10_G_S0 behavior
     // uml: enter / { trace("Enter TEST10_G_S0."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_G_S0.");`
         trace("Enter TEST10_G_S0.");
@@ -1758,7 +1708,6 @@ static void TEST10_G_S0_exit(Spec2Sm* self)
 {
     // TEST10_G_S0 behavior
     // uml: exit / { trace("Exit TEST10_G_S0."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_G_S0.");`
         trace("Exit TEST10_G_S0.");
@@ -1780,7 +1729,6 @@ static void TEST10_G_S1_enter(Spec2Sm* self)
     
     // TEST10_G_S1 behavior
     // uml: enter / { trace("Enter TEST10_G_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_G_S1.");`
         trace("Enter TEST10_G_S1.");
@@ -1791,7 +1739,6 @@ static void TEST10_G_S1_exit(Spec2Sm* self)
 {
     // TEST10_G_S1 behavior
     // uml: exit / { trace("Exit TEST10_G_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_G_S1.");`
         trace("Exit TEST10_G_S1.");
@@ -1813,7 +1760,6 @@ static void TEST10_G_S2_enter(Spec2Sm* self)
     
     // TEST10_G_S2 behavior
     // uml: enter / { trace("Enter TEST10_G_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_G_S2.");`
         trace("Enter TEST10_G_S2.");
@@ -1824,7 +1770,6 @@ static void TEST10_G_S2_exit(Spec2Sm* self)
 {
     // TEST10_G_S2 behavior
     // uml: exit / { trace("Exit TEST10_G_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_G_S2.");`
         trace("Exit TEST10_G_S2.");
@@ -1846,7 +1791,6 @@ static void TEST10_G_S3_enter(Spec2Sm* self)
     
     // TEST10_G_S3 behavior
     // uml: enter / { trace("Enter TEST10_G_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_G_S3.");`
         trace("Enter TEST10_G_S3.");
@@ -1857,7 +1801,6 @@ static void TEST10_G_S3_exit(Spec2Sm* self)
 {
     // TEST10_G_S3 behavior
     // uml: exit / { trace("Exit TEST10_G_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_G_S3.");`
         trace("Exit TEST10_G_S3.");
@@ -1883,7 +1826,6 @@ static void TEST10_S1_enter(Spec2Sm* self)
     
     // TEST10_S1 behavior
     // uml: enter / { trace("Enter TEST10_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_S1.");`
         trace("Enter TEST10_S1.");
@@ -1902,7 +1844,6 @@ static void TEST10_S1_exit(Spec2Sm* self)
 {
     // TEST10_S1 behavior
     // uml: exit / { trace("Exit TEST10_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_S1.");`
         trace("Exit TEST10_S1.");
@@ -1936,7 +1877,6 @@ static void TEST10_S1_ev1(Spec2Sm* self)
         
         // TEST10_G.EntryPoint(1) behavior
         // uml: / { trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -2007,7 +1947,6 @@ static void TEST10_S1_ev10(Spec2Sm* self)
         
         // TEST10_A.InitialState behavior
         // uml: else / { trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -2067,7 +2006,6 @@ static void TEST10_S1_ev3(Spec2Sm* self)
         
         // TEST10_G.InitialState behavior
         // uml: / { trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -2096,7 +2034,6 @@ static void TEST10_S4_enter(Spec2Sm* self)
     
     // TEST10_S4 behavior
     // uml: enter / { trace("Enter TEST10_S4."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST10_S4.");`
         trace("Enter TEST10_S4.");
@@ -2107,7 +2044,6 @@ static void TEST10_S4_exit(Spec2Sm* self)
 {
     // TEST10_S4 behavior
     // uml: exit / { trace("Exit TEST10_S4."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST10_S4.");`
         trace("Exit TEST10_S4.");
@@ -2129,7 +2065,6 @@ static void TEST2_REGULAR_EVENT_TESTING_enter(Spec2Sm* self)
     
     // TEST2_REGULAR_EVENT_TESTING behavior
     // uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.");`
         trace("Enter TEST2_REGULAR_EVENT_TESTING.");
@@ -2140,7 +2075,6 @@ static void TEST2_REGULAR_EVENT_TESTING_exit(Spec2Sm* self)
 {
     // TEST2_REGULAR_EVENT_TESTING behavior
     // uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.");`
         trace("Exit TEST2_REGULAR_EVENT_TESTING.");
@@ -2165,7 +2099,6 @@ static void TEST2_ROOT_enter(Spec2Sm* self)
     
     // TEST2_ROOT behavior
     // uml: enter / { trace("Enter TEST2_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST2_ROOT.");`
         trace("Enter TEST2_ROOT.");
@@ -2176,7 +2109,6 @@ static void TEST2_ROOT_exit(Spec2Sm* self)
 {
     // TEST2_ROOT behavior
     // uml: exit / { trace("Exit TEST2_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST2_ROOT.");`
         trace("Exit TEST2_ROOT.");
@@ -2243,7 +2175,6 @@ static void TEST2_S1_enter(Spec2Sm* self)
     
     // TEST2_S1 behavior
     // uml: enter / { trace("Enter TEST2_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST2_S1.");`
         trace("Enter TEST2_S1.");
@@ -2254,7 +2185,6 @@ static void TEST2_S1_exit(Spec2Sm* self)
 {
     // TEST2_S1 behavior
     // uml: exit / { trace("Exit TEST2_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST2_S1.");`
         trace("Exit TEST2_S1.");
@@ -2278,7 +2208,6 @@ static void TEST2_S1_1_enter(Spec2Sm* self)
     
     // TEST2_S1_1 behavior
     // uml: enter / { trace("Enter TEST2_S1_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST2_S1_1.");`
         trace("Enter TEST2_S1_1.");
@@ -2297,7 +2226,6 @@ static void TEST2_S1_1_exit(Spec2Sm* self)
 {
     // TEST2_S1_1 behavior
     // uml: exit / { trace("Exit TEST2_S1_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST2_S1_1.");`
         trace("Exit TEST2_S1_1.");
@@ -2363,7 +2291,6 @@ static void TEST2_S2_enter(Spec2Sm* self)
     
     // TEST2_S2 behavior
     // uml: enter / { trace("Enter TEST2_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST2_S2.");`
         trace("Enter TEST2_S2.");
@@ -2374,7 +2301,6 @@ static void TEST2_S2_exit(Spec2Sm* self)
 {
     // TEST2_S2 behavior
     // uml: exit / { trace("Exit TEST2_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST2_S2.");`
         trace("Exit TEST2_S2.");
@@ -2445,7 +2371,6 @@ static void TEST3_BEHAVIOR_ORDERING_enter(Spec2Sm* self)
     
     // TEST3_BEHAVIOR_ORDERING behavior
     // uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.");`
         trace("Enter TEST3_BEHAVIOR_ORDERING.");
@@ -2456,7 +2381,6 @@ static void TEST3_BEHAVIOR_ORDERING_exit(Spec2Sm* self)
 {
     // TEST3_BEHAVIOR_ORDERING behavior
     // uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.");`
         trace("Exit TEST3_BEHAVIOR_ORDERING.");
@@ -2479,7 +2403,6 @@ static void TEST3_ROOT_enter(Spec2Sm* self)
     
     // TEST3_ROOT behavior
     // uml: enter / { trace("Enter TEST3_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST3_ROOT.");`
         trace("Enter TEST3_ROOT.");
@@ -2490,7 +2413,6 @@ static void TEST3_ROOT_exit(Spec2Sm* self)
 {
     // TEST3_ROOT behavior
     // uml: exit / { trace("Exit TEST3_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST3_ROOT.");`
         trace("Exit TEST3_ROOT.");
@@ -2528,7 +2450,6 @@ static void TEST3_S1_enter(Spec2Sm* self)
     
     // TEST3_S1 behavior
     // uml: enter / { trace("Enter TEST3_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST3_S1.");`
         trace("Enter TEST3_S1.");
@@ -2547,7 +2468,6 @@ static void TEST3_S1_exit(Spec2Sm* self)
 {
     // TEST3_S1 behavior
     // uml: exit / { trace("Exit TEST3_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST3_S1.");`
         trace("Exit TEST3_S1.");
@@ -2612,7 +2532,6 @@ static void TEST3_S2_enter(Spec2Sm* self)
     
     // TEST3_S2 behavior
     // uml: enter / { trace("Enter TEST3_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST3_S2.");`
         trace("Enter TEST3_S2.");
@@ -2623,7 +2542,6 @@ static void TEST3_S2_exit(Spec2Sm* self)
 {
     // TEST3_S2 behavior
     // uml: exit / { trace("Exit TEST3_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST3_S2.");`
         trace("Exit TEST3_S2.");
@@ -2704,7 +2622,6 @@ static void TEST3_S3_enter(Spec2Sm* self)
     
     // TEST3_S3 behavior
     // uml: enter / { trace("Enter TEST3_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST3_S3.");`
         trace("Enter TEST3_S3.");
@@ -2715,7 +2632,6 @@ static void TEST3_S3_exit(Spec2Sm* self)
 {
     // TEST3_S3 behavior
     // uml: exit / { trace("Exit TEST3_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST3_S3.");`
         trace("Exit TEST3_S3.");
@@ -2737,7 +2653,6 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_enter(Spec2Sm* self)
     
     // TEST4_PARENT_CHILD_TRANSITIONS behavior
     // uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");`
         trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");
@@ -2748,7 +2663,6 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm* self)
 {
     // TEST4_PARENT_CHILD_TRANSITIONS behavior
     // uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");`
         trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
@@ -2770,7 +2684,6 @@ static void TEST4_B_AND_OTHERS_enter(Spec2Sm* self)
     
     // TEST4_B_AND_OTHERS behavior
     // uml: enter / { trace("Enter TEST4_B_AND_OTHERS."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.");`
         trace("Enter TEST4_B_AND_OTHERS.");
@@ -2789,7 +2702,6 @@ static void TEST4_B_AND_OTHERS_exit(Spec2Sm* self)
 {
     // TEST4_B_AND_OTHERS behavior
     // uml: exit / { trace("Exit TEST4_B_AND_OTHERS."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.");`
         trace("Exit TEST4_B_AND_OTHERS.");
@@ -2811,7 +2723,6 @@ static void TEST4B_LOCAL_enter(Spec2Sm* self)
     
     // TEST4B_LOCAL behavior
     // uml: enter / { trace("Enter TEST4B_LOCAL."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4B_LOCAL.");`
         trace("Enter TEST4B_LOCAL.");
@@ -2822,7 +2733,6 @@ static void TEST4B_LOCAL_exit(Spec2Sm* self)
 {
     // TEST4B_LOCAL behavior
     // uml: exit / { trace("Exit TEST4B_LOCAL."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4B_LOCAL.");`
         trace("Exit TEST4B_LOCAL.");
@@ -2845,7 +2755,6 @@ static void TEST4B_G_enter(Spec2Sm* self)
     
     // TEST4B_G behavior
     // uml: enter / { trace("Enter TEST4B_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4B_G.");`
         trace("Enter TEST4B_G.");
@@ -2856,7 +2765,6 @@ static void TEST4B_G_exit(Spec2Sm* self)
 {
     // TEST4B_G behavior
     // uml: exit / { trace("Exit TEST4B_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4B_G.");`
         trace("Exit TEST4B_G.");
@@ -2904,7 +2812,6 @@ static void TEST4B_G_1_enter(Spec2Sm* self)
     
     // TEST4B_G_1 behavior
     // uml: enter / { trace("Enter TEST4B_G_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4B_G_1.");`
         trace("Enter TEST4B_G_1.");
@@ -2915,7 +2822,6 @@ static void TEST4B_G_1_exit(Spec2Sm* self)
 {
     // TEST4B_G_1 behavior
     // uml: exit / { trace("Exit TEST4B_G_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4B_G_1.");`
         trace("Exit TEST4B_G_1.");
@@ -2961,7 +2867,6 @@ static void TEST4C_LOCAL_TO_ALIAS_enter(Spec2Sm* self)
     
     // TEST4C_LOCAL_TO_ALIAS behavior
     // uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.");`
         trace("Enter TEST4C_LOCAL_TO_ALIAS.");
@@ -2972,7 +2877,6 @@ static void TEST4C_LOCAL_TO_ALIAS_exit(Spec2Sm* self)
 {
     // TEST4C_LOCAL_TO_ALIAS behavior
     // uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.");`
         trace("Exit TEST4C_LOCAL_TO_ALIAS.");
@@ -2995,7 +2899,6 @@ static void TEST4C_G_enter(Spec2Sm* self)
     
     // TEST4C_G behavior
     // uml: enter / { trace("Enter TEST4C_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4C_G.");`
         trace("Enter TEST4C_G.");
@@ -3006,7 +2909,6 @@ static void TEST4C_G_exit(Spec2Sm* self)
 {
     // TEST4C_G behavior
     // uml: exit / { trace("Exit TEST4C_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4C_G.");`
         trace("Exit TEST4C_G.");
@@ -3054,7 +2956,6 @@ static void TEST4C_G_1_enter(Spec2Sm* self)
     
     // TEST4C_G_1 behavior
     // uml: enter / { trace("Enter TEST4C_G_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4C_G_1.");`
         trace("Enter TEST4C_G_1.");
@@ -3065,7 +2966,6 @@ static void TEST4C_G_1_exit(Spec2Sm* self)
 {
     // TEST4C_G_1 behavior
     // uml: exit / { trace("Exit TEST4C_G_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4C_G_1.");`
         trace("Exit TEST4C_G_1.");
@@ -3111,7 +3011,6 @@ static void TEST4D_EXTERNAL_enter(Spec2Sm* self)
     
     // TEST4D_EXTERNAL behavior
     // uml: enter / { trace("Enter TEST4D_EXTERNAL."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4D_EXTERNAL.");`
         trace("Enter TEST4D_EXTERNAL.");
@@ -3122,7 +3021,6 @@ static void TEST4D_EXTERNAL_exit(Spec2Sm* self)
 {
     // TEST4D_EXTERNAL behavior
     // uml: exit / { trace("Exit TEST4D_EXTERNAL."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4D_EXTERNAL.");`
         trace("Exit TEST4D_EXTERNAL.");
@@ -3145,7 +3043,6 @@ static void TEST4D_G_enter(Spec2Sm* self)
     
     // TEST4D_G behavior
     // uml: enter / { trace("Enter TEST4D_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4D_G.");`
         trace("Enter TEST4D_G.");
@@ -3156,7 +3053,6 @@ static void TEST4D_G_exit(Spec2Sm* self)
 {
     // TEST4D_G behavior
     // uml: exit / { trace("Exit TEST4D_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4D_G.");`
         trace("Exit TEST4D_G.");
@@ -3186,7 +3082,6 @@ static void TEST4D_G_ev1(Spec2Sm* self)
         
         // TEST4D_EXTERNAL.ChoicePoint() behavior
         // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1."); } TransitionTo(TEST4D_G_1)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
             exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);
@@ -3219,7 +3114,6 @@ static void TEST4D_G_1_enter(Spec2Sm* self)
     
     // TEST4D_G_1 behavior
     // uml: enter / { trace("Enter TEST4D_G_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4D_G_1.");`
         trace("Enter TEST4D_G_1.");
@@ -3230,7 +3124,6 @@ static void TEST4D_G_1_exit(Spec2Sm* self)
 {
     // TEST4D_G_1 behavior
     // uml: exit / { trace("Exit TEST4D_G_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4D_G_1.");`
         trace("Exit TEST4D_G_1.");
@@ -3260,7 +3153,6 @@ static void TEST4D_G_1_ev2(Spec2Sm* self)
         
         // TEST4D_EXTERNAL.ChoicePoint() behavior
         // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G."); } TransitionTo(TEST4D_G)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
             exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);
@@ -3295,7 +3187,6 @@ static void TEST4_DECIDE_enter(Spec2Sm* self)
     
     // TEST4_DECIDE behavior
     // uml: enter / { trace("Enter TEST4_DECIDE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_DECIDE.");`
         trace("Enter TEST4_DECIDE.");
@@ -3306,7 +3197,6 @@ static void TEST4_DECIDE_exit(Spec2Sm* self)
 {
     // TEST4_DECIDE behavior
     // uml: exit / { trace("Exit TEST4_DECIDE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_DECIDE.");`
         trace("Exit TEST4_DECIDE.");
@@ -3364,7 +3254,6 @@ static void TEST4_DECIDE_ev2(Spec2Sm* self)
         
         // TEST4B_LOCAL.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G."); } TransitionTo(TEST4B_G)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST4B_LOCAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -3402,7 +3291,6 @@ static void TEST4_DECIDE_ev3(Spec2Sm* self)
         
         // TEST4C_LOCAL_TO_ALIAS.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G."); } TransitionTo(TEST4C_G)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST4C_LOCAL_TO_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -3440,7 +3328,6 @@ static void TEST4_DECIDE_ev4(Spec2Sm* self)
         
         // TEST4D_EXTERNAL.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G."); } TransitionTo(TEST4D_G)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -3473,7 +3360,6 @@ static void TEST4_ROOT_enter(Spec2Sm* self)
     
     // TEST4_ROOT behavior
     // uml: enter / { trace("Enter TEST4_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_ROOT.");`
         trace("Enter TEST4_ROOT.");
@@ -3492,7 +3378,6 @@ static void TEST4_ROOT_exit(Spec2Sm* self)
 {
     // TEST4_ROOT behavior
     // uml: exit / { trace("Exit TEST4_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_ROOT.");`
         trace("Exit TEST4_ROOT.");
@@ -3573,7 +3458,6 @@ static void TEST4_ROOT_ev4(Spec2Sm* self)
         
         // TEST4_S20.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -3604,7 +3488,6 @@ static void TEST4_S1_enter(Spec2Sm* self)
     
     // TEST4_S1 behavior
     // uml: enter / { trace("Enter TEST4_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_S1.");`
         trace("Enter TEST4_S1.");
@@ -3615,7 +3498,6 @@ static void TEST4_S1_exit(Spec2Sm* self)
 {
     // TEST4_S1 behavior
     // uml: exit / { trace("Exit TEST4_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_S1.");`
         trace("Exit TEST4_S1.");
@@ -3663,7 +3545,6 @@ static void TEST4_S10_enter(Spec2Sm* self)
     
     // TEST4_S10 behavior
     // uml: enter / { trace("Enter TEST4_S10."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_S10.");`
         trace("Enter TEST4_S10.");
@@ -3674,7 +3555,6 @@ static void TEST4_S10_exit(Spec2Sm* self)
 {
     // TEST4_S10 behavior
     // uml: exit / { trace("Exit TEST4_S10."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_S10.");`
         trace("Exit TEST4_S10.");
@@ -3722,7 +3602,6 @@ static void TEST4_S10_1_enter(Spec2Sm* self)
     
     // TEST4_S10_1 behavior
     // uml: enter / { trace("Enter TEST4_S10_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_S10_1.");`
         trace("Enter TEST4_S10_1.");
@@ -3733,7 +3612,6 @@ static void TEST4_S10_1_exit(Spec2Sm* self)
 {
     // TEST4_S10_1 behavior
     // uml: exit / { trace("Exit TEST4_S10_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_S10_1.");`
         trace("Exit TEST4_S10_1.");
@@ -3756,7 +3634,6 @@ static void TEST4_S2_enter(Spec2Sm* self)
     
     // TEST4_S2 behavior
     // uml: enter / { trace("Enter TEST4_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_S2.");`
         trace("Enter TEST4_S2.");
@@ -3767,7 +3644,6 @@ static void TEST4_S2_exit(Spec2Sm* self)
 {
     // TEST4_S2 behavior
     // uml: exit / { trace("Exit TEST4_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_S2.");`
         trace("Exit TEST4_S2.");
@@ -3815,7 +3691,6 @@ static void TEST4_S20_enter(Spec2Sm* self)
     
     // TEST4_S20 behavior
     // uml: enter / { trace("Enter TEST4_S20."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_S20.");`
         trace("Enter TEST4_S20.");
@@ -3826,7 +3701,6 @@ static void TEST4_S20_exit(Spec2Sm* self)
 {
     // TEST4_S20 behavior
     // uml: exit / { trace("Exit TEST4_S20."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_S20.");`
         trace("Exit TEST4_S20.");
@@ -3857,7 +3731,6 @@ static void TEST4_S20_ev4(Spec2Sm* self)
         
         // TEST4_S20.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -3887,7 +3760,6 @@ static void TEST4_S20_1_enter(Spec2Sm* self)
     
     // TEST4_S20_1 behavior
     // uml: enter / { trace("Enter TEST4_S20_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_S20_1.");`
         trace("Enter TEST4_S20_1.");
@@ -3898,7 +3770,6 @@ static void TEST4_S20_1_exit(Spec2Sm* self)
 {
     // TEST4_S20_1 behavior
     // uml: exit / { trace("Exit TEST4_S20_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_S20_1.");`
         trace("Exit TEST4_S20_1.");
@@ -3921,7 +3792,6 @@ static void TEST4_S3_enter(Spec2Sm* self)
     
     // TEST4_S3 behavior
     // uml: enter / { trace("Enter TEST4_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST4_S3.");`
         trace("Enter TEST4_S3.");
@@ -3932,7 +3802,6 @@ static void TEST4_S3_exit(Spec2Sm* self)
 {
     // TEST4_S3 behavior
     // uml: exit / { trace("Exit TEST4_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST4_S3.");`
         trace("Exit TEST4_S3.");
@@ -3978,7 +3847,6 @@ static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(Spec2Sm* self)
     
     // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
     // uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`
         trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
@@ -3989,7 +3857,6 @@ static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(Spec2Sm* self)
 {
     // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
     // uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`
         trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
@@ -4012,7 +3879,6 @@ static void TEST5_ROOT_enter(Spec2Sm* self)
     
     // TEST5_ROOT behavior
     // uml: enter / { trace("Enter TEST5_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST5_ROOT.");`
         trace("Enter TEST5_ROOT.");
@@ -4031,7 +3897,6 @@ static void TEST5_ROOT_exit(Spec2Sm* self)
 {
     // TEST5_ROOT behavior
     // uml: exit / { trace("Exit TEST5_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST5_ROOT.");`
         trace("Exit TEST5_ROOT.");
@@ -4079,7 +3944,6 @@ static void TEST5_S1_enter(Spec2Sm* self)
     
     // TEST5_S1 behavior
     // uml: enter / { trace("Enter TEST5_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST5_S1.");`
         trace("Enter TEST5_S1.");
@@ -4090,7 +3954,6 @@ static void TEST5_S1_exit(Spec2Sm* self)
 {
     // TEST5_S1 behavior
     // uml: exit / { trace("Exit TEST5_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST5_S1.");`
         trace("Exit TEST5_S1.");
@@ -4138,7 +4001,6 @@ static void TEST5_S2_enter(Spec2Sm* self)
     
     // TEST5_S2 behavior
     // uml: enter / { trace("Enter TEST5_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST5_S2.");`
         trace("Enter TEST5_S2.");
@@ -4149,7 +4011,6 @@ static void TEST5_S2_exit(Spec2Sm* self)
 {
     // TEST5_S2 behavior
     // uml: exit / { trace("Exit TEST5_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST5_S2.");`
         trace("Exit TEST5_S2.");
@@ -4197,7 +4058,6 @@ static void TEST5_S3_enter(Spec2Sm* self)
     
     // TEST5_S3 behavior
     // uml: enter / { trace("Enter TEST5_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST5_S3.");`
         trace("Enter TEST5_S3.");
@@ -4208,7 +4068,6 @@ static void TEST5_S3_exit(Spec2Sm* self)
 {
     // TEST5_S3 behavior
     // uml: exit / { trace("Exit TEST5_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST5_S3.");`
         trace("Exit TEST5_S3.");
@@ -4254,7 +4113,6 @@ static void TEST6_VARIABLES_enter(Spec2Sm* self)
     
     // TEST6_VARIABLES behavior
     // uml: enter / { trace("Enter TEST6_VARIABLES."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST6_VARIABLES.");`
         trace("Enter TEST6_VARIABLES.");
@@ -4265,7 +4123,6 @@ static void TEST6_VARIABLES_exit(Spec2Sm* self)
 {
     // TEST6_VARIABLES behavior
     // uml: exit / { trace("Exit TEST6_VARIABLES."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST6_VARIABLES.");`
         trace("Exit TEST6_VARIABLES.");
@@ -4287,7 +4144,6 @@ static void TEST6_ROOT_enter(Spec2Sm* self)
     
     // TEST6_ROOT behavior
     // uml: enter / { trace("Enter TEST6_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST6_ROOT.");`
         trace("Enter TEST6_ROOT.");
@@ -4298,7 +4154,6 @@ static void TEST6_ROOT_exit(Spec2Sm* self)
 {
     // TEST6_ROOT behavior
     // uml: exit / { trace("Exit TEST6_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST6_ROOT.");`
         trace("Exit TEST6_ROOT.");
@@ -4321,7 +4176,6 @@ static void TEST6_S1_enter(Spec2Sm* self)
     
     // TEST6_S1 behavior
     // uml: enter / { trace("Enter TEST6_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST6_S1.");`
         trace("Enter TEST6_S1.");
@@ -4340,7 +4194,6 @@ static void TEST6_S1_exit(Spec2Sm* self)
 {
     // TEST6_S1 behavior
     // uml: exit / { trace("Exit TEST6_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST6_S1.");`
         trace("Exit TEST6_S1.");
@@ -4401,7 +4254,6 @@ static void TEST6_S2_enter(Spec2Sm* self)
     
     // TEST6_S2 behavior
     // uml: enter / { trace("Enter TEST6_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST6_S2.");`
         trace("Enter TEST6_S2.");
@@ -4412,7 +4264,6 @@ static void TEST6_S2_exit(Spec2Sm* self)
 {
     // TEST6_S2 behavior
     // uml: exit / { trace("Exit TEST6_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST6_S2.");`
         trace("Exit TEST6_S2.");
@@ -4434,7 +4285,6 @@ static void TEST7_INITIAL_CHOICE_enter(Spec2Sm* self)
     
     // TEST7_INITIAL_CHOICE behavior
     // uml: enter / { trace("Enter TEST7_INITIAL_CHOICE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST7_INITIAL_CHOICE.");`
         trace("Enter TEST7_INITIAL_CHOICE.");
@@ -4445,7 +4295,6 @@ static void TEST7_INITIAL_CHOICE_exit(Spec2Sm* self)
 {
     // TEST7_INITIAL_CHOICE behavior
     // uml: exit / { trace("Exit TEST7_INITIAL_CHOICE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST7_INITIAL_CHOICE.");`
         trace("Exit TEST7_INITIAL_CHOICE.");
@@ -4468,7 +4317,6 @@ static void TEST7_ROOT_enter(Spec2Sm* self)
     
     // TEST7_ROOT behavior
     // uml: enter / { trace("Enter TEST7_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST7_ROOT.");`
         trace("Enter TEST7_ROOT.");
@@ -4487,7 +4335,6 @@ static void TEST7_ROOT_exit(Spec2Sm* self)
 {
     // TEST7_ROOT behavior
     // uml: exit / { trace("Exit TEST7_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST7_ROOT.");`
         trace("Exit TEST7_ROOT.");
@@ -4530,7 +4377,6 @@ static void TEST7_G_enter(Spec2Sm* self)
     
     // TEST7_G behavior
     // uml: enter / { trace("Enter TEST7_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST7_G.");`
         trace("Enter TEST7_G.");
@@ -4541,7 +4387,6 @@ static void TEST7_G_exit(Spec2Sm* self)
 {
     // TEST7_G behavior
     // uml: exit / { trace("Exit TEST7_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST7_G.");`
         trace("Exit TEST7_G.");
@@ -4571,7 +4416,6 @@ static void TEST7_G_ev2(Spec2Sm* self)
         
         // TEST7_ROOT.InitialState behavior
         // uml: / { trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1."); } TransitionTo(TEST7_S1)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -4601,7 +4445,6 @@ static void TEST7_G_S1_enter(Spec2Sm* self)
     
     // TEST7_G_S1 behavior
     // uml: enter / { trace("Enter TEST7_G_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST7_G_S1.");`
         trace("Enter TEST7_G_S1.");
@@ -4612,7 +4455,6 @@ static void TEST7_G_S1_exit(Spec2Sm* self)
 {
     // TEST7_G_S1 behavior
     // uml: exit / { trace("Exit TEST7_G_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST7_G_S1.");`
         trace("Exit TEST7_G_S1.");
@@ -4634,7 +4476,6 @@ static void TEST7_G_S2_enter(Spec2Sm* self)
     
     // TEST7_G_S2 behavior
     // uml: enter / { trace("Enter TEST7_G_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST7_G_S2.");`
         trace("Enter TEST7_G_S2.");
@@ -4645,7 +4486,6 @@ static void TEST7_G_S2_exit(Spec2Sm* self)
 {
     // TEST7_G_S2 behavior
     // uml: exit / { trace("Exit TEST7_G_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST7_G_S2.");`
         trace("Exit TEST7_G_S2.");
@@ -4667,7 +4507,6 @@ static void TEST7_G_S3_enter(Spec2Sm* self)
     
     // TEST7_G_S3 behavior
     // uml: enter / { trace("Enter TEST7_G_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST7_G_S3.");`
         trace("Enter TEST7_G_S3.");
@@ -4678,7 +4517,6 @@ static void TEST7_G_S3_exit(Spec2Sm* self)
 {
     // TEST7_G_S3 behavior
     // uml: exit / { trace("Exit TEST7_G_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST7_G_S3.");`
         trace("Exit TEST7_G_S3.");
@@ -4702,7 +4540,6 @@ static void TEST7_S1_enter(Spec2Sm* self)
     
     // TEST7_S1 behavior
     // uml: enter / { trace("Enter TEST7_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST7_S1.");`
         trace("Enter TEST7_S1.");
@@ -4713,7 +4550,6 @@ static void TEST7_S1_exit(Spec2Sm* self)
 {
     // TEST7_S1 behavior
     // uml: exit / { trace("Exit TEST7_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST7_S1.");`
         trace("Exit TEST7_S1.");
@@ -4780,7 +4616,6 @@ static void TEST7_S1_ev1(Spec2Sm* self)
         
         // TEST7_G.InitialState behavior
         // uml: else / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3."); } TransitionTo(TEST7_G_S3)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -4854,7 +4689,6 @@ static void TEST7_S1_ev3(Spec2Sm* self)
         
         // TEST7_G.InitialState behavior
         // uml: else / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3."); } TransitionTo(TEST7_G_S3)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -4884,7 +4718,6 @@ static void TEST8_ENTRY_CHOICE_enter(Spec2Sm* self)
     
     // TEST8_ENTRY_CHOICE behavior
     // uml: enter / { trace("Enter TEST8_ENTRY_CHOICE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.");`
         trace("Enter TEST8_ENTRY_CHOICE.");
@@ -4895,7 +4728,6 @@ static void TEST8_ENTRY_CHOICE_exit(Spec2Sm* self)
 {
     // TEST8_ENTRY_CHOICE behavior
     // uml: exit / { trace("Exit TEST8_ENTRY_CHOICE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.");`
         trace("Exit TEST8_ENTRY_CHOICE.");
@@ -4918,7 +4750,6 @@ static void TEST8_ROOT_enter(Spec2Sm* self)
     
     // TEST8_ROOT behavior
     // uml: enter / { trace("Enter TEST8_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST8_ROOT.");`
         trace("Enter TEST8_ROOT.");
@@ -4937,7 +4768,6 @@ static void TEST8_ROOT_exit(Spec2Sm* self)
 {
     // TEST8_ROOT behavior
     // uml: exit / { trace("Exit TEST8_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST8_ROOT.");`
         trace("Exit TEST8_ROOT.");
@@ -4971,7 +4801,6 @@ static void TEST8_ROOT_EntryPoint_1__transition(Spec2Sm* self)
 {
     // TEST8_ROOT.EntryPoint(1) behavior
     // uml: / { trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1."); } TransitionTo(TEST8_S1)
-    if (true)
     {
         // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
@@ -5001,7 +4830,6 @@ static void TEST8_G_enter(Spec2Sm* self)
     
     // TEST8_G behavior
     // uml: enter / { trace("Enter TEST8_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST8_G.");`
         trace("Enter TEST8_G.");
@@ -5012,7 +4840,6 @@ static void TEST8_G_exit(Spec2Sm* self)
 {
     // TEST8_G behavior
     // uml: exit / { trace("Exit TEST8_G."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST8_G.");`
         trace("Exit TEST8_G.");
@@ -5086,7 +4913,6 @@ static void TEST8_G_EntryPoint_1__transition(Spec2Sm* self)
     
     // TEST8_G.EntryPoint(1) behavior
     // uml: else / { trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3."); } TransitionTo(TEST8_G_S3)
-    if (true)
     {
         // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
@@ -5107,7 +4933,6 @@ static void TEST8_G_EntryPoint_3__transition(Spec2Sm* self)
 {
     // TEST8_G.EntryPoint(3) behavior
     // uml: / { trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");\ncount += 0; } TransitionTo(TEST8_G.EntryPoint(1))
-    if (true)
     {
         // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
@@ -5136,7 +4961,6 @@ static void TEST8_G_S1_enter(Spec2Sm* self)
     
     // TEST8_G_S1 behavior
     // uml: enter / { trace("Enter TEST8_G_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST8_G_S1.");`
         trace("Enter TEST8_G_S1.");
@@ -5147,7 +4971,6 @@ static void TEST8_G_S1_exit(Spec2Sm* self)
 {
     // TEST8_G_S1 behavior
     // uml: exit / { trace("Exit TEST8_G_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST8_G_S1.");`
         trace("Exit TEST8_G_S1.");
@@ -5169,7 +4992,6 @@ static void TEST8_G_S2_enter(Spec2Sm* self)
     
     // TEST8_G_S2 behavior
     // uml: enter / { trace("Enter TEST8_G_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST8_G_S2.");`
         trace("Enter TEST8_G_S2.");
@@ -5180,7 +5002,6 @@ static void TEST8_G_S2_exit(Spec2Sm* self)
 {
     // TEST8_G_S2 behavior
     // uml: exit / { trace("Exit TEST8_G_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST8_G_S2.");`
         trace("Exit TEST8_G_S2.");
@@ -5202,7 +5023,6 @@ static void TEST8_G_S3_enter(Spec2Sm* self)
     
     // TEST8_G_S3 behavior
     // uml: enter / { trace("Enter TEST8_G_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST8_G_S3.");`
         trace("Enter TEST8_G_S3.");
@@ -5213,7 +5033,6 @@ static void TEST8_G_S3_exit(Spec2Sm* self)
 {
     // TEST8_G_S3 behavior
     // uml: exit / { trace("Exit TEST8_G_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST8_G_S3.");`
         trace("Exit TEST8_G_S3.");
@@ -5238,7 +5057,6 @@ static void TEST8_S1_enter(Spec2Sm* self)
     
     // TEST8_S1 behavior
     // uml: enter / { trace("Enter TEST8_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST8_S1.");`
         trace("Enter TEST8_S1.");
@@ -5249,7 +5067,6 @@ static void TEST8_S1_exit(Spec2Sm* self)
 {
     // TEST8_S1 behavior
     // uml: exit / { trace("Exit TEST8_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST8_S1.");`
         trace("Exit TEST8_S1.");
@@ -5360,7 +5177,6 @@ static void TEST9_EXIT_CHOICE_enter(Spec2Sm* self)
     
     // TEST9_EXIT_CHOICE behavior
     // uml: enter / { trace("Enter TEST9_EXIT_CHOICE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.");`
         trace("Enter TEST9_EXIT_CHOICE.");
@@ -5371,7 +5187,6 @@ static void TEST9_EXIT_CHOICE_exit(Spec2Sm* self)
 {
     // TEST9_EXIT_CHOICE behavior
     // uml: exit / { trace("Exit TEST9_EXIT_CHOICE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.");`
         trace("Exit TEST9_EXIT_CHOICE.");
@@ -5395,7 +5210,6 @@ static void TEST9_DECIDE_enter(Spec2Sm* self)
     
     // TEST9_DECIDE behavior
     // uml: enter / { trace("Enter TEST9_DECIDE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_DECIDE.");`
         trace("Enter TEST9_DECIDE.");
@@ -5406,7 +5220,6 @@ static void TEST9_DECIDE_exit(Spec2Sm* self)
 {
     // TEST9_DECIDE behavior
     // uml: exit / { trace("Exit TEST9_DECIDE."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_DECIDE.");`
         trace("Exit TEST9_DECIDE.");
@@ -5437,7 +5250,6 @@ static void TEST9_DECIDE_ev1(Spec2Sm* self)
         
         // TEST9_ROOT.InitialState behavior
         // uml: / { trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1."); } TransitionTo(TEST9_S1)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -5449,7 +5261,6 @@ static void TEST9_DECIDE_ev1(Spec2Sm* self)
             
             // TEST9_S1.InitialState behavior
             // uml: / { trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1."); } TransitionTo(TEST9_S1_1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -5487,7 +5298,6 @@ static void TEST9_DECIDE_ev2(Spec2Sm* self)
         
         // TEST9A_ROOT.InitialState behavior
         // uml: / { trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");\ncount = 0; } TransitionTo(TEST9A_S1)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST9A_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -5500,7 +5310,6 @@ static void TEST9_DECIDE_ev2(Spec2Sm* self)
             
             // TEST9A_S1.InitialState behavior
             // uml: / { trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -5532,7 +5341,6 @@ static void TEST9_ROOT_enter(Spec2Sm* self)
     
     // TEST9_ROOT behavior
     // uml: enter / { trace("Enter TEST9_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_ROOT.");`
         trace("Enter TEST9_ROOT.");
@@ -5543,7 +5351,6 @@ static void TEST9_ROOT_exit(Spec2Sm* self)
 {
     // TEST9_ROOT behavior
     // uml: exit / { trace("Exit TEST9_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_ROOT.");`
         trace("Exit TEST9_ROOT.");
@@ -5585,7 +5392,6 @@ static void TEST9_G_S1_enter(Spec2Sm* self)
     
     // TEST9_G_S1 behavior
     // uml: enter / { trace("Enter TEST9_G_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_G_S1.");`
         trace("Enter TEST9_G_S1.");
@@ -5596,7 +5402,6 @@ static void TEST9_G_S1_exit(Spec2Sm* self)
 {
     // TEST9_G_S1 behavior
     // uml: exit / { trace("Exit TEST9_G_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_G_S1.");`
         trace("Exit TEST9_G_S1.");
@@ -5618,7 +5423,6 @@ static void TEST9_G_S2_enter(Spec2Sm* self)
     
     // TEST9_G_S2 behavior
     // uml: enter / { trace("Enter TEST9_G_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_G_S2.");`
         trace("Enter TEST9_G_S2.");
@@ -5629,7 +5433,6 @@ static void TEST9_G_S2_exit(Spec2Sm* self)
 {
     // TEST9_G_S2 behavior
     // uml: exit / { trace("Exit TEST9_G_S2."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_G_S2.");`
         trace("Exit TEST9_G_S2.");
@@ -5651,7 +5454,6 @@ static void TEST9_G_S3_enter(Spec2Sm* self)
     
     // TEST9_G_S3 behavior
     // uml: enter / { trace("Enter TEST9_G_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_G_S3.");`
         trace("Enter TEST9_G_S3.");
@@ -5662,7 +5464,6 @@ static void TEST9_G_S3_exit(Spec2Sm* self)
 {
     // TEST9_G_S3 behavior
     // uml: exit / { trace("Exit TEST9_G_S3."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_G_S3.");`
         trace("Exit TEST9_G_S3.");
@@ -5684,7 +5485,6 @@ static void TEST9_G_S4_enter(Spec2Sm* self)
     
     // TEST9_G_S4 behavior
     // uml: enter / { trace("Enter TEST9_G_S4."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_G_S4.");`
         trace("Enter TEST9_G_S4.");
@@ -5695,7 +5495,6 @@ static void TEST9_G_S4_exit(Spec2Sm* self)
 {
     // TEST9_G_S4 behavior
     // uml: exit / { trace("Exit TEST9_G_S4."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_G_S4.");`
         trace("Exit TEST9_G_S4.");
@@ -5717,7 +5516,6 @@ static void TEST9_S1_enter(Spec2Sm* self)
     
     // TEST9_S1 behavior
     // uml: enter / { trace("Enter TEST9_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_S1.");`
         trace("Enter TEST9_S1.");
@@ -5728,7 +5526,6 @@ static void TEST9_S1_exit(Spec2Sm* self)
 {
     // TEST9_S1 behavior
     // uml: exit / { trace("Exit TEST9_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_S1.");`
         trace("Exit TEST9_S1.");
@@ -5751,7 +5548,6 @@ static void TEST9_S1_1_enter(Spec2Sm* self)
     
     // TEST9_S1_1 behavior
     // uml: enter / { trace("Enter TEST9_S1_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9_S1_1.");`
         trace("Enter TEST9_S1_1.");
@@ -5770,7 +5566,6 @@ static void TEST9_S1_1_exit(Spec2Sm* self)
 {
     // TEST9_S1_1 behavior
     // uml: exit / { trace("Exit TEST9_S1_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9_S1_1.");`
         trace("Exit TEST9_S1_1.");
@@ -5857,7 +5652,6 @@ static void TEST9_S1_1_ev1(Spec2Sm* self)
         
         // TEST9_S1.ExitPoint(1) behavior
         // uml: else / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3."); } TransitionTo(TEST9_G_S3)
-        if (true)
         {
             // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
             TEST9_S1_exit(self);
@@ -5888,7 +5682,6 @@ static void TEST9A_ROOT_enter(Spec2Sm* self)
     
     // TEST9A_ROOT behavior
     // uml: enter / { trace("Enter TEST9A_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9A_ROOT.");`
         trace("Enter TEST9A_ROOT.");
@@ -5899,7 +5692,6 @@ static void TEST9A_ROOT_exit(Spec2Sm* self)
 {
     // TEST9A_ROOT behavior
     // uml: exit / { trace("Exit TEST9A_ROOT."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9A_ROOT.");`
         trace("Exit TEST9A_ROOT.");
@@ -5921,7 +5713,6 @@ static void TEST9A_S1_enter(Spec2Sm* self)
     
     // TEST9A_S1 behavior
     // uml: enter / { trace("Enter TEST9A_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9A_S1.");`
         trace("Enter TEST9A_S1.");
@@ -5932,7 +5723,6 @@ static void TEST9A_S1_exit(Spec2Sm* self)
 {
     // TEST9A_S1 behavior
     // uml: exit / { trace("Exit TEST9A_S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9A_S1.");`
         trace("Exit TEST9A_S1.");
@@ -5955,7 +5745,6 @@ static void TEST9A_S1_1_enter(Spec2Sm* self)
     
     // TEST9A_S1_1 behavior
     // uml: enter / { trace("Enter TEST9A_S1_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter TEST9A_S1_1.");`
         trace("Enter TEST9A_S1_1.");
@@ -5974,7 +5763,6 @@ static void TEST9A_S1_1_exit(Spec2Sm* self)
 {
     // TEST9A_S1_1 behavior
     // uml: exit / { trace("Exit TEST9A_S1_1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit TEST9A_S1_1.");`
         trace("Exit TEST9A_S1_1.");
@@ -6025,7 +5813,6 @@ static void TEST9A_S1_1_ev1(Spec2Sm* self)
             // Already in target. No entering required.
             // TEST9A_S1.InitialState behavior
             // uml: / { trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 

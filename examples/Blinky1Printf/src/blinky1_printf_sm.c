@@ -36,7 +36,7 @@ void blinky1_printf_sm_start(blinky1_printf_sm* self) {
   ROOT_enter(self);
   // ROOT behavior
   // uml: TransitionTo(ROOT.InitialState)
-  if (true) {
+ {
     // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
     exit_up_to_state_handler(self, ROOT_exit);
     
@@ -47,7 +47,7 @@ void blinky1_printf_sm_start(blinky1_printf_sm* self) {
     
     // ROOT.InitialState behavior
     // uml: TransitionTo(LED_OFF)
-    if (true) {
+ {
       // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
       
       // Step 2: Transition action: ``.
@@ -108,14 +108,14 @@ static void LED_OFF_enter(blinky1_printf_sm* self) {
   
   // LED_OFF behavior
   // uml: enter / { turn_led_off(); }
-  if (true) {
+ {
     // Step 1: execute action `turn_led_off();`
     led_turn_off();;
   } // end of behavior for LED_OFF
   
   // LED_OFF behavior
   // uml: enter / { reset_timer(); }
-  if (true) {
+ {
     // Step 1: execute action `reset_timer();`
     self->vars.timer_started_at_ms = app_timer_get_ms();
   } // end of behavior for LED_OFF
@@ -159,7 +159,7 @@ static void LED_ON_enter(blinky1_printf_sm* self) {
   
   // LED_ON behavior
   // uml: enter / { turn_led_on();\nreset_timer(); }
-  if (true) {
+ {
     // Step 1: execute action `turn_led_on();\nreset_timer();`
     led_turn_on();;
     self->vars.timer_started_at_ms = app_timer_get_ms();

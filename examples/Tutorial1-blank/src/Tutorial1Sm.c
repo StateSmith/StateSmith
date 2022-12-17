@@ -40,7 +40,6 @@ void Tutorial1Sm_start(Tutorial1Sm* self)
     ROOT_enter(self);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -52,7 +51,6 @@ void Tutorial1Sm_start(Tutorial1Sm* self)
         
         // ROOT.InitialState behavior
         // uml: TransitionTo(OFF)
-        if (true)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -121,7 +119,6 @@ static void OFF_enter(Tutorial1Sm* self)
     
     // OFF behavior
     // uml: enter / { light_off(); }
-    if (true)
     {
         // Step 1: execute action `light_off();`
         light_off();
@@ -141,7 +138,6 @@ static void OFF_increase(Tutorial1Sm* self)
     
     // OFF behavior
     // uml: INCREASE TransitionTo(ON1)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         OFF_exit(self);
@@ -172,7 +168,6 @@ static void ON1_enter(Tutorial1Sm* self)
     
     // ON1 behavior
     // uml: enter / { light_on1(); }
-    if (true)
     {
         // Step 1: execute action `light_on1();`
         light_on1();
@@ -193,7 +188,6 @@ static void ON1_dim(Tutorial1Sm* self)
     
     // ON1 behavior
     // uml: DIM TransitionTo(OFF)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         ON1_exit(self);
@@ -216,7 +210,6 @@ static void ON1_off(Tutorial1Sm* self)
     
     // ON1 behavior
     // uml: OFF TransitionTo(OFF)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         ON1_exit(self);

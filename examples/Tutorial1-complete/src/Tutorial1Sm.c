@@ -57,7 +57,6 @@ void Tutorial1Sm_start(Tutorial1Sm* self)
     ROOT_enter(self);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -69,7 +68,6 @@ void Tutorial1Sm_start(Tutorial1Sm* self)
         
         // ROOT.InitialState behavior
         // uml: TransitionTo(OFF)
-        if (true)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -141,7 +139,6 @@ static void BOOM_enter(Tutorial1Sm* self)
     
     // BOOM behavior
     // uml: enter / { light_boom(); }
-    if (true)
     {
         // Step 1: execute action `light_boom();`
         light_boom();
@@ -167,7 +164,6 @@ static void OFF_enter(Tutorial1Sm* self)
     
     // OFF behavior
     // uml: enter / { light_off(); }
-    if (true)
     {
         // Step 1: execute action `light_off();`
         light_off();
@@ -187,7 +183,6 @@ static void OFF_increase(Tutorial1Sm* self)
     
     // OFF behavior
     // uml: INCREASE TransitionTo(ON1)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         OFF_exit(self);
@@ -230,7 +225,6 @@ static void ON_GROUP_off(Tutorial1Sm* self)
     
     // ON_GROUP behavior
     // uml: OFF TransitionTo(OFF)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -261,7 +255,6 @@ static void ON1_enter(Tutorial1Sm* self)
     
     // ON1 behavior
     // uml: enter / { light_on1(); }
-    if (true)
     {
         // Step 1: execute action `light_on1();`
         light_on1();
@@ -282,7 +275,6 @@ static void ON1_dim(Tutorial1Sm* self)
     
     // ON1 behavior
     // uml: DIM TransitionTo(OFF)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -305,7 +297,6 @@ static void ON1_increase(Tutorial1Sm* self)
     
     // ON1 behavior
     // uml: INCREASE TransitionTo(ON2)
-    if (true)
     {
         // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
         ON1_exit(self);
@@ -336,7 +327,6 @@ static void ON2_enter(Tutorial1Sm* self)
     
     // ON2 behavior
     // uml: enter / { light_on2(); }
-    if (true)
     {
         // Step 1: execute action `light_on2();`
         light_on2();
@@ -357,7 +347,6 @@ static void ON2_dim(Tutorial1Sm* self)
     
     // ON2 behavior
     // uml: DIM TransitionTo(ON1)
-    if (true)
     {
         // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
         ON2_exit(self);
@@ -380,7 +369,6 @@ static void ON2_increase(Tutorial1Sm* self)
     
     // ON2 behavior
     // uml: INCREASE TransitionTo(ON3)
-    if (true)
     {
         // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
         ON2_exit(self);
@@ -411,7 +399,6 @@ static void ON3_enter(Tutorial1Sm* self)
     
     // ON3 behavior
     // uml: enter / { count = 0;\nlight_on3(); }
-    if (true)
     {
         // Step 1: execute action `count = 0;\nlight_on3();`
         self->vars.count = 0;
@@ -433,7 +420,6 @@ static void ON3_dim(Tutorial1Sm* self)
     
     // ON3 behavior
     // uml: DIM TransitionTo(ON2)
-    if (true)
     {
         // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
         ON3_exit(self);
@@ -456,7 +442,6 @@ static void ON3_increase(Tutorial1Sm* self)
     
     // ON3 behavior
     // uml: 1. INCREASE / { count++; }
-    if (true)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.

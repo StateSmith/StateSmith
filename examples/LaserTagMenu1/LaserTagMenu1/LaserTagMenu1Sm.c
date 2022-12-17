@@ -160,7 +160,6 @@ void LaserTagMenu1Sm_start(LaserTagMenu1Sm* self)
     ROOT_enter(self);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -172,7 +171,6 @@ void LaserTagMenu1Sm_start(LaserTagMenu1Sm* self)
         
         // ROOT.InitialState behavior
         // uml: TransitionTo(WELCOME_SCREEN)
-        if (true)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -279,7 +277,6 @@ static void HOME_ok_press(LaserTagMenu1Sm* self)
     
     // HOME behavior
     // uml: OK_PRESS TransitionTo(MAIN_MENU)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -292,7 +289,6 @@ static void HOME_ok_press(LaserTagMenu1Sm* self)
         
         // MAIN_MENU.InitialState behavior
         // uml: TransitionTo(MM_SELECT_CLASS_OPTION)
-        if (true)
         {
             // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -323,7 +319,6 @@ static void HOME1_enter(LaserTagMenu1Sm* self)
     
     // HOME1 behavior
     // uml: enter / { show_home_screen_1(); }
-    if (true)
     {
         // Step 1: execute action `show_home_screen_1();`
         Display_show_home_screen_1();
@@ -344,7 +339,6 @@ static void HOME1_down_press(LaserTagMenu1Sm* self)
     
     // HOME1 behavior
     // uml: DOWN_PRESS TransitionTo(HOME2)
-    if (true)
     {
         // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME1_exit(self);
@@ -367,7 +361,6 @@ static void HOME1_up_press(LaserTagMenu1Sm* self)
     
     // HOME1 behavior
     // uml: UP_PRESS TransitionTo(HOME3)
-    if (true)
     {
         // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME1_exit(self);
@@ -398,7 +391,6 @@ static void HOME2_enter(LaserTagMenu1Sm* self)
     
     // HOME2 behavior
     // uml: enter / { show_home_screen_2(); }
-    if (true)
     {
         // Step 1: execute action `show_home_screen_2();`
         Display_show_home_screen_2();
@@ -419,7 +411,6 @@ static void HOME2_down_press(LaserTagMenu1Sm* self)
     
     // HOME2 behavior
     // uml: DOWN_PRESS TransitionTo(HOME3)
-    if (true)
     {
         // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME2_exit(self);
@@ -442,7 +433,6 @@ static void HOME2_up_press(LaserTagMenu1Sm* self)
     
     // HOME2 behavior
     // uml: UP_PRESS TransitionTo(HOME1)
-    if (true)
     {
         // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME2_exit(self);
@@ -473,7 +463,6 @@ static void HOME3_enter(LaserTagMenu1Sm* self)
     
     // HOME3 behavior
     // uml: enter / { show_home_screen_3(); }
-    if (true)
     {
         // Step 1: execute action `show_home_screen_3();`
         Display_show_home_screen_3();
@@ -494,7 +483,6 @@ static void HOME3_down_press(LaserTagMenu1Sm* self)
     
     // HOME3 behavior
     // uml: DOWN_PRESS TransitionTo(HOME1)
-    if (true)
     {
         // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME3_exit(self);
@@ -517,7 +505,6 @@ static void HOME3_up_press(LaserTagMenu1Sm* self)
     
     // HOME3 behavior
     // uml: UP_PRESS TransitionTo(HOME2)
-    if (true)
     {
         // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME3_exit(self);
@@ -561,7 +548,6 @@ static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self)
     
     // MENUS_GROUP behavior
     // uml: BACK_HELD TransitionTo(HOME)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -573,7 +559,6 @@ static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self)
         
         // HOME.InitialState behavior
         // uml: TransitionTo(HOME1)
-        if (true)
         {
             // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -596,7 +581,6 @@ static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self)
     
     // MENUS_GROUP behavior
     // uml: BACK_PRESS TransitionTo(HOME)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -608,7 +592,6 @@ static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self)
         
         // HOME.InitialState behavior
         // uml: TransitionTo(HOME1)
-        if (true)
         {
             // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -638,7 +621,6 @@ static void CLASS_SAVED_enter(LaserTagMenu1Sm* self)
     
     // CLASS_SAVED behavior
     // uml: enter / { Display_class_saved(); }
-    if (true)
     {
         // Step 1: execute action `Display_class_saved();`
         Display_class_saved();
@@ -646,7 +628,6 @@ static void CLASS_SAVED_enter(LaserTagMenu1Sm* self)
     
     // CLASS_SAVED behavior
     // uml: enter / { reset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -696,7 +677,6 @@ static void MAIN_MENU_enter(LaserTagMenu1Sm* self)
     
     // MAIN_MENU behavior
     // uml: enter / { Display_menu_header("MAIN MENU"); }
-    if (true)
     {
         // Step 1: execute action `Display_menu_header("MAIN MENU");`
         Display_menu_header("MAIN MENU");
@@ -723,7 +703,6 @@ static void MM_BACK_PRESS_EATER_OPTION_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_OPTION behavior
     // uml: enter / { Display_menu_option("EAT BACK PRESS?"); }
-    if (true)
     {
         // Step 1: execute action `Display_menu_option("EAT BACK PRESS?");`
         Display_menu_option("EAT BACK PRESS?");
@@ -731,7 +710,6 @@ static void MM_BACK_PRESS_EATER_OPTION_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_OPTION behavior
     // uml: enter / { menu_at_bottom(); }
-    if (true)
     {
         // Step 1: execute action `menu_at_bottom();`
         Display_menu_at_bottom();
@@ -752,7 +730,6 @@ static void MM_BACK_PRESS_EATER_OPTION_ok_press(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_OPTION behavior
     // uml: OK_PRESS TransitionTo(MM_BACK_PRESS_EATER)
-    if (true)
     {
         // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MENUS_GROUP_exit);
@@ -764,7 +741,6 @@ static void MM_BACK_PRESS_EATER_OPTION_ok_press(LaserTagMenu1Sm* self)
         
         // MM_BACK_PRESS_EATER.InitialState behavior
         // uml: TransitionTo(MM_BACK_PRESS_EATER_1)
-        if (true)
         {
             // Step 1: Exit states until we reach `MM_BACK_PRESS_EATER` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -787,7 +763,6 @@ static void MM_BACK_PRESS_EATER_OPTION_up_press(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_OPTION behavior
     // uml: UP_PRESS TransitionTo(MM_SHOW_INFO_OPTION)
-    if (true)
     {
         // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition).
         MM_BACK_PRESS_EATER_OPTION_exit(self);
@@ -818,7 +793,6 @@ static void MM_SELECT_CLASS_OPTION_enter(LaserTagMenu1Sm* self)
     
     // MM_SELECT_CLASS_OPTION behavior
     // uml: enter / { Display_menu_option("SELECT CLASS");\nmenu_at_top(); }
-    if (true)
     {
         // Step 1: execute action `Display_menu_option("SELECT CLASS");\nmenu_at_top();`
         Display_menu_option("SELECT CLASS");
@@ -840,7 +814,6 @@ static void MM_SELECT_CLASS_OPTION_down_press(LaserTagMenu1Sm* self)
     
     // MM_SELECT_CLASS_OPTION behavior
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_OPTION)
-    if (true)
     {
         // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition).
         MM_SELECT_CLASS_OPTION_exit(self);
@@ -863,7 +836,6 @@ static void MM_SELECT_CLASS_OPTION_ok_press(LaserTagMenu1Sm* self)
     
     // MM_SELECT_CLASS_OPTION behavior
     // uml: OK_PRESS TransitionTo(MM_SELECT_CLASS)
-    if (true)
     {
         // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MENUS_GROUP_exit);
@@ -875,7 +847,6 @@ static void MM_SELECT_CLASS_OPTION_ok_press(LaserTagMenu1Sm* self)
         
         // MM_SELECT_CLASS.InitialState behavior
         // uml: TransitionTo(MM_SC_ENGINEER)
-        if (true)
         {
             // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -907,7 +878,6 @@ static void MM_SHOW_INFO_OPTION_enter(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_OPTION behavior
     // uml: enter / { Display_menu_option("SHOW INFO"); }
-    if (true)
     {
         // Step 1: execute action `Display_menu_option("SHOW INFO");`
         Display_menu_option("SHOW INFO");
@@ -915,7 +885,6 @@ static void MM_SHOW_INFO_OPTION_enter(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_OPTION behavior
     // uml: enter / { menu_at_mid(); }
-    if (true)
     {
         // Step 1: execute action `menu_at_mid();`
         Display_menu_at_mid();
@@ -937,7 +906,6 @@ static void MM_SHOW_INFO_OPTION_down_press(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_OPTION behavior
     // uml: DOWN_PRESS TransitionTo(MM_BACK_PRESS_EATER_OPTION)
-    if (true)
     {
         // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_OPTION_exit(self);
@@ -960,7 +928,6 @@ static void MM_SHOW_INFO_OPTION_ok_press(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_OPTION behavior
     // uml: OK_PRESS TransitionTo(MM_SHOW_INFO)
-    if (true)
     {
         // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MENUS_GROUP_exit);
@@ -972,7 +939,6 @@ static void MM_SHOW_INFO_OPTION_ok_press(LaserTagMenu1Sm* self)
         
         // MM_SHOW_INFO.InitialState behavior
         // uml: TransitionTo(MM_SHOW_INFO_1)
-        if (true)
         {
             // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -995,7 +961,6 @@ static void MM_SHOW_INFO_OPTION_up_press(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_OPTION behavior
     // uml: UP_PRESS TransitionTo(MM_SELECT_CLASS_OPTION)
-    if (true)
     {
         // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_OPTION_exit(self);
@@ -1025,7 +990,6 @@ static void MM_BACK_PRESS_EATER_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER behavior
     // uml: enter / { back_press_eat_count = 0;\nshow_back_press_count(); }
-    if (true)
     {
         // Step 1: execute action `back_press_eat_count = 0;\nshow_back_press_count();`
         self->vars.back_press_eat_count = 0;
@@ -1047,7 +1011,6 @@ static void MM_BACK_PRESS_EATER_back_press(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER behavior
     // uml: BACK_PRESS / { back_press_eat_count++;\nshow_back_press_count(); }
-    if (true)
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         
@@ -1076,7 +1039,6 @@ static void MM_BACK_PRESS_EATER_1_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_1 behavior
     // uml: enter / { show_back_press_taunt("GET TO 5?"); }
-    if (true)
     {
         // Step 1: execute action `show_back_press_taunt("GET TO 5?");`
         Display_show_back_press_taunt("GET TO 5?");
@@ -1126,7 +1088,6 @@ static void MM_BACK_PRESS_EATER_2_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_2 behavior
     // uml: enter / { show_back_press_taunt("BACKPRESS FUTILE"); }
-    if (true)
     {
         // Step 1: execute action `show_back_press_taunt("BACKPRESS FUTILE");`
         Display_show_back_press_taunt("BACKPRESS FUTILE");
@@ -1134,7 +1095,6 @@ static void MM_BACK_PRESS_EATER_2_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_2 behavior
     // uml: enter / { reset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -1184,7 +1144,6 @@ static void MM_BACK_PRESS_EATER_3_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_3 behavior
     // uml: enter / { show_back_press_taunt("TRY HOLDING BACK"); }
-    if (true)
     {
         // Step 1: execute action `show_back_press_taunt("TRY HOLDING BACK");`
         Display_show_back_press_taunt("TRY HOLDING BACK");
@@ -1192,7 +1151,6 @@ static void MM_BACK_PRESS_EATER_3_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_3 behavior
     // uml: enter / { reset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -1242,7 +1200,6 @@ static void MM_BACK_PRESS_EATER_4_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_4 behavior
     // uml: enter / { show_back_press_taunt("I CAN'T EVENT..."); }
-    if (true)
     {
         // Step 1: execute action `show_back_press_taunt("I CAN'T EVENT...");`
         Display_show_back_press_taunt("I CAN'T EVENT...");
@@ -1250,7 +1207,6 @@ static void MM_BACK_PRESS_EATER_4_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_4 behavior
     // uml: enter / { reset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -1301,7 +1257,6 @@ static void MM_BACK_PRESS_EATER_5_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_5 behavior
     // uml: enter / { reset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -1309,7 +1264,6 @@ static void MM_BACK_PRESS_EATER_5_enter(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_5 behavior
     // uml: enter / { show_random_back_press_taunt(); }
-    if (true)
     {
         // Step 1: execute action `show_random_back_press_taunt();`
         Display_show_random_back_press_taunt();
@@ -1331,7 +1285,6 @@ static void MM_BACK_PRESS_EATER_5_back_press(LaserTagMenu1Sm* self)
     
     // MM_BACK_PRESS_EATER_5 behavior
     // uml: BACK_PRESS / { dont_consume_event(); // allow parent inc count\nreset_timer1();\nshow_random_back_press_taunt(); }
-    if (true)
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
         
@@ -1404,7 +1357,6 @@ static void MM_SELECT_CLASS_enter(LaserTagMenu1Sm* self)
     
     // MM_SELECT_CLASS behavior
     // uml: enter / { Display_menu_header("SELECT CLASS"); }
-    if (true)
     {
         // Step 1: execute action `Display_menu_header("SELECT CLASS");`
         Display_menu_header("SELECT CLASS");
@@ -1426,7 +1378,6 @@ static void MM_SELECT_CLASS_back_press(LaserTagMenu1Sm* self)
     
     // MM_SELECT_CLASS behavior
     // uml: BACK_PRESS TransitionTo(MM_SELECT_CLASS_OPTION)
-    if (true)
     {
         // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MENUS_GROUP_exit);
@@ -1450,7 +1401,6 @@ static void MM_SELECT_CLASS_ok_press(LaserTagMenu1Sm* self)
     
     // MM_SELECT_CLASS behavior
     // uml: OK_PRESS / { save_option_as_class(); } TransitionTo(MM_SELECT_CLASS.ExitPoint(saved))
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
@@ -1463,7 +1413,6 @@ static void MM_SELECT_CLASS_ok_press(LaserTagMenu1Sm* self)
         
         // MM_SELECT_CLASS.ExitPoint(saved) behavior
         // uml: TransitionTo(CLASS_SAVED)
-        if (true)
         {
             // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
             MM_SELECT_CLASS_exit(self);
@@ -1494,7 +1443,6 @@ static void MM_SC_ENGINEER_enter(LaserTagMenu1Sm* self)
     
     // MM_SC_ENGINEER behavior
     // uml: enter / { Display_menu_option("ENGINEER");\noption_value = PlayerClass_ENGINEER;\nmenu_at_top(); }
-    if (true)
     {
         // Step 1: execute action `Display_menu_option("ENGINEER");\noption_value = PlayerClass_ENGINEER;\nmenu_at_top();`
         Display_menu_option("ENGINEER");
@@ -1516,7 +1464,6 @@ static void MM_SC_ENGINEER_down_press(LaserTagMenu1Sm* self)
     
     // MM_SC_ENGINEER behavior
     // uml: DOWN_PRESS TransitionTo(MM_SC_HEAVY)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         MM_SC_ENGINEER_exit(self);
@@ -1548,7 +1495,6 @@ static void MM_SC_MID_enter(LaserTagMenu1Sm* self)
     
     // MM_SC_MID behavior
     // uml: enter / { menu_at_mid(); }
-    if (true)
     {
         // Step 1: execute action `menu_at_mid();`
         Display_menu_at_mid();
@@ -1569,7 +1515,6 @@ static void MM_SC_MID_down_held(LaserTagMenu1Sm* self)
     
     // MM_SC_MID behavior
     // uml: DOWN_HELD TransitionTo(MM_SC_SPY)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
@@ -1592,7 +1537,6 @@ static void MM_SC_MID_up_held(LaserTagMenu1Sm* self)
     
     // MM_SC_MID behavior
     // uml: UP_HELD TransitionTo(MM_SC_ENGINEER)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
@@ -1623,7 +1567,6 @@ static void MM_SC_ARCHER_enter(LaserTagMenu1Sm* self)
     
     // MM_SC_ARCHER behavior
     // uml: enter / { set_menu_option_and_class(ARCHER); }
-    if (true)
     {
         // Step 1: execute action `set_menu_option_and_class(ARCHER);`
         Display_menu_option("ARCHER"); self->vars.option_value = PlayerClass_ARCHER;
@@ -1644,7 +1587,6 @@ static void MM_SC_ARCHER_down_press(LaserTagMenu1Sm* self)
     
     // MM_SC_ARCHER behavior
     // uml: DOWN_PRESS TransitionTo(MM_SC_WIZARD)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SC_MID` state (Least Common Ancestor for transition).
         MM_SC_ARCHER_exit(self);
@@ -1667,7 +1609,6 @@ static void MM_SC_ARCHER_up_press(LaserTagMenu1Sm* self)
     
     // MM_SC_ARCHER behavior
     // uml: UP_PRESS TransitionTo(MM_SC_HEAVY)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SC_MID` state (Least Common Ancestor for transition).
         MM_SC_ARCHER_exit(self);
@@ -1698,7 +1639,6 @@ static void MM_SC_HEAVY_enter(LaserTagMenu1Sm* self)
     
     // MM_SC_HEAVY behavior
     // uml: enter / { Display_menu_option("HEAVY");\nset_option_class(HEAVY); }
-    if (true)
     {
         // Step 1: execute action `Display_menu_option("HEAVY");\nset_option_class(HEAVY);`
         Display_menu_option("HEAVY");
@@ -1720,7 +1660,6 @@ static void MM_SC_HEAVY_down_press(LaserTagMenu1Sm* self)
     
     // MM_SC_HEAVY behavior
     // uml: DOWN_PRESS TransitionTo(MM_SC_ARCHER)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SC_MID` state (Least Common Ancestor for transition).
         MM_SC_HEAVY_exit(self);
@@ -1743,7 +1682,6 @@ static void MM_SC_HEAVY_up_press(LaserTagMenu1Sm* self)
     
     // MM_SC_HEAVY behavior
     // uml: UP_PRESS TransitionTo(MM_SC_ENGINEER)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
@@ -1774,7 +1712,6 @@ static void MM_SC_WIZARD_enter(LaserTagMenu1Sm* self)
     
     // MM_SC_WIZARD behavior
     // uml: enter / { set_menu_option_and_class(WIZARD); }
-    if (true)
     {
         // Step 1: execute action `set_menu_option_and_class(WIZARD);`
         Display_menu_option("WIZARD"); self->vars.option_value = PlayerClass_WIZARD;
@@ -1795,7 +1732,6 @@ static void MM_SC_WIZARD_down_press(LaserTagMenu1Sm* self)
     
     // MM_SC_WIZARD behavior
     // uml: DOWN_PRESS TransitionTo(MM_SC_SPY)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
@@ -1818,7 +1754,6 @@ static void MM_SC_WIZARD_up_press(LaserTagMenu1Sm* self)
     
     // MM_SC_WIZARD behavior
     // uml: UP_PRESS TransitionTo(MM_SC_ARCHER)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SC_MID` state (Least Common Ancestor for transition).
         MM_SC_WIZARD_exit(self);
@@ -1848,7 +1783,6 @@ static void MM_SC_SPY_enter(LaserTagMenu1Sm* self)
     
     // MM_SC_SPY behavior
     // uml: enter / { set_menu_option_and_class(SPY);\nmenu_at_bottom(); }
-    if (true)
     {
         // Step 1: execute action `set_menu_option_and_class(SPY);\nmenu_at_bottom();`
         Display_menu_option("SPY"); self->vars.option_value = PlayerClass_SPY;
@@ -1869,7 +1803,6 @@ static void MM_SC_SPY_up_press(LaserTagMenu1Sm* self)
     
     // MM_SC_SPY behavior
     // uml: UP_PRESS TransitionTo(MM_SC_WIZARD)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         MM_SC_SPY_exit(self);
@@ -1913,7 +1846,6 @@ static void MM_SHOW_INFO_back_press(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO behavior
     // uml: BACK_PRESS TransitionTo(MM_SHOW_INFO_OPTION)
-    if (true)
     {
         // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, MENUS_GROUP_exit);
@@ -1945,7 +1877,6 @@ static void MM_SHOW_INFO_1_enter(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_1 behavior
     // uml: enter / { Display_top_line("INFO 1 LINE 1");\nDisplay_bot_line("INFO 1 LINE 2");\nreset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `Display_top_line("INFO 1 LINE 1");\nDisplay_bot_line("INFO 1 LINE 2");\nreset_timer1();`
         Display_top_line("INFO 1 LINE 1");
@@ -1991,7 +1922,6 @@ static void MM_SHOW_INFO_1_down_press(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_1 behavior
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_2)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_1_exit(self);
@@ -2022,7 +1952,6 @@ static void MM_SHOW_INFO_2_enter(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_2 behavior
     // uml: enter / { Display_top_line("INFO 2 LINE 1");\nDisplay_bot_line("INFO 2 LINE 2");\nreset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `Display_top_line("INFO 2 LINE 1");\nDisplay_bot_line("INFO 2 LINE 2");\nreset_timer1();`
         Display_top_line("INFO 2 LINE 1");
@@ -2068,7 +1997,6 @@ static void MM_SHOW_INFO_2_down_press(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_2 behavior
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_3)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_2_exit(self);
@@ -2099,7 +2027,6 @@ static void MM_SHOW_INFO_3_enter(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_3 behavior
     // uml: enter / { Display_top_line("INFO 3 LINE 1");\nDisplay_bot_line("INFO 3 LINE 2");\nreset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `Display_top_line("INFO 3 LINE 1");\nDisplay_bot_line("INFO 3 LINE 2");\nreset_timer1();`
         Display_top_line("INFO 3 LINE 1");
@@ -2145,7 +2072,6 @@ static void MM_SHOW_INFO_3_down_press(LaserTagMenu1Sm* self)
     
     // MM_SHOW_INFO_3 behavior
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_1)
-    if (true)
     {
         // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_3_exit(self);
@@ -2175,7 +2101,6 @@ static void WELCOME_SCREEN_enter(LaserTagMenu1Sm* self)
     
     // WELCOME_SCREEN behavior
     // uml: enter / { Display_top_line("WELCOME!"); }
-    if (true)
     {
         // Step 1: execute action `Display_top_line("WELCOME!");`
         Display_top_line("WELCOME!");
@@ -2183,7 +2108,6 @@ static void WELCOME_SCREEN_enter(LaserTagMenu1Sm* self)
     
     // WELCOME_SCREEN behavior
     // uml: enter / { reset_timer1(); }
-    if (true)
     {
         // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -2215,7 +2139,6 @@ static void WELCOME_SCREEN_do(LaserTagMenu1Sm* self)
         
         // HOME.InitialState behavior
         // uml: TransitionTo(HOME1)
-        if (true)
         {
             // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             

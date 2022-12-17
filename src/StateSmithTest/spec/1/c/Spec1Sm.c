@@ -50,7 +50,6 @@ void Spec1Sm_start(Spec1Sm* self)
     ROOT_enter(self);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -62,7 +61,6 @@ void Spec1Sm_start(Spec1Sm* self)
         
         // ROOT.InitialState behavior
         // uml: / { trace("Transition action `` for ROOT.InitialState to S."); } TransitionTo(S)
-        if (true)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -74,7 +72,6 @@ void Spec1Sm_start(Spec1Sm* self)
             
             // S.InitialState behavior
             // uml: / { trace("Transition action `` for S.InitialState to S1."); } TransitionTo(S1)
-            if (true)
             {
                 // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -86,7 +83,6 @@ void Spec1Sm_start(Spec1Sm* self)
                 
                 // S1.InitialState behavior
                 // uml: / { trace("Transition action `` for S1.InitialState to S11."); } TransitionTo(S11)
-                if (true)
                 {
                     // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -144,7 +140,6 @@ static void ROOT_enter(Spec1Sm* self)
     
     // ROOT behavior
     // uml: enter / { trace("Enter Spec1Sm."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter Spec1Sm.");`
         trace("Enter Spec1Sm.");
@@ -155,7 +150,6 @@ static void ROOT_exit(Spec1Sm* self)
 {
     // ROOT behavior
     // uml: exit / { trace("Exit Spec1Sm."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit Spec1Sm.");`
         trace("Exit Spec1Sm.");
@@ -177,7 +171,6 @@ static void S_enter(Spec1Sm* self)
     
     // S behavior
     // uml: enter / { trace("Enter S."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter S.");`
         trace("Enter S.");
@@ -188,7 +181,6 @@ static void S_exit(Spec1Sm* self)
 {
     // S behavior
     // uml: exit / { trace("Exit S."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit S.");`
         trace("Exit S.");
@@ -210,7 +202,6 @@ static void S1_enter(Spec1Sm* self)
     
     // S1 behavior
     // uml: enter / { trace("Enter S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter S1.");`
         trace("Enter S1.");
@@ -221,7 +212,6 @@ static void S1_exit(Spec1Sm* self)
 {
     // S1 behavior
     // uml: exit / { trace("Exit S1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit S1.");`
         trace("Exit S1.");
@@ -244,7 +234,6 @@ static void S11_enter(Spec1Sm* self)
     
     // S11 behavior
     // uml: enter / { trace("Enter S11."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter S11.");`
         trace("Enter S11.");
@@ -255,7 +244,6 @@ static void S11_exit(Spec1Sm* self)
 {
     // S11 behavior
     // uml: exit / { trace("Exit S11."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit S11.");`
         trace("Exit S11.");
@@ -285,7 +273,6 @@ static void S11_ev1(Spec1Sm* self)
         
         // S1.ExitPoint(1) behavior
         // uml: / { trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1)."); } TransitionTo(T11.EntryPoint(1))
-        if (true)
         {
             // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition).
             S1_exit(self);
@@ -300,7 +287,6 @@ static void S11_ev1(Spec1Sm* self)
             
             // T11.EntryPoint(1) behavior
             // uml: / { trace("Transition action `` for T11.EntryPoint(1) to T111."); } TransitionTo(T111)
-            if (true)
             {
                 // Step 1: Exit states until we reach `T11` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -331,7 +317,6 @@ static void T1_enter(Spec1Sm* self)
     
     // T1 behavior
     // uml: enter / { trace("Enter T1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter T1.");`
         trace("Enter T1.");
@@ -342,7 +327,6 @@ static void T1_exit(Spec1Sm* self)
 {
     // T1 behavior
     // uml: exit / { trace("Exit T1."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit T1.");`
         trace("Exit T1.");
@@ -365,7 +349,6 @@ static void T11_enter(Spec1Sm* self)
     
     // T11 behavior
     // uml: enter / { trace("Enter T11."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter T11.");`
         trace("Enter T11.");
@@ -376,7 +359,6 @@ static void T11_exit(Spec1Sm* self)
 {
     // T11 behavior
     // uml: exit / { trace("Exit T11."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit T11.");`
         trace("Exit T11.");
@@ -406,7 +388,6 @@ static void T11_ev2(Spec1Sm* self)
         
         // S1.InitialState behavior
         // uml: / { trace("Transition action `` for S1.InitialState to S11."); } TransitionTo(S11)
-        if (true)
         {
             // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -436,7 +417,6 @@ static void T111_enter(Spec1Sm* self)
     
     // T111 behavior
     // uml: enter / { trace("Enter T111."); }
-    if (true)
     {
         // Step 1: execute action `trace("Enter T111.");`
         trace("Enter T111.");
@@ -447,7 +427,6 @@ static void T111_exit(Spec1Sm* self)
 {
     // T111 behavior
     // uml: exit / { trace("Exit T111."); }
-    if (true)
     {
         // Step 1: execute action `trace("Exit T111.");`
         trace("Exit T111.");

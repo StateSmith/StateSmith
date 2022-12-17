@@ -59,20 +59,17 @@ namespace StateSmith.output.C99BalancedCoder1
             OutputTransitionCodeInner(behavior);
         }
 
-        private string OutputGuardCondition(Behavior b)
+        private void OutputGuardStart(Behavior b)
         {
-            string expandedGuardCode;
-
             if (b.HasGuardCode())
             {
-                expandedGuardCode = ExpandingVisitor.ParseAndExpandCode(ctx.expander, b.guardCode);
+                string expandedGuardCode = ExpandingVisitor.ParseAndExpandCode(ctx.expander, b.guardCode);
+                file.Append($"if ({expandedGuardCode})");
             }
             else
             {
-                expandedGuardCode = "true";
+                var x = 2;
             }
-
-            return expandedGuardCode;
         }
 
         private void DescribeBehaviorWithUmlComment(Behavior b)
@@ -175,7 +172,7 @@ namespace StateSmith.output.C99BalancedCoder1
         {
             file.AppendLine($"// {Vertex.Describe(behavior.OwningVertex)} behavior");
             DescribeBehaviorWithUmlComment(behavior);
-            file.Append($"if ({OutputGuardCondition(behavior)})");
+            OutputGuardStart(behavior);
         }
 
         private void OutputAnyActionCode(Behavior behavior, bool isForTransition)

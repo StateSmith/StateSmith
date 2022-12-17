@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## WIP
 ### Added
 - Improved generated code clarity by showing step 1,2,3...
+- Improved generated code clarity by removing `if (true)` for behaviors with no guard clause.
 
 ## [0.6.0-alpha]
 ### Fixed

@@ -45,7 +45,6 @@ void ButtonSm1_start(ButtonSm1* self)
     ROOT_enter(self);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -57,7 +56,6 @@ void ButtonSm1_start(ButtonSm1* self)
         
         // ROOT.InitialState behavior
         // uml: TransitionTo(NOT_PRESSED)
-        if (true)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -128,7 +126,6 @@ static void NOT_PRESSED_enter(ButtonSm1* self)
     
     // NOT_PRESSED behavior
     // uml: enter / { reset_debounce_timer(); }
-    if (true)
     {
         // Step 1: execute action `reset_debounce_timer();`
         self->vars.debounce_started_at_ms = (2047 & PortApi_get_time_ms());
@@ -160,7 +157,6 @@ static void NOT_PRESSED_do(ButtonSm1* self)
         
         // PRESSED.InitialState behavior
         // uml: TransitionTo(CONFIRMING_HELD)
-        if (true)
         {
             // Step 1: Exit states until we reach `PRESSED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -190,7 +186,6 @@ static void PRESSED_enter(ButtonSm1* self)
     
     // PRESSED behavior
     // uml: enter / { reset_debounce_timer();\noutput_event(press); }
-    if (true)
     {
         // Step 1: execute action `reset_debounce_timer();\noutput_event(press);`
         self->vars.debounce_started_at_ms = (2047 & PortApi_get_time_ms());
@@ -287,7 +282,6 @@ static void HELD_enter(ButtonSm1* self)
     
     // HELD behavior
     // uml: enter / { output_event(held); }
-    if (true)
     {
         // Step 1: execute action `output_event(held);`
         self->vars.output_event_held = true;

@@ -38,7 +38,6 @@ void BlankTemplateSm_start(BlankTemplateSm* self)
     ROOT_enter(self);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         exit_up_to_state_handler(self, ROOT_exit);
@@ -50,7 +49,6 @@ void BlankTemplateSm_start(BlankTemplateSm* self)
         
         // ROOT.InitialState behavior
         // uml: TransitionTo(STATE_1)
-        if (true)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -131,7 +129,6 @@ static void STATE_1_do(BlankTemplateSm* self)
     
     // STATE_1 behavior
     // uml: do TransitionTo(STATE_2)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         STATE_1_exit(self);
@@ -173,7 +170,6 @@ static void STATE_2_do(BlankTemplateSm* self)
     
     // STATE_2 behavior
     // uml: do TransitionTo(STATE_1)
-    if (true)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         STATE_2_exit(self);
