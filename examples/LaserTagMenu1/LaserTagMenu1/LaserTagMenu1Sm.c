@@ -137,6 +137,8 @@ static void WELCOME_SCREEN_enter(LaserTagMenu1Sm* self);
 static void WELCOME_SCREEN_exit(LaserTagMenu1Sm* self);
 static void WELCOME_SCREEN_do(LaserTagMenu1Sm* self);
 
+// This function is used when StateSmith doesn't know what the active leaf state is at compile time due to sub states
+// or when multiple states need to be exited.
 static void exit_up_to_state_handler(LaserTagMenu1Sm* self, const LaserTagMenu1Sm_Func desired_state_exit_handler);
 
 
@@ -160,24 +162,29 @@ void LaserTagMenu1Sm_start(LaserTagMenu1Sm* self)
     // uml: TransitionTo(ROOT.InitialState)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
-        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, ROOT_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `ROOT.InitialState`.
+        // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
         
         // ROOT.InitialState behavior
         // uml: TransitionTo(WELCOME_SCREEN)
         if (true)
         {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `WELCOME_SCREEN`.
             WELCOME_SCREEN_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_WELCOME_SCREEN;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
 }
@@ -274,11 +281,12 @@ static void HOME_ok_press(LaserTagMenu1Sm* self)
     // uml: OK_PRESS TransitionTo(MAIN_MENU)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be HOME or one of its sub states.
-        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, ROOT_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MAIN_MENU`.
         MENUS_GROUP_enter(self);
         MAIN_MENU_enter(self);
         
@@ -286,14 +294,17 @@ static void HOME_ok_press(LaserTagMenu1Sm* self)
         // uml: TransitionTo(MM_SELECT_CLASS_OPTION)
         if (true)
         {
+            // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `MM_SELECT_CLASS_OPTION`.
             MM_SELECT_CLASS_OPTION_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for MAIN_MENU.InitialState
     } // end of behavior for HOME
 }
@@ -314,6 +325,7 @@ static void HOME1_enter(LaserTagMenu1Sm* self)
     // uml: enter / { show_home_screen_1(); }
     if (true)
     {
+        // Step 1: execute action `show_home_screen_1();`
         Display_show_home_screen_1();
     } // end of behavior for HOME1
 }
@@ -334,17 +346,18 @@ static void HOME1_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(HOME2)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is HOME1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME1_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME2`.
         HOME2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for HOME1
 }
 
@@ -356,17 +369,18 @@ static void HOME1_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(HOME3)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is HOME1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME1_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME3`.
         HOME3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for HOME1
 }
 
@@ -386,6 +400,7 @@ static void HOME2_enter(LaserTagMenu1Sm* self)
     // uml: enter / { show_home_screen_2(); }
     if (true)
     {
+        // Step 1: execute action `show_home_screen_2();`
         Display_show_home_screen_2();
     } // end of behavior for HOME2
 }
@@ -406,17 +421,18 @@ static void HOME2_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(HOME3)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is HOME2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME2_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME3`.
         HOME3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for HOME2
 }
 
@@ -428,17 +444,18 @@ static void HOME2_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(HOME1)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is HOME2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME2_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME1`.
         HOME1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for HOME2
 }
 
@@ -458,6 +475,7 @@ static void HOME3_enter(LaserTagMenu1Sm* self)
     // uml: enter / { show_home_screen_3(); }
     if (true)
     {
+        // Step 1: execute action `show_home_screen_3();`
         Display_show_home_screen_3();
     } // end of behavior for HOME3
 }
@@ -478,17 +496,18 @@ static void HOME3_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(HOME1)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is HOME3 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME3_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME1`.
         HOME1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for HOME3
 }
 
@@ -500,17 +519,18 @@ static void HOME3_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(HOME2)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is HOME3 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition).
         HOME3_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME2`.
         HOME2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_HOME2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for HOME3
 }
 
@@ -543,25 +563,29 @@ static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self)
     // uml: BACK_HELD TransitionTo(HOME)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MENUS_GROUP or one of its sub states.
-        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, ROOT_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME`.
         HOME_enter(self);
         
         // HOME.InitialState behavior
         // uml: TransitionTo(HOME1)
         if (true)
         {
+            // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `HOME1`.
             HOME1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_HOME1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for HOME.InitialState
     } // end of behavior for MENUS_GROUP
 }
@@ -574,25 +598,29 @@ static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self)
     // uml: BACK_PRESS TransitionTo(HOME)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MENUS_GROUP or one of its sub states.
-        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, ROOT_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME`.
         HOME_enter(self);
         
         // HOME.InitialState behavior
         // uml: TransitionTo(HOME1)
         if (true)
         {
+            // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `HOME1`.
             HOME1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_HOME1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for HOME.InitialState
     } // end of behavior for MENUS_GROUP
 }
@@ -612,6 +640,7 @@ static void CLASS_SAVED_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_class_saved(); }
     if (true)
     {
+        // Step 1: execute action `Display_class_saved();`
         Display_class_saved();
     } // end of behavior for CLASS_SAVED
     
@@ -619,6 +648,7 @@ static void CLASS_SAVED_enter(LaserTagMenu1Sm* self)
     // uml: enter / { reset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
     } // end of behavior for CLASS_SAVED
 }
@@ -638,18 +668,19 @@ static void CLASS_SAVED_do(LaserTagMenu1Sm* self)
     // uml: do [after_timer1_ms(4000)] TransitionTo(MM_SELECT_CLASS_OPTION)
     if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 4000 ))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is CLASS_SAVED and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
         CLASS_SAVED_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SELECT_CLASS_OPTION`.
         MAIN_MENU_enter(self);
         MM_SELECT_CLASS_OPTION_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for CLASS_SAVED
 }
 
@@ -667,6 +698,7 @@ static void MAIN_MENU_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_menu_header("MAIN MENU"); }
     if (true)
     {
+        // Step 1: execute action `Display_menu_header("MAIN MENU");`
         Display_menu_header("MAIN MENU");
     } // end of behavior for MAIN_MENU
 }
@@ -693,6 +725,7 @@ static void MM_BACK_PRESS_EATER_OPTION_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_menu_option("EAT BACK PRESS?"); }
     if (true)
     {
+        // Step 1: execute action `Display_menu_option("EAT BACK PRESS?");`
         Display_menu_option("EAT BACK PRESS?");
     } // end of behavior for MM_BACK_PRESS_EATER_OPTION
     
@@ -700,6 +733,7 @@ static void MM_BACK_PRESS_EATER_OPTION_enter(LaserTagMenu1Sm* self)
     // uml: enter / { menu_at_bottom(); }
     if (true)
     {
+        // Step 1: execute action `menu_at_bottom();`
         Display_menu_at_bottom();
     } // end of behavior for MM_BACK_PRESS_EATER_OPTION
 }
@@ -720,25 +754,29 @@ static void MM_BACK_PRESS_EATER_OPTION_ok_press(LaserTagMenu1Sm* self)
     // uml: OK_PRESS TransitionTo(MM_BACK_PRESS_EATER)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_BACK_PRESS_EATER_OPTION or one of its sub states.
-        exit_up_to_state_handler(self, MENUS_GROUP_exit);  // Exit until we reach MENUS_GROUP state.
+        // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MENUS_GROUP_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER`.
         MM_BACK_PRESS_EATER_enter(self);
         
         // MM_BACK_PRESS_EATER.InitialState behavior
         // uml: TransitionTo(MM_BACK_PRESS_EATER_1)
         if (true)
         {
+            // Step 1: Exit states until we reach `MM_BACK_PRESS_EATER` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER_1`.
             MM_BACK_PRESS_EATER_1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for MM_BACK_PRESS_EATER.InitialState
     } // end of behavior for MM_BACK_PRESS_EATER_OPTION
 }
@@ -751,17 +789,18 @@ static void MM_BACK_PRESS_EATER_OPTION_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(MM_SHOW_INFO_OPTION)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_BACK_PRESS_EATER_OPTION and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition).
         MM_BACK_PRESS_EATER_OPTION_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_OPTION`.
         MM_SHOW_INFO_OPTION_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_OPTION;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_BACK_PRESS_EATER_OPTION
 }
 
@@ -781,6 +820,7 @@ static void MM_SELECT_CLASS_OPTION_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_menu_option("SELECT CLASS");\nmenu_at_top(); }
     if (true)
     {
+        // Step 1: execute action `Display_menu_option("SELECT CLASS");\nmenu_at_top();`
         Display_menu_option("SELECT CLASS");
         Display_menu_at_top();
     } // end of behavior for MM_SELECT_CLASS_OPTION
@@ -802,17 +842,18 @@ static void MM_SELECT_CLASS_OPTION_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_OPTION)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SELECT_CLASS_OPTION and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition).
         MM_SELECT_CLASS_OPTION_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_OPTION`.
         MM_SHOW_INFO_OPTION_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_OPTION;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SELECT_CLASS_OPTION
 }
 
@@ -824,25 +865,29 @@ static void MM_SELECT_CLASS_OPTION_ok_press(LaserTagMenu1Sm* self)
     // uml: OK_PRESS TransitionTo(MM_SELECT_CLASS)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SELECT_CLASS_OPTION or one of its sub states.
-        exit_up_to_state_handler(self, MENUS_GROUP_exit);  // Exit until we reach MENUS_GROUP state.
+        // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MENUS_GROUP_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SELECT_CLASS`.
         MM_SELECT_CLASS_enter(self);
         
         // MM_SELECT_CLASS.InitialState behavior
         // uml: TransitionTo(MM_SC_ENGINEER)
         if (true)
         {
+            // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `MM_SC_ENGINEER`.
             MM_SC_ENGINEER_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ENGINEER;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for MM_SELECT_CLASS.InitialState
     } // end of behavior for MM_SELECT_CLASS_OPTION
 }
@@ -864,6 +909,7 @@ static void MM_SHOW_INFO_OPTION_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_menu_option("SHOW INFO"); }
     if (true)
     {
+        // Step 1: execute action `Display_menu_option("SHOW INFO");`
         Display_menu_option("SHOW INFO");
     } // end of behavior for MM_SHOW_INFO_OPTION
     
@@ -871,6 +917,7 @@ static void MM_SHOW_INFO_OPTION_enter(LaserTagMenu1Sm* self)
     // uml: enter / { menu_at_mid(); }
     if (true)
     {
+        // Step 1: execute action `menu_at_mid();`
         Display_menu_at_mid();
     } // end of behavior for MM_SHOW_INFO_OPTION
 }
@@ -892,17 +939,18 @@ static void MM_SHOW_INFO_OPTION_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_BACK_PRESS_EATER_OPTION)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SHOW_INFO_OPTION and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_OPTION_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER_OPTION`.
         MM_BACK_PRESS_EATER_OPTION_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_OPTION;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO_OPTION
 }
 
@@ -914,25 +962,29 @@ static void MM_SHOW_INFO_OPTION_ok_press(LaserTagMenu1Sm* self)
     // uml: OK_PRESS TransitionTo(MM_SHOW_INFO)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SHOW_INFO_OPTION or one of its sub states.
-        exit_up_to_state_handler(self, MENUS_GROUP_exit);  // Exit until we reach MENUS_GROUP state.
+        // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MENUS_GROUP_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO`.
         MM_SHOW_INFO_enter(self);
         
         // MM_SHOW_INFO.InitialState behavior
         // uml: TransitionTo(MM_SHOW_INFO_1)
         if (true)
         {
+            // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `MM_SHOW_INFO_1`.
             MM_SHOW_INFO_1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for MM_SHOW_INFO.InitialState
     } // end of behavior for MM_SHOW_INFO_OPTION
 }
@@ -945,17 +997,18 @@ static void MM_SHOW_INFO_OPTION_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(MM_SELECT_CLASS_OPTION)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SHOW_INFO_OPTION and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MAIN_MENU` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_OPTION_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SELECT_CLASS_OPTION`.
         MM_SELECT_CLASS_OPTION_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO_OPTION
 }
 
@@ -974,6 +1027,7 @@ static void MM_BACK_PRESS_EATER_enter(LaserTagMenu1Sm* self)
     // uml: enter / { back_press_eat_count = 0;\nshow_back_press_count(); }
     if (true)
     {
+        // Step 1: execute action `back_press_eat_count = 0;\nshow_back_press_count();`
         self->vars.back_press_eat_count = 0;
         Display_show_back_press_count(self->vars.back_press_eat_count);
     } // end of behavior for MM_BACK_PRESS_EATER
@@ -996,14 +1050,15 @@ static void MM_BACK_PRESS_EATER_back_press(LaserTagMenu1Sm* self)
     if (true)
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `back_press_eat_count++;\nshow_back_press_count();`
         self->vars.back_press_eat_count++;
         Display_show_back_press_count(self->vars.back_press_eat_count);
         
+        // Step 2: determine if ancestor gets to handle event next.
         if (consume_event)
         {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
+            self->ancestor_event_handler = NULL;  // consume event
         }
     } // end of behavior for MM_BACK_PRESS_EATER
 }
@@ -1023,6 +1078,7 @@ static void MM_BACK_PRESS_EATER_1_enter(LaserTagMenu1Sm* self)
     // uml: enter / { show_back_press_taunt("GET TO 5?"); }
     if (true)
     {
+        // Step 1: execute action `show_back_press_taunt("GET TO 5?");`
         Display_show_back_press_taunt("GET TO 5?");
     } // end of behavior for MM_BACK_PRESS_EATER_1
 }
@@ -1042,17 +1098,18 @@ static void MM_BACK_PRESS_EATER_1_do(LaserTagMenu1Sm* self)
     // uml: do [back_press_eat_count >= 5] TransitionTo(MM_BACK_PRESS_EATER_2)
     if (self->vars.back_press_eat_count >= 5)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_BACK_PRESS_EATER_1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_BACK_PRESS_EATER` state (Least Common Ancestor for transition).
         MM_BACK_PRESS_EATER_1_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER_2`.
         MM_BACK_PRESS_EATER_2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_BACK_PRESS_EATER_1
 }
 
@@ -1071,6 +1128,7 @@ static void MM_BACK_PRESS_EATER_2_enter(LaserTagMenu1Sm* self)
     // uml: enter / { show_back_press_taunt("BACKPRESS FUTILE"); }
     if (true)
     {
+        // Step 1: execute action `show_back_press_taunt("BACKPRESS FUTILE");`
         Display_show_back_press_taunt("BACKPRESS FUTILE");
     } // end of behavior for MM_BACK_PRESS_EATER_2
     
@@ -1078,6 +1136,7 @@ static void MM_BACK_PRESS_EATER_2_enter(LaserTagMenu1Sm* self)
     // uml: enter / { reset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
     } // end of behavior for MM_BACK_PRESS_EATER_2
 }
@@ -1097,17 +1156,18 @@ static void MM_BACK_PRESS_EATER_2_do(LaserTagMenu1Sm* self)
     // uml: do [after_timer1_ms(3000)] TransitionTo(MM_BACK_PRESS_EATER_3)
     if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 3000 ))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_BACK_PRESS_EATER_2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_BACK_PRESS_EATER` state (Least Common Ancestor for transition).
         MM_BACK_PRESS_EATER_2_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER_3`.
         MM_BACK_PRESS_EATER_3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_BACK_PRESS_EATER_2
 }
 
@@ -1126,6 +1186,7 @@ static void MM_BACK_PRESS_EATER_3_enter(LaserTagMenu1Sm* self)
     // uml: enter / { show_back_press_taunt("TRY HOLDING BACK"); }
     if (true)
     {
+        // Step 1: execute action `show_back_press_taunt("TRY HOLDING BACK");`
         Display_show_back_press_taunt("TRY HOLDING BACK");
     } // end of behavior for MM_BACK_PRESS_EATER_3
     
@@ -1133,6 +1194,7 @@ static void MM_BACK_PRESS_EATER_3_enter(LaserTagMenu1Sm* self)
     // uml: enter / { reset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
     } // end of behavior for MM_BACK_PRESS_EATER_3
 }
@@ -1152,17 +1214,18 @@ static void MM_BACK_PRESS_EATER_3_do(LaserTagMenu1Sm* self)
     // uml: do [back_press_eat_count >= 10 && after_timer1_ms(3000)] TransitionTo(MM_BACK_PRESS_EATER_4)
     if (self->vars.back_press_eat_count >= 10 && ( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 3000 ))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_BACK_PRESS_EATER_3 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_BACK_PRESS_EATER` state (Least Common Ancestor for transition).
         MM_BACK_PRESS_EATER_3_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER_4`.
         MM_BACK_PRESS_EATER_4_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_4;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_BACK_PRESS_EATER_3
 }
 
@@ -1181,6 +1244,7 @@ static void MM_BACK_PRESS_EATER_4_enter(LaserTagMenu1Sm* self)
     // uml: enter / { show_back_press_taunt("I CAN'T EVENT..."); }
     if (true)
     {
+        // Step 1: execute action `show_back_press_taunt("I CAN'T EVENT...");`
         Display_show_back_press_taunt("I CAN'T EVENT...");
     } // end of behavior for MM_BACK_PRESS_EATER_4
     
@@ -1188,6 +1252,7 @@ static void MM_BACK_PRESS_EATER_4_enter(LaserTagMenu1Sm* self)
     // uml: enter / { reset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
     } // end of behavior for MM_BACK_PRESS_EATER_4
 }
@@ -1207,17 +1272,18 @@ static void MM_BACK_PRESS_EATER_4_do(LaserTagMenu1Sm* self)
     // uml: do [back_press_eat_count >= 15 && after_timer1_ms(3000)] TransitionTo(MM_BACK_PRESS_EATER_5)
     if (self->vars.back_press_eat_count >= 15 && ( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 3000 ))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_BACK_PRESS_EATER_4 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_BACK_PRESS_EATER` state (Least Common Ancestor for transition).
         MM_BACK_PRESS_EATER_4_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER_5`.
         MM_BACK_PRESS_EATER_5_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_5;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_BACK_PRESS_EATER_4
 }
 
@@ -1237,6 +1303,7 @@ static void MM_BACK_PRESS_EATER_5_enter(LaserTagMenu1Sm* self)
     // uml: enter / { reset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
     } // end of behavior for MM_BACK_PRESS_EATER_5
     
@@ -1244,6 +1311,7 @@ static void MM_BACK_PRESS_EATER_5_enter(LaserTagMenu1Sm* self)
     // uml: enter / { show_random_back_press_taunt(); }
     if (true)
     {
+        // Step 1: execute action `show_random_back_press_taunt();`
         Display_show_random_back_press_taunt();
     } // end of behavior for MM_BACK_PRESS_EATER_5
 }
@@ -1266,15 +1334,16 @@ static void MM_BACK_PRESS_EATER_5_back_press(LaserTagMenu1Sm* self)
     if (true)
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `dont_consume_event(); // allow parent inc count\nreset_timer1();\nshow_random_back_press_taunt();`
         consume_event = false; // allow parent inc count
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
         Display_show_random_back_press_taunt();
         
+        // Step 2: determine if ancestor gets to handle event next.
         if (consume_event)
         {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
+            self->ancestor_event_handler = NULL;  // consume event
         }
     } // end of behavior for MM_BACK_PRESS_EATER_5
 }
@@ -1287,35 +1356,37 @@ static void MM_BACK_PRESS_EATER_5_do(LaserTagMenu1Sm* self)
     // uml: 1.1. do [after_timer1_ms(2000) && back_press_eat_count > 25] / { back_press_eat_count = 0; } TransitionTo(MM_BACK_PRESS_EATER_2)
     if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 2000 ) && self->vars.back_press_eat_count > 25)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_BACK_PRESS_EATER_5 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_BACK_PRESS_EATER` state (Least Common Ancestor for transition).
         MM_BACK_PRESS_EATER_5_exit(self);
+        
+        // Step 2: Transition action: `back_press_eat_count = 0;`.
         self->vars.back_press_eat_count = 0;
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER_2`.
         MM_BACK_PRESS_EATER_2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_BACK_PRESS_EATER_5
     
     // MM_BACK_PRESS_EATER_5 behavior
     // uml: 2. do [after_timer1_ms(2000)] TransitionTo(MM_BACK_PRESS_EATER_5)
     if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 2000 ))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_BACK_PRESS_EATER_5 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_BACK_PRESS_EATER` state (Least Common Ancestor for transition).
         MM_BACK_PRESS_EATER_5_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_BACK_PRESS_EATER_5`.
         MM_BACK_PRESS_EATER_5_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_BACK_PRESS_EATER_5;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_BACK_PRESS_EATER_5
 }
 
@@ -1335,6 +1406,7 @@ static void MM_SELECT_CLASS_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_menu_header("SELECT CLASS"); }
     if (true)
     {
+        // Step 1: execute action `Display_menu_header("SELECT CLASS");`
         Display_menu_header("SELECT CLASS");
     } // end of behavior for MM_SELECT_CLASS
 }
@@ -1356,18 +1428,19 @@ static void MM_SELECT_CLASS_back_press(LaserTagMenu1Sm* self)
     // uml: BACK_PRESS TransitionTo(MM_SELECT_CLASS_OPTION)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SELECT_CLASS or one of its sub states.
-        exit_up_to_state_handler(self, MENUS_GROUP_exit);  // Exit until we reach MENUS_GROUP state.
+        // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MENUS_GROUP_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SELECT_CLASS_OPTION`.
         MAIN_MENU_enter(self);
         MM_SELECT_CLASS_OPTION_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SELECT_CLASS_OPTION;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SELECT_CLASS
 }
 
@@ -1379,27 +1452,31 @@ static void MM_SELECT_CLASS_ok_press(LaserTagMenu1Sm* self)
     // uml: OK_PRESS / { save_option_as_class(); } TransitionTo(MM_SELECT_CLASS.ExitPoint(saved))
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SELECT_CLASS or one of its sub states.
-        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);  // Exit until we reach MM_SELECT_CLASS state.
+        // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
+        
+        // Step 2: Transition action: `save_option_as_class();`.
         App_save_player_class(self->vars.option_value);
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `MM_SELECT_CLASS.ExitPoint(saved)`.
+        // MM_SELECT_CLASS.ExitPoint(saved) is a pseudo state and cannot have an `enter` trigger.
         
         // MM_SELECT_CLASS.ExitPoint(saved) behavior
         // uml: TransitionTo(CLASS_SAVED)
         if (true)
         {
-            // Avoid exit-while-loop here because we know that the active leaf state is MM_SELECT_CLASS and it is the only state being exited at this point.
+            // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
             MM_SELECT_CLASS_exit(self);
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `CLASS_SAVED`.
             CLASS_SAVED_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_CLASS_SAVED;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for MM_SELECT_CLASS.ExitPoint(saved)
     } // end of behavior for MM_SELECT_CLASS
 }
@@ -1419,6 +1496,7 @@ static void MM_SC_ENGINEER_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_menu_option("ENGINEER");\noption_value = PlayerClass_ENGINEER;\nmenu_at_top(); }
     if (true)
     {
+        // Step 1: execute action `Display_menu_option("ENGINEER");\noption_value = PlayerClass_ENGINEER;\nmenu_at_top();`
         Display_menu_option("ENGINEER");
         self->vars.option_value = PlayerClass_ENGINEER;
         Display_menu_at_top();
@@ -1440,18 +1518,19 @@ static void MM_SC_ENGINEER_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_SC_HEAVY)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SC_ENGINEER and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         MM_SC_ENGINEER_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_HEAVY`.
         MM_SC_MID_enter(self);
         MM_SC_HEAVY_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_HEAVY;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_ENGINEER
 }
 
@@ -1471,6 +1550,7 @@ static void MM_SC_MID_enter(LaserTagMenu1Sm* self)
     // uml: enter / { menu_at_mid(); }
     if (true)
     {
+        // Step 1: execute action `menu_at_mid();`
         Display_menu_at_mid();
     } // end of behavior for MM_SC_MID
 }
@@ -1491,17 +1571,18 @@ static void MM_SC_MID_down_held(LaserTagMenu1Sm* self)
     // uml: DOWN_HELD TransitionTo(MM_SC_SPY)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SC_MID or one of its sub states.
-        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);  // Exit until we reach MM_SELECT_CLASS state.
+        // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_SPY`.
         MM_SC_SPY_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_SPY;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_MID
 }
 
@@ -1513,17 +1594,18 @@ static void MM_SC_MID_up_held(LaserTagMenu1Sm* self)
     // uml: UP_HELD TransitionTo(MM_SC_ENGINEER)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SC_MID or one of its sub states.
-        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);  // Exit until we reach MM_SELECT_CLASS state.
+        // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_ENGINEER`.
         MM_SC_ENGINEER_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ENGINEER;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_MID
 }
 
@@ -1543,6 +1625,7 @@ static void MM_SC_ARCHER_enter(LaserTagMenu1Sm* self)
     // uml: enter / { set_menu_option_and_class(ARCHER); }
     if (true)
     {
+        // Step 1: execute action `set_menu_option_and_class(ARCHER);`
         Display_menu_option("ARCHER"); self->vars.option_value = PlayerClass_ARCHER;
     } // end of behavior for MM_SC_ARCHER
 }
@@ -1563,17 +1646,18 @@ static void MM_SC_ARCHER_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_SC_WIZARD)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SC_ARCHER and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SC_MID` state (Least Common Ancestor for transition).
         MM_SC_ARCHER_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_WIZARD`.
         MM_SC_WIZARD_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_WIZARD;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_ARCHER
 }
 
@@ -1585,17 +1669,18 @@ static void MM_SC_ARCHER_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(MM_SC_HEAVY)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SC_ARCHER and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SC_MID` state (Least Common Ancestor for transition).
         MM_SC_ARCHER_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_HEAVY`.
         MM_SC_HEAVY_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_HEAVY;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_ARCHER
 }
 
@@ -1615,6 +1700,7 @@ static void MM_SC_HEAVY_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_menu_option("HEAVY");\nset_option_class(HEAVY); }
     if (true)
     {
+        // Step 1: execute action `Display_menu_option("HEAVY");\nset_option_class(HEAVY);`
         Display_menu_option("HEAVY");
         self->vars.option_value = PlayerClass_HEAVY;
     } // end of behavior for MM_SC_HEAVY
@@ -1636,17 +1722,18 @@ static void MM_SC_HEAVY_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_SC_ARCHER)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SC_HEAVY and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SC_MID` state (Least Common Ancestor for transition).
         MM_SC_HEAVY_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_ARCHER`.
         MM_SC_ARCHER_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ARCHER;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_HEAVY
 }
 
@@ -1658,17 +1745,18 @@ static void MM_SC_HEAVY_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(MM_SC_ENGINEER)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SC_HEAVY or one of its sub states.
-        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);  // Exit until we reach MM_SELECT_CLASS state.
+        // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_ENGINEER`.
         MM_SC_ENGINEER_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ENGINEER;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_HEAVY
 }
 
@@ -1688,6 +1776,7 @@ static void MM_SC_WIZARD_enter(LaserTagMenu1Sm* self)
     // uml: enter / { set_menu_option_and_class(WIZARD); }
     if (true)
     {
+        // Step 1: execute action `set_menu_option_and_class(WIZARD);`
         Display_menu_option("WIZARD"); self->vars.option_value = PlayerClass_WIZARD;
     } // end of behavior for MM_SC_WIZARD
 }
@@ -1708,17 +1797,18 @@ static void MM_SC_WIZARD_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_SC_SPY)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SC_WIZARD or one of its sub states.
-        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);  // Exit until we reach MM_SELECT_CLASS state.
+        // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MM_SELECT_CLASS_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_SPY`.
         MM_SC_SPY_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_SPY;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_WIZARD
 }
 
@@ -1730,17 +1820,18 @@ static void MM_SC_WIZARD_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(MM_SC_ARCHER)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SC_WIZARD and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SC_MID` state (Least Common Ancestor for transition).
         MM_SC_WIZARD_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_ARCHER`.
         MM_SC_ARCHER_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_ARCHER;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_WIZARD
 }
 
@@ -1759,6 +1850,7 @@ static void MM_SC_SPY_enter(LaserTagMenu1Sm* self)
     // uml: enter / { set_menu_option_and_class(SPY);\nmenu_at_bottom(); }
     if (true)
     {
+        // Step 1: execute action `set_menu_option_and_class(SPY);\nmenu_at_bottom();`
         Display_menu_option("SPY"); self->vars.option_value = PlayerClass_SPY;
         Display_menu_at_bottom();
     } // end of behavior for MM_SC_SPY
@@ -1779,18 +1871,19 @@ static void MM_SC_SPY_up_press(LaserTagMenu1Sm* self)
     // uml: UP_PRESS TransitionTo(MM_SC_WIZARD)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SC_SPY and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SELECT_CLASS` state (Least Common Ancestor for transition).
         MM_SC_SPY_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SC_WIZARD`.
         MM_SC_MID_enter(self);
         MM_SC_WIZARD_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SC_WIZARD;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SC_SPY
 }
 
@@ -1822,18 +1915,19 @@ static void MM_SHOW_INFO_back_press(LaserTagMenu1Sm* self)
     // uml: BACK_PRESS TransitionTo(MM_SHOW_INFO_OPTION)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be MM_SHOW_INFO or one of its sub states.
-        exit_up_to_state_handler(self, MENUS_GROUP_exit);  // Exit until we reach MENUS_GROUP state.
+        // Step 1: Exit states until we reach `MENUS_GROUP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, MENUS_GROUP_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_OPTION`.
         MAIN_MENU_enter(self);
         MM_SHOW_INFO_OPTION_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_OPTION;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO
 }
 
@@ -1853,6 +1947,7 @@ static void MM_SHOW_INFO_1_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_top_line("INFO 1 LINE 1");\nDisplay_bot_line("INFO 1 LINE 2");\nreset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `Display_top_line("INFO 1 LINE 1");\nDisplay_bot_line("INFO 1 LINE 2");\nreset_timer1();`
         Display_top_line("INFO 1 LINE 1");
         Display_bot_line("INFO 1 LINE 2");
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -1875,17 +1970,18 @@ static void MM_SHOW_INFO_1_do(LaserTagMenu1Sm* self)
     // uml: do [info_timed_out] TransitionTo(MM_SHOW_INFO_2)
     if ((( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 3000 )))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SHOW_INFO_1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_1_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_2`.
         MM_SHOW_INFO_2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO_1
 }
 
@@ -1897,17 +1993,18 @@ static void MM_SHOW_INFO_1_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_2)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SHOW_INFO_1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_1_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_2`.
         MM_SHOW_INFO_2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO_1
 }
 
@@ -1927,6 +2024,7 @@ static void MM_SHOW_INFO_2_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_top_line("INFO 2 LINE 1");\nDisplay_bot_line("INFO 2 LINE 2");\nreset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `Display_top_line("INFO 2 LINE 1");\nDisplay_bot_line("INFO 2 LINE 2");\nreset_timer1();`
         Display_top_line("INFO 2 LINE 1");
         Display_bot_line("INFO 2 LINE 2");
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -1949,17 +2047,18 @@ static void MM_SHOW_INFO_2_do(LaserTagMenu1Sm* self)
     // uml: do [info_timed_out] TransitionTo(MM_SHOW_INFO_3)
     if ((( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 3000 )))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SHOW_INFO_2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_2_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_3`.
         MM_SHOW_INFO_3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO_2
 }
 
@@ -1971,17 +2070,18 @@ static void MM_SHOW_INFO_2_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_3)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SHOW_INFO_2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_2_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_3`.
         MM_SHOW_INFO_3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO_2
 }
 
@@ -2001,6 +2101,7 @@ static void MM_SHOW_INFO_3_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_top_line("INFO 3 LINE 1");\nDisplay_bot_line("INFO 3 LINE 2");\nreset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `Display_top_line("INFO 3 LINE 1");\nDisplay_bot_line("INFO 3 LINE 2");\nreset_timer1();`
         Display_top_line("INFO 3 LINE 1");
         Display_bot_line("INFO 3 LINE 2");
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
@@ -2023,17 +2124,18 @@ static void MM_SHOW_INFO_3_do(LaserTagMenu1Sm* self)
     // uml: do [info_timed_out] TransitionTo(MM_SHOW_INFO_1)
     if ((( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 3000 )))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SHOW_INFO_3 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_3_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_1`.
         MM_SHOW_INFO_1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO_3
 }
 
@@ -2045,17 +2147,18 @@ static void MM_SHOW_INFO_3_down_press(LaserTagMenu1Sm* self)
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_1)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is MM_SHOW_INFO_3 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `MM_SHOW_INFO` state (Least Common Ancestor for transition).
         MM_SHOW_INFO_3_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `MM_SHOW_INFO_1`.
         MM_SHOW_INFO_1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = LaserTagMenu1Sm_StateId_MM_SHOW_INFO_1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for MM_SHOW_INFO_3
 }
 
@@ -2074,6 +2177,7 @@ static void WELCOME_SCREEN_enter(LaserTagMenu1Sm* self)
     // uml: enter / { Display_top_line("WELCOME!"); }
     if (true)
     {
+        // Step 1: execute action `Display_top_line("WELCOME!");`
         Display_top_line("WELCOME!");
     } // end of behavior for WELCOME_SCREEN
     
@@ -2081,6 +2185,7 @@ static void WELCOME_SCREEN_enter(LaserTagMenu1Sm* self)
     // uml: enter / { reset_timer1(); }
     if (true)
     {
+        // Step 1: execute action `reset_timer1();`
         self->vars.timer1_started_at_ms = PortApi_get_time_ms();
     } // end of behavior for WELCOME_SCREEN
 }
@@ -2100,25 +2205,29 @@ static void WELCOME_SCREEN_do(LaserTagMenu1Sm* self)
     // uml: do [after_timer1_ms(2500)] TransitionTo(HOME)
     if (( (PortApi_get_time_ms() - self->vars.timer1_started_at_ms) >= 2500 ))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is WELCOME_SCREEN and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         WELCOME_SCREEN_exit(self);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME`.
         HOME_enter(self);
         
         // HOME.InitialState behavior
         // uml: TransitionTo(HOME1)
         if (true)
         {
+            // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `HOME1`.
             HOME1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = LaserTagMenu1Sm_StateId_HOME1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for HOME.InitialState
     } // end of behavior for WELCOME_SCREEN
 }

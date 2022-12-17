@@ -24,6 +24,8 @@ static void S2_exit(Spec1bSm* self);
 static void S2_1_enter(Spec1bSm* self);
 static void S2_1_exit(Spec1bSm* self);
 
+// This function is used when StateSmith doesn't know what the active leaf state is at compile time due to sub states
+// or when multiple states need to be exited.
 static void exit_up_to_state_handler(Spec1bSm* self, const Spec1bSm_Func desired_state_exit_handler);
 
 
@@ -47,40 +49,51 @@ void Spec1bSm_start(Spec1bSm* self)
     // uml: TransitionTo(ROOT.InitialState)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
-        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, ROOT_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `ROOT.InitialState`.
+        // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
         
         // ROOT.InitialState behavior
         // uml: TransitionTo(S)
         if (true)
         {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Enter towards target
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `S`.
             S_enter(self);
             
             // S.InitialState behavior
             // uml: TransitionTo(S1)
             if (true)
             {
+                // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Enter towards target
+                // Step 2: Transition action: ``.
+                
+                // Step 3: Enter/move towards transition target `S1`.
                 S1_enter(self);
                 
                 // S1.InitialState behavior
                 // uml: TransitionTo(S1_1)
                 if (true)
                 {
+                    // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Enter towards target
+                    // Step 2: Transition action: ``.
+                    
+                    // Step 3: Enter/move towards transition target `S1_1`.
                     S1_1_enter(self);
                     
-                    // update state_id
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     self->state_id = Spec1bSm_StateId_S1_1;
                     self->ancestor_event_handler = NULL;
-                    return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                    return;
                 } // end of behavior for S1.InitialState
             } // end of behavior for S.InitialState
         } // end of behavior for ROOT.InitialState
@@ -164,6 +177,7 @@ static void S1_exit(Spec1bSm* self)
     // uml: exit / { b(); }
     if (true)
     {
+        // Step 1: execute action `b();`
         print("b(); ");
     } // end of behavior for S1
     
@@ -180,27 +194,31 @@ static void S1_t1(Spec1bSm* self)
     // uml: T1 [g()] / { t(); } TransitionTo(S2)
     if (print("g() "))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be S1 or one of its sub states.
-        exit_up_to_state_handler(self, S_exit);  // Exit until we reach S state.
+        // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, S_exit);
+        
+        // Step 2: Transition action: `t();`.
         print("t(); ");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `S2`.
         S2_enter(self);
         
         // S2.InitialState behavior
         // uml: / { d(); } TransitionTo(S2_1)
         if (true)
         {
+            // Step 1: Exit states until we reach `S2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `d();`.
             print("d(); ");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `S2_1`.
             S2_1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec1bSm_StateId_S2_1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for S2.InitialState
     } // end of behavior for S1
 }
@@ -222,6 +240,7 @@ static void S1_1_exit(Spec1bSm* self)
     // uml: exit / { a(); }
     if (true)
     {
+        // Step 1: execute action `a();`
         print("a(); ");
     } // end of behavior for S1_1
     
@@ -243,6 +262,7 @@ static void S2_enter(Spec1bSm* self)
     // uml: enter / { c(); }
     if (true)
     {
+        // Step 1: execute action `c();`
         print("c(); ");
     } // end of behavior for S2
 }
@@ -267,6 +287,7 @@ static void S2_1_enter(Spec1bSm* self)
     // uml: enter / { e(); }
     if (true)
     {
+        // Step 1: execute action `e();`
         print("e(); ");
     } // end of behavior for S2_1
 }

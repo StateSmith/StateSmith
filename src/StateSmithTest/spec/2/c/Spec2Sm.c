@@ -319,6 +319,8 @@ static void TEST9A_S1_1_enter(Spec2Sm* self);
 static void TEST9A_S1_1_exit(Spec2Sm* self);
 static void TEST9A_S1_1_ev1(Spec2Sm* self);
 
+// This function is used when StateSmith doesn't know what the active leaf state is at compile time due to sub states
+// or when multiple states need to be exited.
 static void exit_up_to_state_handler(Spec2Sm* self, const Spec2Sm_Func desired_state_exit_handler);
 
 static void TEST8_ROOT_EntryPoint_1__transition(Spec2Sm* self);
@@ -358,25 +360,30 @@ void Spec2Sm_start(Spec2Sm* self)
     // uml: TransitionTo(ROOT.InitialState)
     if (true)
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be ROOT or one of its sub states.
-        exit_up_to_state_handler(self, ROOT_exit);  // Exit until we reach ROOT state.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, ROOT_exit);
         
-        // Enter towards target
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `ROOT.InitialState`.
+        // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
         
         // ROOT.InitialState behavior
         // uml: / { trace("Transition action `` for ROOT.InitialState to DECIDE."); } TransitionTo(DECIDE)
         if (true)
         {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for ROOT.InitialState to DECIDE.");`.
             trace("Transition action `` for ROOT.InitialState to DECIDE.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `DECIDE`.
             DECIDE_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_DECIDE;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
 }
@@ -497,6 +504,7 @@ static void ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter Spec2Sm."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter Spec2Sm.");`
         trace("Enter Spec2Sm.");
     } // end of behavior for ROOT
 }
@@ -507,6 +515,7 @@ static void ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit Spec2Sm."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit Spec2Sm.");`
         trace("Exit Spec2Sm.");
     } // end of behavior for ROOT
     
@@ -538,6 +547,7 @@ static void DECIDE_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter DECIDE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter DECIDE.");`
         trace("Enter DECIDE.");
     } // end of behavior for DECIDE
 }
@@ -548,6 +558,7 @@ static void DECIDE_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit DECIDE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit DECIDE.");`
         trace("Exit DECIDE.");
     } // end of behavior for DECIDE
     
@@ -573,37 +584,44 @@ static void DECIDE_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
     if (trace_guard("State DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING.");`.
         trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST1_DO_EVENT_TESTING`.
         TEST1_DO_EVENT_TESTING_enter(self);
         
         // TEST1_DO_EVENT_TESTING.InitialState behavior
         // uml: / { trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT."); } TransitionTo(TEST1_ROOT)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST1_DO_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");`.
             trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST1_ROOT`.
             TEST1_ROOT_enter(self);
             
             // TEST1_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1."); } TransitionTo(TEST1_S1_1)
             if (true)
             {
+                // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");`.
                 trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST1_S1_1`.
                 TEST1_S1_enter(self);
                 TEST1_S1_1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST1_S1_1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST1_ROOT.InitialState
         } // end of behavior for TEST1_DO_EVENT_TESTING.InitialState
     } // end of behavior for DECIDE
@@ -617,28 +635,32 @@ static void DECIDE_ev10(Spec2Sm* self)
     // uml: EV10 [trace_guard("State DECIDE: check behavior `EV10 TransitionTo(TEST10_CHOICE_POINT)`.", true)] / { trace("Transition action `` for DECIDE to TEST10_CHOICE_POINT."); } TransitionTo(TEST10_CHOICE_POINT)
     if (trace_guard("State DECIDE: check behavior `EV10 TransitionTo(TEST10_CHOICE_POINT)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST10_CHOICE_POINT.");`.
         trace("Transition action `` for DECIDE to TEST10_CHOICE_POINT.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_CHOICE_POINT`.
         TEST10_CHOICE_POINT_enter(self);
         
         // TEST10_CHOICE_POINT.InitialState behavior
         // uml: / { trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1."); } TransitionTo(TEST10_S1)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1.");`.
             trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_S1`.
             TEST10_ROOT_enter(self);
             TEST10_S1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST10_S1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST10_CHOICE_POINT.InitialState
     } // end of behavior for DECIDE
 }
@@ -651,37 +673,44 @@ static void DECIDE_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", true)] / { trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING."); } TransitionTo(TEST2_REGULAR_EVENT_TESTING)
     if (trace_guard("State DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING.");`.
         trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST2_REGULAR_EVENT_TESTING`.
         TEST2_REGULAR_EVENT_TESTING_enter(self);
         
         // TEST2_REGULAR_EVENT_TESTING.InitialState behavior
         // uml: / { trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT."); } TransitionTo(TEST2_ROOT)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST2_REGULAR_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");`.
             trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST2_ROOT`.
             TEST2_ROOT_enter(self);
             
             // TEST2_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1."); } TransitionTo(TEST2_S1_1)
             if (true)
             {
+                // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");`.
                 trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST2_S1_1`.
                 TEST2_S1_enter(self);
                 TEST2_S1_1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST2_S1_1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST2_ROOT.InitialState
         } // end of behavior for TEST2_REGULAR_EVENT_TESTING.InitialState
     } // end of behavior for DECIDE
@@ -695,36 +724,43 @@ static void DECIDE_ev3(Spec2Sm* self)
     // uml: EV3 [trace_guard("State DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", true)] / { trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING."); } TransitionTo(TEST3_BEHAVIOR_ORDERING)
     if (trace_guard("State DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING.");`.
         trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST3_BEHAVIOR_ORDERING`.
         TEST3_BEHAVIOR_ORDERING_enter(self);
         
         // TEST3_BEHAVIOR_ORDERING.InitialState behavior
         // uml: / { trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT."); } TransitionTo(TEST3_ROOT)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST3_BEHAVIOR_ORDERING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");`.
             trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST3_ROOT`.
             TEST3_ROOT_enter(self);
             
             // TEST3_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1."); } TransitionTo(TEST3_S1)
             if (true)
             {
+                // Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");`.
                 trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST3_S1`.
                 TEST3_S1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST3_S1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST3_ROOT.InitialState
         } // end of behavior for TEST3_BEHAVIOR_ORDERING.InitialState
     } // end of behavior for DECIDE
@@ -738,27 +774,31 @@ static void DECIDE_ev4(Spec2Sm* self)
     // uml: EV4 [trace_guard("State DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", true)] / { trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS."); } TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)
     if (trace_guard("State DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.");`.
         trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_PARENT_CHILD_TRANSITIONS`.
         TEST4_PARENT_CHILD_TRANSITIONS_enter(self);
         
         // TEST4_PARENT_CHILD_TRANSITIONS.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE."); } TransitionTo(TEST4_DECIDE)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");`.
             trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST4_DECIDE`.
             TEST4_DECIDE_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4_DECIDE;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.InitialState
     } // end of behavior for DECIDE
 }
@@ -771,27 +811,31 @@ static void DECIDE_ev5(Spec2Sm* self)
     // uml: EV5 [trace_guard("State DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", true)] / { trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); } TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)
     if (trace_guard("State DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`.
         trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS`.
         TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(self);
         
         // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState behavior
         // uml: / { trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");`.
             trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST5_ROOT`.
             TEST5_ROOT_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST5_ROOT;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState
     } // end of behavior for DECIDE
 }
@@ -804,36 +848,43 @@ static void DECIDE_ev6(Spec2Sm* self)
     // uml: EV6 [trace_guard("State DECIDE: check behavior `EV6 TransitionTo(TEST6_VARIABLES)`.", true)] / { trace("Transition action `` for DECIDE to TEST6_VARIABLES."); } TransitionTo(TEST6_VARIABLES)
     if (trace_guard("State DECIDE: check behavior `EV6 TransitionTo(TEST6_VARIABLES)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST6_VARIABLES.");`.
         trace("Transition action `` for DECIDE to TEST6_VARIABLES.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST6_VARIABLES`.
         TEST6_VARIABLES_enter(self);
         
         // TEST6_VARIABLES.InitialState behavior
         // uml: / { trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT."); } TransitionTo(TEST6_ROOT)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST6_VARIABLES` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");`.
             trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST6_ROOT`.
             TEST6_ROOT_enter(self);
             
             // TEST6_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1."); } TransitionTo(TEST6_S1)
             if (true)
             {
+                // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1.");`.
                 trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST6_S1`.
                 TEST6_S1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST6_S1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST6_ROOT.InitialState
         } // end of behavior for TEST6_VARIABLES.InitialState
     } // end of behavior for DECIDE
@@ -847,36 +898,43 @@ static void DECIDE_ev7(Spec2Sm* self)
     // uml: EV7 [trace_guard("State DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_CHOICE)`.", true)] / { trace("Transition action `` for DECIDE to TEST7_INITIAL_CHOICE."); } TransitionTo(TEST7_INITIAL_CHOICE)
     if (trace_guard("State DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_CHOICE)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST7_INITIAL_CHOICE.");`.
         trace("Transition action `` for DECIDE to TEST7_INITIAL_CHOICE.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST7_INITIAL_CHOICE`.
         TEST7_INITIAL_CHOICE_enter(self);
         
         // TEST7_INITIAL_CHOICE.InitialState behavior
         // uml: / { trace("Transition action `` for TEST7_INITIAL_CHOICE.InitialState to TEST7_ROOT."); } TransitionTo(TEST7_ROOT)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST7_INITIAL_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_CHOICE.InitialState to TEST7_ROOT.");`.
             trace("Transition action `` for TEST7_INITIAL_CHOICE.InitialState to TEST7_ROOT.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST7_ROOT`.
             TEST7_ROOT_enter(self);
             
             // TEST7_ROOT.InitialState behavior
             // uml: / { trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1."); } TransitionTo(TEST7_S1)
             if (true)
             {
+                // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.");`.
                 trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST7_S1`.
                 TEST7_S1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST7_S1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST7_ROOT.InitialState
         } // end of behavior for TEST7_INITIAL_CHOICE.InitialState
     } // end of behavior for DECIDE
@@ -890,22 +948,27 @@ static void DECIDE_ev8(Spec2Sm* self)
     // uml: EV8 [trace_guard("State DECIDE: check behavior `EV8 TransitionTo(TEST8_ENTRY_CHOICE)`.", true)] / { trace("Transition action `` for DECIDE to TEST8_ENTRY_CHOICE."); } TransitionTo(TEST8_ENTRY_CHOICE)
     if (trace_guard("State DECIDE: check behavior `EV8 TransitionTo(TEST8_ENTRY_CHOICE)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST8_ENTRY_CHOICE.");`.
         trace("Transition action `` for DECIDE to TEST8_ENTRY_CHOICE.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_ENTRY_CHOICE`.
         TEST8_ENTRY_CHOICE_enter(self);
         
         // TEST8_ENTRY_CHOICE.InitialState behavior
         // uml: / { trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1)."); } TransitionTo(TEST8_ROOT.EntryPoint(1))
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST8_ENTRY_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1).");`.
             trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1).");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST8_ROOT.EntryPoint(1)`.
             TEST8_ROOT_enter(self);
+            // TEST8_ROOT.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
             
             // Finish transition by calling pseudo state transition function.
             TEST8_ROOT_EntryPoint_1__transition(self);
@@ -922,27 +985,31 @@ static void DECIDE_ev9(Spec2Sm* self)
     // uml: EV9 [trace_guard("State DECIDE: check behavior `EV9 TransitionTo(TEST9_EXIT_CHOICE)`.", true)] / { trace("Transition action `` for DECIDE to TEST9_EXIT_CHOICE."); } TransitionTo(TEST9_EXIT_CHOICE)
     if (trace_guard("State DECIDE: check behavior `EV9 TransitionTo(TEST9_EXIT_CHOICE)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST9_EXIT_CHOICE.");`.
         trace("Transition action `` for DECIDE to TEST9_EXIT_CHOICE.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST9_EXIT_CHOICE`.
         TEST9_EXIT_CHOICE_enter(self);
         
         // TEST9_EXIT_CHOICE.InitialState behavior
         // uml: / { trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE."); } TransitionTo(TEST9_DECIDE)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE.");`.
             trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST9_DECIDE`.
             TEST9_DECIDE_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_DECIDE;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST9_EXIT_CHOICE.InitialState
     } // end of behavior for DECIDE
 }
@@ -961,6 +1028,7 @@ static void TEST1_DO_EVENT_TESTING_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.");`
         trace("Enter TEST1_DO_EVENT_TESTING.");
     } // end of behavior for TEST1_DO_EVENT_TESTING
 }
@@ -971,6 +1039,7 @@ static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.");`
         trace("Exit TEST1_DO_EVENT_TESTING.");
     } // end of behavior for TEST1_DO_EVENT_TESTING
     
@@ -993,6 +1062,7 @@ static void TEST1_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST1_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST1_ROOT.");`
         trace("Enter TEST1_ROOT.");
     } // end of behavior for TEST1_ROOT
 }
@@ -1003,6 +1073,7 @@ static void TEST1_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST1_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST1_ROOT.");`
         trace("Exit TEST1_ROOT.");
     } // end of behavior for TEST1_ROOT
     
@@ -1019,11 +1090,9 @@ static void TEST1_ROOT_do(Spec2Sm* self)
     // uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", true)]
     if (trace_guard("State TEST1_ROOT: check behavior `do`.", true))
     {
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        bool consume_event = false; // the `do` event is special in that it normally is not consumed.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
-        // No ancestor handles event. Ignore `consume_event` flag.
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        // Don't consume special `do` event.
     } // end of behavior for TEST1_ROOT
 }
 
@@ -1041,6 +1110,7 @@ static void TEST1_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST1_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST1_S1.");`
         trace("Enter TEST1_S1.");
     } // end of behavior for TEST1_S1
 }
@@ -1051,6 +1121,7 @@ static void TEST1_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST1_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST1_S1.");`
         trace("Exit TEST1_S1.");
     } // end of behavior for TEST1_S1
     
@@ -1074,6 +1145,7 @@ static void TEST1_S1_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST1_S1_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST1_S1_1.");`
         trace("Enter TEST1_S1_1.");
     } // end of behavior for TEST1_S1_1
     
@@ -1081,6 +1153,7 @@ static void TEST1_S1_1_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST1_S1_1
 }
@@ -1091,6 +1164,7 @@ static void TEST1_S1_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST1_S1_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST1_S1_1.");`
         trace("Exit TEST1_S1_1.");
     } // end of behavior for TEST1_S1_1
     
@@ -1109,14 +1183,9 @@ static void TEST1_S1_1_do(Spec2Sm* self)
     // uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", true)]
     if (trace_guard("State TEST1_S1_1: check behavior `do`.", true))
     {
-        bool consume_event = false; // the `do` event is special in that it normally is not consumed.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
-        if (consume_event)
-        {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
-        }
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        // Don't consume special `do` event.
     } // end of behavior for TEST1_S1_1
 }
 
@@ -1128,18 +1197,19 @@ static void TEST1_S1_1_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true)] / { trace("Transition action `` for TEST1_S1_1 to TEST1_S2."); } TransitionTo(TEST1_S2)
     if (trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST1_S1_1 or one of its sub states.
-        exit_up_to_state_handler(self, TEST1_ROOT_exit);  // Exit until we reach TEST1_ROOT state.
+        // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST1_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");`.
         trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST1_S2`.
         TEST1_S2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST1_S2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST1_S1_1
 }
 
@@ -1158,6 +1228,7 @@ static void TEST1_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST1_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST1_S2.");`
         trace("Enter TEST1_S2.");
     } // end of behavior for TEST1_S2
 }
@@ -1168,6 +1239,7 @@ static void TEST1_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST1_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST1_S2.");`
         trace("Exit TEST1_S2.");
     } // end of behavior for TEST1_S2
     
@@ -1186,13 +1258,14 @@ static void TEST1_S2_do(Spec2Sm* self)
     if (trace_guard("State TEST1_S2: check behavior `do / { consume_event = true; }`.", true))
     {
         bool consume_event = false; // the `do` event is special in that it normally is not consumed.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `consume_event = true;`
         consume_event = true;
         
+        // Step 2: determine if ancestor gets to handle event next.
         if (consume_event)
         {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
+            self->ancestor_event_handler = NULL;  // consume event
         }
     } // end of behavior for TEST1_S2
 }
@@ -1211,6 +1284,7 @@ static void TEST10_CHOICE_POINT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_CHOICE_POINT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.");`
         trace("Enter TEST10_CHOICE_POINT.");
     } // end of behavior for TEST10_CHOICE_POINT
 }
@@ -1221,6 +1295,7 @@ static void TEST10_CHOICE_POINT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_CHOICE_POINT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.");`
         trace("Exit TEST10_CHOICE_POINT.");
     } // end of behavior for TEST10_CHOICE_POINT
     
@@ -1242,6 +1317,7 @@ static void TEST10_A_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_A."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_A.");`
         trace("Enter TEST10_A.");
     } // end of behavior for TEST10_A
 }
@@ -1252,6 +1328,7 @@ static void TEST10_A_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_A."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_A.");`
         trace("Exit TEST10_A.");
     } // end of behavior for TEST10_A
     
@@ -1265,11 +1342,14 @@ static void TEST10_A_ChoicePoint__transition(Spec2Sm* self)
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
     if (self->vars.count == 1)
     {
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint() or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_A_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");`.
         trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
+        // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST10_A_ChoicePoint__transition_kid_index3(self);
@@ -1280,11 +1360,14 @@ static void TEST10_A_ChoicePoint__transition(Spec2Sm* self)
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
     if (true)
     {
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint() or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_A_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");`.
         trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
+        // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST10_A_ChoicePoint__transition_kid_index3(self);
@@ -1298,11 +1381,14 @@ static void TEST10_A_ChoicePoint__transition_kid_index3(Spec2Sm* self)
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
     if (self->vars.count == 1)
     {
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint() or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_A_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");`.
         trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
+        // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST10_A_ChoicePoint_a__transition(self);
@@ -1313,11 +1399,14 @@ static void TEST10_A_ChoicePoint__transition_kid_index3(Spec2Sm* self)
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
     if (true)
     {
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint() or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_A_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");`.
         trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
+        // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST10_A_ChoicePoint_a__transition(self);
@@ -1331,11 +1420,14 @@ static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self)
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
     if (self->vars.count == 1)
     {
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint(a) or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_A_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");`.
         trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
+        // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST10_A_ChoicePoint_a__transition_kid_index7(self);
@@ -1346,11 +1438,14 @@ static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self)
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
     if (true)
     {
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint(a) or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_A_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");`.
         trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
+        // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST10_A_ChoicePoint_a__transition_kid_index7(self);
@@ -1364,17 +1459,19 @@ static void TEST10_A_ChoicePoint_a__transition_kid_index7(Spec2Sm* self)
     // uml: / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)
     if (true)
     {
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_A.ChoicePoint(a) or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_A_exit);  // Exit until we reach TEST10_A state.
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_A_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");`.
         trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_A_1`.
         TEST10_A_1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST10_A_1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST10_A.ChoicePoint(a)
 }
 
@@ -1392,6 +1489,7 @@ static void TEST10_A_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_A_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_A_1.");`
         trace("Enter TEST10_A_1.");
     } // end of behavior for TEST10_A_1
 }
@@ -1402,6 +1500,7 @@ static void TEST10_A_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_A_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_A_1.");`
         trace("Exit TEST10_A_1.");
     } // end of behavior for TEST10_A_1
     
@@ -1424,6 +1523,7 @@ static void TEST10_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_ROOT.");`
         trace("Enter TEST10_ROOT.");
     } // end of behavior for TEST10_ROOT
 }
@@ -1434,6 +1534,7 @@ static void TEST10_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_ROOT.");`
         trace("Exit TEST10_ROOT.");
     } // end of behavior for TEST10_ROOT
     
@@ -1452,9 +1553,11 @@ static void TEST10_ROOT_ev5(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `count++;`
         self->vars.count++;
         
+        // Step 2: determine if ancestor gets to handle event next.
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST10_ROOT
 }
@@ -1473,6 +1576,7 @@ static void TEST10_G_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_G.");`
         trace("Enter TEST10_G.");
     } // end of behavior for TEST10_G
 }
@@ -1483,6 +1587,7 @@ static void TEST10_G_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_G.");`
         trace("Exit TEST10_G.");
     } // end of behavior for TEST10_G
     
@@ -1496,71 +1601,83 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
     // uml: / { trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1)."); } TransitionTo(TEST10_G.ChoicePoint(1))
     if (true)
     {
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_G.ChoicePoint() or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_G_exit);  // Exit until we reach TEST10_G state.
+        // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_G_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");`.
         trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(1)`.
+        // TEST10_G.ChoicePoint(1) is a pseudo state and cannot have an `enter` trigger.
         
         // TEST10_G.ChoicePoint(1) behavior
         // uml: 1. [count <= 0] / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0."); } TransitionTo(TEST10_G_S0)
         if (self->vars.count <= 0)
         {
-            // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_G.ChoicePoint(1) or one of its sub states.
-            exit_up_to_state_handler(self, TEST10_G_exit);  // Exit until we reach TEST10_G state.
+            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
+            exit_up_to_state_handler(self, TEST10_G_exit);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");`.
             trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_G_S0`.
             TEST10_G_S0_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST10_G_S0;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST10_G.ChoicePoint(1)
         
         // TEST10_G.ChoicePoint(1) behavior
         // uml: [count <= 2] / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower)."); } TransitionTo(TEST10_G.ChoicePoint(lower))
         if (self->vars.count <= 2)
         {
-            // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_G.ChoicePoint(1) or one of its sub states.
-            exit_up_to_state_handler(self, TEST10_G_exit);  // Exit until we reach TEST10_G state.
+            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
+            exit_up_to_state_handler(self, TEST10_G_exit);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");`.
             trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(lower)`.
+            // TEST10_G.ChoicePoint(lower) is a pseudo state and cannot have an `enter` trigger.
             
             // TEST10_G.ChoicePoint(lower) behavior
             // uml: [count <=1] / { trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1."); } TransitionTo(TEST10_G_S1)
             if (self->vars.count <=1)
             {
-                // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_G.ChoicePoint(lower) or one of its sub states.
-                exit_up_to_state_handler(self, TEST10_G_exit);  // Exit until we reach TEST10_G state.
+                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
+                exit_up_to_state_handler(self, TEST10_G_exit);
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");`.
                 trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST10_G_S1`.
                 TEST10_G_S1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST10_G_S1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST10_G.ChoicePoint(lower)
             
             // TEST10_G.ChoicePoint(lower) behavior
             // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2."); } TransitionTo(TEST10_G_S2)
             if (true)
             {
-                // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_G.ChoicePoint(lower) or one of its sub states.
-                exit_up_to_state_handler(self, TEST10_G_exit);  // Exit until we reach TEST10_G state.
+                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
+                exit_up_to_state_handler(self, TEST10_G_exit);
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");`.
                 trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST10_G_S2`.
                 TEST10_G_S2_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST10_G_S2;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST10_G.ChoicePoint(lower)
         } // end of behavior for TEST10_G.ChoicePoint(1)
         
@@ -1568,44 +1685,51 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
         // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper)."); } TransitionTo(TEST10_G.ChoicePoint(upper))
         if (true)
         {
-            // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_G.ChoicePoint(1) or one of its sub states.
-            exit_up_to_state_handler(self, TEST10_G_exit);  // Exit until we reach TEST10_G state.
+            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
+            exit_up_to_state_handler(self, TEST10_G_exit);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");`.
             trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(upper)`.
+            // TEST10_G.ChoicePoint(upper) is a pseudo state and cannot have an `enter` trigger.
             
             // TEST10_G.ChoicePoint(upper) behavior
             // uml: [count <= 3] / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3."); } TransitionTo(TEST10_G_S3)
             if (self->vars.count <= 3)
             {
-                // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_G.ChoicePoint(upper) or one of its sub states.
-                exit_up_to_state_handler(self, TEST10_G_exit);  // Exit until we reach TEST10_G state.
+                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
+                exit_up_to_state_handler(self, TEST10_G_exit);
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");`.
                 trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST10_G_S3`.
                 TEST10_G_S3_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST10_G_S3;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST10_G.ChoicePoint(upper)
             
             // TEST10_G.ChoicePoint(upper) behavior
             // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
             if (true)
             {
-                // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_G.ChoicePoint(upper) or one of its sub states.
-                exit_up_to_state_handler(self, TEST10_ROOT_exit);  // Exit until we reach TEST10_ROOT state.
+                // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
+                exit_up_to_state_handler(self, TEST10_ROOT_exit);
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");`.
                 trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST10_S4`.
                 TEST10_S4_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST10_S4;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST10_G.ChoicePoint(upper)
         } // end of behavior for TEST10_G.ChoicePoint(1)
     } // end of behavior for TEST10_G.ChoicePoint()
@@ -1625,6 +1749,7 @@ static void TEST10_G_S0_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_G_S0."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_G_S0.");`
         trace("Enter TEST10_G_S0.");
     } // end of behavior for TEST10_G_S0
 }
@@ -1635,6 +1760,7 @@ static void TEST10_G_S0_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_G_S0."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_G_S0.");`
         trace("Exit TEST10_G_S0.");
     } // end of behavior for TEST10_G_S0
     
@@ -1656,6 +1782,7 @@ static void TEST10_G_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_G_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_G_S1.");`
         trace("Enter TEST10_G_S1.");
     } // end of behavior for TEST10_G_S1
 }
@@ -1666,6 +1793,7 @@ static void TEST10_G_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_G_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_G_S1.");`
         trace("Exit TEST10_G_S1.");
     } // end of behavior for TEST10_G_S1
     
@@ -1687,6 +1815,7 @@ static void TEST10_G_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_G_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_G_S2.");`
         trace("Enter TEST10_G_S2.");
     } // end of behavior for TEST10_G_S2
 }
@@ -1697,6 +1826,7 @@ static void TEST10_G_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_G_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_G_S2.");`
         trace("Exit TEST10_G_S2.");
     } // end of behavior for TEST10_G_S2
     
@@ -1718,6 +1848,7 @@ static void TEST10_G_S3_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_G_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_G_S3.");`
         trace("Enter TEST10_G_S3.");
     } // end of behavior for TEST10_G_S3
 }
@@ -1728,6 +1859,7 @@ static void TEST10_G_S3_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_G_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_G_S3.");`
         trace("Exit TEST10_G_S3.");
     } // end of behavior for TEST10_G_S3
     
@@ -1753,6 +1885,7 @@ static void TEST10_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_S1.");`
         trace("Enter TEST10_S1.");
     } // end of behavior for TEST10_S1
     
@@ -1760,6 +1893,7 @@ static void TEST10_S1_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST10_S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST10_S1: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST10_S1
 }
@@ -1770,6 +1904,7 @@ static void TEST10_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_S1.");`
         trace("Exit TEST10_S1.");
     } // end of behavior for TEST10_S1
     
@@ -1789,21 +1924,27 @@ static void TEST10_S1_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1)."); } TransitionTo(TEST10_G.EntryPoint(1))
     if (trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.EntryPoint(1))`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST10_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
         TEST10_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).");`.
         trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_G.EntryPoint(1)`.
         TEST10_G_enter(self);
+        // TEST10_G.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
         
         // TEST10_G.EntryPoint(1) behavior
         // uml: / { trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().");`.
             trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
+            // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
             
             // Finish transition by calling pseudo state transition function.
             TEST10_G_ChoicePoint__transition(self);
@@ -1820,21 +1961,26 @@ static void TEST10_S1_ev10(Spec2Sm* self)
     // uml: EV10 [trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_A."); } TransitionTo(TEST10_A)
     if (trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST10_S1 or one of its sub states.
-        exit_up_to_state_handler(self, TEST10_CHOICE_POINT_exit);  // Exit until we reach TEST10_CHOICE_POINT state.
+        // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST10_CHOICE_POINT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_A.");`.
         trace("Transition action `` for TEST10_S1 to TEST10_A.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_A`.
         TEST10_A_enter(self);
         
         // TEST10_A.InitialState behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
         if (self->vars.count == 1)
         {
+            // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");`.
             trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
+            // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
             
             // Finish transition by calling pseudo state transition function.
             TEST10_A_ChoicePoint__transition(self);
@@ -1845,10 +1991,14 @@ static void TEST10_S1_ev10(Spec2Sm* self)
         // uml: [count == 0] / { trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");\ncount++; } TransitionTo(TEST10_A.ChoicePoint())
         if (self->vars.count == 0)
         {
+            // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");\ncount++;`.
             trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
             self->vars.count++;
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
+            // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
             
             // Finish transition by calling pseudo state transition function.
             TEST10_A_ChoicePoint__transition(self);
@@ -1859,9 +2009,13 @@ static void TEST10_S1_ev10(Spec2Sm* self)
         // uml: else / { trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");`.
             trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
+            // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
             
             // Finish transition by calling pseudo state transition function.
             TEST10_A_ChoicePoint__transition_kid_index3(self);
@@ -1878,13 +2032,15 @@ static void TEST10_S1_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
     if (trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.ChoicePoint())`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST10_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
         TEST10_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().");`.
         trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
         TEST10_G_enter(self);
+        // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST10_G_ChoicePoint__transition(self);
@@ -1900,21 +2056,26 @@ static void TEST10_S1_ev3(Spec2Sm* self)
     // uml: EV3 [trace_guard("State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G."); } TransitionTo(TEST10_G)
     if (trace_guard("State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST10_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
         TEST10_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.");`.
         trace("Transition action `` for TEST10_S1 to TEST10_G.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST10_G`.
         TEST10_G_enter(self);
         
         // TEST10_G.InitialState behavior
         // uml: / { trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().");`.
             trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
+            // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
             
             // Finish transition by calling pseudo state transition function.
             TEST10_G_ChoicePoint__transition(self);
@@ -1937,6 +2098,7 @@ static void TEST10_S4_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST10_S4."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST10_S4.");`
         trace("Enter TEST10_S4.");
     } // end of behavior for TEST10_S4
 }
@@ -1947,6 +2109,7 @@ static void TEST10_S4_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST10_S4."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST10_S4.");`
         trace("Exit TEST10_S4.");
     } // end of behavior for TEST10_S4
     
@@ -1968,6 +2131,7 @@ static void TEST2_REGULAR_EVENT_TESTING_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.");`
         trace("Enter TEST2_REGULAR_EVENT_TESTING.");
     } // end of behavior for TEST2_REGULAR_EVENT_TESTING
 }
@@ -1978,6 +2142,7 @@ static void TEST2_REGULAR_EVENT_TESTING_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.");`
         trace("Exit TEST2_REGULAR_EVENT_TESTING.");
     } // end of behavior for TEST2_REGULAR_EVENT_TESTING
     
@@ -2002,6 +2167,7 @@ static void TEST2_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST2_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST2_ROOT.");`
         trace("Enter TEST2_ROOT.");
     } // end of behavior for TEST2_ROOT
 }
@@ -2012,6 +2178,7 @@ static void TEST2_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST2_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST2_ROOT.");`
         trace("Exit TEST2_ROOT.");
     } // end of behavior for TEST2_ROOT
     
@@ -2030,11 +2197,9 @@ static void TEST2_ROOT_do(Spec2Sm* self)
     // uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", true)]
     if (trace_guard("State TEST2_ROOT: check behavior `do`.", true))
     {
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        bool consume_event = false; // the `do` event is special in that it normally is not consumed.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
-        // No ancestor handles event. Ignore `consume_event` flag.
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        // Don't consume special `do` event.
     } // end of behavior for TEST2_ROOT
 }
 
@@ -2046,11 +2211,9 @@ static void TEST2_ROOT_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST2_ROOT: check behavior `EV1`.", true)]
     if (trace_guard("State TEST2_ROOT: check behavior `EV1`.", true))
     {
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
-        // No ancestor handles event. Ignore `consume_event` flag.
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        self->ancestor_event_handler = NULL;  // consume event
     } // end of behavior for TEST2_ROOT
 }
 
@@ -2062,11 +2225,9 @@ static void TEST2_ROOT_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST2_ROOT: check behavior `EV2`.", true)]
     if (trace_guard("State TEST2_ROOT: check behavior `EV2`.", true))
     {
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
-        // No ancestor handles event. Ignore `consume_event` flag.
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        self->ancestor_event_handler = NULL;  // consume event
     } // end of behavior for TEST2_ROOT
 }
 
@@ -2084,6 +2245,7 @@ static void TEST2_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST2_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST2_S1.");`
         trace("Enter TEST2_S1.");
     } // end of behavior for TEST2_S1
 }
@@ -2094,6 +2256,7 @@ static void TEST2_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST2_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST2_S1.");`
         trace("Exit TEST2_S1.");
     } // end of behavior for TEST2_S1
     
@@ -2117,6 +2280,7 @@ static void TEST2_S1_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST2_S1_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST2_S1_1.");`
         trace("Enter TEST2_S1_1.");
     } // end of behavior for TEST2_S1_1
     
@@ -2124,6 +2288,7 @@ static void TEST2_S1_1_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST2_S1_1
 }
@@ -2134,6 +2299,7 @@ static void TEST2_S1_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST2_S1_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST2_S1_1.");`
         trace("Exit TEST2_S1_1.");
     } // end of behavior for TEST2_S1_1
     
@@ -2152,18 +2318,19 @@ static void TEST2_S1_1_do(Spec2Sm* self)
     // uml: do [trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S1_1 to TEST2_S2."); } TransitionTo(TEST2_S2)
     if (trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST2_S1_1 or one of its sub states.
-        exit_up_to_state_handler(self, TEST2_ROOT_exit);  // Exit until we reach TEST2_ROOT state.
+        // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST2_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");`.
         trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST2_S2`.
         TEST2_S2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST2_S2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST2_S1_1
 }
 
@@ -2176,14 +2343,9 @@ static void TEST2_S1_1_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST2_S1_1: check behavior `EV1`.", true)]
     if (trace_guard("State TEST2_S1_1: check behavior `EV1`.", true))
     {
-        bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
-        if (consume_event)
-        {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
-        }
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        self->ancestor_event_handler = NULL;  // consume event
     } // end of behavior for TEST2_S1_1
 }
 
@@ -2203,6 +2365,7 @@ static void TEST2_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST2_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST2_S2.");`
         trace("Enter TEST2_S2.");
     } // end of behavior for TEST2_S2
 }
@@ -2213,6 +2376,7 @@ static void TEST2_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST2_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST2_S2.");`
         trace("Exit TEST2_S2.");
     } // end of behavior for TEST2_S2
     
@@ -2232,13 +2396,14 @@ static void TEST2_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST2_S2: check behavior `EV1 / { consume_event = false; }`.", true))
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `consume_event = false;`
         consume_event = false;
         
+        // Step 2: determine if ancestor gets to handle event next.
         if (consume_event)
         {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
+            self->ancestor_event_handler = NULL;  // consume event
         }
     } // end of behavior for TEST2_S2
 }
@@ -2252,18 +2417,19 @@ static void TEST2_S2_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2."); } TransitionTo(TEST2_S2)
     if (trace_guard("State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST2_S2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
         TEST2_S2_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST2_S2 to TEST2_S2.");`.
         trace("Transition action `` for TEST2_S2 to TEST2_S2.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST2_S2`.
         TEST2_S2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST2_S2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST2_S2
 }
 
@@ -2281,6 +2447,7 @@ static void TEST3_BEHAVIOR_ORDERING_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.");`
         trace("Enter TEST3_BEHAVIOR_ORDERING.");
     } // end of behavior for TEST3_BEHAVIOR_ORDERING
 }
@@ -2291,6 +2458,7 @@ static void TEST3_BEHAVIOR_ORDERING_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.");`
         trace("Exit TEST3_BEHAVIOR_ORDERING.");
     } // end of behavior for TEST3_BEHAVIOR_ORDERING
     
@@ -2313,6 +2481,7 @@ static void TEST3_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST3_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST3_ROOT.");`
         trace("Enter TEST3_ROOT.");
     } // end of behavior for TEST3_ROOT
 }
@@ -2323,6 +2492,7 @@ static void TEST3_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST3_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST3_ROOT.");`
         trace("Exit TEST3_ROOT.");
     } // end of behavior for TEST3_ROOT
     
@@ -2339,11 +2509,9 @@ static void TEST3_ROOT_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST3_ROOT: check behavior `EV1`.", true)]
     if (trace_guard("State TEST3_ROOT: check behavior `EV1`.", true))
     {
-        // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
-        bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
-        
-        // No ancestor handles event. Ignore `consume_event` flag.
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        self->ancestor_event_handler = NULL;  // consume event
     } // end of behavior for TEST3_ROOT
 }
 
@@ -2362,6 +2530,7 @@ static void TEST3_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST3_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST3_S1.");`
         trace("Enter TEST3_S1.");
     } // end of behavior for TEST3_S1
     
@@ -2369,6 +2538,7 @@ static void TEST3_S1_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST3_S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST3_S1: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST3_S1
 }
@@ -2379,6 +2549,7 @@ static void TEST3_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST3_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST3_S1.");`
         trace("Exit TEST3_S1.");
     } // end of behavior for TEST3_S1
     
@@ -2396,18 +2567,19 @@ static void TEST3_S1_ev1(Spec2Sm* self)
     // uml: 1. EV1 [trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true)] / { trace("Transition action `` for TEST3_S1 to TEST3_S2."); } TransitionTo(TEST3_S2)
     if (trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST3_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition).
         TEST3_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST3_S1 to TEST3_S2.");`.
         trace("Transition action `` for TEST3_S1 to TEST3_S2.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST3_S2`.
         TEST3_S2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST3_S2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST3_S1
     
     // TEST3_S1 behavior
@@ -2415,13 +2587,14 @@ static void TEST3_S1_ev1(Spec2Sm* self)
     if (trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\"); }`.", true))
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `trace("failed");`
         trace("failed");
         
+        // Step 2: determine if ancestor gets to handle event next.
         if (consume_event)
         {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
+            self->ancestor_event_handler = NULL;  // consume event
         }
     } // end of behavior for TEST3_S1
 }
@@ -2441,6 +2614,7 @@ static void TEST3_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST3_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST3_S2.");`
         trace("Enter TEST3_S2.");
     } // end of behavior for TEST3_S2
 }
@@ -2451,6 +2625,7 @@ static void TEST3_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST3_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST3_S2.");`
         trace("Exit TEST3_S2.");
     } // end of behavior for TEST3_S2
     
@@ -2469,13 +2644,14 @@ static void TEST3_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\"); }`.", true))
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `trace("1 woot!");`
         trace("1 woot!");
         
+        // Step 2: determine if ancestor gets to handle event next.
         if (consume_event)
         {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
+            self->ancestor_event_handler = NULL;  // consume event
         }
     } // end of behavior for TEST3_S2
     
@@ -2484,13 +2660,14 @@ static void TEST3_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\"); }`.", true))
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `trace("2 woot!");`
         trace("2 woot!");
         
+        // Step 2: determine if ancestor gets to handle event next.
         if (consume_event)
         {
-            // Mark event as handled.
-            self->ancestor_event_handler = NULL;
+            self->ancestor_event_handler = NULL;  // consume event
         }
     } // end of behavior for TEST3_S2
     
@@ -2498,19 +2675,20 @@ static void TEST3_S2_ev1(Spec2Sm* self)
     // uml: 2. EV1 [trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\"); } TransitionTo(TEST3_S3)`.", true)] / { trace("Transition action `trace(\"3 woot!\");` for TEST3_S2 to TEST3_S3.");\ntrace("3 woot!"); } TransitionTo(TEST3_S3)
     if (trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\"); } TransitionTo(TEST3_S3)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST3_S2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition).
         TEST3_S2_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `trace(\"3 woot!\");` for TEST3_S2 to TEST3_S3.");\ntrace("3 woot!");`.
         trace("Transition action `trace(\"3 woot!\");` for TEST3_S2 to TEST3_S3.");
         trace("3 woot!");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST3_S3`.
         TEST3_S3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST3_S3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST3_S2
 }
 
@@ -2528,6 +2706,7 @@ static void TEST3_S3_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST3_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST3_S3.");`
         trace("Enter TEST3_S3.");
     } // end of behavior for TEST3_S3
 }
@@ -2538,6 +2717,7 @@ static void TEST3_S3_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST3_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST3_S3.");`
         trace("Exit TEST3_S3.");
     } // end of behavior for TEST3_S3
     
@@ -2559,6 +2739,7 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");`
         trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");
     } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
 }
@@ -2569,6 +2750,7 @@ static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");`
         trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
     } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
     
@@ -2590,6 +2772,7 @@ static void TEST4_B_AND_OTHERS_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_B_AND_OTHERS."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.");`
         trace("Enter TEST4_B_AND_OTHERS.");
     } // end of behavior for TEST4_B_AND_OTHERS
     
@@ -2597,6 +2780,7 @@ static void TEST4_B_AND_OTHERS_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
     if (trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true))
     {
+        // Step 1: execute action `clear_dispatch_output();`
         trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
     } // end of behavior for TEST4_B_AND_OTHERS
 }
@@ -2607,6 +2791,7 @@ static void TEST4_B_AND_OTHERS_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_B_AND_OTHERS."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.");`
         trace("Exit TEST4_B_AND_OTHERS.");
     } // end of behavior for TEST4_B_AND_OTHERS
     
@@ -2628,6 +2813,7 @@ static void TEST4B_LOCAL_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4B_LOCAL."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4B_LOCAL.");`
         trace("Enter TEST4B_LOCAL.");
     } // end of behavior for TEST4B_LOCAL
 }
@@ -2638,6 +2824,7 @@ static void TEST4B_LOCAL_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4B_LOCAL."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4B_LOCAL.");`
         trace("Exit TEST4B_LOCAL.");
     } // end of behavior for TEST4B_LOCAL
     
@@ -2660,6 +2847,7 @@ static void TEST4B_G_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4B_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4B_G.");`
         trace("Enter TEST4B_G.");
     } // end of behavior for TEST4B_G
 }
@@ -2670,6 +2858,7 @@ static void TEST4B_G_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4B_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4B_G.");`
         trace("Exit TEST4B_G.");
     } // end of behavior for TEST4B_G
     
@@ -2686,18 +2875,19 @@ static void TEST4B_G_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true)] / { trace("Transition action `` for TEST4B_G to TEST4B_G_1."); } TransitionTo(TEST4B_G_1)
     if (trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4B_G or one of its sub states.
-        exit_up_to_state_handler(self, TEST4B_G_exit);  // Exit until we reach TEST4B_G state.
+        // Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4B_G_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4B_G to TEST4B_G_1.");`.
         trace("Transition action `` for TEST4B_G to TEST4B_G_1.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4B_G_1`.
         TEST4B_G_1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4B_G_1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4B_G
 }
 
@@ -2716,6 +2906,7 @@ static void TEST4B_G_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4B_G_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4B_G_1.");`
         trace("Enter TEST4B_G_1.");
     } // end of behavior for TEST4B_G_1
 }
@@ -2726,6 +2917,7 @@ static void TEST4B_G_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4B_G_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4B_G_1.");`
         trace("Exit TEST4B_G_1.");
     } // end of behavior for TEST4B_G_1
     
@@ -2742,17 +2934,18 @@ static void TEST4B_G_1_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", true)] / { trace("Transition action `` for TEST4B_G_1 to TEST4B_G."); } TransitionTo(TEST4B_G)
     if (trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4B_G_1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
         TEST4B_G_1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4B_G_1 to TEST4B_G.");`.
         trace("Transition action `` for TEST4B_G_1 to TEST4B_G.");
         
-        // Enter towards target
-        
-        // update state_id
+        // Step 3: Enter/move towards transition target `TEST4B_G`.
+        // Already in target. No entering required.
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4B_G;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4B_G_1
 }
 
@@ -2770,6 +2963,7 @@ static void TEST4C_LOCAL_TO_ALIAS_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.");`
         trace("Enter TEST4C_LOCAL_TO_ALIAS.");
     } // end of behavior for TEST4C_LOCAL_TO_ALIAS
 }
@@ -2780,6 +2974,7 @@ static void TEST4C_LOCAL_TO_ALIAS_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.");`
         trace("Exit TEST4C_LOCAL_TO_ALIAS.");
     } // end of behavior for TEST4C_LOCAL_TO_ALIAS
     
@@ -2802,6 +2997,7 @@ static void TEST4C_G_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4C_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4C_G.");`
         trace("Enter TEST4C_G.");
     } // end of behavior for TEST4C_G
 }
@@ -2812,6 +3008,7 @@ static void TEST4C_G_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4C_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4C_G.");`
         trace("Exit TEST4C_G.");
     } // end of behavior for TEST4C_G
     
@@ -2828,18 +3025,19 @@ static void TEST4C_G_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true)] / { trace("Transition action `` for TEST4C_G to TEST4C_G_1."); } TransitionTo(TEST4C_G_1)
     if (trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4C_G or one of its sub states.
-        exit_up_to_state_handler(self, TEST4C_G_exit);  // Exit until we reach TEST4C_G state.
+        // Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4C_G_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4C_G to TEST4C_G_1.");`.
         trace("Transition action `` for TEST4C_G to TEST4C_G_1.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4C_G_1`.
         TEST4C_G_1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4C_G_1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4C_G
 }
 
@@ -2858,6 +3056,7 @@ static void TEST4C_G_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4C_G_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4C_G_1.");`
         trace("Enter TEST4C_G_1.");
     } // end of behavior for TEST4C_G_1
 }
@@ -2868,6 +3067,7 @@ static void TEST4C_G_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4C_G_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4C_G_1.");`
         trace("Exit TEST4C_G_1.");
     } // end of behavior for TEST4C_G_1
     
@@ -2884,17 +3084,18 @@ static void TEST4C_G_1_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", true)] / { trace("Transition action `` for TEST4C_G_1 to TEST4C_G."); } TransitionTo(TEST4C_G)
     if (trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4C_G_1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
         TEST4C_G_1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4C_G_1 to TEST4C_G.");`.
         trace("Transition action `` for TEST4C_G_1 to TEST4C_G.");
         
-        // Enter towards target
-        
-        // update state_id
+        // Step 3: Enter/move towards transition target `TEST4C_G`.
+        // Already in target. No entering required.
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4C_G;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4C_G_1
 }
 
@@ -2912,6 +3113,7 @@ static void TEST4D_EXTERNAL_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4D_EXTERNAL."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4D_EXTERNAL.");`
         trace("Enter TEST4D_EXTERNAL.");
     } // end of behavior for TEST4D_EXTERNAL
 }
@@ -2922,6 +3124,7 @@ static void TEST4D_EXTERNAL_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4D_EXTERNAL."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4D_EXTERNAL.");`
         trace("Exit TEST4D_EXTERNAL.");
     } // end of behavior for TEST4D_EXTERNAL
     
@@ -2944,6 +3147,7 @@ static void TEST4D_G_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4D_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4D_G.");`
         trace("Enter TEST4D_G.");
     } // end of behavior for TEST4D_G
 }
@@ -2954,6 +3158,7 @@ static void TEST4D_G_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4D_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4D_G.");`
         trace("Exit TEST4D_G.");
     } // end of behavior for TEST4D_G
     
@@ -2970,29 +3175,33 @@ static void TEST4D_G_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint()."); } TransitionTo(TEST4D_EXTERNAL.ChoicePoint())
     if (trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4D_G or one of its sub states.
-        exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);  // Exit until we reach TEST4D_EXTERNAL state.
+        // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");`.
         trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.ChoicePoint()`.
+        // TEST4D_EXTERNAL.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
         
         // TEST4D_EXTERNAL.ChoicePoint() behavior
         // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1."); } TransitionTo(TEST4D_G_1)
         if (true)
         {
-            // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4D_EXTERNAL.ChoicePoint() or one of its sub states.
-            exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);  // Exit until we reach TEST4D_EXTERNAL state.
+            // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
+            exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");`.
             trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST4D_G_1`.
             TEST4D_G_enter(self);
             TEST4D_G_1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4D_G_1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
     } // end of behavior for TEST4D_G
 }
@@ -3012,6 +3221,7 @@ static void TEST4D_G_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4D_G_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4D_G_1.");`
         trace("Enter TEST4D_G_1.");
     } // end of behavior for TEST4D_G_1
 }
@@ -3022,6 +3232,7 @@ static void TEST4D_G_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4D_G_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4D_G_1.");`
         trace("Exit TEST4D_G_1.");
     } // end of behavior for TEST4D_G_1
     
@@ -3038,28 +3249,32 @@ static void TEST4D_G_1_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint()."); } TransitionTo(TEST4D_EXTERNAL.ChoicePoint())
     if (trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4D_G_1 or one of its sub states.
-        exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);  // Exit until we reach TEST4D_EXTERNAL state.
+        // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");`.
         trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.ChoicePoint()`.
+        // TEST4D_EXTERNAL.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
         
         // TEST4D_EXTERNAL.ChoicePoint() behavior
         // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G."); } TransitionTo(TEST4D_G)
         if (true)
         {
-            // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4D_EXTERNAL.ChoicePoint() or one of its sub states.
-            exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);  // Exit until we reach TEST4D_EXTERNAL state.
+            // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
+            exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");`.
             trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST4D_G`.
             TEST4D_G_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4D_G;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
     } // end of behavior for TEST4D_G_1
 }
@@ -3082,6 +3297,7 @@ static void TEST4_DECIDE_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_DECIDE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_DECIDE.");`
         trace("Enter TEST4_DECIDE.");
     } // end of behavior for TEST4_DECIDE
 }
@@ -3092,6 +3308,7 @@ static void TEST4_DECIDE_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_DECIDE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_DECIDE.");`
         trace("Exit TEST4_DECIDE.");
     } // end of behavior for TEST4_DECIDE
     
@@ -3111,18 +3328,19 @@ static void TEST4_DECIDE_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT."); } TransitionTo(TEST4_ROOT)
     if (trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
         TEST4_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.");`.
         trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_ROOT`.
         TEST4_ROOT_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_ROOT;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4_DECIDE
 }
 
@@ -3134,12 +3352,13 @@ static void TEST4_DECIDE_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL."); } TransitionTo(TEST4B_LOCAL)
     if (trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
         TEST4_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.");`.
         trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4B_LOCAL`.
         TEST4_B_AND_OTHERS_enter(self);
         TEST4B_LOCAL_enter(self);
         
@@ -3147,15 +3366,18 @@ static void TEST4_DECIDE_ev2(Spec2Sm* self)
         // uml: / { trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G."); } TransitionTo(TEST4B_G)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST4B_LOCAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");`.
             trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST4B_G`.
             TEST4B_G_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4B_G;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST4B_LOCAL.InitialState
     } // end of behavior for TEST4_DECIDE
 }
@@ -3168,12 +3390,13 @@ static void TEST4_DECIDE_ev3(Spec2Sm* self)
     // uml: EV3 [trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS."); } TransitionTo(TEST4C_LOCAL_TO_ALIAS)
     if (trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
         TEST4_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.");`.
         trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4C_LOCAL_TO_ALIAS`.
         TEST4_B_AND_OTHERS_enter(self);
         TEST4C_LOCAL_TO_ALIAS_enter(self);
         
@@ -3181,15 +3404,18 @@ static void TEST4_DECIDE_ev3(Spec2Sm* self)
         // uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G."); } TransitionTo(TEST4C_G)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST4C_LOCAL_TO_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");`.
             trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST4C_G`.
             TEST4C_G_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4C_G;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST4C_LOCAL_TO_ALIAS.InitialState
     } // end of behavior for TEST4_DECIDE
 }
@@ -3202,12 +3428,13 @@ static void TEST4_DECIDE_ev4(Spec2Sm* self)
     // uml: EV4 [trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL."); } TransitionTo(TEST4D_EXTERNAL)
     if (trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
         TEST4_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.");`.
         trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL`.
         TEST4_B_AND_OTHERS_enter(self);
         TEST4D_EXTERNAL_enter(self);
         
@@ -3215,15 +3442,18 @@ static void TEST4_DECIDE_ev4(Spec2Sm* self)
         // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G."); } TransitionTo(TEST4D_G)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");`.
             trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST4D_G`.
             TEST4D_G_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4D_G;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST4D_EXTERNAL.InitialState
     } // end of behavior for TEST4_DECIDE
 }
@@ -3245,6 +3475,7 @@ static void TEST4_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_ROOT.");`
         trace("Enter TEST4_ROOT.");
     } // end of behavior for TEST4_ROOT
     
@@ -3252,6 +3483,7 @@ static void TEST4_ROOT_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST4_ROOT
 }
@@ -3262,6 +3494,7 @@ static void TEST4_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_ROOT.");`
         trace("Exit TEST4_ROOT.");
     } // end of behavior for TEST4_ROOT
     
@@ -3280,18 +3513,19 @@ static void TEST4_ROOT_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S1."); } TransitionTo(TEST4_S1)
     if (trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
-        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
+        // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S1.");`.
         trace("Transition action `` for TEST4_ROOT to TEST4_S1.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_S1`.
         TEST4_S1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4_ROOT
 }
 
@@ -3303,19 +3537,20 @@ static void TEST4_ROOT_ev3(Spec2Sm* self)
     // uml: EV3 [trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S10_1."); } TransitionTo(TEST4_S10_1)
     if (trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
-        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
+        // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");`.
         trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_S10_1`.
         TEST4_S10_enter(self);
         TEST4_S10_1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S10_1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4_ROOT
 }
 
@@ -3327,27 +3562,31 @@ static void TEST4_ROOT_ev4(Spec2Sm* self)
     // uml: EV4 [trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S20."); } TransitionTo(TEST4_S20)
     if (trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_ROOT or one of its sub states.
-        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
+        // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S20.");`.
         trace("Transition action `` for TEST4_ROOT to TEST4_S20.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_S20`.
         TEST4_S20_enter(self);
         
         // TEST4_S20.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");`.
             trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST4_S20_1`.
             TEST4_S20_1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4_S20_1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST4_S20.InitialState
     } // end of behavior for TEST4_ROOT
 }
@@ -3367,6 +3606,7 @@ static void TEST4_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_S1.");`
         trace("Enter TEST4_S1.");
     } // end of behavior for TEST4_S1
 }
@@ -3377,6 +3617,7 @@ static void TEST4_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_S1.");`
         trace("Exit TEST4_S1.");
     } // end of behavior for TEST4_S1
     
@@ -3393,18 +3634,19 @@ static void TEST4_S1_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", true)] / { trace("Transition action `` for TEST4_S1 to TEST4_S2."); } TransitionTo(TEST4_S2)
     if (trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
         TEST4_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_S1 to TEST4_S2.");`.
         trace("Transition action `` for TEST4_S1 to TEST4_S2.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_S2`.
         TEST4_S2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4_S1
 }
 
@@ -3423,6 +3665,7 @@ static void TEST4_S10_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_S10."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_S10.");`
         trace("Enter TEST4_S10.");
     } // end of behavior for TEST4_S10
 }
@@ -3433,6 +3676,7 @@ static void TEST4_S10_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_S10."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_S10.");`
         trace("Exit TEST4_S10.");
     } // end of behavior for TEST4_S10
     
@@ -3450,18 +3694,19 @@ static void TEST4_S10_ev4(Spec2Sm* self)
     // uml: EV4 [trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true)] / { trace("Transition action `` for TEST4_S10 to TEST4_S10."); } TransitionTo(TEST4_S10)
     if (trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_S10 or one of its sub states.
-        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
+        // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_S10 to TEST4_S10.");`.
         trace("Transition action `` for TEST4_S10 to TEST4_S10.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_S10`.
         TEST4_S10_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S10;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4_S10
 }
 
@@ -3479,6 +3724,7 @@ static void TEST4_S10_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_S10_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_S10_1.");`
         trace("Enter TEST4_S10_1.");
     } // end of behavior for TEST4_S10_1
 }
@@ -3489,6 +3735,7 @@ static void TEST4_S10_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_S10_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_S10_1.");`
         trace("Exit TEST4_S10_1.");
     } // end of behavior for TEST4_S10_1
     
@@ -3511,6 +3758,7 @@ static void TEST4_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_S2.");`
         trace("Enter TEST4_S2.");
     } // end of behavior for TEST4_S2
 }
@@ -3521,6 +3769,7 @@ static void TEST4_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_S2.");`
         trace("Exit TEST4_S2.");
     } // end of behavior for TEST4_S2
     
@@ -3537,18 +3786,19 @@ static void TEST4_S2_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", true)] / { trace("Transition action `` for TEST4_S2 to TEST4_S3."); } TransitionTo(TEST4_S3)
     if (trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_S2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
         TEST4_S2_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_S2 to TEST4_S3.");`.
         trace("Transition action `` for TEST4_S2 to TEST4_S3.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_S3`.
         TEST4_S3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_S3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4_S2
 }
 
@@ -3567,6 +3817,7 @@ static void TEST4_S20_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_S20."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_S20.");`
         trace("Enter TEST4_S20.");
     } // end of behavior for TEST4_S20
 }
@@ -3577,6 +3828,7 @@ static void TEST4_S20_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_S20."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_S20.");`
         trace("Exit TEST4_S20.");
     } // end of behavior for TEST4_S20
     
@@ -3594,27 +3846,31 @@ static void TEST4_S20_ev4(Spec2Sm* self)
     // uml: EV4 [trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_S20 to TEST4_S20."); } TransitionTo(TEST4_S20)
     if (trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST4_S20 or one of its sub states.
-        exit_up_to_state_handler(self, TEST4_ROOT_exit);  // Exit until we reach TEST4_ROOT state.
+        // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST4_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_S20 to TEST4_S20.");`.
         trace("Transition action `` for TEST4_S20 to TEST4_S20.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST4_S20`.
         TEST4_S20_enter(self);
         
         // TEST4_S20.InitialState behavior
         // uml: / { trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");`.
             trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST4_S20_1`.
             TEST4_S20_1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST4_S20_1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST4_S20.InitialState
     } // end of behavior for TEST4_S20
 }
@@ -3633,6 +3889,7 @@ static void TEST4_S20_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_S20_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_S20_1.");`
         trace("Enter TEST4_S20_1.");
     } // end of behavior for TEST4_S20_1
 }
@@ -3643,6 +3900,7 @@ static void TEST4_S20_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_S20_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_S20_1.");`
         trace("Exit TEST4_S20_1.");
     } // end of behavior for TEST4_S20_1
     
@@ -3665,6 +3923,7 @@ static void TEST4_S3_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST4_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST4_S3.");`
         trace("Enter TEST4_S3.");
     } // end of behavior for TEST4_S3
 }
@@ -3675,6 +3934,7 @@ static void TEST4_S3_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST4_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST4_S3.");`
         trace("Exit TEST4_S3.");
     } // end of behavior for TEST4_S3
     
@@ -3691,17 +3951,18 @@ static void TEST4_S3_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_S3 to TEST4_ROOT."); } TransitionTo(TEST4_ROOT)
     if (trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST4_S3 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
         TEST4_S3_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_S3 to TEST4_ROOT.");`.
         trace("Transition action `` for TEST4_S3 to TEST4_ROOT.");
         
-        // Enter towards target
-        
-        // update state_id
+        // Step 3: Enter/move towards transition target `TEST4_ROOT`.
+        // Already in target. No entering required.
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST4_ROOT;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST4_S3
 }
 
@@ -3719,6 +3980,7 @@ static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`
         trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
     } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
 }
@@ -3729,6 +3991,7 @@ static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`
         trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
     } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     
@@ -3751,6 +4014,7 @@ static void TEST5_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST5_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST5_ROOT.");`
         trace("Enter TEST5_ROOT.");
     } // end of behavior for TEST5_ROOT
     
@@ -3758,6 +4022,7 @@ static void TEST5_ROOT_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST5_ROOT
 }
@@ -3768,6 +4033,7 @@ static void TEST5_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST5_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST5_ROOT.");`
         trace("Exit TEST5_ROOT.");
     } // end of behavior for TEST5_ROOT
     
@@ -3784,18 +4050,19 @@ static void TEST5_ROOT_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true)] / { trace("Transition action `` for TEST5_ROOT to TEST5_S1."); } TransitionTo(TEST5_S1)
     if (trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST5_ROOT or one of its sub states.
-        exit_up_to_state_handler(self, TEST5_ROOT_exit);  // Exit until we reach TEST5_ROOT state.
+        // Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST5_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST5_ROOT to TEST5_S1.");`.
         trace("Transition action `` for TEST5_ROOT to TEST5_S1.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST5_S1`.
         TEST5_S1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST5_S1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST5_ROOT
 }
 
@@ -3814,6 +4081,7 @@ static void TEST5_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST5_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST5_S1.");`
         trace("Enter TEST5_S1.");
     } // end of behavior for TEST5_S1
 }
@@ -3824,6 +4092,7 @@ static void TEST5_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST5_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST5_S1.");`
         trace("Exit TEST5_S1.");
     } // end of behavior for TEST5_S1
     
@@ -3840,18 +4109,19 @@ static void TEST5_S1_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", true)] / { trace("Transition action `` for TEST5_S1 to TEST5_S2."); } TransitionTo(TEST5_S2)
     if (trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST5_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
         TEST5_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST5_S1 to TEST5_S2.");`.
         trace("Transition action `` for TEST5_S1 to TEST5_S2.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST5_S2`.
         TEST5_S2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST5_S2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST5_S1
 }
 
@@ -3870,6 +4140,7 @@ static void TEST5_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST5_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST5_S2.");`
         trace("Enter TEST5_S2.");
     } // end of behavior for TEST5_S2
 }
@@ -3880,6 +4151,7 @@ static void TEST5_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST5_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST5_S2.");`
         trace("Exit TEST5_S2.");
     } // end of behavior for TEST5_S2
     
@@ -3896,18 +4168,19 @@ static void TEST5_S2_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", true)] / { trace("Transition action `` for TEST5_S2 to TEST5_S3."); } TransitionTo(TEST5_S3)
     if (trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST5_S2 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
         TEST5_S2_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST5_S2 to TEST5_S3.");`.
         trace("Transition action `` for TEST5_S2 to TEST5_S3.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST5_S3`.
         TEST5_S3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST5_S3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST5_S2
 }
 
@@ -3926,6 +4199,7 @@ static void TEST5_S3_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST5_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST5_S3.");`
         trace("Enter TEST5_S3.");
     } // end of behavior for TEST5_S3
 }
@@ -3936,6 +4210,7 @@ static void TEST5_S3_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST5_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST5_S3.");`
         trace("Exit TEST5_S3.");
     } // end of behavior for TEST5_S3
     
@@ -3952,17 +4227,18 @@ static void TEST5_S3_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", true)] / { trace("Transition action `` for TEST5_S3 to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
     if (trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST5_S3 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
         TEST5_S3_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST5_S3 to TEST5_ROOT.");`.
         trace("Transition action `` for TEST5_S3 to TEST5_ROOT.");
         
-        // Enter towards target
-        
-        // update state_id
+        // Step 3: Enter/move towards transition target `TEST5_ROOT`.
+        // Already in target. No entering required.
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST5_ROOT;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST5_S3
 }
 
@@ -3980,6 +4256,7 @@ static void TEST6_VARIABLES_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST6_VARIABLES."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST6_VARIABLES.");`
         trace("Enter TEST6_VARIABLES.");
     } // end of behavior for TEST6_VARIABLES
 }
@@ -3990,6 +4267,7 @@ static void TEST6_VARIABLES_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST6_VARIABLES."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST6_VARIABLES.");`
         trace("Exit TEST6_VARIABLES.");
     } // end of behavior for TEST6_VARIABLES
     
@@ -4011,6 +4289,7 @@ static void TEST6_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST6_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST6_ROOT.");`
         trace("Enter TEST6_ROOT.");
     } // end of behavior for TEST6_ROOT
 }
@@ -4021,6 +4300,7 @@ static void TEST6_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST6_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST6_ROOT.");`
         trace("Exit TEST6_ROOT.");
     } // end of behavior for TEST6_ROOT
     
@@ -4043,6 +4323,7 @@ static void TEST6_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST6_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST6_S1.");`
         trace("Enter TEST6_S1.");
     } // end of behavior for TEST6_S1
     
@@ -4050,6 +4331,7 @@ static void TEST6_S1_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST6_S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST6_S1: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST6_S1
 }
@@ -4060,6 +4342,7 @@ static void TEST6_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST6_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST6_S1.");`
         trace("Exit TEST6_S1.");
     } // end of behavior for TEST6_S1
     
@@ -4078,9 +4361,11 @@ static void TEST6_S1_ev1(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `count++;`
         self->vars.count++;
         
+        // Step 2: determine if ancestor gets to handle event next.
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST6_S1
     
@@ -4088,18 +4373,19 @@ static void TEST6_S1_ev1(Spec2Sm* self)
     // uml: 2. EV1 [trace_guard("State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`.", count >= 2)] / { trace("Transition action `` for TEST6_S1 to TEST6_S2."); } TransitionTo(TEST6_S2)
     if (trace_guard("State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`.", self->vars.count >= 2))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST6_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
         TEST6_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST6_S1 to TEST6_S2.");`.
         trace("Transition action `` for TEST6_S1 to TEST6_S2.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST6_S2`.
         TEST6_S2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST6_S2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST6_S1
 }
 
@@ -4117,6 +4403,7 @@ static void TEST6_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST6_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST6_S2.");`
         trace("Enter TEST6_S2.");
     } // end of behavior for TEST6_S2
 }
@@ -4127,6 +4414,7 @@ static void TEST6_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST6_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST6_S2.");`
         trace("Exit TEST6_S2.");
     } // end of behavior for TEST6_S2
     
@@ -4148,6 +4436,7 @@ static void TEST7_INITIAL_CHOICE_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST7_INITIAL_CHOICE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST7_INITIAL_CHOICE.");`
         trace("Enter TEST7_INITIAL_CHOICE.");
     } // end of behavior for TEST7_INITIAL_CHOICE
 }
@@ -4158,6 +4447,7 @@ static void TEST7_INITIAL_CHOICE_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST7_INITIAL_CHOICE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST7_INITIAL_CHOICE.");`
         trace("Exit TEST7_INITIAL_CHOICE.");
     } // end of behavior for TEST7_INITIAL_CHOICE
     
@@ -4180,6 +4470,7 @@ static void TEST7_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST7_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST7_ROOT.");`
         trace("Enter TEST7_ROOT.");
     } // end of behavior for TEST7_ROOT
     
@@ -4187,6 +4478,7 @@ static void TEST7_ROOT_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST7_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST7_ROOT: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST7_ROOT
 }
@@ -4197,6 +4489,7 @@ static void TEST7_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST7_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST7_ROOT.");`
         trace("Exit TEST7_ROOT.");
     } // end of behavior for TEST7_ROOT
     
@@ -4215,9 +4508,11 @@ static void TEST7_ROOT_ev5(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `count++;`
         self->vars.count++;
         
+        // Step 2: determine if ancestor gets to handle event next.
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST7_ROOT
 }
@@ -4237,6 +4532,7 @@ static void TEST7_G_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST7_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST7_G.");`
         trace("Enter TEST7_G.");
     } // end of behavior for TEST7_G
 }
@@ -4247,6 +4543,7 @@ static void TEST7_G_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST7_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST7_G.");`
         trace("Exit TEST7_G.");
     } // end of behavior for TEST7_G
     
@@ -4263,26 +4560,31 @@ static void TEST7_G_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST7_G: check behavior `EV2 TransitionTo(TEST7_ROOT.InitialState)`.", true)] / { trace("Transition action `` for TEST7_G to TEST7_ROOT.InitialState."); } TransitionTo(TEST7_ROOT.InitialState)
     if (trace_guard("State TEST7_G: check behavior `EV2 TransitionTo(TEST7_ROOT.InitialState)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST7_G or one of its sub states.
-        exit_up_to_state_handler(self, TEST7_ROOT_exit);  // Exit until we reach TEST7_ROOT state.
+        // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_G to TEST7_ROOT.InitialState.");`.
         trace("Transition action `` for TEST7_G to TEST7_ROOT.InitialState.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST7_ROOT.InitialState`.
+        // TEST7_ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
         
         // TEST7_ROOT.InitialState behavior
         // uml: / { trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1."); } TransitionTo(TEST7_S1)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.");`.
             trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST7_S1`.
             TEST7_S1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_S1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST7_ROOT.InitialState
     } // end of behavior for TEST7_G
 }
@@ -4301,6 +4603,7 @@ static void TEST7_G_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST7_G_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST7_G_S1.");`
         trace("Enter TEST7_G_S1.");
     } // end of behavior for TEST7_G_S1
 }
@@ -4311,6 +4614,7 @@ static void TEST7_G_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST7_G_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST7_G_S1.");`
         trace("Exit TEST7_G_S1.");
     } // end of behavior for TEST7_G_S1
     
@@ -4332,6 +4636,7 @@ static void TEST7_G_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST7_G_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST7_G_S2.");`
         trace("Enter TEST7_G_S2.");
     } // end of behavior for TEST7_G_S2
 }
@@ -4342,6 +4647,7 @@ static void TEST7_G_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST7_G_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST7_G_S2.");`
         trace("Exit TEST7_G_S2.");
     } // end of behavior for TEST7_G_S2
     
@@ -4363,6 +4669,7 @@ static void TEST7_G_S3_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST7_G_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST7_G_S3.");`
         trace("Enter TEST7_G_S3.");
     } // end of behavior for TEST7_G_S3
 }
@@ -4373,6 +4680,7 @@ static void TEST7_G_S3_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST7_G_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST7_G_S3.");`
         trace("Exit TEST7_G_S3.");
     } // end of behavior for TEST7_G_S3
     
@@ -4396,6 +4704,7 @@ static void TEST7_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST7_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST7_S1.");`
         trace("Enter TEST7_S1.");
     } // end of behavior for TEST7_S1
 }
@@ -4406,6 +4715,7 @@ static void TEST7_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST7_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST7_S1.");`
         trace("Exit TEST7_S1.");
     } // end of behavior for TEST7_S1
     
@@ -4423,57 +4733,67 @@ static void TEST7_S1_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST7_S1: check behavior `EV1 TransitionTo(TEST7_G)`.", true)] / { trace("Transition action `` for TEST7_S1 to TEST7_G."); } TransitionTo(TEST7_G)
     if (trace_guard("State TEST7_S1: check behavior `EV1 TransitionTo(TEST7_G)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST7_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition).
         TEST7_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_S1 to TEST7_G.");`.
         trace("Transition action `` for TEST7_S1 to TEST7_G.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST7_G`.
         TEST7_G_enter(self);
         
         // TEST7_G.InitialState behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1."); } TransitionTo(TEST7_G_S1)
         if (self->vars.count == 1)
         {
+            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");`.
             trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST7_G_S1`.
             TEST7_G_S1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST7_G.InitialState
         
         // TEST7_G.InitialState behavior
         // uml: [count == 2] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2."); } TransitionTo(TEST7_G_S2)
         if (self->vars.count == 2)
         {
+            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");`.
             trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST7_G_S2`.
             TEST7_G_S2_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S2;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST7_G.InitialState
         
         // TEST7_G.InitialState behavior
         // uml: else / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3."); } TransitionTo(TEST7_G_S3)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");`.
             trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST7_G_S3`.
             TEST7_G_S3_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S3;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST7_G.InitialState
     } // end of behavior for TEST7_S1
 }
@@ -4486,57 +4806,68 @@ static void TEST7_S1_ev3(Spec2Sm* self)
     // uml: EV3 [trace_guard("State TEST7_S1: check behavior `EV3 TransitionTo(TEST7_G.InitialState)`.", true)] / { trace("Transition action `` for TEST7_S1 to TEST7_G.InitialState."); } TransitionTo(TEST7_G.InitialState)
     if (trace_guard("State TEST7_S1: check behavior `EV3 TransitionTo(TEST7_G.InitialState)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST7_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition).
         TEST7_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_S1 to TEST7_G.InitialState.");`.
         trace("Transition action `` for TEST7_S1 to TEST7_G.InitialState.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST7_G.InitialState`.
         TEST7_G_enter(self);
+        // TEST7_G.InitialState is a pseudo state and cannot have an `enter` trigger.
         
         // TEST7_G.InitialState behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1."); } TransitionTo(TEST7_G_S1)
         if (self->vars.count == 1)
         {
+            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");`.
             trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST7_G_S1`.
             TEST7_G_S1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST7_G.InitialState
         
         // TEST7_G.InitialState behavior
         // uml: [count == 2] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2."); } TransitionTo(TEST7_G_S2)
         if (self->vars.count == 2)
         {
+            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");`.
             trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST7_G_S2`.
             TEST7_G_S2_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S2;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST7_G.InitialState
         
         // TEST7_G.InitialState behavior
         // uml: else / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3."); } TransitionTo(TEST7_G_S3)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");`.
             trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST7_G_S3`.
             TEST7_G_S3_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7_G_S3;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST7_G.InitialState
     } // end of behavior for TEST7_S1
 }
@@ -4555,6 +4886,7 @@ static void TEST8_ENTRY_CHOICE_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST8_ENTRY_CHOICE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.");`
         trace("Enter TEST8_ENTRY_CHOICE.");
     } // end of behavior for TEST8_ENTRY_CHOICE
 }
@@ -4565,6 +4897,7 @@ static void TEST8_ENTRY_CHOICE_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST8_ENTRY_CHOICE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.");`
         trace("Exit TEST8_ENTRY_CHOICE.");
     } // end of behavior for TEST8_ENTRY_CHOICE
     
@@ -4587,6 +4920,7 @@ static void TEST8_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST8_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST8_ROOT.");`
         trace("Enter TEST8_ROOT.");
     } // end of behavior for TEST8_ROOT
     
@@ -4594,6 +4928,7 @@ static void TEST8_ROOT_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST8_ROOT
 }
@@ -4604,6 +4939,7 @@ static void TEST8_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST8_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST8_ROOT.");`
         trace("Exit TEST8_ROOT.");
     } // end of behavior for TEST8_ROOT
     
@@ -4622,9 +4958,11 @@ static void TEST8_ROOT_ev5(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `count++;`
         self->vars.count++;
         
+        // Step 2: determine if ancestor gets to handle event next.
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST8_ROOT
 }
@@ -4635,15 +4973,18 @@ static void TEST8_ROOT_EntryPoint_1__transition(Spec2Sm* self)
     // uml: / { trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1."); } TransitionTo(TEST8_S1)
     if (true)
     {
+        // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.");`.
         trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_S1`.
         TEST8_S1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST8_S1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST8_ROOT.EntryPoint(1)
 }
 
@@ -4662,6 +5003,7 @@ static void TEST8_G_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST8_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST8_G.");`
         trace("Enter TEST8_G.");
     } // end of behavior for TEST8_G
 }
@@ -4672,6 +5014,7 @@ static void TEST8_G_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST8_G."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST8_G.");`
         trace("Exit TEST8_G.");
     } // end of behavior for TEST8_G
     
@@ -4688,12 +5031,14 @@ static void TEST8_G_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1)."); } TransitionTo(TEST8_ROOT.EntryPoint(1))
     if (trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // At this point, StateSmith doesn't know what the active leaf state is. It could be TEST8_G or one of its sub states.
-        exit_up_to_state_handler(self, TEST8_ROOT_exit);  // Exit until we reach TEST8_ROOT state.
+        // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST8_ROOT_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");`.
         trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_ROOT.EntryPoint(1)`.
+        // TEST8_ROOT.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST8_ROOT_EntryPoint_1__transition(self);
@@ -4707,45 +5052,54 @@ static void TEST8_G_EntryPoint_1__transition(Spec2Sm* self)
     // uml: [count == 1] / { trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1."); } TransitionTo(TEST8_G_S1)
     if (self->vars.count == 1)
     {
+        // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1.");`.
         trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_G_S1`.
         TEST8_G_S1_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST8_G_S1;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST8_G.EntryPoint(1)
     
     // TEST8_G.EntryPoint(1) behavior
     // uml: [count == 2] / { trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2."); } TransitionTo(TEST8_G_S2)
     if (self->vars.count == 2)
     {
+        // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2.");`.
         trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_G_S2`.
         TEST8_G_S2_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST8_G_S2;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST8_G.EntryPoint(1)
     
     // TEST8_G.EntryPoint(1) behavior
     // uml: else / { trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3."); } TransitionTo(TEST8_G_S3)
     if (true)
     {
+        // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3.");`.
         trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_G_S3`.
         TEST8_G_S3_enter(self);
         
-        // update state_id
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = Spec2Sm_StateId_TEST8_G_S3;
         self->ancestor_event_handler = NULL;
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        return;
     } // end of behavior for TEST8_G.EntryPoint(1)
 }
 
@@ -4755,10 +5109,14 @@ static void TEST8_G_EntryPoint_3__transition(Spec2Sm* self)
     // uml: / { trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");\ncount += 0; } TransitionTo(TEST8_G.EntryPoint(1))
     if (true)
     {
+        // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");\ncount += 0;`.
         trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");
         self->vars.count += 0;
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(1)`.
+        // TEST8_G.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST8_G_EntryPoint_1__transition(self);
@@ -4780,6 +5138,7 @@ static void TEST8_G_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST8_G_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST8_G_S1.");`
         trace("Enter TEST8_G_S1.");
     } // end of behavior for TEST8_G_S1
 }
@@ -4790,6 +5149,7 @@ static void TEST8_G_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST8_G_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST8_G_S1.");`
         trace("Exit TEST8_G_S1.");
     } // end of behavior for TEST8_G_S1
     
@@ -4811,6 +5171,7 @@ static void TEST8_G_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST8_G_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST8_G_S2.");`
         trace("Enter TEST8_G_S2.");
     } // end of behavior for TEST8_G_S2
 }
@@ -4821,6 +5182,7 @@ static void TEST8_G_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST8_G_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST8_G_S2.");`
         trace("Exit TEST8_G_S2.");
     } // end of behavior for TEST8_G_S2
     
@@ -4842,6 +5204,7 @@ static void TEST8_G_S3_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST8_G_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST8_G_S3.");`
         trace("Enter TEST8_G_S3.");
     } // end of behavior for TEST8_G_S3
 }
@@ -4852,6 +5215,7 @@ static void TEST8_G_S3_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST8_G_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST8_G_S3.");`
         trace("Exit TEST8_G_S3.");
     } // end of behavior for TEST8_G_S3
     
@@ -4876,6 +5240,7 @@ static void TEST8_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST8_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST8_S1.");`
         trace("Enter TEST8_S1.");
     } // end of behavior for TEST8_S1
 }
@@ -4886,6 +5251,7 @@ static void TEST8_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST8_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST8_S1.");`
         trace("Exit TEST8_S1.");
     } // end of behavior for TEST8_S1
     
@@ -4904,13 +5270,15 @@ static void TEST8_S1_ev1(Spec2Sm* self)
     // uml: 1. EV1 [trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1)."); } TransitionTo(TEST8_G.EntryPoint(1))
     if (trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.EntryPoint(1))`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST8_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
         TEST8_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).");`.
         trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(1)`.
         TEST8_G_enter(self);
+        // TEST8_G.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST8_G_EntryPoint_1__transition(self);
@@ -4923,9 +5291,11 @@ static void TEST8_S1_ev1(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `count++; /* shouldn't run */`
         self->vars.count++; /* shouldn't run */
         
+        // Step 2: determine if ancestor gets to handle event next.
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST8_S1
 }
@@ -4938,13 +5308,15 @@ static void TEST8_S1_ev3(Spec2Sm* self)
     // uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.EntryPoint(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3)."); } TransitionTo(TEST8_G.EntryPoint(3))
     if (trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.EntryPoint(3))`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST8_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
         TEST8_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");`.
         trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(3)`.
         TEST8_G_enter(self);
+        // TEST8_G.EntryPoint(3) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST8_G_EntryPoint_3__transition(self);
@@ -4960,13 +5332,15 @@ static void TEST8_S1_ev6(Spec2Sm* self)
     // uml: EV6 [trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.EntryPoint(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3)."); } TransitionTo(TEST8_G.EntryPoint(3))
     if (trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.EntryPoint(3))`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST8_S1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
         TEST8_S1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");`.
         trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(3)`.
         TEST8_G_enter(self);
+        // TEST8_G.EntryPoint(3) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
         TEST8_G_EntryPoint_3__transition(self);
@@ -4988,6 +5362,7 @@ static void TEST9_EXIT_CHOICE_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_EXIT_CHOICE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.");`
         trace("Enter TEST9_EXIT_CHOICE.");
     } // end of behavior for TEST9_EXIT_CHOICE
 }
@@ -4998,6 +5373,7 @@ static void TEST9_EXIT_CHOICE_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_EXIT_CHOICE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.");`
         trace("Exit TEST9_EXIT_CHOICE.");
     } // end of behavior for TEST9_EXIT_CHOICE
     
@@ -5021,6 +5397,7 @@ static void TEST9_DECIDE_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_DECIDE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_DECIDE.");`
         trace("Enter TEST9_DECIDE.");
     } // end of behavior for TEST9_DECIDE
 }
@@ -5031,6 +5408,7 @@ static void TEST9_DECIDE_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_DECIDE."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_DECIDE.");`
         trace("Exit TEST9_DECIDE.");
     } // end of behavior for TEST9_DECIDE
     
@@ -5048,36 +5426,43 @@ static void TEST9_DECIDE_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST9_DECIDE: check behavior `EV1 TransitionTo(TEST9_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT."); } TransitionTo(TEST9_ROOT)
     if (trace_guard("State TEST9_DECIDE: check behavior `EV1 TransitionTo(TEST9_ROOT)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST9_DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
         TEST9_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.");`.
         trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST9_ROOT`.
         TEST9_ROOT_enter(self);
         
         // TEST9_ROOT.InitialState behavior
         // uml: / { trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1."); } TransitionTo(TEST9_S1)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1.");`.
             trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST9_S1`.
             TEST9_S1_enter(self);
             
             // TEST9_S1.InitialState behavior
             // uml: / { trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1."); } TransitionTo(TEST9_S1_1)
             if (true)
             {
+                // Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1.");`.
                 trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST9_S1_1`.
                 TEST9_S1_1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST9_S1_1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST9_S1.InitialState
         } // end of behavior for TEST9_ROOT.InitialState
     } // end of behavior for TEST9_DECIDE
@@ -5091,37 +5476,44 @@ static void TEST9_DECIDE_ev2(Spec2Sm* self)
     // uml: EV2 [trace_guard("State TEST9_DECIDE: check behavior `EV2 TransitionTo(TEST9A_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT."); } TransitionTo(TEST9A_ROOT)
     if (trace_guard("State TEST9_DECIDE: check behavior `EV2 TransitionTo(TEST9A_ROOT)`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST9_DECIDE and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
         TEST9_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.");`.
         trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST9A_ROOT`.
         TEST9A_ROOT_enter(self);
         
         // TEST9A_ROOT.InitialState behavior
         // uml: / { trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");\ncount = 0; } TransitionTo(TEST9A_S1)
         if (true)
         {
+            // Step 1: Exit states until we reach `TEST9A_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");\ncount = 0;`.
             trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");
             self->vars.count = 0;
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST9A_S1`.
             TEST9A_S1_enter(self);
             
             // TEST9A_S1.InitialState behavior
             // uml: / { trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
             if (true)
             {
+                // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");`.
                 trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST9A_S1_1`.
                 TEST9A_S1_1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST9A_S1_1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST9A_S1.InitialState
         } // end of behavior for TEST9A_ROOT.InitialState
     } // end of behavior for TEST9_DECIDE
@@ -5142,6 +5534,7 @@ static void TEST9_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_ROOT.");`
         trace("Enter TEST9_ROOT.");
     } // end of behavior for TEST9_ROOT
 }
@@ -5152,6 +5545,7 @@ static void TEST9_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_ROOT.");`
         trace("Exit TEST9_ROOT.");
     } // end of behavior for TEST9_ROOT
     
@@ -5170,9 +5564,11 @@ static void TEST9_ROOT_ev5(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
-        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
+        
+        // Step 1: execute action `count++;`
         self->vars.count++;
         
+        // Step 2: determine if ancestor gets to handle event next.
         // No ancestor handles event. Ignore `consume_event` flag.
     } // end of behavior for TEST9_ROOT
 }
@@ -5191,6 +5587,7 @@ static void TEST9_G_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_G_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_G_S1.");`
         trace("Enter TEST9_G_S1.");
     } // end of behavior for TEST9_G_S1
 }
@@ -5201,6 +5598,7 @@ static void TEST9_G_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_G_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_G_S1.");`
         trace("Exit TEST9_G_S1.");
     } // end of behavior for TEST9_G_S1
     
@@ -5222,6 +5620,7 @@ static void TEST9_G_S2_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_G_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_G_S2.");`
         trace("Enter TEST9_G_S2.");
     } // end of behavior for TEST9_G_S2
 }
@@ -5232,6 +5631,7 @@ static void TEST9_G_S2_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_G_S2."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_G_S2.");`
         trace("Exit TEST9_G_S2.");
     } // end of behavior for TEST9_G_S2
     
@@ -5253,6 +5653,7 @@ static void TEST9_G_S3_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_G_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_G_S3.");`
         trace("Enter TEST9_G_S3.");
     } // end of behavior for TEST9_G_S3
 }
@@ -5263,6 +5664,7 @@ static void TEST9_G_S3_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_G_S3."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_G_S3.");`
         trace("Exit TEST9_G_S3.");
     } // end of behavior for TEST9_G_S3
     
@@ -5284,6 +5686,7 @@ static void TEST9_G_S4_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_G_S4."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_G_S4.");`
         trace("Enter TEST9_G_S4.");
     } // end of behavior for TEST9_G_S4
 }
@@ -5294,6 +5697,7 @@ static void TEST9_G_S4_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_G_S4."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_G_S4.");`
         trace("Exit TEST9_G_S4.");
     } // end of behavior for TEST9_G_S4
     
@@ -5315,6 +5719,7 @@ static void TEST9_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_S1.");`
         trace("Enter TEST9_S1.");
     } // end of behavior for TEST9_S1
 }
@@ -5325,6 +5730,7 @@ static void TEST9_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_S1.");`
         trace("Exit TEST9_S1.");
     } // end of behavior for TEST9_S1
     
@@ -5347,6 +5753,7 @@ static void TEST9_S1_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9_S1_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9_S1_1.");`
         trace("Enter TEST9_S1_1.");
     } // end of behavior for TEST9_S1_1
     
@@ -5354,6 +5761,7 @@ static void TEST9_S1_1_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
     if (trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output(); }`.", true))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST9_S1_1
 }
@@ -5364,6 +5772,7 @@ static void TEST9_S1_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9_S1_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9_S1_1.");`
         trace("Exit TEST9_S1_1.");
     } // end of behavior for TEST9_S1_1
     
@@ -5380,79 +5789,89 @@ static void TEST9_S1_1_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.ExitPoint(1))`.", true)] / { trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1)."); } TransitionTo(TEST9_S1.ExitPoint(1))
     if (trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.ExitPoint(1))`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST9_S1_1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition).
         TEST9_S1_1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).");`.
         trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST9_S1.ExitPoint(1)`.
+        // TEST9_S1.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
         
         // TEST9_S1.ExitPoint(1) behavior
         // uml: [count == 4] / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4."); } TransitionTo(TEST9_G_S4)
         if (self->vars.count == 4)
         {
-            // Avoid exit-while-loop here because we know that the active leaf state is TEST9_S1 and it is the only state being exited at this point.
+            // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
             TEST9_S1_exit(self);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");`.
             trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST9_G_S4`.
             TEST9_G_S4_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_G_S4;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST9_S1.ExitPoint(1)
         
         // TEST9_S1.ExitPoint(1) behavior
         // uml: [count == 1] / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1."); } TransitionTo(TEST9_G_S1)
         if (self->vars.count == 1)
         {
-            // Avoid exit-while-loop here because we know that the active leaf state is TEST9_S1 and it is the only state being exited at this point.
+            // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
             TEST9_S1_exit(self);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1.");`.
             trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST9_G_S1`.
             TEST9_G_S1_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_G_S1;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST9_S1.ExitPoint(1)
         
         // TEST9_S1.ExitPoint(1) behavior
         // uml: [count == 2] / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2."); } TransitionTo(TEST9_G_S2)
         if (self->vars.count == 2)
         {
-            // Avoid exit-while-loop here because we know that the active leaf state is TEST9_S1 and it is the only state being exited at this point.
+            // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
             TEST9_S1_exit(self);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2.");`.
             trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST9_G_S2`.
             TEST9_G_S2_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_G_S2;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST9_S1.ExitPoint(1)
         
         // TEST9_S1.ExitPoint(1) behavior
         // uml: else / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3."); } TransitionTo(TEST9_G_S3)
         if (true)
         {
-            // Avoid exit-while-loop here because we know that the active leaf state is TEST9_S1 and it is the only state being exited at this point.
+            // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
             TEST9_S1_exit(self);
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3.");`.
             trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3.");
             
-            // Enter towards target
+            // Step 3: Enter/move towards transition target `TEST9_G_S3`.
             TEST9_G_S3_enter(self);
             
-            // update state_id
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST9_G_S3;
             self->ancestor_event_handler = NULL;
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            return;
         } // end of behavior for TEST9_S1.ExitPoint(1)
     } // end of behavior for TEST9_S1_1
 }
@@ -5471,6 +5890,7 @@ static void TEST9A_ROOT_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9A_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9A_ROOT.");`
         trace("Enter TEST9A_ROOT.");
     } // end of behavior for TEST9A_ROOT
 }
@@ -5481,6 +5901,7 @@ static void TEST9A_ROOT_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9A_ROOT."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9A_ROOT.");`
         trace("Exit TEST9A_ROOT.");
     } // end of behavior for TEST9A_ROOT
     
@@ -5502,6 +5923,7 @@ static void TEST9A_S1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9A_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9A_S1.");`
         trace("Enter TEST9A_S1.");
     } // end of behavior for TEST9A_S1
 }
@@ -5512,6 +5934,7 @@ static void TEST9A_S1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9A_S1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9A_S1.");`
         trace("Exit TEST9A_S1.");
     } // end of behavior for TEST9A_S1
     
@@ -5534,6 +5957,7 @@ static void TEST9A_S1_1_enter(Spec2Sm* self)
     // uml: enter / { trace("Enter TEST9A_S1_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Enter TEST9A_S1_1.");`
         trace("Enter TEST9A_S1_1.");
     } // end of behavior for TEST9A_S1_1
     
@@ -5541,6 +5965,7 @@ static void TEST9A_S1_1_enter(Spec2Sm* self)
     // uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", count == 0)] / { clear_output(); }
     if (trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", self->vars.count == 0))
     {
+        // Step 1: execute action `clear_output();`
         trace("IGNORE_OUTPUT_BEFORE_THIS");;
     } // end of behavior for TEST9A_S1_1
 }
@@ -5551,6 +5976,7 @@ static void TEST9A_S1_1_exit(Spec2Sm* self)
     // uml: exit / { trace("Exit TEST9A_S1_1."); }
     if (true)
     {
+        // Step 1: execute action `trace("Exit TEST9A_S1_1.");`
         trace("Exit TEST9A_S1_1.");
     } // end of behavior for TEST9A_S1_1
     
@@ -5558,6 +5984,7 @@ static void TEST9A_S1_1_exit(Spec2Sm* self)
     // uml: exit [trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100; }`.", true)] / { count = 100; }
     if (trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100; }`.", true))
     {
+        // Step 1: execute action `count = 100;`
         self->vars.count = 100;
     } // end of behavior for TEST9A_S1_1
     
@@ -5574,37 +6001,44 @@ static void TEST9A_S1_1_ev1(Spec2Sm* self)
     // uml: EV1 [trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.ExitPoint(1))`.", true)] / { trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1)."); } TransitionTo(TEST9A_S1.ExitPoint(1))
     if (trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.ExitPoint(1))`.", true))
     {
-        // Note: no `consume_event` variable possible here because of state transition. The event must be consumed.
-        // Avoid exit-while-loop here because we know that the active leaf state is TEST9A_S1_1 and it is the only state being exited at this point.
+        // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
         TEST9A_S1_1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).");`.
         trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).");
         
-        // Enter towards target
+        // Step 3: Enter/move towards transition target `TEST9A_S1.ExitPoint(1)`.
+        // TEST9A_S1.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
         
         // TEST9A_S1.ExitPoint(1) behavior
         // uml: [true] / { trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");\ncount++; } TransitionTo(TEST9A_S1)
         if (true)
         {
-            // Avoid exit-while-loop here because we know that the active leaf state is TEST9A_S1 and it is the only state being exited at this point.
+            // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
             TEST9A_S1_exit(self);
+            
+            // Step 2: Transition action: `trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");\ncount++;`.
             trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");
             self->vars.count++;
             
-            // Enter towards target
-            
+            // Step 3: Enter/move towards transition target `TEST9A_S1`.
+            // Already in target. No entering required.
             // TEST9A_S1.InitialState behavior
             // uml: / { trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
             if (true)
             {
+                // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");`.
                 trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
                 
-                // Enter towards target
+                // Step 3: Enter/move towards transition target `TEST9A_S1_1`.
                 TEST9A_S1_1_enter(self);
                 
-                // update state_id
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec2Sm_StateId_TEST9A_S1_1;
                 self->ancestor_event_handler = NULL;
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                return;
             } // end of behavior for TEST9A_S1.InitialState
         } // end of behavior for TEST9A_S1.ExitPoint(1)
     } // end of behavior for TEST9A_S1_1

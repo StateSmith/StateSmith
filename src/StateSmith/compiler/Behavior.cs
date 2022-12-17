@@ -171,13 +171,13 @@ namespace StateSmith.Compiling
 
             if (HasGuardCode())
             {
-                result += joiner + "[" + StringUtils.ReplaceNewLineChars(guardCode.Trim(), @"\n") + "]";
+                result += joiner + "[" + GetSingleLineGuardCode() + "]";
                 joiner = " ";
             }
 
             if (HasActionCode())
             {
-                result += joiner + "/ { " + StringUtils.ReplaceNewLineChars(actionCode.Trim(), @"\n") + " }";
+                result += joiner + "/ { " + GetSingleLineActionCode() + " }";
                 joiner = " ";
             }
 
@@ -199,6 +199,16 @@ namespace StateSmith.Compiling
             }
 
             return result;
+        }
+
+        public string GetSingleLineGuardCode()
+        {
+            return StringUtils.ReplaceNewLineChars(guardCode.Trim(), @"\n");
+        }
+
+        public string GetSingleLineActionCode()
+        {
+            return StringUtils.ReplaceNewLineChars(actionCode.Trim(), @"\n");
         }
 
         public override string ToString()

@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 
 using System;
 using System.Linq;
@@ -59,7 +59,7 @@ namespace StateSmith.output.C99BalancedCoder1
             OutputTransitionCodeInner(behavior);
         }
 
-        private string GetTransitionGuardCondition(Behavior b)
+        private string OutputGuardCondition(Behavior b)
         {
             string expandedGuardCode;
 
@@ -93,21 +93,25 @@ namespace StateSmith.output.C99BalancedCoder1
             OutputStartOfBehaviorCode(behavior);
             file.StartCodeBlock();
             {
-                if (behavior.OwningVertex is NamedVertex)
-                {
-                    file.AppendLine("// Note: no `consume_event` variable possible here because of state transition. The event must be consumed.");
-                }
-
                 var transitionPath = source.FindTransitionPathTo(target);
 
+                file.Append($"// Step 1: Exit states until we reach `{Vertex.Describe(transitionPath.leastCommonAncestor)}` state (Least Common Ancestor for transition).");
                 if (IsExitingRequired(source))
                 {
+                    file.FinishLine();
                     ExitUntilStateReached(source, (NamedVertex)transitionPath.leastCommonAncestor);
                 }
+                else
+                {
+                    file.FinishLine(" Already at LCA, no exiting required.");
+                }
+                file.RequestNewLineBeforeMoreCode();
 
-                OutputAnyActionCode(behavior);
+                file.AppendLine($"// Step 2: Transition action: `{behavior.GetSingleLineActionCode()}`.");
+                OutputAnyActionCode(behavior, isForTransition: true);
+                file.RequestNewLineBeforeMoreCode();
 
-                file.AppendLine();
+                file.AppendLine($"// Step 3: Enter/move towards transition target `{Vertex.Describe(target)}`.");
                 EnterTowardsTarget(transitionPath);
 
                 FinishTransitionOrContinuePseudo(behavior, target);
@@ -132,17 +136,22 @@ namespace StateSmith.output.C99BalancedCoder1
                 else
                 {
                     // no initial state, this is the final state.
-                    file.AppendLine("// update state_id");
+                    file.AppendLine("// Step 4: complete transition. Ends event dispatch. No other behaviors are checked.");
                     file.AppendLine($"self->state_id = {mangler.SmStateEnumValue(namedVertexTarget)};");
                     file.AppendLine("self->ancestor_event_handler = NULL;"); // todolow - only do if owning state actually needs it.
-                    file.AppendLine($"return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.");
+                    file.AppendLine($"return;");
                 }
             }
         }
 
         private void EnterTowardsTarget(TransitionPath transitionPath)
         {
-            file.AppendLine("// Enter towards target");
+            if (transitionPath.toEnter.Count == 0)
+            {
+                file.AppendLine($"// Already in target. No entering required.");
+                return;
+            }
+
             foreach (var stateToEnter in transitionPath.toEnter)
             {
                 if (stateToEnter is NamedVertex namedVertexToEnter)
@@ -152,6 +161,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 }
                 else if (stateToEnter is PseudoStateVertex pv)
                 {
+                    file.AppendLine($"// {Vertex.Describe(pv)} is a pseudo state and cannot have an `enter` trigger.");
                 }
                 else
                 {
@@ -165,15 +175,24 @@ namespace StateSmith.output.C99BalancedCoder1
         {
             file.AppendLine($"// {Vertex.Describe(behavior.OwningVertex)} behavior");
             DescribeBehaviorWithUmlComment(behavior);
-            file.Append($"if ({GetTransitionGuardCondition(behavior)})");
+            file.Append($"if ({OutputGuardCondition(behavior)})");
         }
 
-        private void OutputAnyActionCode(Behavior behavior)
+        private void OutputAnyActionCode(Behavior behavior, bool isForTransition)
         {
             if (behavior.HasActionCode())
             {
+                if (isForTransition)
+                {
+                    if (behavior.OwningVertex is NamedVertex)
+                    {
+                        // file.AppendLine("// Note: no `consume_event` variable possible here because of state transition. The event must be consumed.");
+                    }
+                }
+
                 var expandedAction = ExpandingVisitor.ParseAndExpandCode(ctx.expander, behavior.actionCode);
                 file.AppendLines($"{expandedAction}");
+                file.RequestNewLineBeforeMoreCode();
             }
         }
 
@@ -230,15 +249,12 @@ namespace StateSmith.output.C99BalancedCoder1
             {
                 NamedVertex leafActiveState = (NamedVertex)source;
                 string sourceExitHandler = mangler.SmFuncTriggerHandler(leafActiveState, TriggerHelper.TRIGGER_EXIT);
-                file.AppendLine($"// Avoid exit-while-loop here because we know that the active leaf state is {Vertex.Describe(leafActiveState)} and it is the only state being exited at this point.");
                 file.AppendLine($"{sourceExitHandler}(self);");
             }
             else
             {
                 string ancestorExitHandler = mangler.SmFuncTriggerHandler(ancestorState, TriggerHelper.TRIGGER_EXIT);
-
-                file.AppendLine($"// At this point, StateSmith doesn't know what the active leaf state is. It could be {Vertex.Describe(source)} or one of its sub states.");
-                file.AppendLine($"{mangler.SmFuncExitUpTo}(self, {ancestorExitHandler});  // Exit until we reach {Vertex.Describe(ancestorState)} state.");
+                file.AppendLine($"{mangler.SmFuncExitUpTo}(self, {ancestorExitHandler});");
             }
         }
 
@@ -283,16 +299,18 @@ namespace StateSmith.output.C99BalancedCoder1
 
         private void OutputNonTransitionCode(Behavior b, in string triggerName, bool noAncestorHandlesEvent)
         {
-            bool hasConsumeEventVar = TriggerHelper.IsEvent(triggerName);
+            bool isConsumable = TriggerHelper.IsEvent(triggerName);
+            bool hasConsumeEventVar = isConsumable && b.HasActionCode();
 
             OutputStartOfBehaviorCode(b);
             file.StartCodeBlock();
             {
-                MaybeOutputConsumeEventVariable(triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
+                MaybeOutputConsumeEventVariable(b, triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
 
-                OutputAnyActionCode(b);
+                file.AppendLine($"// Step 1: execute action `{b.GetSingleLineActionCode()}`");
+                OutputAnyActionCode(b, isForTransition: false);
 
-                MaybeOutputConsumeEventCode(noAncestorHandlesEvent, hasConsumeEventVar);
+                MaybeOutputConsumeEventCode(noAncestorHandlesEvent: noAncestorHandlesEvent, isConsumable: isConsumable, hasConsumeEventVar: hasConsumeEventVar, triggerName: triggerName);
             }
             OutputEndOfBehaviorCode(b);
         }
@@ -302,12 +320,17 @@ namespace StateSmith.output.C99BalancedCoder1
             file.FinishCodeBlock($" // end of behavior for {Vertex.Describe(b.OwningVertex)}");
         }
 
-        private void MaybeOutputConsumeEventCode(bool noAncestorHandlesEvent, bool hasConsumeEventVar)
+        private void MaybeOutputConsumeEventCode(bool noAncestorHandlesEvent, bool isConsumable, bool hasConsumeEventVar, string triggerName)
         {
+            if (!isConsumable)
+            {
+                return;
+            }
+
+            file.AppendLine($"// Step 2: determine if ancestor gets to handle event next.");
+
             if (hasConsumeEventVar)
             {
-                file.AppendLine();
-
                 if (noAncestorHandlesEvent)
                 {
                     file.AppendLine("// No ancestor handles event. Ignore `consume_event` flag.");
@@ -317,34 +340,52 @@ namespace StateSmith.output.C99BalancedCoder1
                     file.Append("if (consume_event)");
                     file.StartCodeBlock();
                     {
-                        file.AppendLine("// Mark event as handled.");
-                        file.AppendLine("self->ancestor_event_handler = NULL;");
+                        file.AppendLine("self->ancestor_event_handler = NULL;  // consume event");
                     }
                     file.FinishCodeBlock();
                 }
             }
-        }
-
-        private void MaybeOutputConsumeEventVariable(string triggerName, bool noAncestorHandlesEvent, bool hasConsumeEventVar)
-        {
-            if (hasConsumeEventVar)
+            else
             {
-                if (noAncestorHandlesEvent)
-                {
-                    file.AppendLine("// note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.");
-                }
-                
-                file.Append("bool consume_event = ");
                 if (TriggerHelper.IsDoEvent(triggerName))
                 {
-                    file.FinishLine("false; // the `do` event is special in that it normally is not consumed.");
+                    file.AppendLine("// Don't consume special `do` event.");
                 }
                 else
                 {
-                    file.FinishLine("true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.");
+                    file.AppendLine("self->ancestor_event_handler = NULL;  // consume event");
                 }
-                file.AppendLine("(void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.");
             }
+        }
+
+        private void MaybeOutputConsumeEventVariable(Behavior behavior, string triggerName, bool noAncestorHandlesEvent, bool hasConsumeEventVar)
+        {
+            if (!behavior.HasActionCode())
+            {
+                return;
+            }
+
+            if (!hasConsumeEventVar)
+            {
+                return;
+            }
+
+            if (noAncestorHandlesEvent)
+            {
+                file.AppendLine("// note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.");
+            }
+
+            file.Append("bool consume_event = ");
+            if (TriggerHelper.IsDoEvent(triggerName))
+            {
+                file.FinishLine("false; // the `do` event is special in that it normally is not consumed.");
+            }
+            else
+            {
+                file.FinishLine("true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.");
+            }
+            // file.AppendLine("(void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.");
+            file.AppendLine();
         }
     }
 }
