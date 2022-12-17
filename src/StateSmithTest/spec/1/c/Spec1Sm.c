@@ -94,7 +94,7 @@ void Spec1Sm_start(Spec1Sm* self)
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     self->state_id = Spec1Sm_StateId_S11;
-                    self->ancestor_event_handler = NULL;
+                    // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                     return;
                 } // end of behavior for S1.InitialState
             } // end of behavior for S.InitialState
@@ -298,7 +298,7 @@ static void S11_ev1(Spec1Sm* self)
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 self->state_id = Spec1Sm_StateId_T111;
-                self->ancestor_event_handler = NULL;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for T11.EntryPoint(1)
         } // end of behavior for S1.ExitPoint(1)
@@ -399,7 +399,7 @@ static void T11_ev2(Spec1Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec1Sm_StateId_S11;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for S1.InitialState
     } // end of behavior for T11

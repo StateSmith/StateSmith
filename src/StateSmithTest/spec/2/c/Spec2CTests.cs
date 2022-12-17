@@ -177,6 +177,8 @@ public class Spec2CTests : Spec2CFixture
             Transition action `` for TEST2_S2 to TEST2_S2.
             Enter TEST2_S2.
         ");
+
+        //output.Should().Be(""); // uncomment below line if you want to see the whole output
         Assert.Equal(expected, output);
     }
 
@@ -300,9 +302,7 @@ public class Spec2CTests : Spec2CFixture
 
         ex = ex.Trim();
 
-        // uncomment below line if you want to see the whole output
-        //output.Should().Be("");
-
+        //output.Should().Be(""); // uncomment below line if you want to see the whole output
         Assert.Equal(ex, output);
     }
 

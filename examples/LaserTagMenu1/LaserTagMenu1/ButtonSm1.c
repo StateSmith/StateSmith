@@ -66,7 +66,7 @@ void ButtonSm1_start(ButtonSm1* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = ButtonSm1_StateId_NOT_PRESSED;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
@@ -167,7 +167,7 @@ static void NOT_PRESSED_do(ButtonSm1* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = ButtonSm1_StateId_CONFIRMING_HELD;
-            self->ancestor_event_handler = NULL;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for PRESSED.InitialState
     } // end of behavior for NOT_PRESSED
@@ -222,7 +222,7 @@ static void PRESSED_do(ButtonSm1* self)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         self->state_id = ButtonSm1_StateId_NOT_PRESSED;
-        self->ancestor_event_handler = NULL;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
         return;
     } // end of behavior for PRESSED
 }
