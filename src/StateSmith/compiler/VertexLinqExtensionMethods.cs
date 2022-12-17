@@ -134,5 +134,19 @@ namespace StateSmith.compiler
         {
             return vertex.Behaviors.Where(b => b.HasTransition());
         }
+        
+        public static bool HasInitialState(this Vertex vertex, out InitialState initialState)
+        {
+            if (vertex is NamedVertex namedVertex)
+            {
+                initialState = namedVertex.Children.OfType<InitialState>().FirstOrDefault();
+                return true;
+            }
+            else
+            {
+                initialState = null;
+                return false;
+            }
+        }
     }
 }

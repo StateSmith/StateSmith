@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Linq;
@@ -108,42 +108,57 @@ namespace StateSmith.output.C99BalancedCoder1
                 OutputAnyActionCode(behavior);
 
                 file.AppendLine();
-                file.AppendLine("// Enter towards target");
-                foreach (var stateToEnter in transitionPath.toEnter)
-                {
-                    if (stateToEnter is NamedVertex namedVertexToEnter)
-                    {
-                        var enterHandler = mangler.SmFuncTriggerHandler(namedVertexToEnter, TriggerHelper.TRIGGER_ENTER);
-                        file.AppendLine($"{enterHandler}(self);");
-                    }
-                }
+                EnterTowardsTarget(transitionPath);
 
-                file.RequestNewLineBeforeMoreCode();
-
-                if (target is PseudoStateVertex pseudoStateVertex)
-                {
-                    OutputTransitionsForPseudoState(behavior, pseudoStateVertex);
-                }
-                else if (target is NamedVertex namedVertexTarget)
-                {
-                    InitialState? initialState = namedVertexTarget.Children.OfType<InitialState>().FirstOrDefault();
-
-                    if (initialState != null)
-                    {
-                        OutputTransitionsForPseudoState(behavior, initialState);
-                    }
-                    else
-                    {
-                        // no initial state, this is the final state.
-                        file.AppendLine("// update state_id");
-                        file.AppendLine($"self->state_id = {mangler.SmStateEnumValue(namedVertexTarget)};");
-                        file.AppendLine("self->ancestor_event_handler = NULL;"); // todolow - only do if owning state actually needs it.
-                        file.AppendLine($"return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.");
-                    }
-                }
-
+                FinishTransitionOrContinuePseudo(behavior, target);
             }
             OutputEndOfBehaviorCode(behavior);
+        }
+
+        private void FinishTransitionOrContinuePseudo(Behavior behavior, Vertex target)
+        {
+            if (target is PseudoStateVertex pseudoStateVertex)
+            {
+                OutputTransitionsForPseudoState(behavior, pseudoStateVertex);
+            }
+            else if (target is NamedVertex namedVertexTarget)
+            {
+                InitialState? initialState = namedVertexTarget.Children.OfType<InitialState>().FirstOrDefault();
+
+                if (initialState != null)
+                {
+                    OutputTransitionsForPseudoState(behavior, initialState);
+                }
+                else
+                {
+                    // no initial state, this is the final state.
+                    file.AppendLine("// update state_id");
+                    file.AppendLine($"self->state_id = {mangler.SmStateEnumValue(namedVertexTarget)};");
+                    file.AppendLine("self->ancestor_event_handler = NULL;"); // todolow - only do if owning state actually needs it.
+                    file.AppendLine($"return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.");
+                }
+            }
+        }
+
+        private void EnterTowardsTarget(TransitionPath transitionPath)
+        {
+            file.AppendLine("// Enter towards target");
+            foreach (var stateToEnter in transitionPath.toEnter)
+            {
+                if (stateToEnter is NamedVertex namedVertexToEnter)
+                {
+                    var enterHandler = mangler.SmFuncTriggerHandler(namedVertexToEnter, TriggerHelper.TRIGGER_ENTER);
+                    file.AppendLine($"{enterHandler}(self);");
+                }
+                else if (stateToEnter is PseudoStateVertex pv)
+                {
+                }
+                else
+                {
+                    throw new ArgumentException("un-supported type: " + stateToEnter.GetType());
+                }
+            }
+            file.RequestNewLineBeforeMoreCode();
         }
 
         private void OutputStartOfBehaviorCode(Behavior behavior)
@@ -220,7 +235,6 @@ namespace StateSmith.output.C99BalancedCoder1
             }
             else
             {
-                // We don't know what the leaf active state is (some child of source). We must use 
                 string ancestorExitHandler = mangler.SmFuncTriggerHandler(ancestorState, TriggerHelper.TRIGGER_EXIT);
 
                 file.AppendLine($"// At this point, StateSmith doesn't know what the active leaf state is. It could be {Vertex.Describe(source)} or one of its sub states.");

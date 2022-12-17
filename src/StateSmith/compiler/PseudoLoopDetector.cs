@@ -43,14 +43,9 @@ namespace StateSmith.Compiling
             {
                 CheckVertexBehaviors(pseudoStateVertex);
             }
-            else if (target is NamedVertex namedVertexTarget)
+            else if (target.HasInitialState(out var initialState))
             {
-                InitialState? initialState = namedVertexTarget.Children.OfType<InitialState>().FirstOrDefault();
-
-                if (initialState != null)
-                {
-                    CheckVertexBehaviors(initialState);
-                }
+                CheckVertexBehaviors(initialState);
             }
         }
     }
