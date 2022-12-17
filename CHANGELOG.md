@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.1-alpha]
+### Added
+- Improve generated code clarity by showing step 1,2,3... and other small things.
+- Improve generated code clarity by removing `if (true)` for behaviors with no guard clause.
+- Improve generated code by nulling `ancestor_event_handler` only when actually needed. https://github.com/StateSmith/StateSmith/issues/14
+- Throw helpful exception message when duplicate state name used. Previously relied on c compiler and user to catch the problem.
+```
+VertexValidationException: Duplicate state name `OPTION` also used by state `Statemachine{LaserTagMenu1Sm}.State{MENUS_GROUP}.State{MAIN_MENU}.State{OPTION}`.
+    Vertex
+    Path: Statemachine{LaserTagMenu1Sm}.State{MENUS_GROUP}.State{MM_SHOW_INFO}.State{OPTION}
+    Diagram Id: n0::n3::n2::n2
+    Children count: 0
+    Behaviors count: 3
+    Incoming transitions count: 2
+```
+
+---
+
 ## [0.6.0-alpha]
 ### Fixed
 - Fix parent self transition involving initial state incorrect https://github.com/StateSmith/StateSmith/issues/49

@@ -945,7 +945,6 @@ enter / clear_output();</y:NodeLabel>
             </node>
             <node id="n0::n5::n3" yfiles.foldertype="group">
               <data key="d4" xml:space="preserve"/>
-              <data key="d5"/>
               <data key="d6">
                 <y:ProxyAutoBoundsNode>
                   <y:Realizers active="0">
@@ -1445,7 +1444,6 @@ it clear that these are all local transitions.
               </data>
             </edge>
             <edge id="n0::n5::e6" source="n0::n5::n2" target="n0::n5::n3::n0">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="18.734012237082652" sy="23.100000000000023" tx="55.949056013600284" ty="-191.64717708526473"/>
@@ -1456,7 +1454,6 @@ it clear that these are all local transitions.
               </data>
             </edge>
             <edge id="n0::n5::e7" source="n0::n5::n2" target="n0::n5::n3::n2">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="251.35494841724721" sy="23.100000000000023" tx="-21.722939910082232" ty="-193.4186198664654"/>
@@ -1467,7 +1464,6 @@ it clear that these are all local transitions.
               </data>
             </edge>
             <edge id="n0::n5::e8" source="n0::n5::n2" target="n0::n5::n3::n1">
-              <data key="d9"/>
               <data key="d10">
                 <y:QuadCurveEdge straightness="0.1">
                   <y:Path sx="541.9112760642761" sy="23.100000000000023" tx="-51.510498372079155" ty="-183.96069259204944"/>
@@ -2272,7 +2268,7 @@ EV5 / count++;</y:NodeLabel>
               <data key="d5" xml:space="preserve"><![CDATA[pseudo_initial]]></data>
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="19.0" width="20.0" x="257.5514213460493" y="776.1623326608546"/>
+                  <y:Geometry height="19.0" width="20.0" x="257.5514213460493" y="758.8149339085525"/>
                   <y:Fill color="#000000" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                   <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="false" width="70.708984375" x="-25.3544921875" xml:space="preserve" y="0.1494140625">$initial_state<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
@@ -2283,11 +2279,12 @@ EV5 / count++;</y:NodeLabel>
             <node id="n0::n9::n1">
               <data key="d6">
                 <y:ShapeNode>
-                  <y:Geometry height="46.200000000000045" width="394.55010435880115" x="185.3712025833989" y="674.3275045358548"/>
+                  <y:Geometry height="46.200000000000045" width="394.55010435880115" x="366.1712025833989" y="748.9623326608546"/>
                   <y:Fill color="#CCFFFF" transparent="false"/>
                   <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="46.200000000000045" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="394.55010435880115" x="-2.8421709430404007E-14" xml:space="preserve" y="0.0">$NOTES
-<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                  <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="394.55010435880115" x="5.6843418860808015E-14" xml:space="preserve" y="-0.9517578124999773">$NOTES
+EV3 in TEST8_ROOT for testing case where pseudo state function
+finishes transition and ancestor does also handle the event.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                   <y:Shape type="roundrectangle"/>
                 </y:ShapeNode>
               </data>
@@ -2298,12 +2295,13 @@ EV5 / count++;</y:NodeLabel>
                 <y:ProxyAutoBoundsNode>
                   <y:Realizers active="0">
                     <y:GroupNode>
-                      <y:Geometry height="481.1724564016454" width="480.0654660512629" x="167.3612834559182" y="834.4788281250001"/>
+                      <y:Geometry height="499.5489212453954" width="480.0654660512629" x="167.3612834559182" y="816.1023632812501"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                      <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="59.12939453125" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="480.0654660512629" x="0.0" xml:space="preserve" y="0.0">    TEST8_ROOT
+                      <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="77.505859375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="480.0654660512629" x="0.0" xml:space="preserve" y="0.0">    TEST8_ROOT
 enter / clear_output();
-EV5 / count++;</y:NodeLabel>
+EV5 / count++;
+EV3 / </y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                       <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                       <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
@@ -2313,9 +2311,10 @@ EV5 / count++;</y:NodeLabel>
                       <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                      <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="59.12939453125" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="147.408203125" x="-48.7041015625" xml:space="preserve" y="0.0">    TEST8_ROOT
+                      <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="77.505859375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="147.408203125" x="-48.7041015625" xml:space="preserve" y="0.0">    TEST8_ROOT
 enter / clear_output();
-EV5 / count++;</y:NodeLabel>
+EV5 / count++;
+EV3 / </y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                       <y:State closed="true" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                       <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
@@ -2465,7 +2464,7 @@ EV5 / count++;</y:NodeLabel>
                   <y:Path sx="0.0" sy="9.5" tx="-141.34755469924062" ty="-240.5888063258219"/>
                   <y:LineStyle color="#000000" type="line" width="1.0"/>
                   <y:Arrows source="none" target="standard"/>
-                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.359375" x="4.425670575310676" xml:space="preserve" y="6.31606291347623">via entry 1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+                  <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="59.359375" x="4.527882124439998" xml:space="preserve" y="6.091626915036045">via entry 1<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
                 </y:QuadCurveEdge>
               </data>
             </edge>

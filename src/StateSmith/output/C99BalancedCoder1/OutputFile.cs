@@ -47,7 +47,8 @@ namespace StateSmith.output.C99BalancedCoder1
         readonly CodeGenContext ctx;
         readonly StringBuilder sb;
         private readonly CodeStyleSettings styler;
-        int indentLevel = 0;
+        private int indentLevel = 0;
+        private bool lineIncomplete = false;
 
         private bool lineBreakBeforeMoreCode = false;
 
@@ -72,7 +73,7 @@ namespace StateSmith.output.C99BalancedCoder1
         {
             if (styler.BracesOnNewLines || forceNewLine)
             {
-                FinishLine();
+                MaybeFinishPartialLine();
                 Append("{");
             }
             else
@@ -111,7 +112,7 @@ namespace StateSmith.output.C99BalancedCoder1
             lineBreakBeforeMoreCode = false;
 
             Append("}");
-            sb.Append(codeAfterBrace); // this part shouldn't be indented
+            AppendWithoutIndent(codeAfterBrace); // this part shouldn't be indented
 
             if (styler.BracesOnNewLines || forceNewLine)
             {
@@ -158,6 +159,12 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void AppendWithoutIndent(string code = "")
         {
+            if (code.Length == 0)
+            {
+                return;
+            }
+
+            lineIncomplete = true;
             sb.Append(code);
         }
 
@@ -170,13 +177,25 @@ namespace StateSmith.output.C99BalancedCoder1
             }
 
             styler.Indent(sb, indentLevel);
-            sb.Append(code);
+            AppendWithoutIndent(code);
         }
 
         public void FinishLine(string code = "")
         {
-            sb.Append(code);
-            sb.Append(styler.Newline);
+            AppendWithoutIndent(code);
+            AppendWithoutIndent(styler.Newline);
+            lineIncomplete = false;
+        }
+
+        public void MaybeFinishPartialLine(string code = "")
+        {
+            AppendWithoutIndent(code);
+
+            if (lineIncomplete)
+            {
+                AppendWithoutIndent(styler.Newline);
+            }
+            lineIncomplete = false;
         }
 
         public override string ToString()

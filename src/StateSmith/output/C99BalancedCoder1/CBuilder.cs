@@ -82,6 +82,8 @@ namespace StateSmith.output.C99BalancedCoder1
 
         internal void OutputHelperPrototypes()
         {
+            file.AppendLine($"// This function is used when StateSmith doesn't know what the active leaf state is at compile time due to sub states");
+            file.AppendLine($"// or when multiple states need to be exited.");
             file.AppendLine($"static void {mangler.SmFuncExitUpTo}({mangler.SmStructTypedefName}* self, const {mangler.SmFuncTypedef} desired_state_exit_handler);");
             file.RequestNewLineBeforeMoreCode();
 
@@ -130,7 +132,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
             var getToInitialStateBehavior = new Behavior(sm, initialState);
 
-            eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior);
+            eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior, noAncestorHandlesEvent: true);
 
             file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();

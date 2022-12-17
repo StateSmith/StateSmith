@@ -1,5 +1,6 @@
 using StateSmith.compiler.Visitors;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace StateSmith.Compiling
@@ -7,10 +8,13 @@ namespace StateSmith.Compiling
     public class VertexValidator : OnlyVertexVisitor
     {
         PseudoLoopDetector pseudoLoopDetector = new();
+        Dictionary<string, NamedVertex> stateNames = new();
 
         public override void Visit(Vertex v)
         {
             pseudoLoopDetector.CheckVertexBehaviors(v);
+
+            ValidateUniqueStateName(v);
 
             foreach (var b in v.Behaviors)
             {
@@ -18,6 +22,19 @@ namespace StateSmith.Compiling
             }
 
             VisitChildren(v);
+        }
+
+        private void ValidateUniqueStateName(Vertex v)
+        {
+            if (v is NamedVertex namedVertex)
+            {
+                var name = namedVertex.Name;
+                if (stateNames.TryGetValue(name, out var otherState))
+                {
+                    throw new VertexValidationException(v, $"Duplicate state name `{name}` also used by state `{VertexPathDescriber.Describe(otherState)}`.");
+                }
+                stateNames.Add(name, namedVertex);
+            }
         }
 
         private static void ValidateBehavior(Behavior b)
