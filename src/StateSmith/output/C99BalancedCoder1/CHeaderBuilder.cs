@@ -20,8 +20,6 @@ namespace StateSmith.output.C99BalancedCoder1
             mangler = ctx.mangler;
         }
 
-
-
         public void Generate()
         {
             OutputFile file = new(ctx, ctx.hFileSb);
@@ -85,14 +83,15 @@ namespace StateSmith.output.C99BalancedCoder1
                 file.AppendLine($"// Used internally by state machine. Don't modify.");
                 file.AppendLine($"{mangler.SmFuncTypedef} current_state_exit_handler;");
 
-                if (ctx.renderConfig.VariableDeclarations.Trim().Length > 0)
+                var combinedVars = ctx.sm.variables + ctx.renderConfig.VariableDeclarations.Trim();
+                if (combinedVars.Length > 0)
                 {
                     file.AppendLine();
                     file.AppendLine("// User variables. Can be used for inputs, outputs, user variables...");
                     file.Append("struct");
                     file.StartCodeBlock();
                     {
-                        var lines = StringUtils.SplitIntoLines(ctx.renderConfig.VariableDeclarations.Trim());
+                        var lines = StringUtils.SplitIntoLines(combinedVars);
                         foreach (var line in lines)
                         {
                             file.AppendLine(line);

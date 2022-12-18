@@ -191,6 +191,31 @@ StateSmith 0.5.9 had a limitation of a single transition for initial states, ent
 
 ![picture 8](images/initial-state-choice.png)  
 
+```
+Dispatch event EV5
+===================================================
+State PARENT: check behavior `EV5 / { count++; }`. Behavior running.
+
+Dispatch event EV1
+===================================================
+State S1: check behavior `EV1 TransitionTo(G)`. Behavior running.
+Exit S1.
+Transition action `` for S1 to G.
+Enter G.
+Transition action `` for G.InitialState to G_S1.
+Enter G_S1.
+
+Dispatch event EV2
+===================================================
+State G: check behavior `EV2 TransitionTo(PARENT.InitialState)`. Behavior running.
+Exit G_S1.
+Exit G.
+Transition action `` for G to PARENT.InitialState.
+Transition action `` for PARENT.InitialState to S1.
+Enter S1.
+```
+*Above from Spec2Sm specification tests.*
+
 ![picture 6](./images/entry-point-choice.png)  
 
 ![picture 7](./images/exit-point-choice.png)  

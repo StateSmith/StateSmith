@@ -27,6 +27,7 @@ public class CompilerRunner
 {
     public Compiler compiler = new();
     public Statemachine? sm;
+    // public CodeGenContext CodeGenContext;
 
     /// <summary>
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
@@ -140,6 +141,7 @@ public class CompilerRunner
 
         compiler.SupportParentAlias();
         compiler.SupportEntryExitPoints();
+        Compiler.SupportShallowHistory(sm);
         compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
         preValidation(sm);
         compiler.Validate();

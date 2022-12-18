@@ -78,6 +78,13 @@ public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
         expected = StringUtils.ReplaceNewLineChars(expected, "\n");
         return expected;
     }
+
+    public string PreProcessOutput(string output)
+    {
+        output = Regex.Replace(output, @"\w+__([a-zA-Z]+)", "$1");
+        return output;
+    }
+
 }
 
 public class Spec2CTests : Spec2CFixture
@@ -642,7 +649,7 @@ public class Spec2CTests : Spec2CFixture
     public void Test7_Choice_1_DirectToInitial()
     {
         int incCount = 1;
-        var expectedState = "TEST7_G_S1";
+        var expectedState = "G_S1";
         Test7_RunWithXIncrementEvents(expectedState, incCount, directToInitialState: true);
     }
 
@@ -650,7 +657,7 @@ public class Spec2CTests : Spec2CFixture
     public void Test7_Choice_1()
     {
         int incCount = 1;
-        var expectedState = "TEST7_G_S1";
+        var expectedState = "G_S1";
         Test7_RunWithXIncrementEvents(expectedState, incCount);
     }
 
@@ -658,7 +665,7 @@ public class Spec2CTests : Spec2CFixture
     public void Test7_Choice_2()
     {
         int incCount = 2;
-        var expectedState = "TEST7_G_S2";
+        var expectedState = "G_S2";
         Test7_RunWithXIncrementEvents(expectedState, incCount);
     }
 
@@ -666,7 +673,7 @@ public class Spec2CTests : Spec2CFixture
     public void Test7_Choice_3()
     {
         int incCount = 0;
-        var expectedState = "TEST7_G_S3";
+        var expectedState = "G_S3";
         Test7_RunWithXIncrementEvents(expectedState, incCount);
 
         incCount = 3;
@@ -675,15 +682,10 @@ public class Spec2CTests : Spec2CFixture
 
     private void Test7_RunWithXIncrementEvents(string expectedState, int incCount, bool directToInitialState = false)
     {
-        const string InitialEventToSelectTest = "EV7";
+        const string InitialEventToSelectTest = "EV7 EV1";
 
         var testEvents = "";
         var ex = "";
-
-        ex += PrepExpectedOutput(@"
-            Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.
-            Enter TEST7_S1.
-        ") + "\n\n";
 
         for (int i = 0; i < incCount; i++)
         {
@@ -692,7 +694,7 @@ public class Spec2CTests : Spec2CFixture
             ex += PrepExpectedOutput(@"
             Dispatch event EV5
             ===================================================
-            State TEST7_ROOT: check behavior `EV5 / { count++; }`. Behavior running.
+            State PARENT: check behavior `EV5 / { count++; }`. Behavior running.
             ") + "\n\n";
         }
 
@@ -703,11 +705,11 @@ public class Spec2CTests : Spec2CFixture
             ex += PrepExpectedOutput(@$"
             Dispatch event EV3
             ===================================================
-            State TEST7_S1: check behavior `EV3 TransitionTo(TEST7_G.InitialState)`. Behavior running.
-            Exit TEST7_S1.
-            Transition action `` for TEST7_S1 to TEST7_G.InitialState.
-            Enter TEST7_G.
-            Transition action `` for TEST7_G.InitialState to {expectedState}.
+            State S1: check behavior `EV3 TransitionTo(G.InitialState)`. Behavior running.
+            Exit S1.
+            Transition action `` for S1 to G.InitialState.
+            Enter G.
+            Transition action `` for G.InitialState to {expectedState}.
             Enter {expectedState}.
             ") + "\n\n";
         }
@@ -718,36 +720,34 @@ public class Spec2CTests : Spec2CFixture
             ex += PrepExpectedOutput(@$"
             Dispatch event EV1
             ===================================================
-            State TEST7_S1: check behavior `EV1 TransitionTo(TEST7_G)`. Behavior running.
-            Exit TEST7_S1.
-            Transition action `` for TEST7_S1 to TEST7_G.
-            Enter TEST7_G.
-            Transition action `` for TEST7_G.InitialState to {expectedState}.
+            State S1: check behavior `EV1 TransitionTo(G)`. Behavior running.
+            Exit S1.
+            Transition action `` for S1 to G.
+            Enter G.
+            Transition action `` for G.InitialState to {expectedState}.
             Enter {expectedState}.
             ") + "\n\n";
         }
-
 
         // 
         testEvents += "EV2 ";
         ex += PrepExpectedOutput(@$"
             Dispatch event EV2
             ===================================================
-            State TEST7_G: check behavior `EV2 TransitionTo(TEST7_ROOT.InitialState)`. Behavior running.
+            State G: check behavior `EV2 TransitionTo(PARENT.InitialState)`. Behavior running.
             Exit {expectedState}.
-            Exit TEST7_G.
-            Transition action `` for TEST7_G to TEST7_ROOT.InitialState.
-            Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.
-            Enter TEST7_S1.
+            Exit G.
+            Transition action `` for G to PARENT.InitialState.
+            Transition action `` for PARENT.InitialState to S1.
+            Enter S1.
             ") + "\n\n";
 
         var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+        output = PreProcessOutput(output);
 
         ex = ex.Trim();
 
-        // uncomment below line if you want to see the whole output
-        //output.Should().Be("");
-
+        //output.Should().Be(""); // uncomment line if you want to see the whole output
         Assert.Equal(ex, output);
     }
 

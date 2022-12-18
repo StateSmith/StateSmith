@@ -7,7 +7,6 @@ namespace StateSmith.Compiling
 {
     public class EntryExitProcessor : DummyVertexVisitor
     {
-
         public override void Visit(EntryPoint entryPoint)
         {
             NamedVertex parentState = (NamedVertex)entryPoint.Parent;    // todolow - provide nicer exception or validate somewhere else

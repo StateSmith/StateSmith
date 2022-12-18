@@ -15,6 +15,8 @@ namespace StateSmith.Compiling
     public class Statemachine : NamedVertex
     {
         internal HashSet<string> _events = new HashSet<string>();
+        internal List<ShallowHistoryVertex> historyStates = new();
+        public string variables = "";
 
         public Statemachine(string name) : base(name)
         {

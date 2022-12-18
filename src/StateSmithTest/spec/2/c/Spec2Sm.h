@@ -81,37 +81,51 @@ enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST6_ROOT = 54,
     Spec2Sm_StateId_TEST6_S1 = 55,
     Spec2Sm_StateId_TEST6_S2 = 56,
-    Spec2Sm_StateId_TEST7_INITIAL_CHOICE = 57,
-    Spec2Sm_StateId_TEST7_ROOT = 58,
-    Spec2Sm_StateId_TEST7_G = 59,
-    Spec2Sm_StateId_TEST7_G_S1 = 60,
-    Spec2Sm_StateId_TEST7_G_S2 = 61,
-    Spec2Sm_StateId_TEST7_G_S3 = 62,
-    Spec2Sm_StateId_TEST7_S1 = 63,
-    Spec2Sm_StateId_TEST8_ENTRY_CHOICE = 64,
-    Spec2Sm_StateId_TEST8_ROOT = 65,
-    Spec2Sm_StateId_TEST8_G = 66,
-    Spec2Sm_StateId_TEST8_G_S1 = 67,
-    Spec2Sm_StateId_TEST8_G_S2 = 68,
-    Spec2Sm_StateId_TEST8_G_S3 = 69,
-    Spec2Sm_StateId_TEST8_S1 = 70,
-    Spec2Sm_StateId_TEST9_EXIT_CHOICE = 71,
-    Spec2Sm_StateId_TEST9_DECIDE = 72,
-    Spec2Sm_StateId_TEST9_ROOT = 73,
-    Spec2Sm_StateId_TEST9_G_S1 = 74,
-    Spec2Sm_StateId_TEST9_G_S2 = 75,
-    Spec2Sm_StateId_TEST9_G_S3 = 76,
-    Spec2Sm_StateId_TEST9_G_S4 = 77,
-    Spec2Sm_StateId_TEST9_S1 = 78,
-    Spec2Sm_StateId_TEST9_S1_1 = 79,
-    Spec2Sm_StateId_TEST9A_ROOT = 80,
-    Spec2Sm_StateId_TEST9A_S1 = 81,
-    Spec2Sm_StateId_TEST9A_S1_1 = 82,
+    Spec2Sm_StateId_TEST7_INITIAL_OR_HISTORY = 57,
+    Spec2Sm_StateId_TEST7 = 58,
+    Spec2Sm_StateId_TEST7__HISTORY1 = 59,
+    Spec2Sm_StateId_TEST7__HISTORY1__OFF = 60,
+    Spec2Sm_StateId_TEST7__HISTORY1__OFF1 = 61,
+    Spec2Sm_StateId_TEST7__HISTORY1__OFF2 = 62,
+    Spec2Sm_StateId_TEST7__HISTORY1__OFF3 = 63,
+    Spec2Sm_StateId_TEST7__HISTORY1__ON = 64,
+    Spec2Sm_StateId_TEST7__HISTORY1__ON1 = 65,
+    Spec2Sm_StateId_TEST7__HISTORY1__ON2 = 66,
+    Spec2Sm_StateId_TEST7__HISTORY1__ON3 = 67,
+    Spec2Sm_StateId_TEST7__HISTORY2 = 68,
+    Spec2Sm_StateId_TEST7__HISTORY2__S1 = 69,
+    Spec2Sm_StateId_TEST7__INITIAL1 = 70,
+    Spec2Sm_StateId_TEST7__INITIAL1__PARENT = 71,
+    Spec2Sm_StateId_TEST7__INITIAL1__G = 72,
+    Spec2Sm_StateId_TEST7__INITIAL1__G_S1 = 73,
+    Spec2Sm_StateId_TEST7__INITIAL1__G_S2 = 74,
+    Spec2Sm_StateId_TEST7__INITIAL1__G_S3 = 75,
+    Spec2Sm_StateId_TEST7__INITIAL1__S1 = 76,
+    Spec2Sm_StateId_TEST7_DECIDE = 77,
+    Spec2Sm_StateId_TEST8_ENTRY_CHOICE = 78,
+    Spec2Sm_StateId_TEST8_ROOT = 79,
+    Spec2Sm_StateId_TEST8_G = 80,
+    Spec2Sm_StateId_TEST8_G_S1 = 81,
+    Spec2Sm_StateId_TEST8_G_S2 = 82,
+    Spec2Sm_StateId_TEST8_G_S3 = 83,
+    Spec2Sm_StateId_TEST8_S1 = 84,
+    Spec2Sm_StateId_TEST9_EXIT_CHOICE = 85,
+    Spec2Sm_StateId_TEST9_DECIDE = 86,
+    Spec2Sm_StateId_TEST9_ROOT = 87,
+    Spec2Sm_StateId_TEST9_G_S1 = 88,
+    Spec2Sm_StateId_TEST9_G_S2 = 89,
+    Spec2Sm_StateId_TEST9_G_S3 = 90,
+    Spec2Sm_StateId_TEST9_G_S4 = 91,
+    Spec2Sm_StateId_TEST9_S1 = 92,
+    Spec2Sm_StateId_TEST9_S1_1 = 93,
+    Spec2Sm_StateId_TEST9A_ROOT = 94,
+    Spec2Sm_StateId_TEST9A_S1 = 95,
+    Spec2Sm_StateId_TEST9A_S1_1 = 96,
 };
 
 enum
 {
-    Spec2Sm_StateIdCount = 83
+    Spec2Sm_StateIdCount = 97
 };
 
 typedef struct Spec2Sm Spec2Sm;
@@ -134,6 +148,9 @@ struct Spec2Sm
     // User variables. Can be used for inputs, outputs, user variables...
     struct
     {
+        uint8_t TEST7__HISTORY1__ON_history_tracking_var;
+        uint8_t TEST7__HISTORY1__OFF_history_tracking_var;
+        uint8_t TEST7__HISTORY2_history_tracking_var;
         uint8_t count;
     } vars;
 };

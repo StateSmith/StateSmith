@@ -12,6 +12,11 @@ using StateSmith.compiler.Visitors;
 
 namespace StateSmith.Compiling
 {
+    public class LibVars
+    {
+        public string vars = "";
+    }
+
     public class Compiler
     {
         public const string InitialStateString = "$initial_state";
@@ -83,6 +88,13 @@ namespace StateSmith.Compiling
                 var processor = new InitialStateProcessor();
                 v.Accept(processor);
             }
+        }
+
+        // https://github.com/StateSmith/StateSmith/issues/63
+        public static void SupportShallowHistory(Statemachine sm)
+        {
+            var processor = new ShallowHistoryProcessor(sm);
+            sm.Accept(processor);
         }
 
         // https://github.com/StateSmith/StateSmith/issues/3

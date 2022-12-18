@@ -26,17 +26,15 @@ namespace StateSmith.Runner
             var activePrefix = prefixStack.Peek();
             state.Rename($"{activePrefix}{state.Name}");    // may rename to the same if no prefix
             
-            string foundPrefix = GetPrefixOrBlank(state);
+            string foundPrefix = GetPrefix(state, activePrefix);
 
             prefixStack.Push(foundPrefix);
             VisitChildren(state);
             prefixStack.Pop();
         }
 
-        private static string GetPrefixOrBlank(NamedVertex state)
+        private static string GetPrefix(NamedVertex state, string prefix)
         {
-            string prefix = "";
-
             for (int i = 0; i < state.Behaviors.Count; i++) // non-iterator so we can modify behaviors in the loop
             {
                 var b = state.Behaviors[i];

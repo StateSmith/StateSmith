@@ -1,10 +1,9 @@
-using StateSmith.Common;
+﻿using StateSmith.Common;
 using StateSmith.compiler;
 using StateSmith.compiler.Visitors;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 #nullable enable
 
@@ -22,6 +21,8 @@ namespace StateSmith.Compiling
 
         internal Vertex? _parent;
         public Vertex? Parent => _parent;
+
+        public NamedVertex? ParentState => (NamedVertex?)Parent;
 
         /// <summary>
         /// data structure may change
@@ -354,28 +355,11 @@ namespace StateSmith.Compiling
                 case ChoicePoint point:
                     return $"{Describe(v.Parent)}.{nameof(ChoicePoint)}({point.label})";
 
+                case ShallowHistoryVertex historyVertex:
+                    return Describe(v.Parent) + ".ShallowHistory";
+
                 default: throw new ArgumentException("Unsupported type " + v.GetType().FullName);
             }
         }
     }
-
-    public class TransitionPath
-    {
-        public List<Vertex> toExit = new List<Vertex>();
-        public Vertex leastCommonAncestor;
-        public List<Vertex> toEnter = new List<Vertex>();
-
-        public bool IsSelfTransition()
-        {
-            if (toExit.Count > 1 || toEnter.Count > 1)
-            {
-                return false;
-            }
-
-            var enterState = toEnter.First();
-            var exitState = toExit.First();
-            return enterState == exitState;
-        }
-    }
-
 }

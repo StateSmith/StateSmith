@@ -18,14 +18,28 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void Gather(Statemachine sm)
         {
-            LambdaVertexBreadthWalker walker = new() { visitAction = v => {
-                if (v is PseudoStateVertex pseudoState && v.IncomingTransitions.Count > 1)
+            LambdaVertexBreadthWalker walker = new() { visitAction = v =>
+            {
+                if (v is PseudoStateVertex pseudoState && ShouldCreateFunctionHandler(v))
                 {
                     Add(pseudoState);
                 }
-            } };
+            }
+            };
 
             walker.Walk(sm);
+        }
+
+        private static bool ShouldCreateFunctionHandler(Vertex v)
+        {
+            var IncomingTransitionCount = v.IncomingTransitions.Count;
+
+            if (v is InitialState initialState)
+            {
+                IncomingTransitionCount += (v.Parent!).IncomingTransitions.Count;
+            }
+
+            return IncomingTransitionCount > 1;
         }
 
         public void MapParents()

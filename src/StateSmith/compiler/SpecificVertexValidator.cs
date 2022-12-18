@@ -8,8 +8,12 @@ namespace StateSmith.Compiling
     {
         public override void Visit(InitialState initialState)
         {
-            ValidateInitialState(initialState);
-            //no children to validate
+            InitialStateValidator.Validate(initialState);
+        }
+
+        public override void Visit(ShallowHistoryVertex v)
+        {
+            //FIXME finish
         }
 
         public override void Visit(Vertex v)
@@ -84,11 +88,5 @@ namespace StateSmith.Compiling
         {
             ExitPointValidator.Validate(v);
         }
-
-        public static void ValidateInitialState(InitialState initialState)
-        {
-            InitialStateValidator.Validate(initialState);
-        }
-
     }
 }
