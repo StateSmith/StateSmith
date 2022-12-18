@@ -1,4 +1,4 @@
-﻿using StateSmith.Common;
+using StateSmith.Common;
 using StateSmith.compiler;
 using StateSmith.compiler.Visitors;
 using System;
@@ -63,6 +63,19 @@ namespace StateSmith.Compiling
             else
             {
                 _behaviors.Add(behavior);
+            }
+        }
+
+        public void RemoveBehaviorAndUnlink(Behavior behavior)
+        {
+            if (behavior.HasTransition())
+            {
+                behavior.TransitionTarget.RemoveIncomingTransition(behavior);
+            }
+
+            if (!_behaviors.Remove(behavior))
+            {
+                throw new VertexValidationException(this, "tried to remove behavior that wasn't owned by this vertex");
             }
         }
 

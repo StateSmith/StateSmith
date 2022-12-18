@@ -34,6 +34,11 @@ public class CompilerRunner
     public Action<Statemachine> postParentAliasValidation = (_) => { };
 
     /// <summary>
+    /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
+    /// </summary>
+    public Action<Statemachine> preValidation = (_) => { };
+
+    /// <summary>
     /// Step 1
     /// </summary>
     public void CompileYedFileNodesToVertices(string filepath)
@@ -136,6 +141,7 @@ public class CompilerRunner
         compiler.SupportParentAlias();
         compiler.SupportEntryExitPoints();
         compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
+        preValidation(sm);
         compiler.Validate();
         postParentAliasValidation(sm);
 

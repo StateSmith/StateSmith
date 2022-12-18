@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## WIP
+### Added
+- Add `PrefixingModder.cs`
+  - Experimental feature to help with duplicate state names. https://github.com/StateSmith/StateSmith/issues/65
 
 ---
 
