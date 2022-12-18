@@ -11,6 +11,7 @@ using FluentAssertions;
 using System.Runtime.InteropServices;
 using StateSmithTest.Processes;
 using System.Text.RegularExpressions;
+using Xunit.Abstractions;
 
 namespace Spec.Spec2.C;
 
@@ -56,6 +57,13 @@ public class SharedCompilationFixture
 
 public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
 {
+    protected ITestOutputHelper xunitOutput;
+
+    public Spec2CFixture(ITestOutputHelper xunitOutput)
+    {
+        this.xunitOutput = xunitOutput;
+    }
+
     public string Run(string initialEventToSelectTest, string testEvents)
     {
         SimpleProcess process = new()
@@ -74,9 +82,7 @@ public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
 
     public string PrepExpectedOutput(string expected)
     {
-        expected = StringUtils.DeIndentTrim(expected);
-        expected = StringUtils.ReplaceNewLineChars(expected, "\n");
-        return expected;
+        return OutputExpectation.PrepExpectedOutput(expected);
     }
 
     public string PreProcessOutput(string output)
@@ -89,6 +95,10 @@ public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
 
 public class Spec2CTests : Spec2CFixture
 {
+    public Spec2CTests(ITestOutputHelper xunitOutput) : base(xunitOutput)
+    {
+    }
+
     [Fact]
     public void Test1_DoEventHandling()
     {
@@ -470,40 +480,30 @@ public class Spec2CTests : Spec2CFixture
     public void Test4D_ExternalTransitionExample()
     {
         const string InitialEventToSelectTest = "EV4 EV4";
-        var testEvents = "";
-        var ex = "";
 
-        // 
-        testEvents += "EV1 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV1
-            ===================================================
+        OutputExpectation expectation = new(xunitOutput);
+
+        expectation.AddEventHandling("EV1", () => expectation.Verify2(@"
             State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
             Exit TEST4D_G.
             Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().
             Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.
             Enter TEST4D_G.
             Enter TEST4D_G_1.
-        ") + "\n\n";
+        "));
 
-        testEvents += "EV2 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV2
-            ===================================================
+        expectation.AddEventHandling("EV2", () => expectation.Verify2(@"
             State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
             Exit TEST4D_G_1.
             Exit TEST4D_G.
-            Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().
+            Transition action `` for TEST4D_G1 to TEST4D_EXTERNAL.ChoicePoint().
             Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.
             Enter TEST4D_G.
-        ") + "\n\n";
+        "));
 
-        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
+        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: expectation.EventList);
 
-        ex = ex.Trim();
-      
-        // output.Should().Be(""); // uncomment line if you want to see the whole output
-        Assert.Equal(ex, output);
+        expectation.Verify(output);
     }
 
     //-------------------------------------------------------------------------------------
