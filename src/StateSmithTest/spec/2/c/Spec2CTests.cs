@@ -1,102 +1,23 @@
 using Spec.Spec2;
 using StateSmith.Input.Expansions;
-using StateSmith.output;
 using StateSmith.output.C99BalancedCoder1;
-using StateSmith.output.UserConfig;
 using StateSmith.Runner;
 using System;
 using System.Diagnostics;
 using Xunit;
 using FluentAssertions;
 using System.Runtime.InteropServices;
-using StateSmithTest.Processes;
-using System.Text.RegularExpressions;
 using Xunit.Abstractions;
 
 namespace Spec.Spec2.C;
 
-/// <summary>
-/// Required so that we only do the gcc compilation once to avoid concurrency conflicts.
-/// This will only be constructed once and shared amongst any tests that need it.
-/// </summary>
-public class SharedCompilationFixture
-{
-    public SharedCompilationFixture()
-    {
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
-
-        SimpleProcess process;
-
-        process = new()
-        {
-            WorkingDirectory = OutputDirectory,
-            CommandText = "gcc ../../lang-helpers/c/helper.c main.c Spec2Sm.c"
-        };
-        BashRunner.RunCommand(process);
-    }
-
-    public static string OutputDirectory => Spec2Fixture.Spec2Directory + "c/";
-
-    public class MyGlueFile : IRenderConfigC
-    {
-        Spec2GenericVarExpansions spec2GenericVarExpansions = new();
-
-        string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
-                #include <stdint.h>
-            ");
-
-        string IRenderConfigC.CFileIncludes => StringUtils.DeIndentTrim(@"
-                #include ""../../lang-helpers/c/helper.h""
-            ");
-
-        string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
-                uint8_t count;
-            ");
-    }
-}
-
-public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
-{
-    protected ITestOutputHelper xunitOutput;
-
-    public Spec2CFixture(ITestOutputHelper xunitOutput)
-    {
-        this.xunitOutput = xunitOutput;
-    }
-
-    public string Run(string initialEventToSelectTest, string testEvents)
-    {
-        SimpleProcess process = new()
-        {
-            WorkingDirectory = SharedCompilationFixture.OutputDirectory,
-            CommandText = $"./a.out {initialEventToSelectTest} {testEvents}"
-        };
-        BashRunner.RunCommand(process);
-
-        string output = process.StdOutput;
-        output = StringUtils.RemoveEverythingBefore(output, "\nIGNORE_OUTPUT_BEFORE_THIS\n").Trim();
-        output = Regex.Replace(output, @"[\s\S]*\nCLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\n[\s\S]*?\n\n", "").Trim();
-
-        return output;
-    }
-
-    public string PrepExpectedOutput(string expected)
-    {
-        return OutputExpectation.PrepExpectedOutput(expected);
-    }
-
-    public string PreProcessOutput(string output)
-    {
-        output = Regex.Replace(output, @"\w+__([a-zA-Z]+)", "$1");
-        return output;
-    }
-
-}
-
 public class Spec2CTests : Spec2CFixture
 {
-    public Spec2CTests(ITestOutputHelper xunitOutput) : base(xunitOutput)
+    SpecTester tester = new();
+
+    public Spec2CTests()
     {
+        tester.SpecificationRunner = Run;
     }
 
     [Fact]
@@ -479,11 +400,9 @@ public class Spec2CTests : Spec2CFixture
     [Fact]
     public void Test4D_ExternalTransitionExample()
     {
-        const string InitialEventToSelectTest = "EV4 EV4";
-
-        OutputExpectation expectation = new(xunitOutput);
-
-        expectation.AddEventHandling("EV1", () => expectation.Verify2(@"
+        tester.PreEvents = "EV4 EV4";
+        
+        tester.AddEventHandling("EV1", t => t(@"
             State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
             Exit TEST4D_G.
             Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().
@@ -492,18 +411,16 @@ public class Spec2CTests : Spec2CFixture
             Enter TEST4D_G_1.
         "));
 
-        expectation.AddEventHandling("EV2", () => expectation.Verify2(@"
+        tester.AddEventHandling("EV2", t => t(@"
             State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
             Exit TEST4D_G_1.
             Exit TEST4D_G.
-            Transition action `` for TEST4D_G1 to TEST4D_EXTERNAL.ChoicePoint().
+            Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().
             Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.
             Enter TEST4D_G.
         "));
 
-        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: expectation.EventList);
-
-        expectation.Verify(output);
+        tester.RunAndVerify();
     }
 
     //-------------------------------------------------------------------------------------
@@ -514,94 +431,63 @@ public class Spec2CTests : Spec2CFixture
     [Fact]
     public void Test5_ParentAliasChildTransitions()
     {
-        var testEvents = "";
-        var ex = "";
+        tester.PreEvents = "EV5";
 
         // should see transition to S1 without exiting ROOT
-        testEvents += "EV2 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV2
-            ===================================================
+        tester.AddEventHandling("EV2", t => t(@"
             State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`. Behavior running.
             Transition action `` for TEST5_ROOT to TEST5_S1.
             Enter TEST5_S1.
-            ") + "\n\n";
-
+        "));
 
         // Already in S1. Root handler should exit S1, then re-enter S1.
-        testEvents += "EV2 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV2
-            ===================================================
+        tester.AddEventHandling("EV2", t => t(@"
             State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`. Behavior running.
             Exit TEST5_S1.
             Transition action `` for TEST5_ROOT to TEST5_S1.
             Enter TEST5_S1.
-            ") + "\n\n";
+        "));
 
         // Should transition from S1 to S2
-        testEvents += "EV1 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV1
-            ===================================================
+        tester.AddEventHandling("EV1", t => t(@"
             State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`. Behavior running.
             Exit TEST5_S1.
             Transition action `` for TEST5_S1 to TEST5_S2.
             Enter TEST5_S2.
-            ") + "\n\n";
+        "));
 
         // Root handler should cause transition to S1.
-        testEvents += "EV2 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV2
-            ===================================================
+        tester.AddEventHandling("EV2", t => t(@"
             State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`. Behavior running.
             Exit TEST5_S2.
             Transition action `` for TEST5_ROOT to TEST5_S1.
             Enter TEST5_S1.
-            ") + "\n\n";
+        "));
 
         // S1 to S2
-        testEvents += "EV1 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV1
-            ===================================================
+        tester.AddEventHandling("EV1", t => t(@"
             State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`. Behavior running.
             Exit TEST5_S1.
             Transition action `` for TEST5_S1 to TEST5_S2.
             Enter TEST5_S2.
-            ") + "\n\n";
+        "));
 
         // S2 to S3
-        testEvents += "EV1 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV1
-            ===================================================
+        tester.AddEventHandling("EV1", t => t(@"
             State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`. Behavior running.
             Exit TEST5_S2.
             Transition action `` for TEST5_S2 to TEST5_S3.
             Enter TEST5_S3.
-            ") + "\n\n";
+        "));
 
         // S3 to ROOT
-        testEvents += "EV1 ";
-        ex += PrepExpectedOutput(@"
-            Dispatch event EV1
-            ===================================================
+        tester.AddEventHandling("EV1", t => t(@"
             State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`. Behavior running.
             Exit TEST5_S3.
             Transition action `` for TEST5_S3 to TEST5_ROOT.
-            ") + "\n\n";
+        "));
 
-        const string InitialEventToSelectTest = "EV5";
-        var output = Run(initialEventToSelectTest: InitialEventToSelectTest, testEvents: testEvents);
-
-        ex = ex.Trim();
-
-        // uncomment below line if you want to see the whole output
-        //output.Should().Be("");
-
-        Assert.Equal(ex, output);
+        tester.RunAndVerify();
     }
 
     [Fact]
