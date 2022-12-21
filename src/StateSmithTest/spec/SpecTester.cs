@@ -113,6 +113,15 @@ public class SpecTester
     {
         var output = SpecificationRunner.Invoke(PreEvents, EventList);
         Verify(output);
+        Reset();
+    }
+
+    private void Reset()
+    {
+        this.events.Clear();
+        this.testFunctions.Clear();
+        this.curIndex = 0;
+        this.actualChunk = "";
     }
 
     public void Verify(string output)

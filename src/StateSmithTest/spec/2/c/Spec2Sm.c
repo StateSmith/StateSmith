@@ -5732,11 +5732,11 @@ static void TEST8_ROOT_enter(Spec2Sm* self)
     } // end of behavior for TEST8_ROOT
     
     // TEST8_ROOT behavior
-    // uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
-    if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_output(); }`.", true))
+    // uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
+    if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true))
     {
-        // Step 1: execute action `clear_output();`
-        trace("IGNORE_OUTPUT_BEFORE_THIS");;
+        // Step 1: execute action `clear_dispatch_output();`
+        trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
     } // end of behavior for TEST8_ROOT
 }
 

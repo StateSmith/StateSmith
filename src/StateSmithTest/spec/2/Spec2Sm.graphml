@@ -2973,7 +2973,7 @@ finishes transition and ancestor does also handle the event.<y:LabelModel><y:Sma
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
                       <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="77.505859375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="480.0654660512629" x="0.0" xml:space="preserve" y="0.0">    TEST8_ROOT
-enter / clear_output();
+enter / clear_dispatch_output();
 EV5 / count++;
 EV3 / </y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
@@ -2985,8 +2985,8 @@ EV3 / </y:NodeLabel>
                       <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                      <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="77.505859375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="147.408203125" x="-48.7041015625" xml:space="preserve" y="0.0">    TEST8_ROOT
-enter / clear_output();
+                      <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="77.505859375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="211.61962890625" x="-80.809814453125" xml:space="preserve" y="0.0">    TEST8_ROOT
+enter / clear_dispatch_output();
 EV5 / count++;
 EV3 / </y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
