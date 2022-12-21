@@ -1,12 +1,21 @@
-﻿using StateSmith.output;
+using Spec.Spec2;
+using StateSmith.Input.Expansions;
+using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Runner;
+using System;
+using System.Diagnostics;
 using Xunit;
-using StateSmithTest.Processes;
-using System.Text.RegularExpressions;
+using FluentAssertions;
+using System.Runtime.InteropServices;
 using Xunit.Abstractions;
+using StateSmithTest.spec2;
+using StateSmithTest.Processes;
+using StateSmith.output;
+using System.Text.RegularExpressions;
 
 namespace Spec.Spec2.C;
 
-public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
+public class Spec2TestsC : Spec2Tests
 {
     public string Run(string initialEventToSelectTest, string testEvents)
     {
@@ -26,18 +35,9 @@ public class Spec2CFixture : IClassFixture<SharedCompilationFixture>
         return output;
     }
 
-    public string PrepExpectedOutput(string expected)
+    protected override Func<string, string, string> MakeRunProcessFunc()
     {
-        return SpecTester.PrepExpectedOutput(expected);
+        return Run;
     }
-
-    public string PreProcessOutput(string output)
-    {
-        output = Regex.Replace(output, @"\w+__([a-zA-Z]+)", "$1");
-        return output;
-    }
-
 }
-
-
 

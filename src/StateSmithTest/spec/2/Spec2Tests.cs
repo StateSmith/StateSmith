@@ -1,30 +1,42 @@
+﻿using Spec;
 using Spec.Spec2;
-using StateSmith.Input.Expansions;
-using StateSmith.output.C99BalancedCoder1;
-using StateSmith.Runner;
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Xunit;
-using FluentAssertions;
-using System.Runtime.InteropServices;
-using Xunit.Abstractions;
 
-namespace Spec.Spec2.C;
+namespace StateSmithTest.spec2;
 
-public class Spec2CTests : Spec2CFixture
+public abstract class Spec2Tests : Spec2Fixture
 {
     SpecTester tester = new();
 
-    public Spec2CTests()
+    protected abstract Func<string, string, string> MakeRunProcessFunc();
+
+    public Spec2Tests()
     {
-        tester.SpecificationRunner = Run;
+        tester.SpecificationRunner = MakeRunProcessFunc(); // calling abstract in ctor not ideal, but OK for tests.
+    }
+
+    public string PrepExpectedOutput(string expected)
+    {
+        return SpecTester.PrepExpectedOutput(expected);
+    }
+
+    public string PreProcessOutput(string output)
+    {
+        output = Regex.Replace(output, @"\w+__([a-zA-Z]+)", "$1");
+        return output;
     }
 
     [Fact]
     public void Test1_DoEventHandling()
     {
         tester.PreEvents = "EV1";
-        
+
         tester.AddEventHandling("DO", t => t(@"
             State TEST1_S1_1: check behavior `do`. Behavior running.
             State TEST1_ROOT: check behavior `do`. Behavior running.
@@ -41,13 +53,13 @@ public class Spec2CTests : Spec2CFixture
         tester.RunAndVerify();
     }
 
-    
+
 
     [Fact]
     public void Test2_RegularEventHandling()
     {
-		tester.PreEvents = "EV2";
-        
+        tester.PreEvents = "EV2";
+
         tester.AddEventHandling("EV2", t => t(@"
             State TEST2_ROOT: check behavior `EV2`. Behavior running.
         ")); tester.AddEventHandling("EV1", t => t(@"
@@ -74,8 +86,8 @@ public class Spec2CTests : Spec2CFixture
     [Fact]
     public void Test3_BehaviorOrdering()
     {
-		tester.PreEvents = "EV3";
-        
+        tester.PreEvents = "EV3";
+
         tester.AddEventHandling("EV1", t => t(@"
             State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`. Behavior running.
             Exit TEST3_S1.
@@ -260,7 +272,7 @@ public class Spec2CTests : Spec2CFixture
     public void Test4D_ExternalTransitionExample()
     {
         tester.PreEvents = "EV4 EV4";
-        
+
         tester.AddEventHandling("EV1", t => t(@"
             State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
             Exit TEST4D_G.
@@ -467,6 +479,108 @@ public class Spec2CTests : Spec2CFixture
     ///////////////////////////////////////////////////////////////////////////////////
 
     [Fact]
+    public void Test7_History1_BackAndForth()
+    {
+        tester.PreEvents = "EV7 EV2";
+
+        tester.AddEventHandling("EV1", t => t(@"
+            State ON1: check behavior `EV1 TransitionTo(ON2)`. Behavior running.
+            Exit ON1.
+            Transition action `` for ON1 to ON2.
+            Enter ON2.
+            State ON2: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+        "));
+
+        // over to off states
+        tester.AddEventHandling("EV6", t => t(@"
+            State ON: check behavior `EV6 TransitionTo(OFF)`. Behavior running.
+            Exit ON2.
+            Exit ON.
+            Transition action `` for ON to OFF.
+            Enter OFF.
+            Transition action `` for OFF.InitialState to OFF.ShallowHistory.
+            Transition action `` for OFF.ShallowHistory to OFF1.
+            Enter OFF1.
+            State OFF1: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 0; }`. Behavior running.
+        "));
+
+        tester.AddEventHandling("EV1", t => t(@"
+            State OFF1: check behavior `EV1 TransitionTo(OFF2)`. Behavior running.
+            Exit OFF1.
+            Transition action `` for OFF1 to OFF2.
+            Enter OFF2.
+            State OFF2: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+        "));
+
+        // back to on states
+        tester.AddEventHandling("EV7", t => t(@"
+            State OFF: check behavior `EV7 TransitionTo(ON)`. Behavior running.
+            Exit OFF2.
+            Exit OFF.
+            Transition action `` for OFF to ON.
+            Enter ON.
+            Transition action `` for ON.InitialState to ON.ShallowHistory.
+            Transition action `` for ON.ShallowHistory to ON2.
+            Enter ON2.
+            State ON2: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+        "));
+
+        // over to off states
+        tester.AddEventHandling("EV6", t => t(@"
+            State ON: check behavior `EV6 TransitionTo(OFF)`. Behavior running.
+            Exit ON2.
+            Exit ON.
+            Transition action `` for ON to OFF.
+            Enter OFF.
+            Transition action `` for OFF.InitialState to OFF.ShallowHistory.
+            Transition action `` for OFF.ShallowHistory to OFF2.
+            Enter OFF2.
+            State OFF2: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+        "));
+
+        tester.RunAndVerify();
+    }
+
+    [Fact]
+    public void Test7_History1_OffToOff3()
+    {
+        tester.PreEvents = "EV7 EV2";
+
+        tester.AddEventHandling("EV1", t => t(@"
+            State ON1: check behavior `EV1 TransitionTo(ON2)`. Behavior running.
+            Exit ON1.
+            Transition action `` for ON1 to ON2.
+            Enter ON2.
+            State ON2: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+        "));
+
+        // over to off states
+        tester.AddEventHandling("EV6", t => t(@"
+            State ON: check behavior `EV6 TransitionTo(OFF)`. Behavior running.
+            Exit ON2.
+            Exit ON.
+            Transition action `` for ON to OFF.
+            Enter OFF.
+            Transition action `` for OFF.InitialState to OFF.ShallowHistory.
+            Transition action `` for OFF.ShallowHistory to OFF1.
+            Enter OFF1.
+            State OFF1: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 0; }`. Behavior running.
+        "));
+
+        tester.AddEventHandling("EV3", t => t(@"
+            State OFF: check behavior `EV3 TransitionTo(OFF3)`. Behavior running.
+            Exit OFF1.
+            Transition action `` for OFF to OFF3.
+            Enter OFF3.
+            State OFF3: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 2; }`. Behavior running.
+        "));
+
+        tester.RunAndVerify();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    [Fact]
     public void Test8_Choice_1_Direct1()
     {
         int incCount = 1;
@@ -654,8 +768,8 @@ public class Spec2CTests : Spec2CFixture
     [Fact]
     public void Test9A_ExitPointTargetsParent()
     {
-		tester.PreEvents = "EV9 EV2";
-        
+        tester.PreEvents = "EV9 EV2";
+
         tester.AddEventHandling("EV1", t => t(@"
             State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.ExitPoint(1))`. Behavior running.
             Exit TEST9A_S1_1.
