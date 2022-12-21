@@ -10,15 +10,24 @@ using Xunit;
 
 namespace StateSmithTest.spec2;
 
-public abstract class Spec2Tests : Spec2Fixture
+public abstract class Spec2Tests : Spec2Fixture, IDisposable
 {
     SpecTester tester = new();
 
-    protected abstract Func<string, string, string> MakeRunProcessFunc();
+    public abstract string RunProcess(string testEvents);
 
-    public Spec2Tests()
+    public void RunTester()
     {
-        tester.SpecificationRunner = MakeRunProcessFunc(); // calling abstract in ctor not ideal, but OK for tests.
+        if (tester.HasExpectations())
+        {
+            tester.RunAndVerify(RunProcess);
+        }
+    }
+
+    // Ensures that tester is run after being setup
+    public void Dispose()
+    {
+        RunTester();
     }
 
     public string PrepExpectedOutput(string expected)
@@ -49,8 +58,6 @@ public abstract class Spec2Tests : Spec2Fixture
         ")); tester.AddEventHandling("DO", t => t(@"
             State TEST1_S2: check behavior `do / { consume_event = true; }`. Behavior running.
         "));
-
-        tester.RunAndVerify();
     }
 
 
@@ -79,8 +86,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Transition action `` for TEST2_S2 to TEST2_S2.
             Enter TEST2_S2.
         "));
-
-        tester.RunAndVerify();
     }
 
     [Fact]
@@ -104,8 +109,6 @@ public abstract class Spec2Tests : Spec2Fixture
             3 woot!
             Enter TEST3_S3.
         "));
-
-        tester.RunAndVerify();
     }
 
     //-------------------------------------------------------------------------------------
@@ -168,8 +171,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Exit TEST4_S3.
             Transition action `` for TEST4_S3 to TEST4_ROOT.
         "));
-
-        tester.RunAndVerify();
     }
 
     [Fact]
@@ -192,8 +193,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Transition action `` for TEST4_S10 to TEST4_S10.
             Enter TEST4_S10.
         "));
-
-        tester.RunAndVerify();
     }
 
     // https://github.com/StateSmith/StateSmith/issues/49
@@ -220,8 +219,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.
             Enter TEST4_S20_1.
         "));
-
-        tester.RunAndVerify();
     }
 
     //-------------------------------------------------------------------------------------
@@ -243,8 +240,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Exit TEST4B_G_1.
             Transition action `` for TEST4B_G_1 to TEST4B_G.
         "));
-
-        tester.RunAndVerify();
     }
 
     [Fact]
@@ -264,8 +259,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Exit TEST4C_G_1.
             Transition action `` for TEST4C_G_1 to TEST4C_G.
         "));
-
-        tester.RunAndVerify();
     }
 
     [Fact]
@@ -290,8 +283,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.
             Enter TEST4D_G.
         "));
-
-        tester.RunAndVerify();
     }
 
     //-------------------------------------------------------------------------------------
@@ -357,8 +348,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Exit TEST5_S3.
             Transition action `` for TEST5_S3 to TEST5_ROOT.
         "));
-
-        tester.RunAndVerify();
     }
 
     [Fact]
@@ -381,7 +370,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Enter TEST6_S2.
         "));
 
-        tester.RunAndVerify();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -472,8 +460,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Transition action `` for PARENT.InitialState to S1.
             Enter S1.
         "));
-
-        tester.RunAndVerify();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -537,8 +523,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Enter OFF2.
             State OFF2: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
         "));
-
-        tester.RunAndVerify();
     }
 
     [Fact]
@@ -574,8 +558,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Enter OFF3.
             State OFF3: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 2; }`. Behavior running.
         "));
-
-        tester.RunAndVerify();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -692,8 +674,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.
             Enter TEST8_S1.
         "));
-
-        tester.RunAndVerify();
     }
 
     //---------------------------------------------------------------------------------------------------
@@ -759,8 +739,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Transition action `` for TEST9_S1.ExitPoint(1) to {expectedState}.
             Enter {expectedState}.
         "));
-
-        tester.RunAndVerify();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -781,8 +759,6 @@ public abstract class Spec2Tests : Spec2Fixture
             Enter TEST9A_S1_1.
             State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`. Behavior skipped.
         "));
-
-        tester.RunAndVerify();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -930,7 +906,7 @@ public abstract class Spec2Tests : Spec2Fixture
             throw new Exception("unsupported variation " + variation);
         }
 
-        tester.RunAndVerify();
+        RunTester();
     }
 }
 

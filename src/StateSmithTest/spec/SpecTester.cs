@@ -12,15 +12,18 @@ public class SpecTester
 {
     public string PreEvents = "";
 
-    public Func<string, string, string> SpecificationRunner;
-
     protected List<string> events = new();
     protected List<Action<Action<string>>> testFunctions = new();
     int curIndex = 0;
     string actualChunk;
 
-
     public string EventList => string.Join(" ", events);
+    public string PreAndNormalEvents => string.Join(" ", PreEvents, EventList);
+
+    public bool HasExpectations()
+    {
+        return testFunctions.Any();
+    }
 
     public void AddEventHandling(string eventName, Action<Action<string>> testFunction)
     {
@@ -109,11 +112,10 @@ public class SpecTester
         return i;
     }
 
-    public void RunAndVerify()
+    public void RunAndVerify(Func<string, string> processRunningFunction)
     {
-        var output = SpecificationRunner.Invoke(PreEvents, EventList);
+        var output = processRunningFunction.Invoke(PreAndNormalEvents);
         Verify(output);
-        Reset();
     }
 
     private void Reset()
@@ -137,6 +139,7 @@ public class SpecTester
         }
 
         Assert.Equal(testFunctions.Count, actualChunks.Length);
+        Reset();
     }
 
     public static string PrepExpectedOutput(string expected)

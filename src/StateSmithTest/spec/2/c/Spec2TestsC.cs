@@ -17,12 +17,12 @@ namespace Spec.Spec2.C;
 
 public class Spec2TestsC : Spec2Tests
 {
-    public string Run(string initialEventToSelectTest, string testEvents)
+    public override string RunProcess(string testEvents)
     {
         SimpleProcess process = new()
         {
             WorkingDirectory = SharedCompilationFixture.OutputDirectory,
-            CommandText = $"./a.out {initialEventToSelectTest} {testEvents}"
+            CommandText = $"./a.out {testEvents}"
         };
         BashRunner.RunCommand(process);
 
@@ -33,11 +33,6 @@ public class Spec2TestsC : Spec2Tests
         output = PreProcessOutput(output);
 
         return output;
-    }
-
-    protected override Func<string, string, string> MakeRunProcessFunc()
-    {
-        return Run;
     }
 }
 
