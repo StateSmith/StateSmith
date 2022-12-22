@@ -15,7 +15,7 @@ using System.Text.RegularExpressions;
 
 namespace Spec.Spec2.C;
 
-public class Spec2TestsC : Spec2Tests
+public class Spec2TestsC : Spec2Tests, IClassFixture<SharedCompilationFixture>
 {
     public override string RunProcess(string testEvents)
     {
