@@ -27,7 +27,7 @@ public class CompilerRunner
 {
     public Compiler compiler = new();
     public Statemachine? sm;
-    // public CodeGenContext CodeGenContext;
+    public PrefixingModder prefixingModder = new();
 
     /// <summary>
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
@@ -143,6 +143,7 @@ public class CompilerRunner
         compiler.SupportEntryExitPoints();
         Compiler.SupportShallowHistory(sm);
         compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
+        prefixingModder.Visit(sm);
         preValidation(sm);
         compiler.Validate();
         postParentAliasValidation(sm);

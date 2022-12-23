@@ -20,6 +20,78 @@ static void DECIDE_ev7(Spec2Sm* self);
 static void DECIDE_ev8(Spec2Sm* self);
 static void DECIDE_ev9(Spec2Sm* self);
 
+static void PREFIXING_enter(Spec2Sm* self);
+static void PREFIXING_exit(Spec2Sm* self);
+
+static void PREFIXING__ORDER_MENU_enter(Spec2Sm* self);
+static void PREFIXING__ORDER_MENU_exit(Spec2Sm* self);
+
+static void PREFIXING__OM__BEVERAGE_enter(Spec2Sm* self);
+static void PREFIXING__OM__BEVERAGE_exit(Spec2Sm* self);
+static void PREFIXING__OM__BEVERAGE_ev2(Spec2Sm* self);
+
+static void PREFIXING__OM__BEV__NONE_enter(Spec2Sm* self);
+static void PREFIXING__OM__BEV__NONE_exit(Spec2Sm* self);
+static void PREFIXING__OM__BEV__NONE_ev1(Spec2Sm* self);
+
+static void PREFIXING__OM__BEV__TEA_enter(Spec2Sm* self);
+static void PREFIXING__OM__BEV__TEA_exit(Spec2Sm* self);
+
+static void PREFIXING__OM__BEV__WATER_enter(Spec2Sm* self);
+static void PREFIXING__OM__BEV__WATER_exit(Spec2Sm* self);
+static void PREFIXING__OM__BEV__WATER_ev1(Spec2Sm* self);
+
+static void PREFIXING__OM__VEG_enter(Spec2Sm* self);
+static void PREFIXING__OM__VEG_exit(Spec2Sm* self);
+static void PREFIXING__OM__VEG_ev2(Spec2Sm* self);
+
+static void PREFIXING__OM__VEG__NONE_enter(Spec2Sm* self);
+static void PREFIXING__OM__VEG__NONE_exit(Spec2Sm* self);
+static void PREFIXING__OM__VEG__NONE_ev1(Spec2Sm* self);
+
+static void PREFIXING__OM__VEG__POTATO_enter(Spec2Sm* self);
+static void PREFIXING__OM__VEG__POTATO_exit(Spec2Sm* self);
+static void PREFIXING__OM__VEG__POTATO_ev1(Spec2Sm* self);
+
+static void PREFIXING__OM__VEG__YAM_enter(Spec2Sm* self);
+static void PREFIXING__OM__VEG__YAM_exit(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX_exit(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(Spec2Sm* self);
+
 static void TEST1_DO_EVENT_TESTING_enter(Spec2Sm* self);
 static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm* self);
 
@@ -398,11 +470,15 @@ static void TEST9A_S1_InitialState_transition(Spec2Sm* self);
 
 static void TEST10_G_ChoicePoint__transition(Spec2Sm* self);
 
+static void PREFIXING__OM__BEVERAGE_InitialState_transition(Spec2Sm* self);
+
 static void TEST7__HISTORY1__ON_InitialState_transition(Spec2Sm* self);
 
 static void TEST7__HISTORY1__OFF_InitialState_transition(Spec2Sm* self);
 
 static void TEST7__INITIAL1__PARENT_InitialState_transition(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(Spec2Sm* self);
 
 static void TEST7__INITIAL1__G_InitialState_transition(Spec2Sm* self);
 
@@ -471,6 +547,26 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
     {
         case Spec2Sm_StateId_ROOT: return "ROOT";
         case Spec2Sm_StateId_DECIDE: return "DECIDE";
+        case Spec2Sm_StateId_PREFIXING: return "PREFIXING";
+        case Spec2Sm_StateId_PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU";
+        case Spec2Sm_StateId_PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG: return "PREFIXING__OM__VEG";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM";
         case Spec2Sm_StateId_TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING";
         case Spec2Sm_StateId_TEST1_ROOT: return "TEST1_ROOT";
         case Spec2Sm_StateId_TEST1_S1: return "TEST1_S1";
@@ -1060,6 +1156,1000 @@ static void DECIDE_ev9(Spec2Sm* self)
             return;
         } // end of behavior for TEST9_EXIT_CHOICE.InitialState
     } // end of behavior for DECIDE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING_exit;
+    
+    // PREFIXING behavior
+    // uml: enter / { trace("Enter PREFIXING."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING.");`
+        trace("Enter PREFIXING.");
+    } // end of behavior for PREFIXING
+}
+
+static void PREFIXING_exit(Spec2Sm* self)
+{
+    // PREFIXING behavior
+    // uml: exit / { trace("Exit PREFIXING."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING.");`
+        trace("Exit PREFIXING.");
+    } // end of behavior for PREFIXING
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = ROOT_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__ORDER_MENU
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__ORDER_MENU_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__ORDER_MENU_exit;
+    
+    // PREFIXING__ORDER_MENU behavior
+    // uml: enter / { trace("Enter PREFIXING__ORDER_MENU."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.");`
+        trace("Enter PREFIXING__ORDER_MENU.");
+    } // end of behavior for PREFIXING__ORDER_MENU
+}
+
+static void PREFIXING__ORDER_MENU_exit(Spec2Sm* self)
+{
+    // PREFIXING__ORDER_MENU behavior
+    // uml: exit / { trace("Exit PREFIXING__ORDER_MENU."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.");`
+        trace("Exit PREFIXING__ORDER_MENU.");
+    } // end of behavior for PREFIXING__ORDER_MENU
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__BEVERAGE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__BEVERAGE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = PREFIXING__OM__BEVERAGE_ev2;
+    
+    // PREFIXING__OM__BEVERAGE behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.");`
+        trace("Enter PREFIXING__OM__BEVERAGE.");
+    } // end of behavior for PREFIXING__OM__BEVERAGE
+}
+
+static void PREFIXING__OM__BEVERAGE_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEVERAGE behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.");`
+        trace("Exit PREFIXING__OM__BEVERAGE.");
+    } // end of behavior for PREFIXING__OM__BEVERAGE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__ORDER_MENU_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__BEVERAGE_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // PREFIXING__OM__BEVERAGE behavior
+    // uml: EV2 [trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG."); } TransitionTo(PREFIXING__OM__VEG)
+    if (trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, PREFIXING__ORDER_MENU_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");`.
+        trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG`.
+        PREFIXING__OM__VEG_enter(self);
+        
+        // PREFIXING__OM__VEG.InitialState behavior
+        // uml: / { trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE."); } TransitionTo(PREFIXING__OM__VEG__NONE)
+        {
+            // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");`.
+            trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");
+            
+            // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__NONE`.
+            PREFIXING__OM__VEG__NONE_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_PREFIXING__OM__VEG__NONE;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for PREFIXING__OM__VEG.InitialState
+    } // end of behavior for PREFIXING__OM__BEVERAGE
+}
+
+static void PREFIXING__OM__BEVERAGE_InitialState_transition(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEVERAGE.InitialState behavior
+    // uml: / { trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE."); } TransitionTo(PREFIXING__OM__BEV__NONE)
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");`.
+        trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__NONE`.
+        PREFIXING__OM__BEV__NONE_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__BEV__NONE;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for PREFIXING__OM__BEVERAGE.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__BEV__NONE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__BEV__NONE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__BEV__NONE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__OM__BEV__NONE_ev1;
+    
+    // PREFIXING__OM__BEV__NONE behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.");`
+        trace("Enter PREFIXING__OM__BEV__NONE.");
+    } // end of behavior for PREFIXING__OM__BEV__NONE
+}
+
+static void PREFIXING__OM__BEV__NONE_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEV__NONE behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.");`
+        trace("Exit PREFIXING__OM__BEV__NONE.");
+    } // end of behavior for PREFIXING__OM__BEV__NONE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__BEV__NONE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__OM__BEV__NONE behavior
+    // uml: EV1 [trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER."); } TransitionTo(PREFIXING__OM__BEV__WATER)
+    if (trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition).
+        PREFIXING__OM__BEV__NONE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.");`.
+        trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__WATER`.
+        PREFIXING__OM__BEV__WATER_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__BEV__WATER;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__OM__BEV__NONE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__BEV__TEA
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__BEV__TEA_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__BEV__TEA_exit;
+    
+    // PREFIXING__OM__BEV__TEA behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.");`
+        trace("Enter PREFIXING__OM__BEV__TEA.");
+    } // end of behavior for PREFIXING__OM__BEV__TEA
+}
+
+static void PREFIXING__OM__BEV__TEA_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEV__TEA behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.");`
+        trace("Exit PREFIXING__OM__BEV__TEA.");
+    } // end of behavior for PREFIXING__OM__BEV__TEA
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__BEV__WATER
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__BEV__WATER_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__BEV__WATER_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__OM__BEV__WATER_ev1;
+    
+    // PREFIXING__OM__BEV__WATER behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.");`
+        trace("Enter PREFIXING__OM__BEV__WATER.");
+    } // end of behavior for PREFIXING__OM__BEV__WATER
+}
+
+static void PREFIXING__OM__BEV__WATER_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEV__WATER behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.");`
+        trace("Exit PREFIXING__OM__BEV__WATER.");
+    } // end of behavior for PREFIXING__OM__BEV__WATER
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__BEV__WATER_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__OM__BEV__WATER behavior
+    // uml: EV1 [trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA."); } TransitionTo(PREFIXING__OM__BEV__TEA)
+    if (trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition).
+        PREFIXING__OM__BEV__WATER_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.");`.
+        trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__TEA`.
+        PREFIXING__OM__BEV__TEA_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__BEV__TEA;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__OM__BEV__WATER
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__VEG
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__VEG_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = PREFIXING__OM__VEG_ev2;
+    
+    // PREFIXING__OM__VEG behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__VEG."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__VEG.");`
+        trace("Enter PREFIXING__OM__VEG.");
+    } // end of behavior for PREFIXING__OM__VEG
+}
+
+static void PREFIXING__OM__VEG_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__VEG behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__VEG."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__VEG.");`
+        trace("Exit PREFIXING__OM__VEG.");
+    } // end of behavior for PREFIXING__OM__VEG
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__ORDER_MENU_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__VEG_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // PREFIXING__OM__VEG behavior
+    // uml: EV2 [trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE."); } TransitionTo(PREFIXING__OM__BEVERAGE)
+    if (trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, PREFIXING__ORDER_MENU_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");`.
+        trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__BEVERAGE`.
+        PREFIXING__OM__BEVERAGE_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        PREFIXING__OM__BEVERAGE_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for PREFIXING__OM__VEG
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__VEG__NONE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__VEG__NONE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__VEG__NONE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__OM__VEG__NONE_ev1;
+    
+    // PREFIXING__OM__VEG__NONE behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.");`
+        trace("Enter PREFIXING__OM__VEG__NONE.");
+    } // end of behavior for PREFIXING__OM__VEG__NONE
+}
+
+static void PREFIXING__OM__VEG__NONE_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__VEG__NONE behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.");`
+        trace("Exit PREFIXING__OM__VEG__NONE.");
+    } // end of behavior for PREFIXING__OM__VEG__NONE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__VEG__NONE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__OM__VEG__NONE behavior
+    // uml: EV1 [trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO."); } TransitionTo(PREFIXING__OM__VEG__POTATO)
+    if (trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition).
+        PREFIXING__OM__VEG__NONE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.");`.
+        trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__POTATO`.
+        PREFIXING__OM__VEG__POTATO_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__VEG__POTATO;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__OM__VEG__NONE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__VEG__POTATO
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__VEG__POTATO_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__VEG__POTATO_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__OM__VEG__POTATO_ev1;
+    
+    // PREFIXING__OM__VEG__POTATO behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.");`
+        trace("Enter PREFIXING__OM__VEG__POTATO.");
+    } // end of behavior for PREFIXING__OM__VEG__POTATO
+}
+
+static void PREFIXING__OM__VEG__POTATO_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__VEG__POTATO behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.");`
+        trace("Exit PREFIXING__OM__VEG__POTATO.");
+    } // end of behavior for PREFIXING__OM__VEG__POTATO
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__VEG__POTATO_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__OM__VEG__POTATO behavior
+    // uml: EV1 [trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM."); } TransitionTo(PREFIXING__OM__VEG__YAM)
+    if (trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition).
+        PREFIXING__OM__VEG__POTATO_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.");`.
+        trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__YAM`.
+        PREFIXING__OM__VEG__YAM_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__VEG__YAM;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__OM__VEG__POTATO
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__VEG__YAM
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__VEG__YAM_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__VEG__YAM_exit;
+    
+    // PREFIXING__OM__VEG__YAM behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.");`
+        trace("Enter PREFIXING__OM__VEG__YAM.");
+    } // end of behavior for PREFIXING__OM__VEG__YAM
+}
+
+static void PREFIXING__OM__VEG__YAM_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__VEG__YAM behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.");`
+        trace("Exit PREFIXING__OM__VEG__YAM.");
+    } // end of behavior for PREFIXING__OM__VEG__YAM
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__VEG_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX_exit;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
+    // uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(self);
+        
+        // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState behavior
+        // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE)
+        {
+            // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`.
+            trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+            
+            // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE`.
+            PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState behavior
+    // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE)
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
+    // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition).
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
+    // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition).
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
+    // uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
+    // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition).
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
+    // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition).
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
 }
 
 

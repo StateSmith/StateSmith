@@ -22,7 +22,6 @@ public class SpecFixture
         settings.propagateExceptions = true;
         if (useTracingModder)
         {
-            runner.compilerRunner.preValidation = new PrefixingModder().Visit;
             runner.compilerRunner.postParentAliasValidation = new TracingModder().AddTracingBehaviors;
         }
         runner.Run();

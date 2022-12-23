@@ -1,11 +1,20 @@
 ﻿using StateSmith.compiler.Visitors;
 using StateSmith.Compiling;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
+// spell-checker: ignore modder
+
+#nullable enable
 
 namespace StateSmith.Runner
 {
     public class PrefixingModder : OnlyVertexVisitor
     {
+        private const string AUTO_PREFIX_STRING = "$prefix.auto(";
+        private static readonly Regex addPrefixRegex = new(@"[$]prefix.add\((\w+)\)");
+        private static readonly Regex setPrefixRegex = new(@"[$]prefix.set\((\w+)\)");
+
         private Stack<string> prefixStack = new();
 
         public PrefixingModder()
@@ -38,16 +47,41 @@ namespace StateSmith.Runner
             for (int i = 0; i < state.Behaviors.Count; i++) // non-iterator so we can modify behaviors in the loop
             {
                 var b = state.Behaviors[i];
+                string? newPrefix = MaybeGetPrefixFromBehavior(state, b, prefix);
 
-                if (b.actionCode.Contains("special_custom_add_prefix_command"))
+                if (newPrefix != null)
                 {
                     state.RemoveBehaviorAndUnlink(b);
-                    prefix = state.Name + "__";
+                    prefix = newPrefix;
                     break;
                 }
             }
 
             return prefix;
+        }
+
+        private static string? MaybeGetPrefixFromBehavior(NamedVertex state, Behavior b, string prefix)
+        {
+            string actionCode = b.actionCode;
+
+            if (actionCode.Contains(AUTO_PREFIX_STRING))
+            {
+                return state.Name + "__"; // note that state name may have already been prefixed by parent at this point.
+            }
+
+            var match = addPrefixRegex.Match(actionCode);
+            if (match.Success)
+            {
+                return prefix + match.Groups[1] + "__";
+            }
+
+            match = setPrefixRegex.Match(actionCode);
+            if (match.Success)
+            {
+                return match.Groups[1] + "__";
+            }
+
+            return null;
         }
     }
 }
