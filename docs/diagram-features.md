@@ -355,13 +355,13 @@ Additional info: https://github.com/StateSmith/StateSmith/issues/6
 
 ---
 
-## State Prefix Helpers `$prefix.auto();`
+## State Prefix Helpers `prefix.auto();`
 This feature is experimental right now. Looking for user feedback.
 
 TLDR: StateSmith will prepend state names with prefixes if the following text is found in a state's behavior:
-* `$prefix.add(<arg>)` - appends the argument to the prefix used for sub states. Useful when you want to explicitly specify the prefix to add.
-* `$prefix.auto()` - appends the current state's name to the prefix used for sub states. Useful when the parent state name is already fairly short.
-* `$prefix.set(<arg>)` - clears any previous prefix and sets it to the argument.
+* `prefix.add(<arg>)` - appends the argument to the prefix used for sub states. Useful when you want to explicitly specify the prefix to add.
+* `prefix.auto()` - appends the current state's name to the prefix used for sub states. Useful when the parent state name is already fairly short.
+* `prefix.set(<arg>)` - clears any previous prefix and sets it to the argument.
 
 ### Background and Explanation
 Currently all states must be named uniquely within a state machine.
@@ -383,13 +383,13 @@ VertexValidationException: Duplicate state name `NONE` also used by state `State
     Incoming transitions count: 1
 ```
 
-One solution is to manually prefix all states as shown below. Nothing technically wrong with this, but it quickly becomes a burden as nesting increases. There is a better solution using the `$prefix` methods.
+One solution is to manually prefix all states as shown below. Nothing technically wrong with this, but it quickly becomes a burden as nesting increases. There is a better solution using the `prefix` methods.
 
 ![picture 18](./images/prefixing-manual.png)  
 
-The below diagram uses `$prefix` methods to tell StateSmith how to prefix sub states.
+The below diagram uses special `$cmd` `prefix` methods to tell StateSmith how to prefix sub states.
 
-![picture 16](./images/prefixing-helper.png)  
+![picture 19](images/prefixing-cmd-1.png)  
 
 The generated state names will be as follows:
 

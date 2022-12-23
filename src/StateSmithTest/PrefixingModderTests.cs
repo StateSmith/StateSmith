@@ -34,6 +34,11 @@ namespace StateSmithTest
         [Fact]
         public void WithoutPrefix()
         {
+            // the below shouldn't match. No prefixing expected
+            mainMenu.AddBehavior(new Behavior(trigger: "cmd", actionCode: "prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "cmd", actionCode: "$prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "$cmdd", actionCode: "prefix.auto()"));
+
             prefixingModder.Visit(sm);
             mmSelectBeverage.Name.Should().Be("SELECT_BEVERAGE");
             /**/mmBevNone.Name.Should().Be("NONE");
@@ -48,9 +53,9 @@ namespace StateSmithTest
         [Fact]
         public void AutoAddSetPrefix()
         {
-            mainMenu.AddBehavior(new Behavior(trigger:"enter", actionCode: "$prefix.auto()"));
-            mmSelectBeverage.AddBehavior(new Behavior(actionCode: "$prefix.add(BEV)"));
-            mmFood.AddBehavior(new Behavior(actionCode: "$prefix.set(SEL_FOOD)"));
+            mainMenu.AddBehavior(new Behavior(trigger:"$cmd", actionCode: "prefix.auto()"));
+            mmSelectBeverage.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "prefix.add(BEV)"));
+            mmFood.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "prefix.set(SEL_FOOD)"));
 
             prefixingModder.Visit(sm);
 

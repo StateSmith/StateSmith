@@ -135,6 +135,11 @@ namespace StateSmith.compiler
             return vertex.Behaviors.Where(b => b.HasTransition());
         }
         
+        public static IEnumerable<Behavior> GetBehaviorsWithTrigger(this Vertex vertex, string triggerName)
+        {
+            return vertex.Behaviors.Where(b => b.triggers.Contains(triggerName));
+        }
+
         public static bool HasInitialState(this Vertex vertex, out InitialState initialState)
         {
             if (vertex is NamedVertex namedVertex)

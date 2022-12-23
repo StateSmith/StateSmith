@@ -2,6 +2,7 @@
 using StateSmith.Compiling;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using StateSmith.compiler;
 
 // spell-checker: ignore modder
 
@@ -11,9 +12,9 @@ namespace StateSmith.Runner
 {
     public class PrefixingModder : OnlyVertexVisitor
     {
-        private const string AUTO_PREFIX_STRING = "$prefix.auto(";
-        private static readonly Regex addPrefixRegex = new(@"[$]prefix.add\((\w+)\)");
-        private static readonly Regex setPrefixRegex = new(@"[$]prefix.set\((\w+)\)");
+        private const string AUTO_PREFIX_STRING = "prefix.auto(";
+        private static readonly Regex addPrefixRegex = new(@"prefix.add\((\w+)\)");
+        private static readonly Regex setPrefixRegex = new(@"prefix.set\((\w+)\)");
 
         private Stack<string> prefixStack = new();
 
@@ -44,9 +45,8 @@ namespace StateSmith.Runner
 
         private static string GetPrefix(NamedVertex state, string prefix)
         {
-            for (int i = 0; i < state.Behaviors.Count; i++) // non-iterator so we can modify behaviors in the loop
+            foreach (var b in state.GetBehaviorsWithTrigger("$cmd"))
             {
-                var b = state.Behaviors[i];
                 string? newPrefix = MaybeGetPrefixFromBehavior(state, b, prefix);
 
                 if (newPrefix != null)

@@ -113,39 +113,38 @@ enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST7__HISTORY1__ON2 = 86,
     Spec2Sm_StateId_TEST7__HISTORY1__ON3 = 87,
     Spec2Sm_StateId_TEST7__HISTORY2 = 88,
-    Spec2Sm_StateId_TEST7__HISTORY2__S1 = 89,
-    Spec2Sm_StateId_TEST7__INITIAL1 = 90,
-    Spec2Sm_StateId_TEST7__INITIAL1__PARENT = 91,
-    Spec2Sm_StateId_TEST7__INITIAL1__G = 92,
-    Spec2Sm_StateId_TEST7__INITIAL1__G_S1 = 93,
-    Spec2Sm_StateId_TEST7__INITIAL1__G_S2 = 94,
-    Spec2Sm_StateId_TEST7__INITIAL1__G_S3 = 95,
-    Spec2Sm_StateId_TEST7__INITIAL1__S1 = 96,
-    Spec2Sm_StateId_TEST7_DECIDE = 97,
-    Spec2Sm_StateId_TEST8_ENTRY_CHOICE = 98,
-    Spec2Sm_StateId_TEST8_ROOT = 99,
-    Spec2Sm_StateId_TEST8_G = 100,
-    Spec2Sm_StateId_TEST8_G_S1 = 101,
-    Spec2Sm_StateId_TEST8_G_S2 = 102,
-    Spec2Sm_StateId_TEST8_G_S3 = 103,
-    Spec2Sm_StateId_TEST8_S1 = 104,
-    Spec2Sm_StateId_TEST9_EXIT_CHOICE = 105,
-    Spec2Sm_StateId_TEST9_DECIDE = 106,
-    Spec2Sm_StateId_TEST9_ROOT = 107,
-    Spec2Sm_StateId_TEST9_G_S1 = 108,
-    Spec2Sm_StateId_TEST9_G_S2 = 109,
-    Spec2Sm_StateId_TEST9_G_S3 = 110,
-    Spec2Sm_StateId_TEST9_G_S4 = 111,
-    Spec2Sm_StateId_TEST9_S1 = 112,
-    Spec2Sm_StateId_TEST9_S1_1 = 113,
-    Spec2Sm_StateId_TEST9A_ROOT = 114,
-    Spec2Sm_StateId_TEST9A_S1 = 115,
-    Spec2Sm_StateId_TEST9A_S1_1 = 116,
+    Spec2Sm_StateId_TEST7__INITIAL1 = 89,
+    Spec2Sm_StateId_TEST7__INITIAL1__PARENT = 90,
+    Spec2Sm_StateId_TEST7__INITIAL1__G = 91,
+    Spec2Sm_StateId_TEST7__INITIAL1__G_S1 = 92,
+    Spec2Sm_StateId_TEST7__INITIAL1__G_S2 = 93,
+    Spec2Sm_StateId_TEST7__INITIAL1__G_S3 = 94,
+    Spec2Sm_StateId_TEST7__INITIAL1__S1 = 95,
+    Spec2Sm_StateId_TEST7_DECIDE = 96,
+    Spec2Sm_StateId_TEST8_ENTRY_CHOICE = 97,
+    Spec2Sm_StateId_TEST8_ROOT = 98,
+    Spec2Sm_StateId_TEST8_G = 99,
+    Spec2Sm_StateId_TEST8_G_S1 = 100,
+    Spec2Sm_StateId_TEST8_G_S2 = 101,
+    Spec2Sm_StateId_TEST8_G_S3 = 102,
+    Spec2Sm_StateId_TEST8_S1 = 103,
+    Spec2Sm_StateId_TEST9_EXIT_CHOICE = 104,
+    Spec2Sm_StateId_TEST9_DECIDE = 105,
+    Spec2Sm_StateId_TEST9_ROOT = 106,
+    Spec2Sm_StateId_TEST9_G_S1 = 107,
+    Spec2Sm_StateId_TEST9_G_S2 = 108,
+    Spec2Sm_StateId_TEST9_G_S3 = 109,
+    Spec2Sm_StateId_TEST9_G_S4 = 110,
+    Spec2Sm_StateId_TEST9_S1 = 111,
+    Spec2Sm_StateId_TEST9_S1_1 = 112,
+    Spec2Sm_StateId_TEST9A_ROOT = 113,
+    Spec2Sm_StateId_TEST9A_S1 = 114,
+    Spec2Sm_StateId_TEST9A_S1_1 = 115,
 };
 
 enum
 {
-    Spec2Sm_StateIdCount = 117
+    Spec2Sm_StateIdCount = 116
 };
 
 typedef struct Spec2Sm Spec2Sm;
@@ -170,7 +169,6 @@ struct Spec2Sm
     {
         uint8_t TEST7__HISTORY1__ON_history_tracking_var;
         uint8_t TEST7__HISTORY1__OFF_history_tracking_var;
-        uint8_t TEST7__HISTORY2_history_tracking_var;
         uint8_t count;
     } vars;
 };
