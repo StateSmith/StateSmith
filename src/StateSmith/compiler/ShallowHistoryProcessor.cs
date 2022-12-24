@@ -8,32 +8,16 @@ using System.Collections.Generic;
 
 namespace StateSmith.Compiling
 {
-    public class HistoryContinueProcessor : DummyVertexVisitor
-    {
-        public override void Visit(HistoryContinueVertex hc)
-        {
-            var statesToTrack = hc.Siblings<NamedVertex>().ToList();
-
-            foreach (var h in hc.historyVertices)
-            {
-                ShallowHistoryProcessor.TrackStates(h, null, statesToTrack);
-            }
-
-            hc.ParentState.RemoveChild(hc);
-        }
-    }
-
-    public class ShallowHistoryProcessor : DummyVertexVisitor
+    public class HistoryProcessor : DummyVertexVisitor
     {
         Statemachine sm;
 
-        public ShallowHistoryProcessor(Statemachine sm)
+        public HistoryProcessor(Statemachine sm)
         {
             this.sm = sm;
         }
 
-
-        public override void Visit(ShallowHistoryVertex historyState)
+        public override void Visit(HistoryVertex historyState)
         {
             sm.historyStates.Add(historyState);
             historyState.stateTrackingVarName = $"{historyState.ParentState.Name}_history_state_tracking_var_name___$$$$"; // will be changed later on with expansions
@@ -44,7 +28,7 @@ namespace StateSmith.Compiling
             TrackStates(historyState, defaultTransition, statesToTrack);
         }
 
-        public static void TrackStates(ShallowHistoryVertex historyState, Behavior? defaultTransition, List<NamedVertex> statesToTrack)
+        public static void TrackStates(HistoryVertex historyState, Behavior? defaultTransition, List<NamedVertex> statesToTrack)
         {
             foreach (var stateToTrack in statesToTrack)
             {
@@ -66,8 +50,6 @@ namespace StateSmith.Compiling
                     historyState.AddBehavior(transitionBehavior);
                 }
             }
-
-            historyState.trackedStateCount = historyState.Behaviors.Count;  // todo - remove trackedStateCount
         }
 
         public override void Visit(HistoryContinueVertex hc)
@@ -81,7 +63,7 @@ namespace StateSmith.Compiling
 
             while (node != null)
             {
-                hc.historyVertices.AddRange(node.Children<ShallowHistoryVertex>());
+                hc.historyVertices.AddRange(node.Children<HistoryVertex>());
 
                 foreach (var v in node.Children<HistoryContinueVertex>())
                 {

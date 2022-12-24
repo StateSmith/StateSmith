@@ -11,7 +11,7 @@ namespace StateSmith.Compiling
             InitialStateValidator.Validate(initialState);
         }
 
-        public override void Visit(ShallowHistoryVertex v)
+        public override void Visit(HistoryVertex v)
         {
             //FIXME finish
         }

@@ -1,12 +1,13 @@
 ﻿#nullable enable
 
 using StateSmith.compiler.Visitors;
+using System.Collections.Generic;
 
 namespace StateSmith.Compiling
 {
-    public class HistoryVertex : PseudoStateVertex
+    public class HistoryContinueVertex : PseudoStateVertex
     {
-        internal string stateTrackingVarName = "";
+        internal List<HistoryVertex> historyVertices = new();
 
         public override void Accept(VertexVisitor visitor)
         {

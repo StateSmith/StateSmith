@@ -94,7 +94,7 @@ namespace StateSmith.Compiling
         // https://github.com/StateSmith/StateSmith/issues/63
         public static void SupportShallowHistory(Statemachine sm)
         {
-            var processor = new ShallowHistoryProcessor(sm);
+            var processor = new HistoryProcessor(sm);
             sm.Accept(processor);
             var processor2 = new HistoryContinueProcessor();
             sm.Accept(processor2);
@@ -373,7 +373,7 @@ namespace StateSmith.Compiling
                             }
                             else if (string.Equals(stateNode.stateName, HistoryStateString, StringComparison.OrdinalIgnoreCase))
                             {
-                                thisVertex = new ShallowHistoryVertex();
+                                thisVertex = new HistoryVertex();
                             }
                             else if (string.Equals(stateNode.stateName, HistoryContinueString, StringComparison.OrdinalIgnoreCase))
                             {

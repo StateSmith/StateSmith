@@ -95,7 +95,7 @@ namespace StateSmith.Runner
                 string actualVarName = codeGenContext.mangler.HistoryVarName(h);
                 codeGenContext.expander.AddVariableExpansion(h.stateTrackingVarName, ExpansionVarsPath + actualVarName);
                 codeGenContext.sm.variables += $"uint8_t {actualVarName};\n";
-                if (h.trackedStateCount > 255) {
+                if (h.Behaviors.Count > 255) {
                     throw new VertexValidationException(h, "can't support more than 255 tracked history states right now."); //uint8_t limitation.
                 }
             }
