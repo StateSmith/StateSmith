@@ -30,7 +30,7 @@ public class Test7DeepHistory1Helper
             Exit BUILD.
             Transition action `` for BUILD to ALIENS_DETECTED.
             Enter ALIENS_DETECTED.
-            Transition action `` for ALIENS_DETECTED.InitialState to ALIENS_DETECTED.ShallowHistory.
+            Transition action `` for ALIENS_DETECTED.InitialState to ALIENS_DETECTED.History.
         ".Trim();
     }
 

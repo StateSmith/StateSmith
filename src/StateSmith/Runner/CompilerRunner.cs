@@ -141,7 +141,7 @@ public class CompilerRunner
 
         compiler.SupportParentAlias();
         compiler.SupportEntryExitPoints();
-        Compiler.SupportShallowHistory(sm);
+        Compiler.SupportHistory(sm);
         compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
         prefixingModder.Visit(sm);
         preValidation(sm);

@@ -477,8 +477,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF.
             Transition action `` for OFF to ON.
             Enter ON.
-            Transition action `` for ON.InitialState to ON.ShallowHistory.
-            Transition action `` for ON.ShallowHistory to ON2.
+            Transition action `` for ON.InitialState to ON.History.
+            Transition action `` for ON.History to ON2.
             Enter ON2.
             State ON2: check behavior `enter / {{ {helper.OnVarName} = 1; }}`. Behavior running.
         "));
@@ -490,8 +490,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ON.
             Transition action `` for ON to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.ShallowHistory.
-            Transition action `` for OFF.ShallowHistory to OFF2.
+            Transition action `` for OFF.InitialState to OFF.History.
+            Transition action `` for OFF.History to OFF2.
             Enter OFF2.
             State OFF2: check behavior `enter / {{ {helper.OffVarName} = 1; }}`. Behavior running.
         "));
@@ -524,8 +524,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF.
             Transition action `` for OFF to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.ShallowHistory.
-            Transition action `` for OFF.ShallowHistory to OFF1.
+            Transition action `` for OFF.InitialState to OFF.History.
+            Transition action `` for OFF.History to OFF1.
             Enter OFF1.
             State OFF1: check behavior `enter / {{ {helper.OffVarName} = 0; }}`. Behavior running.
         "));
@@ -543,8 +543,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF.
             Transition action `` for OFF to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.ShallowHistory.
-            Transition action `` for OFF.ShallowHistory to OFF2.
+            Transition action `` for OFF.InitialState to OFF.History.
+            Transition action `` for OFF.History to OFF2.
             Enter OFF2.
             State OFF2: check behavior `enter / {{ {helper.OffVarName} = 1; }}`. Behavior running.
         "));
@@ -562,8 +562,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF.
             Transition action `` for OFF to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.ShallowHistory.
-            Transition action `` for OFF.ShallowHistory to OFF3.
+            Transition action `` for OFF.InitialState to OFF.History.
+            Transition action `` for OFF.History to OFF3.
             Enter OFF3.
             State OFF3: check behavior `enter / {{ {helper.OffVarName} = 2; }}`. Behavior running.
         "));
@@ -579,7 +579,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("WALL_E", "ROBOT", "TOY")}
-             Transition action `` for ALIENS_DETECTED.ShallowHistory to SNOWBALL_FIGHT.
+             Transition action `` for ALIENS_DETECTED.History to SNOWBALL_FIGHT.
              Enter SNOWBALL_FIGHT.
              State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = 0; }}`. Behavior running.
          "));
@@ -592,8 +592,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ALIENS_DETECTED.
             Transition action `` for ALIENS_DETECTED to BUILD.
             Enter BUILD.
-            Transition action `` for BUILD.InitialState to BUILD.ShallowHistory.
-            Transition action `` for BUILD.ShallowHistory to WALL_E.
+            Transition action `` for BUILD.InitialState to BUILD.History.
+            Transition action `` for BUILD.History to WALL_E.
             Enter TOY.
             State TOY: check behavior `enter / {{ {helper.BuildVarName} = 0; }}`. Behavior running.
             Enter ROBOT.
@@ -604,7 +604,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("WALL_E", "ROBOT", "TOY")}
-             Transition action `` for ALIENS_DETECTED.ShallowHistory to GIVE_COOKIES.
+             Transition action `` for ALIENS_DETECTED.History to GIVE_COOKIES.
              {helper.EnterGiveCookiesText()}
          "));
     }
@@ -618,7 +618,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("IMPACT_DRILL", "TOOL")}
-             Transition action `` for ALIENS_DETECTED.ShallowHistory to SNOWBALL_FIGHT.
+             Transition action `` for ALIENS_DETECTED.History to SNOWBALL_FIGHT.
              Enter SNOWBALL_FIGHT.
              State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = 0; }}`. Behavior running.
          "));
@@ -635,8 +635,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ALIENS_DETECTED.
             Transition action `` for ALIENS_DETECTED to BUILD.
             Enter BUILD.
-            Transition action `` for BUILD.InitialState to BUILD.ShallowHistory.
-            Transition action `` for BUILD.ShallowHistory to IMPACT_DRILL.
+            Transition action `` for BUILD.InitialState to BUILD.History.
+            Transition action `` for BUILD.History to IMPACT_DRILL.
             {helper.EnterToolText()}
             {helper.EnterImpactDrillText()}
         "));
@@ -646,7 +646,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         // was in CALL_BATMAN last, but it isn't saved in history. HERO state is though.
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("CIRCULAR_SAW", "TOOL")}
-             Transition action `` for ALIENS_DETECTED.ShallowHistory to HERO.
+             Transition action `` for ALIENS_DETECTED.History to HERO.
              {helper.EnterGetBackupText()}
              {helper.EnterHeroText()}
              Transition action `` for HERO.InitialState to CALL_THOR.
@@ -664,15 +664,15 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ALIENS_DETECTED.
             Transition action `` for ALIENS_DETECTED to BUILD.
             Enter BUILD.
-            Transition action `` for BUILD.InitialState to BUILD.ShallowHistory.
-            Transition action `` for BUILD.ShallowHistory to CIRCULAR_SAW.
+            Transition action `` for BUILD.InitialState to BUILD.History.
+            Transition action `` for BUILD.History to CIRCULAR_SAW.
             {helper.EnterToolText()}
             {helper.EnterCircularSawText()}
         "));
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("CIRCULAR_SAW", "TOOL")}
-             Transition action `` for ALIENS_DETECTED.ShallowHistory to BUDDY_ELF.
+             Transition action `` for ALIENS_DETECTED.History to BUDDY_ELF.
              {helper.EnterGetBackupText()}
              {helper.EnterLocalHelpText()}
              {helper.EnterBuddyELfText()}

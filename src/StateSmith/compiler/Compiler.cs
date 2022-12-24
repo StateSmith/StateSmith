@@ -92,7 +92,7 @@ namespace StateSmith.Compiling
         }
 
         // https://github.com/StateSmith/StateSmith/issues/63
-        public static void SupportShallowHistory(Statemachine sm)
+        public static void SupportHistory(Statemachine sm)
         {
             var processor = new HistoryProcessor(sm);
             sm.Accept(processor);

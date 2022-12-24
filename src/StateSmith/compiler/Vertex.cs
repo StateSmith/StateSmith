@@ -356,7 +356,7 @@ namespace StateSmith.Compiling
                     return $"{Describe(v.Parent)}.{nameof(ChoicePoint)}({point.label})";
 
                 case HistoryVertex historyVertex:
-                    return Describe(v.Parent) + ".ShallowHistory";
+                    return Describe(v.Parent) + ".History";
 
                 default: throw new ArgumentException("Unsupported type " + v.GetType().FullName);
             }
