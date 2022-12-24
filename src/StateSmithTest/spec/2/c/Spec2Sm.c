@@ -305,6 +305,95 @@ static void TEST7_INITIAL_OR_HISTORY_exit(Spec2Sm* self);
 static void TEST7_enter(Spec2Sm* self);
 static void TEST7_exit(Spec2Sm* self);
 
+static void TEST7__DEEP_HISTORY1_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1_exit(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_exit(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__ALIENS_DETECTED_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__ALIENS_DETECTED_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__ALIENS_DETECTED_ev8(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__GET_BACKUP_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__GET_BACKUP_exit(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__HERO_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__HERO_exit(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__CALL_BATMAN_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__CALL_BATMAN_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__CALL_BATMAN_ev1(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__CALL_BATMAN_ev2(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__CALL_THOR_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__CALL_THOR_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__CALL_THOR_ev1(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__CALL_THOR_ev2(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__LOCAL_HELP_exit(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__BUDDY_ELF_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__BUDDY_ELF_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__BUDDY_ELF_ev1(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__BUDDY_ELF_ev2(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__POLAR_BEARS_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__POLAR_BEARS_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__POLAR_BEARS_ev2(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_ev1(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_ev2(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_ev1(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__BUILD_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__BUILD_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__BUILD_ev7(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__TOOL_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__TOOL_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__TOOL_ev2(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__CIRCULAR_SAW_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__CIRCULAR_SAW_exit(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__IMPACT_DRILL_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__IMPACT_DRILL_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__IMPACT_DRILL_ev1(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__TOY_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__TOY_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__TOY_ev1(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__GLOW_WORM_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__GLOW_WORM_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__GLOW_WORM_ev1(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__RACE_CAR_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__RACE_CAR_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__RACE_CAR_ev1(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__ROBOT_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__ROBOT_exit(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__BATTLEBOT_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__BATTLEBOT_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__BATTLEBOT_ev1(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__WALL_E_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__WALL_E_exit(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__TEDDY_BEAR_enter(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__TEDDY_BEAR_exit(Spec2Sm* self);
+static void TEST7__DEEP_HISTORY1__TEDDY_BEAR_ev1(Spec2Sm* self);
+
 static void TEST7__HISTORY1_enter(Spec2Sm* self);
 static void TEST7__HISTORY1_exit(Spec2Sm* self);
 
@@ -340,9 +429,6 @@ static void TEST7__HISTORY1__ON2_ev1(Spec2Sm* self);
 static void TEST7__HISTORY1__ON3_enter(Spec2Sm* self);
 static void TEST7__HISTORY1__ON3_exit(Spec2Sm* self);
 static void TEST7__HISTORY1__ON3_ev1(Spec2Sm* self);
-
-static void TEST7__HISTORY2_enter(Spec2Sm* self);
-static void TEST7__HISTORY2_exit(Spec2Sm* self);
 
 static void TEST7__INITIAL1_enter(Spec2Sm* self);
 static void TEST7__INITIAL1_exit(Spec2Sm* self);
@@ -477,7 +563,17 @@ static void TEST7__INITIAL1__PARENT_InitialState_transition(Spec2Sm* self);
 
 static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(Spec2Sm* self);
 
+static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self);
+
 static void TEST7__INITIAL1__G_InitialState_transition(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__TOY_InitialState_transition(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__TOOL_InitialState_transition(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__HERO_InitialState_transition(Spec2Sm* self);
+
+static void TEST7__DEEP_HISTORY1__ROBOT_InitialState_transition(Spec2Sm* self);
 
 
 void Spec2Sm_ctor(Spec2Sm* self)
@@ -621,6 +717,29 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
         case Spec2Sm_StateId_TEST6_S2: return "TEST6_S2";
         case Spec2Sm_StateId_TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY";
         case Spec2Sm_StateId_TEST7: return "TEST7";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1: return "TEST7__DEEP_HISTORY1";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP: return "TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__ALIENS_DETECTED: return "TEST7__DEEP_HISTORY1__ALIENS_DETECTED";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GET_BACKUP: return "TEST7__DEEP_HISTORY1__GET_BACKUP";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__HERO: return "TEST7__DEEP_HISTORY1__HERO";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_BATMAN: return "TEST7__DEEP_HISTORY1__CALL_BATMAN";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_THOR: return "TEST7__DEEP_HISTORY1__CALL_THOR";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__LOCAL_HELP: return "TEST7__DEEP_HISTORY1__LOCAL_HELP";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BUDDY_ELF: return "TEST7__DEEP_HISTORY1__BUDDY_ELF";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__POLAR_BEARS: return "TEST7__DEEP_HISTORY1__POLAR_BEARS";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GIVE_COOKIES: return "TEST7__DEEP_HISTORY1__GIVE_COOKIES";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: return "TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BUILD: return "TEST7__DEEP_HISTORY1__BUILD";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__TOOL: return "TEST7__DEEP_HISTORY1__TOOL";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CIRCULAR_SAW: return "TEST7__DEEP_HISTORY1__CIRCULAR_SAW";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__IMPACT_DRILL: return "TEST7__DEEP_HISTORY1__IMPACT_DRILL";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__TOY: return "TEST7__DEEP_HISTORY1__TOY";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GLOW_WORM: return "TEST7__DEEP_HISTORY1__GLOW_WORM";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__RACE_CAR: return "TEST7__DEEP_HISTORY1__RACE_CAR";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__ROBOT: return "TEST7__DEEP_HISTORY1__ROBOT";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BATTLEBOT: return "TEST7__DEEP_HISTORY1__BATTLEBOT";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__WALL_E: return "TEST7__DEEP_HISTORY1__WALL_E";
+        case Spec2Sm_StateId_TEST7__DEEP_HISTORY1__TEDDY_BEAR: return "TEST7__DEEP_HISTORY1__TEDDY_BEAR";
         case Spec2Sm_StateId_TEST7__HISTORY1: return "TEST7__HISTORY1";
         case Spec2Sm_StateId_TEST7__HISTORY1__OFF: return "TEST7__HISTORY1__OFF";
         case Spec2Sm_StateId_TEST7__HISTORY1__OFF1: return "TEST7__HISTORY1__OFF1";
@@ -630,7 +749,6 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
         case Spec2Sm_StateId_TEST7__HISTORY1__ON1: return "TEST7__HISTORY1__ON1";
         case Spec2Sm_StateId_TEST7__HISTORY1__ON2: return "TEST7__HISTORY1__ON2";
         case Spec2Sm_StateId_TEST7__HISTORY1__ON3: return "TEST7__HISTORY1__ON3";
-        case Spec2Sm_StateId_TEST7__HISTORY2: return "TEST7__HISTORY2";
         case Spec2Sm_StateId_TEST7__INITIAL1: return "TEST7__INITIAL1";
         case Spec2Sm_StateId_TEST7__INITIAL1__PARENT: return "TEST7__INITIAL1__PARENT";
         case Spec2Sm_StateId_TEST7__INITIAL1__G: return "TEST7__INITIAL1__G";
@@ -5478,6 +5596,1901 @@ static void TEST7_exit(Spec2Sm* self)
 
 
 ////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1_exit;
+    
+    // TEST7__DEEP_HISTORY1 behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1.");`
+        trace("Enter TEST7__DEEP_HISTORY1.");
+    } // end of behavior for TEST7__DEEP_HISTORY1
+}
+
+static void TEST7__DEEP_HISTORY1_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1 behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1.");`
+        trace("Exit TEST7__DEEP_HISTORY1.");
+    } // end of behavior for TEST7__DEEP_HISTORY1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_exit;
+    
+    // TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP.");`
+        trace("Enter TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP
+}
+
+static void TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP.");`
+        trace("Exit TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__ALIENS_DETECTED
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__ALIENS_DETECTED_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__ALIENS_DETECTED_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV8] = TEST7__DEEP_HISTORY1__ALIENS_DETECTED_ev8;
+    
+    // TEST7__DEEP_HISTORY1__ALIENS_DETECTED behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__ALIENS_DETECTED."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__ALIENS_DETECTED.");`
+        trace("Enter TEST7__DEEP_HISTORY1__ALIENS_DETECTED.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED
+}
+
+static void TEST7__DEEP_HISTORY1__ALIENS_DETECTED_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__ALIENS_DETECTED behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__ALIENS_DETECTED."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__ALIENS_DETECTED.");`
+        trace("Exit TEST7__DEEP_HISTORY1__ALIENS_DETECTED.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV8] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__ALIENS_DETECTED_ev8(Spec2Sm* self)
+{
+    // No ancestor state handles `EV8` event.
+    
+    // TEST7__DEEP_HISTORY1__ALIENS_DETECTED behavior
+    // uml: EV8 [trace_guard("State TEST7__DEEP_HISTORY1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(TEST7__DEEP_HISTORY1__BUILD)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED to TEST7__DEEP_HISTORY1__BUILD."); } TransitionTo(TEST7__DEEP_HISTORY1__BUILD)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(TEST7__DEEP_HISTORY1__BUILD)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED to TEST7__DEEP_HISTORY1__BUILD.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED to TEST7__DEEP_HISTORY1__BUILD.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BUILD`.
+        TEST7__DEEP_HISTORY1__BUILD_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__GET_BACKUP
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__GET_BACKUP_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__GET_BACKUP_exit;
+    
+    // TEST7__DEEP_HISTORY1__GET_BACKUP behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__GET_BACKUP."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__GET_BACKUP.");`
+        trace("Enter TEST7__DEEP_HISTORY1__GET_BACKUP.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP
+    
+    // TEST7__DEEP_HISTORY1__GET_BACKUP behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GET_BACKUP: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 2; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 2; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GET_BACKUP: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 2; }`.", true))
+    {
+        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 2;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 2;
+    } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP
+}
+
+static void TEST7__DEEP_HISTORY1__GET_BACKUP_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__GET_BACKUP behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__GET_BACKUP."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__GET_BACKUP.");`
+        trace("Exit TEST7__DEEP_HISTORY1__GET_BACKUP.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__ALIENS_DETECTED_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__HERO
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__HERO_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__HERO_exit;
+    
+    // TEST7__DEEP_HISTORY1__HERO behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__HERO."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__HERO.");`
+        trace("Enter TEST7__DEEP_HISTORY1__HERO.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__HERO
+    
+    // TEST7__DEEP_HISTORY1__HERO behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 5; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 5; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 5; }`.", true))
+    {
+        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 5;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 5;
+    } // end of behavior for TEST7__DEEP_HISTORY1__HERO
+    
+    // TEST7__DEEP_HISTORY1__HERO behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 0; }`.", true)] / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 0; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 0; }`.", true))
+    {
+        // Step 1: execute action `GET_BACKUP_history_state_tracking_var_name___$$$$ = 0;`
+        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = 0;
+    } // end of behavior for TEST7__DEEP_HISTORY1__HERO
+}
+
+static void TEST7__DEEP_HISTORY1__HERO_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__HERO behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__HERO."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__HERO.");`
+        trace("Exit TEST7__DEEP_HISTORY1__HERO.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__HERO
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__GET_BACKUP_exit;
+}
+
+static void TEST7__DEEP_HISTORY1__HERO_InitialState_transition(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__HERO.InitialState behavior
+    // uml: / { trace("Transition action `` for TEST7__DEEP_HISTORY1__HERO.InitialState to TEST7__DEEP_HISTORY1__CALL_THOR."); } TransitionTo(TEST7__DEEP_HISTORY1__CALL_THOR)
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__HERO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__HERO.InitialState to TEST7__DEEP_HISTORY1__CALL_THOR.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__HERO.InitialState to TEST7__DEEP_HISTORY1__CALL_THOR.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__CALL_THOR`.
+        TEST7__DEEP_HISTORY1__CALL_THOR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_THOR;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__HERO.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__CALL_BATMAN
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__CALL_BATMAN_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__CALL_BATMAN_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__CALL_BATMAN_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST7__DEEP_HISTORY1__CALL_BATMAN_ev2;
+    
+    // TEST7__DEEP_HISTORY1__CALL_BATMAN behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__CALL_BATMAN."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__CALL_BATMAN.");`
+        trace("Enter TEST7__DEEP_HISTORY1__CALL_BATMAN.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__CALL_BATMAN
+}
+
+static void TEST7__DEEP_HISTORY1__CALL_BATMAN_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__CALL_BATMAN behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__CALL_BATMAN."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__CALL_BATMAN.");`
+        trace("Exit TEST7__DEEP_HISTORY1__CALL_BATMAN.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__CALL_BATMAN
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__HERO_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__CALL_BATMAN_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST7__DEEP_HISTORY1__CALL_BATMAN behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__CALL_BATMAN: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_BATMAN to TEST7__DEEP_HISTORY1__BUDDY_ELF."); } TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__CALL_BATMAN: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7__DEEP_HISTORY1__GET_BACKUP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_BATMAN to TEST7__DEEP_HISTORY1__BUDDY_ELF.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_BATMAN to TEST7__DEEP_HISTORY1__BUDDY_ELF.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BUDDY_ELF`.
+        TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(self);
+        TEST7__DEEP_HISTORY1__BUDDY_ELF_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BUDDY_ELF;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__CALL_BATMAN
+}
+
+static void TEST7__DEEP_HISTORY1__CALL_BATMAN_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST7__DEEP_HISTORY1__CALL_BATMAN behavior
+    // uml: EV2 [trace_guard("State TEST7__DEEP_HISTORY1__CALL_BATMAN: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__CALL_THOR)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_BATMAN to TEST7__DEEP_HISTORY1__CALL_THOR."); } TransitionTo(TEST7__DEEP_HISTORY1__CALL_THOR)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__CALL_BATMAN: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__CALL_THOR)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__HERO` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__CALL_BATMAN_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_BATMAN to TEST7__DEEP_HISTORY1__CALL_THOR.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_BATMAN to TEST7__DEEP_HISTORY1__CALL_THOR.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__CALL_THOR`.
+        TEST7__DEEP_HISTORY1__CALL_THOR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_THOR;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__CALL_BATMAN
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__CALL_THOR
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__CALL_THOR_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__CALL_THOR_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__CALL_THOR_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST7__DEEP_HISTORY1__CALL_THOR_ev2;
+    
+    // TEST7__DEEP_HISTORY1__CALL_THOR behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__CALL_THOR."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__CALL_THOR.");`
+        trace("Enter TEST7__DEEP_HISTORY1__CALL_THOR.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__CALL_THOR
+}
+
+static void TEST7__DEEP_HISTORY1__CALL_THOR_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__CALL_THOR behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__CALL_THOR."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__CALL_THOR.");`
+        trace("Exit TEST7__DEEP_HISTORY1__CALL_THOR.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__CALL_THOR
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__HERO_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__CALL_THOR_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST7__DEEP_HISTORY1__CALL_THOR behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__CALL_THOR: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__CALL_BATMAN)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_THOR to TEST7__DEEP_HISTORY1__CALL_BATMAN."); } TransitionTo(TEST7__DEEP_HISTORY1__CALL_BATMAN)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__CALL_THOR: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__CALL_BATMAN)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__HERO` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__CALL_THOR_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_THOR to TEST7__DEEP_HISTORY1__CALL_BATMAN.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_THOR to TEST7__DEEP_HISTORY1__CALL_BATMAN.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__CALL_BATMAN`.
+        TEST7__DEEP_HISTORY1__CALL_BATMAN_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_BATMAN;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__CALL_THOR
+}
+
+static void TEST7__DEEP_HISTORY1__CALL_THOR_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST7__DEEP_HISTORY1__CALL_THOR behavior
+    // uml: EV2 [trace_guard("State TEST7__DEEP_HISTORY1__CALL_THOR: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_THOR to TEST7__DEEP_HISTORY1__GIVE_COOKIES."); } TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__CALL_THOR: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7__DEEP_HISTORY1__ALIENS_DETECTED_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_THOR to TEST7__DEEP_HISTORY1__GIVE_COOKIES.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__CALL_THOR to TEST7__DEEP_HISTORY1__GIVE_COOKIES.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__GIVE_COOKIES`.
+        TEST7__DEEP_HISTORY1__GIVE_COOKIES_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GIVE_COOKIES;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__CALL_THOR
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__LOCAL_HELP
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__LOCAL_HELP_exit;
+    
+    // TEST7__DEEP_HISTORY1__LOCAL_HELP behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__LOCAL_HELP."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__LOCAL_HELP.");`
+        trace("Enter TEST7__DEEP_HISTORY1__LOCAL_HELP.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__LOCAL_HELP
+    
+    // TEST7__DEEP_HISTORY1__LOCAL_HELP behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 6; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 6; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 6; }`.", true))
+    {
+        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 6;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 6;
+    } // end of behavior for TEST7__DEEP_HISTORY1__LOCAL_HELP
+    
+    // TEST7__DEEP_HISTORY1__LOCAL_HELP behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 1; }`.", true)] / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 1; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 1; }`.", true))
+    {
+        // Step 1: execute action `GET_BACKUP_history_state_tracking_var_name___$$$$ = 1;`
+        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = 1;
+    } // end of behavior for TEST7__DEEP_HISTORY1__LOCAL_HELP
+}
+
+static void TEST7__DEEP_HISTORY1__LOCAL_HELP_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__LOCAL_HELP behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__LOCAL_HELP."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__LOCAL_HELP.");`
+        trace("Exit TEST7__DEEP_HISTORY1__LOCAL_HELP.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__LOCAL_HELP
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__GET_BACKUP_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__BUDDY_ELF
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__BUDDY_ELF_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__BUDDY_ELF_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__BUDDY_ELF_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST7__DEEP_HISTORY1__BUDDY_ELF_ev2;
+    
+    // TEST7__DEEP_HISTORY1__BUDDY_ELF behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__BUDDY_ELF."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__BUDDY_ELF.");`
+        trace("Enter TEST7__DEEP_HISTORY1__BUDDY_ELF.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
+    
+    // TEST7__DEEP_HISTORY1__BUDDY_ELF behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 3; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 3; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 3; }`.", true))
+    {
+        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 3;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 3;
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
+    
+    // TEST7__DEEP_HISTORY1__BUDDY_ELF behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 2; }`.", true)] / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 2; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 2; }`.", true))
+    {
+        // Step 1: execute action `GET_BACKUP_history_state_tracking_var_name___$$$$ = 2;`
+        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = 2;
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
+}
+
+static void TEST7__DEEP_HISTORY1__BUDDY_ELF_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__BUDDY_ELF behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__BUDDY_ELF."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__BUDDY_ELF.");`
+        trace("Exit TEST7__DEEP_HISTORY1__BUDDY_ELF.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__LOCAL_HELP_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__BUDDY_ELF_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST7__DEEP_HISTORY1__BUDDY_ELF behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUDDY_ELF to TEST7__DEEP_HISTORY1__POLAR_BEARS."); } TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__LOCAL_HELP` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__BUDDY_ELF_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUDDY_ELF to TEST7__DEEP_HISTORY1__POLAR_BEARS.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__BUDDY_ELF to TEST7__DEEP_HISTORY1__POLAR_BEARS.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__POLAR_BEARS`.
+        TEST7__DEEP_HISTORY1__POLAR_BEARS_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__POLAR_BEARS;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
+}
+
+static void TEST7__DEEP_HISTORY1__BUDDY_ELF_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST7__DEEP_HISTORY1__BUDDY_ELF behavior
+    // uml: EV2 [trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__CALL_BATMAN)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUDDY_ELF to TEST7__DEEP_HISTORY1__CALL_BATMAN."); } TransitionTo(TEST7__DEEP_HISTORY1__CALL_BATMAN)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__CALL_BATMAN)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7__DEEP_HISTORY1__GET_BACKUP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUDDY_ELF to TEST7__DEEP_HISTORY1__CALL_BATMAN.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__BUDDY_ELF to TEST7__DEEP_HISTORY1__CALL_BATMAN.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__CALL_BATMAN`.
+        TEST7__DEEP_HISTORY1__HERO_enter(self);
+        TEST7__DEEP_HISTORY1__CALL_BATMAN_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_BATMAN;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__POLAR_BEARS
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__POLAR_BEARS_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__POLAR_BEARS_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST7__DEEP_HISTORY1__POLAR_BEARS_ev2;
+    
+    // TEST7__DEEP_HISTORY1__POLAR_BEARS behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__POLAR_BEARS."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__POLAR_BEARS.");`
+        trace("Enter TEST7__DEEP_HISTORY1__POLAR_BEARS.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__POLAR_BEARS
+    
+    // TEST7__DEEP_HISTORY1__POLAR_BEARS behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 4; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 4; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 4; }`.", true))
+    {
+        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 4;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 4;
+    } // end of behavior for TEST7__DEEP_HISTORY1__POLAR_BEARS
+    
+    // TEST7__DEEP_HISTORY1__POLAR_BEARS behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 3; }`.", true)] / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 3; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 3; }`.", true))
+    {
+        // Step 1: execute action `GET_BACKUP_history_state_tracking_var_name___$$$$ = 3;`
+        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = 3;
+    } // end of behavior for TEST7__DEEP_HISTORY1__POLAR_BEARS
+}
+
+static void TEST7__DEEP_HISTORY1__POLAR_BEARS_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__POLAR_BEARS behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__POLAR_BEARS."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__POLAR_BEARS.");`
+        trace("Exit TEST7__DEEP_HISTORY1__POLAR_BEARS.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__POLAR_BEARS
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__LOCAL_HELP_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__POLAR_BEARS_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST7__DEEP_HISTORY1__POLAR_BEARS behavior
+    // uml: EV2 [trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__POLAR_BEARS to TEST7__DEEP_HISTORY1__BUDDY_ELF."); } TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__LOCAL_HELP` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__POLAR_BEARS_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__POLAR_BEARS to TEST7__DEEP_HISTORY1__BUDDY_ELF.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__POLAR_BEARS to TEST7__DEEP_HISTORY1__BUDDY_ELF.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BUDDY_ELF`.
+        TEST7__DEEP_HISTORY1__BUDDY_ELF_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BUDDY_ELF;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__POLAR_BEARS
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__GIVE_COOKIES
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__GIVE_COOKIES_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__GIVE_COOKIES_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST7__DEEP_HISTORY1__GIVE_COOKIES_ev2;
+    
+    // TEST7__DEEP_HISTORY1__GIVE_COOKIES behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__GIVE_COOKIES."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__GIVE_COOKIES.");`
+        trace("Enter TEST7__DEEP_HISTORY1__GIVE_COOKIES.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__GIVE_COOKIES
+    
+    // TEST7__DEEP_HISTORY1__GIVE_COOKIES behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 1; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 1; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 1; }`.", true))
+    {
+        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 1;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 1;
+    } // end of behavior for TEST7__DEEP_HISTORY1__GIVE_COOKIES
+}
+
+static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__GIVE_COOKIES behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__GIVE_COOKIES."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__GIVE_COOKIES.");`
+        trace("Exit TEST7__DEEP_HISTORY1__GIVE_COOKIES.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__GIVE_COOKIES
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__ALIENS_DETECTED_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST7__DEEP_HISTORY1__GIVE_COOKIES behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__CALL_THOR)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GIVE_COOKIES to TEST7__DEEP_HISTORY1__CALL_THOR."); } TransitionTo(TEST7__DEEP_HISTORY1__CALL_THOR)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__CALL_THOR)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__GIVE_COOKIES_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GIVE_COOKIES to TEST7__DEEP_HISTORY1__CALL_THOR.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__GIVE_COOKIES to TEST7__DEEP_HISTORY1__CALL_THOR.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__CALL_THOR`.
+        TEST7__DEEP_HISTORY1__GET_BACKUP_enter(self);
+        TEST7__DEEP_HISTORY1__HERO_enter(self);
+        TEST7__DEEP_HISTORY1__CALL_THOR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_THOR;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__GIVE_COOKIES
+}
+
+static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST7__DEEP_HISTORY1__GIVE_COOKIES behavior
+    // uml: EV2 [trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GIVE_COOKIES to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT."); } TransitionTo(TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__GIVE_COOKIES_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GIVE_COOKIES to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__GIVE_COOKIES to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT`.
+        TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__GIVE_COOKIES
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_ev1;
+    
+    // TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");`
+        trace("Enter TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT
+    
+    // TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 0; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 0; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 0; }`.", true))
+    {
+        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 0;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 0;
+    } // end of behavior for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT
+}
+
+static void TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");`
+        trace("Exit TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__ALIENS_DETECTED_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT to TEST7__DEEP_HISTORY1__GIVE_COOKIES."); } TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT to TEST7__DEEP_HISTORY1__GIVE_COOKIES.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT to TEST7__DEEP_HISTORY1__GIVE_COOKIES.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__GIVE_COOKIES`.
+        TEST7__DEEP_HISTORY1__GIVE_COOKIES_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GIVE_COOKIES;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__BUILD
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__BUILD_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__BUILD_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV6] = TEST7__DEEP_HISTORY1__BUILD_ev6;
+    self->current_event_handlers[Spec2Sm_EventId_EV7] = TEST7__DEEP_HISTORY1__BUILD_ev7;
+    
+    // TEST7__DEEP_HISTORY1__BUILD behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__BUILD."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__BUILD.");`
+        trace("Enter TEST7__DEEP_HISTORY1__BUILD.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUILD
+}
+
+static void TEST7__DEEP_HISTORY1__BUILD_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__BUILD behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__BUILD."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__BUILD.");`
+        trace("Exit TEST7__DEEP_HISTORY1__BUILD.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUILD
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV6] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV7] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
+{
+    // No ancestor state handles `EV6` event.
+    
+    // TEST7__DEEP_HISTORY1__BUILD behavior
+    // uml: EV6 [trace_guard("State TEST7__DEEP_HISTORY1__BUILD: check behavior `EV6 TransitionTo(TEST7__DEEP_HISTORY1__ALIENS_DETECTED)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD to TEST7__DEEP_HISTORY1__ALIENS_DETECTED."); } TransitionTo(TEST7__DEEP_HISTORY1__ALIENS_DETECTED)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BUILD: check behavior `EV6 TransitionTo(TEST7__DEEP_HISTORY1__ALIENS_DETECTED)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD to TEST7__DEEP_HISTORY1__ALIENS_DETECTED.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD to TEST7__DEEP_HISTORY1__ALIENS_DETECTED.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__ALIENS_DETECTED`.
+        TEST7__DEEP_HISTORY1__ALIENS_DETECTED_enter(self);
+        
+        // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.InitialState behavior
+        // uml: / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.InitialState to TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory."); } TransitionTo(TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.InitialState to TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.InitialState to TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory`.
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory is a pseudo state and cannot have an `enter` trigger.
+            
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory behavior
+            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 0] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT."); } TransitionTo(TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 0)
+            {
+                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");`.
+                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");
+                
+                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT`.
+                TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory
+            
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory behavior
+            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__GIVE_COOKIES."); } TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 1)
+            {
+                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__GIVE_COOKIES.");`.
+                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__GIVE_COOKIES.");
+                
+                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__GIVE_COOKIES`.
+                TEST7__DEEP_HISTORY1__GIVE_COOKIES_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GIVE_COOKIES;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory
+            
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory behavior
+            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 2] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__GET_BACKUP."); } TransitionTo(TEST7__DEEP_HISTORY1__GET_BACKUP)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 2)
+            {
+                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__GET_BACKUP.");`.
+                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__GET_BACKUP.");
+                
+                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__GET_BACKUP`.
+                TEST7__DEEP_HISTORY1__GET_BACKUP_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GET_BACKUP;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory
+            
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory behavior
+            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 3] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__BUDDY_ELF."); } TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 3)
+            {
+                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__BUDDY_ELF.");`.
+                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__BUDDY_ELF.");
+                
+                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BUDDY_ELF`.
+                TEST7__DEEP_HISTORY1__GET_BACKUP_enter(self);
+                TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(self);
+                TEST7__DEEP_HISTORY1__BUDDY_ELF_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BUDDY_ELF;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory
+            
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory behavior
+            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 4] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__POLAR_BEARS."); } TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 4)
+            {
+                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__POLAR_BEARS.");`.
+                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__POLAR_BEARS.");
+                
+                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__POLAR_BEARS`.
+                TEST7__DEEP_HISTORY1__GET_BACKUP_enter(self);
+                TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(self);
+                TEST7__DEEP_HISTORY1__POLAR_BEARS_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__POLAR_BEARS;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory
+            
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory behavior
+            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 5] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__HERO."); } TransitionTo(TEST7__DEEP_HISTORY1__HERO)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 5)
+            {
+                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__HERO.");`.
+                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__HERO.");
+                
+                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__HERO`.
+                TEST7__DEEP_HISTORY1__GET_BACKUP_enter(self);
+                TEST7__DEEP_HISTORY1__HERO_enter(self);
+                
+                // Finish transition by calling pseudo state transition function.
+                TEST7__DEEP_HISTORY1__HERO_InitialState_transition(self);
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory
+            
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory behavior
+            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 6] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__LOCAL_HELP."); } TransitionTo(TEST7__DEEP_HISTORY1__LOCAL_HELP)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 6)
+            {
+                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__LOCAL_HELP.");`.
+                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory to TEST7__DEEP_HISTORY1__LOCAL_HELP.");
+                
+                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__LOCAL_HELP`.
+                TEST7__DEEP_HISTORY1__GET_BACKUP_enter(self);
+                TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__LOCAL_HELP;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.ShallowHistory
+        } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.InitialState
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUILD
+}
+
+static void TEST7__DEEP_HISTORY1__BUILD_ev7(Spec2Sm* self)
+{
+    // No ancestor state handles `EV7` event.
+    
+    // TEST7__DEEP_HISTORY1__BUILD behavior
+    // uml: EV7 [trace_guard("State TEST7__DEEP_HISTORY1__BUILD: check behavior `EV7 TransitionTo(TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD to TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory."); } TransitionTo(TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BUILD: check behavior `EV7 TransitionTo(TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD to TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD to TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory`.
+        TEST7__DEEP_HISTORY1__ALIENS_DETECTED_enter(self);
+        TEST7__DEEP_HISTORY1__GET_BACKUP_enter(self);
+        // TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory is a pseudo state and cannot have an `enter` trigger.
+        
+        // TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory behavior
+        // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 0] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__HERO."); } TransitionTo(TEST7__DEEP_HISTORY1__HERO)
+        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == 0)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__HERO.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__HERO.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__HERO`.
+            TEST7__DEEP_HISTORY1__HERO_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST7__DEEP_HISTORY1__HERO_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory behavior
+        // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__LOCAL_HELP."); } TransitionTo(TEST7__DEEP_HISTORY1__LOCAL_HELP)
+        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == 1)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__LOCAL_HELP.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__LOCAL_HELP.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__LOCAL_HELP`.
+            TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__LOCAL_HELP;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory behavior
+        // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 2] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__BUDDY_ELF."); } TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)
+        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == 2)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__BUDDY_ELF.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__BUDDY_ELF.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BUDDY_ELF`.
+            TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(self);
+            TEST7__DEEP_HISTORY1__BUDDY_ELF_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BUDDY_ELF;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory behavior
+        // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 3] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__POLAR_BEARS."); } TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)
+        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == 3)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__POLAR_BEARS.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory to TEST7__DEEP_HISTORY1__POLAR_BEARS.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__POLAR_BEARS`.
+            TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(self);
+            TEST7__DEEP_HISTORY1__POLAR_BEARS_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__POLAR_BEARS;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.ShallowHistory
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUILD
+}
+
+static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__BUILD.InitialState behavior
+    // uml: / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.InitialState to TEST7__DEEP_HISTORY1__BUILD.ShallowHistory."); } TransitionTo(TEST7__DEEP_HISTORY1__BUILD.ShallowHistory)
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.InitialState to TEST7__DEEP_HISTORY1__BUILD.ShallowHistory.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.InitialState to TEST7__DEEP_HISTORY1__BUILD.ShallowHistory.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BUILD.ShallowHistory`.
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory is a pseudo state and cannot have an `enter` trigger.
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 0] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TOY."); } TransitionTo(TEST7__DEEP_HISTORY1__TOY)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 0)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TOY.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TOY.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__TOY`.
+            TEST7__DEEP_HISTORY1__TOY_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST7__DEEP_HISTORY1__TOY_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TOOL."); } TransitionTo(TEST7__DEEP_HISTORY1__TOOL)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 1)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TOOL.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TOOL.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__TOOL`.
+            TEST7__DEEP_HISTORY1__TOOL_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST7__DEEP_HISTORY1__TOOL_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 2] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__BATTLEBOT."); } TransitionTo(TEST7__DEEP_HISTORY1__BATTLEBOT)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 2)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__BATTLEBOT.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__BATTLEBOT.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BATTLEBOT`.
+            TEST7__DEEP_HISTORY1__TOY_enter(self);
+            TEST7__DEEP_HISTORY1__ROBOT_enter(self);
+            TEST7__DEEP_HISTORY1__BATTLEBOT_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BATTLEBOT;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 3] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__WALL_E."); } TransitionTo(TEST7__DEEP_HISTORY1__WALL_E)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 3)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__WALL_E.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__WALL_E.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__WALL_E`.
+            TEST7__DEEP_HISTORY1__TOY_enter(self);
+            TEST7__DEEP_HISTORY1__ROBOT_enter(self);
+            TEST7__DEEP_HISTORY1__WALL_E_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__WALL_E;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 4] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__RACE_CAR."); } TransitionTo(TEST7__DEEP_HISTORY1__RACE_CAR)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 4)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__RACE_CAR.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__RACE_CAR.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__RACE_CAR`.
+            TEST7__DEEP_HISTORY1__TOY_enter(self);
+            TEST7__DEEP_HISTORY1__RACE_CAR_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__RACE_CAR;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 5] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TEDDY_BEAR."); } TransitionTo(TEST7__DEEP_HISTORY1__TEDDY_BEAR)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 5)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TEDDY_BEAR.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__TEDDY_BEAR.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__TEDDY_BEAR`.
+            TEST7__DEEP_HISTORY1__TOY_enter(self);
+            TEST7__DEEP_HISTORY1__TEDDY_BEAR_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__TEDDY_BEAR;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 6] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__GLOW_WORM."); } TransitionTo(TEST7__DEEP_HISTORY1__GLOW_WORM)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 6)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__GLOW_WORM.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__GLOW_WORM.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__GLOW_WORM`.
+            TEST7__DEEP_HISTORY1__TOY_enter(self);
+            TEST7__DEEP_HISTORY1__GLOW_WORM_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GLOW_WORM;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 7] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__ROBOT."); } TransitionTo(TEST7__DEEP_HISTORY1__ROBOT)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 7)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__ROBOT.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__ROBOT.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__ROBOT`.
+            TEST7__DEEP_HISTORY1__TOY_enter(self);
+            TEST7__DEEP_HISTORY1__ROBOT_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST7__DEEP_HISTORY1__ROBOT_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 8] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__IMPACT_DRILL."); } TransitionTo(TEST7__DEEP_HISTORY1__IMPACT_DRILL)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 8)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__IMPACT_DRILL.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__IMPACT_DRILL.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__IMPACT_DRILL`.
+            TEST7__DEEP_HISTORY1__TOOL_enter(self);
+            TEST7__DEEP_HISTORY1__IMPACT_DRILL_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__IMPACT_DRILL;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+        
+        // TEST7__DEEP_HISTORY1__BUILD.ShallowHistory behavior
+        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 9] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__CIRCULAR_SAW."); } TransitionTo(TEST7__DEEP_HISTORY1__CIRCULAR_SAW)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 9)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__CIRCULAR_SAW.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory to TEST7__DEEP_HISTORY1__CIRCULAR_SAW.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__CIRCULAR_SAW`.
+            TEST7__DEEP_HISTORY1__TOOL_enter(self);
+            TEST7__DEEP_HISTORY1__CIRCULAR_SAW_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CIRCULAR_SAW;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.ShallowHistory
+    } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__TOOL
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__TOOL_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TOOL_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST7__DEEP_HISTORY1__TOOL_ev2;
+    
+    // TEST7__DEEP_HISTORY1__TOOL behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__TOOL."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__TOOL.");`
+        trace("Enter TEST7__DEEP_HISTORY1__TOOL.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOOL
+    
+    // TEST7__DEEP_HISTORY1__TOOL behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TOOL: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 1; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 1; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TOOL: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 1; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 1;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 1;
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOOL
+}
+
+static void TEST7__DEEP_HISTORY1__TOOL_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__TOOL behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__TOOL."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__TOOL.");`
+        trace("Exit TEST7__DEEP_HISTORY1__TOOL.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOOL
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__BUILD_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__TOOL_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST7__DEEP_HISTORY1__TOOL behavior
+    // uml: EV2 [trace_guard("State TEST7__DEEP_HISTORY1__TOOL: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__TOY)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__TOOL to TEST7__DEEP_HISTORY1__TOY."); } TransitionTo(TEST7__DEEP_HISTORY1__TOY)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TOOL: check behavior `EV2 TransitionTo(TEST7__DEEP_HISTORY1__TOY)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7__DEEP_HISTORY1__BUILD_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__TOOL to TEST7__DEEP_HISTORY1__TOY.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__TOOL to TEST7__DEEP_HISTORY1__TOY.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__TOY`.
+        TEST7__DEEP_HISTORY1__TOY_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST7__DEEP_HISTORY1__TOY_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOOL
+}
+
+static void TEST7__DEEP_HISTORY1__TOOL_InitialState_transition(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__TOOL.InitialState behavior
+    // uml: / { trace("Transition action `` for TEST7__DEEP_HISTORY1__TOOL.InitialState to TEST7__DEEP_HISTORY1__IMPACT_DRILL."); } TransitionTo(TEST7__DEEP_HISTORY1__IMPACT_DRILL)
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__TOOL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__TOOL.InitialState to TEST7__DEEP_HISTORY1__IMPACT_DRILL.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__TOOL.InitialState to TEST7__DEEP_HISTORY1__IMPACT_DRILL.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__IMPACT_DRILL`.
+        TEST7__DEEP_HISTORY1__IMPACT_DRILL_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__IMPACT_DRILL;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOOL.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__CIRCULAR_SAW
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__CIRCULAR_SAW_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__CIRCULAR_SAW_exit;
+    
+    // TEST7__DEEP_HISTORY1__CIRCULAR_SAW behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__CIRCULAR_SAW."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__CIRCULAR_SAW.");`
+        trace("Enter TEST7__DEEP_HISTORY1__CIRCULAR_SAW.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__CIRCULAR_SAW
+    
+    // TEST7__DEEP_HISTORY1__CIRCULAR_SAW behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__CIRCULAR_SAW: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 9; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 9; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__CIRCULAR_SAW: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 9; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 9;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 9;
+    } // end of behavior for TEST7__DEEP_HISTORY1__CIRCULAR_SAW
+}
+
+static void TEST7__DEEP_HISTORY1__CIRCULAR_SAW_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__CIRCULAR_SAW behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__CIRCULAR_SAW."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__CIRCULAR_SAW.");`
+        trace("Exit TEST7__DEEP_HISTORY1__CIRCULAR_SAW.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__CIRCULAR_SAW
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TOOL_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__IMPACT_DRILL
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__IMPACT_DRILL_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__IMPACT_DRILL_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__IMPACT_DRILL_ev1;
+    
+    // TEST7__DEEP_HISTORY1__IMPACT_DRILL behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__IMPACT_DRILL."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__IMPACT_DRILL.");`
+        trace("Enter TEST7__DEEP_HISTORY1__IMPACT_DRILL.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__IMPACT_DRILL
+    
+    // TEST7__DEEP_HISTORY1__IMPACT_DRILL behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__IMPACT_DRILL: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 8; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 8; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__IMPACT_DRILL: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 8; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 8;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 8;
+    } // end of behavior for TEST7__DEEP_HISTORY1__IMPACT_DRILL
+}
+
+static void TEST7__DEEP_HISTORY1__IMPACT_DRILL_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__IMPACT_DRILL behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__IMPACT_DRILL."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__IMPACT_DRILL.");`
+        trace("Exit TEST7__DEEP_HISTORY1__IMPACT_DRILL.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__IMPACT_DRILL
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TOOL_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__IMPACT_DRILL_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST7__DEEP_HISTORY1__IMPACT_DRILL behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__IMPACT_DRILL: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__CIRCULAR_SAW)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__IMPACT_DRILL to TEST7__DEEP_HISTORY1__CIRCULAR_SAW."); } TransitionTo(TEST7__DEEP_HISTORY1__CIRCULAR_SAW)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__IMPACT_DRILL: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__CIRCULAR_SAW)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__TOOL` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__IMPACT_DRILL_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__IMPACT_DRILL to TEST7__DEEP_HISTORY1__CIRCULAR_SAW.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__IMPACT_DRILL to TEST7__DEEP_HISTORY1__CIRCULAR_SAW.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__CIRCULAR_SAW`.
+        TEST7__DEEP_HISTORY1__CIRCULAR_SAW_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CIRCULAR_SAW;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__IMPACT_DRILL
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__TOY
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__TOY_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TOY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__TOY_ev1;
+    
+    // TEST7__DEEP_HISTORY1__TOY behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__TOY."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__TOY.");`
+        trace("Enter TEST7__DEEP_HISTORY1__TOY.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOY
+    
+    // TEST7__DEEP_HISTORY1__TOY behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TOY: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 0; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 0; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TOY: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 0; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 0;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 0;
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOY
+}
+
+static void TEST7__DEEP_HISTORY1__TOY_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__TOY behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__TOY."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__TOY.");`
+        trace("Exit TEST7__DEEP_HISTORY1__TOY.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOY
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__BUILD_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7__DEEP_HISTORY1__TOY_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST7__DEEP_HISTORY1__TOY behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__TOY: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__TOOL)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__TOY to TEST7__DEEP_HISTORY1__TOOL."); } TransitionTo(TEST7__DEEP_HISTORY1__TOOL)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TOY: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__TOOL)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, TEST7__DEEP_HISTORY1__BUILD_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__TOY to TEST7__DEEP_HISTORY1__TOOL.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__TOY to TEST7__DEEP_HISTORY1__TOOL.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__TOOL`.
+        TEST7__DEEP_HISTORY1__TOOL_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST7__DEEP_HISTORY1__TOOL_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOY
+}
+
+static void TEST7__DEEP_HISTORY1__TOY_InitialState_transition(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__TOY.InitialState behavior
+    // uml: / { trace("Transition action `` for TEST7__DEEP_HISTORY1__TOY.InitialState to TEST7__DEEP_HISTORY1__RACE_CAR."); } TransitionTo(TEST7__DEEP_HISTORY1__RACE_CAR)
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__TOY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__TOY.InitialState to TEST7__DEEP_HISTORY1__RACE_CAR.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__TOY.InitialState to TEST7__DEEP_HISTORY1__RACE_CAR.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__RACE_CAR`.
+        TEST7__DEEP_HISTORY1__RACE_CAR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__RACE_CAR;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__TOY.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__GLOW_WORM
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__GLOW_WORM_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__GLOW_WORM_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__GLOW_WORM_ev1;
+    
+    // TEST7__DEEP_HISTORY1__GLOW_WORM behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__GLOW_WORM."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__GLOW_WORM.");`
+        trace("Enter TEST7__DEEP_HISTORY1__GLOW_WORM.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__GLOW_WORM
+    
+    // TEST7__DEEP_HISTORY1__GLOW_WORM behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GLOW_WORM: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 6; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 6; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GLOW_WORM: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 6; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 6;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 6;
+    } // end of behavior for TEST7__DEEP_HISTORY1__GLOW_WORM
+}
+
+static void TEST7__DEEP_HISTORY1__GLOW_WORM_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__GLOW_WORM behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__GLOW_WORM."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__GLOW_WORM.");`
+        trace("Exit TEST7__DEEP_HISTORY1__GLOW_WORM.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__GLOW_WORM
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TOY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__TOY_ev1;  // the next ancestor that handles this event is TEST7__DEEP_HISTORY1__TOY
+}
+
+static void TEST7__DEEP_HISTORY1__GLOW_WORM_ev1(Spec2Sm* self)
+{
+    // Setup handler for next ancestor that listens to `EV1` event.
+    self->ancestor_event_handler = TEST7__DEEP_HISTORY1__TOY_ev1;
+    
+    // TEST7__DEEP_HISTORY1__GLOW_WORM behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__GLOW_WORM: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__ROBOT)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GLOW_WORM to TEST7__DEEP_HISTORY1__ROBOT."); } TransitionTo(TEST7__DEEP_HISTORY1__ROBOT)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GLOW_WORM: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__ROBOT)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__TOY` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__GLOW_WORM_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GLOW_WORM to TEST7__DEEP_HISTORY1__ROBOT.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__GLOW_WORM to TEST7__DEEP_HISTORY1__ROBOT.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__ROBOT`.
+        TEST7__DEEP_HISTORY1__ROBOT_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        TEST7__DEEP_HISTORY1__ROBOT_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for TEST7__DEEP_HISTORY1__GLOW_WORM
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__RACE_CAR
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__RACE_CAR_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__RACE_CAR_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__RACE_CAR_ev1;
+    
+    // TEST7__DEEP_HISTORY1__RACE_CAR behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__RACE_CAR."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__RACE_CAR.");`
+        trace("Enter TEST7__DEEP_HISTORY1__RACE_CAR.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__RACE_CAR
+    
+    // TEST7__DEEP_HISTORY1__RACE_CAR behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__RACE_CAR: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 4; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 4; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__RACE_CAR: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 4; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 4;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 4;
+    } // end of behavior for TEST7__DEEP_HISTORY1__RACE_CAR
+}
+
+static void TEST7__DEEP_HISTORY1__RACE_CAR_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__RACE_CAR behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__RACE_CAR."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__RACE_CAR.");`
+        trace("Exit TEST7__DEEP_HISTORY1__RACE_CAR.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__RACE_CAR
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TOY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__TOY_ev1;  // the next ancestor that handles this event is TEST7__DEEP_HISTORY1__TOY
+}
+
+static void TEST7__DEEP_HISTORY1__RACE_CAR_ev1(Spec2Sm* self)
+{
+    // Setup handler for next ancestor that listens to `EV1` event.
+    self->ancestor_event_handler = TEST7__DEEP_HISTORY1__TOY_ev1;
+    
+    // TEST7__DEEP_HISTORY1__RACE_CAR behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__RACE_CAR: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__TEDDY_BEAR)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__RACE_CAR to TEST7__DEEP_HISTORY1__TEDDY_BEAR."); } TransitionTo(TEST7__DEEP_HISTORY1__TEDDY_BEAR)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__RACE_CAR: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__TEDDY_BEAR)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__TOY` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__RACE_CAR_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__RACE_CAR to TEST7__DEEP_HISTORY1__TEDDY_BEAR.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__RACE_CAR to TEST7__DEEP_HISTORY1__TEDDY_BEAR.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__TEDDY_BEAR`.
+        TEST7__DEEP_HISTORY1__TEDDY_BEAR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__TEDDY_BEAR;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__RACE_CAR
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__ROBOT
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__ROBOT_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__ROBOT_exit;
+    
+    // TEST7__DEEP_HISTORY1__ROBOT behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__ROBOT."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__ROBOT.");`
+        trace("Enter TEST7__DEEP_HISTORY1__ROBOT.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__ROBOT
+    
+    // TEST7__DEEP_HISTORY1__ROBOT behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__ROBOT: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 7; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 7; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__ROBOT: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 7; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 7;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 7;
+    } // end of behavior for TEST7__DEEP_HISTORY1__ROBOT
+}
+
+static void TEST7__DEEP_HISTORY1__ROBOT_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__ROBOT behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__ROBOT."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__ROBOT.");`
+        trace("Exit TEST7__DEEP_HISTORY1__ROBOT.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__ROBOT
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TOY_exit;
+}
+
+static void TEST7__DEEP_HISTORY1__ROBOT_InitialState_transition(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__ROBOT.InitialState behavior
+    // uml: / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ROBOT.InitialState to TEST7__DEEP_HISTORY1__BATTLEBOT."); } TransitionTo(TEST7__DEEP_HISTORY1__BATTLEBOT)
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ROBOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ROBOT.InitialState to TEST7__DEEP_HISTORY1__BATTLEBOT.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__ROBOT.InitialState to TEST7__DEEP_HISTORY1__BATTLEBOT.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BATTLEBOT`.
+        TEST7__DEEP_HISTORY1__BATTLEBOT_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BATTLEBOT;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__ROBOT.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__BATTLEBOT
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__BATTLEBOT_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__BATTLEBOT_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__BATTLEBOT_ev1;
+    
+    // TEST7__DEEP_HISTORY1__BATTLEBOT behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__BATTLEBOT."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__BATTLEBOT.");`
+        trace("Enter TEST7__DEEP_HISTORY1__BATTLEBOT.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__BATTLEBOT
+    
+    // TEST7__DEEP_HISTORY1__BATTLEBOT behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BATTLEBOT: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 2; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 2; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BATTLEBOT: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 2; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 2;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 2;
+    } // end of behavior for TEST7__DEEP_HISTORY1__BATTLEBOT
+}
+
+static void TEST7__DEEP_HISTORY1__BATTLEBOT_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__BATTLEBOT behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__BATTLEBOT."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__BATTLEBOT.");`
+        trace("Exit TEST7__DEEP_HISTORY1__BATTLEBOT.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__BATTLEBOT
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__ROBOT_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__TOY_ev1;  // the next ancestor that handles this event is TEST7__DEEP_HISTORY1__TOY
+}
+
+static void TEST7__DEEP_HISTORY1__BATTLEBOT_ev1(Spec2Sm* self)
+{
+    // Setup handler for next ancestor that listens to `EV1` event.
+    self->ancestor_event_handler = TEST7__DEEP_HISTORY1__TOY_ev1;
+    
+    // TEST7__DEEP_HISTORY1__BATTLEBOT behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__BATTLEBOT: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__WALL_E)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BATTLEBOT to TEST7__DEEP_HISTORY1__WALL_E."); } TransitionTo(TEST7__DEEP_HISTORY1__WALL_E)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BATTLEBOT: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__WALL_E)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ROBOT` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__BATTLEBOT_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BATTLEBOT to TEST7__DEEP_HISTORY1__WALL_E.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__BATTLEBOT to TEST7__DEEP_HISTORY1__WALL_E.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__WALL_E`.
+        TEST7__DEEP_HISTORY1__WALL_E_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__WALL_E;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__BATTLEBOT
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__WALL_E
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__WALL_E_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__WALL_E_exit;
+    
+    // TEST7__DEEP_HISTORY1__WALL_E behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__WALL_E."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__WALL_E.");`
+        trace("Enter TEST7__DEEP_HISTORY1__WALL_E.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__WALL_E
+    
+    // TEST7__DEEP_HISTORY1__WALL_E behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__WALL_E: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 3; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 3; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__WALL_E: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 3; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 3;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 3;
+    } // end of behavior for TEST7__DEEP_HISTORY1__WALL_E
+}
+
+static void TEST7__DEEP_HISTORY1__WALL_E_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__WALL_E behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__WALL_E."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__WALL_E.");`
+        trace("Exit TEST7__DEEP_HISTORY1__WALL_E.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__WALL_E
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__ROBOT_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7__DEEP_HISTORY1__TEDDY_BEAR
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7__DEEP_HISTORY1__TEDDY_BEAR_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TEDDY_BEAR_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__TEDDY_BEAR_ev1;
+    
+    // TEST7__DEEP_HISTORY1__TEDDY_BEAR behavior
+    // uml: enter / { trace("Enter TEST7__DEEP_HISTORY1__TEDDY_BEAR."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7__DEEP_HISTORY1__TEDDY_BEAR.");`
+        trace("Enter TEST7__DEEP_HISTORY1__TEDDY_BEAR.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__TEDDY_BEAR
+    
+    // TEST7__DEEP_HISTORY1__TEDDY_BEAR behavior
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TEDDY_BEAR: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 5; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 5; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TEDDY_BEAR: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 5; }`.", true))
+    {
+        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 5;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 5;
+    } // end of behavior for TEST7__DEEP_HISTORY1__TEDDY_BEAR
+}
+
+static void TEST7__DEEP_HISTORY1__TEDDY_BEAR_exit(Spec2Sm* self)
+{
+    // TEST7__DEEP_HISTORY1__TEDDY_BEAR behavior
+    // uml: exit / { trace("Exit TEST7__DEEP_HISTORY1__TEDDY_BEAR."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7__DEEP_HISTORY1__TEDDY_BEAR.");`
+        trace("Exit TEST7__DEEP_HISTORY1__TEDDY_BEAR.");
+    } // end of behavior for TEST7__DEEP_HISTORY1__TEDDY_BEAR
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7__DEEP_HISTORY1__TOY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7__DEEP_HISTORY1__TOY_ev1;  // the next ancestor that handles this event is TEST7__DEEP_HISTORY1__TOY
+}
+
+static void TEST7__DEEP_HISTORY1__TEDDY_BEAR_ev1(Spec2Sm* self)
+{
+    // Setup handler for next ancestor that listens to `EV1` event.
+    self->ancestor_event_handler = TEST7__DEEP_HISTORY1__TOY_ev1;
+    
+    // TEST7__DEEP_HISTORY1__TEDDY_BEAR behavior
+    // uml: EV1 [trace_guard("State TEST7__DEEP_HISTORY1__TEDDY_BEAR: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__GLOW_WORM)`.", true)] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__TEDDY_BEAR to TEST7__DEEP_HISTORY1__GLOW_WORM."); } TransitionTo(TEST7__DEEP_HISTORY1__GLOW_WORM)
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TEDDY_BEAR: check behavior `EV1 TransitionTo(TEST7__DEEP_HISTORY1__GLOW_WORM)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__TOY` state (Least Common Ancestor for transition).
+        TEST7__DEEP_HISTORY1__TEDDY_BEAR_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__TEDDY_BEAR to TEST7__DEEP_HISTORY1__GLOW_WORM.");`.
+        trace("Transition action `` for TEST7__DEEP_HISTORY1__TEDDY_BEAR to TEST7__DEEP_HISTORY1__GLOW_WORM.");
+        
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__GLOW_WORM`.
+        TEST7__DEEP_HISTORY1__GLOW_WORM_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GLOW_WORM;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST7__DEEP_HISTORY1__TEDDY_BEAR
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
 // event handlers for state TEST7__HISTORY1
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -6174,37 +8187,6 @@ static void TEST7__HISTORY1__ON3_ev1(Spec2Sm* self)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state TEST7__HISTORY2
-////////////////////////////////////////////////////////////////////////////////
-
-static void TEST7__HISTORY2_enter(Spec2Sm* self)
-{
-    // setup trigger/event handlers
-    self->current_state_exit_handler = TEST7__HISTORY2_exit;
-    
-    // TEST7__HISTORY2 behavior
-    // uml: enter / { trace("Enter TEST7__HISTORY2."); }
-    {
-        // Step 1: execute action `trace("Enter TEST7__HISTORY2.");`
-        trace("Enter TEST7__HISTORY2.");
-    } // end of behavior for TEST7__HISTORY2
-}
-
-static void TEST7__HISTORY2_exit(Spec2Sm* self)
-{
-    // TEST7__HISTORY2 behavior
-    // uml: exit / { trace("Exit TEST7__HISTORY2."); }
-    {
-        // Step 1: execute action `trace("Exit TEST7__HISTORY2.");`
-        trace("Exit TEST7__HISTORY2.");
-    } // end of behavior for TEST7__HISTORY2
-    
-    // adjust function pointers for this state's exit
-    self->current_state_exit_handler = TEST7_exit;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
 // event handlers for state TEST7__INITIAL1
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -6715,23 +8697,35 @@ static void TEST7_DECIDE_ev3(Spec2Sm* self)
     // No ancestor state handles `EV3` event.
     
     // TEST7_DECIDE behavior
-    // uml: EV3 [trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(TEST7__HISTORY2)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to TEST7__HISTORY2."); } TransitionTo(TEST7__HISTORY2)
-    if (trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(TEST7__HISTORY2)`.", true))
+    // uml: EV3 [trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(TEST7__DEEP_HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to TEST7__DEEP_HISTORY1."); } TransitionTo(TEST7__DEEP_HISTORY1)
+    if (trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(TEST7__DEEP_HISTORY1)`.", true))
     {
         // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
         TEST7_DECIDE_exit(self);
         
-        // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to TEST7__HISTORY2.");`.
-        trace("Transition action `` for TEST7_DECIDE to TEST7__HISTORY2.");
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to TEST7__DEEP_HISTORY1.");`.
+        trace("Transition action `` for TEST7_DECIDE to TEST7__DEEP_HISTORY1.");
         
-        // Step 3: Enter/move towards transition target `TEST7__HISTORY2`.
+        // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1`.
         TEST7_enter(self);
-        TEST7__HISTORY2_enter(self);
+        TEST7__DEEP_HISTORY1_enter(self);
         
-        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-        self->state_id = Spec2Sm_StateId_TEST7__HISTORY2;
-        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-        return;
+        // TEST7__DEEP_HISTORY1.InitialState behavior
+        // uml: / { trace("Transition action `` for TEST7__DEEP_HISTORY1.InitialState to TEST7__DEEP_HISTORY1__BUILD."); } TransitionTo(TEST7__DEEP_HISTORY1__BUILD)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1.InitialState to TEST7__DEEP_HISTORY1__BUILD.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1.InitialState to TEST7__DEEP_HISTORY1__BUILD.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BUILD`.
+            TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP_enter(self);
+            TEST7__DEEP_HISTORY1__BUILD_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7__DEEP_HISTORY1.InitialState
     } // end of behavior for TEST7_DECIDE
 }
 

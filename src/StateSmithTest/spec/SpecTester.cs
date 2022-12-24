@@ -144,7 +144,7 @@ public class SpecTester
 
     public static string PrepExpectedOutput(string expected)
     {
-        expected = StringUtils.DeIndentTrim(expected);
+        expected = StringUtils.RemoveAnyIndentAndTrim(expected);
         expected = StringUtils.ReplaceNewLineChars(expected, "\n");
         return expected;
     }

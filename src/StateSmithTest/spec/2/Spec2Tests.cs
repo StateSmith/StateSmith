@@ -471,7 +471,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         helper.StartToStateOff2();
 
         // back to on states
-        tester.AddEventHandling(helper.EventOffToOn, t => t(@"
+        tester.AddEventHandling(helper.EventOffToOn, t => t($@"
             State OFF: check behavior `EV7 TransitionTo(ON)`. Behavior running.
             Exit OFF2.
             Exit OFF.
@@ -480,11 +480,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for ON.InitialState to ON.ShallowHistory.
             Transition action `` for ON.ShallowHistory to ON2.
             Enter ON2.
-            State ON2: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+            State ON2: check behavior `enter / {{ {helper.OnVarName} = 1; }}`. Behavior running.
         "));
 
         // over to off states
-        tester.AddEventHandling(helper.EventOnToOff, t => t(@"
+        tester.AddEventHandling(helper.EventOnToOff, t => t($@"
             State ON: check behavior `EV6 TransitionTo(OFF)`. Behavior running.
             Exit ON2.
             Exit ON.
@@ -493,7 +493,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.ShallowHistory.
             Transition action `` for OFF.ShallowHistory to OFF2.
             Enter OFF2.
-            State OFF2: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+            State OFF2: check behavior `enter / {{ {helper.OffVarName} = 1; }}`. Behavior running.
         "));
     }
 
@@ -503,12 +503,12 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         Test7History1Helper helper = new(tester);
         helper.StartToStateOff1();
 
-        tester.AddEventHandling("EV3", t => t(@"
+        tester.AddEventHandling("EV3", t => t($@"
             State OFF: check behavior `EV3 TransitionTo(OFF3)`. Behavior running.
             Exit OFF1.
             Transition action `` for OFF to OFF3.
             Enter OFF3.
-            State OFF3: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 2; }`. Behavior running.
+            State OFF3: check behavior `enter / {{ {helper.OffVarName} = 2; }}`. Behavior running.
         "));
     }
 
@@ -518,7 +518,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         Test7History1Helper helper = new(tester);
         helper.StartToStateOff1();
 
-        tester.AddEventHandling("EV4", t => t(@"
+        tester.AddEventHandling("EV4", t => t($@"
             State OFF: check behavior `EV4 TransitionTo(OFF)`. Behavior running.
             Exit OFF1.
             Exit OFF.
@@ -527,7 +527,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.ShallowHistory.
             Transition action `` for OFF.ShallowHistory to OFF1.
             Enter OFF1.
-            State OFF1: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 0; }`. Behavior running.
+            State OFF1: check behavior `enter / {{ {helper.OffVarName} = 0; }}`. Behavior running.
         "));
     }
 
@@ -537,7 +537,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         Test7History1Helper helper = new(tester);
         helper.StartToStateOff2();
 
-        tester.AddEventHandling("EV4", t => t(@"
+        tester.AddEventHandling("EV4", t => t($@"
             State OFF: check behavior `EV4 TransitionTo(OFF)`. Behavior running.
             Exit OFF2.
             Exit OFF.
@@ -546,7 +546,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.ShallowHistory.
             Transition action `` for OFF.ShallowHistory to OFF2.
             Enter OFF2.
-            State OFF2: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+            State OFF2: check behavior `enter / {{ {helper.OffVarName} = 1; }}`. Behavior running.
         "));
     }
 
@@ -556,7 +556,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         Test7History1Helper helper = new(tester);
         helper.StartToStateOff3();
 
-        tester.AddEventHandling("EV4", t => t(@"
+        tester.AddEventHandling("EV4", t => t($@"
             State OFF: check behavior `EV4 TransitionTo(OFF)`. Behavior running.
             Exit OFF3.
             Exit OFF.
@@ -565,11 +565,122 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.ShallowHistory.
             Transition action `` for OFF.ShallowHistory to OFF3.
             Enter OFF3.
-            State OFF3: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 2; }`. Behavior running.
+            State OFF3: check behavior `enter / {{ {helper.OffVarName} = 2; }}`. Behavior running.
         "));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
+
+    [Fact]
+    public void Test7_DeepHistory1_1()
+    {
+        Test7DeepHistory1Helper helper = new(tester);
+        helper.StartToToyWallE();
+
+        tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
+             {helper.ExpectBuildToAliensExiting("WALL_E", "ROBOT", "TOY")}
+             Transition action `` for ALIENS_DETECTED.ShallowHistory to SNOWBALL_FIGHT.
+             Enter SNOWBALL_FIGHT.
+             State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = 0; }}`. Behavior running.
+         "));
+
+        helper.SnowballFight_to_GiveCookies();
+
+        tester.AddEventHandling(helper.EventAlienDone, t => t($@"
+            State ALIENS_DETECTED: check behavior `EV8 TransitionTo(BUILD)`. Behavior running.
+            Exit GIVE_COOKIES.
+            Exit ALIENS_DETECTED.
+            Transition action `` for ALIENS_DETECTED to BUILD.
+            Enter BUILD.
+            Transition action `` for BUILD.InitialState to BUILD.ShallowHistory.
+            Transition action `` for BUILD.ShallowHistory to WALL_E.
+            Enter TOY.
+            State TOY: check behavior `enter / {{ {helper.BuildVarName} = 0; }}`. Behavior running.
+            Enter ROBOT.
+            State ROBOT: check behavior `enter / {{ {helper.BuildVarName} = 7; }}`. Behavior running.
+            Enter WALL_E.
+            State WALL_E: check behavior `enter / {{ {helper.BuildVarName} = 3; }}`. Behavior running.
+        "));
+
+        tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
+             {helper.ExpectBuildToAliensExiting("WALL_E", "ROBOT", "TOY")}
+             Transition action `` for ALIENS_DETECTED.ShallowHistory to GIVE_COOKIES.
+             {helper.EnterGiveCookiesText()}
+         "));
+    }
+
+
+    [Fact]
+    public void Test7_DeepHistory1_2()
+    {
+        Test7DeepHistory1Helper helper = new(tester);
+        helper.StartToTool_ImpactDrill();
+
+        tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
+             {helper.ExpectBuildToAliensExiting("IMPACT_DRILL", "TOOL")}
+             Transition action `` for ALIENS_DETECTED.ShallowHistory to SNOWBALL_FIGHT.
+             Enter SNOWBALL_FIGHT.
+             State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = 0; }}`. Behavior running.
+         "));
+
+        helper.SnowballFight_to_GiveCookies();
+        helper.GiveCookies_to_CallThor();
+        helper.CallThor_to_CallBatman();
+
+        tester.AddEventHandling(helper.EventAlienDone, t => t($@"
+            State ALIENS_DETECTED: check behavior `EV8 TransitionTo(BUILD)`. Behavior running.
+            Exit CALL_BATMAN.
+            Exit HERO.
+            Exit GET_BACKUP.
+            Exit ALIENS_DETECTED.
+            Transition action `` for ALIENS_DETECTED to BUILD.
+            Enter BUILD.
+            Transition action `` for BUILD.InitialState to BUILD.ShallowHistory.
+            Transition action `` for BUILD.ShallowHistory to IMPACT_DRILL.
+            {helper.EnterToolText()}
+            {helper.EnterImpactDrillText()}
+        "));
+
+        helper.ImpactDrill_to_CircularSaw();
+
+        // was in CALL_BATMAN last, but it isn't saved in history. HERO state is though.
+        tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
+             {helper.ExpectBuildToAliensExiting("CIRCULAR_SAW", "TOOL")}
+             Transition action `` for ALIENS_DETECTED.ShallowHistory to HERO.
+             {helper.EnterGetBackupText()}
+             {helper.EnterHeroText()}
+             Transition action `` for HERO.InitialState to CALL_THOR.
+             Enter CALL_THOR.
+         "));
+
+        helper.CallThor_to_CallBatman();
+        helper.CallBatman_to_BuddyElf();
+
+        tester.AddEventHandling(helper.EventAlienDone, t => t($@"
+            State ALIENS_DETECTED: check behavior `EV8 TransitionTo(BUILD)`. Behavior running.
+            Exit BUDDY_ELF.
+            Exit LOCAL_HELP.
+            Exit GET_BACKUP.
+            Exit ALIENS_DETECTED.
+            Transition action `` for ALIENS_DETECTED to BUILD.
+            Enter BUILD.
+            Transition action `` for BUILD.InitialState to BUILD.ShallowHistory.
+            Transition action `` for BUILD.ShallowHistory to CIRCULAR_SAW.
+            {helper.EnterToolText()}
+            {helper.EnterCircularSawText()}
+        "));
+
+        tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
+             {helper.ExpectBuildToAliensExiting("CIRCULAR_SAW", "TOOL")}
+             Transition action `` for ALIENS_DETECTED.ShallowHistory to BUDDY_ELF.
+             {helper.EnterGetBackupText()}
+             {helper.EnterLocalHelpText()}
+             {helper.EnterBuddyELfText()}
+         "));
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
 
     [Fact]
     public void Test8_Choice_1_Direct1()

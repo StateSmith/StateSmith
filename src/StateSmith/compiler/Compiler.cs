@@ -21,6 +21,7 @@ namespace StateSmith.Compiling
     {
         public const string InitialStateString = "$initial_state";
         public const string HistoryStateString = "$h";
+        public const string HistoryContinueString = "$hc";
 
         public List<Vertex> rootVertices = new List<Vertex>();
         private List<string> eventNames = new List<string>();
@@ -95,6 +96,8 @@ namespace StateSmith.Compiling
         {
             var processor = new ShallowHistoryProcessor(sm);
             sm.Accept(processor);
+            var processor2 = new HistoryContinueProcessor();
+            sm.Accept(processor2);
         }
 
         // https://github.com/StateSmith/StateSmith/issues/3
@@ -371,6 +374,10 @@ namespace StateSmith.Compiling
                             else if (string.Equals(stateNode.stateName, HistoryStateString, StringComparison.OrdinalIgnoreCase))
                             {
                                 thisVertex = new ShallowHistoryVertex();
+                            }
+                            else if (string.Equals(stateNode.stateName, HistoryContinueString, StringComparison.OrdinalIgnoreCase))
+                            {
+                                thisVertex = new HistoryContinueVertex();
                             }
                             else
                             {

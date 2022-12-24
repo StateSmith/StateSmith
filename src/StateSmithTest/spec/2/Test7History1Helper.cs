@@ -7,7 +7,9 @@ public class Test7History1Helper
     SpecTester tester;
 
     public readonly string EventOnToOff = "EV6"; 
-    public readonly string EventOffToOn = "EV7"; 
+    public readonly string EventOffToOn = "EV7";
+    public readonly string OnVarName = "ON_history_state_tracking_var_name___$$$$";
+    public readonly string OffVarName = "OFF_history_state_tracking_var_name___$$$$";
 
     public Test7History1Helper(SpecTester tester)
     {
@@ -18,12 +20,12 @@ public class Test7History1Helper
     {
         tester.PreEvents = "EV7 EV2";
 
-        tester.AddEventHandling("EV1", t => t(@"
+        tester.AddEventHandling("EV1", t => t($@"
             State ON1: check behavior `EV1 TransitionTo(ON2)`. Behavior running.
             Exit ON1.
             Transition action `` for ON1 to ON2.
             Enter ON2.
-            State ON2: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+            State ON2: check behavior `enter / {{ {OnVarName} = 1; }}`. Behavior running.
         "));
     }
 
@@ -31,7 +33,7 @@ public class Test7History1Helper
     {
         StartToStateOn1();
 
-        tester.AddEventHandling("EV6", t => t(@"
+        tester.AddEventHandling("EV6", t => t($@"
             State ON: check behavior `EV6 TransitionTo(OFF)`. Behavior running.
             Exit ON2.
             Exit ON.
@@ -40,7 +42,7 @@ public class Test7History1Helper
             Transition action `` for OFF.InitialState to OFF.ShallowHistory.
             Transition action `` for OFF.ShallowHistory to OFF1.
             Enter OFF1.
-            State OFF1: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 0; }`. Behavior running.
+            State OFF1: check behavior `enter / {{ {OffVarName} = 0; }}`. Behavior running.
         "));
     }
 
@@ -48,12 +50,12 @@ public class Test7History1Helper
     {
         StartToStateOff1();
 
-        tester.AddEventHandling("EV1", t => t(@"
+        tester.AddEventHandling("EV1", t => t($@"
             State OFF1: check behavior `EV1 TransitionTo(OFF2)`. Behavior running.
             Exit OFF1.
             Transition action `` for OFF1 to OFF2.
             Enter OFF2.
-            State OFF2: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 1; }`. Behavior running.
+            State OFF2: check behavior `enter / {{ {OffVarName} = 1; }}`. Behavior running.
         "));
     }
 
@@ -61,12 +63,12 @@ public class Test7History1Helper
     {
         StartToStateOff2();
 
-        tester.AddEventHandling("EV1", t => t(@"
+        tester.AddEventHandling("EV1", t => t($@"
             State OFF2: check behavior `EV1 TransitionTo(OFF3)`. Behavior running.
             Exit OFF2.
             Transition action `` for OFF2 to OFF3.
             Enter OFF3.
-            State OFF3: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 2; }`. Behavior running.
+            State OFF3: check behavior `enter / {{ {OffVarName} = 2; }}`. Behavior running.
         "));
     }
 }

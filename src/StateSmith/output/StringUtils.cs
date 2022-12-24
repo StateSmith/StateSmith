@@ -25,6 +25,15 @@ namespace StateSmith.output
             return output;
         }
 
+        public static string RemoveAnyIndent(string str)
+        {
+            var r = new Regex(@"^[ \t]+", RegexOptions.Multiline);
+
+            var output = r.Replace(str, "");
+
+            return output;
+        }
+
         public static string[] SplitIntoLines(string str)
         {
             var lines = Regex.Split(str, @"\r\n|\r|\n");    // TODOLOW compile common regex
@@ -46,6 +55,15 @@ namespace StateSmith.output
         public static string DeIndentTrim(string str)
         {
             var output = DeIndent(str);
+            output = TrimLeadingHsAndFirstNewline(output);
+            output = TrimTrailingNewLineAndHs(output);
+
+            return output;
+        }
+
+        public static string RemoveAnyIndentAndTrim(string str)
+        {
+            var output = RemoveAnyIndent(str);
             output = TrimLeadingHsAndFirstNewline(output);
             output = TrimTrailingNewLineAndHs(output);
 
