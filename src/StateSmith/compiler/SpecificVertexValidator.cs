@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using StateSmith.compiler.Visitors;
+using StateSmith.compiler;
 
 namespace StateSmith.Compiling
 {
@@ -13,7 +14,12 @@ namespace StateSmith.Compiling
 
         public override void Visit(HistoryVertex v)
         {
-            //FIXME finish
+            HistoryStateValidator.Validate(v);
+        }
+
+        public override void Visit(HistoryContinueVertex v)
+        {
+            throw new VertexValidationException(v, "History Continue vertex should have been removed by processing already.");
         }
 
         public override void Visit(Vertex v)

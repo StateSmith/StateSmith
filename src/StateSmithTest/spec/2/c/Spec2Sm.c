@@ -6427,24 +6427,6 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History is a pseudo state and cannot have an `enter` trigger.
             
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
-            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 0] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT."); } TransitionTo(TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT)
-            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 0)
-            {
-                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");`.
-                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");
-                
-                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT`.
-                TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_enter(self);
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT;
-                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-                return;
-            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History
-            
-            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
             // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__GIVE_COOKIES."); } TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)
             if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 1)
             {
@@ -6556,6 +6538,23 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
                 // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
                 return;
             } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History
+            
+            // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
+            // uml: else / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT."); } TransitionTo(TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT)
+            {
+                // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");`.
+                trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT.");
+                
+                // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT`.
+                TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History
         } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.InitialState
     } // end of behavior for TEST7__DEEP_HISTORY1__BUILD
 }
@@ -6578,23 +6577,6 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev7(Spec2Sm* self)
         TEST7__DEEP_HISTORY1__ALIENS_DETECTED_enter(self);
         TEST7__DEEP_HISTORY1__GET_BACKUP_enter(self);
         // TEST7__DEEP_HISTORY1__GET_BACKUP.History is a pseudo state and cannot have an `enter` trigger.
-        
-        // TEST7__DEEP_HISTORY1__GET_BACKUP.History behavior
-        // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 0] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__HERO."); } TransitionTo(TEST7__DEEP_HISTORY1__HERO)
-        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == 0)
-        {
-            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__HERO.");`.
-            trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__HERO.");
-            
-            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__HERO`.
-            TEST7__DEEP_HISTORY1__HERO_enter(self);
-            
-            // Finish transition by calling pseudo state transition function.
-            TEST7__DEEP_HISTORY1__HERO_InitialState_transition(self);
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.History
         
         // TEST7__DEEP_HISTORY1__GET_BACKUP.History behavior
         // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__LOCAL_HELP."); } TransitionTo(TEST7__DEEP_HISTORY1__LOCAL_HELP)
@@ -6651,6 +6633,22 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev7(Spec2Sm* self)
             // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
             return;
         } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.History
+        
+        // TEST7__DEEP_HISTORY1__GET_BACKUP.History behavior
+        // uml: else / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__HERO."); } TransitionTo(TEST7__DEEP_HISTORY1__HERO)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__HERO.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__HERO.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__HERO`.
+            TEST7__DEEP_HISTORY1__HERO_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST7__DEEP_HISTORY1__HERO_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.History
     } // end of behavior for TEST7__DEEP_HISTORY1__BUILD
 }
 
@@ -6666,23 +6664,6 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         
         // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__BUILD.History`.
         // TEST7__DEEP_HISTORY1__BUILD.History is a pseudo state and cannot have an `enter` trigger.
-        
-        // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 0] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOY."); } TransitionTo(TEST7__DEEP_HISTORY1__TOY)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 0)
-        {
-            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOY.");`.
-            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOY.");
-            
-            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__TOY`.
-            TEST7__DEEP_HISTORY1__TOY_enter(self);
-            
-            // Finish transition by calling pseudo state transition function.
-            TEST7__DEEP_HISTORY1__TOY_InitialState_transition(self);
-            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
         // uml: [BUILD_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOOL."); } TransitionTo(TEST7__DEEP_HISTORY1__TOOL)
@@ -6852,6 +6833,22 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
             self->state_id = Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CIRCULAR_SAW;
             self->ancestor_event_handler = NULL;
             return;
+        } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
+        
+        // TEST7__DEEP_HISTORY1__BUILD.History behavior
+        // uml: else / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOY."); } TransitionTo(TEST7__DEEP_HISTORY1__TOY)
+        {
+            // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOY.");`.
+            trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOY.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__DEEP_HISTORY1__TOY`.
+            TEST7__DEEP_HISTORY1__TOY_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            TEST7__DEEP_HISTORY1__TOY_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
     } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.InitialState
 }
@@ -7641,24 +7638,6 @@ static void TEST7__HISTORY1__OFF_InitialState_transition(Spec2Sm* self)
         // TEST7__HISTORY1__OFF.History is a pseudo state and cannot have an `enter` trigger.
         
         // TEST7__HISTORY1__OFF.History behavior
-        // uml: [OFF_history_state_tracking_var_name___$$$$ == 0] / { trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF1."); } TransitionTo(TEST7__HISTORY1__OFF1)
-        if (self->vars.TEST7__HISTORY1__OFF_history_tracking_var == 0)
-        {
-            // Step 1: Exit states until we reach `TEST7__HISTORY1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF1.");`.
-            trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF1.");
-            
-            // Step 3: Enter/move towards transition target `TEST7__HISTORY1__OFF1`.
-            TEST7__HISTORY1__OFF1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7__HISTORY1__OFF1;
-            self->ancestor_event_handler = NULL;
-            return;
-        } // end of behavior for TEST7__HISTORY1__OFF.History
-        
-        // TEST7__HISTORY1__OFF.History behavior
         // uml: [OFF_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF2."); } TransitionTo(TEST7__HISTORY1__OFF2)
         if (self->vars.TEST7__HISTORY1__OFF_history_tracking_var == 1)
         {
@@ -7690,6 +7669,23 @@ static void TEST7__HISTORY1__OFF_InitialState_transition(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7__HISTORY1__OFF3;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__HISTORY1__OFF.History
+        
+        // TEST7__HISTORY1__OFF.History behavior
+        // uml: else / { trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF1."); } TransitionTo(TEST7__HISTORY1__OFF1)
+        {
+            // Step 1: Exit states until we reach `TEST7__HISTORY1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF1.");`.
+            trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF1.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__HISTORY1__OFF1`.
+            TEST7__HISTORY1__OFF1_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__HISTORY1__OFF1;
             self->ancestor_event_handler = NULL;
             return;
         } // end of behavior for TEST7__HISTORY1__OFF.History
@@ -7935,24 +7931,6 @@ static void TEST7__HISTORY1__ON_InitialState_transition(Spec2Sm* self)
         // TEST7__HISTORY1__ON.History is a pseudo state and cannot have an `enter` trigger.
         
         // TEST7__HISTORY1__ON.History behavior
-        // uml: [ON_history_state_tracking_var_name___$$$$ == 0] / { trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON1."); } TransitionTo(TEST7__HISTORY1__ON1)
-        if (self->vars.TEST7__HISTORY1__ON_history_tracking_var == 0)
-        {
-            // Step 1: Exit states until we reach `TEST7__HISTORY1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON1.");`.
-            trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON1.");
-            
-            // Step 3: Enter/move towards transition target `TEST7__HISTORY1__ON1`.
-            TEST7__HISTORY1__ON1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7__HISTORY1__ON1;
-            self->ancestor_event_handler = NULL;
-            return;
-        } // end of behavior for TEST7__HISTORY1__ON.History
-        
-        // TEST7__HISTORY1__ON.History behavior
         // uml: [ON_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON2."); } TransitionTo(TEST7__HISTORY1__ON2)
         if (self->vars.TEST7__HISTORY1__ON_history_tracking_var == 1)
         {
@@ -7984,6 +7962,23 @@ static void TEST7__HISTORY1__ON_InitialState_transition(Spec2Sm* self)
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             self->state_id = Spec2Sm_StateId_TEST7__HISTORY1__ON3;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for TEST7__HISTORY1__ON.History
+        
+        // TEST7__HISTORY1__ON.History behavior
+        // uml: else / { trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON1."); } TransitionTo(TEST7__HISTORY1__ON1)
+        {
+            // Step 1: Exit states until we reach `TEST7__HISTORY1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON1.");`.
+            trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON1.");
+            
+            // Step 3: Enter/move towards transition target `TEST7__HISTORY1__ON1`.
+            TEST7__HISTORY1__ON1_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7__HISTORY1__ON1;
             self->ancestor_event_handler = NULL;
             return;
         } // end of behavior for TEST7__HISTORY1__ON.History
