@@ -27,6 +27,7 @@ namespace StateSmith.output.C99BalancedCoder1
             file.AppendLinesIfNotBlank(ctx.renderConfig.HFileTop);
             
             file.AppendLine("#pragma once");
+            file.AppendLine("#include <stdint.h>");  // required at least for history state functionality
             file.AppendLinesIfNotBlank(ctx.renderConfig.HFileIncludes);
             file.AppendLine();
 

@@ -24,9 +24,8 @@ namespace ExampleLaserTagMenu1
 
         public class MyGlueFile : IRenderConfigC
         {
-            // These are required for user specified variables
             string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
-                #include <stdint.h> // for state machine vars
+                // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
             ");
 
             string IRenderConfigC.CFileIncludes => StringUtils.DeIndentTrim(@"
