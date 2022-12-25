@@ -48,7 +48,7 @@ public class Test7DeepHistory1Helper
             Exit RACE_CAR.
             Transition action `` for RACE_CAR to TEDDY_BEAR.
             Enter TEDDY_BEAR.
-            State TEDDY_BEAR: check behavior `enter / {{ {BuildVarName} = 5; }}`. Behavior running.
+            State TEDDY_BEAR: check behavior `enter / {{ {BuildVarName} = 3; }}`. Behavior running.
         "));
     }
 
@@ -61,7 +61,7 @@ public class Test7DeepHistory1Helper
             Exit TEDDY_BEAR.
             Transition action `` for TEDDY_BEAR to GLOW_WORM.
             Enter GLOW_WORM.
-            State GLOW_WORM: check behavior `enter / {{ {BuildVarName} = 6; }}`. Behavior running.
+            State GLOW_WORM: check behavior `enter / {{ {BuildVarName} = 4; }}`. Behavior running.
         "));
     }
 
@@ -74,10 +74,10 @@ public class Test7DeepHistory1Helper
             Exit GLOW_WORM.
             Transition action `` for GLOW_WORM to ROBOT.
             Enter ROBOT.
-            State ROBOT: check behavior `enter / {{ {BuildVarName} = 7; }}`. Behavior running.
+            State ROBOT: check behavior `enter / {{ {BuildVarName} = 5; }}`. Behavior running.
             Transition action `` for ROBOT.InitialState to BATTLEBOT.
             Enter BATTLEBOT.
-            State BATTLEBOT: check behavior `enter / {{ {BuildVarName} = 2; }}`. Behavior running.
+            State BATTLEBOT: check behavior `enter / {{ {BuildVarName} = 6; }}`. Behavior running.
         "));
     }
 
@@ -90,7 +90,7 @@ public class Test7DeepHistory1Helper
             Exit BATTLEBOT.
             Transition action `` for BATTLEBOT to WALL_E.
             Enter WALL_E.
-            State WALL_E: check behavior `enter / {{ {BuildVarName} = 3; }}`. Behavior running.
+            State WALL_E: check behavior `enter / {{ {BuildVarName} = 7; }}`. Behavior running.
         "));
     }
 
@@ -192,7 +192,7 @@ public class Test7DeepHistory1Helper
     {
         return $@"
              Enter HERO.
-             State HERO: check behavior `enter / {{ {AliensVarName} = 5; }}`. Behavior running.
+             State HERO: check behavior `enter / {{ {AliensVarName} = 3; }}`. Behavior running.
              State HERO: check behavior `enter / {{ {GetBackupVarName} = 0; }}`. Behavior running.
         ".Trim();
     }
@@ -223,7 +223,7 @@ public class Test7DeepHistory1Helper
     {
         return $@"
              Enter BUDDY_ELF.
-             State BUDDY_ELF: check behavior `enter / {{ {AliensVarName} = 3; }}`. Behavior running.
+             State BUDDY_ELF: check behavior `enter / {{ {AliensVarName} = 5; }}`. Behavior running.
              State BUDDY_ELF: check behavior `enter / {{ {GetBackupVarName} = 2; }}`. Behavior running.
         ".Trim();
     }
@@ -232,7 +232,7 @@ public class Test7DeepHistory1Helper
     {
         return $@"
              Enter LOCAL_HELP.
-             State LOCAL_HELP: check behavior `enter / {{ {AliensVarName} = 6; }}`. Behavior running.
+             State LOCAL_HELP: check behavior `enter / {{ {AliensVarName} = 4; }}`. Behavior running.
              State LOCAL_HELP: check behavior `enter / {{ {GetBackupVarName} = 1; }}`. Behavior running.
         ".Trim();
     }

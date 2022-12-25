@@ -27,6 +27,7 @@ namespace StateSmith.Compiling
             // process history continue vertex children first
             var hc = v.SingleChildOrNull<HistoryContinueVertex>();
             ProcessHistoryContinue(hc);
+            PostProcessHistoryContinue(hc);
 
             var h = v.SingleChildOrNull<HistoryVertex>();
             ProcessHistory(h);
@@ -36,10 +37,13 @@ namespace StateSmith.Compiling
                 Visit(c);
             }
 
-            PostProcessHistoryContinue(hc); // has to be done after kid states are processed as nested History Continue states may access this one
+            // has to be done after kid states are processed as nested History Continue states may access this one
+            if (hc != null)
+                hc.NonNullParent.RemoveChild(hc);
+
         }
 
-        private static void ProcessHistoryContinue(HistoryContinueVertex? hc)
+        private void ProcessHistoryContinue(HistoryContinueVertex? hc)
         {
             if (hc == null)
             {
@@ -79,8 +83,6 @@ namespace StateSmith.Compiling
             {
                 AddTrackingBehaviors(h, null, statesToTrack);
             }
-
-            hc.NonNullParent.RemoveChild(hc);
         }
 
         private void ProcessHistory(HistoryVertex? historyState)
@@ -111,14 +113,14 @@ namespace StateSmith.Compiling
                 }
 
                 {
-                    Behavior trackingBehavior = new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{historyState.stateTrackingVarName} = {index};");
-                    stateToTrack.AddBehavior(trackingBehavior);
+                    Behavior enterTrackingBehavior = new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{historyState.stateTrackingVarName} = {index};");
+                    stateToTrack.AddBehavior(enterTrackingBehavior);
                 }
 
                 if (!isDefaultTransition)
                 {
-                    Behavior transitionBehavior = new Behavior(guardCode: $"{historyState.stateTrackingVarName} == {index}", transitionTarget: stateToTrack);
-                    historyState.AddBehavior(transitionBehavior);
+                    Behavior historyTransitionBehavior = new Behavior(guardCode: $"{historyState.stateTrackingVarName} == {index}", transitionTarget: stateToTrack);
+                    historyState.AddBehavior(historyTransitionBehavior);
                 }
             }
         }

@@ -597,9 +597,9 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Enter TOY.
             State TOY: check behavior `enter / {{ {helper.BuildVarName} = 0; }}`. Behavior running.
             Enter ROBOT.
-            State ROBOT: check behavior `enter / {{ {helper.BuildVarName} = 7; }}`. Behavior running.
+            State ROBOT: check behavior `enter / {{ {helper.BuildVarName} = 5; }}`. Behavior running.
             Enter WALL_E.
-            State WALL_E: check behavior `enter / {{ {helper.BuildVarName} = 3; }}`. Behavior running.
+            State WALL_E: check behavior `enter / {{ {helper.BuildVarName} = 7; }}`. Behavior running.
         "));
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
