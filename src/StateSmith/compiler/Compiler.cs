@@ -96,8 +96,7 @@ namespace StateSmith.Compiling
         {
             var processor = new HistoryProcessor(sm);
             sm.Accept(processor);
-            var processor2 = new HistoryContinueProcessor();
-            sm.Accept(processor2);
+            processor.PostProcess();
         }
 
         // https://github.com/StateSmith/StateSmith/issues/3
