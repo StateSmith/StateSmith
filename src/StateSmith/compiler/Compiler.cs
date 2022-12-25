@@ -95,8 +95,7 @@ namespace StateSmith.Compiling
         public static void SupportHistory(Statemachine sm)
         {
             var processor = new HistoryProcessor(sm);
-            sm.Accept(processor);
-            processor.PostProcess();
+            processor.Process();
         }
 
         // https://github.com/StateSmith/StateSmith/issues/3

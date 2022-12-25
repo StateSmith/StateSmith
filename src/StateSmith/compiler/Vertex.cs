@@ -22,6 +22,18 @@ namespace StateSmith.Compiling
         internal Vertex? _parent;
         public Vertex? Parent => _parent;
 
+        public Vertex NonNullParent
+        {
+            get
+            {
+                if (Parent == null)
+                {
+                    throw new VertexValidationException(this, "unexpected null parent");
+                }
+                return Parent;
+            }
+        }
+
         public NamedVertex? ParentState => (NamedVertex?)Parent;
 
         /// <summary>

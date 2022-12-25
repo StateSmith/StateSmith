@@ -8,49 +8,98 @@ using System.Collections.Generic;
 
 namespace StateSmith.Compiling
 {
-    public class HistoryProcessor : DummyVertexVisitor
+    public class HistoryProcessor
     {
         Statemachine sm;
-        List<HistoryContinueVertex> historyContinueVertices = new();
-
 
         public HistoryProcessor(Statemachine sm)
         {
             this.sm = sm;
         }
 
-        public void PostProcess()
+        public void Process()
         {
-            foreach (var hc in historyContinueVertices)
+            Visit(sm);
+        }
+
+        private void Visit(NamedVertex v)
+        {
+            // process history continue vertex children first
+            var hc = v.SingleChildOrNull<HistoryContinueVertex>();
+            ProcessHistoryContinue(hc);
+
+            var h = v.SingleChildOrNull<HistoryVertex>();
+            ProcessHistory(h);
+
+            foreach (var c in v.Children<NamedVertex>())
             {
-                PostProcessHistoryContinue(hc);
+                Visit(c);
+            }
+
+            PostProcessHistoryContinue(hc); // has to be done after kid states are processed as nested History Continue states may access this one
+        }
+
+        private static void ProcessHistoryContinue(HistoryContinueVertex? hc)
+        {
+            if (hc == null)
+            {
+                return;
+            }
+
+            var parent = hc.NonNullParent;
+
+            var ancestorHc = parent.SingleSiblingOrNull<HistoryContinueVertex>();
+            if (ancestorHc != null)
+            {
+                hc.historyVertices.AddRange(ancestorHc.historyVertices);
+            }
+
+            var ancestorHistory = parent.SingleSiblingOrNull<HistoryVertex>();
+            if (ancestorHistory != null)
+            {
+                hc.historyVertices.Add(ancestorHistory);
+            }
+
+            if (hc.historyVertices.Count == 0)
+            {
+                throw new VertexValidationException(hc, $"HistoryContinue vertex expects to find a History and/or HistoryContinue vertex two levels up.");
             }
         }
 
-        public void PostProcessHistoryContinue(HistoryContinueVertex hc)
+        private void PostProcessHistoryContinue(HistoryContinueVertex? hc)
         {
+            if (hc == null)
+            {
+                return;
+            }
+
             var statesToTrack = hc.Siblings<NamedVertex>().ToList();
 
             foreach (var h in hc.historyVertices)
             {
-                HistoryProcessor.TrackStates(h, null, statesToTrack);
+                AddTrackingBehaviors(h, null, statesToTrack);
             }
 
-            hc.ParentState.RemoveChild(hc);
+            hc.NonNullParent.RemoveChild(hc);
         }
 
-        public override void Visit(HistoryVertex historyState)
+        private void ProcessHistory(HistoryVertex? historyState)
         {
+            if (historyState == null)
+            {
+                return;
+            }
+
             sm.historyStates.Add(historyState);
             historyState.stateTrackingVarName = $"{historyState.ParentState.Name}_history_state_tracking_var_name___$$$$"; // will be changed later on with expansions
             Behavior defaultTransition = historyState.Behaviors.Single();
             defaultTransition.order = Behavior.ELSE_ORDER;
 
             var statesToTrack = historyState.Siblings<NamedVertex>().ToList();
-            TrackStates(historyState, defaultTransition, statesToTrack);
+            AddTrackingBehaviors(historyState, defaultTransition, statesToTrack);
         }
 
-        public static void TrackStates(HistoryVertex historyState, Behavior? defaultTransition, List<NamedVertex> statesToTrack)
+        private static void AddTrackingBehaviors(HistoryVertex historyState, Behavior? defaultTransition, List<NamedVertex> statesToTrack)
         {
             foreach (var stateToTrack in statesToTrack)
             {
@@ -63,7 +112,7 @@ namespace StateSmith.Compiling
 
                 {
                     Behavior trackingBehavior = new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{historyState.stateTrackingVarName} = {index};");
-                    stateToTrack.AddBehavior(trackingBehavior, 0);
+                    stateToTrack.AddBehavior(trackingBehavior);
                 }
 
                 if (!isDefaultTransition)
@@ -71,31 +120,6 @@ namespace StateSmith.Compiling
                     Behavior transitionBehavior = new Behavior(guardCode: $"{historyState.stateTrackingVarName} == {index}", transitionTarget: stateToTrack);
                     historyState.AddBehavior(transitionBehavior);
                 }
-            }
-        }
-
-        public override void Visit(HistoryContinueVertex hc)
-        {
-            FindTrackingHistoryStates(hc, hc);
-            historyContinueVertices.Add(hc);
-        }
-
-        private static void FindTrackingHistoryStates(HistoryContinueVertex hc, Vertex? node)
-        {
-            node = node?.Parent?.Parent;    // consider change to single parent up and then search siblings
-
-            while (node != null)
-            {
-                hc.historyVertices.AddRange(node.Children<HistoryVertex>());
-
-                // fixme. stop upwards recursion if no history or history continue found.
-
-                foreach (var v in node.Children<HistoryContinueVertex>())
-                {
-                    FindTrackingHistoryStates(hc, v);
-                }
-
-                node = node?.Parent?.Parent;
             }
         }
     }
