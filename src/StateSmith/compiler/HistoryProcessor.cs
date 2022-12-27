@@ -22,12 +22,23 @@ namespace StateSmith.Compiling
             Visit(sm);
         }
 
+        public static void ValidateHistoryState(HistoryVertex h)
+        {
+            int count = h.TransitionBehaviors().Count();
+            if (count > 1)
+            {
+                throw new VertexValidationException(h, $"A history state can only have a single drawn transition for its default. Found {count}.");
+            }
+        }
+
         private void Visit(NamedVertex v)
         {
             // process history continue vertex children first
             var hc = v.SingleChildOrNull<HistoryContinueVertex>();
-            ProcessHistoryContinue(hc);
-            PostProcessHistoryContinue(hc);
+            if (hc != null)
+            {
+                ProcessHistoryContinue(hc);
+            }
 
             var h = v.SingleChildOrNull<HistoryVertex>();
             ProcessHistory(h);
@@ -37,19 +48,15 @@ namespace StateSmith.Compiling
                 Visit(c);
             }
 
-            // has to be done after kid states are processed as nested History Continue states may access this one
             if (hc != null)
-                hc.NonNullParent.RemoveChild(hc);
-
+            {
+                // has to be done after kid states are visited as nested History Continue states may access this one
+                hc.RemoveSelf();
+            }
         }
 
-        private void ProcessHistoryContinue(HistoryContinueVertex? hc)
+        private void ProcessHistoryContinue(HistoryContinueVertex hc)
         {
-            if (hc == null)
-            {
-                return;
-            }
-
             var parent = hc.NonNullParent;
 
             var ancestorHc = parent.SingleSiblingOrNull<HistoryContinueVertex>();
@@ -68,15 +75,12 @@ namespace StateSmith.Compiling
             {
                 throw new VertexValidationException(hc, $"HistoryContinue vertex expects to find a History and/or HistoryContinue vertex two levels up.");
             }
+
+            AddHistoryContinueBehaviors(hc);
         }
 
-        private void PostProcessHistoryContinue(HistoryContinueVertex? hc)
+        private void AddHistoryContinueBehaviors(HistoryContinueVertex hc)
         {
-            if (hc == null)
-            {
-                return;
-            }
-
             var statesToTrack = hc.Siblings<NamedVertex>().ToList();
 
             foreach (var h in hc.historyVertices)

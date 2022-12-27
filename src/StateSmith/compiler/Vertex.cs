@@ -189,6 +189,11 @@ namespace StateSmith.Compiling
             }
         }
 
+        public void RemoveSelf()
+        {
+            NonNullParent.RemoveChild(this);
+        }
+
         public int FindIndexInParentKids()
         {
             if (Parent == null)
