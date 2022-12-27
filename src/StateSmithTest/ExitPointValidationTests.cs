@@ -8,7 +8,6 @@ namespace StateSmithTest.PseudoStateTests
         public ExitPointValidationTests()
         {
             s2_1.AddTransitionTo(s2_pseudoState);
-            AddBlankS2PseudoStateTransition(); // to make exit point validation successfull
         }
 
         protected override void AddBlankS2PseudoStateTransition()
@@ -18,7 +17,9 @@ namespace StateSmithTest.PseudoStateTests
 
         override protected ExitPoint CreateS2PseudoState()
         {
-            return new ExitPoint("1");
+            var exitPoint = new ExitPoint("1");
+            exitPoint.AddTransitionTo(s1);
+            return exitPoint;
         }
 
         [Fact]
@@ -28,7 +29,7 @@ namespace StateSmithTest.PseudoStateTests
             s2_1.AddChild(duplicateNamed);
             duplicateNamed.AddTransitionTo(s2_1).guardCode = "true"; // to get around yEd concern
             s2_1_1.AddTransitionTo(duplicateNamed);
-            ExpectValid();
+            RunCompiler();
         }
 
         [Fact]

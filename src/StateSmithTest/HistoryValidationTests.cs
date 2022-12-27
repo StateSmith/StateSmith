@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using StateSmith.Compiling;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace StateSmithTest.PseudoStateTests;
@@ -23,12 +24,30 @@ public class HistoryValidationTests : PseudoStateValidationTestHelper
     }
 
     [Fact]
+    public override void MultipleBehavior()
+    {
+        AddBlankS2PseudoStateTransition();
+        ExpectVertexValidationExceptionWildcard("* a single default transition. Found *2*");
+
+        AddBlankS2PseudoStateTransition();
+        ExpectVertexValidationExceptionWildcard("* a single default transition. Found *3*");
+    }
+
+    [Fact]
+    public override void GuardWithDefaultTransition()
+    {
+        s2_pseudoState.Behaviors.Single().guardCode = "x > 100";
+        AddBlankS2PseudoStateTransition(); // default no-guard transition
+        ExpectVertexValidationExceptionWildcard("* a single default transition. Found *2*");
+    }
+
+    [Fact]
     public void TooManySiblings()
     {
         s2.AddChild(new HistoryVertex());
-        ExpectVertexValidationExceptionWildcard("*Only 1 history vertex is allowed in a state. Found *2*");
+        ExpectVertexValidationExceptionWildcard("* 1 history* allowed*. Found *2*");
         s2.AddChild(new HistoryVertex());
-        ExpectVertexValidationExceptionWildcard("*Only 1 history vertex is allowed in a state. Found *3*");
+        ExpectVertexValidationExceptionWildcard("* 1 history* allowed*. Found *3*");
     }
 
     [Fact]

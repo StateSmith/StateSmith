@@ -4,26 +4,26 @@ using System.Text;
 using Xunit;
 using FluentAssertions;
 using StateSmith.Compiling;
-
+using StateSmith.Runner;
 
 namespace StateSmithTest
 {
     public class ValidationTestHelper
     {
         public Compiler compiler;
+        public CompilerRunner compilerRunner;
 
         public ValidationTestHelper()
         {
-            compiler = new Compiler();
+            compilerRunner = new CompilerRunner();
+            compiler = compilerRunner.compiler;
         }
 
         public void ExpectBehaviorValidationException(string exceptionMessagePart, Action? additionalAction = null)
         {
-            compiler.SetupRoots();
-
             Action action = () =>
             {
-                compiler.Validate();
+                RunCompiler();
                 additionalAction?.Invoke();
             };
             action.Should().Throw<BehaviorValidationException>()
@@ -32,11 +32,9 @@ namespace StateSmithTest
 
         public void ExpectVertexValidationException(string exceptionMessagePart, Action? additionalAction = null)
         {
-            compiler.SetupRoots();
-
             Action action = () =>
             {
-                compiler.Validate();
+                RunCompiler();
                 additionalAction?.Invoke();
             };
             action.Should().Throw<VertexValidationException>()
@@ -45,28 +43,23 @@ namespace StateSmithTest
 
         public void ExpectVertexValidationExceptionWildcard(string wildcardMessage)
         {
-            compiler.SetupRoots();
-
-            Action action = () => compiler.Validate();
+            Action action = () => RunCompiler();
             action.Should().Throw<VertexValidationException>()
                 .WithMessage(wildcardMessage);
         }
 
         public void ExpectVertexValidationExceptionWildcard(Vertex vertex, string wildcardMessage)
         {
-            compiler.SetupRoots();
-
-            Action action = () => compiler.Validate();
+            Action action = () => RunCompiler();
             action.Should().Throw<VertexValidationException>()
                 .WithMessage(wildcardMessage)
                 .Where(e => e.vertex == vertex)
                 ;
         }
 
-        public void ExpectValid()
+        public void RunCompiler()
         {
-            compiler.SetupRoots();
-            compiler.Validate();
+            compilerRunner.FinishRunningCompiler();
         }
     }
 }

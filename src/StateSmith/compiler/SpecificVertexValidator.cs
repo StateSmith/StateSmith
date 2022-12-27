@@ -14,7 +14,7 @@ namespace StateSmith.Compiling
 
         public override void Visit(HistoryVertex v)
         {
-            HistoryStateValidator.Validate(v);
+            HistoryStateValidator.ValidateAfterTransforming(v);
         }
 
         public override void Visit(HistoryContinueVertex v)

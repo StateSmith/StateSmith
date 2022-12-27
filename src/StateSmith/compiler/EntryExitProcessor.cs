@@ -9,7 +9,8 @@ namespace StateSmith.Compiling
     {
         public override void Visit(EntryPoint entryPoint)
         {
-            NamedVertex parentState = (NamedVertex)entryPoint.Parent;    // todolow - provide nicer exception or validate somewhere else
+            EntryPointValidator.ValidateBeforeTransformation(entryPoint);
+            NamedVertex parentState = (NamedVertex)entryPoint.NonNullParent;
 
             var transitionsToReTarget = GetParentEntryTransitions(entryPoint, parentState);
 
@@ -24,17 +25,19 @@ namespace StateSmith.Compiling
         {
             var matching = parentState.IncomingTransitions.Where(b => b.viaEntry == entryPoint.label);
 
-            if (!matching.Any())
-            {
-                throw new VertexValidationException(entryPoint, $"No transitions match entry point with `via entry {entryPoint.label}`.");
-            }
+            //if (!matching.Any())
+            //{
+            //    throw new VertexValidationException(entryPoint, $"No transitions match entry point with `via entry {entryPoint.label}`.");
+            //}
 
             return matching;
         }
 
         public override void Visit(ExitPoint exitPoint)
         {
-            NamedVertex parentState = (NamedVertex)exitPoint.Parent;    // todolow - provide nicer exception or validate somewhere else
+            ExitPointValidator.ValidateBeforeTransformation(exitPoint);
+
+            NamedVertex parentState = (NamedVertex)exitPoint.NonNullParent;
 
             var transitionsToReTarget = GetParentExitTransitionsAndValidate(exitPoint, parentState);
 
@@ -49,10 +52,10 @@ namespace StateSmith.Compiling
         {
             var matching = parentState.Behaviors.Where(b => b.HasTransition() && b.viaExit == exitPoint.label);
 
-            if (!matching.Any())
-            {
-                throw new VertexValidationException(exitPoint, $"No transitions match exit point with `via exit {exitPoint.label}`.");
-            }
+            //if (!matching.Any())
+            //{
+            //    throw new VertexValidationException(exitPoint, $"No transitions match exit point with `via exit {exitPoint.label}`.");
+            //}
 
             return matching;
         }

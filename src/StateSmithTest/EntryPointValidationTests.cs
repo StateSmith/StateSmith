@@ -22,7 +22,7 @@ namespace StateSmithTest.PseudoStateTests
             var duplicateNamed = new EntryPoint("1");
             s2_1.AddChild(duplicateNamed);
             duplicateNamed.AddTransitionTo(s2_1_1);
-            ExpectValid();
+            RunCompiler();
         }
 
         [Fact]

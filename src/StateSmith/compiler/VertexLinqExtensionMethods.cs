@@ -85,7 +85,7 @@ namespace StateSmith.compiler
 
         public static T? SingleChildOrNull<T>(this Vertex vertex) where T : Vertex
         {
-            return vertex.Children<T>().SingleOrNull(vertex, $"Max of 1 {nameof(T)} allowed in {vertex.GetType().Name}");
+            return vertex.Children<T>().SingleOrNull(vertex, $"Max of 1 {typeof(T).Name} allowed in {vertex.GetType().Name}");
         }
 
         // does not return self
@@ -118,7 +118,7 @@ namespace StateSmith.compiler
 
             if (count > 1)
             {
-                throw new VertexValidationException(v, $"{errorMessage}. Found {count}");
+                throw new VertexValidationException(v, $"{errorMessage}. Found {count}.");
             }
 
             return items.FirstOrDefault();
@@ -130,7 +130,7 @@ namespace StateSmith.compiler
 
             if (count > limit)
             {
-                throw new ArgumentException($"limit of {limit} exceeded on collection. Found {count}");
+                throw new ArgumentException($"limit of {limit} exceeded on collection. Found {count}.");
             }
 
             foreach (var item in items)
