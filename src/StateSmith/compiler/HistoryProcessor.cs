@@ -57,6 +57,8 @@ namespace StateSmith.Compiling
 
         private void ProcessHistoryContinue(HistoryContinueVertex hc)
         {
+            HistoryStateValidator.ValidateBeforeTransforming(hc);
+
             var parent = hc.NonNullParent;
 
             var ancestorHc = parent.SingleSiblingOrNull<HistoryContinueVertex>();

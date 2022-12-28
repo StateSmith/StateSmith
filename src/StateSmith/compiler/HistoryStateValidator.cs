@@ -30,4 +30,19 @@ public class HistoryStateValidator
         PseudoStateValidator.ValidateBehaviors(v);
         PseudoStateValidator.ValidateEnteringBehaviors(v);
     }
+
+    //----------------------------------------------------------
+
+    public static void ValidateBeforeTransforming(HistoryContinueVertex v)
+    {
+        PseudoStateValidator.ValidateParentAndNoChildren(v);
+
+        int count = v.Behaviors.Count();
+        if (count > 0)
+        {
+            throw new VertexValidationException(v, $"A {nameof(HistoryContinueVertex)} cannot have any behaviors. Found {count}.");
+        }
+    }
+
 }
+

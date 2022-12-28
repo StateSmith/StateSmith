@@ -137,6 +137,7 @@ public class PseudoStateValidator
             ExitPoint => "Exit point",
             ChoicePoint => "Choice point",
             HistoryVertex => "History state",
+            HistoryContinueVertex => "History continue vertex",
             _ => throw new ArgumentException("unsupported type: " + state.GetType().FullName),
         };
     }

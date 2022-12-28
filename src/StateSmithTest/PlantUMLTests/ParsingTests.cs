@@ -588,32 +588,34 @@ S1-->S2
     [Fact]
     public void HistoryPlantumlParse_Continue()
     {
-        var plantUmlText = @"
-@startuml ExampleSm
-hide empty description
+        var plantUmlText = """
 
-skinparam state {
-  BackgroundColor<<hc>> orange
-}
+            @startuml ExampleSm
+            hide empty description
 
-[*] --> Relaxing
-state Relaxing {
-    [*] --> [H]
-    [H] --> Reading
-    Reading --> Snacking
-    Snacking --> Napping
+            skinparam state {
+              BackgroundColor<<hc>> orange
+            }
 
-    state Snacking {
-        state ""$hc"" as hc1<<hc>>
-        [*] --> Toast
-        state Toast
-        state Oatmeal
-    }
-}
-Relaxing --> Interrupted
-Interrupted --> Relaxing[H]
-@enduml
-";
+            [*] --> Relaxing
+            state Relaxing {
+                [*] --> [H]
+                [H] --> Reading
+                Reading --> Snacking
+                Snacking --> Napping
+
+                state Snacking {
+                    state "$hc" as hc1<<hc>>
+                    [*] --> Toast
+                    state Toast
+                    state Oatmeal
+                }
+            }
+            Relaxing --> Interrupted
+            Interrupted --> Relaxing[H]
+            @enduml
+
+            """;
         compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
         compilerRunner.SetupForSingleSm();
 
@@ -624,23 +626,23 @@ Interrupted --> Relaxing[H]
     [Fact]
     public void HistoryPlantumlParse_Continue2()
     {
-        var plantUmlText = @"
-@startuml ExampleSm
-[*] --> G1
-state G1 {
-    [*] --> [H]
-    [H] --> G2
-    state G2 {
-        [*] --> G3
-        state ""$HC"" as hc1
-        state G3 {
-            [*] --> G4
-            state ""$HC"" as hc2
-        }
-    }
-}
-@enduml
-";
+        var plantUmlText = """
+            @startuml ExampleSm
+            [*] --> G1
+            state G1 {
+                [*] --> [H]
+                [H] --> G2
+                state G2 {
+                    [*] --> G3
+                    state "$HC" as hc1
+                    state G3 {
+                        [*] --> G4
+                        state "$HC" as hc2
+                    }
+                }
+            }
+            @enduml
+            """;
         compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
         compilerRunner.SetupForSingleSm();
 
