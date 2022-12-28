@@ -56,6 +56,12 @@ public interface IPlantUMLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitStart_end_state([NotNull] PlantUMLParser.Start_end_stateContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.history_state"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitHistory_state([NotNull] PlantUMLParser.History_stateContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantUMLParser.state_id"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

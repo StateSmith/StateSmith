@@ -14,7 +14,12 @@ namespace StateSmith.Input.PlantUML
 
         private DiagramNode currentNode;
 
-        private Dictionary<DiagramNode, DiagramNode> nodeInitalStateMap = new();
+        // used to check if a state already contains an initial state
+        private Dictionary<DiagramNode, DiagramNode> nodeInitialStateMap = new();
+
+        // used to check if a state already contains a history state
+        private Dictionary<DiagramNode, DiagramNode> nodeHistoryStateMap = new();
+        
         public Dictionary<DiagramNode, string> nodeStereoTypeLookup = new();
         public Dictionary<string, DiagramNode> nodeMap = new();
 
@@ -46,17 +51,38 @@ namespace StateSmith.Input.PlantUML
             currentNode = currentNode.parent;
         }
 
-        private DiagramNode GetOrAddInitialState(PlantUMLParser.VertexContext vertexContext)
+        private DiagramNode GetCurrentNode()
         {
-            if (!nodeInitalStateMap.TryGetValue(currentNode, out var initialState))
+            return currentNode;
+        }
+
+        private DiagramNode GetOrAddHistoryState(PlantUMLParser.History_stateContext historyStateContext, DiagramNode parentNode)
+        {
+            if (!nodeHistoryStateMap.TryGetValue(parentNode, out var historyState))
+            {
+                historyState = new DiagramNode
+                {
+                    label = Compiling.Compiler.HistoryStateString,
+                    id = MakeId(historyStateContext)
+                };
+                nodeHistoryStateMap.Add(parentNode, historyState);
+                AddNode(parentNode: parentNode, historyState);
+            }
+
+            return historyState;
+        }
+
+        private DiagramNode GetOrAddInitialState(PlantUMLParser.Start_end_stateContext startEndContext)
+        {
+            if (!nodeInitialStateMap.TryGetValue(currentNode, out var initialState))
             {
                 initialState = new DiagramNode
                 {
                     label = Compiling.Compiler.InitialStateString,
-                    id = MakeId(vertexContext.start_end_state())
+                    id = MakeId(startEndContext)
                 };
-                nodeInitalStateMap.Add(currentNode, initialState);
-                AddNode(initialState);
+                nodeInitialStateMap.Add(currentNode, initialState);
+                AddNode(parentNode: GetCurrentNode(), initialState);
             }
 
             return initialState;
@@ -67,10 +93,10 @@ namespace StateSmith.Input.PlantUML
             return $"line_{vertexContext.Start.Line}_column_{vertexContext.Start.Column}";
         }
 
-        private void AddNode(DiagramNode state)
+        private void AddNode(DiagramNode parentNode, DiagramNode state)
         {
-            currentNode.children.Add(state);
-            state.parent = currentNode;
+            parentNode.children.Add(state);
+            state.parent = parentNode;
         }
 
         private DiagramNode GetOrAddNode(string pumlId, ParserRuleContext context)
@@ -83,7 +109,7 @@ namespace StateSmith.Input.PlantUML
                     id = MakeId(context)
                 };
                 nodeMap.Add(pumlId, state);
-                AddNode(state);
+                AddNode(parentNode: GetCurrentNode(), state);
             }
 
             return state;
@@ -153,11 +179,21 @@ namespace StateSmith.Input.PlantUML
 
             if (vertexContext.start_end_state() != null)
             {
-                node = GetOrAddInitialState(vertexContext);
+                node = GetOrAddInitialState(vertexContext.start_end_state());
+            }
+            else if(vertexContext.history_state() != null)
+            {
+                node = GetOrAddHistoryState(vertexContext.history_state(), GetCurrentNode());
             }
             else
             {
-                node = GetOrAddNode(vertexContext.state_id().GetText(), vertexContext.state_id());
+                PlantUMLParser.State_idContext state_id = vertexContext.state_id();
+                node = GetOrAddNode(state_id.identifier().GetText(), vertexContext.state_id());
+                
+                if (state_id.history_state() != null)
+                {
+                    node = GetOrAddHistoryState(state_id.history_state(), node);
+                }
             }
 
             HandleStereotype(node, vertexContext.stereotype());

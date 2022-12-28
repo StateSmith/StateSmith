@@ -1,6 +1,9 @@
 ﻿using FluentAssertions;
+using StateSmith.compiler;
 using StateSmith.Compiling;
+using StateSmith.Runner;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -49,18 +52,108 @@ public class HistoryValidationTests : PseudoStateValidationTestHelper
         s2.AddChild(new HistoryVertex());
         ExpectVertexValidationExceptionWildcard("* 1 history* allowed*. Found *3*");
     }
+}
+
+public class HistoryPlantUmlTests
+{
+    private CompilerRunner compilerRunner = new();
 
     [Fact]
-    public void HistoryContinue_AtRootLevel()
+    public void HistoryPlantumlParse_Implicit()
     {
-        sm.AddChild(new HistoryContinueVertex());
+        var plantUmlText = @"
+@startuml ExampleSm
+[*] --> [H]
+[H] --> S1
+S1-->S2
+@enduml
+";
+        compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        compilerRunner.SetupForSingleSm();
 
-        //var vertex = sm;
-        //Action action = () => processor.Visit(sm);
-        //action.Should().Throw<VertexValidationException>()
-        //    .WithMessage("wild card message")
-        //    .Where(e => e.vertex == vertex)
-        //    ;
+        Statemachine root = compilerRunner.sm;
+        InitialState initial = root.ChildType<InitialState>();
+        HistoryVertex history = root.ChildType<HistoryVertex>();
+        State s1 = root.Child<State>("S1");
+        State s2 = root.Child<State>("S2");
+
+        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+
+        initial.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            new Behavior(){ _transitionTarget = history },
+        }, behaviorMatcher);
+
+        history.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            new Behavior(){ _transitionTarget = s1 },
+        }, behaviorMatcher);
+    }
+
+    [Fact]
+    public void HistoryPlantumlParse_ImplicitInGroup()
+    {
+        var plantUmlText = @"
+@startuml ExampleSm
+[*] --> Relaxing
+state Relaxing {
+    [*] --> Reading
+    Reading --> Snacking
+    Snacking --> Napping
+    Napping --> Napping
+}
+Relaxing --> Interrupted
+Interrupted --> Relaxing[H]
+Relaxing[H] --> Snacking
+@enduml
+";
+        compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        compilerRunner.SetupForSingleSm();
+
+        Statemachine root = compilerRunner.sm;
+        State relaxing = root.Child<State>("Relaxing");
+        HistoryVertex history = relaxing.ChildType<HistoryVertex>();
+        State snacking = relaxing.Child<State>("Snacking");
+        State interrupted = root.Child<State>("Interrupted");
+
+        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+
+        interrupted.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            new Behavior(){ _transitionTarget = history },
+        }, behaviorMatcher);
+
+        history.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            new Behavior(){ _transitionTarget = snacking },
+        }, behaviorMatcher);
+    }
+
+        [Fact]
+    public void HistoryPlantumlParse_ExplicitState()
+    {
+        var plantUmlText = @"
+@startuml ExampleSm
+[*] --> Group[H]
+Group[H] --> S1
+S1-->S2
+@enduml
+";
+        compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        compilerRunner.SetupForSingleSm();
+
+        Statemachine root = compilerRunner.sm;
+        InitialState initial = root.ChildType<InitialState>();
+        State group = root.Child<State>("Group");
+        HistoryVertex history = group.ChildType<HistoryVertex>();
+        State s1 = root.Child<State>("S1");
+        State s2 = root.Child<State>("S2");
+
+        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+
+        initial.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            new Behavior(){ _transitionTarget = history },
+        }, behaviorMatcher);
+
+        history.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            new Behavior(){ _transitionTarget = s1 },
+        }, behaviorMatcher);
     }
 }
 

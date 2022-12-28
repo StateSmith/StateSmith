@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add history.  https://github.com/StateSmith/StateSmith/issues/63
   - Deep history functionality supported via history continue nodes.
+  - plantuml supports history states (not history continue yet)
 - Add `$prefix` methods.
   - Experimental feature to help with duplicate state names. https://github.com/StateSmith/StateSmith/issues/65
 

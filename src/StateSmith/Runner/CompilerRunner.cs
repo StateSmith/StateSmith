@@ -130,14 +130,7 @@ public class CompilerRunner
     /// </summary>
     public void FinishRunningCompiler()
     {
-        compiler.SetupRoots();
-
-        if (sm == null)
-        {
-            FindSingleStateMachine();
-        }
-
-        compiler.rootVertices = new List<Vertex> { sm };
+        SetupForSingleSm();
 
         compiler.SupportParentAlias();
         compiler.SupportEntryExitPoints();
@@ -152,5 +145,17 @@ public class CompilerRunner
         compiler.DefaultToDoEventIfNoTrigger();
         compiler.FinalizeTrees();
         compiler.Validate();
+    }
+
+    public void SetupForSingleSm()
+    {
+        compiler.SetupRoots();
+
+        if (sm == null)
+        {
+            FindSingleStateMachine();
+        }
+
+        compiler.rootVertices = new List<Vertex> { sm };
     }
 }

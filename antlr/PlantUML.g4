@@ -26,14 +26,16 @@ line_ending_ows:
 
 optional_any_space: (HWS | LINE_ENDER)*;
 
-// optional  horizontal white space
+// optional horizontal white space
 ohs: HWS* ;
 
+// symbol for an initial/start or terminate/end state. termination states are not supported
 start_end_state: '[*]';
-state_id: identifier;
+history_state: '[' ('h'|'H') ']';
+state_id: identifier history_state?; // like `State3` or `State3[H]`
 
 vertex:
-    start_end_state | state_id
+    start_end_state | history_state | state_id
     (
         ohs
         stereotype
