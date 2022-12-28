@@ -51,6 +51,13 @@ namespace StateSmith.compiler
             return matches[0];
         }
 
+        public static T Descendant<T>(this Vertex vertex, string name) where T : NamedVertex
+        {
+            var matches = vertex.DescendantsWithName(name);
+            ThrowIfNotSingle(name, matches);
+            return (T)matches[0];
+        }
+
         private static void ThrowIfNotSingle(string name, List<NamedVertex> matches)
         {
             if (matches.Count > 1)
