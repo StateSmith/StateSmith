@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using Xunit;
 using Xunit.Abstractions;
+using StateSmithTest;
 
 namespace Spec;
 
@@ -43,74 +44,14 @@ public class SpecTester
 
         if (expected != actualChunk)
         {
-            var diff = CreateDiffDiff(expected, actualChunk);
+            var diff = StringDiffer.Diff(expected, actualChunk);
             Assert.True(false, diff);
         }
 
         Assert.Equal(expected, actualChunk); // just in case
     }
 
-    public static string CreateDiffDiff(string expectedChunk, string actualChunk)
-    {
-        string diff = "";
-        var expectedLines = expectedChunk.Split("\n");
-        var actualLines = actualChunk.Split("\n");
-
-        int j;
-
-        for (j = 0; j < Math.Min(actualLines.Length, expectedLines.Length); j++)
-        {
-            var actual = actualLines[j];
-            var expected = expectedLines[j];
-
-            if (expected == actual)
-            {
-                diff += $" {expected}\n";
-            }
-            else
-            {
-                diff += CreateDiffLocation(expected, actual, '↓') + "\n";
-                diff += $"-{expected}\n";
-                diff += $"+{actual}\n";
-                diff += CreateDiffLocation(expected, actual, '↑') + "\n";
-            }
-        }
-
-        for (; j < Math.Max(actualLines.Length, expectedLines.Length); j++)
-        {
-            if (j < expectedLines.Length)
-            {
-                diff += $"-{expectedLines[j]}\n";
-            }
-
-            if (j < actualLines.Length)
-            {
-                diff += $"+{actualLines[j]}\n";
-            }
-        }
-
-        return diff;
-    }
-
-    public static string CreateDiffLocation(string expected, string actual, object indicatorChar)
-    {
-        return new string('·', FindDiffLocation(expected, actual) + 1) + indicatorChar;
-    }
-
-    public static int FindDiffLocation(string expected, string actual)
-    {
-        int i;
-
-        for (i = 0; i < expected.Length && i < actual.Length; i++)
-        {
-            if (expected[i] != actual[i])
-            {
-                return i;
-            }
-        }
-
-        return i;
-    }
+    
 
     public void RunAndVerify(Func<string, string> processRunningFunction)
     {

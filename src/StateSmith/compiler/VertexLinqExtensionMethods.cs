@@ -179,7 +179,21 @@ namespace StateSmith.compiler
         {
             return vertex.Behaviors.Where(b => b.HasTransition());
         }
-        
+
+        public static string UmlDescription(this IEnumerable<Behavior> behaviors)
+        {
+            string str = "";
+            string joiner = "";
+
+            foreach (var b in behaviors)
+            {
+                str += joiner + b.DescribeAsUml();
+                joiner = "\n";
+            }
+
+            return str;
+        }
+
         public static IEnumerable<Behavior> GetBehaviorsWithTrigger(this Vertex vertex, string triggerName)
         {
             return vertex.Behaviors.Where(b => b.triggers.Contains(triggerName));

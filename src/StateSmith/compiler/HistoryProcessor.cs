@@ -114,7 +114,7 @@ namespace StateSmith.Compiling
             foreach (var stateToTrack in statesToTrack)
             {
                 var index = historyState.Behaviors.Count;
-                bool isDefaultTransition = stateToTrack == defaultTransition?.TransitionTarget;
+                bool isDefaultTransition = stateToTrack == defaultTransition?.TransitionTarget && defaultTransition.HasActionCode() == false;
                 if (isDefaultTransition)
                 {
                     index = 0;
