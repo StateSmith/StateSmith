@@ -78,8 +78,8 @@ public class BashRunner
         int timeLeftMs = timeoutMs;
         while (timeLeftMs > 0 && !success)
         {
+            simpleProcess.StdError += cmd.StandardError.ReadToEnd();    // stderr must be read before stdout in case of error or thread hangs on windows
             simpleProcess.StdOutput += cmd.StandardOutput.ReadToEnd();
-            simpleProcess.StdError += cmd.StandardError.ReadToEnd();
 
             int waitMs = Math.Clamp(timeoutMs/5, 1, 100);
             if (cmd.WaitForExit(waitMs))

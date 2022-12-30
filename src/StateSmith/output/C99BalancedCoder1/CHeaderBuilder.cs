@@ -37,6 +37,12 @@ namespace StateSmith.output.C99BalancedCoder1
             cEnumBuilder.OutputStateIdCode();
             file.AppendLine();
 
+            foreach (var h in sm.historyStates)
+            {
+                cEnumBuilder.OutputHistoryIdCode(h);
+                file.AppendLine();
+            }
+
             OutputTypedefs(file);
             file.AppendLine();
 

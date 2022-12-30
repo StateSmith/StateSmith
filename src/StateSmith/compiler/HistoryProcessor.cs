@@ -3,6 +3,7 @@ using StateSmith.compiler;
 using StateSmith.Common;
 using System.Linq;
 using System.Collections.Generic;
+using StateSmith.output.C99BalancedCoder1;
 
 #nullable enable
 
@@ -11,10 +12,12 @@ namespace StateSmith.Compiling
     public class HistoryProcessor
     {
         Statemachine sm;
+        CNameMangler mangler;
 
-        public HistoryProcessor(Statemachine sm)
+        public HistoryProcessor(Statemachine sm, CNameMangler mangler)
         {
             this.sm = sm;
+            this.mangler = mangler;
         }
 
         public void Process()
@@ -109,25 +112,22 @@ namespace StateSmith.Compiling
             AddTrackingBehaviors(historyState, defaultTransition, statesToTrack);
         }
 
-        private static void AddTrackingBehaviors(HistoryVertex historyState, Behavior? defaultTransition, List<NamedVertex> statesToTrack)
+        private void AddTrackingBehaviors(HistoryVertex historyState, Behavior? defaultTransition, List<NamedVertex> statesToTrack)
         {
             foreach (var stateToTrack in statesToTrack)
             {
-                var index = historyState.Behaviors.Count;
                 bool isDefaultTransition = stateToTrack == defaultTransition?.TransitionTarget && defaultTransition.HasActionCode() == false;
-                if (isDefaultTransition)
-                {
-                    index = 0;
-                }
+
+                string enumValueName = mangler.HistoryVarEnumValueName(historyState, stateToTrack, isDefaultTransition);
 
                 {
-                    Behavior enterTrackingBehavior = new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{historyState.stateTrackingVarName} = {index};");
+                    Behavior enterTrackingBehavior = new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{historyState.stateTrackingVarName} = {enumValueName};");
                     stateToTrack.AddBehavior(enterTrackingBehavior);
                 }
 
                 if (!isDefaultTransition)
                 {
-                    Behavior historyTransitionBehavior = new Behavior(guardCode: $"{historyState.stateTrackingVarName} == {index}", transitionTarget: stateToTrack);
+                    Behavior historyTransitionBehavior = new Behavior(guardCode: $"{historyState.stateTrackingVarName} == {enumValueName}", transitionTarget: stateToTrack);
                     historyState.AddBehavior(historyTransitionBehavior);
                 }
             }

@@ -5730,11 +5730,11 @@ static void TEST7__DEEP_HISTORY1__GET_BACKUP_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP
     
     // TEST7__DEEP_HISTORY1__GET_BACKUP behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GET_BACKUP: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 2; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 2; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__GET_BACKUP: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 2; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GET_BACKUP: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP; }`.", true)] / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GET_BACKUP: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP; }`.", true))
     {
-        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 2;`
-        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 2;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP;
     } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP
 }
 
@@ -5769,19 +5769,19 @@ static void TEST7__DEEP_HISTORY1__HERO_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__HERO
     
     // TEST7__DEEP_HISTORY1__HERO behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 3; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 3; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 3; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO; }`.", true)] / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO; }`.", true))
     {
-        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 3;`
-        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 3;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO;
     } // end of behavior for TEST7__DEEP_HISTORY1__HERO
     
     // TEST7__DEEP_HISTORY1__HERO behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 0; }`.", true)] / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 0; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 0; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__default__TEST7__DEEP_HISTORY1__HERO; }`.", true)] / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__default__TEST7__DEEP_HISTORY1__HERO; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__HERO: check behavior `enter / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__default__TEST7__DEEP_HISTORY1__HERO; }`.", true))
     {
-        // Step 1: execute action `GET_BACKUP_history_state_tracking_var_name___$$$$ = 0;`
-        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = 0;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__default__TEST7__DEEP_HISTORY1__HERO;`
+        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__default__TEST7__DEEP_HISTORY1__HERO;
     } // end of behavior for TEST7__DEEP_HISTORY1__HERO
 }
 
@@ -6003,19 +6003,19 @@ static void TEST7__DEEP_HISTORY1__LOCAL_HELP_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__LOCAL_HELP
     
     // TEST7__DEEP_HISTORY1__LOCAL_HELP behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 4; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 4; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 4; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP; }`.", true)] / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP; }`.", true))
     {
-        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 4;`
-        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 4;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP;
     } // end of behavior for TEST7__DEEP_HISTORY1__LOCAL_HELP
     
     // TEST7__DEEP_HISTORY1__LOCAL_HELP behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 1; }`.", true)] / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 1; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 1; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP; }`.", true)] / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__LOCAL_HELP: check behavior `enter / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP; }`.", true))
     {
-        // Step 1: execute action `GET_BACKUP_history_state_tracking_var_name___$$$$ = 1;`
-        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = 1;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP;`
+        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP;
     } // end of behavior for TEST7__DEEP_HISTORY1__LOCAL_HELP
 }
 
@@ -6052,19 +6052,19 @@ static void TEST7__DEEP_HISTORY1__BUDDY_ELF_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
     
     // TEST7__DEEP_HISTORY1__BUDDY_ELF behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 5; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 5; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 5; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF; }`.", true)] / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF; }`.", true))
     {
-        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 5;`
-        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 5;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF;
     } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
     
     // TEST7__DEEP_HISTORY1__BUDDY_ELF behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 2; }`.", true)] / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 2; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 2; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF; }`.", true)] / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BUDDY_ELF: check behavior `enter / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF; }`.", true))
     {
-        // Step 1: execute action `GET_BACKUP_history_state_tracking_var_name___$$$$ = 2;`
-        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = 2;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF;`
+        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF;
     } // end of behavior for TEST7__DEEP_HISTORY1__BUDDY_ELF
 }
 
@@ -6151,19 +6151,19 @@ static void TEST7__DEEP_HISTORY1__POLAR_BEARS_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__POLAR_BEARS
     
     // TEST7__DEEP_HISTORY1__POLAR_BEARS behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 6; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 6; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 6; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS; }`.", true)] / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS; }`.", true))
     {
-        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 6;`
-        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 6;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS;
     } // end of behavior for TEST7__DEEP_HISTORY1__POLAR_BEARS
     
     // TEST7__DEEP_HISTORY1__POLAR_BEARS behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 3; }`.", true)] / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 3; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { GET_BACKUP_history_state_tracking_var_name___$$$$ = 3; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS; }`.", true)] / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__POLAR_BEARS: check behavior `enter / { TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS; }`.", true))
     {
-        // Step 1: execute action `GET_BACKUP_history_state_tracking_var_name___$$$$ = 3;`
-        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = 3;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS;`
+        self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS;
     } // end of behavior for TEST7__DEEP_HISTORY1__POLAR_BEARS
 }
 
@@ -6225,11 +6225,11 @@ static void TEST7__DEEP_HISTORY1__GIVE_COOKIES_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__GIVE_COOKIES
     
     // TEST7__DEEP_HISTORY1__GIVE_COOKIES behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 1; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 1; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 1; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES; }`.", true)] / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GIVE_COOKIES: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES; }`.", true))
     {
-        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 1;`
-        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 1;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES;
     } // end of behavior for TEST7__DEEP_HISTORY1__GIVE_COOKIES
 }
 
@@ -6317,11 +6317,11 @@ static void TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT
     
     // TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 0; }`.", true)] / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 0; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: check behavior `enter / { ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 0; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__default__TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT; }`.", true)] / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__default__TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT: check behavior `enter / { TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__default__TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT; }`.", true))
     {
-        // Step 1: execute action `ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = 0;`
-        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = 0;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__default__TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT;`
+        self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__default__TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT;
     } // end of behavior for TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT
 }
 
@@ -6427,8 +6427,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History is a pseudo state and cannot have an `enter` trigger.
             
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
-            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__GIVE_COOKIES."); } TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)
-            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 1)
+            // uml: [TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__GIVE_COOKIES."); } TransitionTo(TEST7__DEEP_HISTORY1__GIVE_COOKIES)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES)
             {
                 // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -6445,8 +6445,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
             } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History
             
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
-            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 2] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__GET_BACKUP."); } TransitionTo(TEST7__DEEP_HISTORY1__GET_BACKUP)
-            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 2)
+            // uml: [TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__GET_BACKUP."); } TransitionTo(TEST7__DEEP_HISTORY1__GET_BACKUP)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP)
             {
                 // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -6463,8 +6463,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
             } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History
             
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
-            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 3] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__HERO."); } TransitionTo(TEST7__DEEP_HISTORY1__HERO)
-            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 3)
+            // uml: [TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__HERO."); } TransitionTo(TEST7__DEEP_HISTORY1__HERO)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO)
             {
                 // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -6481,8 +6481,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
             } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History
             
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
-            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 4] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__LOCAL_HELP."); } TransitionTo(TEST7__DEEP_HISTORY1__LOCAL_HELP)
-            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 4)
+            // uml: [TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__LOCAL_HELP."); } TransitionTo(TEST7__DEEP_HISTORY1__LOCAL_HELP)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP)
             {
                 // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -6500,8 +6500,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
             } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History
             
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
-            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 5] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__BUDDY_ELF."); } TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)
-            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 5)
+            // uml: [TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__BUDDY_ELF."); } TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF)
             {
                 // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -6520,8 +6520,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev6(Spec2Sm* self)
             } // end of behavior for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History
             
             // TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History behavior
-            // uml: [ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == 6] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__POLAR_BEARS."); } TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)
-            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == 6)
+            // uml: [TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__ALIENS_DETECTED.History to TEST7__DEEP_HISTORY1__POLAR_BEARS."); } TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)
+            if (self->vars.TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS)
             {
                 // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -6579,8 +6579,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev7(Spec2Sm* self)
         // TEST7__DEEP_HISTORY1__GET_BACKUP.History is a pseudo state and cannot have an `enter` trigger.
         
         // TEST7__DEEP_HISTORY1__GET_BACKUP.History behavior
-        // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__LOCAL_HELP."); } TransitionTo(TEST7__DEEP_HISTORY1__LOCAL_HELP)
-        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == 1)
+        // uml: [TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__LOCAL_HELP."); } TransitionTo(TEST7__DEEP_HISTORY1__LOCAL_HELP)
+        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6597,8 +6597,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev7(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.History
         
         // TEST7__DEEP_HISTORY1__GET_BACKUP.History behavior
-        // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 2] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__BUDDY_ELF."); } TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)
-        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == 2)
+        // uml: [TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__BUDDY_ELF."); } TransitionTo(TEST7__DEEP_HISTORY1__BUDDY_ELF)
+        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6616,8 +6616,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_ev7(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__GET_BACKUP.History
         
         // TEST7__DEEP_HISTORY1__GET_BACKUP.History behavior
-        // uml: [GET_BACKUP_history_state_tracking_var_name___$$$$ == 3] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__POLAR_BEARS."); } TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)
-        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == 3)
+        // uml: [TEST7__DEEP_HISTORY1__GET_BACKUP_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__GET_BACKUP.History to TEST7__DEEP_HISTORY1__POLAR_BEARS."); } TransitionTo(TEST7__DEEP_HISTORY1__POLAR_BEARS)
+        if (self->vars.TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6666,8 +6666,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         // TEST7__DEEP_HISTORY1__BUILD.History is a pseudo state and cannot have an `enter` trigger.
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOOL."); } TransitionTo(TEST7__DEEP_HISTORY1__TOOL)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 1)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TOOL."); } TransitionTo(TEST7__DEEP_HISTORY1__TOOL)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6683,8 +6683,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 2] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__RACE_CAR."); } TransitionTo(TEST7__DEEP_HISTORY1__RACE_CAR)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 2)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__RACE_CAR."); } TransitionTo(TEST7__DEEP_HISTORY1__RACE_CAR)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6702,8 +6702,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 3] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TEDDY_BEAR."); } TransitionTo(TEST7__DEEP_HISTORY1__TEDDY_BEAR)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 3)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__TEDDY_BEAR."); } TransitionTo(TEST7__DEEP_HISTORY1__TEDDY_BEAR)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6721,8 +6721,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 4] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__GLOW_WORM."); } TransitionTo(TEST7__DEEP_HISTORY1__GLOW_WORM)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 4)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__GLOW_WORM."); } TransitionTo(TEST7__DEEP_HISTORY1__GLOW_WORM)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6740,8 +6740,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 5] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__ROBOT."); } TransitionTo(TEST7__DEEP_HISTORY1__ROBOT)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 5)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__ROBOT."); } TransitionTo(TEST7__DEEP_HISTORY1__ROBOT)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6758,8 +6758,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 6] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__BATTLEBOT."); } TransitionTo(TEST7__DEEP_HISTORY1__BATTLEBOT)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 6)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__BATTLEBOT."); } TransitionTo(TEST7__DEEP_HISTORY1__BATTLEBOT)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6778,8 +6778,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 7] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__WALL_E."); } TransitionTo(TEST7__DEEP_HISTORY1__WALL_E)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 7)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__WALL_E."); } TransitionTo(TEST7__DEEP_HISTORY1__WALL_E)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6798,8 +6798,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 8] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__IMPACT_DRILL."); } TransitionTo(TEST7__DEEP_HISTORY1__IMPACT_DRILL)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 8)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__IMPACT_DRILL."); } TransitionTo(TEST7__DEEP_HISTORY1__IMPACT_DRILL)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6817,8 +6817,8 @@ static void TEST7__DEEP_HISTORY1__BUILD_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__DEEP_HISTORY1__BUILD.History
         
         // TEST7__DEEP_HISTORY1__BUILD.History behavior
-        // uml: [BUILD_history_state_tracking_var_name___$$$$ == 9] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__CIRCULAR_SAW."); } TransitionTo(TEST7__DEEP_HISTORY1__CIRCULAR_SAW)
-        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == 9)
+        // uml: [TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW] / { trace("Transition action `` for TEST7__DEEP_HISTORY1__BUILD.History to TEST7__DEEP_HISTORY1__CIRCULAR_SAW."); } TransitionTo(TEST7__DEEP_HISTORY1__CIRCULAR_SAW)
+        if (self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var == Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW)
         {
             // Step 1: Exit states until we reach `TEST7__DEEP_HISTORY1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -6872,11 +6872,11 @@ static void TEST7__DEEP_HISTORY1__TOOL_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__TOOL
     
     // TEST7__DEEP_HISTORY1__TOOL behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TOOL: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 1; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 1; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__TOOL: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 1; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TOOL: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TOOL: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 1;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 1;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL;
     } // end of behavior for TEST7__DEEP_HISTORY1__TOOL
 }
 
@@ -6955,11 +6955,11 @@ static void TEST7__DEEP_HISTORY1__CIRCULAR_SAW_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__CIRCULAR_SAW
     
     // TEST7__DEEP_HISTORY1__CIRCULAR_SAW behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__CIRCULAR_SAW: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 9; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 9; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__CIRCULAR_SAW: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 9; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__CIRCULAR_SAW: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__CIRCULAR_SAW: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 9;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 9;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW;
     } // end of behavior for TEST7__DEEP_HISTORY1__CIRCULAR_SAW
 }
 
@@ -6995,11 +6995,11 @@ static void TEST7__DEEP_HISTORY1__IMPACT_DRILL_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__IMPACT_DRILL
     
     // TEST7__DEEP_HISTORY1__IMPACT_DRILL behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__IMPACT_DRILL: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 8; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 8; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__IMPACT_DRILL: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 8; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__IMPACT_DRILL: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__IMPACT_DRILL: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 8;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 8;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL;
     } // end of behavior for TEST7__DEEP_HISTORY1__IMPACT_DRILL
 }
 
@@ -7060,11 +7060,11 @@ static void TEST7__DEEP_HISTORY1__TOY_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__TOY
     
     // TEST7__DEEP_HISTORY1__TOY behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TOY: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 0; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 0; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__TOY: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 0; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TOY: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__default__TEST7__DEEP_HISTORY1__TOY; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__default__TEST7__DEEP_HISTORY1__TOY; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TOY: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__default__TEST7__DEEP_HISTORY1__TOY; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 0;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 0;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__default__TEST7__DEEP_HISTORY1__TOY;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__default__TEST7__DEEP_HISTORY1__TOY;
     } // end of behavior for TEST7__DEEP_HISTORY1__TOY
 }
 
@@ -7144,11 +7144,11 @@ static void TEST7__DEEP_HISTORY1__GLOW_WORM_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__GLOW_WORM
     
     // TEST7__DEEP_HISTORY1__GLOW_WORM behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GLOW_WORM: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 4; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 4; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__GLOW_WORM: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 4; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__GLOW_WORM: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__GLOW_WORM: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 4;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 4;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM;
     } // end of behavior for TEST7__DEEP_HISTORY1__GLOW_WORM
 }
 
@@ -7209,11 +7209,11 @@ static void TEST7__DEEP_HISTORY1__RACE_CAR_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__RACE_CAR
     
     // TEST7__DEEP_HISTORY1__RACE_CAR behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__RACE_CAR: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 2; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 2; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__RACE_CAR: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 2; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__RACE_CAR: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__RACE_CAR: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 2;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 2;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR;
     } // end of behavior for TEST7__DEEP_HISTORY1__RACE_CAR
 }
 
@@ -7274,11 +7274,11 @@ static void TEST7__DEEP_HISTORY1__ROBOT_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__ROBOT
     
     // TEST7__DEEP_HISTORY1__ROBOT behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__ROBOT: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 5; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 5; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__ROBOT: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 5; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__ROBOT: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__ROBOT: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 5;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 5;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT;
     } // end of behavior for TEST7__DEEP_HISTORY1__ROBOT
 }
 
@@ -7334,11 +7334,11 @@ static void TEST7__DEEP_HISTORY1__BATTLEBOT_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__BATTLEBOT
     
     // TEST7__DEEP_HISTORY1__BATTLEBOT behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BATTLEBOT: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 6; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 6; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__BATTLEBOT: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 6; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__BATTLEBOT: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__BATTLEBOT: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 6;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 6;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT;
     } // end of behavior for TEST7__DEEP_HISTORY1__BATTLEBOT
 }
 
@@ -7399,11 +7399,11 @@ static void TEST7__DEEP_HISTORY1__WALL_E_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__WALL_E
     
     // TEST7__DEEP_HISTORY1__WALL_E behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__WALL_E: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 7; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 7; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__WALL_E: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 7; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__WALL_E: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__WALL_E: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 7;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 7;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E;
     } // end of behavior for TEST7__DEEP_HISTORY1__WALL_E
 }
 
@@ -7439,11 +7439,11 @@ static void TEST7__DEEP_HISTORY1__TEDDY_BEAR_enter(Spec2Sm* self)
     } // end of behavior for TEST7__DEEP_HISTORY1__TEDDY_BEAR
     
     // TEST7__DEEP_HISTORY1__TEDDY_BEAR behavior
-    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TEDDY_BEAR: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 3; }`.", true)] / { BUILD_history_state_tracking_var_name___$$$$ = 3; }
-    if (trace_guard("State TEST7__DEEP_HISTORY1__TEDDY_BEAR: check behavior `enter / { BUILD_history_state_tracking_var_name___$$$$ = 3; }`.", true))
+    // uml: enter [trace_guard("State TEST7__DEEP_HISTORY1__TEDDY_BEAR: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR; }`.", true)] / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR; }
+    if (trace_guard("State TEST7__DEEP_HISTORY1__TEDDY_BEAR: check behavior `enter / { TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR; }`.", true))
     {
-        // Step 1: execute action `BUILD_history_state_tracking_var_name___$$$$ = 3;`
-        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = 3;
+        // Step 1: execute action `TEST7__DEEP_HISTORY1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR;`
+        self->vars.TEST7__DEEP_HISTORY1__BUILD_history_tracking_var = Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR;
     } // end of behavior for TEST7__DEEP_HISTORY1__TEDDY_BEAR
 }
 
@@ -7638,8 +7638,8 @@ static void TEST7__HISTORY1__OFF_InitialState_transition(Spec2Sm* self)
         // TEST7__HISTORY1__OFF.History is a pseudo state and cannot have an `enter` trigger.
         
         // TEST7__HISTORY1__OFF.History behavior
-        // uml: [OFF_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF2."); } TransitionTo(TEST7__HISTORY1__OFF2)
-        if (self->vars.TEST7__HISTORY1__OFF_history_tracking_var == 1)
+        // uml: [TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2] / { trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF2."); } TransitionTo(TEST7__HISTORY1__OFF2)
+        if (self->vars.TEST7__HISTORY1__OFF_history_tracking_var == Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2)
         {
             // Step 1: Exit states until we reach `TEST7__HISTORY1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -7656,8 +7656,8 @@ static void TEST7__HISTORY1__OFF_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__HISTORY1__OFF.History
         
         // TEST7__HISTORY1__OFF.History behavior
-        // uml: [OFF_history_state_tracking_var_name___$$$$ == 2] / { trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF3."); } TransitionTo(TEST7__HISTORY1__OFF3)
-        if (self->vars.TEST7__HISTORY1__OFF_history_tracking_var == 2)
+        // uml: [TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3] / { trace("Transition action `` for TEST7__HISTORY1__OFF.History to TEST7__HISTORY1__OFF3."); } TransitionTo(TEST7__HISTORY1__OFF3)
+        if (self->vars.TEST7__HISTORY1__OFF_history_tracking_var == Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3)
         {
             // Step 1: Exit states until we reach `TEST7__HISTORY1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -7711,11 +7711,11 @@ static void TEST7__HISTORY1__OFF1_enter(Spec2Sm* self)
     } // end of behavior for TEST7__HISTORY1__OFF1
     
     // TEST7__HISTORY1__OFF1 behavior
-    // uml: enter [trace_guard("State TEST7__HISTORY1__OFF1: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 0; }`.", true)] / { OFF_history_state_tracking_var_name___$$$$ = 0; }
-    if (trace_guard("State TEST7__HISTORY1__OFF1: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 0; }`.", true))
+    // uml: enter [trace_guard("State TEST7__HISTORY1__OFF1: check behavior `enter / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__default__TEST7__HISTORY1__OFF1; }`.", true)] / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__default__TEST7__HISTORY1__OFF1; }
+    if (trace_guard("State TEST7__HISTORY1__OFF1: check behavior `enter / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__default__TEST7__HISTORY1__OFF1; }`.", true))
     {
-        // Step 1: execute action `OFF_history_state_tracking_var_name___$$$$ = 0;`
-        self->vars.TEST7__HISTORY1__OFF_history_tracking_var = 0;
+        // Step 1: execute action `TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__default__TEST7__HISTORY1__OFF1;`
+        self->vars.TEST7__HISTORY1__OFF_history_tracking_var = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__default__TEST7__HISTORY1__OFF1;
     } // end of behavior for TEST7__HISTORY1__OFF1
 }
 
@@ -7776,11 +7776,11 @@ static void TEST7__HISTORY1__OFF2_enter(Spec2Sm* self)
     } // end of behavior for TEST7__HISTORY1__OFF2
     
     // TEST7__HISTORY1__OFF2 behavior
-    // uml: enter [trace_guard("State TEST7__HISTORY1__OFF2: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 1; }`.", true)] / { OFF_history_state_tracking_var_name___$$$$ = 1; }
-    if (trace_guard("State TEST7__HISTORY1__OFF2: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 1; }`.", true))
+    // uml: enter [trace_guard("State TEST7__HISTORY1__OFF2: check behavior `enter / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2; }`.", true)] / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2; }
+    if (trace_guard("State TEST7__HISTORY1__OFF2: check behavior `enter / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2; }`.", true))
     {
-        // Step 1: execute action `OFF_history_state_tracking_var_name___$$$$ = 1;`
-        self->vars.TEST7__HISTORY1__OFF_history_tracking_var = 1;
+        // Step 1: execute action `TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2;`
+        self->vars.TEST7__HISTORY1__OFF_history_tracking_var = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2;
     } // end of behavior for TEST7__HISTORY1__OFF2
 }
 
@@ -7840,11 +7840,11 @@ static void TEST7__HISTORY1__OFF3_enter(Spec2Sm* self)
     } // end of behavior for TEST7__HISTORY1__OFF3
     
     // TEST7__HISTORY1__OFF3 behavior
-    // uml: enter [trace_guard("State TEST7__HISTORY1__OFF3: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 2; }`.", true)] / { OFF_history_state_tracking_var_name___$$$$ = 2; }
-    if (trace_guard("State TEST7__HISTORY1__OFF3: check behavior `enter / { OFF_history_state_tracking_var_name___$$$$ = 2; }`.", true))
+    // uml: enter [trace_guard("State TEST7__HISTORY1__OFF3: check behavior `enter / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3; }`.", true)] / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3; }
+    if (trace_guard("State TEST7__HISTORY1__OFF3: check behavior `enter / { TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3; }`.", true))
     {
-        // Step 1: execute action `OFF_history_state_tracking_var_name___$$$$ = 2;`
-        self->vars.TEST7__HISTORY1__OFF_history_tracking_var = 2;
+        // Step 1: execute action `TEST7__HISTORY1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3;`
+        self->vars.TEST7__HISTORY1__OFF_history_tracking_var = Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3;
     } // end of behavior for TEST7__HISTORY1__OFF3
 }
 
@@ -7931,8 +7931,8 @@ static void TEST7__HISTORY1__ON_InitialState_transition(Spec2Sm* self)
         // TEST7__HISTORY1__ON.History is a pseudo state and cannot have an `enter` trigger.
         
         // TEST7__HISTORY1__ON.History behavior
-        // uml: [ON_history_state_tracking_var_name___$$$$ == 1] / { trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON2."); } TransitionTo(TEST7__HISTORY1__ON2)
-        if (self->vars.TEST7__HISTORY1__ON_history_tracking_var == 1)
+        // uml: [TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2] / { trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON2."); } TransitionTo(TEST7__HISTORY1__ON2)
+        if (self->vars.TEST7__HISTORY1__ON_history_tracking_var == Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2)
         {
             // Step 1: Exit states until we reach `TEST7__HISTORY1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -7949,8 +7949,8 @@ static void TEST7__HISTORY1__ON_InitialState_transition(Spec2Sm* self)
         } // end of behavior for TEST7__HISTORY1__ON.History
         
         // TEST7__HISTORY1__ON.History behavior
-        // uml: [ON_history_state_tracking_var_name___$$$$ == 2] / { trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON3."); } TransitionTo(TEST7__HISTORY1__ON3)
-        if (self->vars.TEST7__HISTORY1__ON_history_tracking_var == 2)
+        // uml: [TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ == Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3] / { trace("Transition action `` for TEST7__HISTORY1__ON.History to TEST7__HISTORY1__ON3."); } TransitionTo(TEST7__HISTORY1__ON3)
+        if (self->vars.TEST7__HISTORY1__ON_history_tracking_var == Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3)
         {
             // Step 1: Exit states until we reach `TEST7__HISTORY1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
@@ -8004,11 +8004,11 @@ static void TEST7__HISTORY1__ON1_enter(Spec2Sm* self)
     } // end of behavior for TEST7__HISTORY1__ON1
     
     // TEST7__HISTORY1__ON1 behavior
-    // uml: enter [trace_guard("State TEST7__HISTORY1__ON1: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 0; }`.", true)] / { ON_history_state_tracking_var_name___$$$$ = 0; }
-    if (trace_guard("State TEST7__HISTORY1__ON1: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 0; }`.", true))
+    // uml: enter [trace_guard("State TEST7__HISTORY1__ON1: check behavior `enter / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__default__TEST7__HISTORY1__ON1; }`.", true)] / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__default__TEST7__HISTORY1__ON1; }
+    if (trace_guard("State TEST7__HISTORY1__ON1: check behavior `enter / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__default__TEST7__HISTORY1__ON1; }`.", true))
     {
-        // Step 1: execute action `ON_history_state_tracking_var_name___$$$$ = 0;`
-        self->vars.TEST7__HISTORY1__ON_history_tracking_var = 0;
+        // Step 1: execute action `TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__default__TEST7__HISTORY1__ON1;`
+        self->vars.TEST7__HISTORY1__ON_history_tracking_var = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__default__TEST7__HISTORY1__ON1;
     } // end of behavior for TEST7__HISTORY1__ON1
 }
 
@@ -8069,11 +8069,11 @@ static void TEST7__HISTORY1__ON2_enter(Spec2Sm* self)
     } // end of behavior for TEST7__HISTORY1__ON2
     
     // TEST7__HISTORY1__ON2 behavior
-    // uml: enter [trace_guard("State TEST7__HISTORY1__ON2: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 1; }`.", true)] / { ON_history_state_tracking_var_name___$$$$ = 1; }
-    if (trace_guard("State TEST7__HISTORY1__ON2: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 1; }`.", true))
+    // uml: enter [trace_guard("State TEST7__HISTORY1__ON2: check behavior `enter / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2; }`.", true)] / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2; }
+    if (trace_guard("State TEST7__HISTORY1__ON2: check behavior `enter / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2; }`.", true))
     {
-        // Step 1: execute action `ON_history_state_tracking_var_name___$$$$ = 1;`
-        self->vars.TEST7__HISTORY1__ON_history_tracking_var = 1;
+        // Step 1: execute action `TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2;`
+        self->vars.TEST7__HISTORY1__ON_history_tracking_var = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2;
     } // end of behavior for TEST7__HISTORY1__ON2
 }
 
@@ -8134,11 +8134,11 @@ static void TEST7__HISTORY1__ON3_enter(Spec2Sm* self)
     } // end of behavior for TEST7__HISTORY1__ON3
     
     // TEST7__HISTORY1__ON3 behavior
-    // uml: enter [trace_guard("State TEST7__HISTORY1__ON3: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 2; }`.", true)] / { ON_history_state_tracking_var_name___$$$$ = 2; }
-    if (trace_guard("State TEST7__HISTORY1__ON3: check behavior `enter / { ON_history_state_tracking_var_name___$$$$ = 2; }`.", true))
+    // uml: enter [trace_guard("State TEST7__HISTORY1__ON3: check behavior `enter / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3; }`.", true)] / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3; }
+    if (trace_guard("State TEST7__HISTORY1__ON3: check behavior `enter / { TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3; }`.", true))
     {
-        // Step 1: execute action `ON_history_state_tracking_var_name___$$$$ = 2;`
-        self->vars.TEST7__HISTORY1__ON_history_tracking_var = 2;
+        // Step 1: execute action `TEST7__HISTORY1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3;`
+        self->vars.TEST7__HISTORY1__ON_history_tracking_var = Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3;
     } // end of behavior for TEST7__HISTORY1__ON3
 }
 

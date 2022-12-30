@@ -170,6 +170,58 @@ enum
     Spec2Sm_StateIdCount = 138
 };
 
+enum Spec2Sm_TEST7__HISTORY1__ON_HistoryId
+{
+    Spec2Sm_TEST7__HISTORY1__ON_HistoryId__default__TEST7__HISTORY1__ON1 = 0,
+    Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2 = 1,
+    Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3 = 2,
+};
+
+
+enum Spec2Sm_TEST7__HISTORY1__OFF_HistoryId
+{
+    Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__default__TEST7__HISTORY1__OFF1 = 0,
+    Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2 = 1,
+    Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3 = 2,
+};
+
+
+enum Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId
+{
+    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__default__TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT = 0,
+    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES = 1,
+    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP = 2,
+    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO = 3,
+    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP = 4,
+    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF = 5,
+    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS = 6,
+};
+
+
+enum Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId
+{
+    Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__default__TEST7__DEEP_HISTORY1__HERO = 0,
+    Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP = 1,
+    Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF = 2,
+    Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS = 3,
+};
+
+
+enum Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId
+{
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__default__TEST7__DEEP_HISTORY1__TOY = 0,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL = 1,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR = 2,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR = 3,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM = 4,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT = 5,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT = 6,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E = 7,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL = 8,
+    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW = 9,
+};
+
+
 typedef struct Spec2Sm Spec2Sm;
 typedef void (*Spec2Sm_Func)(Spec2Sm* sm);
 
@@ -190,11 +242,11 @@ struct Spec2Sm
     // User variables. Can be used for inputs, outputs, user variables...
     struct
     {
-        uint8_t TEST7__HISTORY1__ON_history_tracking_var;
-        uint8_t TEST7__HISTORY1__OFF_history_tracking_var;
-        uint8_t TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var;
-        uint8_t TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var;
-        uint8_t TEST7__DEEP_HISTORY1__BUILD_history_tracking_var;
+        enum Spec2Sm_TEST7__HISTORY1__ON_HistoryId TEST7__HISTORY1__ON_history_tracking_var;
+        enum Spec2Sm_TEST7__HISTORY1__OFF_HistoryId TEST7__HISTORY1__OFF_history_tracking_var;
+        enum Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var;
+        enum Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var;
+        enum Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId TEST7__DEEP_HISTORY1__BUILD_history_tracking_var;
         uint8_t count;
     } vars;
 };

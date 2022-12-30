@@ -28,6 +28,7 @@ public class CompilerRunner
     public Compiler compiler = new();
     public Statemachine? sm;
     public PrefixingModder prefixingModder = new();
+    public CNameMangler mangler = new();
 
     /// <summary>
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
@@ -131,12 +132,13 @@ public class CompilerRunner
     public void FinishRunningCompiler()
     {
         SetupForSingleSm();
+        mangler.SetStateMachine(sm);
 
         compiler.SupportParentAlias();
         compiler.SupportEntryExitPoints();
-        Compiler.SupportHistory(sm);
+        prefixingModder.Visit(sm); // must happen before history
+        SupportHistory(sm, mangler);
         compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
-        prefixingModder.Visit(sm);
         preValidation(sm);
         compiler.Validate();
         postParentAliasValidation(sm);
@@ -157,5 +159,12 @@ public class CompilerRunner
         }
 
         compiler.rootVertices = new List<Vertex> { sm };
+    }
+
+    // https://github.com/StateSmith/StateSmith/issues/63
+    public static void SupportHistory(Statemachine sm, CNameMangler mangler)
+    {
+        var processor = new HistoryProcessor(sm, mangler);
+        processor.Process();
     }
 }

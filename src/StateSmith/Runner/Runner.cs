@@ -87,6 +87,7 @@ namespace StateSmith.Runner
         {
             CodeGenContext codeGenContext = new(compilerRunner.sm, settings.renderConfig);
             settings.mangler.SetStateMachine(compilerRunner.sm);
+            compilerRunner.mangler = settings.mangler;
             codeGenContext.mangler = settings.mangler;
             codeGenContext.style = settings.style;
 
@@ -94,9 +95,20 @@ namespace StateSmith.Runner
             {
                 string actualVarName = codeGenContext.mangler.HistoryVarName(h);
                 codeGenContext.expander.AddVariableExpansion(h.stateTrackingVarName, ExpansionVarsPath + actualVarName);
-                codeGenContext.sm.variables += $"uint8_t {actualVarName};\n";
-                if (h.Behaviors.Count > 255) {
-                    throw new VertexValidationException(h, "can't support more than 255 tracked history states right now."); //uint8_t limitation.
+
+                bool useU8 = false;
+
+                if (useU8)
+                {
+                    codeGenContext.sm.variables += $"uint8_t {actualVarName};\n";
+                    if (h.Behaviors.Count > 255) {
+                        throw new VertexValidationException(h, "can't support more than 255 tracked history states right now."); //uint8_t limitation.
+                    }
+                }
+                else
+                {
+                    codeGenContext.sm.variables += $"enum {compilerRunner.mangler.HistoryVarEnumName(h)} {actualVarName};\n";
+
                 }
             }
 

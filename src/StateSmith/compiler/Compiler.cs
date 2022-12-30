@@ -9,6 +9,7 @@ using StateSmith.compiler;
 using StateSmith.Input;
 using System.IO;
 using StateSmith.compiler.Visitors;
+using StateSmith.output.C99BalancedCoder1;
 
 namespace StateSmith.Compiling
 {
@@ -89,13 +90,6 @@ namespace StateSmith.Compiling
                 var processor = new InitialStateProcessor();
                 v.Accept(processor);
             }
-        }
-
-        // https://github.com/StateSmith/StateSmith/issues/63
-        public static void SupportHistory(Statemachine sm)
-        {
-            var processor = new HistoryProcessor(sm);
-            processor.Process();
         }
 
         // https://github.com/StateSmith/StateSmith/issues/3
