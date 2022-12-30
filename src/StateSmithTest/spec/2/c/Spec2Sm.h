@@ -104,45 +104,45 @@ enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST6_S2 = 76,
     Spec2Sm_StateId_TEST7_INITIAL_OR_HISTORY = 77,
     Spec2Sm_StateId_TEST7 = 78,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1 = 79,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__SANTAS_WORKSHOP = 80,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__ALIENS_DETECTED = 81,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GET_BACKUP = 82,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__HERO = 83,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_BATMAN = 84,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CALL_THOR = 85,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__LOCAL_HELP = 86,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BUDDY_ELF = 87,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__POLAR_BEARS = 88,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GIVE_COOKIES = 89,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT = 90,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BUILD = 91,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__TOOL = 92,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__CIRCULAR_SAW = 93,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__IMPACT_DRILL = 94,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__TOY = 95,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__GLOW_WORM = 96,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__RACE_CAR = 97,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__ROBOT = 98,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__BATTLEBOT = 99,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__WALL_E = 100,
-    Spec2Sm_StateId_TEST7__DEEP_HISTORY1__TEDDY_BEAR = 101,
-    Spec2Sm_StateId_TEST7__HISTORY1 = 102,
-    Spec2Sm_StateId_TEST7__HISTORY1__OFF = 103,
-    Spec2Sm_StateId_TEST7__HISTORY1__OFF1 = 104,
-    Spec2Sm_StateId_TEST7__HISTORY1__OFF2 = 105,
-    Spec2Sm_StateId_TEST7__HISTORY1__OFF3 = 106,
-    Spec2Sm_StateId_TEST7__HISTORY1__ON = 107,
-    Spec2Sm_StateId_TEST7__HISTORY1__ON1 = 108,
-    Spec2Sm_StateId_TEST7__HISTORY1__ON2 = 109,
-    Spec2Sm_StateId_TEST7__HISTORY1__ON3 = 110,
-    Spec2Sm_StateId_TEST7__INITIAL1 = 111,
-    Spec2Sm_StateId_TEST7__INITIAL1__PARENT = 112,
-    Spec2Sm_StateId_TEST7__INITIAL1__G = 113,
-    Spec2Sm_StateId_TEST7__INITIAL1__G_S1 = 114,
-    Spec2Sm_StateId_TEST7__INITIAL1__G_S2 = 115,
-    Spec2Sm_StateId_TEST7__INITIAL1__G_S3 = 116,
-    Spec2Sm_StateId_TEST7__INITIAL1__S1 = 117,
+    Spec2Sm_StateId_T7__DEEP_HISTORY1 = 79,
+    Spec2Sm_StateId_T7__DH1__SANTAS_WORKSHOP = 80,
+    Spec2Sm_StateId_T7__DH1__ALIENS_DETECTED = 81,
+    Spec2Sm_StateId_T7__DH1__GET_BACKUP = 82,
+    Spec2Sm_StateId_T7__DH1__HERO = 83,
+    Spec2Sm_StateId_T7__DH1__CALL_BATMAN = 84,
+    Spec2Sm_StateId_T7__DH1__CALL_THOR = 85,
+    Spec2Sm_StateId_T7__DH1__LOCAL_HELP = 86,
+    Spec2Sm_StateId_T7__DH1__BUDDY_ELF = 87,
+    Spec2Sm_StateId_T7__DH1__POLAR_BEARS = 88,
+    Spec2Sm_StateId_T7__DH1__GIVE_COOKIES = 89,
+    Spec2Sm_StateId_T7__DH1__SNOWBALL_FIGHT = 90,
+    Spec2Sm_StateId_T7__DH1__BUILD = 91,
+    Spec2Sm_StateId_T7__DH1__TOOL = 92,
+    Spec2Sm_StateId_T7__DH1__CIRCULAR_SAW = 93,
+    Spec2Sm_StateId_T7__DH1__IMPACT_DRILL = 94,
+    Spec2Sm_StateId_T7__DH1__TOY = 95,
+    Spec2Sm_StateId_T7__DH1__GLOW_WORM = 96,
+    Spec2Sm_StateId_T7__DH1__RACE_CAR = 97,
+    Spec2Sm_StateId_T7__DH1__ROBOT = 98,
+    Spec2Sm_StateId_T7__DH1__BATTLEBOT = 99,
+    Spec2Sm_StateId_T7__DH1__WALL_E = 100,
+    Spec2Sm_StateId_T7__DH1__TEDDY_BEAR = 101,
+    Spec2Sm_StateId_T7__HISTORY1 = 102,
+    Spec2Sm_StateId_T7__H1__OFF = 103,
+    Spec2Sm_StateId_T7__H1__OFF1 = 104,
+    Spec2Sm_StateId_T7__H1__OFF2 = 105,
+    Spec2Sm_StateId_T7__H1__OFF3 = 106,
+    Spec2Sm_StateId_T7__H1__ON = 107,
+    Spec2Sm_StateId_T7__H1__ON1 = 108,
+    Spec2Sm_StateId_T7__H1__ON2 = 109,
+    Spec2Sm_StateId_T7__H1__ON3 = 110,
+    Spec2Sm_StateId_T7__INITIAL1 = 111,
+    Spec2Sm_StateId_T7__INITIAL1__PARENT = 112,
+    Spec2Sm_StateId_T7__INITIAL1__G = 113,
+    Spec2Sm_StateId_T7__INITIAL1__G_S1 = 114,
+    Spec2Sm_StateId_T7__INITIAL1__G_S2 = 115,
+    Spec2Sm_StateId_T7__INITIAL1__G_S3 = 116,
+    Spec2Sm_StateId_T7__INITIAL1__S1 = 117,
     Spec2Sm_StateId_TEST7_DECIDE = 118,
     Spec2Sm_StateId_TEST8_ENTRY_CHOICE = 119,
     Spec2Sm_StateId_TEST8_ROOT = 120,
@@ -170,55 +170,56 @@ enum
     Spec2Sm_StateIdCount = 138
 };
 
-enum Spec2Sm_TEST7__HISTORY1__ON_HistoryId
+enum Spec2Sm_T7__H1__ON_HistoryId
 {
-    Spec2Sm_TEST7__HISTORY1__ON_HistoryId__default__TEST7__HISTORY1__ON1 = 0,
-    Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON2 = 1,
-    Spec2Sm_TEST7__HISTORY1__ON_HistoryId__TEST7__HISTORY1__ON3 = 2,
+    Spec2Sm_T7__H1__ON_HistoryId__default__T7__H1__ON1 = 0,
+    Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2 = 1,
+    Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3 = 2,
 };
 
 
-enum Spec2Sm_TEST7__HISTORY1__OFF_HistoryId
+enum Spec2Sm_T7__H1__OFF_HistoryId
 {
-    Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__default__TEST7__HISTORY1__OFF1 = 0,
-    Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF2 = 1,
-    Spec2Sm_TEST7__HISTORY1__OFF_HistoryId__TEST7__HISTORY1__OFF3 = 2,
+    Spec2Sm_T7__H1__OFF_HistoryId__default__T7__H1__OFF1 = 0,
+    Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2 = 1,
+    Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3 = 2,
 };
 
 
-enum Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId
+enum Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId
 {
-    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__default__TEST7__DEEP_HISTORY1__SNOWBALL_FIGHT = 0,
-    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GIVE_COOKIES = 1,
-    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__GET_BACKUP = 2,
-    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__HERO = 3,
-    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP = 4,
-    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF = 5,
-    Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS = 6,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__default__T7__DH1__SNOWBALL_FIGHT = 0,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES = 1,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP = 2,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO = 3,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP = 4,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF = 5,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS = 6,
 };
 
 
-enum Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId
+enum Spec2Sm_T7__DH1__GET_BACKUP_HistoryId
 {
-    Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__default__TEST7__DEEP_HISTORY1__HERO = 0,
-    Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__LOCAL_HELP = 1,
-    Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__BUDDY_ELF = 2,
-    Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId__TEST7__DEEP_HISTORY1__POLAR_BEARS = 3,
+    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__default = 0,
+    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO = 1,
+    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP = 2,
+    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF = 3,
+    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS = 4,
 };
 
 
-enum Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId
+enum Spec2Sm_T7__DH1__BUILD_HistoryId
 {
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__default__TEST7__DEEP_HISTORY1__TOY = 0,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TOOL = 1,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__RACE_CAR = 2,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__TEDDY_BEAR = 3,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__GLOW_WORM = 4,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__ROBOT = 5,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__BATTLEBOT = 6,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__WALL_E = 7,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__IMPACT_DRILL = 8,
-    Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId__TEST7__DEEP_HISTORY1__CIRCULAR_SAW = 9,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__default__T7__DH1__TOY = 0,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL = 1,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR = 2,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR = 3,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__GLOW_WORM = 4,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__ROBOT = 5,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__BATTLEBOT = 6,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__WALL_E = 7,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__IMPACT_DRILL = 8,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__CIRCULAR_SAW = 9,
 };
 
 
@@ -242,11 +243,11 @@ struct Spec2Sm
     // User variables. Can be used for inputs, outputs, user variables...
     struct
     {
-        enum Spec2Sm_TEST7__HISTORY1__ON_HistoryId TEST7__HISTORY1__ON_history_tracking_var;
-        enum Spec2Sm_TEST7__HISTORY1__OFF_HistoryId TEST7__HISTORY1__OFF_history_tracking_var;
-        enum Spec2Sm_TEST7__DEEP_HISTORY1__ALIENS_DETECTED_HistoryId TEST7__DEEP_HISTORY1__ALIENS_DETECTED_history_tracking_var;
-        enum Spec2Sm_TEST7__DEEP_HISTORY1__GET_BACKUP_HistoryId TEST7__DEEP_HISTORY1__GET_BACKUP_history_tracking_var;
-        enum Spec2Sm_TEST7__DEEP_HISTORY1__BUILD_HistoryId TEST7__DEEP_HISTORY1__BUILD_history_tracking_var;
+        enum Spec2Sm_T7__H1__ON_HistoryId T7__H1__ON_history_tracking_var;
+        enum Spec2Sm_T7__H1__OFF_HistoryId T7__H1__OFF_history_tracking_var;
+        enum Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId T7__DH1__ALIENS_DETECTED_history_tracking_var;
+        enum Spec2Sm_T7__DH1__GET_BACKUP_HistoryId T7__DH1__GET_BACKUP_history_tracking_var;
+        enum Spec2Sm_T7__DH1__BUILD_HistoryId T7__DH1__BUILD_history_tracking_var;
         uint8_t count;
     } vars;
 };

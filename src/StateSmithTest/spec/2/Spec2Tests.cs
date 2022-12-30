@@ -677,7 +677,59 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
              {helper.EnterLocalHelpText()}
              {helper.EnterBuddyELfText()}
          "));
+
+        tester.AddEventHandling(helper.EventAlienDone, t => t($@"
+            State ALIENS_DETECTED: check behavior `EV8 TransitionTo(BUILD)`. Behavior running.
+            Exit BUDDY_ELF.
+            Exit LOCAL_HELP.
+            Exit GET_BACKUP.
+            Exit ALIENS_DETECTED.
+            Transition action `` for ALIENS_DETECTED to BUILD.
+            Enter BUILD.
+            Transition action `` for BUILD.InitialState to BUILD.History.
+            Transition action `` for BUILD.History to CIRCULAR_SAW.
+            {helper.EnterToolText()}
+            {helper.EnterCircularSawText()}
+        "));
+
+        tester.AddEventHandling(helper.EventAlienDetectedWantHero, t => t($@"
+            State BUILD: check behavior `EV7 TransitionTo(GET_BACKUP.History)`. Behavior running.
+            Exit CIRCULAR_SAW.
+            Exit TOOL.
+            Exit BUILD.
+            Transition action `` for BUILD to GET_BACKUP.History.
+            Enter ALIENS_DETECTED.
+            {helper.EnterGetBackupText()}
+            Transition action `` for GET_BACKUP.History to BUDDY_ELF.
+            {helper.EnterLocalHelpText()}
+            {helper.EnterBuddyELfText()}
+         "));
     }
+
+    [Fact]
+    public void Test7_DeepHistory1_HistoryDefaultToChoice()
+    {
+        Test7DeepHistory1Helper helper = new(tester);
+        helper.StartToToyRaceCar();
+
+        // go directly to GET_BACKUP.History without it having stored a value so that we see it
+        // use its default transition to a choice state
+        tester.AddEventHandling(helper.EventAlienDetectedWantHero, t => t($@"
+            State BUILD: check behavior `EV7 TransitionTo(GET_BACKUP.History)`. Behavior running.
+            Exit RACE_CAR.
+            Exit TOY.
+            Exit BUILD.
+            Transition action `` for BUILD to GET_BACKUP.History.
+            Enter ALIENS_DETECTED.
+            {helper.EnterGetBackupText()}
+            Transition action `` for GET_BACKUP.History to GET_BACKUP.ChoicePoint().
+            Transition action `` for GET_BACKUP.ChoicePoint() to HERO.
+            {helper.EnterHeroText()}
+            Transition action `` for HERO.InitialState to CALL_THOR.
+            Enter CALL_THOR.
+         "));
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////////////
 
