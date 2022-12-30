@@ -58,7 +58,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__default__G2; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G2; }""");
         GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G3; }""");
         GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G4; }""");
     }
@@ -167,8 +167,8 @@ public class HistoryContinueValidationTests : ValidationTestHelper
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__default__G2; }""");
-        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h2VarName}} = ExampleSm_G2_HistoryId__default__G3; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G2; }""");
+        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h2VarName}} = ExampleSm_G2_HistoryId__G3; }""");
         GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h2VarName}} = ExampleSm_G2_HistoryId__G4; }""");
     }
 
@@ -187,10 +187,10 @@ public class HistoryContinueValidationTests : ValidationTestHelper
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__default__G2; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G2; }""");
         GetState("G3").ShouldHaveUmlBehaviors($$"""
             enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G3; }
-            enter / { {{h2VarName}} = ExampleSm_G2_HistoryId__default__G3; }
+            enter / { {{h2VarName}} = ExampleSm_G2_HistoryId__G3; }
             """);
         GetState("G4").ShouldHaveUmlBehaviors($$"""
             enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G4; }

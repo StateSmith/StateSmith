@@ -172,7 +172,7 @@ enum
 
 enum Spec2Sm_T7__H1__ON_HistoryId
 {
-    Spec2Sm_T7__H1__ON_HistoryId__default__T7__H1__ON1 = 0,
+    Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1 = 0, // default transition
     Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2 = 1,
     Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3 = 2,
 };
@@ -180,7 +180,7 @@ enum Spec2Sm_T7__H1__ON_HistoryId
 
 enum Spec2Sm_T7__H1__OFF_HistoryId
 {
-    Spec2Sm_T7__H1__OFF_HistoryId__default__T7__H1__OFF1 = 0,
+    Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1 = 0, // default transition
     Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2 = 1,
     Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3 = 2,
 };
@@ -188,7 +188,7 @@ enum Spec2Sm_T7__H1__OFF_HistoryId
 
 enum Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId
 {
-    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__default__T7__DH1__SNOWBALL_FIGHT = 0,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT = 0, // default transition
     Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES = 1,
     Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP = 2,
     Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO = 3,
@@ -200,7 +200,7 @@ enum Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId
 
 enum Spec2Sm_T7__DH1__GET_BACKUP_HistoryId
 {
-    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__default = 0,
+    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__GET_BACKUPChoicePoint = 0, // default transition
     Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO = 1,
     Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP = 2,
     Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF = 3,
@@ -210,7 +210,7 @@ enum Spec2Sm_T7__DH1__GET_BACKUP_HistoryId
 
 enum Spec2Sm_T7__DH1__BUILD_HistoryId
 {
-    Spec2Sm_T7__DH1__BUILD_HistoryId__default__T7__DH1__TOY = 0,
+    Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY = 0, // default transition
     Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL = 1,
     Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR = 2,
     Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR = 3,

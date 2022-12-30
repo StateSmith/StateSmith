@@ -89,25 +89,21 @@ namespace StateSmith.output.C99BalancedCoder1
         public void OutputHistoryIdCode(HistoryVertex historyVertex)
         {
             OutputFile file = new(ctx, ctx.hFileSb);
-            string smName = ctx.sm.Name;
-
             file.Append($"enum {mangler.SmStateEnumAttribute}{mangler.HistoryVarEnumName(historyVertex)}");
             file.StartCodeBlock();
 
             // default behavior is the last one
             Behavior defaultBehavior = historyVertex.Behaviors.Last();
-            file.AppendLine($"{(mangler.HistoryVarEnumValueName(historyVertex, defaultBehavior.TransitionTarget, isDefault: true))} = 0,");
+            file.AppendLine($"{(mangler.HistoryVarEnumValueName(historyVertex, defaultBehavior.TransitionTarget))} = 0, // default transition");
 
             for (int i = 0; i < historyVertex.Behaviors.Count - 1; i++)
             {
                 var b = historyVertex.Behaviors[i];
-                file.AppendLine($"{mangler.HistoryVarEnumValueName(historyVertex, b.TransitionTarget, isDefault: false)} = {i+1},");
+                file.AppendLine($"{mangler.HistoryVarEnumValueName(historyVertex, b.TransitionTarget)} = {i+1},");
             }
 
             file.FinishCodeBlock(";");
             file.FinishLine();
-
-            //OutputStateIdCount(file, smName, namedVertices.Count);
         }
 
         private static void OutputAnonEnum(OutputFile file, string enumValueName, int count)

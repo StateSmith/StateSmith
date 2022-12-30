@@ -1,5 +1,6 @@
 ﻿using StateSmith.Compiling;
 using System;
+using System.Text.RegularExpressions;
 
 namespace StateSmith.output.C99BalancedCoder1
 {
@@ -101,20 +102,11 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public virtual string HistoryVarName(HistoryVertex historyVertex) => $"{historyVertex.ParentState.Name}_history_tracking_var";
         public virtual string HistoryVarEnumName(HistoryVertex historyVertex) => $"{SmName}_{historyVertex.ParentState.Name}_HistoryId";
-        public virtual string HistoryVarEnumValueName(HistoryVertex historyVertex, Vertex transitionTarget, bool isDefault)
+        public virtual string HistoryVarEnumValueName(HistoryVertex historyVertex, Vertex transitionTarget)
         {
-            var result = HistoryVarEnumName(historyVertex);
-
-            if (isDefault)
-            {
-                result += "__default";    // required because this might not be a state. Default transition can be to a pseudo state.
-            }
-            
-            if (transitionTarget is NamedVertex namedVertex)
-            {
-                result += "__" + namedVertex.Name;
-            }
-
+            var description = Vertex.Describe(transitionTarget);
+            description = Regex.Replace(description, @"[().]", "");
+            var result = HistoryVarEnumName(historyVertex) + "__" + description;
             return result;
         }
 

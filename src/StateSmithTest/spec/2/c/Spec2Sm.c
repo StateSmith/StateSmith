@@ -6317,11 +6317,11 @@ static void T7__DH1__SNOWBALL_FIGHT_enter(Spec2Sm* self)
     } // end of behavior for T7__DH1__SNOWBALL_FIGHT
     
     // T7__DH1__SNOWBALL_FIGHT behavior
-    // uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__default__T7__DH1__SNOWBALL_FIGHT; }`.", true)] / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__default__T7__DH1__SNOWBALL_FIGHT; }
-    if (trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__default__T7__DH1__SNOWBALL_FIGHT; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT; }`.", true)] / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT; }
+    if (trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT; }`.", true))
     {
-        // Step 1: execute action `T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__default__T7__DH1__SNOWBALL_FIGHT;`
-        self->vars.T7__DH1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__default__T7__DH1__SNOWBALL_FIGHT;
+        // Step 1: execute action `T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT;`
+        self->vars.T7__DH1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT;
     } // end of behavior for T7__DH1__SNOWBALL_FIGHT
 }
 
@@ -7089,11 +7089,11 @@ static void T7__DH1__TOY_enter(Spec2Sm* self)
     } // end of behavior for T7__DH1__TOY
     
     // T7__DH1__TOY behavior
-    // uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { T7__DH1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__BUILD_HistoryId__default__T7__DH1__TOY; }`.", true)] / { T7__DH1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__BUILD_HistoryId__default__T7__DH1__TOY; }
-    if (trace_guard("State T7__DH1__TOY: check behavior `enter / { T7__DH1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__BUILD_HistoryId__default__T7__DH1__TOY; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { T7__DH1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY; }`.", true)] / { T7__DH1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY; }
+    if (trace_guard("State T7__DH1__TOY: check behavior `enter / { T7__DH1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY; }`.", true))
     {
-        // Step 1: execute action `T7__DH1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__BUILD_HistoryId__default__T7__DH1__TOY;`
-        self->vars.T7__DH1__BUILD_history_tracking_var = Spec2Sm_T7__DH1__BUILD_HistoryId__default__T7__DH1__TOY;
+        // Step 1: execute action `T7__DH1__BUILD_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY;`
+        self->vars.T7__DH1__BUILD_history_tracking_var = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY;
     } // end of behavior for T7__DH1__TOY
 }
 
@@ -7740,11 +7740,11 @@ static void T7__H1__OFF1_enter(Spec2Sm* self)
     } // end of behavior for T7__H1__OFF1
     
     // T7__H1__OFF1 behavior
-    // uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { T7__H1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__OFF_HistoryId__default__T7__H1__OFF1; }`.", true)] / { T7__H1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__OFF_HistoryId__default__T7__H1__OFF1; }
-    if (trace_guard("State T7__H1__OFF1: check behavior `enter / { T7__H1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__OFF_HistoryId__default__T7__H1__OFF1; }`.", true))
+    // uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { T7__H1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1; }`.", true)] / { T7__H1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1; }
+    if (trace_guard("State T7__H1__OFF1: check behavior `enter / { T7__H1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1; }`.", true))
     {
-        // Step 1: execute action `T7__H1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__OFF_HistoryId__default__T7__H1__OFF1;`
-        self->vars.T7__H1__OFF_history_tracking_var = Spec2Sm_T7__H1__OFF_HistoryId__default__T7__H1__OFF1;
+        // Step 1: execute action `T7__H1__OFF_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1;`
+        self->vars.T7__H1__OFF_history_tracking_var = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1;
     } // end of behavior for T7__H1__OFF1
 }
 
@@ -8033,11 +8033,11 @@ static void T7__H1__ON1_enter(Spec2Sm* self)
     } // end of behavior for T7__H1__ON1
     
     // T7__H1__ON1 behavior
-    // uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { T7__H1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__ON_HistoryId__default__T7__H1__ON1; }`.", true)] / { T7__H1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__ON_HistoryId__default__T7__H1__ON1; }
-    if (trace_guard("State T7__H1__ON1: check behavior `enter / { T7__H1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__ON_HistoryId__default__T7__H1__ON1; }`.", true))
+    // uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { T7__H1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1; }`.", true)] / { T7__H1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1; }
+    if (trace_guard("State T7__H1__ON1: check behavior `enter / { T7__H1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1; }`.", true))
     {
-        // Step 1: execute action `T7__H1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__ON_HistoryId__default__T7__H1__ON1;`
-        self->vars.T7__H1__ON_history_tracking_var = Spec2Sm_T7__H1__ON_HistoryId__default__T7__H1__ON1;
+        // Step 1: execute action `T7__H1__ON_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1;`
+        self->vars.T7__H1__ON_history_tracking_var = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1;
     } // end of behavior for T7__H1__ON1
 }
 

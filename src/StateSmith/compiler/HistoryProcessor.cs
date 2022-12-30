@@ -118,7 +118,7 @@ namespace StateSmith.Compiling
             {
                 bool isDefaultTransition = stateToTrack == defaultTransition?.TransitionTarget && defaultTransition.HasActionCode() == false;
 
-                string enumValueName = mangler.HistoryVarEnumValueName(historyState, stateToTrack, isDefaultTransition);
+                string enumValueName = mangler.HistoryVarEnumValueName(historyState, stateToTrack);
 
                 {
                     Behavior enterTrackingBehavior = new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{historyState.stateTrackingVarName} = {enumValueName};");
