@@ -84,6 +84,28 @@ public class HistoryContinueValidationTests : ValidationTestHelper
     }
 
     [Fact]
+    public void Ok_DefaultToPseudoState()
+    {
+        // in this test, the default transition goes to a pseudo state
+        var c1 = h1.Parent.AddChild(new ChoicePoint());
+        c1.AddBehavior(new Behavior(transitionTarget: h1.Behaviors.Single().TransitionTarget));
+        h1.Behaviors.Single().RetargetTo(c1);
+        RunCompiler();
+
+        h1.ShouldHaveUmlBehaviors($$"""
+            [{{h1VarName}} == ExampleSm_G1_HistoryId__G2] TransitionTo(G2)
+            [{{h1VarName}} == ExampleSm_G1_HistoryId__G3] TransitionTo(G3)
+            [{{h1VarName}} == ExampleSm_G1_HistoryId__G4] TransitionTo(G4)
+            else TransitionTo(G1.ChoicePoint())
+            """
+        );
+
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G2; }""");
+        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G3; }""");
+        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G4; }""");
+    }
+
+    [Fact]
     public void GuardOnDefaultTransition()
     {
         h1.Behaviors.Single().guardCode = "p > 100";
