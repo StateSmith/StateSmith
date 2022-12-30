@@ -184,7 +184,6 @@ public class Test7DeepHistory1Helper
     {
         return $@"
              Enter GET_BACKUP.
-             State GET_BACKUP: check behavior `enter / {{ {AliensVarName} = GET_BACKUP; }}`. Behavior running.
         ".Trim();
     }
 
@@ -232,8 +231,6 @@ public class Test7DeepHistory1Helper
     {
         return $@"
              Enter LOCAL_HELP.
-             State LOCAL_HELP: check behavior `enter / {{ {AliensVarName} = LOCAL_HELP; }}`. Behavior running.
-             State LOCAL_HELP: check behavior `enter / {{ {GetBackupVarName} = LOCAL_HELP; }}`. Behavior running.
         ".Trim();
     }
 }

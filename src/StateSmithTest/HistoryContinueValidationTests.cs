@@ -1,4 +1,4 @@
-﻿using StateSmith.compiler;
+using StateSmith.compiler;
 using StateSmith.Compiling;
 using System.Linq;
 using Xunit;
@@ -26,7 +26,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
                     state "$HC" as hc1
                     state G3 {
                         state "$HC" as hc2
-                        state G4
+                        [*] --> G4
                     }
                 }
             }
@@ -61,6 +61,42 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G2; }""");
         GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G3; }""");
         GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G4; }""");
+    }
+
+    [Fact]
+    public void Ok_RemoveUnreachableStates()
+    {
+        // remove incoming transition to G4. Should see it no longer tracked.
+        GetState("G3").ChildType<InitialState>().RemoveSelf();
+        RunCompiler();
+
+        h1.ShouldHaveUmlBehaviors($"""
+            [{h1VarName} == ExampleSm_G1_HistoryId__G3] TransitionTo(G3)
+            else TransitionTo(G2)
+            """
+        );
+
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G2; }""");
+        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G3; }""");
+        GetState("G4").ShouldHaveUmlBehaviors(""); // note that G4 has no incoming tarnsitions anymore. It is no longer tracked.
+    }
+
+    [Fact]
+    public void Ok_RemoveUnnecessaryGroups()
+    {
+        // remove incoming transition to G3. Should see it no longer tracked.
+        GetState("G3").IncomingTransitions.Single().RetargetTo(GetState("G4"));
+        RunCompiler();
+
+        h1.ShouldHaveUmlBehaviors($"""
+            [{h1VarName} == ExampleSm_G1_HistoryId__G4] TransitionTo(G4)
+            else TransitionTo(G2)
+            """
+        );
+
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G2; }""");
+        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = ExampleSm_G1_HistoryId__G4; }""");
+        GetState("G3").ShouldHaveUmlBehaviors(""); // note that G3 has no incoming tarnsitions anymore. It is no longer tracked.
     }
 
     [Fact]

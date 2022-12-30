@@ -190,11 +190,9 @@ enum Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId
 {
     Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT = 0, // default transition
     Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES = 1,
-    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP = 2,
-    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO = 3,
-    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP = 4,
-    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF = 5,
-    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS = 6,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO = 2,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF = 3,
+    Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS = 4,
 };
 
 
@@ -202,9 +200,8 @@ enum Spec2Sm_T7__DH1__GET_BACKUP_HistoryId
 {
     Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__GET_BACKUPChoicePoint = 0, // default transition
     Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO = 1,
-    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP = 2,
-    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF = 3,
-    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS = 4,
+    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF = 2,
+    Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS = 3,
 };
 
 

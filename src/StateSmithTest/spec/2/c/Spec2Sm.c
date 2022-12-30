@@ -5728,14 +5728,6 @@ static void T7__DH1__GET_BACKUP_enter(Spec2Sm* self)
         // Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.");`
         trace("Enter T7__DH1__GET_BACKUP.");
     } // end of behavior for T7__DH1__GET_BACKUP
-    
-    // T7__DH1__GET_BACKUP behavior
-    // uml: enter [trace_guard("State T7__DH1__GET_BACKUP: check behavior `enter / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP; }`.", true)] / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP; }
-    if (trace_guard("State T7__DH1__GET_BACKUP: check behavior `enter / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP; }`.", true))
-    {
-        // Step 1: execute action `T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP;`
-        self->vars.T7__DH1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP;
-    } // end of behavior for T7__DH1__GET_BACKUP
 }
 
 static void T7__DH1__GET_BACKUP_exit(Spec2Sm* self)
@@ -6000,22 +5992,6 @@ static void T7__DH1__LOCAL_HELP_enter(Spec2Sm* self)
     {
         // Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.");`
         trace("Enter T7__DH1__LOCAL_HELP.");
-    } // end of behavior for T7__DH1__LOCAL_HELP
-    
-    // T7__DH1__LOCAL_HELP behavior
-    // uml: enter [trace_guard("State T7__DH1__LOCAL_HELP: check behavior `enter / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP; }`.", true)] / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP; }
-    if (trace_guard("State T7__DH1__LOCAL_HELP: check behavior `enter / { T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP; }`.", true))
-    {
-        // Step 1: execute action `T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP;`
-        self->vars.T7__DH1__ALIENS_DETECTED_history_tracking_var = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP;
-    } // end of behavior for T7__DH1__LOCAL_HELP
-    
-    // T7__DH1__LOCAL_HELP behavior
-    // uml: enter [trace_guard("State T7__DH1__LOCAL_HELP: check behavior `enter / { T7__DH1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP; }`.", true)] / { T7__DH1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP; }
-    if (trace_guard("State T7__DH1__LOCAL_HELP: check behavior `enter / { T7__DH1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP; }`.", true))
-    {
-        // Step 1: execute action `T7__DH1__GET_BACKUP_history_state_tracking_var_name___$$$$ = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP;`
-        self->vars.T7__DH1__GET_BACKUP_history_tracking_var = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP;
     } // end of behavior for T7__DH1__LOCAL_HELP
 }
 
@@ -6445,24 +6421,6 @@ static void T7__DH1__BUILD_ev6(Spec2Sm* self)
             } // end of behavior for T7__DH1__ALIENS_DETECTED.History
             
             // T7__DH1__ALIENS_DETECTED.History behavior
-            // uml: [T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GET_BACKUP."); } TransitionTo(T7__DH1__GET_BACKUP)
-            if (self->vars.T7__DH1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GET_BACKUP)
-            {
-                // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GET_BACKUP.");`.
-                trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GET_BACKUP.");
-                
-                // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP`.
-                T7__DH1__GET_BACKUP_enter(self);
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                self->state_id = Spec2Sm_StateId_T7__DH1__GET_BACKUP;
-                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-                return;
-            } // end of behavior for T7__DH1__ALIENS_DETECTED.History
-            
-            // T7__DH1__ALIENS_DETECTED.History behavior
             // uml: [T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
             if (self->vars.T7__DH1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO)
             {
@@ -6478,25 +6436,6 @@ static void T7__DH1__BUILD_ev6(Spec2Sm* self)
                 // Finish transition by calling pseudo state transition function.
                 T7__DH1__HERO_InitialState_transition(self);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for T7__DH1__ALIENS_DETECTED.History
-            
-            // T7__DH1__ALIENS_DETECTED.History behavior
-            // uml: [T7__DH1__ALIENS_DETECTED_history_state_tracking_var_name___$$$$ == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__LOCAL_HELP."); } TransitionTo(T7__DH1__LOCAL_HELP)
-            if (self->vars.T7__DH1__ALIENS_DETECTED_history_tracking_var == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__LOCAL_HELP)
-            {
-                // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__LOCAL_HELP.");`.
-                trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__LOCAL_HELP.");
-                
-                // Step 3: Enter/move towards transition target `T7__DH1__LOCAL_HELP`.
-                T7__DH1__GET_BACKUP_enter(self);
-                T7__DH1__LOCAL_HELP_enter(self);
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                self->state_id = Spec2Sm_StateId_T7__DH1__LOCAL_HELP;
-                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-                return;
             } // end of behavior for T7__DH1__ALIENS_DETECTED.History
             
             // T7__DH1__ALIENS_DETECTED.History behavior
@@ -6593,24 +6532,6 @@ static void T7__DH1__BUILD_ev7(Spec2Sm* self)
             // Finish transition by calling pseudo state transition function.
             T7__DH1__HERO_InitialState_transition(self);
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior for T7__DH1__GET_BACKUP.History
-        
-        // T7__DH1__GET_BACKUP.History behavior
-        // uml: [T7__DH1__GET_BACKUP_history_state_tracking_var_name___$$$$ == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__LOCAL_HELP."); } TransitionTo(T7__DH1__LOCAL_HELP)
-        if (self->vars.T7__DH1__GET_BACKUP_history_tracking_var == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__LOCAL_HELP)
-        {
-            // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__LOCAL_HELP.");`.
-            trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__LOCAL_HELP.");
-            
-            // Step 3: Enter/move towards transition target `T7__DH1__LOCAL_HELP`.
-            T7__DH1__LOCAL_HELP_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_T7__DH1__LOCAL_HELP;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
         } // end of behavior for T7__DH1__GET_BACKUP.History
         
         // T7__DH1__GET_BACKUP.History behavior

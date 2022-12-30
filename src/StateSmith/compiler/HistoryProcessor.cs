@@ -86,12 +86,17 @@ namespace StateSmith.Compiling
 
         private void AddHistoryContinueBehaviors(HistoryContinueVertex hc)
         {
-            var statesToTrack = hc.Siblings<NamedVertex>().ToList();
+            var statesToTrack = GetStatesToTrack(hc);
 
             foreach (var h in hc.historyVertices)
             {
                 AddTrackingBehaviors(h, null, statesToTrack);
             }
+        }
+
+        private static List<NamedVertex> GetStatesToTrack(Vertex v)
+        {
+            return v.Siblings<NamedVertex>().Where(s => s.IncomingTransitions.Any()).ToList();
         }
 
         private void ProcessHistory(HistoryVertex? historyState)
@@ -108,7 +113,7 @@ namespace StateSmith.Compiling
             Behavior defaultTransition = historyState.Behaviors.Single();
             defaultTransition.order = Behavior.ELSE_ORDER;
 
-            var statesToTrack = historyState.Siblings<NamedVertex>().ToList();
+            var statesToTrack = GetStatesToTrack(historyState);
             AddTrackingBehaviors(historyState, defaultTransition, statesToTrack);
         }
 
