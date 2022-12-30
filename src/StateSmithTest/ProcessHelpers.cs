@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 #nullable enable
 
@@ -11,8 +12,11 @@ public class SimpleProcess
     public string WorkingDirectory = "";
     public string CommandText = "";
 
-    public string StdOutput = "";
-    public string StdError = "";
+    public string StdOutput => StdOutputBuf.ToString();
+    public string StdError => StdErrorBuf.ToString();
+
+    public StringBuilder StdOutputBuf = new();
+    public StringBuilder StdErrorBuf = new();
 
     public bool throwOnExitCode = true;
 }
@@ -57,44 +61,25 @@ public class BashRunner
 
         cmd.StartInfo.RedirectStandardOutput = true;
         cmd.StartInfo.RedirectStandardError = true;
-        cmd.Start();
 
-        ReadUntilTimeoutOrFinished(simpleProcess, cmd, timeoutMs);
+        cmd.OutputDataReceived += (sender, args) => simpleProcess.StdOutputBuf.Append(args.Data).Append('\n');
+        cmd.ErrorDataReceived += (sender, args) => simpleProcess.StdErrorBuf.Append(args.Data).Append('\n');
+
+        // If modifying this code, make sure you read all of the below to avoid deadlocks.
+        // https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.process.standardoutput?view=net-7.0
+        cmd.Start();
+        cmd.BeginOutputReadLine();
+        cmd.BeginErrorReadLine();
+
+        if (!cmd.WaitForExit(timeoutMs))
+        {
+            cmd.Kill(entireProcessTree: true);
+            cmd.WaitForExit();
+        }
 
         if (cmd.ExitCode != 0)
         {
             throw new BashRunnerException("Exit code: " + cmd.ExitCode + ".\nOutput:\n" + simpleProcess.StdOutput + "\nError Output:\n" + simpleProcess.StdError);
-        }
-    }
-
-    /// <summary>
-    /// If process prints a lot to stdout/err, need to read in chunks or else `WaitForExit()` will fail.
-    /// Seems like a buffering issue.
-    /// </summary>
-    private static void ReadUntilTimeoutOrFinished(SimpleProcess simpleProcess, Process cmd, int timeoutMs)
-    {
-        bool success = false;
-
-        int timeLeftMs = timeoutMs;
-        while (timeLeftMs > 0 && !success)
-        {
-            simpleProcess.StdError += cmd.StandardError.ReadToEnd();    // stderr must be read before stdout in case of error or thread hangs on windows
-            simpleProcess.StdOutput += cmd.StandardOutput.ReadToEnd();
-
-            int waitMs = Math.Clamp(timeoutMs/5, 1, 100);
-            if (cmd.WaitForExit(waitMs))
-            {
-                success = true;
-            }
-            timeLeftMs -= waitMs; // not exact timing, but that's OK for this right now
-        }
-
-        if (!success)
-        {
-            // `WaitForExit()` doesn't always work when calling wsl.exe and gcc prints only to stderr. Works fine on Linux though.
-            // That's why we have to specify a timeout and force stop on Windows.
-            cmd.Kill(entireProcessTree: true);
-            cmd.WaitForExit();
         }
     }
 }
