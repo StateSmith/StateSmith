@@ -480,7 +480,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for ON.InitialState to ON.History.
             Transition action `` for ON.History to ON2.
             Enter ON2.
-            State ON2: check behavior `enter / {{ {helper.OnVarName} = 1; }}`. Behavior running.
+            State ON2: check behavior `enter / {{ {helper.OnVarName} = ON2; }}`. Behavior running.
         "));
 
         // over to off states
@@ -493,7 +493,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF2.
             Enter OFF2.
-            State OFF2: check behavior `enter / {{ {helper.OffVarName} = 1; }}`. Behavior running.
+            State OFF2: check behavior `enter / {{ {helper.OffVarName} = OFF2; }}`. Behavior running.
         "));
     }
 
@@ -508,7 +508,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF1.
             Transition action `` for OFF to OFF3.
             Enter OFF3.
-            State OFF3: check behavior `enter / {{ {helper.OffVarName} = 2; }}`. Behavior running.
+            State OFF3: check behavior `enter / {{ {helper.OffVarName} = OFF3; }}`. Behavior running.
         "));
     }
 
@@ -527,7 +527,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF1.
             Enter OFF1.
-            State OFF1: check behavior `enter / {{ {helper.OffVarName} = 0; }}`. Behavior running.
+            State OFF1: check behavior `enter / {{ {helper.OffVarName} = OFF1; }}`. Behavior running.
         "));
     }
 
@@ -546,7 +546,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF2.
             Enter OFF2.
-            State OFF2: check behavior `enter / {{ {helper.OffVarName} = 1; }}`. Behavior running.
+            State OFF2: check behavior `enter / {{ {helper.OffVarName} = OFF2; }}`. Behavior running.
         "));
     }
 
@@ -565,7 +565,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF3.
             Enter OFF3.
-            State OFF3: check behavior `enter / {{ {helper.OffVarName} = 2; }}`. Behavior running.
+            State OFF3: check behavior `enter / {{ {helper.OffVarName} = OFF3; }}`. Behavior running.
         "));
     }
 
@@ -581,7 +581,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
              {helper.ExpectBuildToAliensExiting("WALL_E", "ROBOT", "TOY")}
              Transition action `` for ALIENS_DETECTED.History to SNOWBALL_FIGHT.
              Enter SNOWBALL_FIGHT.
-             State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = 0; }}`. Behavior running.
+             State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = SNOWBALL_FIGHT; }}`. Behavior running.
          "));
 
         helper.SnowballFight_to_GiveCookies();
@@ -595,11 +595,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for BUILD.InitialState to BUILD.History.
             Transition action `` for BUILD.History to WALL_E.
             Enter TOY.
-            State TOY: check behavior `enter / {{ {helper.BuildVarName} = 0; }}`. Behavior running.
+            State TOY: check behavior `enter / {{ {helper.BuildVarName} = TOY; }}`. Behavior running.
             Enter ROBOT.
-            State ROBOT: check behavior `enter / {{ {helper.BuildVarName} = 5; }}`. Behavior running.
+            State ROBOT: check behavior `enter / {{ {helper.BuildVarName} = ROBOT; }}`. Behavior running.
             Enter WALL_E.
-            State WALL_E: check behavior `enter / {{ {helper.BuildVarName} = 7; }}`. Behavior running.
+            State WALL_E: check behavior `enter / {{ {helper.BuildVarName} = WALL_E; }}`. Behavior running.
         "));
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
@@ -620,7 +620,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
              {helper.ExpectBuildToAliensExiting("IMPACT_DRILL", "TOOL")}
              Transition action `` for ALIENS_DETECTED.History to SNOWBALL_FIGHT.
              Enter SNOWBALL_FIGHT.
-             State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = 0; }}`. Behavior running.
+             State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = SNOWBALL_FIGHT; }}`. Behavior running.
          "));
 
         helper.SnowballFight_to_GiveCookies();
