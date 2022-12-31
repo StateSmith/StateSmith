@@ -100,7 +100,7 @@ namespace StateSmith.output.C99BalancedCoder1
         public virtual string SmFuncToString => $"{SmName}_state_id_to_string";
         public virtual string SmStateToString(NamedVertex state) => $"{SmStateName(state).ToUpper()}";
 
-        public virtual string HistoryVarName(HistoryVertex historyVertex) => $"{historyVertex.ParentState.Name}_history_tracking_var";
+        public virtual string HistoryVarName(HistoryVertex historyVertex) => $"{historyVertex.ParentState.Name}_history";
         public virtual string HistoryVarEnumName(HistoryVertex historyVertex) => $"{SmName}_{historyVertex.ParentState.Name}_HistoryId";
         public virtual string HistoryVarEnumValueName(HistoryVertex historyVertex, Vertex transitionTarget)
         {

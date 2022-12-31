@@ -13,9 +13,9 @@ public class Test7DeepHistory1Helper
     public readonly string EventAlienDone = "EV8";
     public readonly string EventDown = "EV1";
     public readonly string EventUp = "EV2";
-    public readonly string BuildVarName = "BUILD_history_state_tracking_var_name___$$$$";
-    public readonly string AliensVarName = "ALIENS_DETECTED_history_state_tracking_var_name___$$$$";
-    public readonly string GetBackupVarName = "GET_BACKUP_history_state_tracking_var_name___$$$$";
+    public readonly string BuildVarName = "$BUILD_history";
+    public readonly string AliensVarName = "$ALIENS_DETECTED_history";
+    public readonly string GetBackupVarName = "$GET_BACKUP_history";
 
     public Test7DeepHistory1Helper(SpecTester tester)
     {

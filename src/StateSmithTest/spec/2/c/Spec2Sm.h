@@ -240,11 +240,11 @@ struct Spec2Sm
     // User variables. Can be used for inputs, outputs, user variables...
     struct
     {
-        enum Spec2Sm_T7__H1__ON_HistoryId T7__H1__ON_history_tracking_var;
-        enum Spec2Sm_T7__H1__OFF_HistoryId T7__H1__OFF_history_tracking_var;
-        enum Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId T7__DH1__ALIENS_DETECTED_history_tracking_var;
-        enum Spec2Sm_T7__DH1__GET_BACKUP_HistoryId T7__DH1__GET_BACKUP_history_tracking_var;
-        enum Spec2Sm_T7__DH1__BUILD_HistoryId T7__DH1__BUILD_history_tracking_var;
+        enum Spec2Sm_T7__H1__ON_HistoryId T7__H1__ON_history;
+        enum Spec2Sm_T7__H1__OFF_HistoryId T7__H1__OFF_history;
+        enum Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId T7__DH1__ALIENS_DETECTED_history;
+        enum Spec2Sm_T7__DH1__GET_BACKUP_HistoryId T7__DH1__GET_BACKUP_history;
+        enum Spec2Sm_T7__DH1__BUILD_HistoryId T7__DH1__BUILD_history;
         uint8_t count;
     } vars;
 };

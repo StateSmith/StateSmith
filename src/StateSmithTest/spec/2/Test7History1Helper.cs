@@ -8,8 +8,8 @@ public class Test7History1Helper
 
     public readonly string EventOnToOff = "EV6"; 
     public readonly string EventOffToOn = "EV7";
-    public readonly string OnVarName = "ON_history_state_tracking_var_name___$$$$";
-    public readonly string OffVarName = "OFF_history_state_tracking_var_name___$$$$";
+    public readonly string OnVarName = "$ON_history";
+    public readonly string OffVarName = "$OFF_history";
 
     public Test7History1Helper(SpecTester tester)
     {

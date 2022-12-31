@@ -38,7 +38,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         hc1 = GetState("G2").ChildType<HistoryContinueVertex>();
         hc2 = GetState("G3").ChildType<HistoryContinueVertex>();
         h1 = GetState("G1").ChildType<HistoryVertex>();
-        h1VarName = "G1_history_state_tracking_var_name___$$$$";
+        h1VarName = "$G1_history";
     }
 
     private State GetState(string stateName)
@@ -188,7 +188,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
     {
         // h2 is in G2
         var h2 = hc1.Parent.AddChild(new HistoryVertex());  h2.AddTransitionTo(GetState("G3"));
-        var h2VarName = "G2_history_state_tracking_var_name___$$$$";
+        var h2VarName = "$G2_history";
         hc1.RemoveSelf();
         RunCompiler();
 
@@ -213,7 +213,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
     {
         // h2 is in G2
         var h2 = hc1.Parent.AddChild(new HistoryVertex()); h2.AddTransitionTo(GetState("G3"));
-        var h2VarName = "G2_history_state_tracking_var_name___$$$$";
+        var h2VarName = "$G2_history";
         RunCompiler();
 
         h1.ShouldHaveUmlBehaviors($"""

@@ -109,7 +109,7 @@ namespace StateSmith.Compiling
             HistoryStateValidator.ValidateBeforeTransforming(historyState);
 
             sm.historyStates.Add(historyState);
-            historyState.stateTrackingVarName = $"{historyState.ParentState.Name}_history_state_tracking_var_name___$$$$"; // will be changed later on with expansions
+            historyState.stateTrackingVarName = $"${historyState.ParentState.Name}_history"; // will be changed later on with expansions
             Behavior defaultTransition = historyState.Behaviors.Single();
             defaultTransition.order = Behavior.ELSE_ORDER;
 
