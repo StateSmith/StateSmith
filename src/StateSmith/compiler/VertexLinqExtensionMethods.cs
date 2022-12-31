@@ -51,6 +51,13 @@ namespace StateSmith.compiler
             return matches[0];
         }
 
+        public static T Descendant<T>(this Vertex vertex, string name) where T : NamedVertex
+        {
+            var matches = vertex.DescendantsWithName(name);
+            ThrowIfNotSingle(name, matches);
+            return (T)matches[0];
+        }
+
         private static void ThrowIfNotSingle(string name, List<NamedVertex> matches)
         {
             if (matches.Count > 1)
@@ -83,22 +90,60 @@ namespace StateSmith.compiler
             return vertex.Children.OfType<T>();
         }
 
+        public static T? SingleChildOrNull<T>(this Vertex vertex) where T : Vertex
+        {
+            return vertex.Children<T>().SingleOrNull(vertex, $"Max of 1 {typeof(T).Name} allowed in {vertex.GetType().Name}");
+        }
+
         // does not return self
         public static IEnumerable<Vertex> Siblings(this Vertex vertex)
         {
-            return vertex.Parent.Children.Where(v => v != vertex);
+            return vertex.NonNullParent.Children.Where(v => v != vertex);
         }
 
         // does not return self
         public static IEnumerable<T> Siblings<T>(this Vertex vertex) where T : Vertex
         {
-            return vertex.Parent.Children.OfType<T>().Where(v => v != vertex);
+            return vertex.NonNullParent.Children.OfType<T>().Where(v => v != vertex);
+        }
+
+        public static T? SingleSiblingOrNull<T>(this Vertex vertex) where T : Vertex
+        {
+            var siblings = vertex.Siblings<T>();
+            return siblings.SingleOrNull(vertex, $"Max of 1 {nameof(T)} allowed in {vertex.GetType().Name}");
         }
 
         // does not return self
         public static IEnumerable<T> SiblingsOfMyType<T>(this T vertex) where T : Vertex
         {
             return vertex.Siblings<T>();
+        }
+
+        public static T SingleOrNull<T>(this IEnumerable<T> items, Vertex v, string errorMessage) where T : Vertex
+        {
+            int count = items.Count();
+
+            if (count > 1)
+            {
+                throw new VertexValidationException(v, $"{errorMessage}. Found {count}.");
+            }
+
+            return items.FirstOrDefault();
+        }
+
+        public static void RunIfPresent<T>(this IEnumerable<T> items, int limit, Action<T> action)
+        {
+            int count = items.Count();
+
+            if (count > limit)
+            {
+                throw new ArgumentException($"limit of {limit} exceeded on collection. Found {count}.");
+            }
+
+            foreach (var item in items)
+            {
+                action(item);
+            }
         }
 
         public static IEnumerable<NamedVertex> NamedChildren(this Vertex vertex, string name)
@@ -134,7 +179,26 @@ namespace StateSmith.compiler
         {
             return vertex.Behaviors.Where(b => b.HasTransition());
         }
-        
+
+        public static string UmlDescription(this IEnumerable<Behavior> behaviors)
+        {
+            string str = "";
+            string joiner = "";
+
+            foreach (var b in behaviors)
+            {
+                str += joiner + b.DescribeAsUml();
+                joiner = "\n";
+            }
+
+            return str;
+        }
+
+        public static IEnumerable<Behavior> GetBehaviorsWithTrigger(this Vertex vertex, string triggerName)
+        {
+            return vertex.Behaviors.Where(b => b.triggers.Contains(triggerName));
+        }
+
         public static bool HasInitialState(this Vertex vertex, out InitialState initialState)
         {
             if (vertex is NamedVertex namedVertex)

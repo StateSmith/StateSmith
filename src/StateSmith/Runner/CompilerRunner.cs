@@ -27,11 +27,18 @@ public class CompilerRunner
 {
     public Compiler compiler = new();
     public Statemachine? sm;
+    public PrefixingModder prefixingModder = new();
+    public CNameMangler mangler = new();
 
     /// <summary>
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
     /// </summary>
     public Action<Statemachine> postParentAliasValidation = (_) => { };
+
+    /// <summary>
+    /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
+    /// </summary>
+    public Action<Statemachine> preValidation = (_) => { };
 
     /// <summary>
     /// Step 1
@@ -124,6 +131,26 @@ public class CompilerRunner
     /// </summary>
     public void FinishRunningCompiler()
     {
+        SetupForSingleSm();
+        mangler.SetStateMachine(sm);
+
+        compiler.SupportParentAlias();
+        compiler.SupportEntryExitPoints();
+        prefixingModder.Visit(sm); // must happen before history
+        SupportHistory(sm, mangler);
+        compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
+        preValidation(sm);
+        compiler.Validate();
+        postParentAliasValidation(sm);
+
+        compiler.Validate();
+        compiler.DefaultToDoEventIfNoTrigger();
+        compiler.FinalizeTrees();
+        compiler.Validate();
+    }
+
+    public void SetupForSingleSm()
+    {
         compiler.SetupRoots();
 
         if (sm == null)
@@ -132,16 +159,12 @@ public class CompilerRunner
         }
 
         compiler.rootVertices = new List<Vertex> { sm };
+    }
 
-        compiler.SupportParentAlias();
-        compiler.SupportEntryExitPoints();
-        compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
-        compiler.Validate();
-        postParentAliasValidation(sm);
-
-        compiler.Validate();
-        compiler.DefaultToDoEventIfNoTrigger();
-        compiler.FinalizeTrees();
-        compiler.Validate();
+    // https://github.com/StateSmith/StateSmith/issues/63
+    public static void SupportHistory(Statemachine sm, CNameMangler mangler)
+    {
+        var processor = new HistoryProcessor(sm, mangler);
+        processor.Process();
     }
 }

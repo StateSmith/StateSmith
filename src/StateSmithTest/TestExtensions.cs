@@ -1,6 +1,8 @@
 ﻿using System;
 using Xunit;
 using FluentAssertions;
+using StateSmith.Compiling;
+using StateSmith.compiler;
 
 namespace StateSmithTest
 {
@@ -32,6 +34,23 @@ namespace StateSmithTest
                 {
                     code.SanitizeCode().Should().Be(expectedCode.SanitizeCode());
                 }
+            }
+        }
+
+        public static void ShouldHaveUmlBehaviors(this Vertex vertex, string expected)
+        {
+            // Assert.Equal(expected.ConvertLineEndingsToN(), vertex.Behaviors.UmlDescription());
+            vertex.Behaviors.UmlDescription().ShouldBeShowDiff(expected);
+        }
+
+        public static void ShouldBeShowDiff(this string actual, string expected)
+        {
+            expected = expected.ConvertLineEndingsToN();
+
+            if (expected != actual)
+            {
+                var diff = StringDiffer.Diff(expected.ConvertLineEndingsToN(), actual);
+                Assert.True(false, diff);
             }
         }
     }

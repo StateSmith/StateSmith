@@ -75,13 +75,13 @@ namespace StateSmith.output.C99BalancedCoder1
 
         private void OutputTransitionCodeInner(Behavior behavior, bool noAncestorHandlesEvent)
         {
-            if (behavior._transitionTarget == null)
+            if (behavior.TransitionTarget == null)
             {
                 throw new InvalidOperationException("shouldn't happen");
             }
 
             Vertex source = behavior.OwningVertex;
-            Vertex target = behavior._transitionTarget;
+            Vertex target = behavior.TransitionTarget;
 
             OutputStartOfBehaviorCode(behavior);
             file.StartCodeBlock();
@@ -89,7 +89,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 var transitionPath = source.FindTransitionPathTo(target);
 
                 file.Append($"// Step 1: Exit states until we reach `{Vertex.Describe(transitionPath.leastCommonAncestor)}` state (Least Common Ancestor for transition).");
-                if (IsExitingRequired(source))
+                if (IsExitingRequired(source, target, transitionPath))
                 {
                     file.FinishLine();
                     ExitUntilStateReached(source, (NamedVertex)transitionPath.leastCommonAncestor);
@@ -214,7 +214,8 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void RenderPseudoStateTransitionFunctionInner(PseudoStateVertex pseudoState)
         {
-            ctx.pseudoStateHandlerBuilder.GetFunctionName(pseudoState); // just throws if not found
+            var functionName = ctx.pseudoStateHandlerBuilder.GetFunctionName(pseudoState); // just throws if not found
+
             const bool NoAncestorHandlesEvent = false; // assume ancestor might handle event because the pseudo state transition code can be called from multiple states.
             RenderPseudoStateTransitionsInner(pseudoState, noAncestorHandlesEvent: NoAncestorHandlesEvent);
         }
@@ -231,20 +232,32 @@ namespace StateSmith.output.C99BalancedCoder1
             }
         }
 
-        private static bool IsExitingRequired(Vertex source)
+        private static bool IsExitingRequired(Vertex source, Vertex target, TransitionPath transitionPath)
         {
-            // initial states and entry points are not allowed to exit enclosing state
-            if (source is InitialState || source is EntryPoint)
+            if (source is ExitPoint && source.Parent == target)
             {
-                return false;
+                // self transition. exit required
+                return true;
+            }
+
+            // If vertex is a pseudo state, then we know active leaf state is the containing state.
+            // If it is also the LCA the the transition, we know no exiting is required at this point.
+            if (source is PseudoStateVertex)
+            {
+                source = source.Parent!;
+
+                if (transitionPath.leastCommonAncestor == source)
+                {
+                    return false;
+                }
             }
 
             return true;
         }
 
-        private void ExitUntilStateReached(Vertex source, NamedVertex ancestorState)
+        private void ExitUntilStateReached(Vertex source, NamedVertex leastCommonAncestor)
         {
-            bool canUseDirectExit = CanUseDirectExit(ref source, ancestorState);
+            bool canUseDirectExit = CanUseDirectExit(ref source, leastCommonAncestor);
 
             if (canUseDirectExit)
             {
@@ -254,12 +267,12 @@ namespace StateSmith.output.C99BalancedCoder1
             }
             else
             {
-                string ancestorExitHandler = mangler.SmFuncTriggerHandler(ancestorState, TriggerHelper.TRIGGER_EXIT);
+                string ancestorExitHandler = mangler.SmFuncTriggerHandler(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
                 file.AppendLine($"{mangler.SmFuncExitUpTo}(self, {ancestorExitHandler});");
             }
         }
 
-        private static bool CanUseDirectExit(ref Vertex source, NamedVertex ancestorState)
+        private static bool CanUseDirectExit(ref Vertex source, NamedVertex leastCommonAncestor)
         {
             bool canUseDirectExit = false; // if true, requires while loop exit
 
@@ -269,7 +282,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 canUseDirectExit = true;
             }
 
-            if (source is NamedVertex && source.Children.Any() == false && ancestorState == source.Parent)
+            if (source is NamedVertex && source.Children.Any() == false && leastCommonAncestor == source.Parent)
             {
                 canUseDirectExit = true;
             }

@@ -9,12 +9,20 @@ using StateSmith.compiler;
 using StateSmith.Input;
 using System.IO;
 using StateSmith.compiler.Visitors;
+using StateSmith.output.C99BalancedCoder1;
 
 namespace StateSmith.Compiling
 {
+    public class LibVars
+    {
+        public string vars = "";
+    }
+
     public class Compiler
     {
         public const string InitialStateString = "$initial_state";
+        public const string HistoryStateString = "$h";
+        public const string HistoryContinueString = "$hc";
 
         public List<Vertex> rootVertices = new List<Vertex>();
         private List<string> eventNames = new List<string>();
@@ -354,6 +362,14 @@ namespace StateSmith.Compiling
                             if (string.Equals(stateNode.stateName, InitialStateString, StringComparison.OrdinalIgnoreCase))
                             {
                                 thisVertex = new InitialState();
+                            }
+                            else if (string.Equals(stateNode.stateName, HistoryStateString, StringComparison.OrdinalIgnoreCase))
+                            {
+                                thisVertex = new HistoryVertex();
+                            }
+                            else if (string.Equals(stateNode.stateName, HistoryContinueString, StringComparison.OrdinalIgnoreCase))
+                            {
+                                thisVertex = new HistoryContinueVertex();
                             }
                             else
                             {

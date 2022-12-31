@@ -84,6 +84,18 @@ public partial class PlantUMLBaseListener : IPlantUMLListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitStart_end_state([NotNull] PlantUMLParser.Start_end_stateContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantUMLParser.history_state"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterHistory_state([NotNull] PlantUMLParser.History_stateContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantUMLParser.history_state"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitHistory_state([NotNull] PlantUMLParser.History_stateContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.state_id"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

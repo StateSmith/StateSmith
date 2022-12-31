@@ -4,7 +4,6 @@ using StateSmith.compiler.Visitors;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 
 #nullable enable
 
@@ -22,6 +21,20 @@ namespace StateSmith.Compiling
 
         internal Vertex? _parent;
         public Vertex? Parent => _parent;
+
+        public Vertex NonNullParent
+        {
+            get
+            {
+                if (Parent == null)
+                {
+                    throw new VertexValidationException(this, "unexpected null parent");
+                }
+                return Parent;
+            }
+        }
+
+        public NamedVertex? ParentState => (NamedVertex?)Parent;
 
         /// <summary>
         /// data structure may change
@@ -63,6 +76,19 @@ namespace StateSmith.Compiling
             else
             {
                 _behaviors.Add(behavior);
+            }
+        }
+
+        public void RemoveBehaviorAndUnlink(Behavior behavior)
+        {
+            if (behavior.HasTransition())
+            {
+                behavior.TransitionTarget.RemoveIncomingTransition(behavior);
+            }
+
+            if (!_behaviors.Remove(behavior))
+            {
+                throw new VertexValidationException(this, "tried to remove behavior that wasn't owned by this vertex");
             }
         }
 
@@ -161,6 +187,11 @@ namespace StateSmith.Compiling
             {
                 throw new VertexValidationException(child, "cannot safely remove child as it still has incoming transitions");
             }
+        }
+
+        public void RemoveSelf()
+        {
+            NonNullParent.RemoveChild(this);
         }
 
         public int FindIndexInParentKids()
@@ -341,28 +372,11 @@ namespace StateSmith.Compiling
                 case ChoicePoint point:
                     return $"{Describe(v.Parent)}.{nameof(ChoicePoint)}({point.label})";
 
+                case HistoryVertex historyVertex:
+                    return Describe(v.Parent) + ".History";
+
                 default: throw new ArgumentException("Unsupported type " + v.GetType().FullName);
             }
         }
     }
-
-    public class TransitionPath
-    {
-        public List<Vertex> toExit = new List<Vertex>();
-        public Vertex leastCommonAncestor;
-        public List<Vertex> toEnter = new List<Vertex>();
-
-        public bool IsSelfTransition()
-        {
-            if (toExit.Count > 1 || toEnter.Count > 1)
-            {
-                return false;
-            }
-
-            var enterState = toEnter.First();
-            var exitState = toExit.First();
-            return enterState == exitState;
-        }
-    }
-
 }

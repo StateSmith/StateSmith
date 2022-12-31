@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0-alpha]
+### Changed
+- Generated .h file now automatically includes `<stdint.h>` (required for history states).
+
+### Added
+- Add history.  https://github.com/StateSmith/StateSmith/issues/63
+  - Deep history functionality supported via history continue nodes.
+  - plantuml supports history states and history continue nodes.
+- Add `$prefix` methods.
+  - Experimental feature to help with duplicate state names. https://github.com/StateSmith/StateSmith/issues/65
+
+### Fixed
+  - Pseudo state transition de-duplication now considers initial state parent incoming transition count too.
+  - Improved exit handling optimization.
+
+---
+
 ## [0.6.1-alpha]
 ### Added
 - Improve generated code clarity by showing step 1,2,3... and other small things.

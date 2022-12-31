@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using StateSmith.Compiling;
 using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace StateSmithTest.C99BalancedCoder1
 
         private void SetupCtxForWaffleSm()
         {
-            var compiler = new Compiler();
+            var compilerRunner = new CompilerRunner();
 
             Statemachine sm = new Statemachine("WaffleSm");
             sm.AddBehavior(new Behavior()
@@ -25,15 +26,12 @@ namespace StateSmithTest.C99BalancedCoder1
                 triggers = TriggerList("do", "EV1", "EV2")
             });
 
-            compiler.rootVertices = new List<Vertex>() { sm };
+            compilerRunner.sm = sm;
             var s1 = sm.AddChild(new State(name: "s1"));
             var initialStateVertex = sm.AddChild(new InitialState());
             initialStateVertex.AddTransitionTo(s1);
 
-            compiler.SetupRoots();
-            compiler.FinalizeTrees();
-            compiler.Validate();
-
+            compilerRunner.FinishRunningCompiler();
             ctx = new(sm);
         }
 

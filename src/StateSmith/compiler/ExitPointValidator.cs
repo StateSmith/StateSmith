@@ -4,6 +4,11 @@ using System.Linq;
 
 public class ExitPointValidator
 {
+    public static void ValidateBeforeTransformation(ExitPoint exitPoint)
+    {
+        PseudoStateValidator.ValidateParentAndNoChildren(exitPoint);
+    }
+
     public static void Validate(ExitPoint exitPoint)
     {
         PseudoStateValidator.ValidateParentAndNoChildren(exitPoint);

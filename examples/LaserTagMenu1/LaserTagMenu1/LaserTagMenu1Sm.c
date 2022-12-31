@@ -141,6 +141,8 @@ static void WELCOME_SCREEN_do(LaserTagMenu1Sm* self);
 // or when multiple states need to be exited.
 static void exit_up_to_state_handler(LaserTagMenu1Sm* self, const LaserTagMenu1Sm_Func desired_state_exit_handler);
 
+static void HOME_InitialState_transition(LaserTagMenu1Sm* self);
+
 
 void LaserTagMenu1Sm_ctor(LaserTagMenu1Sm* self)
 {
@@ -303,6 +305,25 @@ static void HOME_ok_press(LaserTagMenu1Sm* self)
             return;
         } // end of behavior for MAIN_MENU.InitialState
     } // end of behavior for HOME
+}
+
+static void HOME_InitialState_transition(LaserTagMenu1Sm* self)
+{
+    // HOME.InitialState behavior
+    // uml: TransitionTo(HOME1)
+    {
+        // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `HOME1`.
+        HOME1_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = LaserTagMenu1Sm_StateId_HOME1;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for HOME.InitialState
 }
 
 
@@ -557,21 +578,9 @@ static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self)
         // Step 3: Enter/move towards transition target `HOME`.
         HOME_enter(self);
         
-        // HOME.InitialState behavior
-        // uml: TransitionTo(HOME1)
-        {
-            // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: ``.
-            
-            // Step 3: Enter/move towards transition target `HOME1`.
-            HOME1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = LaserTagMenu1Sm_StateId_HOME1;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for HOME.InitialState
+        // Finish transition by calling pseudo state transition function.
+        HOME_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for MENUS_GROUP
 }
 
@@ -590,21 +599,9 @@ static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self)
         // Step 3: Enter/move towards transition target `HOME`.
         HOME_enter(self);
         
-        // HOME.InitialState behavior
-        // uml: TransitionTo(HOME1)
-        {
-            // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: ``.
-            
-            // Step 3: Enter/move towards transition target `HOME1`.
-            HOME1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = LaserTagMenu1Sm_StateId_HOME1;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for HOME.InitialState
+        // Finish transition by calling pseudo state transition function.
+        HOME_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for MENUS_GROUP
 }
 
@@ -2137,21 +2134,9 @@ static void WELCOME_SCREEN_do(LaserTagMenu1Sm* self)
         // Step 3: Enter/move towards transition target `HOME`.
         HOME_enter(self);
         
-        // HOME.InitialState behavior
-        // uml: TransitionTo(HOME1)
-        {
-            // Step 1: Exit states until we reach `HOME` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: ``.
-            
-            // Step 3: Enter/move towards transition target `HOME1`.
-            HOME1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = LaserTagMenu1Sm_StateId_HOME1;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for HOME.InitialState
+        // Finish transition by calling pseudo state transition function.
+        HOME_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for WELCOME_SCREEN
 }
 

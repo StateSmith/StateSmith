@@ -24,7 +24,6 @@ namespace StateSmithTest.roslyn
              * This is a header for the .h file
              */
             #include <stdbool.h>
-            #include <stdint.h>
             #include ""some_stuff.h""
             ");
             //escaping double quotes is unfortunate, but not too bad for now

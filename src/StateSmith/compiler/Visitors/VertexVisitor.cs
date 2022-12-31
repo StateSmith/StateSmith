@@ -16,6 +16,8 @@ namespace StateSmith.compiler.Visitors
         public virtual void Visit(ChoicePoint v) => Visit((Vertex)v);
         public virtual void Visit(EntryPoint v) => Visit((Vertex)v);
         public virtual void Visit(ExitPoint v) => Visit((Vertex)v);
+        public virtual void Visit(HistoryVertex v) => Visit((Vertex)v);
+        public virtual void Visit(HistoryContinueVertex v) => Visit((Vertex)v);
 
         public static void VisitVertexChildren(Vertex v, VertexVisitor visitor)
         {

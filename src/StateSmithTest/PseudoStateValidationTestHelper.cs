@@ -22,10 +22,10 @@ namespace StateSmithTest.PseudoStateTests
         public PseudoStateValidationTestHelper()
         {
             var sm = BuildTestGraph();
-            compiler.rootVertices = new List<Vertex>() { sm };
+            compilerRunner.sm = sm;
         }
 
-        private Vertex BuildTestGraph()
+        private Statemachine BuildTestGraph()
         {
             sm = new Statemachine(name: "root");
             rootInitialState = sm.AddChild(new InitialState());
@@ -62,25 +62,25 @@ namespace StateSmithTest.PseudoStateTests
         }
 
         [Fact]
-        public void GuardOkWithDefaultTransition()
+        public virtual void GuardWithDefaultTransition()
         {
             s2_pseudoState.Behaviors.Single().guardCode = "x > 100";
             AddBlankS2PseudoStateTransition(); // default no-guard transition
-            ExpectValid();
+            RunCompiler();
         }
 
         [Fact]
         public void TrueGuardOkAsDefaultTransition()
         {
             s2_pseudoState.Behaviors.Single().guardCode = "true";
-            ExpectValid();
+            RunCompiler();
         }
 
         [Fact]
-        public void MultipleBehavior()
+        public virtual void MultipleBehavior()
         {
             AddBlankS2PseudoStateTransition();
-            ExpectValid();
+            RunCompiler();
         }
 
         [Fact]
@@ -93,6 +93,7 @@ namespace StateSmithTest.PseudoStateTests
         [Fact]
         public void Trigger()
         {
+            PseudoStateVertex pseudoStateVertex = s2_pseudoState;
             s2_pseudoState.Behaviors[0].triggers.Add("do");
             ExpectVertexValidationException(exceptionMessagePart: "trigger");
         }
@@ -101,7 +102,7 @@ namespace StateSmithTest.PseudoStateTests
         public void IncomingTransitions()
         {
             s1.AddTransitionTo(s2_pseudoState);
-            ExpectValid();
+            RunCompiler();
         }
     }
 

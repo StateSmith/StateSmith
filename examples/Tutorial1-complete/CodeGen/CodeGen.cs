@@ -32,7 +32,6 @@ public class CodeGen
         // Anything you type in the below string ends up in the generated h file
         string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
                 // Some user .h file comment...
-                #include <stdint.h>
             ");
 
         // Anything you type in the below string ends up in the generated c file
