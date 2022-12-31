@@ -17,6 +17,8 @@ public class SpecTester
     protected List<Action<Action<string>>> testFunctions = new();
     int curIndex = 0;
     string actualChunk;
+    public string Output => output;
+    protected string output = "<none yet>";
 
     public string EventList => string.Join(" ", events);
     public string PreAndNormalEvents => string.Join(" ", PreEvents, EventList);
@@ -51,20 +53,18 @@ public class SpecTester
         Assert.Equal(expected, actualChunk); // just in case
     }
 
-    
-
     public void RunAndVerify(Func<string, string> processRunningFunction)
     {
-        var output = processRunningFunction.Invoke(PreAndNormalEvents);
+        output = processRunningFunction.Invoke(PreAndNormalEvents);
         Verify(output);
     }
 
     private void Reset()
     {
-        this.events.Clear();
-        this.testFunctions.Clear();
-        this.curIndex = 0;
-        this.actualChunk = "";
+        events.Clear();
+        testFunctions.Clear();
+        curIndex = 0;
+        actualChunk = "";
     }
 
     public void Verify(string output)

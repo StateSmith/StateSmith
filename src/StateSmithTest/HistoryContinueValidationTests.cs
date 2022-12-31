@@ -233,6 +233,4 @@ public class HistoryContinueValidationTests : ValidationTestHelper
             enter / { {{h2VarName}} = ExampleSm_G2_HistoryId__G4; }
             """);
     }
-
-
 }

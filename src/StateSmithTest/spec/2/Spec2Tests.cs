@@ -733,6 +733,125 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
     ///////////////////////////////////////////////////////////////////////////////////
 
+    [Fact]
+    public void Test7_DeepHistory2()
+    {
+        tester.PreEvents = "EV7 EV4";
+        var historyVar = "$state_0_history";
+
+        // go from state_1 to state_6
+        tester.AddEventHandling("evStep", t => t($$"""
+            State state_1: check behavior `evStep TransitionTo(state_2)`. Behavior running.
+            Exit state_1.
+            Transition action `` for state_1 to state_2.
+            Enter state_2.
+            State state_2: check behavior `enter / { {{historyVar}} = state_2; }`. Behavior running.
+            Transition action `` for state_2.InitialState to state_6.
+            Enter state_6.
+            State state_6: check behavior `enter / { {{historyVar}} = state_6; }`. Behavior running.
+            """
+         ));
+
+        // get to state 9
+        tester.AddEventHandling("evStep", t => t($$"""
+            State state_6: check behavior `evStep TransitionTo(state_9)`. Behavior running.
+            Exit state_6.
+            Transition action `` for state_6 to state_9.
+            Enter state_9.
+            State state_9: check behavior `enter / { {{historyVar}} = state_9; }`. Behavior running.
+            """
+        ));
+
+        // exit all the way out to state 3
+        tester.AddEventHandling("evOpen", t => t($$"""
+            State state_0: check behavior `evOpen TransitionTo(state_3)`. Behavior running.
+            Exit state_9.
+            Exit state_2.
+            Exit state_0.
+            Transition action `` for state_0 to state_3.
+            Enter state_3.
+            """
+        ));
+
+        // re-enter and verify history functionality
+        tester.AddEventHandling("evClose", t => t($$"""
+            State state_3: check behavior `evClose TransitionTo(state_0)`. Behavior running.
+            Exit state_3.
+            Transition action `` for state_3 to state_0.
+            Enter state_0.
+            Transition action `` for state_0.InitialState to state_0.History.
+            Transition action `` for state_0.History to state_9.
+            Enter state_2.
+            State state_2: check behavior `enter / { {{historyVar}} = state_2; }`. Behavior running.
+            Enter state_9.
+            State state_9: check behavior `enter / { {{historyVar}} = state_9; }`. Behavior running.
+            """
+        ));
+
+        // uncomment below to see full output
+        // RunTester();
+        // Assert.True(false, tester.Output);
+    }
+
+    [Fact]
+    public void Test7_DeepHistory3()
+    {
+        tester.PreEvents = "EV7 EV5";
+        var historyVar = "$state_0_history";
+
+        // go from state_1 to state_6
+        tester.AddEventHandling("evStep", t => t($$"""
+            State state_1: check behavior `evStep TransitionTo(state_2)`. Behavior running.
+            Exit state_1.
+            Transition action `` for state_1 to state_2.
+            Enter state_2.
+            State state_2: check behavior `enter / { {{historyVar}} = state_2; }`. Behavior running.
+            Transition action `` for state_2.InitialState to state_6.
+            Enter state_6.
+            """
+         ));
+
+        // get to state 9
+        tester.AddEventHandling("evStep", t => t($$"""
+            State state_6: check behavior `evStep TransitionTo(state_9)`. Behavior running.
+            Exit state_6.
+            Transition action `` for state_6 to state_9.
+            Enter state_9.
+            """
+        ));
+
+        // exit all the way out to state 3
+        tester.AddEventHandling("evOpen", t => t($$"""
+            State state_0: check behavior `evOpen TransitionTo(state_3)`. Behavior running.
+            Exit state_9.
+            Exit state_2.
+            Exit state_0.
+            Transition action `` for state_0 to state_3.
+            Enter state_3.
+            """
+        ));
+
+        // re-enter and verify history functionality
+        tester.AddEventHandling("evClose", t => t($$"""
+            State state_3: check behavior `evClose TransitionTo(state_0)`. Behavior running.
+            Exit state_3.
+            Transition action `` for state_3 to state_0.
+            Enter state_0.
+            Transition action `` for state_0.InitialState to state_0.History.
+            Transition action `` for state_0.History to state_2.
+            Enter state_2.
+            State state_2: check behavior `enter / { {{historyVar}} = state_2; }`. Behavior running.
+            Transition action `` for state_2.InitialState to state_6.
+            Enter state_6.
+            """
+        ));
+
+        // uncomment below to see full output
+        // RunTester(); Assert.True(false, tester.Output);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
 
     [Fact]
     public void Test8_Choice_1_Direct1()
