@@ -48,7 +48,8 @@ public class BashRunner
         Process cmd = new();
         cmd.StartInfo.WorkingDirectory = simpleProcess.WorkingDirectory;
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        bool runningOnWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        if (runningOnWindows)
         {
             cmd.StartInfo.FileName = "wsl.exe";
             cmd.StartInfo.Arguments = $"{simpleProcess.CommandText} ";
@@ -76,6 +77,8 @@ public class BashRunner
             cmd.Kill(entireProcessTree: true);
             cmd.WaitForExit();
         }
+
+        cmd.WaitForExitAsync().Wait();  // required so that async std err and output operations finish before we return from method.
 
         if (cmd.ExitCode != 0)
         {
