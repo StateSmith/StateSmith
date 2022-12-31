@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Generated .h file now automatically includes `<stdint.h>` (required for history states).
 
 ### Added
-- Add history.  https://github.com/StateSmith/StateSmith/issues/63
+- Add history. https://github.com/StateSmith/StateSmith/issues/63
   - Deep history functionality supported via history continue nodes.
   - plantuml supports history states and history continue nodes.
 - Add `$prefix` methods.

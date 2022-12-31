@@ -243,6 +243,8 @@ https://github.com/StateSmith/StateSmith/issues/2
 - `$NOTES` - allows you to write notes. Can enclose other states if you want to ignore them. Kinda like an `#ifdef 0` on a bunch of code.
 - `$PARENT_ALIAS` - detailed above.
 - `$ortho_state` - orthogonal state. Not supported yet.
+- `$H` - [history vertex](./history-vertex.md).
+- `$HC` - [history continue vertex](./history-vertex.md).
 
 ---
 
@@ -355,6 +357,11 @@ Additional info: https://github.com/StateSmith/StateSmith/issues/6
 
 ---
 
+## History Functionality
+See [history vertex](./history-vertex.md).
+
+---
+
 ## State Prefix Helpers `prefix.auto();`
 This feature is experimental right now. Looking for user feedback.
 
@@ -404,3 +411,10 @@ The generated state names will be as follows:
 * `OM__VEG__YAM`
 
 https://github.com/StateSmith/StateSmith/issues/65
+
+---
+
+## Missing UML Functionality
+
+The main feature that is missing in StateSmith (as compared to UML) is [orthogonal/concurrent states](https://en.wikipedia.org/wiki/UML_state_machine#Orthogonal_regions).
+https://github.com/StateSmith/StateSmith/issues/75

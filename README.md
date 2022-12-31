@@ -6,6 +6,8 @@ StateSmith will one day generate code for multiple different languages, but for 
 ![picture 5](images/workflow-1.png)  
 
 # What's new?
+StateSmith 0.7.0 introduced [history functionality](./docs/history-vertex.md) and has almost all the features specified in UML! Just missing [orthogonal/concurrent states](https://github.com/StateSmith/StateSmith/issues/75).
+
 See [main changelog](CHANGELOG.md) or [dev changelog](https://github.com/StateSmith/StateSmith/blob/dev/CHANGELOG.md).
 
 Pinned issues and feature branches show what's in the works.
@@ -121,7 +123,7 @@ See [./docs/yed-training.md](./docs/yed-training.md)
 
 
 # Is StateSmith ready for use? 🧪
-StateSmith is generating working code, and has decent test (188+) and behavior specification coverage. There are 33+ specification integration tests that read a diagram file, generate executable .c state machine code, then compile and execute that .c code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
+StateSmith is generating working code, and has decent test (236+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable .c state machine code, then compile and execute that .c code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
 ![picture 1](images/test-coverage-2022-12.png)  
 
