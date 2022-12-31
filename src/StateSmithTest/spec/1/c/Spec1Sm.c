@@ -31,6 +31,8 @@ static void T111_exit(Spec1Sm* self);
 // or when multiple states need to be exited.
 static void exit_up_to_state_handler(Spec1Sm* self, const Spec1Sm_Func desired_state_exit_handler);
 
+static void S1_InitialState_transition(Spec1Sm* self);
+
 
 void Spec1Sm_ctor(Spec1Sm* self)
 {
@@ -81,22 +83,9 @@ void Spec1Sm_start(Spec1Sm* self)
                 // Step 3: Enter/move towards transition target `S1`.
                 S1_enter(self);
                 
-                // S1.InitialState behavior
-                // uml: / { trace("Transition action `` for S1.InitialState to S11."); } TransitionTo(S11)
-                {
-                    // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                    
-                    // Step 2: Transition action: `trace("Transition action `` for S1.InitialState to S11.");`.
-                    trace("Transition action `` for S1.InitialState to S11.");
-                    
-                    // Step 3: Enter/move towards transition target `S11`.
-                    S11_enter(self);
-                    
-                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                    self->state_id = Spec1Sm_StateId_S11;
-                    // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-                    return;
-                } // end of behavior for S1.InitialState
+                // Finish transition by calling pseudo state transition function.
+                S1_InitialState_transition(self);
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for S.InitialState
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
@@ -219,6 +208,26 @@ static void S1_exit(Spec1Sm* self)
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = S_exit;
+}
+
+static void S1_InitialState_transition(Spec1Sm* self)
+{
+    // S1.InitialState behavior
+    // uml: / { trace("Transition action `` for S1.InitialState to S11."); } TransitionTo(S11)
+    {
+        // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for S1.InitialState to S11.");`.
+        trace("Transition action `` for S1.InitialState to S11.");
+        
+        // Step 3: Enter/move towards transition target `S11`.
+        S11_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec1Sm_StateId_S11;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for S1.InitialState
 }
 
 
@@ -386,22 +395,9 @@ static void T11_ev2(Spec1Sm* self)
         // Step 3: Enter/move towards transition target `S1`.
         S1_enter(self);
         
-        // S1.InitialState behavior
-        // uml: / { trace("Transition action `` for S1.InitialState to S11."); } TransitionTo(S11)
-        {
-            // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for S1.InitialState to S11.");`.
-            trace("Transition action `` for S1.InitialState to S11.");
-            
-            // Step 3: Enter/move towards transition target `S11`.
-            S11_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec1Sm_StateId_S11;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for S1.InitialState
+        // Finish transition by calling pseudo state transition function.
+        S1_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for T11
 }
 

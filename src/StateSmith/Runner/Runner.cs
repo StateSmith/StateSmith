@@ -22,6 +22,7 @@ namespace StateSmith.Runner
     /// </summary>
     public class SmRunner
     {
+        private const string ExpansionVarsPath = "self->vars.";
         RunnerSettings settings;
         public CompilerRunner compilerRunner = new();
         ExceptionPrinter exceptionPrinter;
@@ -86,10 +87,32 @@ namespace StateSmith.Runner
         {
             CodeGenContext codeGenContext = new(compilerRunner.sm, settings.renderConfig);
             settings.mangler.SetStateMachine(compilerRunner.sm);
+            compilerRunner.mangler = settings.mangler;
             codeGenContext.mangler = settings.mangler;
             codeGenContext.style = settings.style;
 
-            ConfigReader reader = new ConfigReader(codeGenContext.expander, expansionVarsPath: "self->vars.");
+            foreach (var h in compilerRunner.sm.historyStates)
+            {
+                string actualVarName = codeGenContext.mangler.HistoryVarName(h);
+                codeGenContext.expander.AddVariableExpansion(h.stateTrackingVarName, ExpansionVarsPath + actualVarName);
+
+                bool useU8 = false;
+
+                if (useU8)
+                {
+                    codeGenContext.sm.variables += $"uint8_t {actualVarName};\n";
+                    if (h.Behaviors.Count > 255) {
+                        throw new VertexValidationException(h, "can't support more than 255 tracked history states right now."); //uint8_t limitation.
+                    }
+                }
+                else
+                {
+                    codeGenContext.sm.variables += $"enum {compilerRunner.mangler.HistoryVarEnumName(h)} {actualVarName};\n";
+
+                }
+            }
+
+            ConfigReader reader = new ConfigReader(codeGenContext.expander, expansionVarsPath: ExpansionVarsPath);
             reader.ReadObject(settings.renderConfig);
 
             CBuilder cBuilder = new(codeGenContext);

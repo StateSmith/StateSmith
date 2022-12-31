@@ -47,17 +47,27 @@ namespace StateSmith.Compiling
             this.actionCode = actionCode;
         }
 
+        public Behavior(string guardCode = "", string actionCode = "", Vertex? transitionTarget = null)
+        {
+            this.guardCode = guardCode;
+            this.actionCode = actionCode;
+            _MaybeSetTransitionTarget(transitionTarget);
+        }
+
         public Behavior(Vertex owningVertex, Vertex? transitionTarget = null, string? diagramId = null)
         {
             _owningVertex = owningVertex;
+            _MaybeSetTransitionTarget(transitionTarget);
+            DiagramId = diagramId;
+        }
 
+        private void _MaybeSetTransitionTarget(Vertex? transitionTarget)
+        {
             if (transitionTarget != null)
             {
                 _transitionTarget = transitionTarget;
                 transitionTarget.AddIncomingTransition(this);
             }
-
-            DiagramId = diagramId;
         }
 
         public string GetOrderString()

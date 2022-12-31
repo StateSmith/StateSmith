@@ -17,6 +17,11 @@ namespace StateSmith.Compiling
             this._name = name;
         }
 
+        public void Rename(string newName)
+        {
+            _name = newName;
+        }
+
         public override void Accept(VertexVisitor visitor)
         {
             visitor.Visit(this);

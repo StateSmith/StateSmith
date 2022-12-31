@@ -1,4 +1,4 @@
-﻿using StateSmith.Input.Expansions;
+using StateSmith.Input.Expansions;
 using StateSmith.output.UserConfig;
 using StateSmith.Runner;
 using System;
@@ -6,6 +6,8 @@ using System;
 /*
  * This file is intended to provide language agnostic helpers and expansions for all specification tests
  */
+
+// spell-checker: ignore modder
 
 namespace Spec;
 

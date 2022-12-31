@@ -86,6 +86,26 @@ namespace StateSmith.output.C99BalancedCoder1
             OutputAnonEnum(file, enumValueName, count);
         }
 
+        public void OutputHistoryIdCode(HistoryVertex historyVertex)
+        {
+            OutputFile file = new(ctx, ctx.hFileSb);
+            file.Append($"enum {mangler.SmStateEnumAttribute}{mangler.HistoryVarEnumName(historyVertex)}");
+            file.StartCodeBlock();
+
+            // default behavior is the last one
+            Behavior defaultBehavior = historyVertex.Behaviors.Last();
+            file.AppendLine($"{(mangler.HistoryVarEnumValueName(historyVertex, defaultBehavior.TransitionTarget))} = 0, // default transition");
+
+            for (int i = 0; i < historyVertex.Behaviors.Count - 1; i++)
+            {
+                var b = historyVertex.Behaviors[i];
+                file.AppendLine($"{mangler.HistoryVarEnumValueName(historyVertex, b.TransitionTarget)} = {i+1},");
+            }
+
+            file.FinishCodeBlock(";");
+            file.FinishLine();
+        }
+
         private static void OutputAnonEnum(OutputFile file, string enumValueName, int count)
         {
             // We put the count in a separate anonymous enum because it isn't really apart of the EventId enum values.

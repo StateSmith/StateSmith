@@ -191,6 +191,31 @@ StateSmith 0.5.9 had a limitation of a single transition for initial states, ent
 
 ![picture 8](images/initial-state-choice.png)  
 
+```
+Dispatch event EV5
+===================================================
+State PARENT: check behavior `EV5 / { count++; }`. Behavior running.
+
+Dispatch event EV1
+===================================================
+State S1: check behavior `EV1 TransitionTo(G)`. Behavior running.
+Exit S1.
+Transition action `` for S1 to G.
+Enter G.
+Transition action `` for G.InitialState to G_S1.
+Enter G_S1.
+
+Dispatch event EV2
+===================================================
+State G: check behavior `EV2 TransitionTo(PARENT.InitialState)`. Behavior running.
+Exit G_S1.
+Exit G.
+Transition action `` for G to PARENT.InitialState.
+Transition action `` for PARENT.InitialState to S1.
+Enter S1.
+```
+*Above from Spec2Sm specification tests.*
+
 ![picture 6](./images/entry-point-choice.png)  
 
 ![picture 7](./images/exit-point-choice.png)  
@@ -327,3 +352,55 @@ When event `T1` is dispatched to `S1_1`, the state machine outputs the following
 ![picture 2](./images/Spec1bSm.png)
 
 Additional info: https://github.com/StateSmith/StateSmith/issues/6
+
+---
+
+## State Prefix Helpers `prefix.auto();`
+This feature is experimental right now. Looking for user feedback.
+
+TLDR: StateSmith will prepend state names with prefixes if the following text is found in a state's behavior:
+* `prefix.add(<arg>)` - appends the argument to the prefix used for sub states. Useful when you want to explicitly specify the prefix to add.
+* `prefix.auto()` - appends the current state's name to the prefix used for sub states. Useful when the parent state name is already fairly short.
+* `prefix.set(<arg>)` - clears any previous prefix and sets it to the argument.
+
+### Background and Explanation
+Currently all states must be named uniquely within a state machine.
+
+This is fine for smaller designs, but becomes more of a burden with large deeply nested designs. You can get around it by prefixing states with their parent names which can get a bit tedious.
+
+In the below design, the state name `NONE` is used twice. This will result in a validation error.
+
+![picture 17](./images/prefixing-none.png)  
+
+
+```
+VertexValidationException: Duplicate state name `NONE` also used by state `Statemachine{SomeSmName}.State{ORDER_MENU}.State{BEVERAGE}.State{NONE}`.
+    Vertex
+    Path: Statemachine{SomeSmName}.State{ORDER_MENU}.State{VEG}.State{NONE}
+    Diagram Id: n0::n4::n2::n0
+    Children count: 0
+    Behaviors count: 1
+    Incoming transitions count: 1
+```
+
+One solution is to manually prefix all states as shown below. Nothing technically wrong with this, but it quickly becomes a burden as nesting increases. There is a better solution using the `prefix` methods.
+
+![picture 18](./images/prefixing-manual.png)  
+
+The below diagram uses special `$cmd` `prefix` methods to tell StateSmith how to prefix sub states.
+
+![picture 19](images/prefixing-cmd-1.png)  
+
+The generated state names will be as follows:
+
+* `ORDER_MENU`
+* `OM__BEVERAGE`
+* `OM__BEV__NONE`
+* `OM__BEV__TEA`
+* `OM__BEV__WATER`
+* `OM__VEG`
+* `OM__VEG__NONE`
+* `OM__VEG__POTATO`
+* `OM__VEG__YAM`
+
+https://github.com/StateSmith/StateSmith/issues/65

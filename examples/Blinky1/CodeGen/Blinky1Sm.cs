@@ -34,7 +34,7 @@ namespace Blinky1
         public class MyGlueFile : IRenderConfigC
         {
             string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
-                #include <stdint.h>  // this ends up in the generated .h file
+                // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
             ");
 
             string IRenderConfigC.CFileIncludes => StringUtils.DeIndentTrim(@"

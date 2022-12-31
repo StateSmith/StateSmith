@@ -20,6 +20,78 @@ static void DECIDE_ev7(Spec2Sm* self);
 static void DECIDE_ev8(Spec2Sm* self);
 static void DECIDE_ev9(Spec2Sm* self);
 
+static void PREFIXING_enter(Spec2Sm* self);
+static void PREFIXING_exit(Spec2Sm* self);
+
+static void PREFIXING__ORDER_MENU_enter(Spec2Sm* self);
+static void PREFIXING__ORDER_MENU_exit(Spec2Sm* self);
+
+static void PREFIXING__OM__BEVERAGE_enter(Spec2Sm* self);
+static void PREFIXING__OM__BEVERAGE_exit(Spec2Sm* self);
+static void PREFIXING__OM__BEVERAGE_ev2(Spec2Sm* self);
+
+static void PREFIXING__OM__BEV__NONE_enter(Spec2Sm* self);
+static void PREFIXING__OM__BEV__NONE_exit(Spec2Sm* self);
+static void PREFIXING__OM__BEV__NONE_ev1(Spec2Sm* self);
+
+static void PREFIXING__OM__BEV__TEA_enter(Spec2Sm* self);
+static void PREFIXING__OM__BEV__TEA_exit(Spec2Sm* self);
+
+static void PREFIXING__OM__BEV__WATER_enter(Spec2Sm* self);
+static void PREFIXING__OM__BEV__WATER_exit(Spec2Sm* self);
+static void PREFIXING__OM__BEV__WATER_ev1(Spec2Sm* self);
+
+static void PREFIXING__OM__VEG_enter(Spec2Sm* self);
+static void PREFIXING__OM__VEG_exit(Spec2Sm* self);
+static void PREFIXING__OM__VEG_ev2(Spec2Sm* self);
+
+static void PREFIXING__OM__VEG__NONE_enter(Spec2Sm* self);
+static void PREFIXING__OM__VEG__NONE_exit(Spec2Sm* self);
+static void PREFIXING__OM__VEG__NONE_ev1(Spec2Sm* self);
+
+static void PREFIXING__OM__VEG__POTATO_enter(Spec2Sm* self);
+static void PREFIXING__OM__VEG__POTATO_exit(Spec2Sm* self);
+static void PREFIXING__OM__VEG__POTATO_ev1(Spec2Sm* self);
+
+static void PREFIXING__OM__VEG__YAM_enter(Spec2Sm* self);
+static void PREFIXING__OM__VEG__YAM_exit(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX_exit(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(Spec2Sm* self);
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(Spec2Sm* self);
+
 static void TEST1_DO_EVENT_TESTING_enter(Spec2Sm* self);
 static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm* self);
 
@@ -227,30 +299,216 @@ static void TEST6_S1_ev1(Spec2Sm* self);
 static void TEST6_S2_enter(Spec2Sm* self);
 static void TEST6_S2_exit(Spec2Sm* self);
 
-static void TEST7_INITIAL_CHOICE_enter(Spec2Sm* self);
-static void TEST7_INITIAL_CHOICE_exit(Spec2Sm* self);
+static void TEST7_INITIAL_OR_HISTORY_enter(Spec2Sm* self);
+static void TEST7_INITIAL_OR_HISTORY_exit(Spec2Sm* self);
 
-static void TEST7_ROOT_enter(Spec2Sm* self);
-static void TEST7_ROOT_exit(Spec2Sm* self);
-static void TEST7_ROOT_ev5(Spec2Sm* self);
+static void TEST7_enter(Spec2Sm* self);
+static void TEST7_exit(Spec2Sm* self);
 
-static void TEST7_G_enter(Spec2Sm* self);
-static void TEST7_G_exit(Spec2Sm* self);
-static void TEST7_G_ev2(Spec2Sm* self);
+static void T7__DEEP_HISTORY1_enter(Spec2Sm* self);
+static void T7__DEEP_HISTORY1_exit(Spec2Sm* self);
 
-static void TEST7_G_S1_enter(Spec2Sm* self);
-static void TEST7_G_S1_exit(Spec2Sm* self);
+static void T7__DH1__SANTAS_WORKSHOP_enter(Spec2Sm* self);
+static void T7__DH1__SANTAS_WORKSHOP_exit(Spec2Sm* self);
 
-static void TEST7_G_S2_enter(Spec2Sm* self);
-static void TEST7_G_S2_exit(Spec2Sm* self);
+static void T7__DH1__ALIENS_DETECTED_enter(Spec2Sm* self);
+static void T7__DH1__ALIENS_DETECTED_exit(Spec2Sm* self);
+static void T7__DH1__ALIENS_DETECTED_ev8(Spec2Sm* self);
 
-static void TEST7_G_S3_enter(Spec2Sm* self);
-static void TEST7_G_S3_exit(Spec2Sm* self);
+static void T7__DH1__GET_BACKUP_enter(Spec2Sm* self);
+static void T7__DH1__GET_BACKUP_exit(Spec2Sm* self);
 
-static void TEST7_S1_enter(Spec2Sm* self);
-static void TEST7_S1_exit(Spec2Sm* self);
-static void TEST7_S1_ev1(Spec2Sm* self);
-static void TEST7_S1_ev3(Spec2Sm* self);
+static void T7__DH1__HERO_enter(Spec2Sm* self);
+static void T7__DH1__HERO_exit(Spec2Sm* self);
+
+static void T7__DH1__CALL_BATMAN_enter(Spec2Sm* self);
+static void T7__DH1__CALL_BATMAN_exit(Spec2Sm* self);
+static void T7__DH1__CALL_BATMAN_ev1(Spec2Sm* self);
+
+static void T7__DH1__CALL_THOR_enter(Spec2Sm* self);
+static void T7__DH1__CALL_THOR_exit(Spec2Sm* self);
+static void T7__DH1__CALL_THOR_ev1(Spec2Sm* self);
+
+static void T7__DH1__LOCAL_HELP_enter(Spec2Sm* self);
+static void T7__DH1__LOCAL_HELP_exit(Spec2Sm* self);
+
+static void T7__DH1__BUDDY_ELF_enter(Spec2Sm* self);
+static void T7__DH1__BUDDY_ELF_exit(Spec2Sm* self);
+static void T7__DH1__BUDDY_ELF_ev1(Spec2Sm* self);
+
+static void T7__DH1__POLAR_BEARS_enter(Spec2Sm* self);
+static void T7__DH1__POLAR_BEARS_exit(Spec2Sm* self);
+
+static void T7__DH1__GIVE_COOKIES_enter(Spec2Sm* self);
+static void T7__DH1__GIVE_COOKIES_exit(Spec2Sm* self);
+static void T7__DH1__GIVE_COOKIES_ev1(Spec2Sm* self);
+
+static void T7__DH1__SNOWBALL_FIGHT_enter(Spec2Sm* self);
+static void T7__DH1__SNOWBALL_FIGHT_exit(Spec2Sm* self);
+static void T7__DH1__SNOWBALL_FIGHT_ev1(Spec2Sm* self);
+
+static void T7__DH1__BUILD_enter(Spec2Sm* self);
+static void T7__DH1__BUILD_exit(Spec2Sm* self);
+static void T7__DH1__BUILD_ev6(Spec2Sm* self);
+static void T7__DH1__BUILD_ev7(Spec2Sm* self);
+
+static void T7__DH1__TOOL_enter(Spec2Sm* self);
+static void T7__DH1__TOOL_exit(Spec2Sm* self);
+static void T7__DH1__TOOL_ev2(Spec2Sm* self);
+
+static void T7__DH1__CIRCULAR_SAW_enter(Spec2Sm* self);
+static void T7__DH1__CIRCULAR_SAW_exit(Spec2Sm* self);
+
+static void T7__DH1__IMPACT_DRILL_enter(Spec2Sm* self);
+static void T7__DH1__IMPACT_DRILL_exit(Spec2Sm* self);
+static void T7__DH1__IMPACT_DRILL_ev1(Spec2Sm* self);
+
+static void T7__DH1__TOY_enter(Spec2Sm* self);
+static void T7__DH1__TOY_exit(Spec2Sm* self);
+static void T7__DH1__TOY_ev1(Spec2Sm* self);
+
+static void T7__DH1__GLOW_WORM_enter(Spec2Sm* self);
+static void T7__DH1__GLOW_WORM_exit(Spec2Sm* self);
+static void T7__DH1__GLOW_WORM_ev1(Spec2Sm* self);
+
+static void T7__DH1__RACE_CAR_enter(Spec2Sm* self);
+static void T7__DH1__RACE_CAR_exit(Spec2Sm* self);
+static void T7__DH1__RACE_CAR_ev1(Spec2Sm* self);
+
+static void T7__DH1__ROBOT_enter(Spec2Sm* self);
+static void T7__DH1__ROBOT_exit(Spec2Sm* self);
+
+static void T7__DH1__BATTLEBOT_enter(Spec2Sm* self);
+static void T7__DH1__BATTLEBOT_exit(Spec2Sm* self);
+static void T7__DH1__BATTLEBOT_ev1(Spec2Sm* self);
+
+static void T7__DH1__WALL_E_enter(Spec2Sm* self);
+static void T7__DH1__WALL_E_exit(Spec2Sm* self);
+
+static void T7__DH1__TEDDY_BEAR_enter(Spec2Sm* self);
+static void T7__DH1__TEDDY_BEAR_exit(Spec2Sm* self);
+static void T7__DH1__TEDDY_BEAR_ev1(Spec2Sm* self);
+
+static void T7__DEEP_HISTORY2_enter(Spec2Sm* self);
+static void T7__DEEP_HISTORY2_exit(Spec2Sm* self);
+
+static void T7__DH2__STATE_0_enter(Spec2Sm* self);
+static void T7__DH2__STATE_0_exit(Spec2Sm* self);
+static void T7__DH2__STATE_0_evopen(Spec2Sm* self);
+
+static void T7__DH2__STATE_1_enter(Spec2Sm* self);
+static void T7__DH2__STATE_1_exit(Spec2Sm* self);
+static void T7__DH2__STATE_1_evstep(Spec2Sm* self);
+
+static void T7__DH2__STATE_2_enter(Spec2Sm* self);
+static void T7__DH2__STATE_2_exit(Spec2Sm* self);
+static void T7__DH2__STATE_2_evback(Spec2Sm* self);
+
+static void T7__DH2__STATE_6_enter(Spec2Sm* self);
+static void T7__DH2__STATE_6_exit(Spec2Sm* self);
+static void T7__DH2__STATE_6_evstep(Spec2Sm* self);
+
+static void T7__DH2__STATE_9_enter(Spec2Sm* self);
+static void T7__DH2__STATE_9_exit(Spec2Sm* self);
+
+static void T7__DH2__STATE_3_enter(Spec2Sm* self);
+static void T7__DH2__STATE_3_exit(Spec2Sm* self);
+static void T7__DH2__STATE_3_evclose(Spec2Sm* self);
+
+static void T7__DEEP_HISTORY3_enter(Spec2Sm* self);
+static void T7__DEEP_HISTORY3_exit(Spec2Sm* self);
+
+static void T7__DH3__STATE_0_enter(Spec2Sm* self);
+static void T7__DH3__STATE_0_exit(Spec2Sm* self);
+static void T7__DH3__STATE_0_evopen(Spec2Sm* self);
+
+static void T7__DH3__STATE_1_enter(Spec2Sm* self);
+static void T7__DH3__STATE_1_exit(Spec2Sm* self);
+static void T7__DH3__STATE_1_evstep(Spec2Sm* self);
+
+static void T7__DH3__STATE_2_enter(Spec2Sm* self);
+static void T7__DH3__STATE_2_exit(Spec2Sm* self);
+static void T7__DH3__STATE_2_evback(Spec2Sm* self);
+
+static void T7__DH3__STATE_6_enter(Spec2Sm* self);
+static void T7__DH3__STATE_6_exit(Spec2Sm* self);
+static void T7__DH3__STATE_6_evstep(Spec2Sm* self);
+
+static void T7__DH3__STATE_9_enter(Spec2Sm* self);
+static void T7__DH3__STATE_9_exit(Spec2Sm* self);
+
+static void T7__DH3__STATE_3_enter(Spec2Sm* self);
+static void T7__DH3__STATE_3_exit(Spec2Sm* self);
+static void T7__DH3__STATE_3_evclose(Spec2Sm* self);
+
+static void T7__HISTORY1_enter(Spec2Sm* self);
+static void T7__HISTORY1_exit(Spec2Sm* self);
+
+static void T7__H1__OFF_enter(Spec2Sm* self);
+static void T7__H1__OFF_exit(Spec2Sm* self);
+static void T7__H1__OFF_ev3(Spec2Sm* self);
+static void T7__H1__OFF_ev4(Spec2Sm* self);
+static void T7__H1__OFF_ev7(Spec2Sm* self);
+
+static void T7__H1__OFF1_enter(Spec2Sm* self);
+static void T7__H1__OFF1_exit(Spec2Sm* self);
+static void T7__H1__OFF1_ev1(Spec2Sm* self);
+
+static void T7__H1__OFF2_enter(Spec2Sm* self);
+static void T7__H1__OFF2_exit(Spec2Sm* self);
+static void T7__H1__OFF2_ev1(Spec2Sm* self);
+
+static void T7__H1__OFF3_enter(Spec2Sm* self);
+static void T7__H1__OFF3_exit(Spec2Sm* self);
+
+static void T7__H1__ON_enter(Spec2Sm* self);
+static void T7__H1__ON_exit(Spec2Sm* self);
+static void T7__H1__ON_ev6(Spec2Sm* self);
+
+static void T7__H1__ON1_enter(Spec2Sm* self);
+static void T7__H1__ON1_exit(Spec2Sm* self);
+static void T7__H1__ON1_ev1(Spec2Sm* self);
+
+static void T7__H1__ON2_enter(Spec2Sm* self);
+static void T7__H1__ON2_exit(Spec2Sm* self);
+static void T7__H1__ON2_ev1(Spec2Sm* self);
+
+static void T7__H1__ON3_enter(Spec2Sm* self);
+static void T7__H1__ON3_exit(Spec2Sm* self);
+static void T7__H1__ON3_ev1(Spec2Sm* self);
+
+static void T7__INITIAL1_enter(Spec2Sm* self);
+static void T7__INITIAL1_exit(Spec2Sm* self);
+
+static void T7__INITIAL1__PARENT_enter(Spec2Sm* self);
+static void T7__INITIAL1__PARENT_exit(Spec2Sm* self);
+static void T7__INITIAL1__PARENT_ev5(Spec2Sm* self);
+
+static void T7__INITIAL1__G_enter(Spec2Sm* self);
+static void T7__INITIAL1__G_exit(Spec2Sm* self);
+static void T7__INITIAL1__G_ev2(Spec2Sm* self);
+
+static void T7__INITIAL1__G_S1_enter(Spec2Sm* self);
+static void T7__INITIAL1__G_S1_exit(Spec2Sm* self);
+
+static void T7__INITIAL1__G_S2_enter(Spec2Sm* self);
+static void T7__INITIAL1__G_S2_exit(Spec2Sm* self);
+
+static void T7__INITIAL1__G_S3_enter(Spec2Sm* self);
+static void T7__INITIAL1__G_S3_exit(Spec2Sm* self);
+
+static void T7__INITIAL1__S1_enter(Spec2Sm* self);
+static void T7__INITIAL1__S1_exit(Spec2Sm* self);
+static void T7__INITIAL1__S1_ev1(Spec2Sm* self);
+static void T7__INITIAL1__S1_ev3(Spec2Sm* self);
+
+static void TEST7_DECIDE_enter(Spec2Sm* self);
+static void TEST7_DECIDE_exit(Spec2Sm* self);
+static void TEST7_DECIDE_ev1(Spec2Sm* self);
+static void TEST7_DECIDE_ev2(Spec2Sm* self);
+static void TEST7_DECIDE_ev3(Spec2Sm* self);
+static void TEST7_DECIDE_ev4(Spec2Sm* self);
+static void TEST7_DECIDE_ev5(Spec2Sm* self);
 
 static void TEST8_ENTRY_CHOICE_enter(Spec2Sm* self);
 static void TEST8_ENTRY_CHOICE_exit(Spec2Sm* self);
@@ -334,11 +592,45 @@ static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self);
 
 static void TEST10_A_ChoicePoint_a__transition_kid_index7(Spec2Sm* self);
 
+static void TEST4_S20_InitialState_transition(Spec2Sm* self);
+
 static void TEST8_G_EntryPoint_1__transition(Spec2Sm* self);
 
 static void TEST8_G_EntryPoint_3__transition(Spec2Sm* self);
 
+static void TEST9A_S1_InitialState_transition(Spec2Sm* self);
+
 static void TEST10_G_ChoicePoint__transition(Spec2Sm* self);
+
+static void PREFIXING__OM__BEVERAGE_InitialState_transition(Spec2Sm* self);
+
+static void T7__H1__ON_InitialState_transition(Spec2Sm* self);
+
+static void T7__H1__OFF_InitialState_transition(Spec2Sm* self);
+
+static void T7__INITIAL1__PARENT_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH2__state_0_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH3__state_0_InitialState_transition(Spec2Sm* self);
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* self);
+
+static void T7__INITIAL1__G_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH2__state_2_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH3__state_2_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH1__TOY_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH1__TOOL_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH1__HERO_InitialState_transition(Spec2Sm* self);
+
+static void T7__DH1__ROBOT_InitialState_transition(Spec2Sm* self);
 
 
 void Spec2Sm_ctor(Spec2Sm* self)
@@ -405,6 +697,26 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
     {
         case Spec2Sm_StateId_ROOT: return "ROOT";
         case Spec2Sm_StateId_DECIDE: return "DECIDE";
+        case Spec2Sm_StateId_PREFIXING: return "PREFIXING";
+        case Spec2Sm_StateId_PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU";
+        case Spec2Sm_StateId_PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG: return "PREFIXING__OM__VEG";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM";
         case Spec2Sm_StateId_TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING";
         case Spec2Sm_StateId_TEST1_ROOT: return "TEST1_ROOT";
         case Spec2Sm_StateId_TEST1_S1: return "TEST1_S1";
@@ -460,13 +772,62 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
         case Spec2Sm_StateId_TEST6_ROOT: return "TEST6_ROOT";
         case Spec2Sm_StateId_TEST6_S1: return "TEST6_S1";
         case Spec2Sm_StateId_TEST6_S2: return "TEST6_S2";
-        case Spec2Sm_StateId_TEST7_INITIAL_CHOICE: return "TEST7_INITIAL_CHOICE";
-        case Spec2Sm_StateId_TEST7_ROOT: return "TEST7_ROOT";
-        case Spec2Sm_StateId_TEST7_G: return "TEST7_G";
-        case Spec2Sm_StateId_TEST7_G_S1: return "TEST7_G_S1";
-        case Spec2Sm_StateId_TEST7_G_S2: return "TEST7_G_S2";
-        case Spec2Sm_StateId_TEST7_G_S3: return "TEST7_G_S3";
-        case Spec2Sm_StateId_TEST7_S1: return "TEST7_S1";
+        case Spec2Sm_StateId_TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY";
+        case Spec2Sm_StateId_TEST7: return "TEST7";
+        case Spec2Sm_StateId_T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1";
+        case Spec2Sm_StateId_T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP";
+        case Spec2Sm_StateId_T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED";
+        case Spec2Sm_StateId_T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP";
+        case Spec2Sm_StateId_T7__DH1__HERO: return "T7__DH1__HERO";
+        case Spec2Sm_StateId_T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN";
+        case Spec2Sm_StateId_T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR";
+        case Spec2Sm_StateId_T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP";
+        case Spec2Sm_StateId_T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF";
+        case Spec2Sm_StateId_T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS";
+        case Spec2Sm_StateId_T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES";
+        case Spec2Sm_StateId_T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT";
+        case Spec2Sm_StateId_T7__DH1__BUILD: return "T7__DH1__BUILD";
+        case Spec2Sm_StateId_T7__DH1__TOOL: return "T7__DH1__TOOL";
+        case Spec2Sm_StateId_T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW";
+        case Spec2Sm_StateId_T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL";
+        case Spec2Sm_StateId_T7__DH1__TOY: return "T7__DH1__TOY";
+        case Spec2Sm_StateId_T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM";
+        case Spec2Sm_StateId_T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR";
+        case Spec2Sm_StateId_T7__DH1__ROBOT: return "T7__DH1__ROBOT";
+        case Spec2Sm_StateId_T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT";
+        case Spec2Sm_StateId_T7__DH1__WALL_E: return "T7__DH1__WALL_E";
+        case Spec2Sm_StateId_T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR";
+        case Spec2Sm_StateId_T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2";
+        case Spec2Sm_StateId_T7__DH2__STATE_0: return "T7__DH2__STATE_0";
+        case Spec2Sm_StateId_T7__DH2__STATE_1: return "T7__DH2__STATE_1";
+        case Spec2Sm_StateId_T7__DH2__STATE_2: return "T7__DH2__STATE_2";
+        case Spec2Sm_StateId_T7__DH2__STATE_6: return "T7__DH2__STATE_6";
+        case Spec2Sm_StateId_T7__DH2__STATE_9: return "T7__DH2__STATE_9";
+        case Spec2Sm_StateId_T7__DH2__STATE_3: return "T7__DH2__STATE_3";
+        case Spec2Sm_StateId_T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3";
+        case Spec2Sm_StateId_T7__DH3__STATE_0: return "T7__DH3__STATE_0";
+        case Spec2Sm_StateId_T7__DH3__STATE_1: return "T7__DH3__STATE_1";
+        case Spec2Sm_StateId_T7__DH3__STATE_2: return "T7__DH3__STATE_2";
+        case Spec2Sm_StateId_T7__DH3__STATE_6: return "T7__DH3__STATE_6";
+        case Spec2Sm_StateId_T7__DH3__STATE_9: return "T7__DH3__STATE_9";
+        case Spec2Sm_StateId_T7__DH3__STATE_3: return "T7__DH3__STATE_3";
+        case Spec2Sm_StateId_T7__HISTORY1: return "T7__HISTORY1";
+        case Spec2Sm_StateId_T7__H1__OFF: return "T7__H1__OFF";
+        case Spec2Sm_StateId_T7__H1__OFF1: return "T7__H1__OFF1";
+        case Spec2Sm_StateId_T7__H1__OFF2: return "T7__H1__OFF2";
+        case Spec2Sm_StateId_T7__H1__OFF3: return "T7__H1__OFF3";
+        case Spec2Sm_StateId_T7__H1__ON: return "T7__H1__ON";
+        case Spec2Sm_StateId_T7__H1__ON1: return "T7__H1__ON1";
+        case Spec2Sm_StateId_T7__H1__ON2: return "T7__H1__ON2";
+        case Spec2Sm_StateId_T7__H1__ON3: return "T7__H1__ON3";
+        case Spec2Sm_StateId_T7__INITIAL1: return "T7__INITIAL1";
+        case Spec2Sm_StateId_T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT";
+        case Spec2Sm_StateId_T7__INITIAL1__G: return "T7__INITIAL1__G";
+        case Spec2Sm_StateId_T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1";
+        case Spec2Sm_StateId_T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2";
+        case Spec2Sm_StateId_T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3";
+        case Spec2Sm_StateId_T7__INITIAL1__S1: return "T7__INITIAL1__S1";
+        case Spec2Sm_StateId_TEST7_DECIDE: return "TEST7_DECIDE";
         case Spec2Sm_StateId_TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE";
         case Spec2Sm_StateId_TEST8_ROOT: return "TEST8_ROOT";
         case Spec2Sm_StateId_TEST8_G: return "TEST8_G";
@@ -879,46 +1240,34 @@ static void DECIDE_ev7(Spec2Sm* self)
     // No ancestor state handles `EV7` event.
     
     // DECIDE behavior
-    // uml: EV7 [trace_guard("State DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_CHOICE)`.", true)] / { trace("Transition action `` for DECIDE to TEST7_INITIAL_CHOICE."); } TransitionTo(TEST7_INITIAL_CHOICE)
-    if (trace_guard("State DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_CHOICE)`.", true))
+    // uml: EV7 [trace_guard("State DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_OR_HISTORY)`.", true)] / { trace("Transition action `` for DECIDE to TEST7_INITIAL_OR_HISTORY."); } TransitionTo(TEST7_INITIAL_OR_HISTORY)
+    if (trace_guard("State DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_OR_HISTORY)`.", true))
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         DECIDE_exit(self);
         
-        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST7_INITIAL_CHOICE.");`.
-        trace("Transition action `` for DECIDE to TEST7_INITIAL_CHOICE.");
+        // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST7_INITIAL_OR_HISTORY.");`.
+        trace("Transition action `` for DECIDE to TEST7_INITIAL_OR_HISTORY.");
         
-        // Step 3: Enter/move towards transition target `TEST7_INITIAL_CHOICE`.
-        TEST7_INITIAL_CHOICE_enter(self);
+        // Step 3: Enter/move towards transition target `TEST7_INITIAL_OR_HISTORY`.
+        TEST7_INITIAL_OR_HISTORY_enter(self);
         
-        // TEST7_INITIAL_CHOICE.InitialState behavior
-        // uml: / { trace("Transition action `` for TEST7_INITIAL_CHOICE.InitialState to TEST7_ROOT."); } TransitionTo(TEST7_ROOT)
+        // TEST7_INITIAL_OR_HISTORY.InitialState behavior
+        // uml: / { trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE."); } TransitionTo(TEST7_DECIDE)
         {
-            // Step 1: Exit states until we reach `TEST7_INITIAL_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_CHOICE.InitialState to TEST7_ROOT.");`.
-            trace("Transition action `` for TEST7_INITIAL_CHOICE.InitialState to TEST7_ROOT.");
+            // Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE.");`.
+            trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE.");
             
-            // Step 3: Enter/move towards transition target `TEST7_ROOT`.
-            TEST7_ROOT_enter(self);
+            // Step 3: Enter/move towards transition target `TEST7_DECIDE`.
+            TEST7_DECIDE_enter(self);
             
-            // TEST7_ROOT.InitialState behavior
-            // uml: / { trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1."); } TransitionTo(TEST7_S1)
-            {
-                // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.");`.
-                trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.");
-                
-                // Step 3: Enter/move towards transition target `TEST7_S1`.
-                TEST7_S1_enter(self);
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                self->state_id = Spec2Sm_StateId_TEST7_S1;
-                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-                return;
-            } // end of behavior for TEST7_ROOT.InitialState
-        } // end of behavior for TEST7_INITIAL_CHOICE.InitialState
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_TEST7_DECIDE;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for TEST7_INITIAL_OR_HISTORY.InitialState
     } // end of behavior for DECIDE
 }
 
@@ -992,6 +1341,1000 @@ static void DECIDE_ev9(Spec2Sm* self)
             return;
         } // end of behavior for TEST9_EXIT_CHOICE.InitialState
     } // end of behavior for DECIDE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING_exit;
+    
+    // PREFIXING behavior
+    // uml: enter / { trace("Enter PREFIXING."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING.");`
+        trace("Enter PREFIXING.");
+    } // end of behavior for PREFIXING
+}
+
+static void PREFIXING_exit(Spec2Sm* self)
+{
+    // PREFIXING behavior
+    // uml: exit / { trace("Exit PREFIXING."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING.");`
+        trace("Exit PREFIXING.");
+    } // end of behavior for PREFIXING
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = ROOT_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__ORDER_MENU
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__ORDER_MENU_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__ORDER_MENU_exit;
+    
+    // PREFIXING__ORDER_MENU behavior
+    // uml: enter / { trace("Enter PREFIXING__ORDER_MENU."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.");`
+        trace("Enter PREFIXING__ORDER_MENU.");
+    } // end of behavior for PREFIXING__ORDER_MENU
+}
+
+static void PREFIXING__ORDER_MENU_exit(Spec2Sm* self)
+{
+    // PREFIXING__ORDER_MENU behavior
+    // uml: exit / { trace("Exit PREFIXING__ORDER_MENU."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.");`
+        trace("Exit PREFIXING__ORDER_MENU.");
+    } // end of behavior for PREFIXING__ORDER_MENU
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__BEVERAGE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__BEVERAGE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = PREFIXING__OM__BEVERAGE_ev2;
+    
+    // PREFIXING__OM__BEVERAGE behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.");`
+        trace("Enter PREFIXING__OM__BEVERAGE.");
+    } // end of behavior for PREFIXING__OM__BEVERAGE
+}
+
+static void PREFIXING__OM__BEVERAGE_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEVERAGE behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.");`
+        trace("Exit PREFIXING__OM__BEVERAGE.");
+    } // end of behavior for PREFIXING__OM__BEVERAGE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__ORDER_MENU_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__BEVERAGE_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // PREFIXING__OM__BEVERAGE behavior
+    // uml: EV2 [trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG."); } TransitionTo(PREFIXING__OM__VEG)
+    if (trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, PREFIXING__ORDER_MENU_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");`.
+        trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG`.
+        PREFIXING__OM__VEG_enter(self);
+        
+        // PREFIXING__OM__VEG.InitialState behavior
+        // uml: / { trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE."); } TransitionTo(PREFIXING__OM__VEG__NONE)
+        {
+            // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");`.
+            trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");
+            
+            // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__NONE`.
+            PREFIXING__OM__VEG__NONE_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_PREFIXING__OM__VEG__NONE;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for PREFIXING__OM__VEG.InitialState
+    } // end of behavior for PREFIXING__OM__BEVERAGE
+}
+
+static void PREFIXING__OM__BEVERAGE_InitialState_transition(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEVERAGE.InitialState behavior
+    // uml: / { trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE."); } TransitionTo(PREFIXING__OM__BEV__NONE)
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");`.
+        trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__NONE`.
+        PREFIXING__OM__BEV__NONE_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__BEV__NONE;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for PREFIXING__OM__BEVERAGE.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__BEV__NONE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__BEV__NONE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__BEV__NONE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__OM__BEV__NONE_ev1;
+    
+    // PREFIXING__OM__BEV__NONE behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.");`
+        trace("Enter PREFIXING__OM__BEV__NONE.");
+    } // end of behavior for PREFIXING__OM__BEV__NONE
+}
+
+static void PREFIXING__OM__BEV__NONE_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEV__NONE behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.");`
+        trace("Exit PREFIXING__OM__BEV__NONE.");
+    } // end of behavior for PREFIXING__OM__BEV__NONE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__BEV__NONE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__OM__BEV__NONE behavior
+    // uml: EV1 [trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER."); } TransitionTo(PREFIXING__OM__BEV__WATER)
+    if (trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition).
+        PREFIXING__OM__BEV__NONE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.");`.
+        trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__WATER`.
+        PREFIXING__OM__BEV__WATER_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__BEV__WATER;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__OM__BEV__NONE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__BEV__TEA
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__BEV__TEA_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__BEV__TEA_exit;
+    
+    // PREFIXING__OM__BEV__TEA behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.");`
+        trace("Enter PREFIXING__OM__BEV__TEA.");
+    } // end of behavior for PREFIXING__OM__BEV__TEA
+}
+
+static void PREFIXING__OM__BEV__TEA_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEV__TEA behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.");`
+        trace("Exit PREFIXING__OM__BEV__TEA.");
+    } // end of behavior for PREFIXING__OM__BEV__TEA
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__BEV__WATER
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__BEV__WATER_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__BEV__WATER_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__OM__BEV__WATER_ev1;
+    
+    // PREFIXING__OM__BEV__WATER behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.");`
+        trace("Enter PREFIXING__OM__BEV__WATER.");
+    } // end of behavior for PREFIXING__OM__BEV__WATER
+}
+
+static void PREFIXING__OM__BEV__WATER_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__BEV__WATER behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.");`
+        trace("Exit PREFIXING__OM__BEV__WATER.");
+    } // end of behavior for PREFIXING__OM__BEV__WATER
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__BEV__WATER_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__OM__BEV__WATER behavior
+    // uml: EV1 [trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA."); } TransitionTo(PREFIXING__OM__BEV__TEA)
+    if (trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition).
+        PREFIXING__OM__BEV__WATER_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.");`.
+        trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__TEA`.
+        PREFIXING__OM__BEV__TEA_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__BEV__TEA;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__OM__BEV__WATER
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__VEG
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__VEG_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = PREFIXING__OM__VEG_ev2;
+    
+    // PREFIXING__OM__VEG behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__VEG."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__VEG.");`
+        trace("Enter PREFIXING__OM__VEG.");
+    } // end of behavior for PREFIXING__OM__VEG
+}
+
+static void PREFIXING__OM__VEG_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__VEG behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__VEG."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__VEG.");`
+        trace("Exit PREFIXING__OM__VEG.");
+    } // end of behavior for PREFIXING__OM__VEG
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__ORDER_MENU_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__VEG_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // PREFIXING__OM__VEG behavior
+    // uml: EV2 [trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE."); } TransitionTo(PREFIXING__OM__BEVERAGE)
+    if (trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, PREFIXING__ORDER_MENU_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");`.
+        trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__BEVERAGE`.
+        PREFIXING__OM__BEVERAGE_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        PREFIXING__OM__BEVERAGE_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for PREFIXING__OM__VEG
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__VEG__NONE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__VEG__NONE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__VEG__NONE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__OM__VEG__NONE_ev1;
+    
+    // PREFIXING__OM__VEG__NONE behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.");`
+        trace("Enter PREFIXING__OM__VEG__NONE.");
+    } // end of behavior for PREFIXING__OM__VEG__NONE
+}
+
+static void PREFIXING__OM__VEG__NONE_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__VEG__NONE behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.");`
+        trace("Exit PREFIXING__OM__VEG__NONE.");
+    } // end of behavior for PREFIXING__OM__VEG__NONE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__VEG__NONE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__OM__VEG__NONE behavior
+    // uml: EV1 [trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO."); } TransitionTo(PREFIXING__OM__VEG__POTATO)
+    if (trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition).
+        PREFIXING__OM__VEG__NONE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.");`.
+        trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__POTATO`.
+        PREFIXING__OM__VEG__POTATO_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__VEG__POTATO;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__OM__VEG__NONE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__VEG__POTATO
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__VEG__POTATO_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__VEG__POTATO_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__OM__VEG__POTATO_ev1;
+    
+    // PREFIXING__OM__VEG__POTATO behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.");`
+        trace("Enter PREFIXING__OM__VEG__POTATO.");
+    } // end of behavior for PREFIXING__OM__VEG__POTATO
+}
+
+static void PREFIXING__OM__VEG__POTATO_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__VEG__POTATO behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.");`
+        trace("Exit PREFIXING__OM__VEG__POTATO.");
+    } // end of behavior for PREFIXING__OM__VEG__POTATO
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__OM__VEG__POTATO_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__OM__VEG__POTATO behavior
+    // uml: EV1 [trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM."); } TransitionTo(PREFIXING__OM__VEG__YAM)
+    if (trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition).
+        PREFIXING__OM__VEG__POTATO_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.");`.
+        trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__YAM`.
+        PREFIXING__OM__VEG__YAM_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__OM__VEG__YAM;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__OM__VEG__POTATO
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__OM__VEG__YAM
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__OM__VEG__YAM_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__OM__VEG__YAM_exit;
+    
+    // PREFIXING__OM__VEG__YAM behavior
+    // uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.");`
+        trace("Enter PREFIXING__OM__VEG__YAM.");
+    } // end of behavior for PREFIXING__OM__VEG__YAM
+}
+
+static void PREFIXING__OM__VEG__YAM_exit(Spec2Sm* self)
+{
+    // PREFIXING__OM__VEG__YAM behavior
+    // uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.");`
+        trace("Exit PREFIXING__OM__VEG__YAM.");
+    } // end of behavior for PREFIXING__OM__VEG__YAM
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__OM__VEG_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX_exit;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
+    // uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(self);
+        
+        // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState behavior
+        // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE)
+        {
+            // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`.
+            trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+            
+            // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE`.
+            PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState behavior
+    // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE)
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
+    // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition).
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
+    // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition).
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
+    // uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
+    // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition).
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
+    // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)
+    if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", true))
+    {
+        // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition).
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`.
+        trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+        
+        // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM`.
+        PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+////////////////////////////////////////////////////////////////////////////////
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit;
+    
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
+    // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
+    {
+        // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`
+        trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+}
+
+static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(Spec2Sm* self)
+{
+    // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
+    // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
+    {
+        // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`
+        trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+    } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
 }
 
 
@@ -1308,8 +2651,7 @@ static void TEST10_A_ChoicePoint__transition(Spec2Sm* self)
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
     if (self->vars.count == 1)
     {
-        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST10_A_exit);
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");`.
         trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
@@ -1325,8 +2667,7 @@ static void TEST10_A_ChoicePoint__transition(Spec2Sm* self)
     // TEST10_A.ChoicePoint() behavior
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
     {
-        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST10_A_exit);
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");`.
         trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
@@ -1346,8 +2687,7 @@ static void TEST10_A_ChoicePoint__transition_kid_index3(Spec2Sm* self)
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
     if (self->vars.count == 1)
     {
-        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST10_A_exit);
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");`.
         trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
@@ -1363,8 +2703,7 @@ static void TEST10_A_ChoicePoint__transition_kid_index3(Spec2Sm* self)
     // TEST10_A.ChoicePoint() behavior
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
     {
-        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST10_A_exit);
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");`.
         trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
@@ -1384,8 +2723,7 @@ static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self)
     // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
     if (self->vars.count == 1)
     {
-        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST10_A_exit);
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");`.
         trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
@@ -1401,8 +2739,7 @@ static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self)
     // TEST10_A.ChoicePoint(a) behavior
     // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
     {
-        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST10_A_exit);
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");`.
         trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
@@ -1421,8 +2758,7 @@ static void TEST10_A_ChoicePoint_a__transition_kid_index7(Spec2Sm* self)
     // TEST10_A.ChoicePoint(a) behavior
     // uml: / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)
     {
-        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST10_A_exit);
+        // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");`.
         trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");
@@ -1556,8 +2892,7 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
     // TEST10_G.ChoicePoint() behavior
     // uml: / { trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1)."); } TransitionTo(TEST10_G.ChoicePoint(1))
     {
-        // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST10_G_exit);
+        // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");`.
         trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");
@@ -1569,8 +2904,7 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
         // uml: 1. [count <= 0] / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0."); } TransitionTo(TEST10_G_S0)
         if (self->vars.count <= 0)
         {
-            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
-            exit_up_to_state_handler(self, TEST10_G_exit);
+            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");`.
             trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");
@@ -1588,8 +2922,7 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
         // uml: [count <= 2] / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower)."); } TransitionTo(TEST10_G.ChoicePoint(lower))
         if (self->vars.count <= 2)
         {
-            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
-            exit_up_to_state_handler(self, TEST10_G_exit);
+            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");`.
             trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");
@@ -1601,8 +2934,7 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
             // uml: [count <=1] / { trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1."); } TransitionTo(TEST10_G_S1)
             if (self->vars.count <=1)
             {
-                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(self, TEST10_G_exit);
+                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");`.
                 trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");
@@ -1619,8 +2951,7 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
             // TEST10_G.ChoicePoint(lower) behavior
             // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2."); } TransitionTo(TEST10_G_S2)
             {
-                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(self, TEST10_G_exit);
+                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");`.
                 trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");
@@ -1638,8 +2969,7 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
         // TEST10_G.ChoicePoint(1) behavior
         // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper)."); } TransitionTo(TEST10_G.ChoicePoint(upper))
         {
-            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
-            exit_up_to_state_handler(self, TEST10_G_exit);
+            // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");`.
             trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");
@@ -1651,8 +2981,7 @@ static void TEST10_G_ChoicePoint__transition(Spec2Sm* self)
             // uml: [count <= 3] / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3."); } TransitionTo(TEST10_G_S3)
             if (self->vars.count <= 3)
             {
-                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(self, TEST10_G_exit);
+                // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");`.
                 trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");
@@ -3084,8 +4413,7 @@ static void TEST4D_G_ev1(Spec2Sm* self)
         // TEST4D_EXTERNAL.ChoicePoint() behavior
         // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1."); } TransitionTo(TEST4D_G_1)
         {
-            // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-            exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);
+            // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");`.
             trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");
@@ -3155,8 +4483,7 @@ static void TEST4D_G_1_ev2(Spec2Sm* self)
         // TEST4D_EXTERNAL.ChoicePoint() behavior
         // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G."); } TransitionTo(TEST4D_G)
         {
-            // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-            exit_up_to_state_handler(self, TEST4D_EXTERNAL_exit);
+            // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");`.
             trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");
@@ -3457,22 +4784,9 @@ static void TEST4_ROOT_ev4(Spec2Sm* self)
         // Step 3: Enter/move towards transition target `TEST4_S20`.
         TEST4_S20_enter(self);
         
-        // TEST4_S20.InitialState behavior
-        // uml: / { trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
-        {
-            // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");`.
-            trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
-            
-            // Step 3: Enter/move towards transition target `TEST4_S20_1`.
-            TEST4_S20_1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST4_S20_1;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for TEST4_S20.InitialState
+        // Finish transition by calling pseudo state transition function.
+        TEST4_S20_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for TEST4_ROOT
 }
 
@@ -3730,23 +5044,30 @@ static void TEST4_S20_ev4(Spec2Sm* self)
         // Step 3: Enter/move towards transition target `TEST4_S20`.
         TEST4_S20_enter(self);
         
-        // TEST4_S20.InitialState behavior
-        // uml: / { trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
-        {
-            // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");`.
-            trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
-            
-            // Step 3: Enter/move towards transition target `TEST4_S20_1`.
-            TEST4_S20_1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST4_S20_1;
-            self->ancestor_event_handler = NULL;
-            return;
-        } // end of behavior for TEST4_S20.InitialState
+        // Finish transition by calling pseudo state transition function.
+        TEST4_S20_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for TEST4_S20
+}
+
+static void TEST4_S20_InitialState_transition(Spec2Sm* self)
+{
+    // TEST4_S20.InitialState behavior
+    // uml: / { trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
+    {
+        // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");`.
+        trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
+        
+        // Step 3: Enter/move towards transition target `TEST4_S20_1`.
+        TEST4_S20_1_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST4_S20_1;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST4_S20.InitialState
 }
 
 
@@ -4276,30 +5597,30 @@ static void TEST6_S2_exit(Spec2Sm* self)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state TEST7_INITIAL_CHOICE
+// event handlers for state TEST7_INITIAL_OR_HISTORY
 ////////////////////////////////////////////////////////////////////////////////
 
-static void TEST7_INITIAL_CHOICE_enter(Spec2Sm* self)
+static void TEST7_INITIAL_OR_HISTORY_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = TEST7_INITIAL_CHOICE_exit;
+    self->current_state_exit_handler = TEST7_INITIAL_OR_HISTORY_exit;
     
-    // TEST7_INITIAL_CHOICE behavior
-    // uml: enter / { trace("Enter TEST7_INITIAL_CHOICE."); }
+    // TEST7_INITIAL_OR_HISTORY behavior
+    // uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY."); }
     {
-        // Step 1: execute action `trace("Enter TEST7_INITIAL_CHOICE.");`
-        trace("Enter TEST7_INITIAL_CHOICE.");
-    } // end of behavior for TEST7_INITIAL_CHOICE
+        // Step 1: execute action `trace("Enter TEST7_INITIAL_OR_HISTORY.");`
+        trace("Enter TEST7_INITIAL_OR_HISTORY.");
+    } // end of behavior for TEST7_INITIAL_OR_HISTORY
 }
 
-static void TEST7_INITIAL_CHOICE_exit(Spec2Sm* self)
+static void TEST7_INITIAL_OR_HISTORY_exit(Spec2Sm* self)
 {
-    // TEST7_INITIAL_CHOICE behavior
-    // uml: exit / { trace("Exit TEST7_INITIAL_CHOICE."); }
+    // TEST7_INITIAL_OR_HISTORY behavior
+    // uml: exit / { trace("Exit TEST7_INITIAL_OR_HISTORY."); }
     {
-        // Step 1: execute action `trace("Exit TEST7_INITIAL_CHOICE.");`
-        trace("Exit TEST7_INITIAL_CHOICE.");
-    } // end of behavior for TEST7_INITIAL_CHOICE
+        // Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.");`
+        trace("Exit TEST7_INITIAL_OR_HISTORY.");
+    } // end of behavior for TEST7_INITIAL_OR_HISTORY
     
     // adjust function pointers for this state's exit
     self->current_state_exit_handler = ROOT_exit;
@@ -4307,52 +5628,3433 @@ static void TEST7_INITIAL_CHOICE_exit(Spec2Sm* self)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state TEST7_ROOT
+// event handlers for state TEST7
 ////////////////////////////////////////////////////////////////////////////////
 
-static void TEST7_ROOT_enter(Spec2Sm* self)
+static void TEST7_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = TEST7_ROOT_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV5] = TEST7_ROOT_ev5;
+    self->current_state_exit_handler = TEST7_exit;
     
-    // TEST7_ROOT behavior
-    // uml: enter / { trace("Enter TEST7_ROOT."); }
+    // TEST7 behavior
+    // uml: enter / { trace("Enter TEST7."); }
     {
-        // Step 1: execute action `trace("Enter TEST7_ROOT.");`
-        trace("Enter TEST7_ROOT.");
-    } // end of behavior for TEST7_ROOT
+        // Step 1: execute action `trace("Enter TEST7.");`
+        trace("Enter TEST7.");
+    } // end of behavior for TEST7
     
-    // TEST7_ROOT behavior
-    // uml: enter [trace_guard("State TEST7_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
-    if (trace_guard("State TEST7_ROOT: check behavior `enter / { clear_output(); }`.", true))
+    // TEST7 behavior
+    // uml: enter [trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
+    if (trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output(); }`.", true))
     {
-        // Step 1: execute action `clear_output();`
-        trace("IGNORE_OUTPUT_BEFORE_THIS");;
-    } // end of behavior for TEST7_ROOT
+        // Step 1: execute action `clear_dispatch_output();`
+        trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+    } // end of behavior for TEST7
 }
 
-static void TEST7_ROOT_exit(Spec2Sm* self)
+static void TEST7_exit(Spec2Sm* self)
 {
-    // TEST7_ROOT behavior
-    // uml: exit / { trace("Exit TEST7_ROOT."); }
+    // TEST7 behavior
+    // uml: exit / { trace("Exit TEST7."); }
     {
-        // Step 1: execute action `trace("Exit TEST7_ROOT.");`
-        trace("Exit TEST7_ROOT.");
-    } // end of behavior for TEST7_ROOT
+        // Step 1: execute action `trace("Exit TEST7.");`
+        trace("Exit TEST7.");
+    } // end of behavior for TEST7
     
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = TEST7_INITIAL_CHOICE_exit;
+    self->current_state_exit_handler = TEST7_INITIAL_OR_HISTORY_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DEEP_HISTORY1
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DEEP_HISTORY1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DEEP_HISTORY1_exit;
+    
+    // T7__DEEP_HISTORY1 behavior
+    // uml: enter / { trace("Enter T7__DEEP_HISTORY1."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DEEP_HISTORY1.");`
+        trace("Enter T7__DEEP_HISTORY1.");
+    } // end of behavior for T7__DEEP_HISTORY1
+}
+
+static void T7__DEEP_HISTORY1_exit(Spec2Sm* self)
+{
+    // T7__DEEP_HISTORY1 behavior
+    // uml: exit / { trace("Exit T7__DEEP_HISTORY1."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.");`
+        trace("Exit T7__DEEP_HISTORY1.");
+    } // end of behavior for T7__DEEP_HISTORY1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__SANTAS_WORKSHOP
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__SANTAS_WORKSHOP_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__SANTAS_WORKSHOP_exit;
+    
+    // T7__DH1__SANTAS_WORKSHOP behavior
+    // uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__SANTAS_WORKSHOP.");`
+        trace("Enter T7__DH1__SANTAS_WORKSHOP.");
+    } // end of behavior for T7__DH1__SANTAS_WORKSHOP
+}
+
+static void T7__DH1__SANTAS_WORKSHOP_exit(Spec2Sm* self)
+{
+    // T7__DH1__SANTAS_WORKSHOP behavior
+    // uml: exit / { trace("Exit T7__DH1__SANTAS_WORKSHOP."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.");`
+        trace("Exit T7__DH1__SANTAS_WORKSHOP.");
+    } // end of behavior for T7__DH1__SANTAS_WORKSHOP
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DEEP_HISTORY1_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__ALIENS_DETECTED
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__ALIENS_DETECTED_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__ALIENS_DETECTED_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV8] = T7__DH1__ALIENS_DETECTED_ev8;
+    
+    // T7__DH1__ALIENS_DETECTED behavior
+    // uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__ALIENS_DETECTED.");`
+        trace("Enter T7__DH1__ALIENS_DETECTED.");
+    } // end of behavior for T7__DH1__ALIENS_DETECTED
+}
+
+static void T7__DH1__ALIENS_DETECTED_exit(Spec2Sm* self)
+{
+    // T7__DH1__ALIENS_DETECTED behavior
+    // uml: exit / { trace("Exit T7__DH1__ALIENS_DETECTED."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.");`
+        trace("Exit T7__DH1__ALIENS_DETECTED.");
+    } // end of behavior for T7__DH1__ALIENS_DETECTED
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__SANTAS_WORKSHOP_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV8] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__ALIENS_DETECTED_ev8(Spec2Sm* self)
+{
+    // No ancestor state handles `EV8` event.
+    
+    // T7__DH1__ALIENS_DETECTED behavior
+    // uml: EV8 [trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD."); } TransitionTo(T7__DH1__BUILD)
+    if (trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DH1__SANTAS_WORKSHOP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");`.
+        trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
+        T7__DH1__BUILD_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__DH1__BUILD_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__DH1__ALIENS_DETECTED
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__GET_BACKUP
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__GET_BACKUP_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__GET_BACKUP_exit;
+    
+    // T7__DH1__GET_BACKUP behavior
+    // uml: enter / { trace("Enter T7__DH1__GET_BACKUP."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.");`
+        trace("Enter T7__DH1__GET_BACKUP.");
+    } // end of behavior for T7__DH1__GET_BACKUP
+}
+
+static void T7__DH1__GET_BACKUP_exit(Spec2Sm* self)
+{
+    // T7__DH1__GET_BACKUP behavior
+    // uml: exit / { trace("Exit T7__DH1__GET_BACKUP."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.");`
+        trace("Exit T7__DH1__GET_BACKUP.");
+    } // end of behavior for T7__DH1__GET_BACKUP
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__ALIENS_DETECTED_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__HERO
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__HERO_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__HERO_exit;
+    
+    // T7__DH1__HERO behavior
+    // uml: enter / { trace("Enter T7__DH1__HERO."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__HERO.");`
+        trace("Enter T7__DH1__HERO.");
+    } // end of behavior for T7__DH1__HERO
+    
+    // T7__DH1__HERO behavior
+    // uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO; }`.", true)] / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO; }
+    if (trace_guard("State T7__DH1__HERO: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO;`
+        self->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO;
+    } // end of behavior for T7__DH1__HERO
+    
+    // T7__DH1__HERO behavior
+    // uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO; }`.", true)] / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO; }
+    if (trace_guard("State T7__DH1__HERO: check behavior `enter / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO;`
+        self->vars.T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO;
+    } // end of behavior for T7__DH1__HERO
+}
+
+static void T7__DH1__HERO_exit(Spec2Sm* self)
+{
+    // T7__DH1__HERO behavior
+    // uml: exit / { trace("Exit T7__DH1__HERO."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__HERO.");`
+        trace("Exit T7__DH1__HERO.");
+    } // end of behavior for T7__DH1__HERO
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__GET_BACKUP_exit;
+}
+
+static void T7__DH1__HERO_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH1__HERO.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR."); } TransitionTo(T7__DH1__CALL_THOR)
+    {
+        // Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR.");`.
+        trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
+        T7__DH1__CALL_THOR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__CALL_THOR;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH1__HERO.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__CALL_BATMAN
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__CALL_BATMAN_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__CALL_BATMAN_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__CALL_BATMAN_ev1;
+    
+    // T7__DH1__CALL_BATMAN behavior
+    // uml: enter / { trace("Enter T7__DH1__CALL_BATMAN."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__CALL_BATMAN.");`
+        trace("Enter T7__DH1__CALL_BATMAN.");
+    } // end of behavior for T7__DH1__CALL_BATMAN
+}
+
+static void T7__DH1__CALL_BATMAN_exit(Spec2Sm* self)
+{
+    // T7__DH1__CALL_BATMAN behavior
+    // uml: exit / { trace("Exit T7__DH1__CALL_BATMAN."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.");`
+        trace("Exit T7__DH1__CALL_BATMAN.");
+    } // end of behavior for T7__DH1__CALL_BATMAN
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__HERO_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__CALL_BATMAN_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__DH1__CALL_BATMAN behavior
+    // uml: EV1 [trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true)] / { trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
+    if (trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DH1__GET_BACKUP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");`.
+        trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
+        T7__DH1__LOCAL_HELP_enter(self);
+        T7__DH1__BUDDY_ELF_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__BUDDY_ELF;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH1__CALL_BATMAN
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__CALL_THOR
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__CALL_THOR_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__CALL_THOR_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__CALL_THOR_ev1;
+    
+    // T7__DH1__CALL_THOR behavior
+    // uml: enter / { trace("Enter T7__DH1__CALL_THOR."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__CALL_THOR.");`
+        trace("Enter T7__DH1__CALL_THOR.");
+    } // end of behavior for T7__DH1__CALL_THOR
+}
+
+static void T7__DH1__CALL_THOR_exit(Spec2Sm* self)
+{
+    // T7__DH1__CALL_THOR behavior
+    // uml: exit / { trace("Exit T7__DH1__CALL_THOR."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.");`
+        trace("Exit T7__DH1__CALL_THOR.");
+    } // end of behavior for T7__DH1__CALL_THOR
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__HERO_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__CALL_THOR_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__DH1__CALL_THOR behavior
+    // uml: EV1 [trace_guard("State T7__DH1__CALL_THOR: check behavior `EV1 TransitionTo(T7__DH1__CALL_BATMAN)`.", true)] / { trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN."); } TransitionTo(T7__DH1__CALL_BATMAN)
+    if (trace_guard("State T7__DH1__CALL_THOR: check behavior `EV1 TransitionTo(T7__DH1__CALL_BATMAN)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition).
+        T7__DH1__CALL_THOR_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.");`.
+        trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__CALL_BATMAN`.
+        T7__DH1__CALL_BATMAN_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__CALL_BATMAN;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH1__CALL_THOR
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__LOCAL_HELP
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__LOCAL_HELP_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__LOCAL_HELP_exit;
+    
+    // T7__DH1__LOCAL_HELP behavior
+    // uml: enter / { trace("Enter T7__DH1__LOCAL_HELP."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.");`
+        trace("Enter T7__DH1__LOCAL_HELP.");
+    } // end of behavior for T7__DH1__LOCAL_HELP
+}
+
+static void T7__DH1__LOCAL_HELP_exit(Spec2Sm* self)
+{
+    // T7__DH1__LOCAL_HELP behavior
+    // uml: exit / { trace("Exit T7__DH1__LOCAL_HELP."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.");`
+        trace("Exit T7__DH1__LOCAL_HELP.");
+    } // end of behavior for T7__DH1__LOCAL_HELP
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__GET_BACKUP_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__BUDDY_ELF
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__BUDDY_ELF_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__BUDDY_ELF_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__BUDDY_ELF_ev1;
+    
+    // T7__DH1__BUDDY_ELF behavior
+    // uml: enter / { trace("Enter T7__DH1__BUDDY_ELF."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__BUDDY_ELF.");`
+        trace("Enter T7__DH1__BUDDY_ELF.");
+    } // end of behavior for T7__DH1__BUDDY_ELF
+    
+    // T7__DH1__BUDDY_ELF behavior
+    // uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF; }`.", true)] / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF; }
+    if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF;`
+        self->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF;
+    } // end of behavior for T7__DH1__BUDDY_ELF
+    
+    // T7__DH1__BUDDY_ELF behavior
+    // uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF; }`.", true)] / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF; }
+    if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF;`
+        self->vars.T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF;
+    } // end of behavior for T7__DH1__BUDDY_ELF
+}
+
+static void T7__DH1__BUDDY_ELF_exit(Spec2Sm* self)
+{
+    // T7__DH1__BUDDY_ELF behavior
+    // uml: exit / { trace("Exit T7__DH1__BUDDY_ELF."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.");`
+        trace("Exit T7__DH1__BUDDY_ELF.");
+    } // end of behavior for T7__DH1__BUDDY_ELF
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__LOCAL_HELP_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__BUDDY_ELF_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__DH1__BUDDY_ELF behavior
+    // uml: EV1 [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `EV1 TransitionTo(T7__DH1__POLAR_BEARS)`.", true)] / { trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
+    if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `EV1 TransitionTo(T7__DH1__POLAR_BEARS)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__LOCAL_HELP` state (Least Common Ancestor for transition).
+        T7__DH1__BUDDY_ELF_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.");`.
+        trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
+        T7__DH1__POLAR_BEARS_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__POLAR_BEARS;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH1__BUDDY_ELF
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__POLAR_BEARS
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__POLAR_BEARS_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__POLAR_BEARS_exit;
+    
+    // T7__DH1__POLAR_BEARS behavior
+    // uml: enter / { trace("Enter T7__DH1__POLAR_BEARS."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__POLAR_BEARS.");`
+        trace("Enter T7__DH1__POLAR_BEARS.");
+    } // end of behavior for T7__DH1__POLAR_BEARS
+    
+    // T7__DH1__POLAR_BEARS behavior
+    // uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS; }`.", true)] / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS; }
+    if (trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS;`
+        self->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS;
+    } // end of behavior for T7__DH1__POLAR_BEARS
+    
+    // T7__DH1__POLAR_BEARS behavior
+    // uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS; }`.", true)] / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS; }
+    if (trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS;`
+        self->vars.T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS;
+    } // end of behavior for T7__DH1__POLAR_BEARS
+}
+
+static void T7__DH1__POLAR_BEARS_exit(Spec2Sm* self)
+{
+    // T7__DH1__POLAR_BEARS behavior
+    // uml: exit / { trace("Exit T7__DH1__POLAR_BEARS."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.");`
+        trace("Exit T7__DH1__POLAR_BEARS.");
+    } // end of behavior for T7__DH1__POLAR_BEARS
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__LOCAL_HELP_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__GIVE_COOKIES
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__GIVE_COOKIES_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__GIVE_COOKIES_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__GIVE_COOKIES_ev1;
+    
+    // T7__DH1__GIVE_COOKIES behavior
+    // uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__GIVE_COOKIES.");`
+        trace("Enter T7__DH1__GIVE_COOKIES.");
+    } // end of behavior for T7__DH1__GIVE_COOKIES
+    
+    // T7__DH1__GIVE_COOKIES behavior
+    // uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES; }`.", true)] / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES; }
+    if (trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES;`
+        self->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES;
+    } // end of behavior for T7__DH1__GIVE_COOKIES
+}
+
+static void T7__DH1__GIVE_COOKIES_exit(Spec2Sm* self)
+{
+    // T7__DH1__GIVE_COOKIES behavior
+    // uml: exit / { trace("Exit T7__DH1__GIVE_COOKIES."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.");`
+        trace("Exit T7__DH1__GIVE_COOKIES.");
+    } // end of behavior for T7__DH1__GIVE_COOKIES
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__ALIENS_DETECTED_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__GIVE_COOKIES_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__DH1__GIVE_COOKIES behavior
+    // uml: EV1 [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `EV1 TransitionTo(T7__DH1__CALL_THOR)`.", true)] / { trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR."); } TransitionTo(T7__DH1__CALL_THOR)
+    if (trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `EV1 TransitionTo(T7__DH1__CALL_THOR)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
+        T7__DH1__GIVE_COOKIES_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.");`.
+        trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
+        T7__DH1__GET_BACKUP_enter(self);
+        T7__DH1__HERO_enter(self);
+        T7__DH1__CALL_THOR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__CALL_THOR;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH1__GIVE_COOKIES
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__SNOWBALL_FIGHT
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__SNOWBALL_FIGHT_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__SNOWBALL_FIGHT_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__SNOWBALL_FIGHT_ev1;
+    
+    // T7__DH1__SNOWBALL_FIGHT behavior
+    // uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__SNOWBALL_FIGHT.");`
+        trace("Enter T7__DH1__SNOWBALL_FIGHT.");
+    } // end of behavior for T7__DH1__SNOWBALL_FIGHT
+    
+    // T7__DH1__SNOWBALL_FIGHT behavior
+    // uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT; }`.", true)] / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT; }
+    if (trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT;`
+        self->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__SNOWBALL_FIGHT;
+    } // end of behavior for T7__DH1__SNOWBALL_FIGHT
+}
+
+static void T7__DH1__SNOWBALL_FIGHT_exit(Spec2Sm* self)
+{
+    // T7__DH1__SNOWBALL_FIGHT behavior
+    // uml: exit / { trace("Exit T7__DH1__SNOWBALL_FIGHT."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.");`
+        trace("Exit T7__DH1__SNOWBALL_FIGHT.");
+    } // end of behavior for T7__DH1__SNOWBALL_FIGHT
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__ALIENS_DETECTED_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__SNOWBALL_FIGHT_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__DH1__SNOWBALL_FIGHT behavior
+    // uml: EV1 [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(T7__DH1__GIVE_COOKIES)`.", true)] / { trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
+    if (trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(T7__DH1__GIVE_COOKIES)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
+        T7__DH1__SNOWBALL_FIGHT_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.");`.
+        trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__GIVE_COOKIES`.
+        T7__DH1__GIVE_COOKIES_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__GIVE_COOKIES;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH1__SNOWBALL_FIGHT
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__BUILD
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__BUILD_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__BUILD_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV6] = T7__DH1__BUILD_ev6;
+    self->current_event_handlers[Spec2Sm_EventId_EV7] = T7__DH1__BUILD_ev7;
+    
+    // T7__DH1__BUILD behavior
+    // uml: enter / { trace("Enter T7__DH1__BUILD."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__BUILD.");`
+        trace("Enter T7__DH1__BUILD.");
+    } // end of behavior for T7__DH1__BUILD
+}
+
+static void T7__DH1__BUILD_exit(Spec2Sm* self)
+{
+    // T7__DH1__BUILD behavior
+    // uml: exit / { trace("Exit T7__DH1__BUILD."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__BUILD.");`
+        trace("Exit T7__DH1__BUILD.");
+    } // end of behavior for T7__DH1__BUILD
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__SANTAS_WORKSHOP_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV6] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV7] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__BUILD_ev6(Spec2Sm* self)
+{
+    // No ancestor state handles `EV6` event.
+    
+    // T7__DH1__BUILD behavior
+    // uml: EV6 [trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED."); } TransitionTo(T7__DH1__ALIENS_DETECTED)
+    if (trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DH1__SANTAS_WORKSHOP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");`.
+        trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED`.
+        T7__DH1__ALIENS_DETECTED_enter(self);
+        
+        // T7__DH1__ALIENS_DETECTED.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History."); } TransitionTo(T7__DH1__ALIENS_DETECTED.History)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History.");`.
+            trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED.History`.
+            // T7__DH1__ALIENS_DETECTED.History is a pseudo state and cannot have an `enter` trigger.
+            
+            // T7__DH1__ALIENS_DETECTED.History behavior
+            // uml: [$T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
+            if (self->vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__GIVE_COOKIES)
+            {
+                // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES.");`.
+                trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES.");
+                
+                // Step 3: Enter/move towards transition target `T7__DH1__GIVE_COOKIES`.
+                T7__DH1__GIVE_COOKIES_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_T7__DH1__GIVE_COOKIES;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+            
+            // T7__DH1__ALIENS_DETECTED.History behavior
+            // uml: [$T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
+            if (self->vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__HERO)
+            {
+                // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO.");`.
+                trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO.");
+                
+                // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
+                T7__DH1__GET_BACKUP_enter(self);
+                T7__DH1__HERO_enter(self);
+                
+                // Finish transition by calling pseudo state transition function.
+                T7__DH1__HERO_InitialState_transition(self);
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+            
+            // T7__DH1__ALIENS_DETECTED.History behavior
+            // uml: [$T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
+            if (self->vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__BUDDY_ELF)
+            {
+                // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF.");`.
+                trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF.");
+                
+                // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
+                T7__DH1__GET_BACKUP_enter(self);
+                T7__DH1__LOCAL_HELP_enter(self);
+                T7__DH1__BUDDY_ELF_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_T7__DH1__BUDDY_ELF;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+            
+            // T7__DH1__ALIENS_DETECTED.History behavior
+            // uml: [$T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
+            if (self->vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId__T7__DH1__POLAR_BEARS)
+            {
+                // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS.");`.
+                trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS.");
+                
+                // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
+                T7__DH1__GET_BACKUP_enter(self);
+                T7__DH1__LOCAL_HELP_enter(self);
+                T7__DH1__POLAR_BEARS_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_T7__DH1__POLAR_BEARS;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+            
+            // T7__DH1__ALIENS_DETECTED.History behavior
+            // uml: else / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT."); } TransitionTo(T7__DH1__SNOWBALL_FIGHT)
+            {
+                // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT.");`.
+                trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT.");
+                
+                // Step 3: Enter/move towards transition target `T7__DH1__SNOWBALL_FIGHT`.
+                T7__DH1__SNOWBALL_FIGHT_enter(self);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                self->state_id = Spec2Sm_StateId_T7__DH1__SNOWBALL_FIGHT;
+                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+                return;
+            } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+        } // end of behavior for T7__DH1__ALIENS_DETECTED.InitialState
+    } // end of behavior for T7__DH1__BUILD
+}
+
+static void T7__DH1__BUILD_ev7(Spec2Sm* self)
+{
+    // No ancestor state handles `EV7` event.
+    
+    // T7__DH1__BUILD behavior
+    // uml: EV7 [trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.History)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History."); } TransitionTo(T7__DH1__GET_BACKUP.History)
+    if (trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.History)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DH1__SANTAS_WORKSHOP_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");`.
+        trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.History`.
+        T7__DH1__ALIENS_DETECTED_enter(self);
+        T7__DH1__GET_BACKUP_enter(self);
+        // T7__DH1__GET_BACKUP.History is a pseudo state and cannot have an `enter` trigger.
+        
+        // T7__DH1__GET_BACKUP.History behavior
+        // uml: [$T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
+        if (self->vars.T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__HERO)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO.");`.
+            trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
+            T7__DH1__HERO_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH1__HERO_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DH1__GET_BACKUP.History
+        
+        // T7__DH1__GET_BACKUP.History behavior
+        // uml: [$T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
+        if (self->vars.T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__BUDDY_ELF)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF.");`.
+            trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
+            T7__DH1__LOCAL_HELP_enter(self);
+            T7__DH1__BUDDY_ELF_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__BUDDY_ELF;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for T7__DH1__GET_BACKUP.History
+        
+        // T7__DH1__GET_BACKUP.History behavior
+        // uml: [$T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
+        if (self->vars.T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId__T7__DH1__POLAR_BEARS)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS.");`.
+            trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
+            T7__DH1__LOCAL_HELP_enter(self);
+            T7__DH1__POLAR_BEARS_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__POLAR_BEARS;
+            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            return;
+        } // end of behavior for T7__DH1__GET_BACKUP.History
+        
+        // T7__DH1__GET_BACKUP.History behavior
+        // uml: else / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint()."); } TransitionTo(T7__DH1__GET_BACKUP.ChoicePoint())
+        {
+            // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint().");`.
+            trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint().");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.ChoicePoint()`.
+            // T7__DH1__GET_BACKUP.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+            
+            // T7__DH1__GET_BACKUP.ChoicePoint() behavior
+            // uml: / { trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
+            {
+                // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO.");`.
+                trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO.");
+                
+                // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
+                T7__DH1__HERO_enter(self);
+                
+                // Finish transition by calling pseudo state transition function.
+                T7__DH1__HERO_InitialState_transition(self);
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for T7__DH1__GET_BACKUP.ChoicePoint()
+        } // end of behavior for T7__DH1__GET_BACKUP.History
+    } // end of behavior for T7__DH1__BUILD
+}
+
+static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH1__BUILD.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History."); } TransitionTo(T7__DH1__BUILD.History)
+    {
+        // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History.");`.
+        trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__BUILD.History`.
+        // T7__DH1__BUILD.History is a pseudo state and cannot have an `enter` trigger.
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__TOOL`.
+            T7__DH1__TOOL_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH1__TOOL_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
+            T7__DH1__TOY_enter(self);
+            T7__DH1__RACE_CAR_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__RACE_CAR;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__TEDDY_BEAR`.
+            T7__DH1__TOY_enter(self);
+            T7__DH1__TEDDY_BEAR_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__TEDDY_BEAR;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__GLOW_WORM] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__GLOW_WORM)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__GLOW_WORM`.
+            T7__DH1__TOY_enter(self);
+            T7__DH1__GLOW_WORM_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__GLOW_WORM;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__ROBOT] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__ROBOT)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__ROBOT`.
+            T7__DH1__TOY_enter(self);
+            T7__DH1__ROBOT_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH1__ROBOT_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__BATTLEBOT] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__BATTLEBOT)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
+            T7__DH1__TOY_enter(self);
+            T7__DH1__ROBOT_enter(self);
+            T7__DH1__BATTLEBOT_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__BATTLEBOT;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__WALL_E] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__WALL_E)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__WALL_E`.
+            T7__DH1__TOY_enter(self);
+            T7__DH1__ROBOT_enter(self);
+            T7__DH1__WALL_E_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__WALL_E;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__IMPACT_DRILL] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__IMPACT_DRILL)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
+            T7__DH1__TOOL_enter(self);
+            T7__DH1__IMPACT_DRILL_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__IMPACT_DRILL;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: [$T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__CIRCULAR_SAW] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
+        if (self->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__CIRCULAR_SAW)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__CIRCULAR_SAW`.
+            T7__DH1__TOOL_enter(self);
+            T7__DH1__CIRCULAR_SAW_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH1__CIRCULAR_SAW;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH1__BUILD.History
+        
+        // T7__DH1__BUILD.History behavior
+        // uml: else / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY."); } TransitionTo(T7__DH1__TOY)
+        {
+            // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY.");`.
+            trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__TOY`.
+            T7__DH1__TOY_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH1__TOY_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DH1__BUILD.History
+    } // end of behavior for T7__DH1__BUILD.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__TOOL
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__TOOL_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__TOOL_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = T7__DH1__TOOL_ev2;
+    
+    // T7__DH1__TOOL behavior
+    // uml: enter / { trace("Enter T7__DH1__TOOL."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__TOOL.");`
+        trace("Enter T7__DH1__TOOL.");
+    } // end of behavior for T7__DH1__TOOL
+    
+    // T7__DH1__TOOL behavior
+    // uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL; }
+    if (trace_guard("State T7__DH1__TOOL: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOOL;
+    } // end of behavior for T7__DH1__TOOL
+}
+
+static void T7__DH1__TOOL_exit(Spec2Sm* self)
+{
+    // T7__DH1__TOOL behavior
+    // uml: exit / { trace("Exit T7__DH1__TOOL."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__TOOL.");`
+        trace("Exit T7__DH1__TOOL.");
+    } // end of behavior for T7__DH1__TOOL
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__BUILD_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__TOOL_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // T7__DH1__TOOL behavior
+    // uml: EV2 [trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true)] / { trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY."); } TransitionTo(T7__DH1__TOY)
+    if (trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DH1__BUILD_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");`.
+        trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__TOY`.
+        T7__DH1__TOY_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__DH1__TOY_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__DH1__TOOL
+}
+
+static void T7__DH1__TOOL_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH1__TOOL.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
+    {
+        // Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL.");`.
+        trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
+        T7__DH1__IMPACT_DRILL_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__IMPACT_DRILL;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH1__TOOL.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__CIRCULAR_SAW
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__CIRCULAR_SAW_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__CIRCULAR_SAW_exit;
+    
+    // T7__DH1__CIRCULAR_SAW behavior
+    // uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__CIRCULAR_SAW.");`
+        trace("Enter T7__DH1__CIRCULAR_SAW.");
+    } // end of behavior for T7__DH1__CIRCULAR_SAW
+    
+    // T7__DH1__CIRCULAR_SAW behavior
+    // uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__CIRCULAR_SAW; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__CIRCULAR_SAW; }
+    if (trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__CIRCULAR_SAW; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__CIRCULAR_SAW;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__CIRCULAR_SAW;
+    } // end of behavior for T7__DH1__CIRCULAR_SAW
+}
+
+static void T7__DH1__CIRCULAR_SAW_exit(Spec2Sm* self)
+{
+    // T7__DH1__CIRCULAR_SAW behavior
+    // uml: exit / { trace("Exit T7__DH1__CIRCULAR_SAW."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.");`
+        trace("Exit T7__DH1__CIRCULAR_SAW.");
+    } // end of behavior for T7__DH1__CIRCULAR_SAW
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__TOOL_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__IMPACT_DRILL
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__IMPACT_DRILL_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__IMPACT_DRILL_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__IMPACT_DRILL_ev1;
+    
+    // T7__DH1__IMPACT_DRILL behavior
+    // uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__IMPACT_DRILL.");`
+        trace("Enter T7__DH1__IMPACT_DRILL.");
+    } // end of behavior for T7__DH1__IMPACT_DRILL
+    
+    // T7__DH1__IMPACT_DRILL behavior
+    // uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__IMPACT_DRILL; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__IMPACT_DRILL; }
+    if (trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__IMPACT_DRILL; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__IMPACT_DRILL;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__IMPACT_DRILL;
+    } // end of behavior for T7__DH1__IMPACT_DRILL
+}
+
+static void T7__DH1__IMPACT_DRILL_exit(Spec2Sm* self)
+{
+    // T7__DH1__IMPACT_DRILL behavior
+    // uml: exit / { trace("Exit T7__DH1__IMPACT_DRILL."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.");`
+        trace("Exit T7__DH1__IMPACT_DRILL.");
+    } // end of behavior for T7__DH1__IMPACT_DRILL
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__TOOL_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__IMPACT_DRILL_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__DH1__IMPACT_DRILL behavior
+    // uml: EV1 [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `EV1 TransitionTo(T7__DH1__CIRCULAR_SAW)`.", true)] / { trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
+    if (trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `EV1 TransitionTo(T7__DH1__CIRCULAR_SAW)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition).
+        T7__DH1__IMPACT_DRILL_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.");`.
+        trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__CIRCULAR_SAW`.
+        T7__DH1__CIRCULAR_SAW_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__CIRCULAR_SAW;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH1__IMPACT_DRILL
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__TOY
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__TOY_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__TOY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__TOY_ev1;
+    
+    // T7__DH1__TOY behavior
+    // uml: enter / { trace("Enter T7__DH1__TOY."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__TOY.");`
+        trace("Enter T7__DH1__TOY.");
+    } // end of behavior for T7__DH1__TOY
+    
+    // T7__DH1__TOY behavior
+    // uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY; }
+    if (trace_guard("State T7__DH1__TOY: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TOY;
+    } // end of behavior for T7__DH1__TOY
+}
+
+static void T7__DH1__TOY_exit(Spec2Sm* self)
+{
+    // T7__DH1__TOY behavior
+    // uml: exit / { trace("Exit T7__DH1__TOY."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__TOY.");`
+        trace("Exit T7__DH1__TOY.");
+    } // end of behavior for T7__DH1__TOY
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__BUILD_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH1__TOY_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__DH1__TOY behavior
+    // uml: EV1 [trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true)] / { trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
+    if (trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DH1__BUILD_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");`.
+        trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__TOOL`.
+        T7__DH1__TOOL_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__DH1__TOOL_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__DH1__TOY
+}
+
+static void T7__DH1__TOY_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH1__TOY.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
+    {
+        // Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR.");`.
+        trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
+        T7__DH1__RACE_CAR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__RACE_CAR;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH1__TOY.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__GLOW_WORM
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__GLOW_WORM_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__GLOW_WORM_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__GLOW_WORM_ev1;
+    
+    // T7__DH1__GLOW_WORM behavior
+    // uml: enter / { trace("Enter T7__DH1__GLOW_WORM."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__GLOW_WORM.");`
+        trace("Enter T7__DH1__GLOW_WORM.");
+    } // end of behavior for T7__DH1__GLOW_WORM
+    
+    // T7__DH1__GLOW_WORM behavior
+    // uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__GLOW_WORM; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__GLOW_WORM; }
+    if (trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__GLOW_WORM; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__GLOW_WORM;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__GLOW_WORM;
+    } // end of behavior for T7__DH1__GLOW_WORM
+}
+
+static void T7__DH1__GLOW_WORM_exit(Spec2Sm* self)
+{
+    // T7__DH1__GLOW_WORM behavior
+    // uml: exit / { trace("Exit T7__DH1__GLOW_WORM."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.");`
+        trace("Exit T7__DH1__GLOW_WORM.");
+    } // end of behavior for T7__DH1__GLOW_WORM
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__TOY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
+}
+
+static void T7__DH1__GLOW_WORM_ev1(Spec2Sm* self)
+{
+    // Setup handler for next ancestor that listens to `EV1` event.
+    self->ancestor_event_handler = T7__DH1__TOY_ev1;
+    
+    // T7__DH1__GLOW_WORM behavior
+    // uml: EV1 [trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true)] / { trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
+    if (trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
+        T7__DH1__GLOW_WORM_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.");`.
+        trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__ROBOT`.
+        T7__DH1__ROBOT_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__DH1__ROBOT_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__DH1__GLOW_WORM
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__RACE_CAR
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__RACE_CAR_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__RACE_CAR_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__RACE_CAR_ev1;
+    
+    // T7__DH1__RACE_CAR behavior
+    // uml: enter / { trace("Enter T7__DH1__RACE_CAR."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__RACE_CAR.");`
+        trace("Enter T7__DH1__RACE_CAR.");
+    } // end of behavior for T7__DH1__RACE_CAR
+    
+    // T7__DH1__RACE_CAR behavior
+    // uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR; }
+    if (trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__RACE_CAR;
+    } // end of behavior for T7__DH1__RACE_CAR
+}
+
+static void T7__DH1__RACE_CAR_exit(Spec2Sm* self)
+{
+    // T7__DH1__RACE_CAR behavior
+    // uml: exit / { trace("Exit T7__DH1__RACE_CAR."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.");`
+        trace("Exit T7__DH1__RACE_CAR.");
+    } // end of behavior for T7__DH1__RACE_CAR
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__TOY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
+}
+
+static void T7__DH1__RACE_CAR_ev1(Spec2Sm* self)
+{
+    // Setup handler for next ancestor that listens to `EV1` event.
+    self->ancestor_event_handler = T7__DH1__TOY_ev1;
+    
+    // T7__DH1__RACE_CAR behavior
+    // uml: EV1 [trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true)] / { trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
+    if (trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
+        T7__DH1__RACE_CAR_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.");`.
+        trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__TEDDY_BEAR`.
+        T7__DH1__TEDDY_BEAR_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__TEDDY_BEAR;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH1__RACE_CAR
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__ROBOT
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__ROBOT_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__ROBOT_exit;
+    
+    // T7__DH1__ROBOT behavior
+    // uml: enter / { trace("Enter T7__DH1__ROBOT."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__ROBOT.");`
+        trace("Enter T7__DH1__ROBOT.");
+    } // end of behavior for T7__DH1__ROBOT
+    
+    // T7__DH1__ROBOT behavior
+    // uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__ROBOT; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__ROBOT; }
+    if (trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__ROBOT; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__ROBOT;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__ROBOT;
+    } // end of behavior for T7__DH1__ROBOT
+}
+
+static void T7__DH1__ROBOT_exit(Spec2Sm* self)
+{
+    // T7__DH1__ROBOT behavior
+    // uml: exit / { trace("Exit T7__DH1__ROBOT."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__ROBOT.");`
+        trace("Exit T7__DH1__ROBOT.");
+    } // end of behavior for T7__DH1__ROBOT
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__TOY_exit;
+}
+
+static void T7__DH1__ROBOT_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH1__ROBOT.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
+    {
+        // Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT.");`.
+        trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
+        T7__DH1__BATTLEBOT_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__BATTLEBOT;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH1__ROBOT.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__BATTLEBOT
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__BATTLEBOT_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__BATTLEBOT_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__BATTLEBOT_ev1;
+    
+    // T7__DH1__BATTLEBOT behavior
+    // uml: enter / { trace("Enter T7__DH1__BATTLEBOT."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__BATTLEBOT.");`
+        trace("Enter T7__DH1__BATTLEBOT.");
+    } // end of behavior for T7__DH1__BATTLEBOT
+    
+    // T7__DH1__BATTLEBOT behavior
+    // uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__BATTLEBOT; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__BATTLEBOT; }
+    if (trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__BATTLEBOT; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__BATTLEBOT;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__BATTLEBOT;
+    } // end of behavior for T7__DH1__BATTLEBOT
+}
+
+static void T7__DH1__BATTLEBOT_exit(Spec2Sm* self)
+{
+    // T7__DH1__BATTLEBOT behavior
+    // uml: exit / { trace("Exit T7__DH1__BATTLEBOT."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.");`
+        trace("Exit T7__DH1__BATTLEBOT.");
+    } // end of behavior for T7__DH1__BATTLEBOT
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__ROBOT_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
+}
+
+static void T7__DH1__BATTLEBOT_ev1(Spec2Sm* self)
+{
+    // Setup handler for next ancestor that listens to `EV1` event.
+    self->ancestor_event_handler = T7__DH1__TOY_ev1;
+    
+    // T7__DH1__BATTLEBOT behavior
+    // uml: EV1 [trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true)] / { trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
+    if (trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition).
+        T7__DH1__BATTLEBOT_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.");`.
+        trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__WALL_E`.
+        T7__DH1__WALL_E_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__WALL_E;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH1__BATTLEBOT
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__WALL_E
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__WALL_E_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__WALL_E_exit;
+    
+    // T7__DH1__WALL_E behavior
+    // uml: enter / { trace("Enter T7__DH1__WALL_E."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__WALL_E.");`
+        trace("Enter T7__DH1__WALL_E.");
+    } // end of behavior for T7__DH1__WALL_E
+    
+    // T7__DH1__WALL_E behavior
+    // uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__WALL_E; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__WALL_E; }
+    if (trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__WALL_E; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__WALL_E;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__WALL_E;
+    } // end of behavior for T7__DH1__WALL_E
+}
+
+static void T7__DH1__WALL_E_exit(Spec2Sm* self)
+{
+    // T7__DH1__WALL_E behavior
+    // uml: exit / { trace("Exit T7__DH1__WALL_E."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__WALL_E.");`
+        trace("Exit T7__DH1__WALL_E.");
+    } // end of behavior for T7__DH1__WALL_E
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__ROBOT_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH1__TEDDY_BEAR
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH1__TEDDY_BEAR_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH1__TEDDY_BEAR_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__TEDDY_BEAR_ev1;
+    
+    // T7__DH1__TEDDY_BEAR behavior
+    // uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH1__TEDDY_BEAR.");`
+        trace("Enter T7__DH1__TEDDY_BEAR.");
+    } // end of behavior for T7__DH1__TEDDY_BEAR
+    
+    // T7__DH1__TEDDY_BEAR behavior
+    // uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR; }`.", true)] / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR; }
+    if (trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR;`
+        self->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId__T7__DH1__TEDDY_BEAR;
+    } // end of behavior for T7__DH1__TEDDY_BEAR
+}
+
+static void T7__DH1__TEDDY_BEAR_exit(Spec2Sm* self)
+{
+    // T7__DH1__TEDDY_BEAR behavior
+    // uml: exit / { trace("Exit T7__DH1__TEDDY_BEAR."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.");`
+        trace("Exit T7__DH1__TEDDY_BEAR.");
+    } // end of behavior for T7__DH1__TEDDY_BEAR
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH1__TOY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
+}
+
+static void T7__DH1__TEDDY_BEAR_ev1(Spec2Sm* self)
+{
+    // Setup handler for next ancestor that listens to `EV1` event.
+    self->ancestor_event_handler = T7__DH1__TOY_ev1;
+    
+    // T7__DH1__TEDDY_BEAR behavior
+    // uml: EV1 [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true)] / { trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
+    if (trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
+        T7__DH1__TEDDY_BEAR_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.");`.
+        trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH1__GLOW_WORM`.
+        T7__DH1__GLOW_WORM_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH1__GLOW_WORM;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH1__TEDDY_BEAR
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DEEP_HISTORY2
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DEEP_HISTORY2_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DEEP_HISTORY2_exit;
+    
+    // T7__DEEP_HISTORY2 behavior
+    // uml: enter / { trace("Enter T7__DEEP_HISTORY2."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2.");`
+        trace("Enter T7__DEEP_HISTORY2.");
+    } // end of behavior for T7__DEEP_HISTORY2
+}
+
+static void T7__DEEP_HISTORY2_exit(Spec2Sm* self)
+{
+    // T7__DEEP_HISTORY2 behavior
+    // uml: exit / { trace("Exit T7__DEEP_HISTORY2."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.");`
+        trace("Exit T7__DEEP_HISTORY2.");
+    } // end of behavior for T7__DEEP_HISTORY2
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH2__STATE_0
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH2__STATE_0_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH2__STATE_0_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVOPEN] = T7__DH2__STATE_0_evopen;
+    
+    // T7__DH2__state_0 behavior
+    // uml: enter / { trace("Enter T7__DH2__state_0."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH2__state_0.");`
+        trace("Enter T7__DH2__state_0.");
+    } // end of behavior for T7__DH2__state_0
+}
+
+static void T7__DH2__STATE_0_exit(Spec2Sm* self)
+{
+    // T7__DH2__state_0 behavior
+    // uml: exit / { trace("Exit T7__DH2__state_0."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH2__state_0.");`
+        trace("Exit T7__DH2__state_0.");
+    } // end of behavior for T7__DH2__state_0
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DEEP_HISTORY2_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVOPEN] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH2__STATE_0_evopen(Spec2Sm* self)
+{
+    // No ancestor state handles `evOpen` event.
+    
+    // T7__DH2__state_0 behavior
+    // uml: evOpen [trace_guard("State T7__DH2__state_0: check behavior `evOpen TransitionTo(T7__DH2__state_3)`.", true)] / { trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3."); } TransitionTo(T7__DH2__state_3)
+    if (trace_guard("State T7__DH2__state_0: check behavior `evOpen TransitionTo(T7__DH2__state_3)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DEEP_HISTORY2_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");`.
+        trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH2__state_3`.
+        T7__DH2__STATE_3_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH2__STATE_3;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH2__state_0
+}
+
+static void T7__DH2__state_0_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH2__state_0.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History."); } TransitionTo(T7__DH2__state_0.History)
+    {
+        // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History.");`.
+        trace("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH2__state_0.History`.
+        // T7__DH2__state_0.History is a pseudo state and cannot have an `enter` trigger.
+        
+        // T7__DH2__state_0.History behavior
+        // uml: [$T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_2] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2."); } TransitionTo(T7__DH2__state_2)
+        if (self->vars.T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_2)
+        {
+            // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2.");`.
+            trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH2__state_2`.
+            T7__DH2__STATE_2_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH2__state_2_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DH2__state_0.History
+        
+        // T7__DH2__state_0.History behavior
+        // uml: [$T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_6] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6."); } TransitionTo(T7__DH2__state_6)
+        if (self->vars.T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_6)
+        {
+            // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6.");`.
+            trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH2__state_6`.
+            T7__DH2__STATE_2_enter(self);
+            T7__DH2__STATE_6_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH2__STATE_6;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH2__state_0.History
+        
+        // T7__DH2__state_0.History behavior
+        // uml: [$T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_9] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9."); } TransitionTo(T7__DH2__state_9)
+        if (self->vars.T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_9)
+        {
+            // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9.");`.
+            trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH2__state_9`.
+            T7__DH2__STATE_2_enter(self);
+            T7__DH2__STATE_9_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH2__STATE_9;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH2__state_0.History
+        
+        // T7__DH2__state_0.History behavior
+        // uml: else / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1."); } TransitionTo(T7__DH2__state_1)
+        {
+            // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1.");`.
+            trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH2__state_1`.
+            T7__DH2__STATE_1_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH2__STATE_1;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH2__state_0.History
+    } // end of behavior for T7__DH2__state_0.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH2__STATE_1
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH2__STATE_1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH2__STATE_1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVSTEP] = T7__DH2__STATE_1_evstep;
+    
+    // T7__DH2__state_1 behavior
+    // uml: enter / { trace("Enter T7__DH2__state_1."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH2__state_1.");`
+        trace("Enter T7__DH2__state_1.");
+    } // end of behavior for T7__DH2__state_1
+    
+    // T7__DH2__state_1 behavior
+    // uml: enter [trace_guard("State T7__DH2__state_1: check behavior `enter / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_1; }`.", true)] / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_1; }
+    if (trace_guard("State T7__DH2__state_1: check behavior `enter / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_1; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_1;`
+        self->vars.T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_1;
+    } // end of behavior for T7__DH2__state_1
+}
+
+static void T7__DH2__STATE_1_exit(Spec2Sm* self)
+{
+    // T7__DH2__state_1 behavior
+    // uml: exit / { trace("Exit T7__DH2__state_1."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH2__state_1.");`
+        trace("Exit T7__DH2__state_1.");
+    } // end of behavior for T7__DH2__state_1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH2__STATE_0_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVSTEP] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH2__STATE_1_evstep(Spec2Sm* self)
+{
+    // No ancestor state handles `evStep` event.
+    
+    // T7__DH2__state_1 behavior
+    // uml: evStep [trace_guard("State T7__DH2__state_1: check behavior `evStep TransitionTo(T7__DH2__state_2)`.", true)] / { trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2."); } TransitionTo(T7__DH2__state_2)
+    if (trace_guard("State T7__DH2__state_1: check behavior `evStep TransitionTo(T7__DH2__state_2)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition).
+        T7__DH2__STATE_1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2.");`.
+        trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH2__state_2`.
+        T7__DH2__STATE_2_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__DH2__state_2_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__DH2__state_1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH2__STATE_2
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH2__STATE_2_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH2__STATE_2_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVBACK] = T7__DH2__STATE_2_evback;
+    
+    // T7__DH2__state_2 behavior
+    // uml: enter / { trace("Enter T7__DH2__state_2."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH2__state_2.");`
+        trace("Enter T7__DH2__state_2.");
+    } // end of behavior for T7__DH2__state_2
+    
+    // T7__DH2__state_2 behavior
+    // uml: enter [trace_guard("State T7__DH2__state_2: check behavior `enter / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_2; }`.", true)] / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_2; }
+    if (trace_guard("State T7__DH2__state_2: check behavior `enter / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_2; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_2;`
+        self->vars.T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_2;
+    } // end of behavior for T7__DH2__state_2
+}
+
+static void T7__DH2__STATE_2_exit(Spec2Sm* self)
+{
+    // T7__DH2__state_2 behavior
+    // uml: exit / { trace("Exit T7__DH2__state_2."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH2__state_2.");`
+        trace("Exit T7__DH2__state_2.");
+    } // end of behavior for T7__DH2__state_2
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH2__STATE_0_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVBACK] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH2__STATE_2_evback(Spec2Sm* self)
+{
+    // No ancestor state handles `evBack` event.
+    
+    // T7__DH2__state_2 behavior
+    // uml: evBack [trace_guard("State T7__DH2__state_2: check behavior `evBack TransitionTo(T7__DH2__state_1)`.", true)] / { trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1."); } TransitionTo(T7__DH2__state_1)
+    if (trace_guard("State T7__DH2__state_2: check behavior `evBack TransitionTo(T7__DH2__state_1)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DH2__STATE_0_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");`.
+        trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH2__state_1`.
+        T7__DH2__STATE_1_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH2__STATE_1;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH2__state_2
+}
+
+static void T7__DH2__state_2_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH2__state_2.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6."); } TransitionTo(T7__DH2__state_6)
+    {
+        // Step 1: Exit states until we reach `T7__DH2__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6.");`.
+        trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH2__state_6`.
+        T7__DH2__STATE_6_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH2__STATE_6;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH2__state_2.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH2__STATE_6
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH2__STATE_6_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH2__STATE_6_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVSTEP] = T7__DH2__STATE_6_evstep;
+    
+    // T7__DH2__state_6 behavior
+    // uml: enter / { trace("Enter T7__DH2__state_6."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH2__state_6.");`
+        trace("Enter T7__DH2__state_6.");
+    } // end of behavior for T7__DH2__state_6
+    
+    // T7__DH2__state_6 behavior
+    // uml: enter [trace_guard("State T7__DH2__state_6: check behavior `enter / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_6; }`.", true)] / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_6; }
+    if (trace_guard("State T7__DH2__state_6: check behavior `enter / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_6; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_6;`
+        self->vars.T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_6;
+    } // end of behavior for T7__DH2__state_6
+}
+
+static void T7__DH2__STATE_6_exit(Spec2Sm* self)
+{
+    // T7__DH2__state_6 behavior
+    // uml: exit / { trace("Exit T7__DH2__state_6."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH2__state_6.");`
+        trace("Exit T7__DH2__state_6.");
+    } // end of behavior for T7__DH2__state_6
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH2__STATE_2_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVSTEP] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH2__STATE_6_evstep(Spec2Sm* self)
+{
+    // No ancestor state handles `evStep` event.
+    
+    // T7__DH2__state_6 behavior
+    // uml: evStep [trace_guard("State T7__DH2__state_6: check behavior `evStep TransitionTo(T7__DH2__state_9)`.", true)] / { trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9."); } TransitionTo(T7__DH2__state_9)
+    if (trace_guard("State T7__DH2__state_6: check behavior `evStep TransitionTo(T7__DH2__state_9)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH2__state_2` state (Least Common Ancestor for transition).
+        T7__DH2__STATE_6_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9.");`.
+        trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH2__state_9`.
+        T7__DH2__STATE_9_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH2__STATE_9;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH2__state_6
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH2__STATE_9
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH2__STATE_9_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH2__STATE_9_exit;
+    
+    // T7__DH2__state_9 behavior
+    // uml: enter / { trace("Enter T7__DH2__state_9."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH2__state_9.");`
+        trace("Enter T7__DH2__state_9.");
+    } // end of behavior for T7__DH2__state_9
+    
+    // T7__DH2__state_9 behavior
+    // uml: enter [trace_guard("State T7__DH2__state_9: check behavior `enter / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_9; }`.", true)] / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_9; }
+    if (trace_guard("State T7__DH2__state_9: check behavior `enter / { $T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_9; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_9;`
+        self->vars.T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId__T7__DH2__state_9;
+    } // end of behavior for T7__DH2__state_9
+}
+
+static void T7__DH2__STATE_9_exit(Spec2Sm* self)
+{
+    // T7__DH2__state_9 behavior
+    // uml: exit / { trace("Exit T7__DH2__state_9."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH2__state_9.");`
+        trace("Exit T7__DH2__state_9.");
+    } // end of behavior for T7__DH2__state_9
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH2__STATE_2_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH2__STATE_3
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH2__STATE_3_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH2__STATE_3_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVCLOSE] = T7__DH2__STATE_3_evclose;
+    
+    // T7__DH2__state_3 behavior
+    // uml: enter / { trace("Enter T7__DH2__state_3."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH2__state_3.");`
+        trace("Enter T7__DH2__state_3.");
+    } // end of behavior for T7__DH2__state_3
+}
+
+static void T7__DH2__STATE_3_exit(Spec2Sm* self)
+{
+    // T7__DH2__state_3 behavior
+    // uml: exit / { trace("Exit T7__DH2__state_3."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH2__state_3.");`
+        trace("Exit T7__DH2__state_3.");
+    } // end of behavior for T7__DH2__state_3
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DEEP_HISTORY2_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVCLOSE] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH2__STATE_3_evclose(Spec2Sm* self)
+{
+    // No ancestor state handles `evClose` event.
+    
+    // T7__DH2__state_3 behavior
+    // uml: evClose [trace_guard("State T7__DH2__state_3: check behavior `evClose TransitionTo(T7__DH2__state_0)`.", true)] / { trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0."); } TransitionTo(T7__DH2__state_0)
+    if (trace_guard("State T7__DH2__state_3: check behavior `evClose TransitionTo(T7__DH2__state_0)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
+        T7__DH2__STATE_3_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0.");`.
+        trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH2__state_0`.
+        T7__DH2__STATE_0_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__DH2__state_0_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__DH2__state_3
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DEEP_HISTORY3
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DEEP_HISTORY3_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DEEP_HISTORY3_exit;
+    
+    // T7__DEEP_HISTORY3 behavior
+    // uml: enter / { trace("Enter T7__DEEP_HISTORY3."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3.");`
+        trace("Enter T7__DEEP_HISTORY3.");
+    } // end of behavior for T7__DEEP_HISTORY3
+}
+
+static void T7__DEEP_HISTORY3_exit(Spec2Sm* self)
+{
+    // T7__DEEP_HISTORY3 behavior
+    // uml: exit / { trace("Exit T7__DEEP_HISTORY3."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.");`
+        trace("Exit T7__DEEP_HISTORY3.");
+    } // end of behavior for T7__DEEP_HISTORY3
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH3__STATE_0
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH3__STATE_0_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH3__STATE_0_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVOPEN] = T7__DH3__STATE_0_evopen;
+    
+    // T7__DH3__state_0 behavior
+    // uml: enter / { trace("Enter T7__DH3__state_0."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH3__state_0.");`
+        trace("Enter T7__DH3__state_0.");
+    } // end of behavior for T7__DH3__state_0
+}
+
+static void T7__DH3__STATE_0_exit(Spec2Sm* self)
+{
+    // T7__DH3__state_0 behavior
+    // uml: exit / { trace("Exit T7__DH3__state_0."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH3__state_0.");`
+        trace("Exit T7__DH3__state_0.");
+    } // end of behavior for T7__DH3__state_0
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DEEP_HISTORY3_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVOPEN] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH3__STATE_0_evopen(Spec2Sm* self)
+{
+    // No ancestor state handles `evOpen` event.
+    
+    // T7__DH3__state_0 behavior
+    // uml: evOpen [trace_guard("State T7__DH3__state_0: check behavior `evOpen TransitionTo(T7__DH3__state_3)`.", true)] / { trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3."); } TransitionTo(T7__DH3__state_3)
+    if (trace_guard("State T7__DH3__state_0: check behavior `evOpen TransitionTo(T7__DH3__state_3)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DEEP_HISTORY3_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");`.
+        trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH3__state_3`.
+        T7__DH3__STATE_3_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH3__STATE_3;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH3__state_0
+}
+
+static void T7__DH3__state_0_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH3__state_0.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History."); } TransitionTo(T7__DH3__state_0.History)
+    {
+        // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History.");`.
+        trace("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH3__state_0.History`.
+        // T7__DH3__state_0.History is a pseudo state and cannot have an `enter` trigger.
+        
+        // T7__DH3__state_0.History behavior
+        // uml: [$T7__DH3__state_0_history == Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_2] / { trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2."); } TransitionTo(T7__DH3__state_2)
+        if (self->vars.T7__DH3__state_0_history == Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_2)
+        {
+            // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2.");`.
+            trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH3__state_2`.
+            T7__DH3__STATE_2_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH3__state_2_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DH3__state_0.History
+        
+        // T7__DH3__state_0.History behavior
+        // uml: else / { trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1."); } TransitionTo(T7__DH3__state_1)
+        {
+            // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1.");`.
+            trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH3__state_1`.
+            T7__DH3__STATE_1_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__DH3__STATE_1;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__DH3__state_0.History
+    } // end of behavior for T7__DH3__state_0.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH3__STATE_1
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH3__STATE_1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH3__STATE_1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVSTEP] = T7__DH3__STATE_1_evstep;
+    
+    // T7__DH3__state_1 behavior
+    // uml: enter / { trace("Enter T7__DH3__state_1."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH3__state_1.");`
+        trace("Enter T7__DH3__state_1.");
+    } // end of behavior for T7__DH3__state_1
+    
+    // T7__DH3__state_1 behavior
+    // uml: enter [trace_guard("State T7__DH3__state_1: check behavior `enter / { $T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_1; }`.", true)] / { $T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_1; }
+    if (trace_guard("State T7__DH3__state_1: check behavior `enter / { $T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_1; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_1;`
+        self->vars.T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_1;
+    } // end of behavior for T7__DH3__state_1
+}
+
+static void T7__DH3__STATE_1_exit(Spec2Sm* self)
+{
+    // T7__DH3__state_1 behavior
+    // uml: exit / { trace("Exit T7__DH3__state_1."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH3__state_1.");`
+        trace("Exit T7__DH3__state_1.");
+    } // end of behavior for T7__DH3__state_1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH3__STATE_0_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVSTEP] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH3__STATE_1_evstep(Spec2Sm* self)
+{
+    // No ancestor state handles `evStep` event.
+    
+    // T7__DH3__state_1 behavior
+    // uml: evStep [trace_guard("State T7__DH3__state_1: check behavior `evStep TransitionTo(T7__DH3__state_2)`.", true)] / { trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2."); } TransitionTo(T7__DH3__state_2)
+    if (trace_guard("State T7__DH3__state_1: check behavior `evStep TransitionTo(T7__DH3__state_2)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition).
+        T7__DH3__STATE_1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2.");`.
+        trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH3__state_2`.
+        T7__DH3__STATE_2_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__DH3__state_2_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__DH3__state_1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH3__STATE_2
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH3__STATE_2_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH3__STATE_2_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVBACK] = T7__DH3__STATE_2_evback;
+    
+    // T7__DH3__state_2 behavior
+    // uml: enter / { trace("Enter T7__DH3__state_2."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH3__state_2.");`
+        trace("Enter T7__DH3__state_2.");
+    } // end of behavior for T7__DH3__state_2
+    
+    // T7__DH3__state_2 behavior
+    // uml: enter [trace_guard("State T7__DH3__state_2: check behavior `enter / { $T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_2; }`.", true)] / { $T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_2; }
+    if (trace_guard("State T7__DH3__state_2: check behavior `enter / { $T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_2; }`.", true))
+    {
+        // Step 1: execute action `$T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_2;`
+        self->vars.T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId__T7__DH3__state_2;
+    } // end of behavior for T7__DH3__state_2
+}
+
+static void T7__DH3__STATE_2_exit(Spec2Sm* self)
+{
+    // T7__DH3__state_2 behavior
+    // uml: exit / { trace("Exit T7__DH3__state_2."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH3__state_2.");`
+        trace("Exit T7__DH3__state_2.");
+    } // end of behavior for T7__DH3__state_2
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH3__STATE_0_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVBACK] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH3__STATE_2_evback(Spec2Sm* self)
+{
+    // No ancestor state handles `evBack` event.
+    
+    // T7__DH3__state_2 behavior
+    // uml: evBack [trace_guard("State T7__DH3__state_2: check behavior `evBack TransitionTo(T7__DH3__state_1)`.", true)] / { trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1."); } TransitionTo(T7__DH3__state_1)
+    if (trace_guard("State T7__DH3__state_2: check behavior `evBack TransitionTo(T7__DH3__state_1)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__DH3__STATE_0_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");`.
+        trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH3__state_1`.
+        T7__DH3__STATE_1_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH3__STATE_1;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH3__state_2
+}
+
+static void T7__DH3__state_2_InitialState_transition(Spec2Sm* self)
+{
+    // T7__DH3__state_2.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6."); } TransitionTo(T7__DH3__state_6)
+    {
+        // Step 1: Exit states until we reach `T7__DH3__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6.");`.
+        trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH3__state_6`.
+        T7__DH3__STATE_6_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH3__STATE_6;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__DH3__state_2.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH3__STATE_6
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH3__STATE_6_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH3__STATE_6_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVSTEP] = T7__DH3__STATE_6_evstep;
+    
+    // T7__DH3__state_6 behavior
+    // uml: enter / { trace("Enter T7__DH3__state_6."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH3__state_6.");`
+        trace("Enter T7__DH3__state_6.");
+    } // end of behavior for T7__DH3__state_6
+}
+
+static void T7__DH3__STATE_6_exit(Spec2Sm* self)
+{
+    // T7__DH3__state_6 behavior
+    // uml: exit / { trace("Exit T7__DH3__state_6."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH3__state_6.");`
+        trace("Exit T7__DH3__state_6.");
+    } // end of behavior for T7__DH3__state_6
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH3__STATE_2_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVSTEP] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH3__STATE_6_evstep(Spec2Sm* self)
+{
+    // No ancestor state handles `evStep` event.
+    
+    // T7__DH3__state_6 behavior
+    // uml: evStep [trace_guard("State T7__DH3__state_6: check behavior `evStep TransitionTo(T7__DH3__state_9)`.", true)] / { trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9."); } TransitionTo(T7__DH3__state_9)
+    if (trace_guard("State T7__DH3__state_6: check behavior `evStep TransitionTo(T7__DH3__state_9)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DH3__state_2` state (Least Common Ancestor for transition).
+        T7__DH3__STATE_6_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9.");`.
+        trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH3__state_9`.
+        T7__DH3__STATE_9_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__DH3__STATE_9;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__DH3__state_6
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH3__STATE_9
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH3__STATE_9_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH3__STATE_9_exit;
+    
+    // T7__DH3__state_9 behavior
+    // uml: enter / { trace("Enter T7__DH3__state_9."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH3__state_9.");`
+        trace("Enter T7__DH3__state_9.");
+    } // end of behavior for T7__DH3__state_9
+}
+
+static void T7__DH3__STATE_9_exit(Spec2Sm* self)
+{
+    // T7__DH3__state_9 behavior
+    // uml: exit / { trace("Exit T7__DH3__state_9."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH3__state_9.");`
+        trace("Exit T7__DH3__state_9.");
+    } // end of behavior for T7__DH3__state_9
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DH3__STATE_2_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__DH3__STATE_3
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__DH3__STATE_3_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__DH3__STATE_3_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVCLOSE] = T7__DH3__STATE_3_evclose;
+    
+    // T7__DH3__state_3 behavior
+    // uml: enter / { trace("Enter T7__DH3__state_3."); }
+    {
+        // Step 1: execute action `trace("Enter T7__DH3__state_3.");`
+        trace("Enter T7__DH3__state_3.");
+    } // end of behavior for T7__DH3__state_3
+}
+
+static void T7__DH3__STATE_3_exit(Spec2Sm* self)
+{
+    // T7__DH3__state_3 behavior
+    // uml: exit / { trace("Exit T7__DH3__state_3."); }
+    {
+        // Step 1: execute action `trace("Exit T7__DH3__state_3.");`
+        trace("Exit T7__DH3__state_3.");
+    } // end of behavior for T7__DH3__state_3
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__DEEP_HISTORY3_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EVCLOSE] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__DH3__STATE_3_evclose(Spec2Sm* self)
+{
+    // No ancestor state handles `evClose` event.
+    
+    // T7__DH3__state_3 behavior
+    // uml: evClose [trace_guard("State T7__DH3__state_3: check behavior `evClose TransitionTo(T7__DH3__state_0)`.", true)] / { trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0."); } TransitionTo(T7__DH3__state_0)
+    if (trace_guard("State T7__DH3__state_3: check behavior `evClose TransitionTo(T7__DH3__state_0)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
+        T7__DH3__STATE_3_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0.");`.
+        trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0.");
+        
+        // Step 3: Enter/move towards transition target `T7__DH3__state_0`.
+        T7__DH3__STATE_0_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__DH3__state_0_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__DH3__state_3
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__HISTORY1
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__HISTORY1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__HISTORY1_exit;
+    
+    // T7__HISTORY1 behavior
+    // uml: enter / { trace("Enter T7__HISTORY1."); }
+    {
+        // Step 1: execute action `trace("Enter T7__HISTORY1.");`
+        trace("Enter T7__HISTORY1.");
+    } // end of behavior for T7__HISTORY1
+}
+
+static void T7__HISTORY1_exit(Spec2Sm* self)
+{
+    // T7__HISTORY1 behavior
+    // uml: exit / { trace("Exit T7__HISTORY1."); }
+    {
+        // Step 1: execute action `trace("Exit T7__HISTORY1.");`
+        trace("Exit T7__HISTORY1.");
+    } // end of behavior for T7__HISTORY1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__H1__OFF
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__H1__OFF_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__H1__OFF_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = T7__H1__OFF_ev3;
+    self->current_event_handlers[Spec2Sm_EventId_EV4] = T7__H1__OFF_ev4;
+    self->current_event_handlers[Spec2Sm_EventId_EV7] = T7__H1__OFF_ev7;
+    
+    // T7__H1__OFF behavior
+    // uml: enter / { trace("Enter T7__H1__OFF."); }
+    {
+        // Step 1: execute action `trace("Enter T7__H1__OFF.");`
+        trace("Enter T7__H1__OFF.");
+    } // end of behavior for T7__H1__OFF
+}
+
+static void T7__H1__OFF_exit(Spec2Sm* self)
+{
+    // T7__H1__OFF behavior
+    // uml: exit / { trace("Exit T7__H1__OFF."); }
+    {
+        // Step 1: execute action `trace("Exit T7__H1__OFF.");`
+        trace("Exit T7__H1__OFF.");
+    } // end of behavior for T7__H1__OFF
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__HISTORY1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV4] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV7] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__H1__OFF_ev3(Spec2Sm* self)
+{
+    // No ancestor state handles `EV3` event.
+    
+    // T7__H1__OFF behavior
+    // uml: EV3 [trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
+    if (trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__H1__OFF_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");`.
+        trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
+        T7__H1__OFF3_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__H1__OFF3;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__H1__OFF
+}
+
+static void T7__H1__OFF_ev4(Spec2Sm* self)
+{
+    // No ancestor state handles `EV4` event.
+    
+    // T7__H1__OFF behavior
+    // uml: EV4 [trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF."); } TransitionTo(T7__H1__OFF)
+    if (trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__HISTORY1_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");`.
+        trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__OFF`.
+        T7__H1__OFF_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__H1__OFF_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__H1__OFF
+}
+
+static void T7__H1__OFF_ev7(Spec2Sm* self)
+{
+    // No ancestor state handles `EV7` event.
+    
+    // T7__H1__OFF behavior
+    // uml: EV7 [trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__ON."); } TransitionTo(T7__H1__ON)
+    if (trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__HISTORY1_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");`.
+        trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__ON`.
+        T7__H1__ON_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__H1__ON_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__H1__OFF
+}
+
+static void T7__H1__OFF_InitialState_transition(Spec2Sm* self)
+{
+    // T7__H1__OFF.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History."); } TransitionTo(T7__H1__OFF.History)
+    {
+        // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History.");`.
+        trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__OFF.History`.
+        // T7__H1__OFF.History is a pseudo state and cannot have an `enter` trigger.
+        
+        // T7__H1__OFF.History behavior
+        // uml: [$T7__H1__OFF_history == Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2] / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
+        if (self->vars.T7__H1__OFF_history == Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2)
+        {
+            // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2.");`.
+            trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2.");
+            
+            // Step 3: Enter/move towards transition target `T7__H1__OFF2`.
+            T7__H1__OFF2_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__H1__OFF2;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__H1__OFF.History
+        
+        // T7__H1__OFF.History behavior
+        // uml: [$T7__H1__OFF_history == Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3] / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
+        if (self->vars.T7__H1__OFF_history == Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3)
+        {
+            // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3.");`.
+            trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3.");
+            
+            // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
+            T7__H1__OFF3_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__H1__OFF3;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__H1__OFF.History
+        
+        // T7__H1__OFF.History behavior
+        // uml: else / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1."); } TransitionTo(T7__H1__OFF1)
+        {
+            // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1.");`.
+            trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1.");
+            
+            // Step 3: Enter/move towards transition target `T7__H1__OFF1`.
+            T7__H1__OFF1_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__H1__OFF1;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__H1__OFF.History
+    } // end of behavior for T7__H1__OFF.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__H1__OFF1
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__H1__OFF1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__H1__OFF1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__H1__OFF1_ev1;
+    
+    // T7__H1__OFF1 behavior
+    // uml: enter / { trace("Enter T7__H1__OFF1."); }
+    {
+        // Step 1: execute action `trace("Enter T7__H1__OFF1.");`
+        trace("Enter T7__H1__OFF1.");
+    } // end of behavior for T7__H1__OFF1
+    
+    // T7__H1__OFF1 behavior
+    // uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1; }`.", true)] / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1; }
+    if (trace_guard("State T7__H1__OFF1: check behavior `enter / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1; }`.", true))
+    {
+        // Step 1: execute action `$T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1;`
+        self->vars.T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF1;
+    } // end of behavior for T7__H1__OFF1
+}
+
+static void T7__H1__OFF1_exit(Spec2Sm* self)
+{
+    // T7__H1__OFF1 behavior
+    // uml: exit / { trace("Exit T7__H1__OFF1."); }
+    {
+        // Step 1: execute action `trace("Exit T7__H1__OFF1.");`
+        trace("Exit T7__H1__OFF1.");
+    } // end of behavior for T7__H1__OFF1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__H1__OFF_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__H1__OFF1_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__H1__OFF1 behavior
+    // uml: EV1 [trace_guard("State T7__H1__OFF1: check behavior `EV1 TransitionTo(T7__H1__OFF2)`.", true)] / { trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
+    if (trace_guard("State T7__H1__OFF1: check behavior `EV1 TransitionTo(T7__H1__OFF2)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
+        T7__H1__OFF1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.");`.
+        trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__OFF2`.
+        T7__H1__OFF2_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__H1__OFF2;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__H1__OFF1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__H1__OFF2
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__H1__OFF2_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__H1__OFF2_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__H1__OFF2_ev1;
+    
+    // T7__H1__OFF2 behavior
+    // uml: enter / { trace("Enter T7__H1__OFF2."); }
+    {
+        // Step 1: execute action `trace("Enter T7__H1__OFF2.");`
+        trace("Enter T7__H1__OFF2.");
+    } // end of behavior for T7__H1__OFF2
+    
+    // T7__H1__OFF2 behavior
+    // uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2; }`.", true)] / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2; }
+    if (trace_guard("State T7__H1__OFF2: check behavior `enter / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2; }`.", true))
+    {
+        // Step 1: execute action `$T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2;`
+        self->vars.T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF2;
+    } // end of behavior for T7__H1__OFF2
+}
+
+static void T7__H1__OFF2_exit(Spec2Sm* self)
+{
+    // T7__H1__OFF2 behavior
+    // uml: exit / { trace("Exit T7__H1__OFF2."); }
+    {
+        // Step 1: execute action `trace("Exit T7__H1__OFF2.");`
+        trace("Exit T7__H1__OFF2.");
+    } // end of behavior for T7__H1__OFF2
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__H1__OFF_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__H1__OFF2_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__H1__OFF2 behavior
+    // uml: EV1 [trace_guard("State T7__H1__OFF2: check behavior `EV1 TransitionTo(T7__H1__OFF3)`.", true)] / { trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
+    if (trace_guard("State T7__H1__OFF2: check behavior `EV1 TransitionTo(T7__H1__OFF3)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
+        T7__H1__OFF2_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.");`.
+        trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
+        T7__H1__OFF3_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__H1__OFF3;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__H1__OFF2
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__H1__OFF3
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__H1__OFF3_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__H1__OFF3_exit;
+    
+    // T7__H1__OFF3 behavior
+    // uml: enter / { trace("Enter T7__H1__OFF3."); }
+    {
+        // Step 1: execute action `trace("Enter T7__H1__OFF3.");`
+        trace("Enter T7__H1__OFF3.");
+    } // end of behavior for T7__H1__OFF3
+    
+    // T7__H1__OFF3 behavior
+    // uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3; }`.", true)] / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3; }
+    if (trace_guard("State T7__H1__OFF3: check behavior `enter / { $T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3; }`.", true))
+    {
+        // Step 1: execute action `$T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3;`
+        self->vars.T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId__T7__H1__OFF3;
+    } // end of behavior for T7__H1__OFF3
+}
+
+static void T7__H1__OFF3_exit(Spec2Sm* self)
+{
+    // T7__H1__OFF3 behavior
+    // uml: exit / { trace("Exit T7__H1__OFF3."); }
+    {
+        // Step 1: execute action `trace("Exit T7__H1__OFF3.");`
+        trace("Exit T7__H1__OFF3.");
+    } // end of behavior for T7__H1__OFF3
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__H1__OFF_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__H1__ON
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__H1__ON_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__H1__ON_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV6] = T7__H1__ON_ev6;
+    
+    // T7__H1__ON behavior
+    // uml: enter / { trace("Enter T7__H1__ON."); }
+    {
+        // Step 1: execute action `trace("Enter T7__H1__ON.");`
+        trace("Enter T7__H1__ON.");
+    } // end of behavior for T7__H1__ON
+}
+
+static void T7__H1__ON_exit(Spec2Sm* self)
+{
+    // T7__H1__ON behavior
+    // uml: exit / { trace("Exit T7__H1__ON."); }
+    {
+        // Step 1: execute action `trace("Exit T7__H1__ON.");`
+        trace("Exit T7__H1__ON.");
+    } // end of behavior for T7__H1__ON
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__HISTORY1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV6] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__H1__ON_ev6(Spec2Sm* self)
+{
+    // No ancestor state handles `EV6` event.
+    
+    // T7__H1__ON behavior
+    // uml: EV6 [trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true)] / { trace("Transition action `` for T7__H1__ON to T7__H1__OFF."); } TransitionTo(T7__H1__OFF)
+    if (trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__HISTORY1_exit);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");`.
+        trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__OFF`.
+        T7__H1__OFF_enter(self);
+        
+        // Finish transition by calling pseudo state transition function.
+        T7__H1__OFF_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__H1__ON
+}
+
+static void T7__H1__ON_InitialState_transition(Spec2Sm* self)
+{
+    // T7__H1__ON.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History."); } TransitionTo(T7__H1__ON.History)
+    {
+        // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History.");`.
+        trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__ON.History`.
+        // T7__H1__ON.History is a pseudo state and cannot have an `enter` trigger.
+        
+        // T7__H1__ON.History behavior
+        // uml: [$T7__H1__ON_history == Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2] / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
+        if (self->vars.T7__H1__ON_history == Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2)
+        {
+            // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2.");`.
+            trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2.");
+            
+            // Step 3: Enter/move towards transition target `T7__H1__ON2`.
+            T7__H1__ON2_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__H1__ON2;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__H1__ON.History
+        
+        // T7__H1__ON.History behavior
+        // uml: [$T7__H1__ON_history == Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3] / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
+        if (self->vars.T7__H1__ON_history == Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3)
+        {
+            // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3.");`.
+            trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3.");
+            
+            // Step 3: Enter/move towards transition target `T7__H1__ON3`.
+            T7__H1__ON3_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__H1__ON3;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__H1__ON.History
+        
+        // T7__H1__ON.History behavior
+        // uml: else / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1."); } TransitionTo(T7__H1__ON1)
+        {
+            // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1.");`.
+            trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1.");
+            
+            // Step 3: Enter/move towards transition target `T7__H1__ON1`.
+            T7__H1__ON1_enter(self);
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            self->state_id = Spec2Sm_StateId_T7__H1__ON1;
+            self->ancestor_event_handler = NULL;
+            return;
+        } // end of behavior for T7__H1__ON.History
+    } // end of behavior for T7__H1__ON.InitialState
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__H1__ON1
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__H1__ON1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__H1__ON1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__H1__ON1_ev1;
+    
+    // T7__H1__ON1 behavior
+    // uml: enter / { trace("Enter T7__H1__ON1."); }
+    {
+        // Step 1: execute action `trace("Enter T7__H1__ON1.");`
+        trace("Enter T7__H1__ON1.");
+    } // end of behavior for T7__H1__ON1
+    
+    // T7__H1__ON1 behavior
+    // uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1; }`.", true)] / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1; }
+    if (trace_guard("State T7__H1__ON1: check behavior `enter / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1; }`.", true))
+    {
+        // Step 1: execute action `$T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1;`
+        self->vars.T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON1;
+    } // end of behavior for T7__H1__ON1
+}
+
+static void T7__H1__ON1_exit(Spec2Sm* self)
+{
+    // T7__H1__ON1 behavior
+    // uml: exit / { trace("Exit T7__H1__ON1."); }
+    {
+        // Step 1: execute action `trace("Exit T7__H1__ON1.");`
+        trace("Exit T7__H1__ON1.");
+    } // end of behavior for T7__H1__ON1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__H1__ON_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__H1__ON1_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__H1__ON1 behavior
+    // uml: EV1 [trace_guard("State T7__H1__ON1: check behavior `EV1 TransitionTo(T7__H1__ON2)`.", true)] / { trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
+    if (trace_guard("State T7__H1__ON1: check behavior `EV1 TransitionTo(T7__H1__ON2)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
+        T7__H1__ON1_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.");`.
+        trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__ON2`.
+        T7__H1__ON2_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__H1__ON2;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__H1__ON1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__H1__ON2
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__H1__ON2_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__H1__ON2_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__H1__ON2_ev1;
+    
+    // T7__H1__ON2 behavior
+    // uml: enter / { trace("Enter T7__H1__ON2."); }
+    {
+        // Step 1: execute action `trace("Enter T7__H1__ON2.");`
+        trace("Enter T7__H1__ON2.");
+    } // end of behavior for T7__H1__ON2
+    
+    // T7__H1__ON2 behavior
+    // uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2; }`.", true)] / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2; }
+    if (trace_guard("State T7__H1__ON2: check behavior `enter / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2; }`.", true))
+    {
+        // Step 1: execute action `$T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2;`
+        self->vars.T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON2;
+    } // end of behavior for T7__H1__ON2
+}
+
+static void T7__H1__ON2_exit(Spec2Sm* self)
+{
+    // T7__H1__ON2 behavior
+    // uml: exit / { trace("Exit T7__H1__ON2."); }
+    {
+        // Step 1: execute action `trace("Exit T7__H1__ON2.");`
+        trace("Exit T7__H1__ON2.");
+    } // end of behavior for T7__H1__ON2
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__H1__ON_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__H1__ON2_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__H1__ON2 behavior
+    // uml: EV1 [trace_guard("State T7__H1__ON2: check behavior `EV1 TransitionTo(T7__H1__ON3)`.", true)] / { trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
+    if (trace_guard("State T7__H1__ON2: check behavior `EV1 TransitionTo(T7__H1__ON3)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
+        T7__H1__ON2_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.");`.
+        trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__ON3`.
+        T7__H1__ON3_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__H1__ON3;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__H1__ON2
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__H1__ON3
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__H1__ON3_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__H1__ON3_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__H1__ON3_ev1;
+    
+    // T7__H1__ON3 behavior
+    // uml: enter / { trace("Enter T7__H1__ON3."); }
+    {
+        // Step 1: execute action `trace("Enter T7__H1__ON3.");`
+        trace("Enter T7__H1__ON3.");
+    } // end of behavior for T7__H1__ON3
+    
+    // T7__H1__ON3 behavior
+    // uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3; }`.", true)] / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3; }
+    if (trace_guard("State T7__H1__ON3: check behavior `enter / { $T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3; }`.", true))
+    {
+        // Step 1: execute action `$T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3;`
+        self->vars.T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId__T7__H1__ON3;
+    } // end of behavior for T7__H1__ON3
+}
+
+static void T7__H1__ON3_exit(Spec2Sm* self)
+{
+    // T7__H1__ON3 behavior
+    // uml: exit / { trace("Exit T7__H1__ON3."); }
+    {
+        // Step 1: execute action `trace("Exit T7__H1__ON3.");`
+        trace("Exit T7__H1__ON3.");
+    } // end of behavior for T7__H1__ON3
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__H1__ON_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void T7__H1__ON3_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // T7__H1__ON3 behavior
+    // uml: EV1 [trace_guard("State T7__H1__ON3: check behavior `EV1 TransitionTo(T7__H1__ON1)`.", true)] / { trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1."); } TransitionTo(T7__H1__ON1)
+    if (trace_guard("State T7__H1__ON3: check behavior `EV1 TransitionTo(T7__H1__ON1)`.", true))
+    {
+        // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
+        T7__H1__ON3_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.");`.
+        trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.");
+        
+        // Step 3: Enter/move towards transition target `T7__H1__ON1`.
+        T7__H1__ON1_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__H1__ON1;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for T7__H1__ON3
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__INITIAL1
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__INITIAL1_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__INITIAL1_exit;
+    
+    // T7__INITIAL1 behavior
+    // uml: enter / { trace("Enter T7__INITIAL1."); }
+    {
+        // Step 1: execute action `trace("Enter T7__INITIAL1.");`
+        trace("Enter T7__INITIAL1.");
+    } // end of behavior for T7__INITIAL1
+}
+
+static void T7__INITIAL1_exit(Spec2Sm* self)
+{
+    // T7__INITIAL1 behavior
+    // uml: exit / { trace("Exit T7__INITIAL1."); }
+    {
+        // Step 1: execute action `trace("Exit T7__INITIAL1.");`
+        trace("Exit T7__INITIAL1.");
+    } // end of behavior for T7__INITIAL1
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state T7__INITIAL1__PARENT
+////////////////////////////////////////////////////////////////////////////////
+
+static void T7__INITIAL1__PARENT_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = T7__INITIAL1__PARENT_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV5] = T7__INITIAL1__PARENT_ev5;
+    
+    // T7__INITIAL1__PARENT behavior
+    // uml: enter / { trace("Enter T7__INITIAL1__PARENT."); }
+    {
+        // Step 1: execute action `trace("Enter T7__INITIAL1__PARENT.");`
+        trace("Enter T7__INITIAL1__PARENT.");
+    } // end of behavior for T7__INITIAL1__PARENT
+}
+
+static void T7__INITIAL1__PARENT_exit(Spec2Sm* self)
+{
+    // T7__INITIAL1__PARENT behavior
+    // uml: exit / { trace("Exit T7__INITIAL1__PARENT."); }
+    {
+        // Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.");`
+        trace("Exit T7__INITIAL1__PARENT.");
+    } // end of behavior for T7__INITIAL1__PARENT
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = T7__INITIAL1_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV5] = NULL;  // no ancestor listens to this event
 }
 
-static void TEST7_ROOT_ev5(Spec2Sm* self)
+static void T7__INITIAL1__PARENT_ev5(Spec2Sm* self)
 {
     // No ancestor state handles `EV5` event.
     
-    // TEST7_ROOT behavior
-    // uml: EV5 [trace_guard("State TEST7_ROOT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
-    if (trace_guard("State TEST7_ROOT: check behavior `EV5 / { count++; }`.", true))
+    // T7__INITIAL1__PARENT behavior
+    // uml: EV5 [trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
+    if (trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count++; }`.", true))
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
@@ -4362,349 +9064,544 @@ static void TEST7_ROOT_ev5(Spec2Sm* self)
         
         // Step 2: determine if ancestor gets to handle event next.
         // No ancestor handles event. Ignore `consume_event` flag.
-    } // end of behavior for TEST7_ROOT
+    } // end of behavior for T7__INITIAL1__PARENT
+}
+
+static void T7__INITIAL1__PARENT_InitialState_transition(Spec2Sm* self)
+{
+    // T7__INITIAL1__PARENT.InitialState behavior
+    // uml: / { trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1."); } TransitionTo(T7__INITIAL1__S1)
+    {
+        // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1.");`.
+        trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1.");
+        
+        // Step 3: Enter/move towards transition target `T7__INITIAL1__S1`.
+        T7__INITIAL1__S1_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__INITIAL1__S1;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__INITIAL1__PARENT.InitialState
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state TEST7_G
+// event handlers for state T7__INITIAL1__G
 ////////////////////////////////////////////////////////////////////////////////
 
-static void TEST7_G_enter(Spec2Sm* self)
+static void T7__INITIAL1__G_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = TEST7_G_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST7_G_ev2;
+    self->current_state_exit_handler = T7__INITIAL1__G_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = T7__INITIAL1__G_ev2;
     
-    // TEST7_G behavior
-    // uml: enter / { trace("Enter TEST7_G."); }
+    // T7__INITIAL1__G behavior
+    // uml: enter / { trace("Enter T7__INITIAL1__G."); }
     {
-        // Step 1: execute action `trace("Enter TEST7_G.");`
-        trace("Enter TEST7_G.");
-    } // end of behavior for TEST7_G
+        // Step 1: execute action `trace("Enter T7__INITIAL1__G.");`
+        trace("Enter T7__INITIAL1__G.");
+    } // end of behavior for T7__INITIAL1__G
 }
 
-static void TEST7_G_exit(Spec2Sm* self)
+static void T7__INITIAL1__G_exit(Spec2Sm* self)
 {
-    // TEST7_G behavior
-    // uml: exit / { trace("Exit TEST7_G."); }
+    // T7__INITIAL1__G behavior
+    // uml: exit / { trace("Exit T7__INITIAL1__G."); }
     {
-        // Step 1: execute action `trace("Exit TEST7_G.");`
-        trace("Exit TEST7_G.");
-    } // end of behavior for TEST7_G
+        // Step 1: execute action `trace("Exit T7__INITIAL1__G.");`
+        trace("Exit T7__INITIAL1__G.");
+    } // end of behavior for T7__INITIAL1__G
     
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = TEST7_ROOT_exit;
+    self->current_state_exit_handler = T7__INITIAL1__PARENT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
 }
 
-static void TEST7_G_ev2(Spec2Sm* self)
+static void T7__INITIAL1__G_ev2(Spec2Sm* self)
 {
     // No ancestor state handles `EV2` event.
     
-    // TEST7_G behavior
-    // uml: EV2 [trace_guard("State TEST7_G: check behavior `EV2 TransitionTo(TEST7_ROOT.InitialState)`.", true)] / { trace("Transition action `` for TEST7_G to TEST7_ROOT.InitialState."); } TransitionTo(TEST7_ROOT.InitialState)
-    if (trace_guard("State TEST7_G: check behavior `EV2 TransitionTo(TEST7_ROOT.InitialState)`.", true))
+    // T7__INITIAL1__G behavior
+    // uml: EV2 [trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.InitialState)`.", true)] / { trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState."); } TransitionTo(T7__INITIAL1__PARENT.InitialState)
+    if (trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.InitialState)`.", true))
     {
-        // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, TEST7_ROOT_exit);
+        // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(self, T7__INITIAL1__PARENT_exit);
         
-        // Step 2: Transition action: `trace("Transition action `` for TEST7_G to TEST7_ROOT.InitialState.");`.
-        trace("Transition action `` for TEST7_G to TEST7_ROOT.InitialState.");
+        // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");`.
+        trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");
         
-        // Step 3: Enter/move towards transition target `TEST7_ROOT.InitialState`.
-        // TEST7_ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
+        // Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT.InitialState`.
+        // T7__INITIAL1__PARENT.InitialState is a pseudo state and cannot have an `enter` trigger.
         
-        // TEST7_ROOT.InitialState behavior
-        // uml: / { trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1."); } TransitionTo(TEST7_S1)
-        {
-            // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.");`.
-            trace("Transition action `` for TEST7_ROOT.InitialState to TEST7_S1.");
-            
-            // Step 3: Enter/move towards transition target `TEST7_S1`.
-            TEST7_S1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7_S1;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for TEST7_ROOT.InitialState
-    } // end of behavior for TEST7_G
+        // Finish transition by calling pseudo state transition function.
+        T7__INITIAL1__PARENT_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__INITIAL1__G
+}
+
+static void T7__INITIAL1__G_InitialState_transition(Spec2Sm* self)
+{
+    // T7__INITIAL1__G.InitialState behavior
+    // uml: [count == 1] / { trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1."); } TransitionTo(T7__INITIAL1__G_S1)
+    if (self->vars.count == 1)
+    {
+        // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1.");`.
+        trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1.");
+        
+        // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S1`.
+        T7__INITIAL1__G_S1_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__INITIAL1__G_S1;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__INITIAL1__G.InitialState
+    
+    // T7__INITIAL1__G.InitialState behavior
+    // uml: [count == 2] / { trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2."); } TransitionTo(T7__INITIAL1__G_S2)
+    if (self->vars.count == 2)
+    {
+        // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2.");`.
+        trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2.");
+        
+        // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S2`.
+        T7__INITIAL1__G_S2_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__INITIAL1__G_S2;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__INITIAL1__G.InitialState
+    
+    // T7__INITIAL1__G.InitialState behavior
+    // uml: else / { trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3."); } TransitionTo(T7__INITIAL1__G_S3)
+    {
+        // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3.");`.
+        trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3.");
+        
+        // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S3`.
+        T7__INITIAL1__G_S3_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_T7__INITIAL1__G_S3;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for T7__INITIAL1__G.InitialState
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state TEST7_G_S1
+// event handlers for state T7__INITIAL1__G_S1
 ////////////////////////////////////////////////////////////////////////////////
 
-static void TEST7_G_S1_enter(Spec2Sm* self)
+static void T7__INITIAL1__G_S1_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = TEST7_G_S1_exit;
+    self->current_state_exit_handler = T7__INITIAL1__G_S1_exit;
     
-    // TEST7_G_S1 behavior
-    // uml: enter / { trace("Enter TEST7_G_S1."); }
+    // T7__INITIAL1__G_S1 behavior
+    // uml: enter / { trace("Enter T7__INITIAL1__G_S1."); }
     {
-        // Step 1: execute action `trace("Enter TEST7_G_S1.");`
-        trace("Enter TEST7_G_S1.");
-    } // end of behavior for TEST7_G_S1
+        // Step 1: execute action `trace("Enter T7__INITIAL1__G_S1.");`
+        trace("Enter T7__INITIAL1__G_S1.");
+    } // end of behavior for T7__INITIAL1__G_S1
 }
 
-static void TEST7_G_S1_exit(Spec2Sm* self)
+static void T7__INITIAL1__G_S1_exit(Spec2Sm* self)
 {
-    // TEST7_G_S1 behavior
-    // uml: exit / { trace("Exit TEST7_G_S1."); }
+    // T7__INITIAL1__G_S1 behavior
+    // uml: exit / { trace("Exit T7__INITIAL1__G_S1."); }
     {
-        // Step 1: execute action `trace("Exit TEST7_G_S1.");`
-        trace("Exit TEST7_G_S1.");
-    } // end of behavior for TEST7_G_S1
+        // Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.");`
+        trace("Exit T7__INITIAL1__G_S1.");
+    } // end of behavior for T7__INITIAL1__G_S1
     
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = TEST7_G_exit;
+    self->current_state_exit_handler = T7__INITIAL1__G_exit;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state TEST7_G_S2
+// event handlers for state T7__INITIAL1__G_S2
 ////////////////////////////////////////////////////////////////////////////////
 
-static void TEST7_G_S2_enter(Spec2Sm* self)
+static void T7__INITIAL1__G_S2_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = TEST7_G_S2_exit;
+    self->current_state_exit_handler = T7__INITIAL1__G_S2_exit;
     
-    // TEST7_G_S2 behavior
-    // uml: enter / { trace("Enter TEST7_G_S2."); }
+    // T7__INITIAL1__G_S2 behavior
+    // uml: enter / { trace("Enter T7__INITIAL1__G_S2."); }
     {
-        // Step 1: execute action `trace("Enter TEST7_G_S2.");`
-        trace("Enter TEST7_G_S2.");
-    } // end of behavior for TEST7_G_S2
+        // Step 1: execute action `trace("Enter T7__INITIAL1__G_S2.");`
+        trace("Enter T7__INITIAL1__G_S2.");
+    } // end of behavior for T7__INITIAL1__G_S2
 }
 
-static void TEST7_G_S2_exit(Spec2Sm* self)
+static void T7__INITIAL1__G_S2_exit(Spec2Sm* self)
 {
-    // TEST7_G_S2 behavior
-    // uml: exit / { trace("Exit TEST7_G_S2."); }
+    // T7__INITIAL1__G_S2 behavior
+    // uml: exit / { trace("Exit T7__INITIAL1__G_S2."); }
     {
-        // Step 1: execute action `trace("Exit TEST7_G_S2.");`
-        trace("Exit TEST7_G_S2.");
-    } // end of behavior for TEST7_G_S2
+        // Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.");`
+        trace("Exit T7__INITIAL1__G_S2.");
+    } // end of behavior for T7__INITIAL1__G_S2
     
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = TEST7_G_exit;
+    self->current_state_exit_handler = T7__INITIAL1__G_exit;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state TEST7_G_S3
+// event handlers for state T7__INITIAL1__G_S3
 ////////////////////////////////////////////////////////////////////////////////
 
-static void TEST7_G_S3_enter(Spec2Sm* self)
+static void T7__INITIAL1__G_S3_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = TEST7_G_S3_exit;
+    self->current_state_exit_handler = T7__INITIAL1__G_S3_exit;
     
-    // TEST7_G_S3 behavior
-    // uml: enter / { trace("Enter TEST7_G_S3."); }
+    // T7__INITIAL1__G_S3 behavior
+    // uml: enter / { trace("Enter T7__INITIAL1__G_S3."); }
     {
-        // Step 1: execute action `trace("Enter TEST7_G_S3.");`
-        trace("Enter TEST7_G_S3.");
-    } // end of behavior for TEST7_G_S3
+        // Step 1: execute action `trace("Enter T7__INITIAL1__G_S3.");`
+        trace("Enter T7__INITIAL1__G_S3.");
+    } // end of behavior for T7__INITIAL1__G_S3
 }
 
-static void TEST7_G_S3_exit(Spec2Sm* self)
+static void T7__INITIAL1__G_S3_exit(Spec2Sm* self)
 {
-    // TEST7_G_S3 behavior
-    // uml: exit / { trace("Exit TEST7_G_S3."); }
+    // T7__INITIAL1__G_S3 behavior
+    // uml: exit / { trace("Exit T7__INITIAL1__G_S3."); }
     {
-        // Step 1: execute action `trace("Exit TEST7_G_S3.");`
-        trace("Exit TEST7_G_S3.");
-    } // end of behavior for TEST7_G_S3
+        // Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.");`
+        trace("Exit T7__INITIAL1__G_S3.");
+    } // end of behavior for T7__INITIAL1__G_S3
     
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = TEST7_G_exit;
+    self->current_state_exit_handler = T7__INITIAL1__G_exit;
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state TEST7_S1
+// event handlers for state T7__INITIAL1__S1
 ////////////////////////////////////////////////////////////////////////////////
 
-static void TEST7_S1_enter(Spec2Sm* self)
+static void T7__INITIAL1__S1_enter(Spec2Sm* self)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = TEST7_S1_exit;
-    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7_S1_ev1;
-    self->current_event_handlers[Spec2Sm_EventId_EV3] = TEST7_S1_ev3;
+    self->current_state_exit_handler = T7__INITIAL1__S1_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = T7__INITIAL1__S1_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = T7__INITIAL1__S1_ev3;
     
-    // TEST7_S1 behavior
-    // uml: enter / { trace("Enter TEST7_S1."); }
+    // T7__INITIAL1__S1 behavior
+    // uml: enter / { trace("Enter T7__INITIAL1__S1."); }
     {
-        // Step 1: execute action `trace("Enter TEST7_S1.");`
-        trace("Enter TEST7_S1.");
-    } // end of behavior for TEST7_S1
+        // Step 1: execute action `trace("Enter T7__INITIAL1__S1.");`
+        trace("Enter T7__INITIAL1__S1.");
+    } // end of behavior for T7__INITIAL1__S1
 }
 
-static void TEST7_S1_exit(Spec2Sm* self)
+static void T7__INITIAL1__S1_exit(Spec2Sm* self)
 {
-    // TEST7_S1 behavior
-    // uml: exit / { trace("Exit TEST7_S1."); }
+    // T7__INITIAL1__S1 behavior
+    // uml: exit / { trace("Exit T7__INITIAL1__S1."); }
     {
-        // Step 1: execute action `trace("Exit TEST7_S1.");`
-        trace("Exit TEST7_S1.");
-    } // end of behavior for TEST7_S1
+        // Step 1: execute action `trace("Exit T7__INITIAL1__S1.");`
+        trace("Exit T7__INITIAL1__S1.");
+    } // end of behavior for T7__INITIAL1__S1
     
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = TEST7_ROOT_exit;
+    self->current_state_exit_handler = T7__INITIAL1__PARENT_exit;
     self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
     self->current_event_handlers[Spec2Sm_EventId_EV3] = NULL;  // no ancestor listens to this event
 }
 
-static void TEST7_S1_ev1(Spec2Sm* self)
+static void T7__INITIAL1__S1_ev1(Spec2Sm* self)
 {
     // No ancestor state handles `EV1` event.
     
-    // TEST7_S1 behavior
-    // uml: EV1 [trace_guard("State TEST7_S1: check behavior `EV1 TransitionTo(TEST7_G)`.", true)] / { trace("Transition action `` for TEST7_S1 to TEST7_G."); } TransitionTo(TEST7_G)
-    if (trace_guard("State TEST7_S1: check behavior `EV1 TransitionTo(TEST7_G)`.", true))
+    // T7__INITIAL1__S1 behavior
+    // uml: EV1 [trace_guard("State T7__INITIAL1__S1: check behavior `EV1 TransitionTo(T7__INITIAL1__G)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G."); } TransitionTo(T7__INITIAL1__G)
+    if (trace_guard("State T7__INITIAL1__S1: check behavior `EV1 TransitionTo(T7__INITIAL1__G)`.", true))
     {
-        // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition).
-        TEST7_S1_exit(self);
+        // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
+        T7__INITIAL1__S1_exit(self);
         
-        // Step 2: Transition action: `trace("Transition action `` for TEST7_S1 to TEST7_G.");`.
-        trace("Transition action `` for TEST7_S1 to TEST7_G.");
+        // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.");`.
+        trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.");
         
-        // Step 3: Enter/move towards transition target `TEST7_G`.
-        TEST7_G_enter(self);
+        // Step 3: Enter/move towards transition target `T7__INITIAL1__G`.
+        T7__INITIAL1__G_enter(self);
         
-        // TEST7_G.InitialState behavior
-        // uml: [count == 1] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1."); } TransitionTo(TEST7_G_S1)
-        if (self->vars.count == 1)
-        {
-            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");`.
-            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");
-            
-            // Step 3: Enter/move towards transition target `TEST7_G_S1`.
-            TEST7_G_S1_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7_G_S1;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for TEST7_G.InitialState
-        
-        // TEST7_G.InitialState behavior
-        // uml: [count == 2] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2."); } TransitionTo(TEST7_G_S2)
-        if (self->vars.count == 2)
-        {
-            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");`.
-            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");
-            
-            // Step 3: Enter/move towards transition target `TEST7_G_S2`.
-            TEST7_G_S2_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7_G_S2;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for TEST7_G.InitialState
-        
-        // TEST7_G.InitialState behavior
-        // uml: else / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3."); } TransitionTo(TEST7_G_S3)
-        {
-            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");`.
-            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");
-            
-            // Step 3: Enter/move towards transition target `TEST7_G_S3`.
-            TEST7_G_S3_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7_G_S3;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for TEST7_G.InitialState
-    } // end of behavior for TEST7_S1
+        // Finish transition by calling pseudo state transition function.
+        T7__INITIAL1__G_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__INITIAL1__S1
 }
 
-static void TEST7_S1_ev3(Spec2Sm* self)
+static void T7__INITIAL1__S1_ev3(Spec2Sm* self)
 {
     // No ancestor state handles `EV3` event.
     
-    // TEST7_S1 behavior
-    // uml: EV3 [trace_guard("State TEST7_S1: check behavior `EV3 TransitionTo(TEST7_G.InitialState)`.", true)] / { trace("Transition action `` for TEST7_S1 to TEST7_G.InitialState."); } TransitionTo(TEST7_G.InitialState)
-    if (trace_guard("State TEST7_S1: check behavior `EV3 TransitionTo(TEST7_G.InitialState)`.", true))
+    // T7__INITIAL1__S1 behavior
+    // uml: EV3 [trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.InitialState)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState."); } TransitionTo(T7__INITIAL1__G.InitialState)
+    if (trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.InitialState)`.", true))
     {
-        // Step 1: Exit states until we reach `TEST7_ROOT` state (Least Common Ancestor for transition).
-        TEST7_S1_exit(self);
+        // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
+        T7__INITIAL1__S1_exit(self);
         
-        // Step 2: Transition action: `trace("Transition action `` for TEST7_S1 to TEST7_G.InitialState.");`.
-        trace("Transition action `` for TEST7_S1 to TEST7_G.InitialState.");
+        // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState.");`.
+        trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState.");
         
-        // Step 3: Enter/move towards transition target `TEST7_G.InitialState`.
-        TEST7_G_enter(self);
-        // TEST7_G.InitialState is a pseudo state and cannot have an `enter` trigger.
+        // Step 3: Enter/move towards transition target `T7__INITIAL1__G.InitialState`.
+        T7__INITIAL1__G_enter(self);
+        // T7__INITIAL1__G.InitialState is a pseudo state and cannot have an `enter` trigger.
         
-        // TEST7_G.InitialState behavior
-        // uml: [count == 1] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1."); } TransitionTo(TEST7_G_S1)
-        if (self->vars.count == 1)
+        // Finish transition by calling pseudo state transition function.
+        T7__INITIAL1__G_InitialState_transition(self);
+        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+    } // end of behavior for T7__INITIAL1__S1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state TEST7_DECIDE
+////////////////////////////////////////////////////////////////////////////////
+
+static void TEST7_DECIDE_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = TEST7_DECIDE_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = TEST7_DECIDE_ev1;
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = TEST7_DECIDE_ev2;
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = TEST7_DECIDE_ev3;
+    self->current_event_handlers[Spec2Sm_EventId_EV4] = TEST7_DECIDE_ev4;
+    self->current_event_handlers[Spec2Sm_EventId_EV5] = TEST7_DECIDE_ev5;
+    
+    // TEST7_DECIDE behavior
+    // uml: enter / { trace("Enter TEST7_DECIDE."); }
+    {
+        // Step 1: execute action `trace("Enter TEST7_DECIDE.");`
+        trace("Enter TEST7_DECIDE.");
+    } // end of behavior for TEST7_DECIDE
+}
+
+static void TEST7_DECIDE_exit(Spec2Sm* self)
+{
+    // TEST7_DECIDE behavior
+    // uml: exit / { trace("Exit TEST7_DECIDE."); }
+    {
+        // Step 1: execute action `trace("Exit TEST7_DECIDE.");`
+        trace("Exit TEST7_DECIDE.");
+    } // end of behavior for TEST7_DECIDE
+    
+    // TEST7_DECIDE behavior
+    // uml: exit [trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
+    if (trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output(); }`.", true))
+    {
+        // Step 1: execute action `clear_dispatch_output();`
+        trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+    } // end of behavior for TEST7_DECIDE
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = TEST7_INITIAL_OR_HISTORY_exit;
+    self->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV3] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV4] = NULL;  // no ancestor listens to this event
+    self->current_event_handlers[Spec2Sm_EventId_EV5] = NULL;  // no ancestor listens to this event
+}
+
+static void TEST7_DECIDE_ev1(Spec2Sm* self)
+{
+    // No ancestor state handles `EV1` event.
+    
+    // TEST7_DECIDE behavior
+    // uml: EV1 [trace_guard("State TEST7_DECIDE: check behavior `EV1 TransitionTo(T7__INITIAL1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1."); } TransitionTo(T7__INITIAL1)
+    if (trace_guard("State TEST7_DECIDE: check behavior `EV1 TransitionTo(T7__INITIAL1)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
+        TEST7_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.");`.
+        trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.");
+        
+        // Step 3: Enter/move towards transition target `T7__INITIAL1`.
+        TEST7_enter(self);
+        T7__INITIAL1_enter(self);
+        
+        // T7__INITIAL1.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT."); } TransitionTo(T7__INITIAL1__PARENT)
         {
-            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            // Step 1: Exit states until we reach `T7__INITIAL1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");`.
-            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S1.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT.");`.
+            trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT.");
             
-            // Step 3: Enter/move towards transition target `TEST7_G_S1`.
-            TEST7_G_S1_enter(self);
+            // Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT`.
+            T7__INITIAL1__PARENT_enter(self);
             
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7_G_S1;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for TEST7_G.InitialState
+            // Finish transition by calling pseudo state transition function.
+            T7__INITIAL1__PARENT_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__INITIAL1.InitialState
+    } // end of behavior for TEST7_DECIDE
+}
+
+static void TEST7_DECIDE_ev2(Spec2Sm* self)
+{
+    // No ancestor state handles `EV2` event.
+    
+    // TEST7_DECIDE behavior
+    // uml: EV2 [trace_guard("State TEST7_DECIDE: check behavior `EV2 TransitionTo(T7__HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1."); } TransitionTo(T7__HISTORY1)
+    if (trace_guard("State TEST7_DECIDE: check behavior `EV2 TransitionTo(T7__HISTORY1)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
+        TEST7_DECIDE_exit(self);
         
-        // TEST7_G.InitialState behavior
-        // uml: [count == 2] / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2."); } TransitionTo(TEST7_G_S2)
-        if (self->vars.count == 2)
-        {
-            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-            
-            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");`.
-            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S2.");
-            
-            // Step 3: Enter/move towards transition target `TEST7_G_S2`.
-            TEST7_G_S2_enter(self);
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7_G_S2;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for TEST7_G.InitialState
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.");`.
+        trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.");
         
-        // TEST7_G.InitialState behavior
-        // uml: else / { trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3."); } TransitionTo(TEST7_G_S3)
+        // Step 3: Enter/move towards transition target `T7__HISTORY1`.
+        TEST7_enter(self);
+        T7__HISTORY1_enter(self);
+        
+        // T7__HISTORY1.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON."); } TransitionTo(T7__H1__ON)
         {
-            // Step 1: Exit states until we reach `TEST7_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");`.
-            trace("Transition action `` for TEST7_G.InitialState to TEST7_G_S3.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON.");`.
+            trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON.");
             
-            // Step 3: Enter/move towards transition target `TEST7_G_S3`.
-            TEST7_G_S3_enter(self);
+            // Step 3: Enter/move towards transition target `T7__H1__ON`.
+            T7__H1__ON_enter(self);
             
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec2Sm_StateId_TEST7_G_S3;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-            return;
-        } // end of behavior for TEST7_G.InitialState
-    } // end of behavior for TEST7_S1
+            // Finish transition by calling pseudo state transition function.
+            T7__H1__ON_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__HISTORY1.InitialState
+    } // end of behavior for TEST7_DECIDE
+}
+
+static void TEST7_DECIDE_ev3(Spec2Sm* self)
+{
+    // No ancestor state handles `EV3` event.
+    
+    // TEST7_DECIDE behavior
+    // uml: EV3 [trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(T7__DEEP_HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1."); } TransitionTo(T7__DEEP_HISTORY1)
+    if (trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(T7__DEEP_HISTORY1)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
+        TEST7_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.");`.
+        trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.");
+        
+        // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY1`.
+        TEST7_enter(self);
+        T7__DEEP_HISTORY1_enter(self);
+        
+        // T7__DEEP_HISTORY1.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD."); } TransitionTo(T7__DH1__BUILD)
+        {
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD.");`.
+            trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
+            T7__DH1__SANTAS_WORKSHOP_enter(self);
+            T7__DH1__BUILD_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH1__BUILD_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DEEP_HISTORY1.InitialState
+    } // end of behavior for TEST7_DECIDE
+}
+
+static void TEST7_DECIDE_ev4(Spec2Sm* self)
+{
+    // No ancestor state handles `EV4` event.
+    
+    // TEST7_DECIDE behavior
+    // uml: EV4 [trace_guard("State TEST7_DECIDE: check behavior `EV4 TransitionTo(T7__DEEP_HISTORY2)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2."); } TransitionTo(T7__DEEP_HISTORY2)
+    if (trace_guard("State TEST7_DECIDE: check behavior `EV4 TransitionTo(T7__DEEP_HISTORY2)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
+        TEST7_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.");`.
+        trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.");
+        
+        // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2`.
+        TEST7_enter(self);
+        T7__DEEP_HISTORY2_enter(self);
+        
+        // T7__DEEP_HISTORY2.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0."); } TransitionTo(T7__DH2__state_0)
+        {
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0.");`.
+            trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH2__state_0`.
+            T7__DH2__STATE_0_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH2__state_0_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DEEP_HISTORY2.InitialState
+    } // end of behavior for TEST7_DECIDE
+}
+
+static void TEST7_DECIDE_ev5(Spec2Sm* self)
+{
+    // No ancestor state handles `EV5` event.
+    
+    // TEST7_DECIDE behavior
+    // uml: EV5 [trace_guard("State TEST7_DECIDE: check behavior `EV5 TransitionTo(T7__DEEP_HISTORY3)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3."); } TransitionTo(T7__DEEP_HISTORY3)
+    if (trace_guard("State TEST7_DECIDE: check behavior `EV5 TransitionTo(T7__DEEP_HISTORY3)`.", true))
+    {
+        // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
+        TEST7_DECIDE_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.");`.
+        trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.");
+        
+        // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3`.
+        TEST7_enter(self);
+        T7__DEEP_HISTORY3_enter(self);
+        
+        // T7__DEEP_HISTORY3.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0."); } TransitionTo(T7__DH3__state_0)
+        {
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0.");`.
+            trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0.");
+            
+            // Step 3: Enter/move towards transition target `T7__DH3__state_0`.
+            T7__DH3__STATE_0_enter(self);
+            
+            // Finish transition by calling pseudo state transition function.
+            T7__DH3__state_0_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T7__DEEP_HISTORY3.InitialState
+    } // end of behavior for TEST7_DECIDE
 }
 
 
@@ -4758,11 +9655,11 @@ static void TEST8_ROOT_enter(Spec2Sm* self)
     } // end of behavior for TEST8_ROOT
     
     // TEST8_ROOT behavior
-    // uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
-    if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_output(); }`.", true))
+    // uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true)] / { clear_dispatch_output(); }
+    if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true))
     {
-        // Step 1: execute action `clear_output();`
-        trace("IGNORE_OUTPUT_BEFORE_THIS");;
+        // Step 1: execute action `clear_dispatch_output();`
+        trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
     } // end of behavior for TEST8_ROOT
 }
 
@@ -5326,22 +10223,9 @@ static void TEST9_DECIDE_ev2(Spec2Sm* self)
             // Step 3: Enter/move towards transition target `TEST9A_S1`.
             TEST9A_S1_enter(self);
             
-            // TEST9A_S1.InitialState behavior
-            // uml: / { trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
-            {
-                // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");`.
-                trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
-                
-                // Step 3: Enter/move towards transition target `TEST9A_S1_1`.
-                TEST9A_S1_1_enter(self);
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                self->state_id = Spec2Sm_StateId_TEST9A_S1_1;
-                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-                return;
-            } // end of behavior for TEST9A_S1.InitialState
+            // Finish transition by calling pseudo state transition function.
+            TEST9A_S1_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST9A_ROOT.InitialState
     } // end of behavior for TEST9_DECIDE
 }
@@ -5750,6 +10634,26 @@ static void TEST9A_S1_exit(Spec2Sm* self)
     self->current_state_exit_handler = TEST9A_ROOT_exit;
 }
 
+static void TEST9A_S1_InitialState_transition(Spec2Sm* self)
+{
+    // TEST9A_S1.InitialState behavior
+    // uml: / { trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
+    {
+        // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        
+        // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");`.
+        trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
+        
+        // Step 3: Enter/move towards transition target `TEST9A_S1_1`.
+        TEST9A_S1_1_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_TEST9A_S1_1;
+        self->ancestor_event_handler = NULL;
+        return;
+    } // end of behavior for TEST9A_S1.InitialState
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // event handlers for state TEST9A_S1_1
@@ -5829,22 +10733,9 @@ static void TEST9A_S1_1_ev1(Spec2Sm* self)
             
             // Step 3: Enter/move towards transition target `TEST9A_S1`.
             // Already in target. No entering required.
-            // TEST9A_S1.InitialState behavior
-            // uml: / { trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
-            {
-                // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");`.
-                trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
-                
-                // Step 3: Enter/move towards transition target `TEST9A_S1_1`.
-                TEST9A_S1_1_enter(self);
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                self->state_id = Spec2Sm_StateId_TEST9A_S1_1;
-                // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
-                return;
-            } // end of behavior for TEST9A_S1.InitialState
+            // Finish transition by calling pseudo state transition function.
+            TEST9A_S1_InitialState_transition(self);
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         } // end of behavior for TEST9A_S1.ExitPoint(1)
     } // end of behavior for TEST9A_S1_1
 }
