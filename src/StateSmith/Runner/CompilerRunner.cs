@@ -13,6 +13,7 @@ using StateSmith.compiler.Visitors;
 using StateSmith.Input.PlantUML;
 using StateSmith.compiler;
 using StateSmith.Input.Yed;
+using StateSmith.Input.DrawIo;
 
 #nullable enable
 
@@ -39,6 +40,16 @@ public class CompilerRunner
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
     /// </summary>
     public Action<Statemachine> preValidation = (_) => { };
+
+    /// <summary>
+    /// Step 1
+    /// </summary>
+    public void CompileDrawIoFileNodesToVertices(string filepath)
+    {
+        DrawIoToSmDiagramConverter converter = new();
+        converter.ProcessFile(filepath);
+        CompileNodesToVertices(converter.Roots, converter.Edges);
+    }
 
     /// <summary>
     /// Step 1

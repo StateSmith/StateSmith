@@ -13,6 +13,7 @@ namespace StateSmith.Input.DrawIo;
 /// Draw.io svg files embed special content that allows them to be edited losslessly in draw.io.
 /// This class allows you to decode the special content and get to the regular draw.io design file xml.
 /// 
+/// More info: https://drawio-app.com/extracting-the-xml-from-mxfiles/
 /// Useful testing tool: https://jgraph.github.io/drawio-tools/tools/convert.html
 /// </summary>
 public class DrawIoSvgDecoder
@@ -42,13 +43,7 @@ public class DrawIoSvgDecoder
     {
         try
         {
-            string mxfileXml = GetMxfileFromSvg(File.OpenText(filePath));
-
-            var compressedContent = GetDiagramCompressedContents(mxfileXml);
-
-            string actual = DecompressContent(compressedContent);
-
-            return actual;
+            return DecodeToOriginalDiagram(File.OpenText(filePath));
 
         }
         catch (Exception e)

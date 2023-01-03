@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [WIP]
+### Added
+- Add support for draw.io designs ending with `.drawio.svg`. https://github.com/StateSmith/StateSmith/issues/77
+
+---
+
 ## [0.7.0-alpha]
 ### Changed
 - Generated .h file now automatically includes `<stdint.h>` (required for history states).

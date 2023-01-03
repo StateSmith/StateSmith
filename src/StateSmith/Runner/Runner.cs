@@ -29,8 +29,8 @@ namespace StateSmith.Runner
 
         protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
         protected HashSet<string> YedFileExtensions = new() { ".graphml" };
-
-
+        protected HashSet<string> DrawIoFileEndings = new() { ".drawio.svg", ".drawio", ".dio" };
+        
         protected void OutputStageMessage(string message)
         {
             // todo add logger functionality
@@ -108,7 +108,6 @@ namespace StateSmith.Runner
                 else
                 {
                     codeGenContext.sm.variables += $"enum {compilerRunner.mangler.HistoryVarEnumName(h)} {actualVarName};\n";
-
                 }
             }
 
@@ -126,20 +125,6 @@ namespace StateSmith.Runner
 
             File.WriteAllText($"{settings.outputDirectory}{settings.mangler.HFileName}", hFileContents);
             File.WriteAllText($"{settings.outputDirectory}{settings.mangler.CFileName}", cFileContents);
-        }
-
-        private void FindStateMachine()
-        {
-            if (settings.stateMachineName != null)
-            {
-                compilerRunner.FindStateMachineByName(settings.stateMachineName);
-            }
-            else
-            {
-                compilerRunner.FindSingleStateMachine();
-            }
-
-            OutputStageMessage($"Generating code for state machine `{compilerRunner.sm.Name}`.");
         }
 
         private void OutputCompilingDiagramMessage()
@@ -162,31 +147,53 @@ namespace StateSmith.Runner
         private void CompileFile()
         {
             string diagramFile = settings.diagramFile;
-            var fileExtension = Path.GetExtension(diagramFile);
+            var fileExtension = Path.GetExtension(diagramFile).ToLower();
 
             if (InputFileIsYedFormat(fileExtension))
             {
-                compilerRunner.CompileYedFileNodesToVertices(settings.diagramFile);
+                compilerRunner.CompileYedFileNodesToVertices(diagramFile);
             }
             else if (InputFileIsPlantUML(fileExtension))
             {
-                compilerRunner.CompilePlantUmlFileNodesToVertices(settings.diagramFile);
+                compilerRunner.CompilePlantUmlFileNodesToVertices(diagramFile);
+            }
+            else if (InputFileIsDrawIoFormat(diagramFile))
+            {
+                compilerRunner.CompileDrawIoFileNodesToVertices(diagramFile);
             }
             else
             {
-                throw new ArgumentException($"Unsupported file extension `{fileExtension}`. \n  - yEd supports: {string.Join(", ", YedFileExtensions)}\n  - PlantUML supports: {string.Join(", ", PlantUmlFileExtensions)}");
+                var errMessage = $"Unsupported file extension `{fileExtension}`. \n"
+                    + $"  - draw.io supports: {string.Join(", ", DrawIoFileEndings)}\n"
+                    + $"  - yEd supports: {string.Join(", ", YedFileExtensions)}\n"
+                    + $"  - PlantUML supports: {string.Join(", ", PlantUmlFileExtensions)}\n";
+
+                throw new ArgumentException(errMessage);
             }
         }
 
 
-        private bool InputFileIsPlantUML(string fileExtension)
+        private bool InputFileIsPlantUML(string lowerCaseFileExtension)
         {
-            return PlantUmlFileExtensions.Contains(fileExtension);
+            return PlantUmlFileExtensions.Contains(lowerCaseFileExtension);
         }
 
-        private bool InputFileIsYedFormat(string fileExtension)
+        private bool InputFileIsYedFormat(string lowerCaseFileExtension)
         {
-            return YedFileExtensions.Contains(fileExtension);
+            return YedFileExtensions.Contains(lowerCaseFileExtension);
+        }
+
+        private bool InputFileIsDrawIoFormat(string filePath)
+        {
+            foreach (var matchingEnding in DrawIoFileEndings)
+            {
+                if (filePath.EndsWith(matchingEnding, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

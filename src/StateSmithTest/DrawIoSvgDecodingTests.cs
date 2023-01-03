@@ -4,7 +4,7 @@ using Xunit;
 using StateSmith.Input.DrawIo;
 using FluentAssertions;
 
-namespace StateSmithTest;
+namespace StateSmithTest.DrawIo;
 
 public class DrawIoSvgDecodingTests
 {
@@ -88,7 +88,7 @@ public class DrawIoSvgDecodingTests
     [Fact]
     public void DecodeFileToOriginalDiagram_ExampleFile()
     {
-        string filePath = AppDomain.CurrentDomain.BaseDirectory + "../../../../../examples/Tutorial1-complete/src/Tutorial1Sm.drawio.svg";
+        string filePath = ExamplesTestHelpers.ExamplesInputDirectoryPath + "Tutorial1-complete/src/Tutorial1Sm.drawio.svg";
         DrawIoSvgDecoder.DecodeFileToOriginalDiagram(filePath);
     }
 
