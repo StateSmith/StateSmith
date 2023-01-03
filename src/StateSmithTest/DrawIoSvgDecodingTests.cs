@@ -16,28 +16,28 @@ public class DrawIoSvgDecodingTests
             <mxGraphModel dx="1050" dy="573" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="nwdGQZgk1lJ_tXPTgnxS-1" value="" style="shape=mxgraph.mockup.containers.marginRect;rectMarginTop=10;strokeColor=#666666;strokeWidth=1;dashed=0;rounded=1;arcSize=5;recursiveResize=0;" vertex="1" parent="1"><mxGeometry x="110" y="140" width="200" height="240" as="geometry"/></mxCell><mxCell id="nwdGQZgk1lJ_tXPTgnxS-2" value="Group" style="shape=rect;strokeColor=none;fillColor=#008cff;strokeWidth=1;dashed=0;rounded=1;arcSize=20;fontColor=#ffffff;fontSize=17;spacing=2;spacingTop=-2;align=left;autosize=1;spacingLeft=4;resizeWidth=0;resizeHeight=0;perimeter=none;" vertex="1" parent="nwdGQZgk1lJ_tXPTgnxS-1"><mxGeometry x="5" width="90" height="30" as="geometry"/></mxCell><mxCell id="nwdGQZgk1lJ_tXPTgnxS-5" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="nwdGQZgk1lJ_tXPTgnxS-1"><mxGeometry x="15" y="50" width="120" height="60" as="geometry"/></mxCell><mxCell id="nwdGQZgk1lJ_tXPTgnxS-3" value="Container" style="swimlane;" vertex="1" collapsed="1" parent="1"><mxGeometry x="480" y="160" width="100" height="30" as="geometry"><mxRectangle x="480" y="160" width="200" height="200" as="alternateBounds"/></mxGeometry></mxCell><mxCell id="nwdGQZgk1lJ_tXPTgnxS-4" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="nwdGQZgk1lJ_tXPTgnxS-3"><mxGeometry x="40" y="70" width="120" height="60" as="geometry"/></mxCell></root></mxGraphModel>
             """;
 
-        var actual = DrawIoSvgDecoder.DecompressContent(input);
+        var actual = DrawIoDecoder.DecompressContent(input);
         Assert.Equal(expected, actual);
     }
 
     [Fact]
     public void GetDiagramCompressedContents_Test()
     {
-        var contents = DrawIoSvgDecoder.GetDiagramCompressedContents("""<mxfile><diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">blah123</diagram></mxfile>""");
+        var contents = DrawIoDecoder.GetDiagramContentsRaw("""<mxfile><diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">blah123</diagram></mxfile>""");
         Assert.Equal("blah123", contents);
     }
 
     [Fact]
     public void GetDiagramCompressedContents_WhitespaceOk()
     {
-        var contents = DrawIoSvgDecoder.GetDiagramCompressedContents("""  <mxfile>  <diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">blah123</diagram>  </mxfile>   """);
+        var contents = DrawIoDecoder.GetDiagramContentsRaw("""  <mxfile>  <diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">blah123</diagram>  </mxfile>   """);
         Assert.Equal("blah123", contents);
     }
 
     [Fact]
     public void GetDiagramCompressedContents_WhitespaceOk2()
     {
-        var contents = DrawIoSvgDecoder.GetDiagramCompressedContents("""
+        var contents = DrawIoDecoder.GetDiagramContentsRaw("""
             <mxfile>
                 <diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">
                     blah123
@@ -50,21 +50,21 @@ public class DrawIoSvgDecodingTests
     [Fact]
     public void GetDiagramCompressedContents_BadMxfileOpening()
     {
-        Action action = () => DrawIoSvgDecoder.GetDiagramCompressedContents("""<Mxfile><diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">blah123</diagram></mxfile>""");
+        Action action = () => DrawIoDecoder.GetDiagramContentsRaw("""<Mxfile><diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">blah123</diagram></mxfile>""");
         action.Should().Throw<DrawIoException>().WithMessage("*opening xml tag `mxfile`*found `Mxfile`*");
     }
 
     [Fact]
     public void GetDiagramCompressedContents_BadDiagramOpening()
     {
-        Action action = () => DrawIoSvgDecoder.GetDiagramCompressedContents("""<mxfile><SomeDiagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">blah123</diagram></mxfile>""");
+        Action action = () => DrawIoDecoder.GetDiagramContentsRaw("""<mxfile><SomeDiagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">blah123</diagram></mxfile>""");
         action.Should().Throw<DrawIoException>().WithMessage("*opening xml tag `diagram`*found `SomeDiagram`*");
     }
 
     [Fact]
     public void GetDiagramCompressedContents_AdditionalDiagramThrows()
     {
-        Action action = () => DrawIoSvgDecoder.GetDiagramCompressedContents("""
+        Action action = () => DrawIoDecoder.GetDiagramContentsRaw("""
             <mxfile>
                 <diagram id="123" name="Page-1">blah123</diagram>
                 <diagram id="123" name="Page-1">blah123</diagram>
@@ -76,28 +76,13 @@ public class DrawIoSvgDecodingTests
     [Fact]
     public void GetDiagramCompressedContents_BadClosing()
     {
-        Action action = () => DrawIoSvgDecoder.GetDiagramCompressedContents("""
+        Action action = () => DrawIoDecoder.GetDiagramContentsRaw("""
             <mxfile>
                 <diagram id="123" name="Page-1">blah123</diagram>
                 <b>stuff</b>
             </mxfile>
             """);
         action.Should().Throw<DrawIoException>().WithMessage("*closing xml tag `mxfile`*found `b`*");
-    }
-
-    [Fact]
-    public void DecodeFileToOriginalDiagram_ExampleFile()
-    {
-        string filePath = ExamplesTestHelpers.ExamplesInputDirectoryPath + "Tutorial1-complete/src/Tutorial1Sm.drawio.svg";
-        DrawIoSvgDecoder.DecodeFileToOriginalDiagram(filePath);
-    }
-
-    [Fact]
-    public void DecodeFileToOriginalDiagram_MissingFile()
-    {
-        string filePath = AppDomain.CurrentDomain.BaseDirectory + "./Tutorial1Sm.drawio.svg_none";
-        Action a = () => DrawIoSvgDecoder.DecodeFileToOriginalDiagram(filePath);
-        a.Should().Throw<DrawIoException>().WithMessage("*Tutorial1Sm.drawio.svg_none*");
     }
 
     [Fact]
@@ -112,7 +97,7 @@ public class DrawIoSvgDecodingTests
             <mxGraphModel dx="990" dy="613" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="YyxwJ0gDvFG1rL_hzzWH-19" value="     $STATEMACHINE: Tutorial1Sm" style="swimlane;fontStyle=1;align=left;spacingLeft=17;" parent="1" vertex="1"><mxGeometry x="30" y="10" width="490" height="790" as="geometry"><mxRectangle x="10" y="10" width="230" height="100" as="alternateBounds"/></mxGeometry></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-27" value="ON_GROUP" style="swimlane;fontStyle=1;align=left;spacingLeft=17;" parent="YyxwJ0gDvFG1rL_hzzWH-19" vertex="1"><mxGeometry x="60" y="225" width="330" height="410" as="geometry"><mxRectangle x="65" y="230" width="140" height="40" as="alternateBounds"/></mxGeometry></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-28" value="INC" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=default;" parent="YyxwJ0gDvFG1rL_hzzWH-27" source="YyxwJ0gDvFG1rL_hzzWH-29" target="YyxwJ0gDvFG1rL_hzzWH-32" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-29" value="&lt;div&gt;&lt;b&gt;ON1&lt;/b&gt;&lt;/div&gt;&lt;div&gt;enter / light_on1();&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;" parent="YyxwJ0gDvFG1rL_hzzWH-27" vertex="1"><mxGeometry x="50" y="50" width="200" height="60" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-30" value="INC" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=default;" parent="YyxwJ0gDvFG1rL_hzzWH-27" source="YyxwJ0gDvFG1rL_hzzWH-32" target="YyxwJ0gDvFG1rL_hzzWH-34" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-31" value="DIM" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fontColor=default;" parent="YyxwJ0gDvFG1rL_hzzWH-27" source="YyxwJ0gDvFG1rL_hzzWH-32" target="YyxwJ0gDvFG1rL_hzzWH-29" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-32" value="&lt;div&gt;&lt;span&gt;ON2&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;enter / light_on2();&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;fontStyle=0" parent="YyxwJ0gDvFG1rL_hzzWH-27" vertex="1"><mxGeometry x="50" y="170" width="200" height="60" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-33" value="DIM" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fontColor=default;comic=0;" parent="YyxwJ0gDvFG1rL_hzzWH-27" source="YyxwJ0gDvFG1rL_hzzWH-34" target="YyxwJ0gDvFG1rL_hzzWH-32" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-34" value="&lt;div&gt;ON3&lt;/div&gt;&lt;div&gt;enter / {&lt;/div&gt;&lt;div&gt;&amp;nbsp; count = 0;&lt;/div&gt;&lt;div&gt;&amp;nbsp; light_on3();&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;1. INCREASE / count++;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;fontStyle=0" parent="YyxwJ0gDvFG1rL_hzzWH-27" vertex="1"><mxGeometry x="50" y="280" width="200" height="110" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-35" value="INC" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=default;" parent="YyxwJ0gDvFG1rL_hzzWH-19" source="YyxwJ0gDvFG1rL_hzzWH-36" target="YyxwJ0gDvFG1rL_hzzWH-29" edge="1"><mxGeometry x="-0.5" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-36" value="&lt;div&gt;&lt;b&gt;OFF&lt;/b&gt;&lt;/div&gt;&lt;div&gt;enter / light_off();&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;" parent="YyxwJ0gDvFG1rL_hzzWH-19" vertex="1"><mxGeometry x="110" y="115" width="200" height="60" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-37" value="" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;comic=0;orthogonalLoop=1;jettySize=auto;html=0;fontColor=default;" parent="YyxwJ0gDvFG1rL_hzzWH-19" source="YyxwJ0gDvFG1rL_hzzWH-38" target="YyxwJ0gDvFG1rL_hzzWH-36" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-38" value="$initial" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;fontColor=none;noLabel=1;" parent="YyxwJ0gDvFG1rL_hzzWH-19" vertex="1"><mxGeometry x="195" y="55" width="30" height="30" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-39" value="DIM" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fontColor=default;" parent="YyxwJ0gDvFG1rL_hzzWH-19" source="YyxwJ0gDvFG1rL_hzzWH-29" target="YyxwJ0gDvFG1rL_hzzWH-36" edge="1"><mxGeometry x="-0.7" relative="1" as="geometry"><mxPoint as="offset"/></mxGeometry></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-41" value="INC" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=default;" parent="YyxwJ0gDvFG1rL_hzzWH-19" source="YyxwJ0gDvFG1rL_hzzWH-34" target="YyxwJ0gDvFG1rL_hzzWH-40" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-40" value="&lt;div&gt;BOOM&lt;/div&gt;&lt;div&gt;enter / light_boom();&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;fontStyle=0" parent="YyxwJ0gDvFG1rL_hzzWH-19" vertex="1"><mxGeometry x="110" y="675" width="200" height="60" as="geometry"/></mxCell><mxCell id="YyxwJ0gDvFG1rL_hzzWH-87" value="$choice" style="rhombus;fontColor=none;fillColor=#000000;noLabel=1;" parent="YyxwJ0gDvFG1rL_hzzWH-19" vertex="1"><mxGeometry x="360" y="55" width="30" height="30" as="geometry"/></mxCell></root></mxGraphModel>
             """;
 
-        var actual = DrawIoSvgDecoder.DecodeToOriginalDiagram(new StringReader(svgFileStart));
+        var actual = DrawIoDecoder.DecodeSvgToOriginalDiagram(new StringReader(svgFileStart));
         Assert.Equal(expected, actual);
     }
 }

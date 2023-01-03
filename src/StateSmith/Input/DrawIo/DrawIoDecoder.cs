@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Text;
 using System.Xml;
+using System.Text.RegularExpressions;
 
 #nullable enable
 
@@ -16,40 +17,43 @@ namespace StateSmith.Input.DrawIo;
 /// More info: https://drawio-app.com/extracting-the-xml-from-mxfiles/
 /// Useful testing tool: https://jgraph.github.io/drawio-tools/tools/convert.html
 /// </summary>
-public class DrawIoSvgDecoder
+public class DrawIoDecoder
 {
     /// <summary>
     /// Find all references and see unit test.
     /// </summary>
     /// <param name="textReader"></param>
     /// <returns></returns>
-    public static string DecodeToOriginalDiagram(TextReader textReader)
+    public static string DecodeSvgToOriginalDiagram(TextReader textReader)
     {
         string mxfileXml = GetMxfileFromSvg(textReader);
 
-        var compressedContent = GetDiagramCompressedContents(mxfileXml);
-
-        string actual = DecompressContent(compressedContent);
-
-        return actual;
+        return GetMxFileDiagramContents(mxfileXml);
     }
 
     /// <summary>
-    /// Find all references and see unit test.
+    /// Decompresses diagram contents if required. 
+    /// The vscode extension tends to write diagram contents uncompressed, 
+    /// but the draw.io windows app tends to write it compressed.
+    /// We have to be able to handle either.
     /// </summary>
-    /// <param name="textReader"></param>
+    /// <param name="mxfileXml"></param>
     /// <returns></returns>
-    public static string DecodeFileToOriginalDiagram(string filePath)
+    public static string GetMxFileDiagramContents(string mxfileXml)
     {
-        try
-        {
-            return DecodeToOriginalDiagram(File.OpenText(filePath));
+        var diagramContents = GetDiagramContentsRaw(mxfileXml);
 
-        }
-        catch (Exception e)
+        if (!IsDiagramContentUncompressed(diagramContents))
         {
-            throw new DrawIoException($"Failed decoding file {filePath}.", e);
+            diagramContents = DecompressContent(diagramContents);
         }
+
+        return diagramContents;
+    }
+
+    private static bool IsDiagramContentUncompressed(string diagramContents)
+    {
+        return Regex.IsMatch(diagramContents, @"\s*<mxGraphModel");
     }
 
     /// <summary>
@@ -73,15 +77,16 @@ public class DrawIoSvgDecoder
     }
 
     /// <summary>
+    /// Returns whatever is inside  <![CDATA[<mxfile><diagram></diagram></mxfile>]]>. Might be compressed content. Might be regular xml.
     /// example input: `<![CDATA[<mxfile><diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">exCompressedContents_fjfiweghglihwe...</diagram></mxfile>]]>`
     /// example output: `exCompressedContents_fjfiweghglihwe...`
     /// </summary>
-    /// <param name="mxfileXml"></param>
+    /// <param name="mxfileXmlContents"></param>
     /// <returns></returns>
     /// <exception cref="DrawIoException"></exception>
-    public static string GetDiagramCompressedContents(string mxfileXml)
+    public static string GetDiagramContentsRaw(string mxfileXmlContents)
     {
-        using XmlTextReader reader = new(new StringReader(mxfileXml));
+        using XmlTextReader reader = new(new StringReader(mxfileXmlContents));
         reader.WhitespaceHandling = WhitespaceHandling.None;
 
         ReadAndExpectOpeningXmlTag(reader, "mxfile");

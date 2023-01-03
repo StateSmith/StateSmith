@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [WIP]
 ### Added
-- Add support for draw.io designs ending with `.drawio.svg`. https://github.com/StateSmith/StateSmith/issues/77
+- Add support for draw.io files. https://github.com/StateSmith/StateSmith/issues/77
+  - Supported file extensions:
+    - `.drawio.svg` Recommended as design file is a valid svg image that can be used in markdown and other files!
+    - `.drawio`
+    - `.dio`
 
 ---
 

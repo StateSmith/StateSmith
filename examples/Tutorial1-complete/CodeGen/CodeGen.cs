@@ -11,9 +11,9 @@ public class CodeGen
     {
         var srcDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../../../src/";
 
-        string extension = ".drawio.svg";  // recommended format. For draw.io https://github.com/StateSmith/StateSmith/issues/77
-        // extension = ".drawio";   // for draw.io https://github.com/StateSmith/StateSmith/issues/77
-        // extension = ".graphml";  // for yEd editor.
+        string extension = ".drawio.svg";  // For draw.io https://github.com/StateSmith/StateSmith/issues/77
+        // extension = ".drawio";             // Another format for draw.io https://github.com/StateSmith/StateSmith/issues/77
+        // extension = ".graphml";         // For yEd editor.
 
         var diagramFile = srcDirectory + "Tutorial1Sm" + extension;
 

@@ -26,13 +26,19 @@ public class DrawIoToSmDiagramConverter
 
     public void ProcessSvg(TextReader svgFileReader)
     {
-        var diagramXml = DrawIoSvgDecoder.DecodeToOriginalDiagram(svgFileReader);
-        ProcessRegularFile(new StringReader(diagramXml));
+        var diagramXml = DrawIoDecoder.DecodeSvgToOriginalDiagram(svgFileReader);
+        ProcessDiagramContents(new StringReader(diagramXml));
     }
 
     public void ProcessRegularFile(TextReader fileReader)
     {
-        MxCellParser mxCellParser = new(fileReader);
+        var diagramXml = DrawIoDecoder.GetMxFileDiagramContents(fileReader.ReadToEnd());
+        ProcessDiagramContents(new StringReader(diagramXml));
+    }
+
+    public void ProcessDiagramContents(TextReader diagramXmlReader)
+    {
+        MxCellParser mxCellParser = new(diagramXmlReader);
         mxCellParser.Parse();
 
         converter.Process(mxCellParser.mxCells);
