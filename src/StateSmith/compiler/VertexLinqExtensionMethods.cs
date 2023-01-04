@@ -58,6 +58,17 @@ namespace StateSmith.compiler
             return (T)matches[0];
         }
 
+        public static List<T> DescendantsOfType<T>(this Vertex vertex) where T : Vertex
+        {
+            List<T> list = new();
+            vertex.VisitTypeRecursively<T>(v => list.Add(v));
+            if (vertex is T t)
+            {
+                list.Remove(t);
+            }
+            return list;
+        }
+
         private static void ThrowIfNotSingle(string name, List<NamedVertex> matches)
         {
             if (matches.Count > 1)
@@ -210,6 +221,24 @@ namespace StateSmith.compiler
             {
                 initialState = null;
                 return false;
+            }
+        }
+
+        public static void VisitRecursively(this Vertex vertex, Action<Vertex> action)
+        {
+            vertex.VisitTypeRecursively<Vertex>(action);
+        }
+
+        public static void VisitTypeRecursively<T>(this Vertex vertex, Action<T> action) where T : Vertex
+        {
+            if (vertex is T t)
+            {
+                action(t);
+            }
+
+            foreach (var child in vertex.Children)
+            {
+                child.VisitTypeRecursively<T>(action);
             }
         }
     }

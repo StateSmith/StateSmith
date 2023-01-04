@@ -10,6 +10,7 @@ using StateSmith.Input;
 using System.IO;
 using StateSmith.compiler.Visitors;
 using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Runner;
 
 namespace StateSmith.Compiling
 {
@@ -54,7 +55,7 @@ namespace StateSmith.Compiling
             {
                 if (v is NamedVertex namedVertex)
                 {
-                    SetupDescendants(namedVertex);
+                    CompilerRunner.UpdateNamedDescendantsMapping(namedVertex);
                 }
             }
         }
@@ -176,7 +177,7 @@ namespace StateSmith.Compiling
                 return diagramVertexMap[node];
             }
 
-            throw new DiagramNodeException(node, $"Could not find State for {nameof(DiagramNode)} with id `{node.id}`. Is it inside a $NOTES block? See https://TODO");
+            throw new DiagramNodeException(node, $"Could not find State for {nameof(DiagramNode)} with id `{node.id}`.");
         }
 
         private Vertex? TryGetVertexFromNode(DiagramNode node)
@@ -197,11 +198,6 @@ namespace StateSmith.Compiling
 
         private void ProcessEdgeInner(DiagramEdge edge)
         {
-            if (EdgeNodesInsideNotesSection(edge))
-            {
-                return;
-            }
-
             var sourceVertex = GetVertexFromNode(edge.source);
             var targetVertex = GetVertexFromNode(edge.target);
 
@@ -223,67 +219,12 @@ namespace StateSmith.Compiling
             }
         }
 
-        private bool NodeInsideNotesVertex(DiagramNode node)
-        {
-            while (node != null)
-            {
-                Vertex v = TryGetVertexFromNode(node);
-                if (v is NotesVertex _)
-                {
-                    return true;
-                }
-                node = node.parent;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// This will be the case when there are "commented out" edges inside a $NOTES block
-        /// </summary>
-        /// <param name="edge"></param>
-        /// <returns></returns>
-        private bool EdgeNodesInsideNotesSection(DiagramEdge edge)
-        {
-            return NodeInsideNotesVertex(edge.source) && NodeInsideNotesVertex(edge.target);
-        }
-
         private static void PrintAndThrowIfEdgeParseFail(Input.DiagramEdge edge, Vertex sourceVertex, Vertex targetVertex, LabelParser labelParser)
         {
             if (labelParser.HasError())
             {
                 throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, ParserErrorsToReasonStrings(labelParser.GetErrors(), "\n"));
             }
-        }
-
-        private static void VisitVertices<T>(Vertex vertex, Action<T> action) where T : Vertex
-        {
-            if (typeof(T).IsAssignableFrom(vertex.GetType()))
-            {
-                action((T)vertex);
-            }
-
-            foreach (var child in vertex.Children)
-            {
-                VisitVertices<T>(child, action);
-            }
-        }
-
-        private static void SetupDescendants(NamedVertex root)
-        {
-            VisitVertices<Vertex>(root, vertex => {
-                root.ResetNamedDescendantsMap();
-            });
-
-            VisitVertices<NamedVertex>(root, vertex => {
-                //add this vertex to ancestors
-                var parent = vertex.Parent;
-                while (parent != null)
-                {
-                    parent._namedDescendants.AddIfMissing(vertex.Name, vertex);
-                    parent = parent.Parent;
-                }
-            });
         }
 
         public static void ExpandBehavior(Expander expander, Behavior behavior)
@@ -303,7 +244,7 @@ namespace StateSmith.Compiling
         {
             foreach (var root in rootVertices)
             {
-                VisitVertices<Vertex>(root, vertex => {
+                root.VisitRecursively(vertex => {
                     foreach (var behavior in vertex.Behaviors)
                     {
                         ExpandBehavior(expander, behavior);
@@ -336,7 +277,7 @@ namespace StateSmith.Compiling
                         var noteVertex = new NotesVertex();
                         noteVertex.notes = notesNode.notes;
                         thisVertex = noteVertex;
-                        visitChildren = false;
+                        visitChildren = true;
                         break;
                     }
 

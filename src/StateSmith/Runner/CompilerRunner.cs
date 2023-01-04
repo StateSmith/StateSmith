@@ -14,6 +14,7 @@ using StateSmith.Input.PlantUML;
 using StateSmith.compiler;
 using StateSmith.Input.Yed;
 using StateSmith.Input.DrawIo;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -129,6 +130,7 @@ public class CompilerRunner
     /// <summary>
     /// Step 2
     /// </summary>
+    [MemberNotNull(nameof(sm))]
     public void FindSingleStateMachine()
     {
         var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Single(); };
@@ -145,6 +147,7 @@ public class CompilerRunner
         SetupForSingleSm();
         mangler.SetStateMachine(sm);
 
+        RemoveNotesVertices();
         compiler.SupportParentAlias();
         compiler.SupportEntryExitPoints();
         prefixingModder.Visit(sm); // must happen before history
@@ -160,6 +163,7 @@ public class CompilerRunner
         compiler.Validate();
     }
 
+    [MemberNotNull(nameof(sm))]
     public void SetupForSingleSm()
     {
         compiler.SetupRoots();
@@ -183,5 +187,23 @@ public class CompilerRunner
     {
         var processor = new NotesProcessor();
         processor.ValidateAndRemoveNotes(sm!);
+        UpdateNamedDescendantsMapping(sm!);
+    }
+
+    public static void UpdateNamedDescendantsMapping(Vertex startingVertex)
+    {
+        startingVertex.VisitRecursively(vertex => {
+            vertex.ResetNamedDescendantsMap();
+        });
+
+        startingVertex.VisitTypeRecursively<NamedVertex>(vertex => {
+            //add this vertex to ancestors
+            var parent = vertex.Parent;
+            while (parent != null)
+            {
+                parent._namedDescendants.AddIfMissing(vertex.Name, vertex);
+                parent = parent.Parent;
+            }
+        });
     }
 }

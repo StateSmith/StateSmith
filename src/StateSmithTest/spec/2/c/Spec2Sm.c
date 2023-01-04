@@ -590,7 +590,7 @@ static void TEST10_A_ChoicePoint__transition_kid_index3(Spec2Sm* self);
 
 static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self);
 
-static void TEST10_A_ChoicePoint_a__transition_kid_index7(Spec2Sm* self);
+static void TEST10_A_ChoicePoint_a__transition_kid_index5(Spec2Sm* self);
 
 static void TEST4_S20_InitialState_transition(Spec2Sm* self);
 
@@ -2732,7 +2732,7 @@ static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self)
         // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
-        TEST10_A_ChoicePoint_a__transition_kid_index7(self);
+        TEST10_A_ChoicePoint_a__transition_kid_index5(self);
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for TEST10_A.ChoicePoint(a)
     
@@ -2748,12 +2748,12 @@ static void TEST10_A_ChoicePoint_a__transition(Spec2Sm* self)
         // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
         
         // Finish transition by calling pseudo state transition function.
-        TEST10_A_ChoicePoint_a__transition_kid_index7(self);
+        TEST10_A_ChoicePoint_a__transition_kid_index5(self);
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for TEST10_A.ChoicePoint(a)
 }
 
-static void TEST10_A_ChoicePoint_a__transition_kid_index7(Spec2Sm* self)
+static void TEST10_A_ChoicePoint_a__transition_kid_index5(Spec2Sm* self)
 {
     // TEST10_A.ChoicePoint(a) behavior
     // uml: / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)

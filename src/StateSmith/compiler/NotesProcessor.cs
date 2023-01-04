@@ -1,6 +1,7 @@
 using StateSmith.compiler.Visitors;
 using System.Collections.Generic;
 using StateSmith.compiler;
+using System.Linq;
 
 #nullable enable
 
@@ -15,11 +16,16 @@ public class NotesProcessor : OnlyVertexVisitor
 
     public void ValidateAndRemoveNotes(Statemachine sm)
     {
-        Visit(sm);
+        ValidateNotesWithoutRemoving(sm);
+        RemoveTopLevelNotes();
+    }
 
+    // only use for unit testing
+    internal void ValidateNotesWithoutRemoving(Statemachine sm)
+    {
+        Visit(sm);
         EnsureNoInvalidTransitionsToNotesVertex();
         EnsureNoInvalidTransitionsFromNotesVertex();
-        RemoveTopLevelNotes();
     }
 
     private void RemoveTopLevelNotes()
@@ -37,9 +43,14 @@ public class NotesProcessor : OnlyVertexVisitor
         {
             foreach (var transition in v.IncomingTransitions)
             {
-                if (nonNotedVertices.Contains(transition.OwningVertex))
+                List<Vertex> all = GetAllVerticesInvolvedInTransition(transition);
+
+                foreach (var part in all)
                 {
-                    throw new BehaviorValidationException(transition, "Transition from non-notes section to notes section detected.");
+                    if (nonNotedVertices.Contains(part))
+                    {
+                        throw new BehaviorValidationException(transition, "Transition from non-notes section to notes section detected.");
+                    }
                 }
             }
         }
@@ -52,6 +63,8 @@ public class NotesProcessor : OnlyVertexVisitor
         {
             foreach (var transition in v.TransitionBehaviors())
             {
+                // this section of code can be simpler as we don't have to worry about transitions to other noted states as
+                // EnsureNoInvalidTransitionsToNotesVertex() will catch that.
                 if (nonNotedVertices.Contains(transition.TransitionTarget!))
                 {
                     throw new BehaviorValidationException(transition, "Transition from notes section to non-notes section detected.");
@@ -83,6 +96,11 @@ public class NotesProcessor : OnlyVertexVisitor
             throw new VertexValidationException(v, "Notes vertices cannot have any behaviors");
         }
 
+        if (v.IncomingTransitions.Count > 0)
+        {
+            throw new VertexValidationException(v, "Notes vertices cannot have any incoming transitions");
+        }
+
         Visit((Vertex)v);
 
         noteNestingCount--;
@@ -91,5 +109,14 @@ public class NotesProcessor : OnlyVertexVisitor
         {
             topNotesVertices.Add(v);
         }
+    }
+
+    private static List<Vertex> GetAllVerticesInvolvedInTransition(Behavior transition)
+    {
+        var path = transition.FindTransitionPath();
+        var all = path.toExit.ToList();
+        all.AddRange(path.toEnter);
+        all.Add(path.leastCommonAncestor);
+        return all;
     }
 }

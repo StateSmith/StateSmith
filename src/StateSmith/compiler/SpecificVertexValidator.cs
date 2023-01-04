@@ -60,24 +60,13 @@ namespace StateSmith.Compiling
             VisitChildren(v);
         }
 
+        /// <summary>
+        /// <see cref="NotesProcessor.ValidateAndRemoveNotes(Statemachine)"/>
+        /// </summary>
+        /// <param name="v"></param>
         public override void Visit(NotesVertex v)
         {
-            if (v.IncomingTransitions.Count > 0)
-            {
-                throw new VertexValidationException(v, "Notes vertices cannot have any incoming transitions");
-            }
-
-            if (v.Behaviors.Count > 0)
-            {
-                throw new VertexValidationException(v, "Notes vertices cannot have any behaviors");
-            }
-
-            if (v.Children.Count > 0)
-            {
-                throw new VertexValidationException(v, "Notes vertices cannot have any children");
-            }
-
-            //note that transitions to state nodes within a notes node are caught when converting from Diagram nodes to Vertices
+            // see method comment
         }
 
         public override void Visit(ChoicePoint v)
