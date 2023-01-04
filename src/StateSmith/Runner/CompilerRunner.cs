@@ -178,4 +178,10 @@ public class CompilerRunner
         var processor = new HistoryProcessor(sm, mangler);
         processor.Process();
     }
+
+    public void RemoveNotesVertices()
+    {
+        var processor = new NotesProcessor();
+        processor.Visit(sm);
+    }
 }

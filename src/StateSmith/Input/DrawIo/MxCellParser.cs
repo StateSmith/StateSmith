@@ -49,6 +49,10 @@ public class MxCellParser
         if (HasAttribute("vertex"))
         {
             mxCell.type = MxCell.Type.Vertex;
+            if (IsImage())
+            {
+                mxCell.type = MxCell.Type.VertexImage;
+            }
         }
         else if (HasAttribute("edge"))
         {
@@ -66,6 +70,11 @@ public class MxCellParser
         RemoveAnyHtmlTags(mxCell);
 
         mxCells.Add(mxCell.id, mxCell);
+    }
+
+    private bool IsImage()
+    {
+        return MaybeGetAttribute("style")?.Contains("shape=image") ?? false;
     }
 
     private void RemoveAnyHtmlTags(MxCell mxCell)

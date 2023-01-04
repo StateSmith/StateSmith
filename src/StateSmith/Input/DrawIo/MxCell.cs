@@ -3,7 +3,7 @@
 
 public class MxCell
 {
-    public enum Type { None, Edge, Vertex }
+    public enum Type { None, Edge, Vertex, VertexImage }
 
     public string id;
     public string? parent;

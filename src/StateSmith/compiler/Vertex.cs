@@ -375,6 +375,9 @@ namespace StateSmith.Compiling
                 case HistoryVertex historyVertex:
                     return Describe(v.Parent) + ".History";
 
+                case NotesVertex:
+                    return Describe(v.Parent) + ".Notes";
+
                 default: throw new ArgumentException("Unsupported type " + v.GetType().FullName);
             }
         }

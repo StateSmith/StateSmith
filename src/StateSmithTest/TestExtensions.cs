@@ -3,6 +3,8 @@ using Xunit;
 using FluentAssertions;
 using StateSmith.Compiling;
 using StateSmith.compiler;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace StateSmithTest
 {
@@ -39,8 +41,43 @@ namespace StateSmithTest
 
         public static void ShouldHaveUmlBehaviors(this Vertex vertex, string expected)
         {
+            expected = SortStringByLines(expected);
+            var actual = vertex.Behaviors.UmlDescription();
+            actual = SortStringByLines(actual);
+
             // Assert.Equal(expected.ConvertLineEndingsToN(), vertex.Behaviors.UmlDescription());
-            vertex.Behaviors.UmlDescription().ShouldBeShowDiff(expected);
+            actual.ShouldBeShowDiff(expected);
+        }
+
+        private static List<string> SplitByLinesAndSort(string inputLines)
+        {
+            var list = inputLines.Split("\n", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList();
+            list.Sort();
+            return list;
+        }
+
+        private static string SortStringByLines(string inputLines)
+        {
+            var lines = SplitByLinesAndSort(inputLines);
+            var result = String.Join("\n", lines);
+
+            return result;
+        }
+
+        public static void ShouldHaveChildrenAndUmlBehaviors(this Vertex vertex, string expectedChildren, string expectedBehaviors)
+        {
+            var expected = expectedChildren.Split(",", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList();
+            var actual = new List<string>();
+
+            foreach (var item in vertex.Children)
+            {
+                actual.Add(Vertex.Describe(item));
+            }
+
+            expected.Sort();
+            actual.Sort();
+            Assert.Equal(expected, actual);
+            vertex.ShouldHaveUmlBehaviors(expectedBehaviors);
         }
 
         public static void ShouldBeShowDiff(this string actual, string expected)
