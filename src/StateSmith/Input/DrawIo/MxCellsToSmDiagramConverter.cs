@@ -88,7 +88,7 @@ public class MxCellsToSmDiagramConverter
         var node = new DiagramNode
         {
             id = cell.id,
-            label = cell.label
+            label = cell.label ?? ""
         };
         nodeMap.Add(node.id, node);
     }
@@ -108,7 +108,7 @@ public class MxCellsToSmDiagramConverter
         var edge = new DiagramEdge
         {
             id = cell.id,
-            label = cell.label,
+            label = cell.label ?? "",
             target = nodeMap[cell.target],
             source = nodeMap[cell.source]
         };

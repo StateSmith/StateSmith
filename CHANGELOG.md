@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - draw.io - embedded images inside of a draw.io diagram are now ignored.
   - images are sometimes embedded in state machine diagrams for documentation purposes.
+- draw.io - treat null labels as blank instead of throwing exception. Null labels don't normally occur.
 
 ---
 

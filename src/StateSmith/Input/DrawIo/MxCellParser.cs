@@ -3,6 +3,8 @@ using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
 
+#nullable enable
+
 namespace StateSmith.Input.DrawIo;
 
 public class MxCellParser
@@ -84,7 +86,7 @@ public class MxCellParser
             return;
 
         var maybeQuote = "\"?";
-        if (Regex.IsMatch(style, $@"html\s*=\s*{maybeQuote}1{maybeQuote}"))
+        if (mxCell.label != null && Regex.IsMatch(style, $@"html\s*=\s*{maybeQuote}1{maybeQuote}"))
         {
             var label = mxCell.label;
             label = Regex.Replace(label, @"</div>", "\n");
@@ -97,7 +99,7 @@ public class MxCellParser
 
     private string GetAttributeOrThrow(string attributeName)
     {
-        string attr = MaybeGetAttribute(attributeName);
+        string? attr = MaybeGetAttribute(attributeName);
         if (attr == null)
         {
             throw new DrawIoException($"failed getting attribute {attributeName} from xml element.");
@@ -110,7 +112,7 @@ public class MxCellParser
         return reader.GetAttribute(attributeName) != null;
     }
 
-    private string MaybeGetAttribute(string attributeName)
+    private string? MaybeGetAttribute(string attributeName)
     {
         return reader.GetAttribute(attributeName);
     }

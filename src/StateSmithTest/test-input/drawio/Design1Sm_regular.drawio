@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="0kis1nlSQF1iHrYs9ELn" name="Page-1">
-        <mxGraphModel dx="1230" dy="613" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="566" dy="350" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -46,7 +46,7 @@
                 <mxCell id="ybaX8FbpUQNGJi_0bP3v-12" value="&lt;div&gt;&lt;b&gt;OFF&lt;/b&gt;&lt;/div&gt;&lt;div&gt;enter / light_off();&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;" parent="ybaX8FbpUQNGJi_0bP3v-1" vertex="1">
                     <mxGeometry x="110" y="115" width="200" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="ybaX8FbpUQNGJi_0bP3v-13" value="" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;comic=0;orthogonalLoop=1;jettySize=auto;html=0;fontColor=default;" parent="ybaX8FbpUQNGJi_0bP3v-1" source="ybaX8FbpUQNGJi_0bP3v-14" target="ybaX8FbpUQNGJi_0bP3v-12" edge="1">
+                <mxCell id="ybaX8FbpUQNGJi_0bP3v-13" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;comic=0;orthogonalLoop=1;jettySize=auto;html=0;fontColor=default;" parent="ybaX8FbpUQNGJi_0bP3v-1" source="ybaX8FbpUQNGJi_0bP3v-14" target="ybaX8FbpUQNGJi_0bP3v-12" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="ybaX8FbpUQNGJi_0bP3v-14" value="$initial_state" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;fontColor=none;noLabel=1;" parent="ybaX8FbpUQNGJi_0bP3v-1" vertex="1">
