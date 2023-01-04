@@ -182,6 +182,6 @@ public class CompilerRunner
     public void RemoveNotesVertices()
     {
         var processor = new NotesProcessor();
-        processor.Visit(sm);
+        processor.ValidateAndRemoveNotes(sm!);
     }
 }
