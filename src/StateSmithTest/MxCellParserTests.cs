@@ -2,6 +2,7 @@
 using Xunit;
 using StateSmith.Input.DrawIo;
 using FluentAssertions;
+using System.Collections.Generic;
 
 namespace StateSmithTest.DrawIo;
 
@@ -70,6 +71,14 @@ public class MxCellParserTests
         smRoot.parent.Should().Be("1");
         smRoot.source.Should().BeNull();
         smRoot.target.Should().BeNull();
+
+        smRoot.style.Should().Be("swimlane;fontStyle=1;align=left;spacingLeft=17;");
+        smRoot.styleMap.Should().BeEquivalentTo(new Dictionary<string,string> {
+            {"swimlane", ""},
+            {"fontStyle", "1"},
+            {"align", "left"},
+            {"spacingLeft", "17"},
+        });
 
         var edge = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-11");
         edge.label.Should().Be("INC_123");

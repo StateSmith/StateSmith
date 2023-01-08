@@ -19,9 +19,9 @@ public class DrawIoSvgToSmDiagramConverterTests
         converter.ProcessSvg(File.OpenText(filePath));
 
         var smDiagramRoot = converter.Roots.Single();
-        smDiagramRoot.label.Should().Be("$STATEMACHINE: Design1Sm_svg");
+        smDiagramRoot.label.Should().Be("$STATEMACHINE : Design1Sm_svg");
         smDiagramRoot.children.Count.Should().Be(4);
-        int i = 0;
+        int i = 2;
         smDiagramRoot.children[i].label.Should().Be("ON_GROUP");
         smDiagramRoot.children[i].parent.Should().Be(smDiagramRoot);
         smDiagramRoot.children[i].children.Count.Should().Be(3);

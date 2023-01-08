@@ -69,9 +69,34 @@ public class MxCellParser
         mxCell.label = MaybeGetAttribute("value");
         mxCell.source = MaybeGetAttribute("source");
         mxCell.target = MaybeGetAttribute("target");
-        RemoveAnyHtmlTags(mxCell);
+        SetStyle(mxCell);
+        SanitizeLabel(mxCell);
 
         mxCells.Add(mxCell.id, mxCell);
+    }
+
+    private void SetStyle(MxCell mxCell)
+    {
+        mxCell.style = MaybeGetAttribute("style");
+        if (mxCell.style == null)
+            return;
+
+        var matches = Regex.Matches(mxCell.style, @"(?x)
+            (\w+) #
+            \s*
+            (?:
+                =
+                \s*
+                ([^;]*?)
+                \s*
+            )?
+            (?: ;|$ )
+        ");
+
+        foreach (Match item in matches)
+        {
+            mxCell.styleMap.Add(item.Groups[1].Value, item.Groups[2].Value);
+        }
     }
 
     private bool IsImage()
@@ -79,14 +104,14 @@ public class MxCellParser
         return MaybeGetAttribute("style")?.Contains("shape=image") ?? false;
     }
 
-    private void RemoveAnyHtmlTags(MxCell mxCell)
+    private static void SanitizeLabel(MxCell mxCell)
     {
-        var style = MaybeGetAttribute("style");
-        if (style == null)
+        if (mxCell.label == null)
             return;
 
-        var maybeQuote = "\"?";
-        if (mxCell.label != null && Regex.IsMatch(style, $@"html\s*=\s*{maybeQuote}1{maybeQuote}"))
+        mxCell.label = mxCell.label.Replace((char)160, ' '); // convert non-breaking space char to regular space
+
+        if (mxCell.HasMatchingStyle("html", "1"))
         {
             var label = mxCell.label;
             label = Regex.Replace(label, @"</div>", "\n");
