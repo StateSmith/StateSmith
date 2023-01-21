@@ -1,5 +1,6 @@
 using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
+using System;
 
 #nullable enable
 
@@ -17,6 +18,13 @@ namespace StateSmith.Runner
         /// </summary>
         public string? stateMachineName;
         public string outputDirectory;
+
+        /// <summary>
+        /// Optional. This is used to control how file paths are printed. If left unspecified, it will use a value appropriate for C# projects (not C# scripts): `AppDomain.CurrentDomain.BaseDirectory +  "../../../.."`.
+        /// Set to an empty string "" if you want the full absolute path to be printed. Recommend that you set the value.
+        /// https://github.com/StateSmith/StateSmith/issues/79
+        /// </summary>
+        public string filePathPrintBase = AppDomain.CurrentDomain.BaseDirectory + "../../../..";
 
         public CodeStyleSettings style = new();
         public CNameMangler mangler = new();

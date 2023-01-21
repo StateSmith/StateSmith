@@ -129,8 +129,14 @@ namespace StateSmith.Runner
 
         private void OutputCompilingDiagramMessage()
         {
-            string filePath = Path.GetRelativePath(AppDomain.CurrentDomain.BaseDirectory + "../../../..", settings.diagramFile);
+            // https://github.com/StateSmith/StateSmith/issues/79
+            string filePath = settings.diagramFile;
+            if (settings.filePathPrintBase.Trim().Length > 0)
+            {
+                filePath = Path.GetRelativePath(settings.filePathPrintBase, settings.diagramFile);
+            }
             filePath = filePath.Replace('\\', '/');
+
             OutputStageMessage($"Compiling file: `{filePath}` "
                 + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
                 + "."
