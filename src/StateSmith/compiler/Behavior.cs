@@ -140,7 +140,7 @@ namespace StateSmith.Compiling
         /// <summary>
         /// Must have had an original target
         /// </summary>
-        /// <param name="newTarget"></param>
+        /// <param name="newOwner"></param>
         public void RetargetOwner(Vertex newOwner)
         {
             var oldOwner = OwningVertex;
