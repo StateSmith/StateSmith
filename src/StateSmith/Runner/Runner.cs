@@ -15,6 +15,8 @@ using StateSmith.compiler;
 
 #nullable enable
 
+[assembly: CLSCompliant(false)]  
+
 namespace StateSmith.Runner
 {
     /// <summary>
