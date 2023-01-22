@@ -135,7 +135,7 @@ code_line_element
 code_line
 line_end_with_hs
 number
-string
+string_literal
 code_symbol
 
 

@@ -60,7 +60,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		RULE_braced_function_args = 48, RULE_expandable_function_call = 49, RULE_member_function_call = 50, 
 		RULE_any_code = 51, RULE_code_element = 52, RULE_naked_action_code_elements = 53, 
 		RULE_code_line_element = 54, RULE_code_line = 55, RULE_line_end_with_hs = 56, 
-		RULE_number = 57, RULE_string = 58, RULE_code_symbol = 59;
+		RULE_number = 57, RULE_string_literal = 58, RULE_code_symbol = 59;
 	public static readonly string[] ruleNames = {
 		"optional_any_space", "ohs", "some_ws", "node", "statemachine_defn", "notes_text", 
 		"notes_node", "state_behaviors", "ortho_defn", "state_defn", "global_id", 
@@ -74,7 +74,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		"function_arg_code", "function_arg", "leading_optional_any_space", "trailing_optional_any_space", 
 		"braced_function_args", "expandable_function_call", "member_function_call", 
 		"any_code", "code_element", "naked_action_code_elements", "code_line_element", 
-		"code_line", "line_end_with_hs", "number", "string", "code_symbol"
+		"code_line", "line_end_with_hs", "number", "string_literal", "code_symbol"
 	};
 
 	private static readonly string[] _LiteralNames = {
@@ -3792,8 +3792,8 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Star_commentContext star_comment() {
 			return GetRuleContext<Star_commentContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public StringContext @string() {
-			return GetRuleContext<StringContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public String_literalContext string_literal() {
+			return GetRuleContext<String_literalContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public Expandable_function_callContext expandable_function_call() {
 			return GetRuleContext<Expandable_function_callContext>(0);
@@ -3856,7 +3856,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 				EnterOuterAlt(_localctx, 2);
 				{
 				State = 451;
-				@string();
+				string_literal();
 				}
 				break;
 			case 3:
@@ -3928,8 +3928,8 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public Star_commentContext star_comment() {
 			return GetRuleContext<Star_commentContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public StringContext @string() {
-			return GetRuleContext<StringContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public String_literalContext string_literal() {
+			return GetRuleContext<String_literalContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public Expandable_function_callContext expandable_function_call() {
 			return GetRuleContext<Expandable_function_callContext>(0);
@@ -4005,7 +4005,7 @@ public partial class StateSmithLabelGrammarParser : Parser {
 				EnterOuterAlt(_localctx, 3);
 				{
 				State = 463;
-				@string();
+				string_literal();
 				}
 				break;
 			case 4:
@@ -4336,37 +4336,37 @@ public partial class StateSmithLabelGrammarParser : Parser {
 		return _localctx;
 	}
 
-	public partial class StringContext : ParserRuleContext {
+	public partial class String_literalContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRING() { return GetToken(StateSmithLabelGrammarParser.STRING, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode TICK_STRING() { return GetToken(StateSmithLabelGrammarParser.TICK_STRING, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BACKTICK_STRING() { return GetToken(StateSmithLabelGrammarParser.BACKTICK_STRING, 0); }
-		public StringContext(ParserRuleContext parent, int invokingState)
+		public String_literalContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_string; } }
+		public override int RuleIndex { get { return RULE_string_literal; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
-			if (typedListener != null) typedListener.EnterString(this);
+			if (typedListener != null) typedListener.EnterString_literal(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IStateSmithLabelGrammarListener typedListener = listener as IStateSmithLabelGrammarListener;
-			if (typedListener != null) typedListener.ExitString(this);
+			if (typedListener != null) typedListener.ExitString_literal(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IStateSmithLabelGrammarVisitor<TResult> typedVisitor = visitor as IStateSmithLabelGrammarVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitString(this);
+			if (typedVisitor != null) return typedVisitor.VisitString_literal(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public StringContext @string() {
-		StringContext _localctx = new StringContext(Context, State);
-		EnterRule(_localctx, 116, RULE_string);
+	public String_literalContext string_literal() {
+		String_literalContext _localctx = new String_literalContext(Context, State);
+		EnterRule(_localctx, 116, RULE_string_literal);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);

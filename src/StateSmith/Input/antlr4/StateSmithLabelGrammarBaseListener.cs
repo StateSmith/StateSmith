@@ -732,17 +732,17 @@ public partial class StateSmithLabelGrammarBaseListener : IStateSmithLabelGramma
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNumber([NotNull] StateSmithLabelGrammarParser.NumberContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.string"/>.
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.string_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterString([NotNull] StateSmithLabelGrammarParser.StringContext context) { }
+	public virtual void EnterString_literal([NotNull] StateSmithLabelGrammarParser.String_literalContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.string"/>.
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.string_literal"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitString([NotNull] StateSmithLabelGrammarParser.StringContext context) { }
+	public virtual void ExitString_literal([NotNull] StateSmithLabelGrammarParser.String_literalContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.code_symbol"/>.
 	/// <para>The default implementation does nothing.</para>
