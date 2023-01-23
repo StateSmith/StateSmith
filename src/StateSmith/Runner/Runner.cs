@@ -12,6 +12,7 @@ using StateSmith.Input;
 using StateSmith.compiler.Visitors;
 using StateSmith.Input.PlantUML;
 using StateSmith.compiler;
+using StateSmith.Common;
 
 #nullable enable
 
@@ -87,13 +88,14 @@ namespace StateSmith.Runner
 
         protected void RunCodeGen()
         {
-            CodeGenContext codeGenContext = new(compilerRunner.sm, settings.renderConfig);
-            settings.mangler.SetStateMachine(compilerRunner.sm);
+            Statemachine sm = compilerRunner.sm.ThrowIfNull();
+            CodeGenContext codeGenContext = new(sm, settings.renderConfig);
+            settings.mangler.SetStateMachine(sm);
             compilerRunner.mangler = settings.mangler;
             codeGenContext.mangler = settings.mangler;
             codeGenContext.style = settings.style;
 
-            foreach (var h in compilerRunner.sm.historyStates)
+            foreach (var h in sm.historyStates)
             {
                 string actualVarName = codeGenContext.mangler.HistoryVarName(h);
                 codeGenContext.expander.AddVariableExpansion(h.stateTrackingVarName, ExpansionVarsPath + actualVarName);

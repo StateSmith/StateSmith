@@ -116,7 +116,10 @@ public class NotesProcessor : OnlyVertexVisitor
         var path = transition.FindTransitionPath();
         var all = path.toExit.ToList();
         all.AddRange(path.toEnter);
-        all.Add(path.leastCommonAncestor);
+
+        if (path.leastCommonAncestor != null)
+            all.Add(path.leastCommonAncestor);
+
         return all;
     }
 }

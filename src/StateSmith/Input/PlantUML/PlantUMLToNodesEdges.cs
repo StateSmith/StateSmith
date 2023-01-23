@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
+using StateSmith.Common;
 using StateSmith.Input.antlr4;
 using System;
 using System.Collections.Generic;
@@ -82,14 +83,14 @@ namespace StateSmith.Input.PlantUML
                 if (IsNodeEntryPoint(edge.target))
                 {
                     edge.label += "via entry " + edge.target.label;
-                    edge.target = edge.target.parent;
+                    edge.target = edge.target.parent.ThrowIfNull();
                 }
 
                 // transitions from an exit point need to be adjusted
                 if (IsNodeExitPoint(edge.source))
                 {
                     edge.label += "via exit " + edge.source.label;
-                    edge.source = edge.source.parent;
+                    edge.source = edge.source.parent.ThrowIfNull();
                 }
             }
 

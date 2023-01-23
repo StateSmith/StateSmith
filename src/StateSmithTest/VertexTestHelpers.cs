@@ -28,7 +28,7 @@ namespace StateSmithTest
         }
 
         [Obsolete($"See {nameof(VertexTestHelper.BuildFluentAssertionBehaviorMatcher)}")]
-        public static void ExpectBehaviorExact(Behavior behavior, string diagramId = null, Vertex owningVertex = null, Vertex transitionTarget = null,
+        public static void ExpectBehaviorExact(Behavior behavior, string diagramId = "", Vertex owningVertex = null, Vertex transitionTarget = null,
                     string actionCode = null, string guardCode = null, List<string> triggers = null, double order = Behavior.DEFAULT_ORDER)
         {
             behavior.DiagramId.Should().Be(diagramId);

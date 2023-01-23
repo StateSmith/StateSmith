@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using StateSmith.output;
 
+#nullable enable
+
 namespace StateSmith.Input
 {
     /// <summary>
@@ -14,10 +16,10 @@ namespace StateSmith.Input
     /// </summary>
     public class DiagramNode
     {
-        public string id;
+        public string id = "";
         public string label = "";
-        public DiagramNode parent;
-        public List<DiagramNode> children = new List<DiagramNode>();
+        public DiagramNode? parent;
+        public List<DiagramNode> children = new();
 
         public override string ToString()
         {
@@ -63,7 +65,7 @@ namespace StateSmith.Input
                     stringBuilder.Append(" (parent follows below)\n");
                 }
 
-                stringBuilder.Append("\n");
+                stringBuilder.Append('\n');
             }
         }
     }

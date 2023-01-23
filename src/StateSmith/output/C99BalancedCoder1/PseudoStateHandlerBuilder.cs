@@ -1,5 +1,6 @@
 #nullable enable
 
+using StateSmith.Common;
 using StateSmith.compiler.Visitors;
 using StateSmith.Compiling;
 using System;
@@ -10,8 +11,15 @@ namespace StateSmith.output.C99BalancedCoder1
 {
     public class PseudoStateHandlerBuilder
     {
-        public OutputFile output;
-        public CNameMangler mangler;
+        /// <summary>
+        /// needs to be set before using this class
+        /// </summary>
+        public OutputFile? output;
+
+        /// <summary>
+        /// needs to be set before using this class
+        /// </summary>
+        public CNameMangler? mangler;
 
         Dictionary<PseudoStateVertex, string> functionNameMap = new();
         HashList<NamedVertex, PseudoStateVertex> parentMapping = new();
@@ -34,7 +42,7 @@ namespace StateSmith.output.C99BalancedCoder1
         {
             var IncomingTransitionCount = v.IncomingTransitions.Count;
 
-            if (v is InitialState initialState)
+            if (v is InitialState)
             {
                 IncomingTransitionCount += (v.Parent!).IncomingTransitions.Count;
             }
@@ -46,7 +54,7 @@ namespace StateSmith.output.C99BalancedCoder1
         {
             foreach (var pseudoState in functionNameMap.Keys)
             {
-                parentMapping.AddIfMissing((NamedVertex)pseudoState.Parent, pseudoState);
+                parentMapping.AddIfMissing((NamedVertex)pseudoState.NonNullParent, pseudoState);
             }
         }
 
@@ -76,11 +84,13 @@ namespace StateSmith.output.C99BalancedCoder1
         public void OutputFunctionSignature(PseudoStateVertex pseudoStateVertex)
         {
             var functionName = GetFunctionName(pseudoStateVertex);
-            output.Append($"static void {functionName}({mangler.SmStructTypedefName}* self)");
+            output.ThrowIfNull().Append($"static void {functionName}({mangler.ThrowIfNull().SmStructTypedefName}* self)");
         }
 
         public void OutputAllPrototypes()
         {
+            output.ThrowIfNull();
+
             foreach (var vertex in functionNameMap.Keys)
             {
                 OutputFunctionSignature(vertex);
@@ -104,6 +114,8 @@ namespace StateSmith.output.C99BalancedCoder1
 
         public void OutputFunction(PseudoStateVertex pseudoStateVertex, Action<PseudoStateVertex> renderLambda)
         {
+            output.ThrowIfNull();
+
             OutputFunctionSignature(pseudoStateVertex);
             output.StartCodeBlock();
             renderLambda(pseudoStateVertex);

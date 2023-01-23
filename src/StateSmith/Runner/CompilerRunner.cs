@@ -123,6 +123,7 @@ public class CompilerRunner
     /// </summary>
     public void FindStateMachineByName(string stateMachineName)
     {
+        sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
         var action = () => { sm = (Statemachine)compiler.GetVertex(stateMachineName); };
         action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{stateMachineName}`.", e));
     }
@@ -133,6 +134,7 @@ public class CompilerRunner
     [MemberNotNull(nameof(sm))]
     public void FindSingleStateMachine()
     {
+        sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
         var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {compiler.rootVertices.OfType<Statemachine>().Count()}.", e));
     }

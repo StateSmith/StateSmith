@@ -197,12 +197,12 @@ public class MxCellsToSmDiagramConverter
         }
 
         var edge = new DiagramEdge
-        {
-            id = cell.id,
-            label = cell.label ?? "",
-            target = nodeMap[cell.target],
-            source = nodeMap[cell.source]
-        };
+        (
+            id: cell.id,
+            label: cell.label ?? "",
+            target: nodeMap[cell.target],
+            source: nodeMap[cell.source]
+        );
         edges.Add(edge);
     }
 }

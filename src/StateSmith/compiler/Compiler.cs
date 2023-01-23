@@ -11,6 +11,9 @@ using System.IO;
 using StateSmith.compiler.Visitors;
 using StateSmith.output.C99BalancedCoder1;
 using StateSmith.Runner;
+using StateSmith.Common;
+
+#nullable enable
 
 namespace StateSmith.Compiling
 {
@@ -25,9 +28,9 @@ namespace StateSmith.Compiling
         public const string HistoryStateString = "$h";
         public const string HistoryContinueString = "$hc";
 
-        public List<Vertex> rootVertices = new List<Vertex>();
-        private List<string> eventNames = new List<string>();
-        private Dictionary<Input.DiagramNode, Vertex> diagramVertexMap = new Dictionary<Input.DiagramNode, Vertex>();
+        public List<Vertex> rootVertices = new();
+        private List<string> eventNames = new();
+        private Dictionary<Input.DiagramNode, Vertex> diagramVertexMap = new();
 
         /// <summary>
         /// Call this method when you want to support a custom input source.
@@ -38,7 +41,10 @@ namespace StateSmith.Compiling
         {
             foreach (var node in rootNodes)
             {
-                rootVertices.Add(ProcessNode(node, parentVertex: null));
+                var vertex = ProcessNode(node, parentVertex: null);
+
+                if (vertex != null)
+                    rootVertices.Add(vertex);
             }
 
             foreach (var edge in edges)
@@ -253,14 +259,14 @@ namespace StateSmith.Compiling
             }
         }
 
-        private Vertex ProcessNode(Input.DiagramNode diagramNode, Vertex parentVertex)
+        private Vertex? ProcessNode(Input.DiagramNode diagramNode, Vertex? parentVertex)
         {
             if (diagramNode.label == null || diagramNode.label.Trim() == "")
             {
                 return null;
             }
 
-            LabelParser labelParser = new LabelParser();
+            LabelParser labelParser = new();
             Node node = labelParser.ParseNodeLabel(diagramNode.label);
             PrintAndThrowIfNodeParseFail(diagramNode, parentVertex, labelParser);
 
@@ -377,7 +383,7 @@ namespace StateSmith.Compiling
             return thisVertex;
         }
 
-        private static void PrintAndThrowIfNodeParseFail(Input.DiagramNode diagramNode, Vertex parentVertex, LabelParser labelParser)
+        private static void PrintAndThrowIfNodeParseFail(Input.DiagramNode diagramNode, Vertex? parentVertex, LabelParser labelParser)
         {
             if (labelParser.HasError())
             {
@@ -421,7 +427,7 @@ Reason(s): {reasons}
             }
         }
 
-        private static Behavior ConvertBehavior(Vertex owningVertex, NodeBehavior nodeBehavior, Vertex targetVertex = null)
+        private static Behavior ConvertBehavior(Vertex owningVertex, NodeBehavior nodeBehavior, Vertex? targetVertex = null)
         {
             var behavior = new Behavior(owningVertex: owningVertex, transitionTarget: targetVertex)
             {

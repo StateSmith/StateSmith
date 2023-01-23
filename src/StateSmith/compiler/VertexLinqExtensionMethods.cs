@@ -5,6 +5,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Linq;
 
+#nullable enable
+
 namespace StateSmith.compiler
 {
     /// <summary>
@@ -130,7 +132,7 @@ namespace StateSmith.compiler
             return vertex.Siblings<T>();
         }
 
-        public static T SingleOrNull<T>(this IEnumerable<T> items, Vertex v, string errorMessage) where T : Vertex
+        public static T? SingleOrNull<T>(this IEnumerable<T> items, Vertex v, string errorMessage) where T : Vertex
         {
             int count = items.Count();
 
@@ -210,7 +212,7 @@ namespace StateSmith.compiler
             return vertex.Behaviors.Where(b => b.triggers.Contains(triggerName));
         }
 
-        public static bool HasInitialState(this Vertex vertex, out InitialState initialState)
+        public static bool HasInitialState(this Vertex vertex, out InitialState? initialState)
         {
             if (vertex is NamedVertex namedVertex)
             {
