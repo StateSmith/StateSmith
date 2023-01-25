@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WIP
 ### Added
+- WIP on drawio - detect when group isn't shown correctly
+  - https://github.com/StateSmith/StateSmith/issues/81
 - nuget package - Include documentation and source code for intellisense/debugging.
   - https://github.com/StateSmith/StateSmith/issues/80
 

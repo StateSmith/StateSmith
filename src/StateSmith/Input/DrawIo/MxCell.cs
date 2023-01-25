@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace StateSmith.Input.DrawIo;
 #nullable enable
 
@@ -14,6 +13,13 @@ public class MxCell
     public string? source;
     public string? target;
     public string? style;
+    public bool isCollapsed = false;
+
+    /// <summary>Only available for vertices right now. If collapsed, this the collapsed bounds. If expanded, this is the expanded bounds.</summary>
+    public MxBounds? primaryBounds;
+
+    /// <summary>Only available for vertices right now. </summary>
+    public MxBounds? alternateBounds;
 
     public Dictionary<string, string> styleMap = new();
 

@@ -13,6 +13,8 @@ public class MxCellParser
 
     public Dictionary<string, MxCell> mxCells = new();
 
+    MxCell? lastVertexCell;
+
     public MxCellParser(string filepath)
     {
         reader = new XmlTextReader(filepath);
@@ -42,10 +44,27 @@ public class MxCellParser
         {
             HandleMxCell();
         }
+        else if (reader.IsStartElement("mxGeometry"))
+        {
+            HandleMxGeometry();
+        }
+        else if (reader.IsStartElement("mxRectangle"))
+        {
+            HandleMxRectangle();
+        }
+    }
+
+    private void ParseBounds(MxBounds bounds)
+    {
+        bounds.x = GetAttributeDoubleOrDefault("x", 0);
+        bounds.y = GetAttributeDoubleOrDefault("y", 0);
+        bounds.width = GetAttributeDoubleOrDefault("width", 0);
+        bounds.height = GetAttributeDoubleOrDefault("height", 0);
     }
 
     private void HandleMxCell()
     {
+        lastVertexCell = null;
         var mxCell = new MxCell(GetAttributeOrThrow("id"));
 
         if (HasAttribute("vertex"))
@@ -63,6 +82,12 @@ public class MxCellParser
         else
         {
             //throw new DrawIoException("Unknown mxcell type. Expected edge or vertex.");
+        }
+
+        if (mxCell.type == MxCell.Type.Vertex)
+        {
+            mxCell.isCollapsed = HasAttributeValue("collapsed", "1");
+            lastVertexCell = mxCell;
         }
 
         mxCell.parent = MaybeGetAttribute("parent");
@@ -122,6 +147,28 @@ public class MxCellParser
         }
     }
 
+    private void HandleMxRectangle()
+    {
+        if (lastVertexCell == null || !HasAttributeValue("as", "alternateBounds"))
+        {
+            return;
+        }
+
+        lastVertexCell.alternateBounds ??= new MxBounds();
+        ParseBounds(lastVertexCell.alternateBounds);
+    }
+
+    private void HandleMxGeometry()
+    {
+        if (lastVertexCell == null || !HasAttributeValue("as", "geometry"))
+        {
+            return;
+        }
+
+        lastVertexCell.primaryBounds ??= new MxBounds();
+        ParseBounds(lastVertexCell.primaryBounds);
+    }
+
     private string GetAttributeOrThrow(string attributeName)
     {
         string? attr = MaybeGetAttribute(attributeName);
@@ -137,8 +184,19 @@ public class MxCellParser
         return reader.GetAttribute(attributeName) != null;
     }
 
+    private bool HasAttributeValue(string attributeName, string value)
+    {
+        return reader.GetAttribute(attributeName)?.Equals(value) ?? false;
+    }
+
     private string? MaybeGetAttribute(string attributeName)
     {
         return reader.GetAttribute(attributeName);
+    }
+
+    private double GetAttributeDoubleOrDefault(string attributeName, double default_value)
+    {
+        string value = MaybeGetAttribute(attributeName) ?? default_value + "";
+        return double.Parse(value);
     }
 }
