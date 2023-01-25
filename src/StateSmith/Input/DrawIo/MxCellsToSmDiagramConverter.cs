@@ -12,9 +12,9 @@ public class MxCellsToSmDiagramConverter
     public List<DiagramEdge> edges = new();
     public List<DiagramNode> roots = new();
 
-    public void Process(Dictionary<string, MxCell> mxcells)
+    public void Process(Dictionary<string, MxCell> mxCells)
     {
-        IEnumerable<MxCell> verticeCells = GetVerticeCells(mxcells);
+        IEnumerable<MxCell> verticeCells = GetVerticeCells(mxCells);
 
         foreach (var cell in verticeCells)
         {
@@ -26,20 +26,23 @@ public class MxCellsToSmDiagramConverter
             LinkVertexForCell(cell);
         }
 
-        foreach (var cell in mxcells.Values.Where(c => c.type == MxCell.Type.Edge))
+        foreach (var cell in mxCells.Values.Where(c => c.type == MxCell.Type.Edge))
         {
             ProcessEdge(cell);
         }
+
+        var visualValidator = new VisualGroupingValidator();
+        visualValidator.Process(mxCells, roots);
     }
 
-    private static List<MxCell> GetVerticeCells(Dictionary<string, MxCell> mxcells)
+    private static List<MxCell> GetVerticeCells(Dictionary<string, MxCell> mxCells)
     {
-        var cells = mxcells.Values.Where(c => c.type == MxCell.Type.Vertex).ToList();
+        var cells = mxCells.Values.Where(c => c.type == MxCell.Type.Vertex).ToList();
 
         for (int i = 0; i < cells.Count; )
         {
             var c = cells[i];
-            if (ProcessFancyEdgeLabel(c, mxcells)) // can't put in above linq query because it seems to be executed multiple times
+            if (ProcessFancyEdgeLabel(c, mxCells)) // can't put in above linq query because it seems to be executed multiple times
             {
                 cells.RemoveAt(i);
             }
@@ -52,12 +55,12 @@ public class MxCellsToSmDiagramConverter
         return cells;
     }
 
-    private static bool ProcessFancyEdgeLabel(MxCell c, Dictionary<string, MxCell> mxcells)
+    private static bool ProcessFancyEdgeLabel(MxCell c, Dictionary<string, MxCell> mxCells)
     {
         if (c.parent == null)
             return false;
 
-        if (mxcells.TryGetValue(c.parent, out var parentCell))
+        if (mxCells.TryGetValue(c.parent, out var parentCell))
         {
             if (parentCell.type == MxCell.Type.Edge)
             {

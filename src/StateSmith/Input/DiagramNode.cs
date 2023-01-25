@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Text;
 using StateSmith.output;
+using System.Text.RegularExpressions;
 
 #nullable enable
 
@@ -24,6 +25,18 @@ namespace StateSmith.Input
         public override string ToString()
         {
             return $"DiagramNode{{id:{id}}}";
+        }
+
+        /// <summary>
+        /// internal for now. Functionality may be moved.
+        /// </summary>
+        internal string DescribeShort()
+        {
+            string shortLabel = label;
+            shortLabel = StringUtils.MaybeTruncateWithEllipsis(shortLabel, 15);
+            shortLabel = StringUtils.ReplaceNewLineChars(shortLabel, "\\n");
+            shortLabel = StringUtils.EscapeCharsForString(shortLabel);
+            return $"{{id:\"{id.Trim()}\", label:\"{shortLabel}\"}}";
         }
 
         /// <summary>
@@ -67,6 +80,16 @@ namespace StateSmith.Input
 
                 stringBuilder.Append('\n');
             }
+        }
+
+        /// <summary>
+        /// internal for now. Functionality may be moved.
+        /// </summary>
+        internal static string FullyDescribe(DiagramNode? node)
+        {
+            var sb = new StringBuilder();
+            FullyDescribe(node, sb);
+            return sb.ToString();
         }
     }
 }

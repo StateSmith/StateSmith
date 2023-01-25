@@ -14,7 +14,7 @@ namespace StateSmith.Compiling
 
     public class DiagramNodeException : Exception
     {
-        DiagramNode Node { get; }
+        public DiagramNode Node { get; }
 
         public DiagramNodeException(DiagramNode node) : base()
         {
