@@ -5,10 +5,15 @@ namespace StateSmith.Input.DrawIo;
 
 public class DrawIoToSmDiagramConverter
 {
-    readonly MxCellsToSmDiagramConverter converter = new();
+    private readonly MxCellsToSmDiagramConverter converter;
 
     public List<DiagramEdge> Edges => converter.edges;
     public List<DiagramNode> Roots => converter.roots;
+
+    public DrawIoToSmDiagramConverter(MxCellsToSmDiagramConverter converter)
+    {
+        this.converter = converter;
+    }
 
     public void ProcessFile(string filePath)
     {

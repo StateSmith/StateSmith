@@ -14,8 +14,10 @@ public class DrawIoSvgToSmDiagramConverterTests
     [Fact]
     public void Test()
     {
+        CompilerRunner runner = new();
+
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
-        DrawIoToSmDiagramConverter converter = new();
+        DrawIoToSmDiagramConverter converter = runner.ssServiceProvider.GetServiceOrCreateInstance();
         converter.ProcessSvg(File.OpenText(filePath));
 
         var smDiagramRoot = converter.Roots.Single();
@@ -27,8 +29,6 @@ public class DrawIoSvgToSmDiagramConverterTests
         smDiagramRoot.children[i].children.Count.Should().Be(3);
 
         // could do more tests here for all nodes and edges
-
-        CompilerRunner runner = new();
         runner.CompileNodesToVertices(converter.Roots, converter.Edges);
         runner.FindSingleStateMachine();
         runner.sm.Name.Should().Be("Design1Sm_svg");

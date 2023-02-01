@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StateSmith.Runner;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,6 +12,12 @@ public class MxCellsToSmDiagramConverter
     public Dictionary<string, DiagramNode> nodeMap = new();
     public List<DiagramEdge> edges = new();
     public List<DiagramNode> roots = new();
+    private readonly VisualGroupingValidator visualGroupingValidator;
+
+    public MxCellsToSmDiagramConverter(VisualGroupingValidator visualGroupingValidator)
+    {
+        this.visualGroupingValidator = visualGroupingValidator;
+    }
 
     public void Process(Dictionary<string, MxCell> mxCells)
     {
@@ -31,8 +38,7 @@ public class MxCellsToSmDiagramConverter
             ProcessEdge(cell);
         }
 
-        var visualValidator = new VisualGroupingValidator();
-        visualValidator.Process(mxCells, roots);
+        visualGroupingValidator.Process(mxCells, roots);
     }
 
     private static List<MxCell> GetVerticeCells(Dictionary<string, MxCell> mxCells)

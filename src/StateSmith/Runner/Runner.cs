@@ -2,21 +2,14 @@
 using StateSmith.output.UserConfig;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StateSmith.Compiling;
 using System.IO;
-using StateSmith.Input.Expansions;
-using StateSmith.Input;
-using StateSmith.compiler.Visitors;
-using StateSmith.Input.PlantUML;
-using StateSmith.compiler;
 using StateSmith.Common;
+using Microsoft.Extensions.DependencyInjection;
 
 #nullable enable
 
-[assembly: CLSCompliant(false)]  
+[assembly: CLSCompliant(false)]
 
 namespace StateSmith.Runner
 {
@@ -27,7 +20,7 @@ namespace StateSmith.Runner
     {
         private const string ExpansionVarsPath = "self->vars.";
         RunnerSettings settings;
-        public CompilerRunner compilerRunner = new();
+        public CompilerRunner compilerRunner;
         ExceptionPrinter exceptionPrinter;
 
         protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
@@ -36,13 +29,19 @@ namespace StateSmith.Runner
         
         protected void OutputStageMessage(string message)
         {
-            // todo add logger functionality
+            // todo_low add logger functionality
             Console.WriteLine("StateSmith Runner - " + message);
         }
 
         public SmRunner(RunnerSettings settings)
         {
             this.settings = settings;
+            var sp = new SsServiceProvider(postConfigAction: (context, services) =>
+            {
+                services.AddSingleton(settings.drawIoSettings);
+            });
+
+            compilerRunner = new(sp);
             exceptionPrinter = settings.exceptionPrinter;
         }
 

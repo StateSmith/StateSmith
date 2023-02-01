@@ -29,6 +29,8 @@ namespace StateSmith.Runner
         public CodeStyleSettings style = new();
         public CNameMangler mangler = new();
 
+        public readonly DrawIoSettings drawIoSettings = new();
+
         public ExceptionPrinter exceptionPrinter = new();
 
         public RunnerSettings(IRenderConfigC renderConfig, string diagramFile, string outputDirectory)

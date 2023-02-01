@@ -31,6 +31,7 @@ public class CompilerRunner
     public Statemachine? sm;
     public PrefixingModder prefixingModder = new();
     public CNameMangler mangler = new();
+    public SsServiceProvider ssServiceProvider;
 
     /// <summary>
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
@@ -42,12 +43,23 @@ public class CompilerRunner
     /// </summary>
     public Action<Statemachine> preValidation = (_) => { };
 
+
+    public CompilerRunner()
+    {
+        ssServiceProvider = new();
+    }
+
+    public CompilerRunner(SsServiceProvider ssServiceProvider)
+    {
+        this.ssServiceProvider = ssServiceProvider;
+    }
+
     /// <summary>
     /// Step 1
     /// </summary>
     public void CompileDrawIoFileNodesToVertices(string filepath)
     {
-        DrawIoToSmDiagramConverter converter = new();
+        DrawIoToSmDiagramConverter converter = ssServiceProvider.GetServiceOrCreateInstance();
         converter.ProcessFile(filepath);
         CompileNodesToVertices(converter.Roots, converter.Edges);
     }
@@ -194,11 +206,13 @@ public class CompilerRunner
 
     public static void UpdateNamedDescendantsMapping(Vertex startingVertex)
     {
-        startingVertex.VisitRecursively(vertex => {
+        startingVertex.VisitRecursively(vertex =>
+        {
             vertex.ResetNamedDescendantsMap();
         });
 
-        startingVertex.VisitTypeRecursively<NamedVertex>(vertex => {
+        startingVertex.VisitTypeRecursively<NamedVertex>(vertex =>
+        {
             //add this vertex to ancestors
             var parent = vertex.Parent;
             while (parent != null)

@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using StateSmith.Compiling;
+using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,12 @@ public class VisualGroupingValidator
 {
     Dictionary<string, CornerPoints> cellIdToCornerPointsMapping = new();
     Dictionary<string, MxCell> mxCellMap = new();
+    private readonly DrawIoSettings settings;
+
+    public VisualGroupingValidator(DrawIoSettings settings)
+    {
+        this.settings = settings;
+    }
 
     public void Process(Dictionary<string, MxCell> mxCellMap, List<DiagramNode> roots)
     {
@@ -23,14 +30,20 @@ public class VisualGroupingValidator
             AddCornerPointsRecursively(node);
         }
 
-        // traverse from parent to child. ensure all children are in parent
-        foreach (var node in roots)
+        if (settings.checkForChildStateContainment)
         {
-            EnsureChildrenContainedRecursively(node);
+            // traverse from parent to child. ensure all children are in parent
+            foreach (var node in roots)
+            {
+                EnsureChildrenContainedRecursively(node);
+            }
         }
 
-        var notTouchingValidator = new NotTouchingValidator(cellIdToCornerPointsMapping, mxCellMap);
-        notTouchingValidator.ProcessTopLevelNodes(roots);
+        if (settings.checkForBadOverlap)
+        {
+            var notTouchingValidator = new NotTouchingValidator(cellIdToCornerPointsMapping, mxCellMap);
+            notTouchingValidator.ProcessTopLevelNodes(roots);
+        }
     }
 
     private void EnsureChildrenContainedRecursively(DiagramNode node)
