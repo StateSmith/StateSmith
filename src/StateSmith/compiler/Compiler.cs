@@ -2,16 +2,10 @@
 using StateSmith.Input.Expansions;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Linq;
 using StateSmith.compiler;
 using StateSmith.Input;
-using System.IO;
 using StateSmith.compiler.Visitors;
-using StateSmith.output.C99BalancedCoder1;
 using StateSmith.Runner;
-using StateSmith.Common;
 
 #nullable enable
 
@@ -30,7 +24,7 @@ namespace StateSmith.Compiling
 
         public List<Vertex> rootVertices = new();
         private List<string> eventNames = new();
-        private Dictionary<Input.DiagramNode, Vertex> diagramVertexMap = new();
+        private Dictionary<DiagramNode, Vertex> diagramVertexMap = new();
 
         /// <summary>
         /// Call this method when you want to support a custom input source.
@@ -69,15 +63,6 @@ namespace StateSmith.Compiling
         /// <summary>
         /// Don't do any modifications to trees after this is called
         /// </summary>
-        public void FinalizeTrees()
-        {
-            var finalizer = new TreeFinalizer();
-
-            foreach (var v in rootVertices)
-            {
-                finalizer.FinalizeTree(v);
-            }
-        }
 
         public List<NamedVertex> GetNamedVertices(string name)
         {

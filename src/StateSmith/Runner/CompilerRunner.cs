@@ -165,7 +165,7 @@ public class CompilerRunner
 
         Validate();
         DefaultToDoEventVisitor.Process(sm);
-        compiler.FinalizeTrees();
+        AddUsedEventsToSmClass.Process(sm);
         Validate();
     }
 
