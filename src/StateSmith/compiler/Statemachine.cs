@@ -12,13 +12,13 @@ namespace StateSmith.Compiling
     /// that section of the state machine design independently of the rest.
     /// Very helpful in large designs.
     /// </summary>
-    public class Statemachine : NamedVertex
+    public class StateMachine : NamedVertex
     {
         internal HashSet<string> _events = new HashSet<string>();
         internal List<HistoryVertex> historyStates = new();
         public string variables = "";
 
-        public Statemachine(string name) : base(name)
+        public StateMachine(string name) : base(name)
         {
         }
 

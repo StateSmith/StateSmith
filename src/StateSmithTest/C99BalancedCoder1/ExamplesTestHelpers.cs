@@ -39,7 +39,7 @@ namespace StateSmithTest
         public static CodeGenContext SetupCtxForTiny2Sm()
         {
             var diagramToSmConverter = ExamplesTestHelpers.SetupTiny2Sm().diagramToSmConverter;
-            var sm = diagramToSmConverter.rootVertices.Single().As<Statemachine>();
+            var sm = diagramToSmConverter.rootVertices.Single().As<StateMachine>();
             return new CodeGenContext(sm);
         }
 
@@ -47,7 +47,7 @@ namespace StateSmithTest
         {
             InputSmBuilder inputSmBuilder = new();
 
-            var sm = new Statemachine("Simple1");
+            var sm = new StateMachine("Simple1");
             var s1 = sm.AddChild(new State(name: "s1"));
             var s1_1 = s1.AddChild(new State(name: "s1_1"));
 

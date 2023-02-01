@@ -14,7 +14,7 @@ namespace StateSmith.compiler.Visitors
             Visit((NamedVertex)v);
         }
 
-        public override void Visit(Statemachine v)
+        public override void Visit(StateMachine v)
         {
             Visit((NamedVertex)v);
         }

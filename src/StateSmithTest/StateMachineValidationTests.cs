@@ -21,7 +21,7 @@ namespace StateSmithTest
 
         private Vertex BuildTestGraph()
         {
-            var sm = new Statemachine(name: "root");
+            var sm = new StateMachine(name: "root");
 
             s1 = sm.AddChild(new State(name: "s1"));
             s2 = sm.AddChild(new State(name: "s2"));
@@ -36,7 +36,7 @@ namespace StateSmithTest
         [Fact]
         public void NoNestingYet()
         {
-            s1.AddChild(new Statemachine("sm2"));
+            s1.AddChild(new StateMachine("sm2"));
             ExpectVertexValidationException(exceptionMessagePart: "State machines cannot be nested, yet");
         }
 

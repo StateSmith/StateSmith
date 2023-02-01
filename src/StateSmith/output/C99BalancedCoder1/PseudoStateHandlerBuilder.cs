@@ -24,7 +24,7 @@ namespace StateSmith.output.C99BalancedCoder1
         Dictionary<PseudoStateVertex, string> functionNameMap = new();
         HashList<NamedVertex, PseudoStateVertex> parentMapping = new();
 
-        public void Gather(Statemachine sm)
+        public void Gather(StateMachine sm)
         {
             LambdaVertexBreadthWalker walker = new() { visitAction = v =>
             {

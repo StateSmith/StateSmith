@@ -12,7 +12,7 @@ namespace StateSmithTest.PseudoStateTests
 
         protected PseudoStateVertex s2_pseudoState;
 
-        protected Statemachine sm;
+        protected StateMachine sm;
         protected InitialState rootInitialState;
         protected State s1;
         protected State s2;
@@ -25,9 +25,9 @@ namespace StateSmithTest.PseudoStateTests
             inputSmBuilder.SetStateMachineRoot(sm);
         }
 
-        private Statemachine BuildTestGraph()
+        private StateMachine BuildTestGraph()
         {
-            sm = new Statemachine(name: "root");
+            sm = new StateMachine(name: "root");
             rootInitialState = sm.AddChild(new InitialState());
             s1 = sm.AddChild(new State(name: "s1"));
             s2 = sm.AddChild(new State(name: "s2"));

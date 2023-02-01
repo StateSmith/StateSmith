@@ -331,7 +331,7 @@ namespace StateSmith.Compiling
 
             switch (v)
             {
-                case Statemachine sm:
+                case StateMachine sm:
                     return "ROOT";
 
                 case NamedVertex namedVertex:

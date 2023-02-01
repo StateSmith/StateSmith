@@ -7,7 +7,7 @@ namespace StateSmithTest.PseudoStateTests;
 
 public class HistoryContinueValidationTests : ValidationTestHelper
 {
-    private Statemachine root;
+    private StateMachine root;
     private HistoryContinueVertex hc1;
     private HistoryContinueVertex hc2;
     private HistoryVertex h1;

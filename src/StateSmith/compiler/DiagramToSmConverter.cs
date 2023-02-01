@@ -148,7 +148,7 @@ namespace StateSmith.Compiling
 
                 case StateMachineNode stateMachineNode:
                     {
-                        var sm = new Statemachine(stateMachineNode.name);
+                        var sm = new StateMachine(stateMachineNode.name);
                         sm.nameIsGloballyUnique = true;
                         thisVertex = sm;
                         break;

@@ -14,16 +14,16 @@ namespace StateSmith.Compiling;
 /// </summary>
 public class HistoryProcessor
 {
-    readonly Statemachine sm;
+    readonly StateMachine sm;
     readonly CNameMangler mangler;
 
-    public HistoryProcessor(Statemachine sm, CNameMangler mangler)
+    public HistoryProcessor(StateMachine sm, CNameMangler mangler)
     {
         this.sm = sm;
         this.mangler = mangler;
     }
 
-    public static void Process(Statemachine sm, CNameMangler mangler)
+    public static void Process(StateMachine sm, CNameMangler mangler)
     {
         var processor = new HistoryProcessor(sm, mangler);
         processor.Process();

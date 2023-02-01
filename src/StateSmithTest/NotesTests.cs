@@ -51,7 +51,7 @@ namespace StateSmithTest
         [Fact]
         public void NoBehaviors()
         {
-            var sm = new Statemachine(name: "root");
+            var sm = new StateMachine(name: "root");
             State s1 = sm.AddChild(new State(name: "s1"));
             NotesVertex notesVertex = s1.AddChild(new NotesVertex());
             sm.AddChild(new InitialState()).AddTransitionTo(s1);

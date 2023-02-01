@@ -30,9 +30,9 @@ namespace StateSmith.Runner;
 public class InputSmBuilder
 {
     public readonly SmTransformer transformer;
-    public Statemachine Sm => sm.ThrowIfNull();
+    public StateMachine Sm => sm.ThrowIfNull();
 
-    protected Statemachine? sm;
+    protected StateMachine? sm;
     internal DiagramToSmConverter diagramToSmConverter = new();
     internal SsServiceProvider ssServiceProvider;
     protected CNameMangler mangler;
@@ -132,7 +132,7 @@ public class InputSmBuilder
     /// <summary>
     /// Step 1. Call this method when you already have created a state machine vertex. Probably from testing.
     /// </summary>
-    public void SetStateMachineRoot(Statemachine stateMachine)
+    public void SetStateMachineRoot(StateMachine stateMachine)
     {
         diagramToSmConverter.rootVertices = new List<Vertex>() { stateMachine };
     }
@@ -144,8 +144,8 @@ public class InputSmBuilder
     /// </summary>
     public void FindStateMachineByName(string stateMachineName)
     {
-        sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
-        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<Statemachine>().Where(s => s.Name  == stateMachineName).Single(); };
+        sm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
+        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Where(s => s.Name  == stateMachineName).Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{stateMachineName}`.", e));
     }
 
@@ -155,9 +155,9 @@ public class InputSmBuilder
     [MemberNotNull(nameof(sm))]
     public void FindSingleStateMachine()
     {
-        sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
-        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<Statemachine>().Single(); };
-        action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {diagramToSmConverter.rootVertices.OfType<Statemachine>().Count()}.", e));
+        sm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
+        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Single(); };
+        action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {diagramToSmConverter.rootVertices.OfType<StateMachine>().Count()}.", e));
     }
 
     //------------------------------------------------------------------------

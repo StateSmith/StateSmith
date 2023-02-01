@@ -18,7 +18,7 @@ namespace StateSmith.Runner
 
         private Stack<string> prefixStack = new();
 
-        public static void Process(Statemachine sm)
+        public static void Process(StateMachine sm)
         {
             new PrefixingModder().Visit(sm);
         }

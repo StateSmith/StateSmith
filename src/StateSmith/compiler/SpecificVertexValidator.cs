@@ -43,7 +43,7 @@ namespace StateSmith.Compiling
             throw new System.NotImplementedException();
         }
 
-        public override void Visit(Statemachine v)
+        public override void Visit(StateMachine v)
         {
             if (v.Parent != null)
             {
@@ -61,7 +61,7 @@ namespace StateSmith.Compiling
         }
 
         /// <summary>
-        /// <see cref="NotesProcessor.ValidateAndRemoveNotes(Statemachine)"/>
+        /// <see cref="NotesProcessor.ValidateAndRemoveNotes(StateMachine)"/>
         /// </summary>
         /// <param name="v"></param>
         public override void Visit(NotesVertex v)

@@ -13,7 +13,7 @@ namespace StateSmithTest
 {
     public class PrefixingModderTests
     {
-        Statemachine sm;
+        StateMachine sm;
         State mainMenu;
         State mmSelectBeverage;
         State mmBevNone;
@@ -71,7 +71,7 @@ namespace StateSmithTest
 
         private void BuildSm()
         {
-            sm = new Statemachine("sm");
+            sm = new StateMachine("sm");
 
             mainMenu = sm.AddChild(new State("MAIN_MENU"));
             sm.AddChild(new InitialState()).AddBehavior(new Behavior(transitionTarget: mainMenu));

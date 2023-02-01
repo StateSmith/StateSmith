@@ -14,20 +14,20 @@ public class NotesProcessor : OnlyVertexVisitor
     HashSet<Vertex> nonNotedVertices = new();
     List<NotesVertex> topNotesVertices = new();
 
-    public static void Process(Statemachine sm)
+    public static void Process(StateMachine sm)
     {
         var processor = new NotesProcessor();
         processor.ValidateAndRemoveNotes(sm);
     }
 
-    public void ValidateAndRemoveNotes(Statemachine sm)
+    public void ValidateAndRemoveNotes(StateMachine sm)
     {
         ValidateNotesWithoutRemoving(sm);
         RemoveTopLevelNotes();
     }
 
     // only use for unit testing
-    internal void ValidateNotesWithoutRemoving(Statemachine sm)
+    internal void ValidateNotesWithoutRemoving(StateMachine sm)
     {
         Visit(sm);
         EnsureNoInvalidTransitionsToNotesVertex();

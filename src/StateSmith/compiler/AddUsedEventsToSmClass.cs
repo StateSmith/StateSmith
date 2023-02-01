@@ -7,14 +7,14 @@ namespace StateSmith.Compiling;
 
 public class AddUsedEventsToSmClass : VertexWalker
 {
-    private readonly Statemachine stateMachine;
+    private readonly StateMachine stateMachine;
 
-    public AddUsedEventsToSmClass(Statemachine stateMachine)
+    public AddUsedEventsToSmClass(StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
     }
 
-    public static void Process(Statemachine stateMachine)
+    public static void Process(StateMachine stateMachine)
     {
         var cls = new AddUsedEventsToSmClass(stateMachine);
         cls.Walk(stateMachine);

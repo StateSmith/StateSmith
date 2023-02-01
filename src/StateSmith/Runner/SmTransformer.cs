@@ -12,7 +12,7 @@ public class SmTransformer
 {
     public readonly List<TransformationStep> transformationPipeline = new();
 
-    public void RunTransformationPipeline(Statemachine sm)
+    public void RunTransformationPipeline(StateMachine sm)
     {
         foreach (var step in transformationPipeline)
         {

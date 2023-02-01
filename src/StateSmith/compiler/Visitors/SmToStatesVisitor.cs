@@ -29,7 +29,7 @@ namespace StateSmith.compiler.Visitors
             VisitChildrenInOrderOfName(v);
         }
 
-        public override void Visit(Statemachine v)
+        public override void Visit(StateMachine v)
         {
             if (v.Parent != null)
             {

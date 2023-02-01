@@ -34,12 +34,12 @@ public class DefaultSmTransformer : SmTransformer
         AddStep(Id.FinalValdation, (sm) => Validate(sm));
     }
 
-    private void AddStep(Id id, Action<Statemachine> action)
+    private void AddStep(Id id, Action<StateMachine> action)
     {
         transformationPipeline.Add(new($"{nameof(DefaultSmTransformer)}.{id}", action));
     }
 
-    public static void Validate(Statemachine sm)
+    public static void Validate(StateMachine sm)
     {
         var validator = new SpecificVertexValidator();
         sm.Accept(validator);

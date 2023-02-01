@@ -73,7 +73,7 @@ public class SmRunner
 
     protected void RunCodeGen()
     {
-        Statemachine sm = inputSmBuilder.Sm.ThrowIfNull();
+        StateMachine sm = inputSmBuilder.Sm.ThrowIfNull();
         CodeGenContext codeGenContext = new(sm, settings.renderConfig);
         codeGenContext.mangler = settings.mangler;
         codeGenContext.style = settings.style;

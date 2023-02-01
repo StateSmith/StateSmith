@@ -6,19 +6,19 @@ namespace StateSmith.output.C99BalancedCoder1
 {
     public class CNameMangler
     {
-        private Statemachine sm = new Statemachine("dummy");
+        private StateMachine sm = new StateMachine("dummy");
 
         public CNameMangler()
         {
             
         }
 
-        public CNameMangler(Statemachine sm)
+        public CNameMangler(StateMachine sm)
         {
             this.sm = sm;
         }
 
-        public void SetStateMachine(Statemachine sm)
+        public void SetStateMachine(StateMachine sm)
         {
             if (sm == null)
             {

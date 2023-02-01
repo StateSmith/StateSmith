@@ -12,19 +12,19 @@ namespace StateSmith.output.C99BalancedCoder1
         public CNameMangler mangler;
         public StringBuilder hFileSb = new();
         public StringBuilder cFileSb = new();
-        public Statemachine sm;
+        public StateMachine sm;
         public Expander expander = new();
         public IRenderConfigC renderConfig;
         public PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
 
-        internal CodeGenContext(Statemachine sm)
+        internal CodeGenContext(StateMachine sm)
         {
             this.sm = sm;
             mangler = new(sm);
             renderConfig = new DummyRenderConfigC();
         }
 
-        public CodeGenContext(Statemachine sm, IRenderConfigC renderConfig)
+        public CodeGenContext(StateMachine sm, IRenderConfigC renderConfig)
         {
             this.sm = sm;
             mangler = new(sm);

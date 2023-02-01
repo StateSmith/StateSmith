@@ -12,9 +12,9 @@ namespace StateSmithTest
 {
     public class EventGatheringTests
     {
-        private static Statemachine BuildTestGraph(string rootName)
+        private static StateMachine BuildTestGraph(string rootName)
         {
-            var sm = new Statemachine(name: rootName);
+            var sm = new StateMachine(name: rootName);
 
             var s1 = sm.AddChild(new State(name: "s1"));
             s1.AddChild(new State(name: "s1_1"));

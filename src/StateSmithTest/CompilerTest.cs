@@ -143,7 +143,7 @@ namespace StateSmithTest
             }
         }
 
-        private static void ExpandAllBehaviors(Expander expander, Statemachine sm)
+        private static void ExpandAllBehaviors(Expander expander, StateMachine sm)
         {
             sm.VisitRecursively(vertex => {
                 foreach (var behavior in vertex.Behaviors)
@@ -243,7 +243,7 @@ namespace StateSmithTest
     {
         InputSmBuilder inputSmBuilder;
 
-        Statemachine sm;
+        StateMachine sm;
         State S1;
         State S1_1;
         State S1_1_1;

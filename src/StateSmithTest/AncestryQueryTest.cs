@@ -14,7 +14,7 @@ namespace StateSmithTest
     {
         InputSmBuilder inputSmBuilder;
 
-        Statemachine root;
+        StateMachine root;
         InitialState root_initialState;
         State S1;
         State S1_1;

@@ -9,7 +9,7 @@ namespace StateSmith.compiler.Visitors
         public abstract void Visit(NamedVertex v);
         public abstract void Visit(State v);
         public abstract void Visit(OrthoState v);
-        public abstract void Visit(Statemachine v);
+        public abstract void Visit(StateMachine v);
         public abstract void Visit(NotesVertex v);
         public abstract void Visit(InitialState v);
 
