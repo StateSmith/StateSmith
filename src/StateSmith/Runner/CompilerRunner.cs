@@ -163,7 +163,7 @@ public class CompilerRunner
         postParentAliasValidation(sm);
 
         compiler.Validate();
-        compiler.DefaultToDoEventIfNoTrigger();
+        DefaultToDoEventVisitor.Process(sm);
         compiler.FinalizeTrees();
         compiler.Validate();
     }

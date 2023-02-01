@@ -1,4 +1,4 @@
-﻿using StateSmith.Input.antlr4;
+using StateSmith.Input.antlr4;
 using StateSmith.Input.Expansions;
 using System;
 using System.Collections.Generic;
@@ -95,15 +95,6 @@ namespace StateSmith.Compiling
             foreach (var v in rootVertices)
             {
                 var processor = new InitialStateProcessor();
-                v.Accept(processor);
-            }
-        }
-
-        public void DefaultToDoEventIfNoTrigger()
-        {
-            foreach (var v in rootVertices)
-            {
-                var processor = new DefaultToDoEventVisitor();
                 v.Accept(processor);
             }
         }
