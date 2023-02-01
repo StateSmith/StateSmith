@@ -11,6 +11,7 @@ namespace StateSmithTest
     class ExamplesTestHelpers
     {
         public static string TestInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../test-input/";
+        public static string ExamplesInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../../examples/";
 
         public static Compiler SetupTiny2Sm()
         {

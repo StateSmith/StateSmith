@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
+using StateSmith.Common;
 using System;
 using System.Collections.Generic;
 
@@ -48,7 +49,7 @@ namespace StateSmith.Input.PlantUML
 
         public override void ExitState_explicit([NotNull] PlantUMLParser.State_explicitContext context)
         {
-            currentNode = currentNode.parent;
+            currentNode = currentNode.parent.ThrowIfNull();
         }
 
         private DiagramNode GetCurrentNode()
@@ -134,12 +135,12 @@ namespace StateSmith.Input.PlantUML
             var label = Decode(context.transition_event_guard_code()?.GetText());
 
             var edge = new DiagramEdge
-            {
-                source = source,
-                target = destination,
-                label = label,
-                id = MakeId(context)
-            };
+            (
+                id: MakeId(context),
+                source: source,
+                target: destination,
+                label: label
+            );
 
             if (destination.label == Compiling.Compiler.InitialStateString)
             {

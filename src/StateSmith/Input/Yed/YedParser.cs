@@ -84,10 +84,11 @@ namespace StateSmith.Input.Yed
 
         private void EdgeFound()
         {
-            currentEdge = new DiagramEdge();
-            currentEdge.id = reader.GetAttribute("id");
-            currentEdge.source = GetDiagramNodeById(reader.GetAttribute("source"));
-            currentEdge.target = GetDiagramNodeById(reader.GetAttribute("target"));
+            currentEdge = new DiagramEdge(
+                id: reader.GetAttribute("id"),
+                source: GetDiagramNodeById(reader.GetAttribute("source")),
+                target: GetDiagramNodeById(reader.GetAttribute("target"))
+            );
             edges.Add(currentEdge);
         }
 

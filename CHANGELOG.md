@@ -4,6 +4,57 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## WIP
+### Added
+- draw.io - detect when group isn't shown correctly
+  - https://github.com/StateSmith/StateSmith/issues/81
+- nuget package - Include documentation and source code for intellisense/debugging.
+  - https://github.com/StateSmith/StateSmith/issues/80
+
+---
+
+## [0.7.4-alpha]
+### Added
+- `RunnerSettings.filePathPrintBase` to control how file paths are printed.
+  - Required when C# scripts (.csx) are used.
+  - https://github.com/StateSmith/StateSmith/issues/79
+
+---
+
+## [0.7.3-alpha]
+### Added
+- draw.io - add support for draw.io plugin and new drawing style where a state can have its text event handlers as a child text node instead of its label #77.
+  - see `src/StateSmithTest/test-input/drawio/Design1Sm.drawio.svg` or expand section below
+  - https://github.com/StateSmith/StateSmith/issues/77
+  - child text must have matching style elements (in any order): `fillColor=none;gradientColor=none;strokeColor=none;resizable=0;movable=0;deletable=0;rotatable=0;`
+    - this is already done if you use the plugin https://github.com/StateSmith/StateSmith-drawio-plugin
+
+<details><summary>click here to see Design1Sm.drawio.svg</summary>
+
+![Design1Sm.drawio.svg](src/StateSmithTest/test-input/drawio/Design1Sm.drawio.svg)
+</details>
+
+---
+
+## [0.7.2-alpha]
+### Added
+- draw.io - embedded images inside of a draw.io diagram are now ignored. Issue #77.
+  - images are sometimes embedded in state machine diagrams for documentation purposes.
+- draw.io - treat null labels as blank instead of throwing exception. Null labels don't normally occur. Issue #77.
+- improved `$notes` validations.
+
+---
+
+## [0.7.1-alpha]
+### Added
+- Add initial support for draw.io files as alternative to yEd files. https://github.com/StateSmith/StateSmith/issues/77
+  - Supported file extensions:
+    - `.drawio.svg` Recommended as design file is a valid svg image that can be used in markdown and other files!
+    - `.drawio`
+    - `.dio`
+
+---
+
 ## [0.7.0-alpha]
 ### Changed
 - Generated .h file now automatically includes `<stdint.h>` (required for history states).

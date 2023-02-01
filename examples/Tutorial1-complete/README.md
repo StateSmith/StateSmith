@@ -27,6 +27,12 @@ The c# code generation project will work on any platform if you have the [dotnet
 ## vscode
 If you use vscode, there are pre-configured `launch.json` and `tasks.json` files to help run and debug the c and c# programs.
 
+### vscode drawio plugin
+The vscode projects in this example are setup to use the new/experimental `StateSmith-drawio-plugin`. To download the plugin, either run `./get-vscode-drawio-plugin.sh` on Linux or download directly from [here](https://github.com/StateSmith/StateSmith-drawio-plugin/releases/download/v0.1.0/StateSmith-drawio-plugin-v0.1.0.js) and put in this directory.
+
+Instructions and usage details: https://github.com/StateSmith/StateSmith-drawio-plugin .
+
+### Intellisense
 I noticed that vscode intellisense can sometimes get confused if opened in this root directory as it sees C# and C projects.
 If you encounter that problem too, you can open vscode in `src` for building/debugging the C code and open another vscode in `CodeGen` for the code gen.
 

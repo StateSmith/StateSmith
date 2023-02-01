@@ -10,7 +10,12 @@ public class CodeGen
     public static void Main()
     {
         var srcDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../../../src/";
-        var diagramFile = srcDirectory + "Tutorial1Sm.graphml";
+
+        string extension = ".drawio.svg";  // For draw.io https://github.com/StateSmith/StateSmith/issues/77
+        // extension = ".drawio";             // Another format for draw.io https://github.com/StateSmith/StateSmith/issues/77
+        // extension = ".graphml";         // For yEd editor.
+
+        var diagramFile = srcDirectory + "Tutorial1Sm" + extension;
 
         MyGlueFile myGlueFile = new();
         RunnerSettings settings = new(myGlueFile, diagramFile: diagramFile, outputDirectory: srcDirectory);

@@ -1,24 +1,46 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PackageId>StateSmith</PackageId>
-    <Version>0.7.0-alpha</Version>
+    <Version>0.7.4-alpha</Version>
     <Authors>Adam Fraser-Kruck</Authors>
     <Copyright>Adam Fraser-Kruck</Copyright>
     <PackageProjectUrl>https://github.com/StateSmith/StateSmith</PackageProjectUrl>
     <RepositoryUrl>https://github.com/StateSmith/StateSmith</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Description>StateSmith is a cross platform, free/open source tool for generating state machines. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, kernels, or servers. It avoids dynamic memory allocations for the safety or performance inclined.</Description>
+    <PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.10.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     <PackageReference Include="System.Xml.ReaderWriter" Version="4.3.1" />
   </ItemGroup>
 
+  <!-- generate user intellisense documentation for StateSmith nuget package -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- disable warning for undocumented members -->
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- allow user debugging/stepping into StateSmith nuget package code -->
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+  </PropertyGroup>
+  
+  <!-- Nuget readme stuff -->
   <ItemGroup>
-    <Folder Include="Input\PlantUML\antlr4\" />
+    <!-- <None Include="packageIcon.png" Pack="true" PackagePath="\" /> -->   <!-- todo_low add when we have a logo -->
+    <None Include="NUGET_README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Input\PlantUML\antlr4\" /> <!-- not sure why this is only needed for plantuml grammar -->
   </ItemGroup>
 
 </Project>

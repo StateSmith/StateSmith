@@ -611,15 +611,15 @@ public interface IStateSmithLabelGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNumber([NotNull] StateSmithLabelGrammarParser.NumberContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.string"/>.
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.string_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterString([NotNull] StateSmithLabelGrammarParser.StringContext context);
+	void EnterString_literal([NotNull] StateSmithLabelGrammarParser.String_literalContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.string"/>.
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.string_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitString([NotNull] StateSmithLabelGrammarParser.StringContext context);
+	void ExitString_literal([NotNull] StateSmithLabelGrammarParser.String_literalContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.code_symbol"/>.
 	/// </summary>

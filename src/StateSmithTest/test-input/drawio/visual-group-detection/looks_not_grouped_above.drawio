@@ -1,0 +1,28 @@
+<mxfile host="65bd71144e">
+    <diagram id="Tqm6eFcu1KHT34LG2WWE" name="Page-1">
+        <mxGraphModel dx="1223" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="27" value="$STATEMACHINE : SomeSm" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#545454;fontColor=#EBEBEB;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="130" width="240" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value=" " style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="27" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="27" source="30" target="37" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=0;rotatable=0;noLabel=1;editable=0;" parent="27" vertex="1">
+                    <mxGeometry x="107.5" y="120" width="25" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="ACTUALLY_IN_GROUP" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;html=1;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#990000;fontColor=#FAFAFA;" parent="27" vertex="1">
+                    <mxGeometry x="40" y="-90" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="enter / light_on1();" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="37" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="160" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -92,7 +92,7 @@ namespace StateSmith.output.C99BalancedCoder1
                 if (IsExitingRequired(source, target, transitionPath))
                 {
                     file.FinishLine();
-                    ExitUntilStateReached(source, (NamedVertex)transitionPath.leastCommonAncestor);
+                    ExitUntilStateReached(source, (NamedVertex)transitionPath.leastCommonAncestor.ThrowIfNull());
                 }
                 else
                 {
@@ -278,7 +278,7 @@ namespace StateSmith.output.C99BalancedCoder1
 
             if (source is ExitPoint)
             {
-                source = source.Parent;  // an exit point is really a part of its parent state.
+                source = source.NonNullParent;  // an exit point is really a part of its parent state.
                 canUseDirectExit = true;
             }
 

@@ -8,7 +8,7 @@ namespace StateSmithTest
     public static class VertexTestExtensionMethods
     {
         [Obsolete($"See {nameof(VertexTestHelper.BuildFluentAssertionBehaviorMatcher)}")]
-        public static void ShouldBeExactly(this Behavior behavior, string diagramId = null, Vertex owningVertex = null, Vertex transitionTarget = null,
+        public static void ShouldBeExactly(this Behavior behavior, string diagramId = "", Vertex owningVertex = null, Vertex transitionTarget = null,
                     string actionCode = "", string guardCode = "", List<string> triggers = null, double order = Behavior.DEFAULT_ORDER)
         {
             VertexTestHelper.ExpectBehaviorExact(behavior, diagramId: diagramId, owningVertex: owningVertex, transitionTarget: transitionTarget,

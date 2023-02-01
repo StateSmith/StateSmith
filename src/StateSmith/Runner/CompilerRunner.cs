@@ -13,6 +13,8 @@ using StateSmith.compiler.Visitors;
 using StateSmith.Input.PlantUML;
 using StateSmith.compiler;
 using StateSmith.Input.Yed;
+using StateSmith.Input.DrawIo;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -29,6 +31,7 @@ public class CompilerRunner
     public Statemachine? sm;
     public PrefixingModder prefixingModder = new();
     public CNameMangler mangler = new();
+    public SsServiceProvider ssServiceProvider;
 
     /// <summary>
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
@@ -39,6 +42,27 @@ public class CompilerRunner
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
     /// </summary>
     public Action<Statemachine> preValidation = (_) => { };
+
+
+    public CompilerRunner()
+    {
+        ssServiceProvider = new();
+    }
+
+    public CompilerRunner(SsServiceProvider ssServiceProvider)
+    {
+        this.ssServiceProvider = ssServiceProvider;
+    }
+
+    /// <summary>
+    /// Step 1
+    /// </summary>
+    public void CompileDrawIoFileNodesToVertices(string filepath)
+    {
+        DrawIoToSmDiagramConverter converter = ssServiceProvider.GetServiceOrCreateInstance();
+        converter.ProcessFile(filepath);
+        CompileNodesToVertices(converter.Roots, converter.Edges);
+    }
 
     /// <summary>
     /// Step 1
@@ -111,6 +135,7 @@ public class CompilerRunner
     /// </summary>
     public void FindStateMachineByName(string stateMachineName)
     {
+        sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
         var action = () => { sm = (Statemachine)compiler.GetVertex(stateMachineName); };
         action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{stateMachineName}`.", e));
     }
@@ -118,8 +143,10 @@ public class CompilerRunner
     /// <summary>
     /// Step 2
     /// </summary>
+    [MemberNotNull(nameof(sm))]
     public void FindSingleStateMachine()
     {
+        sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
         var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {compiler.rootVertices.OfType<Statemachine>().Count()}.", e));
     }
@@ -134,6 +161,7 @@ public class CompilerRunner
         SetupForSingleSm();
         mangler.SetStateMachine(sm);
 
+        RemoveNotesVertices();
         compiler.SupportParentAlias();
         compiler.SupportEntryExitPoints();
         prefixingModder.Visit(sm); // must happen before history
@@ -149,6 +177,7 @@ public class CompilerRunner
         compiler.Validate();
     }
 
+    [MemberNotNull(nameof(sm))]
     public void SetupForSingleSm()
     {
         compiler.SetupRoots();
@@ -166,5 +195,31 @@ public class CompilerRunner
     {
         var processor = new HistoryProcessor(sm, mangler);
         processor.Process();
+    }
+
+    public void RemoveNotesVertices()
+    {
+        var processor = new NotesProcessor();
+        processor.ValidateAndRemoveNotes(sm!);
+        UpdateNamedDescendantsMapping(sm!);
+    }
+
+    public static void UpdateNamedDescendantsMapping(Vertex startingVertex)
+    {
+        startingVertex.VisitRecursively(vertex =>
+        {
+            vertex.ResetNamedDescendantsMap();
+        });
+
+        startingVertex.VisitTypeRecursively<NamedVertex>(vertex =>
+        {
+            //add this vertex to ancestors
+            var parent = vertex.Parent;
+            while (parent != null)
+            {
+                parent._namedDescendants.AddIfMissing(vertex.Name, vertex);
+                parent = parent.Parent;
+            }
+        });
     }
 }

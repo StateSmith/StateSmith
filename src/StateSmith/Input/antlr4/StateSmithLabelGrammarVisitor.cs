@@ -380,11 +380,11 @@ public interface IStateSmithLabelGrammarVisitor<Result> : IParseTreeVisitor<Resu
 	/// <return>The visitor result.</return>
 	Result VisitNumber([NotNull] StateSmithLabelGrammarParser.NumberContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.string"/>.
+	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.string_literal"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitString([NotNull] StateSmithLabelGrammarParser.StringContext context);
+	Result VisitString_literal([NotNull] StateSmithLabelGrammarParser.String_literalContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.code_symbol"/>.
 	/// </summary>

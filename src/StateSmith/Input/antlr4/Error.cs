@@ -1,33 +1,59 @@
 ﻿using Antlr4.Runtime;
 
-namespace StateSmith.Input.antlr4
+#nullable enable
+
+namespace StateSmith.Input.antlr4;
+
+public abstract class Error
 {
-    public class Error
+    public int line;
+    public int column;
+    public string message = "";
+    public RecognitionException exception;
+
+    public Error(int line, int column, string message, RecognitionException exception)
     {
-        /// <summary>
-        /// non-null for parse errors. null for lexer errors.
-        /// </summary>
-        public IToken? offendingSymbol;
-        
-        /// <summary>
-        /// for lexer errors. doesn't seem to be useful. ignore for now.
-        /// </summary>
-        public int offendingChar;
-        public int line;
-        public int column;
-        public string message;
-        public RecognitionException exception;
+        this.line = line;
+        this.column = column;
+        this.message = message;
+        this.exception = exception;
+    }
 
-        public string BuildMessage()
-        {
-            var msg = $"{message} at line {line} column {column}.";
+    public abstract string BuildMessage();
+}
 
-            if (offendingSymbol != null)
-            {
-                msg += $" Offending symbol: `{offendingSymbol.Text}`."; // todolow would be nice to print lexer's token name https://stackoverflow.com/questions/4403878/antlr-get-token-name
-            }
+public class ParseError : Error
+{
+    public IToken offendingSymbol;
 
-            return msg;
-        }
+    public ParseError(IToken offendingSymbol, int line, int column, string message, RecognitionException exception) : base(line, column, message, exception)
+    {
+        this.offendingSymbol = offendingSymbol;
+    }
+
+    public override string BuildMessage()
+    {
+        var msg = $"{message} at line {line} column {column}.";
+        msg += $" Offending symbol: `{offendingSymbol.Text}`."; // todolow would be nice to print lexer's token name https://stackoverflow.com/questions/4403878/antlr-get-token-name
+
+        return msg;
+    }
+}
+
+public class LexerError : Error
+{
+    public int offendingChar;
+
+    public LexerError(int offendingChar, int line, int column, string message, RecognitionException exception) : base(line, column, message, exception)
+    {
+        this.offendingChar = offendingChar;
+    }
+
+    public override string BuildMessage()
+    {
+        var msg = $"{message} at line {line} column {column}.";
+        msg += $" Offending char: `{offendingChar}`."; // todolow would be nice to print lexer's token name https://stackoverflow.com/questions/4403878/antlr-get-token-name
+
+        return msg;
     }
 }

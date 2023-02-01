@@ -11,7 +11,7 @@ namespace StateSmith.Compiling
 {
     public abstract class Vertex
     {
-        public string DiagramId { get; set; }
+        public string DiagramId { get; set; } = "";
 
         /// <summary>
         /// Depth is used to optimize tree searching. See https://github.com/adamfk/StateSmith/issues/3
@@ -51,7 +51,7 @@ namespace StateSmith.Compiling
         /// <summary>
         /// data structure may change
         /// </summary>
-        internal HashList<string, NamedVertex> _namedDescendants;
+        internal HashList<string, NamedVertex> _namedDescendants = new();
 
         /// <summary>
         /// data structure may change
@@ -157,9 +157,9 @@ namespace StateSmith.Compiling
                 return;
             }
 
-            LambdaVertexWalker walker = new LambdaVertexWalker
+            LambdaVertexWalker walker = new()
             {
-                enterAction = v => v._depth = v.Parent.Depth + 1
+                enterAction = v => v._depth = v.NonNullParent.Depth + 1
             };
 
             walker.Walk(subTreeRoot);
@@ -217,7 +217,7 @@ namespace StateSmith.Compiling
         /// <returns></returns>
         public bool ContainsVertex(Vertex v)
         {
-            Vertex current = v;
+            Vertex? current = v;
             int vParentHops = v.Depth - Depth;
 
             if (vParentHops < 0)
@@ -243,18 +243,19 @@ namespace StateSmith.Compiling
         /// </summary>
         /// <param name="v"></param>
         /// <returns></returns>
-        public Vertex FindLcaWith(Vertex v)
+        public Vertex? FindLcaWith(Vertex v)
         {
             var path = FindTransitionPathTo(v);  //todolow - implement here without accumulating Vertices
             return path.leastCommonAncestor;
         }
 
-        internal Vertex AscendAndCollect(List<Vertex> list, Vertex v, int levelCount)
+        internal Vertex? AscendAndCollect(List<Vertex?> list, Vertex? v, int levelCount)
         {
-            Vertex current = v;
+            Vertex? current = v;
 
             for (int i = 0; i < levelCount; i++)
             {
+                current.ThrowIfNull();
                 list.Add(current);
                 current = current.Parent;
             }
@@ -266,7 +267,7 @@ namespace StateSmith.Compiling
         {
             List<NamedVertex> parents = new();
 
-            Vertex current = this.Parent;
+            Vertex? current = this.NonNullParent;
 
             while (current != null)
             {
@@ -283,7 +284,7 @@ namespace StateSmith.Compiling
 
         public NamedVertex? FirstAncestorThatHandlesEvent(string eventName)
         {
-            Vertex current = this.Parent;
+            Vertex? current = this.Parent;
 
             while (current != null)
             {
@@ -305,6 +306,7 @@ namespace StateSmith.Compiling
 
             if (target == this)
             {
+                // self transition
                 return new TransitionPath()
                 {
                     toExit = new List<Vertex>() { this },
@@ -319,11 +321,11 @@ namespace StateSmith.Compiling
 
             if (fromCurrent.Depth > toCurrent.Depth)
             {
-                fromCurrent = AscendAndCollect(path.toExit, fromCurrent, levelCount: fromCurrent.Depth - toCurrent.Depth);
+                fromCurrent = AscendAndCollect(path.toExit!, fromCurrent, levelCount: fromCurrent.Depth - toCurrent.Depth);
             }
             else if (toCurrent.Depth > fromCurrent.Depth)
             {
-                toCurrent = AscendAndCollect(path.toEnter, toCurrent, levelCount: toCurrent.Depth - fromCurrent.Depth);
+                toCurrent = AscendAndCollect(path.toEnter!, toCurrent, levelCount: toCurrent.Depth - fromCurrent.Depth);
             }
 
             //at this point from and to are at the same depth
@@ -335,8 +337,8 @@ namespace StateSmith.Compiling
                     break; //will also exit if no path between nodes as both verices will be null and match
                 }
 
-                fromCurrent = AscendAndCollect(path.toExit, fromCurrent, levelCount: 1);
-                toCurrent = AscendAndCollect(path.toEnter, toCurrent, levelCount: 1);
+                fromCurrent = AscendAndCollect(path.toExit!, fromCurrent, levelCount: 1);
+                toCurrent = AscendAndCollect(path.toEnter!, toCurrent, levelCount: 1);
             }
 
             // vertices are entered from top down so we reverse the list
@@ -374,6 +376,9 @@ namespace StateSmith.Compiling
 
                 case HistoryVertex historyVertex:
                     return Describe(v.Parent) + ".History";
+
+                case NotesVertex:
+                    return Describe(v.Parent) + ".Notes";
 
                 default: throw new ArgumentException("Unsupported type " + v.GetType().FullName);
             }

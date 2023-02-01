@@ -40,17 +40,6 @@ namespace StateSmithTest
             return node;
         }
 
-        private DiagramEdge BuildEdge(string id, DiagramNode source, DiagramNode target, string label)
-        {
-            return new DiagramEdge()
-            {
-                id = id,
-                source = source,
-                target = target,
-                label = label
-            };
-        }
-
         [Fact]
         public void TestParser()
         {

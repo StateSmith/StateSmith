@@ -2,18 +2,14 @@
 using StateSmith.output.UserConfig;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StateSmith.Compiling;
 using System.IO;
-using StateSmith.Input.Expansions;
-using StateSmith.Input;
-using StateSmith.compiler.Visitors;
-using StateSmith.Input.PlantUML;
-using StateSmith.compiler;
+using StateSmith.Common;
+using Microsoft.Extensions.DependencyInjection;
 
 #nullable enable
+
+[assembly: CLSCompliant(false)]
 
 namespace StateSmith.Runner
 {
@@ -24,22 +20,28 @@ namespace StateSmith.Runner
     {
         private const string ExpansionVarsPath = "self->vars.";
         RunnerSettings settings;
-        public CompilerRunner compilerRunner = new();
+        public CompilerRunner compilerRunner;
         ExceptionPrinter exceptionPrinter;
 
         protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
         protected HashSet<string> YedFileExtensions = new() { ".graphml" };
-
-
+        protected HashSet<string> DrawIoFileEndings = new() { ".drawio.svg", ".drawio", ".dio" };
+        
         protected void OutputStageMessage(string message)
         {
-            // todo add logger functionality
+            // todo_low add logger functionality
             Console.WriteLine("StateSmith Runner - " + message);
         }
 
         public SmRunner(RunnerSettings settings)
         {
             this.settings = settings;
+            var sp = new SsServiceProvider(postConfigAction: (context, services) =>
+            {
+                services.AddSingleton(settings.drawIoSettings);
+            });
+
+            compilerRunner = new(sp);
             exceptionPrinter = settings.exceptionPrinter;
         }
 
@@ -85,13 +87,14 @@ namespace StateSmith.Runner
 
         protected void RunCodeGen()
         {
-            CodeGenContext codeGenContext = new(compilerRunner.sm, settings.renderConfig);
-            settings.mangler.SetStateMachine(compilerRunner.sm);
+            Statemachine sm = compilerRunner.sm.ThrowIfNull();
+            CodeGenContext codeGenContext = new(sm, settings.renderConfig);
+            settings.mangler.SetStateMachine(sm);
             compilerRunner.mangler = settings.mangler;
             codeGenContext.mangler = settings.mangler;
             codeGenContext.style = settings.style;
 
-            foreach (var h in compilerRunner.sm.historyStates)
+            foreach (var h in sm.historyStates)
             {
                 string actualVarName = codeGenContext.mangler.HistoryVarName(h);
                 codeGenContext.expander.AddVariableExpansion(h.stateTrackingVarName, ExpansionVarsPath + actualVarName);
@@ -108,7 +111,6 @@ namespace StateSmith.Runner
                 else
                 {
                     codeGenContext.sm.variables += $"enum {compilerRunner.mangler.HistoryVarEnumName(h)} {actualVarName};\n";
-
                 }
             }
 
@@ -128,24 +130,16 @@ namespace StateSmith.Runner
             File.WriteAllText($"{settings.outputDirectory}{settings.mangler.CFileName}", cFileContents);
         }
 
-        private void FindStateMachine()
-        {
-            if (settings.stateMachineName != null)
-            {
-                compilerRunner.FindStateMachineByName(settings.stateMachineName);
-            }
-            else
-            {
-                compilerRunner.FindSingleStateMachine();
-            }
-
-            OutputStageMessage($"Generating code for state machine `{compilerRunner.sm.Name}`.");
-        }
-
         private void OutputCompilingDiagramMessage()
         {
-            string filePath = Path.GetRelativePath(AppDomain.CurrentDomain.BaseDirectory + "../../../..", settings.diagramFile);
+            // https://github.com/StateSmith/StateSmith/issues/79
+            string filePath = settings.diagramFile;
+            if (settings.filePathPrintBase.Trim().Length > 0)
+            {
+                filePath = Path.GetRelativePath(settings.filePathPrintBase, settings.diagramFile);
+            }
             filePath = filePath.Replace('\\', '/');
+
             OutputStageMessage($"Compiling file: `{filePath}` "
                 + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
                 + "."
@@ -162,31 +156,53 @@ namespace StateSmith.Runner
         private void CompileFile()
         {
             string diagramFile = settings.diagramFile;
-            var fileExtension = Path.GetExtension(diagramFile);
+            var fileExtension = Path.GetExtension(diagramFile).ToLower();
 
             if (InputFileIsYedFormat(fileExtension))
             {
-                compilerRunner.CompileYedFileNodesToVertices(settings.diagramFile);
+                compilerRunner.CompileYedFileNodesToVertices(diagramFile);
             }
             else if (InputFileIsPlantUML(fileExtension))
             {
-                compilerRunner.CompilePlantUmlFileNodesToVertices(settings.diagramFile);
+                compilerRunner.CompilePlantUmlFileNodesToVertices(diagramFile);
+            }
+            else if (InputFileIsDrawIoFormat(diagramFile))
+            {
+                compilerRunner.CompileDrawIoFileNodesToVertices(diagramFile);
             }
             else
             {
-                throw new ArgumentException($"Unsupported file extension `{fileExtension}`. \n  - yEd supports: {string.Join(", ", YedFileExtensions)}\n  - PlantUML supports: {string.Join(", ", PlantUmlFileExtensions)}");
+                var errMessage = $"Unsupported file extension `{fileExtension}`. \n"
+                    + $"  - draw.io supports: {string.Join(", ", DrawIoFileEndings)}\n"
+                    + $"  - yEd supports: {string.Join(", ", YedFileExtensions)}\n"
+                    + $"  - PlantUML supports: {string.Join(", ", PlantUmlFileExtensions)}\n";
+
+                throw new ArgumentException(errMessage);
             }
         }
 
 
-        private bool InputFileIsPlantUML(string fileExtension)
+        private bool InputFileIsPlantUML(string lowerCaseFileExtension)
         {
-            return PlantUmlFileExtensions.Contains(fileExtension);
+            return PlantUmlFileExtensions.Contains(lowerCaseFileExtension);
         }
 
-        private bool InputFileIsYedFormat(string fileExtension)
+        private bool InputFileIsYedFormat(string lowerCaseFileExtension)
         {
-            return YedFileExtensions.Contains(fileExtension);
+            return YedFileExtensions.Contains(lowerCaseFileExtension);
+        }
+
+        private bool InputFileIsDrawIoFormat(string filePath)
+        {
+            foreach (var matchingEnding in DrawIoFileEndings)
+            {
+                if (filePath.EndsWith(matchingEnding, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

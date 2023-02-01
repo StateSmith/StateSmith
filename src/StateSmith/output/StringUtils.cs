@@ -113,5 +113,15 @@ namespace StateSmith.output
 
             return str.Substring(index + match.Length);
         }
+
+        internal static string MaybeTruncateWithEllipsis(string str, int maxLength)
+        {
+            if (str.Length > maxLength)
+            {
+                return str.Substring(0, maxLength) + "…";
+            }
+
+            return str;
+        }
     }
 }

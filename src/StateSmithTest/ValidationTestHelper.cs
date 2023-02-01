@@ -6,6 +6,8 @@ using FluentAssertions;
 using StateSmith.Compiling;
 using StateSmith.Runner;
 
+#nullable enable
+
 namespace StateSmithTest
 {
     public class ValidationTestHelper

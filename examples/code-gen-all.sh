@@ -6,11 +6,13 @@
 # Pass first argument set to 1 if you want to code gen based on local project instead of published nuget.
 # Helpful when evaluating code gen changes during development.
 
+# If this fails to run because a nuget package cannot be found, try this command: `dotnet nuget locals all --clear`
+
 # exit when any command fails
 set -e
 
 USE_PROJECT_REF="${1:-0}"  # gets value of first arg to script or 0 if not set. https://stackoverflow.com/a/2013589/7331858
-NUGET_VERSION=0.7.0-alpha
+NUGET_VERSION=0.7.3-alpha
 
 # https://stackoverflow.com/questions/59895/how-do-i-get-the-directory-where-a-bash-script-is-located-from-within-the-script
 EXAMPLES_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -44,10 +46,10 @@ update_and_run_project() {
     set_project_to_use_nuget
 }
 
+update_and_run_project "$EXAMPLES_DIR/Tutorial1-complete/CodeGen/"
 update_and_run_project "$EXAMPLES_DIR/LaserTagMenu1/CodeGen/"
 update_and_run_project "$EXAMPLES_DIR/BlankTemplate/CodeGen/"
 update_and_run_project "$EXAMPLES_DIR/Blinky1/CodeGen/"
 update_and_run_project "$EXAMPLES_DIR/Blinky1Printf/CodeGen/"
 update_and_run_project "$EXAMPLES_DIR/ButtonSm1Cpp/CodeGen/"
 update_and_run_project "$EXAMPLES_DIR/Tutorial1-blank/CodeGen/"
-update_and_run_project "$EXAMPLES_DIR/Tutorial1-complete/CodeGen/"

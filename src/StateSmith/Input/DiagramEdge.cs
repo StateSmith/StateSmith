@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using StateSmith.output;
 
+#nullable enable
+
 namespace StateSmith.Input
 {
     /// <summary>
@@ -17,7 +19,15 @@ namespace StateSmith.Input
         public string id;
         public DiagramNode source;
         public DiagramNode target;
-        public string label = "";
+        public string label;
+
+        public DiagramEdge(string id, DiagramNode source, DiagramNode target, string label = "")
+        {
+            this.id = id;
+            this.source = source;
+            this.target = target;
+            this.label = label;
+        }
 
         /// <summary>
         /// Don't parse or rely on this output. It may change.
@@ -47,7 +57,7 @@ namespace StateSmith.Input
         }
 
         #region equals and hash
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             return obj is DiagramEdge edge &&
                    id == edge.id &&

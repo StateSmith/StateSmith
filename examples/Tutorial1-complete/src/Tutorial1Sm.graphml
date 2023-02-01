@@ -71,7 +71,6 @@ enter / light_off();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:Lab
         </node>
         <node id="n0::n2" yfiles.foldertype="group">
           <data key="d4" xml:space="preserve"/>
-          <data key="d5"/>
           <data key="d6">
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
@@ -176,13 +175,12 @@ enter / light_boom();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
           </data>
         </edge>
         <edge id="n0::e2" source="n0::n2" target="n0::n1">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="-120.48460111161975" sy="-183.60758673711112" tx="-120.48460111161975" ty="21.204317763159402"/>
               <y:LineStyle color="#000000" type="line" width="1.0"/>
               <y:Arrows source="none" target="standard"/>
-              <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="27.994140625" x="-32.99413755526601" xml:space="preserve" y="8.506620987250017">OFF<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+              <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="free" modelPosition="anywhere" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="27.994140625" x="-42.987518310546875" xml:space="preserve" y="-23.755645751953125">OFF<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
             </y:QuadCurveEdge>
           </data>
         </edge>
@@ -197,7 +195,6 @@ enter / light_boom();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
           </data>
         </edge>
         <edge id="n0::n2::e0" source="n0::n2::n0" target="n0::n2::n1">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="0.0" sy="21.213355481727547" tx="0.0" ty="-21.213355481727604"/>
@@ -208,7 +205,6 @@ enter / light_boom();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
           </data>
         </edge>
         <edge id="n0::n2::e1" source="n0::n2::n1" target="n0::n2::n2">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="0.0" sy="21.21335548172749" tx="0.0" ty="-48.413355481727635"/>
@@ -219,7 +215,6 @@ enter / light_boom();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
           </data>
         </edge>
         <edge id="n0::n2::e2" source="n0::n2::n1" target="n0::n2::n0">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="40.0" sy="-21.213355481727604" tx="40.0" ty="21.213355481727547"/>
@@ -230,7 +225,6 @@ enter / light_boom();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
           </data>
         </edge>
         <edge id="n0::n2::e3" source="n0::n2::n2" target="n0::n2::n1">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="40.0" sy="-48.413355481727635" tx="40.0" ty="21.21335548172749"/>
@@ -241,7 +235,6 @@ enter / light_boom();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
           </data>
         </edge>
         <edge id="n0::e4" source="n0::n2::n2" target="n0::n3">
-          <data key="d9"/>
           <data key="d10">
             <y:QuadCurveEdge straightness="0.1">
               <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>

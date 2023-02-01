@@ -1,4 +1,5 @@
-﻿using StateSmith.compiler;
+﻿using StateSmith.Common;
+using StateSmith.compiler;
 using StateSmith.output;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -27,7 +28,7 @@ namespace StateSmith.Compiling
 
         public Vertex? TransitionTarget => _transitionTarget;
 
-        public List<string> triggers = new List<string>();
+        public List<string> triggers = new();
         public double order = DEFAULT_ORDER;
         public string guardCode = "";
         public string actionCode = "";
@@ -38,16 +39,18 @@ namespace StateSmith.Compiling
         // https://github.com/StateSmith/StateSmith/issues/3
         public string? viaExit;
 
-        public Behavior() { }
+        internal Behavior() {
+            _owningVertex = new State("nullable_dummy_for_tests");  // todo_low: update test code to do this instead.
+        }
 
-        public Behavior(string trigger, string guardCode = "", string actionCode = "")
+        internal Behavior(string trigger, string guardCode = "", string actionCode = "") : this()
         {
             this.triggers.Add(trigger);
             this.guardCode = guardCode;
             this.actionCode = actionCode;
         }
 
-        public Behavior(string guardCode = "", string actionCode = "", Vertex? transitionTarget = null)
+        internal Behavior(string guardCode = "", string actionCode = "", Vertex? transitionTarget = null) : this()
         {
             this.guardCode = guardCode;
             this.actionCode = actionCode;
@@ -140,7 +143,7 @@ namespace StateSmith.Compiling
         /// <summary>
         /// Must have had an original target
         /// </summary>
-        /// <param name="newTarget"></param>
+        /// <param name="newOwner"></param>
         public void RetargetOwner(Vertex newOwner)
         {
             var oldOwner = OwningVertex;
@@ -154,7 +157,7 @@ namespace StateSmith.Compiling
         /// <returns></returns>
         public TransitionPath FindTransitionPath()
         {
-            return OwningVertex.FindTransitionPathTo(TransitionTarget);
+            return OwningVertex.FindTransitionPathTo(TransitionTarget.ThrowIfNull());
         }
 
         public string DescribeAsUml()

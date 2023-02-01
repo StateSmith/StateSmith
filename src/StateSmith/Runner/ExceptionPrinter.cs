@@ -98,6 +98,13 @@ Edge diagram id: {edge.id}
                         return message;
                     }
 
+                case DiagramNodeException diagramNodeException:
+                    {
+                        string message = diagramNodeException.Message;
+                        message += "\n" + DiagramNode.FullyDescribe(diagramNodeException.Node);
+                        return message;
+                    }
+
                 case VertexValidationException vertexValidationException:
                 {
                     string message = nameof(VertexValidationException) + ": " + vertexValidationException.Message;

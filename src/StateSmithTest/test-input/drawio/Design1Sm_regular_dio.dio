@@ -1,0 +1,69 @@
+<mxfile host="65bd71144e">
+    <diagram id="0kis1nlSQF1iHrYs9ELn" name="Page-1">
+        <mxGraphModel dx="1650" dy="943" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="110" value="$STATEMACHINE: Design1Sm_regular_dio" style="swimlane;fontStyle=1;align=left;spacingLeft=17;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="10" width="440" height="790" as="geometry">
+                        <mxRectangle x="10" y="10" width="230" height="100" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="111" value="OFF" style="edgeStyle=none;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.162;entryY=0.98;entryDx=0;entryDy=0;entryPerimeter=0;" parent="110" source="112" target="121" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="112" value="ON_GROUP" style="swimlane;fontStyle=1;align=left;spacingLeft=17;" parent="110" vertex="1">
+                    <mxGeometry x="60" y="225" width="330" height="410" as="geometry">
+                        <mxRectangle x="65" y="230" width="140" height="40" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="113" value="INCREASE" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=default;" parent="112" source="114" target="117" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="114" value="&lt;div&gt;&lt;b&gt;ON1&lt;/b&gt;&lt;/div&gt;&lt;div&gt;enter / light_on1();&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;" parent="112" vertex="1">
+                    <mxGeometry x="50" y="50" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="115" value="INCREASE" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=default;" parent="112" source="117" target="119" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="116" value="DIM" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fontColor=default;" parent="112" source="117" target="114" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="117" value="&lt;div&gt;&lt;span&gt;ON2&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;enter / light_on2();&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;fontStyle=0" parent="112" vertex="1">
+                    <mxGeometry x="50" y="170" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="118" value="DIM" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fontColor=default;comic=0;" parent="112" source="119" target="117" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="119" value="&lt;div&gt;ON3&lt;/div&gt;&lt;div&gt;enter / {&lt;/div&gt;&lt;div&gt;&amp;nbsp; count = 0;&lt;/div&gt;&lt;div&gt;&amp;nbsp; light_on3();&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;1. INCREASE / count++;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;fontStyle=0" parent="112" vertex="1">
+                    <mxGeometry x="50" y="280" width="200" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="120" value="INCREASE" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=default;" parent="110" source="121" target="114" edge="1">
+                    <mxGeometry x="-0.5" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="121" value="&lt;div&gt;&lt;b&gt;OFF&lt;/b&gt;&lt;/div&gt;&lt;div&gt;enter / light_off();&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;" parent="110" vertex="1">
+                    <mxGeometry x="110" y="115" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="122" value="" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;comic=0;orthogonalLoop=1;jettySize=auto;html=0;fontColor=default;" parent="110" source="123" target="121" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="123" value="$initial_state" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;fontColor=none;noLabel=1;" parent="110" vertex="1">
+                    <mxGeometry x="200" y="60" width="20" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="124" value="DIM" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fontColor=default;" parent="110" source="114" target="121" edge="1">
+                    <mxGeometry x="-0.7" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="125" value="2. INCREASE [count &amp;gt;= 3]" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontColor=default;" parent="110" source="119" target="126" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="126" value="&lt;div&gt;BOOM&lt;/div&gt;&lt;div&gt;enter / light_boom();&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=4;fontStyle=0" parent="110" vertex="1">
+                    <mxGeometry x="110" y="675" width="200" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

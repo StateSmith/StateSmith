@@ -5,6 +5,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Linq;
 
+#nullable enable
+
 namespace StateSmith.compiler
 {
     /// <summary>
@@ -56,6 +58,17 @@ namespace StateSmith.compiler
             var matches = vertex.DescendantsWithName(name);
             ThrowIfNotSingle(name, matches);
             return (T)matches[0];
+        }
+
+        public static List<T> DescendantsOfType<T>(this Vertex vertex) where T : Vertex
+        {
+            List<T> list = new();
+            vertex.VisitTypeRecursively<T>(v => list.Add(v));
+            if (vertex is T t)
+            {
+                list.Remove(t);
+            }
+            return list;
         }
 
         private static void ThrowIfNotSingle(string name, List<NamedVertex> matches)
@@ -119,7 +132,7 @@ namespace StateSmith.compiler
             return vertex.Siblings<T>();
         }
 
-        public static T SingleOrNull<T>(this IEnumerable<T> items, Vertex v, string errorMessage) where T : Vertex
+        public static T? SingleOrNull<T>(this IEnumerable<T> items, Vertex v, string errorMessage) where T : Vertex
         {
             int count = items.Count();
 
@@ -199,7 +212,7 @@ namespace StateSmith.compiler
             return vertex.Behaviors.Where(b => b.triggers.Contains(triggerName));
         }
 
-        public static bool HasInitialState(this Vertex vertex, out InitialState initialState)
+        public static bool HasInitialState(this Vertex vertex, out InitialState? initialState)
         {
             if (vertex is NamedVertex namedVertex)
             {
@@ -210,6 +223,24 @@ namespace StateSmith.compiler
             {
                 initialState = null;
                 return false;
+            }
+        }
+
+        public static void VisitRecursively(this Vertex vertex, Action<Vertex> action)
+        {
+            vertex.VisitTypeRecursively<Vertex>(action);
+        }
+
+        public static void VisitTypeRecursively<T>(this Vertex vertex, Action<T> action) where T : Vertex
+        {
+            if (vertex is T t)
+            {
+                action(t);
+            }
+
+            foreach (var child in vertex.Children)
+            {
+                child.VisitTypeRecursively<T>(action);
             }
         }
     }

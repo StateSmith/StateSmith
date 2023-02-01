@@ -7,9 +7,9 @@ namespace StateSmith.Compiling
 {
     public class TransitionPath
     {
-        public List<Vertex> toExit = new List<Vertex>();
-        public Vertex leastCommonAncestor;
-        public List<Vertex> toEnter = new List<Vertex>();
+        public List<Vertex> toExit = new();
+        public Vertex? leastCommonAncestor;
+        public List<Vertex> toEnter = new();
 
         public bool IsSelfTransition()
         {

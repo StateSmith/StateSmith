@@ -420,7 +420,7 @@ code_element:
 
 naked_action_code_elements:
     star_comment |
-    string |
+    string_literal |
     expandable_function_call |
     member_access | //must come before identifier to prevent bad expansions: `obj.no_expand_here`
     expandable_identifier |
@@ -434,7 +434,7 @@ naked_action_code_elements:
 code_line_element:
     line_comment |
     star_comment |
-    string |
+    string_literal |
     expandable_function_call |
     member_access | //must come before identifier to prevent bad expansions: `obj.no_expand_here`
     expandable_identifier |
@@ -485,7 +485,7 @@ fragment STRING_CHAR: ESCAPED_CHAR | NON_QUOTE_CHAR ;
 STRING: DOUBLE_QUOTE STRING_CHAR* DOUBLE_QUOTE ;
 TICK_STRING: SINGLE_QUOTE STRING_CHAR* SINGLE_QUOTE ;
 BACKTICK_STRING: BACKTICK STRING_CHAR* BACKTICK ;
-string: STRING | TICK_STRING | BACKTICK_STRING;
+string_literal: STRING | TICK_STRING | BACKTICK_STRING; // don't name as `string` because then antlr generated code has warnings in it
 
 
 
