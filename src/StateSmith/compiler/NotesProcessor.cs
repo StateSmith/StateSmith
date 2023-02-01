@@ -14,6 +14,13 @@ public class NotesProcessor : OnlyVertexVisitor
     HashSet<Vertex> nonNotedVertices = new();
     List<NotesVertex> topNotesVertices = new();
 
+    public static void Process(Statemachine sm)
+    {
+        var processor = new NotesProcessor();
+        processor.ValidateAndRemoveNotes(sm);
+        sm.UpdateNamedDescendantsMapping();
+    }
+
     public void ValidateAndRemoveNotes(Statemachine sm)
     {
         ValidateNotesWithoutRemoving(sm);

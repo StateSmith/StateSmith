@@ -153,11 +153,11 @@ public class CompilerRunner
         SetupForSingleSm();
         mangler.SetStateMachine(sm);
 
-        RemoveNotesVertices();
+        NotesProcessor.Process(sm);
         ParentAliasStateProcessor.Process(sm);
         EntryExitProcessor.Process(sm);
         prefixingModder.Visit(sm); // must happen before history
-        SupportHistory(sm, mangler);
+        HistoryProcessor.Process(sm, mangler);
         OrderAndElseProcessor.Process(sm);  // should happen last as it orders behaviors
         preValidation(sm);
         Validate();
@@ -178,20 +178,6 @@ public class CompilerRunner
         }
 
         sm.UpdateNamedDescendantsMapping();
-    }
-
-    // https://github.com/StateSmith/StateSmith/issues/63
-    public static void SupportHistory(Statemachine sm, CNameMangler mangler)
-    {
-        var processor = new HistoryProcessor(sm, mangler);
-        processor.Process();
-    }
-
-    public void RemoveNotesVertices()
-    {
-        var processor = new NotesProcessor();
-        processor.ValidateAndRemoveNotes(sm!);
-        sm!.UpdateNamedDescendantsMapping();
     }
 
     public void Validate()
