@@ -14,7 +14,7 @@ public class DrawIoSvgToSmDiagramConverterTests
     [Fact]
     public void Test()
     {
-        CompilerRunner runner = new();
+        InputSmBuilder runner = new();
 
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
         DrawIoToSmDiagramConverter converter = runner.ssServiceProvider.GetServiceOrCreateInstance();
@@ -29,9 +29,9 @@ public class DrawIoSvgToSmDiagramConverterTests
         smDiagramRoot.children[i].children.Count.Should().Be(3);
 
         // could do more tests here for all nodes and edges
-        runner.CompileNodesToVertices(converter.Roots, converter.Edges);
+        runner.ConvertNodesToVertices(converter.Roots, converter.Edges);
         runner.FindSingleStateMachine();
-        runner.sm.Name.Should().Be("Design1Sm_svg");
+        runner.Sm.Name.Should().Be("Design1Sm_svg");
         ValidateSm(runner);
     }
 
@@ -40,11 +40,11 @@ public class DrawIoSvgToSmDiagramConverterTests
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm.drawio.svg";
 
-        CompilerRunner runner = new();
-        runner.CompileDrawIoFileNodesToVertices(filePath);
+        InputSmBuilder runner = new();
+        runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
-        runner.sm.Name.Should().Be("Design1Sm_svg");
+        runner.Sm.Name.Should().Be("Design1Sm_svg");
         ValidateSm(runner);
     }
 
@@ -55,11 +55,11 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().NotContain("<mxGraphModel", because: "this file needs to be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        CompilerRunner runner = new();
-        runner.CompileDrawIoFileNodesToVertices(filePath);
+        InputSmBuilder runner = new();
+        runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
-        runner.sm.Name.Should().Be("Design1Sm_compressed");
+        runner.Sm.Name.Should().Be("Design1Sm_compressed");
         ValidateSm(runner);
     }
 
@@ -70,11 +70,11 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().Contain("<mxGraphModel", because: "this should not be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        CompilerRunner runner = new();
-        runner.CompileDrawIoFileNodesToVertices(filePath);
+        InputSmBuilder runner = new();
+        runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
-        runner.sm.Name.Should().Be("Design1Sm_regular");
+        runner.Sm.Name.Should().Be("Design1Sm_regular");
         ValidateSm(runner);
     }
 
@@ -85,11 +85,11 @@ public class DrawIoSvgToSmDiagramConverterTests
         File.ReadAllText(filePath).Should().Contain("<mxGraphModel", because: "this should not be compressed");
         // Note that vscode extension tends to write file uncompressed, but draw.io windows app tends to write it compressed.
 
-        CompilerRunner runner = new();
-        runner.CompileDrawIoFileNodesToVertices(filePath);
+        InputSmBuilder runner = new();
+        runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
-        runner.sm.Name.Should().Be("Design1Sm_regular_dio");
+        runner.Sm.Name.Should().Be("Design1Sm_regular_dio");
         ValidateSm(runner);
     }
 
@@ -98,18 +98,18 @@ public class DrawIoSvgToSmDiagramConverterTests
     {
         string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "drawio/Design1Sm_with_image.drawio.svg";
 
-        CompilerRunner runner = new();
-        runner.CompileDrawIoFileNodesToVertices(filePath);
+        InputSmBuilder runner = new();
+        runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
-        runner.sm.Name.Should().Be("Design1Sm_with_image");
+        runner.Sm.Name.Should().Be("Design1Sm_with_image");
 
         runner.FinishRunningCompiler();
         ValidateSm(runner);
     }
 
-    private static void ValidateSm(CompilerRunner runner)
+    private static void ValidateSm(InputSmBuilder runner)
     {
-        var sm = runner.sm;
+        var sm = runner.Sm;
         var map = new NamedVertexMap(sm);
 
         State GetState(string stateName) => map.GetState(stateName);

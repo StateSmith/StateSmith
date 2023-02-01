@@ -12,7 +12,7 @@ namespace StateSmithTest
 {
     public class AncestryQueryTest
     {
-        CompilerRunner compilerRunner;
+        InputSmBuilder inputSmBuilder;
 
         Statemachine root;
         InitialState root_initialState;
@@ -25,9 +25,9 @@ namespace StateSmithTest
 
         public AncestryQueryTest()
         {
-            compilerRunner = ExamplesTestHelpers.SetupTiny2Sm();
+            inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
-            root = compilerRunner.sm;
+            root = inputSmBuilder.Sm;
             var map = new NamedVertexMap(root);
             State GetState(string stateName) => map.GetState(stateName);
 

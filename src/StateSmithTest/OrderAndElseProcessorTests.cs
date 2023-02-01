@@ -14,13 +14,13 @@ namespace StateSmithTest;
 public class OrderAndElseProcessorTests
 {
     private PlantUMLToNodesEdges translator = new();
-    private CompilerRunner compilerRunner = new();
+    private InputSmBuilder inputSmBuilder = new();
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]
     public void Basic()
     {
-        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -28,14 +28,14 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        OrderAndElseProcessor.Process(compilerRunner.sm);
+        OrderAndElseProcessor.Process(inputSmBuilder.Sm);
     }
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]
     public void ActionAllowed()
     {
-        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -43,14 +43,14 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        OrderAndElseProcessor.Process(compilerRunner.sm);
+        OrderAndElseProcessor.Process(inputSmBuilder.Sm);
     }
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]
     public void ReorderingHappens()
     {
-        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State3 : else / c++;
             [*] --> State1 : [x == 1] / a++;
@@ -58,9 +58,9 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        OrderAndElseProcessor.Process(compilerRunner.sm);
+        OrderAndElseProcessor.Process(inputSmBuilder.Sm);
 
-        var initialState = compilerRunner.sm.Children.OfType<InitialState>().Single();
+        var initialState = inputSmBuilder.Sm.Children.OfType<InitialState>().Single();
         initialState.Behaviors[0].actionCode.Should().Be("a++;");
         initialState.Behaviors[1].actionCode.Should().Be("b++;");
         initialState.Behaviors[2].actionCode.Should().Be("c++;");
@@ -70,7 +70,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void ReorderingHappensFromState()
     {
-        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             State0 --> State3 : else / c++;
             State0 --> State2 : 10.0. / b++;
@@ -78,9 +78,9 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        OrderAndElseProcessor.Process(compilerRunner.sm);
+        OrderAndElseProcessor.Process(inputSmBuilder.Sm);
 
-        var map = new NamedVertexMap(compilerRunner.sm);
+        var map = new NamedVertexMap(inputSmBuilder.Sm);
         State GetState(string stateName) => map.GetState(stateName);
 
         var state = GetState("State0");
@@ -93,7 +93,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void NoGuardAllowed()
     {
-        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -101,7 +101,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        Action action = () => OrderAndElseProcessor.Process(compilerRunner.sm);
+        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.Sm);
         action.Should().Throw<Exception>();
     }
 
@@ -109,7 +109,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void OnlyOneElseAllowed()
     {
-        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : else
@@ -117,7 +117,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        Action action = () => OrderAndElseProcessor.Process(compilerRunner.sm);
+        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.Sm);
         action.Should().Throw<Exception>();
     }
 
@@ -125,7 +125,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void ElseMustBeOnTransition()
     {
-        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : else
@@ -134,7 +134,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        Action action = () => OrderAndElseProcessor.Process(compilerRunner.sm);
+        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.Sm);
         action.Should().Throw<Exception>();
     }
 }

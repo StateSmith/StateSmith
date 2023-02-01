@@ -17,23 +17,29 @@ using StateSmith.Common;
 namespace StateSmith.Runner;
 
 /// <summary>
-/// Step 1: compile nodes to vertices
-/// Step 2: select the state machine root to compile
-/// Step 3: finish running
+/// This class converts an input diagram/design into a StateMachine vertex and finishes building/transforming
+/// the StateMachine vertex so that is ready for code generation.
+/// 
+/// Step 1: create StateMachine vertex (or more) from input (like a diagram). 
+/// Some diagram types (other than PlantUML) can have multiple StateMachines.
+/// 
+/// Step 2: select the StateMachine to build. Optional if input only has a single state machine design.
+/// 
+/// Step 3: finish building/transforming the selected StateMachine vertex so that is ready for code generation.
 /// </summary>
-public class CompilerRunner
+public class InputSmBuilder
 {
-    public DiagramToSmConverter diagramToSmConverter = new();
-    public Statemachine? sm;
+    public readonly SmTransformer transformer;
+    public Statemachine Sm => sm.ThrowIfNull();
 
+    protected Statemachine? sm;
+    internal DiagramToSmConverter diagramToSmConverter = new();
     internal SsServiceProvider ssServiceProvider;
     protected CNameMangler mangler;
 
-    public SmTransformer transformer;
+    public InputSmBuilder() : this(new SsServiceProvider()) { }
 
-    public CompilerRunner() : this(new SsServiceProvider()) { }
-
-    public CompilerRunner(SsServiceProvider ssServiceProvider)
+    public InputSmBuilder(SsServiceProvider ssServiceProvider)
     {
         this.ssServiceProvider = ssServiceProvider;
         mangler = ssServiceProvider.GetServiceOrCreateInstance();
@@ -41,24 +47,24 @@ public class CompilerRunner
     }
 
     /// <summary>
-    /// Step 1
+    /// Step 1. Figures out how to parse file based on file name.
     /// </summary>
-    public void CompileFileToVertices(string diagramFile)
+    public void ConvertDiagramFileToSmVertices(string diagramFile)
     {
         var fileExtension = Path.GetExtension(diagramFile).ToLower();
         FileAssociator fileAssociator = new();
 
         if (fileAssociator.IsYedExtension(fileExtension))
         {
-            CompileYedFileNodesToVertices(diagramFile);
+            ConvertYedFileNodesToVertices(diagramFile);
         }
         else if (fileAssociator.IsPlantUmlExtension(fileExtension))
         {
-            CompilePlantUmlFileNodesToVertices(diagramFile);
+            ConvertPlantUmlFileNodesToVertices(diagramFile);
         }
         else if (fileAssociator.IsDrawIoFile(diagramFile)) // needs full diagram file name to support double extension like: `my_file.drawio.svg`
         {
-            CompileDrawIoFileNodesToVertices(diagramFile);
+            ConvertDrawIoFileNodesToVertices(diagramFile);
         }
         else
         {
@@ -69,27 +75,27 @@ public class CompilerRunner
     /// <summary>
     /// Step 1
     /// </summary>
-    public void CompileDrawIoFileNodesToVertices(string filepath)
+    public void ConvertDrawIoFileNodesToVertices(string filepath)
     {
         DrawIoToSmDiagramConverter converter = ssServiceProvider.GetServiceOrCreateInstance();
         converter.ProcessFile(filepath);
-        CompileNodesToVertices(converter.Roots, converter.Edges);
+        ConvertNodesToVertices(converter.Roots, converter.Edges);
     }
 
     /// <summary>
     /// Step 1
     /// </summary>
-    public void CompileYedFileNodesToVertices(string filepath)
+    public void ConvertYedFileNodesToVertices(string filepath)
     {
         YedParser yedParser = new();
         yedParser.Parse(filepath);
-        CompileNodesToVertices(yedParser.GetRootNodes(), yedParser.GetEdges());
+        ConvertNodesToVertices(yedParser.GetRootNodes(), yedParser.GetEdges());
     }
 
     /// <summary>
     /// Step 1
     /// </summary>
-    public void CompilePlantUmlFileNodesToVertices(string filepath)
+    public void ConvertPlantUmlFileNodesToVertices(string filepath)
     {
         var text = File.ReadAllText(filepath);
         CompilePlantUmlTextNodesToVertices(text);
@@ -109,7 +115,7 @@ public class CompilerRunner
             throw new FormatException("PlantUML input failed parsing. Reason(s):\n  - " + reasons);
         }
 
-        CompileNodesToVertices(new List<DiagramNode> { translator.Root }, translator.Edges);
+        ConvertNodesToVertices(new List<DiagramNode> { translator.Root }, translator.Edges);
         FindSingleStateMachine();
     }
 
@@ -118,7 +124,7 @@ public class CompilerRunner
     /// </summary>
     /// <param name="rootNodes"></param>
     /// <param name="edges"></param>
-    public void CompileNodesToVertices(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
+    public void ConvertNodesToVertices(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
     {
         diagramToSmConverter.CompileDiagramNodesEdges(rootNodes, edges);
     }
@@ -162,8 +168,8 @@ public class CompilerRunner
     public void FinishRunningCompiler()
     {
         SetupForSingleSm();
-        mangler.SetStateMachine(sm);
-        transformer.RunTransformationPipeline(sm);
+        mangler.SetStateMachine(Sm);
+        transformer.RunTransformationPipeline(Sm);
     }
 
     [MemberNotNull(nameof(sm))]

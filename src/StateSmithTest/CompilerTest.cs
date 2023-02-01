@@ -21,10 +21,10 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny1.graphml";
 
-            CompilerRunner compilerRunner = new();
-            compilerRunner.CompileYedFileNodesToVertices(filepath);
-            compilerRunner.FindSingleStateMachine();
-            var sm = compilerRunner.sm;
+            InputSmBuilder inputSmBuilder = new();
+            inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
+            inputSmBuilder.FindSingleStateMachine();
+            var sm = inputSmBuilder.Sm;
 
             var Tiny1 = sm;
             var map = new NamedVertexMap(sm);
@@ -158,8 +158,8 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/Tiny1.graphml";
 
-            CompilerRunner compilerRunner = new();
-            DiagramToSmConverter diagramToSmConverter = compilerRunner.diagramToSmConverter;
+            InputSmBuilder inputSmBuilder = new();
+            DiagramToSmConverter diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new ExpanderFileReflection(expander);
             Tiny1Expansions userExpansions = new Tiny1Expansions();
@@ -167,9 +167,9 @@ namespace StateSmithTest
             expanderFileReflection.AddAllExpansions(userExpansions);
             // could also add events
             // could also check for valid events in diagram
-            compilerRunner.CompileYedFileNodesToVertices(filepath);
-            compilerRunner.FindSingleStateMachine();
-            var sm = compilerRunner.sm;
+            inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
+            inputSmBuilder.FindSingleStateMachine();
+            var sm = inputSmBuilder.Sm;
 
             ExpandAllBehaviors(expander, sm);
 
@@ -241,7 +241,7 @@ namespace StateSmithTest
     }
     public class Tiny2Test
     {
-        CompilerRunner compilerRunner;
+        InputSmBuilder inputSmBuilder;
 
         Statemachine sm;
         State S1;
@@ -253,9 +253,9 @@ namespace StateSmithTest
 
         public Tiny2Test()
         {
-            compilerRunner = ExamplesTestHelpers.SetupTiny2Sm();
+            inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
-            sm = compilerRunner.sm;
+            sm = inputSmBuilder.Sm;
             var map = new NamedVertexMap(sm);
             State GetState(string stateName) => map.GetState(stateName);
 

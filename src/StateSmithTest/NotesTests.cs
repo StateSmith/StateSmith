@@ -12,11 +12,11 @@ namespace StateSmithTest
 {
     public class NotesTests
     {
-        CompilerRunner compilerRunner = new();
+        InputSmBuilder inputSmBuilder = new();
 
         private void CompileYedFile(string filepath)
         {
-            compilerRunner.CompileYedFileNodesToVertices(filepath);
+            inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace StateSmithTest
         public void EdgeToNotes()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "notes/bad-edge-to-notes.graphml";
-            Action action = () => { CompileYedFile(filepath); compilerRunner.FinishRunningCompiler(); };
+            Action action = () => { CompileYedFile(filepath); inputSmBuilder.FinishRunningCompiler(); };
 
             action.Should()
                 .Throw<BehaviorValidationException>()
@@ -41,7 +41,7 @@ namespace StateSmithTest
         public void EdgeFromNotes()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "notes/bad-edge-from-notes.graphml";
-            Action action = () => { CompileYedFile(filepath); compilerRunner.FinishRunningCompiler(); };
+            Action action = () => { CompileYedFile(filepath); inputSmBuilder.FinishRunningCompiler(); };
 
             action.Should()
                 .Throw<BehaviorValidationException>()
@@ -57,9 +57,9 @@ namespace StateSmithTest
             sm.AddChild(new InitialState()).AddTransitionTo(s1);
             notesVertex.AddBehavior(new Behavior());
             
-            compilerRunner.SetStateMachineRoot(sm);
+            inputSmBuilder.SetStateMachineRoot(sm);
 
-            Action action = () => { compilerRunner.FinishRunningCompiler(); };
+            Action action = () => { inputSmBuilder.FinishRunningCompiler(); };
 
             action.Should()
                 .Throw<VertexValidationException>()
@@ -70,10 +70,10 @@ namespace StateSmithTest
         public void ExhaustiveDynamicTest()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "notes/dynamic_test.drawio.svg";
-            compilerRunner.CompileDrawIoFileNodesToVertices(filepath);
-            compilerRunner.FindSingleStateMachine();
-            compilerRunner.SetupForSingleSm();
-            var sm = compilerRunner.sm;
+            inputSmBuilder.ConvertDrawIoFileNodesToVertices(filepath);
+            inputSmBuilder.FindSingleStateMachine();
+            inputSmBuilder.SetupForSingleSm();
+            var sm = inputSmBuilder.Sm;
             var map = new NamedVertexMap(sm);
             State GetState(string stateName) => map.GetState(stateName);
 

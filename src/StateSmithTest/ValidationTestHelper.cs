@@ -13,12 +13,12 @@ namespace StateSmithTest
     public class ValidationTestHelper
     {
         public DiagramToSmConverter diagramToSmConverter;
-        public CompilerRunner compilerRunner;
+        public InputSmBuilder inputSmBuilder;
 
         public ValidationTestHelper()
         {
-            compilerRunner = new CompilerRunner();
-            diagramToSmConverter = compilerRunner.diagramToSmConverter;
+            inputSmBuilder = new InputSmBuilder();
+            diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
         }
 
         public void ExpectBehaviorValidationException(string exceptionMessagePart, Action? additionalAction = null)
@@ -61,7 +61,7 @@ namespace StateSmithTest
 
         public void RunCompiler()
         {
-            compilerRunner.FinishRunningCompiler();
+            inputSmBuilder.FinishRunningCompiler();
         }
     }
 }

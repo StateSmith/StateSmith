@@ -18,7 +18,7 @@ namespace StateSmithTest.C99BalancedCoder1
 
         private void SetupCtxForWaffleSm()
         {
-            var compilerRunner = new CompilerRunner();
+            var inputSmBuilder = new InputSmBuilder();
 
             Statemachine sm = new Statemachine("WaffleSm");
             sm.AddBehavior(new Behavior()
@@ -26,12 +26,12 @@ namespace StateSmithTest.C99BalancedCoder1
                 triggers = TriggerList("do", "EV1", "EV2")
             });
 
-            compilerRunner.sm = sm;
+            inputSmBuilder.SetStateMachineRoot(sm);
             var s1 = sm.AddChild(new State(name: "s1"));
             var initialStateVertex = sm.AddChild(new InitialState());
             initialStateVertex.AddTransitionTo(s1);
 
-            compilerRunner.FinishRunningCompiler();
+            inputSmBuilder.FinishRunningCompiler();
             ctx = new(sm);
         }
 

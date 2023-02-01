@@ -34,10 +34,10 @@ public class HistoryContinueValidationTests : ValidationTestHelper
             }
             @enduml
             """;
-        compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
-        compilerRunner.SetupForSingleSm();        
-        root = compilerRunner.sm;
-        map = new NamedVertexMap(compilerRunner.sm);
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.SetupForSingleSm();        
+        root = inputSmBuilder.Sm;
+        map = new NamedVertexMap(inputSmBuilder.Sm);
         hc1 = GetState("G2").ChildType<HistoryContinueVertex>();
         hc2 = GetState("G3").ChildType<HistoryContinueVertex>();
         h1 = GetState("G1").ChildType<HistoryVertex>();

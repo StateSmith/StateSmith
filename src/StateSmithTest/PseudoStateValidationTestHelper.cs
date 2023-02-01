@@ -22,7 +22,7 @@ namespace StateSmithTest.PseudoStateTests
         public PseudoStateValidationTestHelper()
         {
             var sm = BuildTestGraph();
-            compilerRunner.sm = sm;
+            inputSmBuilder.SetStateMachineRoot(sm);
         }
 
         private Statemachine BuildTestGraph()

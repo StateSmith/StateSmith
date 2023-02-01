@@ -29,8 +29,8 @@ namespace StateSmithTest
         public void Test()
         {
             var sm = BuildTestGraph("Sm1");
-            CompilerRunner compilerRunner = new();
-            compilerRunner.SetStateMachineRoot(sm);
+            InputSmBuilder inputSmBuilder = new();
+            inputSmBuilder.SetStateMachineRoot(sm);
             var map = new NamedVertexMap(sm);
             State GetState(string stateName) => map.GetState(stateName);
 
@@ -43,7 +43,7 @@ namespace StateSmithTest
                 triggers = new List<string>() { "enter", "exit", "ZIP" }
             });
 
-            compilerRunner.FinishRunningCompiler();
+            inputSmBuilder.FinishRunningCompiler();
 
             sm.GetEventListCopy().Should().Equal(new List<string>()
             {
@@ -55,8 +55,8 @@ namespace StateSmithTest
         public void Test2()
         {
             var sm = BuildTestGraph("Sm2");
-            CompilerRunner compilerRunner = new();
-            compilerRunner.SetStateMachineRoot(sm);
+            InputSmBuilder inputSmBuilder = new();
+            inputSmBuilder.SetStateMachineRoot(sm);
             var map = new NamedVertexMap(sm);
             State GetState(string stateName) => map.GetState(stateName);
 
@@ -69,7 +69,7 @@ namespace StateSmithTest
                 triggers = new List<string>() { "enter", "exit", "SM2_ZIP" }
             });
 
-            compilerRunner.FinishRunningCompiler();
+            inputSmBuilder.FinishRunningCompiler();
             
             sm.GetEventListCopy().Should().Equal(new List<string>()
             {

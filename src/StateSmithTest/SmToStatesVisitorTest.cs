@@ -12,11 +12,11 @@ public class SmToStatesVisitorTest
     [Fact]
     public void First()
     {
-        CompilerRunner compilerRunner = ExamplesTestHelpers.SetupTiny2Sm();
+        InputSmBuilder inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
         SmToNamedVerticesVisitor visitor = new();
-        compilerRunner.FindSingleStateMachine();
-        compilerRunner.sm.Accept(visitor);
+        inputSmBuilder.FindSingleStateMachine();
+        inputSmBuilder.Sm.Accept(visitor);
 
         visitor.namedVertices.Count.Should().Be(7);
 
