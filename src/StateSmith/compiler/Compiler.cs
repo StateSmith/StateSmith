@@ -1,4 +1,4 @@
-using StateSmith.Input.antlr4;
+﻿using StateSmith.Input.antlr4;
 using StateSmith.Input.Expansions;
 using System;
 using System.Collections.Generic;
@@ -87,24 +87,6 @@ namespace StateSmith.Compiling
                 v.Accept(validator);
                 var validator2 = new VertexValidator();
                 v.Accept(validator2);
-            }
-        }
-
-        public void SimplifyInitialStates()
-        {
-            foreach (var v in rootVertices)
-            {
-                var processor = new InitialStateProcessor();
-                v.Accept(processor);
-            }
-        }
-
-        public void AddEventName(string eventName)
-        {
-            // Don't worry about O(N) look up cost for now as we don't expect many events.
-            if (eventNames.Contains(eventName) == false)
-            {
-                eventNames.Add(eventName);
             }
         }
 
