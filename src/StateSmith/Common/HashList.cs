@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace StateSmith.Compiling
+namespace StateSmith.Common
 {
     //supports 
     public class HashList<K, V>
