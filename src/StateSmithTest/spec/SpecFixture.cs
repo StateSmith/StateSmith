@@ -22,7 +22,7 @@ public class SpecFixture
         settings.propagateExceptions = true;
         if (useTracingModder)
         {
-            runner.compilerRunner.postParentAliasValidation = new TracingModder().AddTracingBehaviors;
+            runner.SmTransformer.InsertAfterFirstMatch(nameof(DefaultSmTransformer) + "." + DefaultSmTransformer.Id.Valdation1, new TransformationStep(nameof(TracingModder), (sm) => new TracingModder().AddTracingBehaviors(sm)));
         }
         runner.Run();
     }

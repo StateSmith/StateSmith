@@ -19,7 +19,7 @@ namespace StateSmith.Runner
     {
         private const string ExpansionVarsPath = "self->vars.";
         RunnerSettings settings;
-        public CompilerRunner compilerRunner;
+        CompilerRunner compilerRunner;
         ExceptionPrinter exceptionPrinter;
         
         protected void OutputStageMessage(string message)
@@ -40,6 +40,8 @@ namespace StateSmith.Runner
             compilerRunner = new(sp);
             exceptionPrinter = settings.exceptionPrinter;
         }
+
+        public SmTransformer SmTransformer => compilerRunner.transformer;
 
         protected void RunInner()
         {

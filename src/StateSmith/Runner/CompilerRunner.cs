@@ -25,21 +25,11 @@ public class CompilerRunner
 {
     public DiagramToSmConverter diagramToSmConverter = new();
     public Statemachine? sm;
-    public PrefixingModder prefixingModder = new(); // todo_low - remove once transformation pipeline completed
 
     internal SsServiceProvider ssServiceProvider;
     protected CNameMangler mangler;
 
-    /// <summary>
-    /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
-    /// </summary>
-    public Action<Statemachine> postParentAliasValidation = (_) => { };
-
-    /// <summary>
-    /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
-    /// </summary>
-    public Action<Statemachine> preValidation = (_) => { };
-
+    public SmTransformer transformer;
 
     public CompilerRunner() : this(new SsServiceProvider()) { }
 
@@ -47,6 +37,7 @@ public class CompilerRunner
     {
         this.ssServiceProvider = ssServiceProvider;
         mangler = ssServiceProvider.GetServiceOrCreateInstance();
+        transformer = ssServiceProvider.GetServiceOrCreateInstance();
     }
 
     /// <summary>
@@ -152,21 +143,7 @@ public class CompilerRunner
     {
         SetupForSingleSm();
         mangler.SetStateMachine(sm);
-
-        NotesProcessor.Process(sm);
-        ParentAliasStateProcessor.Process(sm);
-        EntryExitProcessor.Process(sm);
-        prefixingModder.Visit(sm); // must happen before history
-        HistoryProcessor.Process(sm, mangler);
-        OrderAndElseProcessor.Process(sm);  // should happen last as it orders behaviors
-        preValidation(sm);
-        Validate();
-        postParentAliasValidation(sm);
-
-        Validate();
-        DefaultToDoEventVisitor.Process(sm);
-        AddUsedEventsToSmClass.Process(sm);
-        Validate();
+        transformer.RunTransformationPipeline(sm);
     }
 
     [MemberNotNull(nameof(sm))]
@@ -178,14 +155,5 @@ public class CompilerRunner
         }
 
         sm.UpdateNamedDescendantsMapping();
-    }
-
-    public void Validate()
-    {
-        sm.ThrowIfNull();
-        var validator = new SpecificVertexValidator();
-        sm.Accept(validator);
-        var validator2 = new VertexValidator();
-        sm.Accept(validator2);
     }
 }

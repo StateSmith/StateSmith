@@ -18,6 +18,11 @@ namespace StateSmith.Runner
 
         private Stack<string> prefixStack = new();
 
+        public static void Process(Statemachine sm)
+        {
+            new PrefixingModder().Visit(sm);
+        }
+
         public PrefixingModder()
         {
             prefixStack.Push(""); // dummy

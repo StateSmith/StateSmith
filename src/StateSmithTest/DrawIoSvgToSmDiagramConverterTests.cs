@@ -103,7 +103,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         runner.FindSingleStateMachine();
         runner.sm.Name.Should().Be("Design1Sm_with_image");
 
-        runner.RemoveNotesVertices();
+        runner.FinishRunningCompiler();
         ValidateSm(runner);
     }
 

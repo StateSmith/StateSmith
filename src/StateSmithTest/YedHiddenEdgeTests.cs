@@ -72,7 +72,7 @@ namespace StateSmithTest
 
         private void Validate()
         {
-            compilerRunner.Validate();
+            DefaultSmTransformer.Validate(compilerRunner.sm);
         }
 
         [Fact]

@@ -21,6 +21,7 @@ public class SsServiceProvider
 
                 services.AddSingleton(new DrawIoSettings());
                 services.AddSingleton(new CNameMangler());
+                services.AddSingleton<SmTransformer, DefaultSmTransformer>();
 
                 services.AddTransient<MxCellsToSmDiagramConverter>();
                 services.AddTransient<DrawIoToSmDiagramConverter>();
@@ -46,6 +47,7 @@ public class SsServiceProvider
         public static implicit operator DrawIoToSmDiagramConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoToSmDiagramConverter>(me.host.Services);
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
         public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
+        public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
     }
 
     /// <summary>
