@@ -1,7 +1,6 @@
 ﻿using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
 using System;
-using System.Collections.Generic;
 using StateSmith.Compiling;
 using System.IO;
 using StateSmith.Common;
@@ -22,10 +21,6 @@ namespace StateSmith.Runner
         RunnerSettings settings;
         public CompilerRunner compilerRunner;
         ExceptionPrinter exceptionPrinter;
-
-        protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
-        protected HashSet<string> YedFileExtensions = new() { ".graphml" };
-        protected HashSet<string> DrawIoFileEndings = new() { ".drawio.svg", ".drawio", ".dio" };
         
         protected void OutputStageMessage(string message)
         {
@@ -95,6 +90,7 @@ namespace StateSmith.Runner
 
             settings.mangler.SetStateMachine(sm);
 
+            // todo_low - move into state machine code generation once dependency injection makes CodeGenContext available
             foreach (var h in sm.historyStates)
             {
                 string actualVarName = codeGenContext.mangler.HistoryVarName(h);
@@ -158,52 +154,24 @@ namespace StateSmith.Runner
         {
             string diagramFile = settings.diagramFile;
             var fileExtension = Path.GetExtension(diagramFile).ToLower();
+            FileAssociator fileAssociator = new();
 
-            if (InputFileIsYedFormat(fileExtension))
+            if (fileAssociator.IsYedExtension(fileExtension))
             {
                 compilerRunner.CompileYedFileNodesToVertices(diagramFile);
             }
-            else if (InputFileIsPlantUML(fileExtension))
+            else if (fileAssociator.IsPlantUmlExtension(fileExtension))
             {
                 compilerRunner.CompilePlantUmlFileNodesToVertices(diagramFile);
             }
-            else if (InputFileIsDrawIoFormat(diagramFile))
+            else if (fileAssociator.IsDrawIoFile(diagramFile)) // needs full diagram file name to support double extension like: `my_file.drawio.svg`
             {
                 compilerRunner.CompileDrawIoFileNodesToVertices(diagramFile);
             }
             else
             {
-                var errMessage = $"Unsupported file extension `{fileExtension}`. \n"
-                    + $"  - draw.io supports: {string.Join(", ", DrawIoFileEndings)}\n"
-                    + $"  - yEd supports: {string.Join(", ", YedFileExtensions)}\n"
-                    + $"  - PlantUML supports: {string.Join(", ", PlantUmlFileExtensions)}\n";
-
-                throw new ArgumentException(errMessage);
+                throw new ArgumentException($"Unsupported file extension `{fileExtension}`. \n" + fileAssociator.GetHelpMessage());
             }
-        }
-
-
-        private bool InputFileIsPlantUML(string lowerCaseFileExtension)
-        {
-            return PlantUmlFileExtensions.Contains(lowerCaseFileExtension);
-        }
-
-        private bool InputFileIsYedFormat(string lowerCaseFileExtension)
-        {
-            return YedFileExtensions.Contains(lowerCaseFileExtension);
-        }
-
-        private bool InputFileIsDrawIoFormat(string filePath)
-        {
-            foreach (var matchingEnding in DrawIoFileEndings)
-            {
-                if (filePath.EndsWith(matchingEnding, StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
     }
 }
