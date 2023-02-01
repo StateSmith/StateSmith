@@ -80,7 +80,10 @@ public class OrderAndElseProcessorTests
 
         OrderAndElseProcessor.Process(compilerRunner.sm);
 
-        var state = compilerRunner.sm.Descendant("State0");
+        var map = new NamedVertexMap(compilerRunner.sm);
+        State GetState(string stateName) => map.GetState(stateName);
+
+        var state = GetState("State0");
         state.Behaviors[0].actionCode.Should().Be("a++;");
         state.Behaviors[1].actionCode.Should().Be("b++;");
         state.Behaviors[2].actionCode.Should().Be("c++;");

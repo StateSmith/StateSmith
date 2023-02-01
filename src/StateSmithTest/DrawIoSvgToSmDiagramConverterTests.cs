@@ -110,11 +110,9 @@ public class DrawIoSvgToSmDiagramConverterTests
     private static void ValidateSm(CompilerRunner runner)
     {
         var sm = runner.sm;
+        var map = new NamedVertexMap(sm);
 
-        State GetState(string stateName)
-        {
-            return (State)sm.Descendant(stateName);
-        }
+        State GetState(string stateName) => map.GetState(stateName);
 
         sm.ShouldHaveChildrenAndUmlBehaviors("ROOT.InitialState, OFF, ON_GROUP, BOOM", "");
 

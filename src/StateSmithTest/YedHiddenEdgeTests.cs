@@ -25,11 +25,13 @@ namespace StateSmithTest
         {
             compilerRunner = ExamplesTestHelpers.SetupAndValidateCompilerForTestInputFile("yed-hidden-edges1.graphml");
             root = compilerRunner.sm;
-            state_1 = root.Descendant("STATE_1");
-            state_2 = root.Descendant("STATE_2");
-            state_2_1 = root.Descendant("STATE_2_1");
-            state_2_1_1 = root.Descendant("STATE_2_1_1");
-            state_2_2 = root.Descendant("STATE_2_2");
+            var map = new NamedVertexMap(root);
+            State GetState(string stateName) => map.GetState(stateName);
+            state_1 = GetState("STATE_1");
+            state_2 = GetState("STATE_2");
+            state_2_1 = GetState("STATE_2_1");
+            state_2_1_1 = GetState("STATE_2_1_1");
+            state_2_2 = GetState("STATE_2_2");
         }
 
         [Fact]

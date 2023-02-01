@@ -74,8 +74,10 @@ namespace StateSmithTest
             compilerRunner.FindSingleStateMachine();
             compilerRunner.SetupForSingleSm();
             var sm = compilerRunner.sm;
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
 
-            var g1 = sm.Descendant("G1");
+            var g1 = GetState("G1");
             var g1Notes = g1.DescendantsOfType<NotesVertex>();
             var smNotes = sm.Children<NotesVertex>();
 
@@ -86,8 +88,8 @@ namespace StateSmithTest
 
             // specific test
             {
-                var notedVertex1 = sm.Descendant("ON1_1");
-                var notedVertex2 = sm.Descendant("ON1_2");
+                var notedVertex1 = GetState("ON1_1");
+                var notedVertex2 = GetState("ON1_2");
                 TestNotedToV(notedVertex1, notedVertex2, expectFailure: true);
                 TestVToNoted(notedVertex1, notedVertex2, expectFailure: true);
             }

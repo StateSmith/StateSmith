@@ -27,9 +27,12 @@ namespace StateSmithTest
             var sm = compilerRunner.sm;
 
             var Tiny1 = sm;
-            var A = sm.GetState("A");
-            var B = sm.GetState("B");
-            var C2 = sm.GetState("C2");
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
+
+            var A = GetState("A");
+            var B = GetState("B");
+            var C2 = GetState("C2");
 
             Tiny1.Depth.Should().Be(0);
             A.Depth.Should().Be(1);
@@ -172,10 +175,13 @@ namespace StateSmithTest
 
             diagramToSmConverter.rootVertices.Count.Should().Be(2);
 
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
+
             var Tiny1 = sm;
-            var A = sm.GetState("A");
-            var B = sm.GetState("B");
-            var C2 = sm.GetState("C2");
+            var A = GetState("A");
+            var B = GetState("B");
+            var C2 = GetState("C2");
 
             ///////////
             Tiny1.Name.Should().Be("Tiny1");
@@ -250,12 +256,15 @@ namespace StateSmithTest
             compilerRunner = ExamplesTestHelpers.SetupTiny2Sm();
 
             sm = compilerRunner.sm;
-            S1 = sm.GetState("S1");
-            S1_1 = sm.GetState("S1_1");
-            S1_1_1 = sm.GetState("S1_1_1");
-            S1_1_2 = sm.GetState("S1_1_2");
-            S1_2 = sm.GetState("S1_2");
-            S2 = sm.GetState("S2");
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
+
+            S1 = GetState("S1");
+            S1_1 = GetState("S1_1");
+            S1_1_1 = GetState("S1_1_1");
+            S1_1_2 = GetState("S1_1_2");
+            S1_2 = GetState("S1_2");
+            S2 = GetState("S2");
         }
 
         [Fact]

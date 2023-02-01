@@ -51,17 +51,7 @@ namespace StateSmith.Compiling
         /// <summary>
         /// data structure may change
         /// </summary>
-        internal HashList<string, NamedVertex> _namedDescendants = new();
-
-        /// <summary>
-        /// data structure may change
-        /// </summary>
         internal List<Behavior> _incomingTransitions = new List<Behavior>();
-
-        protected Vertex()
-        {
-            ResetNamedDescendantsMap();
-        }
 
         public IReadOnlyList<Behavior> IncomingTransitions => _incomingTransitions;
 
@@ -93,21 +83,6 @@ namespace StateSmith.Compiling
         }
 
         public abstract void Accept(VertexVisitor visitor);
-
-        internal void ResetNamedDescendantsMap()
-        {
-            _namedDescendants = new HashList<string, NamedVertex>();
-        }
-
-        public List<NamedVertex> DescendantsWithName(string name)
-        {
-            List<NamedVertex> list = new List<NamedVertex>();
-            var matches = _namedDescendants.GetValuesOrEmpty(name);
-            list.AddRange(matches);
-
-            return list;
-        }
-
 
         internal void RemoveIncomingTransition(Behavior behavior)
         {

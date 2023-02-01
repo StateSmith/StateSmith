@@ -619,7 +619,8 @@ S1-->S2
         compilerRunner.SetupForSingleSm();
 
         Statemachine root = compilerRunner.sm;
-        root.Descendant<State>("Snacking").ChildType<HistoryContinueVertex>();
+        var map = new NamedVertexMap(root);
+        map.GetState("Snacking").ChildType<HistoryContinueVertex>();
     }
 
     [Fact]
@@ -646,8 +647,11 @@ S1-->S2
         compilerRunner.SetupForSingleSm();
 
         Statemachine root = compilerRunner.sm;
-        root.Descendant<State>("G2").ChildType<HistoryContinueVertex>();
-        root.Descendant<State>("G3").ChildType<HistoryContinueVertex>();
+        var map = new NamedVertexMap(compilerRunner.sm);
+        State GetState(string stateName) => map.GetState(stateName);
+
+        GetState("G2").ChildType<HistoryContinueVertex>();
+        GetState("G3").ChildType<HistoryContinueVertex>();
     }
 
 }

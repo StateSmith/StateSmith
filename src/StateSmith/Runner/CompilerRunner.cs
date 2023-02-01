@@ -95,11 +95,6 @@ public class CompilerRunner
     public void CompileNodesToVertices(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
     {
         diagramToSmConverter.CompileDiagramNodesEdges(rootNodes, edges);
-
-        foreach (var v in diagramToSmConverter.rootVertices)
-        {
-            v.UpdateNamedDescendantsMapping();
-        }
     }
 
     /// <summary>
@@ -108,7 +103,6 @@ public class CompilerRunner
     public void SetStateMachineRoot(Statemachine stateMachine)
     {
         diagramToSmConverter.rootVertices = new List<Vertex>() { stateMachine };
-        stateMachine.UpdateNamedDescendantsMapping();
     }
 
     //------------------------------------------------------------------------
@@ -153,7 +147,5 @@ public class CompilerRunner
         {
             FindSingleStateMachine();
         }
-
-        sm.UpdateNamedDescendantsMapping();
     }
 }

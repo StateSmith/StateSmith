@@ -18,7 +18,6 @@ public class NotesProcessor : OnlyVertexVisitor
     {
         var processor = new NotesProcessor();
         processor.ValidateAndRemoveNotes(sm);
-        sm.UpdateNamedDescendantsMapping();
     }
 
     public void ValidateAndRemoveNotes(Statemachine sm)

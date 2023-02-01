@@ -1,6 +1,8 @@
 ﻿using StateSmith.output.C99BalancedCoder1;
 using Xunit;
 using System.Linq;
+using StateSmith.compiler;
+using StateSmith.Compiling;
 
 namespace StateSmithTest.C99BalancedCoder1
 {
@@ -104,7 +106,8 @@ $@"void Simple1_dispatch_event(Simple1* self, enum Simple1_EventId event_id)
         [Fact]
         public void OutputFuncStateEnter_Test()
         {
-            builder.OutputFuncStateEnter(ctx.sm.DescendantsWithName("s1").Single());
+            var map = new NamedVertexMap(ctx.sm);
+            builder.OutputFuncStateEnter(map.GetState("s1"));
 
             string expected =
 $@"static void S1_enter(Simple1* self)
@@ -124,7 +127,8 @@ $@"static void S1_enter(Simple1* self)
         [Fact]
         public void OutputFuncStateExit_Test()
         {
-            builder.OutputFuncStateExit(ctx.sm.DescendantsWithName("s1").Single());
+            var map = new NamedVertexMap(ctx.sm);
+            builder.OutputFuncStateExit(map.GetState("s1"));
 
             string expected =
 $@"static void S1_exit(Simple1* self)

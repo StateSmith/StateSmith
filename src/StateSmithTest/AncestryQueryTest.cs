@@ -28,13 +28,16 @@ namespace StateSmithTest
             compilerRunner = ExamplesTestHelpers.SetupTiny2Sm();
 
             root = compilerRunner.sm;
+            var map = new NamedVertexMap(root);
+            State GetState(string stateName) => map.GetState(stateName);
+
             root_initialState = root.ChildType<InitialState>();
-            S1 = root.GetState("S1");
-            S1_1 = root.GetState("S1_1");
-            S1_1_1 = root.GetState("S1_1_1");
-            S1_1_2 = root.GetState("S1_1_2");
-            S1_2 = root.GetState("S1_2");
-            S2 = root.GetState("S2");
+            S1 = GetState("S1");
+            S1_1 = GetState("S1_1");
+            S1_1_1 = GetState("S1_1_1");
+            S1_1_2 = GetState("S1_1_2");
+            S1_2 = GetState("S1_2");
+            S2 = GetState("S2");
         }
 
 

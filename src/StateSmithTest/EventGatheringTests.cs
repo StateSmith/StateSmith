@@ -31,12 +31,14 @@ namespace StateSmithTest
             var sm = BuildTestGraph("Sm1");
             CompilerRunner compilerRunner = new();
             compilerRunner.SetStateMachineRoot(sm);
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
 
-            sm.Descendant("s1").AddBehavior(new Behavior()
+            GetState("s1").AddBehavior(new Behavior()
             {
                 triggers = new List<string>() { "EV1", "do" }
             });
-            sm.Descendant("s1_1").AddBehavior(new Behavior()
+            GetState("s1_1").AddBehavior(new Behavior()
             {
                 triggers = new List<string>() { "enter", "exit", "ZIP" }
             });
@@ -55,12 +57,14 @@ namespace StateSmithTest
             var sm = BuildTestGraph("Sm2");
             CompilerRunner compilerRunner = new();
             compilerRunner.SetStateMachineRoot(sm);
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
 
-            sm.Descendant("s1").AddBehavior(new Behavior()
+            GetState("s1").AddBehavior(new Behavior()
             {
                 triggers = new List<string>() { "SM2_EV1", "do", "exit" }
             });
-            sm.Descendant("s1_1").AddBehavior(new Behavior()
+            GetState("s1_1").AddBehavior(new Behavior()
             {
                 triggers = new List<string>() { "enter", "exit", "SM2_ZIP" }
             });

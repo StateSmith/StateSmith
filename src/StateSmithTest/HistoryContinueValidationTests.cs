@@ -12,6 +12,8 @@ public class HistoryContinueValidationTests : ValidationTestHelper
     private HistoryContinueVertex hc2;
     private HistoryVertex h1;
     private string h1VarName;
+    NamedVertexMap map;
+    State GetState(string stateName) => map.GetState(stateName);
 
     public HistoryContinueValidationTests()
     {
@@ -35,15 +37,11 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
         compilerRunner.SetupForSingleSm();        
         root = compilerRunner.sm;
+        map = new NamedVertexMap(compilerRunner.sm);
         hc1 = GetState("G2").ChildType<HistoryContinueVertex>();
         hc2 = GetState("G3").ChildType<HistoryContinueVertex>();
         h1 = GetState("G1").ChildType<HistoryVertex>();
         h1VarName = "$G1_history";
-    }
-
-    private State GetState(string stateName)
-    {
-        return (State)root.Descendant(stateName);
     }
 
     [Fact]
