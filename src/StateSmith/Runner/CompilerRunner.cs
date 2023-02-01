@@ -29,9 +29,10 @@ public class CompilerRunner
 {
     public Compiler compiler = new();
     public Statemachine? sm;
-    public PrefixingModder prefixingModder = new();
-    public CNameMangler mangler = new();
-    public SsServiceProvider ssServiceProvider;
+    public PrefixingModder prefixingModder = new(); // todo_low - remove once transformation pipeline completed
+
+    internal SsServiceProvider ssServiceProvider;
+    protected CNameMangler mangler;
 
     /// <summary>
     /// This is not ready for widespread use. The API here will change. Feel free to play with it though.
@@ -44,14 +45,12 @@ public class CompilerRunner
     public Action<Statemachine> preValidation = (_) => { };
 
 
-    public CompilerRunner()
-    {
-        ssServiceProvider = new();
-    }
+    public CompilerRunner() : this(new SsServiceProvider()) { }
 
     public CompilerRunner(SsServiceProvider ssServiceProvider)
     {
         this.ssServiceProvider = ssServiceProvider;
+        mangler = ssServiceProvider.GetServiceOrCreateInstance();
     }
 
     /// <summary>

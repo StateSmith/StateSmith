@@ -39,6 +39,7 @@ namespace StateSmith.Runner
             var sp = new SsServiceProvider(postConfigAction: (context, services) =>
             {
                 services.AddSingleton(settings.drawIoSettings);
+                services.AddSingleton(settings.mangler);
             });
 
             compilerRunner = new(sp);
@@ -89,10 +90,10 @@ namespace StateSmith.Runner
         {
             Statemachine sm = compilerRunner.sm.ThrowIfNull();
             CodeGenContext codeGenContext = new(sm, settings.renderConfig);
-            settings.mangler.SetStateMachine(sm);
-            compilerRunner.mangler = settings.mangler;
             codeGenContext.mangler = settings.mangler;
             codeGenContext.style = settings.style;
+
+            settings.mangler.SetStateMachine(sm);
 
             foreach (var h in sm.historyStates)
             {
@@ -110,11 +111,11 @@ namespace StateSmith.Runner
                 }
                 else
                 {
-                    codeGenContext.sm.variables += $"enum {compilerRunner.mangler.HistoryVarEnumName(h)} {actualVarName};\n";
+                    codeGenContext.sm.variables += $"enum {settings.mangler.HistoryVarEnumName(h)} {actualVarName};\n";
                 }
             }
 
-            ConfigReader reader = new ConfigReader(codeGenContext.expander, expansionVarsPath: ExpansionVarsPath);
+            ConfigReader reader = new(codeGenContext.expander, expansionVarsPath: ExpansionVarsPath);
             reader.ReadObject(settings.renderConfig);
 
             CBuilder cBuilder = new(codeGenContext);

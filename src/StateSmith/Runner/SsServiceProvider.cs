@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using StateSmith.output.C99BalancedCoder1;
 
 #nullable enable
 
@@ -19,10 +20,12 @@ public class SsServiceProvider
                 preConfigAction?.Invoke(context, services);
 
                 services.AddSingleton(new DrawIoSettings());
+                services.AddSingleton(new CNameMangler());
+
                 services.AddTransient<MxCellsToSmDiagramConverter>();
                 services.AddTransient<DrawIoToSmDiagramConverter>();
                 services.AddTransient<VisualGroupingValidator>();
-                
+
                 postConfigAction?.Invoke(context, services);
             })
             .Build();
@@ -42,6 +45,7 @@ public class SsServiceProvider
 
         public static implicit operator DrawIoToSmDiagramConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoToSmDiagramConverter>(me.host.Services);
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
+        public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
     }
 
     /// <summary>
