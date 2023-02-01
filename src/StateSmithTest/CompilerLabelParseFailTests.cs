@@ -3,7 +3,7 @@ using FluentAssertions;
 using System.Linq;
 using StateSmith.Input.PlantUML;
 using StateSmith.Input;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using System.Collections.Generic;
 using System;
 

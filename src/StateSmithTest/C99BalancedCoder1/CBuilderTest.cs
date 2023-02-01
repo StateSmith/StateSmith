@@ -1,8 +1,7 @@
 ﻿using StateSmith.output.C99BalancedCoder1;
 using Xunit;
 using System.Linq;
-using StateSmith.compiler;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 
 namespace StateSmithTest.C99BalancedCoder1
 {

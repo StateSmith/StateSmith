@@ -1,8 +1,7 @@
-﻿using StateSmith.compiler.Visitors;
-using StateSmith.Compiling;
+﻿using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using StateSmith.compiler;
 
 // spell-checker: ignore modder
 

@@ -4,8 +4,7 @@ using StateSmith.Input.DrawIo;
 using System.Linq;
 using FluentAssertions;
 using StateSmith.Runner;
-using StateSmith.Compiling;
-using StateSmith.compiler;
+using StateSmith.SmGraph;
 
 namespace StateSmithTest.DrawIo;
 

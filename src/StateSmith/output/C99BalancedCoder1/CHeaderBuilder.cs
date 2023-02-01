@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using System.Runtime.CompilerServices;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 
 namespace StateSmith.output.C99BalancedCoder1
 {

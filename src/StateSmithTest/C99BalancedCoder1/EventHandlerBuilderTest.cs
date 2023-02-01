@@ -1,9 +1,8 @@
 ﻿using StateSmith.output.C99BalancedCoder1;
 using Xunit;
 using System.Linq;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using StateSmith.Runner;
-using StateSmith.compiler;
 using System;
 using FluentAssertions;
 

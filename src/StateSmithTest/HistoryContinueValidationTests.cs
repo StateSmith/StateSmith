@@ -1,5 +1,4 @@
-using StateSmith.compiler;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using System.Linq;
 using Xunit;
 

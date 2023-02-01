@@ -2,7 +2,7 @@
 using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 
 namespace StateSmithTest.PseudoStateTests
 {

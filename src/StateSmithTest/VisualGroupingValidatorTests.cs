@@ -2,7 +2,7 @@
 using StateSmith.Input.DrawIo;
 using System;
 using FluentAssertions;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using System.Linq;
 using StateSmith.Runner;
 

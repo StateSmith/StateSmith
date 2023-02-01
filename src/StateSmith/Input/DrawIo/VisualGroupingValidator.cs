@@ -1,6 +1,6 @@
 ﻿#nullable enable
 
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using StateSmith.Runner;
 using System;
 using System.Collections.Generic;

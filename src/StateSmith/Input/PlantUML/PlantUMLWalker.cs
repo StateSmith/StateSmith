@@ -63,7 +63,7 @@ namespace StateSmith.Input.PlantUML
             {
                 historyState = new DiagramNode
                 {
-                    label = Compiling.DiagramToSmConverter.HistoryStateString,
+                    label = SmGraph.DiagramToSmConverter.HistoryStateString,
                     id = MakeId(historyStateContext)
                 };
                 nodeHistoryStateMap.Add(parentNode, historyState);
@@ -79,7 +79,7 @@ namespace StateSmith.Input.PlantUML
             {
                 initialState = new DiagramNode
                 {
-                    label = Compiling.DiagramToSmConverter.InitialStateString,
+                    label = SmGraph.DiagramToSmConverter.InitialStateString,
                     id = MakeId(startEndContext)
                 };
                 nodeInitialStateMap.Add(currentNode, initialState);
@@ -142,7 +142,7 @@ namespace StateSmith.Input.PlantUML
                 label: label
             );
 
-            if (destination.label == Compiling.DiagramToSmConverter.InitialStateString)
+            if (destination.label == SmGraph.DiagramToSmConverter.InitialStateString)
             {
                 ThrowValidationFailure("StateSmith doesn't support end states", context);
                 return;

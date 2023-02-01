@@ -1,7 +1,7 @@
 ﻿using StateSmith.output.C99BalancedCoder1;
 using StateSmith.output.UserConfig;
 using System;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using System.IO;
 using StateSmith.Common;
 using Microsoft.Extensions.DependencyInjection;

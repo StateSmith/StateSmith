@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.compiler;
-using StateSmith.compiler.Visitors;
+using StateSmith.SmGraph;
+using StateSmith.SmGraph.Visitors;
 using StateSmith.Runner;
 
 namespace StateSmithTest

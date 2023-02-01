@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.compiler.Visitors;
+using StateSmith.SmGraph;
+using StateSmith.SmGraph.Visitors;
 using System.Linq;
 using StateSmith.Runner;
 

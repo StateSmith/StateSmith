@@ -1,6 +1,6 @@
 ﻿using StateSmith.Common;
-using StateSmith.compiler.Visitors;
-using StateSmith.Compiling;
+using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph;
 using StateSmith.output;
 using System;
 using System.Collections.Generic;

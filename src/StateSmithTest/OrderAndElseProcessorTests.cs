@@ -1,13 +1,10 @@
 using Xunit;
 using FluentAssertions;
 using StateSmith.Input.PlantUML;
-using StateSmith.Input;
-using StateSmith.Compiling;
-using System.Collections.Generic;
+using StateSmith.SmGraph;
 using System;
 using System.Linq;
 using StateSmith.Runner;
-using StateSmith.compiler;
 
 namespace StateSmithTest;
 

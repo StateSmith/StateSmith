@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using FluentAssertions;
 using System;
 

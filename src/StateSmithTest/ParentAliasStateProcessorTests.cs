@@ -1,5 +1,5 @@
 using Xunit;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 
 namespace StateSmithTest
 {

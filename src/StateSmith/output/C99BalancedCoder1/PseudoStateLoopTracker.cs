@@ -1,6 +1,6 @@
 #nullable enable
 
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using System.Collections.Generic;
 
 namespace StateSmith.output.C99BalancedCoder1;

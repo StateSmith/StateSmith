@@ -1,4 +1,4 @@
-﻿using StateSmith.Compiling;
+﻿using StateSmith.SmGraph;
 using System;
 
 namespace StateSmith.Runner;

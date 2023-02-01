@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using Xunit;
 
 namespace StateSmithTest

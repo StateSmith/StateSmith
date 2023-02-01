@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
-using StateSmith.compiler.Visitors;
-using StateSmith.Compiling;
+using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph;
 using StateSmith.Input;
 using System;
 using System.Text;

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.Input;
+using StateSmith.SmGraph;
 using StateSmith.Runner;
-using StateSmith.compiler;
 
 namespace StateSmithTest
 {

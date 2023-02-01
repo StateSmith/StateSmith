@@ -3,8 +3,7 @@
 using System;
 using System.Linq;
 using StateSmith.Common;
-using StateSmith.Compiling;
-using StateSmith.compiler;
+using StateSmith.SmGraph;
 using StateSmith.Input.antlr4;
 
 namespace StateSmith.output.C99BalancedCoder1

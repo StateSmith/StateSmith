@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using StateSmith.Compiling;
-using FABehaviorMatcherFunc = System.Func<FluentAssertions.Equivalency.EquivalencyAssertionOptions<StateSmith.Compiling.Behavior>, FluentAssertions.Equivalency.EquivalencyAssertionOptions<StateSmith.Compiling.Behavior>>;
+using StateSmith.SmGraph;
+using FABehaviorMatcherFunc = System.Func<FluentAssertions.Equivalency.EquivalencyAssertionOptions<StateSmith.SmGraph.Behavior>, FluentAssertions.Equivalency.EquivalencyAssertionOptions<StateSmith.SmGraph.Behavior>>;
 
 namespace StateSmithTest
 {

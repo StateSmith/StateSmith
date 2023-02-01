@@ -1,8 +1,8 @@
 #nullable enable
 
 using StateSmith.Common;
-using StateSmith.compiler.Visitors;
-using StateSmith.Compiling;
+using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;

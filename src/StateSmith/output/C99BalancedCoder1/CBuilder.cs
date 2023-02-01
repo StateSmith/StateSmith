@@ -1,7 +1,7 @@
 #nullable enable
 
 using System.Collections.Generic;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using System.Linq;
 using StateSmith.Common;
 using System;
