@@ -16,16 +16,16 @@ namespace StateSmithTest
         public static Compiler SetupTiny2Sm()
         {
             const string relativePath = "Tiny2.graphml";
-            return SetupAndValidateCompilerForTestInputFile(relativePath);
+            return SetupAndValidateCompilerForTestInputFile(relativePath).compiler;
         }
 
-        public static Compiler SetupAndValidateCompilerForTestInputFile(string relativePath)
+        public static CompilerRunner SetupAndValidateCompilerForTestInputFile(string relativePath)
         {
             CompilerRunner compilerRunner = CreateCompilerForTestInputFile(relativePath);
 
             compilerRunner.FinishRunningCompiler();
 
-            return compilerRunner.compiler;
+            return compilerRunner;
         }
 
         public static CompilerRunner CreateCompilerForTestInputFile(string relativePath)

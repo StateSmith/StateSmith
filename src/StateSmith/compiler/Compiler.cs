@@ -79,17 +79,6 @@ namespace StateSmith.Compiling
             }
         }
 
-        public void Validate()
-        {
-            foreach (var v in rootVertices)
-            {
-                var validator = new SpecificVertexValidator();
-                v.Accept(validator);
-                var validator2 = new VertexValidator();
-                v.Accept(validator2);
-            }
-        }
-
         public List<NamedVertex> GetNamedVertices(string name)
         {
             return rootVertices.Descendants(name);

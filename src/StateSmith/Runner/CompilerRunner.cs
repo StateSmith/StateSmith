@@ -15,6 +15,7 @@ using StateSmith.compiler;
 using StateSmith.Input.Yed;
 using StateSmith.Input.DrawIo;
 using System.Diagnostics.CodeAnalysis;
+using StateSmith.Common;
 
 #nullable enable
 
@@ -159,13 +160,13 @@ public class CompilerRunner
         SupportHistory(sm, mangler);
         OrderAndElseProcessor.Process(sm);  // should happen last as it orders behaviors
         preValidation(sm);
-        compiler.Validate();
+        Validate();
         postParentAliasValidation(sm);
 
-        compiler.Validate();
+        Validate();
         DefaultToDoEventVisitor.Process(sm);
         compiler.FinalizeTrees();
-        compiler.Validate();
+        Validate();
     }
 
     [MemberNotNull(nameof(sm))]
@@ -212,5 +213,14 @@ public class CompilerRunner
                 parent = parent.Parent;
             }
         });
+    }
+
+    public void Validate()
+    {
+        sm.ThrowIfNull();
+        var validator = new SpecificVertexValidator();
+        sm.Accept(validator);
+        var validator2 = new VertexValidator();
+        sm.Accept(validator2);
     }
 }
