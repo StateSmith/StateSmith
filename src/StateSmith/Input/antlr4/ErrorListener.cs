@@ -6,7 +6,7 @@ namespace StateSmith.Input.antlr4
 {
     public class ErrorListener : IAntlrErrorListener<IToken> /* for parser errors */, IAntlrErrorListener<int> /* for lexer errors */
     {
-        public List<Error> errors = new();
+        public List<AntlrError> errors = new();
 
         public void SyntaxError(TextWriter output, IRecognizer recognizer, IToken offendingSymbol, int line, int charPositionInLine, string msg, RecognitionException e)
         {

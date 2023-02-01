@@ -127,7 +127,7 @@ namespace StateSmith.Compiling
         {
             if (labelParser.HasError())
             {
-                throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, ParserErrorsToReasonStrings(labelParser.GetErrors(), "\n"));
+                throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, AntlrError.ErrorsToReasonStrings(labelParser.GetErrors(), "\n"));
             }
         }
 
@@ -256,7 +256,7 @@ namespace StateSmith.Compiling
         {
             if (labelParser.HasError())
             {
-                string reasons = ParserErrorsToReasonStrings(labelParser.GetErrors(), separator: "\n           ");
+                string reasons = AntlrError.ErrorsToReasonStrings(labelParser.GetErrors(), separator: "\n           ");
 
                 string parentPath = VertexPathDescriber.Describe(parentVertex);
                 string fullMessage = $@"Failed parsing node label
@@ -267,24 +267,6 @@ Reason(s): {reasons}
 ";
                 throw new ArgumentException(fullMessage);
             }
-        }
-
-        // todolow move out of compiler
-        public static string ParserErrorsToReasonStrings(List<Error> errors, string separator)
-        {
-            var reasons = "";
-            var needsSeparator = false;
-            foreach (var error in errors)
-            {
-                if (needsSeparator)
-                {
-                    reasons += separator;
-                }
-                reasons += error.BuildMessage();
-                needsSeparator = true;
-            }
-
-            return reasons;
         }
 
         private static void ConvertBehaviors(Vertex vertex, StateNode stateNode)

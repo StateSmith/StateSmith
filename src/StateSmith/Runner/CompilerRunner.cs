@@ -1,15 +1,10 @@
 using StateSmith.output.C99BalancedCoder1;
-using StateSmith.output.UserConfig;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StateSmith.Compiling;
 using System.IO;
-using StateSmith.Input.Expansions;
 using StateSmith.Input;
-using StateSmith.compiler.Visitors;
 using StateSmith.Input.PlantUML;
 using StateSmith.compiler;
 using StateSmith.Input.Yed;
@@ -93,7 +88,7 @@ public class CompilerRunner
 
         if (translator.HasError())
         {
-            string reasons = Compiler.ParserErrorsToReasonStrings(translator.GetErrors(), separator: "\n  - ");
+            string reasons = Input.antlr4.AntlrError.ErrorsToReasonStrings(translator.GetErrors(), separator: "\n  - ");
             throw new FormatException("PlantUML input failed parsing. Reason(s):\n  - " + reasons);
         }
 

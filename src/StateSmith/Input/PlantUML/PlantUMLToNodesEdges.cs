@@ -136,7 +136,7 @@ namespace StateSmith.Input.PlantUML
             return errorListener.errors.Count > 0;
         }
 
-        public List<Error> GetErrors()
+        public List<AntlrError> GetErrors()
         {
             return errorListener.errors;
         }
