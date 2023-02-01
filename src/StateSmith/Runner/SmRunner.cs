@@ -55,7 +55,7 @@ namespace StateSmith.Runner
             {
                 System.Console.WriteLine();
                 RunInner();
-                OutputStageMessage("finished normally.");
+                OutputStageMessage("Finished normally.");
             }
             catch (System.Exception e)
             {
@@ -68,7 +68,7 @@ namespace StateSmith.Runner
 
                 exceptionPrinter.PrintException(e);
                 DumpErrorDetailsToFile(e);
-                OutputStageMessage("finished with failure.");
+                OutputStageMessage("Finished with failure.");
             }
 
             System.Console.WriteLine();
@@ -145,35 +145,26 @@ namespace StateSmith.Runner
             );
         }
 
-        private void RunCompiler()
+        private void FindStateMachine()
         {
-            OutputCompilingDiagramMessage();
-            CompileFile();
-            compilerRunner.FinishRunningCompiler();
-        }
-
-        private void CompileFile()
-        {
-            string diagramFile = settings.diagramFile;
-            var fileExtension = Path.GetExtension(diagramFile).ToLower();
-            FileAssociator fileAssociator = new();
-
-            if (fileAssociator.IsYedExtension(fileExtension))
+            if (settings.stateMachineName != null)
             {
-                compilerRunner.CompileYedFileNodesToVertices(diagramFile);
-            }
-            else if (fileAssociator.IsPlantUmlExtension(fileExtension))
-            {
-                compilerRunner.CompilePlantUmlFileNodesToVertices(diagramFile);
-            }
-            else if (fileAssociator.IsDrawIoFile(diagramFile)) // needs full diagram file name to support double extension like: `my_file.drawio.svg`
-            {
-                compilerRunner.CompileDrawIoFileNodesToVertices(diagramFile);
+                compilerRunner.FindStateMachineByName(settings.stateMachineName);
             }
             else
             {
-                throw new ArgumentException($"Unsupported file extension `{fileExtension}`. \n" + fileAssociator.GetHelpMessage());
+                compilerRunner.FindSingleStateMachine();
             }
+
+            OutputStageMessage($"State machine `{compilerRunner.sm!.Name}` selected.");
+        }
+
+        private void RunCompiler()
+        {
+            OutputCompilingDiagramMessage();
+            compilerRunner.CompileFileToVertices(settings.diagramFile);
+            FindStateMachine();
+            compilerRunner.FinishRunningCompiler();
         }
     }
 }

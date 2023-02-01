@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - nuget package - Include documentation and source code for intellisense/debugging.
   - https://github.com/StateSmith/StateSmith/issues/80
 - added `SmTransformer` pipeline that allows custom user state machine transformation!
+- added back ability to support designs with multiple state machines via `RunnerSettings.stateMachineName`.
 
 ---
 

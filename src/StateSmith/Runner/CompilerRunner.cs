@@ -43,6 +43,32 @@ public class CompilerRunner
     /// <summary>
     /// Step 1
     /// </summary>
+    public void CompileFileToVertices(string diagramFile)
+    {
+        var fileExtension = Path.GetExtension(diagramFile).ToLower();
+        FileAssociator fileAssociator = new();
+
+        if (fileAssociator.IsYedExtension(fileExtension))
+        {
+            CompileYedFileNodesToVertices(diagramFile);
+        }
+        else if (fileAssociator.IsPlantUmlExtension(fileExtension))
+        {
+            CompilePlantUmlFileNodesToVertices(diagramFile);
+        }
+        else if (fileAssociator.IsDrawIoFile(diagramFile)) // needs full diagram file name to support double extension like: `my_file.drawio.svg`
+        {
+            CompileDrawIoFileNodesToVertices(diagramFile);
+        }
+        else
+        {
+            throw new ArgumentException($"Unsupported file extension `{fileExtension}`. \n" + fileAssociator.GetHelpMessage());
+        }
+    }
+
+    /// <summary>
+    /// Step 1
+    /// </summary>
     public void CompileDrawIoFileNodesToVertices(string filepath)
     {
         DrawIoToSmDiagramConverter converter = ssServiceProvider.GetServiceOrCreateInstance();
