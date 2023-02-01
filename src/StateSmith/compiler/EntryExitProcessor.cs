@@ -5,8 +5,17 @@ using System.Collections.Generic;
 
 namespace StateSmith.Compiling
 {
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/3
+    /// </summary>
     public class EntryExitProcessor : DummyVertexVisitor
     {
+        public static void Process(Vertex v)
+        {
+            var processor = new EntryExitProcessor();
+            v.Accept(processor);
+        }
+
         public override void Visit(EntryPoint entryPoint)
         {
             EntryPointValidator.ValidateBeforeTransformation(entryPoint);

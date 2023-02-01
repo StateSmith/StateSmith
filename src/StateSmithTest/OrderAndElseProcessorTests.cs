@@ -6,19 +6,21 @@ using StateSmith.Compiling;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using StateSmith.Runner;
+using StateSmith.compiler;
 
 namespace StateSmithTest;
 
 public class OrderAndElseProcessorTests
 {
     private PlantUMLToNodesEdges translator = new();
-    private Compiler compiler = new();
+    private CompilerRunner compilerRunner = new();
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]
     public void Basic()
     {
-        ParseAssertNoError(@"
+        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -26,15 +28,14 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SupportElseTriggerAndOrderBehaviors();
+        OrderAndElseProcessor.Process(compilerRunner.sm);
     }
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]
     public void ActionAllowed()
     {
-        ParseAssertNoError(@"
+        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -42,15 +43,14 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SupportElseTriggerAndOrderBehaviors();
+        OrderAndElseProcessor.Process(compilerRunner.sm);
     }
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]
     public void ReorderingHappens()
     {
-        ParseAssertNoError(@"
+        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State3 : else / c++;
             [*] --> State1 : [x == 1] / a++;
@@ -58,10 +58,9 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SupportElseTriggerAndOrderBehaviors();
+        OrderAndElseProcessor.Process(compilerRunner.sm);
 
-        var initialState = compiler.rootVertices.Single().Children.OfType<InitialState>().Single();
+        var initialState = compilerRunner.sm.Children.OfType<InitialState>().Single();
         initialState.Behaviors[0].actionCode.Should().Be("a++;");
         initialState.Behaviors[1].actionCode.Should().Be("b++;");
         initialState.Behaviors[2].actionCode.Should().Be("c++;");
@@ -71,7 +70,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void ReorderingHappensFromState()
     {
-        ParseAssertNoError(@"
+        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             State0 --> State3 : else / c++;
             State0 --> State2 : 10.0. / b++;
@@ -79,10 +78,9 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        compiler.SupportElseTriggerAndOrderBehaviors();
+        OrderAndElseProcessor.Process(compilerRunner.sm);
 
-        var state = compiler.GetVertex("State0");
+        var state = compilerRunner.sm.Descendant("State0");
         state.Behaviors[0].actionCode.Should().Be("a++;");
         state.Behaviors[1].actionCode.Should().Be("b++;");
         state.Behaviors[2].actionCode.Should().Be("c++;");
@@ -92,7 +90,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void NoGuardAllowed()
     {
-        ParseAssertNoError(@"
+        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -100,8 +98,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        Action action = () => compiler.SupportElseTriggerAndOrderBehaviors();
+        Action action = () => OrderAndElseProcessor.Process(compilerRunner.sm);
         action.Should().Throw<Exception>();
     }
 
@@ -109,7 +106,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void OnlyOneElseAllowed()
     {
-        ParseAssertNoError(@"
+        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : else
@@ -117,8 +114,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        Action action = () => compiler.SupportElseTriggerAndOrderBehaviors();
+        Action action = () => OrderAndElseProcessor.Process(compilerRunner.sm);
         action.Should().Throw<Exception>();
     }
 
@@ -126,7 +122,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void ElseMustBeOnTransition()
     {
-        ParseAssertNoError(@"
+        compilerRunner.CompilePlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : else
@@ -135,14 +131,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
-        Action action = () => compiler.SupportElseTriggerAndOrderBehaviors();
+        Action action = () => OrderAndElseProcessor.Process(compilerRunner.sm);
         action.Should().Throw<Exception>();
-    }
-
-    private void ParseAssertNoError(string input)
-    {
-        translator.ParseDiagramText(input);
-        translator.HasError().Should().BeFalse();
     }
 }

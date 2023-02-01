@@ -23,7 +23,7 @@ namespace StateSmith.Runner;
 /// <summary>
 /// Step 1: compile nodes to vertices
 /// Step 2: select the state machine root to compile
-/// Step 3: finish running the compiler
+/// Step 3: finish running
 /// </summary>
 public class CompilerRunner
 {
@@ -97,6 +97,7 @@ public class CompilerRunner
         }
 
         CompileNodesToVertices(new List<DiagramNode> { translator.Root }, translator.Edges);
+        FindSingleStateMachine();
     }
 
     /// <summary>
@@ -107,15 +108,6 @@ public class CompilerRunner
     public void CompileNodesToVertices(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
     {
         compiler.CompileDiagramNodesEdges(rootNodes, edges);
-    }
-
-    /// <summary>
-    /// Step 1. Call this method when you already have created state machine vertices. Probably from testing.
-    /// </summary>
-    public void SetRootVertices(List<Vertex> rootVertices)
-    {
-        compiler.rootVertices = rootVertices;
-        compiler.SetupRoots();
     }
 
     /// <summary>
@@ -161,11 +153,11 @@ public class CompilerRunner
         mangler.SetStateMachine(sm);
 
         RemoveNotesVertices();
-        compiler.SupportParentAlias();
-        compiler.SupportEntryExitPoints();
+        ParentAliasStateProcessor.Process(sm);
+        EntryExitProcessor.Process(sm);
         prefixingModder.Visit(sm); // must happen before history
         SupportHistory(sm, mangler);
-        compiler.SupportElseTriggerAndOrderBehaviors();  // should happen last as it orders behaviors
+        OrderAndElseProcessor.Process(sm);  // should happen last as it orders behaviors
         preValidation(sm);
         compiler.Validate();
         postParentAliasValidation(sm);

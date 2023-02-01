@@ -3,9 +3,17 @@ using System.Linq;
 
 namespace StateSmith.Compiling
 {
-    // https://github.com/StateSmith/StateSmith/issues/59
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/59
+    /// </summary>
     public class OrderAndElseProcessor : OnlyVertexVisitor
     {
+        public static void Process(Vertex v)
+        {
+            var processor = new OrderAndElseProcessor();
+            v.Accept(processor);
+        }
+
         public override void Visit(Vertex v)
         {
             int elseCount = 0;
