@@ -12,7 +12,7 @@ namespace StateSmithTest;
 
 /// <summary>
 /// These tests use PlantUML as convenient test syntax, but they aren't what's being tested.
-/// We are testing <see cref="Compiler"/>'s ability to throw on bad label syntax.
+/// We are testing <see cref="DiagramToSmGraphConverter"/>'s ability to throw on bad label syntax.
 /// </summary>
 public class CompilerLabelParseFailTests
 {
@@ -28,8 +28,8 @@ public class CompilerLabelParseFailTests
             @enduml
         ");
 
-        Compiler compiler = new();
-        Action action = () => compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
+        DiagramToSmGraphConverter diagramToSmConverter = new();
+        Action action = () => diagramToSmConverter.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
         action.Should().Throw<Exception>();
     }
 
@@ -44,8 +44,8 @@ public class CompilerLabelParseFailTests
 
         translator.Root.label = @"\"; //something clearly bad
 
-        Compiler compiler = new();
-        Action action = () => compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
+        DiagramToSmGraphConverter diagramToSmConverter = new();
+        Action action = () => diagramToSmConverter.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
         action.Should().Throw<Exception>();
     }
 
@@ -58,8 +58,8 @@ public class CompilerLabelParseFailTests
             @enduml
         ");
 
-        Compiler compiler = new();
-        Action action = () => compiler.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
+        DiagramToSmGraphConverter diagramToSmConverter = new();
+        Action action = () => diagramToSmConverter.CompileDiagramNodesEdges(new List<DiagramNode> { translator.Root }, translator.Edges);
         action.Should().Throw<Exception>();
     }
 

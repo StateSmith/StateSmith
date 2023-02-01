@@ -11,7 +11,7 @@ using StateSmith.Runner;
 
 namespace StateSmith.Compiling
 {
-    public class Compiler
+    public class DiagramToSmGraphConverter
     {
         public const string InitialStateString = "$initial_state";
         public const string HistoryStateString = "$h";

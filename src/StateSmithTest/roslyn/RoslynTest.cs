@@ -16,9 +16,9 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/roslyn/ExampleExpansions123.cs";
 
-            var compiler = new ExternalCodeCompiler();
+            var diagramToSmConverter = new ExternalCodeCompiler();
 
-            var codeCompilationResult = compiler.CompileCode(File.ReadAllText(filepath), "ExampleExpansions123");
+            var codeCompilationResult = diagramToSmConverter.CompileCode(File.ReadAllText(filepath), "ExampleExpansions123");
 
             codeCompilationResult.createdObject.Should().NotBeNull();
             codeCompilationResult.failures.Should().BeNull();

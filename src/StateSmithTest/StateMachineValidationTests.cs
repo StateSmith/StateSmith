@@ -12,12 +12,11 @@ namespace StateSmithTest
         InitialState initialStateVertex;
         State s1;
         State s2;
-        NotesVertex notesVertex;
 
         public StateMachineValidationTests()
         {
             var sm = BuildTestGraph();
-            compiler.rootVertices = new List<Vertex>() { sm };
+            diagramToSmConverter.rootVertices = new List<Vertex>() { sm };
         }
 
         private Vertex BuildTestGraph()
@@ -26,7 +25,7 @@ namespace StateSmithTest
 
             s1 = sm.AddChild(new State(name: "s1"));
             s2 = sm.AddChild(new State(name: "s2"));
-            notesVertex = s1.AddChild(new NotesVertex());
+            s1.AddChild(new NotesVertex());
 
             initialStateVertex = sm.AddChild(new InitialState());
             initialStateVertex.AddTransitionTo(s1);

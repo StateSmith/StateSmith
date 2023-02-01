@@ -17,9 +17,9 @@ namespace StateSmithTest.roslyn
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/roslyn/ExampleCAndJs.cs";
 
-            var compiler = new ExternalCodeCompiler();
+            var diagramToSmConverter = new ExternalCodeCompiler();
 
-            var codeCompilationResult = compiler.CompileCode(File.ReadAllText(filepath), typeName: typeof(StateSmithTest.roslyn.OvenC).FullName);
+            var codeCompilationResult = diagramToSmConverter.CompileCode(File.ReadAllText(filepath), typeName: typeof(StateSmithTest.roslyn.OvenC).FullName);
 
             codeCompilationResult.createdObject.Should().NotBeNull();
             codeCompilationResult.failures.Should().BeNull();

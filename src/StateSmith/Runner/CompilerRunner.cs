@@ -23,7 +23,7 @@ namespace StateSmith.Runner;
 /// </summary>
 public class CompilerRunner
 {
-    public Compiler compiler = new();
+    public DiagramToSmGraphConverter diagramToSmConverter = new();
     public Statemachine? sm;
     public PrefixingModder prefixingModder = new(); // todo_low - remove once transformation pipeline completed
 
@@ -103,9 +103,9 @@ public class CompilerRunner
     /// <param name="edges"></param>
     public void CompileNodesToVertices(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
     {
-        compiler.CompileDiagramNodesEdges(rootNodes, edges);
+        diagramToSmConverter.CompileDiagramNodesEdges(rootNodes, edges);
 
-        foreach (var v in compiler.rootVertices)
+        foreach (var v in diagramToSmConverter.rootVertices)
         {
             v.UpdateNamedDescendantsMapping();
         }
@@ -116,7 +116,7 @@ public class CompilerRunner
     /// </summary>
     public void SetStateMachineRoot(Statemachine stateMachine)
     {
-        compiler.rootVertices = new List<Vertex>() { stateMachine };
+        diagramToSmConverter.rootVertices = new List<Vertex>() { stateMachine };
         stateMachine.UpdateNamedDescendantsMapping();
     }
 
@@ -128,7 +128,7 @@ public class CompilerRunner
     public void FindStateMachineByName(string stateMachineName)
     {
         sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
-        var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Where(s => s.Name  == stateMachineName).Single(); };
+        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<Statemachine>().Where(s => s.Name  == stateMachineName).Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{stateMachineName}`.", e));
     }
 
@@ -139,8 +139,8 @@ public class CompilerRunner
     public void FindSingleStateMachine()
     {
         sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
-        var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Single(); };
-        action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {compiler.rootVertices.OfType<Statemachine>().Count()}.", e));
+        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<Statemachine>().Single(); };
+        action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {diagramToSmConverter.rootVertices.OfType<Statemachine>().Count()}.", e));
     }
 
     //------------------------------------------------------------------------

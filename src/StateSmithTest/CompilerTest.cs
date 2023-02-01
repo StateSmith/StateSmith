@@ -156,7 +156,7 @@ namespace StateSmithTest
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/Tiny1.graphml";
 
             CompilerRunner compilerRunner = new();
-            Compiler compiler = compilerRunner.compiler;
+            DiagramToSmGraphConverter diagramToSmConverter = compilerRunner.diagramToSmConverter;
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new ExpanderFileReflection(expander);
             Tiny1Expansions userExpansions = new Tiny1Expansions();
@@ -170,7 +170,7 @@ namespace StateSmithTest
 
             ExpandAllBehaviors(expander, sm);
 
-            compiler.rootVertices.Count.Should().Be(2);
+            diagramToSmConverter.rootVertices.Count.Should().Be(2);
 
             var Tiny1 = sm;
             var A = sm.GetState("A");

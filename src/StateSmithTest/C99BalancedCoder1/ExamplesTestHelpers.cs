@@ -38,8 +38,8 @@ namespace StateSmithTest
 
         public static CodeGenContext SetupCtxForTiny2Sm()
         {
-            var compiler = ExamplesTestHelpers.SetupTiny2Sm().compiler;
-            var sm = compiler.rootVertices.Single().As<Statemachine>();
+            var diagramToSmConverter = ExamplesTestHelpers.SetupTiny2Sm().diagramToSmConverter;
+            var sm = diagramToSmConverter.rootVertices.Single().As<Statemachine>();
             return new CodeGenContext(sm);
         }
 
