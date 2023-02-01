@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Linq;
+using StateSmith.Runner;
 
 #nullable enable
 
@@ -42,6 +43,25 @@ namespace StateSmith.compiler
             }
 
             return list[0];
+        }
+
+        public static void UpdateNamedDescendantsMapping(this Vertex startingVertex)
+        {
+            startingVertex.VisitRecursively(vertex =>
+            {
+                vertex.ResetNamedDescendantsMap();
+            });
+
+            startingVertex.VisitTypeRecursively<NamedVertex>(vertex =>
+            {
+                //add this vertex to ancestors
+                var parent = vertex.Parent;
+                while (parent != null)
+                {
+                    parent._namedDescendants.AddIfMissing(vertex.Name, vertex);
+                    parent = parent.Parent;
+                }
+            });
         }
 
         public static State GetState(this Vertex vertex, string name)

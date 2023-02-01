@@ -41,19 +41,6 @@ namespace StateSmith.Compiling
             {
                 ProcessEdge(edge);
             }
-
-            SetupRoots();
-        }
-
-        public void SetupRoots()
-        {
-            foreach (var v in rootVertices)
-            {
-                if (v is NamedVertex namedVertex)
-                {
-                    CompilerRunner.UpdateNamedDescendantsMapping(namedVertex);
-                }
-            }
         }
 
         private void ProcessEdge(Input.DiagramEdge edge)

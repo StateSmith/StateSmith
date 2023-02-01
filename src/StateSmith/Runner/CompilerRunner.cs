@@ -104,15 +104,20 @@ public class CompilerRunner
     public void CompileNodesToVertices(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
     {
         compiler.CompileDiagramNodesEdges(rootNodes, edges);
+
+        foreach (var v in compiler.rootVertices)
+        {
+            v.UpdateNamedDescendantsMapping();
+        }
     }
 
     /// <summary>
     /// Step 1. Call this method when you already have created a state machine vertex. Probably from testing.
     /// </summary>
-    public void SetStateMachineRoot(Statemachine statemachine)
+    public void SetStateMachineRoot(Statemachine stateMachine)
     {
-        compiler.rootVertices = new List<Vertex>() { statemachine };
-        compiler.SetupRoots();
+        compiler.rootVertices = new List<Vertex>() { stateMachine };
+        stateMachine.UpdateNamedDescendantsMapping();
     }
 
     //------------------------------------------------------------------------
@@ -123,7 +128,7 @@ public class CompilerRunner
     public void FindStateMachineByName(string stateMachineName)
     {
         sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
-        var action = () => { sm = (Statemachine)compiler.rootVertices.Descendant(stateMachineName); };
+        var action = () => { sm = compiler.rootVertices.OfType<Statemachine>().Where(s => s.Name  == stateMachineName).Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{stateMachineName}`.", e));
     }
 
@@ -167,14 +172,12 @@ public class CompilerRunner
     [MemberNotNull(nameof(sm))]
     public void SetupForSingleSm()
     {
-        compiler.SetupRoots();
-
         if (sm == null)
         {
             FindSingleStateMachine();
         }
 
-        compiler.rootVertices = new List<Vertex> { sm };
+        sm.UpdateNamedDescendantsMapping();
     }
 
     // https://github.com/StateSmith/StateSmith/issues/63
@@ -188,26 +191,7 @@ public class CompilerRunner
     {
         var processor = new NotesProcessor();
         processor.ValidateAndRemoveNotes(sm!);
-        UpdateNamedDescendantsMapping(sm!);
-    }
-
-    public static void UpdateNamedDescendantsMapping(Vertex startingVertex)
-    {
-        startingVertex.VisitRecursively(vertex =>
-        {
-            vertex.ResetNamedDescendantsMap();
-        });
-
-        startingVertex.VisitTypeRecursively<NamedVertex>(vertex =>
-        {
-            //add this vertex to ancestors
-            var parent = vertex.Parent;
-            while (parent != null)
-            {
-                parent._namedDescendants.AddIfMissing(vertex.Name, vertex);
-                parent = parent.Parent;
-            }
-        });
+        sm!.UpdateNamedDescendantsMapping();
     }
 
     public void Validate()
