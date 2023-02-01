@@ -6,12 +6,13 @@ using FluentAssertions;
 using StateSmith.Compiling;
 using StateSmith.compiler;
 using StateSmith.compiler.Visitors;
+using StateSmith.Runner;
 
 namespace StateSmithTest
 {
     public class AncestryQueryTest
     {
-        Compiler compiler = new Compiler();
+        CompilerRunner compilerRunner;
 
         Statemachine root;
         InitialState root_initialState;
@@ -24,16 +25,16 @@ namespace StateSmithTest
 
         public AncestryQueryTest()
         {
-            compiler = ExamplesTestHelpers.SetupTiny2Sm();
+            compilerRunner = ExamplesTestHelpers.SetupTiny2Sm();
 
-            root = (Statemachine)compiler.GetVertex("Tiny2");
+            root = compilerRunner.sm;
             root_initialState = root.ChildType<InitialState>();
-            S1 = (State)compiler.GetVertex("S1");
-            S1_1 = (State)compiler.GetVertex("S1_1");
-            S1_1_1 = (State)compiler.GetVertex("S1_1_1");
-            S1_1_2 = (State)compiler.GetVertex("S1_1_2");
-            S1_2 = (State)compiler.GetVertex("S1_2");
-            S2 = (State)compiler.GetVertex("S2");
+            S1 = root.GetState("S1");
+            S1_1 = root.GetState("S1_1");
+            S1_1_1 = root.GetState("S1_1_1");
+            S1_1_2 = root.GetState("S1_1_2");
+            S1_2 = root.GetState("S1_2");
+            S2 = root.GetState("S2");
         }
 
 

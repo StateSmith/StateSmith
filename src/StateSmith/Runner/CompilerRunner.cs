@@ -128,7 +128,7 @@ public class CompilerRunner
     public void FindStateMachineByName(string stateMachineName)
     {
         sm = new Statemachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
-        var action = () => { sm = (Statemachine)compiler.GetVertex(stateMachineName); };
+        var action = () => { sm = (Statemachine)compiler.rootVertices.Descendant(stateMachineName); };
         action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{stateMachineName}`.", e));
     }
 

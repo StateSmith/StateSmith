@@ -44,6 +44,11 @@ namespace StateSmith.compiler
             return list[0];
         }
 
+        public static State GetState(this Vertex vertex, string name)
+        {
+            return (State)vertex.Descendant(name);
+        }
+
         public static NamedVertex Descendant(this Vertex vertex, string name)
         {
             var matches = vertex.DescendantsWithName(name);

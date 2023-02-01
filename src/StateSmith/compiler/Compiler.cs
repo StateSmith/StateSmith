@@ -60,21 +60,6 @@ namespace StateSmith.Compiling
             }
         }
 
-        /// <summary>
-        /// Don't do any modifications to trees after this is called
-        /// </summary>
-
-        public List<NamedVertex> GetNamedVertices(string name)
-        {
-            return rootVertices.Descendants(name);
-        }
-
-        public NamedVertex GetVertex(string name)
-        {
-            return rootVertices.Descendant(name);
-        }
-        
-
         private void ProcessEdge(Input.DiagramEdge edge)
         {
             try

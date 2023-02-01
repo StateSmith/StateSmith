@@ -13,10 +13,10 @@ namespace StateSmithTest
         public static string TestInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../test-input/";
         public static string ExamplesInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../../examples/";
 
-        public static Compiler SetupTiny2Sm()
+        public static CompilerRunner SetupTiny2Sm()
         {
             const string relativePath = "Tiny2.graphml";
-            return SetupAndValidateCompilerForTestInputFile(relativePath).compiler;
+            return SetupAndValidateCompilerForTestInputFile(relativePath);
         }
 
         public static CompilerRunner SetupAndValidateCompilerForTestInputFile(string relativePath)
@@ -38,7 +38,7 @@ namespace StateSmithTest
 
         public static CodeGenContext SetupCtxForTiny2Sm()
         {
-            var compiler = ExamplesTestHelpers.SetupTiny2Sm();
+            var compiler = ExamplesTestHelpers.SetupTiny2Sm().compiler;
             var sm = compiler.rootVertices.Single().As<Statemachine>();
             return new CodeGenContext(sm);
         }
