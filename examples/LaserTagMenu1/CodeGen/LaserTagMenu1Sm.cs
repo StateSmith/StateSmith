@@ -1,6 +1,6 @@
 ﻿using StateSmith.Input.Expansions;
-using StateSmith.output;
-using StateSmith.output.UserConfig;
+using StateSmith.Output;
+using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using System;
 using System.Collections.Generic;

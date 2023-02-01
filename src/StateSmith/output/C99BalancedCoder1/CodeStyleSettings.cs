@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace StateSmith.output.C99BalancedCoder1
+namespace StateSmith.Output.C99BalancedCoder1
 {
     public class CodeStyleSettings
     {

@@ -1,10 +1,10 @@
 ﻿using StateSmith.SmGraph;
 using StateSmith.Input.Expansions;
-using StateSmith.output.UserConfig;
+using StateSmith.Output.UserConfig;
 using System.Text;
 # nullable enable
 
-namespace StateSmith.output.C99BalancedCoder1
+namespace StateSmith.Output.C99BalancedCoder1
 {
     public class CodeGenContext
     {

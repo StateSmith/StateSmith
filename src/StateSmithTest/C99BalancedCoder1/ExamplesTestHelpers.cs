@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using StateSmith.SmGraph;
-using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Runner;
 
 namespace StateSmithTest

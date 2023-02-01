@@ -1,6 +1,6 @@
 ﻿
 using StateSmith.SmGraph.Visitors;
-using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.SmGraph;
 using System.Linq;
 

@@ -3,7 +3,7 @@
 using StateSmith.SmGraph;
 using System.Collections.Generic;
 
-namespace StateSmith.output.C99BalancedCoder1;
+namespace StateSmith.Output.C99BalancedCoder1;
 
 /// <summary>
 /// Pseudo states are dangerous in that they can create infinite transition loops. This would cause StateSmith to stack overflow if not detected.

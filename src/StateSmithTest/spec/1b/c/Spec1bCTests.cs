@@ -1,8 +1,8 @@
 ﻿using Spec.Spec1b;
 using StateSmith.Input.Expansions;
-using StateSmith.output;
-using StateSmith.output.C99BalancedCoder1;
-using StateSmith.output.UserConfig;
+using StateSmith.Output;
+using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using System;
 using System.Diagnostics;

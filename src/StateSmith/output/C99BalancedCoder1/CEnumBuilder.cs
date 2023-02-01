@@ -4,7 +4,7 @@ using System.Text;
 using System.Linq;
 using StateSmith.Common;
 
-namespace StateSmith.output.C99BalancedCoder1
+namespace StateSmith.Output.C99BalancedCoder1
 {
     public class CEnumBuilder
     {

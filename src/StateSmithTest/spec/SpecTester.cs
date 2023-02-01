@@ -1,4 +1,4 @@
-﻿using StateSmith.output;
+﻿using StateSmith.Output;
 using System.Collections.Generic;
 using FluentAssertions;
 using System.Linq;

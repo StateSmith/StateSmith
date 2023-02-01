@@ -5,7 +5,7 @@ using Xunit;
 using FluentAssertions;
 using System.IO;
 using StateSmith.Input.Expansions;
-using StateSmith.output;
+using StateSmith.Output;
 
 namespace StateSmithTest
 {

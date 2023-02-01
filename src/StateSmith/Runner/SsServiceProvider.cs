@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 
 #nullable enable
 

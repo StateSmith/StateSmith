@@ -1,5 +1,5 @@
 using StateSmith.Input.Expansions;
-using StateSmith.output.UserConfig;
+using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using System;
 

@@ -1,9 +1,9 @@
 ﻿using StateSmith.Input.Expansions;
-using StateSmith.output.UserConfig;
+using StateSmith.Output.UserConfig;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static StateSmith.output.StringUtils;
+using static StateSmith.Output.StringUtils;
 
 namespace StateSmithTest.roslyn
 {

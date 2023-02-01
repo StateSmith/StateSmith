@@ -6,7 +6,7 @@ using StateSmith.Common;
 using StateSmith.SmGraph;
 using StateSmith.Input.antlr4;
 
-namespace StateSmith.output.C99BalancedCoder1
+namespace StateSmith.Output.C99BalancedCoder1
 {
     public class EventHandlerBuilder
     {

@@ -1,5 +1,5 @@
 ﻿using StateSmith.Input.Expansions;
-using StateSmith.output.UserConfig;
+using StateSmith.Output.UserConfig;
 
 /*
  * This file is intended to provide language agnostic helpers and expansions

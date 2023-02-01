@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace StateSmith.output.UserConfig
+namespace StateSmith.Output.UserConfig
 {
     ///// <summary>
     ///// Used to specify which events are allowed in the state machine.

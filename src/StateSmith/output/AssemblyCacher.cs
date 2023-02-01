@@ -2,7 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 
-namespace StateSmith.output
+namespace StateSmith.Output
 {
     public class AssemblyCacher
     {

@@ -3,7 +3,7 @@ using StateSmith.SmGraph;
 using StateSmith.Common;
 using System.Linq;
 using System.Collections.Generic;
-using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 
 #nullable enable
 

@@ -7,7 +7,7 @@ using System.Linq;
 
 #nullable enable
 
-namespace StateSmith.output.UserConfig
+namespace StateSmith.Output.UserConfig
 {
     class ConfigReader
     {

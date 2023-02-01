@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace StateSmith.output.UserConfig
+namespace StateSmith.Output.UserConfig
 {
     public interface IRenderConfigJs
     {

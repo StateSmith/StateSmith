@@ -1,4 +1,4 @@
-using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 using System;
 using System.Collections.Generic;
 using System.Linq;

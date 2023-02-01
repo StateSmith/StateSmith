@@ -1,6 +1,6 @@
 ﻿using StateSmith.Common;
 using StateSmith.SmGraph;
-using StateSmith.output;
+using StateSmith.Output;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 

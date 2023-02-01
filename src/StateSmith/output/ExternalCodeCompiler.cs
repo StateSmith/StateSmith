@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 using StateSmith.Input.Expansions;
 
-namespace StateSmith.output
+namespace StateSmith.Output
 {
     public class CodeCompilationResult
     {

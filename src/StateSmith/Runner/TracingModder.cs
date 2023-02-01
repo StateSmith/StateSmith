@@ -1,7 +1,7 @@
 ﻿using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
 using StateSmith.SmGraph;
-using StateSmith.output;
+using StateSmith.Output;
 using System;
 using System.Collections.Generic;
 using System.Linq;

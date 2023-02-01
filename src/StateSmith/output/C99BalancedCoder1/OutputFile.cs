@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
-namespace StateSmith.output.C99BalancedCoder1
+namespace StateSmith.Output.C99BalancedCoder1
 {
     public class OutputFileChangeTracker
     {

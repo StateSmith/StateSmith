@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith.output;
+using StateSmith.Output;
 using System.IO;
 using StateSmith.Input.Expansions;
-using StateSmith.output.UserConfig;
+using StateSmith.Output.UserConfig;
 
 namespace StateSmithTest.roslyn
 {

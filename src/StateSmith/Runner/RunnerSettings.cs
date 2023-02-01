@@ -1,5 +1,5 @@
-using StateSmith.output.C99BalancedCoder1;
-using StateSmith.output.UserConfig;
+using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.UserConfig;
 using System;
 
 #nullable enable

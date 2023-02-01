@@ -13,10 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - added `SmTransformer` pipeline that allows custom user state machine transformation!
 - added back ability to support designs with multiple state machines via `RunnerSettings.stateMachineName`.
 
-### Changed
-- renamed namespaces that may affect a few user code generation scripts:
+### ! BREAKING-CHANGES !
+- renamed namespaces that will affect user code generation scripts:
   - `using StateSmith.Compiling;` ---> `using StateSmith.SmGraph;`
   - `using StateSmith.compiling;` ---> `using StateSmith.SmGraph;`
+  - `using StateSmith.output` ---> `using StateSmith.Output`
 
 ---
 

@@ -3,7 +3,7 @@
 using System.Runtime.CompilerServices;
 using StateSmith.SmGraph;
 
-namespace StateSmith.output.C99BalancedCoder1
+namespace StateSmith.Output.C99BalancedCoder1
 {
     public class CHeaderBuilder
     {
