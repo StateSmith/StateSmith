@@ -8,7 +8,7 @@ using StateSmith.SmGraph;
 using static StateSmithTest.VertexTestHelper;
 using StateSmith.Input.Expansions;
 using StateSmith.Runner;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 
 namespace StateSmithTest
 {

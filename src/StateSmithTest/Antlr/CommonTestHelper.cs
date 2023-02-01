@@ -1,6 +1,6 @@
 using FluentAssertions;
 using Xunit.Abstractions;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 
 
 namespace StateSmithTest.Antlr;

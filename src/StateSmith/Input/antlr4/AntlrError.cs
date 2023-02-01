@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable enable
 
-namespace StateSmith.Input.antlr4;
+namespace StateSmith.Input.Antlr4;
 
 public abstract class AntlrError
 {

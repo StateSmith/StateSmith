@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StateSmith.Input.antlr4
+namespace StateSmith.Input.Antlr4
 {
     public class LabelParser
     {

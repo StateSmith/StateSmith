@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace StateSmith.Input.antlr4
+namespace StateSmith.Input.Antlr4
 {
     public class ErrorListener : IAntlrErrorListener<IToken> /* for parser errors */, IAntlrErrorListener<int> /* for lexer errors */
     {

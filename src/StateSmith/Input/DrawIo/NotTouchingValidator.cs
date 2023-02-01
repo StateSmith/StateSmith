@@ -1,7 +1,7 @@
 ﻿#nullable enable
 
 using StateSmith.SmGraph;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 using System.Collections.Generic;
 
 namespace StateSmith.Input.DrawIo;

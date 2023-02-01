@@ -7,7 +7,7 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using Antlr4.Runtime.Misc;
 using Xunit.Abstractions;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 using StateSmith.Output;
 
 //todolow look into this: https://www.antlr.org/api/Java/org/antlr/v4/runtime/TokenStreamRewriter.html

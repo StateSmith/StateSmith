@@ -167,7 +167,7 @@ namespace StateSmith.Input.PlantUML
             return escapedString.Trim().Replace(@"\n", "\n");
         }
 
-        private static void ThrowValidationFailure(string message, Antlr4.Runtime.ParserRuleContext context)
+        private static void ThrowValidationFailure(string message, global::Antlr4.Runtime.ParserRuleContext context)
         {
             int line = context.Start.Line;
             int column = context.Start.Column;

@@ -2,7 +2,7 @@
 
 #nullable enable
 
-namespace StateSmith.Input.antlr4;
+namespace StateSmith.Input.Antlr4;
 
 public class ParseError : AntlrError
 {

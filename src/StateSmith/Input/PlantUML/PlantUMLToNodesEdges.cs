@@ -1,7 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using StateSmith.Common;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 using System;
 using System.Collections.Generic;
 using System.IO;

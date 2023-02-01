@@ -4,7 +4,7 @@ using System.Text;
 using Xunit;
 using FluentAssertions;
 using StateSmith.Input.Expansions;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 
 namespace StateSmithTest
 {

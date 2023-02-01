@@ -110,7 +110,7 @@ public class InputSmBuilder
 
         if (translator.HasError())
         {
-            string reasons = Input.antlr4.AntlrError.ErrorsToReasonStrings(translator.GetErrors(), separator: "\n  - ");
+            string reasons = Input.Antlr4.AntlrError.ErrorsToReasonStrings(translator.GetErrors(), separator: "\n  - ");
             throw new FormatException("PlantUML input failed parsing. Reason(s):\n  - " + reasons);
         }
 

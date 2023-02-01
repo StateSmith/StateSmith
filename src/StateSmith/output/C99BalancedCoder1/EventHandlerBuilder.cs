@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using StateSmith.Common;
 using StateSmith.SmGraph;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 
 namespace StateSmith.Output.C99BalancedCoder1
 {

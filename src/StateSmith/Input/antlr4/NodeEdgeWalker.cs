@@ -6,7 +6,7 @@ using StateSmith.SmGraph;
 using StateSmith.Input.Expansions;
 using System.Collections.Generic;
 
-namespace StateSmith.Input.antlr4
+namespace StateSmith.Input.Antlr4
 {
     public class NodeEdgeWalker : StateSmithLabelGrammarBaseListener
     {

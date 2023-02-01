@@ -1,4 +1,4 @@
-﻿namespace StateSmith.Input.antlr4
+﻿namespace StateSmith.Input.Antlr4
 {
     public class ChoiceNode : Node
     {
