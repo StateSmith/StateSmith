@@ -69,7 +69,7 @@ public class CompilerRunner
     /// </summary>
     public void CompileYedFileNodesToVertices(string filepath)
     {
-        YedParser yedParser = new YedParser();
+        YedParser yedParser = new();
         yedParser.Parse(filepath);
         CompileNodesToVertices(yedParser.GetRootNodes(), yedParser.GetEdges());
     }

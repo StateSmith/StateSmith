@@ -11,11 +11,6 @@ using StateSmith.Runner;
 
 namespace StateSmith.Compiling
 {
-    public class LibVars
-    {
-        public string vars = "";
-    }
-
     public class Compiler
     {
         public const string InitialStateString = "$initial_state";
@@ -23,8 +18,9 @@ namespace StateSmith.Compiling
         public const string HistoryContinueString = "$hc";
 
         public List<Vertex> rootVertices = new();
-        private List<string> eventNames = new();
-        private Dictionary<DiagramNode, Vertex> diagramVertexMap = new();
+
+        private readonly List<string> eventNames = new();
+        private readonly Dictionary<DiagramNode, Vertex> diagramVertexMap = new();
 
         /// <summary>
         /// Call this method when you want to support a custom input source.
@@ -132,32 +128,6 @@ namespace StateSmith.Compiling
             if (labelParser.HasError())
             {
                 throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, ParserErrorsToReasonStrings(labelParser.GetErrors(), "\n"));
-            }
-        }
-
-        public static void ExpandBehavior(Expander expander, Behavior behavior)
-        {
-            if (behavior.actionCode != null)
-            {
-                behavior.actionCode = ExpandingVisitor.ParseAndExpandCode(expander, behavior.actionCode);
-            }
-
-            if (behavior.guardCode != null)
-            {
-                behavior.guardCode = ExpandingVisitor.ParseAndExpandCode(expander, behavior.guardCode);
-            }
-        }
-
-        public void ExpandAllBehaviors(Expander expander)
-        {
-            foreach (var root in rootVertices)
-            {
-                root.VisitRecursively(vertex => {
-                    foreach (var behavior in vertex.Behaviors)
-                    {
-                        ExpandBehavior(expander, behavior);
-                    }
-                });
             }
         }
 
@@ -269,10 +239,7 @@ namespace StateSmith.Compiling
             thisVertex.DiagramId = diagramNode.id;
             diagramVertexMap.Add(diagramNode, thisVertex);
 
-            if (parentVertex != null)
-            {
-                parentVertex.AddChild(thisVertex);
-            }
+            parentVertex?.AddChild(thisVertex);
 
             if (visitChildren)
             {
@@ -320,7 +287,7 @@ Reason(s): {reasons}
             return reasons;
         }
 
-        private void ConvertBehaviors(Vertex vertex, StateNode stateNode)
+        private static void ConvertBehaviors(Vertex vertex, StateNode stateNode)
         {
             foreach (var nodeBehavior in stateNode.behaviors)
             {

@@ -9,6 +9,7 @@ using StateSmith.compiler;
 using static StateSmithTest.VertexTestHelper;
 using StateSmith.Input.Expansions;
 using StateSmith.Runner;
+using StateSmith.Input.antlr4;
 
 namespace StateSmithTest
 {
@@ -126,6 +127,29 @@ namespace StateSmithTest
 #pragma warning restore RCS1018 // Add accessibility modifiers (or vice versa).
 #pragma warning restore RCS1213 // Remove unused member declaration.
 
+        private static void ExpandBehavior(Expander expander, Behavior behavior)
+        {
+            if (behavior.actionCode != null)
+            {
+                behavior.actionCode = ExpandingVisitor.ParseAndExpandCode(expander, behavior.actionCode);
+            }
+
+            if (behavior.guardCode != null)
+            {
+                behavior.guardCode = ExpandingVisitor.ParseAndExpandCode(expander, behavior.guardCode);
+            }
+        }
+
+        private static void ExpandAllBehaviors(Expander expander, Statemachine sm)
+        {
+            sm.VisitRecursively(vertex => {
+                foreach (var behavior in vertex.Behaviors)
+                {
+                    ExpandBehavior(expander, behavior);
+                }
+            });
+        }
+
         [Fact]
         public void ExpandedTiny1()
         {
@@ -144,7 +168,7 @@ namespace StateSmithTest
             compilerRunner.FindSingleStateMachine();
             var sm = compilerRunner.sm;
 
-            compiler.ExpandAllBehaviors(expander);
+            ExpandAllBehaviors(expander, sm);
 
             compiler.rootVertices.Count.Should().Be(2);
 
