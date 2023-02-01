@@ -156,7 +156,7 @@ namespace StateSmithTest
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/Tiny1.graphml";
 
             CompilerRunner compilerRunner = new();
-            DiagramToSmGraphConverter diagramToSmConverter = compilerRunner.diagramToSmConverter;
+            DiagramToSmConverter diagramToSmConverter = compilerRunner.diagramToSmConverter;
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new ExpanderFileReflection(expander);
             Tiny1Expansions userExpansions = new Tiny1Expansions();

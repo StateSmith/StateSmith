@@ -23,7 +23,7 @@ namespace StateSmith.Runner;
 /// </summary>
 public class CompilerRunner
 {
-    public DiagramToSmGraphConverter diagramToSmConverter = new();
+    public DiagramToSmConverter diagramToSmConverter = new();
     public Statemachine? sm;
     public PrefixingModder prefixingModder = new(); // todo_low - remove once transformation pipeline completed
 

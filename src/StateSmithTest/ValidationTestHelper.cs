@@ -12,7 +12,7 @@ namespace StateSmithTest
 {
     public class ValidationTestHelper
     {
-        public DiagramToSmGraphConverter diagramToSmConverter;
+        public DiagramToSmConverter diagramToSmConverter;
         public CompilerRunner compilerRunner;
 
         public ValidationTestHelper()
