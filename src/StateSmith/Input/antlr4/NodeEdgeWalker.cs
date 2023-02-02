@@ -2,11 +2,11 @@ using System;
 using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using StateSmith.Input.Expansions;
 using System.Collections.Generic;
 
-namespace StateSmith.Input.antlr4
+namespace StateSmith.Input.Antlr4
 {
     public class NodeEdgeWalker : StateSmithLabelGrammarBaseListener
     {

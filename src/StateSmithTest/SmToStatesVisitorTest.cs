@@ -1,31 +1,32 @@
 ﻿using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.compiler.Visitors;
+using StateSmith.SmGraph;
+using StateSmith.SmGraph.Visitors;
 using System.Linq;
+using StateSmith.Runner;
 
-namespace StateSmithTest
+namespace StateSmithTest;
+
+public class SmToStatesVisitorTest
 {
-    public class SmToStatesVisitorTest
+    [Fact]
+    public void First()
     {
-        [Fact]
-        public void First()
-        {
-            Compiler compiler = ExamplesTestHelpers.SetupTiny2Sm();
+        InputSmBuilder inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
-            SmToNamedVerticesVisitor v = new();
-            compiler.rootVertices.Single().Accept(v);
+        SmToNamedVerticesVisitor visitor = new();
+        inputSmBuilder.FindSingleStateMachine();
+        inputSmBuilder.Sm.Accept(visitor);
 
-            v.namedVertices.Count.Should().Be(7);
+        visitor.namedVertices.Count.Should().Be(7);
 
-            int i = 0;
-            v.namedVertices[i++].Name.Should().Be("Tiny2"); // same as ROOT
-            v.namedVertices[i++].Name.Should().Be("S1");
-            v.namedVertices[i++].Name.Should().Be("S1_1");
-            v.namedVertices[i++].Name.Should().Be("S1_1_1");
-            v.namedVertices[i++].Name.Should().Be("S1_1_2");
-            v.namedVertices[i++].Name.Should().Be("S1_2");
-            v.namedVertices[i++].Name.Should().Be("S2");
-        }
+        int i = 0;
+        visitor.namedVertices[i++].Name.Should().Be("Tiny2"); // same as ROOT
+        visitor.namedVertices[i++].Name.Should().Be("S1");
+        visitor.namedVertices[i++].Name.Should().Be("S1_1");
+        visitor.namedVertices[i++].Name.Should().Be("S1_1_1");
+        visitor.namedVertices[i++].Name.Should().Be("S1_1_2");
+        visitor.namedVertices[i++].Name.Should().Be("S1_2");
+        visitor.namedVertices[i++].Name.Should().Be("S2");
     }
 }

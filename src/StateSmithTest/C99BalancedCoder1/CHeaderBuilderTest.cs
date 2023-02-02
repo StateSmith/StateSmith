@@ -1,4 +1,4 @@
-using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 using Xunit;
 
 namespace StateSmithTest.C99BalancedCoder1
@@ -9,7 +9,7 @@ namespace StateSmithTest.C99BalancedCoder1
         public void OutputTypedefs_Test()
         {
             var ctx = ExamplesTestHelpers.SetupCtxForTiny2Sm();
-            CHeaderBuilder builder = new CHeaderBuilder(ctx);
+            CHeaderBuilder builder = new(ctx);
             OutputFile file = new(ctx, ctx.hFileSb);
 
             builder.OutputTypedefs(file);
@@ -49,7 +49,7 @@ typedef void (*Tiny2_Func)(Tiny2* sm);
 };
 ".ConvertLineEndingsToN();
             
-            //FIXME add vars
+            // could also add vars for testing
 
             string code = file.ToString();
             Assert.Equal(expected, code);

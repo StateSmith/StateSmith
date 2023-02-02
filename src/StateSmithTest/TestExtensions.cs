@@ -1,8 +1,7 @@
 ﻿using System;
 using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.compiler;
+using StateSmith.SmGraph;
 using System.Linq;
 using System.Collections.Generic;
 

@@ -1,5 +1,4 @@
-using StateSmith.compiler;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using System.Linq;
 using Xunit;
 
@@ -7,11 +6,13 @@ namespace StateSmithTest.PseudoStateTests;
 
 public class HistoryContinueValidationTests : ValidationTestHelper
 {
-    private Statemachine root;
+    private StateMachine root;
     private HistoryContinueVertex hc1;
     private HistoryContinueVertex hc2;
     private HistoryVertex h1;
     private string h1VarName;
+    NamedVertexMap map;
+    State GetState(string stateName) => map.GetState(stateName);
 
     public HistoryContinueValidationTests()
     {
@@ -32,18 +33,14 @@ public class HistoryContinueValidationTests : ValidationTestHelper
             }
             @enduml
             """;
-        compilerRunner.CompilePlantUmlTextNodesToVertices(plantUmlText);
-        compilerRunner.SetupForSingleSm();        
-        root = compilerRunner.sm;
+        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.SetupForSingleSm();        
+        root = inputSmBuilder.Sm;
+        map = new NamedVertexMap(inputSmBuilder.Sm);
         hc1 = GetState("G2").ChildType<HistoryContinueVertex>();
         hc2 = GetState("G3").ChildType<HistoryContinueVertex>();
         h1 = GetState("G1").ChildType<HistoryVertex>();
         h1VarName = "$G1_history";
-    }
-
-    private State GetState(string stateName)
-    {
-        return (State)root.Descendant(stateName);
     }
 
     [Fact]

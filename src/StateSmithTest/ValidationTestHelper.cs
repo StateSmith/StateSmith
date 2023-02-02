@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using StateSmith.Runner;
 
 #nullable enable
@@ -12,13 +12,13 @@ namespace StateSmithTest
 {
     public class ValidationTestHelper
     {
-        public Compiler compiler;
-        public CompilerRunner compilerRunner;
+        public DiagramToSmConverter diagramToSmConverter;
+        public InputSmBuilder inputSmBuilder;
 
         public ValidationTestHelper()
         {
-            compilerRunner = new CompilerRunner();
-            compiler = compilerRunner.compiler;
+            inputSmBuilder = new InputSmBuilder();
+            diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
         }
 
         public void ExpectBehaviorValidationException(string exceptionMessagePart, Action? additionalAction = null)
@@ -61,7 +61,7 @@ namespace StateSmithTest
 
         public void RunCompiler()
         {
-            compilerRunner.FinishRunningCompiler();
+            inputSmBuilder.FinishRunningCompiler();
         }
     }
 }

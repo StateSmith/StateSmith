@@ -63,7 +63,7 @@ namespace StateSmith.Input.PlantUML
             {
                 historyState = new DiagramNode
                 {
-                    label = Compiling.Compiler.HistoryStateString,
+                    label = SmGraph.DiagramToSmConverter.HistoryStateString,
                     id = MakeId(historyStateContext)
                 };
                 nodeHistoryStateMap.Add(parentNode, historyState);
@@ -79,7 +79,7 @@ namespace StateSmith.Input.PlantUML
             {
                 initialState = new DiagramNode
                 {
-                    label = Compiling.Compiler.InitialStateString,
+                    label = SmGraph.DiagramToSmConverter.InitialStateString,
                     id = MakeId(startEndContext)
                 };
                 nodeInitialStateMap.Add(currentNode, initialState);
@@ -142,7 +142,7 @@ namespace StateSmith.Input.PlantUML
                 label: label
             );
 
-            if (destination.label == Compiling.Compiler.InitialStateString)
+            if (destination.label == SmGraph.DiagramToSmConverter.InitialStateString)
             {
                 ThrowValidationFailure("StateSmith doesn't support end states", context);
                 return;
@@ -167,7 +167,7 @@ namespace StateSmith.Input.PlantUML
             return escapedString.Trim().Replace(@"\n", "\n");
         }
 
-        private static void ThrowValidationFailure(string message, Antlr4.Runtime.ParserRuleContext context)
+        private static void ThrowValidationFailure(string message, global::Antlr4.Runtime.ParserRuleContext context)
         {
             int line = context.Start.Line;
             int column = context.Start.Column;

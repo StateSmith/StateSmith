@@ -1,5 +1,5 @@
-﻿using StateSmith.output;
-using StateSmith.output.UserConfig;
+﻿using StateSmith.Output;
+using StateSmith.Output.UserConfig;
 using StateSmithTest.Processes;
 
 namespace Spec.Spec2.C;

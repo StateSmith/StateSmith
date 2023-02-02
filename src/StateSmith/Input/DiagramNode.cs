@@ -4,7 +4,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Linq;
 using System.Text;
-using StateSmith.output;
+using StateSmith.Output;
 using System.Text.RegularExpressions;
 
 #nullable enable

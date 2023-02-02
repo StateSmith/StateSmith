@@ -93,7 +93,7 @@ public class DrawIoDecoder
         ReadAndExpectOpeningXmlTag(reader, "diagram");
         var contents = reader.ReadInnerXml();  // advances past diagram closing tag
         MaybeThrowHelpfulMultipleDiagramMessage(reader);
-        ExpectClosingXmlTag(reader, "mxfile"); // todo - support multiple diagrams per mxfile. https://github.com/StateSmith/StateSmith/issues/78
+        ExpectClosingXmlTag(reader, "mxfile"); // todo_low - support multiple diagrams per mxfile. https://github.com/StateSmith/StateSmith/issues/78
 
         return contents.Trim();
     }

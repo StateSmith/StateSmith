@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StateSmith" Version="0.7.3-alpha" />
+    <ProjectReference Include="../../../src/StateSmith/StateSmith.csproj" />
   </ItemGroup>
 
 </Project>

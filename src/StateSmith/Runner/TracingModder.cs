@@ -1,7 +1,7 @@
 ﻿using StateSmith.Common;
-using StateSmith.compiler.Visitors;
-using StateSmith.Compiling;
-using StateSmith.output;
+using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph;
+using StateSmith.Output;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +12,9 @@ namespace StateSmith.Runner
 {
     public class TracingModder : NamedVisitor
     {
-        public void AddTracingBehaviors(Statemachine statemachine)
+        public void AddTracingBehaviors(StateMachine stateMachine)
         {
-            Visit(statemachine);
+            Visit(stateMachine);
         }
 
         public override void Visit(Vertex v)

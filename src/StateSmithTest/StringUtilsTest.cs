@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith.output;
+using StateSmith.Output;
 
 namespace StateSmithTest
 {

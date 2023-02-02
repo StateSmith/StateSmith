@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using Xunit;
 
 namespace StateSmithTest
@@ -14,7 +14,7 @@ namespace StateSmithTest
         [Fact]
         public void Describe_Statemachine()
         {
-            var v = new Statemachine("Sm1");
+            var v = new StateMachine("Sm1");
             Vertex.Describe(v).Should().Be("ROOT");
         }
 

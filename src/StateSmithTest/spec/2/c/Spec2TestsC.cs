@@ -1,6 +1,6 @@
 using Spec.Spec2;
 using StateSmith.Input.Expansions;
-using StateSmith.output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Runner;
 using System;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 using Xunit.Abstractions;
 using StateSmithTest.spec2;
 using StateSmithTest.Processes;
-using StateSmith.output;
+using StateSmith.Output;
 using System.Text.RegularExpressions;
 
 namespace Spec.Spec2.C;

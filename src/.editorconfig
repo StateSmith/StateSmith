@@ -1,0 +1,23 @@
+# parts copied from https://github.com/xunit/xunit/blob/main/.editorconfig
+
+# top-most EditorConfig file
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+
+[*.sln]
+end_of_line = crlf
+
+# Visual Studio demands 2-spaced project files
+# Tabs are not legal whitespace for YAML files
+[*.{csproj,json,props,targets,xslt,yaml,yml}]
+indent_style = space
+indent_size = 2
+
+
+csharp_style_namespace_declarations = file_scoped

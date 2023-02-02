@@ -1,4 +1,4 @@
-﻿using StateSmith.Compiling;
+﻿using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +46,7 @@ namespace StateSmith.Common
             return triggerName.ToLower().Trim();
         }
 
-        public static void MaybeAddEvent(Statemachine sm, Behavior behavior, string triggerName)
+        public static void MaybeAddEvent(StateMachine sm, Behavior behavior, string triggerName)
         {
             string cleanTrigger = CleanTriggerName(triggerName);
 

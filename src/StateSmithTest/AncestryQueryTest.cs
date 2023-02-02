@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.compiler;
-using StateSmith.compiler.Visitors;
+using StateSmith.SmGraph;
+using StateSmith.SmGraph.Visitors;
+using StateSmith.Runner;
 
 namespace StateSmithTest
 {
     public class AncestryQueryTest
     {
-        Compiler compiler = new Compiler();
+        InputSmBuilder inputSmBuilder;
 
-        Statemachine root;
+        StateMachine root;
         InitialState root_initialState;
         State S1;
         State S1_1;
@@ -24,16 +24,19 @@ namespace StateSmithTest
 
         public AncestryQueryTest()
         {
-            compiler = ExamplesTestHelpers.SetupTiny2Sm();
+            inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
-            root = (Statemachine)compiler.GetVertex("Tiny2");
+            root = inputSmBuilder.Sm;
+            var map = new NamedVertexMap(root);
+            State GetState(string stateName) => map.GetState(stateName);
+
             root_initialState = root.ChildType<InitialState>();
-            S1 = (State)compiler.GetVertex("S1");
-            S1_1 = (State)compiler.GetVertex("S1_1");
-            S1_1_1 = (State)compiler.GetVertex("S1_1_1");
-            S1_1_2 = (State)compiler.GetVertex("S1_1_2");
-            S1_2 = (State)compiler.GetVertex("S1_2");
-            S2 = (State)compiler.GetVertex("S2");
+            S1 = GetState("S1");
+            S1_1 = GetState("S1_1");
+            S1_1_1 = GetState("S1_1_1");
+            S1_1_2 = GetState("S1_1_2");
+            S1_2 = GetState("S1_2");
+            S2 = GetState("S2");
         }
 
 

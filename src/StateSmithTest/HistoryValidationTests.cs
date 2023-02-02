@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using StateSmith.Common;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using StateSmith.Runner;
 using System.Collections.Generic;
 using System.Linq;

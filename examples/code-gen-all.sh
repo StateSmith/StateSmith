@@ -43,7 +43,7 @@ update_and_run_project() {
     dotnet ./bin/Debug/net6.0/CodeGen.dll
 
     # run again at end so that we effectively undo update to use StateSmith.csproj
-    set_project_to_use_nuget
+    # set_project_to_use_nuget
 }
 
 update_and_run_project "$EXAMPLES_DIR/Tutorial1-complete/CodeGen/"

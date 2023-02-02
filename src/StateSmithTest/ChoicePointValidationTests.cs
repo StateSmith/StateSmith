@@ -1,4 +1,4 @@
-﻿using StateSmith.Compiling;
+﻿using StateSmith.SmGraph;
 
 namespace StateSmithTest.PseudoStateTests
 {

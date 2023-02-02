@@ -4,11 +4,11 @@ using System.Text;
 using Xunit;
 using FluentAssertions;
 using StateSmith;
-using StateSmith.Compiling;
-using StateSmith.compiler;
+using StateSmith.SmGraph;
 using static StateSmithTest.VertexTestHelper;
 using StateSmith.Input.Expansions;
 using StateSmith.Runner;
+using StateSmith.Input.Antlr4;
 
 namespace StateSmithTest
 {
@@ -20,18 +20,18 @@ namespace StateSmithTest
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "Tiny1.graphml";
 
-            CompilerRunner compilerRunner = new CompilerRunner();
-            Compiler compiler = compilerRunner.compiler;
-            compilerRunner.CompileYedFileNodesToVertices(filepath);
+            InputSmBuilder inputSmBuilder = new();
+            inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
+            inputSmBuilder.FindSingleStateMachine();
+            var sm = inputSmBuilder.Sm;
 
-            compiler.rootVertices.Count.Should().Be(2);
+            var Tiny1 = sm;
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
 
-            var sm = (Statemachine)compiler.rootVertices[0];
-
-            var Tiny1 = compiler.GetVertex("Tiny1");
-            var A = compiler.GetVertex("A");
-            var B = compiler.GetVertex("B");
-            var C2 = compiler.GetVertex("C2");
+            var A = GetState("A");
+            var B = GetState("B");
+            var C2 = GetState("C2");
 
             Tiny1.Depth.Should().Be(0);
             A.Depth.Should().Be(1);
@@ -129,31 +129,58 @@ namespace StateSmithTest
 #pragma warning restore RCS1018 // Add accessibility modifiers (or vice versa).
 #pragma warning restore RCS1213 // Remove unused member declaration.
 
+        private static void ExpandBehavior(Expander expander, Behavior behavior)
+        {
+            if (behavior.actionCode != null)
+            {
+                behavior.actionCode = ExpandingVisitor.ParseAndExpandCode(expander, behavior.actionCode);
+            }
+
+            if (behavior.guardCode != null)
+            {
+                behavior.guardCode = ExpandingVisitor.ParseAndExpandCode(expander, behavior.guardCode);
+            }
+        }
+
+        private static void ExpandAllBehaviors(Expander expander, StateMachine sm)
+        {
+            sm.VisitRecursively(vertex => {
+                foreach (var behavior in vertex.Behaviors)
+                {
+                    ExpandBehavior(expander, behavior);
+                }
+            });
+        }
+
         [Fact]
         public void ExpandedTiny1()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "/Tiny1.graphml";
 
-            CompilerRunner compilerRunner = new();
-            Compiler compiler = compilerRunner.compiler;
+            InputSmBuilder inputSmBuilder = new();
+            DiagramToSmConverter diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new ExpanderFileReflection(expander);
             Tiny1Expansions userExpansions = new Tiny1Expansions();
             userExpansions.varsPath = "sm->vars.";
             expanderFileReflection.AddAllExpansions(userExpansions);
-            //FIXME add events
-            //FIXME check for valid events in diagram
-            compilerRunner.CompileYedFileNodesToVertices(filepath);
-            compiler.ExpandAllBehaviors(expander);
+            // could also add events
+            // could also check for valid events in diagram
+            inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
+            inputSmBuilder.FindSingleStateMachine();
+            var sm = inputSmBuilder.Sm;
 
-            compiler.rootVertices.Count.Should().Be(2);
+            ExpandAllBehaviors(expander, sm);
 
-            var sm = (Statemachine)compiler.rootVertices[0];
+            diagramToSmConverter.rootVertices.Count.Should().Be(2);
 
-            var Tiny1 = compiler.GetVertex("Tiny1");
-            var A = compiler.GetVertex("A");
-            var B = compiler.GetVertex("B");
-            var C2 = compiler.GetVertex("C2");
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
+
+            var Tiny1 = sm;
+            var A = GetState("A");
+            var B = GetState("B");
+            var C2 = GetState("C2");
 
             ///////////
             Tiny1.Name.Should().Be("Tiny1");
@@ -213,9 +240,9 @@ namespace StateSmithTest
     }
     public class Tiny2Test
     {
-        Compiler compiler = new Compiler();
+        InputSmBuilder inputSmBuilder;
 
-        Statemachine Tiny2;
+        StateMachine sm;
         State S1;
         State S1_1;
         State S1_1_1;
@@ -225,21 +252,24 @@ namespace StateSmithTest
 
         public Tiny2Test()
         {
-            compiler = ExamplesTestHelpers.SetupTiny2Sm();
+            inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
-            Tiny2 = (Statemachine)compiler.GetVertex("Tiny2");
-            S1 = (State)compiler.GetVertex("S1");
-            S1_1 = (State)compiler.GetVertex("S1_1");
-            S1_1_1 = (State)compiler.GetVertex("S1_1_1");
-            S1_1_2 = (State)compiler.GetVertex("S1_1_2");
-            S1_2 = (State)compiler.GetVertex("S1_2");
-            S2 = (State)compiler.GetVertex("S2");
+            sm = inputSmBuilder.Sm;
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
+
+            S1 = GetState("S1");
+            S1_1 = GetState("S1_1");
+            S1_1_1 = GetState("S1_1_1");
+            S1_1_2 = GetState("S1_1_2");
+            S1_2 = GetState("S1_2");
+            S2 = GetState("S2");
         }
 
         [Fact]
         public void TestDepth()
         {
-            Tiny2.Depth.Should().Be(0); //root
+            sm.Depth.Should().Be(0); //root
             S1.Depth.Should().Be(1);
             S1_1.Depth.Should().Be(2);
             S1_1_1.Depth.Should().Be(3);
@@ -251,7 +281,7 @@ namespace StateSmithTest
         [Fact]
         public void DepthAddChild()
         {
-            var S3 = Tiny2.AddChild(new State("S3"));
+            var S3 = sm.AddChild(new State("S3"));
             S3.Depth.Should().Be(1);
 
             var S1_3 = S1.AddChild(new State("S1_3"));
@@ -261,7 +291,6 @@ namespace StateSmithTest
             S1_1_2_1.Depth.Should().Be(4);
 
             TestDepth();
-            compiler.SetupRoots();
 
             //ensure nothing changed after setup roots called again
             TestDepth();

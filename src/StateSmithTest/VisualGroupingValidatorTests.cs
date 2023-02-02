@@ -2,7 +2,7 @@
 using StateSmith.Input.DrawIo;
 using System;
 using FluentAssertions;
-using StateSmith.Compiling;
+using StateSmith.SmGraph;
 using System.Linq;
 using StateSmith.Runner;
 
@@ -13,7 +13,7 @@ namespace StateSmithTest.DrawIo;
 /// </summary>
 public class VisualGroupingValidatorTests
 {
-    readonly CompilerRunner runner = new();
+    readonly InputSmBuilder runner = new();
     DrawIoToSmDiagramConverter converter;
 
     public VisualGroupingValidatorTests()

@@ -1,7 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using StateSmith.Common;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -136,7 +136,7 @@ namespace StateSmith.Input.PlantUML
             return errorListener.errors.Count > 0;
         }
 
-        public List<Error> GetErrors()
+        public List<AntlrError> GetErrors()
         {
             return errorListener.errors;
         }

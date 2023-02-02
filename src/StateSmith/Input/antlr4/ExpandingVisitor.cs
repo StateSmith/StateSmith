@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace StateSmith.Input.antlr4
+namespace StateSmith.Input.Antlr4
 {
     public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
     {

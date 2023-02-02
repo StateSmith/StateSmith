@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.Input;
-using StateSmith.compiler;
+using StateSmith.SmGraph;
+using StateSmith.Runner;
 
 namespace StateSmithTest
 {
     public class EventGatheringTests
     {
-        private Statemachine BuildTestGraph(string rootName)
+        private static StateMachine BuildTestGraph(string rootName)
         {
-            var sm = new Statemachine(name: rootName);
+            var sm = new StateMachine(name: rootName);
 
             var s1 = sm.AddChild(new State(name: "s1"));
-            var s1_1 = s1.AddChild(new State(name: "s1_1"));
+            s1.AddChild(new State(name: "s1_1"));
 
             var initialStateVertex = sm.AddChild(new InitialState());
             initialStateVertex.AddTransitionTo(s1);
@@ -27,44 +24,50 @@ namespace StateSmithTest
         [Fact]
         public void Test()
         {
-            Compiler compiler = new Compiler();
+            var sm = BuildTestGraph("Sm1");
+            InputSmBuilder inputSmBuilder = new();
+            inputSmBuilder.SetStateMachineRoot(sm);
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
 
-            var sm1 = BuildTestGraph("Sm1");
-            var sm2 = BuildTestGraph("Sm2");
-
-            compiler.rootVertices = new List<Vertex>() { sm1, sm2 };
-            compiler.SetupRoots();
-
+            GetState("s1").AddBehavior(new Behavior()
             {
-                sm1.Descendant("s1").AddBehavior(new Behavior()
-                {
-                    triggers = new List<string>() { "EV1", "do" }
-                });
-                sm1.Descendant("s1_1").AddBehavior(new Behavior()
-                {
-                    triggers = new List<string>() { "enter", "exit", "ZIP" }
-                });
-            }
-
+                triggers = new List<string>() { "EV1", "do" }
+            });
+            GetState("s1_1").AddBehavior(new Behavior()
             {
-                sm2.Descendant("s1").AddBehavior(new Behavior()
-                {
-                    triggers = new List<string>() { "SM2_EV1", "do", "exit" }
-                });
-                sm2.Descendant("s1_1").AddBehavior(new Behavior()
-                {
-                    triggers = new List<string>() { "enter", "exit", "SM2_ZIP" }
-                });
-            }
+                triggers = new List<string>() { "enter", "exit", "ZIP" }
+            });
 
-            compiler.FinalizeTrees();
+            inputSmBuilder.FinishRunningCompiler();
 
-            sm1.GetEventListCopy().Should().Equal(new List<string>()
+            sm.GetEventListCopy().Should().Equal(new List<string>()
             {
                 "do", "ev1", "zip"
             });
+        }
 
-            sm2.GetEventListCopy().Should().Equal(new List<string>()
+        [Fact]
+        public void Test2()
+        {
+            var sm = BuildTestGraph("Sm2");
+            InputSmBuilder inputSmBuilder = new();
+            inputSmBuilder.SetStateMachineRoot(sm);
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
+
+            GetState("s1").AddBehavior(new Behavior()
+            {
+                triggers = new List<string>() { "SM2_EV1", "do", "exit" }
+            });
+            GetState("s1_1").AddBehavior(new Behavior()
+            {
+                triggers = new List<string>() { "enter", "exit", "SM2_ZIP" }
+            });
+
+            inputSmBuilder.FinishRunningCompiler();
+            
+            sm.GetEventListCopy().Should().Equal(new List<string>()
             {
                 "do", "sm2_ev1", "sm2_zip"
             });

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-
-[assembly: InternalsVisibleTo("StateSmithTest")]
+﻿using System.Runtime.CompilerServices;
 
 namespace StateSmith.Input.Expansions
 {

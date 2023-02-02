@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.output.C99BalancedCoder1;
+using StateSmith.SmGraph;
+using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Runner;
 
 namespace StateSmithTest
@@ -13,41 +13,41 @@ namespace StateSmithTest
         public static string TestInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../test-input/";
         public static string ExamplesInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../../../examples/";
 
-        public static Compiler SetupTiny2Sm()
+        public static InputSmBuilder SetupTiny2Sm()
         {
             const string relativePath = "Tiny2.graphml";
             return SetupAndValidateCompilerForTestInputFile(relativePath);
         }
 
-        public static Compiler SetupAndValidateCompilerForTestInputFile(string relativePath)
+        public static InputSmBuilder SetupAndValidateCompilerForTestInputFile(string relativePath)
         {
-            CompilerRunner compilerRunner = CreateCompilerForTestInputFile(relativePath);
+            InputSmBuilder inputSmBuilder = CreateCompilerForTestInputFile(relativePath);
 
-            compilerRunner.FinishRunningCompiler();
+            inputSmBuilder.FinishRunningCompiler();
 
-            return compilerRunner.compiler;
+            return inputSmBuilder;
         }
 
-        public static CompilerRunner CreateCompilerForTestInputFile(string relativePath)
+        public static InputSmBuilder CreateCompilerForTestInputFile(string relativePath)
         {
             string filepath = TestInputDirectoryPath + relativePath;
-            CompilerRunner compilerRunner = new();
-            compilerRunner.CompileYedFileNodesToVertices(filepath);
-            return compilerRunner;
+            InputSmBuilder inputSmBuilder = new();
+            inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
+            return inputSmBuilder;
         }
 
         public static CodeGenContext SetupCtxForTiny2Sm()
         {
-            var compiler = ExamplesTestHelpers.SetupTiny2Sm();
-            var sm = compiler.rootVertices.Single().As<Statemachine>();
+            var diagramToSmConverter = ExamplesTestHelpers.SetupTiny2Sm().diagramToSmConverter;
+            var sm = diagramToSmConverter.rootVertices.Single().As<StateMachine>();
             return new CodeGenContext(sm);
         }
 
         public static CodeGenContext SetupCtxForSimple1()
         {
-            CompilerRunner compilerRunner = new();
+            InputSmBuilder inputSmBuilder = new();
 
-            var sm = new Statemachine("Simple1");
+            var sm = new StateMachine("Simple1");
             var s1 = sm.AddChild(new State(name: "s1"));
             var s1_1 = s1.AddChild(new State(name: "s1_1"));
 
@@ -68,8 +68,8 @@ namespace StateSmithTest
                 triggers = new List<string>() { "enter", "exit", "ZIP" }
             });
 
-            compilerRunner.SetStateMachineRoot(sm);
-            compilerRunner.FinishRunningCompiler();
+            inputSmBuilder.SetStateMachineRoot(sm);
+            inputSmBuilder.FinishRunningCompiler();
 
             return new CodeGenContext(sm);
         }

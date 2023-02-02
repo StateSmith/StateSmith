@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
-namespace StateSmith.Input.antlr4
+namespace StateSmith.Input.Antlr4
 {
 
     public class DeIndentVisitor : StateSmithLabelGrammarBaseVisitor<int>

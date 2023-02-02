@@ -7,7 +7,7 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using Antlr4.Runtime.Misc;
 using Xunit.Abstractions;
-using StateSmith.Input.antlr4;
+using StateSmith.Input.Antlr4;
 
 namespace StateSmithTest.Antlr;
 

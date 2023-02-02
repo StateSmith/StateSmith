@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith.Compiling;
-using StateSmith.Input;
+using StateSmith.SmGraph;
 using StateSmith.Runner;
-using StateSmith.compiler;
 
 namespace StateSmithTest
 {
     public class NotesTests
     {
-        CompilerRunner compilerRunner = new();
+        InputSmBuilder inputSmBuilder = new();
 
         private void CompileYedFile(string filepath)
         {
-            compilerRunner.CompileYedFileNodesToVertices(filepath);
+            inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
         }
 
         [Fact]
@@ -30,7 +27,7 @@ namespace StateSmithTest
         public void EdgeToNotes()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "notes/bad-edge-to-notes.graphml";
-            Action action = () => { CompileYedFile(filepath); compilerRunner.FinishRunningCompiler(); };
+            Action action = () => { CompileYedFile(filepath); inputSmBuilder.FinishRunningCompiler(); };
 
             action.Should()
                 .Throw<BehaviorValidationException>()
@@ -41,7 +38,7 @@ namespace StateSmithTest
         public void EdgeFromNotes()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "notes/bad-edge-from-notes.graphml";
-            Action action = () => { CompileYedFile(filepath); compilerRunner.FinishRunningCompiler(); };
+            Action action = () => { CompileYedFile(filepath); inputSmBuilder.FinishRunningCompiler(); };
 
             action.Should()
                 .Throw<BehaviorValidationException>()
@@ -51,15 +48,15 @@ namespace StateSmithTest
         [Fact]
         public void NoBehaviors()
         {
-            var sm = new Statemachine(name: "root");
+            var sm = new StateMachine(name: "root");
             State s1 = sm.AddChild(new State(name: "s1"));
             NotesVertex notesVertex = s1.AddChild(new NotesVertex());
             sm.AddChild(new InitialState()).AddTransitionTo(s1);
             notesVertex.AddBehavior(new Behavior());
             
-            compilerRunner.SetStateMachineRoot(sm);
+            inputSmBuilder.SetStateMachineRoot(sm);
 
-            Action action = () => { compilerRunner.FinishRunningCompiler(); };
+            Action action = () => { inputSmBuilder.FinishRunningCompiler(); };
 
             action.Should()
                 .Throw<VertexValidationException>()
@@ -70,12 +67,14 @@ namespace StateSmithTest
         public void ExhaustiveDynamicTest()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "notes/dynamic_test.drawio.svg";
-            compilerRunner.CompileDrawIoFileNodesToVertices(filepath);
-            compilerRunner.FindSingleStateMachine();
-            compilerRunner.SetupForSingleSm();
-            var sm = compilerRunner.sm;
+            inputSmBuilder.ConvertDrawIoFileNodesToVertices(filepath);
+            inputSmBuilder.FindSingleStateMachine();
+            inputSmBuilder.SetupForSingleSm();
+            var sm = inputSmBuilder.Sm;
+            var map = new NamedVertexMap(sm);
+            State GetState(string stateName) => map.GetState(stateName);
 
-            var g1 = sm.Descendant("G1");
+            var g1 = GetState("G1");
             var g1Notes = g1.DescendantsOfType<NotesVertex>();
             var smNotes = sm.Children<NotesVertex>();
 
@@ -86,8 +85,8 @@ namespace StateSmithTest
 
             // specific test
             {
-                var notedVertex1 = sm.Descendant("ON1_1");
-                var notedVertex2 = sm.Descendant("ON1_2");
+                var notedVertex1 = GetState("ON1_1");
+                var notedVertex2 = GetState("ON1_2");
                 TestNotedToV(notedVertex1, notedVertex2, expectFailure: true);
                 TestVToNoted(notedVertex1, notedVertex2, expectFailure: true);
             }
