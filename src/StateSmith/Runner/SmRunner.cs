@@ -1,4 +1,4 @@
-﻿using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 using System;
 using StateSmith.SmGraph;
 using System.IO;
@@ -18,7 +18,7 @@ public class SmRunner
     readonly RunnerSettings settings;
     readonly SsServiceProvider sp;
     InputSmBuilder inputSmBuilder;
-    ExceptionPrinter exceptionPrinter;
+    ExceptionPrinter exceptionPrinter = new();
 
     public SmRunner(RunnerSettings settings)
     {
@@ -34,7 +34,6 @@ public class SmRunner
         });
 
         inputSmBuilder = new(sp);
-        exceptionPrinter = settings.exceptionPrinter;
     }
 
     /// <summary>
@@ -61,7 +60,7 @@ public class SmRunner
             Environment.ExitCode = -1; // lets calling process know that code gen failed
 
             exceptionPrinter.PrintException(e);
-            DumpErrorDetailsToFile(e);
+            MaybeDumpErrorDetailsToFile(e);
             OutputStageMessage("Finished with failure.");
         }
 
@@ -121,10 +120,16 @@ public class SmRunner
         Console.WriteLine("StateSmith Runner - " + message);
     }
 
-    private void DumpErrorDetailsToFile(Exception e)
+    // https://github.com/StateSmith/StateSmith/issues/82
+    private void MaybeDumpErrorDetailsToFile(Exception e)
     {
+        if (!settings.dumpErrorsToFile)
+        {
+            Console.Error.WriteLine($"You can enable exception detail dumping by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpErrorsToFile)}` to true.");
+            return;
+        }
+
         var errorDetailFilePath = settings.diagramFile + ".err.txt";
-        //errorDetailFilePath = Path.GetFullPath(errorDetailFilePath); // if you want the full path but with resolved "../../"
         errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
         exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
         Console.Error.WriteLine("Additional exception detail dumped to file: " + errorDetailFilePath);
