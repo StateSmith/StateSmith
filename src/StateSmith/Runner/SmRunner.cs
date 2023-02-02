@@ -1,10 +1,10 @@
 ﻿using StateSmith.Output.C99BalancedCoder1;
-using StateSmith.Output.UserConfig;
 using System;
 using StateSmith.SmGraph;
 using System.IO;
 using StateSmith.Common;
 using Microsoft.Extensions.DependencyInjection;
+using StateSmith.Output;
 
 #nullable enable
 
@@ -17,18 +17,22 @@ namespace StateSmith.Runner;
 /// </summary>
 public class SmRunner
 {
-    private const string ExpansionVarsPath = "self->vars.";
     readonly RunnerSettings settings;
+    readonly SsServiceProvider sp;
     InputSmBuilder inputSmBuilder;
     ExceptionPrinter exceptionPrinter;
 
     public SmRunner(RunnerSettings settings)
     {
         this.settings = settings;
-        var sp = new SsServiceProvider(postConfigAction: (context, services) =>
+        sp = new SsServiceProvider(postConfigAction: (context, services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.mangler);
+            services.AddSingleton(settings.style);
+            services.AddSingleton(settings.renderConfig);
+            services.AddSingleton(settings); // todo_low - split settings up more
+            services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
         });
 
         inputSmBuilder = new(sp);
@@ -45,7 +49,8 @@ public class SmRunner
         try
         {
             System.Console.WriteLine();
-            RunInner();
+            RunInputSmBuilder();
+            RunCodeGen();
             OutputStageMessage("Finished normally.");
         }
         catch (System.Exception e)
@@ -65,56 +70,35 @@ public class SmRunner
         System.Console.WriteLine();
     }
 
-    protected void RunInner()
+    private void RunInputSmBuilder()
     {
-        RunCompiler();
-        RunCodeGen();
+        OutputCompilingDiagramMessage();
+        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
+        FindStateMachine();
+        inputSmBuilder.FinishRunningCompiler();
+
+        StateMachine sm = inputSmBuilder.Sm.ThrowIfNull();
+        sp.SmGetter = () => sm;
     }
 
     protected void RunCodeGen()
     {
-        StateMachine sm = inputSmBuilder.Sm.ThrowIfNull();
-        CodeGenContext codeGenContext = new(sm, settings.renderConfig);
-        codeGenContext.mangler = settings.mangler;
-        codeGenContext.style = settings.style;
+        CodeGenRunner codeGenRunner = sp.GetServiceOrCreateInstance();
+        codeGenRunner.Run();
+    }
 
-        settings.mangler.SetStateMachine(sm);
-
-        // todo_low - move into state machine code generation once dependency injection makes CodeGenContext available
-        foreach (var h in sm.historyStates)
+    private void FindStateMachine()
+    {
+        if (settings.stateMachineName != null)
         {
-            string actualVarName = codeGenContext.mangler.HistoryVarName(h);
-            codeGenContext.expander.AddVariableExpansion(h.stateTrackingVarName, ExpansionVarsPath + actualVarName);
-
-            bool useU8 = false;
-
-            if (useU8)
-            {
-                codeGenContext.sm.variables += $"uint8_t {actualVarName};\n";
-                if (h.Behaviors.Count > 255) {
-                    throw new VertexValidationException(h, "can't support more than 255 tracked history states right now."); //uint8_t limitation.
-                }
-            }
-            else
-            {
-                codeGenContext.sm.variables += $"enum {settings.mangler.HistoryVarEnumName(h)} {actualVarName};\n";
-            }
+            inputSmBuilder.FindStateMachineByName(settings.stateMachineName);
+        }
+        else
+        {
+            inputSmBuilder.FindSingleStateMachine();
         }
 
-        ConfigReader reader = new(codeGenContext.expander, expansionVarsPath: ExpansionVarsPath);
-        reader.ReadObject(settings.renderConfig);
-
-        CBuilder cBuilder = new(codeGenContext);
-        cBuilder.Generate();
-
-        CHeaderBuilder cHeaderBuilder = new(codeGenContext);
-        cHeaderBuilder.Generate();
-
-        string hFileContents = codeGenContext.hFileSb.ToString();
-        string cFileContents = codeGenContext.cFileSb.ToString();
-
-        File.WriteAllText($"{settings.outputDirectory}{settings.mangler.HFileName}", hFileContents);
-        File.WriteAllText($"{settings.outputDirectory}{settings.mangler.CFileName}", cFileContents);
+        OutputStageMessage($"State machine `{inputSmBuilder.Sm!.Name}` selected.");
     }
 
     private void OutputCompilingDiagramMessage()
@@ -133,29 +117,7 @@ public class SmRunner
         );
     }
 
-    private void FindStateMachine()
-    {
-        if (settings.stateMachineName != null)
-        {
-            inputSmBuilder.FindStateMachineByName(settings.stateMachineName);
-        }
-        else
-        {
-            inputSmBuilder.FindSingleStateMachine();
-        }
-
-        OutputStageMessage($"State machine `{inputSmBuilder.Sm!.Name}` selected.");
-    }
-
-    private void RunCompiler()
-    {
-        OutputCompilingDiagramMessage();
-        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
-        FindStateMachine();
-        inputSmBuilder.FinishRunningCompiler();
-    }
-
-    protected void OutputStageMessage(string message)
+    protected static void OutputStageMessage(string message)
     {
         // todo_low add logger functionality
         Console.WriteLine("StateSmith Runner - " + message);

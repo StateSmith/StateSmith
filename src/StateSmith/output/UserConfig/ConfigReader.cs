@@ -15,7 +15,12 @@ namespace StateSmith.Output.UserConfig
         ExpanderFileReflection expanderFileReflection;
         private readonly string expansionVarsPath;
 
-        public ConfigReader(Expander expander, string expansionVarsPath)
+        public ConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider) : this(expander, expansionVarsPathProvider.ExpansionVarsPath)
+        {
+
+        }
+
+        internal ConfigReader(Expander expander, string expansionVarsPath)
         {
             expanderFileReflection = new ExpanderFileReflection(expander);
             this.expansionVarsPath = expansionVarsPath;

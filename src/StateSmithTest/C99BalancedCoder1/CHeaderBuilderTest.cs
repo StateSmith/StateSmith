@@ -9,7 +9,7 @@ namespace StateSmithTest.C99BalancedCoder1
         public void OutputTypedefs_Test()
         {
             var ctx = ExamplesTestHelpers.SetupCtxForTiny2Sm();
-            CHeaderBuilder builder = new CHeaderBuilder(ctx);
+            CHeaderBuilder builder = new(ctx);
             OutputFile file = new(ctx, ctx.hFileSb);
 
             builder.OutputTypedefs(file);

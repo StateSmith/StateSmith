@@ -3,209 +3,171 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 
-namespace StateSmith.Output.C99BalancedCoder1
+namespace StateSmith.Output.C99BalancedCoder1;
+
+public class OutputFile
 {
-    public class OutputFileChangeTracker
+    readonly CodeGenContext ctx;
+    readonly StringBuilder sb;
+    private readonly CodeStyleSettings styler;
+    private int indentLevel = 0;
+    private bool lineIncomplete = false;
+
+    private bool lineBreakBeforeMoreCode = false;
+
+    public OutputFile(CodeGenContext codeGenContext, StringBuilder fileStringBuilder)
     {
-        private OutputFile outputFile;
-        private int lastStringBufferLength;
+        ctx = codeGenContext;
+        sb = fileStringBuilder;
+        styler = codeGenContext.style;
+    }
 
-        public OutputFileChangeTracker(OutputFile outputFile)
+    public void RequestNewLineBeforeMoreCode()
+    {
+        lineBreakBeforeMoreCode = true;
+    }
+
+    public OutputFileChangeTracker GetChangeTracker()
+    {
+        return new OutputFileChangeTracker(this);
+    }
+
+    public void StartCodeBlock(bool forceNewLine = false)
+    {
+        if (styler.BracesOnNewLines || forceNewLine)
         {
-            this.outputFile = outputFile;
-            Reset();
+            MaybeFinishPartialLine();
+            Append("{");
+        }
+        else
+        {
+            AppendWithoutIndent(" {");
         }
 
-        public bool TestChanged()
+        FinishLine();
+        indentLevel++;
+    }
+
+    /// <summary>
+    /// Doesn't try to finish line first (depending on style settings).
+    /// </summary>
+    public void StartCodeBlockHere()
+    {
+        Append("{");
+        FinishLine();
+        indentLevel++;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="codeAfterBrace"></param>
+    /// <param name="forceNewLine">probably the only time this should be false is when rendering in if/else</param>
+    /// <exception cref="InvalidOperationException"></exception>
+    public void FinishCodeBlock(string codeAfterBrace = "", bool forceNewLine = true)
+    {
+        indentLevel--;
+        if (indentLevel < 0)
         {
-            return outputFile.GetStringBufferLength() != lastStringBufferLength;
+            throw new InvalidOperationException("indent went negative");
         }
 
-        public void Reset()
-        {
-            lastStringBufferLength = outputFile.GetStringBufferLength();
-        }
+        lineBreakBeforeMoreCode = false;
 
-        public bool PopChanged()
-        {
-            bool changed = TestChanged();
-            Reset();
-            return changed;
-        }
+        Append("}");
+        AppendWithoutIndent(codeAfterBrace); // this part shouldn't be indented
 
-        public void OutputNewLineOnChange()
+        if (styler.BracesOnNewLines || forceNewLine)
         {
-            if (PopChanged())
-            {
-                outputFile.AppendLine();
-            }
+            FinishLine();
         }
     }
 
-    public class OutputFile
+    public void AppendLines(string codeLines)
     {
-        readonly CodeGenContext ctx;
-        readonly StringBuilder sb;
-        private readonly CodeStyleSettings styler;
-        private int indentLevel = 0;
-        private bool lineIncomplete = false;
-
-        private bool lineBreakBeforeMoreCode = false;
-
-        public OutputFile(CodeGenContext codeGenContext, StringBuilder fileStringBuilder)
+        var lines = StringUtils.SplitIntoLines(codeLines);
+        foreach (var line in lines)
         {
-            ctx = codeGenContext;
-            sb = fileStringBuilder;
-            styler = codeGenContext.style;
+            AppendLine(line);
         }
+    }
 
-        public void RequestNewLineBeforeMoreCode()
+    public void AppendLinesIfNotBlank(string code)
+    {
+        if (code.Length == 0)
         {
-            lineBreakBeforeMoreCode = true;
+            return;
         }
+        AppendLines(code);
+    }
 
-        public OutputFileChangeTracker GetChangeTracker()
+    public void AppendLine(string codeLine = "")
+    {
+        Append(codeLine);
+        FinishLine();
+    }
+
+    public void AppendDetectNewlines(string code = "")
+    {
+        var lines = StringUtils.SplitIntoLines(code);
+        foreach (var line in lines)
         {
-            return new OutputFileChangeTracker(this);
-        }
-
-        public void StartCodeBlock(bool forceNewLine = false)
-        {
-            if (styler.BracesOnNewLines || forceNewLine)
-            {
-                MaybeFinishPartialLine();
-                Append("{");
-            }
-            else
-            {
-                AppendWithoutIndent(" {");
-            }
-
-            FinishLine();
-            indentLevel++;
-        }
-
-        /// <summary>
-        /// Doesn't try to finish line first (depending on style settings).
-        /// </summary>
-        public void StartCodeBlockHere()
-        {
-            Append("{");
-            FinishLine();
-            indentLevel++;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="codeAfterBrace"></param>
-        /// <param name="forceNewLine">probably the only time this should be false is when rendering in if/else</param>
-        /// <exception cref="InvalidOperationException"></exception>
-        public void FinishCodeBlock(string codeAfterBrace = "", bool forceNewLine = true)
-        {
-            indentLevel--;
-            if (indentLevel < 0)
-            {
-                throw new InvalidOperationException("indent went negative");
-            }
-
-            lineBreakBeforeMoreCode = false;
-
-            Append("}");
-            AppendWithoutIndent(codeAfterBrace); // this part shouldn't be indented
-
-            if (styler.BracesOnNewLines || forceNewLine)
+            Append(line);
+            if (lines.Length > 1)
             {
                 FinishLine();
             }
         }
+    }
 
-        public void AppendLines(string codeLines)
+    public void AppendWithoutIndent(string code = "")
+    {
+        if (code.Length == 0)
         {
-            var lines = StringUtils.SplitIntoLines(codeLines);
-            foreach (var line in lines)
-            {
-                AppendLine(line);
-            }
+            return;
         }
 
-        public void AppendLinesIfNotBlank(string code)
+        lineIncomplete = true;
+        sb.Append(code);
+    }
+
+    public void Append(string code = "")
+    {
+        if (lineBreakBeforeMoreCode)
         {
-            if (code.Length == 0)
-            {
-                return;
-            }
-            AppendLines(code);
+            lineBreakBeforeMoreCode = false;
+            AppendLine();
         }
 
-        public void AppendLine(string codeLine = "")
+        styler.Indent(sb, indentLevel);
+        AppendWithoutIndent(code);
+    }
+
+    public void FinishLine(string code = "")
+    {
+        AppendWithoutIndent(code);
+        AppendWithoutIndent(styler.Newline);
+        lineIncomplete = false;
+    }
+
+    public void MaybeFinishPartialLine(string code = "")
+    {
+        AppendWithoutIndent(code);
+
+        if (lineIncomplete)
         {
-            Append(codeLine);
-            FinishLine();
-        }
-
-        public void AppendDetectNewlines(string code = "")
-        {
-            var lines = StringUtils.SplitIntoLines(code);
-            foreach (var line in lines)
-            {
-                Append(line);
-                if (lines.Length > 1)
-                {
-                    FinishLine();
-                }
-            }
-        }
-
-        public void AppendWithoutIndent(string code = "")
-        {
-            if (code.Length == 0)
-            {
-                return;
-            }
-
-            lineIncomplete = true;
-            sb.Append(code);
-        }
-
-        public void Append(string code = "")
-        {
-            if (lineBreakBeforeMoreCode)
-            {
-                lineBreakBeforeMoreCode = false;
-                AppendLine();
-            }
-
-            styler.Indent(sb, indentLevel);
-            AppendWithoutIndent(code);
-        }
-
-        public void FinishLine(string code = "")
-        {
-            AppendWithoutIndent(code);
             AppendWithoutIndent(styler.Newline);
-            lineIncomplete = false;
         }
+        lineIncomplete = false;
+    }
 
-        public void MaybeFinishPartialLine(string code = "")
-        {
-            AppendWithoutIndent(code);
+    public override string ToString()
+    {
+        return sb.ToString();
+    }
 
-            if (lineIncomplete)
-            {
-                AppendWithoutIndent(styler.Newline);
-            }
-            lineIncomplete = false;
-        }
-
-        public override string ToString()
-        {
-            return sb.ToString();
-        }
-
-        public int GetStringBufferLength()
-        {
-            return sb.Length;
-        }
+    public int GetStringBufferLength()
+    {
+        return sb.Length;
     }
 }
