@@ -49,7 +49,7 @@ typedef void (*Tiny2_Func)(Tiny2* sm);
 };
 ".ConvertLineEndingsToN();
             
-            //FIXME add vars
+            // could also add vars for testing
 
             string code = file.ToString();
             Assert.Equal(expected, code);

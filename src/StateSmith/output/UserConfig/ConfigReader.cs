@@ -11,8 +11,8 @@ namespace StateSmith.Output.UserConfig
 {
     class ConfigReader
     {
-        Expander expander;
-        ExpanderFileReflection expanderFileReflection;
+        private readonly Expander expander;
+        private readonly ExpanderFileReflection expanderFileReflection;
         private readonly string expansionVarsPath;
 
         public ConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider) : this(expander, expansionVarsPathProvider.ExpansionVarsPath)
@@ -88,17 +88,6 @@ namespace StateSmith.Output.UserConfig
             FindExpansionsFromFields(configObject);
             FindExpansionsFromMethods(configObject);
             FindExpansionFromClasses(configObject);
-
-            var cLanguageSelected = true;
-
-            if (configObject is IRenderConfigC configC && cLanguageSelected)
-            {
-                //FIXME finish
-            }
-            else
-            {
-                throw new ArgumentException("2134684"); //TODO exception
-            }
         }
     }
 }

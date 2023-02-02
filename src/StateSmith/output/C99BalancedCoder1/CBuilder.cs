@@ -194,7 +194,6 @@ namespace StateSmith.Output.C99BalancedCoder1
             OutputFuncStateEnter(state);
             OutputFuncStateExit(state);
 
-            // fixme output event handlers
             string[] eventNames = GetEvents(state).ToArray();
             Array.Sort(eventNames);
 

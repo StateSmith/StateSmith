@@ -34,7 +34,6 @@ namespace StateSmith.SmGraph
 
         public override void Visit(State v)
         {
-            //FIXME finish
             VisitChildren(v);
         }
 
