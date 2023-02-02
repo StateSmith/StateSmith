@@ -1,4 +1,4 @@
-﻿namespace StateSmith.Input.DrawIo;
+namespace StateSmith.Input.DrawIo;
 #nullable enable
 
 public class MxBounds

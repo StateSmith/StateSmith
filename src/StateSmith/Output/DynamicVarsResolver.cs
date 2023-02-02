@@ -1,4 +1,4 @@
-﻿using StateSmith.Input.Expansions;
+using StateSmith.Input.Expansions;
 using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.SmGraph;
 

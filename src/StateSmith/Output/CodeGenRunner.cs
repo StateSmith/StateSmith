@@ -1,4 +1,4 @@
-﻿using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using System.IO;
@@ -28,7 +28,8 @@ internal class CodeGenRunner
         this.cHeaderBuilder = cHeaderBuilder;
     }
 
-    public void Run() {
+    public void Run()
+    {
         varsResolver.Resolve();
 
         reader.ReadObject(renderConfig);
