@@ -7,11 +7,11 @@ using static StateSmith.Output.StringUtils;
 
 namespace StateSmithTest.roslyn
 {
-    public class OvenCommon : IHasEventList
+    public class OvenCommon // : IHasEventList
     {
-        public string EventCommaList => @"
-            do, event1, event2
-        ";
+        //public string EventCommaList => @"
+        //    do, event1, event2
+        //";
     }
 
     /// <summary>
