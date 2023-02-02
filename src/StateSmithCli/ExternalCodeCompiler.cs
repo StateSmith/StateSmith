@@ -16,7 +16,6 @@ namespace StateSmith.Output
         public List<Diagnostic> failures;
     }
 
-
     //useful links:
     // https://github.com/tugberkugurlu/DotNetSamples/blob/0883fb2e8c723420663e2d60140ce7591c7b311a/csharp/RoslynCompileSample/RoslynCompileSample/Program.cs
     // https://laurentkempe.com/2019/02/18/dynamically-compile-and-run-code-using-dotNET-Core-3.0/
@@ -67,7 +66,7 @@ namespace StateSmith.Output
 
             if (type == null)
             {
-                throw new ArgumentException($"Could not load type {typeName} from assembly. Are you missing the namespace in the name?"); //TODO error handling
+                throw new ArgumentException($"Could not load type {typeName} from assembly. Are you missing the namespace in the name?"); // todo_low error handling
             }
 
             codeCompilationResult.createdObject = Activator.CreateInstance(type);

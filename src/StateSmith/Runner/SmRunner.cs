@@ -8,8 +8,6 @@ using StateSmith.Output;
 
 #nullable enable
 
-[assembly: CLSCompliant(false)]
-
 namespace StateSmith.Runner;
 
 /// <summary>
