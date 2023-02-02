@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.7.5-alpha]
+## WIP
 ### Added
 - added `SmTransformer` pipeline that allows custom user state machine transformation!
 - added back ability to support designs with multiple state machines via `RunnerSettings.stateMachineName`.
