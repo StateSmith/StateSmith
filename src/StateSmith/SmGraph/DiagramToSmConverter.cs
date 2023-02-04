@@ -7,260 +7,267 @@ using System.Text.RegularExpressions;
 
 #nullable enable
 
-namespace StateSmith.SmGraph
+namespace StateSmith.SmGraph;
+
+public interface IDiagramVerticesProvider
 {
-    public class DiagramToSmConverter
+    List<Vertex> GetRootVertices();
+}
+
+public class DiagramToSmConverter : IDiagramVerticesProvider
+{
+    public const string RenderConfigString = "$RenderConfig";
+    public const string InitialStateString = "$initial_state";
+    public const string HistoryStateString = "$h";
+    public const string HistoryContinueString = "$hc";
+
+    public List<Vertex> rootVertices = new();
+
+    private readonly List<string> eventNames = new();
+    private readonly Dictionary<DiagramNode, Vertex> diagramVertexMap = new();
+
+    public List<Vertex> GetRootVertices() => rootVertices;
+
+    /// <summary>
+    /// Call this method when you want to support a custom input source.
+    /// </summary>
+    /// <param name="rootNodes"></param>
+    /// <param name="edges"></param>
+    public void CompileDiagramNodesEdges(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
     {
-        public const string RenderConfigString = "$RenderConfig";
-        public const string InitialStateString = "$initial_state";
-        public const string HistoryStateString = "$h";
-        public const string HistoryContinueString = "$hc";
-
-        public List<Vertex> rootVertices = new();
-
-        private readonly List<string> eventNames = new();
-        private readonly Dictionary<DiagramNode, Vertex> diagramVertexMap = new();
-
-        /// <summary>
-        /// Call this method when you want to support a custom input source.
-        /// </summary>
-        /// <param name="rootNodes"></param>
-        /// <param name="edges"></param>
-        public void CompileDiagramNodesEdges(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
+        foreach (var node in rootNodes)
         {
-            foreach (var node in rootNodes)
-            {
-                var vertex = ProcessNode(node, parentVertex: null);
+            var vertex = ProcessNode(node, parentVertex: null);
 
-                if (vertex != null)
-                    rootVertices.Add(vertex);
-            }
-
-            foreach (var edge in edges)
-            {
-                ProcessEdge(edge);
-            }
+            if (vertex != null)
+                rootVertices.Add(vertex);
         }
 
-        private void ProcessEdge(Input.DiagramEdge edge)
+        foreach (var edge in edges)
         {
-            try
-            {
-                ProcessEdgeInner(edge);
-            }
-            catch (Exception ex)
-            {
-                if (ex is DiagramEdgeParseException)
-                {
-                    throw;  // let it continue
-                }
+            ProcessEdge(edge);
+        }
+    }
 
-                DiagramEdgeException diagramEdgeException = new DiagramEdgeException(edge, $"Failed while converting {nameof(DiagramEdge)} with id: `{edge.id}` to state transition", ex);
-                throw diagramEdgeException;
+    private void ProcessEdge(Input.DiagramEdge edge)
+    {
+        try
+        {
+            ProcessEdgeInner(edge);
+        }
+        catch (Exception ex)
+        {
+            if (ex is DiagramEdgeParseException)
+            {
+                throw;  // let it continue
             }
+
+            DiagramEdgeException diagramEdgeException = new DiagramEdgeException(edge, $"Failed while converting {nameof(DiagramEdge)} with id: `{edge.id}` to state transition", ex);
+            throw diagramEdgeException;
+        }
+    }
+
+    private Vertex GetVertexFromNode(DiagramNode node)
+    {
+        if (NodeHasState(node))
+        {
+            return diagramVertexMap[node];
         }
 
-        private Vertex GetVertexFromNode(DiagramNode node)
-        {
-            if (NodeHasState(node))
-            {
-                return diagramVertexMap[node];
-            }
+        throw new DiagramNodeException(node, $"Could not find State for {nameof(DiagramNode)} with id `{node.id}`.");
+    }
 
-            throw new DiagramNodeException(node, $"Could not find State for {nameof(DiagramNode)} with id `{node.id}`.");
+    private Vertex? TryGetVertexFromNode(DiagramNode node)
+    {
+        if (NodeHasState(node))
+        {
+            return diagramVertexMap[node];
         }
 
-        private Vertex? TryGetVertexFromNode(DiagramNode node)
-        {
-            if (NodeHasState(node))
-            {
-                return diagramVertexMap[node];
-            }
+        return null;
+    }
 
+    private bool NodeHasState(DiagramNode node)
+    {
+        return diagramVertexMap.ContainsKey(node);
+    }
+
+
+    private void ProcessEdgeInner(DiagramEdge edge)
+    {
+        var sourceVertex = GetVertexFromNode(edge.source);
+        var targetVertex = GetVertexFromNode(edge.target);
+
+        LabelParser labelParser = new LabelParser();
+        List<NodeBehavior> nodeBehaviors = labelParser.ParseEdgeLabel(edge.label);
+
+        PrintAndThrowIfEdgeParseFail(edge, sourceVertex, targetVertex, labelParser);
+
+        if (nodeBehaviors.Count == 0)
+        {
+            sourceVertex.AddBehavior(new Behavior(owningVertex: sourceVertex, transitionTarget: targetVertex, diagramId: edge.id));
+        }
+
+        foreach (var nodeBehavior in nodeBehaviors)
+        {
+            var behavior = ConvertBehavior(owningVertex: sourceVertex, targetVertex: targetVertex, nodeBehavior: nodeBehavior);
+            behavior.DiagramId = edge.id;
+            sourceVertex.AddBehavior(behavior);
+        }
+    }
+
+    private static void PrintAndThrowIfEdgeParseFail(Input.DiagramEdge edge, Vertex sourceVertex, Vertex targetVertex, LabelParser labelParser)
+    {
+        if (labelParser.HasError())
+        {
+            throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, AntlrError.ErrorsToReasonStrings(labelParser.GetErrors(), "\n"));
+        }
+    }
+
+    private Vertex? ProcessNode(Input.DiagramNode diagramNode, Vertex? parentVertex)
+    {
+        if (diagramNode.label == null || diagramNode.label.Trim() == "")
+        {
             return null;
         }
 
-        private bool NodeHasState(DiagramNode node)
+        bool visitChildren = true;
+        Vertex thisVertex;
+
+        if (parentVertex is RenderConfigVertex)
         {
-            return diagramVertexMap.ContainsKey(node);
+            thisVertex = ParseRenderConfigOption(diagramNode);
+        }
+        else
+        {
+            thisVertex = ParseNode(diagramNode, parentVertex, ref visitChildren);
         }
 
+        thisVertex.DiagramId = diagramNode.id;
+        diagramVertexMap.Add(diagramNode, thisVertex);
 
-        private void ProcessEdgeInner(DiagramEdge edge)
+        parentVertex?.AddChild(thisVertex);
+
+        if (visitChildren)
         {
-            var sourceVertex = GetVertexFromNode(edge.source);
-            var targetVertex = GetVertexFromNode(edge.target);
-
-            LabelParser labelParser = new LabelParser();
-            List<NodeBehavior> nodeBehaviors = labelParser.ParseEdgeLabel(edge.label);
-
-            PrintAndThrowIfEdgeParseFail(edge, sourceVertex, targetVertex, labelParser);
-
-            if (nodeBehaviors.Count == 0)
+            foreach (var child in diagramNode.children)
             {
-                sourceVertex.AddBehavior(new Behavior(owningVertex: sourceVertex, transitionTarget: targetVertex, diagramId: edge.id));
-            }
-
-            foreach (var nodeBehavior in nodeBehaviors)
-            {
-                var behavior = ConvertBehavior(owningVertex: sourceVertex, targetVertex: targetVertex, nodeBehavior: nodeBehavior);
-                behavior.DiagramId = edge.id;
-                sourceVertex.AddBehavior(behavior);
+                ProcessNode(child, thisVertex);
             }
         }
 
-        private static void PrintAndThrowIfEdgeParseFail(Input.DiagramEdge edge, Vertex sourceVertex, Vertex targetVertex, LabelParser labelParser)
+        return thisVertex;
+    }
+
+    private static Vertex ParseNode(DiagramNode diagramNode, Vertex? parentVertex, ref bool visitChildren)
+    {
+        Vertex thisVertex;
+        LabelParser labelParser = new();
+        Node node = labelParser.ParseNodeLabel(diagramNode.label);
+        PrintAndThrowIfNodeParseFail(diagramNode, parentVertex, labelParser);
+
+        switch (node)
         {
-            if (labelParser.HasError())
-            {
-                throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, AntlrError.ErrorsToReasonStrings(labelParser.GetErrors(), "\n"));
-            }
-        }
+            default:
+                throw new ArgumentException("Unknown node: " + node);
 
-        private Vertex? ProcessNode(Input.DiagramNode diagramNode, Vertex? parentVertex)
-        {
-            if (diagramNode.label == null || diagramNode.label.Trim() == "")
-            {
-                return null;
-            }
-
-            bool visitChildren = true;
-            Vertex thisVertex;
-
-            if (parentVertex is RenderConfigVertex)
-            {
-                thisVertex = ParseRenderConfigOption(diagramNode);
-            }
-            else
-            {
-                thisVertex = ParseNode(diagramNode, parentVertex, ref visitChildren);
-            }
-
-            thisVertex.DiagramId = diagramNode.id;
-            diagramVertexMap.Add(diagramNode, thisVertex);
-
-            parentVertex?.AddChild(thisVertex);
-
-            if (visitChildren)
-            {
-                foreach (var child in diagramNode.children)
+            case NotesNode notesNode:
                 {
-                    ProcessNode(child, thisVertex);
+                    var noteVertex = new NotesVertex();
+                    noteVertex.notes = notesNode.notes;
+                    thisVertex = noteVertex;
+                    visitChildren = true;
+                    break;
                 }
-            }
 
-            return thisVertex;
-        }
+            case StateMachineNode stateMachineNode:
+                {
+                    var sm = new StateMachine(stateMachineNode.name);
+                    sm.nameIsGloballyUnique = true;
+                    thisVertex = sm;
+                    break;
+                }
 
-        private static Vertex ParseNode(DiagramNode diagramNode, Vertex? parentVertex, ref bool visitChildren)
-        {
-            Vertex thisVertex;
-            LabelParser labelParser = new();
-            Node node = labelParser.ParseNodeLabel(diagramNode.label);
-            PrintAndThrowIfNodeParseFail(diagramNode, parentVertex, labelParser);
-
-            switch (node)
-            {
-                default:
-                    throw new ArgumentException("Unknown node: " + node);
-
-                case NotesNode notesNode:
+            case StateNode stateNode:
+                {
+                    if (stateNode is OrthoStateNode orthoStateNode)
                     {
-                        var noteVertex = new NotesVertex();
-                        noteVertex.notes = notesNode.notes;
-                        thisVertex = noteVertex;
-                        visitChildren = true;
-                        break;
+                        var orthoState = new OrthoState(stateNode.stateName);
+                        thisVertex = orthoState;
+                        orthoState.order = Double.Parse(orthoStateNode.order);
+                        SetStateFromStateNode(stateNode, orthoState);
                     }
-
-                case StateMachineNode stateMachineNode:
+                    else
                     {
-                        var sm = new StateMachine(stateMachineNode.name);
-                        sm.nameIsGloballyUnique = true;
-                        thisVertex = sm;
-                        break;
-                    }
-
-                case StateNode stateNode:
-                    {
-                        if (stateNode is OrthoStateNode orthoStateNode)
+                        if (string.Equals(stateNode.stateName, InitialStateString, StringComparison.OrdinalIgnoreCase))
                         {
-                            var orthoState = new OrthoState(stateNode.stateName);
-                            thisVertex = orthoState;
-                            orthoState.order = Double.Parse(orthoStateNode.order);
-                            SetStateFromStateNode(stateNode, orthoState);
+                            thisVertex = new InitialState();
+                        }
+                        else if (string.Equals(stateNode.stateName, HistoryStateString, StringComparison.OrdinalIgnoreCase))
+                        {
+                            thisVertex = new HistoryVertex();
+                        }
+                        else if (string.Equals(stateNode.stateName, HistoryContinueString, StringComparison.OrdinalIgnoreCase))
+                        {
+                            thisVertex = new HistoryContinueVertex();
+                        }
+                        else if (string.Equals(stateNode.stateName, RenderConfigString, StringComparison.OrdinalIgnoreCase))
+                        {
+                            thisVertex = new RenderConfigVertex();
                         }
                         else
                         {
-                            if (string.Equals(stateNode.stateName, InitialStateString, StringComparison.OrdinalIgnoreCase))
-                            {
-                                thisVertex = new InitialState();
-                            }
-                            else if (string.Equals(stateNode.stateName, HistoryStateString, StringComparison.OrdinalIgnoreCase))
-                            {
-                                thisVertex = new HistoryVertex();
-                            }
-                            else if (string.Equals(stateNode.stateName, HistoryContinueString, StringComparison.OrdinalIgnoreCase))
-                            {
-                                thisVertex = new HistoryContinueVertex();
-                            }
-                            else if (string.Equals(stateNode.stateName, RenderConfigString, StringComparison.OrdinalIgnoreCase))
-                            {
-                                thisVertex = new RenderConfigVertex();
-                            }
-                            else
-                            {
-                                var state = new State(stateNode.stateName);
-                                thisVertex = state;
-                                SetStateFromStateNode(stateNode, state);
-                            }
+                            var state = new State(stateNode.stateName);
+                            thisVertex = state;
+                            SetStateFromStateNode(stateNode, state);
                         }
-
-                        ConvertBehaviors(thisVertex, stateNode);
-                        break;
                     }
 
-                case EntryPointNode pointNode:
+                    ConvertBehaviors(thisVertex, stateNode);
+                    break;
+                }
+
+            case EntryPointNode pointNode:
+                {
+                    thisVertex = new EntryPoint(pointNode.label);
+
+                    if (diagramNode.children.Count > 0)
                     {
-                        thisVertex = new EntryPoint(pointNode.label);
-
-                        if (diagramNode.children.Count > 0)
-                        {
-                            throw new DiagramNodeException(diagramNode, $"entry points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
-                        }
-                        break;
+                        throw new DiagramNodeException(diagramNode, $"entry points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
                     }
+                    break;
+                }
 
-                case ExitPointNode pointNode:
+            case ExitPointNode pointNode:
+                {
+                    thisVertex = new ExitPoint(pointNode.label);
+
+                    if (diagramNode.children.Count > 0)
                     {
-                        thisVertex = new ExitPoint(pointNode.label);
-
-                        if (diagramNode.children.Count > 0)
-                        {
-                            throw new DiagramNodeException(diagramNode, $"exit points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
-                        }
-                        break;
+                        throw new DiagramNodeException(diagramNode, $"exit points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
                     }
+                    break;
+                }
 
-                case ChoiceNode pointNode:
+            case ChoiceNode pointNode:
+                {
+                    thisVertex = new ChoicePoint(pointNode.label);
+
+                    if (diagramNode.children.Count > 0)
                     {
-                        thisVertex = new ChoicePoint(pointNode.label);
-
-                        if (diagramNode.children.Count > 0)
-                        {
-                            throw new DiagramNodeException(diagramNode, $"choice points cannot have children.");
-                        }
-                        break;
+                        throw new DiagramNodeException(diagramNode, $"choice points cannot have children.");
                     }
-            }
-
-            return thisVertex;
+                    break;
+                }
         }
 
-        private static Vertex ParseRenderConfigOption(DiagramNode diagramNode)
-        {
-            Vertex thisVertex;
-            var match = Regex.Match(diagramNode.label, @"(?x)
+        return thisVertex;
+    }
+
+    private static Vertex ParseRenderConfigOption(DiagramNode diagramNode)
+    {
+        Vertex thisVertex;
+        var match = Regex.Match(diagramNode.label, @"(?x)
                     ^[ \t]*
                     (?<option_name>
                         [$\w]+
@@ -275,64 +282,63 @@ namespace StateSmith.SmGraph
                     $
                 ");
 
-            if (!match.Success)
-            {
-                throw new DiagramNodeException(diagramNode, "Failed parsing RenderConfig option");
-            }
-
-            thisVertex = new RenderConfigOptionVertex(match.Groups["option_name"].Value, match.Groups["option_contents"].Value);
-            return thisVertex;
+        if (!match.Success)
+        {
+            throw new DiagramNodeException(diagramNode, "Failed parsing RenderConfig option");
         }
 
-        private static void PrintAndThrowIfNodeParseFail(Input.DiagramNode diagramNode, Vertex? parentVertex, LabelParser labelParser)
-        {
-            if (labelParser.HasError())
-            {
-                string reasons = AntlrError.ErrorsToReasonStrings(labelParser.GetErrors(), separator: "\n           ");
+        thisVertex = new RenderConfigOptionVertex(match.Groups["option_name"].Value, match.Groups["option_contents"].Value);
+        return thisVertex;
+    }
 
-                string parentPath = VertexPathDescriber.Describe(parentVertex);
-                string fullMessage = $@"Failed parsing node label
+    private static void PrintAndThrowIfNodeParseFail(Input.DiagramNode diagramNode, Vertex? parentVertex, LabelParser labelParser)
+    {
+        if (labelParser.HasError())
+        {
+            string reasons = AntlrError.ErrorsToReasonStrings(labelParser.GetErrors(), separator: "\n           ");
+
+            string parentPath = VertexPathDescriber.Describe(parentVertex);
+            string fullMessage = $@"Failed parsing node label
 Parent path: `{parentPath}`
 Label: `{diagramNode.label}`
 Diagram id: `{diagramNode.id}`
 Reason(s): {reasons}
 ";
-                throw new ArgumentException(fullMessage);
-            }
+            throw new ArgumentException(fullMessage);
         }
+    }
 
-        private static void ConvertBehaviors(Vertex vertex, StateNode stateNode)
+    private static void ConvertBehaviors(Vertex vertex, StateNode stateNode)
+    {
+        foreach (var nodeBehavior in stateNode.behaviors)
         {
-            foreach (var nodeBehavior in stateNode.behaviors)
-            {
-                Behavior behavior = ConvertBehavior(vertex, nodeBehavior);
-                vertex.AddBehavior(behavior);
-            }
+            Behavior behavior = ConvertBehavior(vertex, nodeBehavior);
+            vertex.AddBehavior(behavior);
         }
+    }
 
-        private static Behavior ConvertBehavior(Vertex owningVertex, NodeBehavior nodeBehavior, Vertex? targetVertex = null)
+    private static Behavior ConvertBehavior(Vertex owningVertex, NodeBehavior nodeBehavior, Vertex? targetVertex = null)
+    {
+        var behavior = new Behavior(owningVertex: owningVertex, transitionTarget: targetVertex)
         {
-            var behavior = new Behavior(owningVertex: owningVertex, transitionTarget: targetVertex)
-            {
-                DiagramId = owningVertex.DiagramId, // may be overwritten for edges
-                actionCode = nodeBehavior.actionCode ?? "",
-                guardCode = nodeBehavior.guardCode ?? "",
-                triggers = nodeBehavior.triggers,
-                viaEntry = nodeBehavior.viaEntry,
-                viaExit = nodeBehavior.viaExit,
-            };
+            DiagramId = owningVertex.DiagramId, // may be overwritten for edges
+            actionCode = nodeBehavior.actionCode ?? "",
+            guardCode = nodeBehavior.guardCode ?? "",
+            triggers = nodeBehavior.triggers,
+            viaEntry = nodeBehavior.viaEntry,
+            viaExit = nodeBehavior.viaExit,
+        };
 
-            if (nodeBehavior.order != null)
-            {
-                behavior.order = Double.Parse(nodeBehavior.order);
-            }
-
-            return behavior;
-        }
-
-        private static void SetStateFromStateNode(StateNode stateNode, State state)
+        if (nodeBehavior.order != null)
         {
-            state.nameIsGloballyUnique = stateNode.stateNameIsGlobal;
+            behavior.order = Double.Parse(nodeBehavior.order);
         }
+
+        return behavior;
+    }
+
+    private static void SetStateFromStateNode(StateNode stateNode, State state)
+    {
+        state.nameIsGloballyUnique = stateNode.stateNameIsGlobal;
     }
 }

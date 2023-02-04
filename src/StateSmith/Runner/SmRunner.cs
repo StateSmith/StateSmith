@@ -79,9 +79,6 @@ public class SmRunner
         inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
         FindStateMachine();
         inputSmBuilder.FinishRunningCompiler();
-
-        StateMachine sm = inputSmBuilder.Sm.ThrowIfNull();
-        sp.SmGetter = () => sm;
     }
 
     protected void RunCodeGen()
@@ -101,7 +98,7 @@ public class SmRunner
             inputSmBuilder.FindSingleStateMachine();
         }
 
-        OutputStageMessage($"State machine `{inputSmBuilder.Sm!.Name}` selected.");
+        OutputStageMessage($"State machine `{inputSmBuilder.GetStateMachine!.Name}` selected.");
     }
 
     private void OutputCompilingDiagramMessage()

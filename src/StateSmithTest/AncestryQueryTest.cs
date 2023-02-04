@@ -26,7 +26,7 @@ namespace StateSmithTest
         {
             inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
-            root = inputSmBuilder.Sm;
+            root = inputSmBuilder.GetStateMachine;
             var map = new NamedVertexMap(root);
             State GetState(string stateName) => map.GetState(stateName);
 

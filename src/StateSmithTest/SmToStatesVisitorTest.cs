@@ -16,7 +16,7 @@ public class SmToStatesVisitorTest
 
         SmToNamedVerticesVisitor visitor = new();
         inputSmBuilder.FindSingleStateMachine();
-        inputSmBuilder.Sm.Accept(visitor);
+        inputSmBuilder.GetStateMachine.Accept(visitor);
 
         visitor.namedVertices.Count.Should().Be(7);
 

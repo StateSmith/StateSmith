@@ -30,7 +30,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         // could do more tests here for all nodes and edges
         runner.ConvertNodesToVertices(converter.Roots, converter.Edges);
         runner.FindSingleStateMachine();
-        runner.Sm.Name.Should().Be("Design1Sm_svg");
+        runner.GetStateMachine.Name.Should().Be("Design1Sm_svg");
         ValidateSm(runner);
     }
 
@@ -43,7 +43,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
-        runner.Sm.Name.Should().Be("Design1Sm_svg");
+        runner.GetStateMachine.Name.Should().Be("Design1Sm_svg");
         ValidateSm(runner);
     }
 
@@ -58,7 +58,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
-        runner.Sm.Name.Should().Be("Design1Sm_compressed");
+        runner.GetStateMachine.Name.Should().Be("Design1Sm_compressed");
         ValidateSm(runner);
     }
 
@@ -73,7 +73,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
-        runner.Sm.Name.Should().Be("Design1Sm_regular");
+        runner.GetStateMachine.Name.Should().Be("Design1Sm_regular");
         ValidateSm(runner);
     }
 
@@ -88,7 +88,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
 
-        runner.Sm.Name.Should().Be("Design1Sm_regular_dio");
+        runner.GetStateMachine.Name.Should().Be("Design1Sm_regular_dio");
         ValidateSm(runner);
     }
 
@@ -100,7 +100,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         InputSmBuilder runner = new();
         runner.ConvertDrawIoFileNodesToVertices(filePath);
         runner.FindSingleStateMachine();
-        runner.Sm.Name.Should().Be("Design1Sm_with_image");
+        runner.GetStateMachine.Name.Should().Be("Design1Sm_with_image");
 
         runner.FinishRunningCompiler();
         ValidateSm(runner);
@@ -108,7 +108,7 @@ public class DrawIoSvgToSmDiagramConverterTests
 
     private static void ValidateSm(InputSmBuilder runner)
     {
-        var sm = runner.Sm;
+        var sm = runner.GetStateMachine;
         var map = new NamedVertexMap(sm);
 
         State GetState(string stateName) => map.GetState(stateName);

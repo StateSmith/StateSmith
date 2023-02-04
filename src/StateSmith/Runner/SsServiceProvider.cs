@@ -16,8 +16,15 @@ public class SsServiceProvider
 {
     private readonly IHost host;
 
-    // The StateMachine cannot be known at startup so we can't register it normally with the Service Provider.
+    /// <summary>
+    /// The StateMachine cannot be known at startup so we can't register it normally with the Service Provider.
+    /// </summary>
     public Func<StateMachine> SmGetter = () => throw new NotImplementedException();
+
+    /// <summary>
+    /// This info cannot be known at startup so we can't register it normally with the Service Provider.
+    /// </summary>
+    public Func<IDiagramVerticesProvider> IDiagramVerticesProviderGetter = () => throw new NotImplementedException();
 
     public SsServiceProvider(Action<HostBuilderContext, IServiceCollection>? preConfigAction = null, Action<HostBuilderContext, IServiceCollection>? postConfigAction = null)
     {
@@ -31,7 +38,9 @@ public class SsServiceProvider
                 services.AddSingleton<CodeGenContext>();
                 services.AddSingleton<SmTransformer, DefaultSmTransformer>();
                 services.AddSingleton<Expander>();
+                services.AddSingleton<IDiagramVerticesProvider>((sp) => IDiagramVerticesProviderGetter() );
 
+                services.AddTransient<RenderConfigVerticesProcessor>();
                 services.AddTransient<CodeGenRunner>();
                 services.AddTransient<MxCellsToSmDiagramConverter>();
                 services.AddTransient<DrawIoToSmDiagramConverter>();

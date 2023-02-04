@@ -1,6 +1,5 @@
 using StateSmith.SmGraph.Visitors;
 using System.Collections.Generic;
-using StateSmith.SmGraph;
 using System.Linq;
 
 #nullable enable

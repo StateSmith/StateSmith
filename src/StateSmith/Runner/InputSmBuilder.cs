@@ -15,6 +15,11 @@ using StateSmith.Common;
 
 namespace StateSmith.Runner;
 
+public interface ISmProvider
+{
+    StateMachine GetStateMachine();
+}
+
 /// <summary>
 /// This class converts an input diagram/design into a StateMachine vertex and finishes building/transforming
 /// the StateMachine vertex so that is ready for code generation.
@@ -26,12 +31,12 @@ namespace StateSmith.Runner;
 /// 
 /// Step 3: finish building/transforming the selected StateMachine vertex so that is ready for code generation.
 /// </summary>
-public class InputSmBuilder
+public class InputSmBuilder : ISmProvider
 {
     public readonly SmTransformer transformer;
-    public StateMachine Sm => sm.ThrowIfNull();
+    public StateMachine GetStateMachine() => sm.ThrowIfNull();
 
-    protected StateMachine? sm;
+    protected StateMachine? sm { get; set; }
     internal DiagramToSmConverter diagramToSmConverter = new();
     internal SsServiceProvider ssServiceProvider;
     protected CNameMangler mangler;
@@ -43,6 +48,7 @@ public class InputSmBuilder
         this.ssServiceProvider = ssServiceProvider;
         mangler = ssServiceProvider.GetServiceOrCreateInstance();
         transformer = ssServiceProvider.GetServiceOrCreateInstance();
+        ssServiceProvider.IDiagramVerticesProviderGetter = () => diagramToSmConverter;
     }
 
     /// <summary>
@@ -134,6 +140,7 @@ public class InputSmBuilder
     public void SetStateMachineRoot(StateMachine stateMachine)
     {
         diagramToSmConverter.rootVertices = new List<Vertex>() { stateMachine };
+        SetSmVar(stateMachine);
     }
 
     //------------------------------------------------------------------------
@@ -143,9 +150,10 @@ public class InputSmBuilder
     /// </summary>
     public void FindStateMachineByName(string stateMachineName)
     {
-        sm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
-        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Where(s => s.Name  == stateMachineName).Single(); };
+        var tempSm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
+        var action = () => { tempSm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Where(s => s.Name == stateMachineName).Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{stateMachineName}`.", e));
+        SetSmVar(tempSm);
     }
 
     /// <summary>
@@ -154,9 +162,10 @@ public class InputSmBuilder
     [MemberNotNull(nameof(sm))]
     public void FindSingleStateMachine()
     {
-        sm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
-        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Single(); };
+        var tempSm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
+        var action = () => { tempSm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {diagramToSmConverter.rootVertices.OfType<StateMachine>().Count()}.", e));
+        SetSmVar(tempSm);
     }
 
     //------------------------------------------------------------------------
@@ -167,8 +176,8 @@ public class InputSmBuilder
     public void FinishRunningCompiler()
     {
         SetupForSingleSm();
-        mangler.SetStateMachine(Sm);
-        transformer.RunTransformationPipeline(Sm);
+        mangler.SetStateMachine(GetStateMachine());
+        transformer.RunTransformationPipeline(GetStateMachine());
     }
 
     [MemberNotNull(nameof(sm))]
@@ -178,5 +187,12 @@ public class InputSmBuilder
         {
             FindSingleStateMachine();
         }
+    }
+
+    [MemberNotNull(nameof(sm))]
+    private void SetSmVar(StateMachine stateMachine)
+    {
+        sm = stateMachine;
+        ssServiceProvider.SmGetter = () => GetStateMachine;
     }
 }

@@ -19,7 +19,7 @@ namespace StateSmithTest
         public YedHiddenEdgeTests()
         {
             inputSmBuilder = ExamplesTestHelpers.SetupAndValidateCompilerForTestInputFile("yed-hidden-edges1.graphml");
-            root = inputSmBuilder.Sm;
+            root = inputSmBuilder.GetStateMachine;
             var map = new NamedVertexMap(root);
             State GetState(string stateName) => map.GetState(stateName);
             state_1 = GetState("STATE_1");
@@ -69,7 +69,7 @@ namespace StateSmithTest
 
         private void Validate()
         {
-            DefaultSmTransformer.Validate(inputSmBuilder.Sm);
+            DefaultSmTransformer.Validate(inputSmBuilder.GetStateMachine);
         }
 
         [Fact]

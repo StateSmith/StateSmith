@@ -19,7 +19,7 @@ public class RenderConfigC
     public string VariableDeclarations = "";
 
     /// <summary>
-    /// Not used yet. A comma seperated list of allowed event names. TODO case sensitive?
+    /// Not used yet. A comma separated list of allowed event names. TODO case sensitive?
     /// </summary>
     public string EventCommaList = "";
 
