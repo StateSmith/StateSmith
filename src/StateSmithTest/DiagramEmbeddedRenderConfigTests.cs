@@ -1,0 +1,107 @@
+using Xunit;
+using StateSmith.Runner;
+using StateSmith.SmGraph;
+using System.Linq;
+using StateSmith.Output.UserConfig;
+using FluentAssertions;
+using System.Reflection;
+
+namespace StateSmithTest;
+
+/// <summary>
+/// https://github.com/StateSmith/StateSmith/issues/23
+/// </summary>
+public class DiagramEmbeddedRenderConfigTests
+{
+    readonly InputSmBuilder runner = new();
+
+    [Fact]
+    public void ProperConversionToVertices()
+    {
+        string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "RenderConfig1.drawio";
+        runner.ConvertDiagramFileToSmVertices(filePath);
+
+        var renderConfig = (RenderConfigVertex)runner.diagramToSmConverter.rootVertices[1];
+
+        ConfigOptionVertex vertex;
+
+        vertex = GetOptionVertex(renderConfig, "HFileIncludes");
+        vertex.value.ShouldBeShowDiff("""
+            // top level - HFileIncludes
+            """);
+
+        vertex = GetOptionVertex(renderConfig, "CFileIncludes");
+        vertex.value.ShouldBeShowDiff("""
+            // top level - CFileIncludes
+            """);
+
+        vertex = GetOptionVertex(renderConfig, "VariableDeclarations");
+        vertex.value.ShouldBeShowDiff("""
+            // top level - VariableDeclarations
+            """);
+
+        //vertex = GetOptionVertex(renderConfig, "AutoExpandedVars");
+        //vertex.value.ShouldBeShowDiff("""
+        //    uint8_t count_2;  // some user description for count_2 field
+        //    """);
+    }
+
+    [Fact]
+    public void CopyDataFromDiagramRenderConfig()
+    {
+        string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "RenderConfig1.drawio";
+        runner.ConvertDiagramFileToSmVertices(filePath);
+        runner.FinishRunning();
+
+        RenderConfigC renderConfig = runner.sp.GetServiceOrCreateInstance();
+
+        renderConfig.HFileIncludes.ShouldBeShowDiff("""
+            // top level - HFileIncludes
+            // sm level - HFileIncludes
+            """);
+
+        renderConfig.CFileIncludes.ShouldBeShowDiff("""
+            // top level - CFileIncludes
+            // sm level - CFileIncludes
+            """);
+
+        renderConfig.VariableDeclarations.ShouldBeShowDiff("""
+            // top level - VariableDeclarations
+            // sm level - VariableDeclarations
+            """);
+
+        renderConfig.HFileTop.ShouldBeShowDiff("""
+            // top level - HFileTop
+            // sm level - HFileTop
+            """);
+
+        renderConfig.CFileTop.ShouldBeShowDiff("""
+            // top level - CFileTop
+            // sm level - CFileTop
+            """);
+
+        renderConfig.EventCommaList.ShouldBeShowDiff("""
+
+            """);
+
+        const int expectedOptionCount = 6;
+        GetRenderConfigFields().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+        GetIRenderConfigCProperties().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+    }
+
+    private static FieldInfo[] GetRenderConfigFields()
+    {
+        return typeof(RenderConfigC).GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+    }
+
+    private static MethodInfo[] GetIRenderConfigCProperties()
+    {
+        return typeof(IRenderConfigC).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.Public);
+    }
+
+    private static ConfigOptionVertex GetOptionVertex(RenderConfigVertex renderConfig, string name)
+    {
+        return renderConfig.Children.OfType<ConfigOptionVertex>().Where(v => v.name == name).Single();
+    }
+}
+

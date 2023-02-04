@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 ## WIP
+### Added
+- allow defining render config in diagram
+  - https://github.com/StateSmith/StateSmith/issues/23
+
+### Fixed
+- draw.io - convert HTML breaks `<br>` to new line characters.
+
 
 ---
 

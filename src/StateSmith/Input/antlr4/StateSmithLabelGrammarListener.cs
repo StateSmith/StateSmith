@@ -81,15 +81,15 @@ public interface IStateSmithLabelGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStatemachine_defn([NotNull] StateSmithLabelGrammarParser.Statemachine_defnContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_text"/>.
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.any_text"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNotes_text([NotNull] StateSmithLabelGrammarParser.Notes_textContext context);
+	void EnterAny_text([NotNull] StateSmithLabelGrammarParser.Any_textContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_text"/>.
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.any_text"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNotes_text([NotNull] StateSmithLabelGrammarParser.Notes_textContext context);
+	void ExitAny_text([NotNull] StateSmithLabelGrammarParser.Any_textContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_node"/>.
 	/// </summary>
@@ -100,6 +100,16 @@ public interface IStateSmithLabelGrammarListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitNotes_node([NotNull] StateSmithLabelGrammarParser.Notes_nodeContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.config_node"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConfig_node([NotNull] StateSmithLabelGrammarParser.Config_nodeContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.config_node"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConfig_node([NotNull] StateSmithLabelGrammarParser.Config_nodeContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.state_behaviors"/>.
 	/// </summary>

@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using FluentAssertions;
 using StateSmith.SmGraph;
 using StateSmith.SmGraph.Visitors;
@@ -16,7 +16,7 @@ public class SmToStatesVisitorTest
 
         SmToNamedVerticesVisitor visitor = new();
         inputSmBuilder.FindSingleStateMachine();
-        inputSmBuilder.Sm.Accept(visitor);
+        inputSmBuilder.GetStateMachine().Accept(visitor);
 
         visitor.namedVertices.Count.Should().Be(7);
 

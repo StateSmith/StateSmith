@@ -66,10 +66,10 @@ state group1 {
     private static void CompileAndExpectException(string plantUmlText, string expectedWildcardPattern)
     {
         InputSmBuilder inputSmBuilder = new();
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
 
         Action action = () => {
-            inputSmBuilder.FinishRunningCompiler();
+            inputSmBuilder.FinishRunning();
         };
         action.Should().Throw<VertexValidationException>().WithMessage(expectedWildcardPattern);
     }

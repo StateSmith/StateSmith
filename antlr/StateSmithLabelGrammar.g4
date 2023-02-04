@@ -24,6 +24,8 @@ some_ws: (HWS | LINE_ENDER)+ ;
 node:
     notes_node
     |
+    config_node
+    |
     exit_point
     |
     entry_point
@@ -48,7 +50,7 @@ statemachine_defn:
     EOF
     ;
 
-notes_text:
+any_text:
     .*?
     ;
 
@@ -57,7 +59,23 @@ notes_node:
     '$NOTES'
     (
         some_ws
-        notes_text
+        any_text
+    )?
+    EOF
+    ;
+
+// https://github.com/StateSmith/StateSmith/issues/23
+config_node:
+    optional_any_space
+    '$CONFIG'
+    ohs
+    ':'
+    ohs
+    IDENTIFIER
+    ohs
+    (
+        LINE_ENDER
+        any_text
     )?
     EOF
     ;
@@ -95,6 +113,7 @@ state_defn:
     EOF
     ;
 
+// todo_low - remove.
 global_id:
     '#'
     IDENTIFIER

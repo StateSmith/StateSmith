@@ -62,17 +62,23 @@ public interface IStateSmithLabelGrammarVisitor<Result> : IParseTreeVisitor<Resu
 	/// <return>The visitor result.</return>
 	Result VisitStatemachine_defn([NotNull] StateSmithLabelGrammarParser.Statemachine_defnContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_text"/>.
+	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.any_text"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNotes_text([NotNull] StateSmithLabelGrammarParser.Notes_textContext context);
+	Result VisitAny_text([NotNull] StateSmithLabelGrammarParser.Any_textContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_node"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitNotes_node([NotNull] StateSmithLabelGrammarParser.Notes_nodeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.config_node"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitConfig_node([NotNull] StateSmithLabelGrammarParser.Config_nodeContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.state_behaviors"/>.
 	/// </summary>

@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph.Visitors;
 using System.Diagnostics;
 
 namespace StateSmith.SmGraph
@@ -10,6 +10,10 @@ namespace StateSmith.SmGraph
     {
         internal string _name;
         public string Name => _name;
+
+        /// <summary>
+        /// todo_low - remove
+        /// </summary>
         public bool nameIsGloballyUnique = false;
 
         public NamedVertex(string name)

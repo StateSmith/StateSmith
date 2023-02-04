@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
@@ -140,6 +140,9 @@ public class MxCellParser
         {
             var label = mxCell.label;
             label = Regex.Replace(label, @"</div>", "\n");
+            label = Regex.Replace(label, @"</p>", "\n");
+            label = Regex.Replace(label, @"<br>", "\n");
+            label = Regex.Replace(label, @"<br/>", "\n");
             label = Regex.Replace(label, @"&nbsp;", " ");
             label = Regex.Replace(label, @"<[^>]*>", "");
             label = System.Web.HttpUtility.HtmlDecode(label);

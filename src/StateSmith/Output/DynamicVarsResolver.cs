@@ -1,5 +1,6 @@
 using StateSmith.Input.Expansions;
 using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Runner;
 using StateSmith.SmGraph;
 
 #nullable enable
@@ -11,18 +12,20 @@ internal class DynamicVarsResolver
     readonly CNameMangler mangler;
     readonly Expander expander;
     readonly IExpansionVarsPathProvider expansionVarsPathProvider;
-    readonly StateMachine sm;
+    readonly IStateMachineProvider stateMachineProvider;
 
-    public DynamicVarsResolver(CNameMangler mangler, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, StateMachine sm)
+    public DynamicVarsResolver(CNameMangler mangler, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, IStateMachineProvider stateMachineProvider)
     {
         this.mangler = mangler;
         this.expander = expander;
         this.expansionVarsPathProvider = expansionVarsPathProvider;
-        this.sm = sm;
+        this.stateMachineProvider = stateMachineProvider;
     }
 
     public void Resolve()
     {
+        var sm = stateMachineProvider.GetStateMachine();
+
         foreach (var h in sm.historyStates)
         {
             string actualVarName = mangler.HistoryVarName(h);

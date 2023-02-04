@@ -5,6 +5,7 @@ using System.IO;
 using StateSmith.Common;
 using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
+using StateSmith.Output.UserConfig;
 
 #nullable enable
 
@@ -17,18 +18,25 @@ public class SmRunner
 {
     readonly RunnerSettings settings;
     readonly SsServiceProvider sp;
-    InputSmBuilder inputSmBuilder;
-    ExceptionPrinter exceptionPrinter = new();
+    readonly InputSmBuilder inputSmBuilder;
+    readonly ExceptionPrinter exceptionPrinter = new();
+    readonly RenderConfigC renderConfigC;
 
     public SmRunner(RunnerSettings settings)
     {
         this.settings = settings;
-        sp = new SsServiceProvider(postConfigAction: (context, services) =>
+        renderConfigC = new RenderConfigC();
+        renderConfigC.SetFromIRenderConfigC(this.settings.renderConfig);
+
+        sp = SsServiceProvider.CreateDefault();
+
+        sp.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.mangler);
             services.AddSingleton(settings.style);
-            services.AddSingleton(settings.renderConfig);
+            services.AddSingleton(renderConfigC);
+            services.AddSingleton(new ConfigReaderObjectProvider(settings.renderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
         });
@@ -72,10 +80,7 @@ public class SmRunner
         OutputCompilingDiagramMessage();
         inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
         FindStateMachine();
-        inputSmBuilder.FinishRunningCompiler();
-
-        StateMachine sm = inputSmBuilder.Sm.ThrowIfNull();
-        sp.SmGetter = () => sm;
+        inputSmBuilder.FinishRunning();
     }
 
     protected void RunCodeGen()
@@ -95,7 +100,7 @@ public class SmRunner
             inputSmBuilder.FindSingleStateMachine();
         }
 
-        OutputStageMessage($"State machine `{inputSmBuilder.Sm!.Name}` selected.");
+        OutputStageMessage($"State machine `{inputSmBuilder.GetStateMachine().Name}` selected.");
     }
 
     private void OutputCompilingDiagramMessage()

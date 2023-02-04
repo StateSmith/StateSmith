@@ -96,17 +96,17 @@ public partial class StateSmithLabelGrammarBaseListener : IStateSmithLabelGramma
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitStatemachine_defn([NotNull] StateSmithLabelGrammarParser.Statemachine_defnContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_text"/>.
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.any_text"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterNotes_text([NotNull] StateSmithLabelGrammarParser.Notes_textContext context) { }
+	public virtual void EnterAny_text([NotNull] StateSmithLabelGrammarParser.Any_textContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_text"/>.
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.any_text"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitNotes_text([NotNull] StateSmithLabelGrammarParser.Notes_textContext context) { }
+	public virtual void ExitAny_text([NotNull] StateSmithLabelGrammarParser.Any_textContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_node"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -119,6 +119,18 @@ public partial class StateSmithLabelGrammarBaseListener : IStateSmithLabelGramma
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNotes_node([NotNull] StateSmithLabelGrammarParser.Notes_nodeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.config_node"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterConfig_node([NotNull] StateSmithLabelGrammarParser.Config_nodeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.config_node"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitConfig_node([NotNull] StateSmithLabelGrammarParser.Config_nodeContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.state_behaviors"/>.
 	/// <para>The default implementation does nothing.</para>

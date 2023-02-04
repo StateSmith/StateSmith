@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xunit;
 using FluentAssertions;
 using StateSmith.SmGraph;
@@ -79,13 +79,18 @@ namespace StateSmithTest
             vertex.ShouldHaveUmlBehaviors(expectedBehaviors);
         }
 
+        /// <summary>
+        /// automatically converts expected input line endings to \n
+        /// </summary>
+        /// <param name="actual"></param>
+        /// <param name="expected"></param>
         public static void ShouldBeShowDiff(this string actual, string expected)
         {
             expected = expected.ConvertLineEndingsToN();
 
             if (expected != actual)
             {
-                var diff = StringDiffer.Diff(expected.ConvertLineEndingsToN(), actual);
+                var diff = StringDiffer.Diff(expected, actual);
                 Assert.True(false, diff);
             }
         }

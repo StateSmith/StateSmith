@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Xunit;
 using StateSmith.Input.PlantUML;
@@ -221,7 +221,7 @@ Foo1 -> entry2 : EV1 [guard()] / action_e2();
 
         InputSmBuilder inputSmBuilder = new();
         inputSmBuilder.ConvertNodesToVertices(new List<DiagramNode> { translator.Root }, translator.Edges);
-        inputSmBuilder.FinishRunningCompiler();
+        inputSmBuilder.FinishRunning();
     }
 
 
@@ -240,10 +240,10 @@ c1 --> s2 : else
 @enduml
 ";
         InputSmBuilder inputSmBuilder = new();
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
-        inputSmBuilder.FinishRunningCompiler();
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.FinishRunning();
 
-        StateMachine root = inputSmBuilder.Sm;
+        StateMachine root = inputSmBuilder.GetStateMachine();
         InitialState initial = root.ChildType<InitialState>();
         ChoicePoint c1 = root.ChildType<ChoicePoint>();
         State s1 = root.Child<State>("s1");
@@ -491,10 +491,10 @@ public class HistoryPlantUmlTests
 S1-->S2
 @enduml
 ";
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
-        StateMachine root = inputSmBuilder.Sm;
+        StateMachine root = inputSmBuilder.GetStateMachine();
         InitialState initial = root.ChildType<InitialState>();
         HistoryVertex history = root.ChildType<HistoryVertex>();
         State s1 = root.Child<State>("S1");
@@ -528,10 +528,10 @@ Interrupted --> Relaxing[H]
 Relaxing[H] --> Snacking
 @enduml
 ";
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
-        StateMachine root = inputSmBuilder.Sm;
+        StateMachine root = inputSmBuilder.GetStateMachine();
         State relaxing = root.Child<State>("Relaxing");
         HistoryVertex history = relaxing.ChildType<HistoryVertex>();
         State snacking = relaxing.Child<State>("Snacking");
@@ -558,10 +558,10 @@ Group[H] --> S1
 S1-->S2
 @enduml
 ";
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
-        StateMachine root = inputSmBuilder.Sm;
+        StateMachine root = inputSmBuilder.GetStateMachine();
         InitialState initial = root.ChildType<InitialState>();
         State group = root.Child<State>("Group");
         HistoryVertex history = group.ChildType<HistoryVertex>();
@@ -610,10 +610,10 @@ S1-->S2
             @enduml
 
             """;
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
-        StateMachine root = inputSmBuilder.Sm;
+        StateMachine root = inputSmBuilder.GetStateMachine();
         var map = new NamedVertexMap(root);
         map.GetState("Snacking").ChildType<HistoryContinueVertex>();
     }
@@ -638,11 +638,11 @@ S1-->S2
             }
             @enduml
             """;
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
-        StateMachine root = inputSmBuilder.Sm;
-        var map = new NamedVertexMap(inputSmBuilder.Sm);
+        StateMachine root = inputSmBuilder.GetStateMachine();
+        var map = new NamedVertexMap(inputSmBuilder.GetStateMachine());
         State GetState(string stateName) => map.GetState(stateName);
 
         GetState("G2").ChildType<HistoryContinueVertex>();

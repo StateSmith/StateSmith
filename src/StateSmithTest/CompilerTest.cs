@@ -23,7 +23,7 @@ namespace StateSmithTest
             InputSmBuilder inputSmBuilder = new();
             inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
             inputSmBuilder.FindSingleStateMachine();
-            var sm = inputSmBuilder.Sm;
+            var sm = inputSmBuilder.GetStateMachine();
 
             var Tiny1 = sm;
             var map = new NamedVertexMap(sm);
@@ -168,7 +168,7 @@ namespace StateSmithTest
             // could also check for valid events in diagram
             inputSmBuilder.ConvertYedFileNodesToVertices(filepath);
             inputSmBuilder.FindSingleStateMachine();
-            var sm = inputSmBuilder.Sm;
+            var sm = inputSmBuilder.GetStateMachine();
 
             ExpandAllBehaviors(expander, sm);
 
@@ -254,7 +254,7 @@ namespace StateSmithTest
         {
             inputSmBuilder = ExamplesTestHelpers.SetupTiny2Sm();
 
-            sm = inputSmBuilder.Sm;
+            sm = inputSmBuilder.GetStateMachine();
             var map = new NamedVertexMap(sm);
             State GetState(string stateName) => map.GetState(stateName);
 

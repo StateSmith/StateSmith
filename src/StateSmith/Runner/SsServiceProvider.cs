@@ -1,4 +1,4 @@
-﻿using StateSmith.Input.DrawIo;
+using StateSmith.Input.DrawIo;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -7,6 +7,7 @@ using StateSmith.Input.Expansions;
 using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
+using StateSmith.Common;
 
 #nullable enable
 
@@ -14,38 +15,75 @@ namespace StateSmith.Runner;
 
 public class SsServiceProvider
 {
-    private readonly IHost host;
+    private IHost? host;
+    private readonly IHostBuilder hostBuilder;
 
-    // The StateMachine cannot be known at startup so we can't register it normally with the Service Provider.
-    public Func<StateMachine> SmGetter = () => throw new NotImplementedException();
-
-    public SsServiceProvider(Action<HostBuilderContext, IServiceCollection>? preConfigAction = null, Action<HostBuilderContext, IServiceCollection>? postConfigAction = null)
+    public SsServiceProvider()
     {
-        host = Host.CreateDefaultBuilder()
-            .ConfigureServices((context, services) =>
-            {
-                preConfigAction?.Invoke(context, services);
+        hostBuilder = Host.CreateDefaultBuilder();
+    }
 
-                AddDefaultsForTesting(services);
+    public static SsServiceProvider CreateDefault()
+    {
+        SsServiceProvider sp = new();
+        sp.SetupAsDefault();
+        return sp;
+    }
 
-                services.AddSingleton<CodeGenContext>();
-                services.AddSingleton<SmTransformer, DefaultSmTransformer>();
-                services.AddSingleton<Expander>();
+    public void SetupAsDefault()
+    {
+        hostBuilder.ConfigureServices((services) =>
+        {
+            AddDefaultsForTesting(services);
 
-                services.AddTransient<CodeGenRunner>();
-                services.AddTransient<MxCellsToSmDiagramConverter>();
-                services.AddTransient<DrawIoToSmDiagramConverter>();
-                services.AddTransient<VisualGroupingValidator>();
-                services.AddTransient<DynamicVarsResolver>();
-                services.AddTransient<ConfigReader>();
-                services.AddTransient<CBuilder>();
-                services.AddTransient<CHeaderBuilder>();
+            services.AddSingleton<CodeGenContext>();
+            services.AddSingleton<SmTransformer, DefaultSmTransformer>();
+            services.AddSingleton<Expander>();
 
-                services.AddTransient<StateMachine>(sp => SmGetter());
+            services.AddTransient<RenderConfigVerticesProcessor>();
+            services.AddTransient<CodeGenRunner>();
+            services.AddTransient<MxCellsToSmDiagramConverter>();
+            services.AddTransient<DrawIoToSmDiagramConverter>();
+            services.AddTransient<VisualGroupingValidator>();
+            services.AddTransient<DynamicVarsResolver>();
+            services.AddTransient<ConfigReader>();
+            services.AddTransient<CBuilder>();
+            services.AddTransient<CHeaderBuilder>();
+        });
+    }
 
-                postConfigAction?.Invoke(context, services);
-            })
-            .Build();
+    public void AddConfiguration(Action<IServiceCollection> services)
+    {
+        ThrowIfAlreadyBuilt();
+        hostBuilder.ConfigureServices(services);
+    }
+
+    public void AddSingleton(IDiagramVerticesProvider diagramVerticesProvider)
+    {
+        ThrowIfAlreadyBuilt();
+        hostBuilder.ConfigureServices(services => { services.AddSingleton(diagramVerticesProvider); });
+    }
+
+    public void AddSingleton(IStateMachineProvider obj)
+    {
+        ThrowIfAlreadyBuilt();
+        hostBuilder.ConfigureServices(services => { services.AddSingleton(obj); });
+    }
+
+    /// <summary>
+    /// Can only be done once. Limitation of lib.
+    /// </summary>
+    public void Build()
+    {
+        host = hostBuilder.Build(); // this will throw an exception if already built
+    }
+
+    private void ThrowIfAlreadyBuilt()
+    {
+        if (host != null)
+        {
+            throw new InvalidOperationException("Can't add after built");
+        }
     }
 
     private static void AddDefaultsForTesting(IServiceCollection services)
@@ -53,7 +91,7 @@ public class SsServiceProvider
         services.AddSingleton(new DrawIoSettings());
         services.AddSingleton(new CNameMangler());
         services.AddSingleton(new CodeStyleSettings());
-        services.AddSingleton<IRenderConfigC, DummyRenderConfigC>();
+        services.AddSingleton<RenderConfigC>();
     }
 
     /// <summary>
@@ -73,6 +111,7 @@ public class SsServiceProvider
         public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
         public static implicit operator CodeGenRunner(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CodeGenRunner>(me.host.Services);
+        public static implicit operator RenderConfigC(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigC>(me.host.Services);
     }
 
     /// <summary>
@@ -81,6 +120,6 @@ public class SsServiceProvider
     /// <returns></returns>
     internal ConvertableType GetServiceOrCreateInstance()
     {
-        return new ConvertableType(host);
+        return new ConvertableType(host.ThrowIfNull());
     }
 }

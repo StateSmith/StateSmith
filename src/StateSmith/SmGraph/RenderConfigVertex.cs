@@ -3,7 +3,7 @@ using StateSmith.SmGraph.Visitors;
 
 namespace StateSmith.SmGraph;
 
-public class InitialState : PseudoStateVertex
+public class RenderConfigVertex : Vertex
 {
     public override void Accept(VertexVisitor visitor)
     {

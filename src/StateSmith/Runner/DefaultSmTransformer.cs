@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph;
+using StateSmith.SmGraph;
 using StateSmith.Output.C99BalancedCoder1;
 using System;
 
@@ -9,6 +9,7 @@ public class DefaultSmTransformer : SmTransformer
     public enum Id
     {
         RemoveNotesVertices,
+        SupportRenderConfigVerticesAndRemove,
         SupportParentAlias,
         SupportEntryExit,
         SupportPrefixingModder,
@@ -20,9 +21,11 @@ public class DefaultSmTransformer : SmTransformer
         FinalValdation,
     };
 
-    public DefaultSmTransformer(CNameMangler mangler)
+    // used for Dependency Injection
+    public DefaultSmTransformer(CNameMangler mangler, RenderConfigVerticesProcessor renderConfigVerticesProcessor)
     {
         AddStep(Id.RemoveNotesVertices, (sm) => NotesProcessor.Process(sm));
+        AddStep(Id.SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());
         AddStep(Id.SupportParentAlias, (sm) => ParentAliasStateProcessor.Process(sm));
         AddStep(Id.SupportEntryExit, (sm) => EntryExitProcessor.Process(sm));
         AddStep(Id.SupportPrefixingModder, (sm) => PrefixingModder.Process(sm));

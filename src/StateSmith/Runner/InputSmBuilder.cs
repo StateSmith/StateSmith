@@ -26,23 +26,27 @@ namespace StateSmith.Runner;
 /// 
 /// Step 3: finish building/transforming the selected StateMachine vertex so that is ready for code generation.
 /// </summary>
-public class InputSmBuilder
+public class InputSmBuilder : IStateMachineProvider
 {
     public readonly SmTransformer transformer;
-    public StateMachine Sm => sm.ThrowIfNull();
+    public StateMachine GetStateMachine() => sm.ThrowIfNull();
 
-    protected StateMachine? sm;
+    protected StateMachine? sm { get; set; }
     internal DiagramToSmConverter diagramToSmConverter = new();
-    internal SsServiceProvider ssServiceProvider;
+    internal SsServiceProvider sp;
     protected CNameMangler mangler;
 
-    public InputSmBuilder() : this(new SsServiceProvider()) { }
+    public InputSmBuilder() : this(SsServiceProvider.CreateDefault()) { }
 
-    public InputSmBuilder(SsServiceProvider ssServiceProvider)
+    public InputSmBuilder(SsServiceProvider sp)
     {
-        this.ssServiceProvider = ssServiceProvider;
-        mangler = ssServiceProvider.GetServiceOrCreateInstance();
-        transformer = ssServiceProvider.GetServiceOrCreateInstance();
+        this.sp = sp;
+        sp.AddSingleton(diagramToSmConverter);
+        sp.AddSingleton(this);
+        sp.Build();
+
+        mangler = sp.GetServiceOrCreateInstance();
+        transformer = sp.GetServiceOrCreateInstance();
     }
 
     /// <summary>
@@ -76,7 +80,7 @@ public class InputSmBuilder
     /// </summary>
     public void ConvertDrawIoFileNodesToVertices(string filepath)
     {
-        DrawIoToSmDiagramConverter converter = ssServiceProvider.GetServiceOrCreateInstance();
+        DrawIoToSmDiagramConverter converter = sp.GetServiceOrCreateInstance();
         converter.ProcessFile(filepath);
         ConvertNodesToVertices(converter.Roots, converter.Edges);
     }
@@ -97,13 +101,13 @@ public class InputSmBuilder
     public void ConvertPlantUmlFileNodesToVertices(string filepath)
     {
         var text = File.ReadAllText(filepath);
-        CompilePlantUmlTextNodesToVertices(text);
+        ConvertPlantUmlTextNodesToVertices(text);
     }
 
     /// <summary>
     /// Step 1
     /// </summary>
-    public void CompilePlantUmlTextNodesToVertices(string plantUmlText)
+    public void ConvertPlantUmlTextNodesToVertices(string plantUmlText)
     {
         PlantUMLToNodesEdges translator = new();
         translator.ParseDiagramText(plantUmlText);
@@ -134,6 +138,7 @@ public class InputSmBuilder
     public void SetStateMachineRoot(StateMachine stateMachine)
     {
         diagramToSmConverter.rootVertices = new List<Vertex>() { stateMachine };
+        SetSmVar(stateMachine);
     }
 
     //------------------------------------------------------------------------
@@ -143,9 +148,10 @@ public class InputSmBuilder
     /// </summary>
     public void FindStateMachineByName(string stateMachineName)
     {
-        sm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
-        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Where(s => s.Name  == stateMachineName).Single(); };
+        var tempSm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis
+        var action = () => { tempSm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Where(s => s.Name == stateMachineName).Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"Couldn't find state machine in diagram with name `{stateMachineName}`.", e));
+        SetSmVar(tempSm);
     }
 
     /// <summary>
@@ -154,9 +160,10 @@ public class InputSmBuilder
     [MemberNotNull(nameof(sm))]
     public void FindSingleStateMachine()
     {
-        sm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
-        var action = () => { sm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Single(); };
+        var tempSm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
+        var action = () => { tempSm = diagramToSmConverter.rootVertices.OfType<StateMachine>().Single(); };
         action.RunOrWrapException((e) => new ArgumentException($"State machine name not specified. Expected diagram to have find 1 Statemachine node at root level. Instead, found {diagramToSmConverter.rootVertices.OfType<StateMachine>().Count()}.", e));
+        SetSmVar(tempSm);
     }
 
     //------------------------------------------------------------------------
@@ -164,11 +171,11 @@ public class InputSmBuilder
     /// <summary>
     /// Step 3
     /// </summary>
-    public void FinishRunningCompiler()
+    public void FinishRunning()
     {
         SetupForSingleSm();
-        mangler.SetStateMachine(Sm);
-        transformer.RunTransformationPipeline(Sm);
+        mangler.SetStateMachine(GetStateMachine());
+        transformer.RunTransformationPipeline(GetStateMachine());
     }
 
     [MemberNotNull(nameof(sm))]
@@ -178,5 +185,11 @@ public class InputSmBuilder
         {
             FindSingleStateMachine();
         }
+    }
+
+    [MemberNotNull(nameof(sm))]
+    private void SetSmVar(StateMachine stateMachine)
+    {
+        sm = stateMachine;
     }
 }

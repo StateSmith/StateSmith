@@ -1,4 +1,4 @@
-﻿using Spec.Spec1;
+using Spec.Spec1;
 using StateSmith.Input.Expansions;
 using StateSmith.Output;
 using StateSmith.Output.C99BalancedCoder1;
@@ -19,8 +19,6 @@ public class Spec1CTests
 
     public class MyGlueFile : IRenderConfigC
     {
-        Spec1GenericVarExpansions spec1GenericVarExpansions = new();
-
         string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
             ");
