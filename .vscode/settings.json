@@ -1,5 +1,11 @@
 {
     "cSpell.words": [
         "Modder"
-    ]
+    ],
+    "hediet.vscode-drawio.plugins": [
+        {
+            "file": "${workspaceFolder}/.vscode/StateSmith-drawio-plugin-v0.3.0.js"
+        }
+    ],
+    "files.eol": "\n"
 }
