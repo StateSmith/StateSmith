@@ -33,7 +33,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
             }
             @enduml
             """;
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();        
         root = inputSmBuilder.GetStateMachine();
         map = new NamedVertexMap(inputSmBuilder.GetStateMachine());

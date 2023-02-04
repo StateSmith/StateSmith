@@ -43,6 +43,14 @@ public class DiagramEmbeddedRenderConfigTests
             """);
     }
 
+    [Fact]
+    public void CopyDataFromDiagramRenderConfig()
+    {
+        string filePath = ExamplesTestHelpers.TestInputDirectoryPath + "RenderConfig1.drawio";
+        runner.ConvertDiagramFileToSmVertices(filePath);
+        runner.FinishRunning();
+    }
+
     private static RenderConfigOptionVertex GetOptionVertex(RenderConfigVertex renderConfig, string name)
     {
         return renderConfig.Children.OfType<RenderConfigOptionVertex>().Where(v => v.name == name).Single();

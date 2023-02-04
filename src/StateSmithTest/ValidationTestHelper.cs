@@ -61,7 +61,7 @@ namespace StateSmithTest
 
         public void RunCompiler()
         {
-            inputSmBuilder.FinishRunningCompiler();
+            inputSmBuilder.FinishRunning();
         }
     }
 }

@@ -27,42 +27,11 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
         this.diagramVerticesProvider = diagramVerticesProvider;
     }
 
-    public override void Visit(StateMachine v)
-    {
-        currentStateMachine = v;
-        base.Visit(v);
-        currentStateMachine = null;
-    }
-
-    public override void Visit(RenderConfigVertex v)
-    {
-        if (v.Parent != null && v.Parent is not StateMachine)
-        {
-            throw new VertexValidationException(v, $"{nameof(RenderConfigVertex)} are currently only allowed at the diagram root, or directly inside a StateMachine.");
-        }
-
-        base.Visit(v);
-    }
-
-    public override void Visit(RenderConfigOptionVertex v)
-    {
-        if (v.Children.Count > 0)
-        {
-            throw new VertexValidationException(v, $"{nameof(RenderConfigOptionVertex)} are currently not allowed to have children nodes (other than notes).");
-        }
-
-        if (v.NonNullParent is not RenderConfigVertex)
-        {
-            throw new VertexValidationException(v, $"{nameof(RenderConfigOptionVertex)} must have a parent of type {nameof(RenderConfigVertex)}.");
-        }
-
-        if (HandlingRootLevelRenderConfig() || targetStateMachineProvider.GetStateMachine() == currentStateMachine)
-        {
-            CopyRenderConfigOption(v);
-        }
-    }
-
-    internal void Process()
+    /// <summary>
+    /// copies RenderConfig data from diagram and then removes those vertices from the state machine.
+    /// https://github.com/StateSmith/StateSmith/issues/23
+    /// </summary>
+    public void Process()
     {
         var rootVertices = diagramVerticesProvider.GetRootVertices();
 
@@ -81,6 +50,41 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
         foreach (var v in toRemove)
         {
             v.RemoveChildrenAndSelf();
+        }
+    }
+
+    public override void Visit(StateMachine v)
+    {
+        currentStateMachine = v;
+        base.Visit(v);
+        currentStateMachine = null;
+    }
+
+    public override void Visit(RenderConfigVertex v)
+    {
+        if (v.Parent != null && v.Parent is not StateMachine)
+        {
+            throw new VertexValidationException(v, $"{nameof(RenderConfigVertex)} are currently only allowed at the diagram root, or directly inside a StateMachine.");
+        }
+
+        base.Visit(v);
+    }
+
+    public override void Visit(RenderConfigOptionVertex configOption)
+    {
+        if (configOption.Children.Where(c => c is not NotesVertex).Any())
+        {
+            throw new VertexValidationException(configOption, $"{nameof(RenderConfigOptionVertex)} are currently not allowed to have children nodes (other than notes).");
+        }
+
+        if (configOption.NonNullParent is not RenderConfigVertex)
+        {
+            throw new VertexValidationException(configOption, $"{nameof(RenderConfigOptionVertex)} must have a parent of type {nameof(RenderConfigVertex)}.");
+        }
+
+        if (HandlingRootLevelRenderConfig() || targetStateMachineProvider.GetStateMachine() == currentStateMachine)
+        {
+            CopyRenderConfigOption(configOption);
         }
     }
 

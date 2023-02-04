@@ -23,7 +23,7 @@ namespace StateSmithTest
         {
             InputSmBuilder inputSmBuilder = CreateCompilerForTestInputFile(relativePath);
 
-            inputSmBuilder.FinishRunningCompiler();
+            inputSmBuilder.FinishRunning();
 
             return inputSmBuilder;
         }
@@ -69,7 +69,7 @@ namespace StateSmithTest
             });
 
             inputSmBuilder.SetStateMachineRoot(sm);
-            inputSmBuilder.FinishRunningCompiler();
+            inputSmBuilder.FinishRunning();
 
             return new CodeGenContext(sm);
         }

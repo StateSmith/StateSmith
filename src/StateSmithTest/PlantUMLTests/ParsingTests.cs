@@ -221,7 +221,7 @@ Foo1 -> entry2 : EV1 [guard()] / action_e2();
 
         InputSmBuilder inputSmBuilder = new();
         inputSmBuilder.ConvertNodesToVertices(new List<DiagramNode> { translator.Root }, translator.Edges);
-        inputSmBuilder.FinishRunningCompiler();
+        inputSmBuilder.FinishRunning();
     }
 
 
@@ -240,8 +240,8 @@ c1 --> s2 : else
 @enduml
 ";
         InputSmBuilder inputSmBuilder = new();
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
-        inputSmBuilder.FinishRunningCompiler();
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.FinishRunning();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
         InitialState initial = root.ChildType<InitialState>();
@@ -491,7 +491,7 @@ public class HistoryPlantUmlTests
 S1-->S2
 @enduml
 ";
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -528,7 +528,7 @@ Interrupted --> Relaxing[H]
 Relaxing[H] --> Snacking
 @enduml
 ";
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -558,7 +558,7 @@ Group[H] --> S1
 S1-->S2
 @enduml
 ";
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -610,7 +610,7 @@ S1-->S2
             @enduml
 
             """;
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();
@@ -638,7 +638,7 @@ S1-->S2
             }
             @enduml
             """;
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.SetupForSingleSm();
 
         StateMachine root = inputSmBuilder.GetStateMachine();

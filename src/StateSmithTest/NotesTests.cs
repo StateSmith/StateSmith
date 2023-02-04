@@ -27,7 +27,7 @@ namespace StateSmithTest
         public void EdgeToNotes()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "notes/bad-edge-to-notes.graphml";
-            Action action = () => { CompileYedFile(filepath); inputSmBuilder.FinishRunningCompiler(); };
+            Action action = () => { CompileYedFile(filepath); inputSmBuilder.FinishRunning(); };
 
             action.Should()
                 .Throw<BehaviorValidationException>()
@@ -38,7 +38,7 @@ namespace StateSmithTest
         public void EdgeFromNotes()
         {
             string filepath = ExamplesTestHelpers.TestInputDirectoryPath + "notes/bad-edge-from-notes.graphml";
-            Action action = () => { CompileYedFile(filepath); inputSmBuilder.FinishRunningCompiler(); };
+            Action action = () => { CompileYedFile(filepath); inputSmBuilder.FinishRunning(); };
 
             action.Should()
                 .Throw<BehaviorValidationException>()
@@ -56,7 +56,7 @@ namespace StateSmithTest
             
             inputSmBuilder.SetStateMachineRoot(sm);
 
-            Action action = () => { inputSmBuilder.FinishRunningCompiler(); };
+            Action action = () => { inputSmBuilder.FinishRunning(); };
 
             action.Should()
                 .Throw<VertexValidationException>()

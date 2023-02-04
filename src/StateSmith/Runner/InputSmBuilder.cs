@@ -101,13 +101,13 @@ public class InputSmBuilder : IStateMachineProvider
     public void ConvertPlantUmlFileNodesToVertices(string filepath)
     {
         var text = File.ReadAllText(filepath);
-        CompilePlantUmlTextNodesToVertices(text);
+        ConvertPlantUmlTextNodesToVertices(text);
     }
 
     /// <summary>
     /// Step 1
     /// </summary>
-    public void CompilePlantUmlTextNodesToVertices(string plantUmlText)
+    public void ConvertPlantUmlTextNodesToVertices(string plantUmlText)
     {
         PlantUMLToNodesEdges translator = new();
         translator.ParseDiagramText(plantUmlText);
@@ -171,7 +171,7 @@ public class InputSmBuilder : IStateMachineProvider
     /// <summary>
     /// Step 3
     /// </summary>
-    public void FinishRunningCompiler()
+    public void FinishRunning()
     {
         SetupForSingleSm();
         mangler.SetStateMachine(GetStateMachine());

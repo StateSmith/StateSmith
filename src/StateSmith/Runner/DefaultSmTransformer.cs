@@ -9,7 +9,7 @@ public class DefaultSmTransformer : SmTransformer
     public enum Id
     {
         RemoveNotesVertices,
-        SupportRenderConfigVertices,
+        SupportRenderConfigVerticesAndRemove,
         SupportParentAlias,
         SupportEntryExit,
         SupportPrefixingModder,
@@ -25,7 +25,7 @@ public class DefaultSmTransformer : SmTransformer
     public DefaultSmTransformer(CNameMangler mangler, RenderConfigVerticesProcessor renderConfigVerticesProcessor)
     {
         AddStep(Id.RemoveNotesVertices, (sm) => NotesProcessor.Process(sm));
-        AddStep(Id.RemoveNotesVertices, (sm) => renderConfigVerticesProcessor.Process());
+        AddStep(Id.SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());
         AddStep(Id.SupportParentAlias, (sm) => ParentAliasStateProcessor.Process(sm));
         AddStep(Id.SupportEntryExit, (sm) => EntryExitProcessor.Process(sm));
         AddStep(Id.SupportPrefixingModder, (sm) => PrefixingModder.Process(sm));

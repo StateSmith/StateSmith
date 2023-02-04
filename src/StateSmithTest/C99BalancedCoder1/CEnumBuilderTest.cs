@@ -31,7 +31,7 @@ namespace StateSmithTest.C99BalancedCoder1
             var initialStateVertex = sm.AddChild(new InitialState());
             initialStateVertex.AddTransitionTo(s1);
 
-            inputSmBuilder.FinishRunningCompiler();
+            inputSmBuilder.FinishRunning();
             ctx = new(sm);
         }
 

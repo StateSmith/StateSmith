@@ -80,7 +80,7 @@ public class SmRunner
         OutputCompilingDiagramMessage();
         inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
         FindStateMachine();
-        inputSmBuilder.FinishRunningCompiler();
+        inputSmBuilder.FinishRunning();
     }
 
     protected void RunCodeGen()

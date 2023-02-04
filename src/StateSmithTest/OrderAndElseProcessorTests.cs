@@ -17,7 +17,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void Basic()
     {
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -32,7 +32,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void ActionAllowed()
     {
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -47,7 +47,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void ReorderingHappens()
     {
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State3 : else / c++;
             [*] --> State1 : [x == 1] / a++;
@@ -67,7 +67,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void ReorderingHappensFromState()
     {
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             State0 --> State3 : else / c++;
             State0 --> State2 : 10.0. / b++;
@@ -90,7 +90,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void NoGuardAllowed()
     {
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : [x == 2]
@@ -106,7 +106,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void OnlyOneElseAllowed()
     {
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : else
@@ -122,7 +122,7 @@ public class OrderAndElseProcessorTests
     [Fact]
     public void ElseMustBeOnTransition()
     {
-        inputSmBuilder.CompilePlantUmlTextNodesToVertices(@"
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> State1 : [x == 1]
             [*] --> State2 : else

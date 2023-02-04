@@ -39,7 +39,7 @@ namespace StateSmithTest
                 triggers = new List<string>() { "enter", "exit", "ZIP" }
             });
 
-            inputSmBuilder.FinishRunningCompiler();
+            inputSmBuilder.FinishRunning();
 
             sm.GetEventListCopy().Should().Equal(new List<string>()
             {
@@ -65,7 +65,7 @@ namespace StateSmithTest
                 triggers = new List<string>() { "enter", "exit", "SM2_ZIP" }
             });
 
-            inputSmBuilder.FinishRunningCompiler();
+            inputSmBuilder.FinishRunning();
             
             sm.GetEventListCopy().Should().Equal(new List<string>()
             {

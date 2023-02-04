@@ -212,5 +212,17 @@ namespace StateSmith.SmGraph
             vertex.RemoveAllChildren();
             vertex.RemoveSelf();
         }
+
+        public static void RemoveRecursively(this Vertex vertex)
+        {
+            Stack<Vertex> toRemove = new();
+            vertex.VisitRecursively(v => toRemove.Push(v));
+
+            foreach (var v in toRemove)
+            {
+                if (v.Parent != null)
+                    v.RemoveSelf();
+            }
+        }
     }
 }
