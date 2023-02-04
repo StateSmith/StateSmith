@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 ## WIP
+### Fixed
+- draw.io - convert HTML breaks `<br>` to new line characters.
+
 
 ---
 
