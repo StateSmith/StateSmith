@@ -70,16 +70,16 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
         base.Visit(v);
     }
 
-    public override void Visit(RenderConfigOptionVertex configOption)
+    public override void Visit(ConfigOptionVertex configOption)
     {
         if (configOption.Children.Where(c => c is not NotesVertex).Any())
         {
-            throw new VertexValidationException(configOption, $"{nameof(RenderConfigOptionVertex)} are currently not allowed to have children nodes (other than notes).");
+            throw new VertexValidationException(configOption, $"{nameof(ConfigOptionVertex)} are currently not allowed to have children nodes (other than notes).");
         }
 
         if (configOption.NonNullParent is not RenderConfigVertex)
         {
-            throw new VertexValidationException(configOption, $"{nameof(RenderConfigOptionVertex)} must have a parent of type {nameof(RenderConfigVertex)}.");
+            throw new VertexValidationException(configOption, $"{nameof(ConfigOptionVertex)} must have a parent of type {nameof(RenderConfigVertex)}.");
         }
 
         if (HandlingRootLevelRenderConfig() || targetStateMachineProvider.GetStateMachine() == currentStateMachine)
@@ -88,7 +88,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
         }
     }
 
-    private void CopyRenderConfigOption(RenderConfigOptionVertex v)
+    private void CopyRenderConfigOption(ConfigOptionVertex v)
     {
         switch (v.name)
         {
@@ -104,7 +104,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
         }
     }
 
-    private static void AppendOption(ref string str, RenderConfigOptionVertex option)
+    private static void AppendOption(ref string str, ConfigOptionVertex option)
     {
         if (str.Length > 0 && option.value.Length > 0) {
             str += "\n";

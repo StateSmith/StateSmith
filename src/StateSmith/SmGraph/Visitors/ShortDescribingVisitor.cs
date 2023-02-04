@@ -28,7 +28,7 @@ namespace StateSmith.SmGraph.Visitors
             stringBuilder.Append($"{v.GetType().Name}");
         }
 
-        public override void Visit(RenderConfigOptionVertex v)
+        public override void Visit(ConfigOptionVertex v)
         {
             stringBuilder.Append($"{v.GetType().Name}{{{v.name}}}");
         }

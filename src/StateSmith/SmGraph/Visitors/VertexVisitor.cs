@@ -19,7 +19,7 @@ namespace StateSmith.SmGraph.Visitors
         public virtual void Visit(HistoryVertex v) => Visit((Vertex)v);
         public virtual void Visit(HistoryContinueVertex v) => Visit((Vertex)v);
         public virtual void Visit(RenderConfigVertex v) => Visit((Vertex)v);
-        public virtual void Visit(RenderConfigOptionVertex v) => Visit((Vertex)v);
+        public virtual void Visit(ConfigOptionVertex v) => Visit((Vertex)v);
 
         public static void VisitVertexChildren(Vertex v, VertexVisitor visitor)
         {

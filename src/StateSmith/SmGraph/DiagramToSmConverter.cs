@@ -131,35 +131,21 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
             return null;
         }
 
-        bool visitChildren = true;
-        Vertex thisVertex;
-
-        if (parentVertex is RenderConfigVertex)
-        {
-            thisVertex = ParseRenderConfigOption(diagramNode);
-        }
-        else
-        {
-            thisVertex = ParseNode(diagramNode, parentVertex, ref visitChildren);
-        }
-
+        Vertex thisVertex = ParseNode(diagramNode, parentVertex);
         thisVertex.DiagramId = diagramNode.id;
         diagramVertexMap.Add(diagramNode, thisVertex);
 
         parentVertex?.AddChild(thisVertex);
 
-        if (visitChildren)
+        foreach (var child in diagramNode.children)
         {
-            foreach (var child in diagramNode.children)
-            {
-                ProcessNode(child, thisVertex);
-            }
+            ProcessNode(child, thisVertex);
         }
 
         return thisVertex;
     }
 
-    private static Vertex ParseNode(DiagramNode diagramNode, Vertex? parentVertex, ref bool visitChildren)
+    private static Vertex ParseNode(DiagramNode diagramNode, Vertex? parentVertex)
     {
         Vertex thisVertex;
         LabelParser labelParser = new();
@@ -176,9 +162,14 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
                     var noteVertex = new NotesVertex();
                     noteVertex.notes = notesNode.notes;
                     thisVertex = noteVertex;
-                    visitChildren = true;
                     break;
                 }
+
+            case ConfigNode configNode:
+                {
+                    thisVertex = new ConfigOptionVertex(configNode.name, configNode.value);
+                }
+                break;
 
             case StateMachineNode stateMachineNode:
                 {
@@ -261,33 +252,6 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
                 }
         }
 
-        return thisVertex;
-    }
-
-    private static Vertex ParseRenderConfigOption(DiagramNode diagramNode)
-    {
-        Vertex thisVertex;
-        var match = Regex.Match(diagramNode.label, @"(?x)
-                    ^[ \t]*
-                    (?<option_name>
-                        [$\w]+
-                    )
-                    \s*
-                    (?:
-                        [\r|\n]
-                        (?<option_contents>
-                            [\s\S]+
-                        )
-                    )?
-                    $
-                ");
-
-        if (!match.Success)
-        {
-            throw new DiagramNodeException(diagramNode, "Failed parsing RenderConfig option");
-        }
-
-        thisVertex = new RenderConfigOptionVertex(match.Groups["option_name"].Value, match.Groups["option_contents"].Value);
         return thisVertex;
     }
 

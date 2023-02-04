@@ -85,7 +85,7 @@ public partial class StateSmithLabelGrammarBaseVisitor<Result> : AbstractParseTr
 	/// <return>The visitor result.</return>
 	public virtual Result VisitStatemachine_defn([NotNull] StateSmithLabelGrammarParser.Statemachine_defnContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_text"/>.
+	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.any_text"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -93,7 +93,7 @@ public partial class StateSmithLabelGrammarBaseVisitor<Result> : AbstractParseTr
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNotes_text([NotNull] StateSmithLabelGrammarParser.Notes_textContext context) { return VisitChildren(context); }
+	public virtual Result VisitAny_text([NotNull] StateSmithLabelGrammarParser.Any_textContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.notes_node"/>.
 	/// <para>
@@ -104,6 +104,16 @@ public partial class StateSmithLabelGrammarBaseVisitor<Result> : AbstractParseTr
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitNotes_node([NotNull] StateSmithLabelGrammarParser.Notes_nodeContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.config_node"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitConfig_node([NotNull] StateSmithLabelGrammarParser.Config_nodeContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.state_behaviors"/>.
 	/// <para>

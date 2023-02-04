@@ -3,12 +3,12 @@ using StateSmith.SmGraph.Visitors;
 
 namespace StateSmith.SmGraph;
 
-public class RenderConfigOptionVertex : Vertex
+public class ConfigOptionVertex : Vertex
 {
     public string name = "";
     public string value = "";
 
-    public RenderConfigOptionVertex(string name, string contents)
+    public ConfigOptionVertex(string name, string contents)
     {
         this.name = name;
         this.value = contents;
@@ -17,5 +17,10 @@ public class RenderConfigOptionVertex : Vertex
     public override void Accept(VertexVisitor visitor)
     {
         visitor.Visit(this);
+    }
+
+    public override string ToString()
+    {
+        return name;
     }
 }

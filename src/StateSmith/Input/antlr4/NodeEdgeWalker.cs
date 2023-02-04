@@ -45,8 +45,13 @@ namespace StateSmith.Input.Antlr4
         public override void EnterNotes_node([NotNull] StateSmithLabelGrammarParser.Notes_nodeContext context)
         {
             var notesNode = new NotesNode();
-            notesNode.notes = context.notes_text()?.GetText()?.Trim();
+            notesNode.notes = context.any_text()?.GetText()?.Trim();
             node = notesNode;
+        }
+
+        public override void EnterConfig_node([NotNull] StateSmithLabelGrammarParser.Config_nodeContext context)
+        {
+            node = new ConfigNode(name: context.IDENTIFIER().GetText(), value: context.any_text()?.GetText() ?? "");
         }
 
         public override void EnterEntry_point([NotNull] StateSmithLabelGrammarParser.Entry_pointContext context)
