@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using StateSmith.Input.DrawIo;
 using System;
 using FluentAssertions;

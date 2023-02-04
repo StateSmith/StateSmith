@@ -1,4 +1,4 @@
-﻿using StateSmith.Input.Expansions;
+using StateSmith.Input.Expansions;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -11,10 +11,10 @@ namespace StateSmith.Output.UserConfig
 {
     class ConfigReader
     {
-        private readonly Expander expander;
         private readonly ExpanderFileReflection expanderFileReflection;
         private readonly string expansionVarsPath;
 
+        // required for Dependency Injection
         public ConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider) : this(expander, expansionVarsPathProvider.ExpansionVarsPath)
         {
 
@@ -24,11 +24,11 @@ namespace StateSmith.Output.UserConfig
         {
             expanderFileReflection = new ExpanderFileReflection(expander);
             this.expansionVarsPath = expansionVarsPath;
-            this.expander = expander;
         }
 
-        private void FindExpansionsFromFields(object configObject)
+        private void FindExpansionsFromFields(ConfigReaderObjectProvider objectProvider)
         {
+            object configObject = objectProvider.obj;
             var type = configObject.GetType();
 
             var fieldInfos = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
@@ -50,8 +50,10 @@ namespace StateSmith.Output.UserConfig
             }
         }
 
-        private void FindExpansionsFromMethods(object configObject)
+        private void FindExpansionsFromMethods(ConfigReaderObjectProvider objectProvider)
         {
+            object configObject = objectProvider.obj;
+
             var type = configObject.GetType();
 
             var methodInfos = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance)
@@ -64,8 +66,10 @@ namespace StateSmith.Output.UserConfig
             }
         }
 
-        private void FindExpansionFromClasses(object configObject)
+        private void FindExpansionFromClasses(ConfigReaderObjectProvider objectProvider)
         {
+            object configObject = objectProvider.obj;
+
             var type = configObject.GetType();
 
             var classes = type.GetNestedTypes()
@@ -83,11 +87,11 @@ namespace StateSmith.Output.UserConfig
             }
         }
 
-        public void ReadObject(object configObject)
+        public void ReadObject(ConfigReaderObjectProvider objectProvider)
         {
-            FindExpansionsFromFields(configObject);
-            FindExpansionsFromMethods(configObject);
-            FindExpansionFromClasses(configObject);
+            FindExpansionsFromFields(objectProvider);
+            FindExpansionsFromMethods(objectProvider);
+            FindExpansionFromClasses(objectProvider);
         }
     }
 }

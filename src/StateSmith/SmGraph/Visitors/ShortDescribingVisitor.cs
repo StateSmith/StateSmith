@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph;
+using StateSmith.SmGraph;
 using System;
 using System.Text;
 
@@ -21,6 +21,16 @@ namespace StateSmith.SmGraph.Visitors
         public override void Visit(Vertex v)
         {
             throw new NotImplementedException();
+        }
+
+        public override void Visit(RenderConfigVertex v)
+        {
+            stringBuilder.Append($"{v.GetType().Name}");
+        }
+
+        public override void Visit(RenderConfigOptionVertex v)
+        {
+            stringBuilder.Append($"{v.GetType().Name}{{{v.name}}}");
         }
 
         public override void Visit(EntryPoint v)

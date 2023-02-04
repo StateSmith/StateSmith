@@ -1,0 +1,21 @@
+#nullable enable
+using StateSmith.SmGraph.Visitors;
+
+namespace StateSmith.SmGraph;
+
+public class RenderConfigOptionVertex : Vertex
+{
+    public string name = "";
+    public string value = "";
+
+    public RenderConfigOptionVertex(string name, string contents)
+    {
+        this.name = name;
+        this.value = contents;
+    }
+
+    public override void Accept(VertexVisitor visitor)
+    {
+        visitor.Visit(this);
+    }
+}

@@ -1,11 +1,9 @@
-﻿using StateSmith.Input.Antlr4;
-using StateSmith.Input.Expansions;
+using StateSmith.Input.Antlr4;
 using System;
 using System.Collections.Generic;
-using StateSmith.SmGraph;
 using StateSmith.Input;
 using StateSmith.SmGraph.Visitors;
-using StateSmith.Runner;
+using System.Text.RegularExpressions;
 
 #nullable enable
 
@@ -13,6 +11,7 @@ namespace StateSmith.SmGraph
 {
     public class DiagramToSmConverter
     {
+        public const string RenderConfigString = "$RenderConfig";
         public const string InitialStateString = "$initial_state";
         public const string HistoryStateString = "$h";
         public const string HistoryContinueString = "$hc";
@@ -125,12 +124,40 @@ namespace StateSmith.SmGraph
                 return null;
             }
 
+            bool visitChildren = true;
+            Vertex thisVertex;
+
+            if (parentVertex is RenderConfigVertex)
+            {
+                thisVertex = ParseRenderConfigOption(diagramNode);
+            }
+            else
+            {
+                thisVertex = ParseNode(diagramNode, parentVertex, ref visitChildren);
+            }
+
+            thisVertex.DiagramId = diagramNode.id;
+            diagramVertexMap.Add(diagramNode, thisVertex);
+
+            parentVertex?.AddChild(thisVertex);
+
+            if (visitChildren)
+            {
+                foreach (var child in diagramNode.children)
+                {
+                    ProcessNode(child, thisVertex);
+                }
+            }
+
+            return thisVertex;
+        }
+
+        private static Vertex ParseNode(DiagramNode diagramNode, Vertex? parentVertex, ref bool visitChildren)
+        {
+            Vertex thisVertex;
             LabelParser labelParser = new();
             Node node = labelParser.ParseNodeLabel(diagramNode.label);
             PrintAndThrowIfNodeParseFail(diagramNode, parentVertex, labelParser);
-
-            Vertex thisVertex;
-            bool visitChildren = true;
 
             switch (node)
             {
@@ -177,6 +204,10 @@ namespace StateSmith.SmGraph
                             {
                                 thisVertex = new HistoryContinueVertex();
                             }
+                            else if (string.Equals(stateNode.stateName, RenderConfigString, StringComparison.OrdinalIgnoreCase))
+                            {
+                                thisVertex = new RenderConfigVertex();
+                            }
                             else
                             {
                                 var state = new State(stateNode.stateName);
@@ -192,7 +223,7 @@ namespace StateSmith.SmGraph
                 case EntryPointNode pointNode:
                     {
                         thisVertex = new EntryPoint(pointNode.label);
-                        
+
                         if (diagramNode.children.Count > 0)
                         {
                             throw new DiagramNodeException(diagramNode, $"entry points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
@@ -203,7 +234,7 @@ namespace StateSmith.SmGraph
                 case ExitPointNode pointNode:
                     {
                         thisVertex = new ExitPoint(pointNode.label);
-                        
+
                         if (diagramNode.children.Count > 0)
                         {
                             throw new DiagramNodeException(diagramNode, $"exit points cannot have children. See https://github.com/StateSmith/StateSmith/issues/3");
@@ -223,19 +254,33 @@ namespace StateSmith.SmGraph
                     }
             }
 
-            thisVertex.DiagramId = diagramNode.id;
-            diagramVertexMap.Add(diagramNode, thisVertex);
+            return thisVertex;
+        }
 
-            parentVertex?.AddChild(thisVertex);
+        private static Vertex ParseRenderConfigOption(DiagramNode diagramNode)
+        {
+            Vertex thisVertex;
+            var match = Regex.Match(diagramNode.label, @"(?x)
+                    ^[ \t]*
+                    (?<option_name>
+                        [$\w]+
+                    )
+                    \s*
+                    (?:
+                        [\r|\n]
+                        (?<option_contents>
+                            [\s\S]+
+                        )
+                    )?
+                    $
+                ");
 
-            if (visitChildren)
+            if (!match.Success)
             {
-                foreach (var child in diagramNode.children)
-                {
-                    ProcessNode(child, thisVertex);
-                }
+                throw new DiagramNodeException(diagramNode, "Failed parsing RenderConfig option");
             }
 
+            thisVertex = new RenderConfigOptionVertex(match.Groups["option_name"].Value, match.Groups["option_contents"].Value);
             return thisVertex;
         }
 

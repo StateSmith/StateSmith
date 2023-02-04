@@ -1,4 +1,4 @@
-﻿using StateSmith.Input.DrawIo;
+using StateSmith.Input.DrawIo;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -53,7 +53,7 @@ public class SsServiceProvider
         services.AddSingleton(new DrawIoSettings());
         services.AddSingleton(new CNameMangler());
         services.AddSingleton(new CodeStyleSettings());
-        services.AddSingleton<IRenderConfigC, DummyRenderConfigC>();
+        services.AddSingleton<RenderConfigC>();
     }
 
     /// <summary>

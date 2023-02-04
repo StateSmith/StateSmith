@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph;
+using StateSmith.SmGraph;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.UserConfig;
 using System.Text;
@@ -15,19 +15,19 @@ namespace StateSmith.Output.C99BalancedCoder1
         public StringBuilder cFileSb = new();
         public StateMachine sm;
         public Expander expander;
-        public IRenderConfigC renderConfig;
+        public RenderConfigC renderConfig;
         public PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
 
         internal CodeGenContext(StateMachine sm)
         {
             this.sm = sm;
             mangler = new(sm);
-            renderConfig = new DummyRenderConfigC();
+            renderConfig = new();
             expander = new();
             style = new();
         }
 
-        public CodeGenContext(StateMachine sm, IRenderConfigC renderConfig, Expander expander, CNameMangler mangler, CodeStyleSettings style)
+        public CodeGenContext(StateMachine sm, RenderConfigC renderConfig, Expander expander, CNameMangler mangler, CodeStyleSettings style)
         {
             this.sm = sm;
             this.renderConfig = renderConfig;

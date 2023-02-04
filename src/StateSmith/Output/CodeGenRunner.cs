@@ -11,28 +11,28 @@ internal class CodeGenRunner
 {
     readonly DynamicVarsResolver varsResolver;
     readonly CodeGenContext codeGenContext;
-    readonly IRenderConfigC renderConfig;
-    readonly ConfigReader reader;
     readonly CBuilder cBuilder;
     readonly RunnerSettings settings;
     readonly CHeaderBuilder cHeaderBuilder;
+    readonly ConfigReader configReader;
+    readonly ConfigReaderObjectProvider configReaderObjectProvider;
 
-    public CodeGenRunner(DynamicVarsResolver varsResolver, CodeGenContext codeGenContext, IRenderConfigC renderConfig, ConfigReader reader, CBuilder cBuilder, RunnerSettings settings, CHeaderBuilder cHeaderBuilder)
+    public CodeGenRunner(DynamicVarsResolver varsResolver, CodeGenContext codeGenContext, ConfigReader reader, CBuilder cBuilder, RunnerSettings settings, CHeaderBuilder cHeaderBuilder, ConfigReaderObjectProvider configReaderObjectProvider)
     {
         this.varsResolver = varsResolver;
         this.codeGenContext = codeGenContext;
-        this.renderConfig = renderConfig;
-        this.reader = reader;
+        this.configReader = reader;
         this.cBuilder = cBuilder;
         this.settings = settings;
         this.cHeaderBuilder = cHeaderBuilder;
+        this.configReaderObjectProvider = configReaderObjectProvider;
     }
 
     public void Run()
     {
         varsResolver.Resolve();
 
-        reader.ReadObject(renderConfig);
+        configReader.ReadObject(configReaderObjectProvider);
         cBuilder.Generate();
         cHeaderBuilder.Generate();
 

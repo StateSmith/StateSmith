@@ -5,6 +5,7 @@ using System.IO;
 using StateSmith.Common;
 using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
+using StateSmith.Output.UserConfig;
 
 #nullable enable
 
@@ -17,18 +18,23 @@ public class SmRunner
 {
     readonly RunnerSettings settings;
     readonly SsServiceProvider sp;
-    InputSmBuilder inputSmBuilder;
-    ExceptionPrinter exceptionPrinter = new();
+    readonly InputSmBuilder inputSmBuilder;
+    readonly ExceptionPrinter exceptionPrinter = new();
+    readonly RenderConfigC renderConfigC;
 
     public SmRunner(RunnerSettings settings)
     {
         this.settings = settings;
+        renderConfigC = new RenderConfigC();
+        renderConfigC.SetFromIRenderConfigC(this.settings.renderConfig);
+
         sp = new SsServiceProvider(postConfigAction: (context, services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.mangler);
             services.AddSingleton(settings.style);
-            services.AddSingleton(settings.renderConfig);
+            services.AddSingleton(renderConfigC);
+            services.AddSingleton(new ConfigReaderObjectProvider(settings.renderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
         });
