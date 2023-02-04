@@ -1,5 +1,6 @@
 #nullable enable
 using StateSmith.SmGraph.Visitors;
+using System.Xml.Linq;
 
 namespace StateSmith.SmGraph;
 
@@ -21,6 +22,6 @@ public class ConfigOptionVertex : Vertex
 
     public override string ToString()
     {
-        return name;
+        return GetType().Name + ": " + name;
     }
 }
