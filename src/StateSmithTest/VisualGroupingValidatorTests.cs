@@ -18,7 +18,7 @@ public class VisualGroupingValidatorTests
 
     public VisualGroupingValidatorTests()
     {
-        converter = runner.ssServiceProvider.GetServiceOrCreateInstance();
+        converter = runner.sp.GetServiceOrCreateInstance();
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public class VisualGroupingValidatorTests
 
     private DrawIoSettings GetDrawIoSettings()
     {
-        return runner.ssServiceProvider.GetServiceOrCreateInstance();
+        return runner.sp.GetServiceOrCreateInstance();
     }
 
     [Fact]

@@ -1,6 +1,9 @@
 using StateSmith.Output.UserConfig;
+using StateSmith.Runner;
 using StateSmith.SmGraph.Visitors;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 #nullable enable
 
@@ -9,7 +12,7 @@ namespace StateSmith.SmGraph;
 public class RenderConfigVerticesProcessor : DummyVertexVisitor
 {
     readonly RenderConfigC renderConfigC;
-    readonly StateMachine targetStateMachine;
+    readonly IStateMachineProvider targetStateMachineProvider;
     readonly IDiagramVerticesProvider diagramVerticesProvider;
 
     /// <summary>
@@ -17,10 +20,10 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     /// </summary>
     StateMachine? currentStateMachine = null;
 
-    public RenderConfigVerticesProcessor(RenderConfigC renderConfigC, StateMachine targetStateMachine, IDiagramVerticesProvider diagramVerticesProvider)
+    public RenderConfigVerticesProcessor(RenderConfigC renderConfigC, IStateMachineProvider targetStateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider)
     {
         this.renderConfigC = renderConfigC;
-        this.targetStateMachine = targetStateMachine;
+        this.targetStateMachineProvider = targetStateMachineProvider;
         this.diagramVerticesProvider = diagramVerticesProvider;
     }
 
@@ -53,7 +56,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
             throw new VertexValidationException(v, $"{nameof(RenderConfigOptionVertex)} must have a parent of type {nameof(RenderConfigVertex)}.");
         }
 
-        if (HandlingRootLevelRenderConfig() || targetStateMachine == currentStateMachine)
+        if (HandlingRootLevelRenderConfig() || targetStateMachineProvider.GetStateMachine() == currentStateMachine)
         {
             CopyRenderConfigOption(v);
         }
@@ -62,9 +65,22 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     internal void Process()
     {
         var rootVertices = diagramVerticesProvider.GetRootVertices();
-        foreach (var rootVertex in rootVertices)
+
+        // visit diagram root render config vertices first, before any render configs inside state machines
+        var visitFirst = rootVertices.OfType<RenderConfigVertex>().ToList();
+        visitFirst.ForEach(v => Visit(v));
+
+        foreach (var v in rootVertices.Except(visitFirst))
         {
-            Visit(rootVertex);
+            Visit(v);
+        }
+
+        List<Vertex> toRemove = new();
+        targetStateMachineProvider.GetStateMachine().VisitTypeRecursively<RenderConfigVertex>(v => toRemove.Add(v));
+
+        foreach (var v in toRemove)
+        {
+            v.RemoveChildrenAndSelf();
         }
     }
 
@@ -72,33 +88,25 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     {
         switch (v.name)
         {
-            case nameof(RenderConfigC.HFileTop):
-                renderConfigC.HFileTop += v.value;
-                break;
-
-            case nameof(RenderConfigC.HFileIncludes):
-                renderConfigC.HFileIncludes += v.value;
-                break;
-
-            case nameof(RenderConfigC.CFileTop):
-                renderConfigC.CFileTop += v.value;
-                break;
-
-            case nameof(RenderConfigC.CFileIncludes):
-                renderConfigC.CFileIncludes += v.value;
-                break;
-
-            case nameof(RenderConfigC.VariableDeclarations):
-                renderConfigC.VariableDeclarations += v.value;
-                break;
-
-            case nameof(RenderConfigC.EventCommaList):
-                renderConfigC.EventCommaList += v.value;
-                break;
+            case nameof(RenderConfigC.HFileTop): AppendOption(ref renderConfigC.HFileTop, v); break;
+            case nameof(RenderConfigC.HFileIncludes): AppendOption(ref renderConfigC.HFileIncludes, v); break;
+            case nameof(RenderConfigC.CFileTop): AppendOption(ref renderConfigC.CFileTop, v); break;
+            case nameof(RenderConfigC.CFileIncludes): AppendOption(ref renderConfigC.CFileIncludes, v); break;
+            case nameof(RenderConfigC.VariableDeclarations): AppendOption(ref renderConfigC.VariableDeclarations, v); break;
+            case nameof(RenderConfigC.EventCommaList): AppendOption(ref renderConfigC.EventCommaList, v); break;
 
             default:
                 throw new VertexValidationException(v, $"Unknown Render Config option `{v.name}`");
         }
+    }
+
+    private static void AppendOption(ref string str, RenderConfigOptionVertex option)
+    {
+        if (str.Length > 0 && option.value.Length > 0) {
+            str += "\n";
+        }
+
+        str += option.value;
     }
 
     // applies to any StateMachine in diagram

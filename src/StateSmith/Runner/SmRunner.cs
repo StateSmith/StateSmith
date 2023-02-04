@@ -28,7 +28,9 @@ public class SmRunner
         renderConfigC = new RenderConfigC();
         renderConfigC.SetFromIRenderConfigC(this.settings.renderConfig);
 
-        sp = new SsServiceProvider(postConfigAction: (context, services) =>
+        sp = SsServiceProvider.CreateDefault();
+
+        sp.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.mangler);
@@ -98,7 +100,7 @@ public class SmRunner
             inputSmBuilder.FindSingleStateMachine();
         }
 
-        OutputStageMessage($"State machine `{inputSmBuilder.GetStateMachine!.Name}` selected.");
+        OutputStageMessage($"State machine `{inputSmBuilder.GetStateMachine().Name}` selected.");
     }
 
     private void OutputCompilingDiagramMessage()

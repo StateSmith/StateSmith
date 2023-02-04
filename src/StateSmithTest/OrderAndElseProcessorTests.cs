@@ -25,7 +25,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine);
+        OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine());
     }
 
     // https://github.com/StateSmith/StateSmith/issues/59
@@ -40,7 +40,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine);
+        OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine());
     }
 
     // https://github.com/StateSmith/StateSmith/issues/59
@@ -55,9 +55,9 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine);
+        OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine());
 
-        var initialState = inputSmBuilder.GetStateMachine.Children.OfType<InitialState>().Single();
+        var initialState = inputSmBuilder.GetStateMachine().Children.OfType<InitialState>().Single();
         initialState.Behaviors[0].actionCode.Should().Be("a++;");
         initialState.Behaviors[1].actionCode.Should().Be("b++;");
         initialState.Behaviors[2].actionCode.Should().Be("c++;");
@@ -75,9 +75,9 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine);
+        OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine());
 
-        var map = new NamedVertexMap(inputSmBuilder.GetStateMachine);
+        var map = new NamedVertexMap(inputSmBuilder.GetStateMachine());
         State GetState(string stateName) => map.GetState(stateName);
 
         var state = GetState("State0");
@@ -98,7 +98,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine);
+        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine());
         action.Should().Throw<Exception>();
     }
 
@@ -114,7 +114,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine);
+        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine());
         action.Should().Throw<Exception>();
     }
 
@@ -131,7 +131,7 @@ public class OrderAndElseProcessorTests
             @enduml
         ");
 
-        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine);
+        Action action = () => OrderAndElseProcessor.Process(inputSmBuilder.GetStateMachine());
         action.Should().Throw<Exception>();
     }
 }

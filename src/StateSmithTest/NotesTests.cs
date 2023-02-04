@@ -70,7 +70,7 @@ namespace StateSmithTest
             inputSmBuilder.ConvertDrawIoFileNodesToVertices(filepath);
             inputSmBuilder.FindSingleStateMachine();
             inputSmBuilder.SetupForSingleSm();
-            var sm = inputSmBuilder.GetStateMachine;
+            var sm = inputSmBuilder.GetStateMachine();
             var map = new NamedVertexMap(sm);
             State GetState(string stateName) => map.GetState(stateName);
 

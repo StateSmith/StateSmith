@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph;
+using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -197,6 +197,20 @@ namespace StateSmith.SmGraph
             {
                 child.VisitTypeRecursively<T>(action);
             }
+        }
+
+        public static void RemoveAllChildren(this Vertex vertex)
+        {
+            foreach (var child in vertex.Children.ToArray()) // copy so we can modify collection
+            {
+                vertex.RemoveChild(child);
+            }
+        }
+
+        public static void RemoveChildrenAndSelf(this Vertex vertex)
+        {
+            vertex.RemoveAllChildren();
+            vertex.RemoveSelf();
         }
     }
 }

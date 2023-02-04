@@ -2,6 +2,7 @@ using StateSmith.SmGraph;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.UserConfig;
 using System.Text;
+using StateSmith.Runner;
 
 # nullable enable
 
@@ -27,9 +28,9 @@ namespace StateSmith.Output.C99BalancedCoder1
             style = new();
         }
 
-        public CodeGenContext(StateMachine sm, RenderConfigC renderConfig, Expander expander, CNameMangler mangler, CodeStyleSettings style)
+        public CodeGenContext(RenderConfigC renderConfig, Expander expander, CNameMangler mangler, CodeStyleSettings style, IStateMachineProvider stateMachineProvider)
         {
-            this.sm = sm;
+            this.sm = stateMachineProvider.GetStateMachine();
             this.renderConfig = renderConfig;
             this.expander = expander;
             this.mangler = mangler;

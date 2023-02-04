@@ -15,11 +15,6 @@ using StateSmith.Common;
 
 namespace StateSmith.Runner;
 
-public interface ISmProvider
-{
-    StateMachine GetStateMachine();
-}
-
 /// <summary>
 /// This class converts an input diagram/design into a StateMachine vertex and finishes building/transforming
 /// the StateMachine vertex so that is ready for code generation.
@@ -31,24 +26,27 @@ public interface ISmProvider
 /// 
 /// Step 3: finish building/transforming the selected StateMachine vertex so that is ready for code generation.
 /// </summary>
-public class InputSmBuilder : ISmProvider
+public class InputSmBuilder : IStateMachineProvider
 {
     public readonly SmTransformer transformer;
     public StateMachine GetStateMachine() => sm.ThrowIfNull();
 
     protected StateMachine? sm { get; set; }
     internal DiagramToSmConverter diagramToSmConverter = new();
-    internal SsServiceProvider ssServiceProvider;
+    internal SsServiceProvider sp;
     protected CNameMangler mangler;
 
-    public InputSmBuilder() : this(new SsServiceProvider()) { }
+    public InputSmBuilder() : this(SsServiceProvider.CreateDefault()) { }
 
-    public InputSmBuilder(SsServiceProvider ssServiceProvider)
+    public InputSmBuilder(SsServiceProvider sp)
     {
-        this.ssServiceProvider = ssServiceProvider;
-        mangler = ssServiceProvider.GetServiceOrCreateInstance();
-        transformer = ssServiceProvider.GetServiceOrCreateInstance();
-        ssServiceProvider.IDiagramVerticesProviderGetter = () => diagramToSmConverter;
+        this.sp = sp;
+        sp.AddSingleton(diagramToSmConverter);
+        sp.AddSingleton(this);
+        sp.Build();
+
+        mangler = sp.GetServiceOrCreateInstance();
+        transformer = sp.GetServiceOrCreateInstance();
     }
 
     /// <summary>
@@ -82,7 +80,7 @@ public class InputSmBuilder : ISmProvider
     /// </summary>
     public void ConvertDrawIoFileNodesToVertices(string filepath)
     {
-        DrawIoToSmDiagramConverter converter = ssServiceProvider.GetServiceOrCreateInstance();
+        DrawIoToSmDiagramConverter converter = sp.GetServiceOrCreateInstance();
         converter.ProcessFile(filepath);
         ConvertNodesToVertices(converter.Roots, converter.Edges);
     }
@@ -193,6 +191,5 @@ public class InputSmBuilder : ISmProvider
     private void SetSmVar(StateMachine stateMachine)
     {
         sm = stateMachine;
-        ssServiceProvider.SmGetter = () => GetStateMachine;
     }
 }
