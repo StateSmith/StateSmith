@@ -40,6 +40,7 @@ public class SsServiceProvider
             services.AddSingleton<SmTransformer, DefaultSmTransformer>();
             services.AddSingleton<Expander>();
 
+            services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
             services.AddTransient<CodeGenRunner>();
             services.AddTransient<MxCellsToSmDiagramConverter>();

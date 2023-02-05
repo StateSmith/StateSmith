@@ -1,3 +1,4 @@
+using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph.Visitors;
@@ -107,11 +108,8 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
 
     private static void AppendOption(ref string str, ConfigOptionVertex option)
     {
-        if (str.Length > 0 && option.value.Length > 0) {
-            str += "\n";
-        }
-
-        str += option.value;
+        var toAppend = option.value;
+        str = StringUtils.AppendWithNewlineIfNeeded(str, toAppend);
     }
 
     // applies to any StateMachine in diagram

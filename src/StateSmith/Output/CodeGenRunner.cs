@@ -14,25 +14,28 @@ internal class CodeGenRunner
     readonly CBuilder cBuilder;
     readonly RunnerSettings settings;
     readonly CHeaderBuilder cHeaderBuilder;
-    readonly ExpansionConfigReader configReader;
-    readonly ExpansionConfigReaderObjectProvider configReaderObjectProvider;
+    readonly ExpansionConfigReader expansionConfigReader;
+    readonly ExpansionConfigReaderObjectProvider expansionConfigReaderObjectProvider;
+    readonly AutoExpandedVarsProcessor autoExpandedVarsProcessor;
 
-    public CodeGenRunner(DynamicVarsResolver varsResolver, CodeGenContext codeGenContext, ExpansionConfigReader configReader, CBuilder cBuilder, RunnerSettings settings, CHeaderBuilder cHeaderBuilder, ExpansionConfigReaderObjectProvider configReaderObjectProvider)
+    public CodeGenRunner(DynamicVarsResolver varsResolver, CodeGenContext codeGenContext, ExpansionConfigReader configReader, CBuilder cBuilder, RunnerSettings settings, CHeaderBuilder cHeaderBuilder, ExpansionConfigReaderObjectProvider configReaderObjectProvider, AutoExpandedVarsProcessor autoExpandedVarsProcessor)
     {
         this.varsResolver = varsResolver;
         this.codeGenContext = codeGenContext;
-        this.configReader = configReader;
+        this.expansionConfigReader = configReader;
         this.cBuilder = cBuilder;
         this.settings = settings;
         this.cHeaderBuilder = cHeaderBuilder;
-        this.configReaderObjectProvider = configReaderObjectProvider;
+        this.expansionConfigReaderObjectProvider = configReaderObjectProvider;
+        this.autoExpandedVarsProcessor = autoExpandedVarsProcessor;
     }
 
     public void Run()
     {
         varsResolver.Resolve();
+        expansionConfigReader.ReadObject(expansionConfigReaderObjectProvider);
+        autoExpandedVarsProcessor.AddExpansions();
 
-        configReader.ReadObject(configReaderObjectProvider);
         cBuilder.Generate();
         cHeaderBuilder.Generate();
 
