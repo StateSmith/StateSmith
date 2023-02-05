@@ -36,7 +36,7 @@ public class SmRunner
             services.AddSingleton(settings.mangler);
             services.AddSingleton(settings.style);
             services.AddSingleton(renderConfigC);
-            services.AddSingleton(new ConfigReaderObjectProvider(settings.renderConfig));
+            services.AddSingleton(new ExpansionConfigReaderObjectProvider(settings.renderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
         });

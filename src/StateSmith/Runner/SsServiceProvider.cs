@@ -46,7 +46,7 @@ public class SsServiceProvider
             services.AddTransient<DrawIoToSmDiagramConverter>();
             services.AddTransient<VisualGroupingValidator>();
             services.AddTransient<DynamicVarsResolver>();
-            services.AddTransient<ConfigReader>();
+            services.AddTransient<ExpansionConfigReader>();
             services.AddTransient<CBuilder>();
             services.AddTransient<CHeaderBuilder>();
         });

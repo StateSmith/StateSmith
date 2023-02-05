@@ -14,14 +14,14 @@ internal class CodeGenRunner
     readonly CBuilder cBuilder;
     readonly RunnerSettings settings;
     readonly CHeaderBuilder cHeaderBuilder;
-    readonly ConfigReader configReader;
-    readonly ConfigReaderObjectProvider configReaderObjectProvider;
+    readonly ExpansionConfigReader configReader;
+    readonly ExpansionConfigReaderObjectProvider configReaderObjectProvider;
 
-    public CodeGenRunner(DynamicVarsResolver varsResolver, CodeGenContext codeGenContext, ConfigReader reader, CBuilder cBuilder, RunnerSettings settings, CHeaderBuilder cHeaderBuilder, ConfigReaderObjectProvider configReaderObjectProvider)
+    public CodeGenRunner(DynamicVarsResolver varsResolver, CodeGenContext codeGenContext, ExpansionConfigReader configReader, CBuilder cBuilder, RunnerSettings settings, CHeaderBuilder cHeaderBuilder, ExpansionConfigReaderObjectProvider configReaderObjectProvider)
     {
         this.varsResolver = varsResolver;
         this.codeGenContext = codeGenContext;
-        this.configReader = reader;
+        this.configReader = configReader;
         this.cBuilder = cBuilder;
         this.settings = settings;
         this.cHeaderBuilder = cHeaderBuilder;

@@ -49,8 +49,8 @@ namespace StateSmithTest.roslyn
 bool flag = false;"
             );
 
-            ConfigReader reader = new(expander, expansionVarsPath: "sm->vars.");
-            reader.ReadObject(new ConfigReaderObjectProvider(configObject));
+            ExpansionConfigReader reader = new(expander, expansionVarsPath: "sm->vars.");
+            reader.ReadObject(new ExpansionConfigReaderObjectProvider(configObject));
 
             expander.GetVariableNames().Should().BeEquivalentTo(new string[] {
                 "a_count",
