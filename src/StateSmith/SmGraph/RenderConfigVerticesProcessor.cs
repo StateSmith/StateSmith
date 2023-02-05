@@ -1,3 +1,4 @@
+using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph.Visitors;
@@ -97,6 +98,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
             case nameof(RenderConfigC.CFileTop): AppendOption(ref renderConfigC.CFileTop, v); break;
             case nameof(RenderConfigC.CFileIncludes): AppendOption(ref renderConfigC.CFileIncludes, v); break;
             case nameof(RenderConfigC.VariableDeclarations): AppendOption(ref renderConfigC.VariableDeclarations, v); break;
+            case nameof(RenderConfigC.AutoExpandedVars): AppendOption(ref renderConfigC.AutoExpandedVars, v); break;
             case nameof(RenderConfigC.EventCommaList): AppendOption(ref renderConfigC.EventCommaList, v); break;
 
             default:
@@ -106,11 +108,8 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
 
     private static void AppendOption(ref string str, ConfigOptionVertex option)
     {
-        if (str.Length > 0 && option.value.Length > 0) {
-            str += "\n";
-        }
-
-        str += option.value;
+        var toAppend = option.value;
+        str = StringUtils.AppendWithNewlineIfNeeded(str, toAppend);
     }
 
     // applies to any StateMachine in diagram

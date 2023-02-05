@@ -19,6 +19,11 @@ public class RenderConfigC
     public string VariableDeclarations = "";
 
     /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/91
+    /// </summary>
+    public string AutoExpandedVars = "";
+
+    /// <summary>
     /// Not used yet. A comma separated list of allowed event names. TODO case sensitive?
     /// </summary>
     public string EventCommaList = "";
@@ -32,6 +37,8 @@ public class RenderConfigC
         CFileIncludes= config.CFileIncludes;
      
         VariableDeclarations = config.VariableDeclarations;
+        AutoExpandedVars = config.AutoExpandedVars;
+     
         EventCommaList = config.EventCommaList;
     }
 }

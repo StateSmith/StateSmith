@@ -40,13 +40,14 @@ public class SsServiceProvider
             services.AddSingleton<SmTransformer, DefaultSmTransformer>();
             services.AddSingleton<Expander>();
 
+            services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
             services.AddTransient<CodeGenRunner>();
             services.AddTransient<MxCellsToSmDiagramConverter>();
             services.AddTransient<DrawIoToSmDiagramConverter>();
             services.AddTransient<VisualGroupingValidator>();
             services.AddTransient<DynamicVarsResolver>();
-            services.AddTransient<ConfigReader>();
+            services.AddTransient<ExpansionConfigReader>();
             services.AddTransient<CBuilder>();
             services.AddTransient<CHeaderBuilder>();
         });

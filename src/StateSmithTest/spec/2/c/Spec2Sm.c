@@ -11,6 +11,16 @@
 static void ROOT_enter(Spec2Sm* self);
 static void ROOT_exit(Spec2Sm* self);
 
+static void AUTO_VAR_TEST_enter(Spec2Sm* self);
+static void AUTO_VAR_TEST_exit(Spec2Sm* self);
+
+static void AUTO_VAR_TEST__BLAH_enter(Spec2Sm* self);
+static void AUTO_VAR_TEST__BLAH_exit(Spec2Sm* self);
+static void AUTO_VAR_TEST__BLAH_do(Spec2Sm* self);
+
+static void AUTO_VAR_TEST__BLAH2_enter(Spec2Sm* self);
+static void AUTO_VAR_TEST__BLAH2_exit(Spec2Sm* self);
+
 static void DECIDE_enter(Spec2Sm* self);
 static void DECIDE_exit(Spec2Sm* self);
 static void DECIDE_ev1(Spec2Sm* self);
@@ -700,6 +710,9 @@ const char* Spec2Sm_state_id_to_string(const enum Spec2Sm_StateId id)
     switch (id)
     {
         case Spec2Sm_StateId_ROOT: return "ROOT";
+        case Spec2Sm_StateId_AUTO_VAR_TEST: return "AUTO_VAR_TEST";
+        case Spec2Sm_StateId_AUTO_VAR_TEST__BLAH: return "AUTO_VAR_TEST__BLAH";
+        case Spec2Sm_StateId_AUTO_VAR_TEST__BLAH2: return "AUTO_VAR_TEST__BLAH2";
         case Spec2Sm_StateId_DECIDE: return "DECIDE";
         case Spec2Sm_StateId_PREFIXING: return "PREFIXING";
         case Spec2Sm_StateId_PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU";
@@ -883,6 +896,125 @@ static void ROOT_exit(Spec2Sm* self)
     
     // State machine root is a special case. It cannot be exited.
     (void)self;  // nothing to see here compiler. move along!
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state AUTO_VAR_TEST
+////////////////////////////////////////////////////////////////////////////////
+
+static void AUTO_VAR_TEST_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = AUTO_VAR_TEST_exit;
+    
+    // AUTO_VAR_TEST behavior
+    // uml: enter / { trace("Enter AUTO_VAR_TEST."); }
+    {
+        // Step 1: execute action `trace("Enter AUTO_VAR_TEST.");`
+        trace("Enter AUTO_VAR_TEST.");
+    } // end of behavior for AUTO_VAR_TEST
+}
+
+static void AUTO_VAR_TEST_exit(Spec2Sm* self)
+{
+    // AUTO_VAR_TEST behavior
+    // uml: exit / { trace("Exit AUTO_VAR_TEST."); }
+    {
+        // Step 1: execute action `trace("Exit AUTO_VAR_TEST.");`
+        trace("Exit AUTO_VAR_TEST.");
+    } // end of behavior for AUTO_VAR_TEST
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = ROOT_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state AUTO_VAR_TEST__BLAH
+////////////////////////////////////////////////////////////////////////////////
+
+static void AUTO_VAR_TEST__BLAH_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = AUTO_VAR_TEST__BLAH_exit;
+    self->current_event_handlers[Spec2Sm_EventId_DO] = AUTO_VAR_TEST__BLAH_do;
+    
+    // AUTO_VAR_TEST__BLAH behavior
+    // uml: enter / { trace("Enter AUTO_VAR_TEST__BLAH."); }
+    {
+        // Step 1: execute action `trace("Enter AUTO_VAR_TEST__BLAH.");`
+        trace("Enter AUTO_VAR_TEST__BLAH.");
+    } // end of behavior for AUTO_VAR_TEST__BLAH
+}
+
+static void AUTO_VAR_TEST__BLAH_exit(Spec2Sm* self)
+{
+    // AUTO_VAR_TEST__BLAH behavior
+    // uml: exit / { trace("Exit AUTO_VAR_TEST__BLAH."); }
+    {
+        // Step 1: execute action `trace("Exit AUTO_VAR_TEST__BLAH.");`
+        trace("Exit AUTO_VAR_TEST__BLAH.");
+    } // end of behavior for AUTO_VAR_TEST__BLAH
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = AUTO_VAR_TEST_exit;
+    self->current_event_handlers[Spec2Sm_EventId_DO] = NULL;  // no ancestor listens to this event
+}
+
+static void AUTO_VAR_TEST__BLAH_do(Spec2Sm* self)
+{
+    // No ancestor state handles `do` event.
+    
+    // AUTO_VAR_TEST__BLAH behavior
+    // uml: do [trace_guard("State AUTO_VAR_TEST__BLAH: check behavior `[auto_var_1 > 0] TransitionTo(AUTO_VAR_TEST__BLAH2)`.", auto_var_1 > 0)] / { trace("Transition action `` for AUTO_VAR_TEST__BLAH to AUTO_VAR_TEST__BLAH2."); } TransitionTo(AUTO_VAR_TEST__BLAH2)
+    if (trace_guard("State AUTO_VAR_TEST__BLAH: check behavior `[auto_var_1 > 0] TransitionTo(AUTO_VAR_TEST__BLAH2)`.", self->vars.auto_var_1 > 0))
+    {
+        // Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition).
+        AUTO_VAR_TEST__BLAH_exit(self);
+        
+        // Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST__BLAH to AUTO_VAR_TEST__BLAH2.");`.
+        trace("Transition action `` for AUTO_VAR_TEST__BLAH to AUTO_VAR_TEST__BLAH2.");
+        
+        // Step 3: Enter/move towards transition target `AUTO_VAR_TEST__BLAH2`.
+        AUTO_VAR_TEST__BLAH2_enter(self);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        self->state_id = Spec2Sm_StateId_AUTO_VAR_TEST__BLAH2;
+        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        return;
+    } // end of behavior for AUTO_VAR_TEST__BLAH
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state AUTO_VAR_TEST__BLAH2
+////////////////////////////////////////////////////////////////////////////////
+
+static void AUTO_VAR_TEST__BLAH2_enter(Spec2Sm* self)
+{
+    // setup trigger/event handlers
+    self->current_state_exit_handler = AUTO_VAR_TEST__BLAH2_exit;
+    
+    // AUTO_VAR_TEST__BLAH2 behavior
+    // uml: enter / { trace("Enter AUTO_VAR_TEST__BLAH2."); }
+    {
+        // Step 1: execute action `trace("Enter AUTO_VAR_TEST__BLAH2.");`
+        trace("Enter AUTO_VAR_TEST__BLAH2.");
+    } // end of behavior for AUTO_VAR_TEST__BLAH2
+}
+
+static void AUTO_VAR_TEST__BLAH2_exit(Spec2Sm* self)
+{
+    // AUTO_VAR_TEST__BLAH2 behavior
+    // uml: exit / { trace("Exit AUTO_VAR_TEST__BLAH2."); }
+    {
+        // Step 1: execute action `trace("Exit AUTO_VAR_TEST__BLAH2.");`
+        trace("Exit AUTO_VAR_TEST__BLAH2.");
+    } // end of behavior for AUTO_VAR_TEST__BLAH2
+    
+    // adjust function pointers for this state's exit
+    self->current_state_exit_handler = AUTO_VAR_TEST_exit;
 }
 
 

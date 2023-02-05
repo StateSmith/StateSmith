@@ -1,8 +1,8 @@
-﻿namespace StateSmith.Output;
+namespace StateSmith.Output;
 
 #nullable enable
 
-internal interface IExpansionVarsPathProvider
+public interface IExpansionVarsPathProvider
 {
     string ExpansionVarsPath { get; }
 }

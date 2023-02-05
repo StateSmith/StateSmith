@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -122,6 +122,36 @@ namespace StateSmith.Output
             }
 
             return str;
+        }
+
+        internal static string RemoveCCodeComments(string code)
+        {
+            var regex = new Regex(@"(?x)
+                // .* [\r\n]+
+                |
+                /[*]
+                [\s\S]*? # anything, lazy
+                [*]/
+            ");
+
+            var result = regex.Replace(code, "");
+            return result;
+        }
+        
+        internal static string AppendWithNewlineIfNeeded(string str, string toAppend)
+        {
+            AppendInPlaceWithNewlineIfNeeded(ref str, toAppend);
+            return str;
+        }
+
+        internal static void AppendInPlaceWithNewlineIfNeeded(ref string str, string toAppend)
+        {
+            if (str.Length > 0 && toAppend.Length > 0)
+            {
+                str += "\n";
+            }
+
+            str += toAppend;
         }
     }
 }

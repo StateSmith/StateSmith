@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System.Runtime.CompilerServices;
 using StateSmith.SmGraph;
@@ -71,8 +71,6 @@ namespace StateSmith.Output.C99BalancedCoder1
             // file.AddLine($"// State machine structure.");
             file.Append($"struct {mangler.SmStructName}");
             file.StartCodeBlock();
-
-            // block just for viewing
             {
                 file.AppendLine($"// Used internally by state machine. Feel free to inspect, but don't modify.");
                 file.AppendLine($"enum {mangler.SmStateEnum} state_id;");
@@ -107,9 +105,7 @@ namespace StateSmith.Output.C99BalancedCoder1
                     file.FinishCodeBlock(" vars;");
 
                 }
-
             }
-
             file.FinishCodeBlock(";");
         }
 
