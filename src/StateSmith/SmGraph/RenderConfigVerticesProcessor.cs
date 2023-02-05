@@ -97,6 +97,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
             case nameof(RenderConfigC.CFileTop): AppendOption(ref renderConfigC.CFileTop, v); break;
             case nameof(RenderConfigC.CFileIncludes): AppendOption(ref renderConfigC.CFileIncludes, v); break;
             case nameof(RenderConfigC.VariableDeclarations): AppendOption(ref renderConfigC.VariableDeclarations, v); break;
+            case nameof(RenderConfigC.AutoExpandedVars): AppendOption(ref renderConfigC.AutoExpandedVars, v); break;
             case nameof(RenderConfigC.EventCommaList): AppendOption(ref renderConfigC.EventCommaList, v); break;
 
             default:

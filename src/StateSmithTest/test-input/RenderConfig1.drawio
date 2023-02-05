@@ -106,6 +106,14 @@
                 <mxCell id="78" value="// sm level - CFileTop" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" vertex="1" connectable="0" parent="77">
                     <mxGeometry y="30" width="180" height="30" as="geometry"/>
                 </mxCell>
+                <mxCell id="86" value="$CONFIG: AutoExpandedVars" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;html=1;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#76608a;fontColor=#ffffff;strokeColor=#432D57;" vertex="1" collapsed="1" parent="62">
+                    <mxGeometry x="40" y="570" width="280" height="70" as="geometry">
+                        <mxRectangle x="30" y="170" width="290" height="90" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="87" value="// sm level - AutoExpandedVars" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" vertex="1" connectable="0" parent="86">
+                    <mxGeometry y="30" width="240" height="30" as="geometry"/>
+                </mxCell>
                 <mxCell id="40" value="$RenderConfig" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;html=1;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="1" vertex="1" collapsed="1">
                     <mxGeometry x="390" y="40" width="210" height="70" as="geometry">
                         <mxRectangle x="320" y="40" width="360" height="470" as="alternateBounds"/>
@@ -165,6 +173,14 @@
                 </mxCell>
                 <mxCell id="83" value="// top level - CFileTop" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" vertex="1" connectable="0" parent="82">
                     <mxGeometry y="30" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="84" value="$CONFIG: AutoExpandedVars" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;html=1;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#76608a;fontColor=#ffffff;strokeColor=#432D57;" vertex="1" collapsed="1" parent="40">
+                    <mxGeometry x="30" y="560" width="280" height="70" as="geometry">
+                        <mxRectangle x="30" y="170" width="290" height="90" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="85" value="// top level - AutoExpandedVars" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" vertex="1" connectable="0" parent="84">
+                    <mxGeometry y="30" width="250" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

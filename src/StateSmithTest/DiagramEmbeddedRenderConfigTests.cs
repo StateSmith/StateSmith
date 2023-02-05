@@ -80,11 +80,16 @@ public class DiagramEmbeddedRenderConfigTests
             // sm level - CFileTop
             """);
 
+        renderConfig.AutoExpandedVars.ShouldBeShowDiff("""
+            // top level - AutoExpandedVars
+            // sm level - AutoExpandedVars
+            """);
+
         renderConfig.EventCommaList.ShouldBeShowDiff("""
 
             """);
 
-        const int expectedOptionCount = 6;
+        const int expectedOptionCount = 7;
         GetRenderConfigFields().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
         GetIRenderConfigCProperties().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
     }
