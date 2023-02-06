@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph;
+using StateSmith.SmGraph;
 using StateSmith.Runner;
 using Xunit;
 using FluentAssertions;
@@ -32,6 +32,8 @@ namespace StateSmithTest
             mainMenu.AddBehavior(new Behavior(trigger: "cmd", actionCode: "prefix.auto()"));
             mainMenu.AddBehavior(new Behavior(trigger: "cmd", actionCode: "$prefix.auto()"));
             mainMenu.AddBehavior(new Behavior(trigger: "$cmdd", actionCode: "prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "my_prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "prefix_add(blah)"));
 
             prefixingModder.Visit(sm);
             mmSelectBeverage.Name.Should().Be("SELECT_BEVERAGE");
@@ -49,7 +51,7 @@ namespace StateSmithTest
         {
             mainMenu.AddBehavior(new Behavior(trigger:"$cmd", actionCode: "prefix.auto()"));
             mmSelectBeverage.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "prefix.add(BEV)"));
-            mmFood.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "prefix.set(SEL_FOOD)"));
+            mmFood.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "prefix.set( SEL_FOOD )"));
 
             prefixingModder.Visit(sm);
 

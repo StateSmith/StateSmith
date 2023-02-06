@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph.Visitors;
 using StateSmith.SmGraph;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -9,11 +9,14 @@ using System.Text.RegularExpressions;
 
 namespace StateSmith.Runner
 {
+    /// <summary>
+    /// Currently uses rather simple regular expressions for matching.
+    /// </summary>
     public class PrefixingModder : OnlyVertexVisitor
     {
-        private const string AUTO_PREFIX_STRING = "prefix.auto(";
-        private static readonly Regex addPrefixRegex = new(@"prefix.add\((\w+)\)");
-        private static readonly Regex setPrefixRegex = new(@"prefix.set\((\w+)\)");
+        private static readonly Regex autoPrefixRegex = new(@"\bprefix[.]auto\(\s*\)");
+        private static readonly Regex addPrefixRegex = new(@"\bprefix[.]add\(\s*(\w+)\s*\)");
+        private static readonly Regex setPrefixRegex = new(@"\bprefix[.]set\(\s*(\w+)\s*\)");
 
         private Stack<string> prefixStack = new();
 
@@ -67,13 +70,15 @@ namespace StateSmith.Runner
         private static string? MaybeGetPrefixFromBehavior(NamedVertex state, Behavior b, string prefix)
         {
             string actionCode = b.actionCode;
+            Match match;
 
-            if (actionCode.Contains(AUTO_PREFIX_STRING))
+            match = autoPrefixRegex.Match(actionCode);
+            if (match.Success)
             {
                 return state.Name + "__"; // note that state name may have already been prefixed by parent at this point.
             }
 
-            var match = addPrefixRegex.Match(actionCode);
+            match = addPrefixRegex.Match(actionCode);
             if (match.Success)
             {
                 return prefix + match.Groups[1] + "__";
