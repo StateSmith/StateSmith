@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## WIP
+### Fixed
+- `StringUtils.RemoveCCodeComments()` now removes single line comments `//...` that end with string end (no line break).
+
+---
+
 ## [0.7.7-alpha]
 ### Fixed
 - draw.io - convert HTML breaks `<br>` to new line characters.

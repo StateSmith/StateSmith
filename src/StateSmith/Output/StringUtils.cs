@@ -127,7 +127,7 @@ namespace StateSmith.Output
         internal static string RemoveCCodeComments(string code)
         {
             var regex = new Regex(@"(?x)
-                // .* [\r\n]+
+                // .* (?: \r\n | \r | \n | $ )
                 |
                 /[*]
                 [\s\S]*? # anything, lazy
