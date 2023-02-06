@@ -88,14 +88,15 @@ namespace StateSmith.Output.C99BalancedCoder1
                 file.AppendLine($"// Used internally by state machine. Don't modify.");
                 file.AppendLine($"{mangler.SmFuncTypedef} current_state_exit_handler;");
 
-                var combinedVars = ctx.sm.variables + ctx.renderConfig.VariableDeclarations.Trim();
-                if (combinedVars.Length > 0)
+                if (IsVarsStructNeeded())
                 {
                     file.AppendLine();
                     file.AppendLine("// User variables. Can be used for inputs, outputs, user variables...");
                     file.Append("struct");
                     file.StartCodeBlock();
                     {
+                        var combinedVars = ctx.sm.variables + ctx.renderConfig.VariableDeclarations.Trim();
+
                         var lines = StringUtils.SplitIntoLines(combinedVars);
                         foreach (var line in lines)
                         {
@@ -107,6 +108,21 @@ namespace StateSmith.Output.C99BalancedCoder1
                 }
             }
             file.FinishCodeBlock(";");
+        }
+
+        internal bool IsVarsStructNeeded()
+        {
+            if (ctx.sm.variables.Length > 0)
+            {
+                return true;
+            }
+
+            return IsVariableDeclarationsNonEmpty();
+        }
+
+        private bool IsVariableDeclarationsNonEmpty()
+        {
+            return StringUtils.RemoveCCodeComments(ctx.renderConfig.VariableDeclarations).Trim().Length > 0;
         }
 
         internal void OutputFunctionPrototypes(OutputFile file)

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 ## WIP
+### Added
+- `IRenderConfigC.VariableDeclarations` is now ignored if it only contains comments.
+
 ### Fixed
 - `StringUtils.RemoveCCodeComments()` now removes single line comments `//...` that end with string end (no line break).
 

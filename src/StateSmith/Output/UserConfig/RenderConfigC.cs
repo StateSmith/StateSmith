@@ -34,11 +34,20 @@ public class RenderConfigC
         HFileIncludes = config.HFileIncludes;
 
         CFileTop = config.CFileTop;
-        CFileIncludes= config.CFileIncludes;
-     
+        CFileIncludes = config.CFileIncludes;
+
         VariableDeclarations = config.VariableDeclarations;
         AutoExpandedVars = config.AutoExpandedVars;
-     
+
         EventCommaList = config.EventCommaList;
+        IgnorePureCommentVarDecls();
+    }
+
+    private void IgnorePureCommentVarDecls()
+    {
+        if (StringUtils.RemoveCCodeComments(VariableDeclarations).Trim().Length == 0)
+        {
+            VariableDeclarations = "";
+        }
     }
 }
