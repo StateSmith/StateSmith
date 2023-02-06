@@ -6,13 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## WIP
+## [0.7.7-alpha]
 ### Fixed
 - draw.io - convert HTML breaks `<br>` to new line characters.
 - PrefixingModder - improve regex match accuracy.
 
 ### Added
-- allow defining render config in diagram
+- allow defining render config in diagram.
   - https://github.com/StateSmith/StateSmith/issues/23
 - Add `AutoExpandedVars` functionality to make it easier to add variables.
   - https://github.com/StateSmith/StateSmith/issues/91
