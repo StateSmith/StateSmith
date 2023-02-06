@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="StateSmith" Version="0.7.6-alpha" />
+    <PackageReference Include="StateSmith" Version="0.7.7-alpha" />
   </ItemGroup>
 
 </Project>
