@@ -52,7 +52,7 @@ public class PrefixingModder : OnlyVertexVisitor
 
     private static string GetPrefix(NamedVertex state, string prefix)
     {
-        foreach (var b in TriggerCommandHelper.GetCommandBehaviors(state))
+        foreach (var b in TriggerModHelper.GetModBehaviors(state))
         {
             string? newPrefix = MaybeGetPrefixFromBehavior(state, b, prefix);
 

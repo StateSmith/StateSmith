@@ -394,7 +394,7 @@ One solution is to manually prefix all states as shown below. Nothing technicall
 
 ![picture 18](./images/prefixing-manual.png)  
 
-The below diagram uses special `$cmd` `prefix` methods to tell StateSmith how to prefix sub states.
+The below diagram uses special `$mod` `prefix` methods to tell StateSmith how to prefix sub states.
 
 ![picture 19](images/prefixing-cmd-1.png)  
 

@@ -9,18 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## WIP
 ### Fixed
 - draw.io - convert HTML breaks `<br>` to new line characters.
-- PrefixingModder - improve regex match accuracy
+- PrefixingModder - improve regex match accuracy.
 
 ### Added
 - allow defining render config in diagram
   - https://github.com/StateSmith/StateSmith/issues/23
 - Add `AutoExpandedVars` functionality to make it easier to add variables.
   - https://github.com/StateSmith/StateSmith/issues/91
-- Add `TriggerCommandHelper`
+- Add experimental `TriggerModHelper`.
 
 ### Minor changes (probably no one effected)
-- Renamed new class `DefaultSmTransformer` to `StandardSmTransformer`
+- Renamed new class `DefaultSmTransformer` to `StandardSmTransformer`.
 - Simplified transformer step registration.
+- Renamed `$cmd` to `$mod` to better reflect the intent. These are commands or directives to modify the state machine.
 
 ---
 

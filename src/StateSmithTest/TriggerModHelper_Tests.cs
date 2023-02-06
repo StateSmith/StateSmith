@@ -11,7 +11,7 @@ using Xunit;
 
 namespace StateSmithTest;
 
-public class TriggerCommandHelper_Tests
+public class TriggerModHelper_Tests
 {
     [Fact]
     public void ExampleSimpleLogHelper()
@@ -24,7 +24,7 @@ public class TriggerCommandHelper_Tests
 
                 sm.VisitTypeRecursively<NamedVertex>((namedVertex) =>
                 {
-                    if (TriggerCommandHelper.PopCommandBehaviors(namedVertex, regex).Any())
+                    if (TriggerModHelper.PopModBehaviors(namedVertex, regex).Any())
                     {
                         namedVertex.AddEnterAction($"log(\"Entered {namedVertex.Name}.\");");
                         namedVertex.AddExitAction($"log(\"Exited {namedVertex.Name}.\");");
@@ -35,7 +35,8 @@ public class TriggerCommandHelper_Tests
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices(@"
             @startuml SomeSmName
             [*] --> MY_STATE_1
-            MY_STATE_1 : $cmd / $log();
+            MY_STATE_1 : $mod / $log();
+            MY_STATE_1 : do / stuff();
             @enduml
         ");
 
@@ -47,6 +48,7 @@ public class TriggerCommandHelper_Tests
         myState1.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
             Behavior.NewEnterBehavior("log(\"Entered MY_STATE_1.\");"),
             Behavior.NewExitBehavior("log(\"Exited MY_STATE_1.\");"),
+            new Behavior(trigger:"do", actionCode: "stuff();"),
         }, behaviorMatcher);
     }
 }

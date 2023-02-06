@@ -8,18 +8,21 @@ using System.Text.RegularExpressions;
 
 namespace StateSmith.Runner;
 
-public class TriggerCommandHelper
+/// <summary>
+/// Experimental status. Can be used, but API may change.
+/// </summary>
+public class TriggerModHelper
 {
-    public static IEnumerable<Behavior> GetCommandBehaviors(Vertex v)
+    public static IEnumerable<Behavior> GetModBehaviors(Vertex v)
     {
-        return v.GetBehaviorsWithTrigger("$cmd");
+        return v.GetBehaviorsWithTrigger("$mod");
     }
 
-    private static List<Behavior> GetCommandBehaviors(Vertex v, Regex matcher)
+    public static List<Behavior> GetModBehaviors(Vertex v, Regex matcher)
     {
         List<Behavior> result = new();
 
-        foreach (var b in GetCommandBehaviors(v))
+        foreach (var b in GetModBehaviors(v))
         {
             if (matcher.IsMatch(b.actionCode))
             {
@@ -30,7 +33,7 @@ public class TriggerCommandHelper
         return result;
     }
 
-    public static List<Match> PopCommandBehaviors(Vertex v, Regex matcher)
+    public static List<Match> PopModBehaviors(Vertex v, Regex matcher)
     {
         List<Match> result = new();
 
