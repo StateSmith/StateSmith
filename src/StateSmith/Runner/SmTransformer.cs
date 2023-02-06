@@ -1,4 +1,4 @@
-﻿using StateSmith.Common;
+using StateSmith.Common;
 using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
@@ -20,10 +20,20 @@ public class SmTransformer
         }
     }
 
+    public void InsertAfterFirstMatch(Enum id, TransformationStep step)
+    {
+        InsertAfterFirstMatch(id.ToString(), step);
+    }
+
     public void InsertAfterFirstMatch(string id, TransformationStep step)
     {
         int index = GetMatchIndex(id);
         transformationPipeline.Insert(index + 1, step);
+    }
+
+    public void InsertBeforeFirstMatch(Enum id, TransformationStep step)
+    {
+        InsertBeforeFirstMatch(id.ToString(), step);
     }
 
     public void InsertBeforeFirstMatch(string id, TransformationStep step)

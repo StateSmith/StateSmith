@@ -37,7 +37,7 @@ public class SsServiceProvider
             AddDefaultsForTesting(services);
 
             services.AddSingleton<CodeGenContext>();
-            services.AddSingleton<SmTransformer, DefaultSmTransformer>();
+            services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<Expander>();
 
             services.AddTransient<AutoExpandedVarsProcessor>();

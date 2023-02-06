@@ -69,7 +69,7 @@ namespace StateSmithTest
 
         private void Validate()
         {
-            DefaultSmTransformer.Validate(inputSmBuilder.GetStateMachine());
+            StandardSmTransformer.Validate(inputSmBuilder.GetStateMachine());
         }
 
         [Fact]

@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - https://github.com/StateSmith/StateSmith/issues/23
 - Add `AutoExpandedVars` functionality to make it easier to add variables.
   - https://github.com/StateSmith/StateSmith/issues/91
+- Add `TriggerCommandHelper`
+
+### Minor changes (probably no one effected)
+- Renamed new class `DefaultSmTransformer` to `StandardSmTransformer`
+- Simplified transformer step registration.
 
 ---
 
