@@ -39,12 +39,14 @@ public class DiServiceProvider
         {
             AddDefaultsForTesting(services);
 
-            services.AddSingleton<DiServiceProvider>(this);
+            services.AddSingleton(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<CodeGenContext>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<Expander>();
             services.AddSingleton<InputSmBuilder>();
+            services.AddSingleton<IConsolePrinter, ConsolePrinter>();
+            services.AddSingleton<ExceptionPrinter>();
 
             services.AddSingleton<StateMachineProvider>();
             services.AddSingleton<IStateMachineProvider>((s) => s.GetService<StateMachineProvider>()!); // need to use lambda or else another object will be created
@@ -76,6 +78,12 @@ public class DiServiceProvider
     {
         ThrowIfAlreadyBuilt();
         hostBuilder.ConfigureServices(services => { services.AddSingleton(obj); });
+    }
+
+    public void AddSingletonT<TInterface, TImplementation>(TImplementation implementationObj) where TInterface : class   where TImplementation : TInterface
+    {
+        ThrowIfAlreadyBuilt();
+        hostBuilder.ConfigureServices(services => { services.AddSingleton<TInterface>(implementationObj); });
     }
 
     /// <summary>
@@ -115,6 +123,7 @@ public class DiServiceProvider
 
     /// <summary>
     /// This class has implicit conversions that give some compile time type safety to <see cref="DiServiceProvider.GetServiceOrCreateInstance"/>.
+    /// Might remove this class.
     /// </summary>
     internal class ConvertableType
     {

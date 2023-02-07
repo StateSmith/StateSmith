@@ -3,9 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
-using System.Diagnostics;
-using System;
-using System.IO;
 
 #nullable enable
 
@@ -24,23 +21,65 @@ public class SmRunner : SmRunner.IExperimentalAccess
     readonly DiServiceProvider diServiceProvider;
 
     readonly RunnerSettings settings;
-
-    readonly ExceptionPrinter exceptionPrinter = new();
     readonly RenderConfigC renderConfigC;
 
-    readonly string callingFilePath;
+    /// <summary>
+    /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
+    /// figuring for regular C# projects and C# scripts (.csx).
+    /// </summary>
+    readonly string callerFilePath;
 
-    public SmRunner(RunnerSettings settings, [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    /// <param name="settings"></param>
+    /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
+    public SmRunner(RunnerSettings settings, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
-        this.callingFilePath = callingFilePath.ThrowIfNull();
-        ResolveFilePaths(settings, callingFilePath);
+        this.callerFilePath = callerFilePath.ThrowIfNull();
+        SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
         this.settings = settings;
         renderConfigC = new RenderConfigC();
         renderConfigC.SetFromIRenderConfigC(this.settings.renderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
         diServiceProvider = DiServiceProvider.CreateDefault();
+        SetupDependencyInjection();
+    }
 
+    /// <summary>
+    /// A convenience constructor.
+    /// </summary>
+    /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
+    /// <param name="renderConfigC"></param>
+    /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
+    /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    public SmRunner(string diagramPath, IRenderConfigC? renderConfigC = null, string? outputDirectory = null, [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+    : this(new RunnerSettings(renderConfigC ?? new DummyRenderConfigC(), diagramFile: diagramPath, outputDirectory: outputDirectory), callerFilePath: callingFilePath)
+    {
+    }
+
+    /// <summary>
+    /// Publicly exposed so that users can customize transformation behavior.
+    /// Accessing this member will cause the Dependency Injection settings to be finalized.
+    /// </summary>
+    public SmTransformer SmTransformer => diServiceProvider.GetServiceOrCreateInstance();
+
+
+    /// <summary>
+    /// Runs StateSmith. Will cause the Dependency Injection settings to be finalized.
+    /// </summary>
+    public void Run()
+    {
+        PrepareBeforeRun();
+        SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
+        smRunnerInternal.Run();
+    }
+
+    // ------------ private methods ----------------
+
+    private void SetupDependencyInjection()
+    {
         diServiceProvider.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
@@ -53,128 +92,24 @@ public class SmRunner : SmRunner.IExperimentalAccess
         });
     }
 
-    /// <summary>
-    /// A convenience constructor
-    /// </summary>
-    /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
-    /// <param name="renderConfigC"></param>
-    /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
-    /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
-    public SmRunner(string diagramPath, IRenderConfigC? renderConfigC = null, string? outputDirectory = null, [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
-    : this(new RunnerSettings(renderConfigC ?? new DummyRenderConfigC(), diagramFile: diagramPath, outputDirectory: outputDirectory), callingFilePath: callingFilePath)
-    {
-    }
-
-    /// <summary>
-    /// Publicly exposed so that users can customize transformation behavior.
-    /// </summary>
-    public SmTransformer SmTransformer => diServiceProvider.GetServiceOrCreateInstance();
-
-    public void Run()
-    {
-        PrepareBeforeRun();
-
-        try
-        {
-            Console.WriteLine();
-            OutputCompilingDiagramMessage();
-
-            SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-            var sm = smRunnerInternal.SetupAndFindStateMachine();
-            OutputStageMessage($"State machine `{sm.Name}` selected.");
-
-            smRunnerInternal.FinishRunning();
-            OutputStageMessage("Finished normally.");
-        }
-        catch (Exception e)
-        {
-            if (settings.propagateExceptions)
-            {
-                throw;
-            }
-
-            Environment.ExitCode = -1; // lets calling process know that code gen failed
-
-            exceptionPrinter.PrintException(e);
-            MaybeDumpErrorDetailsToFile(e);
-            OutputStageMessage("Finished with failure.");
-        }
-
-        Console.WriteLine();
-    }
-
+    // exists just for testing. can be removed in the future.
     internal void PrepareBeforeRun()
     {
         diServiceProvider.BuildIfNeeded();
-        ResolveFilePaths(settings, callingFilePath);    // done again in case settings were modified after construction
-    }
-
-    private void OutputCompilingDiagramMessage()
-    {
-        // https://github.com/StateSmith/StateSmith/issues/79
-        string filePath = settings.diagramFile;
-        if (settings.filePathPrintBase?.Trim().Length > 0)
-        {
-            filePath = Path.GetRelativePath(settings.filePathPrintBase, settings.diagramFile);
-        }
-        filePath = filePath.Replace('\\', '/');
-
-        OutputStageMessage($"Compiling file: `{filePath}` "
-            + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
-            + "."
-        );
-    }
-
-    // https://github.com/StateSmith/StateSmith/issues/82
-    private void MaybeDumpErrorDetailsToFile(Exception e)
-    {
-        if (!settings.dumpErrorsToFile)
-        {
-            Console.Error.WriteLine($"You can enable exception detail dumping by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpErrorsToFile)}` to true.");
-            return;
-        }
-
-        var errorDetailFilePath = settings.diagramFile + ".err.txt";
-        errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
-        exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
-        Console.Error.WriteLine("Additional exception detail dumped to file: " + errorDetailFilePath);
-    }
-
-    private static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
-    {
-        var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
-        settings.diagramFile = PathUtils.EnsurePathAbsolute(settings.diagramFile, relativeDirectory);
-        settings.outputDirectory ??= Path.GetDirectoryName(settings.diagramFile).ThrowIfNull();
-        settings.filePathPrintBase ??= relativeDirectory;
-
-        settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
-        settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
-    }
-
-    private static string ProcessDirPath(string dirPath, string relativeDirectory)
-    {
-        var resultPath = PathUtils.EnsurePathAbsolute(dirPath, relativeDirectory);
-        resultPath = PathUtils.EnsureDirEndingSeperator(resultPath);
-        return resultPath;
-    }
-
-    protected static void OutputStageMessage(string message)
-    {
-        // todo_low add logger functionality
-        Console.WriteLine("StateSmith Runner - " + message);
+        SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
     }
 
     // ----------- experimental access  -------------
+    // exists just for now to help make it clear StateSmith API that is likely to change soon.
 
     public IExperimentalAccess GetExperimentalAccess() => this;
     DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
     RunnerSettings IExperimentalAccess.Settings => settings;
     InputSmBuilder IExperimentalAccess.InputSmBuilder => diServiceProvider.GetServiceOrCreateInstance();
-    ExceptionPrinter IExperimentalAccess.ExceptionPrinter => exceptionPrinter;
     RenderConfigC IExperimentalAccess.RenderConfigC => renderConfigC;
 
     /// <summary>
-    /// The API in this experimental access may brake often. It will eventually stabilize after enough use and feedback.
+    /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
     /// </summary>
     public interface IExperimentalAccess
     {
@@ -186,7 +121,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
         RunnerSettings Settings { get; }
         InputSmBuilder InputSmBuilder { get; }
 
-        ExceptionPrinter ExceptionPrinter { get; }
         RenderConfigC RenderConfigC { get; }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using StateSmith.Output;
 using StateSmith.Common;
@@ -10,28 +9,61 @@ namespace StateSmith.Runner;
 
 /// <summary>
 /// This tiny class exists apart from SmRunner so that dependency injection can be used.
-/// More SmRunner code will end up here.
 /// </summary>
 internal class SmRunnerInternal
 {
     readonly InputSmBuilder inputSmBuilder;
     readonly RunnerSettings settings;
     readonly CodeGenRunner codeGenRunner;
+    readonly ExceptionPrinter exceptionPrinter;
+    readonly IConsolePrinter consolePrinter;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, CodeGenRunner codeGenRunner)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, CodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
         this.codeGenRunner = codeGenRunner;
+        this.exceptionPrinter = exceptionPrinter;
+        this.consolePrinter = consolePrinter;
     }
 
-    public void FinishRunning()
+    public void Run()
     {
-        inputSmBuilder.FinishRunning();
-        codeGenRunner.Run();
+        try
+        {
+            consolePrinter.WriteLine();
+            OutputCompilingDiagramMessage();
+
+            var sm = SetupAndFindStateMachine();
+            consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
+
+            inputSmBuilder.FinishRunning();
+            codeGenRunner.Run();
+            consolePrinter.OutputStageMessage("Finished normally.");
+        }
+        catch (System.Exception e)
+        {
+            if (settings.propagateExceptions)
+            {
+                throw;
+            }
+
+            HandleException(e);
+        }
+
+        consolePrinter.WriteLine();
     }
 
-    public StateMachine SetupAndFindStateMachine()
+    private void HandleException(System.Exception e)
+    {
+        System.Environment.ExitCode = -1; // lets calling process know that code gen failed
+
+        exceptionPrinter.PrintException(e);
+        MaybeDumpErrorDetailsToFile(e);
+        consolePrinter.OutputStageMessage("Finished with failure.");
+    }
+
+    private StateMachine SetupAndFindStateMachine()
     {
         inputSmBuilder.ThrowIfNull().ConvertDiagramFileToSmVertices(settings.diagramFile);
 
@@ -45,6 +77,55 @@ internal class SmRunnerInternal
         }
 
         return inputSmBuilder.GetStateMachine();
+    }
+
+    // https://github.com/StateSmith/StateSmith/issues/82
+    private void MaybeDumpErrorDetailsToFile(System.Exception e)
+    {
+        if (!settings.dumpErrorsToFile)
+        {
+            consolePrinter.WriteErrorLine($"You can enable exception detail dumping by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpErrorsToFile)}` to true.");
+            return;
+        }
+
+        var errorDetailFilePath = settings.diagramFile + ".err.txt";
+        errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
+        exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
+        consolePrinter.WriteErrorLine("Additional exception detail dumped to file: " + errorDetailFilePath);
+    }
+
+    private void OutputCompilingDiagramMessage()
+    {
+        // https://github.com/StateSmith/StateSmith/issues/79
+        string filePath = settings.diagramFile;
+        if (settings.filePathPrintBase?.Trim().Length > 0)
+        {
+            filePath = Path.GetRelativePath(settings.filePathPrintBase, settings.diagramFile);
+        }
+        filePath = filePath.Replace('\\', '/');
+
+        consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
+            + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
+            + "."
+        );
+    }
+
+    public static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
+    {
+        var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
+        settings.diagramFile = PathUtils.EnsurePathAbsolute(settings.diagramFile, relativeDirectory);
+        settings.outputDirectory ??= Path.GetDirectoryName(settings.diagramFile).ThrowIfNull();
+        settings.filePathPrintBase ??= relativeDirectory;
+
+        settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
+        settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
+    }
+
+    private static string ProcessDirPath(string dirPath, string relativeDirectory)
+    {
+        var resultPath = PathUtils.EnsurePathAbsolute(dirPath, relativeDirectory);
+        resultPath = PathUtils.EnsureDirEndingSeperator(resultPath);
+        return resultPath;
     }
 }
 
