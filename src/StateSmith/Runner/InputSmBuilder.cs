@@ -29,23 +29,24 @@ namespace StateSmith.Runner;
 public class InputSmBuilder : IStateMachineProvider
 {
     public readonly SmTransformer transformer;
-    public StateMachine GetStateMachine() => sm.ThrowIfNull();
+    public StateMachine GetStateMachine() => Sm.ThrowIfNull();
 
-    protected StateMachine? sm { get; set; }
+    protected StateMachine? Sm { get; set; }
     internal DiagramToSmConverter diagramToSmConverter = new();
-    internal SsServiceProvider sp;
-    protected CNameMangler mangler;
+    internal DiServiceProvider sp;
 
-    public InputSmBuilder() : this(SsServiceProvider.CreateDefault()) { }
+    // todo_low - replace with unit testing factory helper.
+    // The factory helper could setup DI and then this class could rely on it.
+    internal InputSmBuilder() : this(DiServiceProvider.CreateDefault()) {
+    }
 
-    public InputSmBuilder(SsServiceProvider sp)
+    public InputSmBuilder(DiServiceProvider sp)
     {
         this.sp = sp;
         sp.AddSingleton(diagramToSmConverter);
         sp.AddSingleton(this);
         sp.Build();
 
-        mangler = sp.GetServiceOrCreateInstance();
         transformer = sp.GetServiceOrCreateInstance();
     }
 
@@ -157,7 +158,7 @@ public class InputSmBuilder : IStateMachineProvider
     /// <summary>
     /// Step 2
     /// </summary>
-    [MemberNotNull(nameof(sm))]
+    [MemberNotNull(nameof(Sm))]
     public void FindSingleStateMachine()
     {
         var tempSm = new StateMachine("non_null_dummy"); // todo_low: figure out how to not need this to appease nullable analysis. Maybe avoid action below.
@@ -174,22 +175,23 @@ public class InputSmBuilder : IStateMachineProvider
     public void FinishRunning()
     {
         SetupForSingleSm();
+        CNameMangler mangler = sp.GetServiceOrCreateInstance();
         mangler.SetStateMachine(GetStateMachine());
         transformer.RunTransformationPipeline(GetStateMachine());
     }
 
-    [MemberNotNull(nameof(sm))]
+    [MemberNotNull(nameof(Sm))]
     public void SetupForSingleSm()
     {
-        if (sm == null)
+        if (Sm == null)
         {
             FindSingleStateMachine();
         }
     }
 
-    [MemberNotNull(nameof(sm))]
+    [MemberNotNull(nameof(Sm))]
     private void SetSmVar(StateMachine stateMachine)
     {
-        sm = stateMachine;
+        Sm = stateMachine;
     }
 }

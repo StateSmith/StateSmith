@@ -12,7 +12,7 @@ public class RunnerSettings
 
     public string diagramFile;
 
-    public string outputDirectory;
+    public string? outputDirectory;
 
     /// <summary>
     /// Only required if multiple state machines present in diagram file.
@@ -20,11 +20,11 @@ public class RunnerSettings
     public string? stateMachineName;
 
     /// <summary>
-    /// Optional. This is used to control how file paths are printed. If left unspecified, it will use a value appropriate for C# projects (not C# scripts): `AppDomain.CurrentDomain.BaseDirectory +  "../../../.."`.
-    /// Set to an empty string "" if you want the full absolute path to be printed. Recommend that you set the value.
+    /// Optional. This is used to control how file paths are printed.
+    /// Set to an empty string "" if you want the full absolute path to be printed.
     /// https://github.com/StateSmith/StateSmith/issues/79
     /// </summary>
-    public string filePathPrintBase = AppDomain.CurrentDomain.BaseDirectory + "../../../..";
+    public string? filePathPrintBase;
 
     public CodeStyleSettings style = new();
 
@@ -44,7 +44,9 @@ public class RunnerSettings
     /// </summary>
     public bool propagateExceptions = false;
 
-    public RunnerSettings(IRenderConfigC renderConfig, string diagramFile, string outputDirectory)
+    public bool autoDeIndentAndTrimRenderConfigItems = true;
+
+    public RunnerSettings(IRenderConfigC renderConfig, string diagramFile, string? outputDirectory = null)
     {
         this.renderConfig = renderConfig;
         this.diagramFile = diagramFile;

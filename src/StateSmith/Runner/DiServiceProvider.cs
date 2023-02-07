@@ -13,19 +13,22 @@ using StateSmith.Common;
 
 namespace StateSmith.Runner;
 
-public class SsServiceProvider
+/// <summary>
+/// Dependency Injection Service Provider
+/// </summary>
+public class DiServiceProvider
 {
     private IHost? host;
     private readonly IHostBuilder hostBuilder;
 
-    public SsServiceProvider()
+    public DiServiceProvider()
     {
         hostBuilder = Host.CreateDefaultBuilder();
     }
 
-    public static SsServiceProvider CreateDefault()
+    public static DiServiceProvider CreateDefault()
     {
-        SsServiceProvider sp = new();
+        DiServiceProvider sp = new();
         sp.SetupAsDefault();
         return sp;
     }
@@ -79,12 +82,23 @@ public class SsServiceProvider
         host = hostBuilder.Build(); // this will throw an exception if already built
     }
 
+    public void BuildIfNeeded()
+    {
+        if (!IsAlreadyBuilt())
+            Build();
+    }
+
     private void ThrowIfAlreadyBuilt()
     {
-        if (host != null)
+        if (IsAlreadyBuilt())
         {
             throw new InvalidOperationException("Can't add after built");
         }
+    }
+
+    private bool IsAlreadyBuilt()
+    {
+        return host != null;
     }
 
     private static void AddDefaultsForTesting(IServiceCollection services)
@@ -96,7 +110,7 @@ public class SsServiceProvider
     }
 
     /// <summary>
-    /// This class has implicit conversions that give some compile time type safety to <see cref="SsServiceProvider.GetServiceOrCreateInstance"/>.
+    /// This class has implicit conversions that give some compile time type safety to <see cref="DiServiceProvider.GetServiceOrCreateInstance"/>.
     /// </summary>
     internal class ConvertableType
     {
@@ -117,6 +131,7 @@ public class SsServiceProvider
 
     /// <summary>
     /// Probably should only be used for test code at this point.
+    /// todo_low - remove this usage as it hides dependencies. See https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/ .
     /// </summary>
     /// <returns></returns>
     internal ConvertableType GetServiceOrCreateInstance()

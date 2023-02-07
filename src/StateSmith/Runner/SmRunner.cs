@@ -1,11 +1,11 @@
 using StateSmith.Output.C99BalancedCoder1;
 using System;
-using StateSmith.SmGraph;
 using System.IO;
-using StateSmith.Common;
 using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
+using StateSmith.Common;
+using System.Diagnostics;
 
 #nullable enable
 
@@ -14,23 +14,35 @@ namespace StateSmith.Runner;
 /// <summary>
 /// Builds a single state machine and runs code generation.
 /// </summary>
-public class SmRunner
+public class SmRunner : SmRunner.IExperimentalAccess
 {
+    public RunnerSettings Settings => settings;
+
+    /// <summary>
+    /// Dependency Injection Service Provider
+    /// </summary>
+    readonly DiServiceProvider diServiceProvider;
+
     readonly RunnerSettings settings;
-    readonly SsServiceProvider sp;
     readonly InputSmBuilder inputSmBuilder;
+
     readonly ExceptionPrinter exceptionPrinter = new();
     readonly RenderConfigC renderConfigC;
 
-    public SmRunner(RunnerSettings settings)
+    readonly string callingFilePath;
+
+    public SmRunner(RunnerSettings settings, [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
     {
+        this.callingFilePath = callingFilePath.ThrowIfNull();
+        ResolveFilePaths(settings, callingFilePath);
+
         this.settings = settings;
         renderConfigC = new RenderConfigC();
-        renderConfigC.SetFromIRenderConfigC(this.settings.renderConfig);
+        renderConfigC.SetFromIRenderConfigC(this.settings.renderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
-        sp = SsServiceProvider.CreateDefault();
+        diServiceProvider = DiServiceProvider.CreateDefault();
 
-        sp.AddConfiguration((services) =>
+        diServiceProvider.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.mangler);
@@ -41,24 +53,38 @@ public class SmRunner
             services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
         });
 
-        inputSmBuilder = new(sp);
+        inputSmBuilder = new(diServiceProvider);
     }
 
     /// <summary>
-    /// Publicly exposed so that users can customize transformation behavior
+    /// A convenience constructor
+    /// </summary>
+    /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
+    /// <param name="renderConfigC"></param>
+    /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
+    /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    public SmRunner(string diagramPath, IRenderConfigC? renderConfigC = null, string? outputDirectory = null, [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+    : this(new RunnerSettings(renderConfigC ?? new DummyRenderConfigC(), diagramFile: diagramPath, outputDirectory: outputDirectory), callingFilePath: callingFilePath)
+    {
+    }
+
+    /// <summary>
+    /// Publicly exposed so that users can customize transformation behavior.
     /// </summary>
     public SmTransformer SmTransformer => inputSmBuilder.transformer;
 
     public void Run()
     {
+        PrepareBeforeRun();
+
         try
         {
-            System.Console.WriteLine();
+            Console.WriteLine();
             RunInputSmBuilder();
             RunCodeGen();
             OutputStageMessage("Finished normally.");
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             if (settings.propagateExceptions)
             {
@@ -72,7 +98,12 @@ public class SmRunner
             OutputStageMessage("Finished with failure.");
         }
 
-        System.Console.WriteLine();
+        Console.WriteLine();
+    }
+
+    internal void PrepareBeforeRun()
+    {
+        ResolveFilePaths(settings, callingFilePath);    // done again in case settings were modified after construction
     }
 
     private void RunInputSmBuilder()
@@ -85,7 +116,7 @@ public class SmRunner
 
     protected void RunCodeGen()
     {
-        CodeGenRunner codeGenRunner = sp.GetServiceOrCreateInstance();
+        CodeGenRunner codeGenRunner = diServiceProvider.GetServiceOrCreateInstance();
         codeGenRunner.Run();
     }
 
@@ -107,7 +138,7 @@ public class SmRunner
     {
         // https://github.com/StateSmith/StateSmith/issues/79
         string filePath = settings.diagramFile;
-        if (settings.filePathPrintBase.Trim().Length > 0)
+        if (settings.filePathPrintBase?.Trim().Length > 0)
         {
             filePath = Path.GetRelativePath(settings.filePathPrintBase, settings.diagramFile);
         }
@@ -139,4 +170,50 @@ public class SmRunner
         exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
         Console.Error.WriteLine("Additional exception detail dumped to file: " + errorDetailFilePath);
     }
+
+    private static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
+    {
+        var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
+        settings.diagramFile = PathUtils.EnsurePathAbsolute(settings.diagramFile, relativeDirectory);
+        settings.outputDirectory ??= Path.GetDirectoryName(settings.diagramFile).ThrowIfNull();
+        settings.filePathPrintBase ??= relativeDirectory;
+
+        settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
+        settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
+    }
+
+    private static string ProcessDirPath(string dirPath, string relativeDirectory)
+    {
+        var resultPath = PathUtils.EnsurePathAbsolute(dirPath, relativeDirectory);
+        resultPath = PathUtils.EnsureDirEndingSeperator(resultPath);
+        return resultPath;
+    }
+
+    // ----------- experimental access  -------------
+
+    public IExperimentalAccess GetExperimentalAccess() => this;
+    DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
+    RunnerSettings IExperimentalAccess.Settings => settings;
+    InputSmBuilder IExperimentalAccess.InputSmBuilder => inputSmBuilder;
+    ExceptionPrinter IExperimentalAccess.ExceptionPrinter => exceptionPrinter;
+    RenderConfigC IExperimentalAccess.RenderConfigC => renderConfigC;
+
+    /// <summary>
+    /// The API in this experimental access may brake often. It will eventually stabilize after enough use and feedback.
+    /// </summary>
+    public interface IExperimentalAccess
+    {
+        /// <summary>
+        /// Dependency Injection Service Provider
+        /// </summary>
+        DiServiceProvider DiServiceProvider { get; }
+
+        RunnerSettings Settings { get; }
+        InputSmBuilder InputSmBuilder { get; }
+
+        ExceptionPrinter ExceptionPrinter { get; }
+        RenderConfigC RenderConfigC { get; }
+    }
 }
+
+
