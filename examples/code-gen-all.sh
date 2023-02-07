@@ -12,7 +12,7 @@
 set -e
 
 USE_PROJECT_REF="${1:-0}"  # gets value of first arg to script or 0 if not set. https://stackoverflow.com/a/2013589/7331858
-NUGET_VERSION=0.7.6-alpha
+NUGET_VERSION=0.7.7-alpha
 
 # https://stackoverflow.com/questions/59895/how-do-i-get-the-directory-where-a-bash-script-is-located-from-within-the-script
 EXAMPLES_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )

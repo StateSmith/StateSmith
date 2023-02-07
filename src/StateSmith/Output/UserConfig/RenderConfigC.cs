@@ -28,17 +28,37 @@ public class RenderConfigC
     /// </summary>
     public string EventCommaList = "";
 
-    public void SetFromIRenderConfigC(IRenderConfigC config)
+    public void SetFromIRenderConfigC(IRenderConfigC config, bool autoDeIndentAndTrim)
     {
-        HFileTop = config.HFileTop;
-        HFileIncludes = config.HFileIncludes;
+        string Process(string str)
+        {
+            if (str.Trim().Length == 0)
+                return "";
 
-        CFileTop = config.CFileTop;
-        CFileIncludes= config.CFileIncludes;
-     
-        VariableDeclarations = config.VariableDeclarations;
-        AutoExpandedVars = config.AutoExpandedVars;
-     
-        EventCommaList = config.EventCommaList;
+            if (autoDeIndentAndTrim)
+                return StringUtils.DeIndentTrim(str);
+
+            return str;
+        }
+
+        HFileTop = Process(config.HFileTop);
+        HFileIncludes = Process(config.HFileIncludes);
+
+        CFileTop = Process(config.CFileTop);
+        CFileIncludes = Process(config.CFileIncludes);
+
+        VariableDeclarations = Process(config.VariableDeclarations);
+        AutoExpandedVars = Process(config.AutoExpandedVars);
+
+        EventCommaList = Process(config.EventCommaList);
+        IgnorePureCommentVarDecls();
+    }
+
+    private void IgnorePureCommentVarDecls()
+    {
+        if (StringUtils.RemoveCCodeComments(VariableDeclarations).Trim().Length == 0)
+        {
+            VariableDeclarations = "";
+        }
     }
 }

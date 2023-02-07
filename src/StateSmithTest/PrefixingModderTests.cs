@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph;
+using StateSmith.SmGraph;
 using StateSmith.Runner;
 using Xunit;
 using FluentAssertions;
@@ -29,9 +29,11 @@ namespace StateSmithTest
         public void WithoutPrefix()
         {
             // the below shouldn't match. No prefixing expected
-            mainMenu.AddBehavior(new Behavior(trigger: "cmd", actionCode: "prefix.auto()"));
-            mainMenu.AddBehavior(new Behavior(trigger: "cmd", actionCode: "$prefix.auto()"));
-            mainMenu.AddBehavior(new Behavior(trigger: "$cmdd", actionCode: "prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "mod", actionCode: "prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "mod", actionCode: "$prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "$modd", actionCode: "prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "$mod", actionCode: "my_prefix.auto()"));
+            mainMenu.AddBehavior(new Behavior(trigger: "$mod", actionCode: "prefix_add(blah)"));
 
             prefixingModder.Visit(sm);
             mmSelectBeverage.Name.Should().Be("SELECT_BEVERAGE");
@@ -47,9 +49,9 @@ namespace StateSmithTest
         [Fact]
         public void AutoAddSetPrefix()
         {
-            mainMenu.AddBehavior(new Behavior(trigger:"$cmd", actionCode: "prefix.auto()"));
-            mmSelectBeverage.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "prefix.add(BEV)"));
-            mmFood.AddBehavior(new Behavior(trigger: "$cmd", actionCode: "prefix.set(SEL_FOOD)"));
+            mainMenu.AddBehavior(new Behavior(trigger:"$mod", actionCode: "prefix.auto()"));
+            mmSelectBeverage.AddBehavior(new Behavior(trigger: "$mod", actionCode: "prefix.add(BEV)"));
+            mmFood.AddBehavior(new Behavior(trigger: "$mod", actionCode: "prefix.set( SEL_FOOD )"));
 
             prefixingModder.Visit(sm);
 

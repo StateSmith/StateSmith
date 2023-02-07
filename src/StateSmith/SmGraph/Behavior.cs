@@ -1,4 +1,4 @@
-﻿using StateSmith.Common;
+using StateSmith.Common;
 using StateSmith.SmGraph;
 using StateSmith.Output;
 using System.Collections.Generic;
@@ -39,18 +39,28 @@ namespace StateSmith.SmGraph
         // https://github.com/StateSmith/StateSmith/issues/3
         public string? viaExit;
 
-        internal Behavior() {
+        public Behavior() {
             _owningVertex = new State("nullable_dummy_for_tests");  // todo_low: update test code to do this instead.
         }
 
-        internal Behavior(string trigger, string guardCode = "", string actionCode = "") : this()
+        public static Behavior NewEnterBehavior(string actionCode = "")
+        {
+            return new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: actionCode);
+        }
+
+        public static Behavior NewExitBehavior(string actionCode = "")
+        {
+            return new Behavior(trigger: TriggerHelper.TRIGGER_EXIT, actionCode: actionCode);
+        }
+
+        public Behavior(string trigger, string guardCode = "", string actionCode = "") : this()
         {
             this.triggers.Add(trigger);
             this.guardCode = guardCode;
             this.actionCode = actionCode;
         }
 
-        internal Behavior(string guardCode = "", string actionCode = "", Vertex? transitionTarget = null) : this()
+        public Behavior(string guardCode = "", string actionCode = "", Vertex? transitionTarget = null) : this()
         {
             this.guardCode = guardCode;
             this.actionCode = actionCode;

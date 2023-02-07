@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+#nullable enable
+using System.Runtime.CompilerServices;
 
 namespace StateSmith.Input.Expansions
 {
@@ -7,18 +8,17 @@ namespace StateSmith.Input.Expansions
         /// <summary>
         /// This value will be updated as necessary for target language and rendering engine
         /// </summary>
-        internal string varsPath = null;
+        internal string? varsPath = null;
 
         /// <summary>
         /// This value will be updated as necessary for target language and rendering engine
         /// </summary>
-        public string VarsPath => varsPath;
-
+        public string VarsPath => varsPath!;
 
         /// <summary>
         /// todolow
         /// </summary>
-        public static string AutoNameCopy([CallerMemberName] string methodName = null)
+        public static string AutoNameCopy([CallerMemberName] string methodName = "")
         {
             return methodName;
         }
@@ -26,7 +26,7 @@ namespace StateSmith.Input.Expansions
         /// <summary>
         /// todolow
         /// </summary>
-        public string AutoVarName([CallerMemberName] string methodName = null)
+        public string AutoVarName([CallerMemberName] string methodName = "")
         {
             return VarsPath + methodName;
         }

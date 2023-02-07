@@ -6,15 +6,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## WIP
+## [0.7.8-alpha]
+### Added
+- `IRenderConfigC.VariableDeclarations` is now ignored if it only contains comments.
+- Simplified `SmRunner` API for public users.
+  - https://github.com/StateSmith/StateSmith/issues/90
+
+### Fixed
+- `StringUtils.RemoveCCodeComments()` now removes single line comments `//...` that end with string end (no line break).
+
+---
+
+## [0.7.7-alpha]
 ### Fixed
 - draw.io - convert HTML breaks `<br>` to new line characters.
+- PrefixingModder - improve regex match accuracy.
 
 ### Added
-- allow defining render config in diagram
+- allow defining render config in diagram.
   - https://github.com/StateSmith/StateSmith/issues/23
 - Add `AutoExpandedVars` functionality to make it easier to add variables.
   - https://github.com/StateSmith/StateSmith/issues/91
+- Add experimental `TriggerModHelper`.
+
+### Minor changes (probably no one effected)
+- Renamed new class `DefaultSmTransformer` to `StandardSmTransformer`.
+- Simplified transformer step registration.
+- Renamed `$cmd` to `$mod` to better reflect the intent. These are commands or directives to modify the state machine.
 
 ---
 

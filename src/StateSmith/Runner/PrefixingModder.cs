@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph.Visitors;
 using StateSmith.SmGraph;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -7,85 +7,89 @@ using System.Text.RegularExpressions;
 
 #nullable enable
 
-namespace StateSmith.Runner
+namespace StateSmith.Runner;
+
+/// <summary>
+/// Currently uses rather simple regular expressions for matching.
+/// </summary>
+public class PrefixingModder : OnlyVertexVisitor
 {
-    public class PrefixingModder : OnlyVertexVisitor
+    private static readonly Regex autoPrefixRegex = new(@"\bprefix[.]auto\(\s*\)");
+    private static readonly Regex addPrefixRegex = new(@"\bprefix[.]add\(\s*(\w+)\s*\)");
+    private static readonly Regex setPrefixRegex = new(@"\bprefix[.]set\(\s*(\w+)\s*\)");
+
+    private Stack<string> prefixStack = new();
+
+    public static void Process(StateMachine sm)
     {
-        private const string AUTO_PREFIX_STRING = "prefix.auto(";
-        private static readonly Regex addPrefixRegex = new(@"prefix.add\((\w+)\)");
-        private static readonly Regex setPrefixRegex = new(@"prefix.set\((\w+)\)");
+        new PrefixingModder().Visit(sm);
+    }
 
-        private Stack<string> prefixStack = new();
+    public PrefixingModder()
+    {
+        prefixStack.Push(""); // dummy
+    }
 
-        public static void Process(StateMachine sm)
+    public override void Visit(Vertex v)
+    {
+        if (v is NamedVertex namedVertex)
         {
-            new PrefixingModder().Visit(sm);
+            HandleNamedVertex(namedVertex);
         }
+    }
 
-        public PrefixingModder()
-        {
-            prefixStack.Push(""); // dummy
-        }
+    private void HandleNamedVertex(NamedVertex state)
+    {
+        var activePrefix = prefixStack.Peek();
+        state.Rename($"{activePrefix}{state.Name}");    // may rename to the same if no prefix
+        
+        string foundPrefix = GetPrefix(state, activePrefix);
 
-        public override void Visit(Vertex v)
+        prefixStack.Push(foundPrefix);
+        VisitChildren(state);
+        prefixStack.Pop();
+    }
+
+    private static string GetPrefix(NamedVertex state, string prefix)
+    {
+        foreach (var b in TriggerModHelper.GetModBehaviors(state))
         {
-            if (v is NamedVertex namedVertex)
+            string? newPrefix = MaybeGetPrefixFromBehavior(state, b, prefix);
+
+            if (newPrefix != null)
             {
-                HandleNamedVertex(namedVertex);
+                state.RemoveBehaviorAndUnlink(b);
+                prefix = newPrefix;
+                break;
             }
         }
 
-        private void HandleNamedVertex(NamedVertex state)
-        {
-            var activePrefix = prefixStack.Peek();
-            state.Rename($"{activePrefix}{state.Name}");    // may rename to the same if no prefix
-            
-            string foundPrefix = GetPrefix(state, activePrefix);
+        return prefix;
+    }
 
-            prefixStack.Push(foundPrefix);
-            VisitChildren(state);
-            prefixStack.Pop();
+    private static string? MaybeGetPrefixFromBehavior(NamedVertex state, Behavior b, string prefix)
+    {
+        string actionCode = b.actionCode;
+        Match match;
+
+        match = autoPrefixRegex.Match(actionCode);
+        if (match.Success)
+        {
+            return state.Name + "__"; // note that state name may have already been prefixed by parent at this point.
         }
 
-        private static string GetPrefix(NamedVertex state, string prefix)
+        match = addPrefixRegex.Match(actionCode);
+        if (match.Success)
         {
-            foreach (var b in state.GetBehaviorsWithTrigger("$cmd"))
-            {
-                string? newPrefix = MaybeGetPrefixFromBehavior(state, b, prefix);
-
-                if (newPrefix != null)
-                {
-                    state.RemoveBehaviorAndUnlink(b);
-                    prefix = newPrefix;
-                    break;
-                }
-            }
-
-            return prefix;
+            return prefix + match.Groups[1] + "__";
         }
 
-        private static string? MaybeGetPrefixFromBehavior(NamedVertex state, Behavior b, string prefix)
+        match = setPrefixRegex.Match(actionCode);
+        if (match.Success)
         {
-            string actionCode = b.actionCode;
-
-            if (actionCode.Contains(AUTO_PREFIX_STRING))
-            {
-                return state.Name + "__"; // note that state name may have already been prefixed by parent at this point.
-            }
-
-            var match = addPrefixRegex.Match(actionCode);
-            if (match.Success)
-            {
-                return prefix + match.Groups[1] + "__";
-            }
-
-            match = setPrefixRegex.Match(actionCode);
-            if (match.Success)
-            {
-                return match.Groups[1] + "__";
-            }
-
-            return null;
+            return match.Groups[1] + "__";
         }
+
+        return null;
     }
 }
