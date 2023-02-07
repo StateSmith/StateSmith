@@ -6,10 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## WIP
+## [0.7.8-alpha]
 ### Added
 - `IRenderConfigC.VariableDeclarations` is now ignored if it only contains comments.
-- Simplified API for using `SmRunner`.
+- Simplified `SmRunner` API for public users.
   - https://github.com/StateSmith/StateSmith/issues/90
 
 ### Fixed
