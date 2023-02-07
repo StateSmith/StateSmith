@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph;
+using StateSmith.SmGraph;
 
 #nullable enable
 

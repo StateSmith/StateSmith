@@ -26,28 +26,43 @@ namespace StateSmith.Runner;
 /// 
 /// Step 3: finish building/transforming the selected StateMachine vertex so that is ready for code generation.
 /// </summary>
-public class InputSmBuilder : IStateMachineProvider
+public class InputSmBuilder
 {
     public readonly SmTransformer transformer;
+
     public StateMachine GetStateMachine() => Sm.ThrowIfNull();
 
     protected StateMachine? Sm { get; set; }
-    internal DiagramToSmConverter diagramToSmConverter = new();
-    internal DiServiceProvider sp;
+
+    internal DiagramToSmConverter diagramToSmConverter; // todo - rework unit test code that relies on this so that it can be private https://github.com/StateSmith/StateSmith/issues/97
+    internal DiServiceProvider sp; // todo - rework unit test code that relies on this so we can remove it https://github.com/StateSmith/StateSmith/issues/97
+
+    readonly CNameMangler mangler;
+    readonly DrawIoToSmDiagramConverter drawIoConverter;
+    readonly StateMachineProvider stateMachineProvider;
+
+    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, CNameMangler mangler, DrawIoToSmDiagramConverter converter, DiServiceProvider sp, StateMachineProvider stateMachineProvider)
+    {
+        this.transformer = transformer;
+        this.diagramToSmConverter = diagramToSmConverter;
+        this.mangler = mangler;
+        this.drawIoConverter = converter;
+        this.sp = sp;
+        this.stateMachineProvider = stateMachineProvider;
+    }
 
     // todo_low - replace with unit testing factory helper.
     // The factory helper could setup DI and then this class could rely on it.
-    internal InputSmBuilder() : this(DiServiceProvider.CreateDefault()) {
-    }
-
-    public InputSmBuilder(DiServiceProvider sp)
+    internal InputSmBuilder()
     {
-        this.sp = sp;
-        sp.AddSingleton(diagramToSmConverter);
+        sp = DiServiceProvider.CreateDefault();
         sp.AddSingleton(this);
         sp.Build();
-
+        diagramToSmConverter = sp.GetServiceOrCreateInstance();
         transformer = sp.GetServiceOrCreateInstance();
+        mangler = sp.GetServiceOrCreateInstance();
+        drawIoConverter = sp.GetServiceOrCreateInstance();
+        stateMachineProvider = sp.GetServiceOrCreateInstance();
     }
 
     /// <summary>
@@ -81,9 +96,8 @@ public class InputSmBuilder : IStateMachineProvider
     /// </summary>
     public void ConvertDrawIoFileNodesToVertices(string filepath)
     {
-        DrawIoToSmDiagramConverter converter = sp.GetServiceOrCreateInstance();
-        converter.ProcessFile(filepath);
-        ConvertNodesToVertices(converter.Roots, converter.Edges);
+        drawIoConverter.ProcessFile(filepath);
+        ConvertNodesToVertices(drawIoConverter.Roots, drawIoConverter.Edges);
     }
 
     /// <summary>
@@ -175,7 +189,6 @@ public class InputSmBuilder : IStateMachineProvider
     public void FinishRunning()
     {
         SetupForSingleSm();
-        CNameMangler mangler = sp.GetServiceOrCreateInstance();
         mangler.SetStateMachine(GetStateMachine());
         transformer.RunTransformationPipeline(GetStateMachine());
     }
@@ -193,5 +206,6 @@ public class InputSmBuilder : IStateMachineProvider
     private void SetSmVar(StateMachine stateMachine)
     {
         Sm = stateMachine;
+        stateMachineProvider.SetStateMachine(Sm);
     }
 }

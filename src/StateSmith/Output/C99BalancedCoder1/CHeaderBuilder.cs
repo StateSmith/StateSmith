@@ -9,14 +9,13 @@ namespace StateSmith.Output.C99BalancedCoder1
     {
         private readonly CodeGenContext ctx;
         private readonly CEnumBuilder cEnumBuilder;
-        private readonly StateMachine sm;
+        private StateMachine Sm => ctx.Sm;
         private readonly CNameMangler mangler;
 
         public CHeaderBuilder(CodeGenContext ctx)
         {
             this.ctx = ctx;
             cEnumBuilder = new CEnumBuilder(ctx);
-            sm = ctx.sm;
             mangler = ctx.mangler;
         }
 
@@ -37,7 +36,7 @@ namespace StateSmith.Output.C99BalancedCoder1
             cEnumBuilder.OutputStateIdCode();
             file.AppendLine();
 
-            foreach (var h in sm.historyStates)
+            foreach (var h in Sm.historyStates)
             {
                 cEnumBuilder.OutputHistoryIdCode(h);
                 file.AppendLine();
@@ -95,7 +94,7 @@ namespace StateSmith.Output.C99BalancedCoder1
                     file.Append("struct");
                     file.StartCodeBlock();
                     {
-                        var combinedVars = ctx.sm.variables + ctx.renderConfig.VariableDeclarations.Trim();
+                        var combinedVars = ctx.Sm.variables + ctx.renderConfig.VariableDeclarations.Trim();
 
                         var lines = StringUtils.SplitIntoLines(combinedVars);
                         foreach (var line in lines)
@@ -112,7 +111,7 @@ namespace StateSmith.Output.C99BalancedCoder1
 
         internal bool IsVarsStructNeeded()
         {
-            if (ctx.sm.variables.Length > 0)
+            if (ctx.Sm.variables.Length > 0)
             {
                 return true;
             }

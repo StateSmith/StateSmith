@@ -105,7 +105,7 @@ $@"void Simple1_dispatch_event(Simple1* self, enum Simple1_EventId event_id)
         [Fact]
         public void OutputFuncStateEnter_Test()
         {
-            var map = new NamedVertexMap(ctx.sm);
+            var map = new NamedVertexMap(ctx.Sm);
             builder.OutputFuncStateEnter(map.GetState("s1"));
 
             string expected =
@@ -126,7 +126,7 @@ $@"static void S1_enter(Simple1* self)
         [Fact]
         public void OutputFuncStateExit_Test()
         {
-            var map = new NamedVertexMap(ctx.sm);
+            var map = new NamedVertexMap(ctx.Sm);
             builder.OutputFuncStateExit(map.GetState("s1"));
 
             string expected =

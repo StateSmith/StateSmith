@@ -9,11 +9,6 @@ using System.Text.RegularExpressions;
 
 namespace StateSmith.SmGraph;
 
-public interface IDiagramVerticesProvider
-{
-    List<Vertex> GetRootVertices();
-}
-
 public class DiagramToSmConverter : IDiagramVerticesProvider
 {
     public const string RenderConfigString = "$RenderConfig";
@@ -27,6 +22,10 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
     private readonly Dictionary<DiagramNode, Vertex> diagramVertexMap = new();
 
     public List<Vertex> GetRootVertices() => rootVertices;
+
+    public DiagramToSmConverter()
+    {
+    }
 
     /// <summary>
     /// Call this method when you want to support a custom input source.

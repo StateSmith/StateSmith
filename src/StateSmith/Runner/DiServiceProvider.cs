@@ -39,9 +39,18 @@ public class DiServiceProvider
         {
             AddDefaultsForTesting(services);
 
+            services.AddSingleton<DiServiceProvider>(this);
+            services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<CodeGenContext>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<Expander>();
+            services.AddSingleton<InputSmBuilder>();
+
+            services.AddSingleton<StateMachineProvider>();
+            services.AddSingleton<IStateMachineProvider>((s) => s.GetService<StateMachineProvider>()!); // need to use lambda or else another object will be created
+
+            services.AddSingleton<DiagramToSmConverter>();
+            services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetService<DiagramToSmConverter>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
@@ -62,13 +71,8 @@ public class DiServiceProvider
         hostBuilder.ConfigureServices(services);
     }
 
-    public void AddSingleton(IDiagramVerticesProvider diagramVerticesProvider)
-    {
-        ThrowIfAlreadyBuilt();
-        hostBuilder.ConfigureServices(services => { services.AddSingleton(diagramVerticesProvider); });
-    }
-
-    public void AddSingleton(IStateMachineProvider obj)
+    // only for test code
+    internal void AddSingleton(InputSmBuilder obj)
     {
         ThrowIfAlreadyBuilt();
         hostBuilder.ConfigureServices(services => { services.AddSingleton(obj); });
@@ -120,22 +124,27 @@ public class DiServiceProvider
         {
             this.host = host;
         }
-
+        
+        public static implicit operator StateMachineProvider(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<StateMachineProvider>(me.host.Services);
+        public static implicit operator SmRunnerInternal(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmRunnerInternal>(me.host.Services);
         public static implicit operator DrawIoToSmDiagramConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoToSmDiagramConverter>(me.host.Services);
+        public static implicit operator DiagramToSmConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DiagramToSmConverter>(me.host.Services);
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
         public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
         public static implicit operator CodeGenRunner(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CodeGenRunner>(me.host.Services);
         public static implicit operator RenderConfigC(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigC>(me.host.Services);
+        public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);
     }
 
     /// <summary>
-    /// Probably should only be used for test code at this point.
-    /// todo_low - remove this usage as it hides dependencies. See https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/ .
+    /// Should ideally only be used by code that sets up Service Provider and can't use dependency injection.
+    /// Otherwise, it can hide dependencies. See https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/ .
     /// </summary>
     /// <returns></returns>
     internal ConvertableType GetServiceOrCreateInstance()
     {
+        BuildIfNeeded();
         return new ConvertableType(host.ThrowIfNull());
     }
 }

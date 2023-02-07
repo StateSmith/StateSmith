@@ -1,11 +1,11 @@
 using StateSmith.Output.C99BalancedCoder1;
-using System;
-using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using System.Diagnostics;
+using System;
+using System.IO;
 
 #nullable enable
 
@@ -24,7 +24,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     readonly DiServiceProvider diServiceProvider;
 
     readonly RunnerSettings settings;
-    readonly InputSmBuilder inputSmBuilder;
 
     readonly ExceptionPrinter exceptionPrinter = new();
     readonly RenderConfigC renderConfigC;
@@ -52,8 +51,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
         });
-
-        inputSmBuilder = new(diServiceProvider);
     }
 
     /// <summary>
@@ -71,7 +68,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// Publicly exposed so that users can customize transformation behavior.
     /// </summary>
-    public SmTransformer SmTransformer => inputSmBuilder.transformer;
+    public SmTransformer SmTransformer => diServiceProvider.GetServiceOrCreateInstance();
 
     public void Run()
     {
@@ -80,8 +77,13 @@ public class SmRunner : SmRunner.IExperimentalAccess
         try
         {
             Console.WriteLine();
-            RunInputSmBuilder();
-            RunCodeGen();
+            OutputCompilingDiagramMessage();
+
+            SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
+            var sm = smRunnerInternal.SetupAndFindStateMachine();
+            OutputStageMessage($"State machine `{sm.Name}` selected.");
+
+            smRunnerInternal.FinishRunning();
             OutputStageMessage("Finished normally.");
         }
         catch (Exception e)
@@ -103,35 +105,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     internal void PrepareBeforeRun()
     {
+        diServiceProvider.BuildIfNeeded();
         ResolveFilePaths(settings, callingFilePath);    // done again in case settings were modified after construction
-    }
-
-    private void RunInputSmBuilder()
-    {
-        OutputCompilingDiagramMessage();
-        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
-        FindStateMachine();
-        inputSmBuilder.FinishRunning();
-    }
-
-    protected void RunCodeGen()
-    {
-        CodeGenRunner codeGenRunner = diServiceProvider.GetServiceOrCreateInstance();
-        codeGenRunner.Run();
-    }
-
-    private void FindStateMachine()
-    {
-        if (settings.stateMachineName != null)
-        {
-            inputSmBuilder.FindStateMachineByName(settings.stateMachineName);
-        }
-        else
-        {
-            inputSmBuilder.FindSingleStateMachine();
-        }
-
-        OutputStageMessage($"State machine `{inputSmBuilder.GetStateMachine().Name}` selected.");
     }
 
     private void OutputCompilingDiagramMessage()
@@ -148,12 +123,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
             + "."
         );
-    }
-
-    protected static void OutputStageMessage(string message)
-    {
-        // todo_low add logger functionality
-        Console.WriteLine("StateSmith Runner - " + message);
     }
 
     // https://github.com/StateSmith/StateSmith/issues/82
@@ -189,12 +158,18 @@ public class SmRunner : SmRunner.IExperimentalAccess
         return resultPath;
     }
 
+    protected static void OutputStageMessage(string message)
+    {
+        // todo_low add logger functionality
+        Console.WriteLine("StateSmith Runner - " + message);
+    }
+
     // ----------- experimental access  -------------
 
     public IExperimentalAccess GetExperimentalAccess() => this;
     DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
     RunnerSettings IExperimentalAccess.Settings => settings;
-    InputSmBuilder IExperimentalAccess.InputSmBuilder => inputSmBuilder;
+    InputSmBuilder IExperimentalAccess.InputSmBuilder => diServiceProvider.GetServiceOrCreateInstance();
     ExceptionPrinter IExperimentalAccess.ExceptionPrinter => exceptionPrinter;
     RenderConfigC IExperimentalAccess.RenderConfigC => renderConfigC;
 

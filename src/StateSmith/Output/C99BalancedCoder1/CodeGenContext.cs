@@ -14,14 +14,16 @@ namespace StateSmith.Output.C99BalancedCoder1
         public CNameMangler mangler;
         public StringBuilder hFileSb = new();
         public StringBuilder cFileSb = new();
-        public StateMachine sm;
+        public StateMachine Sm => stateMachineProvider.GetStateMachine();
         public Expander expander;
         public RenderConfigC renderConfig;
         public PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
 
+        readonly IStateMachineProvider stateMachineProvider;
+
         internal CodeGenContext(StateMachine sm)
         {
-            this.sm = sm;
+            stateMachineProvider = new StateMachineProvider(sm);
             mangler = new(sm);
             renderConfig = new();
             expander = new();
@@ -30,11 +32,11 @@ namespace StateSmith.Output.C99BalancedCoder1
 
         public CodeGenContext(RenderConfigC renderConfig, Expander expander, CNameMangler mangler, CodeStyleSettings style, IStateMachineProvider stateMachineProvider)
         {
-            this.sm = stateMachineProvider.GetStateMachine();
             this.renderConfig = renderConfig;
             this.expander = expander;
             this.mangler = mangler;
             this.style = style;
+            this.stateMachineProvider = stateMachineProvider;
         }
 
         public void AddExpansions(UserExpansionScriptBase userObject)

@@ -11,7 +11,7 @@ namespace StateSmith.Output.C99BalancedCoder1
     public class CBuilder
     {
         private readonly CodeGenContext ctx;
-        private readonly StateMachine sm;
+        private StateMachine Sm => ctx.Sm;
         private readonly CNameMangler mangler;
         private readonly OutputFile file;
         EventHandlerBuilder eventHandlerBuilder;
@@ -19,7 +19,6 @@ namespace StateSmith.Output.C99BalancedCoder1
         public CBuilder(CodeGenContext ctx)
         {
             this.ctx = ctx;
-            sm = ctx.sm;
             mangler = ctx.mangler;
             file = new(ctx, ctx.cFileSb);
 
@@ -30,7 +29,7 @@ namespace StateSmith.Output.C99BalancedCoder1
         {
             ctx.pseudoStateHandlerBuilder.output = file;
             ctx.pseudoStateHandlerBuilder.mangler = mangler;
-            ctx.pseudoStateHandlerBuilder.Gather(sm);
+            ctx.pseudoStateHandlerBuilder.Gather(Sm);
             ctx.pseudoStateHandlerBuilder.MapParents();
 
             file.AppendLinesIfNotBlank(ctx.renderConfig.CFileTop);
@@ -61,7 +60,7 @@ namespace StateSmith.Output.C99BalancedCoder1
 
         internal void OutputTriggerHandlerPrototypes()
         {
-            List<NamedVertex> namedVertices = sm.GetNamedVerticesCopy();
+            List<NamedVertex> namedVertices = Sm.GetNamedVerticesCopy();
             
             foreach (var state in namedVertices)
             {
@@ -110,7 +109,7 @@ namespace StateSmith.Output.C99BalancedCoder1
                 file.Append("switch (id)");
                 file.StartCodeBlock();
                 {
-                    foreach (var state in ctx.sm.GetNamedVerticesCopy())
+                    foreach (var state in ctx.Sm.GetNamedVerticesCopy())
                     {
                         file.AppendLine($"case {mangler.SmStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
                     }
@@ -128,9 +127,9 @@ namespace StateSmith.Output.C99BalancedCoder1
             file.StartCodeBlock();
             file.AppendLine("ROOT_enter(self);");
 
-            var initialState = sm.Children.OfType<InitialState>().Single();
+            var initialState = Sm.Children.OfType<InitialState>().Single();
 
-            var getToInitialStateBehavior = new Behavior(sm, initialState);
+            var getToInitialStateBehavior = new Behavior(Sm, initialState);
 
             eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior, noAncestorHandlesEvent: true);
 
@@ -176,7 +175,7 @@ namespace StateSmith.Output.C99BalancedCoder1
 
         internal void OutputTriggerHandlers()
         {
-            List<NamedVertex> namedVertices = sm.GetNamedVerticesCopy();
+            List<NamedVertex> namedVertices = Sm.GetNamedVerticesCopy();
             
             foreach (var state in namedVertices)
             {

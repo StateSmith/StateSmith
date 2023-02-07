@@ -20,7 +20,7 @@ namespace StateSmith.Output.C99BalancedCoder1
         public void OutputEventIdCode()
         {
             OutputFile file = new(ctx, ctx.hFileSb);
-            string smName = ctx.sm.Name;
+            string smName = ctx.Sm.Name;
 
             file.Append($"enum {mangler.SmEventEnumAttribute}{mangler.SmEventEnum}");
             file.StartCodeBlock();
@@ -48,7 +48,7 @@ namespace StateSmith.Output.C99BalancedCoder1
 
         private List<string> GetNonDoEvents(out bool hadDoEvent)
         {
-            var nonDoEvents = ctx.sm.GetEventListCopy();
+            var nonDoEvents = ctx.Sm.GetEventListCopy();
             hadDoEvent = nonDoEvents.RemoveAll((e) => TriggerHelper.IsDoEvent(e)) > 0;
             return nonDoEvents;
         }
@@ -62,12 +62,12 @@ namespace StateSmith.Output.C99BalancedCoder1
         public void OutputStateIdCode()
         {
             OutputFile file = new(ctx, ctx.hFileSb);
-            string smName = ctx.sm.Name;
+            string smName = ctx.Sm.Name;
 
             file.Append($"enum {mangler.SmStateEnumAttribute}{mangler.SmStateEnum}");
             file.StartCodeBlock();
 
-            var namedVertices = ctx.sm.GetNamedVerticesCopy();
+            var namedVertices = ctx.Sm.GetNamedVerticesCopy();
             for (int i = 0; i < namedVertices.Count; i++)
             {
                 NamedVertex namedVertex = namedVertices[i];

@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Linq;
@@ -11,14 +11,12 @@ namespace StateSmith.Output.C99BalancedCoder1
     public class EventHandlerBuilder
     {
         private readonly CodeGenContext ctx;
-        private readonly StateMachine sm;
         private readonly CNameMangler mangler;
         private readonly OutputFile file;
 
         public EventHandlerBuilder(CodeGenContext ctx, OutputFile file)
         {
             this.ctx = ctx;
-            sm = ctx.sm;
             mangler = ctx.mangler;
             this.file = file;
         }
