@@ -1,4 +1,4 @@
-﻿using Spec.Spec1b;
+using Spec.Spec1b;
 using StateSmith.Input.Expansions;
 using StateSmith.Output;
 using StateSmith.Output.C99BalancedCoder1;
@@ -46,7 +46,7 @@ public class Spec1b_CTests
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandText = "gcc ../../lang-helpers/c/helper.c main.c Spec1bSm.c"
+            CommandText = "gcc -Wall ../../lang-helpers/c/helper.c main.c Spec1bSm.c"
         };
         BashRunner.RunCommand(process);
 

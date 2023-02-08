@@ -42,7 +42,7 @@ public class Spec1CTests
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandText = "gcc ../../lang-helpers/c/helper.c main.c Spec1Sm.c"
+            CommandText = "gcc -Wall ../../lang-helpers/c/helper.c main.c Spec1Sm.c"
         };
         BashRunner.RunCommand(process);
 

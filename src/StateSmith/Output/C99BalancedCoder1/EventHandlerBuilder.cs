@@ -403,7 +403,7 @@ namespace StateSmith.Output.C99BalancedCoder1
             {
                 file.FinishLine("true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.");
             }
-            // file.AppendLine("(void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.");
+            file.AppendLine("(void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.");  // https://github.com/StateSmith/StateSmith/issues/98
             file.AppendLine();
         }
     }

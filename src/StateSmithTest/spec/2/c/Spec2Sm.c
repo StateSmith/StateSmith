@@ -2707,6 +2707,7 @@ static void TEST1_S2_do(Spec2Sm* self)
     if (trace_guard("State TEST1_S2: check behavior `do / { consume_event = true; }`.", true))
     {
         bool consume_event = false; // the `do` event is special in that it normally is not consumed.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `consume_event = true;`
         consume_event = true;
@@ -2983,6 +2984,7 @@ static void TEST10_ROOT_ev5(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `count++;`
         self->vars.count++;
@@ -3788,6 +3790,7 @@ static void TEST2_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST2_S2: check behavior `EV1 / { consume_event = false; }`.", true))
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `consume_event = false;`
         consume_event = false;
@@ -3973,6 +3976,7 @@ static void TEST3_S1_ev1(Spec2Sm* self)
     if (trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\"); }`.", true))
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `trace("failed");`
         trace("failed");
@@ -4028,6 +4032,7 @@ static void TEST3_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\"); }`.", true))
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `trace("1 woot!");`
         trace("1 woot!");
@@ -4044,6 +4049,7 @@ static void TEST3_S2_ev1(Spec2Sm* self)
     if (trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\"); }`.", true))
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `trace("2 woot!");`
         trace("2 woot!");
@@ -5672,6 +5678,7 @@ static void TEST6_S1_ev1(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `count++;`
         self->vars.count++;
@@ -9194,6 +9201,7 @@ static void T7__INITIAL1__PARENT_ev5(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `count++;`
         self->vars.count++;
@@ -9838,6 +9846,7 @@ static void TEST8_ROOT_ev5(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `count++;`
         self->vars.count++;
@@ -10158,6 +10167,7 @@ static void TEST8_S1_ev1(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `count++; /* shouldn't run */`
         self->vars.count++; /* shouldn't run */
@@ -10409,6 +10419,7 @@ static void TEST9_ROOT_ev5(Spec2Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `count++;`
         self->vars.count++;
