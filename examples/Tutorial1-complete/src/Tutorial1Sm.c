@@ -445,6 +445,7 @@ static void ON3_increase(Tutorial1Sm* self)
     {
         // note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `count++;`
         self->vars.count++;

@@ -1010,6 +1010,7 @@ static void MM_BACK_PRESS_EATER_back_press(LaserTagMenu1Sm* self)
     // uml: BACK_PRESS / { back_press_eat_count++;\nshow_back_press_count(); }
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `back_press_eat_count++;\nshow_back_press_count();`
         self->vars.back_press_eat_count++;
@@ -1284,6 +1285,7 @@ static void MM_BACK_PRESS_EATER_5_back_press(LaserTagMenu1Sm* self)
     // uml: BACK_PRESS / { dont_consume_event(); // allow parent inc count\nreset_timer1();\nshow_random_back_press_taunt(); }
     {
         bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
+        (void)consume_event; // avoid un-used variable compiler warning. StateSmith cannot (yet) detect if behavior action code sets `consume_event`.
         
         // Step 1: execute action `dont_consume_event(); // allow parent inc count\nreset_timer1();\nshow_random_back_press_taunt();`
         consume_event = false; // allow parent inc count
