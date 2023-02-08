@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## WIP
+## [0.7.10-alpha]
 ### Fixed
 - Fix C# scripts not returning proper exit code on failure
   - Upstream cause: https://github.com/dotnet-script/dotnet-script/issues/700
