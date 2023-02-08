@@ -37,13 +37,10 @@ public class DiagramEmbeddedRenderConfigTests
 
         vertex = GetOptionVertex(renderConfig, "VariableDeclarations");
         vertex.value.ShouldBeShowDiff("""
-            // top level - VariableDeclarations
+            int top_level; // top level - VariableDeclarations
             """);
 
-        //vertex = GetOptionVertex(renderConfig, "AutoExpandedVars");
-        //vertex.value.ShouldBeShowDiff("""
-        //    uint8_t count_2;  // some user description for count_2 field
-        //    """);
+        // below test tests other fields
     }
 
     [Fact]
@@ -66,8 +63,8 @@ public class DiagramEmbeddedRenderConfigTests
             """);
 
         renderConfig.VariableDeclarations.ShouldBeShowDiff("""
-            // top level - VariableDeclarations
-            // sm level - VariableDeclarations
+            int top_level; // top level - VariableDeclarations
+            int sm_level; // sm level - VariableDeclarations
             """);
 
         renderConfig.HFileTop.ShouldBeShowDiff("""

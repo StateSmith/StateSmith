@@ -289,8 +289,6 @@ struct Spec2Sm
         enum Spec2Sm_T7__DH2__state_0_HistoryId T7__DH2__state_0_history;
         enum Spec2Sm_T7__DH3__state_0_HistoryId T7__DH3__state_0_history;
         uint8_t count;
-        // diagram embedded VariableDeclarations
-        // inside sm -  diagram embedded VariableDeclarations
         // some user AutoExpandedVars comments
         uint8_t auto_var_1;
     } vars;

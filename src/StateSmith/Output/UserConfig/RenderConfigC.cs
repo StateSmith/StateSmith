@@ -54,6 +54,26 @@ public class RenderConfigC
         IgnorePureCommentVarDecls();
     }
 
+    public void CopyFrom(RenderConfigC otherConfig)
+    {
+        otherConfig.IgnorePureCommentVarDecls();
+
+        static void SmartAppend(ref string str, string toAppend)
+        {
+            str = StringUtils.AppendWithNewlineIfNeeded(str, toAppend);
+        }
+
+        SmartAppend(ref HFileTop, otherConfig.HFileTop);
+        SmartAppend(ref HFileIncludes, otherConfig.HFileIncludes);
+        SmartAppend(ref CFileTop, otherConfig.CFileTop);
+        SmartAppend(ref CFileIncludes, otherConfig.CFileIncludes);
+        SmartAppend(ref VariableDeclarations, otherConfig.VariableDeclarations);
+        SmartAppend(ref AutoExpandedVars, otherConfig.AutoExpandedVars);
+        SmartAppend(ref EventCommaList, otherConfig.EventCommaList);
+
+        IgnorePureCommentVarDecls();
+    }
+
     private void IgnorePureCommentVarDecls()
     {
         if (StringUtils.RemoveCCodeComments(VariableDeclarations).Trim().Length == 0)
