@@ -12,7 +12,7 @@ public class CodeGen
         var srcDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../../../src/";
 
         string extension = ".drawio.svg";  // For draw.io https://github.com/StateSmith/StateSmith/issues/77
-        // extension = ".drawio";             // Another format for draw.io https://github.com/StateSmith/StateSmith/issues/77
+        // extension = ".drawio";          // Another format for draw.io https://github.com/StateSmith/StateSmith/issues/77
         // extension = ".graphml";         // For yEd editor.
 
         var diagramFile = srcDirectory + "Tutorial1Sm" + extension;
@@ -35,21 +35,21 @@ public class CodeGen
     public class MyGlueFile : IRenderConfigC
     {
         // Anything you type in the below string ends up in the generated h file
-        string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
+        string IRenderConfigC.HFileIncludes => @"
                 // Some user .h file comment...
-            ");
+            ";
 
         // Anything you type in the below string ends up in the generated c file
-        string IRenderConfigC.CFileIncludes => StringUtils.DeIndentTrim(@"
+        string IRenderConfigC.CFileIncludes => @"
                 // Some user .c file comment...
                 #include ""light.h""
-            ");
+            ";
 
         // Anything you type in the below string ends up in the state machine user variables section.
         // If the string is blank, then no user variables section is created.
-        string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
+        string IRenderConfigC.VariableDeclarations => @"
                 uint8_t count;  // some user description for count field
-            ");
+            ";
 
         /// <summary>
         /// This nested class creates expansions because it is inside MyGlueFile.
