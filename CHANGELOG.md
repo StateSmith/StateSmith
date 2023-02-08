@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix ignoring RenderConfig VariableDeclarations if they only contain comments
 
+## Added
+- Improve rendered code for state machine start function (skips un-necessary exiting).
+
 ---
 
 ## [0.7.10-alpha]

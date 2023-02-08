@@ -51,9 +51,9 @@ namespace StateSmith.Output.C99BalancedCoder1
             }
         }
 
-        public void OutputTransitionCode(Behavior behavior, bool noAncestorHandlesEvent)
+        public void OutputTransitionCode(Behavior behavior, bool noAncestorHandlesEvent, bool checkForExiting = true)
         {
-            OutputTransitionCodeInner(behavior, noAncestorHandlesEvent);
+            OutputTransitionCodeInner(behavior, noAncestorHandlesEvent, checkForExiting);
         }
 
         private void OutputGuardStart(Behavior b)
@@ -70,7 +70,7 @@ namespace StateSmith.Output.C99BalancedCoder1
             file.AppendLine($"// uml: {b.DescribeAsUml()}");
         }
 
-        private void OutputTransitionCodeInner(Behavior behavior, bool noAncestorHandlesEvent)
+        private void OutputTransitionCodeInner(Behavior behavior, bool noAncestorHandlesEvent, bool checkForExiting = true)
         {
             if (behavior.TransitionTarget == null)
             {
@@ -86,7 +86,7 @@ namespace StateSmith.Output.C99BalancedCoder1
                 var transitionPath = source.FindTransitionPathTo(target);
 
                 file.Append($"// Step 1: Exit states until we reach `{Vertex.Describe(transitionPath.leastCommonAncestor)}` state (Least Common Ancestor for transition).");
-                if (IsExitingRequired(source, target, transitionPath))
+                if (checkForExiting && IsExitingRequired(source, target, transitionPath))
                 {
                     file.FinishLine();
                     ExitUntilStateReached(source, (NamedVertex)transitionPath.leastCommonAncestor.ThrowIfNull());

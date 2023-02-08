@@ -131,7 +131,7 @@ namespace StateSmith.Output.C99BalancedCoder1
 
             var getToInitialStateBehavior = new Behavior(Sm, initialState);
 
-            eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior, noAncestorHandlesEvent: true);
+            eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior, noAncestorHandlesEvent: true, checkForExiting: false);
 
             file.FinishCodeBlock(forceNewLine: true);
             file.AppendLine();

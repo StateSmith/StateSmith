@@ -58,8 +58,7 @@ void Tutorial1Sm_start(Tutorial1Sm* self)
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
     {
-        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, ROOT_exit);
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: ``.
         
