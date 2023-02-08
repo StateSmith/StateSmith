@@ -30,7 +30,7 @@ public class BashRunnerException : InvalidOperationException
 
 public class BashRunner
 {
-    public static void RunCommand(SimpleProcess simpleProcess, int timeoutMs = 3000)
+    public static void RunCommand(SimpleProcess simpleProcess, int timeoutMs = 3000, bool throwOnStdErr = true)
     {
         try
         {
@@ -40,6 +40,11 @@ public class BashRunner
         {
             // WSL2 seems to fail the first time it is invoked, so just try and run it again
             RunCommandSimple(simpleProcess, timeoutMs);
+        }
+
+        if (throwOnStdErr && simpleProcess.StdError.Trim().Length > 0)
+        {
+            throw new BashRunnerException(simpleProcess.StdError);
         }
     }
 

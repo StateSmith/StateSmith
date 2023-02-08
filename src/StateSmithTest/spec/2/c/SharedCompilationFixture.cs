@@ -1,4 +1,4 @@
-﻿using StateSmith.Output;
+using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmithTest.Processes;
 
@@ -19,7 +19,7 @@ public class SharedCompilationFixture
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandText = "gcc ../../lang-helpers/c/helper.c main.c Spec2Sm.c"
+            CommandText = "gcc -Wall -Wno-unused-function ../../lang-helpers/c/helper.c main.c Spec2Sm.c" // we disable `unused-function` warning because some states are intentionally unreachable
         };
         BashRunner.RunCommand(process);
     }
