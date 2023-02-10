@@ -1,0 +1,5 @@
+@startuml BlankTemplateSm
+[*] --> STATE_1
+STATE_1 --> STATE_2: do
+STATE_2 --> STATE_1: do
+@enduml
