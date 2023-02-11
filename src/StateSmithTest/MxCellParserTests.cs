@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using Xunit;
 using StateSmith.Input.DrawIo;
 using FluentAssertions;
@@ -8,6 +8,60 @@ namespace StateSmithTest.DrawIo;
 
 public class MxCellParserTests
 {
+    [Fact]
+    public void SanitizeLabelToNewLines()
+    {
+        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES</div>blah").Should().Be("$NOTES\nblah");
+        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES</p>blah").Should().Be("$NOTES\nblah");
+        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES<br>blah").Should().Be("$NOTES\nblah");
+        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES<br/>blah").Should().Be("$NOTES\nblah");
+        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES<br style=''>blah").Should().Be("$NOTES\nblah");
+    }
+
+   [Fact]
+    public void Test()
+    {
+        string small1Xml = Small1Xml;
+        MxCellParser mxCellParser = new(new StringReader(small1Xml));
+        mxCellParser.Parse();
+
+        var smRoot = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-1");
+        smRoot.label.Should().Be("$STATEMACHINE : Small1");
+        smRoot.type.Should().Be(MxCell.Type.Vertex);
+        smRoot.parent.Should().Be("1");
+        smRoot.source.Should().BeNull();
+        smRoot.target.Should().BeNull();
+        smRoot.isCollapsed.Should().BeTrue();
+        smRoot.primaryBounds.Should().BeEquivalentTo(new MxBounds { x = 20, y = 30, width = 200, height = 90 });
+        smRoot.alternateBounds.Should().BeEquivalentTo(new MxBounds { x = 20, y = 30, width = 430.7, height = 510 });
+
+        smRoot.style.Should().Be("swimlane;fontStyle=1;align=left;spacingLeft=17;");
+        smRoot.styleMap.Should().BeEquivalentTo(new Dictionary<string,string> {
+            {"swimlane", ""},
+            {"fontStyle", "1"},
+            {"align", "left"},
+            {"spacingLeft", "17"},
+        });
+
+        var edge = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-11");
+        edge.label.Should().Be("INC_123");
+        edge.type.Should().Be(MxCell.Type.Edge);
+        edge.parent.Should().Be("5hg7lKXR2ijf20l0Po2r-1");
+        edge.source.Should().Be("5hg7lKXR2ijf20l0Po2r-12");
+        edge.target.Should().Be("5hg7lKXR2ijf20l0Po2r-8");
+
+        var onGroup = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-6");
+        onGroup.isCollapsed.Should().BeFalse();
+        //<mxGeometry x="65" y="225" width="305" height="245" as="geometry">
+        //<mxRectangle x="65" y="225" width="200" height="90" as="alternateBounds"/>
+        onGroup.primaryBounds.Should().BeEquivalentTo(new MxBounds { x = 65, y = 225, width = 305, height = 245});
+        onGroup.alternateBounds.Should().BeEquivalentTo(new MxBounds { x = 65, y = 225, width = 200, height = 90});
+
+        //could test all vertices and edges...
+    }
+
+
+
     private const string Small1Xml = """
             <mxfile host="65bd71144e">
                 <diagram id="X5z84YncFC1j1vogRgUh" name="Page-1">
@@ -61,47 +115,5 @@ public class MxCellParserTests
                 </diagram>
             </mxfile>
             """;
-
-    [Fact]
-    public void Test()
-    {
-        string small1Xml = Small1Xml;
-        MxCellParser mxCellParser = new(new StringReader(small1Xml));
-        mxCellParser.Parse();
-
-        var smRoot = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-1");
-        smRoot.label.Should().Be("$STATEMACHINE : Small1");
-        smRoot.type.Should().Be(MxCell.Type.Vertex);
-        smRoot.parent.Should().Be("1");
-        smRoot.source.Should().BeNull();
-        smRoot.target.Should().BeNull();
-        smRoot.isCollapsed.Should().BeTrue();
-        smRoot.primaryBounds.Should().BeEquivalentTo(new MxBounds { x = 20, y = 30, width = 200, height = 90 });
-        smRoot.alternateBounds.Should().BeEquivalentTo(new MxBounds { x = 20, y = 30, width = 430.7, height = 510 });
-
-        smRoot.style.Should().Be("swimlane;fontStyle=1;align=left;spacingLeft=17;");
-        smRoot.styleMap.Should().BeEquivalentTo(new Dictionary<string,string> {
-            {"swimlane", ""},
-            {"fontStyle", "1"},
-            {"align", "left"},
-            {"spacingLeft", "17"},
-        });
-
-        var edge = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-11");
-        edge.label.Should().Be("INC_123");
-        edge.type.Should().Be(MxCell.Type.Edge);
-        edge.parent.Should().Be("5hg7lKXR2ijf20l0Po2r-1");
-        edge.source.Should().Be("5hg7lKXR2ijf20l0Po2r-12");
-        edge.target.Should().Be("5hg7lKXR2ijf20l0Po2r-8");
-
-        var onGroup = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-6");
-        onGroup.isCollapsed.Should().BeFalse();
-        //<mxGeometry x="65" y="225" width="305" height="245" as="geometry">
-        //<mxRectangle x="65" y="225" width="200" height="90" as="alternateBounds"/>
-        onGroup.primaryBounds.Should().BeEquivalentTo(new MxBounds { x = 65, y = 225, width = 305, height = 245});
-        onGroup.alternateBounds.Should().BeEquivalentTo(new MxBounds { x = 65, y = 225, width = 200, height = 90});
-
-        //could test all vertices and edges...
-    }
 }
 

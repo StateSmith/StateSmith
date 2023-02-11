@@ -95,7 +95,7 @@ public class MxCellParser
         mxCell.source = MaybeGetAttribute("source");
         mxCell.target = MaybeGetAttribute("target");
         SetStyle(mxCell);
-        SanitizeLabel(mxCell);
+        MxCellSanitizer.SanitizeLabel(mxCell);
 
         mxCells.Add(mxCell.id, mxCell);
     }
@@ -127,27 +127,6 @@ public class MxCellParser
     private bool IsImage()
     {
         return MaybeGetAttribute("style")?.Contains("shape=image") ?? false;
-    }
-
-    private static void SanitizeLabel(MxCell mxCell)
-    {
-        if (mxCell.label == null)
-            return;
-
-        mxCell.label = mxCell.label.Replace((char)160, ' '); // convert non-breaking space char to regular space
-
-        if (mxCell.HasMatchingStyle("html", "1"))
-        {
-            var label = mxCell.label;
-            label = Regex.Replace(label, @"</div>", "\n");
-            label = Regex.Replace(label, @"</p>", "\n");
-            label = Regex.Replace(label, @"<br>", "\n");
-            label = Regex.Replace(label, @"<br/>", "\n");
-            label = Regex.Replace(label, @"&nbsp;", " ");
-            label = Regex.Replace(label, @"<[^>]*>", "");
-            label = System.Web.HttpUtility.HtmlDecode(label);
-            mxCell.label = label;
-        }
     }
 
     private void HandleMxRectangle()
