@@ -11,14 +11,37 @@ public class MxCellParserTests
     [Fact]
     public void SanitizeLabelToNewLines()
     {
-        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES</div>blah").Should().Be("$NOTES\nblah");
-        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES</p>blah").Should().Be("$NOTES\nblah");
-        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES<br>blah").Should().Be("$NOTES\nblah");
-        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES<br/>blah").Should().Be("$NOTES\nblah");
-        MxCellSanitizer.SanitizeLabelHtml(@"$NOTES<br style=''>blah").Should().Be("$NOTES\nblah");
+        static void Test(string input)
+        {
+            string expected = "$NOTES\nblah";
+            MxCellSanitizer.SanitizeLabelHtml(input).Should().Be(expected); // unit test
+            TestWithMxCell(input, expected);    // more of an integration test
+        }
+
+        Test(@"$NOTES</div>blah");
+        Test(@"$NOTES</p>blah");
+
+        Test(@"$NOTES</br>blah");
+        Test(@"$NOTES<br>blah");
+        Test(@"$NOTES<br/>blah");
+        Test(@"$NOTES<br style=''>blah");
+        Test(@"$NOTES<br style='color:blue;'>blah");
     }
 
-   [Fact]
+    [Fact]
+    public void SanitizeLabelToSpaces()
+    {
+        static void Test(string input)
+        {
+            string expected = "x = y;";
+            MxCellSanitizer.ProcessSpecialChars(input).Should().Be(expected); // unit test
+            TestWithMxCell(input, expected);  // more of an integration test
+        }
+
+        Test("x" + (char)160 + "= y;"); // NO-BREAK SPACE, &nbsp;
+    }
+
+    [Fact]
     public void Test()
     {
         string small1Xml = Small1Xml;
@@ -115,5 +138,20 @@ public class MxCellParserTests
                 </diagram>
             </mxfile>
             """;
+
+    private static void TestWithMxCell(string input, string expected)
+    {
+        MxCell cell = GetHtmlCell();
+        cell.label = input;
+        MxCellSanitizer.SanitizeLabel(cell);
+        cell.label.Should().Be(expected);
+    }
+
+    private static MxCell GetHtmlCell()
+    {
+        MxCell cell = new("some_id");
+        cell.styleMap[MxCellSanitizer.StyleHtml] = "1";
+        return cell;
+    }
 }
 

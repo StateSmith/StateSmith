@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## WIP
+### Fixed
+- draw.io - convert more HTML breaks (`<br style=...>`, `</br>`) to new line characters.
+
+---
+
 ## [0.7.11-alpha]
 ### Fixed
 - Fix ignoring RenderConfig VariableDeclarations if they only contain comments
