@@ -28,17 +28,26 @@ public class MxCellParserTests
         Test(@"$NOTES<br style='color:blue;'>blah");
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/100
+    /// </summary>
     [Fact]
     public void SanitizeLabelToSpaces()
     {
-        static void Test(string input)
+        static void Test(char weirdSpaceChar)
         {
+            string input = $"x{weirdSpaceChar}= y;";
             string expected = "x = y;";
             MxCellSanitizer.ProcessSpecialChars(input).Should().Be(expected); // unit test
             TestWithMxCell(input, expected);  // more of an integration test
         }
 
-        Test("x" + (char)160 + "= y;"); // NO-BREAK SPACE, &nbsp;
+        // https://www.compart.com/en/unicode/category/Zs
+        // https://en.wikipedia.org/wiki/Non-breaking_space#Encodings
+        Test((char)0xA0); // NO-BREAK SPACE, &nbsp;
+        Test((char)0x2007); // FIGURE SPACE
+        Test((char)0x202F); // NARROW NO-BREAK SPACE
+        Test((char)0x2060); // WORD JOINER
     }
 
     [Fact]

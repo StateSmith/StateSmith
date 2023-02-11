@@ -25,7 +25,14 @@ public class MxCellSanitizer
 
     public static string ProcessSpecialChars(string input)
     {
-        input = input.Replace((char)160, ' '); // convert non-breaking space char to regular space
+        // https://en.wikipedia.org/wiki/Non-breaking_space#Encodings
+        input = input.Replace((char)0xA0, ' '); // NO-BREAK SPACE, &nbsp;
+        input = input.Replace((char)0x2007, ' '); // FIGURE SPACE
+        input = input.Replace((char)0x202F, ' '); // NARROW NO-BREAK SPACE
+        input = input.Replace((char)0x2060, ' '); // WORD JOINER
+
+        // todo - replace more special space characters listed here https://www.compart.com/en/unicode/category/Zs  https://github.com/StateSmith/StateSmith/issues/100
+
         return input;
     }
 

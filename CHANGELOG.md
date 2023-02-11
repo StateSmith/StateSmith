@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ---
 
 ## WIP
-### Fixed
+### Added
 - draw.io - convert more HTML breaks (`<br style=...>`, `</br>`) to new line characters.
+- draw.io - convert more special characters to regular space characters.
+  - still some more to do: https://github.com/StateSmith/StateSmith/issues/100
 
 ---
 
