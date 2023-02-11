@@ -6,11 +6,21 @@ StateSmith will one day generate code for multiple different languages, but for 
 ![picture 5](images/workflow-1.png)  
 
 # What's new?
-StateSmith 0.7.0 introduced [history functionality](./docs/history-vertex.md) and has almost all the features specified in UML! Just missing [orthogonal/concurrent states](https://github.com/StateSmith/StateSmith/issues/75).
+It's been about 5 months since StateSmith was initially released and we've got a lot of awesome improvements!
 
-See [main changelog](CHANGELOG.md) or [dev changelog](https://github.com/StateSmith/StateSmith/blob/dev/CHANGELOG.md).
+![image](https://user-images.githubusercontent.com/274012/218263552-cd4d1510-8824-496a-afe1-896f61cd0289.png)
+![image](https://user-images.githubusercontent.com/274012/218209851-c904835e-0989-40ce-8868-4f1ac964cbe8.png)
+![image](https://user-images.githubusercontent.com/274012/218264022-e29afff0-7f42-4159-bb7b-a0818be5b972.png)
 
-Pinned issues and feature branches show what's in the works.
+🎉 The biggest news is that we now have `draw.io` support and a plugin for it! It's working really well!
+
+⭐ Collaboration ready - Join us on [discord](https://discord.com/channels/1056394875278462996/1056394875278462999). StateSmith's core has been significantly cleaned up and is ready for collaboration. I'll be spending more time on [documentation](https://github.com/StateSmith/StateSmith/wiki) and [creating videos](https://www.youtube.com/@statesmith).
+
+💻The other massive improvement is that the workflow is way nicer with `dotnet script`.
+
+[Full 5 month update details here.](https://github.com/StateSmith/StateSmith/wiki/Update-Highlights-(v0.5.4-to-v0.7.11))
+
+The [backlog project](https://github.com/orgs/StateSmith/projects/1) shows planning and status of features.
 
 ## Demo
 Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showing a Laser Tag menu implemented with StateSmith and running in an Arduino simulation.
