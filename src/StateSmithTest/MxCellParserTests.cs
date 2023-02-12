@@ -48,6 +48,8 @@ public class MxCellParserTests
         Test((char)0x2007); // FIGURE SPACE
         Test((char)0x202F); // NARROW NO-BREAK SPACE
         Test((char)0x2060); // WORD JOINER
+
+        // TODO - update for https://github.com/StateSmith/StateSmith/issues/100
     }
 
     [Fact]

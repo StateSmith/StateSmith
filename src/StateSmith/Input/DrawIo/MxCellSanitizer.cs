@@ -31,7 +31,7 @@ public class MxCellSanitizer
         input = input.Replace((char)0x202F, ' '); // NARROW NO-BREAK SPACE
         input = input.Replace((char)0x2060, ' '); // WORD JOINER
 
-        // todo - replace more special space characters listed here https://www.compart.com/en/unicode/category/Zs  https://github.com/StateSmith/StateSmith/issues/100
+        // TODO - replace more special space characters listed here https://www.compart.com/en/unicode/category/Zs https://github.com/StateSmith/StateSmith/issues/100
 
         return input;
     }
