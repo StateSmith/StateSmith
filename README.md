@@ -112,21 +112,10 @@ Here's the [design diagram](images/yed-LaserTagMenu1Sm-outer.png). To view insid
 
 
 
-## User Interface
-StateSmith doesn't actually provide a UI - it currently relies on the free to use, but closed source [yEd editor](https://www.yworks.com/products/yed).
+## User Interfaces
+StateSmith currently supports draw.io, yEd and PlantUML diagrams.
 
-![picture 9](images/yed-blurb.png)  
-
-yEd is great because it is free to use (even for commercial use), cross platform, and meets our needs pretty well once you get used to it.
-
-StateSmith parses the yEd xml file, builds some intermediate graph representations (which will allow user modification soon), then passes the graph to the code generator.
-
-One major future goal is to create a draw.io vscode extension that we can use for the front end. StateSmith was written with this goal in mind so adding a different compiler front end will be relatively easy. The hard part is customizing draw.io to behave the way we need (entering collapsed groups). I did a quick proof of concept and it looks very doable, just needs time and hopefully an excited contributor that is good with web UIs :)
-
-Why use yEd? I like that we just type in text. Some of the other strict UML State Machine tools I tried drove me crazy. It was just so slow to do anything.
-
-## How to use yEd for StateSmith
-See [./docs/yed-training.md](./docs/yed-training.md)
+Why use these programs? I like that we just type in text. Some of the other strict UML State Machine tools I tried drove me crazy. It was just so slow to do anything.
 
 
 # Is StateSmith ready for use? 🧪
@@ -178,8 +167,8 @@ There will eventually be a standalone CLI tool that has no installation dependen
 
 For now, we actually just run StateSmith as a regular C# project from the command line, vscode, or visual studio.
 
-# Tutorial
-
-See [quick-start.md](./docs/quickstart1/quick-start.md)
+# Tutorials
+* [draw.io quick start](https://youtu.be/qej8pXp3dX4)
+* [yEd quick-start.md](./docs/quickstart1/quick-start.md)
 
 
