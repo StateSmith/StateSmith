@@ -22,25 +22,22 @@ It's been about 5 months since StateSmith was initially released and we've got a
 
 The [backlog project](https://github.com/orgs/StateSmith/projects/1) shows planning and status of features.
 
-## Demo
+## Draw.io Quick Start 🚀
+Want to jump right in and just try it!?
+https://youtu.be/qej8pXp3dX4
+
+You'll be controlling a self destructing light bulb in no time!
+
+![new quick start gif](https://user-images.githubusercontent.com/274012/218385633-139e917c-c338-4a57-823b-426b351d8f13.gif)
+
+## More Complex Demo
 Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showing a Laser Tag menu implemented with StateSmith and running in an Arduino simulation.
 
 [![picture 1](images/main-lasertag-demo1.png)](https://www.youtube.com/watch?v=9czSDothuzM)
 
-
-
-
-## Quick Start 🚀
-Want to jump right in and just try it!?
-See [quick-start.md](./docs/quickstart1/quick-start.md)
-
-You'll be controlling a console light bulb's brightness in no time!
-
-![](./docs/quickstart1/images/run-final.gif)
-
-See also the [examples](./examples/README.md).
-
 ## Need help? Suggestion? Brainstorm?
+Join us on [discord](https://discord.com/channels/1056394875278462996/1056394875278462999).
+
 Feel free to open a [github issue](https://github.com/StateSmith/StateSmith/issues).
 
 Or you can use the project's [discussion space](https://github.com/StateSmith/StateSmith/discussions).
