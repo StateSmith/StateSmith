@@ -8,7 +8,7 @@ using System.IO;
 
 namespace StateSmith.Runner;
 
-internal class ExceptionPrinter
+public class ExceptionPrinter
 {
     readonly IConsolePrinter consolePrinter;
 

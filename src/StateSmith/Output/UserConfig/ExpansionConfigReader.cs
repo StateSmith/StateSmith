@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace StateSmith.Output.UserConfig;
 
-class ExpansionConfigReader
+public class ExpansionConfigReader
 {
     private readonly ExpanderFileReflection expanderFileReflection;
     private readonly string expansionVarsPath;

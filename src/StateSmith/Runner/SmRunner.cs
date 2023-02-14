@@ -75,8 +75,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
         smRunnerInternal.Run();
 
-        // Work around until https://github.com/dotnet-script/dotnet-script/issues/700 is fixed.
-        if (System.Environment.ExitCode != 0)
+        if (smRunnerInternal.exception != null)
             throw new System.Exception("Finished with failure");
     }
 

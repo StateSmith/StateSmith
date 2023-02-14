@@ -10,15 +10,17 @@ namespace StateSmith.Runner;
 /// <summary>
 /// This tiny class exists apart from SmRunner so that dependency injection can be used.
 /// </summary>
-internal class SmRunnerInternal
+public class SmRunnerInternal
 {
+    public System.Exception? exception;
+
     readonly InputSmBuilder inputSmBuilder;
     readonly RunnerSettings settings;
-    readonly CodeGenRunner codeGenRunner;
+    readonly ICodeGenRunner codeGenRunner;
     readonly ExceptionPrinter exceptionPrinter;
     readonly IConsolePrinter consolePrinter;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, CodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
@@ -56,7 +58,7 @@ internal class SmRunnerInternal
 
     private void HandleException(System.Exception e)
     {
-        System.Environment.ExitCode = -1; // lets calling process know that code gen failed
+        exception = e;
 
         exceptionPrinter.PrintException(e);
         MaybeDumpErrorDetailsToFile(e);

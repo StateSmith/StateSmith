@@ -25,7 +25,7 @@ public class SmRunnerTests
         SmRunner runner = new(filePath, outputDirectory: tempPath);
 
         FakeConsole fakeConsole = new();
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter, FakeConsole>(fakeConsole);
+        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(fakeConsole);
         runner.Run();
 
         fakeConsole.sb.ToString().ConvertLineEndingsToN().ShouldBeShowDiff("""

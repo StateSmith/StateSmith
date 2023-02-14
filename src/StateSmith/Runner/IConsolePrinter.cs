@@ -1,6 +1,6 @@
 namespace StateSmith.Runner;
 
-internal interface IConsolePrinter
+public interface IConsolePrinter
 {
     void OutputStageMessage(string message) => WriteLine("StateSmith Runner - " + message);
     void WriteErrorLine(string message);

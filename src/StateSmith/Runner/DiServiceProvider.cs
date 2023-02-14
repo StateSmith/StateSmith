@@ -8,6 +8,7 @@ using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
 using StateSmith.Common;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -56,7 +57,7 @@ public class DiServiceProvider
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
-            services.AddTransient<CodeGenRunner>();
+            services.AddTransient<ICodeGenRunner, CodeGenRunner>();
             services.AddTransient<MxCellsToSmDiagramConverter>();
             services.AddTransient<DrawIoToSmDiagramConverter>();
             services.AddTransient<VisualGroupingValidator>();
@@ -80,10 +81,18 @@ public class DiServiceProvider
         hostBuilder.ConfigureServices(services => { services.AddSingleton(obj); });
     }
 
-    public void AddSingletonT<TInterface, TImplementation>(TImplementation implementationObj) where TInterface : class   where TImplementation : TInterface
+    public void AddSingletonT<TService>(TService implementationObj) where TService : class
     {
         ThrowIfAlreadyBuilt();
-        hostBuilder.ConfigureServices(services => { services.AddSingleton<TInterface>(implementationObj); });
+        hostBuilder.ConfigureServices(services => { services.AddSingleton(implementationObj); });
+    }
+
+    public void AddSingletonT<TService, TImplementation>()
+    where TService : class
+    where TImplementation : class, TService
+    {
+        ThrowIfAlreadyBuilt();
+        hostBuilder.ConfigureServices(services => { services.AddSingleton<TService, TImplementation>(); });
     }
 
     /// <summary>
@@ -125,7 +134,7 @@ public class DiServiceProvider
     /// This class has implicit conversions that give some compile time type safety to <see cref="DiServiceProvider.GetServiceOrCreateInstance"/>.
     /// Might remove this class.
     /// </summary>
-    internal class ConvertableType
+    public class ConvertableType
     {
         public IHost host;
 
@@ -141,7 +150,6 @@ public class DiServiceProvider
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
         public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
-        public static implicit operator CodeGenRunner(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CodeGenRunner>(me.host.Services);
         public static implicit operator RenderConfigC(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigC>(me.host.Services);
         public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);
     }

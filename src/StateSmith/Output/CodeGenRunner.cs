@@ -7,13 +7,13 @@ using System.IO;
 
 namespace StateSmith.Output;
 
-internal class CodeGenRunner
+public class CodeGenRunner : ICodeGenRunner
 {
     readonly DynamicVarsResolver varsResolver;
     readonly CodeGenContext codeGenContext;
+    readonly CHeaderBuilder cHeaderBuilder;
     readonly CBuilder cBuilder;
     readonly RunnerSettings settings;
-    readonly CHeaderBuilder cHeaderBuilder;
     readonly ExpansionConfigReader expansionConfigReader;
     readonly ExpansionConfigReaderObjectProvider expansionConfigReaderObjectProvider;
     readonly AutoExpandedVarsProcessor autoExpandedVarsProcessor;

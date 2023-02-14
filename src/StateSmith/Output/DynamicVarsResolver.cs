@@ -7,7 +7,7 @@ using StateSmith.SmGraph;
 
 namespace StateSmith.Output;
 
-internal class DynamicVarsResolver
+public class DynamicVarsResolver
 {
     readonly CNameMangler mangler;
     readonly Expander expander;
