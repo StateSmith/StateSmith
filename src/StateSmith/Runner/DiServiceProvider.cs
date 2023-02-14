@@ -8,6 +8,7 @@ using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
 using StateSmith.Common;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable enable
 
@@ -80,10 +81,18 @@ public class DiServiceProvider
         hostBuilder.ConfigureServices(services => { services.AddSingleton(obj); });
     }
 
-    public void AddSingletonT<TInterface, TImplementation>(TImplementation implementationObj) where TInterface : class   where TImplementation : TInterface
+    public void AddSingletonT<TService>(TService implementationObj) where TService : class
     {
         ThrowIfAlreadyBuilt();
-        hostBuilder.ConfigureServices(services => { services.AddSingleton<TInterface>(implementationObj); });
+        hostBuilder.ConfigureServices(services => { services.AddSingleton(implementationObj); });
+    }
+
+    public void AddSingletonT<TService, TImplementation>()
+    where TService : class
+    where TImplementation : class, TService
+    {
+        ThrowIfAlreadyBuilt();
+        hostBuilder.ConfigureServices(services => { services.AddSingleton<TService, TImplementation>(); });
     }
 
     /// <summary>
