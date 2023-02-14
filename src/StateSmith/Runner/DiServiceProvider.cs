@@ -56,7 +56,7 @@ public class DiServiceProvider
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
-            services.AddTransient<CodeGenRunner>();
+            services.AddTransient<ICodeGenRunner, CodeGenRunner>();
             services.AddTransient<MxCellsToSmDiagramConverter>();
             services.AddTransient<DrawIoToSmDiagramConverter>();
             services.AddTransient<VisualGroupingValidator>();
@@ -141,7 +141,6 @@ public class DiServiceProvider
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
         public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
-        public static implicit operator CodeGenRunner(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CodeGenRunner>(me.host.Services);
         public static implicit operator RenderConfigC(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigC>(me.host.Services);
         public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);
     }

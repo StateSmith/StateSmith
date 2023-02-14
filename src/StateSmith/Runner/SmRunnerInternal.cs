@@ -14,11 +14,11 @@ internal class SmRunnerInternal
 {
     readonly InputSmBuilder inputSmBuilder;
     readonly RunnerSettings settings;
-    readonly CodeGenRunner codeGenRunner;
+    readonly ICodeGenRunner codeGenRunner;
     readonly ExceptionPrinter exceptionPrinter;
     readonly IConsolePrinter consolePrinter;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, CodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
