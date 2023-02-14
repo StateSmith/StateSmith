@@ -12,6 +12,8 @@ namespace StateSmith.Runner;
 /// </summary>
 public class SmRunnerInternal
 {
+    public System.Exception? exception;
+
     readonly InputSmBuilder inputSmBuilder;
     readonly RunnerSettings settings;
     readonly ICodeGenRunner codeGenRunner;
@@ -56,7 +58,7 @@ public class SmRunnerInternal
 
     private void HandleException(System.Exception e)
     {
-        System.Environment.ExitCode = -1; // lets calling process know that code gen failed
+        exception = e;
 
         exceptionPrinter.PrintException(e);
         MaybeDumpErrorDetailsToFile(e);
