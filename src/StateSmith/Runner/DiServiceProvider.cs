@@ -125,7 +125,7 @@ public class DiServiceProvider
     /// This class has implicit conversions that give some compile time type safety to <see cref="DiServiceProvider.GetServiceOrCreateInstance"/>.
     /// Might remove this class.
     /// </summary>
-    internal class ConvertableType
+    public class ConvertableType
     {
         public IHost host;
 

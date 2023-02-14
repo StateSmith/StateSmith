@@ -7,7 +7,7 @@ using System.IO;
 
 namespace StateSmith.Output;
 
-internal class CodeGenRunner : ICodeGenRunner
+public class CodeGenRunner : ICodeGenRunner
 {
     readonly DynamicVarsResolver varsResolver;
     readonly CodeGenContext codeGenContext;

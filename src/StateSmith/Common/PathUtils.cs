@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StateSmith.Common;
 
-internal class PathUtils
+public class PathUtils
 {
     public static string EnsurePathAbsolute(string path, string defaultDirectory)
     {

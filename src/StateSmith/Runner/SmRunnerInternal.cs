@@ -10,7 +10,7 @@ namespace StateSmith.Runner;
 /// <summary>
 /// This tiny class exists apart from SmRunner so that dependency injection can be used.
 /// </summary>
-internal class SmRunnerInternal
+public class SmRunnerInternal
 {
     readonly InputSmBuilder inputSmBuilder;
     readonly RunnerSettings settings;
