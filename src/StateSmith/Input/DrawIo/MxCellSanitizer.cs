@@ -26,12 +26,24 @@ public class MxCellSanitizer
     public static string ProcessSpecialChars(string input)
     {
         // https://en.wikipedia.org/wiki/Non-breaking_space#Encodings
+        // https://www.compart.com/en/unicode/category/Zs
         input = input.Replace((char)0xA0, ' '); // NO-BREAK SPACE, &nbsp;
+        input = input.Replace((char)0x1680, ' '); // OGHAM SPACE MARK
+        input = input.Replace((char)0x2000, ' '); // EN QUAD
+        input = input.Replace((char)0x2001, ' '); // EM QUAD
+        input = input.Replace((char)0x2002, ' '); // EN SPACE
+        input = input.Replace((char)0x2003, ' '); // EM SPACE
+        input = input.Replace((char)0x2004, ' '); // THREE-PER-EM SPACE
+        input = input.Replace((char)0x2005, ' '); // FOUR-PER-EM SPACE
+        input = input.Replace((char)0x2006, ' '); // SIX-PER-EM SPACE
         input = input.Replace((char)0x2007, ' '); // FIGURE SPACE
+        input = input.Replace((char)0x2008, ' '); // PUNCTUATION SPACE
+        input = input.Replace((char)0x2009, ' '); // THIN SPACE
+        input = input.Replace((char)0x200A, ' '); // HAIR SPACE
         input = input.Replace((char)0x202F, ' '); // NARROW NO-BREAK SPACE
+        input = input.Replace((char)0x205F, ' '); // MEDIUM MATHEMATICAL SPACE
         input = input.Replace((char)0x2060, ' '); // WORD JOINER
-
-        // TODO - replace more special space characters listed here https://www.compart.com/en/unicode/category/Zs https://github.com/StateSmith/StateSmith/issues/100
+        input = input.Replace((char)0x3000, ' '); // IDEOGRAPHIC SPACE
 
         return input;
     }
