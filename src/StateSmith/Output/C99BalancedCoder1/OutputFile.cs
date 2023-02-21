@@ -1,25 +1,37 @@
 using System;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
+
+#nullable enable
 
 namespace StateSmith.Output.C99BalancedCoder1;
 
 public class OutputFile
 {
-    readonly CodeGenContext ctx;
-    readonly StringBuilder sb;
+    private readonly StringBuilder sb;
     private readonly CodeStyleSettings styler;
     private int indentLevel = 0;
     private bool lineIncomplete = false;
 
     private bool lineBreakBeforeMoreCode = false;
 
-    public OutputFile(CodeGenContext codeGenContext, StringBuilder fileStringBuilder)
+    public OutputFile(CodeGenContext codeGenContext, StringBuilder fileStringBuilder) : this(codeGenContext.style, fileStringBuilder)
     {
-        ctx = codeGenContext;
+    }
+
+    public OutputFile(CodeStyleSettings styler, StringBuilder fileStringBuilder)
+    {
         sb = fileStringBuilder;
-        styler = codeGenContext.style;
+        this.styler = styler;
+    }
+
+    public void DecreaseIndentLevel()
+    {
+        indentLevel--;
+    }
+
+    public void IncreaseIndentLevel()
+    {
+        indentLevel++;
     }
 
     public void RequestNewLineBeforeMoreCode()
@@ -83,12 +95,12 @@ public class OutputFile
         }
     }
 
-    public void AppendLines(string codeLines)
+    public void AppendLines(string codeLines, string prefix = "")
     {
-        var lines = StringUtils.SplitIntoLines(codeLines);
+        var lines = StringUtils.SplitIntoLinesOrEmpty(codeLines);
         foreach (var line in lines)
         {
-            AppendLine(line);
+            AppendLine(prefix + line);
         }
     }
 
@@ -109,7 +121,7 @@ public class OutputFile
 
     public void AppendDetectNewlines(string code = "")
     {
-        var lines = StringUtils.SplitIntoLines(code);
+        var lines = StringUtils.SplitIntoLinesOrEmpty(code);
         foreach (var line in lines)
         {
             Append(line);

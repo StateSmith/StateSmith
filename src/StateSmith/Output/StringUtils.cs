@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace StateSmith.Output;
@@ -34,9 +35,13 @@ public class StringUtils
         return output;
     }
 
-    public static string[] SplitIntoLines(string str)
+    public static string[] SplitIntoLinesOrEmpty(string str)
     {
         var lines = Regex.Split(str, @"\r\n|\r|\n");    // TODOLOW compile common regex
+
+        if (lines.Length == 1 && lines[0] == String.Empty)
+            return Array.Empty<string>();
+
         return lines;
     }
 

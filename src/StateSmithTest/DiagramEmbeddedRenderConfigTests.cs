@@ -62,9 +62,16 @@ public class DiagramEmbeddedRenderConfigTests
             // sm level - CFileIncludes
             """);
 
+        // FIXME - render configs should not inherit from eachother
+        // a code generator may request the general one and the specific one
         renderConfig.VariableDeclarations.ShouldBeShowDiff("""
             int top_level; // top level - VariableDeclarations
             int sm_level; // sm level - VariableDeclarations
+            """);
+
+        renderConfig.FileTop.ShouldBeShowDiff("""
+            // top level - FileTop
+            // sm level - FileTop
             """);
 
         renderConfig.HFileTop.ShouldBeShowDiff("""

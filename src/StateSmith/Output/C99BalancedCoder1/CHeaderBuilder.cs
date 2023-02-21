@@ -96,7 +96,7 @@ namespace StateSmith.Output.C99BalancedCoder1
                     {
                         var combinedVars = ctx.Sm.variables + ctx.renderConfig.VariableDeclarations.Trim();
 
-                        var lines = StringUtils.SplitIntoLines(combinedVars);
+                        var lines = StringUtils.SplitIntoLinesOrEmpty(combinedVars);
                         foreach (var line in lines)
                         {
                             file.AppendLine(line);

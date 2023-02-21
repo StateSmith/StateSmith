@@ -13,6 +13,8 @@ namespace StateSmith.SmGraph;
 public class RenderConfigVerticesProcessor : DummyVertexVisitor
 {
     readonly RenderConfigC tempRenderConfigC = new();
+    readonly RenderConfig tempRenderConfig = new();
+    private readonly RenderConfig renderConfig;
     readonly RenderConfigC renderConfigC;
     readonly IStateMachineProvider targetStateMachineProvider;
     readonly IDiagramVerticesProvider diagramVerticesProvider;
@@ -22,8 +24,9 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     /// </summary>
     StateMachine? currentStateMachine = null;
 
-    public RenderConfigVerticesProcessor(RenderConfigC renderConfigC, IStateMachineProvider targetStateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider)
+    public RenderConfigVerticesProcessor(RenderConfig renderConfig, RenderConfigC renderConfigC, IStateMachineProvider targetStateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider)
     {
+        this.renderConfig = renderConfig;
         this.renderConfigC = renderConfigC;
         this.targetStateMachineProvider = targetStateMachineProvider;
         this.diagramVerticesProvider = diagramVerticesProvider;
@@ -45,7 +48,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
         {
             Visit(v);
         }
-
+        
         List<Vertex> toRemove = new();
         targetStateMachineProvider.GetStateMachine().VisitTypeRecursively<RenderConfigVertex>(v => toRemove.Add(v));
 
@@ -55,6 +58,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
         }
 
         renderConfigC.CopyFrom(tempRenderConfigC); // done like this so it can be processed intelligently
+        renderConfig.CopyFrom(tempRenderConfig); // done like this so it can be processed intelligently
     }
 
     public override void Visit(StateMachine v)
@@ -96,13 +100,15 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     {
         switch (v.name)
         {
+            case nameof(RenderConfig.VariableDeclarations): AppendOption(ref tempRenderConfig.VariableDeclarations, v); break;
+            case nameof(RenderConfig.AutoExpandedVars): AppendOption(ref tempRenderConfig.AutoExpandedVars, v); break;
+            case nameof(RenderConfig.EventCommaList): AppendOption(ref tempRenderConfig.EventCommaList, v); break;
+            case nameof(RenderConfig.FileTop): AppendOption(ref tempRenderConfigC.FileTop, v); break;
+
             case nameof(RenderConfigC.HFileTop): AppendOption(ref tempRenderConfigC.HFileTop, v); break;
             case nameof(RenderConfigC.HFileIncludes): AppendOption(ref tempRenderConfigC.HFileIncludes, v); break;
             case nameof(RenderConfigC.CFileTop): AppendOption(ref tempRenderConfigC.CFileTop, v); break;
             case nameof(RenderConfigC.CFileIncludes): AppendOption(ref tempRenderConfigC.CFileIncludes, v); break;
-            case nameof(RenderConfigC.VariableDeclarations): AppendOption(ref tempRenderConfigC.VariableDeclarations, v); break;
-            case nameof(RenderConfigC.AutoExpandedVars): AppendOption(ref tempRenderConfigC.AutoExpandedVars, v); break;
-            case nameof(RenderConfigC.EventCommaList): AppendOption(ref tempRenderConfigC.EventCommaList, v); break;
 
             default:
                 throw new VertexValidationException(v, $"Unknown Render Config option `{v.name}`");

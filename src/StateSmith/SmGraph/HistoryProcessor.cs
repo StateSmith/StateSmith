@@ -1,9 +1,7 @@
-﻿using StateSmith.SmGraph.Visitors;
-using StateSmith.SmGraph;
 using StateSmith.Common;
 using System.Linq;
 using System.Collections.Generic;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Algos.Balanced1;
 
 #nullable enable
 
@@ -15,15 +13,15 @@ namespace StateSmith.SmGraph;
 public class HistoryProcessor
 {
     readonly StateMachine sm;
-    readonly CNameMangler mangler;
+    readonly NameMangler mangler;
 
-    public HistoryProcessor(StateMachine sm, CNameMangler mangler)
+    public HistoryProcessor(StateMachine sm, NameMangler mangler)
     {
         this.sm = sm;
         this.mangler = mangler;
     }
 
-    public static void Process(StateMachine sm, CNameMangler mangler)
+    public static void Process(StateMachine sm, NameMangler mangler)
     {
         var processor = new HistoryProcessor(sm, mangler);
         processor.Process();
@@ -118,7 +116,7 @@ public class HistoryProcessor
         HistoryStateValidator.ValidateBeforeTransforming(historyState);
 
         sm.historyStates.Add(historyState);
-        historyState.stateTrackingVarName = $"${historyState.ParentState.ThrowIfNull().Name}_history"; // will be changed later on with expansions
+        historyState.stateTrackingVarName = mangler.HistoryVarName(historyState);
         Behavior defaultTransition = historyState.Behaviors.Single();
         defaultTransition.order = Behavior.ELSE_ORDER;
 
@@ -132,16 +130,19 @@ public class HistoryProcessor
         {
             bool isDefaultTransition = stateToTrack == defaultTransition?.TransitionTarget && defaultTransition.HasActionCode() == false;
 
-            string enumValueName = mangler.HistoryVarEnumValueName(historyState, stateToTrack);
+            string enumName = mangler.HistoryVarEnumName(historyState);
+            string enumValueName = enumName + "." + mangler.HistoryVarEnumValueName(historyState, stateToTrack);
 
             {
-                Behavior enterTrackingBehavior = new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{historyState.stateTrackingVarName} = {enumValueName};");
+                Behavior enterTrackingBehavior = new(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"this.vars.{historyState.stateTrackingVarName} = {enumValueName};");
+                enterTrackingBehavior.isGilCode = true;
                 stateToTrack.AddBehavior(enterTrackingBehavior);
             }
 
             if (!isDefaultTransition)
             {
-                Behavior historyTransitionBehavior = new Behavior(guardCode: $"{historyState.stateTrackingVarName} == {enumValueName}", transitionTarget: stateToTrack);
+                Behavior historyTransitionBehavior = new(guardCode: $"this.vars.{historyState.stateTrackingVarName} == {enumValueName}", transitionTarget: stateToTrack);
+                historyTransitionBehavior.isGilCode = true;
                 historyState.AddBehavior(historyTransitionBehavior);
             }
         }

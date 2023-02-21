@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
+using StateSmith.Output.Gil.C99;
 
 #nullable enable
 
@@ -89,9 +90,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(settings.mangler);
             services.AddSingleton(settings.style);
             services.AddSingleton(renderConfigC);
+            services.AddSingleton<OutputInfo>();
+            services.AddSingleton<RenderConfig>(renderConfigC);
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(settings.renderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
+            services.AddSingleton<ExpansionsPrep>();
         });
     }
 
@@ -100,6 +104,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
         diServiceProvider.BuildIfNeeded();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
+        diServiceProvider.GetServiceOrCreateInstanceRaw<OutputInfo>().outputDirectory = settings.outputDirectory;
     }
 
     // ----------- experimental access  -------------

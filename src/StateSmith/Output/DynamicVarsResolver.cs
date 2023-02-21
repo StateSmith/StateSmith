@@ -28,8 +28,8 @@ public class DynamicVarsResolver
 
         foreach (var h in sm.historyStates)
         {
-            string actualVarName = mangler.HistoryVarName(h);
-            expander.AddVariableExpansion(h.stateTrackingVarName, expansionVarsPathProvider.ExpansionVarsPath + actualVarName);
+            string actualVarName = h.stateTrackingVarName;
+            //expander.AddVariableExpansion(h.stateTrackingVarName, expansionVarsPathProvider.ExpansionVarsPath + actualVarName);
             bool useU8 = false;
 
             if (useU8)
@@ -42,7 +42,7 @@ public class DynamicVarsResolver
             }
             else
             {
-                sm.variables += $"enum {mangler.HistoryVarEnumName(h)} {actualVarName};\n";
+                sm.variables += $"{mangler.HistoryVarEnumName(h)} {actualVarName};\n";
             }
         }
     }

@@ -40,7 +40,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Input\PlantUML\antlr4\" /> <!-- not sure why this is only needed for plantuml grammar -->
+    <!-- not sure why this is only needed for plantuml grammar -->
+    <Folder Include="Input\PlantUML\antlr4\" />
   </ItemGroup>
 
 </Project>

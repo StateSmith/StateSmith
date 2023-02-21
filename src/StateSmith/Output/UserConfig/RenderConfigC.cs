@@ -1,6 +1,6 @@
 namespace StateSmith.Output.UserConfig;
 
-public class RenderConfigC
+public class RenderConfigC : RenderConfig
 {
     /// <summary>
     /// Whatever this property returns will be placed at the top of the rendered .h file.
@@ -15,18 +15,6 @@ public class RenderConfigC
     public string CFileTop = "";
 
     public string CFileIncludes = "";
-
-    public string VariableDeclarations = "";
-
-    /// <summary>
-    /// https://github.com/StateSmith/StateSmith/issues/91
-    /// </summary>
-    public string AutoExpandedVars = "";
-
-    /// <summary>
-    /// Not used yet. A comma separated list of allowed event names. TODO case sensitive?
-    /// </summary>
-    public string EventCommaList = "";
 
     public void SetFromIRenderConfigC(IRenderConfigC config, bool autoDeIndentAndTrim)
     {
@@ -67,18 +55,9 @@ public class RenderConfigC
         SmartAppend(ref HFileIncludes, otherConfig.HFileIncludes);
         SmartAppend(ref CFileTop, otherConfig.CFileTop);
         SmartAppend(ref CFileIncludes, otherConfig.CFileIncludes);
-        SmartAppend(ref VariableDeclarations, otherConfig.VariableDeclarations);
-        SmartAppend(ref AutoExpandedVars, otherConfig.AutoExpandedVars);
-        SmartAppend(ref EventCommaList, otherConfig.EventCommaList);
 
-        IgnorePureCommentVarDecls();
+        CopyFrom((RenderConfig)otherConfig);
     }
 
-    private void IgnorePureCommentVarDecls()
-    {
-        if (StringUtils.RemoveCCodeComments(VariableDeclarations).Trim().Length == 0)
-        {
-            VariableDeclarations = "";
-        }
-    }
+
 }

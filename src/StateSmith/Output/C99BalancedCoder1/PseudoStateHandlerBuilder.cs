@@ -6,141 +6,142 @@ using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using StateSmith.Output.Algos.Balanced1;
 
-namespace StateSmith.Output.C99BalancedCoder1
+namespace StateSmith.Output.C99BalancedCoder1;
+
+public class PseudoStateHandlerBuilder
 {
-    public class PseudoStateHandlerBuilder
+    /// <summary>
+    /// needs to be set before using this class
+    /// </summary>
+    public OutputFile? output;
+
+    /// <summary>
+    /// needs to be set before using this class
+    /// </summary>
+    public NameMangler? mangler;
+
+    Dictionary<PseudoStateVertex, string> functionNameMap = new();
+    HashList<NamedVertex, PseudoStateVertex> parentMapping = new();
+
+    public void Gather(StateMachine sm)
     {
-        /// <summary>
-        /// needs to be set before using this class
-        /// </summary>
-        public OutputFile? output;
-
-        /// <summary>
-        /// needs to be set before using this class
-        /// </summary>
-        public CNameMangler? mangler;
-
-        Dictionary<PseudoStateVertex, string> functionNameMap = new();
-        HashList<NamedVertex, PseudoStateVertex> parentMapping = new();
-
-        public void Gather(StateMachine sm)
+        LambdaVertexBreadthWalker walker = new() { visitAction = v =>
         {
-            LambdaVertexBreadthWalker walker = new() { visitAction = v =>
+            if (v is PseudoStateVertex pseudoState && ShouldCreateFunctionHandler(v))
             {
-                if (v is PseudoStateVertex pseudoState && ShouldCreateFunctionHandler(v))
-                {
-                    Add(pseudoState);
-                }
-            }
-            };
-
-            walker.Walk(sm);
-        }
-
-        private static bool ShouldCreateFunctionHandler(Vertex v)
-        {
-            var IncomingTransitionCount = v.IncomingTransitions.Count;
-
-            if (v is InitialState)
-            {
-                IncomingTransitionCount += (v.Parent!).IncomingTransitions.Count;
-            }
-
-            return IncomingTransitionCount > 1;
-        }
-
-        public void MapParents()
-        {
-            foreach (var pseudoState in functionNameMap.Keys)
-            {
-                parentMapping.AddIfMissing((NamedVertex)pseudoState.NonNullParent, pseudoState);
+                Add(pseudoState);
             }
         }
+        };
 
-        public void Add(PseudoStateVertex pseudoStateVertex)
+        walker.Walk(sm);
+    }
+
+    private static bool ShouldCreateFunctionHandler(Vertex v)
+    {
+        var IncomingTransitionCount = v.IncomingTransitions.Count;
+
+        if (v is InitialState)
         {
-            string functionName = CreateUniqueName(pseudoStateVertex);
-            functionNameMap.Add(pseudoStateVertex, functionName);
+            IncomingTransitionCount += (v.Parent!).IncomingTransitions.Count;
         }
 
-        private string CreateUniqueName(PseudoStateVertex pseudoStateVertex)
-        {
-            var functionName = Vertex.Describe(pseudoStateVertex);
-            functionName = Regex.Replace(functionName, @"[.()]+", "_") + "_transition";
-            while (functionNameMap.ContainsValue((functionName)))
-            {
-                functionName += "_kid_index" + pseudoStateVertex.FindIndexInParentKids();
-            }
+        return IncomingTransitionCount > 1;
+    }
 
-            return functionName;
+    public void MapParents()
+    {
+        foreach (var pseudoState in functionNameMap.Keys)
+        {
+            parentMapping.AddIfMissing((NamedVertex)pseudoState.NonNullParent, pseudoState);
+        }
+    }
+
+    public void Add(PseudoStateVertex pseudoStateVertex)
+    {
+        string functionName = CreateUniqueName(pseudoStateVertex);
+        functionNameMap.Add(pseudoStateVertex, functionName);
+    }
+
+    private string CreateUniqueName(PseudoStateVertex pseudoStateVertex)
+    {
+        var functionName = Vertex.Describe(pseudoStateVertex);
+        functionName = Regex.Replace(functionName, @"[.()]+", "_") + "_transition";
+        while (functionNameMap.ContainsValue((functionName)))
+        {
+            functionName += "_kid_index" + pseudoStateVertex.FindIndexInParentKids();
         }
 
-        public Dictionary<PseudoStateVertex, string>.ValueCollection GetAllFunctionNames()
+        return functionName;
+    }
+
+    public Dictionary<PseudoStateVertex, string>.ValueCollection GetAllFunctionNames()
+    {
+        return functionNameMap.Values;
+    }
+
+    public void OutputFunctionSignature(PseudoStateVertex pseudoStateVertex)
+    {
+        var functionName = GetFunctionName(pseudoStateVertex);
+        output.ThrowIfNull().Append($"private void {functionName}()");
+        //output.ThrowIfNull().Append($"static void {functionName}({mangler.ThrowIfNull().SmStructTypedefName})");
+    }
+
+    public void OutputAllPrototypes()
+    {
+        output.ThrowIfNull();
+
+        foreach (var vertex in functionNameMap.Keys)
         {
-            return functionNameMap.Values;
-        }
-
-        public void OutputFunctionSignature(PseudoStateVertex pseudoStateVertex)
-        {
-            var functionName = GetFunctionName(pseudoStateVertex);
-            output.ThrowIfNull().Append($"static void {functionName}({mangler.ThrowIfNull().SmStructTypedefName}* self)");
-        }
-
-        public void OutputAllPrototypes()
-        {
-            output.ThrowIfNull();
-
-            foreach (var vertex in functionNameMap.Keys)
-            {
-                OutputFunctionSignature(vertex);
-                output.AppendLine(";");
-                output.RequestNewLineBeforeMoreCode();
-            }
-        }
-
-        public void OutputFunctionsForParent(NamedVertex parent, Action<PseudoStateVertex> renderLambda)
-        {
-            if (!parentMapping.Contains(parent))
-            {
-                return;
-            }
-
-            foreach (var pseudoKid in parentMapping.GetValues(parent))
-            {
-                OutputFunction(pseudoKid, renderLambda);
-            }
-        }
-
-        public void OutputFunction(PseudoStateVertex pseudoStateVertex, Action<PseudoStateVertex> renderLambda)
-        {
-            output.ThrowIfNull();
-
-            OutputFunctionSignature(pseudoStateVertex);
-            output.StartCodeBlock();
-            renderLambda(pseudoStateVertex);
-            output.FinishCodeBlock();
+            OutputFunctionSignature(vertex);
+            output.AppendLine(";");
             output.RequestNewLineBeforeMoreCode();
         }
+    }
 
-        public string GetFunctionName(PseudoStateVertex pseudoStateVertex)
+    public void OutputFunctionsForParent(NamedVertex parent, Action<PseudoStateVertex> renderLambda)
+    {
+        if (!parentMapping.Contains(parent))
         {
-            return functionNameMap[pseudoStateVertex];
+            return;
         }
 
-        public string? MaybeGetFunctionName(PseudoStateVertex pseudoStateVertex)
+        foreach (var pseudoKid in parentMapping.GetValues(parent))
         {
-            if (Contains(pseudoStateVertex) == false)
-            {
-                return null;
-            }
+            OutputFunction(pseudoKid, renderLambda);
+        }
+    }
 
-            return functionNameMap[pseudoStateVertex];
+    public void OutputFunction(PseudoStateVertex pseudoStateVertex, Action<PseudoStateVertex> renderLambda)
+    {
+        output.ThrowIfNull();
+
+        OutputFunctionSignature(pseudoStateVertex);
+        output.StartCodeBlock();
+        renderLambda(pseudoStateVertex);
+        output.FinishCodeBlock();
+        output.RequestNewLineBeforeMoreCode();
+    }
+
+    public string GetFunctionName(PseudoStateVertex pseudoStateVertex)
+    {
+        return functionNameMap[pseudoStateVertex];
+    }
+
+    public string? MaybeGetFunctionName(PseudoStateVertex pseudoStateVertex)
+    {
+        if (Contains(pseudoStateVertex) == false)
+        {
+            return null;
         }
 
-        private bool Contains(PseudoStateVertex pseudoStateVertex)
-        {
-            return functionNameMap.ContainsKey(pseudoStateVertex);
-        }
+        return functionNameMap[pseudoStateVertex];
+    }
+
+    private bool Contains(PseudoStateVertex pseudoStateVertex)
+    {
+        return functionNameMap.ContainsKey(pseudoStateVertex);
     }
 }

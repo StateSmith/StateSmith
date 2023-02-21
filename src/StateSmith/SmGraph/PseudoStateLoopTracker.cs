@@ -1,9 +1,8 @@
 #nullable enable
 
-using StateSmith.SmGraph;
 using System.Collections.Generic;
 
-namespace StateSmith.Output.C99BalancedCoder1;
+namespace StateSmith.SmGraph;
 
 /// <summary>
 /// Pseudo states are dangerous in that they can create infinite transition loops. This would cause StateSmith to stack overflow if not detected.
@@ -12,7 +11,7 @@ namespace StateSmith.Output.C99BalancedCoder1;
 public class PseudoStateLoopTracker
 {
     private readonly List<Vertex> vertices = new(); // could be made a bit more efficient with a hashmap/dictionary, but the list size should be small.
-    
+
     public void Push(PseudoStateVertex pseudoState)
     {
         if (vertices.Contains(pseudoState))

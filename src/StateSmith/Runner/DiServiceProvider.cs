@@ -8,7 +8,8 @@ using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
 using StateSmith.Common;
-using System.Diagnostics.CodeAnalysis;
+using StateSmith.Output.Gil.C99;
+using StateSmith.Output.Algos.Balanced1;
 
 #nullable enable
 
@@ -57,7 +58,6 @@ public class DiServiceProvider
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
-            services.AddTransient<ICodeGenRunner, CodeGenRunner>();
             services.AddTransient<MxCellsToSmDiagramConverter>();
             services.AddTransient<DrawIoToSmDiagramConverter>();
             services.AddTransient<VisualGroupingValidator>();
@@ -65,6 +65,15 @@ public class DiServiceProvider
             services.AddTransient<ExpansionConfigReader>();
             services.AddTransient<CBuilder>();
             services.AddTransient<CHeaderBuilder>();
+
+            //services.AddTransient<ICodeGenRunner, CodeGenRunner>();
+            services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
+            services.AddSingleton<IGilAlgo, AlgoBalanced1>();
+            services.AddSingleton<IGilTranspiler, GilToC99>();
+            services.AddSingleton<NameMangler>();
+            services.AddSingleton<PseudoStateHandlerBuilder>();
+            services.AddSingleton<EnumBuilder>();
+            services.AddSingleton<EventHandlerBuilder2>();
         });
     }
 
@@ -128,6 +137,7 @@ public class DiServiceProvider
         services.AddSingleton(new CNameMangler());
         services.AddSingleton(new CodeStyleSettings());
         services.AddSingleton<RenderConfigC>();
+        services.AddSingleton<RenderConfig>();
     }
 
     /// <summary>
@@ -152,6 +162,16 @@ public class DiServiceProvider
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
         public static implicit operator RenderConfigC(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigC>(me.host.Services);
         public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);
+    }
+
+    /// <summary>
+    /// Should ideally only be used by code that sets up Service Provider and can't use dependency injection.
+    /// Otherwise, it can hide dependencies. See https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/ .
+    /// </summary>
+    /// <returns></returns>
+    public T GetServiceOrCreateInstanceRaw<T>()
+    {
+        return ActivatorUtilities.GetServiceOrCreateInstance<T>(host.ThrowIfNull().Services);
     }
 
     /// <summary>
