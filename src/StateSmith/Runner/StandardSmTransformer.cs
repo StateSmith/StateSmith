@@ -17,6 +17,7 @@ public class StandardSmTransformer : SmTransformer
         Standard_SupportOrderAndElse,
         Standard_Validation1,
         Standard_DefaultUnspecifiedEventsAsDoEvent,
+        Standard_SupportAlternateTriggersProcessor,
         Standard_AddUsedEventsToSm,
         Standard_FinalValidation,
     };
@@ -33,6 +34,7 @@ public class StandardSmTransformer : SmTransformer
         AddStep(TransformationId.Standard_SupportOrderAndElse, (sm) => OrderAndElseProcessor.Process(sm)); // should happen after most steps as it orders behaviors
         AddStep(TransformationId.Standard_Validation1, (sm) => Validate(sm));
         AddStep(TransformationId.Standard_DefaultUnspecifiedEventsAsDoEvent, (sm) => DefaultToDoEventVisitor.Process(sm));
+        AddStep(TransformationId.Standard_SupportAlternateTriggersProcessor, (sm) => SupportAlternateTriggersProcessor.Process(sm));
         AddStep(TransformationId.Standard_AddUsedEventsToSm, (sm) => AddUsedEventsToSmClass.Process(sm));
         AddStep(TransformationId.Standard_FinalValidation, (sm) => Validate(sm));
     }

@@ -33,7 +33,6 @@ public static class TriggerHelper
         switch (trigger)
         {
             case TRIGGER_ENTER:
-            // case "entry":    //todolow support
             case TRIGGER_EXIT:
                 return true;
         }

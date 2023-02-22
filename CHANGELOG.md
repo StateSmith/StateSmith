@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - draw.io - convert more special characters to regular space characters (@FyrBridd).
   - https://github.com/StateSmith/StateSmith/issues/100
+- support `entry` as alternative to `enter` trigger.
+  - https://github.com/StateSmith/StateSmith/issues/108
 
 ---
 
