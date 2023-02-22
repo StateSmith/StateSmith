@@ -1,9 +1,13 @@
 using StateSmith.Common;
+using System.Linq;
 
 #nullable enable
 
 namespace StateSmith.SmGraph;
 
+/// <summary>
+/// https://github.com/StateSmith/StateSmith/issues/108
+/// </summary>
 public class SupportAlternateTriggersProcessor
 {
     public static void Process(StateMachine sm)
@@ -12,13 +16,15 @@ public class SupportAlternateTriggersProcessor
         {
             foreach (var behavior in vertex.Behaviors)
             {
-                for (int i = 0; i < behavior.triggers.Count; i++)
+                var sanitizedTriggers = behavior.SanitizedTriggers.ToList();
+
+                for (int i = 0; i < sanitizedTriggers.Count; i++)
                 {
-                    string trigger = behavior.triggers[i];
-                    switch (trigger.ToLower())
+                    string trigger = sanitizedTriggers[i];
+                    switch (trigger)
                     {
                         case "entry":
-                            behavior.triggers[i] = TriggerHelper.TRIGGER_ENTER;
+                            behavior._triggers[i] = TriggerHelper.TRIGGER_ENTER;
                             break;
                         // may also want to support "en" for "enter" and "ex" for "exit"
                     }

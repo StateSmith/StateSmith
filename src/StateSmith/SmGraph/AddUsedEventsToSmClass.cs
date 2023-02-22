@@ -1,4 +1,4 @@
-﻿using StateSmith.Common;
+using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
 
 #nullable enable
@@ -24,9 +24,9 @@ public class AddUsedEventsToSmClass : VertexWalker
     {
         foreach (var behavior in v.Behaviors)
         {
-            foreach (var trigger in behavior.triggers)
+            foreach (var trigger in behavior.Triggers)
             {
-                TriggerHelper.MaybeAddEvent(stateMachine, behavior, trigger);
+                TriggerHelper.MaybeAddEventToSm(stateMachine, behavior, trigger);
             }
         }
     }

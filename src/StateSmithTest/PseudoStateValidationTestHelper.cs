@@ -94,7 +94,7 @@ namespace StateSmithTest.PseudoStateTests
         public void Trigger()
         {
             PseudoStateVertex pseudoStateVertex = s2_pseudoState;
-            s2_pseudoState.Behaviors[0].triggers.Add("do");
+            s2_pseudoState.Behaviors[0]._triggers.Add("do");
             ExpectVertexValidationException(exceptionMessagePart: "trigger");
         }
 

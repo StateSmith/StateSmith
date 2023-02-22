@@ -56,16 +56,16 @@ namespace StateSmithTest
 
             sm.AddBehavior(new Behavior()
             {
-                triggers = new List<string>() { "do" }
+                _triggers = new List<string>() { "do" }
             });
 
             s1.AddBehavior(new Behavior()
             {
-                triggers = new List<string>() { "EV1", "do" }
+                _triggers = new List<string>() { "EV1", "do" }
             });
             s1_1.AddBehavior(new Behavior()
             {
-                triggers = new List<string>() { "enter", "exit", "ZIP" }
+                _triggers = new List<string>() { "enter", "exit", "ZIP" }
             });
 
             inputSmBuilder.SetStateMachineRoot(sm);

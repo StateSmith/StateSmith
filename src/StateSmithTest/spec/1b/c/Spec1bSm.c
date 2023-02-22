@@ -182,7 +182,7 @@ static void S1_exit(Spec1bSm* self)
 
 static void S1_t1(Spec1bSm* self)
 {
-    // No ancestor state handles `T1` event.
+    // No ancestor state handles `t1` event.
     
     // S1 behavior
     // uml: T1 [g()] / { t(); } TransitionTo(S2)

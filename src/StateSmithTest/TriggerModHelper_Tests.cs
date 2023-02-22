@@ -24,6 +24,7 @@ public class SupportAlternateTriggersProcessor_Tests
             [*] --> MY_STATE_1
             MY_STATE_1 : enter / log("enter");
             MY_STATE_1 : entry / log("entry");
+            MY_STATE_1 : ENTRY / log("ENTRY");
             @enduml
         """);
 
@@ -35,6 +36,7 @@ public class SupportAlternateTriggersProcessor_Tests
         myState1.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
             Behavior.NewEnterBehavior("""log("enter");"""),
             Behavior.NewEnterBehavior("""log("entry");"""),
+            Behavior.NewEnterBehavior("""log("ENTRY");"""),
         }, behaviorMatcher);
     }
 }

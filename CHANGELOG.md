@@ -8,8 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - draw.io - convert more special characters to regular space characters (@FyrBridd).
   - https://github.com/StateSmith/StateSmith/issues/100
+- improve trigger/event name case insensitivity.
+  - Also document and expose more from `TriggerHelper` class.
 - support `entry` as alternative to `enter` trigger.
   - https://github.com/StateSmith/StateSmith/issues/108
+
+### Changes
+- Internal API change to `Behavior` class
+  - `.triggers` modifiable list renamed to `._triggers`.
+  - Prefer using readonly `.Triggers` or `.SanitizedTriggers` instead.
 
 ---
 
