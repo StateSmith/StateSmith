@@ -1,4 +1,4 @@
-﻿using Spec;
+using Spec;
 using Spec.Spec2;
 using System;
 using System.Collections.Generic;
@@ -77,14 +77,16 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit TEST2_S1.
             Transition action `` for TEST2_S1_1 to TEST2_S2.
             Enter TEST2_S2.
+            State TEST2_S2: check behavior `ENTER`. Behavior running.
         ")); tester.AddEventHandling("EV1", t => t(@"
-            State TEST2_S2: check behavior `EV1 / { consume_event = false; }`. Behavior running.
+            State TEST2_S2: check behavior `ev1 / { consume_event = false; }`. Behavior running.
             State TEST2_ROOT: check behavior `EV1`. Behavior running.
         ")); tester.AddEventHandling("EV2", t => t(@"
-            State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`. Behavior running.
+            State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`. Behavior running.
             Exit TEST2_S2.
             Transition action `` for TEST2_S2 to TEST2_S2.
             Enter TEST2_S2.
+            State TEST2_S2: check behavior `ENTER`. Behavior running.
         "));
     }
 

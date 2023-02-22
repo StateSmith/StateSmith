@@ -287,7 +287,7 @@ Reason(s): {reasons}
             DiagramId = owningVertex.DiagramId, // may be overwritten for edges
             actionCode = nodeBehavior.actionCode ?? "",
             guardCode = nodeBehavior.guardCode ?? "",
-            triggers = nodeBehavior.triggers,
+            _triggers = nodeBehavior.triggers,
             viaEntry = nodeBehavior.viaEntry,
             viaExit = nodeBehavior.viaExit,
         };

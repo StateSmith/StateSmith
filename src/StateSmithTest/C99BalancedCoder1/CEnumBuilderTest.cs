@@ -23,7 +23,7 @@ namespace StateSmithTest.C99BalancedCoder1
             StateMachine sm = new StateMachine("WaffleSm");
             sm.AddBehavior(new Behavior()
             {
-                triggers = TriggerList("do", "EV1", "EV2")
+                _triggers = TriggerList("do", "EV1", "EV2")
             });
 
             inputSmBuilder.SetStateMachineRoot(sm);

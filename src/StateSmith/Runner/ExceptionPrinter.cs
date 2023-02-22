@@ -142,7 +142,7 @@ message += $@"
     Owning vertex: {fromString}
     Target vertex: {toString}
     Order: {behavior.GetOrderString()}
-    Triggers: `{string.Join(", ", behavior.triggers)}`
+    Triggers: `{string.Join(", ", behavior.Triggers)}`
     Guard: `{behavior.guardCode}`
     Action: `{behavior.actionCode}`
     Via Entry: `{behavior.viaEntry}`

@@ -11,6 +11,36 @@ using Xunit;
 
 namespace StateSmithTest;
 
+public class SupportAlternateTriggersProcessor_Tests
+{
+    // https://github.com/StateSmith/StateSmith/issues/108
+    [Fact]
+    public void TestEntry()
+    {
+        var inputSmBuilder = new InputSmBuilder();
+
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices("""
+            @startuml SomeSmName
+            [*] --> MY_STATE_1
+            MY_STATE_1 : enter / log("enter");
+            MY_STATE_1 : entry / log("entry");
+            MY_STATE_1 : ENTRY / log("ENTRY");
+            @enduml
+        """);
+
+        inputSmBuilder.FinishRunning();
+        var myState1 = inputSmBuilder.GetStateMachine().Child<State>("MY_STATE_1");
+
+        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+
+        myState1.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
+            Behavior.NewEnterBehavior("""log("enter");"""),
+            Behavior.NewEnterBehavior("""log("entry");"""),
+            Behavior.NewEnterBehavior("""log("ENTRY");"""),
+        }, behaviorMatcher);
+    }
+}
+
 public class TriggerModHelper_Tests
 {
     [Fact]

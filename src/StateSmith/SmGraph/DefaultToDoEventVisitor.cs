@@ -17,7 +17,7 @@ public class DefaultToDoEventVisitor : NamedVisitor
         {
             if (b.HasAtLeastOneTrigger() == false)
             {
-                b.triggers.Add(TriggerHelper.TRIGGER_DO);
+                b._triggers.Add(TriggerHelper.TRIGGER_DO);
             }
         }
 

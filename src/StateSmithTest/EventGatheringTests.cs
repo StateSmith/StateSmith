@@ -32,11 +32,11 @@ namespace StateSmithTest
 
             GetState("s1").AddBehavior(new Behavior()
             {
-                triggers = new List<string>() { "EV1", "do" }
+                _triggers = new List<string>() { "EV1", "do" }
             });
             GetState("s1_1").AddBehavior(new Behavior()
             {
-                triggers = new List<string>() { "enter", "exit", "ZIP" }
+                _triggers = new List<string>() { "enter", "exit", "ZIP" }
             });
 
             inputSmBuilder.FinishRunning();
@@ -58,11 +58,11 @@ namespace StateSmithTest
 
             GetState("s1").AddBehavior(new Behavior()
             {
-                triggers = new List<string>() { "SM2_EV1", "do", "exit" }
+                _triggers = new List<string>() { "SM2_EV1", "do", "exit" }
             });
             GetState("s1_1").AddBehavior(new Behavior()
             {
-                triggers = new List<string>() { "enter", "exit", "SM2_ZIP" }
+                _triggers = new List<string>() { "enter", "exit", "SM2_ZIP" }
             });
 
             inputSmBuilder.FinishRunning();

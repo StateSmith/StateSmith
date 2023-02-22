@@ -43,7 +43,7 @@ statemachine_defn:
     optional_any_space
     '$STATEMACHINE'
     ohs
-    ':'
+    COLON
     ohs
     IDENTIFIER
     optional_any_space
@@ -69,7 +69,7 @@ config_node:
     optional_any_space
     '$CONFIG'
     ohs
-    ':'
+    COLON
     ohs
     IDENTIFIER
     ohs
@@ -97,7 +97,7 @@ ortho_defn:
     ohs
     ortho_order?
     ohs
-    ':'
+    COLON
     ohs
     state_id
     state_behaviors
@@ -160,12 +160,13 @@ point_label:
 // https://github.com/StateSmith/StateSmith/issues/3
 entry_point:
     optional_any_space
-    'entry'
+    ENTRY
     optional_any_space
-    ':'
+    COLON
     optional_any_space
     point_label
     optional_any_space
+    EOF
     ;
 
 
@@ -175,11 +176,12 @@ choice:
     '$choice'
     (
         optional_any_space
-        ':'
+        COLON
         optional_any_space
         point_label
     )?
     optional_any_space
+    EOF
     ;
 
 // NOTE! We can't a rule like below because the IDENTIFIER lexer token will match all of example
@@ -196,16 +198,17 @@ choice:
 // https://github.com/StateSmith/StateSmith/issues/3
 exit_point:
     optional_any_space
-    'exit'
+    EXIT
     optional_any_space
-    ':'
+    COLON
     optional_any_space
     point_label
     optional_any_space
+    EOF
     ;
 
-via_entry_type: 'entry';
-via_exit_type: 'exit';
+via_entry_type: ENTRY;
+via_exit_type: EXIT;
 
 // supports entry and exit points
 // https://github.com/StateSmith/StateSmith/issues/3
@@ -359,7 +362,7 @@ member_access:
 //checked for expansions
 expandable_identifier:
     ohs 
-    (IDENTIFIER | 'exit') // 'exit' lexer token required because of exit point rule
+    (IDENTIFIER | EXIT | ENTRY) // exit/entry lexer tokens required because of exit/entry point rules
     ;
 
 
@@ -469,12 +472,7 @@ code_line:
     ohs;
 
 
-LINE_ENDER: [\r\n]+;
 line_end_with_hs: LINE_ENDER ohs;
-
-fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
-IDENTIFIER  :  (LITTLE_E | IDENTIFIER_NON_DIGIT)   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
-LITTLE_E: 'e';
 
 number :
     (DASH | PLUS)?
@@ -488,6 +486,30 @@ number :
     )?
     ;
 
+string_literal: STRING | TICK_STRING | BACKTICK_STRING; // don't name as `string` because then antlr generated code has warnings in it
+
+code_symbol:
+    PERIOD |
+    // COMMA | //can't include because otherwise it messes up function arguments
+    PLUS |
+    DASH |
+    COLON |
+    GT |
+    LT |
+    OTHER_SYMBOLS
+    ;
+
+/////////////////////////////////// LEXER RULES - ORDER MATTERS! ///////////////////////////////////
+
+LINE_ENDER: [\r\n]+;
+
+// must come before IDENTIFIER
+EXIT: 'exit';
+ENTRY: 'entry';
+
+fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
+IDENTIFIER  :  (LITTLE_E | IDENTIFIER_NON_DIGIT)   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+LITTLE_E: 'e';
 
 fragment NOT_NL_CR: ~[\n\r];
 LINE_COMMENT: '//' NOT_NL_CR*;
@@ -504,12 +526,8 @@ fragment STRING_CHAR: ESCAPED_CHAR | NON_QUOTE_CHAR ;
 STRING: DOUBLE_QUOTE STRING_CHAR* DOUBLE_QUOTE ;
 TICK_STRING: SINGLE_QUOTE STRING_CHAR* SINGLE_QUOTE ;
 BACKTICK_STRING: BACKTICK STRING_CHAR* BACKTICK ;
-string_literal: STRING | TICK_STRING | BACKTICK_STRING; // don't name as `string` because then antlr generated code has warnings in it
 
-
-
-
-DIGIT :   [0-9]  ;
+DIGIT :   [0-9];
 
 DOUBLE_QUOTE: '"';
 SINGLE_QUOTE: '\'';
@@ -518,21 +536,10 @@ PERIOD: '.' ;
 COMMA: ',' ;
 PLUS : '+' ;
 DASH : '-' ;
-COLON : ':' ;
+COLON : ':';
 GT : '>' ;
 LT : '<' ;
 OTHER_SYMBOLS: 
     [~!%^&*=:;/?|\\@#$];  //don't include braces/parenthesis as those need to be grouped
-
-code_symbol:
-    PERIOD |
-    // COMMA | //can't include because otherwise it messes up function arguments
-    PLUS |
-    DASH |
-    COLON |
-    GT |
-    LT |
-    OTHER_SYMBOLS
-    ;
 
 HWS : [ \t]+ ;

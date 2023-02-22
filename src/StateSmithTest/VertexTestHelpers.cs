@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using FluentAssertions;
 using StateSmith.SmGraph;
@@ -19,7 +19,7 @@ namespace StateSmithTest
                     if (transitionTarget) { result = result.Including(o => o.TransitionTarget); }
                     if (actionCode) { result = result.Including(o => o.actionCode); }
                     if (guardCode) { result = result.Including(o => o.guardCode); }
-                    if (triggers) { result = result.Including(o => o.triggers); }
+                    if (triggers) { result = result.Including(o => o._triggers); }
                     if (order) { result = result.Including(o => o.order); }
 
                     return result;
@@ -38,7 +38,7 @@ namespace StateSmithTest
             behavior.guardCode.Should().Be(guardCode);
 
             triggers = triggers ?? new List<string>();
-            behavior.triggers.Should().BeEquivalentTo(triggers);
+            behavior.Triggers.Should().BeEquivalentTo(triggers);
 
             behavior.order.Should().Be(order);
         }

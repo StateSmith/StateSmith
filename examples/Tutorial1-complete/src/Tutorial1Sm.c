@@ -178,7 +178,7 @@ static void OFF_exit(Tutorial1Sm* self)
 
 static void OFF_increase(Tutorial1Sm* self)
 {
-    // No ancestor state handles `INCREASE` event.
+    // No ancestor state handles `increase` event.
     
     // OFF behavior
     // uml: INCREASE TransitionTo(ON1)
@@ -220,7 +220,7 @@ static void ON_GROUP_exit(Tutorial1Sm* self)
 
 static void ON_GROUP_off(Tutorial1Sm* self)
 {
-    // No ancestor state handles `OFF` event.
+    // No ancestor state handles `off` event.
     
     // ON_GROUP behavior
     // uml: OFF TransitionTo(OFF)
@@ -270,7 +270,7 @@ static void ON1_exit(Tutorial1Sm* self)
 
 static void ON1_dim(Tutorial1Sm* self)
 {
-    // No ancestor state handles `DIM` event.
+    // No ancestor state handles `dim` event.
     
     // ON1 behavior
     // uml: DIM TransitionTo(OFF)
@@ -292,7 +292,7 @@ static void ON1_dim(Tutorial1Sm* self)
 
 static void ON1_increase(Tutorial1Sm* self)
 {
-    // No ancestor state handles `INCREASE` event.
+    // No ancestor state handles `increase` event.
     
     // ON1 behavior
     // uml: INCREASE TransitionTo(ON2)
@@ -342,7 +342,7 @@ static void ON2_exit(Tutorial1Sm* self)
 
 static void ON2_dim(Tutorial1Sm* self)
 {
-    // No ancestor state handles `DIM` event.
+    // No ancestor state handles `dim` event.
     
     // ON2 behavior
     // uml: DIM TransitionTo(ON1)
@@ -364,7 +364,7 @@ static void ON2_dim(Tutorial1Sm* self)
 
 static void ON2_increase(Tutorial1Sm* self)
 {
-    // No ancestor state handles `INCREASE` event.
+    // No ancestor state handles `increase` event.
     
     // ON2 behavior
     // uml: INCREASE TransitionTo(ON3)
@@ -415,7 +415,7 @@ static void ON3_exit(Tutorial1Sm* self)
 
 static void ON3_dim(Tutorial1Sm* self)
 {
-    // No ancestor state handles `DIM` event.
+    // No ancestor state handles `dim` event.
     
     // ON3 behavior
     // uml: DIM TransitionTo(ON2)
@@ -437,7 +437,7 @@ static void ON3_dim(Tutorial1Sm* self)
 
 static void ON3_increase(Tutorial1Sm* self)
 {
-    // No ancestor state handles `INCREASE` event.
+    // No ancestor state handles `increase` event.
     
     // ON3 behavior
     // uml: 1. INCREASE / { count++; }

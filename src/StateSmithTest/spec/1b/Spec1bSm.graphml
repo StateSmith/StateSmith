@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
-  <!--Created by yEd 3.22-->
+  <!--Created by yEd 3.21.1-->
   <key attr.name="Description" attr.type="string" for="graph" id="d0"/>
   <key for="port" id="d1" yfiles.type="portgraphics"/>
   <key for="port" id="d2" yfiles.type="portgeometry"/>
@@ -182,7 +182,7 @@ enter / c();</y:NodeLabel>
                       <y:Fill color="#FFFFFF" transparent="false"/>
                       <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
                       <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="38.031999999999925" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="74.05229202208352" x="0.0" xml:space="preserve" y="0.0">S2_1
-enter / e();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+entry / e();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                     </y:ShapeNode>
                   </data>
@@ -233,7 +233,6 @@ from https://en.wikipedia.org/wiki/UML_state_machine#Transition_execution_sequen
       </data>
     </node>
     <node id="n2">
-      <data key="d5"/>
       <data key="d6">
         <y:ImageNode>
           <y:Geometry height="268.0" width="678.0" x="19.489195855600713" y="-233.11081794195252"/>
@@ -285,7 +284,6 @@ Expected order: g() a(); b(); t(); c(); d(); e();
       </data>
     </edge>
     <edge id="n0::n0::e1" source="n0::n0::n0" target="n0::n0::n2">
-      <data key="d9"/>
       <data key="d10">
         <y:QuadCurveEdge straightness="0.1">
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -296,7 +294,6 @@ Expected order: g() a(); b(); t(); c(); d(); e();
       </data>
     </edge>
     <edge id="n0::n0::n2::e0" source="n0::n0::n2::n1" target="n0::n0::n2::n0">
-      <data key="d9"/>
       <data key="d10">
         <y:QuadCurveEdge straightness="0.1">
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -307,7 +304,6 @@ Expected order: g() a(); b(); t(); c(); d(); e();
       </data>
     </edge>
     <edge id="n0::n0::n0::e0" source="n0::n0::n0::n1" target="n0::n0::n0::n0">
-      <data key="d9"/>
       <data key="d10">
         <y:QuadCurveEdge straightness="0.1">
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
