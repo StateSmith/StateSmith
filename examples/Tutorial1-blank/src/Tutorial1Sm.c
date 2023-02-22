@@ -133,7 +133,7 @@ static void OFF_exit(Tutorial1Sm* self)
 
 static void OFF_increase(Tutorial1Sm* self)
 {
-    // No ancestor state handles `INCREASE` event.
+    // No ancestor state handles `increase` event.
     
     // OFF behavior
     // uml: INCREASE TransitionTo(ON1)
@@ -183,7 +183,7 @@ static void ON1_exit(Tutorial1Sm* self)
 
 static void ON1_dim(Tutorial1Sm* self)
 {
-    // No ancestor state handles `DIM` event.
+    // No ancestor state handles `dim` event.
     
     // ON1 behavior
     // uml: DIM TransitionTo(OFF)
@@ -205,7 +205,7 @@ static void ON1_dim(Tutorial1Sm* self)
 
 static void ON1_off(Tutorial1Sm* self)
 {
-    // No ancestor state handles `OFF` event.
+    // No ancestor state handles `off` event.
     
     // ON1 behavior
     // uml: OFF TransitionTo(OFF)

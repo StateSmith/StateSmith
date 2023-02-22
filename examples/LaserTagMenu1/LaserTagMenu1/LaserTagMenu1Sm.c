@@ -274,7 +274,7 @@ static void HOME_exit(LaserTagMenu1Sm* self)
 
 static void HOME_ok_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `OK_PRESS` event.
+    // No ancestor state handles `ok_press` event.
     
     // HOME behavior
     // uml: OK_PRESS TransitionTo(MAIN_MENU)
@@ -355,7 +355,7 @@ static void HOME1_exit(LaserTagMenu1Sm* self)
 
 static void HOME1_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // HOME1 behavior
     // uml: DOWN_PRESS TransitionTo(HOME2)
@@ -377,7 +377,7 @@ static void HOME1_down_press(LaserTagMenu1Sm* self)
 
 static void HOME1_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // HOME1 behavior
     // uml: UP_PRESS TransitionTo(HOME3)
@@ -427,7 +427,7 @@ static void HOME2_exit(LaserTagMenu1Sm* self)
 
 static void HOME2_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // HOME2 behavior
     // uml: DOWN_PRESS TransitionTo(HOME3)
@@ -449,7 +449,7 @@ static void HOME2_down_press(LaserTagMenu1Sm* self)
 
 static void HOME2_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // HOME2 behavior
     // uml: UP_PRESS TransitionTo(HOME1)
@@ -499,7 +499,7 @@ static void HOME3_exit(LaserTagMenu1Sm* self)
 
 static void HOME3_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // HOME3 behavior
     // uml: DOWN_PRESS TransitionTo(HOME1)
@@ -521,7 +521,7 @@ static void HOME3_down_press(LaserTagMenu1Sm* self)
 
 static void HOME3_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // HOME3 behavior
     // uml: UP_PRESS TransitionTo(HOME2)
@@ -564,7 +564,7 @@ static void MENUS_GROUP_exit(LaserTagMenu1Sm* self)
 
 static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `BACK_HELD` event.
+    // No ancestor state handles `back_held` event.
     
     // MENUS_GROUP behavior
     // uml: BACK_HELD TransitionTo(HOME)
@@ -585,7 +585,7 @@ static void MENUS_GROUP_back_held(LaserTagMenu1Sm* self)
 
 static void MENUS_GROUP_back_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `BACK_PRESS` event.
+    // No ancestor state handles `back_press` event.
     
     // MENUS_GROUP behavior
     // uml: BACK_PRESS TransitionTo(HOME)
@@ -722,7 +722,7 @@ static void MM_BACK_PRESS_EATER_OPTION_exit(LaserTagMenu1Sm* self)
 
 static void MM_BACK_PRESS_EATER_OPTION_ok_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `OK_PRESS` event.
+    // No ancestor state handles `ok_press` event.
     
     // MM_BACK_PRESS_EATER_OPTION behavior
     // uml: OK_PRESS TransitionTo(MM_BACK_PRESS_EATER)
@@ -755,7 +755,7 @@ static void MM_BACK_PRESS_EATER_OPTION_ok_press(LaserTagMenu1Sm* self)
 
 static void MM_BACK_PRESS_EATER_OPTION_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // MM_BACK_PRESS_EATER_OPTION behavior
     // uml: UP_PRESS TransitionTo(MM_SHOW_INFO_OPTION)
@@ -806,7 +806,7 @@ static void MM_SELECT_CLASS_OPTION_exit(LaserTagMenu1Sm* self)
 
 static void MM_SELECT_CLASS_OPTION_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SELECT_CLASS_OPTION behavior
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_OPTION)
@@ -828,7 +828,7 @@ static void MM_SELECT_CLASS_OPTION_down_press(LaserTagMenu1Sm* self)
 
 static void MM_SELECT_CLASS_OPTION_ok_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `OK_PRESS` event.
+    // No ancestor state handles `ok_press` event.
     
     // MM_SELECT_CLASS_OPTION behavior
     // uml: OK_PRESS TransitionTo(MM_SELECT_CLASS)
@@ -898,7 +898,7 @@ static void MM_SHOW_INFO_OPTION_exit(LaserTagMenu1Sm* self)
 
 static void MM_SHOW_INFO_OPTION_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SHOW_INFO_OPTION behavior
     // uml: DOWN_PRESS TransitionTo(MM_BACK_PRESS_EATER_OPTION)
@@ -920,7 +920,7 @@ static void MM_SHOW_INFO_OPTION_down_press(LaserTagMenu1Sm* self)
 
 static void MM_SHOW_INFO_OPTION_ok_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `OK_PRESS` event.
+    // No ancestor state handles `ok_press` event.
     
     // MM_SHOW_INFO_OPTION behavior
     // uml: OK_PRESS TransitionTo(MM_SHOW_INFO)
@@ -953,7 +953,7 @@ static void MM_SHOW_INFO_OPTION_ok_press(LaserTagMenu1Sm* self)
 
 static void MM_SHOW_INFO_OPTION_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // MM_SHOW_INFO_OPTION behavior
     // uml: UP_PRESS TransitionTo(MM_SELECT_CLASS_OPTION)
@@ -1002,7 +1002,7 @@ static void MM_BACK_PRESS_EATER_exit(LaserTagMenu1Sm* self)
 
 static void MM_BACK_PRESS_EATER_back_press(LaserTagMenu1Sm* self)
 {
-    // Setup handler for next ancestor that listens to `BACK_PRESS` event.
+    // Setup handler for next ancestor that listens to `back_press` event.
     self->ancestor_event_handler = MENUS_GROUP_back_press;
     
     // MM_BACK_PRESS_EATER behavior
@@ -1277,7 +1277,7 @@ static void MM_BACK_PRESS_EATER_5_exit(LaserTagMenu1Sm* self)
 
 static void MM_BACK_PRESS_EATER_5_back_press(LaserTagMenu1Sm* self)
 {
-    // Setup handler for next ancestor that listens to `BACK_PRESS` event.
+    // Setup handler for next ancestor that listens to `back_press` event.
     self->ancestor_event_handler = MM_BACK_PRESS_EATER_back_press;
     
     // MM_BACK_PRESS_EATER_5 behavior
@@ -1371,7 +1371,7 @@ static void MM_SELECT_CLASS_exit(LaserTagMenu1Sm* self)
 
 static void MM_SELECT_CLASS_back_press(LaserTagMenu1Sm* self)
 {
-    // Setup handler for next ancestor that listens to `BACK_PRESS` event.
+    // Setup handler for next ancestor that listens to `back_press` event.
     self->ancestor_event_handler = MENUS_GROUP_back_press;
     
     // MM_SELECT_CLASS behavior
@@ -1395,7 +1395,7 @@ static void MM_SELECT_CLASS_back_press(LaserTagMenu1Sm* self)
 
 static void MM_SELECT_CLASS_ok_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `OK_PRESS` event.
+    // No ancestor state handles `ok_press` event.
     
     // MM_SELECT_CLASS behavior
     // uml: OK_PRESS / { save_option_as_class(); } TransitionTo(MM_SELECT_CLASS.ExitPoint(saved))
@@ -1458,7 +1458,7 @@ static void MM_SC_ENGINEER_exit(LaserTagMenu1Sm* self)
 
 static void MM_SC_ENGINEER_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SC_ENGINEER behavior
     // uml: DOWN_PRESS TransitionTo(MM_SC_HEAVY)
@@ -1509,7 +1509,7 @@ static void MM_SC_MID_exit(LaserTagMenu1Sm* self)
 
 static void MM_SC_MID_down_held(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_HELD` event.
+    // No ancestor state handles `down_held` event.
     
     // MM_SC_MID behavior
     // uml: DOWN_HELD TransitionTo(MM_SC_SPY)
@@ -1531,7 +1531,7 @@ static void MM_SC_MID_down_held(LaserTagMenu1Sm* self)
 
 static void MM_SC_MID_up_held(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_HELD` event.
+    // No ancestor state handles `up_held` event.
     
     // MM_SC_MID behavior
     // uml: UP_HELD TransitionTo(MM_SC_ENGINEER)
@@ -1581,7 +1581,7 @@ static void MM_SC_ARCHER_exit(LaserTagMenu1Sm* self)
 
 static void MM_SC_ARCHER_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SC_ARCHER behavior
     // uml: DOWN_PRESS TransitionTo(MM_SC_WIZARD)
@@ -1603,7 +1603,7 @@ static void MM_SC_ARCHER_down_press(LaserTagMenu1Sm* self)
 
 static void MM_SC_ARCHER_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // MM_SC_ARCHER behavior
     // uml: UP_PRESS TransitionTo(MM_SC_HEAVY)
@@ -1654,7 +1654,7 @@ static void MM_SC_HEAVY_exit(LaserTagMenu1Sm* self)
 
 static void MM_SC_HEAVY_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SC_HEAVY behavior
     // uml: DOWN_PRESS TransitionTo(MM_SC_ARCHER)
@@ -1676,7 +1676,7 @@ static void MM_SC_HEAVY_down_press(LaserTagMenu1Sm* self)
 
 static void MM_SC_HEAVY_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // MM_SC_HEAVY behavior
     // uml: UP_PRESS TransitionTo(MM_SC_ENGINEER)
@@ -1726,7 +1726,7 @@ static void MM_SC_WIZARD_exit(LaserTagMenu1Sm* self)
 
 static void MM_SC_WIZARD_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SC_WIZARD behavior
     // uml: DOWN_PRESS TransitionTo(MM_SC_SPY)
@@ -1748,7 +1748,7 @@ static void MM_SC_WIZARD_down_press(LaserTagMenu1Sm* self)
 
 static void MM_SC_WIZARD_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // MM_SC_WIZARD behavior
     // uml: UP_PRESS TransitionTo(MM_SC_ARCHER)
@@ -1797,7 +1797,7 @@ static void MM_SC_SPY_exit(LaserTagMenu1Sm* self)
 
 static void MM_SC_SPY_up_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `UP_PRESS` event.
+    // No ancestor state handles `up_press` event.
     
     // MM_SC_SPY behavior
     // uml: UP_PRESS TransitionTo(MM_SC_WIZARD)
@@ -1839,7 +1839,7 @@ static void MM_SHOW_INFO_exit(LaserTagMenu1Sm* self)
 
 static void MM_SHOW_INFO_back_press(LaserTagMenu1Sm* self)
 {
-    // Setup handler for next ancestor that listens to `BACK_PRESS` event.
+    // Setup handler for next ancestor that listens to `back_press` event.
     self->ancestor_event_handler = MENUS_GROUP_back_press;
     
     // MM_SHOW_INFO behavior
@@ -1916,7 +1916,7 @@ static void MM_SHOW_INFO_1_do(LaserTagMenu1Sm* self)
 
 static void MM_SHOW_INFO_1_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SHOW_INFO_1 behavior
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_2)
@@ -1991,7 +1991,7 @@ static void MM_SHOW_INFO_2_do(LaserTagMenu1Sm* self)
 
 static void MM_SHOW_INFO_2_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SHOW_INFO_2 behavior
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_3)
@@ -2066,7 +2066,7 @@ static void MM_SHOW_INFO_3_do(LaserTagMenu1Sm* self)
 
 static void MM_SHOW_INFO_3_down_press(LaserTagMenu1Sm* self)
 {
-    // No ancestor state handles `DOWN_PRESS` event.
+    // No ancestor state handles `down_press` event.
     
     // MM_SHOW_INFO_3 behavior
     // uml: DOWN_PRESS TransitionTo(MM_SHOW_INFO_1)
