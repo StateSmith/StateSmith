@@ -7,6 +7,7 @@ namespace StateSmithTest.CustomCodeGen;
 
 public class Ex1
 {
+    // Support custom user code generation strategies: https://github.com/StateSmith/StateSmith/issues/89
     [Fact]
     public void ExampleCustomCodeGen()
     {

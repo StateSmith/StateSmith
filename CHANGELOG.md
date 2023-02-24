@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## unreleased
+### Added
+- support for user post processing
+  - Can be used to remove `state_id_to_string()` function if not wanted
+  - Can be used to add code coverage annotations
+  - See https://github.com/StateSmith/StateSmith/issues/114
+
+---
+
 ## [0.7.15-alpha]
 ### Added
 - draw.io - convert more special characters to regular space characters (@FyrBridd).
