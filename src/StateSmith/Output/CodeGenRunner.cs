@@ -17,8 +17,9 @@ public class CodeGenRunner : ICodeGenRunner
     readonly ExpansionConfigReader expansionConfigReader;
     readonly ExpansionConfigReaderObjectProvider expansionConfigReaderObjectProvider;
     readonly AutoExpandedVarsProcessor autoExpandedVarsProcessor;
+    readonly ICodeFileWriter codeFileWriter;
 
-    public CodeGenRunner(DynamicVarsResolver varsResolver, CodeGenContext codeGenContext, ExpansionConfigReader configReader, CBuilder cBuilder, RunnerSettings settings, CHeaderBuilder cHeaderBuilder, ExpansionConfigReaderObjectProvider configReaderObjectProvider, AutoExpandedVarsProcessor autoExpandedVarsProcessor)
+    public CodeGenRunner(DynamicVarsResolver varsResolver, CodeGenContext codeGenContext, ExpansionConfigReader configReader, CBuilder cBuilder, RunnerSettings settings, CHeaderBuilder cHeaderBuilder, ExpansionConfigReaderObjectProvider configReaderObjectProvider, AutoExpandedVarsProcessor autoExpandedVarsProcessor, ICodeFileWriter codeFileWriter)
     {
         this.varsResolver = varsResolver;
         this.codeGenContext = codeGenContext;
@@ -28,6 +29,7 @@ public class CodeGenRunner : ICodeGenRunner
         this.cHeaderBuilder = cHeaderBuilder;
         this.expansionConfigReaderObjectProvider = configReaderObjectProvider;
         this.autoExpandedVarsProcessor = autoExpandedVarsProcessor;
+        this.codeFileWriter = codeFileWriter;
     }
 
     public void Run()
@@ -42,7 +44,7 @@ public class CodeGenRunner : ICodeGenRunner
         string hFileContents = codeGenContext.hFileSb.ToString();
         string cFileContents = codeGenContext.cFileSb.ToString();
 
-        File.WriteAllText($"{settings.outputDirectory}{settings.mangler.HFileName}", hFileContents);
-        File.WriteAllText($"{settings.outputDirectory}{settings.mangler.CFileName}", cFileContents);
+        codeFileWriter.WriteFile(filePath: $"{settings.outputDirectory}{settings.mangler.HFileName}", hFileContents);
+        codeFileWriter.WriteFile(filePath: $"{settings.outputDirectory}{settings.mangler.CFileName}", cFileContents);
     }
 }
