@@ -1,0 +1,46 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="401px" height="221px" viewBox="-0.5 -0.5 401 221" content="&lt;mxfile&gt;&lt;diagram id=&quot;DLnVY5NDsVVYwWrmNcwQ&quot; name=&quot;Page-1&quot;&gt;7Vhdb5swFP01SNvLBBiS9DFNSTsp3Uur7bFy8IVYMxgZk4/++tnEBBxg7dSsTwlSYh9f29f3nHuBOGiR7e8FLjaPnABzfJfsHXTn+L6HZhP1o5HDEZkh/wikghJj1AJP9BUM6Bq0ogRKy1ByziQtbDDmeQ6xtDAsBN/ZZgln9q4FTqEHPMWY9dFflMiNOUXotvgD0HTT7Oy5ZiTDjbEByg0mfNeBUOSgheBcHlvZfgFMB6+Jy3HecmT05JiAXL5ngon7FrPKnM3xg6fn+XP0OF88fP8RqUEHzdV3tDe2pTw0cVDeF7pZ7mjGcK6at4JLLPG6tlAzbzGjaa7asXIIhAK2ICRVoZybAckLhSY8l0ucUaYVsapiSrDaasHzkuulbkuJhTRCQK6ZYPpe0PSNZ57pLzjjovYULef60jhlrIOHgb70BuYIy844gQRXTNanqnICxKyNRdxsHeruWjlZSZi3sEL7TBhydABg34EMM/fAM5DioEzMaGBEcrC7u1ZyQSOsTUduJ3FhI/P0tHKrBNUwYhgWBhoQhtsTwFu0NewzSOQ4952Q57xWUSowodAyaOBSCv4bzsCWG62LssAxzdNVveGdZlZASV87isz4ttNTpQm6eu3pt5K8/Bur/girp+pjFrMS3GLb0Iv69KIhdi9AbjCU9TSnkmL2olJNwmiqq4VUla25LYtjbU3oXof/PLXc+jNAwHmIc77Ca3WHOEYYCO0Ovj/go2k0mX4LrUQK+5H2w4FIhx+PdNiLdF1cX7xrLf1QLf1nEfh2LfW8vgY8fyDdbi6QbpOBdLsW0nNKwxFKL1FIwwFmgwswOx1J7+uj0men93vye/Kf8nvWU0F2iLZe/cC01K85XN1UqyT58rU+rCoHyNPERD/9k03X4FobzvUwHdHDJWrDoCwuURxuRnVd8krEYD2LqaRNwa6EQKy30P6ZBDAs6dZ+Kf2Ix03SvOFy2Hd5+kkuq277clyPdf5iQNEf&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 400 30 L 400 7.5 Q 400 0 392.5 0 L 7.5 0 Q 0 0 0 7.5 L 0 30" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 0 212.5 Q 0 220 7.5 220 L 392.5 220 Q 400 220 400 212.5 L 400 30" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 400 30" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="199.5" y="19.5">
+                $STATEMACHINE : Ex2
+            </text>
+        </g>
+        <rect x="0" y="30" width="30" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Lucida Console" font-size="12px"/>
+        <ellipse cx="80" cy="62.5" rx="12.5" ry="12.5" fill="#000000" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 140 140 L 140 117.5 Q 140 110 132.5 110 L 27.5 110 Q 20 110 20 117.5 L 20 140" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 20 140 L 20 192.5 Q 20 200 27.5 200 L 132.5 200 Q 140 200 140 192.5 L 140 140" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 20 140 L 140 140" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="79.5" y="129.5">
+                STATE_1
+            </text>
+        </g>
+        <rect x="20" y="140" width="50" height="40" fill="none" stroke="none" pointer-events="all"/>
+        <path d="M 380 140 L 380 117.5 Q 380 110 372.5 110 L 227.5 110 Q 220 110 220 117.5 L 220 140" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 220 140 L 220 192.5 Q 220 200 227.5 200 L 372.5 200 Q 380 200 380 192.5 L 380 140" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 220 140 L 380 140" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="299.5" y="129.5">
+                STATE_2
+            </text>
+        </g>
+        <rect x="220" y="140" width="160" height="40" fill="none" stroke="none" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Lucida Console" font-size="12px">
+            <text x="225.5" y="157.5">
+                myEv1 / do_stuff();
+            </text>
+            <text x="225.5" y="171.5">
+                EV2 / stuff();
+            </text>
+        </g>
+        <path d="M 80 75 L 80 103.63" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 80 108.88 L 76.5 101.88 L 80 103.63 L 83.5 101.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 140 155 L 213.63 155" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 218.88 155 L 211.88 158.5 L 213.63 155 L 211.88 151.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+</svg>

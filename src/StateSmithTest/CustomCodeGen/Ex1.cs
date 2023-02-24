@@ -20,7 +20,7 @@ public class Ex1
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeGenRunner, MyCodeGenRunner>();
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT(myCodeGenSettings); // required for MyCodeGenRunner
 
-        // adjust settings because we are unit testing. Normally wouldn't do below
+        // adjust settings because we are unit testing. Normally wouldn't do below.
         runner.Settings.propagateExceptions = true;
         runner.Settings.outputDirectory = Path.GetTempPath();
 

@@ -1,25 +1,25 @@
 using System;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
 
 namespace StateSmith.Output.C99BalancedCoder1;
 
 public class OutputFile
 {
-    readonly CodeGenContext ctx;
-    readonly StringBuilder sb;
+    private readonly StringBuilder sb;
     private readonly CodeStyleSettings styler;
     private int indentLevel = 0;
     private bool lineIncomplete = false;
 
     private bool lineBreakBeforeMoreCode = false;
 
-    public OutputFile(CodeGenContext codeGenContext, StringBuilder fileStringBuilder)
+    public OutputFile(CodeGenContext ctx, StringBuilder fileStringBuilder) : this(ctx.style, fileStringBuilder)
     {
-        ctx = codeGenContext;
+    }
+
+    public OutputFile(CodeStyleSettings styler, StringBuilder fileStringBuilder)
+    {
         sb = fileStringBuilder;
-        styler = codeGenContext.style;
+        this.styler = styler;
     }
 
     public void RequestNewLineBeforeMoreCode()

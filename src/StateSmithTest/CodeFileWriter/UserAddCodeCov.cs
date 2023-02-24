@@ -91,6 +91,9 @@ public class UserRemoveStateIdFuncAddCoverage
         // register our custom code file writer
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter, MyCodeFileWriter>();
 
+        // adjust settings because we are unit testing. Normally wouldn't do below.
+        runner.Settings.propagateExceptions = true;
+
         // run StateSmith with our custom code file writer
         runner.Run();
 

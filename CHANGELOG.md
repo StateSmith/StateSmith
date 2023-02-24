@@ -7,8 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## unreleased
 ### Added
 - support for user post processing
-  - Can be used to remove `state_id_to_string()` function if not wanted
-  - Can be used to add code coverage annotations
+  - Can be used to remove `state_id_to_string()` function if not wanted.
+  - Can be used to add custom functions.
+  - Can be used to add code coverage annotations.
   - See https://github.com/StateSmith/StateSmith/issues/114
 
 ---
