@@ -10,20 +10,20 @@ namespace StateSmith.Output.UserConfig;
 
 public class AutoExpandedVarsProcessor
 {
-    private readonly RenderConfigC renderConfigC;
+    private readonly RenderConfigVars renderConfig;
     private readonly Expander expander;
     private readonly IExpansionVarsPathProvider expansionVarsPathProvider;
 
-    public AutoExpandedVarsProcessor(RenderConfigC renderConfigC, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider)
+    public AutoExpandedVarsProcessor(RenderConfigVars renderConfig, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider)
     {
-        this.renderConfigC = renderConfigC;
+        this.renderConfig = renderConfig;
         this.expander = expander;
         this.expansionVarsPathProvider = expansionVarsPathProvider;
     }
 
     public void AddExpansions()
     {
-        string toParse = renderConfigC.AutoExpandedVars;
+        string toParse = renderConfig.AutoExpandedVars;
         var varsPath = expansionVarsPathProvider.ExpansionVarsPath;
 
         var identifiers = ParseIdentifiers(toParse);
@@ -33,7 +33,7 @@ public class AutoExpandedVarsProcessor
             expander.AddVariableExpansion(identifier, varsPath + identifier);
         }
 
-        StringUtils.AppendInPlaceWithNewlineIfNeeded(ref renderConfigC.VariableDeclarations, renderConfigC.AutoExpandedVars);
+        StringUtils.AppendInPlaceWithNewlineIfNeeded(ref renderConfig.VariableDeclarations, renderConfig.AutoExpandedVars);
     }
 
     public static List<string> ParseIdentifiers(string code)
@@ -44,7 +44,7 @@ public class AutoExpandedVarsProcessor
 
         if (code.Contains('{') || code.Contains('}'))
         {
-            throw new ArgumentException($"Detected '{{' or '}}' in {nameof(RenderConfigC.AutoExpandedVars)} section. That section parsing is currently too dumb to handle anonymous structures." +
+            throw new ArgumentException($"Detected '{{' or '}}' in {nameof(RenderConfigVars.AutoExpandedVars)} section. That section parsing is currently too dumb to handle anonymous structures." +
                 "You'll have to use the regular variables and expansions fields of the render config. https://github.com/StateSmith/StateSmith/issues/91 .");
         }
 

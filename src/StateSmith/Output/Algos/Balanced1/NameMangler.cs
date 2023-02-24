@@ -26,6 +26,11 @@ public class NameMangler
         this.sm = sm;
     }
 
+    /// <summary>
+    /// File name without dot or extension
+    /// </summary>
+    public virtual string BaseFileName => SmName;
+
     public virtual string SmName => sm.ThrowIfNull().Name;
 
     //--------------------------------------------------------

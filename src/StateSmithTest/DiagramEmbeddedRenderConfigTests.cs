@@ -50,62 +50,94 @@ public class DiagramEmbeddedRenderConfigTests
         runner.ConvertDiagramFileToSmVertices(filePath);
         runner.FinishRunning();
 
-        RenderConfigC renderConfig = runner.sp.GetServiceOrCreateInstance();
 
-        renderConfig.HFileIncludes.ShouldBeShowDiff("""
-            // top level - HFileIncludes
-            // sm level - HFileIncludes
-            """);
+        {
+            RenderConfigVars renderConfig = runner.sp.GetServiceOrCreateInstance();
 
-        renderConfig.CFileIncludes.ShouldBeShowDiff("""
-            // top level - CFileIncludes
-            // sm level - CFileIncludes
-            """);
-
-        // FIXME - render configs should not inherit from eachother
-        // a code generator may request the general one and the specific one
-        renderConfig.VariableDeclarations.ShouldBeShowDiff("""
+            renderConfig.VariableDeclarations.ShouldBeShowDiff("""
             int top_level; // top level - VariableDeclarations
             int sm_level; // sm level - VariableDeclarations
             """);
 
-        renderConfig.FileTop.ShouldBeShowDiff("""
+            renderConfig.FileTop.ShouldBeShowDiff("""
             // top level - FileTop
             // sm level - FileTop
             """);
 
-        renderConfig.HFileTop.ShouldBeShowDiff("""
-            // top level - HFileTop
-            // sm level - HFileTop
-            """);
 
-        renderConfig.CFileTop.ShouldBeShowDiff("""
-            // top level - CFileTop
-            // sm level - CFileTop
-            """);
-
-        renderConfig.AutoExpandedVars.ShouldBeShowDiff("""
+            renderConfig.AutoExpandedVars.ShouldBeShowDiff("""
             // top level - AutoExpandedVars
             // sm level - AutoExpandedVars
             """);
 
-        renderConfig.EventCommaList.ShouldBeShowDiff("""
+            renderConfig.EventCommaList.ShouldBeShowDiff("""
 
             """);
 
-        const int expectedOptionCount = 7;
-        GetRenderConfigFields().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
-        GetIRenderConfigCProperties().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            const int expectedOptionCount = 4;
+            GetTypeFields<RenderConfigVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            GetTypeProperties<IRenderConfig>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+        }
+
+        {
+            RenderConfigCVars renderConfigC = runner.sp.GetServiceOrCreateInstance();
+
+            renderConfigC.HFileIncludes.ShouldBeShowDiff("""
+            // top level - HFileIncludes
+            // sm level - HFileIncludes
+            """);
+
+            renderConfigC.CFileIncludes.ShouldBeShowDiff("""
+            // top level - CFileIncludes
+            // sm level - CFileIncludes
+            """);
+
+            renderConfigC.HFileTop.ShouldBeShowDiff("""
+            // top level - HFileTop
+            // sm level - HFileTop
+            """);
+
+            renderConfigC.CFileTop.ShouldBeShowDiff("""
+            // top level - CFileTop
+            // sm level - CFileTop
+            """);
+
+            const int expectedOptionCount = 4;
+            GetTypeFields<RenderConfigCVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            GetTypeProperties<IRenderConfigC>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+        }
+
+        {
+            RenderConfigCSharpVars renderConfigCSharp = runner.sp.GetServiceOrCreateInstance();
+
+            renderConfigCSharp.Usings.ShouldBeShowDiff("""
+            // top level - Usings
+            // sm level - Usings
+            """);
+
+            renderConfigCSharp.NameSpace.ShouldBeShowDiff("""
+            // top level - NameSpace
+            // sm level - NameSpace
+            """);
+
+            renderConfigCSharp.ClassCode.ShouldBeShowDiff("""
+            // sm level - CSharpClassCode
+            """);
+
+            const int expectedOptionCount = 3;
+            GetTypeFields<RenderConfigCSharpVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            GetTypeProperties<IRenderConfigCSharp>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+        }
     }
 
-    private static FieldInfo[] GetRenderConfigFields()
+    private static FieldInfo[] GetTypeFields<T>()
     {
-        return typeof(RenderConfigC).GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+        return typeof(T).GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
     }
 
-    private static MethodInfo[] GetIRenderConfigCProperties()
+    private static MethodInfo[] GetTypeProperties<T>()
     {
-        return typeof(IRenderConfigC).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.Public);
+        return typeof(T).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.Public);
     }
 
     private static ConfigOptionVertex GetOptionVertex(RenderConfigVertex renderConfig, string name)

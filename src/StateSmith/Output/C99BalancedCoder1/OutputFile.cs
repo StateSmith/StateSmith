@@ -14,10 +14,6 @@ public class OutputFile
 
     private bool lineBreakBeforeMoreCode = false;
 
-    public OutputFile(CodeGenContext codeGenContext, StringBuilder fileStringBuilder) : this(codeGenContext.style, fileStringBuilder)
-    {
-    }
-
     public OutputFile(CodeStyleSettings styler, StringBuilder fileStringBuilder)
     {
         sb = fileStringBuilder;

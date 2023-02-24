@@ -5885,7 +5885,7 @@ $mod / prefix.add(OM);</y:NodeLabel>
                       <y:Geometry height="50.0" width="50.0" x="178.22496546087956" y="755.239281879605"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                      <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="157.37646484375" x="-53.688232421875" xml:space="preserve" y="0.0">    ORDER_MENU
+                      <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="158.21875" x="-54.109375" xml:space="preserve" y="0.0">    ORDER_MENU
 $mod / prefix.add(OM);</y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                       <y:State closed="true" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
@@ -5929,7 +5929,7 @@ $mod / prefix.add(BEV);</y:NodeLabel>
                           <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
                           <y:Fill color="#F5F5F5" transparent="false"/>
                           <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="163.228515625" x="-56.6142578125" xml:space="preserve" y="0.0">BEVERAGE
+                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="164.07080078125" x="-57.035400390625" xml:space="preserve" y="0.0">BEVERAGE
 $mod / prefix.add(BEV);</y:NodeLabel>
                           <y:Shape type="roundrectangle"/>
                           <y:State closed="true" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
@@ -6008,7 +6008,7 @@ $mod / prefix.auto();</y:NodeLabel>
                           <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
                           <y:Fill color="#F5F5F5" transparent="false"/>
                           <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="137.38134765625" x="-43.690673828125" xml:space="preserve" y="0.0">VEG
+                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="138.2236328125" x="-44.11181640625" xml:space="preserve" y="0.0">VEG
 $mod / prefix.auto();</y:NodeLabel>
                           <y:Shape type="roundrectangle"/>
                           <y:State closed="true" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
@@ -6546,7 +6546,6 @@ PREFIXING is not actually tested, it is just there for compilation.<y:LabelModel
         </node>
         <node id="n0::n14" yfiles.foldertype="folder">
           <data key="d4" xml:space="preserve"/>
-          <data key="d5"/>
           <data key="d6">
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="1">
@@ -6576,7 +6575,6 @@ PREFIXING is not actually tested, it is just there for compilation.<y:LabelModel
           <graph edgedefault="directed" id="n0::n14:">
             <node id="n0::n14::n0" yfiles.foldertype="group">
               <data key="d4" xml:space="preserve"/>
-              <data key="d5"/>
               <data key="d6">
                 <y:ProxyAutoBoundsNode>
                   <y:Realizers active="0">
@@ -6758,7 +6756,6 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
               </data>
             </node>
             <edge id="n0::n15::e0" source="n0::n15::n0" target="n0::n15::n2">
-              <data key="d9"/>
               <data key="d10">
                 <y:BezierEdge>
                   <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -6768,7 +6765,6 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
               </data>
             </edge>
             <edge id="n0::n15::e1" source="n0::n15::n2" target="n0::n15::n3">
-              <data key="d9"/>
               <data key="d10">
                 <y:BezierEdge>
                   <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -6786,7 +6782,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
               <y:Geometry height="47.80000000000007" width="424.55010435880115" x="747.9136021740012" y="501.149614889994"/>
               <y:Fill color="#CCFFFF" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="47.80000000000007" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="424.55010435880115" x="0.0" xml:space="preserve" y="1.1368683772161603E-13">$NOTES
+              <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="47.80000000000007" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="424.55010435880115" x="0.0" xml:space="preserve" y="5.6843418860808015E-14">$NOTES
 AUTO_VAR_TEST is not actually tested, it is just there for compilation.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
               <y:Shape type="roundrectangle"/>
             </y:ShapeNode>
@@ -6905,7 +6901,6 @@ AUTO_VAR_TEST is not actually tested, it is just there for compilation.<y:LabelM
     </node>
     <node id="n1" yfiles.foldertype="folder">
       <data key="d4" xml:space="preserve"/>
-      <data key="d5"/>
       <data key="d6">
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="1">
@@ -6935,7 +6930,6 @@ AUTO_VAR_TEST is not actually tested, it is just there for compilation.<y:LabelM
       <graph edgedefault="directed" id="n1:">
         <node id="n1::n0" yfiles.foldertype="group">
           <data key="d4" xml:space="preserve"/>
-          <data key="d5"/>
           <data key="d6">
             <y:ProxyAutoBoundsNode>
               <y:Realizers active="0">
@@ -7031,20 +7025,6 @@ AUTO_VAR_TEST is not actually tested, it is just there for compilation.<y:LabelM
               <y:Fill color="#FFFFFF" transparent="false"/>
               <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
               <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="70.16000000000008" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="190.20514337251922" x="0.0" xml:space="preserve" y="0.0">$CONFIG: HFileTop<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
-            </y:ShapeNode>
-          </data>
-        </node>
-        <node id="n1::n7">
-          <data key="d6">
-            <y:ShapeNode>
-              <y:Geometry height="70.16000000000008" width="281.0851433725192" x="-215.02612664348032" y="346.6904668842193"/>
-              <y:Fill color="#FFFFFF" transparent="false"/>
-              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="70.16000000000008" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="281.0851433725192" x="0.0" xml:space="preserve" y="0.0">$CONFIG: AutoExpandedVars
-// some user AutoExpandedVars comments
-uint8_t auto_var_1;
-<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
               <y:Shape type="roundrectangle"/>
             </y:ShapeNode>
           </data>

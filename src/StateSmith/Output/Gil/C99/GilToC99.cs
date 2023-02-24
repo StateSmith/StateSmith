@@ -19,11 +19,11 @@ public class GilToC99 : IGilTranspiler
 {
     public readonly StringBuilder hFileSb = new();
     public readonly StringBuilder cFileSb = new();
-    public readonly RenderConfigC renderConfigC;
+    public readonly RenderConfigCVars renderConfigC;
     private readonly OutputInfo outputInfo;
     private readonly CNameMangler cNameMangler;
 
-    public GilToC99(RenderConfigC renderConfigC, OutputInfo outputInfo, CNameMangler cNameMangler)
+    public GilToC99(RenderConfigCVars renderConfigC, OutputInfo outputInfo, CNameMangler cNameMangler)
     {
         this.renderConfigC = renderConfigC;
         this.outputInfo = outputInfo;
@@ -33,7 +33,7 @@ public class GilToC99 : IGilTranspiler
 
     public void TranspileAndOutputCode(string programText)
     {
-        File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
+        //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
 
         Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
@@ -76,7 +76,7 @@ public class GilToC99 : IGilTranspiler
 
         if (message.Length > 0)
         {
-            File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
+            //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
             throw new GilCompError(message);
         }
     }

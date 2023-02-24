@@ -43,7 +43,6 @@ public class DiServiceProvider
 
             services.AddSingleton(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
-            services.AddSingleton<CodeGenContext>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<Expander>();
             services.AddSingleton<InputSmBuilder>();
@@ -63,8 +62,6 @@ public class DiServiceProvider
             services.AddTransient<VisualGroupingValidator>();
             services.AddTransient<DynamicVarsResolver>();
             services.AddTransient<ExpansionConfigReader>();
-            services.AddTransient<CBuilder>();
-            services.AddTransient<CHeaderBuilder>();
 
             //services.AddTransient<ICodeGenRunner, CodeGenRunner>();
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
@@ -136,8 +133,9 @@ public class DiServiceProvider
         services.AddSingleton(new DrawIoSettings());
         services.AddSingleton(new CNameMangler());
         services.AddSingleton(new CodeStyleSettings());
-        services.AddSingleton<RenderConfigC>();
-        services.AddSingleton<RenderConfig>();
+        services.AddSingleton<RenderConfigVars>();
+        services.AddSingleton<RenderConfigCVars>();
+        services.AddSingleton<RenderConfigCSharpVars>();
     }
 
     /// <summary>
@@ -160,7 +158,9 @@ public class DiServiceProvider
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
         public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
-        public static implicit operator RenderConfigC(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigC>(me.host.Services);
+        public static implicit operator RenderConfigVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigVars>(me.host.Services);
+        public static implicit operator RenderConfigCVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCVars>(me.host.Services);
+        public static implicit operator RenderConfigCSharpVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCSharpVars>(me.host.Services);
         public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);
     }
 

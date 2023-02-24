@@ -1,12 +1,10 @@
-using StateSmith.Common;
 using StateSmith.Input.Expansions;
+using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
-using StateSmith.SmGraph;
 using System;
-using System.Linq;
-using System.Text.RegularExpressions;
-using static System.Collections.Specialized.BitVector32;
+using StateSmith.Output.Gil.CSharp;
+using StateSmith.Output.Algos.Balanced1;
 
 /*
  * This file is intended to provide language agnostic helpers and expansions for all specification tests
@@ -20,10 +18,13 @@ public class SpecFixture
 {
     public static string SpecInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../spec/";
 
-    public static void CompileAndRun(IRenderConfigC renderConfigC, string diagramFile, string srcDirectory, bool useTracingModder = true)
+    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null)
     {
-        RunnerSettings settings = new(renderConfigC, diagramFile: diagramFile, outputDirectory: srcDirectory);
-        SmRunner runner = new(settings);
+        RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
+        SmRunner runner = new(settings, renderConfig);
+
+        smRunnerAction?.Invoke(runner);
+
         settings.propagateExceptions = true;
         if (useTracingModder)
         {
@@ -37,8 +38,11 @@ public class SpecFixture
 public class SpecGenericVarExpansions : UserExpansionScriptBase
 {
 #pragma warning disable IDE1006 // Naming Styles
-    public string clear_output() => "trace(\"IGNORE_OUTPUT_BEFORE_THIS\");";
-    public string clear_dispatch_output() => "trace(\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\");";
+    public virtual string trace(string message) => $"trace({message})";
+    public virtual string trace_guard(string message, string guardCode) => $"trace_guard({message}, {guardCode})";
+
+    public string clear_output() => $"{trace("\"IGNORE_OUTPUT_BEFORE_THIS\"")};";
+    public string clear_dispatch_output() => $"{trace("\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\"")};";
 #pragma warning restore IDE1006 // Naming Styles
 }
 

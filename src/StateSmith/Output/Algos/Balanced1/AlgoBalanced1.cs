@@ -6,11 +6,9 @@ using System.Linq;
 using StateSmith.Common;
 using System;
 using StateSmith.Output.C99BalancedCoder1;
-using StateSmith.Runner;
 using StateSmith.Output.Gil;
 using System.Text;
 using StateSmith.Output.UserConfig;
-using System.Reflection.Emit;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
@@ -18,7 +16,7 @@ public class AlgoBalanced1 : IGilAlgo
 {
     public bool skipClassIndentation = true; // used for C like stuff that has to hoist stuff out of class
     protected readonly EnumBuilder enumBuilder;
-    private readonly RenderConfig renderConfig;
+    private readonly RenderConfigVars renderConfig;
     protected readonly NameMangler mangler;
     protected readonly OutputFile file;
     protected readonly EventHandlerBuilder2 eventHandlerBuilder;
@@ -27,7 +25,7 @@ public class AlgoBalanced1 : IGilAlgo
     protected StateMachine? _sm;
     protected StateMachine Sm => _sm.ThrowIfNull("Must be set before use");
 
-    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfig renderConfig, EventHandlerBuilder2 eventHandlerBuilder, CodeStyleSettings styler)
+    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder2 eventHandlerBuilder, CodeStyleSettings styler)
     {
         this.mangler = mangler;
         this.file = new OutputFile(styler, new StringBuilder());

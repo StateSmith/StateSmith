@@ -9,8 +9,6 @@ namespace StateSmith.Runner;
 
 public class RunnerSettings
 {
-    public IRenderConfigC renderConfig;
-
     public string diagramFile;
 
     public string? outputDirectory;
@@ -29,6 +27,7 @@ public class RunnerSettings
 
     public CodeStyleSettings style = new();
 
+    // fixme - remove
     public CNameMangler mangler = new();
 
     public readonly DrawIoSettings drawIoSettings = new();
@@ -47,9 +46,8 @@ public class RunnerSettings
 
     public bool autoDeIndentAndTrimRenderConfigItems = true;
 
-    public RunnerSettings(IRenderConfigC renderConfig, string diagramFile, string? outputDirectory = null)
+    public RunnerSettings(string diagramFile, string? outputDirectory = null)
     {
-        this.renderConfig = renderConfig;
         this.diagramFile = diagramFile;
         this.outputDirectory = outputDirectory;
     }

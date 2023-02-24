@@ -17,7 +17,7 @@ public class Spec1CTests
 {
     public static string OutputDirectory => Spec1Fixture.Spec1Directory + "c/";
 
-    public class MyGlueFile : IRenderConfigC
+    public class MyGlueFile : IRenderConfig, IRenderConfigC
     {
         string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
@@ -27,7 +27,7 @@ public class Spec1CTests
                 #include ""../../lang-helpers/c/helper.h""
             ");
 
-        string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
+        string IRenderConfig.VariableDeclarations => StringUtils.DeIndentTrim(@"
                 uint8_t count;
             ");
     }

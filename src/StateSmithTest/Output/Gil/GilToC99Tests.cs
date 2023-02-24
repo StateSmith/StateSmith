@@ -4,21 +4,22 @@ using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output;
+using System.IO;
 
 namespace StateSmithTest.Output.Gil;
 
 public class GilToC99Tests
 {
     [Fact]
-    public void Runxyz()
+    public void Test()
     {
         string programText = AlgoBalanced1Tests.BuildExampleGilFile(skipIndentation:true, out var sm).ToString();
 
-        RenderConfigC renderConfigC = new();
+        RenderConfigCVars renderConfigC = new();
 
         OutputInfo outputInfo = new()
         {
-            outputDirectory = TestHelper.GetThisDir()
+            outputDirectory = Path.GetTempPath(),
         };
 
         GilToC99 gilToC = new(renderConfigC, outputInfo, new CNameMangler(sm));

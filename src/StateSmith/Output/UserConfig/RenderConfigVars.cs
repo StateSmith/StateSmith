@@ -1,6 +1,6 @@
 namespace StateSmith.Output.UserConfig;
 
-public class RenderConfig
+public class RenderConfigVars
 {
     public string FileTop = "";
 
@@ -16,14 +16,31 @@ public class RenderConfig
 
     public string VariableDeclarations = "";
 
-    public void CopyFrom(RenderConfig otherConfig)
+    public void SetFrom(IRenderConfig config, bool autoDeIndentAndTrim)
+    {
+        string Process(string str)
+        {
+            if (str.Trim().Length == 0)
+                return "";
+
+            if (autoDeIndentAndTrim)
+                return StringUtils.DeIndentTrim(str);
+
+            return str;
+        }
+
+        FileTop = Process(config.FileTop);
+        VariableDeclarations = Process(config.VariableDeclarations);
+
+        AutoExpandedVars = Process(config.AutoExpandedVars);
+        EventCommaList = Process(config.EventCommaList);
+    }
+
+    public void CopyFrom(RenderConfigVars otherConfig)
     {
         otherConfig.IgnorePureCommentVarDecls();
 
-        static void SmartAppend(ref string str, string toAppend)
-        {
-            str = StringUtils.AppendWithNewlineIfNeeded(str, toAppend);
-        }
+        var SmartAppend = StringUtils.AppendInPlaceWithNewlineIfNeeded;
 
         SmartAppend(ref FileTop, otherConfig.FileTop);
         SmartAppend(ref VariableDeclarations, otherConfig.VariableDeclarations);

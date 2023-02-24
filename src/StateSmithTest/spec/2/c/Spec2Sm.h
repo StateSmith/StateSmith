@@ -277,7 +277,6 @@ typedef struct Spec2Sm_Vars
     Spec2Sm_T7__DH2__state_0_HistoryId T7__DH2__state_0_history;
     Spec2Sm_T7__DH3__state_0_HistoryId T7__DH3__state_0_history;
     uint8_t count;
-    // some user AutoExpandedVars comments
     uint8_t auto_var_1;
 } Spec2Sm_Vars;
 

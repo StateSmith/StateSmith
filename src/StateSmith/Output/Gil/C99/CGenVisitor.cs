@@ -16,14 +16,13 @@ internal class CGenVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder hFileSb;
     public readonly StringBuilder cFileSb;
-    private readonly RenderConfigC renderConfigC;
     public StringBuilder privateSb = new();
     public StringBuilder publicSb = new();
     public StringBuilder sb;
     private readonly SemanticModel model;
     private bool renderingPrototypes = false;
 
-    public CGenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigC renderConfigC, string hFileName) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public CGenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigCVars renderConfigC, string hFileName) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.model = model;
         sb = hFileSb;
@@ -41,7 +40,6 @@ internal class CGenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
         cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
         cFileSb.AppendLine("#include <string.h> // for memset\n");
-        this.renderConfigC = renderConfigC;
     }
 
     public override void VisitStructDeclaration(StructDeclarationSyntax node)

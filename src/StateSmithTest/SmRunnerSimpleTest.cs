@@ -89,9 +89,9 @@ public class SmRunnerTest
 
 #pragma warning disable IDE1006, CA1050 // ignore C# guidelines for script stuff below
 
-public class MyRenderConfig : IRenderConfigC
+public class MyRenderConfig : IRenderConfig
 {
-    string IRenderConfigC.AutoExpandedVars => @"
+    string IRenderConfig.AutoExpandedVars => @"
         int count;
     ";
 
