@@ -14,7 +14,7 @@ It's been about 5 months since StateSmith was initially released and we've got a
 
 🎉 The biggest news is that we now have `draw.io` support and a plugin for it! It's working really well!
 
-⭐ Collaboration ready - Join us on [discord](https://discord.com/channels/1056394875278462996/1056394875278462999). StateSmith's core has been significantly cleaned up and is ready for collaboration. I'll be spending more time on [documentation](https://github.com/StateSmith/StateSmith/wiki) and [creating videos](https://www.youtube.com/@statesmith).
+⭐ Collaboration ready - Join us on [discord](https://discord.com/invite/rNxNGQXWsU). StateSmith's core has been significantly cleaned up and is ready for collaboration. I'll be spending more time on [documentation](https://github.com/StateSmith/StateSmith/wiki) and [creating videos](https://www.youtube.com/@statesmith).
 
 💻The other massive improvement is that the workflow is way nicer with `dotnet script`.
 
@@ -36,7 +36,7 @@ Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showi
 [![picture 1](images/main-lasertag-demo1.png)](https://www.youtube.com/watch?v=9czSDothuzM)
 
 ## Need help? Suggestion? Brainstorm?
-Join us on [discord](https://discord.com/channels/1056394875278462996/1056394875278462999).
+Join us on [discord](https://discord.com/invite/rNxNGQXWsU).
 
 Feel free to open a [github issue](https://github.com/StateSmith/StateSmith/issues).
 
