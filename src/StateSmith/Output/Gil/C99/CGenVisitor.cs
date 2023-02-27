@@ -42,6 +42,28 @@ internal class CGenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLine("#include <string.h> // for memset\n");
     }
 
+    public override void VisitInvocationExpression(InvocationExpressionSyntax node)
+    {
+        bool done = false;
+        // FIXME move to GilAlgoHelper
+        if (node.Expression is IdentifierNameSyntax ins)
+        {
+            if (ins.Identifier.Text == GilAlgoHelper.GilNoEmitEchoStringBoolFuncName)
+            {
+                done = true;
+                ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
+                var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
+                unescaped = unescaped[1..^1]; // range operator
+                sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
+            }
+        }
+        
+        if(!done)
+        {
+            base.VisitInvocationExpression(node);
+        }
+    }
+
     public override void VisitStructDeclaration(StructDeclarationSyntax node)
     {
         string name = GetCName(node);
@@ -154,7 +176,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
     {
         List<SyntaxNode> kids = new();
         kids.AddRange(node.ChildNodes().OfType<ConstructorDeclarationSyntax>());
-        kids.AddRange(node.ChildNodes().OfType<MethodDeclarationSyntax>());
+        kids.AddRange(node.ChildNodes().OfType<MethodDeclarationSyntax>().Where(mds => !GilAlgoHelper.IsGilNoEmit(mds)));
         return kids;
     }
 
@@ -238,6 +260,11 @@ internal class CGenVisitor : CSharpSyntaxWalker
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
         sb = node.IsPublic() ? publicSb : privateSb;
+
+        if (GilAlgoHelper.IsGilNoEmit(node))
+        {
+            return;
+        }
 
         OutputFunctionLeadingTrivia(node);
 
@@ -451,23 +478,6 @@ internal class CGenVisitor : CSharpSyntaxWalker
     public override void VisitTrivia(SyntaxTrivia trivia)
     {
         sb.Append(trivia);
-    }
-
-    public override void VisitBinaryExpression(BinaryExpressionSyntax node)
-    {
-        bool done = false;
-
-        if (node.IsKind(SyntaxKind.EqualsExpression) && node.Left is LiteralExpressionSyntax left)
-        {
-            if (left.Token.ToString() == "383849285762")
-            {
-                done = true;
-                VisitTrailingTrivia(node.GetLastToken());
-            }
-        }
-
-        if (!done)
-            base.VisitBinaryExpression(node);
     }
 
     public override void VisitCastExpression(CastExpressionSyntax node)

@@ -154,7 +154,7 @@ public class AlgoBalanced1Tests
         EnumBuilder enumBuilder = new(mangler, stateMachineProvider);
         sm.variables += "bool b;";
         PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
-        EventHandlerBuilder2 eventHandlerBuilder = new EventHandlerBuilder2(new(), pseudoStateHandlerBuilder, mangler);
+        EventHandlerBuilder eventHandlerBuilder = new EventHandlerBuilder(new(), pseudoStateHandlerBuilder, mangler);
         RenderConfigVars renderConfig = new()
         {
             VariableDeclarations = "//This is super cool!\nbyte x;"

@@ -70,7 +70,7 @@ public class DiServiceProvider
             services.AddSingleton<NameMangler>();
             services.AddSingleton<PseudoStateHandlerBuilder>();
             services.AddSingleton<EnumBuilder>();
-            services.AddSingleton<EventHandlerBuilder2>();
+            services.AddSingleton<EventHandlerBuilder>();
         });
     }
 

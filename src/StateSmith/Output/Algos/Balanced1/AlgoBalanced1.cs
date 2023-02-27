@@ -9,6 +9,7 @@ using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output.Gil;
 using System.Text;
 using StateSmith.Output.UserConfig;
+using System.Security.Cryptography.X509Certificates;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
@@ -19,13 +20,13 @@ public class AlgoBalanced1 : IGilAlgo
     private readonly RenderConfigVars renderConfig;
     protected readonly NameMangler mangler;
     protected readonly OutputFile file;
-    protected readonly EventHandlerBuilder2 eventHandlerBuilder;
+    protected readonly EventHandlerBuilder eventHandlerBuilder;
     protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
 
     protected StateMachine? _sm;
     protected StateMachine Sm => _sm.ThrowIfNull("Must be set before use");
 
-    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder2 eventHandlerBuilder, CodeStyleSettings styler)
+    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler)
     {
         this.mangler = mangler;
         this.file = new OutputFile(styler, new StringBuilder());
@@ -46,9 +47,13 @@ public class AlgoBalanced1 : IGilAlgo
 
         StartClassBlock();
         GenerateInner();
+        GilAlgoHelper.AppendGilHelpersFuncs(file);
+
         EndClassBlock();
         return file.ToString();
     }
+
+
 
     private void EndClassBlock()
     {
