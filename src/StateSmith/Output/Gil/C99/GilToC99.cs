@@ -30,9 +30,9 @@ public class GilToC99 : IGilTranspiler
 
     public void TranspileAndOutputCode(string programText)
     {
-        File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText); // FIXME comment out
+        // File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
 
-        Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
+        GilHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
         CGenVisitor visitor = new(model, hFileSb, cFileSb, renderConfigC, cNameMangler.HFileName);
 
@@ -43,38 +43,5 @@ public class GilToC99 : IGilTranspiler
 
         File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.HFileName}", hFileSb.ToString());
         File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.CFileName}", cFileSb.ToString());
-    }
-
-    private void Compile(string programText, out CompilationUnitSyntax root, out SemanticModel model)
-    {
-        SyntaxTree tree = CSharpSyntaxTree.ParseText(programText);
-        root = tree.GetCompilationUnitRoot();
-        ThrowOnError(tree.GetDiagnostics(), programText);
-
-        var compilation = CSharpCompilation.Create("GilCompilation")
-            .AddReferences(MetadataReference.CreateFromFile(
-                typeof(string).Assembly.Location))
-            .AddSyntaxTrees(tree);
-
-        model = compilation.GetSemanticModel(tree);
-        ThrowOnError(model.GetDiagnostics(), programText);
-    }
-
-    private void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText)
-    {
-        var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
-
-        var message = "";
-
-        foreach (var error in errors)
-        {
-            message += error.ToString() + "\n";
-        }
-
-        if (message.Length > 0)
-        {
-            //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
-            throw new GilCompError(message);
-        }
     }
 }

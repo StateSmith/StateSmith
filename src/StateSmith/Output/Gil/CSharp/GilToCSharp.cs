@@ -29,15 +29,6 @@ public class GilToCSharp : IGilTranspiler
     {
         //File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.SmName}.gil.cs", programText);
 
-        // FIXME remove dirty hacks. Used for POC.
-        programText = programText.Replace("383849285762 == 383849285762", "");
-        programText = programText.Replace("public enum EventId", renderConfigCSharp.ClassCode + "\npublic enum EventId");
-
-        programText = CSharpSyntaxTree.ParseText(programText).GetRoot().NormalizeWhitespace().SyntaxTree.GetText().ToString();
-
-        fileSb.AppendLineIfNotBlank(renderConfig.FileTop);
-        fileSb.AppendLineIfNotBlank(renderConfigCSharp.Usings);
-
         var nameSpace = renderConfigCSharp.NameSpace.Trim();
 
         if (nameSpace.Length > 0)
@@ -49,14 +40,19 @@ public class GilToCSharp : IGilTranspiler
             }
         }
 
-        fileSb.Append(programText);
+        fileSb.AppendLine(programText);
 
         if (NameSpaceNeedsBraces(nameSpace))
         {
             fileSb.AppendLine("}");
         }
 
+        CSharpGilVisitor cSharpGilVisitor = new(fileSb, outputInfo, renderConfigCSharp, renderConfig);
+        cSharpGilVisitor.Process();
+
         PostProcessor.PostProcess(fileSb);
+
+        // FIXME use new ICodeFileWriter from main branch
         File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.BaseFileName}.cs", fileSb.ToString());
     }
 

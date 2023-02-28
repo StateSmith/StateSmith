@@ -48,7 +48,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         // FIXME move to GilAlgoHelper
         if (node.Expression is IdentifierNameSyntax ins)
         {
-            if (ins.Identifier.Text == GilAlgoHelper.GilNoEmitEchoStringBoolFuncName)
+            if (ins.Identifier.Text == GilHelper.GilNoEmitEchoStringBoolFuncName)
             {
                 done = true;
                 ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
@@ -176,7 +176,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
     {
         List<SyntaxNode> kids = new();
         kids.AddRange(node.ChildNodes().OfType<ConstructorDeclarationSyntax>());
-        kids.AddRange(node.ChildNodes().OfType<MethodDeclarationSyntax>().Where(mds => !GilAlgoHelper.IsGilNoEmit(mds)));
+        kids.AddRange(node.ChildNodes().OfType<MethodDeclarationSyntax>().Where(mds => !GilHelper.IsGilNoEmit(mds)));
         return kids;
     }
 
@@ -261,7 +261,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
     {
         sb = node.IsPublic() ? publicSb : privateSb;
 
-        if (GilAlgoHelper.IsGilNoEmit(node))
+        if (GilHelper.IsGilNoEmit(node))
         {
             return;
         }

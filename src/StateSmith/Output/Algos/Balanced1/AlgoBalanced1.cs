@@ -41,13 +41,12 @@ public class AlgoBalanced1 : IGilAlgo
         this._sm = sm;
         mangler.SetStateMachine(sm);
         eventHandlerBuilder.SetFile(this.file);
-        file.AppendLine($"#nullable enable");
         file.AppendLine($"// Generated state machine");
         file.Append($"public class {mangler.SmStructName}");
 
         StartClassBlock();
         GenerateInner();
-        GilAlgoHelper.AppendGilHelpersFuncs(file);
+        GilHelper.AppendGilHelpersFuncs(file);
 
         EndClassBlock();
         return file.ToString();

@@ -75,7 +75,7 @@ public class EventHandlerBuilder
             string expandedGuardCode = MaybeExpandCode(b, b.guardCode); // FIXME should we expand GIL code?
             if (!b.isGilCode)
             {
-                expandedGuardCode = GilAlgoHelper.WrapRawCodeWithBoolReturn(expandedGuardCode);
+                expandedGuardCode = GilHelper.WrapRawCodeWithBoolReturn(expandedGuardCode);
             }
 
             File.Append($"if ({expandedGuardCode})");
