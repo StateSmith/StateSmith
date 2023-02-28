@@ -9,9 +9,10 @@ using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output.Gil;
 using System.Text;
 using StateSmith.Output.UserConfig;
-using System.Security.Cryptography.X509Certificates;
 
 namespace StateSmith.Output.Algos.Balanced1;
+
+// Useful info: https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support
 
 public class AlgoBalanced1 : IGilAlgo
 {
@@ -52,8 +53,6 @@ public class AlgoBalanced1 : IGilAlgo
         return file.ToString();
     }
 
-
-
     private void EndClassBlock()
     {
         file.FinishCodeBlock();
@@ -92,7 +91,7 @@ public class AlgoBalanced1 : IGilAlgo
             }
 
             file.AppendLine($"// event handler type");
-            file.AppendLine($"private delegate void {mangler.SmFuncTypedef}();");
+            file.AppendLine($"private delegate void {mangler.SmFuncTypedef}({mangler.SmStructName} sm);");
             file.AppendLine();
         });
 
@@ -216,13 +215,16 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine("// Starts the state machine. Must be called before dispatching events. Not thread safe.");
         file.Append($"public void {mangler.SmFuncStart}()");
         file.StartCodeBlock();
-        file.AppendLine("ROOT_enter();");
+        file.AppendLine("ROOT_enter(this);");
 
         var initialState = Sm.Children.OfType<InitialState>().Single();
 
         var getToInitialStateBehavior = new Behavior(Sm, initialState);
 
+        var tempSmAccess = eventHandlerBuilder.smAccess;
+        eventHandlerBuilder.smAccess = "this";
         eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior, noAncestorHandlesEvent: true, checkForExiting: false);
+        eventHandlerBuilder.smAccess = tempSmAccess;
 
         file.FinishCodeBlock(forceNewLine: true);
         file.AppendLine();
@@ -235,13 +237,13 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine("// This function is used when StateSmith doesn't know what the active leaf state is at");
         file.AppendLine("// compile time due to sub states or when multiple states need to be exited.");
 
-        file.Append($"private void {mangler.SmFuncExitUpTo}({ConstMarker}{mangler.SmFuncTypedef} desired_state_exit_handler)");
+        file.Append($"private static void {mangler.SmFuncExitUpTo}({mangler.SmName} sm, {ConstMarker}{mangler.SmFuncTypedef} desired_state_exit_handler)");
         file.StartCodeBlock();
 
-        file.Append($"while (this.current_state_exit_handler != desired_state_exit_handler)");
+        file.Append($"while (sm.current_state_exit_handler != desired_state_exit_handler)");
         file.StartCodeBlock();
         {
-            file.AppendLine("this.current_state_exit_handler!();");
+            file.AppendLine("sm.current_state_exit_handler!(sm);");
         }
         file.FinishCodeBlock(forceNewLine: true);
 
@@ -260,7 +262,7 @@ public class AlgoBalanced1 : IGilAlgo
         {
             file.StartCodeBlock();
             file.AppendLine("this.ancestor_event_handler = null;");
-            file.AppendLine("behavior_func();");
+            file.AppendLine("behavior_func(this);");
             file.AppendLine("behavior_func = this.ancestor_event_handler;");
             file.FinishCodeBlock(forceNewLine: true);
         }
@@ -274,121 +276,7 @@ public class AlgoBalanced1 : IGilAlgo
 
         foreach (var state in namedVertices)
         {
-            OutputNamedStateHandlers(state);
+            eventHandlerBuilder.OutputNamedStateHandlers(state);
         }
-    }
-
-    private void OutputNamedStateHandlers(NamedVertex state)
-    {
-        file.AppendLine();
-        file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
-        file.AppendLine($"// event handlers for state {mangler.SmStateName(state)}");
-        file.AppendLine("////////////////////////////////////////////////////////////////////////////////");
-        file.AppendLine();
-
-        OutputFuncStateEnter(state);
-        OutputFuncStateExit(state);
-
-        string[] eventNames = GetEvents(state).ToArray();
-        Array.Sort(eventNames);
-
-        foreach (var eventName in eventNames)
-        {
-            OutputTriggerHandlerSignature(state, eventName);
-            file.StartCodeBlock();
-            {
-                eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, eventName);
-            }
-            file.FinishCodeBlock(forceNewLine: false);
-            file.RequestNewLineBeforeMoreCode();
-        }
-
-        pseudoStateHandlerBuilder.OutputFunctionsForParent(state, eventHandlerBuilder.RenderPseudoStateTransitionFunctionInner);
-    }
-
-    internal void OutputFuncStateEnter(NamedVertex state)
-    {
-        OutputTriggerHandlerSignature(state, TriggerHelper.TRIGGER_ENTER);
-
-        file.StartCodeBlock();
-        {
-            file.AppendLine($"// setup trigger/event handlers");
-            string stateExitHandlerName = mangler.SmFuncTriggerHandler(state, TriggerHelper.TRIGGER_EXIT);
-            file.AppendLine($"this.current_state_exit_handler = {stateExitHandlerName};");
-
-            string[] eventNames = GetEvents(state).ToArray();
-            Array.Sort(eventNames);
-
-            foreach (var eventName in eventNames)
-            {
-                string handlerName = mangler.SmFuncTriggerHandler(state, eventName);
-                string eventEnumValueName = mangler.SmEventEnumValue(eventName);
-                file.AppendLine($"this.current_event_handlers[(int){mangler.SmEventEnum}.{eventEnumValueName}] = {handlerName};");
-            }
-
-            file.RequestNewLineBeforeMoreCode();
-            eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_ENTER);
-        }
-        file.FinishCodeBlock(forceNewLine: true);
-        file.AppendLine();
-    }
-
-    internal void OutputFuncStateExit(NamedVertex state)
-    {
-        OutputTriggerHandlerSignature(state, TriggerHelper.TRIGGER_EXIT);
-
-        file.StartCodeBlock();
-        {
-            eventHandlerBuilder.OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_EXIT);
-
-            if (state.Parent == null)
-            {
-                file.AppendLine($"// State machine root is a special case. It cannot be exited.");
-            }
-            else
-            {
-                file.AppendLine($"// adjust function pointers for this state's exit");
-                string parentExitHandler = mangler.SmFuncTriggerHandler((NamedVertex)state.Parent, TriggerHelper.TRIGGER_EXIT);
-                file.AppendLine($"this.current_state_exit_handler = {parentExitHandler};");
-
-                string[] eventNames = GetEvents(state).ToArray();
-                Array.Sort(eventNames);
-
-                foreach (var eventName in eventNames)
-                {
-                    string eventEnumValueIndex = $"(int){mangler.SmEventEnum}.{mangler.SmEventEnumValue(eventName)}";
-                    var ancestor = state.FirstAncestorThatHandlesEvent(eventName);
-                    if (ancestor != null)
-                    {
-                        string handlerName = mangler.SmFuncTriggerHandler(ancestor, eventName);
-                        file.AppendLine($"this.current_event_handlers[{eventEnumValueIndex}] = {handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
-                    }
-                    else
-                    {
-                        file.AppendLine($"this.current_event_handlers[{eventEnumValueIndex}] = null;  // no ancestor listens to this event");
-                    }
-                }
-            }
-        }
-        file.FinishCodeBlock(forceNewLine: true);
-        file.AppendLine();
-    }
-
-    internal void OutputTriggerHandlerSignature(NamedVertex state, string eventName)
-    {
-        file.Append($"private void {mangler.SmFuncTriggerHandler(state, eventName)}()");
-    }
-
-    /// <summary>
-    /// These do NOT include entry and exit triggers
-    /// </summary>
-    /// <param name="state"></param>
-    /// <returns></returns>
-    private static HashSet<string> GetEvents(NamedVertex state)
-    {
-        var triggerNames = TriggerHelper.GetStateTriggers(state);
-        triggerNames.Remove(TriggerHelper.TRIGGER_ENTER);
-        triggerNames.Remove(TriggerHelper.TRIGGER_EXIT);
-        return triggerNames;
     }
 }

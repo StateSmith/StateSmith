@@ -84,6 +84,7 @@ public class NameMangler
 
     public virtual string SmStructName => SmName;
 
+    // todo remove
     public virtual string SmStructTypedefName => SmStructName;
 
     public virtual string SmFuncTypedef => $"Func";

@@ -8,11 +8,14 @@ using StateSmith.Input.Antlr4;
 using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.Gil;
+using System.Collections.Generic;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
 public class EventHandlerBuilder
 {
+    public string smAccess = "sm";
+
     public const string consumeEventVarName = "consume_event";
     private readonly NameMangler mangler;
     private readonly Expander expander;
@@ -152,14 +155,14 @@ public class EventHandlerBuilder
             {
                 // no initial state, this is the final state.
                 File.AppendLine("// Step 4: complete transition. Ends event dispatch. No other behaviors are checked.");
-                File.AppendLine($"this.state_id = {mangler.SmStateEnum}.{mangler.SmStateEnumValue(namedVertexTarget)};");
+                File.AppendLine($"{smAccess}.state_id = {mangler.SmStateEnum}.{mangler.SmStateEnumValue(namedVertexTarget)};");
                 if (noAncestorHandlesEvent)
                 {
                     File.AppendLine("// No ancestor handles event. Can skip nulling `ancestor_event_handler`.");
                 }
                 else
                 {
-                    File.AppendLine("this.ancestor_event_handler = null;");
+                    File.AppendLine($"{smAccess}.ancestor_event_handler = null;");
                 }
                 File.AppendLine($"return;");
             }
@@ -179,7 +182,7 @@ public class EventHandlerBuilder
             if (stateToEnter is NamedVertex namedVertexToEnter)
             {
                 var enterHandler = mangler.SmFuncTriggerHandler(namedVertexToEnter, TriggerHelper.TRIGGER_ENTER);
-                File.AppendLine($"{enterHandler}();");
+                File.AppendLine($"{enterHandler}({smAccess});");
             }
             else if (stateToEnter is PseudoStateVertex pv)
             {
@@ -304,7 +307,7 @@ public class EventHandlerBuilder
         {
             NamedVertex leafActiveState = (NamedVertex)source;
             string sourceExitHandler = mangler.SmFuncTriggerHandler(leafActiveState, TriggerHelper.TRIGGER_EXIT);
-            File.AppendLine($"{sourceExitHandler}();");
+            File.AppendLine($"{sourceExitHandler}({smAccess});");
         }
         else
         {
@@ -344,7 +347,7 @@ public class EventHandlerBuilder
         else
         {
             File.AppendLine($"// Setup handler for next ancestor that listens to `{triggerName}` event.");
-            File.Append("this.ancestor_event_handler = ");
+            File.Append($"{smAccess}.ancestor_event_handler = ");
             File.FinishLine($"{mangler.SmFuncTriggerHandler(nextHandlingState, triggerName)};");
         }
 
@@ -395,7 +398,7 @@ public class EventHandlerBuilder
                 File.Append("if (consume_event)");
                 File.StartCodeBlock();
                 {
-                    File.AppendLine("this.ancestor_event_handler = null;  // consume event");
+                    File.AppendLine($"{smAccess}ancestor_event_handler = null;  // consume event");
                 }
                 File.FinishCodeBlock();
             }
@@ -415,7 +418,7 @@ public class EventHandlerBuilder
                 }
                 else
                 {
-                    File.AppendLine("this.ancestor_event_handler = null;  // consume event");
+                    File.AppendLine($"{smAccess}.ancestor_event_handler = null;  // consume event");
                 }
             }
         }
@@ -448,5 +451,128 @@ public class EventHandlerBuilder
             File.FinishLine("true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.");
         }
         File.AppendLine();
+    }
+
+    public void OutputNamedStateHandlers(NamedVertex state)
+    {
+        File.AppendLine();
+        File.AppendLine("////////////////////////////////////////////////////////////////////////////////");
+        File.AppendLine($"// event handlers for state {mangler.SmStateName(state)}");
+        File.AppendLine("////////////////////////////////////////////////////////////////////////////////");
+        File.AppendLine();
+
+        OutputFuncStateEnter(state);
+        OutputFuncStateExit(state);
+
+        string[] eventNames = GetEvents(state).ToArray();
+        Array.Sort(eventNames);
+
+        foreach (var eventName in eventNames)
+        {
+            OutputTriggerHandlerSignature(state, eventName);
+            File.StartCodeBlock();
+            {
+                OutputStateBehaviorsForTrigger(state, eventName);
+            }
+            File.FinishCodeBlock(";", forceNewLine: false);
+            File.RequestNewLineBeforeMoreCode();
+        }
+
+        pseudoStateHandlerBuilder.OutputFunctionsForParent(state, RenderPseudoStateTransitionFunctionInner);
+    }
+
+    public void OutputFuncStateEnter(NamedVertex state)
+    {
+        OutputTriggerHandlerSignature(state, TriggerHelper.TRIGGER_ENTER);
+
+        File.StartCodeBlock();
+        {
+            File.AppendLine($"// setup trigger/event handlers");
+            string stateExitHandlerName = mangler.SmFuncTriggerHandler(state, TriggerHelper.TRIGGER_EXIT);
+            File.AppendLine($"{smAccess}.current_state_exit_handler = {stateExitHandlerName};");
+
+            string[] eventNames = GetEvents(state).ToArray();
+            Array.Sort(eventNames);
+
+            foreach (var eventName in eventNames)
+            {
+                string handlerName = mangler.SmFuncTriggerHandler(state, eventName);
+                string eventEnumValueName = mangler.SmEventEnumValue(eventName);
+                File.AppendLine($"{smAccess}.current_event_handlers[(int){mangler.SmEventEnum}.{eventEnumValueName}] = {handlerName};");
+            }
+
+            File.RequestNewLineBeforeMoreCode();
+            OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_ENTER);
+        }
+        File.FinishCodeBlock(forceNewLine: true);
+        File.AppendLine();
+    }
+
+    public void OutputFuncStateExit(NamedVertex state)
+    {
+        OutputTriggerHandlerSignature(state, TriggerHelper.TRIGGER_EXIT);
+
+        File.StartCodeBlock();
+        {
+            OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_EXIT);
+
+            if (state.Parent == null)
+            {
+                File.AppendLine($"// State machine root is a special case. It cannot be exited.");
+            }
+            else
+            {
+                File.AppendLine($"// adjust function pointers for this state's exit");
+                string parentExitHandler = mangler.SmFuncTriggerHandler((NamedVertex)state.Parent, TriggerHelper.TRIGGER_EXIT);
+                File.AppendLine($"{smAccess}.current_state_exit_handler = {parentExitHandler};");
+
+                string[] eventNames = GetEvents(state).ToArray();
+                Array.Sort(eventNames);
+
+                foreach (var eventName in eventNames)
+                {
+                    string eventEnumValueIndex = $"(int){mangler.SmEventEnum}.{mangler.SmEventEnumValue(eventName)}";
+                    var ancestor = state.FirstAncestorThatHandlesEvent(eventName);
+                    if (ancestor != null)
+                    {
+                        string handlerName = mangler.SmFuncTriggerHandler(ancestor, eventName);
+                        File.AppendLine($"{smAccess}.current_event_handlers[{eventEnumValueIndex}] = {handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
+                    }
+                    else
+                    {
+                        File.AppendLine($"{smAccess}.current_event_handlers[{eventEnumValueIndex}] = null;  // no ancestor listens to this event");
+                    }
+                }
+            }
+        }
+        File.FinishCodeBlock(";", forceNewLine: true);
+        File.AppendLine();
+    }
+
+    public void OutputTriggerHandlerSignature(NamedVertex state, string eventName)
+    {
+        // enter functions don't need to be static delegates because we don't take their address
+        if (TriggerHelper.IsEnterTrigger(eventName))
+        {
+            File.Append($"private static void {mangler.SmFuncTriggerHandler(state, eventName)}({mangler.SmStructName} sm)");
+        }
+        else
+        {
+            File.Append($"private static readonly Func {mangler.SmFuncTriggerHandler(state, eventName)} = ({mangler.SmStructName} sm) =>");
+        }
+
+    }
+
+    /// <summary>
+    /// These do NOT include entry and exit triggers
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
+    private static HashSet<string> GetEvents(NamedVertex state)
+    {
+        var triggerNames = TriggerHelper.GetStateTriggers(state);
+        triggerNames.Remove(TriggerHelper.TRIGGER_ENTER);
+        triggerNames.Remove(TriggerHelper.TRIGGER_EXIT);
+        return triggerNames;
     }
 }

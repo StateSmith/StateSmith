@@ -19,13 +19,14 @@ public class GilToC99Tests
 
         OutputInfo outputInfo = new()
         {
-            outputDirectory = Path.GetTempPath(),
-            //outputDirectory = TestHelper.GetThisDir()
+            //outputDirectory = Path.GetTempPath(),
+            outputDirectory = TestHelper.GetThisDir()
         };
-
         CNameMangler cNameMangler = new(sm);
+
+        File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
+
         GilToC99 gilToC = new(renderConfigC, outputInfo, cNameMangler);
-        //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
 
         gilToC.TranspileAndOutputCode(programText);
     }

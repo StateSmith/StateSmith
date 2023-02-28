@@ -17,6 +17,12 @@ public static class TriggerHelper
         return InnerIsEnterExitTrigger(trigger);
     }
 
+    public static bool IsEnterTrigger(string triggerName)
+    {
+        string trigger = CleanTriggerName(triggerName);
+        return trigger == TRIGGER_ENTER;
+    }
+
     public static bool IsEvent(string triggerName)
     {
         return IsEnterExitTrigger(triggerName) == false;
