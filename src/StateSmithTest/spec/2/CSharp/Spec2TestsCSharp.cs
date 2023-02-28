@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Spec.Spec2.CSharp;
 
-public class Spec2TestsC : Spec2Tests, IClassFixture<SharedCompilationFixture>
+public class Spec2TestsCSharp : Spec2Tests, IClassFixture<SharedCompilationFixture>
 {
     public override string RunProcess(string testEvents)
     {

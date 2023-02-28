@@ -13,11 +13,11 @@ public class Test7DeepHistory1Helper
     public readonly string EventAlienDone = "EV8";
     public readonly string EventDown = "EV1";
     public readonly string EventUp = "EV2";
-    public readonly string BuildVarName = "this.vars.BUILD_history";
+    public readonly string BuildVarName = "sm.vars.BUILD_history";
     public readonly string BuildEnumAccess = "BUILD_HistoryId.";
-    public readonly string AliensVarName = "this.vars.ALIENS_DETECTED_history";
+    public readonly string AliensVarName = "sm.vars.ALIENS_DETECTED_history";
     public readonly string AliensEnumAccess = "ALIENS_DETECTED_HistoryId.";
-    public readonly string GetBackupVarName = "this.vars.GET_BACKUP_history";
+    public readonly string GetBackupVarName = "sm.vars.GET_BACKUP_history";
     public readonly string GetBackupEnumAccess = "GET_BACKUP_HistoryId.";
 
     public Test7DeepHistory1Helper(SpecTester tester)

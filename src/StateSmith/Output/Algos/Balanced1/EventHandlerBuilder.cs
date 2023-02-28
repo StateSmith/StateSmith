@@ -247,7 +247,7 @@ public class EventHandlerBuilder
         if (transitionFunction != null)
         {
             File.AppendLine($"// Finish transition by calling pseudo state transition function.");
-            File.AppendLine(transitionFunction + "();");
+            File.AppendLine($"{transitionFunction}({smAccess});");
             File.AppendLine($"return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.");
         }
         else
@@ -312,7 +312,7 @@ public class EventHandlerBuilder
         else
         {
             string ancestorExitHandler = mangler.SmFuncTriggerHandler(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
-            File.AppendLine($"{mangler.SmFuncExitUpTo}({ancestorExitHandler});");
+            File.AppendLine($"{mangler.SmFuncExitUpTo}({smAccess}, {ancestorExitHandler});");
         }
     }
 
@@ -398,7 +398,7 @@ public class EventHandlerBuilder
                 File.Append("if (consume_event)");
                 File.StartCodeBlock();
                 {
-                    File.AppendLine($"{smAccess}ancestor_event_handler = null;  // consume event");
+                    File.AppendLine($"{smAccess}.ancestor_event_handler = null;  // consume event");
                 }
                 File.FinishCodeBlock();
             }

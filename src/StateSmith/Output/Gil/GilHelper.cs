@@ -18,7 +18,7 @@ public class GilHelper
 
     public static void AppendGilHelpersFuncs(OutputFile file)
     {
-        file.AppendLine($"public bool {GilNoEmitEchoStringBoolFuncName}(string toEcho) {{ return true; }}");
+        file.AppendLine($"public static bool {GilNoEmitEchoStringBoolFuncName}(string toEcho) {{ return true; }}");
     }
 
     public static string WrapRawCodeWithBoolReturn(string codeToWrap)

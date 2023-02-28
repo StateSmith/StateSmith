@@ -63,6 +63,8 @@ public class DiServiceProvider
             services.AddTransient<DynamicVarsResolver>();
             services.AddTransient<ExpansionConfigReader>();
 
+            services.AddTransient<HistoryProcessor>();
+
             //services.AddTransient<ICodeGenRunner, CodeGenRunner>();
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
             services.AddSingleton<IGilAlgo, AlgoBalanced1>();

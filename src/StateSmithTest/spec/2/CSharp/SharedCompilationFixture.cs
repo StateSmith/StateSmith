@@ -62,8 +62,8 @@ public class SharedCompilationFixture
             ";
 
         string IRenderConfigCSharp.ClassCode => @"
-                private void trace(string message) => MainClass.trace(message);
-                private bool trace_guard(string message, bool b) => MainClass.trace_guard(message, b);
+                private static void trace(string message) => MainClass.trace(message);
+                private static bool trace_guard(string message, bool b) => MainClass.trace_guard(message, b);
             ";
 
         public class CSharpExpansions : Spec2GenericVarExpansions
