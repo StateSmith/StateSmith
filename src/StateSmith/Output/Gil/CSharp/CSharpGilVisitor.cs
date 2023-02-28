@@ -68,24 +68,10 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
-        bool done = false;
-        // FIXME move to GilAlgoHelper
-        if (node.Expression is IdentifierNameSyntax ins)
-        {
-            if (ins.Identifier.Text == GilHelper.GilNoEmitEchoStringBoolFuncName)
-            {
-                done = true;
-                ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
-                var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
-                unescaped = unescaped[1..^1]; // range operator
-                sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
-            }
-        }
-        
-        if(!done)
-        {
-            base.VisitInvocationExpression(node);
-        }
+        if (GilHelper.HandleGilEmitMethod(node, sb))
+            return;
+
+        base.VisitInvocationExpression(node);
     }
 
     // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references

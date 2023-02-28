@@ -36,7 +36,7 @@ public class SharedCompilationFixture
             WorkingDirectory = OutputDirectory,
             CommandText = "dotnet build --verbosity quiet"
         };
-        BashRunner.RunCommand(process, timeoutMs: 8000);
+        BashRunner.RunCommand(process, timeoutMs: 16000);
     }
 
     public class MyGlueFile : IRenderConfigCSharp

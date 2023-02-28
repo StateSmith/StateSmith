@@ -7,6 +7,7 @@ using StateSmith.Output.C99BalancedCoder1;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Text;
 
 namespace StateSmith.Output.Gil;
 
@@ -49,6 +50,25 @@ public class GilHelper
 
         model = compilation.GetSemanticModel(tree);
         ThrowOnError(model.GetDiagnostics(), programText, outputInfo);
+    }
+
+    public static bool HandleGilEmitMethod(InvocationExpressionSyntax node, StringBuilder sb)
+    {
+        bool gilEmitMethodFoundAndHandled = false;
+
+        if (node.Expression is IdentifierNameSyntax ins)
+        {
+            if (ins.Identifier.Text == GilHelper.GilNoEmitEchoStringBoolFuncName)
+            {
+                gilEmitMethodFoundAndHandled = true;
+                ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
+                var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
+                unescaped = unescaped[1..^1]; // range operator
+                sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
+            }
+        }
+
+        return gilEmitMethodFoundAndHandled;
     }
 
     private static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText, OutputInfo? outputInfo)
