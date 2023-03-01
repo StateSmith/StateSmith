@@ -66,7 +66,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         // output enums and constants
         foreach (var kid in node.ChildNodes())
         {
-            if (kid is EnumDeclarationSyntax || kid is FieldDeclarationSyntax field && IsConst(field))
+            if (kid is EnumDeclarationSyntax || kid is FieldDeclarationSyntax field && field.IsConst())
                 Visit(kid);
         }
 
@@ -130,7 +130,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
 
         foreach (var kid in node.ChildNodes())
         {
-            if (kid is FieldDeclarationSyntax field && !IsConst(field))
+            if (kid is FieldDeclarationSyntax field && !field.IsConst())
                 Visit(kid);
         }
 
@@ -333,6 +333,23 @@ internal class CGenVisitor : CSharpSyntaxWalker
         VisitToken(node.CloseParenToken);
     }
 
+    public override void VisitParameter(ParameterSyntax node)
+    {
+        var parameterSymbol = model.GetDeclaredSymbol(node);
+
+        if (parameterSymbol != null && parameterSymbol.Type.IsReferenceType)
+        {
+            Visit(node.Type);
+            sb.Append(PostProcessor.trimHorizontalWhiteSpaceMarker); // converts `ROOT_enter(Spec1Sm * sm);` to `ROOT_enter(Spec1Sm* sm);`
+            sb.Append("* ");
+            VisitToken(node.Identifier);
+        }
+        else
+        {
+            base.VisitParameter(node);
+        }
+    }
+
     public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
     {
         bool done = false;
@@ -349,12 +366,33 @@ internal class CGenVisitor : CSharpSyntaxWalker
 
             if (node.IsKind(SyntaxKind.SimpleMemberAccessExpression))
             {
+                // `this.stuff` to `self->stuff`
                 if (node.Expression is ThisExpressionSyntax tes)
                 {
                     VisitLeadingTrivia(tes.Token);
                     sb.Append("self");
                     VisitTrailingTrivia(tes.Token);
                     isPtr = true;
+                }
+                // `sm.stuff` to `sm->stuff`
+                else if (node.Expression is IdentifierNameSyntax identifierNameSyntax)
+                {
+                    ISymbol? symbol = model.GetSymbolInfo(identifierNameSyntax).Symbol;
+
+                    if (symbol is IParameterSymbol parameterSymbol && parameterSymbol.Type.IsReferenceType)
+                    {
+                        Visit(identifierNameSyntax);
+                        isPtr = true;
+                    }
+
+                    if (symbol is IFieldSymbol fieldSymbol)
+                    {
+                        //if (!fieldSymbol.IsStatic && !fieldSymbol.IsConst)
+                        //{
+                        //    sb.Append("self->");
+                        //    done = false; // let it continue
+                        //}
+                    }
                 }
                 else
                 {
@@ -560,13 +598,6 @@ internal class CGenVisitor : CSharpSyntaxWalker
         }
     }
 
-    private static bool IsConst(FieldDeclarationSyntax? node)
-    {
-        if (node == null) return false;
-
-        return node.Modifiers.Any(d => (SyntaxKind)d.RawKind == SyntaxKind.ConstKeyword);
-    }
-
     public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
     {
         if (node.Type is ArrayTypeSyntax)
@@ -585,7 +616,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         bool useDefine = false;
         bool useEnum = true;
 
-        if (IsConst(node))
+        if (node.IsConst())
         {
             if (useDefine)
             {
@@ -607,6 +638,10 @@ internal class CGenVisitor : CSharpSyntaxWalker
                 sb.Append("\n};\n");
             }
         }
+        else
+        {
+            TryHandleAddressableFunction(node, ref done);
+        }
 
 
         if (!done)
@@ -615,9 +650,27 @@ internal class CGenVisitor : CSharpSyntaxWalker
         }
     }
 
+    // wip - probably remove. todo remove if not used soon.
+    // tries to translate `private static readonly Func ROOT_exit = (Spec2Sm sm) => {}` into a function.
+    private void TryHandleAddressableFunction(FieldDeclarationSyntax node, ref bool done)
+    {
+        if (!node.IsStatic() || !node.IsReadonly())
+            return;
+
+        if (node.Declaration.Variables.Count > 1)
+            return;
+
+        var symbol = (IFieldSymbol)model.GetDeclaredSymbol(node.Declaration.Variables.First()).ThrowIfNull();
+        if (!symbol.IsReadOnly || !symbol.IsStatic)
+            return;
+
+        if (symbol.Type?.BaseType?.Name != nameof(System.MulticastDelegate))
+            return;
+    }
+
     public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
     {
-        if (IsConst(node.FirstAncestorOrSelf<FieldDeclarationSyntax>()))
+        if (node.FirstAncestorOrSelf<FieldDeclarationSyntax>().IsConst())
         {
             sb.Append(GetCName(model.GetDeclaredSymbol(node).ThrowIfNull()));
             VisitTrailingTrivia(node.Identifier);

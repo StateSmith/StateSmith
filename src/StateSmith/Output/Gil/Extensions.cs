@@ -85,4 +85,27 @@ public static class Extensions
             kid.VisitWith(syntaxWalker);
         }
     }
+
+    public static bool HasModifier(this SyntaxTokenList syntaxTokens, SyntaxKind syntaxKind)
+    {
+        return syntaxTokens.Any(d => (SyntaxKind)d.RawKind == syntaxKind);
+    }
+
+    public static bool IsConst(this FieldDeclarationSyntax? node)
+    {
+        if (node == null) return false;
+        return node.Modifiers.HasModifier(SyntaxKind.ConstKeyword);
+    }
+
+    public static bool IsStatic(this FieldDeclarationSyntax? node)
+    {
+        if (node == null) return false;
+        return node.Modifiers.HasModifier(SyntaxKind.StaticKeyword);
+    }
+
+    public static bool IsReadonly(this FieldDeclarationSyntax? node)
+    {
+        if (node == null) return false;
+        return node.Modifiers.HasModifier(SyntaxKind.ReadOnlyKeyword);
+    }
 }
