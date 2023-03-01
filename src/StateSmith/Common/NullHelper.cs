@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -13,7 +13,8 @@ namespace StateSmith.Common
     {
         public static T ThrowIfNull<T>([NotNull] this T? value, string valueExpression = "")
         {
-            if (value == null) throw new ArgumentNullException(nameof(value), valueExpression);
+            if (value == null) 
+                throw new ArgumentNullException(nameof(value), valueExpression);
 
             return value;
         }

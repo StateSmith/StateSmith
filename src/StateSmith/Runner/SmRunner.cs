@@ -110,8 +110,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton<RenderConfigCSharpVars>(renderConfigCSharpVars);
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
-            services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
             services.AddSingleton<ExpansionsPrep>();
+            services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>(); // FIXME - set based on target language
         });
     }
 

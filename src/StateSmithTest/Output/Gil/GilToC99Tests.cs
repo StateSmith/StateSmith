@@ -19,8 +19,8 @@ public class GilToC99Tests
 
         OutputInfo outputInfo = new()
         {
-            //outputDirectory = Path.GetTempPath(),
-            outputDirectory = TestHelper.GetThisDir()
+            outputDirectory = Path.GetTempPath(),
+            //outputDirectory = TestHelper.GetThisDir() // use this one when troubleshooting
         };
         CNameMangler cNameMangler = new(sm);
 

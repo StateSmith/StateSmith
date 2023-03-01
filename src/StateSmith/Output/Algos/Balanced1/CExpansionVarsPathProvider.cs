@@ -6,5 +6,5 @@ namespace StateSmith.Output.Algos.Balanced1;
 
 public class CExpansionVarsPathProvider : IExpansionVarsPathProvider
 {
-    public string ExpansionVarsPath => "self->vars.";
+    public string ExpansionVarsPath => "sm->vars.";
 }

@@ -8,45 +8,45 @@
 
 // This function is used when StateSmith doesn't know what the active leaf state is at
 // compile time due to sub states or when multiple states need to be exited.
-static void exit_up_to_state_handler(Spec1bSm* self, Spec1bSm_Func desired_state_exit_handler);
+static void exit_up_to_state_handler(Spec1bSm* sm, Spec1bSm_Func desired_state_exit_handler);
 
-static void ROOT_enter(Spec1bSm* self);
+static void ROOT_enter(Spec1bSm* sm);
 
-static void ROOT_exit(Spec1bSm* self);
+static void ROOT_exit(Spec1bSm* sm);
 
-static void S_enter(Spec1bSm* self);
+static void S_enter(Spec1bSm* sm);
 
-static void S_exit(Spec1bSm* self);
+static void S_exit(Spec1bSm* sm);
 
-static void S1_enter(Spec1bSm* self);
+static void S1_enter(Spec1bSm* sm);
 
-static void S1_exit(Spec1bSm* self);
+static void S1_exit(Spec1bSm* sm);
 
-static void S1_t1(Spec1bSm* self);
+static void S1_t1(Spec1bSm* sm);
 
-static void S1_1_enter(Spec1bSm* self);
+static void S1_1_enter(Spec1bSm* sm);
 
-static void S1_1_exit(Spec1bSm* self);
+static void S1_1_exit(Spec1bSm* sm);
 
-static void S2_enter(Spec1bSm* self);
+static void S2_enter(Spec1bSm* sm);
 
-static void S2_exit(Spec1bSm* self);
+static void S2_exit(Spec1bSm* sm);
 
-static void S2_1_enter(Spec1bSm* self);
+static void S2_1_enter(Spec1bSm* sm);
 
-static void S2_1_exit(Spec1bSm* self);
+static void S2_1_exit(Spec1bSm* sm);
 
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
-void Spec1bSm_ctor(Spec1bSm* self)
+void Spec1bSm_ctor(Spec1bSm* sm)
 {
-    memset(self, 0, sizeof(*self));
+    memset(sm, 0, sizeof(*sm));
 }
 
 // Starts the state machine. Must be called before dispatching events. Not thread safe.
-void Spec1bSm_start(Spec1bSm* self)
+void Spec1bSm_start(Spec1bSm* sm)
 {
-    ROOT_enter(self);
+    ROOT_enter(sm);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
     {
@@ -65,7 +65,7 @@ void Spec1bSm_start(Spec1bSm* self)
             // Step 2: Transition action: ``.
             
             // Step 3: Enter/move towards transition target `S`.
-            S_enter(self);
+            S_enter(sm);
             
             // S.InitialState behavior
             // uml: TransitionTo(S1)
@@ -75,7 +75,7 @@ void Spec1bSm_start(Spec1bSm* self)
                 // Step 2: Transition action: ``.
                 
                 // Step 3: Enter/move towards transition target `S1`.
-                S1_enter(self);
+                S1_enter(sm);
                 
                 // S1.InitialState behavior
                 // uml: TransitionTo(S1_1)
@@ -85,10 +85,10 @@ void Spec1bSm_start(Spec1bSm* self)
                     // Step 2: Transition action: ``.
                     
                     // Step 3: Enter/move towards transition target `S1_1`.
-                    S1_1_enter(self);
+                    S1_1_enter(sm);
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                    self->state_id = Spec1bSm_StateId_S1_1;
+                    sm->state_id = Spec1bSm_StateId_S1_1;
                     // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                     return;
                 } // end of behavior for S1.InitialState
@@ -98,25 +98,25 @@ void Spec1bSm_start(Spec1bSm* self)
 }
 
 // Dispatches an event to the state machine. Not thread safe.
-void Spec1bSm_dispatch_event(Spec1bSm* self, Spec1bSm_EventId event_id)
+void Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id)
 {
-    Spec1bSm_Func behavior_func = self->current_event_handlers[event_id];
+    Spec1bSm_Func behavior_func = sm->current_event_handlers[event_id];
     
     while (behavior_func != NULL)
     {
-        self->ancestor_event_handler = NULL;
-        behavior_func(self);
-        behavior_func = self->ancestor_event_handler;
+        sm->ancestor_event_handler = NULL;
+        behavior_func(sm);
+        behavior_func = sm->ancestor_event_handler;
     }
 }
 
 // This function is used when StateSmith doesn't know what the active leaf state is at
 // compile time due to sub states or when multiple states need to be exited.
-static void exit_up_to_state_handler(Spec1bSm* self, Spec1bSm_Func desired_state_exit_handler)
+static void exit_up_to_state_handler(Spec1bSm* sm, Spec1bSm_Func desired_state_exit_handler)
 {
-    while (self->current_state_exit_handler != desired_state_exit_handler)
+    while (sm->current_state_exit_handler != desired_state_exit_handler)
     {
-        self->current_state_exit_handler(self);
+        sm->current_state_exit_handler(sm);
     }
 }
 
@@ -125,13 +125,13 @@ static void exit_up_to_state_handler(Spec1bSm* self, Spec1bSm_Func desired_state
 // event handlers for state ROOT
 ////////////////////////////////////////////////////////////////////////////////
 
-static void ROOT_enter(Spec1bSm* self)
+static void ROOT_enter(Spec1bSm* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = ROOT_exit;
+    sm->current_state_exit_handler = ROOT_exit;
 }
 
-static void ROOT_exit(Spec1bSm* self)
+static void ROOT_exit(Spec1bSm* sm)
 {
     // State machine root is a special case. It cannot be exited.
 }
@@ -141,16 +141,16 @@ static void ROOT_exit(Spec1bSm* self)
 // event handlers for state S
 ////////////////////////////////////////////////////////////////////////////////
 
-static void S_enter(Spec1bSm* self)
+static void S_enter(Spec1bSm* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = S_exit;
+    sm->current_state_exit_handler = S_exit;
 }
 
-static void S_exit(Spec1bSm* self)
+static void S_exit(Spec1bSm* sm)
 {
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = ROOT_exit;
+    sm->current_state_exit_handler = ROOT_exit;
 }
 
 
@@ -158,14 +158,14 @@ static void S_exit(Spec1bSm* self)
 // event handlers for state S1
 ////////////////////////////////////////////////////////////////////////////////
 
-static void S1_enter(Spec1bSm* self)
+static void S1_enter(Spec1bSm* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = S1_exit;
-    self->current_event_handlers[Spec1bSm_EventId_T1] = S1_t1;
+    sm->current_state_exit_handler = S1_exit;
+    sm->current_event_handlers[Spec1bSm_EventId_T1] = S1_t1;
 }
 
-static void S1_exit(Spec1bSm* self)
+static void S1_exit(Spec1bSm* sm)
 {
     // S1 behavior
     // uml: exit / { b(); }
@@ -175,11 +175,11 @@ static void S1_exit(Spec1bSm* self)
     } // end of behavior for S1
     
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = S_exit;
-    self->current_event_handlers[Spec1bSm_EventId_T1] = NULL;  // no ancestor listens to this event
+    sm->current_state_exit_handler = S_exit;
+    sm->current_event_handlers[Spec1bSm_EventId_T1] = NULL;  // no ancestor listens to this event
 }
 
-static void S1_t1(Spec1bSm* self)
+static void S1_t1(Spec1bSm* sm)
 {
     // No ancestor state handles `T1` event.
     
@@ -188,13 +188,13 @@ static void S1_t1(Spec1bSm* self)
     if (print("g() "))
     {
         // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(self, S_exit);
+        exit_up_to_state_handler(sm, S_exit);
         
         // Step 2: Transition action: `t();`.
         print("t(); ");
         
         // Step 3: Enter/move towards transition target `S2`.
-        S2_enter(self);
+        S2_enter(sm);
         
         // S2.InitialState behavior
         // uml: / { d(); } TransitionTo(S2_1)
@@ -205,10 +205,10 @@ static void S1_t1(Spec1bSm* self)
             print("d(); ");
             
             // Step 3: Enter/move towards transition target `S2_1`.
-            S2_1_enter(self);
+            S2_1_enter(sm);
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Spec1bSm_StateId_S2_1;
+            sm->state_id = Spec1bSm_StateId_S2_1;
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             return;
         } // end of behavior for S2.InitialState
@@ -220,13 +220,13 @@ static void S1_t1(Spec1bSm* self)
 // event handlers for state S1_1
 ////////////////////////////////////////////////////////////////////////////////
 
-static void S1_1_enter(Spec1bSm* self)
+static void S1_1_enter(Spec1bSm* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = S1_1_exit;
+    sm->current_state_exit_handler = S1_1_exit;
 }
 
-static void S1_1_exit(Spec1bSm* self)
+static void S1_1_exit(Spec1bSm* sm)
 {
     // S1_1 behavior
     // uml: exit / { a(); }
@@ -236,7 +236,7 @@ static void S1_1_exit(Spec1bSm* self)
     } // end of behavior for S1_1
     
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = S1_exit;
+    sm->current_state_exit_handler = S1_exit;
 }
 
 
@@ -244,10 +244,10 @@ static void S1_1_exit(Spec1bSm* self)
 // event handlers for state S2
 ////////////////////////////////////////////////////////////////////////////////
 
-static void S2_enter(Spec1bSm* self)
+static void S2_enter(Spec1bSm* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = S2_exit;
+    sm->current_state_exit_handler = S2_exit;
     
     // S2 behavior
     // uml: enter / { c(); }
@@ -257,10 +257,10 @@ static void S2_enter(Spec1bSm* self)
     } // end of behavior for S2
 }
 
-static void S2_exit(Spec1bSm* self)
+static void S2_exit(Spec1bSm* sm)
 {
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = S_exit;
+    sm->current_state_exit_handler = S_exit;
 }
 
 
@@ -268,10 +268,10 @@ static void S2_exit(Spec1bSm* self)
 // event handlers for state S2_1
 ////////////////////////////////////////////////////////////////////////////////
 
-static void S2_1_enter(Spec1bSm* self)
+static void S2_1_enter(Spec1bSm* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = S2_1_exit;
+    sm->current_state_exit_handler = S2_1_exit;
     
     // S2_1 behavior
     // uml: enter / { e(); }
@@ -281,8 +281,8 @@ static void S2_1_enter(Spec1bSm* self)
     } // end of behavior for S2_1
 }
 
-static void S2_1_exit(Spec1bSm* self)
+static void S2_1_exit(Spec1bSm* sm)
 {
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = S2_exit;
+    sm->current_state_exit_handler = S2_exit;
 }

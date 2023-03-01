@@ -22,6 +22,8 @@ public class EventHandlerBuilder
     private readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
 
     private OutputFile? _file;
+    private bool outputStaticLambdas = false;
+
     private OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
     public EventHandlerBuilder(Expander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler)
@@ -474,7 +476,7 @@ public class EventHandlerBuilder
             {
                 OutputStateBehaviorsForTrigger(state, eventName);
             }
-            File.FinishCodeBlock(";", forceNewLine: false);
+            FinishAddressableFunction(forceNewLine: false);
             File.RequestNewLineBeforeMoreCode();
         }
 
@@ -545,14 +547,24 @@ public class EventHandlerBuilder
                 }
             }
         }
-        File.FinishCodeBlock(";", forceNewLine: true);
+
+        FinishAddressableFunction(forceNewLine: true);
         File.AppendLine();
+    }
+
+    private void FinishAddressableFunction(bool forceNewLine)
+    {
+        var finishStr = "";
+        if (outputStaticLambdas)
+            finishStr = ";";
+
+        File.FinishCodeBlock(finishStr, forceNewLine: forceNewLine);
     }
 
     public void OutputTriggerHandlerSignature(NamedVertex state, string eventName)
     {
         // enter functions don't need to be static delegates because we don't take their address
-        if (TriggerHelper.IsEnterTrigger(eventName))
+        if (TriggerHelper.IsEnterTrigger(eventName) || !outputStaticLambdas)
         {
             File.Append($"private static void {mangler.SmFuncTriggerHandler(state, eventName)}({mangler.SmStructName} sm)");
         }

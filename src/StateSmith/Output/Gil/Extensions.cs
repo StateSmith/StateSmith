@@ -2,6 +2,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -62,7 +63,7 @@ public static class Extensions
     }
 
     // this should probably be moved out of extensions
-    public static void VisitNodeRunActionAfterToken(this CSharpSyntaxWalker syntaxWalker, ClassDeclarationSyntax node, SyntaxToken token, Action action)
+    public static void VisitNodeRunActionAfterToken(this CSharpSyntaxWalker syntaxWalker, SyntaxNode node, SyntaxToken token, Action action, SyntaxToken? toSkip = null)
     {
         var kids = node.ChildNodesAndTokens();
         int i = 0;
@@ -71,7 +72,8 @@ public static class Extensions
         {
             var kid = kids[i];
             i++;
-            kid.VisitWith(syntaxWalker);
+            if (ShouldVisit(toSkip, kid))
+                kid.VisitWith(syntaxWalker);
 
             if (kid == token)
                 break;
@@ -82,7 +84,13 @@ public static class Extensions
         for (; i < kids.Count; i++)
         {
             var kid = kids[i];
-            kid.VisitWith(syntaxWalker);
+            if (ShouldVisit(toSkip, kid))
+                kid.VisitWith(syntaxWalker);
+        }
+
+        static bool ShouldVisit(SyntaxToken? toSkip, SyntaxNodeOrToken kid)
+        {
+            return toSkip != kid;
         }
     }
 

@@ -343,7 +343,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for ROOT
         }
 
-        private static readonly Func ROOT_exit = (Spec2Sm sm) =>
+        private static void ROOT_exit(Spec2Sm sm)
         {
             // ROOT behavior
             // uml: exit / { trace("Exit Spec2Sm."); }
@@ -352,7 +352,8 @@ namespace Csharp.Spec2smTests
             trace("Exit Spec2Sm.");
             } // end of behavior for ROOT
         // State machine root is a special case. It cannot be exited.
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state AUTO_VAR_TEST
         ////////////////////////////////////////////////////////////////////////////////
@@ -368,7 +369,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST
         }
 
-        private static readonly Func AUTO_VAR_TEST_exit = (Spec2Sm sm) =>
+        private static void AUTO_VAR_TEST_exit(Spec2Sm sm)
         {
             // AUTO_VAR_TEST behavior
             // uml: exit / { trace("Exit AUTO_VAR_TEST."); }
@@ -379,7 +380,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state AUTO_VAR_TEST__BLAH
         ////////////////////////////////////////////////////////////////////////////////
@@ -396,7 +398,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST__BLAH
         }
 
-        private static readonly Func AUTO_VAR_TEST__BLAH_exit = (Spec2Sm sm) =>
+        private static void AUTO_VAR_TEST__BLAH_exit(Spec2Sm sm)
         {
             // AUTO_VAR_TEST__BLAH behavior
             // uml: exit / { trace("Exit AUTO_VAR_TEST__BLAH."); }
@@ -408,8 +410,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = AUTO_VAR_TEST_exit;
             sm.current_event_handlers[(int)EventId.DO] = null; // no ancestor listens to this event
-        };
-        private static readonly Func AUTO_VAR_TEST__BLAH_do = (Spec2Sm sm) =>
+        }
+
+        private static void AUTO_VAR_TEST__BLAH_do(Spec2Sm sm)
         {
             // No ancestor state handles `do` event.
             // AUTO_VAR_TEST__BLAH behavior
@@ -427,7 +430,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for AUTO_VAR_TEST__BLAH
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state AUTO_VAR_TEST__BLAH2
         ////////////////////////////////////////////////////////////////////////////////
@@ -443,7 +447,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST__BLAH2
         }
 
-        private static readonly Func AUTO_VAR_TEST__BLAH2_exit = (Spec2Sm sm) =>
+        private static void AUTO_VAR_TEST__BLAH2_exit(Spec2Sm sm)
         {
             // AUTO_VAR_TEST__BLAH2 behavior
             // uml: exit / { trace("Exit AUTO_VAR_TEST__BLAH2."); }
@@ -454,7 +458,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = AUTO_VAR_TEST_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state DECIDE
         ////////////////////////////////////////////////////////////////////////////////
@@ -480,7 +485,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
-        private static readonly Func DECIDE_exit = (Spec2Sm sm) =>
+        private static void DECIDE_exit(Spec2Sm sm)
         {
             // DECIDE behavior
             // uml: exit / { trace("Exit DECIDE."); }
@@ -501,8 +506,9 @@ namespace Csharp.Spec2smTests
             sm.current_event_handlers[(int)EventId.EV7] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV8] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV9] = null; // no ancestor listens to this event
-        };
-        private static readonly Func DECIDE_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // DECIDE behavior
@@ -539,8 +545,9 @@ namespace Csharp.Spec2smTests
                     } // end of behavior for TEST1_ROOT.InitialState
                 } // end of behavior for TEST1_DO_EVENT_TESTING.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev10 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev10(Spec2Sm sm)
         {
             // No ancestor state handles `EV10` event.
             // DECIDE behavior
@@ -568,8 +575,9 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST10_CHOICE_POINT.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // DECIDE behavior
@@ -606,8 +614,9 @@ namespace Csharp.Spec2smTests
                     } // end of behavior for TEST2_ROOT.InitialState
                 } // end of behavior for TEST2_REGULAR_EVENT_TESTING.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev3(Spec2Sm sm)
         {
             // No ancestor state handles `EV3` event.
             // DECIDE behavior
@@ -643,8 +652,9 @@ namespace Csharp.Spec2smTests
                     } // end of behavior for TEST3_ROOT.InitialState
                 } // end of behavior for TEST3_BEHAVIOR_ORDERING.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev4 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev4(Spec2Sm sm)
         {
             // No ancestor state handles `EV4` event.
             // DECIDE behavior
@@ -671,8 +681,9 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev5 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev5(Spec2Sm sm)
         {
             // No ancestor state handles `EV5` event.
             // DECIDE behavior
@@ -699,8 +710,9 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev6 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev6(Spec2Sm sm)
         {
             // No ancestor state handles `EV6` event.
             // DECIDE behavior
@@ -736,8 +748,9 @@ namespace Csharp.Spec2smTests
                     } // end of behavior for TEST6_ROOT.InitialState
                 } // end of behavior for TEST6_VARIABLES.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev7 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev7(Spec2Sm sm)
         {
             // No ancestor state handles `EV7` event.
             // DECIDE behavior
@@ -764,8 +777,9 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST7_INITIAL_OR_HISTORY.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev8 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev8(Spec2Sm sm)
         {
             // No ancestor state handles `EV8` event.
             // DECIDE behavior
@@ -792,8 +806,9 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for TEST8_ENTRY_CHOICE.InitialState
             } // end of behavior for DECIDE
-        };
-        private static readonly Func DECIDE_ev9 = (Spec2Sm sm) =>
+        }
+
+        private static void DECIDE_ev9(Spec2Sm sm)
         {
             // No ancestor state handles `EV9` event.
             // DECIDE behavior
@@ -820,7 +835,8 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST9_EXIT_CHOICE.InitialState
             } // end of behavior for DECIDE
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING
         ////////////////////////////////////////////////////////////////////////////////
@@ -836,7 +852,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING
         }
 
-        private static readonly Func PREFIXING_exit = (Spec2Sm sm) =>
+        private static void PREFIXING_exit(Spec2Sm sm)
         {
             // PREFIXING behavior
             // uml: exit / { trace("Exit PREFIXING."); }
@@ -847,7 +863,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__ORDER_MENU
         ////////////////////////////////////////////////////////////////////////////////
@@ -863,7 +880,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__ORDER_MENU
         }
 
-        private static readonly Func PREFIXING__ORDER_MENU_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__ORDER_MENU_exit(Spec2Sm sm)
         {
             // PREFIXING__ORDER_MENU behavior
             // uml: exit / { trace("Exit PREFIXING__ORDER_MENU."); }
@@ -874,7 +891,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__OM__BEVERAGE
         ////////////////////////////////////////////////////////////////////////////////
@@ -891,7 +909,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEVERAGE
         }
 
-        private static readonly Func PREFIXING__OM__BEVERAGE_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__OM__BEVERAGE_exit(Spec2Sm sm)
         {
             // PREFIXING__OM__BEVERAGE behavior
             // uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE."); }
@@ -903,8 +921,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__ORDER_MENU_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__OM__BEVERAGE_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__OM__BEVERAGE_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // PREFIXING__OM__BEVERAGE behavior
@@ -931,7 +950,8 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for PREFIXING__OM__VEG.InitialState
             } // end of behavior for PREFIXING__OM__BEVERAGE
-        };
+        }
+
         static void PREFIXING__OM__BEVERAGE_InitialState_transition(Spec2Sm sm)
         {
             // PREFIXING__OM__BEVERAGE.InitialState behavior
@@ -965,7 +985,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__NONE
         }
 
-        private static readonly Func PREFIXING__OM__BEV__NONE_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__OM__BEV__NONE_exit(Spec2Sm sm)
         {
             // PREFIXING__OM__BEV__NONE behavior
             // uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE."); }
@@ -977,8 +997,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__OM__BEV__NONE_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__OM__BEV__NONE_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // PREFIXING__OM__BEV__NONE behavior
@@ -996,7 +1017,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for PREFIXING__OM__BEV__NONE
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__OM__BEV__TEA
         ////////////////////////////////////////////////////////////////////////////////
@@ -1012,7 +1034,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__TEA
         }
 
-        private static readonly Func PREFIXING__OM__BEV__TEA_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__OM__BEV__TEA_exit(Spec2Sm sm)
         {
             // PREFIXING__OM__BEV__TEA behavior
             // uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA."); }
@@ -1023,7 +1045,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__OM__BEV__WATER
         ////////////////////////////////////////////////////////////////////////////////
@@ -1040,7 +1063,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__WATER
         }
 
-        private static readonly Func PREFIXING__OM__BEV__WATER_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__OM__BEV__WATER_exit(Spec2Sm sm)
         {
             // PREFIXING__OM__BEV__WATER behavior
             // uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER."); }
@@ -1052,8 +1075,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__OM__BEVERAGE_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__OM__BEV__WATER_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__OM__BEV__WATER_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // PREFIXING__OM__BEV__WATER behavior
@@ -1071,7 +1095,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for PREFIXING__OM__BEV__WATER
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__OM__VEG
         ////////////////////////////////////////////////////////////////////////////////
@@ -1088,7 +1113,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG
         }
 
-        private static readonly Func PREFIXING__OM__VEG_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__OM__VEG_exit(Spec2Sm sm)
         {
             // PREFIXING__OM__VEG behavior
             // uml: exit / { trace("Exit PREFIXING__OM__VEG."); }
@@ -1100,8 +1125,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__ORDER_MENU_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__OM__VEG_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__OM__VEG_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // PREFIXING__OM__VEG behavior
@@ -1118,7 +1144,8 @@ namespace Csharp.Spec2smTests
                 PREFIXING__OM__BEVERAGE_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for PREFIXING__OM__VEG
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__OM__VEG__NONE
         ////////////////////////////////////////////////////////////////////////////////
@@ -1135,7 +1162,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__NONE
         }
 
-        private static readonly Func PREFIXING__OM__VEG__NONE_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__OM__VEG__NONE_exit(Spec2Sm sm)
         {
             // PREFIXING__OM__VEG__NONE behavior
             // uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE."); }
@@ -1147,8 +1174,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__OM__VEG_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__OM__VEG__NONE_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__OM__VEG__NONE_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // PREFIXING__OM__VEG__NONE behavior
@@ -1166,7 +1194,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for PREFIXING__OM__VEG__NONE
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__OM__VEG__POTATO
         ////////////////////////////////////////////////////////////////////////////////
@@ -1183,7 +1212,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__POTATO
         }
 
-        private static readonly Func PREFIXING__OM__VEG__POTATO_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__OM__VEG__POTATO_exit(Spec2Sm sm)
         {
             // PREFIXING__OM__VEG__POTATO behavior
             // uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO."); }
@@ -1195,8 +1224,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__OM__VEG_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__OM__VEG__POTATO_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__OM__VEG__POTATO_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // PREFIXING__OM__VEG__POTATO behavior
@@ -1214,7 +1244,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for PREFIXING__OM__VEG__POTATO
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__OM__VEG__YAM
         ////////////////////////////////////////////////////////////////////////////////
@@ -1230,7 +1261,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__YAM
         }
 
-        private static readonly Func PREFIXING__OM__VEG__YAM_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__OM__VEG__YAM_exit(Spec2Sm sm)
         {
             // PREFIXING__OM__VEG__YAM behavior
             // uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM."); }
@@ -1241,7 +1272,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__OM__VEG_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX
         ////////////////////////////////////////////////////////////////////////////////
@@ -1257,7 +1289,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX."); }
@@ -1268,7 +1300,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         ////////////////////////////////////////////////////////////////////////////////
@@ -1284,7 +1317,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
@@ -1295,7 +1328,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         ////////////////////////////////////////////////////////////////////////////////
@@ -1312,7 +1346,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
@@ -1324,8 +1358,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
@@ -1352,7 +1387,8 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
-        };
+        }
+
         static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState behavior
@@ -1386,7 +1422,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
@@ -1398,8 +1434,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
@@ -1417,7 +1454,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         ////////////////////////////////////////////////////////////////////////////////
@@ -1433,7 +1471,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
@@ -1444,7 +1482,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         ////////////////////////////////////////////////////////////////////////////////
@@ -1461,7 +1500,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
@@ -1473,8 +1512,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
@@ -1492,7 +1532,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         ////////////////////////////////////////////////////////////////////////////////
@@ -1509,7 +1550,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
@@ -1521,8 +1562,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
@@ -1539,7 +1581,8 @@ namespace Csharp.Spec2smTests
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         ////////////////////////////////////////////////////////////////////////////////
@@ -1556,7 +1599,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
@@ -1568,8 +1611,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
@@ -1587,7 +1631,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         ////////////////////////////////////////////////////////////////////////////////
@@ -1604,7 +1649,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
@@ -1616,8 +1661,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
@@ -1635,7 +1681,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         ////////////////////////////////////////////////////////////////////////////////
@@ -1651,7 +1698,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         }
 
-        private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit = (Spec2Sm sm) =>
+        private static void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(Spec2Sm sm)
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
@@ -1662,7 +1709,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST1_DO_EVENT_TESTING
         ////////////////////////////////////////////////////////////////////////////////
@@ -1678,7 +1726,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_DO_EVENT_TESTING
         }
 
-        private static readonly Func TEST1_DO_EVENT_TESTING_exit = (Spec2Sm sm) =>
+        private static void TEST1_DO_EVENT_TESTING_exit(Spec2Sm sm)
         {
             // TEST1_DO_EVENT_TESTING behavior
             // uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING."); }
@@ -1689,7 +1737,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST1_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -1706,7 +1755,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_ROOT
         }
 
-        private static readonly Func TEST1_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST1_ROOT_exit(Spec2Sm sm)
         {
             // TEST1_ROOT behavior
             // uml: exit / { trace("Exit TEST1_ROOT."); }
@@ -1718,8 +1767,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST1_DO_EVENT_TESTING_exit;
             sm.current_event_handlers[(int)EventId.DO] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST1_ROOT_do = (Spec2Sm sm) =>
+        }
+
+        private static void TEST1_ROOT_do(Spec2Sm sm)
         {
             // No ancestor state handles `do` event.
             // TEST1_ROOT behavior
@@ -1730,7 +1780,8 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // Don't consume special `do` event.
             } // end of behavior for TEST1_ROOT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST1_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -1746,7 +1797,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S1
         }
 
-        private static readonly Func TEST1_S1_exit = (Spec2Sm sm) =>
+        private static void TEST1_S1_exit(Spec2Sm sm)
         {
             // TEST1_S1 behavior
             // uml: exit / { trace("Exit TEST1_S1."); }
@@ -1757,7 +1808,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST1_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST1_S1_1
         ////////////////////////////////////////////////////////////////////////////////
@@ -1783,7 +1835,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S1_1
         }
 
-        private static readonly Func TEST1_S1_1_exit = (Spec2Sm sm) =>
+        private static void TEST1_S1_1_exit(Spec2Sm sm)
         {
             // TEST1_S1_1 behavior
             // uml: exit / { trace("Exit TEST1_S1_1."); }
@@ -1796,8 +1848,9 @@ namespace Csharp.Spec2smTests
             sm.current_state_exit_handler = TEST1_S1_exit;
             sm.current_event_handlers[(int)EventId.DO] = TEST1_ROOT_do; // the next ancestor that handles this event is TEST1_ROOT
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST1_S1_1_do = (Spec2Sm sm) =>
+        }
+
+        private static void TEST1_S1_1_do(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `do` event.
             sm.ancestor_event_handler = TEST1_ROOT_do;
@@ -1809,8 +1862,9 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // Don't consume special `do` event.
             } // end of behavior for TEST1_S1_1
-        };
-        private static readonly Func TEST1_S1_1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST1_S1_1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST1_S1_1 behavior
@@ -1828,7 +1882,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST1_S1_1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST1_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -1845,7 +1900,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S2
         }
 
-        private static readonly Func TEST1_S2_exit = (Spec2Sm sm) =>
+        private static void TEST1_S2_exit(Spec2Sm sm)
         {
             // TEST1_S2 behavior
             // uml: exit / { trace("Exit TEST1_S2."); }
@@ -1857,8 +1912,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST1_ROOT_exit;
             sm.current_event_handlers[(int)EventId.DO] = TEST1_ROOT_do; // the next ancestor that handles this event is TEST1_ROOT
-        };
-        private static readonly Func TEST1_S2_do = (Spec2Sm sm) =>
+        }
+
+        private static void TEST1_S2_do(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `do` event.
             sm.ancestor_event_handler = TEST1_ROOT_do;
@@ -1875,7 +1931,8 @@ namespace Csharp.Spec2smTests
                     sm.ancestor_event_handler = null; // consume event
                 }
             } // end of behavior for TEST1_S2
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_CHOICE_POINT
         ////////////////////////////////////////////////////////////////////////////////
@@ -1891,7 +1948,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_CHOICE_POINT
         }
 
-        private static readonly Func TEST10_CHOICE_POINT_exit = (Spec2Sm sm) =>
+        private static void TEST10_CHOICE_POINT_exit(Spec2Sm sm)
         {
             // TEST10_CHOICE_POINT behavior
             // uml: exit / { trace("Exit TEST10_CHOICE_POINT."); }
@@ -1902,7 +1959,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_A
         ////////////////////////////////////////////////////////////////////////////////
@@ -1918,7 +1976,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_A
         }
 
-        private static readonly Func TEST10_A_exit = (Spec2Sm sm) =>
+        private static void TEST10_A_exit(Spec2Sm sm)
         {
             // TEST10_A behavior
             // uml: exit / { trace("Exit TEST10_A."); }
@@ -1929,7 +1987,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_CHOICE_POINT_exit;
-        };
+        }
+
         static void TEST10_A_ChoicePoint__transition(Spec2Sm sm)
         {
             // TEST10_A.ChoicePoint() behavior
@@ -2052,7 +2111,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_A_1
         }
 
-        private static readonly Func TEST10_A_1_exit = (Spec2Sm sm) =>
+        private static void TEST10_A_1_exit(Spec2Sm sm)
         {
             // TEST10_A_1 behavior
             // uml: exit / { trace("Exit TEST10_A_1."); }
@@ -2063,7 +2122,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_A_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -2080,7 +2140,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_ROOT
         }
 
-        private static readonly Func TEST10_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST10_ROOT_exit(Spec2Sm sm)
         {
             // TEST10_ROOT behavior
             // uml: exit / { trace("Exit TEST10_ROOT."); }
@@ -2092,8 +2152,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_CHOICE_POINT_exit;
             sm.current_event_handlers[(int)EventId.EV5] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST10_ROOT_ev5 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST10_ROOT_ev5(Spec2Sm sm)
         {
             // No ancestor state handles `EV5` event.
             // TEST10_ROOT behavior
@@ -2105,7 +2166,8 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for TEST10_ROOT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_G
         ////////////////////////////////////////////////////////////////////////////////
@@ -2121,7 +2183,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G
         }
 
-        private static readonly Func TEST10_G_exit = (Spec2Sm sm) =>
+        private static void TEST10_G_exit(Spec2Sm sm)
         {
             // TEST10_G behavior
             // uml: exit / { trace("Exit TEST10_G."); }
@@ -2132,7 +2194,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_ROOT_exit;
-        };
+        }
+
         static void TEST10_G_ChoicePoint__transition(Spec2Sm sm)
         {
             // TEST10_G.ChoicePoint() behavior
@@ -2253,7 +2316,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S0
         }
 
-        private static readonly Func TEST10_G_S0_exit = (Spec2Sm sm) =>
+        private static void TEST10_G_S0_exit(Spec2Sm sm)
         {
             // TEST10_G_S0 behavior
             // uml: exit / { trace("Exit TEST10_G_S0."); }
@@ -2264,7 +2327,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_G_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -2280,7 +2344,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S1
         }
 
-        private static readonly Func TEST10_G_S1_exit = (Spec2Sm sm) =>
+        private static void TEST10_G_S1_exit(Spec2Sm sm)
         {
             // TEST10_G_S1 behavior
             // uml: exit / { trace("Exit TEST10_G_S1."); }
@@ -2291,7 +2355,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_G_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -2307,7 +2372,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S2
         }
 
-        private static readonly Func TEST10_G_S2_exit = (Spec2Sm sm) =>
+        private static void TEST10_G_S2_exit(Spec2Sm sm)
         {
             // TEST10_G_S2 behavior
             // uml: exit / { trace("Exit TEST10_G_S2."); }
@@ -2318,7 +2383,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_G_S3
         ////////////////////////////////////////////////////////////////////////////////
@@ -2334,7 +2400,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S3
         }
 
-        private static readonly Func TEST10_G_S3_exit = (Spec2Sm sm) =>
+        private static void TEST10_G_S3_exit(Spec2Sm sm)
         {
             // TEST10_G_S3 behavior
             // uml: exit / { trace("Exit TEST10_G_S3."); }
@@ -2345,7 +2411,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -2373,7 +2440,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S1
         }
 
-        private static readonly Func TEST10_S1_exit = (Spec2Sm sm) =>
+        private static void TEST10_S1_exit(Spec2Sm sm)
         {
             // TEST10_S1 behavior
             // uml: exit / { trace("Exit TEST10_S1."); }
@@ -2388,8 +2455,9 @@ namespace Csharp.Spec2smTests
             sm.current_event_handlers[(int)EventId.EV10] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV3] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST10_S1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST10_S1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST10_S1 behavior
@@ -2416,8 +2484,9 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for TEST10_G.EntryPoint(1)
             } // end of behavior for TEST10_S1
-        };
-        private static readonly Func TEST10_S1_ev10 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST10_S1_ev10(Spec2Sm sm)
         {
             // No ancestor state handles `EV10` event.
             // TEST10_S1 behavior
@@ -2472,8 +2541,9 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for TEST10_A.InitialState
             } // end of behavior for TEST10_S1
-        };
-        private static readonly Func TEST10_S1_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST10_S1_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST10_S1 behavior
@@ -2491,8 +2561,9 @@ namespace Csharp.Spec2smTests
                 TEST10_G_ChoicePoint__transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for TEST10_S1
-        };
-        private static readonly Func TEST10_S1_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST10_S1_ev3(Spec2Sm sm)
         {
             // No ancestor state handles `EV3` event.
             // TEST10_S1 behavior
@@ -2518,7 +2589,8 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for TEST10_G.InitialState
             } // end of behavior for TEST10_S1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST10_S4
         ////////////////////////////////////////////////////////////////////////////////
@@ -2534,7 +2606,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S4
         }
 
-        private static readonly Func TEST10_S4_exit = (Spec2Sm sm) =>
+        private static void TEST10_S4_exit(Spec2Sm sm)
         {
             // TEST10_S4 behavior
             // uml: exit / { trace("Exit TEST10_S4."); }
@@ -2545,7 +2617,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST10_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST2_REGULAR_EVENT_TESTING
         ////////////////////////////////////////////////////////////////////////////////
@@ -2561,7 +2634,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_REGULAR_EVENT_TESTING
         }
 
-        private static readonly Func TEST2_REGULAR_EVENT_TESTING_exit = (Spec2Sm sm) =>
+        private static void TEST2_REGULAR_EVENT_TESTING_exit(Spec2Sm sm)
         {
             // TEST2_REGULAR_EVENT_TESTING behavior
             // uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING."); }
@@ -2572,7 +2645,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST2_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -2591,7 +2665,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_ROOT
         }
 
-        private static readonly Func TEST2_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST2_ROOT_exit(Spec2Sm sm)
         {
             // TEST2_ROOT behavior
             // uml: exit / { trace("Exit TEST2_ROOT."); }
@@ -2605,8 +2679,9 @@ namespace Csharp.Spec2smTests
             sm.current_event_handlers[(int)EventId.DO] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST2_ROOT_do = (Spec2Sm sm) =>
+        }
+
+        private static void TEST2_ROOT_do(Spec2Sm sm)
         {
             // No ancestor state handles `do` event.
             // TEST2_ROOT behavior
@@ -2617,8 +2692,9 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // Don't consume special `do` event.
             } // end of behavior for TEST2_ROOT
-        };
-        private static readonly Func TEST2_ROOT_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST2_ROOT_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST2_ROOT behavior
@@ -2629,8 +2705,9 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for TEST2_ROOT
-        };
-        private static readonly Func TEST2_ROOT_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST2_ROOT_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST2_ROOT behavior
@@ -2641,7 +2718,8 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for TEST2_ROOT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST2_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -2657,7 +2735,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S1
         }
 
-        private static readonly Func TEST2_S1_exit = (Spec2Sm sm) =>
+        private static void TEST2_S1_exit(Spec2Sm sm)
         {
             // TEST2_S1 behavior
             // uml: exit / { trace("Exit TEST2_S1."); }
@@ -2668,7 +2746,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST2_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST2_S1_1
         ////////////////////////////////////////////////////////////////////////////////
@@ -2694,7 +2773,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S1_1
         }
 
-        private static readonly Func TEST2_S1_1_exit = (Spec2Sm sm) =>
+        private static void TEST2_S1_1_exit(Spec2Sm sm)
         {
             // TEST2_S1_1 behavior
             // uml: exit / { trace("Exit TEST2_S1_1."); }
@@ -2707,8 +2786,9 @@ namespace Csharp.Spec2smTests
             sm.current_state_exit_handler = TEST2_S1_exit;
             sm.current_event_handlers[(int)EventId.DO] = TEST2_ROOT_do; // the next ancestor that handles this event is TEST2_ROOT
             sm.current_event_handlers[(int)EventId.EV1] = TEST2_ROOT_ev1; // the next ancestor that handles this event is TEST2_ROOT
-        };
-        private static readonly Func TEST2_S1_1_do = (Spec2Sm sm) =>
+        }
+
+        private static void TEST2_S1_1_do(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `do` event.
             sm.ancestor_event_handler = TEST2_ROOT_do;
@@ -2727,8 +2807,9 @@ namespace Csharp.Spec2smTests
                 sm.ancestor_event_handler = null;
                 return;
             } // end of behavior for TEST2_S1_1
-        };
-        private static readonly Func TEST2_S1_1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST2_S1_1_ev1(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV1` event.
             sm.ancestor_event_handler = TEST2_ROOT_ev1;
@@ -2740,7 +2821,8 @@ namespace Csharp.Spec2smTests
                 // Step 2: determine if ancestor gets to handle event next.
                 sm.ancestor_event_handler = null; // consume event
             } // end of behavior for TEST2_S1_1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST2_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -2758,7 +2840,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S2
         }
 
-        private static readonly Func TEST2_S2_exit = (Spec2Sm sm) =>
+        private static void TEST2_S2_exit(Spec2Sm sm)
         {
             // TEST2_S2 behavior
             // uml: exit / { trace("Exit TEST2_S2."); }
@@ -2771,8 +2853,9 @@ namespace Csharp.Spec2smTests
             sm.current_state_exit_handler = TEST2_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = TEST2_ROOT_ev1; // the next ancestor that handles this event is TEST2_ROOT
             sm.current_event_handlers[(int)EventId.EV2] = TEST2_ROOT_ev2; // the next ancestor that handles this event is TEST2_ROOT
-        };
-        private static readonly Func TEST2_S2_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST2_S2_ev1(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV1` event.
             sm.ancestor_event_handler = TEST2_ROOT_ev1;
@@ -2789,8 +2872,9 @@ namespace Csharp.Spec2smTests
                     sm.ancestor_event_handler = null; // consume event
                 }
             } // end of behavior for TEST2_S2
-        };
-        private static readonly Func TEST2_S2_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST2_S2_ev2(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV2` event.
             sm.ancestor_event_handler = TEST2_ROOT_ev2;
@@ -2809,7 +2893,8 @@ namespace Csharp.Spec2smTests
                 sm.ancestor_event_handler = null;
                 return;
             } // end of behavior for TEST2_S2
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST3_BEHAVIOR_ORDERING
         ////////////////////////////////////////////////////////////////////////////////
@@ -2825,7 +2910,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_BEHAVIOR_ORDERING
         }
 
-        private static readonly Func TEST3_BEHAVIOR_ORDERING_exit = (Spec2Sm sm) =>
+        private static void TEST3_BEHAVIOR_ORDERING_exit(Spec2Sm sm)
         {
             // TEST3_BEHAVIOR_ORDERING behavior
             // uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING."); }
@@ -2836,7 +2921,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST3_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -2853,7 +2939,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_ROOT
         }
 
-        private static readonly Func TEST3_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST3_ROOT_exit(Spec2Sm sm)
         {
             // TEST3_ROOT behavior
             // uml: exit / { trace("Exit TEST3_ROOT."); }
@@ -2865,8 +2951,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST3_BEHAVIOR_ORDERING_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST3_ROOT_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST3_ROOT_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST3_ROOT behavior
@@ -2877,7 +2964,8 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for TEST3_ROOT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST3_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -2902,7 +2990,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S1
         }
 
-        private static readonly Func TEST3_S1_exit = (Spec2Sm sm) =>
+        private static void TEST3_S1_exit(Spec2Sm sm)
         {
             // TEST3_S1 behavior
             // uml: exit / { trace("Exit TEST3_S1."); }
@@ -2914,8 +3002,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST3_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = TEST3_ROOT_ev1; // the next ancestor that handles this event is TEST3_ROOT
-        };
-        private static readonly Func TEST3_S1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST3_S1_ev1(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV1` event.
             sm.ancestor_event_handler = TEST3_ROOT_ev1;
@@ -2944,7 +3033,8 @@ namespace Csharp.Spec2smTests
                 // Step 2: determine if ancestor gets to handle event next.
                 sm.ancestor_event_handler = null; // consume event
             } // end of behavior for TEST3_S1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST3_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -2961,7 +3051,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S2
         }
 
-        private static readonly Func TEST3_S2_exit = (Spec2Sm sm) =>
+        private static void TEST3_S2_exit(Spec2Sm sm)
         {
             // TEST3_S2 behavior
             // uml: exit / { trace("Exit TEST3_S2."); }
@@ -2973,8 +3063,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST3_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = TEST3_ROOT_ev1; // the next ancestor that handles this event is TEST3_ROOT
-        };
-        private static readonly Func TEST3_S2_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST3_S2_ev1(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV1` event.
             sm.ancestor_event_handler = TEST3_ROOT_ev1;
@@ -3014,7 +3105,8 @@ namespace Csharp.Spec2smTests
                 sm.ancestor_event_handler = null;
                 return;
             } // end of behavior for TEST3_S2
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST3_S3
         ////////////////////////////////////////////////////////////////////////////////
@@ -3030,7 +3122,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S3
         }
 
-        private static readonly Func TEST3_S3_exit = (Spec2Sm sm) =>
+        private static void TEST3_S3_exit(Spec2Sm sm)
         {
             // TEST3_S3 behavior
             // uml: exit / { trace("Exit TEST3_S3."); }
@@ -3041,7 +3133,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST3_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_PARENT_CHILD_TRANSITIONS
         ////////////////////////////////////////////////////////////////////////////////
@@ -3057,7 +3150,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
         }
 
-        private static readonly Func TEST4_PARENT_CHILD_TRANSITIONS_exit = (Spec2Sm sm) =>
+        private static void TEST4_PARENT_CHILD_TRANSITIONS_exit(Spec2Sm sm)
         {
             // TEST4_PARENT_CHILD_TRANSITIONS behavior
             // uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS."); }
@@ -3068,7 +3161,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_B_AND_OTHERS
         ////////////////////////////////////////////////////////////////////////////////
@@ -3092,7 +3186,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_B_AND_OTHERS
         }
 
-        private static readonly Func TEST4_B_AND_OTHERS_exit = (Spec2Sm sm) =>
+        private static void TEST4_B_AND_OTHERS_exit(Spec2Sm sm)
         {
             // TEST4_B_AND_OTHERS behavior
             // uml: exit / { trace("Exit TEST4_B_AND_OTHERS."); }
@@ -3103,7 +3197,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4B_LOCAL
         ////////////////////////////////////////////////////////////////////////////////
@@ -3119,7 +3214,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_LOCAL
         }
 
-        private static readonly Func TEST4B_LOCAL_exit = (Spec2Sm sm) =>
+        private static void TEST4B_LOCAL_exit(Spec2Sm sm)
         {
             // TEST4B_LOCAL behavior
             // uml: exit / { trace("Exit TEST4B_LOCAL."); }
@@ -3130,7 +3225,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_B_AND_OTHERS_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4B_G
         ////////////////////////////////////////////////////////////////////////////////
@@ -3147,7 +3243,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_G
         }
 
-        private static readonly Func TEST4B_G_exit = (Spec2Sm sm) =>
+        private static void TEST4B_G_exit(Spec2Sm sm)
         {
             // TEST4B_G behavior
             // uml: exit / { trace("Exit TEST4B_G."); }
@@ -3159,8 +3255,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4B_LOCAL_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4B_G_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4B_G_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST4B_G behavior
@@ -3178,7 +3275,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4B_G
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4B_G_1
         ////////////////////////////////////////////////////////////////////////////////
@@ -3195,7 +3293,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_G_1
         }
 
-        private static readonly Func TEST4B_G_1_exit = (Spec2Sm sm) =>
+        private static void TEST4B_G_1_exit(Spec2Sm sm)
         {
             // TEST4B_G_1 behavior
             // uml: exit / { trace("Exit TEST4B_G_1."); }
@@ -3207,8 +3305,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4B_G_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4B_G_1_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4B_G_1_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST4B_G_1 behavior
@@ -3226,7 +3325,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4B_G_1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4C_LOCAL_TO_ALIAS
         ////////////////////////////////////////////////////////////////////////////////
@@ -3242,7 +3342,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_LOCAL_TO_ALIAS
         }
 
-        private static readonly Func TEST4C_LOCAL_TO_ALIAS_exit = (Spec2Sm sm) =>
+        private static void TEST4C_LOCAL_TO_ALIAS_exit(Spec2Sm sm)
         {
             // TEST4C_LOCAL_TO_ALIAS behavior
             // uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS."); }
@@ -3253,7 +3353,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_B_AND_OTHERS_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4C_G
         ////////////////////////////////////////////////////////////////////////////////
@@ -3270,7 +3371,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_G
         }
 
-        private static readonly Func TEST4C_G_exit = (Spec2Sm sm) =>
+        private static void TEST4C_G_exit(Spec2Sm sm)
         {
             // TEST4C_G behavior
             // uml: exit / { trace("Exit TEST4C_G."); }
@@ -3282,8 +3383,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4C_LOCAL_TO_ALIAS_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4C_G_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4C_G_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST4C_G behavior
@@ -3301,7 +3403,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4C_G
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4C_G_1
         ////////////////////////////////////////////////////////////////////////////////
@@ -3318,7 +3421,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_G_1
         }
 
-        private static readonly Func TEST4C_G_1_exit = (Spec2Sm sm) =>
+        private static void TEST4C_G_1_exit(Spec2Sm sm)
         {
             // TEST4C_G_1 behavior
             // uml: exit / { trace("Exit TEST4C_G_1."); }
@@ -3330,8 +3433,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4C_G_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4C_G_1_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4C_G_1_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST4C_G_1 behavior
@@ -3349,7 +3453,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4C_G_1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4D_EXTERNAL
         ////////////////////////////////////////////////////////////////////////////////
@@ -3365,7 +3470,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_EXTERNAL
         }
 
-        private static readonly Func TEST4D_EXTERNAL_exit = (Spec2Sm sm) =>
+        private static void TEST4D_EXTERNAL_exit(Spec2Sm sm)
         {
             // TEST4D_EXTERNAL behavior
             // uml: exit / { trace("Exit TEST4D_EXTERNAL."); }
@@ -3376,7 +3481,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_B_AND_OTHERS_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4D_G
         ////////////////////////////////////////////////////////////////////////////////
@@ -3393,7 +3499,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_G
         }
 
-        private static readonly Func TEST4D_G_exit = (Spec2Sm sm) =>
+        private static void TEST4D_G_exit(Spec2Sm sm)
         {
             // TEST4D_G behavior
             // uml: exit / { trace("Exit TEST4D_G."); }
@@ -3405,8 +3511,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4D_EXTERNAL_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4D_G_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4D_G_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST4D_G behavior
@@ -3434,7 +3541,8 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
             } // end of behavior for TEST4D_G
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4D_G_1
         ////////////////////////////////////////////////////////////////////////////////
@@ -3451,7 +3559,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_G_1
         }
 
-        private static readonly Func TEST4D_G_1_exit = (Spec2Sm sm) =>
+        private static void TEST4D_G_1_exit(Spec2Sm sm)
         {
             // TEST4D_G_1 behavior
             // uml: exit / { trace("Exit TEST4D_G_1."); }
@@ -3463,8 +3571,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4D_G_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4D_G_1_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4D_G_1_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST4D_G_1 behavior
@@ -3491,7 +3600,8 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
             } // end of behavior for TEST4D_G_1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_DECIDE
         ////////////////////////////////////////////////////////////////////////////////
@@ -3511,7 +3621,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_DECIDE
         }
 
-        private static readonly Func TEST4_DECIDE_exit = (Spec2Sm sm) =>
+        private static void TEST4_DECIDE_exit(Spec2Sm sm)
         {
             // TEST4_DECIDE behavior
             // uml: exit / { trace("Exit TEST4_DECIDE."); }
@@ -3526,8 +3636,9 @@ namespace Csharp.Spec2smTests
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV3] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV4] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4_DECIDE_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_DECIDE_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST4_DECIDE behavior
@@ -3545,8 +3656,9 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4_DECIDE
-        };
-        private static readonly Func TEST4_DECIDE_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_DECIDE_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST4_DECIDE behavior
@@ -3574,8 +3686,9 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST4B_LOCAL.InitialState
             } // end of behavior for TEST4_DECIDE
-        };
-        private static readonly Func TEST4_DECIDE_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_DECIDE_ev3(Spec2Sm sm)
         {
             // No ancestor state handles `EV3` event.
             // TEST4_DECIDE behavior
@@ -3603,8 +3716,9 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST4C_LOCAL_TO_ALIAS.InitialState
             } // end of behavior for TEST4_DECIDE
-        };
-        private static readonly Func TEST4_DECIDE_ev4 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_DECIDE_ev4(Spec2Sm sm)
         {
             // No ancestor state handles `EV4` event.
             // TEST4_DECIDE behavior
@@ -3632,7 +3746,8 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST4D_EXTERNAL.InitialState
             } // end of behavior for TEST4_DECIDE
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -3659,7 +3774,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_ROOT
         }
 
-        private static readonly Func TEST4_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST4_ROOT_exit(Spec2Sm sm)
         {
             // TEST4_ROOT behavior
             // uml: exit / { trace("Exit TEST4_ROOT."); }
@@ -3673,8 +3788,9 @@ namespace Csharp.Spec2smTests
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV3] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV4] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4_ROOT_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_ROOT_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST4_ROOT behavior
@@ -3692,8 +3808,9 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4_ROOT
-        };
-        private static readonly Func TEST4_ROOT_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_ROOT_ev3(Spec2Sm sm)
         {
             // No ancestor state handles `EV3` event.
             // TEST4_ROOT behavior
@@ -3712,8 +3829,9 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4_ROOT
-        };
-        private static readonly Func TEST4_ROOT_ev4 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_ROOT_ev4(Spec2Sm sm)
         {
             // No ancestor state handles `EV4` event.
             // TEST4_ROOT behavior
@@ -3730,7 +3848,8 @@ namespace Csharp.Spec2smTests
                 TEST4_S20_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for TEST4_ROOT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -3747,7 +3866,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S1
         }
 
-        private static readonly Func TEST4_S1_exit = (Spec2Sm sm) =>
+        private static void TEST4_S1_exit(Spec2Sm sm)
         {
             // TEST4_S1 behavior
             // uml: exit / { trace("Exit TEST4_S1."); }
@@ -3759,8 +3878,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4_S1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_S1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST4_S1 behavior
@@ -3778,7 +3898,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4_S1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_S10
         ////////////////////////////////////////////////////////////////////////////////
@@ -3795,7 +3916,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S10
         }
 
-        private static readonly Func TEST4_S10_exit = (Spec2Sm sm) =>
+        private static void TEST4_S10_exit(Spec2Sm sm)
         {
             // TEST4_S10 behavior
             // uml: exit / { trace("Exit TEST4_S10."); }
@@ -3807,8 +3928,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV4] = TEST4_ROOT_ev4; // the next ancestor that handles this event is TEST4_ROOT
-        };
-        private static readonly Func TEST4_S10_ev4 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_S10_ev4(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV4` event.
             sm.ancestor_event_handler = TEST4_ROOT_ev4;
@@ -3827,7 +3949,8 @@ namespace Csharp.Spec2smTests
                 sm.ancestor_event_handler = null;
                 return;
             } // end of behavior for TEST4_S10
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_S10_1
         ////////////////////////////////////////////////////////////////////////////////
@@ -3843,7 +3966,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S10_1
         }
 
-        private static readonly Func TEST4_S10_1_exit = (Spec2Sm sm) =>
+        private static void TEST4_S10_1_exit(Spec2Sm sm)
         {
             // TEST4_S10_1 behavior
             // uml: exit / { trace("Exit TEST4_S10_1."); }
@@ -3854,7 +3977,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_S10_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -3871,7 +3995,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S2
         }
 
-        private static readonly Func TEST4_S2_exit = (Spec2Sm sm) =>
+        private static void TEST4_S2_exit(Spec2Sm sm)
         {
             // TEST4_S2 behavior
             // uml: exit / { trace("Exit TEST4_S2."); }
@@ -3883,8 +4007,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4_S2_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_S2_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST4_S2 behavior
@@ -3902,7 +4027,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4_S2
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_S20
         ////////////////////////////////////////////////////////////////////////////////
@@ -3919,7 +4045,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S20
         }
 
-        private static readonly Func TEST4_S20_exit = (Spec2Sm sm) =>
+        private static void TEST4_S20_exit(Spec2Sm sm)
         {
             // TEST4_S20 behavior
             // uml: exit / { trace("Exit TEST4_S20."); }
@@ -3931,8 +4057,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV4] = TEST4_ROOT_ev4; // the next ancestor that handles this event is TEST4_ROOT
-        };
-        private static readonly Func TEST4_S20_ev4 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_S20_ev4(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV4` event.
             sm.ancestor_event_handler = TEST4_ROOT_ev4;
@@ -3950,7 +4077,8 @@ namespace Csharp.Spec2smTests
                 TEST4_S20_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for TEST4_S20
-        };
+        }
+
         static void TEST4_S20_InitialState_transition(Spec2Sm sm)
         {
             // TEST4_S20.InitialState behavior
@@ -3983,7 +4111,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S20_1
         }
 
-        private static readonly Func TEST4_S20_1_exit = (Spec2Sm sm) =>
+        private static void TEST4_S20_1_exit(Spec2Sm sm)
         {
             // TEST4_S20_1 behavior
             // uml: exit / { trace("Exit TEST4_S20_1."); }
@@ -3994,7 +4122,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_S20_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST4_S3
         ////////////////////////////////////////////////////////////////////////////////
@@ -4011,7 +4140,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S3
         }
 
-        private static readonly Func TEST4_S3_exit = (Spec2Sm sm) =>
+        private static void TEST4_S3_exit(Spec2Sm sm)
         {
             // TEST4_S3 behavior
             // uml: exit / { trace("Exit TEST4_S3."); }
@@ -4023,8 +4152,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST4_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST4_S3_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST4_S3_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST4_S3 behavior
@@ -4042,7 +4172,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST4_S3
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         ////////////////////////////////////////////////////////////////////////////////
@@ -4058,7 +4189,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         }
 
-        private static readonly Func TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit = (Spec2Sm sm) =>
+        private static void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(Spec2Sm sm)
         {
             // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
             // uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
@@ -4069,7 +4200,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST5_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -4094,7 +4226,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_ROOT
         }
 
-        private static readonly Func TEST5_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST5_ROOT_exit(Spec2Sm sm)
         {
             // TEST5_ROOT behavior
             // uml: exit / { trace("Exit TEST5_ROOT."); }
@@ -4106,8 +4238,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST5_ROOT_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST5_ROOT_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST5_ROOT behavior
@@ -4125,7 +4258,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST5_ROOT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST5_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -4142,7 +4276,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S1
         }
 
-        private static readonly Func TEST5_S1_exit = (Spec2Sm sm) =>
+        private static void TEST5_S1_exit(Spec2Sm sm)
         {
             // TEST5_S1 behavior
             // uml: exit / { trace("Exit TEST5_S1."); }
@@ -4154,8 +4288,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST5_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST5_S1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST5_S1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST5_S1 behavior
@@ -4173,7 +4308,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST5_S1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST5_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -4190,7 +4326,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S2
         }
 
-        private static readonly Func TEST5_S2_exit = (Spec2Sm sm) =>
+        private static void TEST5_S2_exit(Spec2Sm sm)
         {
             // TEST5_S2 behavior
             // uml: exit / { trace("Exit TEST5_S2."); }
@@ -4202,8 +4338,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST5_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST5_S2_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST5_S2_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST5_S2 behavior
@@ -4221,7 +4358,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST5_S2
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST5_S3
         ////////////////////////////////////////////////////////////////////////////////
@@ -4238,7 +4376,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S3
         }
 
-        private static readonly Func TEST5_S3_exit = (Spec2Sm sm) =>
+        private static void TEST5_S3_exit(Spec2Sm sm)
         {
             // TEST5_S3 behavior
             // uml: exit / { trace("Exit TEST5_S3."); }
@@ -4250,8 +4388,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST5_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST5_S3_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST5_S3_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST5_S3 behavior
@@ -4269,7 +4408,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST5_S3
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST6_VARIABLES
         ////////////////////////////////////////////////////////////////////////////////
@@ -4285,7 +4425,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_VARIABLES
         }
 
-        private static readonly Func TEST6_VARIABLES_exit = (Spec2Sm sm) =>
+        private static void TEST6_VARIABLES_exit(Spec2Sm sm)
         {
             // TEST6_VARIABLES behavior
             // uml: exit / { trace("Exit TEST6_VARIABLES."); }
@@ -4296,7 +4436,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST6_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -4312,7 +4453,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_ROOT
         }
 
-        private static readonly Func TEST6_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST6_ROOT_exit(Spec2Sm sm)
         {
             // TEST6_ROOT behavior
             // uml: exit / { trace("Exit TEST6_ROOT."); }
@@ -4323,7 +4464,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST6_VARIABLES_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST6_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -4348,7 +4490,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_S1
         }
 
-        private static readonly Func TEST6_S1_exit = (Spec2Sm sm) =>
+        private static void TEST6_S1_exit(Spec2Sm sm)
         {
             // TEST6_S1 behavior
             // uml: exit / { trace("Exit TEST6_S1."); }
@@ -4360,8 +4502,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST6_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST6_S1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST6_S1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST6_S1 behavior
@@ -4389,7 +4532,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for TEST6_S1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST6_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -4405,7 +4549,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_S2
         }
 
-        private static readonly Func TEST6_S2_exit = (Spec2Sm sm) =>
+        private static void TEST6_S2_exit(Spec2Sm sm)
         {
             // TEST6_S2 behavior
             // uml: exit / { trace("Exit TEST6_S2."); }
@@ -4416,7 +4560,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST6_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST7_INITIAL_OR_HISTORY
         ////////////////////////////////////////////////////////////////////////////////
@@ -4432,7 +4577,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_INITIAL_OR_HISTORY
         }
 
-        private static readonly Func TEST7_INITIAL_OR_HISTORY_exit = (Spec2Sm sm) =>
+        private static void TEST7_INITIAL_OR_HISTORY_exit(Spec2Sm sm)
         {
             // TEST7_INITIAL_OR_HISTORY behavior
             // uml: exit / { trace("Exit TEST7_INITIAL_OR_HISTORY."); }
@@ -4443,7 +4588,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST7
         ////////////////////////////////////////////////////////////////////////////////
@@ -4467,7 +4613,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7
         }
 
-        private static readonly Func TEST7_exit = (Spec2Sm sm) =>
+        private static void TEST7_exit(Spec2Sm sm)
         {
             // TEST7 behavior
             // uml: exit / { trace("Exit TEST7."); }
@@ -4478,7 +4624,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST7_INITIAL_OR_HISTORY_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DEEP_HISTORY1
         ////////////////////////////////////////////////////////////////////////////////
@@ -4494,7 +4641,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY1
         }
 
-        private static readonly Func T7__DEEP_HISTORY1_exit = (Spec2Sm sm) =>
+        private static void T7__DEEP_HISTORY1_exit(Spec2Sm sm)
         {
             // T7__DEEP_HISTORY1 behavior
             // uml: exit / { trace("Exit T7__DEEP_HISTORY1."); }
@@ -4505,7 +4652,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST7_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__SANTAS_WORKSHOP
         ////////////////////////////////////////////////////////////////////////////////
@@ -4521,7 +4669,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__SANTAS_WORKSHOP
         }
 
-        private static readonly Func T7__DH1__SANTAS_WORKSHOP_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__SANTAS_WORKSHOP_exit(Spec2Sm sm)
         {
             // T7__DH1__SANTAS_WORKSHOP behavior
             // uml: exit / { trace("Exit T7__DH1__SANTAS_WORKSHOP."); }
@@ -4532,7 +4680,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DEEP_HISTORY1_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__ALIENS_DETECTED
         ////////////////////////////////////////////////////////////////////////////////
@@ -4549,7 +4698,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__ALIENS_DETECTED
         }
 
-        private static readonly Func T7__DH1__ALIENS_DETECTED_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__ALIENS_DETECTED_exit(Spec2Sm sm)
         {
             // T7__DH1__ALIENS_DETECTED behavior
             // uml: exit / { trace("Exit T7__DH1__ALIENS_DETECTED."); }
@@ -4561,8 +4710,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__SANTAS_WORKSHOP_exit;
             sm.current_event_handlers[(int)EventId.EV8] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__ALIENS_DETECTED_ev8 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__ALIENS_DETECTED_ev8(Spec2Sm sm)
         {
             // No ancestor state handles `EV8` event.
             // T7__DH1__ALIENS_DETECTED behavior
@@ -4579,7 +4729,8 @@ namespace Csharp.Spec2smTests
                 T7__DH1__BUILD_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DH1__ALIENS_DETECTED
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__GET_BACKUP
         ////////////////////////////////////////////////////////////////////////////////
@@ -4595,7 +4746,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GET_BACKUP
         }
 
-        private static readonly Func T7__DH1__GET_BACKUP_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__GET_BACKUP_exit(Spec2Sm sm)
         {
             // T7__DH1__GET_BACKUP behavior
             // uml: exit / { trace("Exit T7__DH1__GET_BACKUP."); }
@@ -4606,7 +4757,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__ALIENS_DETECTED_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__HERO
         ////////////////////////////////////////////////////////////////////////////////
@@ -4638,7 +4790,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__HERO
         }
 
-        private static readonly Func T7__DH1__HERO_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__HERO_exit(Spec2Sm sm)
         {
             // T7__DH1__HERO behavior
             // uml: exit / { trace("Exit T7__DH1__HERO."); }
@@ -4649,7 +4801,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__GET_BACKUP_exit;
-        };
+        }
+
         static void T7__DH1__HERO_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH1__HERO.InitialState behavior
@@ -4683,7 +4836,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CALL_BATMAN
         }
 
-        private static readonly Func T7__DH1__CALL_BATMAN_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__CALL_BATMAN_exit(Spec2Sm sm)
         {
             // T7__DH1__CALL_BATMAN behavior
             // uml: exit / { trace("Exit T7__DH1__CALL_BATMAN."); }
@@ -4695,8 +4848,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__HERO_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__CALL_BATMAN_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__CALL_BATMAN_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__DH1__CALL_BATMAN behavior
@@ -4715,7 +4869,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH1__CALL_BATMAN
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__CALL_THOR
         ////////////////////////////////////////////////////////////////////////////////
@@ -4732,7 +4887,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CALL_THOR
         }
 
-        private static readonly Func T7__DH1__CALL_THOR_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__CALL_THOR_exit(Spec2Sm sm)
         {
             // T7__DH1__CALL_THOR behavior
             // uml: exit / { trace("Exit T7__DH1__CALL_THOR."); }
@@ -4744,8 +4899,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__HERO_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__CALL_THOR_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__CALL_THOR_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__DH1__CALL_THOR behavior
@@ -4763,7 +4919,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH1__CALL_THOR
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__LOCAL_HELP
         ////////////////////////////////////////////////////////////////////////////////
@@ -4779,7 +4936,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__LOCAL_HELP
         }
 
-        private static readonly Func T7__DH1__LOCAL_HELP_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__LOCAL_HELP_exit(Spec2Sm sm)
         {
             // T7__DH1__LOCAL_HELP behavior
             // uml: exit / { trace("Exit T7__DH1__LOCAL_HELP."); }
@@ -4790,7 +4947,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__GET_BACKUP_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__BUDDY_ELF
         ////////////////////////////////////////////////////////////////////////////////
@@ -4823,7 +4981,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BUDDY_ELF
         }
 
-        private static readonly Func T7__DH1__BUDDY_ELF_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__BUDDY_ELF_exit(Spec2Sm sm)
         {
             // T7__DH1__BUDDY_ELF behavior
             // uml: exit / { trace("Exit T7__DH1__BUDDY_ELF."); }
@@ -4835,8 +4993,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__LOCAL_HELP_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__BUDDY_ELF_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__BUDDY_ELF_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__DH1__BUDDY_ELF behavior
@@ -4854,7 +5013,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH1__BUDDY_ELF
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__POLAR_BEARS
         ////////////////////////////////////////////////////////////////////////////////
@@ -4886,7 +5046,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__POLAR_BEARS
         }
 
-        private static readonly Func T7__DH1__POLAR_BEARS_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__POLAR_BEARS_exit(Spec2Sm sm)
         {
             // T7__DH1__POLAR_BEARS behavior
             // uml: exit / { trace("Exit T7__DH1__POLAR_BEARS."); }
@@ -4897,7 +5057,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__LOCAL_HELP_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__GIVE_COOKIES
         ////////////////////////////////////////////////////////////////////////////////
@@ -4922,7 +5083,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GIVE_COOKIES
         }
 
-        private static readonly Func T7__DH1__GIVE_COOKIES_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__GIVE_COOKIES_exit(Spec2Sm sm)
         {
             // T7__DH1__GIVE_COOKIES behavior
             // uml: exit / { trace("Exit T7__DH1__GIVE_COOKIES."); }
@@ -4934,8 +5095,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__ALIENS_DETECTED_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__GIVE_COOKIES_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__GIVE_COOKIES_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__DH1__GIVE_COOKIES behavior
@@ -4955,7 +5117,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH1__GIVE_COOKIES
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__SNOWBALL_FIGHT
         ////////////////////////////////////////////////////////////////////////////////
@@ -4980,7 +5143,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__SNOWBALL_FIGHT
         }
 
-        private static readonly Func T7__DH1__SNOWBALL_FIGHT_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__SNOWBALL_FIGHT_exit(Spec2Sm sm)
         {
             // T7__DH1__SNOWBALL_FIGHT behavior
             // uml: exit / { trace("Exit T7__DH1__SNOWBALL_FIGHT."); }
@@ -4992,8 +5155,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__ALIENS_DETECTED_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__SNOWBALL_FIGHT_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__SNOWBALL_FIGHT_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__DH1__SNOWBALL_FIGHT behavior
@@ -5011,7 +5175,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH1__SNOWBALL_FIGHT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__BUILD
         ////////////////////////////////////////////////////////////////////////////////
@@ -5029,7 +5194,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BUILD
         }
 
-        private static readonly Func T7__DH1__BUILD_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__BUILD_exit(Spec2Sm sm)
         {
             // T7__DH1__BUILD behavior
             // uml: exit / { trace("Exit T7__DH1__BUILD."); }
@@ -5042,8 +5207,9 @@ namespace Csharp.Spec2smTests
             sm.current_state_exit_handler = T7__DH1__SANTAS_WORKSHOP_exit;
             sm.current_event_handlers[(int)EventId.EV6] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV7] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__BUILD_ev6 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__BUILD_ev6(Spec2Sm sm)
         {
             // No ancestor state handles `EV6` event.
             // T7__DH1__BUILD behavior
@@ -5143,8 +5309,9 @@ namespace Csharp.Spec2smTests
                     } // end of behavior for T7__DH1__ALIENS_DETECTED.History
                 } // end of behavior for T7__DH1__ALIENS_DETECTED.InitialState
             } // end of behavior for T7__DH1__BUILD
-        };
-        private static readonly Func T7__DH1__BUILD_ev7 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__BUILD_ev7(Spec2Sm sm)
         {
             // No ancestor state handles `EV7` event.
             // T7__DH1__BUILD behavior
@@ -5227,7 +5394,8 @@ namespace Csharp.Spec2smTests
                     } // end of behavior for T7__DH1__GET_BACKUP.ChoicePoint()
                 } // end of behavior for T7__DH1__GET_BACKUP.History
             } // end of behavior for T7__DH1__BUILD
-        };
+        }
+
         static void T7__DH1__BUILD_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH1__BUILD.InitialState behavior
@@ -5420,7 +5588,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TOOL
         }
 
-        private static readonly Func T7__DH1__TOOL_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__TOOL_exit(Spec2Sm sm)
         {
             // T7__DH1__TOOL behavior
             // uml: exit / { trace("Exit T7__DH1__TOOL."); }
@@ -5432,8 +5600,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__BUILD_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__TOOL_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__TOOL_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // T7__DH1__TOOL behavior
@@ -5450,7 +5619,8 @@ namespace Csharp.Spec2smTests
                 T7__DH1__TOY_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DH1__TOOL
-        };
+        }
+
         static void T7__DH1__TOOL_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH1__TOOL.InitialState behavior
@@ -5491,7 +5661,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CIRCULAR_SAW
         }
 
-        private static readonly Func T7__DH1__CIRCULAR_SAW_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__CIRCULAR_SAW_exit(Spec2Sm sm)
         {
             // T7__DH1__CIRCULAR_SAW behavior
             // uml: exit / { trace("Exit T7__DH1__CIRCULAR_SAW."); }
@@ -5502,7 +5672,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__TOOL_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__IMPACT_DRILL
         ////////////////////////////////////////////////////////////////////////////////
@@ -5527,7 +5698,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__IMPACT_DRILL
         }
 
-        private static readonly Func T7__DH1__IMPACT_DRILL_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__IMPACT_DRILL_exit(Spec2Sm sm)
         {
             // T7__DH1__IMPACT_DRILL behavior
             // uml: exit / { trace("Exit T7__DH1__IMPACT_DRILL."); }
@@ -5539,8 +5710,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__TOOL_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__IMPACT_DRILL_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__IMPACT_DRILL_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__DH1__IMPACT_DRILL behavior
@@ -5558,7 +5730,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH1__IMPACT_DRILL
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__TOY
         ////////////////////////////////////////////////////////////////////////////////
@@ -5583,7 +5756,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TOY
         }
 
-        private static readonly Func T7__DH1__TOY_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__TOY_exit(Spec2Sm sm)
         {
             // T7__DH1__TOY behavior
             // uml: exit / { trace("Exit T7__DH1__TOY."); }
@@ -5595,8 +5768,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__BUILD_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH1__TOY_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__TOY_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__DH1__TOY behavior
@@ -5613,7 +5787,8 @@ namespace Csharp.Spec2smTests
                 T7__DH1__TOOL_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DH1__TOY
-        };
+        }
+
         static void T7__DH1__TOY_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH1__TOY.InitialState behavior
@@ -5655,7 +5830,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GLOW_WORM
         }
 
-        private static readonly Func T7__DH1__GLOW_WORM_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__GLOW_WORM_exit(Spec2Sm sm)
         {
             // T7__DH1__GLOW_WORM behavior
             // uml: exit / { trace("Exit T7__DH1__GLOW_WORM."); }
@@ -5667,8 +5842,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__TOY_exit;
             sm.current_event_handlers[(int)EventId.EV1] = T7__DH1__TOY_ev1; // the next ancestor that handles this event is T7__DH1__TOY
-        };
-        private static readonly Func T7__DH1__GLOW_WORM_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__GLOW_WORM_ev1(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV1` event.
             sm.ancestor_event_handler = T7__DH1__TOY_ev1;
@@ -5686,7 +5862,8 @@ namespace Csharp.Spec2smTests
                 T7__DH1__ROBOT_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DH1__GLOW_WORM
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__RACE_CAR
         ////////////////////////////////////////////////////////////////////////////////
@@ -5711,7 +5888,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__RACE_CAR
         }
 
-        private static readonly Func T7__DH1__RACE_CAR_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__RACE_CAR_exit(Spec2Sm sm)
         {
             // T7__DH1__RACE_CAR behavior
             // uml: exit / { trace("Exit T7__DH1__RACE_CAR."); }
@@ -5723,8 +5900,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__TOY_exit;
             sm.current_event_handlers[(int)EventId.EV1] = T7__DH1__TOY_ev1; // the next ancestor that handles this event is T7__DH1__TOY
-        };
-        private static readonly Func T7__DH1__RACE_CAR_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__RACE_CAR_ev1(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV1` event.
             sm.ancestor_event_handler = T7__DH1__TOY_ev1;
@@ -5743,7 +5921,8 @@ namespace Csharp.Spec2smTests
                 sm.ancestor_event_handler = null;
                 return;
             } // end of behavior for T7__DH1__RACE_CAR
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__ROBOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -5767,7 +5946,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__ROBOT
         }
 
-        private static readonly Func T7__DH1__ROBOT_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__ROBOT_exit(Spec2Sm sm)
         {
             // T7__DH1__ROBOT behavior
             // uml: exit / { trace("Exit T7__DH1__ROBOT."); }
@@ -5778,7 +5957,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__TOY_exit;
-        };
+        }
+
         static void T7__DH1__ROBOT_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH1__ROBOT.InitialState behavior
@@ -5820,7 +6000,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BATTLEBOT
         }
 
-        private static readonly Func T7__DH1__BATTLEBOT_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__BATTLEBOT_exit(Spec2Sm sm)
         {
             // T7__DH1__BATTLEBOT behavior
             // uml: exit / { trace("Exit T7__DH1__BATTLEBOT."); }
@@ -5832,8 +6012,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__ROBOT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = T7__DH1__TOY_ev1; // the next ancestor that handles this event is T7__DH1__TOY
-        };
-        private static readonly Func T7__DH1__BATTLEBOT_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__BATTLEBOT_ev1(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV1` event.
             sm.ancestor_event_handler = T7__DH1__TOY_ev1;
@@ -5852,7 +6033,8 @@ namespace Csharp.Spec2smTests
                 sm.ancestor_event_handler = null;
                 return;
             } // end of behavior for T7__DH1__BATTLEBOT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__WALL_E
         ////////////////////////////////////////////////////////////////////////////////
@@ -5876,7 +6058,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__WALL_E
         }
 
-        private static readonly Func T7__DH1__WALL_E_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__WALL_E_exit(Spec2Sm sm)
         {
             // T7__DH1__WALL_E behavior
             // uml: exit / { trace("Exit T7__DH1__WALL_E."); }
@@ -5887,7 +6069,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__ROBOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH1__TEDDY_BEAR
         ////////////////////////////////////////////////////////////////////////////////
@@ -5912,7 +6095,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TEDDY_BEAR
         }
 
-        private static readonly Func T7__DH1__TEDDY_BEAR_exit = (Spec2Sm sm) =>
+        private static void T7__DH1__TEDDY_BEAR_exit(Spec2Sm sm)
         {
             // T7__DH1__TEDDY_BEAR behavior
             // uml: exit / { trace("Exit T7__DH1__TEDDY_BEAR."); }
@@ -5924,8 +6107,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH1__TOY_exit;
             sm.current_event_handlers[(int)EventId.EV1] = T7__DH1__TOY_ev1; // the next ancestor that handles this event is T7__DH1__TOY
-        };
-        private static readonly Func T7__DH1__TEDDY_BEAR_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH1__TEDDY_BEAR_ev1(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV1` event.
             sm.ancestor_event_handler = T7__DH1__TOY_ev1;
@@ -5944,7 +6128,8 @@ namespace Csharp.Spec2smTests
                 sm.ancestor_event_handler = null;
                 return;
             } // end of behavior for T7__DH1__TEDDY_BEAR
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DEEP_HISTORY2
         ////////////////////////////////////////////////////////////////////////////////
@@ -5960,7 +6145,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY2
         }
 
-        private static readonly Func T7__DEEP_HISTORY2_exit = (Spec2Sm sm) =>
+        private static void T7__DEEP_HISTORY2_exit(Spec2Sm sm)
         {
             // T7__DEEP_HISTORY2 behavior
             // uml: exit / { trace("Exit T7__DEEP_HISTORY2."); }
@@ -5971,7 +6156,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST7_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH2__STATE_0
         ////////////////////////////////////////////////////////////////////////////////
@@ -5988,7 +6174,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_0
         }
 
-        private static readonly Func T7__DH2__STATE_0_exit = (Spec2Sm sm) =>
+        private static void T7__DH2__STATE_0_exit(Spec2Sm sm)
         {
             // T7__DH2__state_0 behavior
             // uml: exit / { trace("Exit T7__DH2__state_0."); }
@@ -6000,8 +6186,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DEEP_HISTORY2_exit;
             sm.current_event_handlers[(int)EventId.EVOPEN] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH2__STATE_0_evopen = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH2__STATE_0_evopen(Spec2Sm sm)
         {
             // No ancestor state handles `evOpen` event.
             // T7__DH2__state_0 behavior
@@ -6019,7 +6206,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH2__state_0
-        };
+        }
+
         static void T7__DH2__state_0_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH2__state_0.InitialState behavior
@@ -6116,7 +6304,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_1
         }
 
-        private static readonly Func T7__DH2__STATE_1_exit = (Spec2Sm sm) =>
+        private static void T7__DH2__STATE_1_exit(Spec2Sm sm)
         {
             // T7__DH2__state_1 behavior
             // uml: exit / { trace("Exit T7__DH2__state_1."); }
@@ -6128,8 +6316,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH2__STATE_0_exit;
             sm.current_event_handlers[(int)EventId.EVSTEP] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH2__STATE_1_evstep = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH2__STATE_1_evstep(Spec2Sm sm)
         {
             // No ancestor state handles `evStep` event.
             // T7__DH2__state_1 behavior
@@ -6146,7 +6335,8 @@ namespace Csharp.Spec2smTests
                 T7__DH2__state_2_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DH2__state_1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH2__STATE_2
         ////////////////////////////////////////////////////////////////////////////////
@@ -6171,7 +6361,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_2
         }
 
-        private static readonly Func T7__DH2__STATE_2_exit = (Spec2Sm sm) =>
+        private static void T7__DH2__STATE_2_exit(Spec2Sm sm)
         {
             // T7__DH2__state_2 behavior
             // uml: exit / { trace("Exit T7__DH2__state_2."); }
@@ -6183,8 +6373,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH2__STATE_0_exit;
             sm.current_event_handlers[(int)EventId.EVBACK] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH2__STATE_2_evback = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH2__STATE_2_evback(Spec2Sm sm)
         {
             // No ancestor state handles `evBack` event.
             // T7__DH2__state_2 behavior
@@ -6202,7 +6393,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH2__state_2
-        };
+        }
+
         static void T7__DH2__state_2_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH2__state_2.InitialState behavior
@@ -6244,7 +6436,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_6
         }
 
-        private static readonly Func T7__DH2__STATE_6_exit = (Spec2Sm sm) =>
+        private static void T7__DH2__STATE_6_exit(Spec2Sm sm)
         {
             // T7__DH2__state_6 behavior
             // uml: exit / { trace("Exit T7__DH2__state_6."); }
@@ -6256,8 +6448,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH2__STATE_2_exit;
             sm.current_event_handlers[(int)EventId.EVSTEP] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH2__STATE_6_evstep = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH2__STATE_6_evstep(Spec2Sm sm)
         {
             // No ancestor state handles `evStep` event.
             // T7__DH2__state_6 behavior
@@ -6275,7 +6468,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH2__state_6
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH2__STATE_9
         ////////////////////////////////////////////////////////////////////////////////
@@ -6299,7 +6493,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_9
         }
 
-        private static readonly Func T7__DH2__STATE_9_exit = (Spec2Sm sm) =>
+        private static void T7__DH2__STATE_9_exit(Spec2Sm sm)
         {
             // T7__DH2__state_9 behavior
             // uml: exit / { trace("Exit T7__DH2__state_9."); }
@@ -6310,7 +6504,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH2__STATE_2_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH2__STATE_3
         ////////////////////////////////////////////////////////////////////////////////
@@ -6327,7 +6522,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_3
         }
 
-        private static readonly Func T7__DH2__STATE_3_exit = (Spec2Sm sm) =>
+        private static void T7__DH2__STATE_3_exit(Spec2Sm sm)
         {
             // T7__DH2__state_3 behavior
             // uml: exit / { trace("Exit T7__DH2__state_3."); }
@@ -6339,8 +6534,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DEEP_HISTORY2_exit;
             sm.current_event_handlers[(int)EventId.EVCLOSE] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH2__STATE_3_evclose = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH2__STATE_3_evclose(Spec2Sm sm)
         {
             // No ancestor state handles `evClose` event.
             // T7__DH2__state_3 behavior
@@ -6357,7 +6553,8 @@ namespace Csharp.Spec2smTests
                 T7__DH2__state_0_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DH2__state_3
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DEEP_HISTORY3
         ////////////////////////////////////////////////////////////////////////////////
@@ -6373,7 +6570,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY3
         }
 
-        private static readonly Func T7__DEEP_HISTORY3_exit = (Spec2Sm sm) =>
+        private static void T7__DEEP_HISTORY3_exit(Spec2Sm sm)
         {
             // T7__DEEP_HISTORY3 behavior
             // uml: exit / { trace("Exit T7__DEEP_HISTORY3."); }
@@ -6384,7 +6581,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST7_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH3__STATE_0
         ////////////////////////////////////////////////////////////////////////////////
@@ -6401,7 +6599,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_0
         }
 
-        private static readonly Func T7__DH3__STATE_0_exit = (Spec2Sm sm) =>
+        private static void T7__DH3__STATE_0_exit(Spec2Sm sm)
         {
             // T7__DH3__state_0 behavior
             // uml: exit / { trace("Exit T7__DH3__state_0."); }
@@ -6413,8 +6611,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DEEP_HISTORY3_exit;
             sm.current_event_handlers[(int)EventId.EVOPEN] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH3__STATE_0_evopen = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH3__STATE_0_evopen(Spec2Sm sm)
         {
             // No ancestor state handles `evOpen` event.
             // T7__DH3__state_0 behavior
@@ -6432,7 +6631,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH3__state_0
-        };
+        }
+
         static void T7__DH3__state_0_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH3__state_0.InitialState behavior
@@ -6497,7 +6697,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_1
         }
 
-        private static readonly Func T7__DH3__STATE_1_exit = (Spec2Sm sm) =>
+        private static void T7__DH3__STATE_1_exit(Spec2Sm sm)
         {
             // T7__DH3__state_1 behavior
             // uml: exit / { trace("Exit T7__DH3__state_1."); }
@@ -6509,8 +6709,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH3__STATE_0_exit;
             sm.current_event_handlers[(int)EventId.EVSTEP] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH3__STATE_1_evstep = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH3__STATE_1_evstep(Spec2Sm sm)
         {
             // No ancestor state handles `evStep` event.
             // T7__DH3__state_1 behavior
@@ -6527,7 +6728,8 @@ namespace Csharp.Spec2smTests
                 T7__DH3__state_2_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DH3__state_1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH3__STATE_2
         ////////////////////////////////////////////////////////////////////////////////
@@ -6552,7 +6754,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_2
         }
 
-        private static readonly Func T7__DH3__STATE_2_exit = (Spec2Sm sm) =>
+        private static void T7__DH3__STATE_2_exit(Spec2Sm sm)
         {
             // T7__DH3__state_2 behavior
             // uml: exit / { trace("Exit T7__DH3__state_2."); }
@@ -6564,8 +6766,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH3__STATE_0_exit;
             sm.current_event_handlers[(int)EventId.EVBACK] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH3__STATE_2_evback = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH3__STATE_2_evback(Spec2Sm sm)
         {
             // No ancestor state handles `evBack` event.
             // T7__DH3__state_2 behavior
@@ -6583,7 +6786,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH3__state_2
-        };
+        }
+
         static void T7__DH3__state_2_InitialState_transition(Spec2Sm sm)
         {
             // T7__DH3__state_2.InitialState behavior
@@ -6617,7 +6821,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_6
         }
 
-        private static readonly Func T7__DH3__STATE_6_exit = (Spec2Sm sm) =>
+        private static void T7__DH3__STATE_6_exit(Spec2Sm sm)
         {
             // T7__DH3__state_6 behavior
             // uml: exit / { trace("Exit T7__DH3__state_6."); }
@@ -6629,8 +6833,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH3__STATE_2_exit;
             sm.current_event_handlers[(int)EventId.EVSTEP] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH3__STATE_6_evstep = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH3__STATE_6_evstep(Spec2Sm sm)
         {
             // No ancestor state handles `evStep` event.
             // T7__DH3__state_6 behavior
@@ -6648,7 +6853,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__DH3__state_6
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH3__STATE_9
         ////////////////////////////////////////////////////////////////////////////////
@@ -6664,7 +6870,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_9
         }
 
-        private static readonly Func T7__DH3__STATE_9_exit = (Spec2Sm sm) =>
+        private static void T7__DH3__STATE_9_exit(Spec2Sm sm)
         {
             // T7__DH3__state_9 behavior
             // uml: exit / { trace("Exit T7__DH3__state_9."); }
@@ -6675,7 +6881,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DH3__STATE_2_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__DH3__STATE_3
         ////////////////////////////////////////////////////////////////////////////////
@@ -6692,7 +6899,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_3
         }
 
-        private static readonly Func T7__DH3__STATE_3_exit = (Spec2Sm sm) =>
+        private static void T7__DH3__STATE_3_exit(Spec2Sm sm)
         {
             // T7__DH3__state_3 behavior
             // uml: exit / { trace("Exit T7__DH3__state_3."); }
@@ -6704,8 +6911,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__DEEP_HISTORY3_exit;
             sm.current_event_handlers[(int)EventId.EVCLOSE] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__DH3__STATE_3_evclose = (Spec2Sm sm) =>
+        }
+
+        private static void T7__DH3__STATE_3_evclose(Spec2Sm sm)
         {
             // No ancestor state handles `evClose` event.
             // T7__DH3__state_3 behavior
@@ -6722,7 +6930,8 @@ namespace Csharp.Spec2smTests
                 T7__DH3__state_0_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DH3__state_3
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__HISTORY1
         ////////////////////////////////////////////////////////////////////////////////
@@ -6738,7 +6947,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__HISTORY1
         }
 
-        private static readonly Func T7__HISTORY1_exit = (Spec2Sm sm) =>
+        private static void T7__HISTORY1_exit(Spec2Sm sm)
         {
             // T7__HISTORY1 behavior
             // uml: exit / { trace("Exit T7__HISTORY1."); }
@@ -6749,7 +6958,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST7_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__H1__OFF
         ////////////////////////////////////////////////////////////////////////////////
@@ -6768,7 +6978,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF
         }
 
-        private static readonly Func T7__H1__OFF_exit = (Spec2Sm sm) =>
+        private static void T7__H1__OFF_exit(Spec2Sm sm)
         {
             // T7__H1__OFF behavior
             // uml: exit / { trace("Exit T7__H1__OFF."); }
@@ -6782,8 +6992,9 @@ namespace Csharp.Spec2smTests
             sm.current_event_handlers[(int)EventId.EV3] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV4] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV7] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__H1__OFF_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__OFF_ev3(Spec2Sm sm)
         {
             // No ancestor state handles `EV3` event.
             // T7__H1__OFF behavior
@@ -6801,8 +7012,9 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__H1__OFF
-        };
-        private static readonly Func T7__H1__OFF_ev4 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__OFF_ev4(Spec2Sm sm)
         {
             // No ancestor state handles `EV4` event.
             // T7__H1__OFF behavior
@@ -6819,8 +7031,9 @@ namespace Csharp.Spec2smTests
                 T7__H1__OFF_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__H1__OFF
-        };
-        private static readonly Func T7__H1__OFF_ev7 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__OFF_ev7(Spec2Sm sm)
         {
             // No ancestor state handles `EV7` event.
             // T7__H1__OFF behavior
@@ -6837,7 +7050,8 @@ namespace Csharp.Spec2smTests
                 T7__H1__ON_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__H1__OFF
-        };
+        }
+
         static void T7__H1__OFF_InitialState_transition(Spec2Sm sm)
         {
             // T7__H1__OFF.InitialState behavior
@@ -6918,7 +7132,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF1
         }
 
-        private static readonly Func T7__H1__OFF1_exit = (Spec2Sm sm) =>
+        private static void T7__H1__OFF1_exit(Spec2Sm sm)
         {
             // T7__H1__OFF1 behavior
             // uml: exit / { trace("Exit T7__H1__OFF1."); }
@@ -6930,8 +7144,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__H1__OFF_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__H1__OFF1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__OFF1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__H1__OFF1 behavior
@@ -6949,7 +7164,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__H1__OFF1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__H1__OFF2
         ////////////////////////////////////////////////////////////////////////////////
@@ -6974,7 +7190,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF2
         }
 
-        private static readonly Func T7__H1__OFF2_exit = (Spec2Sm sm) =>
+        private static void T7__H1__OFF2_exit(Spec2Sm sm)
         {
             // T7__H1__OFF2 behavior
             // uml: exit / { trace("Exit T7__H1__OFF2."); }
@@ -6986,8 +7202,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__H1__OFF_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__H1__OFF2_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__OFF2_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__H1__OFF2 behavior
@@ -7005,7 +7222,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__H1__OFF2
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__H1__OFF3
         ////////////////////////////////////////////////////////////////////////////////
@@ -7029,7 +7247,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF3
         }
 
-        private static readonly Func T7__H1__OFF3_exit = (Spec2Sm sm) =>
+        private static void T7__H1__OFF3_exit(Spec2Sm sm)
         {
             // T7__H1__OFF3 behavior
             // uml: exit / { trace("Exit T7__H1__OFF3."); }
@@ -7040,7 +7258,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__H1__OFF_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__H1__ON
         ////////////////////////////////////////////////////////////////////////////////
@@ -7057,7 +7276,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON
         }
 
-        private static readonly Func T7__H1__ON_exit = (Spec2Sm sm) =>
+        private static void T7__H1__ON_exit(Spec2Sm sm)
         {
             // T7__H1__ON behavior
             // uml: exit / { trace("Exit T7__H1__ON."); }
@@ -7069,8 +7288,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__HISTORY1_exit;
             sm.current_event_handlers[(int)EventId.EV6] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__H1__ON_ev6 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__ON_ev6(Spec2Sm sm)
         {
             // No ancestor state handles `EV6` event.
             // T7__H1__ON behavior
@@ -7087,7 +7307,8 @@ namespace Csharp.Spec2smTests
                 T7__H1__OFF_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__H1__ON
-        };
+        }
+
         static void T7__H1__ON_InitialState_transition(Spec2Sm sm)
         {
             // T7__H1__ON.InitialState behavior
@@ -7168,7 +7389,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON1
         }
 
-        private static readonly Func T7__H1__ON1_exit = (Spec2Sm sm) =>
+        private static void T7__H1__ON1_exit(Spec2Sm sm)
         {
             // T7__H1__ON1 behavior
             // uml: exit / { trace("Exit T7__H1__ON1."); }
@@ -7180,8 +7401,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__H1__ON_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__H1__ON1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__ON1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__H1__ON1 behavior
@@ -7199,7 +7421,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__H1__ON1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__H1__ON2
         ////////////////////////////////////////////////////////////////////////////////
@@ -7224,7 +7447,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON2
         }
 
-        private static readonly Func T7__H1__ON2_exit = (Spec2Sm sm) =>
+        private static void T7__H1__ON2_exit(Spec2Sm sm)
         {
             // T7__H1__ON2 behavior
             // uml: exit / { trace("Exit T7__H1__ON2."); }
@@ -7236,8 +7459,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__H1__ON_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__H1__ON2_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__ON2_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__H1__ON2 behavior
@@ -7255,7 +7479,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__H1__ON2
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__H1__ON3
         ////////////////////////////////////////////////////////////////////////////////
@@ -7280,7 +7505,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON3
         }
 
-        private static readonly Func T7__H1__ON3_exit = (Spec2Sm sm) =>
+        private static void T7__H1__ON3_exit(Spec2Sm sm)
         {
             // T7__H1__ON3 behavior
             // uml: exit / { trace("Exit T7__H1__ON3."); }
@@ -7292,8 +7517,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__H1__ON_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__H1__ON3_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__H1__ON3_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__H1__ON3 behavior
@@ -7311,7 +7537,8 @@ namespace Csharp.Spec2smTests
                 // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                 return;
             } // end of behavior for T7__H1__ON3
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__INITIAL1
         ////////////////////////////////////////////////////////////////////////////////
@@ -7327,7 +7554,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1
         }
 
-        private static readonly Func T7__INITIAL1_exit = (Spec2Sm sm) =>
+        private static void T7__INITIAL1_exit(Spec2Sm sm)
         {
             // T7__INITIAL1 behavior
             // uml: exit / { trace("Exit T7__INITIAL1."); }
@@ -7338,7 +7565,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST7_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__INITIAL1__PARENT
         ////////////////////////////////////////////////////////////////////////////////
@@ -7355,7 +7583,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__PARENT
         }
 
-        private static readonly Func T7__INITIAL1__PARENT_exit = (Spec2Sm sm) =>
+        private static void T7__INITIAL1__PARENT_exit(Spec2Sm sm)
         {
             // T7__INITIAL1__PARENT behavior
             // uml: exit / { trace("Exit T7__INITIAL1__PARENT."); }
@@ -7367,8 +7595,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__INITIAL1_exit;
             sm.current_event_handlers[(int)EventId.EV5] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__INITIAL1__PARENT_ev5 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__INITIAL1__PARENT_ev5(Spec2Sm sm)
         {
             // No ancestor state handles `EV5` event.
             // T7__INITIAL1__PARENT behavior
@@ -7380,7 +7609,8 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for T7__INITIAL1__PARENT
-        };
+        }
+
         static void T7__INITIAL1__PARENT_InitialState_transition(Spec2Sm sm)
         {
             // T7__INITIAL1__PARENT.InitialState behavior
@@ -7414,7 +7644,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G
         }
 
-        private static readonly Func T7__INITIAL1__G_exit = (Spec2Sm sm) =>
+        private static void T7__INITIAL1__G_exit(Spec2Sm sm)
         {
             // T7__INITIAL1__G behavior
             // uml: exit / { trace("Exit T7__INITIAL1__G."); }
@@ -7426,8 +7656,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__INITIAL1__PARENT_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__INITIAL1__G_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__INITIAL1__G_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // T7__INITIAL1__G behavior
@@ -7444,7 +7675,8 @@ namespace Csharp.Spec2smTests
                 T7__INITIAL1__PARENT_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__INITIAL1__G
-        };
+        }
+
         static void T7__INITIAL1__G_InitialState_transition(Spec2Sm sm)
         {
             // T7__INITIAL1__G.InitialState behavior
@@ -7507,7 +7739,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S1
         }
 
-        private static readonly Func T7__INITIAL1__G_S1_exit = (Spec2Sm sm) =>
+        private static void T7__INITIAL1__G_S1_exit(Spec2Sm sm)
         {
             // T7__INITIAL1__G_S1 behavior
             // uml: exit / { trace("Exit T7__INITIAL1__G_S1."); }
@@ -7518,7 +7750,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__INITIAL1__G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__INITIAL1__G_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -7534,7 +7767,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S2
         }
 
-        private static readonly Func T7__INITIAL1__G_S2_exit = (Spec2Sm sm) =>
+        private static void T7__INITIAL1__G_S2_exit(Spec2Sm sm)
         {
             // T7__INITIAL1__G_S2 behavior
             // uml: exit / { trace("Exit T7__INITIAL1__G_S2."); }
@@ -7545,7 +7778,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__INITIAL1__G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__INITIAL1__G_S3
         ////////////////////////////////////////////////////////////////////////////////
@@ -7561,7 +7795,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S3
         }
 
-        private static readonly Func T7__INITIAL1__G_S3_exit = (Spec2Sm sm) =>
+        private static void T7__INITIAL1__G_S3_exit(Spec2Sm sm)
         {
             // T7__INITIAL1__G_S3 behavior
             // uml: exit / { trace("Exit T7__INITIAL1__G_S3."); }
@@ -7572,7 +7806,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = T7__INITIAL1__G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state T7__INITIAL1__S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -7590,7 +7825,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__S1
         }
 
-        private static readonly Func T7__INITIAL1__S1_exit = (Spec2Sm sm) =>
+        private static void T7__INITIAL1__S1_exit(Spec2Sm sm)
         {
             // T7__INITIAL1__S1 behavior
             // uml: exit / { trace("Exit T7__INITIAL1__S1."); }
@@ -7603,8 +7838,9 @@ namespace Csharp.Spec2smTests
             sm.current_state_exit_handler = T7__INITIAL1__PARENT_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV3] = null; // no ancestor listens to this event
-        };
-        private static readonly Func T7__INITIAL1__S1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__INITIAL1__S1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // T7__INITIAL1__S1 behavior
@@ -7621,8 +7857,9 @@ namespace Csharp.Spec2smTests
                 T7__INITIAL1__G_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__INITIAL1__S1
-        };
-        private static readonly Func T7__INITIAL1__S1_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void T7__INITIAL1__S1_ev3(Spec2Sm sm)
         {
             // No ancestor state handles `EV3` event.
             // T7__INITIAL1__S1 behavior
@@ -7640,7 +7877,8 @@ namespace Csharp.Spec2smTests
                 T7__INITIAL1__G_InitialState_transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__INITIAL1__S1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST7_DECIDE
         ////////////////////////////////////////////////////////////////////////////////
@@ -7661,7 +7899,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_DECIDE
         }
 
-        private static readonly Func TEST7_DECIDE_exit = (Spec2Sm sm) =>
+        private static void TEST7_DECIDE_exit(Spec2Sm sm)
         {
             // TEST7_DECIDE behavior
             // uml: exit / { trace("Exit TEST7_DECIDE."); }
@@ -7685,8 +7923,9 @@ namespace Csharp.Spec2smTests
             sm.current_event_handlers[(int)EventId.EV3] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV4] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV5] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST7_DECIDE_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST7_DECIDE_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST7_DECIDE behavior
@@ -7713,8 +7952,9 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for T7__INITIAL1.InitialState
             } // end of behavior for TEST7_DECIDE
-        };
-        private static readonly Func TEST7_DECIDE_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST7_DECIDE_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST7_DECIDE behavior
@@ -7741,8 +7981,9 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for T7__HISTORY1.InitialState
             } // end of behavior for TEST7_DECIDE
-        };
-        private static readonly Func TEST7_DECIDE_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST7_DECIDE_ev3(Spec2Sm sm)
         {
             // No ancestor state handles `EV3` event.
             // TEST7_DECIDE behavior
@@ -7770,8 +8011,9 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for T7__DEEP_HISTORY1.InitialState
             } // end of behavior for TEST7_DECIDE
-        };
-        private static readonly Func TEST7_DECIDE_ev4 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST7_DECIDE_ev4(Spec2Sm sm)
         {
             // No ancestor state handles `EV4` event.
             // TEST7_DECIDE behavior
@@ -7798,8 +8040,9 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for T7__DEEP_HISTORY2.InitialState
             } // end of behavior for TEST7_DECIDE
-        };
-        private static readonly Func TEST7_DECIDE_ev5 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST7_DECIDE_ev5(Spec2Sm sm)
         {
             // No ancestor state handles `EV5` event.
             // TEST7_DECIDE behavior
@@ -7826,7 +8069,8 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for T7__DEEP_HISTORY3.InitialState
             } // end of behavior for TEST7_DECIDE
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST8_ENTRY_CHOICE
         ////////////////////////////////////////////////////////////////////////////////
@@ -7842,7 +8086,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_ENTRY_CHOICE
         }
 
-        private static readonly Func TEST8_ENTRY_CHOICE_exit = (Spec2Sm sm) =>
+        private static void TEST8_ENTRY_CHOICE_exit(Spec2Sm sm)
         {
             // TEST8_ENTRY_CHOICE behavior
             // uml: exit / { trace("Exit TEST8_ENTRY_CHOICE."); }
@@ -7853,7 +8097,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST8_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -7879,7 +8124,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_ROOT
         }
 
-        private static readonly Func TEST8_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST8_ROOT_exit(Spec2Sm sm)
         {
             // TEST8_ROOT behavior
             // uml: exit / { trace("Exit TEST8_ROOT."); }
@@ -7892,8 +8137,9 @@ namespace Csharp.Spec2smTests
             sm.current_state_exit_handler = TEST8_ENTRY_CHOICE_exit;
             sm.current_event_handlers[(int)EventId.EV3] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV5] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST8_ROOT_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST8_ROOT_ev3(Spec2Sm sm)
         {
             // No ancestor state handles `EV3` event.
             // TEST8_ROOT behavior
@@ -7904,8 +8150,9 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for TEST8_ROOT
-        };
-        private static readonly Func TEST8_ROOT_ev5 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST8_ROOT_ev5(Spec2Sm sm)
         {
             // No ancestor state handles `EV5` event.
             // TEST8_ROOT behavior
@@ -7917,7 +8164,8 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for TEST8_ROOT
-        };
+        }
+
         static void TEST8_ROOT_EntryPoint_1__transition(Spec2Sm sm)
         {
             // TEST8_ROOT.EntryPoint(1) behavior
@@ -7951,7 +8199,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G
         }
 
-        private static readonly Func TEST8_G_exit = (Spec2Sm sm) =>
+        private static void TEST8_G_exit(Spec2Sm sm)
         {
             // TEST8_G behavior
             // uml: exit / { trace("Exit TEST8_G."); }
@@ -7963,8 +8211,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST8_ROOT_exit;
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST8_G_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST8_G_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST8_G behavior
@@ -7981,7 +8230,8 @@ namespace Csharp.Spec2smTests
                 TEST8_ROOT_EntryPoint_1__transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for TEST8_G
-        };
+        }
+
         static void TEST8_G_EntryPoint_1__transition(Spec2Sm sm)
         {
             // TEST8_G.EntryPoint(1) behavior
@@ -8061,7 +8311,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S1
         }
 
-        private static readonly Func TEST8_G_S1_exit = (Spec2Sm sm) =>
+        private static void TEST8_G_S1_exit(Spec2Sm sm)
         {
             // TEST8_G_S1 behavior
             // uml: exit / { trace("Exit TEST8_G_S1."); }
@@ -8072,7 +8322,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST8_G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST8_G_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -8088,7 +8339,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S2
         }
 
-        private static readonly Func TEST8_G_S2_exit = (Spec2Sm sm) =>
+        private static void TEST8_G_S2_exit(Spec2Sm sm)
         {
             // TEST8_G_S2 behavior
             // uml: exit / { trace("Exit TEST8_G_S2."); }
@@ -8099,7 +8350,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST8_G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST8_G_S3
         ////////////////////////////////////////////////////////////////////////////////
@@ -8115,7 +8367,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S3
         }
 
-        private static readonly Func TEST8_G_S3_exit = (Spec2Sm sm) =>
+        private static void TEST8_G_S3_exit(Spec2Sm sm)
         {
             // TEST8_G_S3 behavior
             // uml: exit / { trace("Exit TEST8_G_S3."); }
@@ -8126,7 +8378,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST8_G_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST8_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -8145,7 +8398,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_S1
         }
 
-        private static readonly Func TEST8_S1_exit = (Spec2Sm sm) =>
+        private static void TEST8_S1_exit(Spec2Sm sm)
         {
             // TEST8_S1 behavior
             // uml: exit / { trace("Exit TEST8_S1."); }
@@ -8159,8 +8412,9 @@ namespace Csharp.Spec2smTests
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV3] = TEST8_ROOT_ev3; // the next ancestor that handles this event is TEST8_ROOT
             sm.current_event_handlers[(int)EventId.EV6] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST8_S1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST8_S1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST8_S1 behavior
@@ -8188,8 +8442,9 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for TEST8_S1
-        };
-        private static readonly Func TEST8_S1_ev3 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST8_S1_ev3(Spec2Sm sm)
         {
             // Setup handler for next ancestor that listens to `EV3` event.
             sm.ancestor_event_handler = TEST8_ROOT_ev3;
@@ -8208,8 +8463,9 @@ namespace Csharp.Spec2smTests
                 TEST8_G_EntryPoint_3__transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for TEST8_S1
-        };
-        private static readonly Func TEST8_S1_ev6 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST8_S1_ev6(Spec2Sm sm)
         {
             // No ancestor state handles `EV6` event.
             // TEST8_S1 behavior
@@ -8227,7 +8483,8 @@ namespace Csharp.Spec2smTests
                 TEST8_G_EntryPoint_3__transition(sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for TEST8_S1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_EXIT_CHOICE
         ////////////////////////////////////////////////////////////////////////////////
@@ -8243,7 +8500,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_EXIT_CHOICE
         }
 
-        private static readonly Func TEST9_EXIT_CHOICE_exit = (Spec2Sm sm) =>
+        private static void TEST9_EXIT_CHOICE_exit(Spec2Sm sm)
         {
             // TEST9_EXIT_CHOICE behavior
             // uml: exit / { trace("Exit TEST9_EXIT_CHOICE."); }
@@ -8254,7 +8511,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_DECIDE
         ////////////////////////////////////////////////////////////////////////////////
@@ -8272,7 +8530,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_DECIDE
         }
 
-        private static readonly Func TEST9_DECIDE_exit = (Spec2Sm sm) =>
+        private static void TEST9_DECIDE_exit(Spec2Sm sm)
         {
             // TEST9_DECIDE behavior
             // uml: exit / { trace("Exit TEST9_DECIDE."); }
@@ -8285,8 +8543,9 @@ namespace Csharp.Spec2smTests
             sm.current_state_exit_handler = TEST9_EXIT_CHOICE_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
             sm.current_event_handlers[(int)EventId.EV2] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST9_DECIDE_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST9_DECIDE_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST9_DECIDE behavior
@@ -8322,8 +8581,9 @@ namespace Csharp.Spec2smTests
                     } // end of behavior for TEST9_S1.InitialState
                 } // end of behavior for TEST9_ROOT.InitialState
             } // end of behavior for TEST9_DECIDE
-        };
-        private static readonly Func TEST9_DECIDE_ev2 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST9_DECIDE_ev2(Spec2Sm sm)
         {
             // No ancestor state handles `EV2` event.
             // TEST9_DECIDE behavior
@@ -8350,7 +8610,8 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for TEST9A_ROOT.InitialState
             } // end of behavior for TEST9_DECIDE
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -8367,7 +8628,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_ROOT
         }
 
-        private static readonly Func TEST9_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST9_ROOT_exit(Spec2Sm sm)
         {
             // TEST9_ROOT behavior
             // uml: exit / { trace("Exit TEST9_ROOT."); }
@@ -8379,8 +8640,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9_EXIT_CHOICE_exit;
             sm.current_event_handlers[(int)EventId.EV5] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST9_ROOT_ev5 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST9_ROOT_ev5(Spec2Sm sm)
         {
             // No ancestor state handles `EV5` event.
             // TEST9_ROOT behavior
@@ -8392,7 +8654,8 @@ namespace Csharp.Spec2smTests
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             } // end of behavior for TEST9_ROOT
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_G_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -8408,7 +8671,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S1
         }
 
-        private static readonly Func TEST9_G_S1_exit = (Spec2Sm sm) =>
+        private static void TEST9_G_S1_exit(Spec2Sm sm)
         {
             // TEST9_G_S1 behavior
             // uml: exit / { trace("Exit TEST9_G_S1."); }
@@ -8419,7 +8682,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_G_S2
         ////////////////////////////////////////////////////////////////////////////////
@@ -8435,7 +8699,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S2
         }
 
-        private static readonly Func TEST9_G_S2_exit = (Spec2Sm sm) =>
+        private static void TEST9_G_S2_exit(Spec2Sm sm)
         {
             // TEST9_G_S2 behavior
             // uml: exit / { trace("Exit TEST9_G_S2."); }
@@ -8446,7 +8710,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_G_S3
         ////////////////////////////////////////////////////////////////////////////////
@@ -8462,7 +8727,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S3
         }
 
-        private static readonly Func TEST9_G_S3_exit = (Spec2Sm sm) =>
+        private static void TEST9_G_S3_exit(Spec2Sm sm)
         {
             // TEST9_G_S3 behavior
             // uml: exit / { trace("Exit TEST9_G_S3."); }
@@ -8473,7 +8738,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_G_S4
         ////////////////////////////////////////////////////////////////////////////////
@@ -8489,7 +8755,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S4
         }
 
-        private static readonly Func TEST9_G_S4_exit = (Spec2Sm sm) =>
+        private static void TEST9_G_S4_exit(Spec2Sm sm)
         {
             // TEST9_G_S4 behavior
             // uml: exit / { trace("Exit TEST9_G_S4."); }
@@ -8500,7 +8766,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -8516,7 +8783,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_S1
         }
 
-        private static readonly Func TEST9_S1_exit = (Spec2Sm sm) =>
+        private static void TEST9_S1_exit(Spec2Sm sm)
         {
             // TEST9_S1 behavior
             // uml: exit / { trace("Exit TEST9_S1."); }
@@ -8527,7 +8794,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9_ROOT_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9_S1_1
         ////////////////////////////////////////////////////////////////////////////////
@@ -8552,7 +8820,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_S1_1
         }
 
-        private static readonly Func TEST9_S1_1_exit = (Spec2Sm sm) =>
+        private static void TEST9_S1_1_exit(Spec2Sm sm)
         {
             // TEST9_S1_1 behavior
             // uml: exit / { trace("Exit TEST9_S1_1."); }
@@ -8564,8 +8832,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9_S1_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST9_S1_1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST9_S1_1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST9_S1_1 behavior
@@ -8641,7 +8910,8 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for TEST9_S1.ExitPoint(1)
             } // end of behavior for TEST9_S1_1
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9A_ROOT
         ////////////////////////////////////////////////////////////////////////////////
@@ -8657,7 +8927,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_ROOT
         }
 
-        private static readonly Func TEST9A_ROOT_exit = (Spec2Sm sm) =>
+        private static void TEST9A_ROOT_exit(Spec2Sm sm)
         {
             // TEST9A_ROOT behavior
             // uml: exit / { trace("Exit TEST9A_ROOT."); }
@@ -8668,7 +8938,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9_EXIT_CHOICE_exit;
-        };
+        }
+
         ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state TEST9A_S1
         ////////////////////////////////////////////////////////////////////////////////
@@ -8684,7 +8955,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_S1
         }
 
-        private static readonly Func TEST9A_S1_exit = (Spec2Sm sm) =>
+        private static void TEST9A_S1_exit(Spec2Sm sm)
         {
             // TEST9A_S1 behavior
             // uml: exit / { trace("Exit TEST9A_S1."); }
@@ -8695,7 +8966,8 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9A_ROOT_exit;
-        };
+        }
+
         static void TEST9A_S1_InitialState_transition(Spec2Sm sm)
         {
             // TEST9A_S1.InitialState behavior
@@ -8737,7 +9009,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_S1_1
         }
 
-        private static readonly Func TEST9A_S1_1_exit = (Spec2Sm sm) =>
+        private static void TEST9A_S1_1_exit(Spec2Sm sm)
         {
             // TEST9A_S1_1 behavior
             // uml: exit / { trace("Exit TEST9A_S1_1."); }
@@ -8757,8 +9029,9 @@ namespace Csharp.Spec2smTests
             // adjust function pointers for this state's exit
             sm.current_state_exit_handler = TEST9A_S1_exit;
             sm.current_event_handlers[(int)EventId.EV1] = null; // no ancestor listens to this event
-        };
-        private static readonly Func TEST9A_S1_1_ev1 = (Spec2Sm sm) =>
+        }
+
+        private static void TEST9A_S1_1_ev1(Spec2Sm sm)
         {
             // No ancestor state handles `EV1` event.
             // TEST9A_S1_1 behavior
@@ -8787,6 +9060,6 @@ namespace Csharp.Spec2smTests
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for TEST9A_S1.ExitPoint(1)
             } // end of behavior for TEST9A_S1_1
-        };
+        }
     }
 }

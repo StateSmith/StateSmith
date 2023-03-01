@@ -138,6 +138,7 @@ public class DiServiceProvider
         services.AddSingleton<RenderConfigVars>();
         services.AddSingleton<RenderConfigCVars>();
         services.AddSingleton<RenderConfigCSharpVars>();
+        services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
     }
 
     /// <summary>

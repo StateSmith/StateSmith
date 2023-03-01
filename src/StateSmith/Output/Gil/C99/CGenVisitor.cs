@@ -175,7 +175,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
         sb.Append(GetCName(symbol));
         sb.Append(")(");
-        sb.Append(GetCName(symbol.ContainingType) + "* self);");
+        sb.Append(GetCName(symbol.ContainingType) + "* sm);");
         sb.Append($"{node.GetTrailingTrivia()}");
     }
 
@@ -192,7 +192,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         {
             var body = node.Body.ThrowIfNull();
             VisitToken(body.OpenBraceToken);
-            sb.Append("    memset(self, 0, sizeof(*self));\n");
+            sb.Append("    memset(sm, 0, sizeof(*sm));\n");
             body.VisitChildrenNodesWithWalker(this);
             VisitToken(body.CloseBraceToken);
         }
@@ -275,10 +275,9 @@ internal class CGenVisitor : CSharpSyntaxWalker
         base.VisitBlock(node);
     }
 
+    // parameters are declared for methods and constructors
     public override void VisitParameterList(ParameterListSyntax node)
     {
-        VisitToken(node.OpenParenToken);
-
         ISymbol? symbol = null;
 
         if (node.Parent is MethodDeclarationSyntax mds)
@@ -290,54 +289,54 @@ internal class CGenVisitor : CSharpSyntaxWalker
             symbol = model.GetDeclaredSymbol(cds).ThrowIfNull();
         }
 
+        SyntaxToken? toSkip = null;
+        if (renderingPrototypes)
+            toSkip = node.CloseParenToken;
+
         if (symbol?.IsStatic == false)
         {
-            sb.Append(GetCName(symbol.ContainingType) + "* self");
-            if (node.Parameters.Count > 0)
-            {
-                sb.Append(", ");
-            }
+            this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => {
+                sb.Append(GetCName(symbol.ContainingType) + "* sm");
+                if (node.Parameters.Count > 0)
+                {
+                    sb.Append(", ");
+                }
+            }, toSkip);
         }
-
-        foreach (var p in node.Parameters)
+        else
         {
-            Visit(p);
+            this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => { }, toSkip);
         }
-
-        if (!renderingPrototypes)
-            VisitToken(node.CloseParenToken);
     }
 
+    // arguments are passed to methods/constructors
     public override void VisitArgumentList(ArgumentListSyntax node)
     {
         var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
-
         var iMethodSymbol = (IMethodSymbol)model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
 
-        VisitToken(node.OpenParenToken);
-
-        if (iMethodSymbol.IsStatic == false)
+        // only append sm/self/this var if this is an orginary non-static method
+        if (!iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.Ordinary)
         {
-            sb.Append("self");
-            if (node.Arguments.Count > 0)
-            {
-                sb.Append(", ");
-            }
+            this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => {
+                sb.Append(GetCName(iMethodSymbol.ContainingType) + "* sm");
+                if (node.Arguments.Count > 0)
+                {
+                    sb.Append(", ");
+                }
+            });
         }
-
-        foreach (var p in node.Arguments)
+        else
         {
-            Visit(p);
+            this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => { });
         }
-
-        VisitToken(node.CloseParenToken);
     }
 
     public override void VisitParameter(ParameterSyntax node)
     {
         var parameterSymbol = model.GetDeclaredSymbol(node);
 
-        if (parameterSymbol != null && parameterSymbol.Type.IsReferenceType)
+        if (parameterSymbol != null && parameterSymbol.Type.IsReferenceType && parameterSymbol.Type.BaseType?.Name != nameof(System.MulticastDelegate))
         {
             Visit(node.Type);
             sb.Append(PostProcessor.trimHorizontalWhiteSpaceMarker); // converts `ROOT_enter(Spec1Sm * sm);` to `ROOT_enter(Spec1Sm* sm);`
@@ -366,11 +365,11 @@ internal class CGenVisitor : CSharpSyntaxWalker
 
             if (node.IsKind(SyntaxKind.SimpleMemberAccessExpression))
             {
-                // `this.stuff` to `self->stuff`
+                // `this.stuff` to `sm->stuff`
                 if (node.Expression is ThisExpressionSyntax tes)
                 {
                     VisitLeadingTrivia(tes.Token);
-                    sb.Append("self");
+                    sb.Append("sm");
                     VisitTrailingTrivia(tes.Token);
                     isPtr = true;
                 }
@@ -383,15 +382,6 @@ internal class CGenVisitor : CSharpSyntaxWalker
                     {
                         Visit(identifierNameSyntax);
                         isPtr = true;
-                    }
-
-                    if (symbol is IFieldSymbol fieldSymbol)
-                    {
-                        //if (!fieldSymbol.IsStatic && !fieldSymbol.IsConst)
-                        //{
-                        //    sb.Append("self->");
-                        //    done = false; // let it continue
-                        //}
                     }
                 }
                 else
@@ -411,20 +401,6 @@ internal class CGenVisitor : CSharpSyntaxWalker
 
                 Visit(node.Name);
                 done = true;
-
-                //if (node.Expression is IdentifierNameSyntax ins)
-                //{
-                //    ISymbol? symbol = model.GetSymbolInfo(ins).Symbol;
-
-                //    if (symbol is IFieldSymbol fieldSymbol)
-                //    {
-                //        if (!fieldSymbol.IsStatic && !fieldSymbol.IsConst)
-                //        {
-                //            sb.Append("self->");
-                //            done = false; // let it continue
-                //        }
-                //    }
-                //}
             }
         }
 
@@ -490,6 +466,10 @@ internal class CGenVisitor : CSharpSyntaxWalker
         else if (token.IsKind(SyntaxKind.IdentifierToken) && token.Parent is EnumMemberDeclarationSyntax emds)
         {
             sb.Append(GetCName(model.GetDeclaredSymbol(emds).ThrowIfNull()));
+        }
+        else if (token.IsKind(SyntaxKind.ThisKeyword))
+        {
+            sb.Append("sm");
         }
         else
         {
@@ -777,8 +757,6 @@ internal class CGenVisitor : CSharpSyntaxWalker
         string textName = fullyQualifiedName.Replace(oldChar: '.', newChar: '_');
         return textName;
     }
-
-
 
     private string GetCName(ClassDeclarationSyntax node)
     {

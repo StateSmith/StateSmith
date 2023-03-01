@@ -30,7 +30,7 @@ public class GilToC99 : IGilTranspiler
 
     public void TranspileAndOutputCode(string programText)
     {
-        // File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
+        //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs.txt", programText);
 
         GilHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
