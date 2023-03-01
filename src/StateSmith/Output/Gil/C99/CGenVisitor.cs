@@ -166,19 +166,20 @@ internal class CGenVisitor : CSharpSyntaxWalker
         return kids;
     }
 
+    // delegates are assumed to be simple C function pointers
     public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
     {
+        var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
+
         AppendNodeLeadingTrivia(node);
         sb.Append("typedef ");
         Visit(node.ReturnType);
         sb.Append("(*");
-        var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
         sb.Append(GetCName(symbol));
-        sb.Append(")(");
-        sb.Append(GetCName(symbol.ContainingType) + "* sm);");
-        sb.Append($"{node.GetTrailingTrivia()}");
+        sb.Append(')');
+        Visit(node.ParameterList);
+        VisitToken(node.SemicolonToken);
     }
-
 
     public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
     {
@@ -192,7 +193,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         {
             var body = node.Body.ThrowIfNull();
             VisitToken(body.OpenBraceToken);
-            sb.Append("    memset(sm, 0, sizeof(*sm));\n");
+            sb.Append("    memset(sm, 0, sizeof(*sm));\n"); // todo_low - sm should be var so we can use `sm`, `this`, `self`...
             body.VisitChildrenNodesWithWalker(this);
             VisitToken(body.CloseBraceToken);
         }
@@ -315,7 +316,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
         var iMethodSymbol = (IMethodSymbol)model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
 
-        // only append sm/self/this var if this is an orginary non-static method
+        // only append sm/self/this var if this is an ordinary non-static method
         if (!iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.Ordinary)
         {
             this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => {
@@ -328,7 +329,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         }
         else
         {
-            this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => { });
+            base.VisitArgumentList(node);
         }
     }
 
@@ -349,6 +350,8 @@ internal class CGenVisitor : CSharpSyntaxWalker
         }
     }
 
+    // <Expression> <OperatorToken> <Name>
+    // `this.stuff` this == Expression. stuff == Name.
     public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
     {
         bool done = false;
@@ -568,6 +571,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
 
     public override void VisitLiteralExpression(LiteralExpressionSyntax node)
     {
+        // convert `null` to `NULL`
         if (node.IsKind(SyntaxKind.NullLiteralExpression))
         {
             sb.Append("NULL");
@@ -618,34 +622,11 @@ internal class CGenVisitor : CSharpSyntaxWalker
                 sb.Append("\n};\n");
             }
         }
-        else
-        {
-            TryHandleAddressableFunction(node, ref done);
-        }
-
 
         if (!done)
         {
             base.VisitFieldDeclaration(node);
         }
-    }
-
-    // wip - probably remove. todo remove if not used soon.
-    // tries to translate `private static readonly Func ROOT_exit = (Spec2Sm sm) => {}` into a function.
-    private void TryHandleAddressableFunction(FieldDeclarationSyntax node, ref bool done)
-    {
-        if (!node.IsStatic() || !node.IsReadonly())
-            return;
-
-        if (node.Declaration.Variables.Count > 1)
-            return;
-
-        var symbol = (IFieldSymbol)model.GetDeclaredSymbol(node.Declaration.Variables.First()).ThrowIfNull();
-        if (!symbol.IsReadOnly || !symbol.IsStatic)
-            return;
-
-        if (symbol.Type?.BaseType?.Name != nameof(System.MulticastDelegate))
-            return;
     }
 
     public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
