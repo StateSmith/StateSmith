@@ -3,7 +3,7 @@ using System.Text;
 
 #nullable enable
 
-namespace StateSmith.Output.C99BalancedCoder1;
+namespace StateSmith.Output;
 
 public class OutputFile
 {

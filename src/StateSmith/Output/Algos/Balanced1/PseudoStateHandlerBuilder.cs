@@ -6,9 +6,8 @@ using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using StateSmith.Output.Algos.Balanced1;
 
-namespace StateSmith.Output.C99BalancedCoder1;
+namespace StateSmith.Output.Algos.Balanced1;
 
 public class PseudoStateHandlerBuilder
 {
@@ -27,7 +26,9 @@ public class PseudoStateHandlerBuilder
 
     public void Gather(StateMachine sm)
     {
-        LambdaVertexBreadthWalker walker = new() { visitAction = v =>
+        LambdaVertexBreadthWalker walker = new()
+        {
+            visitAction = v =>
         {
             if (v is PseudoStateVertex pseudoState && ShouldCreateFunctionHandler(v))
             {
@@ -45,7 +46,7 @@ public class PseudoStateHandlerBuilder
 
         if (v is InitialState)
         {
-            IncomingTransitionCount += (v.Parent!).IncomingTransitions.Count;
+            IncomingTransitionCount += v.Parent!.IncomingTransitions.Count;
         }
 
         return IncomingTransitionCount > 1;
@@ -69,7 +70,7 @@ public class PseudoStateHandlerBuilder
     {
         var functionName = Vertex.Describe(pseudoStateVertex);
         functionName = Regex.Replace(functionName, @"[.()]+", "_") + "_transition";
-        while (functionNameMap.ContainsValue((functionName)))
+        while (functionNameMap.ContainsValue(functionName))
         {
             functionName += "_kid_index" + pseudoStateVertex.FindIndexInParentKids();
         }

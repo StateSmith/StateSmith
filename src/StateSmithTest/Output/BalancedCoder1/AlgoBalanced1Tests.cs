@@ -1,7 +1,6 @@
 using FluentAssertions;
 using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;

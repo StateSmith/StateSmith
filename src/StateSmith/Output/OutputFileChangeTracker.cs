@@ -1,6 +1,8 @@
-﻿#nullable enable
+#nullable enable
 
-namespace StateSmith.Output.C99BalancedCoder1;
+using StateSmith;
+
+namespace StateSmith.Output;
 
 public class OutputFileChangeTracker
 {
