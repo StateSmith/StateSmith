@@ -2,7 +2,6 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Text;
-using System.Linq;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
@@ -61,48 +60,40 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
         if (GilHelper.IsGilNoEmit(node))
             return;
 
-        bool isAddressableFunction = false;
-        foreach (var attributeList in node.AttributeLists)
+        var addressableFunc = GilHelper.GetAddresssableFunctionInfo(node, SemanticModel);
+
+        if (addressableFunc != null)
         {
-            if (attributeList.Attributes.Any(attr => attr.Name.ToString().StartsWith(GilHelper.GilAddessableFunction))) // starts with because Name includes generic type. BlahBlahName<Func>
-            {
-                isAddressableFunction = true;
-                break;
-            }
-        }
-
-        if (isAddressableFunction)
-        {
-            //File.Append($"private static readonly Func METHOD_NAME = ({mangler.SmStructName} sm) =>");
-            VisitLeadingTrivia(node.GetFirstToken());
-            foreach (var m in node.Modifiers)
-            {
-                VisitToken(m);
-            }
-            sb.Append("readonly ");
-            var attr = node.AttributeLists.Single().Attributes.Single();
-            TypeSyntax delegateTypeSyntax = ((GenericNameSyntax)(attr.Name)).TypeArgumentList.Arguments.Single();
-            var s = SemanticModel.GetSymbolInfo(delegateTypeSyntax);
-            var delegateName = delegateTypeSyntax.ToString();
-            var dele = (s.Symbol as INamedTypeSymbol).ThrowIfNull();
-            
-            sb.Append(delegateName);
-
-            sb.Append(' ');
-            sb.Append(node.Identifier);
-            sb.Append($" = ");
-
-            var dds = (dele.DeclaringSyntaxReferences[0].GetSyntax() as DelegateDeclarationSyntax).ThrowIfNull();
-            Visit(dds.ParameterList);
-
-            sb.Append($" => ");
-            node.Body.ThrowIfNull().VisitChildNodesAndTokens(this, toSkip: node.Body.CloseBraceToken);
-            sb.AppendTokenAndTrivia(node.Body.CloseBraceToken, overrideTokenText: "};");
+            OutputMethodAsStaticLambda(node, addressableFunc);
         }
         else
         {
             base.VisitMethodDeclaration(node);
         }
+    }
+
+    /// <summary>
+    /// Why do this? See https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support#function-pointers
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="addressableFunc"></param>
+    private void OutputMethodAsStaticLambda(MethodDeclarationSyntax node, GilHelper.AddressableFunctionInfo addressableFunc)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        foreach (var m in node.Modifiers)
+            VisitToken(m);
+
+        sb.Append("readonly ");
+        sb.Append(addressableFunc.DelegateSymbol.Name);
+        sb.Append(' ');
+        sb.Append(node.Identifier);
+        sb.Append($" = ");
+
+        Visit(addressableFunc.ParameterListSyntax);
+
+        sb.Append($" => ");
+        node.Body.ThrowIfNull().VisitChildNodesAndTokens(this, toSkip: node.Body.CloseBraceToken);
+        sb.AppendTokenAndTrivia(node.Body.CloseBraceToken, overrideTokenText: "};");
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)

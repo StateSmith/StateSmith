@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Text;
+using StateSmith.Common;
 
 namespace StateSmith.Output.Gil;
 
@@ -14,17 +15,27 @@ public class GilHelper
 {
     public const string GilNoEmitPrefix = "____GilNoEmit_";
     public const string GilNoEmitEchoStringBoolFuncName = GilNoEmitPrefix + "echoStringBool";
-    public const string GilAddessableFunction = GilNoEmitPrefix + "GilAddessableFunction";
+
+    /// <summary>
+    /// This is a special attribute that is added to methods to mark them as "addressable". In C terms, it means
+    /// that the address of this function will be taken. Languages that don't support naked function pointers will
+    /// need to convert these GIL methods into static readonly lambdas. This attribute takes a generic type with the
+    /// recommended delegate type. Generic attributes is coming in C#11, so for now we have to ignore roslyn compilation
+    /// errors specific to it.
+    /// 
+    /// See https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support#function-pointers
+    /// </summary>
+    public const string GilAddessableFunctionAttribute = GilNoEmitPrefix + "GilAddessableFunction";
 
     public static void AppendGilHelpersFuncs(OutputFile file)
     {
         file.AppendLine($"public static bool {GilNoEmitEchoStringBoolFuncName}(string toEcho) {{ return true; }}");
-        file.AppendLine($"public class {GilAddessableFunction}<T> : System.Attribute where T : System.Delegate {{}}");
+        file.AppendLine($"public class {GilAddessableFunctionAttribute}<T> : System.Attribute where T : System.Delegate {{}}");
     }
 
     public static string WrapRawCodeWithBoolReturn(string codeToWrap)
     {
-        codeToWrap = Microsoft.CodeAnalysis.CSharp.SymbolDisplay.FormatLiteral(codeToWrap, quote: true);
+        codeToWrap = SymbolDisplay.FormatLiteral(codeToWrap, quote: true);
         return $"{GilNoEmitEchoStringBoolFuncName}({codeToWrap})";
     }
 
@@ -53,9 +64,38 @@ public class GilHelper
         ThrowOnError(model.GetDiagnostics(), programText, outputInfo);
     }
 
+    public record AddressableFunctionInfo(INamedTypeSymbol DelegateSymbol, ParameterListSyntax ParameterListSyntax);
+
+    /// <summary>
+    /// See <see cref="GilAddessableFunctionAttribute"/>
+    /// </summary>
+    public static AddressableFunctionInfo? GetAddresssableFunctionInfo(MethodDeclarationSyntax node, SemanticModel semanticModel)
+    {
+        bool isAddressableFunction = false;
+        foreach (var attributeList in node.AttributeLists)
+        {
+            if (attributeList.Attributes.Any(attr => attr.Name.ToString().StartsWith(GilHelper.GilAddessableFunctionAttribute))) // starts with because Name includes generic type. BlahBlahName<Func>
+            {
+                isAddressableFunction = true;
+                break;
+            }
+        }
+
+        if (!isAddressableFunction)
+            return null;
+
+        var attr = node.AttributeLists.Single().Attributes.Single();
+        TypeSyntax delegateTypeSyntax = ((GenericNameSyntax)(attr.Name)).TypeArgumentList.Arguments.Single();
+        var delegateSymbol = (semanticModel.GetSymbolInfo(delegateTypeSyntax).Symbol as INamedTypeSymbol).ThrowIfNull();
+
+        var delegateDeclarationSyntax = (delegateSymbol.DeclaringSyntaxReferences[0].GetSyntax() as DelegateDeclarationSyntax).ThrowIfNull();
+
+        return new(delegateSymbol, delegateDeclarationSyntax.ParameterList);
+    }
+
     public static bool HandleSpecialGilEmitClasses(ClassDeclarationSyntax classDeclarationSyntax, CSharpSyntaxWalker walker)
     {
-        return classDeclarationSyntax.Identifier.Text == GilAddessableFunction;
+        return classDeclarationSyntax.Identifier.Text == GilAddessableFunctionAttribute;
     }
 
     public static bool HandleGilSpecialInvocations(InvocationExpressionSyntax node, StringBuilder sb)
@@ -80,7 +120,7 @@ public class GilHelper
     private static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText, OutputInfo? outputInfo)
     {
         var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error
-            // ignore errors caused by our GilAddessableFunction attribute
+            // ignore errors caused by our GilAddessableFunctionAttribute
             && d.Id != "CS0404" // error CS0404: Cannot apply attribute class 'Spec2Sm.____GilNoEmit_GilAddessableFunction<T>' because it is generic
             && d.Id != "CS0698" // error CS0698: A generic type cannot derive from 'Attribute' because it is an attribute class
         ); 

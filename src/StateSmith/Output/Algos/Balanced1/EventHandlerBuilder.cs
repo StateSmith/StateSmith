@@ -562,7 +562,7 @@ public class EventHandlerBuilder
         // enter functions don't need to be static delegates because we don't take their address
         if (!TriggerHelper.IsEnterTrigger(eventName))
         {
-            File.AppendLine($"[{GilHelper.GilAddessableFunction}<{mangler.SmFuncTypedef}>]");
+            File.AppendLine($"[{GilHelper.GilAddessableFunctionAttribute}<{mangler.SmFuncTypedef}>]");
         }
 
         File.Append($"private static void {mangler.SmFuncTriggerHandler(state, eventName)}({mangler.SmStructName} sm)");
