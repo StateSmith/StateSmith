@@ -34,8 +34,6 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         string gilCode = sb.ToString();
         sb.Clear();
 
-        renderConfigCSharp.UseNullable = false;     // FIXME remove after testing
-
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
         if (renderConfigCSharp.UseNullable)
             sb.AppendLine($"#nullable enable");
