@@ -124,7 +124,9 @@ public class DiagramEmbeddedRenderConfigTests
             // sm level - CSharpClassCode
             """);
 
-            const int expectedOptionCount = 3;
+            renderConfigCSharp.UseNullable.Should().BeFalse();
+
+            const int expectedOptionCount = 4;
             GetTypeFields<RenderConfigCSharpVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
             GetTypeProperties<IRenderConfigCSharp>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
         }

@@ -102,22 +102,35 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     {
         switch (v.name)
         {
-            case nameof(RenderConfigVars.VariableDeclarations): AppendOption(ref tempRenderConfigVars.VariableDeclarations, v); break;
-            case nameof(RenderConfigVars.AutoExpandedVars): AppendOption(ref tempRenderConfigVars.AutoExpandedVars, v); break;
-            case nameof(RenderConfigVars.EventCommaList): AppendOption(ref tempRenderConfigVars.EventCommaList, v); break;
-            case nameof(RenderConfigVars.FileTop): AppendOption(ref tempRenderConfigVars.FileTop, v); break;
+            case nameof(IRenderConfig.VariableDeclarations): AppendOption(ref tempRenderConfigVars.VariableDeclarations, v); break;
+            case nameof(IRenderConfig.AutoExpandedVars): AppendOption(ref tempRenderConfigVars.AutoExpandedVars, v); break;
+            case nameof(IRenderConfig.EventCommaList): AppendOption(ref tempRenderConfigVars.EventCommaList, v); break;
+            case nameof(IRenderConfig.FileTop): AppendOption(ref tempRenderConfigVars.FileTop, v); break;
 
-            case nameof(RenderConfigCVars.HFileTop): AppendOption(ref renderConfigCVars.HFileTop, v); break;
-            case nameof(RenderConfigCVars.HFileIncludes): AppendOption(ref renderConfigCVars.HFileIncludes, v); break;
-            case nameof(RenderConfigCVars.CFileTop): AppendOption(ref renderConfigCVars.CFileTop, v); break;
-            case nameof(RenderConfigCVars.CFileIncludes): AppendOption(ref renderConfigCVars.CFileIncludes, v); break;
+            case nameof(IRenderConfigC.HFileTop): AppendOption(ref renderConfigCVars.HFileTop, v); break;
+            case nameof(IRenderConfigC.HFileIncludes): AppendOption(ref renderConfigCVars.HFileIncludes, v); break;
+            case nameof(IRenderConfigC.CFileTop): AppendOption(ref renderConfigCVars.CFileTop, v); break;
+            case nameof(IRenderConfigC.CFileIncludes): AppendOption(ref renderConfigCVars.CFileIncludes, v); break;
 
-            case "CSharp" + nameof(RenderConfigCSharpVars.NameSpace): AppendOption(ref renderConfigCSharpVars.NameSpace, v); break;
-            case "CSharp" + nameof(RenderConfigCSharpVars.Usings): AppendOption(ref renderConfigCSharpVars.Usings, v); break;
-            case "CSharp" + nameof(RenderConfigCSharpVars.ClassCode): AppendOption(ref renderConfigCSharpVars.ClassCode, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.NameSpace): AppendOption(ref renderConfigCSharpVars.NameSpace, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref renderConfigCSharpVars.Usings, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.ClassCode): AppendOption(ref renderConfigCSharpVars.ClassCode, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.UseNullable): renderConfigCSharpVars.UseNullable = ParseBoolValue(v); break;
 
             default:
                 throw new VertexValidationException(v, $"Unknown Render Config option `{v.name}`");
+        }
+    }
+
+    private static bool ParseBoolValue(ConfigOptionVertex v)
+    {
+        try
+        {
+            return bool.Parse(v.value.Trim());
+        }
+        catch (System.FormatException e)
+        {
+            throw new VertexValidationException(v, e.Message);
         }
     }
 

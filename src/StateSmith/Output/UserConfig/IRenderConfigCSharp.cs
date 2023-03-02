@@ -9,4 +9,6 @@ public interface IRenderConfigCSharp : IRenderConfig
     /// Use to add custom code to generated state machine class
     /// </summary>
     string ClassCode => "";
+
+    bool UseNullable => true;
 }

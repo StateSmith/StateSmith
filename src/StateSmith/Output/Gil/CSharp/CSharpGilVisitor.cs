@@ -10,7 +10,7 @@ using Microsoft.CodeAnalysis.Formatting;
 
 namespace StateSmith.Output.Gil.CSharp;
 
-internal class CSharpGilVisitor : CSharpSyntaxWalker
+public class CSharpGilVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder sb;
     private readonly OutputInfo outputInfo;
@@ -34,8 +34,12 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
         string gilCode = sb.ToString();
         sb.Clear();
 
+        renderConfigCSharp.UseNullable = false;     // FIXME remove after testing
+
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
-        sb.AppendLine($"#nullable enable"); // todo_low - add config option
+        if (renderConfigCSharp.UseNullable)
+            sb.AppendLine($"#nullable enable");
+
         sb.AppendLineIfNotBlank(renderConfigCSharp.Usings);
 
         GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _semanticModel, outputInfo);
@@ -53,6 +57,19 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
         // note: we don't use the regular `NormalizeWhitespace()` as it tightens all code up, and actually messes up some indentation.
         outputCode = Formatter.Format(CSharpSyntaxTree.ParseText(outputCode).GetRoot(), new AdhocWorkspace()).ToFullString();
         sb.Append(outputCode);
+    }
+
+    public override void VisitNullableType(NullableTypeSyntax node)
+    {
+        if (renderConfigCSharp.UseNullable)
+        {
+            base.VisitNullableType(node);
+        }
+        else
+        {
+            Visit(node.ElementType); // this avoids outputting the `?` for a nullable type
+            sb.Append(' ');
+        }
     }
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)

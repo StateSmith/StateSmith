@@ -5,6 +5,7 @@ public class RenderConfigCSharpVars
     public string NameSpace = "";
     public string Usings = "";
     public string ClassCode = "";
+    public bool UseNullable = true;
 
     public void SetFrom(IRenderConfigCSharp config, bool autoDeIndentAndTrim)
     {
@@ -22,5 +23,6 @@ public class RenderConfigCSharpVars
         NameSpace = Process(config.NameSpace);
         Usings = Process(config.Usings);
         ClassCode = Process(config.ClassCode);
+        UseNullable = config.UseNullable;
     }
 }
