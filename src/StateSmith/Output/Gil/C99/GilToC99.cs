@@ -1,12 +1,9 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.CSharp;
 using System.Text;
 using System.IO;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output.C99BalancedCoder1;
-using System.Linq;
-using System.Collections.Generic;
 
 #nullable enable
 
@@ -27,10 +24,9 @@ public class GilToC99 : IGilTranspiler
         this.cNameMangler = cNameMangler;
     }
 
-
     public void TranspileAndOutputCode(string programText)
     {
-        File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
+        //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
 
         GilHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 

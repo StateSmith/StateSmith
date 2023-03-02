@@ -132,8 +132,8 @@ internal class CGenVisitor : CSharpSyntaxWalker
             sb.Append("typedef ");
 
         sb.Append("struct ");
-        OutputTokenAndTrivia(node.Identifier, name);
-        OutputTokenAndTrivia(node.OpenBraceToken);
+        sb.AppendTokenAndTrivia(node.Identifier, overrideTokenText: name);
+        sb.AppendTokenAndTrivia(node.OpenBraceToken);
         sb.AppendLine(PostProcessor.trimBlankLinesMarker);
 
         foreach (var kid in node.ChildNodes())
@@ -304,7 +304,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
 
         if (symbol?.IsStatic == false)
         {
-            this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => {
+            node.VisitChildNodesAndTokens(this, node.OpenParenToken, () => {
                 sb.Append(GetCName(symbol.ContainingType) + "* sm");
                 if (node.Parameters.Count > 0)
                 {
@@ -314,7 +314,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         }
         else
         {
-            this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => { }, toSkip);
+            node.VisitChildNodesAndTokens(this, toSkip);
         }
     }
 
@@ -327,7 +327,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
         // only append sm/self/this var if this is an ordinary non-static method
         if (!iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.Ordinary)
         {
-            this.VisitNodeRunActionAfterToken(node, node.OpenParenToken, () => {
+            node.VisitChildNodesAndTokens(this, node.OpenParenToken, () => {
                 sb.Append(GetCName(iMethodSymbol.ContainingType) + "* sm");
                 if (node.Arguments.Count > 0)
                 {
@@ -679,8 +679,9 @@ internal class CGenVisitor : CSharpSyntaxWalker
     {
         AppendNodeLeadingTrivia(node);
         string name = GetCName(node);
-        OutputTokenAndTrivia(node.Identifier, "typedef enum " + name);
-        OutputTokenAndTrivia(node.OpenBraceToken);
+        
+        sb.AppendTokenAndTrivia(node.Identifier, overrideTokenText: "typedef enum " + name);
+        sb.AppendTokenAndTrivia(node.OpenBraceToken);
 
         foreach (var kid in node.ChildNodesAndTokens().SkipWhile(n => n.IsToken))
         {
@@ -699,13 +700,6 @@ internal class CGenVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.CloseBraceToken);
         sb.Append($"}} {name};");
         VisitTrailingTrivia(node.CloseBraceToken);
-    }
-
-    private void OutputTokenAndTrivia(SyntaxToken token, string? tokenValue = null)
-    {
-        sb.Append(token.LeadingTrivia);
-        sb.Append(tokenValue ?? token.ToString());
-        sb.Append(token.TrailingTrivia);
     }
 
     private void AppendNodeLeadingTrivia(SyntaxNode node)

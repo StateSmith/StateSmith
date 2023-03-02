@@ -4,8 +4,8 @@ using Microsoft.CodeAnalysis.CSharp;
 using System.Text;
 using System.Linq;
 using StateSmith.Output.UserConfig;
-using System;
 using StateSmith.Common;
+using Microsoft.CodeAnalysis.Formatting;
 
 #nullable enable
 
@@ -39,7 +39,6 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
         sb.AppendLine($"#nullable enable"); // todo_low - add config option
         sb.AppendLineIfNotBlank(renderConfigCSharp.Usings);
 
-        gilCode = CSharpSyntaxTree.ParseText(gilCode).GetRoot().NormalizeWhitespace().SyntaxTree.GetText().ToString();
         GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _semanticModel, outputInfo);
 
         this.Visit(root);
@@ -49,10 +48,11 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
 
     private void FormatOutput()
     {
-        // todo_low - use a better formatter. This one doesn't fully meet our needs https://github.com/dotnet/roslyn/issues/24827
         var outputCode = sb.ToString();
-        outputCode = CSharpSyntaxTree.ParseText(outputCode).GetRoot().NormalizeWhitespace().SyntaxTree.GetText().ToString();
         sb.Clear();
+
+        // note: we don't use the regular `NormalizeWhitespace()` as it tightens all code up, and actually messes up some indentation.
+        outputCode = Formatter.Format(CSharpSyntaxTree.ParseText(outputCode).GetRoot(), new AdhocWorkspace()).ToFullString();
         sb.Append(outputCode);
     }
 
@@ -88,7 +88,7 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
             
             sb.Append(delegateName);
 
-            sb.Append(" ");
+            sb.Append(' ');
             sb.Append(node.Identifier);
             sb.Append($" = ");
 
@@ -96,8 +96,8 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
             Visit(dds.ParameterList);
 
             sb.Append($" => ");
-            Visit(node.Body);
-            sb.Append(";\n" + PostProcessor.echoLineMarker + "\n"); // required because of `NormalizeWhitespace()` https://github.com/dotnet/roslyn/issues/24827
+            node.Body.ThrowIfNull().VisitChildNodesAndTokens(this, toSkip: node.Body.CloseBraceToken);
+            sb.AppendTokenAndTrivia(node.Body.CloseBraceToken, overrideTokenText: "};");
         }
         else
         {
@@ -111,7 +111,7 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
 
         // append class code after open brace token
         void action() => sb.AppendLineIfNotBlank(renderConfigCSharp.ClassCode);
-        this.VisitNodeRunActionAfterToken(node, node.OpenBraceToken, action);
+        node.VisitChildNodesAndTokens(this, node.OpenBraceToken, action);
     }
 
     // to ignore GIL attributes

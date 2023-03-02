@@ -54,6 +54,13 @@ public static class Extensions
             sb.AppendLine(text);
     }
 
+    public static void AppendTokenAndTrivia(this StringBuilder sb, SyntaxToken token, string? overrideTokenText = null)
+    {
+        sb.Append(token.LeadingTrivia);
+        sb.Append(overrideTokenText ?? token.Text);
+        sb.Append(token.TrailingTrivia);
+    }
+
     public static void VisitWith(this SyntaxNodeOrToken kid, CSharpSyntaxWalker walker)
     {
         if (kid.IsNode)
@@ -62,8 +69,18 @@ public static class Extensions
             walker.VisitToken(kid.AsToken());
     }
 
-    // this should probably be moved out of extensions
-    public static void VisitNodeRunActionAfterToken(this CSharpSyntaxWalker syntaxWalker, SyntaxNode node, SyntaxToken token, Action action, SyntaxToken? toSkip = null)
+    public static void VisitChildNodesAndTokens(this SyntaxNode node, CSharpSyntaxWalker syntaxWalker, SyntaxToken? toSkip = null)
+    {
+        var kids = node.ChildNodesAndTokens();
+
+        foreach (var kid in kids)
+        {
+            if (kid != toSkip)
+                kid.VisitWith(syntaxWalker);
+        }
+    }
+
+    public static void VisitChildNodesAndTokens(this SyntaxNode node, CSharpSyntaxWalker syntaxWalker, SyntaxToken token, Action action, SyntaxToken? toSkip = null)
     {
         var kids = node.ChildNodesAndTokens();
         int i = 0;
