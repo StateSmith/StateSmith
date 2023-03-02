@@ -53,22 +53,46 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        if (!GilHelper.IsGilNoEmit(node))
+        if (GilHelper.IsGilNoEmit(node))
+            return;
+
+        bool isAddressableFunction = false;
+        foreach (var attributeList in node.AttributeLists)
         {
-            base.VisitMethodDeclaration(node);
+            if (attributeList.Attributes.Any(attr => attr.Name.ToString() == GilHelper.GilAddessableFunction))
+            {
+                isAddressableFunction = true;
+                break;
+            }
         }
+
+        if (isAddressableFunction)
+        {
+            //            File.Append($"private static readonly Func {mangler.SmFuncTriggerHandler(state, eventName)} = ({mangler.SmStructName} sm) =>");
+
+        }
+
+        base.VisitMethodDeclaration(node);
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
+        if (GilHelper.HandleSpecialGilEmitClasses(node, this)) return;
+
         // append class code after open brace token
         void action() => sb.AppendLineIfNotBlank(renderConfigCSharp.ClassCode);
         this.VisitNodeRunActionAfterToken(node, node.OpenBraceToken, action);
     }
 
+    // to ignore GIL attributes
+    public override void VisitAttributeList(AttributeListSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+    }
+
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
-        if (GilHelper.HandleGilEmitMethod(node, sb))
+        if (GilHelper.HandleGilSpecialInvocations(node, sb))
             return;
 
         base.VisitInvocationExpression(node);

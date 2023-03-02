@@ -3,7 +3,6 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using StateSmith.Output.C99BalancedCoder1;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -15,10 +14,21 @@ public class GilHelper
 {
     public const string GilNoEmitPrefix = "____GilNoEmit_";
     public const string GilNoEmitEchoStringBoolFuncName = GilNoEmitPrefix + "echoStringBool";
+    public const string GilAddessableFunction = GilNoEmitPrefix + "GilAddessableFunction";
 
     public static void AppendGilHelpersFuncs(OutputFile file)
     {
         file.AppendLine($"public static bool {GilNoEmitEchoStringBoolFuncName}(string toEcho) {{ return true; }}");
+        file.AppendLine(@$"
+            public class {GilAddessableFunction} : System.Attribute {{
+                public string DelegateName;
+
+                public {GilAddessableFunction}(string delegateName)
+                {{
+                    DelegateName = delegateName;
+                }}
+            }}
+        ");
     }
 
     public static string WrapRawCodeWithBoolReturn(string codeToWrap)
@@ -52,7 +62,12 @@ public class GilHelper
         ThrowOnError(model.GetDiagnostics(), programText, outputInfo);
     }
 
-    public static bool HandleGilEmitMethod(InvocationExpressionSyntax node, StringBuilder sb)
+    public static bool HandleSpecialGilEmitClasses(ClassDeclarationSyntax classDeclarationSyntax, CSharpSyntaxWalker walker)
+    {
+        return classDeclarationSyntax.Identifier.Text == GilAddessableFunction;
+    }
+
+    public static bool HandleGilSpecialInvocations(InvocationExpressionSyntax node, StringBuilder sb)
     {
         bool gilEmitMethodFoundAndHandled = false;
 

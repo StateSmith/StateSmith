@@ -21,7 +21,7 @@ public class EventHandlerBuilder
     private readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
 
     private OutputFile? _file;
-    private bool outputStaticLambdas = false;
+    private bool outputStaticLambdas = false;   //FIXME remove
 
     private OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
@@ -554,8 +554,6 @@ public class EventHandlerBuilder
     private void FinishAddressableFunction(bool forceNewLine)
     {
         var finishStr = "";
-        if (outputStaticLambdas)
-            finishStr = ";";
 
         File.FinishCodeBlock(finishStr, forceNewLine: forceNewLine);
     }
@@ -563,15 +561,12 @@ public class EventHandlerBuilder
     public void OutputTriggerHandlerSignature(NamedVertex state, string eventName)
     {
         // enter functions don't need to be static delegates because we don't take their address
-        if (TriggerHelper.IsEnterTrigger(eventName) || !outputStaticLambdas)
+        if (!TriggerHelper.IsEnterTrigger(eventName))
         {
-            File.Append($"private static void {mangler.SmFuncTriggerHandler(state, eventName)}({mangler.SmStructName} sm)");
-        }
-        else
-        {
-            File.Append($"private static readonly Func {mangler.SmFuncTriggerHandler(state, eventName)} = ({mangler.SmStructName} sm) =>");
+            File.AppendLine($"[{GilHelper.GilAddessableFunction}(\"{mangler.SmFuncTypedef}\")]");
         }
 
+        File.Append($"private static void {mangler.SmFuncTriggerHandler(state, eventName)}({mangler.SmStructName} sm)");
     }
 
     /// <summary>

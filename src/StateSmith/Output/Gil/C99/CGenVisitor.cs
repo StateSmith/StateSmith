@@ -44,10 +44,16 @@ internal class CGenVisitor : CSharpSyntaxWalker
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
-        if (GilHelper.HandleGilEmitMethod(node, sb))
+        if (GilHelper.HandleGilSpecialInvocations(node, sb))
             return;
 
         base.VisitInvocationExpression(node);
+    }
+
+    // to ignore GIL attributes
+    public override void VisitAttributeList(AttributeListSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
     }
 
     public override void VisitStructDeclaration(StructDeclarationSyntax node)
@@ -60,6 +66,8 @@ internal class CGenVisitor : CSharpSyntaxWalker
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
+        if (GilHelper.HandleSpecialGilEmitClasses(node, this)) return;
+
         string name = GetCName(node);
         sb = hFileSb;
 
