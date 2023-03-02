@@ -21,7 +21,6 @@ public class EventHandlerBuilder
     private readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
 
     private OutputFile? _file;
-    private bool outputStaticLambdas = false;   //FIXME remove
 
     private OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
@@ -563,7 +562,7 @@ public class EventHandlerBuilder
         // enter functions don't need to be static delegates because we don't take their address
         if (!TriggerHelper.IsEnterTrigger(eventName))
         {
-            File.AppendLine($"[{GilHelper.GilAddessableFunction}(\"{mangler.SmFuncTypedef}\")]");
+            File.AppendLine($"[{GilHelper.GilAddessableFunction}<{mangler.SmFuncTypedef}>]");
         }
 
         File.Append($"private static void {mangler.SmFuncTriggerHandler(state, eventName)}({mangler.SmStructName} sm)");

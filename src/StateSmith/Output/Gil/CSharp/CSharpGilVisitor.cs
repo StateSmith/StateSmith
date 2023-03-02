@@ -5,6 +5,7 @@ using System.Text;
 using System.Linq;
 using StateSmith.Output.UserConfig;
 using System;
+using StateSmith.Common;
 
 #nullable enable
 
@@ -16,6 +17,9 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
     private readonly OutputInfo outputInfo;
     private readonly RenderConfigCSharpVars renderConfigCSharp;
     private readonly RenderConfigVars renderConfig;
+
+    private SemanticModel SemanticModel => _semanticModel.ThrowIfNull();
+    private SemanticModel? _semanticModel;
 
     public CSharpGilVisitor(StringBuilder sb, OutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
@@ -36,7 +40,7 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
         sb.AppendLineIfNotBlank(renderConfigCSharp.Usings);
 
         gilCode = CSharpSyntaxTree.ParseText(gilCode).GetRoot().NormalizeWhitespace().SyntaxTree.GetText().ToString();
-        GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _, outputInfo);
+        GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _semanticModel, outputInfo);
 
         this.Visit(root);
 
@@ -45,6 +49,7 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
 
     private void FormatOutput()
     {
+        // todo_low - use a better formatter. This one doesn't fully meet our needs https://github.com/dotnet/roslyn/issues/24827
         var outputCode = sb.ToString();
         outputCode = CSharpSyntaxTree.ParseText(outputCode).GetRoot().NormalizeWhitespace().SyntaxTree.GetText().ToString();
         sb.Clear();
@@ -59,7 +64,7 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
         bool isAddressableFunction = false;
         foreach (var attributeList in node.AttributeLists)
         {
-            if (attributeList.Attributes.Any(attr => attr.Name.ToString() == GilHelper.GilAddessableFunction))
+            if (attributeList.Attributes.Any(attr => attr.Name.ToString().StartsWith(GilHelper.GilAddessableFunction))) // starts with because Name includes generic type. BlahBlahName<Func>
             {
                 isAddressableFunction = true;
                 break;
@@ -68,11 +73,36 @@ internal class CSharpGilVisitor : CSharpSyntaxWalker
 
         if (isAddressableFunction)
         {
-            //            File.Append($"private static readonly Func {mangler.SmFuncTriggerHandler(state, eventName)} = ({mangler.SmStructName} sm) =>");
+            //File.Append($"private static readonly Func METHOD_NAME = ({mangler.SmStructName} sm) =>");
+            VisitLeadingTrivia(node.GetFirstToken());
+            foreach (var m in node.Modifiers)
+            {
+                VisitToken(m);
+            }
+            sb.Append("readonly ");
+            var attr = node.AttributeLists.Single().Attributes.Single();
+            TypeSyntax delegateTypeSyntax = ((GenericNameSyntax)(attr.Name)).TypeArgumentList.Arguments.Single();
+            var s = SemanticModel.GetSymbolInfo(delegateTypeSyntax);
+            var delegateName = delegateTypeSyntax.ToString();
+            var dele = (s.Symbol as INamedTypeSymbol).ThrowIfNull();
+            
+            sb.Append(delegateName);
 
+            sb.Append(" ");
+            sb.Append(node.Identifier);
+            sb.Append($" = ");
+
+            var dds = (dele.DeclaringSyntaxReferences[0].GetSyntax() as DelegateDeclarationSyntax).ThrowIfNull();
+            Visit(dds.ParameterList);
+
+            sb.Append($" => ");
+            Visit(node.Body);
+            sb.Append(";\n" + PostProcessor.echoLineMarker + "\n"); // required because of `NormalizeWhitespace()` https://github.com/dotnet/roslyn/issues/24827
         }
-
-        base.VisitMethodDeclaration(node);
+        else
+        {
+            base.VisitMethodDeclaration(node);
+        }
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)

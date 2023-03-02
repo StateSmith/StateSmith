@@ -19,16 +19,7 @@ public class GilHelper
     public static void AppendGilHelpersFuncs(OutputFile file)
     {
         file.AppendLine($"public static bool {GilNoEmitEchoStringBoolFuncName}(string toEcho) {{ return true; }}");
-        file.AppendLine(@$"
-            public class {GilAddessableFunction} : System.Attribute {{
-                public string DelegateName;
-
-                public {GilAddessableFunction}(string delegateName)
-                {{
-                    DelegateName = delegateName;
-                }}
-            }}
-        ");
+        file.AppendLine($"public class {GilAddessableFunction}<T> : System.Attribute where T : System.Delegate {{}}");
     }
 
     public static string WrapRawCodeWithBoolReturn(string codeToWrap)
@@ -88,7 +79,11 @@ public class GilHelper
 
     private static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText, OutputInfo? outputInfo)
     {
-        var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
+        var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error
+            // ignore errors caused by our GilAddessableFunction attribute
+            && d.Id != "CS0404" // error CS0404: Cannot apply attribute class 'Spec2Sm.____GilNoEmit_GilAddessableFunction<T>' because it is generic
+            && d.Id != "CS0698" // error CS0698: A generic type cannot derive from 'Attribute' because it is an attribute class
+        ); 
 
         var message = "";
 
