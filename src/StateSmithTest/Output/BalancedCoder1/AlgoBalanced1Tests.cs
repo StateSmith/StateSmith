@@ -159,8 +159,12 @@ public class AlgoBalanced1Tests
             VariableDeclarations = "//This is super cool!\nbyte x;"
         };
 
-        AlgoBalanced1 builder = new(mangler, pseudoStateHandlerBuilder, enumBuilder, renderConfig, eventHandlerBuilder, new CodeStyleSettings());
-        builder.skipClassIndentation = skipIndentation;
+        var settings = new AlgoBalanced1Settings()
+        {
+            skipClassIndentation = skipIndentation,
+        };
+
+        AlgoBalanced1 builder = new(mangler, pseudoStateHandlerBuilder, enumBuilder, renderConfig, eventHandlerBuilder, new CodeStyleSettings(), settings);
         return builder.GenerateGil(sm);
     }
 }

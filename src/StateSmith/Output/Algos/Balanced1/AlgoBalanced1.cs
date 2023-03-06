@@ -11,11 +11,9 @@ using StateSmith.Output.UserConfig;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
-// Useful info: https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support
-
 public class AlgoBalanced1 : IGilAlgo
 {
-    public bool skipClassIndentation = true; // used for C like stuff that has to hoist stuff out of class
+    protected readonly AlgoBalanced1Settings settings;
     protected readonly EnumBuilder enumBuilder;
     private readonly RenderConfigVars renderConfig;
     protected readonly NameMangler mangler;
@@ -26,7 +24,7 @@ public class AlgoBalanced1 : IGilAlgo
     protected StateMachine? _sm;
     protected StateMachine Sm => _sm.ThrowIfNull("Must be set before use");
 
-    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler)
+    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings)
     {
         this.mangler = mangler;
         this.file = new OutputFile(styler, new StringBuilder());
@@ -34,6 +32,7 @@ public class AlgoBalanced1 : IGilAlgo
         this.enumBuilder = enumBuilder;
         this.renderConfig = renderConfig;
         this.eventHandlerBuilder = eventHandlerBuilder;
+        this.settings = settings;
     }
 
     public string GenerateGil(StateMachine sm)
@@ -62,15 +61,15 @@ public class AlgoBalanced1 : IGilAlgo
         file.StartCodeBlock();
     }
 
-    // this is a bit of a hack that helps create the proper indentation for the Crill to C99 step
+    // this is a bit of a hack that helps create the proper indentation for the GIL to C99 step
     private void RunWithPossibleIndentation(Action action)
     {
-        if (skipClassIndentation)
+        if (settings.skipClassIndentation)
             file.DecreaseIndentLevel();
 
         action();
 
-        if (skipClassIndentation)
+        if (settings.skipClassIndentation)
             file.IncreaseIndentLevel();
     }
 
