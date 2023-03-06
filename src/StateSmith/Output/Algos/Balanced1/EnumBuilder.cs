@@ -21,7 +21,7 @@ public class EnumBuilder
 
     public void OutputEventIdCode(OutputFile file)
     {
-        file.Append($"public enum {mangler.SmEventEnum}");
+        file.Append($"public enum {mangler.SmEventEnumType}");
         file.StartCodeBlock();
         List<string> nonDoEvents = GetNonDoEvents(out var hadDoEvent);
 
@@ -67,7 +67,7 @@ public class EnumBuilder
     {
         string smName = GetSm().Name;
 
-        file.Append($"public enum {mangler.SmStateEnum}");
+        file.Append($"public enum {mangler.SmStateEnumType}");
         file.StartCodeBlock();
 
         var namedVertices = GetSm().GetNamedVerticesCopy();
@@ -91,17 +91,17 @@ public class EnumBuilder
 
     public void OutputHistoryIdCode(OutputFile file, HistoryVertex historyVertex)
     {
-        file.Append($"public enum {mangler.HistoryVarEnumName(historyVertex)}");
+        file.Append($"public enum {mangler.HistoryVarEnumType(historyVertex)}");
         file.StartCodeBlock();
 
         // default behavior is the last one
         Behavior defaultBehavior = historyVertex.Behaviors.Last();
-        file.AppendLine($"{mangler.HistoryVarEnumValueName(historyVertex, defaultBehavior.TransitionTarget.ThrowIfNull())} = 0, // default transition");
+        file.AppendLine($"{mangler.HistoryVarEnumValue(historyVertex, defaultBehavior.TransitionTarget.ThrowIfNull())} = 0, // default transition");
 
         for (int i = 0; i < historyVertex.Behaviors.Count - 1; i++)
         {
             var b = historyVertex.Behaviors[i];
-            file.AppendLine($"{mangler.HistoryVarEnumValueName(historyVertex, b.TransitionTarget.ThrowIfNull())} = {i + 1},");
+            file.AppendLine($"{mangler.HistoryVarEnumValue(historyVertex, b.TransitionTarget.ThrowIfNull())} = {i + 1},");
         }
 
         file.FinishCodeBlock("");

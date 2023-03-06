@@ -10958,3 +10958,191 @@ static void TEST9A_S1_1_ev1(Spec2Sm* sm)
         } // end of behavior for TEST9A_S1.ExitPoint(1)
     } // end of behavior for TEST9A_S1_1
 }
+
+// Thread safe.
+char const * const Spec2Sm_state_id_to_string(Spec2Sm* sm, Spec2Sm_StateId id)
+{
+    switch (id)
+    {
+        case Spec2Sm_StateId_ROOT: return "ROOT";
+        case Spec2Sm_StateId_AUTO_VAR_TEST: return "AUTO_VAR_TEST";
+        case Spec2Sm_StateId_AUTO_VAR_TEST__BLAH: return "AUTO_VAR_TEST__BLAH";
+        case Spec2Sm_StateId_AUTO_VAR_TEST__BLAH2: return "AUTO_VAR_TEST__BLAH2";
+        case Spec2Sm_StateId_DECIDE: return "DECIDE";
+        case Spec2Sm_StateId_PREFIXING: return "PREFIXING";
+        case Spec2Sm_StateId_PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU";
+        case Spec2Sm_StateId_PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA";
+        case Spec2Sm_StateId_PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG: return "PREFIXING__OM__VEG";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO";
+        case Spec2Sm_StateId_PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO";
+        case Spec2Sm_StateId_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM";
+        case Spec2Sm_StateId_TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING";
+        case Spec2Sm_StateId_TEST1_ROOT: return "TEST1_ROOT";
+        case Spec2Sm_StateId_TEST1_S1: return "TEST1_S1";
+        case Spec2Sm_StateId_TEST1_S1_1: return "TEST1_S1_1";
+        case Spec2Sm_StateId_TEST1_S2: return "TEST1_S2";
+        case Spec2Sm_StateId_TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT";
+        case Spec2Sm_StateId_TEST10_A: return "TEST10_A";
+        case Spec2Sm_StateId_TEST10_A_1: return "TEST10_A_1";
+        case Spec2Sm_StateId_TEST10_ROOT: return "TEST10_ROOT";
+        case Spec2Sm_StateId_TEST10_G: return "TEST10_G";
+        case Spec2Sm_StateId_TEST10_G_S0: return "TEST10_G_S0";
+        case Spec2Sm_StateId_TEST10_G_S1: return "TEST10_G_S1";
+        case Spec2Sm_StateId_TEST10_G_S2: return "TEST10_G_S2";
+        case Spec2Sm_StateId_TEST10_G_S3: return "TEST10_G_S3";
+        case Spec2Sm_StateId_TEST10_S1: return "TEST10_S1";
+        case Spec2Sm_StateId_TEST10_S4: return "TEST10_S4";
+        case Spec2Sm_StateId_TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING";
+        case Spec2Sm_StateId_TEST2_ROOT: return "TEST2_ROOT";
+        case Spec2Sm_StateId_TEST2_S1: return "TEST2_S1";
+        case Spec2Sm_StateId_TEST2_S1_1: return "TEST2_S1_1";
+        case Spec2Sm_StateId_TEST2_S2: return "TEST2_S2";
+        case Spec2Sm_StateId_TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING";
+        case Spec2Sm_StateId_TEST3_ROOT: return "TEST3_ROOT";
+        case Spec2Sm_StateId_TEST3_S1: return "TEST3_S1";
+        case Spec2Sm_StateId_TEST3_S2: return "TEST3_S2";
+        case Spec2Sm_StateId_TEST3_S3: return "TEST3_S3";
+        case Spec2Sm_StateId_TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS";
+        case Spec2Sm_StateId_TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS";
+        case Spec2Sm_StateId_TEST4B_LOCAL: return "TEST4B_LOCAL";
+        case Spec2Sm_StateId_TEST4B_G: return "TEST4B_G";
+        case Spec2Sm_StateId_TEST4B_G_1: return "TEST4B_G_1";
+        case Spec2Sm_StateId_TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS";
+        case Spec2Sm_StateId_TEST4C_G: return "TEST4C_G";
+        case Spec2Sm_StateId_TEST4C_G_1: return "TEST4C_G_1";
+        case Spec2Sm_StateId_TEST4D_EXTERNAL: return "TEST4D_EXTERNAL";
+        case Spec2Sm_StateId_TEST4D_G: return "TEST4D_G";
+        case Spec2Sm_StateId_TEST4D_G_1: return "TEST4D_G_1";
+        case Spec2Sm_StateId_TEST4_DECIDE: return "TEST4_DECIDE";
+        case Spec2Sm_StateId_TEST4_ROOT: return "TEST4_ROOT";
+        case Spec2Sm_StateId_TEST4_S1: return "TEST4_S1";
+        case Spec2Sm_StateId_TEST4_S10: return "TEST4_S10";
+        case Spec2Sm_StateId_TEST4_S10_1: return "TEST4_S10_1";
+        case Spec2Sm_StateId_TEST4_S2: return "TEST4_S2";
+        case Spec2Sm_StateId_TEST4_S20: return "TEST4_S20";
+        case Spec2Sm_StateId_TEST4_S20_1: return "TEST4_S20_1";
+        case Spec2Sm_StateId_TEST4_S3: return "TEST4_S3";
+        case Spec2Sm_StateId_TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS";
+        case Spec2Sm_StateId_TEST5_ROOT: return "TEST5_ROOT";
+        case Spec2Sm_StateId_TEST5_S1: return "TEST5_S1";
+        case Spec2Sm_StateId_TEST5_S2: return "TEST5_S2";
+        case Spec2Sm_StateId_TEST5_S3: return "TEST5_S3";
+        case Spec2Sm_StateId_TEST6_VARIABLES: return "TEST6_VARIABLES";
+        case Spec2Sm_StateId_TEST6_ROOT: return "TEST6_ROOT";
+        case Spec2Sm_StateId_TEST6_S1: return "TEST6_S1";
+        case Spec2Sm_StateId_TEST6_S2: return "TEST6_S2";
+        case Spec2Sm_StateId_TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY";
+        case Spec2Sm_StateId_TEST7: return "TEST7";
+        case Spec2Sm_StateId_T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1";
+        case Spec2Sm_StateId_T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP";
+        case Spec2Sm_StateId_T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED";
+        case Spec2Sm_StateId_T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP";
+        case Spec2Sm_StateId_T7__DH1__HERO: return "T7__DH1__HERO";
+        case Spec2Sm_StateId_T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN";
+        case Spec2Sm_StateId_T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR";
+        case Spec2Sm_StateId_T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP";
+        case Spec2Sm_StateId_T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF";
+        case Spec2Sm_StateId_T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS";
+        case Spec2Sm_StateId_T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES";
+        case Spec2Sm_StateId_T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT";
+        case Spec2Sm_StateId_T7__DH1__BUILD: return "T7__DH1__BUILD";
+        case Spec2Sm_StateId_T7__DH1__TOOL: return "T7__DH1__TOOL";
+        case Spec2Sm_StateId_T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW";
+        case Spec2Sm_StateId_T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL";
+        case Spec2Sm_StateId_T7__DH1__TOY: return "T7__DH1__TOY";
+        case Spec2Sm_StateId_T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM";
+        case Spec2Sm_StateId_T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR";
+        case Spec2Sm_StateId_T7__DH1__ROBOT: return "T7__DH1__ROBOT";
+        case Spec2Sm_StateId_T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT";
+        case Spec2Sm_StateId_T7__DH1__WALL_E: return "T7__DH1__WALL_E";
+        case Spec2Sm_StateId_T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR";
+        case Spec2Sm_StateId_T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2";
+        case Spec2Sm_StateId_T7__DH2__STATE_0: return "T7__DH2__STATE_0";
+        case Spec2Sm_StateId_T7__DH2__STATE_1: return "T7__DH2__STATE_1";
+        case Spec2Sm_StateId_T7__DH2__STATE_2: return "T7__DH2__STATE_2";
+        case Spec2Sm_StateId_T7__DH2__STATE_6: return "T7__DH2__STATE_6";
+        case Spec2Sm_StateId_T7__DH2__STATE_9: return "T7__DH2__STATE_9";
+        case Spec2Sm_StateId_T7__DH2__STATE_3: return "T7__DH2__STATE_3";
+        case Spec2Sm_StateId_T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3";
+        case Spec2Sm_StateId_T7__DH3__STATE_0: return "T7__DH3__STATE_0";
+        case Spec2Sm_StateId_T7__DH3__STATE_1: return "T7__DH3__STATE_1";
+        case Spec2Sm_StateId_T7__DH3__STATE_2: return "T7__DH3__STATE_2";
+        case Spec2Sm_StateId_T7__DH3__STATE_6: return "T7__DH3__STATE_6";
+        case Spec2Sm_StateId_T7__DH3__STATE_9: return "T7__DH3__STATE_9";
+        case Spec2Sm_StateId_T7__DH3__STATE_3: return "T7__DH3__STATE_3";
+        case Spec2Sm_StateId_T7__HISTORY1: return "T7__HISTORY1";
+        case Spec2Sm_StateId_T7__H1__OFF: return "T7__H1__OFF";
+        case Spec2Sm_StateId_T7__H1__OFF1: return "T7__H1__OFF1";
+        case Spec2Sm_StateId_T7__H1__OFF2: return "T7__H1__OFF2";
+        case Spec2Sm_StateId_T7__H1__OFF3: return "T7__H1__OFF3";
+        case Spec2Sm_StateId_T7__H1__ON: return "T7__H1__ON";
+        case Spec2Sm_StateId_T7__H1__ON1: return "T7__H1__ON1";
+        case Spec2Sm_StateId_T7__H1__ON2: return "T7__H1__ON2";
+        case Spec2Sm_StateId_T7__H1__ON3: return "T7__H1__ON3";
+        case Spec2Sm_StateId_T7__INITIAL1: return "T7__INITIAL1";
+        case Spec2Sm_StateId_T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT";
+        case Spec2Sm_StateId_T7__INITIAL1__G: return "T7__INITIAL1__G";
+        case Spec2Sm_StateId_T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1";
+        case Spec2Sm_StateId_T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2";
+        case Spec2Sm_StateId_T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3";
+        case Spec2Sm_StateId_T7__INITIAL1__S1: return "T7__INITIAL1__S1";
+        case Spec2Sm_StateId_TEST7_DECIDE: return "TEST7_DECIDE";
+        case Spec2Sm_StateId_TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE";
+        case Spec2Sm_StateId_TEST8_ROOT: return "TEST8_ROOT";
+        case Spec2Sm_StateId_TEST8_G: return "TEST8_G";
+        case Spec2Sm_StateId_TEST8_G_S1: return "TEST8_G_S1";
+        case Spec2Sm_StateId_TEST8_G_S2: return "TEST8_G_S2";
+        case Spec2Sm_StateId_TEST8_G_S3: return "TEST8_G_S3";
+        case Spec2Sm_StateId_TEST8_S1: return "TEST8_S1";
+        case Spec2Sm_StateId_TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE";
+        case Spec2Sm_StateId_TEST9_DECIDE: return "TEST9_DECIDE";
+        case Spec2Sm_StateId_TEST9_ROOT: return "TEST9_ROOT";
+        case Spec2Sm_StateId_TEST9_G_S1: return "TEST9_G_S1";
+        case Spec2Sm_StateId_TEST9_G_S2: return "TEST9_G_S2";
+        case Spec2Sm_StateId_TEST9_G_S3: return "TEST9_G_S3";
+        case Spec2Sm_StateId_TEST9_G_S4: return "TEST9_G_S4";
+        case Spec2Sm_StateId_TEST9_S1: return "TEST9_S1";
+        case Spec2Sm_StateId_TEST9_S1_1: return "TEST9_S1_1";
+        case Spec2Sm_StateId_TEST9A_ROOT: return "TEST9A_ROOT";
+        case Spec2Sm_StateId_TEST9A_S1: return "TEST9A_S1";
+        case Spec2Sm_StateId_TEST9A_S1_1: return "TEST9A_S1_1";
+        default: return "?";
+    }
+}
+
+// Thread safe.
+char const * const Spec2Sm_event_id_to_string(Spec2Sm* sm, Spec2Sm_EventId id)
+{
+    switch (id)
+    {
+        case Spec2Sm_EventId_DO: return "DO";
+        case Spec2Sm_EventId_EV1: return "EV1";
+        case Spec2Sm_EventId_EV10: return "EV10";
+        case Spec2Sm_EventId_EV2: return "EV2";
+        case Spec2Sm_EventId_EV3: return "EV3";
+        case Spec2Sm_EventId_EV4: return "EV4";
+        case Spec2Sm_EventId_EV5: return "EV5";
+        case Spec2Sm_EventId_EV6: return "EV6";
+        case Spec2Sm_EventId_EV7: return "EV7";
+        case Spec2Sm_EventId_EV8: return "EV8";
+        case Spec2Sm_EventId_EV9: return "EV9";
+        case Spec2Sm_EventId_EVBACK: return "EVBACK";
+        case Spec2Sm_EventId_EVCLOSE: return "EVCLOSE";
+        case Spec2Sm_EventId_EVOPEN: return "EVOPEN";
+        case Spec2Sm_EventId_EVSTEP: return "EVSTEP";
+        default: return "?";
+    }
+}

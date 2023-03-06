@@ -155,7 +155,7 @@ public class EventHandlerBuilder
             {
                 // no initial state, this is the final state.
                 File.AppendLine("// Step 4: complete transition. Ends event dispatch. No other behaviors are checked.");
-                File.AppendLine($"{smAccess}.state_id = {mangler.SmStateEnum}.{mangler.SmStateEnumValue(namedVertexTarget)};");
+                File.AppendLine($"{smAccess}.state_id = {mangler.SmStateEnumType}.{mangler.SmStateEnumValue(namedVertexTarget)};");
                 if (noAncestorHandlesEvent)
                 {
                     File.AppendLine("// No ancestor handles event. Can skip nulling `ancestor_event_handler`.");
@@ -181,7 +181,7 @@ public class EventHandlerBuilder
         {
             if (stateToEnter is NamedVertex namedVertexToEnter)
             {
-                var enterHandler = mangler.SmFuncTriggerHandler(namedVertexToEnter, TriggerHelper.TRIGGER_ENTER);
+                var enterHandler = mangler.SmTriggerHandlerFuncName(namedVertexToEnter, TriggerHelper.TRIGGER_ENTER);
                 File.AppendLine($"{enterHandler}({smAccess});");
             }
             else if (stateToEnter is PseudoStateVertex pv)
@@ -306,13 +306,13 @@ public class EventHandlerBuilder
         if (canUseDirectExit)
         {
             NamedVertex leafActiveState = (NamedVertex)source;
-            string sourceExitHandler = mangler.SmFuncTriggerHandler(leafActiveState, TriggerHelper.TRIGGER_EXIT);
+            string sourceExitHandler = mangler.SmTriggerHandlerFuncName(leafActiveState, TriggerHelper.TRIGGER_EXIT);
             File.AppendLine($"{sourceExitHandler}({smAccess});");
         }
         else
         {
-            string ancestorExitHandler = mangler.SmFuncTriggerHandler(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
-            File.AppendLine($"{mangler.SmFuncExitUpTo}({smAccess}, {ancestorExitHandler});");
+            string ancestorExitHandler = mangler.SmTriggerHandlerFuncName(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
+            File.AppendLine($"{mangler.SmExitUpToFuncName}({smAccess}, {ancestorExitHandler});");
         }
     }
 
@@ -348,7 +348,7 @@ public class EventHandlerBuilder
         {
             File.AppendLine($"// Setup handler for next ancestor that listens to `{triggerName}` event.");
             File.Append($"{smAccess}.ancestor_event_handler = ");
-            File.FinishLine($"{mangler.SmFuncTriggerHandler(nextHandlingState, triggerName)};");
+            File.FinishLine($"{mangler.SmTriggerHandlerFuncName(nextHandlingState, triggerName)};");
         }
 
         File.RequestNewLineBeforeMoreCode();
@@ -488,7 +488,7 @@ public class EventHandlerBuilder
         File.StartCodeBlock();
         {
             File.AppendLine($"// setup trigger/event handlers");
-            string stateExitHandlerName = mangler.SmFuncTriggerHandler(state, TriggerHelper.TRIGGER_EXIT);
+            string stateExitHandlerName = mangler.SmTriggerHandlerFuncName(state, TriggerHelper.TRIGGER_EXIT);
             File.AppendLine($"{smAccess}.current_state_exit_handler = {stateExitHandlerName};");
 
             string[] eventNames = GetEvents(state).ToArray();
@@ -496,9 +496,9 @@ public class EventHandlerBuilder
 
             foreach (var eventName in eventNames)
             {
-                string handlerName = mangler.SmFuncTriggerHandler(state, eventName);
+                string handlerName = mangler.SmTriggerHandlerFuncName(state, eventName);
                 string eventEnumValueName = mangler.SmEventEnumValue(eventName);
-                File.AppendLine($"{smAccess}.current_event_handlers[(int){mangler.SmEventEnum}.{eventEnumValueName}] = {handlerName};");
+                File.AppendLine($"{smAccess}.current_event_handlers[(int){mangler.SmEventEnumType}.{eventEnumValueName}] = {handlerName};");
             }
 
             File.RequestNewLineBeforeMoreCode();
@@ -523,7 +523,7 @@ public class EventHandlerBuilder
             else
             {
                 File.AppendLine($"// adjust function pointers for this state's exit");
-                string parentExitHandler = mangler.SmFuncTriggerHandler((NamedVertex)state.Parent, TriggerHelper.TRIGGER_EXIT);
+                string parentExitHandler = mangler.SmTriggerHandlerFuncName((NamedVertex)state.Parent, TriggerHelper.TRIGGER_EXIT);
                 File.AppendLine($"{smAccess}.current_state_exit_handler = {parentExitHandler};");
 
                 string[] eventNames = GetEvents(state).ToArray();
@@ -531,11 +531,11 @@ public class EventHandlerBuilder
 
                 foreach (var eventName in eventNames)
                 {
-                    string eventEnumValueIndex = $"(int){mangler.SmEventEnum}.{mangler.SmEventEnumValue(eventName)}";
+                    string eventEnumValueIndex = $"(int){mangler.SmEventEnumType}.{mangler.SmEventEnumValue(eventName)}";
                     var ancestor = state.FirstAncestorThatHandlesEvent(eventName);
                     if (ancestor != null)
                     {
-                        string handlerName = mangler.SmFuncTriggerHandler(ancestor, eventName);
+                        string handlerName = mangler.SmTriggerHandlerFuncName(ancestor, eventName);
                         File.AppendLine($"{smAccess}.current_event_handlers[{eventEnumValueIndex}] = {handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
                     }
                     else
@@ -562,10 +562,10 @@ public class EventHandlerBuilder
         // enter functions don't need to be static delegates because we don't take their address
         if (!TriggerHelper.IsEnterTrigger(eventName))
         {
-            File.AppendLine($"[{GilHelper.GilAddessableFunctionAttribute}<{mangler.SmFuncTypedef}>]");
+            File.AppendLine($"[{GilHelper.GilAddessableFunctionAttribute}<{mangler.SmHandlerFuncType}>]");
         }
 
-        File.Append($"private static void {mangler.SmFuncTriggerHandler(state, eventName)}({mangler.SmStructName} sm)");
+        File.Append($"private static void {mangler.SmTriggerHandlerFuncName(state, eventName)}({mangler.SmTypeName} sm)");
     }
 
     /// <summary>

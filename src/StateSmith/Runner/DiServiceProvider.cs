@@ -55,6 +55,8 @@ public class DiServiceProvider
             services.AddSingleton<DiagramToSmConverter>();
             services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetService<DiagramToSmConverter>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
             services.AddSingleton<AlgoBalanced1Settings>();
+            services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
+            services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();

@@ -430,3 +430,30 @@ static void T111_exit(Spec1Sm* sm)
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = T11_exit;
 }
+
+// Thread safe.
+char const * const Spec1Sm_state_id_to_string(Spec1Sm* sm, Spec1Sm_StateId id)
+{
+    switch (id)
+    {
+        case Spec1Sm_StateId_ROOT: return "ROOT";
+        case Spec1Sm_StateId_S: return "S";
+        case Spec1Sm_StateId_S1: return "S1";
+        case Spec1Sm_StateId_S11: return "S11";
+        case Spec1Sm_StateId_T1: return "T1";
+        case Spec1Sm_StateId_T11: return "T11";
+        case Spec1Sm_StateId_T111: return "T111";
+        default: return "?";
+    }
+}
+
+// Thread safe.
+char const * const Spec1Sm_event_id_to_string(Spec1Sm* sm, Spec1Sm_EventId id)
+{
+    switch (id)
+    {
+        case Spec1Sm_EventId_EV1: return "EV1";
+        case Spec1Sm_EventId_EV2: return "EV2";
+        default: return "?";
+    }
+}

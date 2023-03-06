@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 
 namespace StateSmith.Output.Algos.Balanced1;
@@ -11,4 +11,7 @@ public class AlgoBalanced1Settings
     // In the future, it would be nice to remove this and just run a code formatter for the transpilers
     // that don't want the class indentation.
     public bool skipClassIndentation = true;
+
+    public bool generateEventIdToStringFunction = true;
+    public bool generateStateIdToStringFunction = true;
 }

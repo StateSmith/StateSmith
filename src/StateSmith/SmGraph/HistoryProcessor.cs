@@ -129,8 +129,8 @@ public class HistoryProcessor
             bool isDefaultTransition = stateToTrack == defaultTransition?.TransitionTarget && defaultTransition.HasActionCode() == false;
             
             string expansionVarsPath = expansionVarsPathProvider.ExpansionVarsPath;
-            string enumName = mangler.HistoryVarEnumName(historyState);
-            string enumValueName = enumName + "." + mangler.HistoryVarEnumValueName(historyState, stateToTrack);
+            string enumName = mangler.HistoryVarEnumType(historyState);
+            string enumValueName = enumName + "." + mangler.HistoryVarEnumValue(historyState, stateToTrack);
 
             {
                 Behavior enterTrackingBehavior = new(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{expansionVarsPath}{historyState.stateTrackingVarName} = {enumValueName};");

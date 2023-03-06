@@ -143,28 +143,33 @@ public class AlgoBalanced1Tests
         sm.AddChild(new InitialState()).AddTransitionTo(s1).actionCode = "self->vars.b = false;";
         s1.AddTransitionTo(s2);
 
-        InputSmBuilder inputSmBuilder = new();
+        sm.variables += "bool b;";
+
+        void SetupAction(DiServiceProvider sp)
+        {
+            sp.AddSingletonT(new RenderConfigVars()
+            {
+                VariableDeclarations = "//This is super cool!\nbyte x;"
+            });
+
+            sp.AddSingletonT(new AlgoBalanced1Settings()
+            {
+                skipClassIndentation = skipIndentation,
+            });
+        }
+
+        InputSmBuilder inputSmBuilder = new(SetupAction);
         inputSmBuilder.SetStateMachineRoot(sm);
         inputSmBuilder.FinishRunning();
 
-        NameMangler mangler = new();
-        mangler.SetStateMachine(sm);
-        StateMachineProvider stateMachineProvider = new(sm);
-        EnumBuilder enumBuilder = new(mangler, stateMachineProvider);
-        sm.variables += "bool b;";
-        PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
-        EventHandlerBuilder eventHandlerBuilder = new EventHandlerBuilder(new(), pseudoStateHandlerBuilder, mangler);
-        RenderConfigVars renderConfig = new()
-        {
-            VariableDeclarations = "//This is super cool!\nbyte x;"
-        };
+        //NameMangler mangler = new();
+        //mangler.SetStateMachine(sm);
+        //StateMachineProvider stateMachineProvider = new(sm);
+        //EnumBuilder enumBuilder = new(mangler, stateMachineProvider);
+        //PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
+        //EventHandlerBuilder eventHandlerBuilder = new(new(), pseudoStateHandlerBuilder, mangler);
 
-        var settings = new AlgoBalanced1Settings()
-        {
-            skipClassIndentation = skipIndentation,
-        };
-
-        AlgoBalanced1 builder = new(mangler, pseudoStateHandlerBuilder, enumBuilder, renderConfig, eventHandlerBuilder, new CodeStyleSettings(), settings);
+        AlgoBalanced1 builder = inputSmBuilder.sp.GetServiceOrCreateInstanceRaw<AlgoBalanced1>();
         return builder.GenerateGil(sm);
     }
 }

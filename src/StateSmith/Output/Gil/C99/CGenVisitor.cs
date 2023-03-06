@@ -569,6 +569,7 @@ internal class CGenVisitor : CSharpSyntaxWalker
             "ulong" => "uint64_t",
             "float" => "float",
             "double" => "double",
+            "string" => "char const * const",
             _ => throw new NotImplementedException(node + ""),
         };
 

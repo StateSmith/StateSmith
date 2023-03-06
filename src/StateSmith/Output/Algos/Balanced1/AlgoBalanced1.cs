@@ -15,16 +15,20 @@ public class AlgoBalanced1 : IGilAlgo
 {
     protected readonly AlgoBalanced1Settings settings;
     protected readonly EnumBuilder enumBuilder;
-    private readonly RenderConfigVars renderConfig;
+    protected readonly RenderConfigVars renderConfig;
     protected readonly NameMangler mangler;
     protected readonly OutputFile file;
     protected readonly EventHandlerBuilder eventHandlerBuilder;
     protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
+    protected readonly IAlgoEventIdToString algoEventIdToString;
+    protected readonly IAlgoStateIdToString algoStateIdToString;
 
     protected StateMachine? _sm;
     protected StateMachine Sm => _sm.ThrowIfNull("Must be set before use");
 
-    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings)
+    string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
+
+    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString)
     {
         this.mangler = mangler;
         this.file = new OutputFile(styler, new StringBuilder());
@@ -33,6 +37,8 @@ public class AlgoBalanced1 : IGilAlgo
         this.renderConfig = renderConfig;
         this.eventHandlerBuilder = eventHandlerBuilder;
         this.settings = settings;
+        this.algoEventIdToString = algoEventIdToString;
+        this.algoStateIdToString = algoStateIdToString;
     }
 
     public string GenerateGil(StateMachine sm)
@@ -41,10 +47,11 @@ public class AlgoBalanced1 : IGilAlgo
         mangler.SetStateMachine(sm);
         eventHandlerBuilder.SetFile(this.file);
         file.AppendLine($"// Generated state machine");
-        file.Append($"public class {mangler.SmStructName}");
+        file.Append($"public class {mangler.SmTypeName}");
 
         StartClassBlock();
         GenerateInner();
+
         GilHelper.AppendGilHelpersFuncs(file);
 
         EndClassBlock();
@@ -89,7 +96,7 @@ public class AlgoBalanced1 : IGilAlgo
             }
 
             file.AppendLine($"// event handler type");
-            file.AppendLine($"private delegate void {mangler.SmFuncTypedef}({mangler.SmStructName} sm);");
+            file.AppendLine($"private delegate void {mangler.SmHandlerFuncType}({mangler.SmTypeName} sm);");
             file.AppendLine();
         });
 
@@ -109,28 +116,40 @@ public class AlgoBalanced1 : IGilAlgo
 
             OutputExitUpToFunction();
 
-            //OutputFuncStateIdToString();
-
             OutputTriggerHandlers();
+            MaybeOutputToStringFunctions();
         });
+    }
+
+    private void MaybeOutputToStringFunctions()
+    {
+        if (settings.generateStateIdToStringFunction)
+        {
+            algoStateIdToString.CreateStateIdToStringFunction(file, Sm);
+        }
+
+        if (settings.generateEventIdToStringFunction)
+        {
+            algoEventIdToString.CreateEventIdToStringFunction(file, Sm);
+        }
     }
 
     internal void OutputStructDefinition()
     {
         file.AppendLine($"// Used internally by state machine. Feel free to inspect, but don't modify.");
-        file.AppendLine($"public {mangler.SmStateEnum} state_id;");
+        file.AppendLine($"public {mangler.SmStateEnumType} state_id;");
 
         file.AppendLine();
         file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private {mangler.SmFuncTypedef}? ancestor_event_handler;");
+        file.AppendLine($"private {mangler.SmHandlerFuncType}? ancestor_event_handler;");
 
         file.AppendLine();
         file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private readonly {mangler.SmFuncTypedef}?[] current_event_handlers = new {mangler.SmFuncTypedef}[{mangler.SmEventEnumCount}];");
+        file.AppendLine($"private readonly {mangler.SmHandlerFuncType}?[] current_event_handlers = new {mangler.SmHandlerFuncType}[{mangler.SmEventEnumCount}];");
 
         file.AppendLine();
         file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private {mangler.SmFuncTypedef}? current_state_exit_handler;");
+        file.AppendLine($"private {mangler.SmHandlerFuncType}? current_state_exit_handler;");
 
         if (IsVarsStructNeeded())
         {
@@ -182,36 +201,16 @@ public class AlgoBalanced1 : IGilAlgo
     {
         file.AppendLine();
         file.AppendLine("// State machine constructor. Must be called before start or dispatch event functions. Not thread safe.");
-        file.Append($"public {mangler.SmStructName}()");
+        file.Append($"public {mangler.SmTypeName}()");
         file.StartCodeBlock();
         file.FinishCodeBlock();
         file.AppendLine();
     }
 
-    //internal void OutputFuncStateIdToString()
-    //{
-    //    file.Append($"{ConstMarker}char* {mangler.SmFuncToString}({ConstMarker}{mangler.SmStateEnum} id)");  // todolow share function prototype string generation
-    //    file.StartCodeBlock();
-    //    {
-    //        file.Append("switch (id)");
-    //        file.StartCodeBlock();
-    //        {
-    //            foreach (var state in Sm.GetNamedVerticesCopy())
-    //            {
-    //                file.AppendLine($"case {mangler.SmStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
-    //            }
-    //            file.AppendLine("default: return \"?\";");
-    //        }
-    //        file.FinishCodeBlock(forceNewLine: true);
-    //    }
-    //    file.FinishCodeBlock(forceNewLine: true);
-    //    file.AppendLine();
-    //}
-
     internal void OutputFuncStart()
     {
         file.AppendLine("// Starts the state machine. Must be called before dispatching events. Not thread safe.");
-        file.Append($"public void {mangler.SmFuncStart}()");
+        file.Append($"public void {mangler.SmStartFuncName}()");
         file.StartCodeBlock();
         file.AppendLine("ROOT_enter(this);");
 
@@ -228,14 +227,12 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine();
     }
 
-    string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
-
     internal void OutputExitUpToFunction()
     {
         file.AppendLine("// This function is used when StateSmith doesn't know what the active leaf state is at");
         file.AppendLine("// compile time due to sub states or when multiple states need to be exited.");
 
-        file.Append($"private static void {mangler.SmFuncExitUpTo}({mangler.SmName} sm, {ConstMarker}{mangler.SmFuncTypedef} desired_state_exit_handler)");
+        file.Append($"private static void {mangler.SmExitUpToFuncName}({mangler.SmTypeName} sm, {ConstMarker}{mangler.SmHandlerFuncType} desired_state_exit_handler)");
         file.StartCodeBlock();
 
         file.Append($"while (sm.current_state_exit_handler != desired_state_exit_handler)");
@@ -252,9 +249,9 @@ public class AlgoBalanced1 : IGilAlgo
     internal void OutputFuncDispatchEvent()
     {
         file.AppendLine("// Dispatches an event to the state machine. Not thread safe.");
-        file.Append($"public void {mangler.SmFuncDispatchEvent}({mangler.SmEventEnum} event_id)");
+        file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} event_id)");
         file.StartCodeBlock();
-        file.AppendLine($"{mangler.SmFuncTypedef}? behavior_func = this.current_event_handlers[(int)event_id];");
+        file.AppendLine($"{mangler.SmHandlerFuncType}? behavior_func = this.current_event_handlers[(int)event_id];");
         file.AppendLine();
         file.Append("while (behavior_func != null)");
         {

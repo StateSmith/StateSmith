@@ -24,7 +24,7 @@ public class GilToC99Tests
         };
         CNameMangler cNameMangler = new(sm);
 
-        File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
+        //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.Sm.Name}.gil.cs", programText);
 
         GilToC99 gilToC = new(renderConfigC, outputInfo, cNameMangler);
 

@@ -42,7 +42,7 @@ public class DynamicVarsResolver
             }
             else
             {
-                sm.variables += $"{mangler.HistoryVarEnumName(h)} {actualVarName};\n";
+                sm.variables += $"{mangler.HistoryVarEnumType(h)} {actualVarName};\n";
             }
         }
     }

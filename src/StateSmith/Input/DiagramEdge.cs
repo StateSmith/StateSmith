@@ -1,8 +1,5 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Xml;
-using System.Xml.Linq;
-using System.Linq;
 using System.Text;
 using StateSmith.Output;
 

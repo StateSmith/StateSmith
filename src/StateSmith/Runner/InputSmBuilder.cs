@@ -53,10 +53,11 @@ public class InputSmBuilder
 
     // todo_low - replace with unit testing factory helper.
     // The factory helper could setup DI and then this class could rely on it.
-    internal InputSmBuilder()
+    internal InputSmBuilder(Action<DiServiceProvider>? setupAction = null)
     {
         sp = DiServiceProvider.CreateDefault();
         sp.AddSingleton(this);
+        setupAction?.Invoke(sp);
         sp.Build();
         diagramToSmConverter = sp.GetServiceOrCreateInstance();
         transformer = sp.GetServiceOrCreateInstance();
