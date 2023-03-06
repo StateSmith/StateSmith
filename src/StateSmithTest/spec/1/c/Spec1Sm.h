@@ -56,10 +56,10 @@ void Spec1Sm_start(Spec1Sm* sm);
 void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id);
 
 // Thread safe.
-char const * const Spec1Sm_state_id_to_string(Spec1Sm* sm, Spec1Sm_StateId id);
+char const * const Spec1Sm_state_id_to_string(Spec1Sm_StateId id);
 
 // Thread safe.
-char const * const Spec1Sm_event_id_to_string(Spec1Sm* sm, Spec1Sm_EventId id);
+char const * const Spec1Sm_event_id_to_string(Spec1Sm_EventId id);
 
 // Generated state machine
 struct Spec1Sm

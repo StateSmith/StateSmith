@@ -16,7 +16,7 @@ public class AlgoEventIdToString : IAlgoEventIdToString
     public void CreateEventIdToStringFunction(OutputFile file, StateMachine sm)
     {
         file.AppendLine("// Thread safe.");
-        file.Append($"public string {mangler.SmEventIdToStringFuncName}({mangler.SmEventEnumType} id)");
+        file.Append($"public static string {mangler.SmEventIdToStringFuncName}({mangler.SmEventEnumType} id)");
         file.StartCodeBlock();
         {
             file.Append("switch (id)");

@@ -295,10 +295,10 @@ void Spec2Sm_start(Spec2Sm* sm);
 void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id);
 
 // Thread safe.
-char const * const Spec2Sm_state_id_to_string(Spec2Sm* sm, Spec2Sm_StateId id);
+char const * const Spec2Sm_state_id_to_string(Spec2Sm_StateId id);
 
 // Thread safe.
-char const * const Spec2Sm_event_id_to_string(Spec2Sm* sm, Spec2Sm_EventId id);
+char const * const Spec2Sm_event_id_to_string(Spec2Sm_EventId id);
 
 // Generated state machine
 struct Spec2Sm

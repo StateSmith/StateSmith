@@ -10960,7 +10960,7 @@ static void TEST9A_S1_1_ev1(Spec2Sm* sm)
 }
 
 // Thread safe.
-char const * const Spec2Sm_state_id_to_string(Spec2Sm* sm, Spec2Sm_StateId id)
+char const * const Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
 {
     switch (id)
     {
@@ -11124,7 +11124,7 @@ char const * const Spec2Sm_state_id_to_string(Spec2Sm* sm, Spec2Sm_StateId id)
 }
 
 // Thread safe.
-char const * const Spec2Sm_event_id_to_string(Spec2Sm* sm, Spec2Sm_EventId id)
+char const * const Spec2Sm_event_id_to_string(Spec2Sm_EventId id)
 {
     switch (id)
     {

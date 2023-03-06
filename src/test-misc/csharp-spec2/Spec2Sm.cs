@@ -10325,7 +10325,7 @@ namespace Csharp.Spec2smTests
         };
 
         // Thread safe.
-        public string StateIdToString(StateId id)
+        public static string StateIdToString(StateId id)
         {
             switch (id)
             {
@@ -10489,7 +10489,7 @@ namespace Csharp.Spec2smTests
         }
 
         // Thread safe.
-        public string EventIdToString(EventId id)
+        public static string EventIdToString(EventId id)
         {
             switch (id)
             {
