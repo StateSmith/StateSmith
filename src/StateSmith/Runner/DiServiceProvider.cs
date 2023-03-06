@@ -56,7 +56,7 @@ public class DiServiceProvider
             services.AddSingleton<AlgoBalanced1Settings>();
             services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
             services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
-            services.AddSingleton<ICFileNamer, CFileNamer>();
+            services.AddSingleton<IGilToC99Customizer, GilToC99Customizer>();
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();

@@ -15,13 +15,13 @@ public class GilToC99 : IGilTranspiler
     public readonly RenderConfigCVars renderConfigC;
 
     private readonly OutputInfo outputInfo;
-    private readonly ICFileNamer cFileNamer;
+    private readonly IGilToC99Customizer cCustomizer;
 
-    public GilToC99(RenderConfigCVars renderConfigC, OutputInfo outputInfo, ICFileNamer cFileNamer)
+    public GilToC99(RenderConfigCVars renderConfigC, OutputInfo outputInfo, IGilToC99Customizer cCustomizer)
     {
         this.renderConfigC = renderConfigC;
         this.outputInfo = outputInfo;
-        this.cFileNamer = cFileNamer;
+        this.cCustomizer = cCustomizer;
     }
 
     public void TranspileAndOutputCode(string programText)
@@ -30,14 +30,14 @@ public class GilToC99 : IGilTranspiler
 
         GilHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
-        CGenVisitor visitor = new(model, hFileSb, cFileSb, renderConfigC, cFileNamer.MakeHFileName());
+        C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfigC, cCustomizer);
 
         visitor.Visit(root);
 
         PostProcessor.PostProcess(hFileSb);
         PostProcessor.PostProcess(cFileSb);
 
-        File.WriteAllText($"{outputInfo.outputDirectory}{cFileNamer.MakeHFileName()}", hFileSb.ToString());
-        File.WriteAllText($"{outputInfo.outputDirectory}{cFileNamer.MakeCFileName()}", cFileSb.ToString());
+        File.WriteAllText($"{outputInfo.outputDirectory}{cCustomizer.MakeHFileName()}", hFileSb.ToString());
+        File.WriteAllText($"{outputInfo.outputDirectory}{cCustomizer.MakeCFileName()}", cFileSb.ToString());
     }
 }

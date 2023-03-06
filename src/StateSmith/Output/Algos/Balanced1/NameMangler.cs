@@ -38,11 +38,6 @@ public class NameMangler
 
     public virtual string SmEventEnumType => "EventId";
 
-    /// <summary>
-    /// FIXME: support with post processing markers. Set to `__attribute__((packed)) ` for gcc if you want smallest possible enum
-    /// </summary>
-    public virtual string SmEventEnumAttribute => "";
-
     public virtual string SmEventEnumValue(string evt) => evt.ToUpper();
 
     public virtual string SmEventEnumCount => $"{SmEventEnumType}Count";
@@ -64,11 +59,6 @@ public class NameMangler
     #region StateEnum
 
     public virtual string SmStateEnumType => "StateId";
-
-    /// <summary>
-    /// FIXME: support with post processing markers. Set to `__attribute__((packed)) ` for gcc if you want smallest possible enum
-    /// </summary>
-    public virtual string SmStateEnumAttribute => "";
 
     public virtual string SmStateEnumValue(NamedVertex namedVertex)
     {

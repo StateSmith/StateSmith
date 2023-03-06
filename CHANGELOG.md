@@ -11,7 +11,8 @@ https://github.com/StateSmith/StateSmith/issues/98
 
 ### Changes
 - Removed RenderConfigC from SmSettings. Moving towards language agnostic config.
-- Removed CNameMangler. Use `NameMangler` and `ICFileNamer` instead. More documentation needed here.
+- Removed CNameMangler. Use `NameMangler` and `ICFileNamer` instead. TODO document.
+- Custom C99 enum attributes can be specified using `IGilToC99Customizer` now. TODO document & example.
 
 ---
 

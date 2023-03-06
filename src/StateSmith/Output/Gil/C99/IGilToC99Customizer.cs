@@ -2,8 +2,9 @@
 
 namespace StateSmith.Output.Gil.C99;
 
-public interface ICFileNamer
+public interface IGilToC99Customizer
 {
     string MakeHFileName();
     string MakeCFileName();
+    string MakeEnumDeclaration(string enumName);
 }
