@@ -2,7 +2,6 @@ using Xunit;
 using StateSmithTest.Output.BalancedCoder1;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output;
 using System.IO;
 
@@ -22,11 +21,10 @@ public class GilToC99Tests
             outputDirectory = Path.GetTempPath(),
             //outputDirectory = TestHelper.GetThisDir() // use this one when troubleshooting
         };
-        CNameMangler cNameMangler = new(sm);
 
         //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.Sm.Name}.gil.cs", programText);
 
-        GilToC99 gilToC = new(renderConfigC, outputInfo, cNameMangler);
+        GilToC99 gilToC = new(renderConfigC, outputInfo, new CFileNamer(sm));
 
         gilToC.TranspileAndOutputCode(programText);
     }

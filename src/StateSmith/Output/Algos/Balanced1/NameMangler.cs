@@ -125,4 +125,11 @@ public class NameMangler
     {
         return $"{SmStateName(state)}_{triggerName.ToLower()}";
     }
+
+    //------------------------------------------------------
+
+    /// <summary>
+    /// Name of constructor function. Only used for langauges (like 'C') that lack actual constructors.
+    /// </summary>
+    public virtual string SmFuncCtor => "ctor"; // this needs to be changed
 }

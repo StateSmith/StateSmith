@@ -1,4 +1,3 @@
-using StateSmith.Output.C99BalancedCoder1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,7 @@ using StateSmith.Input.Yed;
 using StateSmith.Input.DrawIo;
 using System.Diagnostics.CodeAnalysis;
 using StateSmith.Common;
+using StateSmith.Output.Algos.Balanced1;
 
 #nullable enable
 
@@ -37,11 +37,11 @@ public class InputSmBuilder
     internal DiagramToSmConverter diagramToSmConverter; // todo - rework unit test code that relies on this so that it can be private https://github.com/StateSmith/StateSmith/issues/97
     internal DiServiceProvider sp; // todo - rework unit test code that relies on this so we can remove it https://github.com/StateSmith/StateSmith/issues/97
 
-    readonly CNameMangler mangler;
+    readonly NameMangler mangler;
     readonly DrawIoToSmDiagramConverter drawIoConverter;
     readonly StateMachineProvider stateMachineProvider;
 
-    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, CNameMangler mangler, DrawIoToSmDiagramConverter converter, DiServiceProvider sp, StateMachineProvider stateMachineProvider)
+    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, NameMangler mangler, DrawIoToSmDiagramConverter converter, DiServiceProvider sp, StateMachineProvider stateMachineProvider)
     {
         this.transformer = transformer;
         this.diagramToSmConverter = diagramToSmConverter;
@@ -61,7 +61,7 @@ public class InputSmBuilder
         sp.Build();
         diagramToSmConverter = sp.GetServiceOrCreateInstance();
         transformer = sp.GetServiceOrCreateInstance();
-        mangler = sp.GetServiceOrCreateInstance();
+        mangler = sp.GetInstanceOf<NameMangler>();
         drawIoConverter = sp.GetServiceOrCreateInstance();
         stateMachineProvider = sp.GetServiceOrCreateInstance();
     }

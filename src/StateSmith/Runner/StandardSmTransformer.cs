@@ -1,5 +1,4 @@
 using StateSmith.SmGraph;
-using StateSmith.Output.C99BalancedCoder1;
 using System;
 
 namespace StateSmith.Runner;
@@ -24,7 +23,7 @@ public class StandardSmTransformer : SmTransformer
     };
 
     // this ctor used for Dependency Injection
-    public StandardSmTransformer(CNameMangler mangler, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor)
+    public StandardSmTransformer(RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor)
     {
         AddStep(TransformationId.Standard_RemoveNotesVertices, (sm) => NotesProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());

@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 https://github.com/StateSmith/StateSmith/issues/98
 
 ### Changes
- - Removed RenderConfigC from SmSettings. Moving towards language agnostic config.
+- Removed RenderConfigC from SmSettings. Moving towards language agnostic config.
+- Removed CNameMangler. Use `NameMangler` and `ICFileNamer` instead. More documentation needed here.
 
 ---
 

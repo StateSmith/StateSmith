@@ -169,7 +169,7 @@ public class AlgoBalanced1Tests
         //PseudoStateHandlerBuilder pseudoStateHandlerBuilder = new();
         //EventHandlerBuilder eventHandlerBuilder = new(new(), pseudoStateHandlerBuilder, mangler);
 
-        AlgoBalanced1 builder = inputSmBuilder.sp.GetServiceOrCreateInstanceRaw<AlgoBalanced1>();
+        AlgoBalanced1 builder = inputSmBuilder.sp.GetInstanceOf<AlgoBalanced1>();
         return builder.GenerateGil(sm);
     }
 }

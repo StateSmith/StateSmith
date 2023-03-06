@@ -102,7 +102,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
         diServiceProvider.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
-            services.AddSingleton(settings.mangler);
             services.AddSingleton(settings.style);
             services.AddSingleton<OutputInfo>();
             services.AddSingleton<RenderConfigVars>(renderConfigVars);
@@ -120,7 +119,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
         diServiceProvider.BuildIfNeeded();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-        diServiceProvider.GetServiceOrCreateInstanceRaw<OutputInfo>().outputDirectory = settings.outputDirectory;
+        diServiceProvider.GetInstanceOf<OutputInfo>().outputDirectory = settings.outputDirectory;
     }
 
     // ----------- experimental access  -------------

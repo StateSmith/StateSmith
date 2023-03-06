@@ -3,7 +3,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Text;
 using System.IO;
 using StateSmith.Output.UserConfig;
-using StateSmith.Output.C99BalancedCoder1;
 
 #nullable enable
 
@@ -14,14 +13,15 @@ public class GilToC99 : IGilTranspiler
     public readonly StringBuilder hFileSb = new();
     public readonly StringBuilder cFileSb = new();
     public readonly RenderConfigCVars renderConfigC;
-    private readonly OutputInfo outputInfo;
-    private readonly CNameMangler cNameMangler;
 
-    public GilToC99(RenderConfigCVars renderConfigC, OutputInfo outputInfo, CNameMangler cNameMangler)
+    private readonly OutputInfo outputInfo;
+    private readonly ICFileNamer cFileNamer;
+
+    public GilToC99(RenderConfigCVars renderConfigC, OutputInfo outputInfo, ICFileNamer cFileNamer)
     {
         this.renderConfigC = renderConfigC;
         this.outputInfo = outputInfo;
-        this.cNameMangler = cNameMangler;
+        this.cFileNamer = cFileNamer;
     }
 
     public void TranspileAndOutputCode(string programText)
@@ -30,14 +30,14 @@ public class GilToC99 : IGilTranspiler
 
         GilHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
-        CGenVisitor visitor = new(model, hFileSb, cFileSb, renderConfigC, cNameMangler.HFileName);
+        CGenVisitor visitor = new(model, hFileSb, cFileSb, renderConfigC, cFileNamer.MakeHFileName());
 
         visitor.Visit(root);
 
         PostProcessor.PostProcess(hFileSb);
         PostProcessor.PostProcess(cFileSb);
 
-        File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.HFileName}", hFileSb.ToString());
-        File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.CFileName}", cFileSb.ToString());
+        File.WriteAllText($"{outputInfo.outputDirectory}{cFileNamer.MakeHFileName()}", hFileSb.ToString());
+        File.WriteAllText($"{outputInfo.outputDirectory}{cFileNamer.MakeCFileName()}", cFileSb.ToString());
     }
 }

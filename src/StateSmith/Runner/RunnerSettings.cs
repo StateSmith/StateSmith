@@ -1,5 +1,4 @@
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output.UserConfig;
 using System;
 
@@ -26,9 +25,6 @@ public class RunnerSettings
     public string? filePathPrintBase;
 
     public CodeStyleSettings style = new();
-
-    // fixme - remove
-    public CNameMangler mangler = new();
 
     public readonly DrawIoSettings drawIoSettings = new();
 

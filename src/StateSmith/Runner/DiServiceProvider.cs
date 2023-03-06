@@ -2,7 +2,6 @@ using StateSmith.Input.DrawIo;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Input.Expansions;
 using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig;
@@ -57,6 +56,7 @@ public class DiServiceProvider
             services.AddSingleton<AlgoBalanced1Settings>();
             services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
             services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
+            services.AddSingleton<ICFileNamer, CFileNamer>();
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
@@ -68,7 +68,6 @@ public class DiServiceProvider
 
             services.AddTransient<HistoryProcessor>();
 
-            //services.AddTransient<ICodeGenRunner, CodeGenRunner>();
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
             services.AddSingleton<IGilAlgo, AlgoBalanced1>();
             services.AddSingleton<IGilTranspiler, GilToC99>();
@@ -136,7 +135,6 @@ public class DiServiceProvider
     private static void AddDefaultsForTesting(IServiceCollection services)
     {
         services.AddSingleton(new DrawIoSettings());
-        services.AddSingleton(new CNameMangler());
         services.AddSingleton(new CodeStyleSettings());
         services.AddSingleton<RenderConfigVars>();
         services.AddSingleton<RenderConfigCVars>();
@@ -162,7 +160,6 @@ public class DiServiceProvider
         public static implicit operator DrawIoToSmDiagramConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoToSmDiagramConverter>(me.host.Services);
         public static implicit operator DiagramToSmConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DiagramToSmConverter>(me.host.Services);
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
-        public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
         public static implicit operator RenderConfigVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigVars>(me.host.Services);
         public static implicit operator RenderConfigCVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCVars>(me.host.Services);
@@ -175,8 +172,9 @@ public class DiServiceProvider
     /// Otherwise, it can hide dependencies. See https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/ .
     /// </summary>
     /// <returns></returns>
-    public T GetServiceOrCreateInstanceRaw<T>()
+    public T GetInstanceOf<T>()
     {
+        BuildIfNeeded();
         return ActivatorUtilities.GetServiceOrCreateInstance<T>(host.ThrowIfNull().Services);
     }
 

@@ -1,5 +1,5 @@
 using StateSmith.Input.Expansions;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 
@@ -9,12 +9,12 @@ namespace StateSmith.Output;
 
 public class DynamicVarsResolver
 {
-    readonly CNameMangler mangler;
+    readonly NameMangler mangler;
     readonly Expander expander;
     readonly IExpansionVarsPathProvider expansionVarsPathProvider;
     readonly IStateMachineProvider stateMachineProvider;
 
-    public DynamicVarsResolver(CNameMangler mangler, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, IStateMachineProvider stateMachineProvider)
+    public DynamicVarsResolver(NameMangler mangler, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, IStateMachineProvider stateMachineProvider)
     {
         this.mangler = mangler;
         this.expander = expander;
