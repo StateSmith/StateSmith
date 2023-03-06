@@ -2,7 +2,6 @@ using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
-using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Algos.Balanced1;
 
 #nullable enable
@@ -54,9 +53,16 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
     /// <param name="renderConfig"></param>
     /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
+    /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
+    /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
-    public SmRunner(string diagramPath, IRenderConfig? renderConfig = null, string? outputDirectory = null, [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory), renderConfig, callerFilePath: callingFilePath)
+    public SmRunner(string diagramPath,
+        IRenderConfig? renderConfig = null,
+        string? outputDirectory = null,
+        AlgorithmId algorithmId = AlgorithmId.Default,
+        TranspilerId transpilerId = TranspilerId.Default,
+        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callingFilePath)
     {
     }
 
@@ -110,8 +116,17 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<ExpansionsPrep>();
-            services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>(); // FIXME - set based on target language
         });
+
+        AlgoOrTranspilerUpdated();
+    }
+
+    /// <summary>
+    /// You only need to call this if you adjust the algorithm or transpiler id after constructing an <see cref="SmRunner"/>.
+    /// </summary>
+    public void AlgoOrTranspilerUpdated()
+    {
+        new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId);
     }
 
     // exists just for testing. can be removed in the future.

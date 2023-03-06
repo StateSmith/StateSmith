@@ -103,6 +103,9 @@ public class NameMangler
 
     public virtual string SmHandlerFuncType => "Func";
 
+    /// <summary>
+    /// Name to use for the state machine "start" function.
+    /// </summary>
     public virtual string SmStartFuncName => "start";
     public virtual string SmDispatchEventFuncName => "dispatch_event";
 
@@ -131,5 +134,5 @@ public class NameMangler
     /// <summary>
     /// Name of constructor function. Only used for langauges (like 'C') that lack actual constructors.
     /// </summary>
-    public virtual string SmFuncCtor => "ctor"; // this needs to be changed
+    public virtual string SmFuncCtor => "ctor";
 }

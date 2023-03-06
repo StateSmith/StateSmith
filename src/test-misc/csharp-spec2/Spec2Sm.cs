@@ -294,7 +294,7 @@ namespace Csharp.Spec2smTests
         }
 
         // Starts the state machine. Must be called before dispatching events. Not thread safe.
-        public void start()
+        public void Start()
         {
             ROOT_enter(this);
             // ROOT behavior
@@ -327,7 +327,7 @@ namespace Csharp.Spec2smTests
         }
 
         // Dispatches an event to the state machine. Not thread safe.
-        public void dispatch_event(EventId event_id)
+        public void DispatchEvent(EventId event_id)
         {
             Func? behavior_func = this.current_event_handlers[(int)event_id];
 
@@ -341,7 +341,7 @@ namespace Csharp.Spec2smTests
 
         // This function is used when StateSmith doesn't know what the active leaf state is at
         // compile time due to sub states or when multiple states need to be exited.
-        private static void exit_up_to_state_handler(Spec2Sm sm, Func desired_state_exit_handler)
+        private static void ExitUpToStateHandler(Spec2Sm sm, Func desired_state_exit_handler)
         {
             while (sm.current_state_exit_handler != desired_state_exit_handler)
             {
@@ -1064,7 +1064,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true))
             {
                 // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, PREFIXING__ORDER_MENU_exit);
+                ExitUpToStateHandler(sm, PREFIXING__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");`.
                 trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
@@ -1298,7 +1298,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true))
             {
                 // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, PREFIXING__ORDER_MENU_exit);
+                ExitUpToStateHandler(sm, PREFIXING__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");`.
                 trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
@@ -1561,7 +1561,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true))
             {
                 // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+                ExitUpToStateHandler(sm, PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`.
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
@@ -1795,7 +1795,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true))
             {
                 // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+                ExitUpToStateHandler(sm, PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`.
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
@@ -2130,7 +2130,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST1_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST1_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");`.
                 trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");
@@ -2613,7 +2613,7 @@ namespace Csharp.Spec2smTests
                     // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
                     {
                         // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
-                        exit_up_to_state_handler(sm, TEST10_ROOT_exit);
+                        ExitUpToStateHandler(sm, TEST10_ROOT_exit);
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");`.
                         trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");
@@ -2846,7 +2846,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST10_CHOICE_POINT_exit);
+                ExitUpToStateHandler(sm, TEST10_CHOICE_POINT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_A.");`.
                 trace("Transition action `` for TEST10_S1 to TEST10_A.");
@@ -3191,7 +3191,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST2_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST2_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");`.
                 trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");
@@ -3713,7 +3713,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4B_G_exit);
+                ExitUpToStateHandler(sm, TEST4B_G_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4B_G to TEST4B_G_1.");`.
                 trace("Transition action `` for TEST4B_G to TEST4B_G_1.");
@@ -3857,7 +3857,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4C_G_exit);
+                ExitUpToStateHandler(sm, TEST4C_G_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4C_G to TEST4C_G_1.");`.
                 trace("Transition action `` for TEST4C_G to TEST4C_G_1.");
@@ -4001,7 +4001,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4D_EXTERNAL_exit);
+                ExitUpToStateHandler(sm, TEST4D_EXTERNAL_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");`.
                 trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");
@@ -4071,7 +4071,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4D_EXTERNAL_exit);
+                ExitUpToStateHandler(sm, TEST4D_EXTERNAL_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");`.
                 trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");
@@ -4326,7 +4326,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S1.");`.
                 trace("Transition action `` for TEST4_ROOT to TEST4_S1.");
@@ -4350,7 +4350,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");`.
                 trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
@@ -4375,7 +4375,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S20.");`.
                 trace("Transition action `` for TEST4_ROOT to TEST4_S20.");
@@ -4489,7 +4489,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S10 to TEST4_S10.");`.
                 trace("Transition action `` for TEST4_S10 to TEST4_S10.");
@@ -4635,7 +4635,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST4_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S20 to TEST4_S20.");`.
                 trace("Transition action `` for TEST4_S20 to TEST4_S20.");
@@ -4837,7 +4837,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST5_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST5_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST5_ROOT to TEST5_S1.");`.
                 trace("Transition action `` for TEST5_ROOT to TEST5_S1.");
@@ -5365,7 +5365,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DH1__SANTAS_WORKSHOP_exit);
+                ExitUpToStateHandler(sm, T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");`.
                 trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");
@@ -5519,7 +5519,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DH1__GET_BACKUP_exit);
+                ExitUpToStateHandler(sm, T7__DH1__GET_BACKUP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");`.
                 trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");
@@ -5919,7 +5919,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DH1__SANTAS_WORKSHOP_exit);
+                ExitUpToStateHandler(sm, T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");`.
                 trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");
@@ -6043,7 +6043,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.History)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DH1__SANTAS_WORKSHOP_exit);
+                ExitUpToStateHandler(sm, T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");`.
                 trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");
@@ -6389,7 +6389,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DH1__BUILD_exit);
+                ExitUpToStateHandler(sm, T7__DH1__BUILD_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");`.
                 trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");
@@ -6577,7 +6577,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DH1__BUILD_exit);
+                ExitUpToStateHandler(sm, T7__DH1__BUILD_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");`.
                 trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");
@@ -7045,7 +7045,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH2__state_0: check behavior `evOpen TransitionTo(T7__DH2__state_3)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DEEP_HISTORY2_exit);
+                ExitUpToStateHandler(sm, T7__DEEP_HISTORY2_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");`.
                 trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");
@@ -7261,7 +7261,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH2__state_2: check behavior `evBack TransitionTo(T7__DH2__state_1)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DH2__STATE_0_exit);
+                ExitUpToStateHandler(sm, T7__DH2__STATE_0_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");`.
                 trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");
@@ -7529,7 +7529,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH3__state_0: check behavior `evOpen TransitionTo(T7__DH3__state_3)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DEEP_HISTORY3_exit);
+                ExitUpToStateHandler(sm, T7__DEEP_HISTORY3_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");`.
                 trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");
@@ -7707,7 +7707,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH3__state_2: check behavior `evBack TransitionTo(T7__DH3__state_1)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__DH3__STATE_0_exit);
+                ExitUpToStateHandler(sm, T7__DH3__STATE_0_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");`.
                 trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");
@@ -7963,7 +7963,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__H1__OFF_exit);
+                ExitUpToStateHandler(sm, T7__H1__OFF_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");`.
                 trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");
@@ -7987,7 +7987,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__HISTORY1_exit);
+                ExitUpToStateHandler(sm, T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");`.
                 trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");
@@ -8010,7 +8010,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__HISTORY1_exit);
+                ExitUpToStateHandler(sm, T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");`.
                 trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");
@@ -8303,7 +8303,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__HISTORY1_exit);
+                ExitUpToStateHandler(sm, T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");`.
                 trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");
@@ -8722,7 +8722,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.InitialState)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, T7__INITIAL1__PARENT_exit);
+                ExitUpToStateHandler(sm, T7__INITIAL1__PARENT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");`.
                 trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");
@@ -9363,7 +9363,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
-                exit_up_to_state_handler(sm, TEST8_ROOT_exit);
+                ExitUpToStateHandler(sm, TEST8_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");`.
                 trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");
@@ -10325,7 +10325,7 @@ namespace Csharp.Spec2smTests
         };
 
         // Thread safe.
-        public string state_id_to_string(StateId id)
+        public string StateIdToString(StateId id)
         {
             switch (id)
             {
@@ -10489,7 +10489,7 @@ namespace Csharp.Spec2smTests
         }
 
         // Thread safe.
-        public string event_id_to_string(EventId id)
+        public string EventIdToString(EventId id)
         {
             switch (id)
             {

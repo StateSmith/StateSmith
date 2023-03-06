@@ -13,6 +13,16 @@ public class RunnerSettings
     public string? outputDirectory;
 
     /// <summary>
+    /// Ignored if custom code generator used.
+    /// </summary>
+    public AlgorithmId algorithmId = AlgorithmId.Default;
+
+    /// <summary>
+    /// Ignored if custom code generator used.
+    /// </summary>
+    public TranspilerId transpilerId = TranspilerId.Default;
+
+    /// <summary>
     /// Only required if multiple state machines present in diagram file.
     /// </summary>
     public string? stateMachineName;
@@ -42,9 +52,11 @@ public class RunnerSettings
 
     public bool autoDeIndentAndTrimRenderConfigItems = true;
 
-    public RunnerSettings(string diagramFile, string? outputDirectory = null)
+    public RunnerSettings(string diagramFile, string? outputDirectory = null, AlgorithmId algorithmId = default, TranspilerId transpilerId = default)
     {
         this.diagramFile = diagramFile;
         this.outputDirectory = outputDirectory;
+        this.algorithmId = algorithmId;
+        this.transpilerId = transpilerId;
     }
 }

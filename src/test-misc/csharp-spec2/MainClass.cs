@@ -4,6 +4,7 @@ using System;
 namespace StateSmithTest.spec._2.CSharp;
 
 // ported from c equivalent test runner
+
 public class MainClass
 {
     public static void trace(string str)
@@ -52,7 +53,7 @@ public class MainClass
         Spec2Sm sm = new();
 
         print_start();
-        sm.start();
+        sm.Start();
         Console.WriteLine();
 
         for (int i = 0; i < args.Length; i++) // start at 1 to skip program name
@@ -66,7 +67,7 @@ public class MainClass
 
             print_dispatch_event_name(arg);
 
-            sm.dispatch_event(eventId);
+            sm.DispatchEvent(eventId);
             Console.WriteLine();
         }
     }

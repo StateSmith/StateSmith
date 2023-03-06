@@ -1,11 +1,6 @@
-using StateSmith.Input.Expansions;
-using StateSmith.Output;
-using StateSmith.Output.Algos.Balanced1;
-using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmithTest.Processes;
-using System.Text;
 
 #nullable enable
 
@@ -23,8 +18,8 @@ public class SharedCompilationFixture
     {
         var action = (SmRunner runner) =>
         {
-            runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IGilTranspiler, GilToCSharp>();
-            runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+            runner.Settings.transpilerId = TranspilerId.CSharp;
+            runner.AlgoOrTranspilerUpdated();
         };
 
         Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
