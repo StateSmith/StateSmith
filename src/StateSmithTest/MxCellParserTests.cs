@@ -45,11 +45,22 @@ public class MxCellParserTests
         // https://www.compart.com/en/unicode/category/Zs
         // https://en.wikipedia.org/wiki/Non-breaking_space#Encodings
         Test((char)0xA0); // NO-BREAK SPACE, &nbsp;
+        Test((char)0x1680); // OGHAM SPACE MARK
+        Test((char)0x2000); // EN QUAD
+        Test((char)0x2001); // EM QUAD
+        Test((char)0x2002); // EN SPACE
+        Test((char)0x2003); // EM SPACE
+        Test((char)0x2004); // THREE-PER-EM SPACE
+        Test((char)0x2005); // FOUR-PER-EM SPACE
+        Test((char)0x2006); // SIX-PER-EM SPACE
         Test((char)0x2007); // FIGURE SPACE
+        Test((char)0x2008); // PUNCTUATION SPACE
+        Test((char)0x2009); // THIN SPACE
+        Test((char)0x200A); // HAIR SPACE
         Test((char)0x202F); // NARROW NO-BREAK SPACE
+        Test((char)0x205F); // MEDIUM MATHEMATICAL SPACE
         Test((char)0x2060); // WORD JOINER
-
-        // TODO - update for https://github.com/StateSmith/StateSmith/issues/100
+        Test((char)0x3000); // IDEOGRAPHIC SPACE
     }
 
     [Fact]

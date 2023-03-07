@@ -24,7 +24,7 @@ public class GilToC99Tests
 
         //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.Sm.Name}.gil.cs", programText);
 
-        GilToC99 gilToC = new(renderConfigC, outputInfo, new GilToC99Customizer(sm));
+        GilToC99 gilToC = new(renderConfigC, outputInfo, new GilToC99Customizer(sm), new CodeFileWriter());
 
         gilToC.TranspileAndOutputCode(programText);
     }

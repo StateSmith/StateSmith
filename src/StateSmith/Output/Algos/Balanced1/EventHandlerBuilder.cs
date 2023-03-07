@@ -575,7 +575,7 @@ public class EventHandlerBuilder
     /// <returns></returns>
     private static HashSet<string> GetEvents(NamedVertex state)
     {
-        var triggerNames = TriggerHelper.GetStateTriggers(state);
+        var triggerNames = TriggerHelper.GetSanitizedTriggersSet(state);
         triggerNames.Remove(TriggerHelper.TRIGGER_ENTER);
         triggerNames.Remove(TriggerHelper.TRIGGER_EXIT);
         return triggerNames;

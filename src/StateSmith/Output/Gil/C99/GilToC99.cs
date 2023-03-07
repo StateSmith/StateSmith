@@ -14,14 +14,16 @@ public class GilToC99 : IGilTranspiler
     public readonly StringBuilder cFileSb = new();
     public readonly RenderConfigCVars renderConfigC;
 
+    private readonly ICodeFileWriter codeFileWriter;
     private readonly OutputInfo outputInfo;
     private readonly IGilToC99Customizer cCustomizer;
 
-    public GilToC99(RenderConfigCVars renderConfigC, OutputInfo outputInfo, IGilToC99Customizer cCustomizer)
+    public GilToC99(RenderConfigCVars renderConfigC, OutputInfo outputInfo, IGilToC99Customizer cCustomizer, ICodeFileWriter codeFileWriter)
     {
         this.renderConfigC = renderConfigC;
         this.outputInfo = outputInfo;
         this.cCustomizer = cCustomizer;
+        this.codeFileWriter = codeFileWriter;
     }
 
     public void TranspileAndOutputCode(string programText)
@@ -37,7 +39,7 @@ public class GilToC99 : IGilTranspiler
         PostProcessor.PostProcess(hFileSb);
         PostProcessor.PostProcess(cFileSb);
 
-        File.WriteAllText($"{outputInfo.outputDirectory}{cCustomizer.MakeHFileName()}", hFileSb.ToString());
-        File.WriteAllText($"{outputInfo.outputDirectory}{cCustomizer.MakeCFileName()}", cFileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.outputDirectory}{cCustomizer.MakeHFileName()}", code: hFileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.outputDirectory}{cCustomizer.MakeCFileName()}", code: cFileSb.ToString());
     }
 }

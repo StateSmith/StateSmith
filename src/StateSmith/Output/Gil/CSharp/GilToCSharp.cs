@@ -12,17 +12,20 @@ namespace StateSmith.Output.Gil.CSharp;
 public class GilToCSharp : IGilTranspiler
 {
     private readonly StringBuilder fileSb = new();
+
+    private readonly ICodeFileWriter codeFileWriter;
     private readonly RenderConfigCSharpVars renderConfigCSharp;
     private readonly RenderConfigVars renderConfig;
     private readonly OutputInfo outputInfo;
     private readonly NameMangler nameMangler;
 
-    public GilToCSharp(OutputInfo outputInfo, NameMangler nameMangler, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig)
+    public GilToCSharp(OutputInfo outputInfo, NameMangler nameMangler, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig, ICodeFileWriter codeFileWriter)
     {
         this.outputInfo = outputInfo;
         this.nameMangler = nameMangler;
         this.renderConfigCSharp = renderConfigCSharp;
         this.renderConfig = renderConfig;
+        this.codeFileWriter = codeFileWriter;
     }
 
     public void TranspileAndOutputCode(string programText)
@@ -52,8 +55,7 @@ public class GilToCSharp : IGilTranspiler
 
         PostProcessor.PostProcess(fileSb);
 
-        // FIXME use new ICodeFileWriter from main branch
-        File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.BaseFileName}.cs", fileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.outputDirectory}{nameMangler.BaseFileName}.cs", code: fileSb.ToString());
     }
 
     private static bool NameSpaceNeedsBraces(string nameSpace)

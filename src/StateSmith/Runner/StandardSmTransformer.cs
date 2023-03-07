@@ -16,6 +16,10 @@ public class StandardSmTransformer : SmTransformer
         Standard_SupportPrefixingModder,
         Standard_SupportHistory,
         Standard_SupportOrderAndElse,
+        /// <summary>
+        /// See https://github.com/StateSmith/StateSmith/issues/108
+        /// </summary>
+        Standard_SupportAlternateTriggers,
         Standard_Validation1,
         Standard_DefaultUnspecifiedEventsAsDoEvent,
         Standard_AddUsedEventsToSm,
@@ -32,6 +36,7 @@ public class StandardSmTransformer : SmTransformer
         AddStep(TransformationId.Standard_SupportPrefixingModder, (sm) => PrefixingModder.Process(sm));
         AddStep(TransformationId.Standard_SupportHistory, (sm) => historyProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportOrderAndElse, (sm) => OrderAndElseProcessor.Process(sm)); // should happen after most steps as it orders behaviors
+        AddStep(TransformationId.Standard_SupportAlternateTriggers, (sm) => SupportAlternateTriggersProcessor.Process(sm));
         AddStep(TransformationId.Standard_Validation1, (sm) => Validate(sm));
         AddStep(TransformationId.Standard_DefaultUnspecifiedEventsAsDoEvent, (sm) => DefaultToDoEventVisitor.Process(sm));
         AddStep(TransformationId.Standard_AddUsedEventsToSm, (sm) => AddUsedEventsToSmClass.Process(sm));

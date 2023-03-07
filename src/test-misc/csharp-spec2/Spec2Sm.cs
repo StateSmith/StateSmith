@@ -551,7 +551,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // DECIDE behavior
             // uml: EV1 [trace_guard("State DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
@@ -600,7 +600,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev10 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV10` event.
+            // No ancestor state handles `ev10` event.
 
             // DECIDE behavior
             // uml: EV10 [trace_guard("State DECIDE: check behavior `EV10 TransitionTo(TEST10_CHOICE_POINT)`.", true)] / { trace("Transition action `` for DECIDE to TEST10_CHOICE_POINT."); } TransitionTo(TEST10_CHOICE_POINT)
@@ -637,7 +637,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // DECIDE behavior
             // uml: EV2 [trace_guard("State DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", true)] / { trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING."); } TransitionTo(TEST2_REGULAR_EVENT_TESTING)
@@ -686,7 +686,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev3 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV3` event.
+            // No ancestor state handles `ev3` event.
 
             // DECIDE behavior
             // uml: EV3 [trace_guard("State DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", true)] / { trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING."); } TransitionTo(TEST3_BEHAVIOR_ORDERING)
@@ -734,7 +734,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev4 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV4` event.
+            // No ancestor state handles `ev4` event.
 
             // DECIDE behavior
             // uml: EV4 [trace_guard("State DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", true)] / { trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS."); } TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)
@@ -770,7 +770,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev5 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV5` event.
+            // No ancestor state handles `ev5` event.
 
             // DECIDE behavior
             // uml: EV5 [trace_guard("State DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", true)] / { trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); } TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)
@@ -806,7 +806,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev6 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV6` event.
+            // No ancestor state handles `ev6` event.
 
             // DECIDE behavior
             // uml: EV6 [trace_guard("State DECIDE: check behavior `EV6 TransitionTo(TEST6_VARIABLES)`.", true)] / { trace("Transition action `` for DECIDE to TEST6_VARIABLES."); } TransitionTo(TEST6_VARIABLES)
@@ -854,7 +854,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev7 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV7` event.
+            // No ancestor state handles `ev7` event.
 
             // DECIDE behavior
             // uml: EV7 [trace_guard("State DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_OR_HISTORY)`.", true)] / { trace("Transition action `` for DECIDE to TEST7_INITIAL_OR_HISTORY."); } TransitionTo(TEST7_INITIAL_OR_HISTORY)
@@ -890,7 +890,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev8 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV8` event.
+            // No ancestor state handles `ev8` event.
 
             // DECIDE behavior
             // uml: EV8 [trace_guard("State DECIDE: check behavior `EV8 TransitionTo(TEST8_ENTRY_CHOICE)`.", true)] / { trace("Transition action `` for DECIDE to TEST8_ENTRY_CHOICE."); } TransitionTo(TEST8_ENTRY_CHOICE)
@@ -926,7 +926,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func DECIDE_ev9 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV9` event.
+            // No ancestor state handles `ev9` event.
 
             // DECIDE behavior
             // uml: EV9 [trace_guard("State DECIDE: check behavior `EV9 TransitionTo(TEST9_EXIT_CHOICE)`.", true)] / { trace("Transition action `` for DECIDE to TEST9_EXIT_CHOICE."); } TransitionTo(TEST9_EXIT_CHOICE)
@@ -1057,7 +1057,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__OM__BEVERAGE_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // PREFIXING__OM__BEVERAGE behavior
             // uml: EV2 [trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG."); } TransitionTo(PREFIXING__OM__VEG)
@@ -1146,7 +1146,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__OM__BEV__NONE_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // PREFIXING__OM__BEV__NONE behavior
             // uml: EV1 [trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER."); } TransitionTo(PREFIXING__OM__BEV__WATER)
@@ -1234,7 +1234,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__OM__BEV__WATER_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // PREFIXING__OM__BEV__WATER behavior
             // uml: EV1 [trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", true)] / { trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA."); } TransitionTo(PREFIXING__OM__BEV__TEA)
@@ -1291,7 +1291,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__OM__VEG_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // PREFIXING__OM__VEG behavior
             // uml: EV2 [trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE."); } TransitionTo(PREFIXING__OM__BEVERAGE)
@@ -1347,7 +1347,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__OM__VEG__NONE_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // PREFIXING__OM__VEG__NONE behavior
             // uml: EV1 [trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO."); } TransitionTo(PREFIXING__OM__VEG__POTATO)
@@ -1404,7 +1404,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__OM__VEG__POTATO_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // PREFIXING__OM__VEG__POTATO behavior
             // uml: EV1 [trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", true)] / { trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM."); } TransitionTo(PREFIXING__OM__VEG__YAM)
@@ -1554,7 +1554,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
             // uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)
@@ -1643,7 +1643,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
             // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)
@@ -1731,7 +1731,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
             // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)
@@ -1788,7 +1788,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
             // uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)
@@ -1844,7 +1844,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
             // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)
@@ -1901,7 +1901,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
             // uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", true)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)
@@ -2123,7 +2123,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST1_S1_1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST1_S1_1 behavior
             // uml: EV1 [trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true)] / { trace("Transition action `` for TEST1_S1_1 to TEST1_S2."); } TransitionTo(TEST1_S2)
@@ -2456,7 +2456,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST10_ROOT_ev5 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV5` event.
+            // No ancestor state handles `ev5` event.
 
             // TEST10_ROOT behavior
             // uml: EV5 [trace_guard("State TEST10_ROOT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
@@ -2803,7 +2803,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST10_S1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST10_S1 behavior
             // uml: EV1 [trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1)."); } TransitionTo(TEST10_G.EntryPoint(1))
@@ -2839,7 +2839,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST10_S1_ev10 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV10` event.
+            // No ancestor state handles `ev10` event.
 
             // TEST10_S1 behavior
             // uml: EV10 [trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_A."); } TransitionTo(TEST10_A)
@@ -2909,7 +2909,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST10_S1_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST10_S1 behavior
             // uml: EV2 [trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
@@ -2933,7 +2933,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST10_S1_ev3 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV3` event.
+            // No ancestor state handles `ev3` event.
 
             // TEST10_S1 behavior
             // uml: EV3 [trace_guard("State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G."); } TransitionTo(TEST10_G)
@@ -3081,7 +3081,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST2_ROOT_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST2_ROOT behavior
             // uml: EV1 [trace_guard("State TEST2_ROOT: check behavior `EV1`.", true)]
@@ -3095,7 +3095,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST2_ROOT_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST2_ROOT behavior
             // uml: EV2 [trace_guard("State TEST2_ROOT: check behavior `EV2`.", true)]
@@ -3208,7 +3208,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST2_S1_1_ev1 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV1` event.
+            // Setup handler for next ancestor that listens to `ev1` event.
             sm.ancestor_event_handler = TEST2_ROOT_ev1;
 
             // TEST2_S1_1 behavior
@@ -3239,6 +3239,13 @@ namespace Csharp.Spec2smTests
                 // Step 1: execute action `trace("Enter TEST2_S2.");`
                 trace("Enter TEST2_S2.");
             } // end of behavior for TEST2_S2
+
+            // TEST2_S2 behavior
+            // uml: ENTER [trace_guard("State TEST2_S2: check behavior `ENTER`.", true)]
+            if (trace_guard("State TEST2_S2: check behavior `ENTER`.", true))
+            {
+                // Step 1: execute action ``
+            } // end of behavior for TEST2_S2
         }
 
         private static readonly Func TEST2_S2_exit = (Spec2Sm sm) =>
@@ -3258,12 +3265,12 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST2_S2_ev1 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV1` event.
+            // Setup handler for next ancestor that listens to `ev1` event.
             sm.ancestor_event_handler = TEST2_ROOT_ev1;
 
             // TEST2_S2 behavior
-            // uml: EV1 [trace_guard("State TEST2_S2: check behavior `EV1 / { consume_event = false; }`.", true)] / { consume_event = false; }
-            if (trace_guard("State TEST2_S2: check behavior `EV1 / { consume_event = false; }`.", true))
+            // uml: ev1 [trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = false; }`.", true)] / { consume_event = false; }
+            if (trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = false; }`.", true))
             {
                 bool consume_event = true; // events other than `do` are normally consumed by any event handler. Other event handlers in *this* state may still handle the event though.
 
@@ -3280,12 +3287,12 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST2_S2_ev2 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV2` event.
+            // Setup handler for next ancestor that listens to `ev2` event.
             sm.ancestor_event_handler = TEST2_ROOT_ev2;
 
             // TEST2_S2 behavior
-            // uml: EV2 [trace_guard("State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2."); } TransitionTo(TEST2_S2)
-            if (trace_guard("State TEST2_S2: check behavior `EV2 TransitionTo(TEST2_S2)`.", true))
+            // uml: ev2 [trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2."); } TransitionTo(TEST2_S2)
+            if (trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
                 TEST2_S2_exit(sm);
@@ -3369,7 +3376,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST3_ROOT_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST3_ROOT behavior
             // uml: EV1 [trace_guard("State TEST3_ROOT: check behavior `EV1`.", true)]
@@ -3424,7 +3431,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST3_S1_ev1 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV1` event.
+            // Setup handler for next ancestor that listens to `ev1` event.
             sm.ancestor_event_handler = TEST3_ROOT_ev1;
 
             // TEST3_S1 behavior
@@ -3493,7 +3500,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST3_S2_ev1 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV1` event.
+            // Setup handler for next ancestor that listens to `ev1` event.
             sm.ancestor_event_handler = TEST3_ROOT_ev1;
 
             // TEST3_S2 behavior
@@ -3706,7 +3713,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4B_G_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST4B_G behavior
             // uml: EV1 [trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true)] / { trace("Transition action `` for TEST4B_G to TEST4B_G_1."); } TransitionTo(TEST4B_G_1)
@@ -3763,7 +3770,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4B_G_1_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST4B_G_1 behavior
             // uml: EV2 [trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", true)] / { trace("Transition action `` for TEST4B_G_1 to TEST4B_G."); } TransitionTo(TEST4B_G)
@@ -3850,7 +3857,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4C_G_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST4C_G behavior
             // uml: EV1 [trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true)] / { trace("Transition action `` for TEST4C_G to TEST4C_G_1."); } TransitionTo(TEST4C_G_1)
@@ -3907,7 +3914,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4C_G_1_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST4C_G_1 behavior
             // uml: EV2 [trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", true)] / { trace("Transition action `` for TEST4C_G_1 to TEST4C_G."); } TransitionTo(TEST4C_G)
@@ -3994,7 +4001,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4D_G_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST4D_G behavior
             // uml: EV1 [trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint()."); } TransitionTo(TEST4D_EXTERNAL.ChoicePoint())
@@ -4064,7 +4071,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4D_G_1_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST4D_G_1 behavior
             // uml: EV2 [trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint()."); } TransitionTo(TEST4D_EXTERNAL.ChoicePoint())
@@ -4139,7 +4146,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_DECIDE_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST4_DECIDE behavior
             // uml: EV1 [trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT."); } TransitionTo(TEST4_ROOT)
@@ -4163,7 +4170,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_DECIDE_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST4_DECIDE behavior
             // uml: EV2 [trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL."); } TransitionTo(TEST4B_LOCAL)
@@ -4200,7 +4207,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_DECIDE_ev3 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV3` event.
+            // No ancestor state handles `ev3` event.
 
             // TEST4_DECIDE behavior
             // uml: EV3 [trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS."); } TransitionTo(TEST4C_LOCAL_TO_ALIAS)
@@ -4237,7 +4244,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_DECIDE_ev4 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV4` event.
+            // No ancestor state handles `ev4` event.
 
             // TEST4_DECIDE behavior
             // uml: EV4 [trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", true)] / { trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL."); } TransitionTo(TEST4D_EXTERNAL)
@@ -4319,7 +4326,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_ROOT_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST4_ROOT behavior
             // uml: EV2 [trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S1."); } TransitionTo(TEST4_S1)
@@ -4343,7 +4350,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_ROOT_ev3 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV3` event.
+            // No ancestor state handles `ev3` event.
 
             // TEST4_ROOT behavior
             // uml: EV3 [trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S10_1."); } TransitionTo(TEST4_S10_1)
@@ -4368,7 +4375,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_ROOT_ev4 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV4` event.
+            // No ancestor state handles `ev4` event.
 
             // TEST4_ROOT behavior
             // uml: EV4 [trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S20."); } TransitionTo(TEST4_S20)
@@ -4424,7 +4431,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_S1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST4_S1 behavior
             // uml: EV1 [trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", true)] / { trace("Transition action `` for TEST4_S1 to TEST4_S2."); } TransitionTo(TEST4_S2)
@@ -4481,7 +4488,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_S10_ev4 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV4` event.
+            // Setup handler for next ancestor that listens to `ev4` event.
             sm.ancestor_event_handler = TEST4_ROOT_ev4;
 
             // TEST4_S10 behavior
@@ -4570,7 +4577,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_S2_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST4_S2 behavior
             // uml: EV1 [trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", true)] / { trace("Transition action `` for TEST4_S2 to TEST4_S3."); } TransitionTo(TEST4_S3)
@@ -4627,7 +4634,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_S20_ev4 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV4` event.
+            // Setup handler for next ancestor that listens to `ev4` event.
             sm.ancestor_event_handler = TEST4_ROOT_ev4;
 
             // TEST4_S20 behavior
@@ -4735,7 +4742,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST4_S3_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST4_S3 behavior
             // uml: EV1 [trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", true)] / { trace("Transition action `` for TEST4_S3 to TEST4_ROOT."); } TransitionTo(TEST4_ROOT)
@@ -4830,7 +4837,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST5_ROOT_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST5_ROOT behavior
             // uml: EV2 [trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true)] / { trace("Transition action `` for TEST5_ROOT to TEST5_S1."); } TransitionTo(TEST5_S1)
@@ -4887,7 +4894,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST5_S1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST5_S1 behavior
             // uml: EV1 [trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", true)] / { trace("Transition action `` for TEST5_S1 to TEST5_S2."); } TransitionTo(TEST5_S2)
@@ -4944,7 +4951,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST5_S2_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST5_S2 behavior
             // uml: EV1 [trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", true)] / { trace("Transition action `` for TEST5_S2 to TEST5_S3."); } TransitionTo(TEST5_S3)
@@ -5001,7 +5008,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST5_S3_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST5_S3 behavior
             // uml: EV1 [trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", true)] / { trace("Transition action `` for TEST5_S3 to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
@@ -5127,7 +5134,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST6_S1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST6_S1 behavior
             // uml: 1. EV1 [trace_guard("State TEST6_S1: check behavior `1. EV1 / { count++; }`.", true)] / { count++; }
@@ -5358,7 +5365,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__ALIENS_DETECTED_ev8 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV8` event.
+            // No ancestor state handles `ev8` event.
 
             // T7__DH1__ALIENS_DETECTED behavior
             // uml: EV8 [trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD."); } TransitionTo(T7__DH1__BUILD)
@@ -5512,7 +5519,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__CALL_BATMAN_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__DH1__CALL_BATMAN behavior
             // uml: EV1 [trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true)] / { trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
@@ -5570,7 +5577,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__CALL_THOR_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__DH1__CALL_THOR behavior
             // uml: EV1 [trace_guard("State T7__DH1__CALL_THOR: check behavior `EV1 TransitionTo(T7__DH1__CALL_BATMAN)`.", true)] / { trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN."); } TransitionTo(T7__DH1__CALL_BATMAN)
@@ -5674,7 +5681,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__BUDDY_ELF_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__DH1__BUDDY_ELF behavior
             // uml: EV1 [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `EV1 TransitionTo(T7__DH1__POLAR_BEARS)`.", true)] / { trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
@@ -5786,7 +5793,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__GIVE_COOKIES_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__DH1__GIVE_COOKIES behavior
             // uml: EV1 [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `EV1 TransitionTo(T7__DH1__CALL_THOR)`.", true)] / { trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR."); } TransitionTo(T7__DH1__CALL_THOR)
@@ -5853,7 +5860,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__SNOWBALL_FIGHT_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__DH1__SNOWBALL_FIGHT behavior
             // uml: EV1 [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(T7__DH1__GIVE_COOKIES)`.", true)] / { trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
@@ -5912,7 +5919,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__BUILD_ev6 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV6` event.
+            // No ancestor state handles `ev6` event.
 
             // T7__DH1__BUILD behavior
             // uml: EV6 [trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED."); } TransitionTo(T7__DH1__ALIENS_DETECTED)
@@ -6036,7 +6043,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__BUILD_ev7 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV7` event.
+            // No ancestor state handles `ev7` event.
 
             // T7__DH1__BUILD behavior
             // uml: EV7 [trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.History)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History."); } TransitionTo(T7__DH1__GET_BACKUP.History)
@@ -6382,7 +6389,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__TOOL_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // T7__DH1__TOOL behavior
             // uml: EV2 [trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true)] / { trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY."); } TransitionTo(T7__DH1__TOY)
@@ -6505,7 +6512,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__IMPACT_DRILL_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__DH1__IMPACT_DRILL behavior
             // uml: EV1 [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `EV1 TransitionTo(T7__DH1__CIRCULAR_SAW)`.", true)] / { trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
@@ -6570,7 +6577,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__TOY_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__DH1__TOY behavior
             // uml: EV1 [trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true)] / { trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
@@ -6654,7 +6661,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__GLOW_WORM_ev1 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV1` event.
+            // Setup handler for next ancestor that listens to `ev1` event.
             sm.ancestor_event_handler = T7__DH1__TOY_ev1;
 
             // T7__DH1__GLOW_WORM behavior
@@ -6719,7 +6726,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__RACE_CAR_ev1 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV1` event.
+            // Setup handler for next ancestor that listens to `ev1` event.
             sm.ancestor_event_handler = T7__DH1__TOY_ev1;
 
             // T7__DH1__RACE_CAR behavior
@@ -6844,7 +6851,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__BATTLEBOT_ev1 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV1` event.
+            // Setup handler for next ancestor that listens to `ev1` event.
             sm.ancestor_event_handler = T7__DH1__TOY_ev1;
 
             // T7__DH1__BATTLEBOT behavior
@@ -6949,7 +6956,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH1__TEDDY_BEAR_ev1 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV1` event.
+            // Setup handler for next ancestor that listens to `ev1` event.
             sm.ancestor_event_handler = T7__DH1__TOY_ev1;
 
             // T7__DH1__TEDDY_BEAR behavior
@@ -7038,7 +7045,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH2__STATE_0_evopen = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evOpen` event.
+            // No ancestor state handles `evopen` event.
 
             // T7__DH2__state_0 behavior
             // uml: evOpen [trace_guard("State T7__DH2__state_0: check behavior `evOpen TransitionTo(T7__DH2__state_3)`.", true)] / { trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3."); } TransitionTo(T7__DH2__state_3)
@@ -7190,7 +7197,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH2__STATE_1_evstep = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evStep` event.
+            // No ancestor state handles `evstep` event.
 
             // T7__DH2__state_1 behavior
             // uml: evStep [trace_guard("State T7__DH2__state_1: check behavior `evStep TransitionTo(T7__DH2__state_2)`.", true)] / { trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2."); } TransitionTo(T7__DH2__state_2)
@@ -7254,7 +7261,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH2__STATE_2_evback = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evBack` event.
+            // No ancestor state handles `evback` event.
 
             // T7__DH2__state_2 behavior
             // uml: evBack [trace_guard("State T7__DH2__state_2: check behavior `evBack TransitionTo(T7__DH2__state_1)`.", true)] / { trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1."); } TransitionTo(T7__DH2__state_1)
@@ -7339,7 +7346,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH2__STATE_6_evstep = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evStep` event.
+            // No ancestor state handles `evstep` event.
 
             // T7__DH2__state_6 behavior
             // uml: evStep [trace_guard("State T7__DH2__state_6: check behavior `evStep TransitionTo(T7__DH2__state_9)`.", true)] / { trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9."); } TransitionTo(T7__DH2__state_9)
@@ -7435,7 +7442,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH2__STATE_3_evclose = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evClose` event.
+            // No ancestor state handles `evclose` event.
 
             // T7__DH2__state_3 behavior
             // uml: evClose [trace_guard("State T7__DH2__state_3: check behavior `evClose TransitionTo(T7__DH2__state_0)`.", true)] / { trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0."); } TransitionTo(T7__DH2__state_0)
@@ -7522,7 +7529,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH3__STATE_0_evopen = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evOpen` event.
+            // No ancestor state handles `evopen` event.
 
             // T7__DH3__state_0 behavior
             // uml: evOpen [trace_guard("State T7__DH3__state_0: check behavior `evOpen TransitionTo(T7__DH3__state_3)`.", true)] / { trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3."); } TransitionTo(T7__DH3__state_3)
@@ -7636,7 +7643,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH3__STATE_1_evstep = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evStep` event.
+            // No ancestor state handles `evstep` event.
 
             // T7__DH3__state_1 behavior
             // uml: evStep [trace_guard("State T7__DH3__state_1: check behavior `evStep TransitionTo(T7__DH3__state_2)`.", true)] / { trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2."); } TransitionTo(T7__DH3__state_2)
@@ -7700,7 +7707,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH3__STATE_2_evback = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evBack` event.
+            // No ancestor state handles `evback` event.
 
             // T7__DH3__state_2 behavior
             // uml: evBack [trace_guard("State T7__DH3__state_2: check behavior `evBack TransitionTo(T7__DH3__state_1)`.", true)] / { trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1."); } TransitionTo(T7__DH3__state_1)
@@ -7777,7 +7784,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH3__STATE_6_evstep = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evStep` event.
+            // No ancestor state handles `evstep` event.
 
             // T7__DH3__state_6 behavior
             // uml: evStep [trace_guard("State T7__DH3__state_6: check behavior `evStep TransitionTo(T7__DH3__state_9)`.", true)] / { trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9."); } TransitionTo(T7__DH3__state_9)
@@ -7865,7 +7872,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__DH3__STATE_3_evclose = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `evClose` event.
+            // No ancestor state handles `evclose` event.
 
             // T7__DH3__state_3 behavior
             // uml: evClose [trace_guard("State T7__DH3__state_3: check behavior `evClose TransitionTo(T7__DH3__state_0)`.", true)] / { trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0."); } TransitionTo(T7__DH3__state_0)
@@ -7956,7 +7963,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__OFF_ev3 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV3` event.
+            // No ancestor state handles `ev3` event.
 
             // T7__H1__OFF behavior
             // uml: EV3 [trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
@@ -7980,7 +7987,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__OFF_ev4 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV4` event.
+            // No ancestor state handles `ev4` event.
 
             // T7__H1__OFF behavior
             // uml: EV4 [trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF."); } TransitionTo(T7__H1__OFF)
@@ -8003,7 +8010,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__OFF_ev7 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV7` event.
+            // No ancestor state handles `ev7` event.
 
             // T7__H1__OFF behavior
             // uml: EV7 [trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__ON."); } TransitionTo(T7__H1__ON)
@@ -8135,7 +8142,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__OFF1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__H1__OFF1 behavior
             // uml: EV1 [trace_guard("State T7__H1__OFF1: check behavior `EV1 TransitionTo(T7__H1__OFF2)`.", true)] / { trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
@@ -8200,7 +8207,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__OFF2_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__H1__OFF2 behavior
             // uml: EV1 [trace_guard("State T7__H1__OFF2: check behavior `EV1 TransitionTo(T7__H1__OFF3)`.", true)] / { trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
@@ -8296,7 +8303,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__ON_ev6 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV6` event.
+            // No ancestor state handles `ev6` event.
 
             // T7__H1__ON behavior
             // uml: EV6 [trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true)] / { trace("Transition action `` for T7__H1__ON to T7__H1__OFF."); } TransitionTo(T7__H1__OFF)
@@ -8428,7 +8435,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__ON1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__H1__ON1 behavior
             // uml: EV1 [trace_guard("State T7__H1__ON1: check behavior `EV1 TransitionTo(T7__H1__ON2)`.", true)] / { trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
@@ -8493,7 +8500,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__ON2_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__H1__ON2 behavior
             // uml: EV1 [trace_guard("State T7__H1__ON2: check behavior `EV1 TransitionTo(T7__H1__ON3)`.", true)] / { trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
@@ -8558,7 +8565,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__H1__ON3_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__H1__ON3 behavior
             // uml: EV1 [trace_guard("State T7__H1__ON3: check behavior `EV1 TransitionTo(T7__H1__ON1)`.", true)] / { trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1."); } TransitionTo(T7__H1__ON1)
@@ -8646,7 +8653,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__INITIAL1__PARENT_ev5 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV5` event.
+            // No ancestor state handles `ev5` event.
 
             // T7__INITIAL1__PARENT behavior
             // uml: EV5 [trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
@@ -8715,7 +8722,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__INITIAL1__G_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // T7__INITIAL1__G behavior
             // uml: EV2 [trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.InitialState)`.", true)] / { trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState."); } TransitionTo(T7__INITIAL1__PARENT.InitialState)
@@ -8922,7 +8929,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__INITIAL1__S1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // T7__INITIAL1__S1 behavior
             // uml: EV1 [trace_guard("State T7__INITIAL1__S1: check behavior `EV1 TransitionTo(T7__INITIAL1__G)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G."); } TransitionTo(T7__INITIAL1__G)
@@ -8945,7 +8952,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func T7__INITIAL1__S1_ev3 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV3` event.
+            // No ancestor state handles `ev3` event.
 
             // T7__INITIAL1__S1 behavior
             // uml: EV3 [trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.InitialState)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState."); } TransitionTo(T7__INITIAL1__G.InitialState)
@@ -9018,7 +9025,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST7_DECIDE_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST7_DECIDE behavior
             // uml: EV1 [trace_guard("State TEST7_DECIDE: check behavior `EV1 TransitionTo(T7__INITIAL1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1."); } TransitionTo(T7__INITIAL1)
@@ -9054,7 +9061,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST7_DECIDE_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST7_DECIDE behavior
             // uml: EV2 [trace_guard("State TEST7_DECIDE: check behavior `EV2 TransitionTo(T7__HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1."); } TransitionTo(T7__HISTORY1)
@@ -9090,7 +9097,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST7_DECIDE_ev3 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV3` event.
+            // No ancestor state handles `ev3` event.
 
             // TEST7_DECIDE behavior
             // uml: EV3 [trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(T7__DEEP_HISTORY1)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1."); } TransitionTo(T7__DEEP_HISTORY1)
@@ -9127,7 +9134,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST7_DECIDE_ev4 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV4` event.
+            // No ancestor state handles `ev4` event.
 
             // TEST7_DECIDE behavior
             // uml: EV4 [trace_guard("State TEST7_DECIDE: check behavior `EV4 TransitionTo(T7__DEEP_HISTORY2)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2."); } TransitionTo(T7__DEEP_HISTORY2)
@@ -9163,7 +9170,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST7_DECIDE_ev5 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV5` event.
+            // No ancestor state handles `ev5` event.
 
             // TEST7_DECIDE behavior
             // uml: EV5 [trace_guard("State TEST7_DECIDE: check behavior `EV5 TransitionTo(T7__DEEP_HISTORY3)`.", true)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3."); } TransitionTo(T7__DEEP_HISTORY3)
@@ -9273,7 +9280,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST8_ROOT_ev3 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV3` event.
+            // No ancestor state handles `ev3` event.
 
             // TEST8_ROOT behavior
             // uml: EV3 [trace_guard("State TEST8_ROOT: check behavior `EV3`.", true)]
@@ -9287,7 +9294,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST8_ROOT_ev5 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV5` event.
+            // No ancestor state handles `ev5` event.
 
             // TEST8_ROOT behavior
             // uml: EV5 [trace_guard("State TEST8_ROOT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
@@ -9356,7 +9363,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST8_G_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST8_G behavior
             // uml: EV2 [trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1)."); } TransitionTo(TEST8_ROOT.EntryPoint(1))
@@ -9585,7 +9592,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST8_S1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST8_S1 behavior
             // uml: 1. EV1 [trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1)."); } TransitionTo(TEST8_G.EntryPoint(1))
@@ -9620,7 +9627,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST8_S1_ev3 = (Spec2Sm sm) =>
         {
-            // Setup handler for next ancestor that listens to `EV3` event.
+            // Setup handler for next ancestor that listens to `ev3` event.
             sm.ancestor_event_handler = TEST8_ROOT_ev3;
 
             // TEST8_S1 behavior
@@ -9645,7 +9652,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST8_S1_ev6 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV6` event.
+            // No ancestor state handles `ev6` event.
 
             // TEST8_S1 behavior
             // uml: EV6 [trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.EntryPoint(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3)."); } TransitionTo(TEST8_G.EntryPoint(3))
@@ -9735,7 +9742,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST9_DECIDE_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST9_DECIDE behavior
             // uml: EV1 [trace_guard("State TEST9_DECIDE: check behavior `EV1 TransitionTo(TEST9_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT."); } TransitionTo(TEST9_ROOT)
@@ -9783,7 +9790,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST9_DECIDE_ev2 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV2` event.
+            // No ancestor state handles `ev2` event.
 
             // TEST9_DECIDE behavior
             // uml: EV2 [trace_guard("State TEST9_DECIDE: check behavior `EV2 TransitionTo(TEST9A_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT."); } TransitionTo(TEST9A_ROOT)
@@ -9852,7 +9859,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST9_ROOT_ev5 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV5` event.
+            // No ancestor state handles `ev5` event.
 
             // TEST9_ROOT behavior
             // uml: EV5 [trace_guard("State TEST9_ROOT: check behavior `EV5 / { count++; }`.", true)] / { count++; }
@@ -10064,7 +10071,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST9_S1_1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST9_S1_1 behavior
             // uml: EV1 [trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.ExitPoint(1))`.", true)] / { trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1)."); } TransitionTo(TEST9_S1.ExitPoint(1))
@@ -10289,7 +10296,7 @@ namespace Csharp.Spec2smTests
 
         private static readonly Func TEST9A_S1_1_ev1 = (Spec2Sm sm) =>
         {
-            // No ancestor state handles `EV1` event.
+            // No ancestor state handles `ev1` event.
 
             // TEST9A_S1_1 behavior
             // uml: EV1 [trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.ExitPoint(1))`.", true)] / { trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1)."); } TransitionTo(TEST9A_S1.ExitPoint(1))

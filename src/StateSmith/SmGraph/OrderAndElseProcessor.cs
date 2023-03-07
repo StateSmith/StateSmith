@@ -1,4 +1,4 @@
-﻿using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph.Visitors;
 using System.Linq;
 
 namespace StateSmith.SmGraph
@@ -34,7 +34,7 @@ namespace StateSmith.SmGraph
 
         private static int ValidateBehavior(int elseCount, Behavior b)
         {
-            if (b.triggers.Contains("else"))
+            if (b.Triggers.Contains("else"))
             {
                 elseCount++;
 
@@ -59,7 +59,7 @@ namespace StateSmith.SmGraph
                 }
 
                 b.order = Behavior.ELSE_ORDER;
-                b.triggers.Remove("else");
+                b._triggers.Remove("else");
                 if (b.HasAtLeastOneTrigger()) //shouldn't have any left after removal of "else"
                 {
                     throw new BehaviorValidationException(b, "you cannot specify triggers with an `else` \"trigger\"");

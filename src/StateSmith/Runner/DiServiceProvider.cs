@@ -47,6 +47,7 @@ public class DiServiceProvider
             services.AddSingleton<InputSmBuilder>();
             services.AddSingleton<IConsolePrinter, ConsolePrinter>();
             services.AddSingleton<ExceptionPrinter>();
+            services.AddSingleton<ICodeFileWriter, CodeFileWriter>();
 
             services.AddSingleton<StateMachineProvider>();
             services.AddSingleton<IStateMachineProvider>((s) => s.GetService<StateMachineProvider>()!); // need to use lambda or else another object will be created

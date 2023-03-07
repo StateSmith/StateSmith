@@ -5,56 +5,86 @@ using System.Linq;
 
 namespace StateSmith.Common;
 
+/// <summary>
+/// A trigger can be something like "enter", "exit", the "do" event, or a user specified event. 
+/// Note that the triggers should be treated as case insensitive. Use <see cref="TriggerHelper.SanitizeTriggerName(string)"/>.
+/// </summary>
 public static class TriggerHelper
 {
+    /// <summary>
+    /// Trigger name for behavior that is run when a state is entered.
+    /// </summary>
     public const string TRIGGER_ENTER = "enter";
+
+    /// <summary>
+    /// Trigger name for behavior that is run when a state is exited.
+    /// </summary>
     public const string TRIGGER_EXIT = "exit";
+
+    /// <summary>
+    /// The do event is special in that it is not normally consumed like other events.
+    /// </summary>
     public const string TRIGGER_DO = "do";
 
+    /// <summary>
+    /// Sanitizes trigger before check.
+    /// </summary>
+    /// <param name="triggerName">Can be unsanitized.</param>
+    /// <returns></returns>
     public static bool IsEnterExitTrigger(string triggerName)
     {
-        string trigger = CleanTriggerName(triggerName);
+        string trigger = SanitizeTriggerName(triggerName);
         return InnerIsEnterExitTrigger(trigger);
     }
 
     public static bool IsEnterTrigger(string triggerName)
     {
-        string trigger = CleanTriggerName(triggerName);
+        string trigger = SanitizeTriggerName(triggerName);
         return trigger == TRIGGER_ENTER;
     }
 
+    /// <summary>
+    /// Events are triggers that are not the enter/exit trigger.
+    /// Sanitizes trigger before check.
+    /// </summary>
+    /// <param name="triggerName">Can be unsanitized.</param>
+    /// <returns></returns>
     public static bool IsEvent(string triggerName)
     {
         return IsEnterExitTrigger(triggerName) == false;
     }
 
-    public static bool IsDoEvent(string trigger)
+    /// <summary>
+    /// Sanitizes trigger before check.
+    /// </summary>
+    /// <param name="triggerName">Can be unsanitized.</param>
+    /// <returns></returns>
+    public static bool IsDoEvent(string triggerName)
     {
-        trigger = CleanTriggerName(trigger);
-        return trigger == TRIGGER_DO;
+        triggerName = SanitizeTriggerName(triggerName);
+        return triggerName == TRIGGER_DO;
     }
 
-    private static bool InnerIsEnterExitTrigger(string trigger)
-    {
-        switch (trigger)
-        {
-            case TRIGGER_ENTER:
-            // case "entry":    //todolow support
-            case TRIGGER_EXIT:
-                return true;
-        }
-
-        return false;
-    }
-
-    private static string CleanTriggerName(string triggerName)
+    /// <summary>
+    /// StateSmith treats triggers/events as case insensitive.
+    /// </summary>
+    /// <param name="triggerName"></param>
+    /// <returns>The trigger name trimmed and converted to lowercase.</returns>
+    public static string SanitizeTriggerName(string triggerName)
     {
         return triggerName.ToLower().Trim();
     }
 
-    public static void MaybeAddEvent(StateMachine sm, Behavior behavior, string triggerName)
+    /// <summary>
+    /// Adds event to state machine if needed. Sanitizes trigger before check.
+    /// </summary>
+    /// <param name="sm"></param>
+    /// <param name="behavior"></param>
+    /// <param name="triggerName">Can be unsanitized</param>
+    /// <exception cref="BehaviorValidationException"></exception>
+    public static void MaybeAddEventToSm(StateMachine sm, Behavior behavior, string triggerName)
     {
-        string cleanTrigger = CleanTriggerName(triggerName);
+        string cleanTrigger = SanitizeTriggerName(triggerName);
 
         if (cleanTrigger.Length == 0)
         {
@@ -69,28 +99,68 @@ public static class TriggerHelper
         sm._events.Add(cleanTrigger);
     }
 
-    // TODOLOW return sorted array instead
-    public static HashSet<string> GetStateTriggers(NamedVertex state)
+    /// <summary>
+    /// Returns a unique set of sanitized triggers.
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
+    public static HashSet<string> GetSanitizedTriggersSet(Vertex state)
     {
         HashSet<string> triggerNames = new();
         foreach (var b in state.Behaviors)
         {
-            foreach (var trigger in b.triggers)
+            foreach (var trigger in b.Triggers)
             {
-                triggerNames.Add(trigger);
+                triggerNames.Add(SanitizeTriggerName(trigger));
             }
         }
 
         return triggerNames;
     }
 
-    public static IEnumerable<Behavior> GetBehaviorsWithTrigger(Vertex vertex, string triggerName)
+    public static List<string> GetSanitizedTriggerList(Behavior behavior)
     {
-        return vertex.Behaviors.Where(b => b.triggers.Contains(triggerName));
+        List<string> triggerNames = new();
+        foreach (var trigger in behavior.Triggers)
+        {
+            triggerNames.Add(SanitizeTriggerName(trigger));
+        }
+
+        return triggerNames;
     }
 
+    /// <summary>
+    /// Sanitizes triggers.
+    /// </summary>
+    /// <param name="vertex"></param>
+    /// <param name="triggerName">Can be unsanitized.</param>
+    /// <returns></returns>
+    public static IEnumerable<Behavior> GetBehaviorsWithTrigger(Vertex vertex, string triggerName)
+    {
+        triggerName = SanitizeTriggerName(triggerName);
+        return vertex.Behaviors.Where(b => b.Triggers.Any(t => SanitizeTriggerName(t) == triggerName));
+    }
+
+    /// <summary>
+    /// Sanitizes triggers.
+    /// </summary>
+    /// <param name="vertex"></param>
+    /// <param name="triggerName">Can be unsanitized.</param>
+    /// <returns></returns>
     public static bool HasBehaviorsWithTrigger(Vertex vertex, string triggerName)
     {
-        return vertex.Behaviors.Any(b => b.triggers.Contains(triggerName));
+        return GetBehaviorsWithTrigger(vertex, triggerName).Any();
+    }
+
+    private static bool InnerIsEnterExitTrigger(string sanitizedTrigger)
+    {
+        switch (sanitizedTrigger)
+        {
+            case TRIGGER_ENTER:
+            case TRIGGER_EXIT:
+                return true;
+        }
+
+        return false;
     }
 }

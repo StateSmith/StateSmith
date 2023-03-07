@@ -1,0 +1,38 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="362px" height="222px" viewBox="-0.5 -0.5 362 222" content="&lt;mxfile&gt;&lt;diagram id=&quot;DLnVY5NDsVVYwWrmNcwQ&quot; name=&quot;Page-1&quot;&gt;7VjbbqMwEP0aXldcQto+pmmyXandl1bax8rFE2KtwciYXPr1O4YhQIBelKx2HxIkZB/fhjnnTEKcYJ7svmuWrR8VB+n4Lt85wZ3j+zfhFO8W2FdAMPUrINaCV5DXAE/iDQh0CS0Eh7wz0Sgljci6YKTSFCLTwZjWatudtlKye2rGYugBTxGTffSX4GZdodeh2+D3IOJ1fbLn0kjC6skE5GvG1bYFBQsnmGulTNVKdnOQNnd1Xqp1y5HRQ2AaUvOZBZT3DZMFPZvjT56eZ8+Lx9n8/sfPBQ46wQzvix1tnpt9nQeMPrPNfCsSyVJs3mplmGGv5QxcecukiFNsRxgQaAQ2oI3AVM5owKgM0ZVKzZIlQlpFPBSR4AyPmqs0V3ar29wwbUgIgUsLqO9N6j5F5lF/rqTSZaTBcmYviwspW3g4sZc9gB5h2RrnsGKFNOVTFSkHTnszHdVHh7b7ikEWBmYNjCglFp8WdqPkeAfK0SqgEjB6j1NowYREsu92t43kgilh65bcDuJiJPP4sHOjBGyQGIaFEQwIw+0J4CPaavYlrMw4962Up6pUUawZF9AwSHButPoNR2DDjdVFnrFIpPFDeeCdZVZDLt5aikzUptXDygRtvfb0WxiVf4JVKjW0sjF4m21/mO26CA7QO8TuGcidDLlepMIIJl/QagZGrY4bYZUtuc2zqrauxM6m/9habvkZIOA4xal6YK/4BVFlGLhoD37KRiOJpQXTq29hx0hhP9N+OJDp8PRMh71Ml8X15VJLz15L3xeB362lntfXgOcP2O3mDHabDtjtUkhPKKThVwtpOMDs5AzMXo3Yu0/wxd5/197/0t/XF3+f199X/4u/b6otgPfeB4+EiWSrQkfQ+X2FRozh/ZKlQTIjNt3dT4m41v1XQw77IY+wcGrI2G3eb8ux1p8EweIP&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 360 30 L 360 7.5 Q 360 0 352.5 0 L 7.5 0 Q 0 0 0 7.5 L 0 30" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 0 212.5 Q 0 220 7.5 220 L 352.5 220 Q 360 220 360 212.5 L 360 30" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 360 30" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="179.5" y="19.5">
+                $STATEMACHINE : Ex1
+            </text>
+        </g>
+        <rect x="0" y="30" width="30" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Lucida Console" font-size="12px"/>
+        <ellipse cx="80" cy="62.5" rx="12.5" ry="12.5" fill="#000000" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 140 140 L 140 117.5 Q 140 110 132.5 110 L 27.5 110 Q 20 110 20 117.5 L 20 140" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 20 140 L 20 192.5 Q 20 200 27.5 200 L 132.5 200 Q 140 200 140 192.5 L 140 140" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 20 140 L 140 140" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="79.5" y="129.5">
+                STATE_1
+            </text>
+        </g>
+        <rect x="20" y="140" width="50" height="40" fill="none" stroke="none" pointer-events="all"/>
+        <path d="M 340 140 L 340 117.5 Q 340 110 332.5 110 L 227.5 110 Q 220 110 220 117.5 L 220 140" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 220 140 L 220 192.5 Q 220 200 227.5 200 L 332.5 200 Q 340 200 340 192.5 L 340 140" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 220 140 L 340 140" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="279.5" y="129.5">
+                STATE_2
+            </text>
+        </g>
+        <rect x="220" y="140" width="50" height="40" fill="none" stroke="none" pointer-events="all"/>
+        <path d="M 80 75 L 80 103.63" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 80 108.88 L 76.5 101.88 L 80 103.63 L 83.5 101.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 140 155 L 213.63 155" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 218.88 155 L 211.88 158.5 L 213.63 155 L 211.88 151.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+</svg>

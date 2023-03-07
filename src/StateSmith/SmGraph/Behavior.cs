@@ -3,6 +3,8 @@ using StateSmith.SmGraph;
 using StateSmith.Output;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 #nullable enable
 
@@ -28,7 +30,23 @@ namespace StateSmith.SmGraph
 
         public Vertex? TransitionTarget => _transitionTarget;
 
-        public List<string> triggers = new();
+        /// <summary>
+        /// Modifiable triggers list. Prefer using <see cref="Triggers"/> if you don't need to modify the list.
+        /// May be unsanitized. See <see cref="TriggerHelper.SanitizeTriggerName(string)"/>.
+        /// </summary>
+        public List<string> _triggers = new();
+
+        /// <summary>
+        /// Readonly list of triggers.
+        /// May be unsanitized. See <see cref="TriggerHelper.SanitizeTriggerName(string)"/> or <see cref="SanitizedTriggers"/>.
+        /// </summary>
+        public IReadOnlyList<string> Triggers => _triggers;
+
+        /// <summary>
+        /// You can convert this to a regular list with System.Linq: <code>behavior.SanitizedTriggers.ToList()</code>
+        /// </summary>
+        public IEnumerable<string> SanitizedTriggers => _triggers.Select(t => TriggerHelper.SanitizeTriggerName(t));
+
         public double order = DEFAULT_ORDER;
         public string guardCode = "";
         public string actionCode = "";
@@ -57,7 +75,7 @@ namespace StateSmith.SmGraph
 
         public Behavior(string trigger, string guardCode = "", string actionCode = "") : this()
         {
-            this.triggers.Add(trigger);
+            this._triggers.Add(trigger);
             this.guardCode = guardCode;
             this.actionCode = actionCode;
         }
@@ -131,7 +149,7 @@ namespace StateSmith.SmGraph
 
         public bool HasAtLeastOneTrigger()
         {
-            return triggers.Count > 0;
+            return Triggers.Any();
         }
 
         public bool IsBlankTransition()
@@ -190,7 +208,7 @@ namespace StateSmith.SmGraph
 
             if (HasAtLeastOneTrigger())
             {
-                result += joiner + string.Join(", ", triggers);
+                result += joiner + string.Join(", ", Triggers);
                 joiner = " ";
             }
 

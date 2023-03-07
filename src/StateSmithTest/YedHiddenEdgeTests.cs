@@ -52,7 +52,7 @@ namespace StateSmithTest
         /// <param name="target"></param>
         private void AssertNonBlankValidates(NamedVertex source, NamedVertex target)
         {
-            state_1.AddTransitionTo(state_1).triggers.Add("EV1");
+            state_1.AddTransitionTo(state_1)._triggers.Add("EV1");
             Validate();
 
             state_1.AddTransitionTo(state_1).guardCode += "some_guard";

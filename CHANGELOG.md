@@ -16,6 +16,32 @@ https://github.com/StateSmith/StateSmith/issues/98
 
 ---
 
+## [0.7.16-alpha]
+### Added
+- support for user post processing
+  - Can be used to remove `state_id_to_string()` function if not wanted.
+  - Can be used to add custom functions.
+  - Can be used to add code coverage annotations.
+  - See https://github.com/StateSmith/StateSmith/issues/114
+
+---
+
+## [0.7.15-alpha]
+### Added
+- draw.io - convert more special characters to regular space characters (@FyrBridd).
+  - https://github.com/StateSmith/StateSmith/issues/100
+- improve trigger/event name case insensitivity.
+  - Also document and expose more from `TriggerHelper` class.
+- support `entry` as alternative to `enter` trigger.
+  - https://github.com/StateSmith/StateSmith/issues/108
+
+### Changes
+- Internal API change to `Behavior` class
+  - `.triggers` modifiable list renamed to `._triggers`.
+  - Prefer using readonly `.Triggers` or `.SanitizedTriggers` instead.
+
+---
+
 ## [0.7.13-alpha]
 ### Added
 - Internal improvements to better support user custom code generation.

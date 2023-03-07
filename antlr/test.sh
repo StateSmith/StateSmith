@@ -5,7 +5,7 @@
 # ensure to use setup.bash first
 # call like this: . test.sh
 
-# grun StateSmithLabelGrammar edge -gui -tokens -trace ss_label_test_input.txt
+# grun StateSmithLabelGrammar node -gui -tokens -trace ss_label_test_input.txt
 grun StateSmithLabelGrammar node -tokens -trace ss_label_test_input.txt | grep "consume"
 # grun StateSmithLabelGrammar node -gui -tokens -trace ss_label_test_input.txt
 # grun StateSmithLabelGrammar node -tokens -trace ss_label_test_input.txt > /dev/null

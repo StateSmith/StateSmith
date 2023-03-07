@@ -27,7 +27,7 @@ namespace StateSmithTest
 
             var b = new Behavior();
             b.order = 1.25;
-            b.triggers.Add("EV1");
+            b._triggers.Add("EV1");
             b.guardCode = "x > 10";
             b.actionCode = "x = 0;";
             b.viaEntry = "entry1";

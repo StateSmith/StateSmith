@@ -1,3 +1,4 @@
+using StateSmith.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -160,7 +161,7 @@ namespace StateSmith.SmGraph
 
         public static IEnumerable<Behavior> GetBehaviorsWithTrigger(this Vertex vertex, string triggerName)
         {
-            return vertex.Behaviors.Where(b => b.triggers.Contains(triggerName));
+            return TriggerHelper.GetBehaviorsWithTrigger(vertex, triggerName);
         }
 
         public static bool HasInitialState(this Vertex vertex, out InitialState? initialState)
