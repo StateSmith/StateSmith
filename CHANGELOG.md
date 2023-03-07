@@ -4,14 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## wip
+## [0.8.0-alpha]
+Adds support for multiple languages! The 0.8.X releases will see more changes as we
+figure out the best way to support multiple languages.
+
 ### Added
+- Add support for generating C# state machine code as well as C99.
+  - https://github.com/StateSmith/StateSmith/issues/107
 - Only output `consume_event` variable when user action code uses it.
-https://github.com/StateSmith/StateSmith/issues/98
+  - https://github.com/StateSmith/StateSmith/issues/98
 
 ### Changes
-- Removed RenderConfigC from SmSettings. Moving towards language agnostic config.
-- Removed CNameMangler. Use `NameMangler` and `ICFileNamer` instead. TODO document.
+- Removed `RenderConfigC` from `SmSettings`. Moving towards language agnostic config.
+- Removed `CNameMangler`. Use `NameMangler` and `ICFileNamer` instead. TODO document.
 - Custom C99 enum attributes can be specified using `IGilToC99Customizer` now. TODO document & example.
 
 ---
