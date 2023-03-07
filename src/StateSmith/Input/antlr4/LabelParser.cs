@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using StateSmith.Input.Expansions;
 using System;
@@ -40,7 +40,6 @@ namespace StateSmith.Input.Antlr4
         public List<NodeBehavior> ParseEdgeLabel(string edgeLabel)
         {
             StateSmithLabelGrammarParser parser = BuildParserForString(edgeLabel);
-
             IParseTree tree = parser.edge();
             NodeEdgeWalker walker = WalkTree(tree);
             return walker.behaviors;
@@ -51,6 +50,13 @@ namespace StateSmith.Input.Antlr4
             StateSmithLabelGrammarParser parser = BuildParserForString(code);
             IParseTree tree = parser.any_code();
             return visitor.Visit(tree);
+        }
+
+        public void ParseAndWalkAnyCode(StateSmithLabelGrammarBaseListener listener, string code)
+        {
+            StateSmithLabelGrammarParser parser = BuildParserForString(code);
+            IParseTree tree = parser.any_code();
+            ParseTreeWalker.Default.Walk(listener, tree);
         }
 
         private NodeEdgeWalker WalkTree(IParseTree tree)

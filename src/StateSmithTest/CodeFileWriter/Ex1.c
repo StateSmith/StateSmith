@@ -3,37 +3,35 @@
 #include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 
-static void ROOT_enter(Ex1* self);
-static void ROOT_exit(Ex1* self);
+// This function is used when StateSmith doesn't know what the active leaf state is at
+// compile time due to sub states or when multiple states need to be exited.
+static void exit_up_to_state_handler(Ex1* sm, Ex1_Func desired_state_exit_handler);
 
-static void STATE_1_enter(Ex1* self);
-static void STATE_1_exit(Ex1* self);
-static void STATE_1_do(Ex1* self);
+static void ROOT_enter(Ex1* sm);
 
-static void STATE_2_enter(Ex1* self);
-static void STATE_2_exit(Ex1* self);
+static void ROOT_exit(Ex1* sm);
 
-// This function is used when StateSmith doesn't know what the active leaf state is at compile time due to sub states
-// or when multiple states need to be exited.
-static void exit_up_to_state_handler(Ex1* self, const Ex1_Func desired_state_exit_handler);
+static void STATE_1_enter(Ex1* sm);
+
+static void STATE_1_exit(Ex1* sm);
+
+static void STATE_1_do(Ex1* sm);
+
+static void STATE_2_enter(Ex1* sm);
+
+static void STATE_2_exit(Ex1* sm);
 
 
-void Ex1_ctor(Ex1* self)
+// State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
+void Ex1_ctor(Ex1* sm)
 {
-    memset(self, 0, sizeof(*self));
+    memset(sm, 0, sizeof(*sm));
 }
 
-static void exit_up_to_state_handler(Ex1* self, const Ex1_Func desired_state_exit_handler)
+// Starts the state machine. Must be called before dispatching events. Not thread safe.
+void Ex1_start(Ex1* sm)
 {
-    while (self->current_state_exit_handler != desired_state_exit_handler)
-    {
-        self->current_state_exit_handler(self);
-    }
-}
-
-void Ex1_start(Ex1* self)
-{
-    ROOT_enter(self);
+    ROOT_enter(sm);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
     {
@@ -52,46 +50,57 @@ void Ex1_start(Ex1* self)
             // Step 2: Transition action: ``.
             
             // Step 3: Enter/move towards transition target `STATE_1`.
-            STATE_1_enter(self);
+            STATE_1_enter(sm);
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            self->state_id = Ex1_StateId_STATE_1;
-            // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+            sm->state_id = Ex1_StateId_STATE_1;
+            // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             return;
         } // end of behavior for ROOT.InitialState
     } // end of behavior for ROOT
 }
 
-void Ex1_dispatch_event(Ex1* self, enum Ex1_EventId event_id)
+// Dispatches an event to the state machine. Not thread safe.
+void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id)
 {
-    Ex1_Func behavior_func = self->current_event_handlers[event_id];
+    Ex1_Func behavior_func = sm->current_event_handlers[event_id];
     
     while (behavior_func != NULL)
     {
-        self->ancestor_event_handler = NULL;
-        behavior_func(self);
-        behavior_func = self->ancestor_event_handler;
+        sm->ancestor_event_handler = NULL;
+        behavior_func(sm);
+        behavior_func = sm->ancestor_event_handler;
     }
 }
+
+// This function is used when StateSmith doesn't know what the active leaf state is at
+// compile time due to sub states or when multiple states need to be exited.
+static void exit_up_to_state_handler(Ex1* sm, Ex1_Func desired_state_exit_handler)
+{
+    while (sm->current_state_exit_handler != desired_state_exit_handler)
+    {
+        sm->current_state_exit_handler(sm);
+    }
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // event handlers for state ROOT
 ////////////////////////////////////////////////////////////////////////////////
 
-static void ROOT_enter(Ex1* self)
+static void ROOT_enter(Ex1* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = ROOT_exit;
+    sm->current_state_exit_handler = ROOT_exit;
 }
 
 // The root exit function can't actually be called so we add code coverage hints.
 // LCOV_EXCLUDE_START
 // GCOV_EXCLUDE_START
 // GCOVR_EXCLUDE_START
-static void ROOT_exit(Ex1* self)
+static void ROOT_exit(Ex1* sm)
 {
     // State machine root is a special case. It cannot be exited.
-    (void)self;  // nothing to see here compiler. move along!
 }
 // LCOV_EXCLUDE_STOP
 // GCOV_EXCLUDE_STOP
@@ -101,21 +110,21 @@ static void ROOT_exit(Ex1* self)
 // event handlers for state STATE_1
 ////////////////////////////////////////////////////////////////////////////////
 
-static void STATE_1_enter(Ex1* self)
+static void STATE_1_enter(Ex1* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = STATE_1_exit;
-    self->current_event_handlers[Ex1_EventId_DO] = STATE_1_do;
+    sm->current_state_exit_handler = STATE_1_exit;
+    sm->current_event_handlers[Ex1_EventId_DO] = STATE_1_do;
 }
 
-static void STATE_1_exit(Ex1* self)
+static void STATE_1_exit(Ex1* sm)
 {
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = ROOT_exit;
-    self->current_event_handlers[Ex1_EventId_DO] = NULL;  // no ancestor listens to this event
+    sm->current_state_exit_handler = ROOT_exit;
+    sm->current_event_handlers[Ex1_EventId_DO] = NULL;  // no ancestor listens to this event
 }
 
-static void STATE_1_do(Ex1* self)
+static void STATE_1_do(Ex1* sm)
 {
     // No ancestor state handles `do` event.
     
@@ -123,16 +132,16 @@ static void STATE_1_do(Ex1* self)
     // uml: do TransitionTo(STATE_2)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-        STATE_1_exit(self);
+        STATE_1_exit(sm);
         
         // Step 2: Transition action: ``.
         
         // Step 3: Enter/move towards transition target `STATE_2`.
-        STATE_2_enter(self);
+        STATE_2_enter(sm);
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-        self->state_id = Ex1_StateId_STATE_2;
-        // No ancestor handles event. Can skip nulling `self->ancestor_event_handler`.
+        sm->state_id = Ex1_StateId_STATE_2;
+        // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
         return;
     } // end of behavior for STATE_1
 }
@@ -142,16 +151,25 @@ static void STATE_1_do(Ex1* self)
 // event handlers for state STATE_2
 ////////////////////////////////////////////////////////////////////////////////
 
-static void STATE_2_enter(Ex1* self)
+static void STATE_2_enter(Ex1* sm)
 {
     // setup trigger/event handlers
-    self->current_state_exit_handler = STATE_2_exit;
+    sm->current_state_exit_handler = STATE_2_exit;
 }
 
-static void STATE_2_exit(Ex1* self)
+static void STATE_2_exit(Ex1* sm)
 {
     // adjust function pointers for this state's exit
-    self->current_state_exit_handler = ROOT_exit;
+    sm->current_state_exit_handler = ROOT_exit;
 }
 
 
+// Thread safe.
+char const * const Ex1_event_id_to_string(Ex1_EventId id)
+{
+    switch (id)
+    {
+        case Ex1_EventId_DO: return "DO";
+        default: return "?";
+    }
+}

@@ -57,6 +57,8 @@ namespace StateSmith.SmGraph
         // https://github.com/StateSmith/StateSmith/issues/3
         public string? viaExit;
 
+        public bool isGilCode = false;
+
         public Behavior() {
             _owningVertex = new State("nullable_dummy_for_tests");  // todo_low: update test code to do this instead.
         }

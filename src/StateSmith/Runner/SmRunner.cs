@@ -1,8 +1,8 @@
-using StateSmith.Output.C99BalancedCoder1;
 using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
+using StateSmith.Output.Algos.Balanced1;
 
 #nullable enable
 
@@ -21,7 +21,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
     readonly DiServiceProvider diServiceProvider;
 
     readonly RunnerSettings settings;
-    readonly RenderConfigC renderConfigC;
+
+    private readonly IRenderConfig iRenderConfig;
 
     /// <summary>
     /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
@@ -33,29 +34,35 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// Constructor.
     /// </summary>
     /// <param name="settings"></param>
+    /// <param name="renderConfig"></param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
-    public SmRunner(RunnerSettings settings, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
+        this.settings = settings;
+        this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
-        this.settings = settings;
-        renderConfigC = new RenderConfigC();
-        renderConfigC.SetFromIRenderConfigC(this.settings.renderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
-
         diServiceProvider = DiServiceProvider.CreateDefault();
-        SetupDependencyInjection();
+        SetupDependencyInjectionAndRenderConfigs();
     }
 
     /// <summary>
     /// A convenience constructor.
     /// </summary>
     /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
-    /// <param name="renderConfigC"></param>
+    /// <param name="renderConfig"></param>
     /// <param name="outputDirectory">Optional. If omitted, it will default to directory of <paramref name="diagramPath"/>. Relative to directory of script file that calls this constructor.</param>
+    /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
+    /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
-    public SmRunner(string diagramPath, IRenderConfigC? renderConfigC = null, string? outputDirectory = null, [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
-    : this(new RunnerSettings(renderConfigC ?? new DummyRenderConfigC(), diagramFile: diagramPath, outputDirectory: outputDirectory), callerFilePath: callingFilePath)
+    public SmRunner(string diagramPath,
+        IRenderConfig? renderConfig = null,
+        string? outputDirectory = null,
+        AlgorithmId algorithmId = AlgorithmId.Default,
+        TranspilerId transpilerId = TranspilerId.Default,
+        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callingFilePath)
     {
     }
 
@@ -81,18 +88,45 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     // ------------ private methods ----------------
 
-    private void SetupDependencyInjection()
+    private void SetupDependencyInjectionAndRenderConfigs()
     {
+        var renderConfigVars = new RenderConfigVars();
+        renderConfigVars.SetFrom(iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
+
+        var renderConfigCVars = new RenderConfigCVars();
+        if (iRenderConfig is IRenderConfigC ircc)
+        {
+            renderConfigCVars.SetFrom(ircc, settings.autoDeIndentAndTrimRenderConfigItems);
+        }
+
+        var renderConfigCSharpVars = new RenderConfigCSharpVars();
+        if (iRenderConfig is IRenderConfigCSharp irccs)
+        {
+            renderConfigCSharpVars.SetFrom(irccs, settings.autoDeIndentAndTrimRenderConfigItems);
+        }
+
         diServiceProvider.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
-            services.AddSingleton(settings.mangler);
             services.AddSingleton(settings.style);
-            services.AddSingleton(renderConfigC);
-            services.AddSingleton(new ExpansionConfigReaderObjectProvider(settings.renderConfig));
+            services.AddSingleton<OutputInfo>();
+            services.AddSingleton<RenderConfigVars>(renderConfigVars);
+            services.AddSingleton<RenderConfigCVars>(renderConfigCVars);
+            services.AddSingleton<RenderConfigCSharpVars>(renderConfigCSharpVars);
+            services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
-            services.AddSingleton<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
+            services.AddSingleton<ExpansionsPrep>();
         });
+
+        AlgoOrTranspilerUpdated();
+    }
+
+    /// <summary>
+    /// You only need to call this if you adjust the algorithm or transpiler id after constructing an <see cref="SmRunner"/>.
+    /// </summary>
+    public void AlgoOrTranspilerUpdated()
+    {
+        new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId);
     }
 
     // exists just for testing. can be removed in the future.
@@ -100,6 +134,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
         diServiceProvider.BuildIfNeeded();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
+        diServiceProvider.GetInstanceOf<OutputInfo>().outputDirectory = settings.outputDirectory;
     }
 
     // ----------- experimental access  -------------
@@ -109,7 +144,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
     DiServiceProvider IExperimentalAccess.DiServiceProvider => diServiceProvider;
     RunnerSettings IExperimentalAccess.Settings => settings;
     InputSmBuilder IExperimentalAccess.InputSmBuilder => diServiceProvider.GetServiceOrCreateInstance();
-    RenderConfigC IExperimentalAccess.RenderConfigC => renderConfigC;
 
     /// <summary>
     /// The API in this experimental access may break often. It will eventually stabilize after enough use and feedback.
@@ -123,8 +157,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         RunnerSettings Settings { get; }
         InputSmBuilder InputSmBuilder { get; }
-
-        RenderConfigC RenderConfigC { get; }
     }
 }
 

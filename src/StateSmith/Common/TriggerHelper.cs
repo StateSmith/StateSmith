@@ -37,6 +37,12 @@ public static class TriggerHelper
         return InnerIsEnterExitTrigger(trigger);
     }
 
+    public static bool IsEnterTrigger(string triggerName)
+    {
+        string trigger = SanitizeTriggerName(triggerName);
+        return trigger == TRIGGER_ENTER;
+    }
+
     /// <summary>
     /// Events are triggers that are not the enter/exit trigger.
     /// Sanitizes trigger before check.

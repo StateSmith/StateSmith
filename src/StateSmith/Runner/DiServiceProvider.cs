@@ -2,13 +2,13 @@ using StateSmith.Input.DrawIo;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Input.Expansions;
 using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
 using StateSmith.Common;
-using System.Diagnostics.CodeAnalysis;
+using StateSmith.Output.Gil.C99;
+using StateSmith.Output.Algos.Balanced1;
 
 #nullable enable
 
@@ -42,7 +42,6 @@ public class DiServiceProvider
 
             services.AddSingleton(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
-            services.AddSingleton<CodeGenContext>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<Expander>();
             services.AddSingleton<InputSmBuilder>();
@@ -55,17 +54,28 @@ public class DiServiceProvider
 
             services.AddSingleton<DiagramToSmConverter>();
             services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetService<DiagramToSmConverter>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
+            services.AddSingleton<AlgoBalanced1Settings>();
+            services.AddSingleton<IAlgoStateIdToString, AlgoStateIdToString>();
+            services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
+            services.AddSingleton<IGilToC99Customizer, GilToC99Customizer>();
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
-            services.AddTransient<ICodeGenRunner, CodeGenRunner>();
             services.AddTransient<MxCellsToSmDiagramConverter>();
             services.AddTransient<DrawIoToSmDiagramConverter>();
             services.AddTransient<VisualGroupingValidator>();
             services.AddTransient<DynamicVarsResolver>();
             services.AddTransient<ExpansionConfigReader>();
-            services.AddTransient<CBuilder>();
-            services.AddTransient<CHeaderBuilder>();
+
+            services.AddTransient<HistoryProcessor>();
+
+            services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
+            services.AddSingleton<IGilAlgo, AlgoBalanced1>();
+            services.AddSingleton<IGilTranspiler, GilToC99>();
+            services.AddSingleton<NameMangler>();
+            services.AddSingleton<PseudoStateHandlerBuilder>();
+            services.AddSingleton<EnumBuilder>();
+            services.AddSingleton<EventHandlerBuilder>();
         });
     }
 
@@ -126,9 +136,11 @@ public class DiServiceProvider
     private static void AddDefaultsForTesting(IServiceCollection services)
     {
         services.AddSingleton(new DrawIoSettings());
-        services.AddSingleton(new CNameMangler());
         services.AddSingleton(new CodeStyleSettings());
-        services.AddSingleton<RenderConfigC>();
+        services.AddSingleton<RenderConfigVars>();
+        services.AddSingleton<RenderConfigCVars>();
+        services.AddSingleton<RenderConfigCSharpVars>();
+        services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
     }
 
     /// <summary>
@@ -149,10 +161,22 @@ public class DiServiceProvider
         public static implicit operator DrawIoToSmDiagramConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoToSmDiagramConverter>(me.host.Services);
         public static implicit operator DiagramToSmConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DiagramToSmConverter>(me.host.Services);
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
-        public static implicit operator CNameMangler(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<CNameMangler>(me.host.Services);
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
-        public static implicit operator RenderConfigC(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigC>(me.host.Services);
+        public static implicit operator RenderConfigVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigVars>(me.host.Services);
+        public static implicit operator RenderConfigCVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCVars>(me.host.Services);
+        public static implicit operator RenderConfigCSharpVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCSharpVars>(me.host.Services);
         public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);
+    }
+
+    /// <summary>
+    /// Should ideally only be used by code that sets up Service Provider and can't use dependency injection.
+    /// Otherwise, it can hide dependencies. See https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/ .
+    /// </summary>
+    /// <returns></returns>
+    public T GetInstanceOf<T>()
+    {
+        BuildIfNeeded();
+        return ActivatorUtilities.GetServiceOrCreateInstance<T>(host.ThrowIfNull().Services);
     }
 
     /// <summary>

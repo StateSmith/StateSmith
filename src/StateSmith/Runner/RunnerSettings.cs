@@ -1,4 +1,4 @@
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using System;
 
@@ -8,11 +8,19 @@ namespace StateSmith.Runner;
 
 public class RunnerSettings
 {
-    public IRenderConfigC renderConfig;
-
     public string diagramFile;
 
     public string? outputDirectory;
+
+    /// <summary>
+    /// Ignored if custom code generator used.
+    /// </summary>
+    public AlgorithmId algorithmId = AlgorithmId.Default;
+
+    /// <summary>
+    /// Ignored if custom code generator used.
+    /// </summary>
+    public TranspilerId transpilerId = TranspilerId.Default;
 
     /// <summary>
     /// Only required if multiple state machines present in diagram file.
@@ -27,8 +35,6 @@ public class RunnerSettings
     public string? filePathPrintBase;
 
     public CodeStyleSettings style = new();
-
-    public CNameMangler mangler = new();
 
     public readonly DrawIoSettings drawIoSettings = new();
 
@@ -46,10 +52,11 @@ public class RunnerSettings
 
     public bool autoDeIndentAndTrimRenderConfigItems = true;
 
-    public RunnerSettings(IRenderConfigC renderConfig, string diagramFile, string? outputDirectory = null)
+    public RunnerSettings(string diagramFile, string? outputDirectory = null, AlgorithmId algorithmId = default, TranspilerId transpilerId = default)
     {
-        this.renderConfig = renderConfig;
         this.diagramFile = diagramFile;
         this.outputDirectory = outputDirectory;
+        this.algorithmId = algorithmId;
+        this.transpilerId = transpilerId;
     }
 }

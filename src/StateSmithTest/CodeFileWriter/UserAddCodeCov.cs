@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Xunit;
 
-namespace StateSmithTest.CodeFileWriter;
+namespace StateSmithTest.CodeFileWriterTests;
 
 // See https://github.com/StateSmith/StateSmith/issues/105
 public class UserRemoveStateIdFuncAddCoverage

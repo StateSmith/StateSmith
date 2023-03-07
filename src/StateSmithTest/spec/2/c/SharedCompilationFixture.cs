@@ -26,21 +26,23 @@ public class SharedCompilationFixture
 
     public static string OutputDirectory => Spec2Fixture.Spec2Directory + "c/";
 
-    public class MyGlueFile : IRenderConfigC
+    public class MyGlueFile : IRenderConfig, IRenderConfigC
     {
         Spec2GenericVarExpansions spec2GenericVarExpansions = new();
 
-        string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
+        string IRenderConfigC.HFileIncludes => @"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
-            ");
+            ";
 
-        string IRenderConfigC.CFileIncludes => StringUtils.DeIndentTrim(@"
+        string IRenderConfigC.CFileIncludes => @"
                 #include ""../../lang-helpers/c/helper.h""
-            ");
+            ";
 
-        string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
+        string IRenderConfig.VariableDeclarations => @"
                 uint8_t count;
-            ");
+            ";
+
+        string IRenderConfig.AutoExpandedVars => "uint8_t auto_var_1;";
     }
 }
 

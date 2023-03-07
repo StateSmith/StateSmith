@@ -1,9 +1,9 @@
-﻿using StateSmith.SmGraph.Visitors;
-using StateSmith.SmGraph;
 using StateSmith.Common;
 using System.Linq;
 using System.Collections.Generic;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Algos.Balanced1;
+using StateSmith.Output;
+using StateSmith.Runner;
 
 #nullable enable
 
@@ -14,23 +14,19 @@ namespace StateSmith.SmGraph;
 /// </summary>
 public class HistoryProcessor
 {
-    readonly StateMachine sm;
-    readonly CNameMangler mangler;
+    readonly NameMangler mangler;
+    readonly IExpansionVarsPathProvider expansionVarsPathProvider;
+    private StateMachine? sm;
 
-    public HistoryProcessor(StateMachine sm, CNameMangler mangler)
+    public HistoryProcessor(NameMangler mangler, IExpansionVarsPathProvider expansionVarsPathProvider)
+    {
+        this.mangler = mangler;
+        this.expansionVarsPathProvider = expansionVarsPathProvider;
+    }
+
+    public void Process(StateMachine sm)
     {
         this.sm = sm;
-        this.mangler = mangler;
-    }
-
-    public static void Process(StateMachine sm, CNameMangler mangler)
-    {
-        var processor = new HistoryProcessor(sm, mangler);
-        processor.Process();
-    }
-
-    public void Process()
-    {
         Visit(sm);
     }
 
@@ -117,8 +113,8 @@ public class HistoryProcessor
 
         HistoryStateValidator.ValidateBeforeTransforming(historyState);
 
-        sm.historyStates.Add(historyState);
-        historyState.stateTrackingVarName = $"${historyState.ParentState.ThrowIfNull().Name}_history"; // will be changed later on with expansions
+        sm.ThrowIfNull().historyStates.Add(historyState);
+        historyState.stateTrackingVarName = mangler.HistoryVarName(historyState);
         Behavior defaultTransition = historyState.Behaviors.Single();
         defaultTransition.order = Behavior.ELSE_ORDER;
 
@@ -131,17 +127,21 @@ public class HistoryProcessor
         foreach (var stateToTrack in statesToTrack)
         {
             bool isDefaultTransition = stateToTrack == defaultTransition?.TransitionTarget && defaultTransition.HasActionCode() == false;
-
-            string enumValueName = mangler.HistoryVarEnumValueName(historyState, stateToTrack);
+            
+            string expansionVarsPath = expansionVarsPathProvider.ExpansionVarsPath;
+            string enumName = mangler.HistoryVarEnumType(historyState);
+            string enumValueName = enumName + "." + mangler.HistoryVarEnumValue(historyState, stateToTrack);
 
             {
-                Behavior enterTrackingBehavior = new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{historyState.stateTrackingVarName} = {enumValueName};");
+                Behavior enterTrackingBehavior = new(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{expansionVarsPath}{historyState.stateTrackingVarName} = {enumValueName};");
+                enterTrackingBehavior.isGilCode = true;
                 stateToTrack.AddBehavior(enterTrackingBehavior);
             }
 
             if (!isDefaultTransition)
             {
-                Behavior historyTransitionBehavior = new Behavior(guardCode: $"{historyState.stateTrackingVarName} == {enumValueName}", transitionTarget: stateToTrack);
+                Behavior historyTransitionBehavior = new(guardCode: $"{expansionVarsPath}{historyState.stateTrackingVarName} == {enumValueName}", transitionTarget: stateToTrack);
+                historyTransitionBehavior.isGilCode = true;
                 historyState.AddBehavior(historyTransitionBehavior);
             }
         }

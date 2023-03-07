@@ -1,7 +1,6 @@
 using Spec.Spec1b;
 using StateSmith.Input.Expansions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using System;
@@ -17,7 +16,7 @@ public class Spec1b_CTests
 {
     public static string OutputDirectory => Spec1bFixture.Spec1Directory + "c/";
 
-    public class MyGlueFile : IRenderConfigC
+    public class MyGlueFile : IRenderConfig, IRenderConfigC
     {
         Spec1bGenericVarExpansions spec1bGenericVarExpansions = new();
 
@@ -30,7 +29,7 @@ public class Spec1b_CTests
                 #include ""printer.h""
             ");
 
-        string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
+        string IRenderConfig.VariableDeclarations => StringUtils.DeIndentTrim(@"
                 uint8_t count;
             ");
     }

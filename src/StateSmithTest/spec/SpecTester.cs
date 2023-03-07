@@ -1,10 +1,8 @@
-﻿using StateSmith.Output;
+using StateSmith.Output;
 using System.Collections.Generic;
-using FluentAssertions;
 using System.Linq;
 using System;
 using Xunit;
-using Xunit.Abstractions;
 using StateSmithTest;
 
 namespace Spec;

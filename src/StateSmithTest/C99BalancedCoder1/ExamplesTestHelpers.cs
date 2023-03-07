@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using StateSmith.SmGraph;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Runner;
 
 namespace StateSmithTest
@@ -36,42 +35,42 @@ namespace StateSmithTest
             return inputSmBuilder;
         }
 
-        public static CodeGenContext SetupCtxForTiny2Sm()
-        {
-            var diagramToSmConverter = ExamplesTestHelpers.SetupTiny2Sm().diagramToSmConverter;
-            var sm = diagramToSmConverter.rootVertices.Single().As<StateMachine>();
-            return new CodeGenContext(sm);
-        }
+        //public static CodeGenContext SetupCtxForTiny2Sm()
+        //{
+        //    var diagramToSmConverter = ExamplesTestHelpers.SetupTiny2Sm().diagramToSmConverter;
+        //    var sm = diagramToSmConverter.rootVertices.Single().As<StateMachine>();
+        //    return new CodeGenContext(sm);
+        //}
 
-        public static CodeGenContext SetupCtxForSimple1()
-        {
-            InputSmBuilder inputSmBuilder = new();
+        //public static CodeGenContext SetupCtxForSimple1()
+        //{
+        //    InputSmBuilder inputSmBuilder = new();
 
-            var sm = new StateMachine("Simple1");
-            var s1 = sm.AddChild(new State(name: "s1"));
-            var s1_1 = s1.AddChild(new State(name: "s1_1"));
+        //    var sm = new StateMachine("Simple1");
+        //    var s1 = sm.AddChild(new State(name: "s1"));
+        //    var s1_1 = s1.AddChild(new State(name: "s1_1"));
 
-            var initialStateVertex = sm.AddChild(new InitialState());
-            initialStateVertex.AddTransitionTo(s1);
+        //    var initialStateVertex = sm.AddChild(new InitialState());
+        //    initialStateVertex.AddTransitionTo(s1);
 
-            sm.AddBehavior(new Behavior()
-            {
-                _triggers = new List<string>() { "do" }
-            });
+        //    sm.AddBehavior(new Behavior()
+        //    {
+        //        triggers = new List<string>() { "do" }
+        //    });
 
-            s1.AddBehavior(new Behavior()
-            {
-                _triggers = new List<string>() { "EV1", "do" }
-            });
-            s1_1.AddBehavior(new Behavior()
-            {
-                _triggers = new List<string>() { "enter", "exit", "ZIP" }
-            });
+        //    s1.AddBehavior(new Behavior()
+        //    {
+        //        triggers = new List<string>() { "EV1", "do" }
+        //    });
+        //    s1_1.AddBehavior(new Behavior()
+        //    {
+        //        triggers = new List<string>() { "enter", "exit", "ZIP" }
+        //    });
 
-            inputSmBuilder.SetStateMachineRoot(sm);
-            inputSmBuilder.FinishRunning();
+        //    inputSmBuilder.SetStateMachineRoot(sm);
+        //    inputSmBuilder.FinishRunning();
 
-            return new CodeGenContext(sm);
-        }
+        //    return new CodeGenContext(sm);
+        //}
     }
 }

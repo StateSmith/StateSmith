@@ -1,12 +1,12 @@
 using FluentAssertions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Runner;
 using System.IO;
 using System.Text;
 using Xunit;
 
-namespace StateSmithTest.CodeFileWriter;
+namespace StateSmithTest.CodeFileWriterTests;
 
 // See https://github.com/StateSmith/StateSmith/issues/109
 public class UserAddEventIdToString
@@ -14,10 +14,10 @@ public class UserAddEventIdToString
     public class MyCodeFileWriter : ICodeFileWriter
     {
         StateMachineProvider smProvider;
-        CNameMangler mangler;
+        NameMangler mangler;
         CodeStyleSettings codeStyle;
 
-        public MyCodeFileWriter(StateMachineProvider smProvider, CNameMangler mangler, CodeStyleSettings codeStyle)
+        public MyCodeFileWriter(StateMachineProvider smProvider, NameMangler mangler, CodeStyleSettings codeStyle)
         {
             this.smProvider = smProvider;
             this.mangler = mangler;
@@ -27,7 +27,7 @@ public class UserAddEventIdToString
         string CreateFuncSignature()
         {
             var output = "// Converts an event id to a string. Thread safe.\n";
-            output += $"const char* {mangler.SmName}_event_id_to_string(const enum {mangler.SmEventEnum} id)";
+            output += $"const char* {mangler.Sm.Name}_event_id_to_string(const enum {mangler.SmEventEnumType} id)";
             return output;
         }
 

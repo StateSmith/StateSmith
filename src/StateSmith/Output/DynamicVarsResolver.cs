@@ -1,5 +1,5 @@
 using StateSmith.Input.Expansions;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 
@@ -9,12 +9,12 @@ namespace StateSmith.Output;
 
 public class DynamicVarsResolver
 {
-    readonly CNameMangler mangler;
+    readonly NameMangler mangler;
     readonly Expander expander;
     readonly IExpansionVarsPathProvider expansionVarsPathProvider;
     readonly IStateMachineProvider stateMachineProvider;
 
-    public DynamicVarsResolver(CNameMangler mangler, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, IStateMachineProvider stateMachineProvider)
+    public DynamicVarsResolver(NameMangler mangler, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, IStateMachineProvider stateMachineProvider)
     {
         this.mangler = mangler;
         this.expander = expander;
@@ -28,8 +28,8 @@ public class DynamicVarsResolver
 
         foreach (var h in sm.historyStates)
         {
-            string actualVarName = mangler.HistoryVarName(h);
-            expander.AddVariableExpansion(h.stateTrackingVarName, expansionVarsPathProvider.ExpansionVarsPath + actualVarName);
+            string actualVarName = h.stateTrackingVarName;
+            //expander.AddVariableExpansion(h.stateTrackingVarName, expansionVarsPathProvider.ExpansionVarsPath + actualVarName);
             bool useU8 = false;
 
             if (useU8)
@@ -42,7 +42,7 @@ public class DynamicVarsResolver
             }
             else
             {
-                sm.variables += $"enum {mangler.HistoryVarEnumName(h)} {actualVarName};\n";
+                sm.variables += $"{mangler.HistoryVarEnumType(h)} {actualVarName};\n";
             }
         }
     }

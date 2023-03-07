@@ -7042,20 +7042,6 @@ AUTO_VAR_TEST is not actually tested, it is just there for compilation.<y:LabelM
             </y:ShapeNode>
           </data>
         </node>
-        <node id="n1::n7">
-          <data key="d6">
-            <y:ShapeNode>
-              <y:Geometry height="70.16000000000008" width="281.0851433725192" x="-215.02612664348032" y="346.6904668842193"/>
-              <y:Fill color="#FFFFFF" transparent="false"/>
-              <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-              <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="70.16000000000008" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="281.0851433725192" x="0.0" xml:space="preserve" y="0.0">$CONFIG: AutoExpandedVars
-// some user AutoExpandedVars comments
-uint8_t auto_var_1;
-<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
-            </y:ShapeNode>
-          </data>
-        </node>
       </graph>
     </node>
   </graph>

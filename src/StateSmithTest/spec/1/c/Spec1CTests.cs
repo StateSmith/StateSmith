@@ -1,14 +1,6 @@
-using Spec.Spec1;
-using StateSmith.Input.Expansions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output.UserConfig;
-using StateSmith.Runner;
-using System;
-using System.Diagnostics;
 using Xunit;
-using FluentAssertions;
-using System.Runtime.InteropServices;
 using StateSmithTest.Processes;
 
 namespace Spec.Spec1.C;
@@ -17,7 +9,7 @@ public class Spec1CTests
 {
     public static string OutputDirectory => Spec1Fixture.Spec1Directory + "c/";
 
-    public class MyGlueFile : IRenderConfigC
+    public class MyGlueFile : IRenderConfig, IRenderConfigC
     {
         string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
@@ -27,7 +19,7 @@ public class Spec1CTests
                 #include ""../../lang-helpers/c/helper.h""
             ");
 
-        string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
+        string IRenderConfig.VariableDeclarations => StringUtils.DeIndentTrim(@"
                 uint8_t count;
             ");
     }

@@ -1,7 +1,9 @@
 using System;
 using System.Text;
 
-namespace StateSmith.Output.C99BalancedCoder1;
+#nullable enable
+
+namespace StateSmith.Output;
 
 public class OutputFile
 {
@@ -12,14 +14,20 @@ public class OutputFile
 
     private bool lineBreakBeforeMoreCode = false;
 
-    public OutputFile(CodeGenContext ctx, StringBuilder fileStringBuilder) : this(ctx.style, fileStringBuilder)
-    {
-    }
-
     public OutputFile(CodeStyleSettings styler, StringBuilder fileStringBuilder)
     {
         sb = fileStringBuilder;
         this.styler = styler;
+    }
+
+    public void DecreaseIndentLevel()
+    {
+        indentLevel--;
+    }
+
+    public void IncreaseIndentLevel()
+    {
+        indentLevel++;
     }
 
     public void RequestNewLineBeforeMoreCode()
@@ -83,12 +91,12 @@ public class OutputFile
         }
     }
 
-    public void AppendLines(string codeLines)
+    public void AppendLines(string codeLines, string prefix = "")
     {
-        var lines = StringUtils.SplitIntoLines(codeLines);
+        var lines = StringUtils.SplitIntoLinesOrEmpty(codeLines);
         foreach (var line in lines)
         {
-            AppendLine(line);
+            AppendLine(prefix + line);
         }
     }
 
@@ -109,7 +117,7 @@ public class OutputFile
 
     public void AppendDetectNewlines(string code = "")
     {
-        var lines = StringUtils.SplitIntoLines(code);
+        var lines = StringUtils.SplitIntoLinesOrEmpty(code);
         foreach (var line in lines)
         {
             Append(line);
