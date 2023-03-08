@@ -376,7 +376,8 @@ namespace Csharp.Spec2smTests
                 trace("Exit Spec2Sm.");
             } // end of behavior for ROOT
 
-            // State machine root is a special case. It cannot be exited.
+            // State machine root is a special case. It cannot be exited. Mark as unused.
+            _ = sm;
         };
 
 

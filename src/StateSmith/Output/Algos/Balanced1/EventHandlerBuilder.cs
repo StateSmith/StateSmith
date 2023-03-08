@@ -518,7 +518,8 @@ public class EventHandlerBuilder
 
             if (state.Parent == null)
             {
-                File.AppendLine($"// State machine root is a special case. It cannot be exited.");
+                File.AppendLine($"// State machine root is a special case. It cannot be exited. Mark as unused.");
+                File.AppendLine(GilHelper.MarkVarAsUnused("sm"));
             }
             else
             {

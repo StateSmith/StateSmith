@@ -1011,7 +1011,8 @@ static void ROOT_exit(Spec2Sm* sm)
         trace("Exit Spec2Sm.");
     } // end of behavior for ROOT
     
-    // State machine root is a special case. It cannot be exited.
+    // State machine root is a special case. It cannot be exited. Mark as unused.
+    (void)sm;
 }
 
 

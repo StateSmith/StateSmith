@@ -8,13 +8,15 @@ using System.Linq;
 using System.IO;
 using System.Text;
 using StateSmith.Common;
+using System;
 
 namespace StateSmith.Output.Gil;
 
 public class GilHelper
 {
-    public const string GilNoEmitPrefix = "____GilNoEmit_";
-    public const string GilNoEmitEchoStringBoolFuncName = GilNoEmitPrefix + "echoStringBool";
+    protected const string GilNoEmitPrefix = "____GilNoEmit_";
+    protected const string GilNoEmitEchoStringBoolFuncName = GilNoEmitPrefix + "echoStringBool";
+    protected const string GilUnusedVarFuncName = GilNoEmitPrefix + "GilUnusedVar";
 
     /// <summary>
     /// This is a special attribute that is added to methods to mark them as "addressable". In C terms, it means
@@ -27,10 +29,17 @@ public class GilHelper
     /// </summary>
     public const string GilAddessableFunctionAttribute = GilNoEmitPrefix + "GilAddessableFunction";
 
+
     public static void AppendGilHelpersFuncs(OutputFile file)
     {
         file.AppendLine($"public static bool {GilNoEmitEchoStringBoolFuncName}(string toEcho) {{ return true; }}");
+        file.AppendLine($"public static void {GilUnusedVarFuncName}(object unusedVar) {{ }}");
         file.AppendLine($"public class {GilAddessableFunctionAttribute}<T> : System.Attribute where T : System.Delegate {{}}");
+    }
+
+    public static string MarkVarAsUnused(string varName)
+    {
+        return $"{GilUnusedVarFuncName}({varName});";
     }
 
     public static string WrapRawCodeWithBoolReturn(string codeToWrap)
@@ -115,6 +124,23 @@ public class GilHelper
         }
 
         return gilEmitMethodFoundAndHandled;
+    }
+
+    public static bool HandleGilUnusedVarSpecialInvocation(InvocationExpressionSyntax node, Action<ArgumentSyntax> codeBuilder)
+    {
+        bool gilMethodFoundAndHandled = false;
+
+        if (node.Expression is IdentifierNameSyntax ins)
+        {
+            if (ins.Identifier.Text == GilHelper.GilUnusedVarFuncName)
+            {
+                gilMethodFoundAndHandled = true;
+                ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
+                codeBuilder(argumentSyntax);
+            }
+        }
+
+        return gilMethodFoundAndHandled;
     }
 
     private static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText, OutputInfo? outputInfo)

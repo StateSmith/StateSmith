@@ -48,10 +48,19 @@ internal class C99GenVisitor : CSharpSyntaxWalker
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
-        if (GilHelper.HandleGilSpecialInvocations(node, sb))
-            return;
+        bool done = false;
 
-        base.VisitInvocationExpression(node);
+        done |= GilHelper.HandleGilSpecialInvocations(node, sb);
+        done |= GilHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
+        {
+            sb.Append(node.GetLeadingTrivia().ToFullString());
+            sb.Append($"(void){argument.ToFullString()}");   // trailing semi-colon is already part of parent ExpressionStatement
+        });
+
+        if (!done)
+        {
+            base.VisitInvocationExpression(node);
+        }
     }
 
     // to ignore GIL attributes
@@ -99,7 +108,7 @@ internal class C99GenVisitor : CSharpSyntaxWalker
         {
             Visit(kid);
         }
-        
+
         sb = hFileSb;
         foreach (var kid in node.ChildNodes().OfType<DelegateDeclarationSyntax>())
         {
@@ -308,7 +317,8 @@ internal class C99GenVisitor : CSharpSyntaxWalker
 
         if (symbol?.IsStatic == false)
         {
-            node.VisitChildNodesAndTokens(this, node.OpenParenToken, () => {
+            node.VisitChildNodesAndTokens(this, node.OpenParenToken, () =>
+            {
                 sb.Append(GetCName(symbol.ContainingType) + "* sm");
                 if (node.Parameters.Count > 0)
                 {
@@ -331,7 +341,8 @@ internal class C99GenVisitor : CSharpSyntaxWalker
         // only append sm/self/this var if this is an ordinary non-static method
         if (!iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.Ordinary)
         {
-            node.VisitChildNodesAndTokens(this, node.OpenParenToken, () => {
+            node.VisitChildNodesAndTokens(this, node.OpenParenToken, () =>
+            {
                 sb.Append(GetCName(iMethodSymbol.ContainingType) + "* sm");
                 if (node.Arguments.Count > 0)
                 {
@@ -684,7 +695,7 @@ internal class C99GenVisitor : CSharpSyntaxWalker
     {
         AppendNodeLeadingTrivia(node);
         string name = GetCName(node);
-        
+
         sb.AppendTokenAndTrivia(node.Identifier, overrideTokenText: customizer.MakeEnumDeclaration(name));
         sb.AppendTokenAndTrivia(node.OpenBraceToken);
 

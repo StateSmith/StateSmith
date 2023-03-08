@@ -133,7 +133,8 @@ static void ROOT_enter(Spec1bSm* sm)
 
 static void ROOT_exit(Spec1bSm* sm)
 {
-    // State machine root is a special case. It cannot be exited.
+    // State machine root is a special case. It cannot be exited. Mark as unused.
+    (void)sm;
 }
 
 

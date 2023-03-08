@@ -128,10 +128,19 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
-        if (GilHelper.HandleGilSpecialInvocations(node, sb))
-            return;
+        bool done = false;
 
-        base.VisitInvocationExpression(node);
+        done |= GilHelper.HandleGilSpecialInvocations(node, sb);
+        done |= GilHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
+        {
+            sb.Append(node.GetLeadingTrivia().ToFullString());
+            sb.Append($"_ = {argument.ToFullString()}"); // trailing semi-colon is already part of parent ExpressionStatement
+        });
+
+        if (!done)
+        {
+            base.VisitInvocationExpression(node);
+        }
     }
 
     // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references
