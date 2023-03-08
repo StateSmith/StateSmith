@@ -8,6 +8,9 @@ namespace StateSmith.Runner;
 
 public class RunnerSettings
 {
+    /// <summary>
+    /// todo_low rename to diagramPath to better reflect its purpose.
+    /// </summary>
     public string diagramFile;
 
     public string? outputDirectory;
@@ -42,6 +45,8 @@ public class RunnerSettings
     /// https://github.com/StateSmith/StateSmith/issues/82
     /// </summary>
     public bool dumpErrorsToFile = false;
+
+    public bool dumpGilCodeOnError = false;
 
     /// <summary>
     /// If false (the default), any exception thrown while running StateSmith will be caught

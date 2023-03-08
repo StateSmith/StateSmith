@@ -18,6 +18,10 @@ figure out the best way to support multiple languages.
 - Removed `RenderConfigC` from `SmSettings`. Moving towards language agnostic config.
 - Removed `CNameMangler`. Use `NameMangler` and `ICFileNamer` instead. TODO document.
 - Custom C99 enum attributes can be specified using `IGilToC99Customizer` now. TODO document & example.
+- Removed `StateSmith.Output.C99BalancedCoder1` namespace.
+- Changed how Name Mangling works. TODO document more. See examples update.
+- C99 state machine argument passed to functions now named `sm` instead of `self`.
+  - to help avoid clashing with some future languages.
 
 ---
 

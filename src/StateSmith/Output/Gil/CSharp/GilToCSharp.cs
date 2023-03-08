@@ -50,7 +50,7 @@ public class GilToCSharp : IGilTranspiler
             fileSb.AppendLine("}");
         }
 
-        CSharpGilVisitor cSharpGilVisitor = new(fileSb, outputInfo, renderConfigCSharp, renderConfig);
+        CSharpGilVisitor cSharpGilVisitor = new(fileSb, renderConfigCSharp, renderConfig);
         cSharpGilVisitor.Process();
 
         PostProcessor.PostProcess(fileSb);

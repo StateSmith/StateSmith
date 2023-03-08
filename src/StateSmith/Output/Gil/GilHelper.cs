@@ -58,11 +58,11 @@ public class GilHelper
         return IsGilNoEmit(node.Identifier.ValueText);
     }
 
-    public static void Compile(string programText, out CompilationUnitSyntax root, out SemanticModel model, OutputInfo? outputInfo = null)
+    public static void Compile(string programText, out CompilationUnitSyntax root, out SemanticModel model)
     {
         SyntaxTree tree = CSharpSyntaxTree.ParseText(programText);
         root = tree.GetCompilationUnitRoot();
-        ThrowOnError(tree.GetDiagnostics(), programText, outputInfo);
+        ThrowOnError(tree.GetDiagnostics(), programText);
 
         var compilation = CSharpCompilation.Create("GilCompilation")
             .AddReferences(MetadataReference.CreateFromFile(
@@ -70,7 +70,7 @@ public class GilHelper
             .AddSyntaxTrees(tree);
 
         model = compilation.GetSemanticModel(tree);
-        ThrowOnError(model.GetDiagnostics(), programText, outputInfo);
+        ThrowOnError(model.GetDiagnostics(), programText);
     }
 
     public record AddressableFunctionInfo(INamedTypeSymbol DelegateSymbol, ParameterListSyntax ParameterListSyntax);
@@ -143,7 +143,7 @@ public class GilHelper
         return gilMethodFoundAndHandled;
     }
 
-    private static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText, OutputInfo? outputInfo)
+    private static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText)
     {
         var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error
             // ignore errors caused by our GilAddessableFunctionAttribute
@@ -158,10 +158,9 @@ public class GilHelper
             message += error.ToString() + "\n";
         }
 
-        if (message.Length > 0 && outputInfo != null)
+        if (message.Length > 0)
         {
-            File.WriteAllText($"{outputInfo.outputDirectory}ErrorFile.gil.cs.txt", programText); // .txt so that it doesn't cause other compilation errors (if C# is targetted)
-            throw new GilCompError(message);
+            throw new TranspilerException(message);
         }
     }
 }

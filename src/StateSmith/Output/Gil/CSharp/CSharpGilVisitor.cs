@@ -13,17 +13,15 @@ namespace StateSmith.Output.Gil.CSharp;
 public class CSharpGilVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder sb;
-    private readonly OutputInfo outputInfo;
     private readonly RenderConfigCSharpVars renderConfigCSharp;
     private readonly RenderConfigVars renderConfig;
 
     private SemanticModel SemanticModel => _semanticModel.ThrowIfNull();
     private SemanticModel? _semanticModel;
 
-    public CSharpGilVisitor(StringBuilder sb, OutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public CSharpGilVisitor(StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = sb;
-        this.outputInfo = outputInfo;
         this.renderConfig = renderConfig;
         this.renderConfigCSharp = renderConfigCSharp;
     }
@@ -40,7 +38,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
 
         sb.AppendLineIfNotBlank(renderConfigCSharp.Usings);
 
-        GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _semanticModel, outputInfo);
+        GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _semanticModel);
 
         this.Visit(root);
 

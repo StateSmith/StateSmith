@@ -16,10 +16,14 @@ public class PostProcessor
     public const string trimHorizontalWhiteSpaceMarker = ">>>>>>>>trimHorizontalWhiteSpaceMarker<<<<<<<<<<<<<<";
     public const string rmLeft2Marker = "<<<<<rm2<<<<<";
     public const string rmRight2Marker = ">>>>>rm2>>>>>";
+    public const string rmIdentifierStart = "____rmIdentifierStart____";
+    public const string dummy = "____rmDummy____";
+
     private static readonly Regex trimBlankLinesRegex;
     private static readonly Regex trimHwsRegex;
     private static readonly Regex rmLeft2Regex;
     private static readonly Regex rmRight2Regex;
+    private static readonly Regex rmIdentifierStartRegex;
 
     static PostProcessor()
     {
@@ -35,6 +39,10 @@ public class PostProcessor
 
         trimHwsRegex = new Regex(@$"(?xm)
             [ \t]* {trimHorizontalWhiteSpaceMarker} [ \t]*
+        ");
+
+        rmIdentifierStartRegex = new Regex(@$"(?xm)
+            \b \w* {rmIdentifierStart} (\w+) \b
         ");
 
         rmLeft2Regex = new Regex(@$"(?x) {anyPattern} {anyPattern} {rmLeft2Marker} ");
@@ -54,7 +62,9 @@ public class PostProcessor
         str = trimHwsRegex.Replace(str, "");
         str = rmLeft2Regex.Replace(str, "");
         str = rmRight2Regex.Replace(str, "");
+        str = rmIdentifierStartRegex.Replace(str, "$1");
         str = str.Replace(echoLineMarker, "");
+        str = str.Replace(dummy, "");
 
         return str;
     }
