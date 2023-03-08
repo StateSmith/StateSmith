@@ -1,36 +1,32 @@
 ﻿using StateSmith.Input.Expansions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StateSmith.SmGraph;
 
 namespace ExampleButtonSm1Cpp
-{   
+{
     public class ButtonSm1Cpp
     {
         public static void GenFile()
         {
-            MyGlueFile myGlueFile = new MyGlueFile();
-
-            var directory = DirectoryHelper.CodeDirectory;
-            var diagramFile = directory + "ButtonSm1Cpp.graphml";
+            var diagramFileName = "ButtonSm1Cpp.graphml";
 
             // You can use this example with the yEd file or an equivalent PlantUML file.
             // See https://github.com/StateSmith/StateSmith/issues/21
             bool usePlantUmlInput = false;
             if (usePlantUmlInput)
             {
-                diagramFile = directory + "ButtonSm1Cpp.puml";
+                diagramFileName = "ButtonSm1Cpp.puml";
             }
 
-            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
-            settings.mangler = new MyMangler();
-            SmRunner runner = new SmRunner(settings);
+            SmRunner runner = new(diagramPath: $"../ButtonSm1Cpp/{diagramFileName}", new MyGlueFile());
+
+            // NOTE! We choose to output as c++ code (c is default) so that it can be used directly with Arduino.
+            var customizer = runner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<GilToC99Customizer>();
+            customizer.CFileNameBuilder = (StateMachine sm) => $"{sm.Name}.cpp";
+            customizer.EnumDeclarationBuilder = (string enumName) => $"typedef enum __attribute__((packed)) {enumName}";
 
             runner.Run();
         }
@@ -46,7 +42,7 @@ namespace ExampleButtonSm1Cpp
                 #include ""Arduino.h""
             ");
 
-            string IRenderConfigC.VariableDeclarations =>
+            string IRenderConfig.VariableDeclarations =>
                 StringUtils.DeIndentTrim(@"
                     // Note! This example below uses bitfields just to show that you can. They aren't required.
 
@@ -59,10 +55,6 @@ namespace ExampleButtonSm1Cpp
                     uint16_t output_event_held : 1; // output
                     uint16_t output_event_tap : 1; // output
                 ");
-
-            string IRenderConfigC.EventCommaList => @"
-                do,
-            ";
 
             public class Expansions : UserExpansionScriptBase
             {
@@ -91,16 +83,6 @@ namespace ExampleButtonSm1Cpp
 
                 #pragma warning restore IDE1006 // Naming Styles
             }
-        }
-
-        class MyMangler : CNameMangler
-        {
-            // NOTE! We choose to output as c++ code so that it can be used directly with Arduino.
-            public override string CFileName => $"{SmName}.cpp";
-
-            // packing attributes for gcc
-            public override string SmStateEnumAttribute => "__attribute__((packed)) ";
-            public override string SmEventEnumAttribute => "__attribute__((packed)) ";
         }
     }
 }

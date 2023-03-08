@@ -1,6 +1,5 @@
 ﻿using StateSmith.Input.Expansions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using System;
@@ -15,7 +14,7 @@ public class BlankTemplateSm
 {
     public static void GenFile()
     {
-        SmRunner runner = new SmRunner(diagramPath: "../BlankTemplate/BlankTemplateSm.graphml", renderConfigC: new MyGlueClass());
+        SmRunner runner = new SmRunner(diagramPath: "../BlankTemplate/BlankTemplateSm.graphml", renderConfig: new MyGlueClass());
         runner.Run();
     }
 
@@ -29,7 +28,7 @@ public class BlankTemplateSm
         string IRenderConfigC.CFileIncludes => @"
         ";
 
-        string IRenderConfigC.VariableDeclarations => @"
+        string IRenderConfig.VariableDeclarations => @"
         ";
 
         public class Expansions : UserExpansionScriptBase

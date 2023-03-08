@@ -1,28 +1,21 @@
 ﻿using StateSmith.Input.Expansions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using StateSmith.SmGraph;
 
 namespace Blinky1
-{   
+{
     public class Blinky1Sm
     {
         public static void GenFile()
         {
-            var directory = AppDomain.CurrentDomain.BaseDirectory + "../../../../Blinky1/";
-            var diagramFile = directory + nameof(Blinky1Sm)+ ".graphml";
+            SmRunner runner = new(diagramPath: "../Blinky1/Blinky1Sm.graphml", new MyGlueFile());
 
-            MyGlueFile myGlueFile = new();
-            RunnerSettings settings = new(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
-            settings.mangler = new MyMangler();
-
-            SmRunner runner = new(settings);
+            // NOTE! We choose to output as c++ code (c is default) so that it can be used directly with Arduino.
+            var customizer = runner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<GilToC99Customizer>();
+            customizer.CFileNameBuilder = (StateMachine sm) => $"{sm.Name}.cpp";
 
             runner.Run();
         }
@@ -42,7 +35,7 @@ namespace Blinky1
                 #include ""Arduino.h""
             ");
 
-            string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
+            string IRenderConfig.VariableDeclarations => StringUtils.DeIndentTrim(@"
                 uint32_t timer_started_at_ms;  // milliseconds
             ");
 
@@ -74,18 +67,6 @@ namespace Blinky1
 
                 #pragma warning restore IDE1006 // Naming Styles
             }
-        }
-
-
-        /// <summary>
-        /// This class mangles names. If you would like to customize the generated code names,
-        /// here is where you do it. Override the relevant method.
-        /// </summary>
-        class MyMangler : CNameMangler
-        {
-            // NOTE! We choose to output as c++ code (c is default) so that it can be used directly with Arduino.
-            // `SmName` property is inherited from CNameMangler. 
-            public override string CFileName => $"{SmName}.cpp";
         }
     }
 }

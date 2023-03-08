@@ -1,6 +1,6 @@
 ﻿using StateSmith.Input.Expansions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 
@@ -10,30 +10,26 @@ namespace ExampleLaserTagMenu1
     {
         public static void GenFile()
         {
-            MyGlueFile myGlueFile = new MyGlueFile();
+            SmRunner runner = new(diagramPath: "../LaserTagMenu1/ButtonSm1.graphml", new MyGlueFile());
 
-            var codeDirectory = DirectoryHelper.CodeDirectory;
-            var diagramFile = codeDirectory + "ButtonSm1.graphml";
-
-            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: codeDirectory);
-            settings.mangler = new MyMangler();
-            SmRunner runner = new SmRunner(settings);
+            // customize how enumerations are declared so that we can use GCC packed attribute.
+            var customizer = runner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<GilToC99Customizer>();
+            customizer.EnumDeclarationBuilder = (string enumName) => $"typedef enum __attribute__((packed)) {enumName}";
 
             runner.Run();
         }
 
         public class MyGlueFile : IRenderConfigC
         {
-            string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
+            string IRenderConfigC.HFileIncludes => @"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
-            ");
+            ";
 
-            string IRenderConfigC.CFileIncludes => StringUtils.DeIndentTrim(@"
+            string IRenderConfigC.CFileIncludes => @"
                 #include ""PortApi.h""
-            ");
+            ";
 
-            string IRenderConfigC.VariableDeclarations =>
-                StringUtils.DeIndentTrim(@"
+            string IRenderConfig.VariableDeclarations => @"
                     // Note! This example below uses bitfields just to show that you can. They aren't required and might not
                     // save you any actual RAM depending on the compiler struct padding/alignment/enum size... One day, we will be able choose where the vars
                     // structure is positioned relative to the other state machine fields.
@@ -47,11 +43,7 @@ namespace ExampleLaserTagMenu1
                     uint16_t output_event_release : 1; // output
                     uint16_t output_event_held : 1; // output
                     uint16_t output_event_tap : 1; // output
-                ");
-
-            string IRenderConfigC.EventCommaList => @"
-                do,
-            ";
+                ";
 
             public class Expansions : UserExpansionScriptBase
             {
@@ -74,13 +66,6 @@ namespace ExampleLaserTagMenu1
 
                 #pragma warning restore IDE1006 // Naming Styles
             }
-        }
-
-        class MyMangler : CNameMangler
-        {
-            // packing attributes for gcc
-            public override string SmStateEnumAttribute => "__attribute__((packed)) ";
-            public override string SmEventEnumAttribute => "__attribute__((packed)) ";
         }
     }
 }

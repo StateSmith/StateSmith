@@ -1,0 +1,80 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="392px" height="412px" viewBox="-0.5 -0.5 392 412" content="&lt;mxfile&gt;&lt;diagram id=&quot;Tqm6eFcu1KHT34LG2WWE&quot; name=&quot;Page-1&quot;&gt;7Vhdb5swFP01SNtLBTgs7SMlyVqp7aSl0tqnygWHWDM4MiaB/vrZcAkmgNp1WfuS8BDf4897z7nmCgsFSfFd4M36lkeEWa4dFRaaWa7rIhepP42UNXLuOjUQCxrVkAEs6QsB0AY0pxHJOgMl50zSTRcMeZqSUHYwLATfdYetOOvuusEx6QHLELM++otGcg1eeHaLXxEar5udHRt6EtwMBiBb44jvDAjNLRQIzmXdSoqAMB28Ji71vMVI7/5ggqTyLRPci3rGFrMcnLPcyfLev5/f+sHV9d1cdVrItwLX8u37XHJBMXOWCRxflk1MlCcb3cx2NGE4Vc1LwSWW+LkaoRa5xIzGqWqH6nBEKGBLhKQqrD50SL5R6IqncoETyrQ6bvKQRlhtFfA043qpy0xiIUEUyIYJYDuTxoaTOWAHnHFRnRQtfP1onDJm4N5EP3oDcGFh9EdkhXMmK6/yNCIRrI1F2GztafNZHTKXxG9hhUKMlbekGCXK2dOv8obwhEhRqiEwYQKCKbvmrpUfugBsbUhv0qQMBsnH+5VbVagGCGNYJMgeEIndU8BrvDX0M7KS4+QbMU95JaNY4IiSlkKAMyn4b3IAtuRoYWQbHNI0vqk2nGlqBcnoiyHJhG8NS91TxBRsT8BK/9kbaIV7B2a22W7SXWden++yG3OT4AF+3WPQ6/To/bFYnBL82Ak+xngzw+mm+N42JOBMBzRwcQwNuD0N1BxqgSkt2Ezv98RXqy9f9/6ecv+duY9G7vrx3B8kHh2DeCjFSNQreQ6VqwjnuQhhGPKg8MIiJq/4JQjDkm67G/zTqSc9uV7fBT/n/nL+XnecAXemH+WON1SF0ZRKVWw9qetQktHrWK2kyt4qx7JNXeyuaKHT4PD6s6vfQCIcSj3lN/hZley10klEzc6jXHXn7pnXuey8vuRdb+B15x0h2N96wZ5d3/biqxXUvGPgglnLZB+UgsoHHZGzqQfmIwRIt2eFaZSNkaqjmrO0/disqI12XmWVnZj/vaann5mi035VceecqopPrirc6UdWFedvqypS51RVHKGqGHld/f+qQpntJ4uqz/jwg+Z/AA==&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 390 30 L 390 7.5 Q 390 0 382.5 0 L 7.5 0 Q 0 0 0 7.5 L 0 30" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 0 402.5 Q 0 410 7.5 410 L 382.5 410 Q 390 410 390 402.5 L 390 30" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 390 30" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="194.5" y="19.5">
+                $STATEMACHINE : Tutorial1Sm
+            </text>
+        </g>
+        <rect x="0" y="30" width="30" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Lucida Console" font-size="12px"/>
+        <path d="M 280 140 L 280 117.5 Q 280 110 272.5 110 L 117.5 110 Q 110 110 110 117.5 L 110 140" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 110 140 L 110 192.5 Q 110 200 117.5 200 L 272.5 200 Q 280 200 280 192.5 L 280 140" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 110 140 L 280 140" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="194.5" y="129.5">
+                OFF
+            </text>
+        </g>
+        <rect x="110" y="140" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Lucida Console" font-size="12px">
+            <text x="115.5" y="157.5">
+                enter / light_off();
+            </text>
+        </g>
+        <path d="M 195 75 L 195 103.63" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 195 108.88 L 191.5 101.88 L 195 103.63 L 198.5 101.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 195 200 L 195 263.63" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 195 268.88 L 191.5 261.88 L 195 263.63 L 198.5 261.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="11px">
+            <rect fill="rgb(255, 255, 255)" stroke="none" x="167" y="230" width="58" height="14" stroke-width="0"/>
+            <text x="194.5" y="239.71">
+                INCREASE
+            </text>
+        </g>
+        <ellipse cx="195" cy="62.5" rx="12.5" ry="12.5" fill="#000000" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 237.5 270 L 237.5 206.37" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 237.5 201.12 L 241 208.12 L 237.5 206.37 L 234 208.12 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g transform="translate(-0.5 -0.5)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 234px; margin-left: 238px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 11px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: all; background-color: rgb(255, 255, 255); white-space: nowrap;">
+                                DIM
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="238" y="238" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="11px" text-anchor="middle">
+                    DIM
+                </text>
+            </switch>
+        </g>
+        <path d="M 280 300 L 280 277.5 Q 280 270 272.5 270 L 117.5 270 Q 110 270 110 277.5 L 110 300" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 110 300 L 110 352.5 Q 110 360 117.5 360 L 272.5 360 Q 280 360 280 352.5 L 280 300" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 110 300 L 280 300" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="194.5" y="289.5">
+                ON1
+            </text>
+        </g>
+        <rect x="110" y="300" width="170" height="30" fill="none" stroke="none" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Lucida Console" font-size="12px">
+            <text x="115.5" y="317.5">
+                enter / light_on1();
+            </text>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Text is not SVG - cannot display
+            </text>
+        </a>
+    </switch>
+</svg>

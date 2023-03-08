@@ -1,39 +1,34 @@
 using StateSmith.Input.Expansions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Algos.Balanced1;
+using StateSmith.Output.Gil;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blinky1
-{   
+{
     public class Blinky1PrintfSm
     {
         public static void GenFile()
         {
-            var directory = AppDomain.CurrentDomain.BaseDirectory + "../../../../src/";
-            var diagramFile = directory + "blinky1_printf_sm.graphml";
+            var diagramFileName = "blinky1_printf_sm.graphml";
 
             // You can use this example with the yEd file or an equivalent PlantUML file.
             // See https://github.com/StateSmith/StateSmith/issues/21
             bool usePlantUmlInput = false;
             if (usePlantUmlInput)
             {
-                diagramFile = directory + "blinky1_printf_sm.plantuml";
+                diagramFileName = "blinky1_printf_sm.plantuml";
             }
 
-            MyGlueFile myGlueFile = new();
-            RunnerSettings settings = new(myGlueFile, diagramFile: diagramFile, outputDirectory: directory);
-            settings.mangler = new MyMangler();
+            RunnerSettings settings = new(diagramFile: "../src/" + diagramFileName);
+            settings.dumpErrorsToFile = true;
+            settings.dumpGilCodeOnError = true;
             settings.style = new MyStyler();
 
-            SmRunner runner = new(settings);
-
+            SmRunner runner = new(settings, new MyGlueFile());
+            runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<NameMangler>(new MyMangler());
             runner.Run();
         }
 
@@ -53,7 +48,7 @@ namespace Blinky1
                 #include ""led.h""
             ");
 
-            string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
+            string IRenderConfig.VariableDeclarations => StringUtils.DeIndentTrim(@"
                 uint32_t timer_started_at_ms;  // milliseconds
             ");
 
@@ -91,23 +86,31 @@ namespace Blinky1
 
         /// <summary>
         /// This class mangles names. If you would like to customize the generated code names,
-        /// here is where you do it. Simply override the relevant method.
+        /// here is where you do it. Override the relevant method.
+        /// 
+        /// Name mangling is more difficult now that we are first rendering to a Generic Intermediate Language (GIL).
+        /// The GIL code is then translated to the target language. To get achieve full control over the mangled names,
+        /// you may have to rely on the StateSmith post processor as shown below. Open to suggestions for improvements.
         /// </summary>
-        class MyMangler : CNameMangler
+        class MyMangler : NameMangler
         {
-            public override string SmEventEnum => $"{SmName}_event_id";
-            public override string SmEventEnumValue(string evt) => $"{SmName.ToUpper()}_EVENT_ID_{evt.ToUpper()}";
-            public override string SmEventEnumCount => $"{SmName.ToUpper()}_EVENT_ID_COUNT";
+            private string dummy = PostProcessor.dummy;
+            private string rmStart = PostProcessor.rmIdentifierStart;
+            private string CapsPrefix => $"{rmStart}{Sm.Name.ToUpper()}";
 
-            public override string SmStateEnum => $"{SmName}_state_id";
-            public override string SmStateEnumCount => $"{SmName.ToUpper()}_STATE_ID_COUNT";
+            public override string SmEventEnumType => $"event_id_t";
+            public override string SmEventEnumValue(string evt) => $"{CapsPrefix}_EVENT_ID_{evt.ToUpper()}"; // this removes prefix
+            public override string SmEventEnumCount => $"{CapsPrefix}_EVENT_ID_COUNT";
+
+            public override string SmStateEnumType => $"{dummy}state_id_t"; // `dummy` required so that Generic Intermediate Language isn't illegal: `public state_id state_id;`.
+            public override string SmStateEnumCount => $"{CapsPrefix}_STATE_ID_COUNT";
             public override string SmStateEnumValue(NamedVertex namedVertex)
             {
                 string stateName = SmStateName(namedVertex);
-                return $"{SmName.ToUpper()}_STATE_ID_{stateName.ToUpper()}";
+                return $"{CapsPrefix}_STATE_ID_{stateName.ToUpper()}";
             }
 
-            public override string SmFuncTypedef => $"{SmStructName}_func";
+            public override string SmHandlerFuncType => $"func_t";
         }
 
         class MyStyler : CodeStyleSettings

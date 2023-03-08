@@ -129,7 +129,8 @@ static void ROOT_enter(Tutorial1Sm* sm)
 
 static void ROOT_exit(Tutorial1Sm* sm)
 {
-    // State machine root is a special case. It cannot be exited.
+    // State machine root is a special case. It cannot be exited. Mark as unused.
+    (void)sm;
 }
 
 

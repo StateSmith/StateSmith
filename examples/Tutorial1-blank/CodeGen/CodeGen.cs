@@ -1,6 +1,6 @@
 ﻿using StateSmith.Input.Expansions;
 using StateSmith.Output;
-using StateSmith.Output.C99BalancedCoder1;
+using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using System;
@@ -9,15 +9,12 @@ public class CodeGen
 {
     public static void Main()
     {
-        var srcDirectory = AppDomain.CurrentDomain.BaseDirectory + "../../../../src/";
-        var diagramFile = srcDirectory + "Tutorial1Sm.graphml";
+        string extension = ".drawio.svg";  // For draw.io https://github.com/StateSmith/StateSmith/issues/77
+        // extension = ".drawio";          // Another format for draw.io https://github.com/StateSmith/StateSmith/issues/77
+        // extension = ".graphml";         // For yEd editor.
 
         MyGlueFile myGlueFile = new();
-        RunnerSettings settings = new(myGlueFile, diagramFile: diagramFile, outputDirectory: srcDirectory);
-        settings.mangler = new MyMangler();
-        settings.style = new MyStyler();
-
-        SmRunner runner = new(settings);
+        SmRunner runner = new(diagramPath: "../src/Tutorial1Sm" + extension, myGlueFile);
         runner.Run();
     }
 
@@ -42,7 +39,7 @@ public class CodeGen
 
         // Anything you type in the below string ends up in the state machine user variables section.
         // If the string is blank, then no user variables section is created.
-        string IRenderConfigC.VariableDeclarations => StringUtils.DeIndentTrim(@"
+        string IRenderConfig.VariableDeclarations => StringUtils.DeIndentTrim(@"
             ");
 
         /// <summary>
@@ -53,33 +50,5 @@ public class CodeGen
             #pragma warning disable IDE1006 // Naming Styles
             #pragma warning restore IDE1006 // Naming Styles
         }
-    }
-
-
-    /// <summary>
-    /// This class mangles names. If you would like to customize the generated code names,
-    /// here is where you do it. Simply override the relevant method.
-    /// </summary>
-    class MyMangler : CNameMangler
-    {
-        // public override string SmEventEnum => $"{SmName}_event_id";
-        // public override string SmEventEnumValue(string evt) => $"{SmName.ToUpper()}_EVENT_ID_{evt.ToUpper()}";
-        // public override string SmEventEnumCount => $"{SmName.ToUpper()}_EVENT_ID_COUNT";
-
-        // public override string SmStateEnum => $"{SmName}_state_id";
-        // public override string SmStateEnumCount => $"{SmName.ToUpper()}_STATE_ID_COUNT";
-        // public override string SmStateEnumValue(NamedVertex namedVertex)
-        // {
-        //     string stateName = SmStateName(namedVertex);
-        //     return $"{SmName.ToUpper()}_STATE_ID_{stateName.ToUpper()}";
-        // }
-
-        // public override string SmFuncTypedef => $"{SmStructName}_func";
-    }
-
-    class MyStyler : CodeStyleSettings
-    {
-        // public override bool BracesOnNewLines => false;
-        // public override string Indent1 => "  "; 
     }
 }

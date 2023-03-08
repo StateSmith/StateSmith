@@ -1,12 +1,6 @@
 ﻿using StateSmith.Input.Expansions;
-using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExampleLaserTagMenu1
 {
@@ -14,43 +8,29 @@ namespace ExampleLaserTagMenu1
     {
         public static void GenFile()
         {
-            MyGlueFile myGlueFile = new MyGlueFile();
-
-            var codeDirectory = DirectoryHelper.CodeDirectory;
-            var diagramFile = codeDirectory + "LaserTagMenu1Sm.graphml";
-
-            RunnerSettings settings = new RunnerSettings(myGlueFile, diagramFile: diagramFile, outputDirectory: codeDirectory);
-            SmRunner runner = new SmRunner(settings);
-
+            SmRunner runner = new(diagramPath: "../LaserTagMenu1/LaserTagMenu1Sm.graphml", new MyGlueFile());
             runner.Run();
         }
 
         public class MyGlueFile : IRenderConfigC
         {
             // These are required for user specified variables
-            string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
+            string IRenderConfigC.HFileIncludes => @"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
-            ");
+            ";
 
-            string IRenderConfigC.CFileIncludes => StringUtils.DeIndentTrim(@"
+            string IRenderConfigC.CFileIncludes => @"
                 #include ""App.h""
                 #include ""Display.h""
                 #include ""PortApi.h""
-            ");
+            ";
 
-            string IRenderConfigC.VariableDeclarations =>
-                StringUtils.DeIndentTrim(@"
+            string IRenderConfig.VariableDeclarations =>
+                @"
                     uint8_t option_value;
                     uint8_t back_press_eat_count;
                     uint32_t timer1_started_at_ms;
-                ");
-
-            string IRenderConfigC.EventCommaList => @"
-                do,
-                DOWN_PRESS, DOWN_HELD,
-                UP_PRESS, UP_HELD,
-                OK_PRESS,
-            ";
+                ";
 
             public class Expansions : UserExpansionScriptBase
             {
