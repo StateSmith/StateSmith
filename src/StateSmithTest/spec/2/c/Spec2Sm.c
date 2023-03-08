@@ -6071,18 +6071,18 @@ static void T7__DH1__HERO_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__HERO
     
     // T7__DH1__HERO behavior
-    // uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO; }`.", true)] / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO; }
-    if (trace_guard("State T7__DH1__HERO: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO; }`.", true)] / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO; }
+    if (trace_guard("State T7__DH1__HERO: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;`
+        // Step 1: execute action `sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;`
         sm->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__HERO;
     } // end of behavior for T7__DH1__HERO
     
     // T7__DH1__HERO behavior
-    // uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO; }`.", true)] / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO; }
-    if (trace_guard("State T7__DH1__HERO: check behavior `enter / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO; }`.", true)] / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO; }
+    if (trace_guard("State T7__DH1__HERO: check behavior `enter / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;`
+        // Step 1: execute action `sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;`
         sm->vars.T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId_T7__DH1__HERO;
     } // end of behavior for T7__DH1__HERO
 }
@@ -6285,18 +6285,18 @@ static void T7__DH1__BUDDY_ELF_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__BUDDY_ELF
     
     // T7__DH1__BUDDY_ELF behavior
-    // uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF; }`.", true)] / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF; }
-    if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF; }`.", true)] / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF; }
+    if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;`
+        // Step 1: execute action `sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;`
         sm->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__BUDDY_ELF;
     } // end of behavior for T7__DH1__BUDDY_ELF
     
     // T7__DH1__BUDDY_ELF behavior
-    // uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF; }`.", true)] / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF; }
-    if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF; }`.", true)] / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF; }
+    if (trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;`
+        // Step 1: execute action `sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;`
         sm->vars.T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId_T7__DH1__BUDDY_ELF;
     } // end of behavior for T7__DH1__BUDDY_ELF
 }
@@ -6357,18 +6357,18 @@ static void T7__DH1__POLAR_BEARS_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__POLAR_BEARS
     
     // T7__DH1__POLAR_BEARS behavior
-    // uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS; }`.", true)] / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS; }
-    if (trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS; }`.", true)] / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS; }
+    if (trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;`
+        // Step 1: execute action `sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;`
         sm->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__POLAR_BEARS;
     } // end of behavior for T7__DH1__POLAR_BEARS
     
     // T7__DH1__POLAR_BEARS behavior
-    // uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS; }`.", true)] / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS; }
-    if (trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS; }`.", true)] / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS; }
+    if (trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;`
+        // Step 1: execute action `sm.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;`
         sm->vars.T7__DH1__GET_BACKUP_history = Spec2Sm_T7__DH1__GET_BACKUP_HistoryId_T7__DH1__POLAR_BEARS;
     } // end of behavior for T7__DH1__POLAR_BEARS
 }
@@ -6405,10 +6405,10 @@ static void T7__DH1__GIVE_COOKIES_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__GIVE_COOKIES
     
     // T7__DH1__GIVE_COOKIES behavior
-    // uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES; }`.", true)] / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES; }
-    if (trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES; }`.", true)] / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES; }
+    if (trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;`
+        // Step 1: execute action `sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;`
         sm->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__GIVE_COOKIES;
     } // end of behavior for T7__DH1__GIVE_COOKIES
 }
@@ -6472,10 +6472,10 @@ static void T7__DH1__SNOWBALL_FIGHT_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__SNOWBALL_FIGHT
     
     // T7__DH1__SNOWBALL_FIGHT behavior
-    // uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT; }`.", true)] / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT; }
-    if (trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT; }`.", true)] / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT; }
+    if (trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;`
+        // Step 1: execute action `sm.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;`
         sm->vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__SNOWBALL_FIGHT;
     } // end of behavior for T7__DH1__SNOWBALL_FIGHT
 }
@@ -6582,7 +6582,7 @@ static void T7__DH1__BUILD_ev6(Spec2Sm* sm)
             // T7__DH1__ALIENS_DETECTED.History is a pseudo state and cannot have an `enter` trigger.
             
             // T7__DH1__ALIENS_DETECTED.History behavior
-            // uml: [sm->vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
+            // uml: [sm.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
             if (sm->vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__GIVE_COOKIES)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6600,7 +6600,7 @@ static void T7__DH1__BUILD_ev6(Spec2Sm* sm)
             } // end of behavior for T7__DH1__ALIENS_DETECTED.History
             
             // T7__DH1__ALIENS_DETECTED.History behavior
-            // uml: [sm->vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
+            // uml: [sm.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
             if (sm->vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__HERO)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6618,7 +6618,7 @@ static void T7__DH1__BUILD_ev6(Spec2Sm* sm)
             } // end of behavior for T7__DH1__ALIENS_DETECTED.History
             
             // T7__DH1__ALIENS_DETECTED.History behavior
-            // uml: [sm->vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
+            // uml: [sm.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
             if (sm->vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__BUDDY_ELF)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6638,7 +6638,7 @@ static void T7__DH1__BUILD_ev6(Spec2Sm* sm)
             } // end of behavior for T7__DH1__ALIENS_DETECTED.History
             
             // T7__DH1__ALIENS_DETECTED.History behavior
-            // uml: [sm->vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
+            // uml: [sm.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
             if (sm->vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId_T7__DH1__POLAR_BEARS)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6697,7 +6697,7 @@ static void T7__DH1__BUILD_ev7(Spec2Sm* sm)
         // T7__DH1__GET_BACKUP.History is a pseudo state and cannot have an `enter` trigger.
         
         // T7__DH1__GET_BACKUP.History behavior
-        // uml: [sm->vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
+        // uml: [sm.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
         if (sm->vars.T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId_T7__DH1__HERO)
         {
             // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6714,7 +6714,7 @@ static void T7__DH1__BUILD_ev7(Spec2Sm* sm)
         } // end of behavior for T7__DH1__GET_BACKUP.History
         
         // T7__DH1__GET_BACKUP.History behavior
-        // uml: [sm->vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
+        // uml: [sm.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
         if (sm->vars.T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId_T7__DH1__BUDDY_ELF)
         {
             // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6733,7 +6733,7 @@ static void T7__DH1__BUILD_ev7(Spec2Sm* sm)
         } // end of behavior for T7__DH1__GET_BACKUP.History
         
         // T7__DH1__GET_BACKUP.History behavior
-        // uml: [sm->vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
+        // uml: [sm.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
         if (sm->vars.T7__DH1__GET_BACKUP_history == Spec2Sm_T7__DH1__GET_BACKUP_HistoryId_T7__DH1__POLAR_BEARS)
         {
             // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6795,7 +6795,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         // T7__DH1__BUILD.History is a pseudo state and cannot have an `enter` trigger.
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__TOOL)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6812,7 +6812,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH1__BUILD.History
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__RACE_CAR)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6831,7 +6831,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH1__BUILD.History
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__TEDDY_BEAR)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6850,7 +6850,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH1__BUILD.History
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__GLOW_WORM)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6869,7 +6869,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH1__BUILD.History
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__ROBOT)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6887,7 +6887,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH1__BUILD.History
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__BATTLEBOT)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6907,7 +6907,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH1__BUILD.History
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__WALL_E)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6927,7 +6927,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH1__BUILD.History
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__IMPACT_DRILL)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -6946,7 +6946,7 @@ static void T7__DH1__BUILD_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH1__BUILD.History
         
         // T7__DH1__BUILD.History behavior
-        // uml: [sm->vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
+        // uml: [sm.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
         if (sm->vars.T7__DH1__BUILD_history == Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__CIRCULAR_SAW)
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -7001,10 +7001,10 @@ static void T7__DH1__TOOL_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__TOOL
     
     // T7__DH1__TOOL behavior
-    // uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL; }
-    if (trace_guard("State T7__DH1__TOOL: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL; }
+    if (trace_guard("State T7__DH1__TOOL: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__TOOL;
     } // end of behavior for T7__DH1__TOOL
 }
@@ -7084,10 +7084,10 @@ static void T7__DH1__CIRCULAR_SAW_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__CIRCULAR_SAW
     
     // T7__DH1__CIRCULAR_SAW behavior
-    // uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW; }
-    if (trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW; }
+    if (trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__CIRCULAR_SAW;
     } // end of behavior for T7__DH1__CIRCULAR_SAW
 }
@@ -7124,10 +7124,10 @@ static void T7__DH1__IMPACT_DRILL_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__IMPACT_DRILL
     
     // T7__DH1__IMPACT_DRILL behavior
-    // uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL; }
-    if (trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL; }
+    if (trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__IMPACT_DRILL;
     } // end of behavior for T7__DH1__IMPACT_DRILL
 }
@@ -7189,10 +7189,10 @@ static void T7__DH1__TOY_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__TOY
     
     // T7__DH1__TOY behavior
-    // uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY; }
-    if (trace_guard("State T7__DH1__TOY: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY; }
+    if (trace_guard("State T7__DH1__TOY: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__TOY;
     } // end of behavior for T7__DH1__TOY
 }
@@ -7273,10 +7273,10 @@ static void T7__DH1__GLOW_WORM_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__GLOW_WORM
     
     // T7__DH1__GLOW_WORM behavior
-    // uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM; }
-    if (trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM; }
+    if (trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__GLOW_WORM;
     } // end of behavior for T7__DH1__GLOW_WORM
 }
@@ -7338,10 +7338,10 @@ static void T7__DH1__RACE_CAR_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__RACE_CAR
     
     // T7__DH1__RACE_CAR behavior
-    // uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR; }
-    if (trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR; }
+    if (trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__RACE_CAR;
     } // end of behavior for T7__DH1__RACE_CAR
 }
@@ -7403,10 +7403,10 @@ static void T7__DH1__ROBOT_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__ROBOT
     
     // T7__DH1__ROBOT behavior
-    // uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT; }
-    if (trace_guard("State T7__DH1__ROBOT: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT; }
+    if (trace_guard("State T7__DH1__ROBOT: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__ROBOT;
     } // end of behavior for T7__DH1__ROBOT
 }
@@ -7463,10 +7463,10 @@ static void T7__DH1__BATTLEBOT_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__BATTLEBOT
     
     // T7__DH1__BATTLEBOT behavior
-    // uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT; }
-    if (trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT; }
+    if (trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__BATTLEBOT;
     } // end of behavior for T7__DH1__BATTLEBOT
 }
@@ -7528,10 +7528,10 @@ static void T7__DH1__WALL_E_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__WALL_E
     
     // T7__DH1__WALL_E behavior
-    // uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E; }
-    if (trace_guard("State T7__DH1__WALL_E: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E; }
+    if (trace_guard("State T7__DH1__WALL_E: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__WALL_E;
     } // end of behavior for T7__DH1__WALL_E
 }
@@ -7568,10 +7568,10 @@ static void T7__DH1__TEDDY_BEAR_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH1__TEDDY_BEAR
     
     // T7__DH1__TEDDY_BEAR behavior
-    // uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR; }`.", true)] / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR; }
-    if (trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR; }`.", true))
+    // uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR; }`.", true)] / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR; }
+    if (trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;`
+        // Step 1: execute action `sm.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;`
         sm->vars.T7__DH1__BUILD_history = Spec2Sm_T7__DH1__BUILD_HistoryId_T7__DH1__TEDDY_BEAR;
     } // end of behavior for T7__DH1__TEDDY_BEAR
 }
@@ -7717,7 +7717,7 @@ static void T7__DH2__state_0_InitialState_transition(Spec2Sm* sm)
         // T7__DH2__state_0.History is a pseudo state and cannot have an `enter` trigger.
         
         // T7__DH2__state_0.History behavior
-        // uml: [sm->vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_2] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2."); } TransitionTo(T7__DH2__state_2)
+        // uml: [sm.vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_2] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2."); } TransitionTo(T7__DH2__state_2)
         if (sm->vars.T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_2)
         {
             // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -7734,7 +7734,7 @@ static void T7__DH2__state_0_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH2__state_0.History
         
         // T7__DH2__state_0.History behavior
-        // uml: [sm->vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_6] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6."); } TransitionTo(T7__DH2__state_6)
+        // uml: [sm.vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_6] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6."); } TransitionTo(T7__DH2__state_6)
         if (sm->vars.T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_6)
         {
             // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -7753,7 +7753,7 @@ static void T7__DH2__state_0_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__DH2__state_0.History
         
         // T7__DH2__state_0.History behavior
-        // uml: [sm->vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_9] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9."); } TransitionTo(T7__DH2__state_9)
+        // uml: [sm.vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_9] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9."); } TransitionTo(T7__DH2__state_9)
         if (sm->vars.T7__DH2__state_0_history == Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_9)
         {
             // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -7809,10 +7809,10 @@ static void T7__DH2__STATE_1_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH2__state_1
     
     // T7__DH2__state_1 behavior
-    // uml: enter [trace_guard("State T7__DH2__state_1: check behavior `enter / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1; }`.", true)] / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1; }
-    if (trace_guard("State T7__DH2__state_1: check behavior `enter / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1; }`.", true))
+    // uml: enter [trace_guard("State T7__DH2__state_1: check behavior `enter / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1; }`.", true)] / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1; }
+    if (trace_guard("State T7__DH2__state_1: check behavior `enter / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1;`
+        // Step 1: execute action `sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1;`
         sm->vars.T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_1;
     } // end of behavior for T7__DH2__state_1
 }
@@ -7873,10 +7873,10 @@ static void T7__DH2__STATE_2_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH2__state_2
     
     // T7__DH2__state_2 behavior
-    // uml: enter [trace_guard("State T7__DH2__state_2: check behavior `enter / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2; }`.", true)] / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2; }
-    if (trace_guard("State T7__DH2__state_2: check behavior `enter / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2; }`.", true))
+    // uml: enter [trace_guard("State T7__DH2__state_2: check behavior `enter / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2; }`.", true)] / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2; }
+    if (trace_guard("State T7__DH2__state_2: check behavior `enter / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2;`
+        // Step 1: execute action `sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2;`
         sm->vars.T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_2;
     } // end of behavior for T7__DH2__state_2
 }
@@ -7958,10 +7958,10 @@ static void T7__DH2__STATE_6_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH2__state_6
     
     // T7__DH2__state_6 behavior
-    // uml: enter [trace_guard("State T7__DH2__state_6: check behavior `enter / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6; }`.", true)] / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6; }
-    if (trace_guard("State T7__DH2__state_6: check behavior `enter / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6; }`.", true))
+    // uml: enter [trace_guard("State T7__DH2__state_6: check behavior `enter / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6; }`.", true)] / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6; }
+    if (trace_guard("State T7__DH2__state_6: check behavior `enter / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6;`
+        // Step 1: execute action `sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6;`
         sm->vars.T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_6;
     } // end of behavior for T7__DH2__state_6
 }
@@ -8022,10 +8022,10 @@ static void T7__DH2__STATE_9_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH2__state_9
     
     // T7__DH2__state_9 behavior
-    // uml: enter [trace_guard("State T7__DH2__state_9: check behavior `enter / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9; }`.", true)] / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9; }
-    if (trace_guard("State T7__DH2__state_9: check behavior `enter / { sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9; }`.", true))
+    // uml: enter [trace_guard("State T7__DH2__state_9: check behavior `enter / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9; }`.", true)] / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9; }
+    if (trace_guard("State T7__DH2__state_9: check behavior `enter / { sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9;`
+        // Step 1: execute action `sm.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9;`
         sm->vars.T7__DH2__state_0_history = Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_9;
     } // end of behavior for T7__DH2__state_9
 }
@@ -8201,7 +8201,7 @@ static void T7__DH3__state_0_InitialState_transition(Spec2Sm* sm)
         // T7__DH3__state_0.History is a pseudo state and cannot have an `enter` trigger.
         
         // T7__DH3__state_0.History behavior
-        // uml: [sm->vars.T7__DH3__state_0_history == T7__DH3__state_0_HistoryId.T7__DH3__state_2] / { trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2."); } TransitionTo(T7__DH3__state_2)
+        // uml: [sm.vars.T7__DH3__state_0_history == T7__DH3__state_0_HistoryId.T7__DH3__state_2] / { trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2."); } TransitionTo(T7__DH3__state_2)
         if (sm->vars.T7__DH3__state_0_history == Spec2Sm_T7__DH3__state_0_HistoryId_T7__DH3__state_2)
         {
             // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -8255,10 +8255,10 @@ static void T7__DH3__STATE_1_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH3__state_1
     
     // T7__DH3__state_1 behavior
-    // uml: enter [trace_guard("State T7__DH3__state_1: check behavior `enter / { sm->vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1; }`.", true)] / { sm->vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1; }
-    if (trace_guard("State T7__DH3__state_1: check behavior `enter / { sm->vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1; }`.", true))
+    // uml: enter [trace_guard("State T7__DH3__state_1: check behavior `enter / { sm.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1; }`.", true)] / { sm.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1; }
+    if (trace_guard("State T7__DH3__state_1: check behavior `enter / { sm.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1;`
+        // Step 1: execute action `sm.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1;`
         sm->vars.T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId_T7__DH3__state_1;
     } // end of behavior for T7__DH3__state_1
 }
@@ -8319,10 +8319,10 @@ static void T7__DH3__STATE_2_enter(Spec2Sm* sm)
     } // end of behavior for T7__DH3__state_2
     
     // T7__DH3__state_2 behavior
-    // uml: enter [trace_guard("State T7__DH3__state_2: check behavior `enter / { sm->vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2; }`.", true)] / { sm->vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2; }
-    if (trace_guard("State T7__DH3__state_2: check behavior `enter / { sm->vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2; }`.", true))
+    // uml: enter [trace_guard("State T7__DH3__state_2: check behavior `enter / { sm.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2; }`.", true)] / { sm.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2; }
+    if (trace_guard("State T7__DH3__state_2: check behavior `enter / { sm.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2;`
+        // Step 1: execute action `sm.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2;`
         sm->vars.T7__DH3__state_0_history = Spec2Sm_T7__DH3__state_0_HistoryId_T7__DH3__state_2;
     } // end of behavior for T7__DH3__state_2
 }
@@ -8681,7 +8681,7 @@ static void T7__H1__OFF_InitialState_transition(Spec2Sm* sm)
         // T7__H1__OFF.History is a pseudo state and cannot have an `enter` trigger.
         
         // T7__H1__OFF.History behavior
-        // uml: [sm->vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2] / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
+        // uml: [sm.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2] / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
         if (sm->vars.T7__H1__OFF_history == Spec2Sm_T7__H1__OFF_HistoryId_T7__H1__OFF2)
         {
             // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -8699,7 +8699,7 @@ static void T7__H1__OFF_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__H1__OFF.History
         
         // T7__H1__OFF.History behavior
-        // uml: [sm->vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3] / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
+        // uml: [sm.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3] / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
         if (sm->vars.T7__H1__OFF_history == Spec2Sm_T7__H1__OFF_HistoryId_T7__H1__OFF3)
         {
             // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -8754,10 +8754,10 @@ static void T7__H1__OFF1_enter(Spec2Sm* sm)
     } // end of behavior for T7__H1__OFF1
     
     // T7__H1__OFF1 behavior
-    // uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1; }`.", true)] / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1; }
-    if (trace_guard("State T7__H1__OFF1: check behavior `enter / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1; }`.", true))
+    // uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1; }`.", true)] / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1; }
+    if (trace_guard("State T7__H1__OFF1: check behavior `enter / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;`
+        // Step 1: execute action `sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;`
         sm->vars.T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId_T7__H1__OFF1;
     } // end of behavior for T7__H1__OFF1
 }
@@ -8819,10 +8819,10 @@ static void T7__H1__OFF2_enter(Spec2Sm* sm)
     } // end of behavior for T7__H1__OFF2
     
     // T7__H1__OFF2 behavior
-    // uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2; }`.", true)] / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2; }
-    if (trace_guard("State T7__H1__OFF2: check behavior `enter / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2; }`.", true))
+    // uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2; }`.", true)] / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2; }
+    if (trace_guard("State T7__H1__OFF2: check behavior `enter / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;`
+        // Step 1: execute action `sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;`
         sm->vars.T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId_T7__H1__OFF2;
     } // end of behavior for T7__H1__OFF2
 }
@@ -8883,10 +8883,10 @@ static void T7__H1__OFF3_enter(Spec2Sm* sm)
     } // end of behavior for T7__H1__OFF3
     
     // T7__H1__OFF3 behavior
-    // uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3; }`.", true)] / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3; }
-    if (trace_guard("State T7__H1__OFF3: check behavior `enter / { sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3; }`.", true))
+    // uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3; }`.", true)] / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3; }
+    if (trace_guard("State T7__H1__OFF3: check behavior `enter / { sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;`
+        // Step 1: execute action `sm.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;`
         sm->vars.T7__H1__OFF_history = Spec2Sm_T7__H1__OFF_HistoryId_T7__H1__OFF3;
     } // end of behavior for T7__H1__OFF3
 }
@@ -8974,7 +8974,7 @@ static void T7__H1__ON_InitialState_transition(Spec2Sm* sm)
         // T7__H1__ON.History is a pseudo state and cannot have an `enter` trigger.
         
         // T7__H1__ON.History behavior
-        // uml: [sm->vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2] / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
+        // uml: [sm.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2] / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
         if (sm->vars.T7__H1__ON_history == Spec2Sm_T7__H1__ON_HistoryId_T7__H1__ON2)
         {
             // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -8992,7 +8992,7 @@ static void T7__H1__ON_InitialState_transition(Spec2Sm* sm)
         } // end of behavior for T7__H1__ON.History
         
         // T7__H1__ON.History behavior
-        // uml: [sm->vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3] / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
+        // uml: [sm.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3] / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
         if (sm->vars.T7__H1__ON_history == Spec2Sm_T7__H1__ON_HistoryId_T7__H1__ON3)
         {
             // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -9047,10 +9047,10 @@ static void T7__H1__ON1_enter(Spec2Sm* sm)
     } // end of behavior for T7__H1__ON1
     
     // T7__H1__ON1 behavior
-    // uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1; }`.", true)] / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1; }
-    if (trace_guard("State T7__H1__ON1: check behavior `enter / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1; }`.", true))
+    // uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1; }`.", true)] / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1; }
+    if (trace_guard("State T7__H1__ON1: check behavior `enter / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;`
+        // Step 1: execute action `sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;`
         sm->vars.T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId_T7__H1__ON1;
     } // end of behavior for T7__H1__ON1
 }
@@ -9112,10 +9112,10 @@ static void T7__H1__ON2_enter(Spec2Sm* sm)
     } // end of behavior for T7__H1__ON2
     
     // T7__H1__ON2 behavior
-    // uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2; }`.", true)] / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2; }
-    if (trace_guard("State T7__H1__ON2: check behavior `enter / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2; }`.", true))
+    // uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2; }`.", true)] / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2; }
+    if (trace_guard("State T7__H1__ON2: check behavior `enter / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;`
+        // Step 1: execute action `sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;`
         sm->vars.T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId_T7__H1__ON2;
     } // end of behavior for T7__H1__ON2
 }
@@ -9177,10 +9177,10 @@ static void T7__H1__ON3_enter(Spec2Sm* sm)
     } // end of behavior for T7__H1__ON3
     
     // T7__H1__ON3 behavior
-    // uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3; }`.", true)] / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3; }
-    if (trace_guard("State T7__H1__ON3: check behavior `enter / { sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3; }`.", true))
+    // uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3; }`.", true)] / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3; }
+    if (trace_guard("State T7__H1__ON3: check behavior `enter / { sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3; }`.", true))
     {
-        // Step 1: execute action `sm->vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;`
+        // Step 1: execute action `sm.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;`
         sm->vars.T7__H1__ON_history = Spec2Sm_T7__H1__ON_HistoryId_T7__H1__ON3;
     } // end of behavior for T7__H1__ON3
 }

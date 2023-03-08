@@ -25,6 +25,8 @@ public class SpecFixture
         smRunnerAction?.Invoke(runner);
 
         settings.propagateExceptions = true;
+        settings.dumpGilCodeOnError = true;
+
         if (useTracingModder)
         {
             runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1,
