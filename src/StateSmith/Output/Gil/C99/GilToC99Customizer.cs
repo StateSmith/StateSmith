@@ -14,7 +14,8 @@ public class GilToC99Customizer : IGilToC99Customizer
     protected StateMachineProvider stateMachineProvider;
     protected StateMachine Sm => stateMachineProvider.GetStateMachine().ThrowIfNull();
 
-    public GilToC99Customizer(StateMachine sm) : this(new StateMachineProvider(sm)) { }
+    // needs to not be public otherwise dependency injection tries to use it.
+    internal GilToC99Customizer(StateMachine sm) : this(new StateMachineProvider(sm)) { }
 
     public GilToC99Customizer(StateMachineProvider stateMachineProvider)
     {
