@@ -1,7 +1,4 @@
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using System.Text;
-using System.IO;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output.Algos.Balanced1;    // todo need a generic way of getting file name. RenderConfig?
 
@@ -58,8 +55,8 @@ public class GilToCSharp : IGilTranspiler
         codeFileWriter.WriteFile($"{outputInfo.outputDirectory}{nameMangler.BaseFileName}.cs", code: fileSb.ToString());
     }
 
-    private static bool NameSpaceNeedsBraces(string nameSpace)
+    private static bool NameSpaceNeedsBraces(string trimmedNameSpace)
     {
-        return !nameSpace.EndsWith(";");
+        return trimmedNameSpace.Length > 0 && !trimmedNameSpace.EndsWith(";");
     }
 }

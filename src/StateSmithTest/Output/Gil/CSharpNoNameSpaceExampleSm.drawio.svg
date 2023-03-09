@@ -1,0 +1,38 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="401px" height="221px" viewBox="-0.5 -0.5 401 221" content="&lt;mxfile&gt;&lt;diagram id=&quot;Tqm6eFcu1KHT34LG2WWE&quot; name=&quot;Page-1&quot;&gt;7Vhdb5swFP01vE58OU0fSZq0k9q+pNIeKwduwJrByJh89NfPhkuAAmunpeomFaTEPv6+5/hcJZa3TI+3kubJg4iAW64dHS3vxnJdx5vP9JdBTjVCPFIDsWQRdmqBDXsBBG1ESxZB0euohOCK5X0wFFkGoephVEpx6HfbCd5fNacxDIBNSPkQ/cEildTonNgtfgcsTpqVHRtbUtp0RqBIaCQOHchbWd5SCqHqUnpcAjfBa+JSj1tPtJ43JiFT7xlAcMSe8hIPZ7n+5il4Wj0Ey7vvjyvdaHmB/lxuEirzR/FIU9jkNITVkaY5h02KR1GnJj76VLkpFgeWcprp4kIKRRXdVj30hAvKWZzpcqg3ClIDe5CK6RAH2KBErtGdyNSapowbpdyXIYuo2YrICmGmWhSKSoUC8WwcgHXHb+q4MwfrS8GFrHbq7arH4IzzDu5sqQOuWQCPsO60R7CjJVfVqcosggjnpjJsliamutWbLBUELVztWIqf0FnKtmerQPOzGHLXkKNDA8cOhFzegkhByZPugq0+yurUrx5akfqNFJOOQM9ypHgx4vPMrXZ0AeUzISV3REr2QBtvMdoIg8NOTcuiw0YmKoHFkkYMWnIR7ocbwZY2I5lCi5ll8X214I0RjYSCvXTEmop9p6bdDLpSHki7VKJoCR/SSqZ4PTsWztYzhR7fSLA3JNgb4/cS9HpjTsEyphjlz/oeKpj0AT2TtuaK3SKvDXnHjoaA1/fOrp4RCl4HORP3dKvTSh1jiFi38Q9CPnmVZlffSO8ykWGsXTISa3KBWPsjsX4VW4h0SsIqyjpRKX9TdIUoZYhzENyrNtEYmn7zGjPz/zZOEjhVbN9PiX91ajI4dZWInp3B4f+fBLMOzDsUOvHN+xEJ5hLid/t5xHGG2nfcEaO5voTRzN4W/1cSaW/LRyQRMsKtfwlur95pTN6IMZFPM6b5hDENhfllTB9sTJ/qTNdfzvQeZ5pPsPoPOZOutj+yq7bOXxXe6hc=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 400 30 L 400 7.5 Q 400 0 392.5 0 L 7.5 0 Q 0 0 0 7.5 L 0 30" fill="#1ba1e2" stroke="#006eaf" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 0 212.5 Q 0 220 7.5 220 L 392.5 220 Q 400 220 400 212.5 L 400 30" fill="rgb(255, 255, 255)" stroke="#006eaf" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 30 L 400 30" fill="none" stroke="#006eaf" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#ffffff" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="199.5" y="19.5">
+                $STATEMACHINE : CSharpNoNameSpaceExampleSm
+            </text>
+        </g>
+        <rect x="0" y="30" width="30" height="20" fill="none" stroke="none" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Lucida Console" font-size="12px"/>
+        <ellipse cx="80" cy="62.5" rx="12.5" ry="12.5" fill="#000000" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 140 155 L 213.63 155" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 218.88 155 L 211.88 158.5 L 213.63 155 L 211.88 151.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 140 140 L 140 117.5 Q 140 110 132.5 110 L 27.5 110 Q 20 110 20 117.5 L 20 140" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 20 140 L 20 192.5 Q 20 200 27.5 200 L 132.5 200 Q 140 200 140 192.5 L 140 140" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 20 140 L 140 140" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="79.5" y="129.5">
+                STATE_1
+            </text>
+        </g>
+        <rect x="20" y="140" width="50" height="40" fill="none" stroke="none" pointer-events="all"/>
+        <path d="M 80 75 L 80 103.63" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 80 108.88 L 76.5 101.88 L 80 103.63 L 83.5 101.88 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 340 140 L 340 117.5 Q 340 110 332.5 110 L 227.5 110 Q 220 110 220 117.5 L 220 140" fill="#545454" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 220 140 L 220 192.5 Q 220 200 227.5 200 L 332.5 200 Q 340 200 340 192.5 L 340 140" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 220 140 L 340 140" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <g fill="#FAFAFA" font-family="Lucida Console" font-weight="bold" text-anchor="middle" font-size="14px">
+            <text x="279.5" y="129.5">
+                STATE_2
+            </text>
+        </g>
+        <rect x="220" y="140" width="50" height="40" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+</svg>

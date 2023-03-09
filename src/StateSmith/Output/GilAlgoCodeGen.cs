@@ -7,13 +7,6 @@ using System.IO;
 
 namespace StateSmith.Output;
 
-public class TranspilerException : Exception
-{
-    public TranspilerException(string? message, Exception? innerException = null) : base(message, innerException)
-    {
-    }
-}
-
 public class GilAlgoCodeGen : ICodeGenRunner
 {
     protected readonly IGilAlgo gilAlgo;
@@ -57,6 +50,13 @@ public class GilAlgoCodeGen : ICodeGenRunner
             if (runnerSettings.dumpGilCodeOnError)
             {
                 string gilPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs";
+
+                // get the most accurate GIL code if it is available in case other modifications were made
+                if (e is TranspilerException transpilerException && transpilerException.GilCode != null)
+                {
+                    gilCode = transpilerException.GilCode;
+                }
+
                 File.WriteAllText(gilPath, gilCode);
                 consolePrinter.WriteErrorLine($"You can inspect the generated Generic Intermediate Language (GIL) code here: {gilPath}");
             }

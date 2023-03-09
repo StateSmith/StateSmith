@@ -149,7 +149,7 @@ public class GilHelper
             // ignore errors caused by our GilAddessableFunctionAttribute
             && d.Id != "CS0404" // error CS0404: Cannot apply attribute class 'Spec2Sm.____GilNoEmit_GilAddessableFunction<T>' because it is generic
             && d.Id != "CS0698" // error CS0698: A generic type cannot derive from 'Attribute' because it is an attribute class
-        ); 
+        );
 
         var message = "";
 
@@ -160,7 +160,7 @@ public class GilHelper
 
         if (message.Length > 0)
         {
-            throw new TranspilerException(message);
+            throw new TranspilerException(message, programText);
         }
     }
 }
