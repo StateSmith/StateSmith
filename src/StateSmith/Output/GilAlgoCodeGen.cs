@@ -58,14 +58,14 @@ public class GilAlgoCodeGen : ICodeGenRunner
             {
                 string gilPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs";
                 File.WriteAllText(gilPath, gilCode);
-                consolePrinter.WriteErrorLine($"You can inspect the generated Generic Intermediate Langauge (GIL) code here: {gilPath}");
+                consolePrinter.WriteErrorLine($"You can inspect the generated Generic Intermediate Language (GIL) code here: {gilPath}");
             }
             else
             {
                 consolePrinter.WriteErrorLine($"You can enable exception detail dumping by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpGilCodeOnError)}` to true.");
             }
 
-            throw new TranspilerException($"Failed transpiling Generic Intermediate Langauge (GIL) code with transpiler: {transpiler.GetType()}", e);
+            throw new TranspilerException($"Failed transpiling Generic Intermediate Language (GIL) code with transpiler: {transpiler.GetType()}", e);
         }
     }
 }
