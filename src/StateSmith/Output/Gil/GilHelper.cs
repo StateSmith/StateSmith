@@ -147,8 +147,10 @@ public class GilHelper
     {
         var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error
             // ignore errors caused by our GilAddessableFunctionAttribute
-            && d.Id != "CS0404" // error CS0404: Cannot apply attribute class 'Spec2Sm.____GilNoEmit_GilAddessableFunction<T>' because it is generic
-            && d.Id != "CS0698" // error CS0698: A generic type cannot derive from 'Attribute' because it is an attribute class
+            && d.Id != "CS0404" // Roslyn 4.5.0 error - error CS0404: Cannot apply attribute class 'Spec2Sm.____GilNoEmit_GilAddessableFunction<T>' because it is generic
+            && d.Id != "CS0698" // Roslyn 4.5.0 error - error CS0698: A generic type cannot derive from 'Attribute' because it is an attribute class
+            && d.Id != "CS8652" // Roslyn 4.4.0 error - error CS8652: The feature 'generic attributes' is currently in Preview and *unsupported*. To use Preview features, use the 'preview' language version.
+            // Why different Roslyn versions? https://github.com/StateSmith/StateSmith/issues/123
         );
 
         var message = "";

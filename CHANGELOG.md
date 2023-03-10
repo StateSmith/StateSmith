@@ -4,7 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### Fixed
+- Lower Roslyn dependencies to avoid issue with `dotnet-script`.
+  - https://github.com/StateSmith/StateSmith/issues/123
+
+---
+
 ## [0.8.2-alpha]
+Won't work with `dotnet-script`. See https://github.com/StateSmith/StateSmith/issues/123
+
 ### Added
 - improved transpiler dumping GIL code on error.
 - GilToCsharp - a user output namespace is no longer required.
@@ -13,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ----
 
 ## [0.8.1-alpha]
+Won't work with `dotnet-script`. See https://github.com/StateSmith/StateSmith/issues/123
+
 ### Added
 - improve HistoryProcessor's use of expansionVarsPathProvider
 - improve user experience when transpilation error occurs (seen with incorrect custom user name mangling).
@@ -23,6 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ----
 
 ## [0.8.0-alpha]
+Won't work with `dotnet-script`. See https://github.com/StateSmith/StateSmith/issues/123
+
 Adds support for multiple languages! The 0.8.X releases will see more changes as we
 figure out the best way to support multiple languages.
 
