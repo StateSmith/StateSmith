@@ -116,6 +116,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
             case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref renderConfigCSharpVars.Usings, v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.ClassCode): AppendOption(ref renderConfigCSharpVars.ClassCode, v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.UseNullable): renderConfigCSharpVars.UseNullable = ParseBoolValue(v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.UsePartialClass): renderConfigCSharpVars.UsePartialClass = ParseBoolValue(v); break;
 
             default:
                 throw new VertexValidationException(v, $"Unknown Render Config option `{v.name}`");

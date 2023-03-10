@@ -6,6 +6,7 @@ public class RenderConfigCSharpVars
     public string Usings = "";
     public string ClassCode = "";
     public bool UseNullable = true;
+    public bool UsePartialClass = true;
 
     public void SetFrom(IRenderConfigCSharp config, bool autoDeIndentAndTrim)
     {
@@ -24,5 +25,6 @@ public class RenderConfigCSharpVars
         Usings = Process(config.Usings);
         ClassCode = Process(config.ClassCode);
         UseNullable = config.UseNullable;
+        UsePartialClass = config.UsePartialClass;
     }
 }

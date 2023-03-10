@@ -4,7 +4,7 @@ using StateSmithTest.spec._2.CSharp; // to get access to MainClass
 namespace Csharp.Spec2smTests
 {
     // Generated state machine
-    public class Spec2Sm
+    public partial class Spec2Sm
     {
         private static void trace(string message) => MainClass.trace(message);
         private static bool trace_guard(string message, bool b) => MainClass.trace_guard(message, b);

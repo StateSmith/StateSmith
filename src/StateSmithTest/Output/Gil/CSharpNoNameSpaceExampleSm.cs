@@ -1,6 +1,6 @@
 #nullable enable
 // Generated state machine
-public class CSharpNoNameSpaceExampleSm
+public partial class CSharpNoNameSpaceExampleSm
 {
     public enum EventId
     {

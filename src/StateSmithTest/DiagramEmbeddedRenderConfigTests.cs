@@ -50,7 +50,6 @@ public class DiagramEmbeddedRenderConfigTests
         runner.ConvertDiagramFileToSmVertices(filePath);
         runner.FinishRunning();
 
-
         {
             RenderConfigVars renderConfig = runner.sp.GetServiceOrCreateInstance();
 
@@ -125,8 +124,9 @@ public class DiagramEmbeddedRenderConfigTests
             """);
 
             renderConfigCSharp.UseNullable.Should().BeFalse();
+            renderConfigCSharp.UsePartialClass.Should().BeFalse();
 
-            const int expectedOptionCount = 4;
+            const int expectedOptionCount = 5;
             GetTypeFields<RenderConfigCSharpVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
             GetTypeProperties<IRenderConfigCSharp>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
         }

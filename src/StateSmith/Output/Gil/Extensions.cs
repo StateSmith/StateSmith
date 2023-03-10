@@ -69,6 +69,9 @@ public static class Extensions
             walker.VisitToken(kid.AsToken());
     }
 
+    /// <summary>
+    /// TODO use <see cref="WalkableChildSyntaxList"/> instead. Remove this function.
+    /// </summary>
     public static void VisitChildNodesAndTokens(this SyntaxNode node, CSharpSyntaxWalker syntaxWalker, SyntaxToken? toSkip = null)
     {
         var kids = node.ChildNodesAndTokens();
@@ -80,6 +83,9 @@ public static class Extensions
         }
     }
 
+    /// <summary>
+    /// TODO use <see cref="WalkableChildSyntaxList"/> instead. Remove this function.
+    /// </summary>
     public static void VisitChildNodesAndTokens(this SyntaxNode node, CSharpSyntaxWalker syntaxWalker, SyntaxToken token, Action action, SyntaxToken? toSkip = null)
     {
         var kids = node.ChildNodesAndTokens();

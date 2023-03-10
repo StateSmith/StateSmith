@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### Added
+- GilToCsharp - add `IRenderConfigCSharp.UsePartialClass` which defaults to true.
+  Very useful so you can define other part of partial class and easily add functionality
+  to the state machine (fields, methods...).
+
+---
+
 ## [0.8.3-alpha]
 ### Fixed
 - Lower Roslyn dependencies to avoid issue with `dotnet-script`.

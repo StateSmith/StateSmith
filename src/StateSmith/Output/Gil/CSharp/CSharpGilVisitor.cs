@@ -5,6 +5,7 @@ using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
+using Antlr4.Runtime;
 
 #nullable enable
 
@@ -113,9 +114,17 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     {
         if (GilHelper.HandleSpecialGilEmitClasses(node, this)) return;
 
-        // append class code after open brace token
-        void action() => sb.AppendLineIfNotBlank(renderConfigCSharp.ClassCode);
-        node.VisitChildNodesAndTokens(this, node.OpenBraceToken, action);
+        var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+
+        iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
+
+        if (renderConfigCSharp.UsePartialClass)
+            sb.Append("partial ");
+
+        iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
+        sb.AppendLineIfNotBlank(renderConfigCSharp.ClassCode);  // append class code after open brace token
+
+        iterableChildSyntaxList.VisitRest();
     }
 
     // to ignore GIL attributes
