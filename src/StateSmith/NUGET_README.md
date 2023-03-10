@@ -3,7 +3,7 @@
 # [StateSmith](https://github.com/StateSmith/StateSmith)
 StateSmith is a cross platform, free/open source tool for generating state machines. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, kernels, or servers. It avoids dynamic memory allocations for the safety or performance inclined.
 
-StateSmith will one day generate code for multiple different languages, but for now, the focus is on good old `C` (or `C++`) with zero dependencies.
+StateSmith is starting to support [multiple different languages](https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support). We currently have support for good old `C99` (or `C++`), and `C#`.
 
 # More Info and examples
 See https://github.com/StateSmith/StateSmith
