@@ -44,6 +44,8 @@ public class GilAlgoCodeGen : ICodeGenRunner
         try
         {
             transpiler.TranspileAndOutputCode(gilCode);
+            //string gilPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs";
+            //File.WriteAllText(gilPath, gilCode);
         }
         catch (Exception e)
         {

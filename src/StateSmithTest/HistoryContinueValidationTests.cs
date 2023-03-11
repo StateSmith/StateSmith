@@ -1,4 +1,5 @@
 using StateSmith.SmGraph;
+using StateSmithTest.spec2;
 using System.Linq;
 using Xunit;
 
@@ -10,7 +11,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
     private HistoryContinueVertex hc1;
     private HistoryContinueVertex hc2;
     private HistoryVertex h1;
-    private string h1VarName = "sm.vars.G1_history";
+    private string h1VarName = Test7History1Helper.SmVars + ".G1_history";
     private string h1EnumAccess = "G1_HistoryId.";
     NamedVertexMap map;
     State GetState(string stateName) => map.GetState(stateName);
@@ -185,7 +186,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
     {
         // h2 is in G2
         var h2 = hc1.Parent.AddChild(new HistoryVertex());  h2.AddTransitionTo(GetState("G3"));
-        var h2VarName = "sm.vars.G2_history";
+        var h2VarName = Test7History1Helper.SmVars + ".G2_history";
         var h2EnumAccess = "G2_HistoryId.";
         hc1.RemoveSelf();
         RunCompiler();
@@ -211,7 +212,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
     {
         // h2 is in G2
         var h2 = hc1.Parent.AddChild(new HistoryVertex()); h2.AddTransitionTo(GetState("G3"));
-        var h2VarName = "sm.vars.G2_history";
+        var h2VarName = Test7History1Helper.SmVars + ".G2_history";
         var h2EnumAccess = "G2_HistoryId.";
         RunCompiler();
 

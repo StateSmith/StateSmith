@@ -96,7 +96,7 @@ public class AlgoBalanced1 : IGilAlgo
             }
 
             file.AppendLine($"// event handler type");
-            file.AppendLine($"private delegate void {mangler.SmHandlerFuncType}({mangler.SmTypeName} sm);");
+            file.AppendLine($"private delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
             file.AppendLine();
         });
 
@@ -212,16 +212,16 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine("// Starts the state machine. Must be called before dispatching events. Not thread safe.");
         file.Append($"public void {mangler.SmStartFuncName}()");
         file.StartCodeBlock();
-        file.AppendLine("ROOT_enter(this);");
+        file.AppendLine("ROOT_enter();");
 
         var initialState = Sm.Children.OfType<InitialState>().Single();
 
         var getToInitialStateBehavior = new Behavior(Sm, initialState);
 
-        var tempSmAccess = eventHandlerBuilder.smAccess;
-        eventHandlerBuilder.smAccess = "this";
+        //var tempSmAccess = eventHandlerBuilder.smAccess;
+        //eventHandlerBuilder.smAccess = "this";
         eventHandlerBuilder.OutputTransitionCode(getToInitialStateBehavior, noAncestorHandlesEvent: true, checkForExiting: false);
-        eventHandlerBuilder.smAccess = tempSmAccess;
+        //eventHandlerBuilder.smAccess = tempSmAccess;
 
         file.FinishCodeBlock(forceNewLine: true);
         file.AppendLine();
@@ -234,13 +234,13 @@ public class AlgoBalanced1 : IGilAlgo
 
         string desired_state_exit_handler = mangler.MangleVarName("desired_state_exit_handler");
 
-        file.Append($"private static void {mangler.SmExitUpToFuncName}({mangler.SmTypeName} sm, {ConstMarker}{mangler.SmHandlerFuncType} {desired_state_exit_handler})");
+        file.Append($"private void {mangler.SmExitUpToFuncName}({ConstMarker}{mangler.SmHandlerFuncType} {desired_state_exit_handler})");
         file.StartCodeBlock();
 
-        file.Append($"while (sm.{mangler.SmCurrentStateExitHandlerVarName} != {desired_state_exit_handler})");
+        file.Append($"while (this.{mangler.SmCurrentStateExitHandlerVarName} != {desired_state_exit_handler})");
         file.StartCodeBlock();
         {
-            file.AppendLine($"sm.{mangler.SmCurrentStateExitHandlerVarName}!(sm);");
+            file.AppendLine($"this.{mangler.SmCurrentStateExitHandlerVarName}!();");
         }
         file.FinishCodeBlock(forceNewLine: true);
 
@@ -262,7 +262,7 @@ public class AlgoBalanced1 : IGilAlgo
         {
             file.StartCodeBlock();
             file.AppendLine($"this.{mangler.SmAncestorEventHandlerVarName} = null;");
-            file.AppendLine($"{behavior_func}(this);");
+            file.AppendLine($"{behavior_func}();");
             file.AppendLine($"{behavior_func} = this.{mangler.SmAncestorEventHandlerVarName};");
             file.FinishCodeBlock(forceNewLine: true);
         }

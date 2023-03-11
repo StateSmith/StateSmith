@@ -11,13 +11,19 @@ static void exit_up_to_state_handler(Spec1Sm* sm, Spec1Sm_Func desired_state_exi
 
 static void ROOT_enter(Spec1Sm* sm);
 
+static void ROOT_exit_ptr(Spec1Sm* sm);
+
 static void ROOT_exit(Spec1Sm* sm);
 
 static void S_enter(Spec1Sm* sm);
 
+static void S_exit_ptr(Spec1Sm* sm);
+
 static void S_exit(Spec1Sm* sm);
 
 static void S1_enter(Spec1Sm* sm);
+
+static void S1_exit_ptr(Spec1Sm* sm);
 
 static void S1_exit(Spec1Sm* sm);
 
@@ -25,21 +31,33 @@ static void S1_InitialState_transition(Spec1Sm* sm);
 
 static void S11_enter(Spec1Sm* sm);
 
+static void S11_exit_ptr(Spec1Sm* sm);
+
 static void S11_exit(Spec1Sm* sm);
+
+static void S11_ev1_ptr(Spec1Sm* sm);
 
 static void S11_ev1(Spec1Sm* sm);
 
 static void T1_enter(Spec1Sm* sm);
 
+static void T1_exit_ptr(Spec1Sm* sm);
+
 static void T1_exit(Spec1Sm* sm);
 
 static void T11_enter(Spec1Sm* sm);
 
+static void T11_exit_ptr(Spec1Sm* sm);
+
 static void T11_exit(Spec1Sm* sm);
+
+static void T11_ev2_ptr(Spec1Sm* sm);
 
 static void T11_ev2(Spec1Sm* sm);
 
 static void T111_enter(Spec1Sm* sm);
+
+static void T111_exit_ptr(Spec1Sm* sm);
 
 static void T111_exit(Spec1Sm* sm);
 
@@ -53,7 +71,7 @@ void Spec1Sm_ctor(Spec1Sm* sm)
 // Starts the state machine. Must be called before dispatching events. Not thread safe.
 void Spec1Sm_start(Spec1Sm* sm)
 {
-    ROOT_enter(sm);
+    ROOT_enter(Spec1Sm* sm);
     // ROOT behavior
     // uml: TransitionTo(ROOT.InitialState)
     {
@@ -73,7 +91,7 @@ void Spec1Sm_start(Spec1Sm* sm)
             trace("Transition action `` for ROOT.InitialState to S.");
             
             // Step 3: Enter/move towards transition target `S`.
-            S_enter(sm);
+            sm->S_enter(Spec1Sm* sm);
             
             // S.InitialState behavior
             // uml: / { trace("Transition action `` for S.InitialState to S1."); } TransitionTo(S1)
@@ -84,10 +102,10 @@ void Spec1Sm_start(Spec1Sm* sm)
                 trace("Transition action `` for S.InitialState to S1.");
                 
                 // Step 3: Enter/move towards transition target `S1`.
-                S1_enter(sm);
+                sm->S1_enter(Spec1Sm* sm);
                 
                 // Finish transition by calling pseudo state transition function.
-                S1_InitialState_transition(sm);
+                S1_InitialState_transition(Spec1Sm* sm);
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for S.InitialState
         } // end of behavior for ROOT.InitialState
@@ -125,7 +143,7 @@ static void exit_up_to_state_handler(Spec1Sm* sm, Spec1Sm_Func desired_state_exi
 static void ROOT_enter(Spec1Sm* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = ROOT_exit;
+    sm->current_state_exit_handler = ROOT_exit_ptr;
     
     // ROOT behavior
     // uml: enter / { trace("Enter Spec1Sm."); }
@@ -135,7 +153,7 @@ static void ROOT_enter(Spec1Sm* sm)
     } // end of behavior for ROOT
 }
 
-static void ROOT_exit(Spec1Sm* sm)
+static void ROOT_exit_ptr(Spec1Sm* sm) static void ROOT_exit(Spec1Sm* sm)
 {
     // ROOT behavior
     // uml: exit / { trace("Exit Spec1Sm."); }
@@ -145,7 +163,7 @@ static void ROOT_exit(Spec1Sm* sm)
     } // end of behavior for ROOT
     
     // State machine root is a special case. It cannot be exited. Mark as unused.
-    (void)sm;
+    (void)this;
 }
 
 
@@ -156,7 +174,7 @@ static void ROOT_exit(Spec1Sm* sm)
 static void S_enter(Spec1Sm* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = S_exit;
+    sm->current_state_exit_handler = S_exit_ptr;
     
     // S behavior
     // uml: enter / { trace("Enter S."); }
@@ -166,7 +184,7 @@ static void S_enter(Spec1Sm* sm)
     } // end of behavior for S
 }
 
-static void S_exit(Spec1Sm* sm)
+static void S_exit_ptr(Spec1Sm* sm) static void S_exit(Spec1Sm* sm)
 {
     // S behavior
     // uml: exit / { trace("Exit S."); }
@@ -176,7 +194,7 @@ static void S_exit(Spec1Sm* sm)
     } // end of behavior for S
     
     // adjust function pointers for this state's exit
-    sm->current_state_exit_handler = ROOT_exit;
+    sm->current_state_exit_handler = ROOT_exit_ptr;
 }
 
 
@@ -187,7 +205,7 @@ static void S_exit(Spec1Sm* sm)
 static void S1_enter(Spec1Sm* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = S1_exit;
+    sm->current_state_exit_handler = S1_exit_ptr;
     
     // S1 behavior
     // uml: enter / { trace("Enter S1."); }
@@ -197,7 +215,7 @@ static void S1_enter(Spec1Sm* sm)
     } // end of behavior for S1
 }
 
-static void S1_exit(Spec1Sm* sm)
+static void S1_exit_ptr(Spec1Sm* sm) static void S1_exit(Spec1Sm* sm)
 {
     // S1 behavior
     // uml: exit / { trace("Exit S1."); }
@@ -207,7 +225,7 @@ static void S1_exit(Spec1Sm* sm)
     } // end of behavior for S1
     
     // adjust function pointers for this state's exit
-    sm->current_state_exit_handler = S_exit;
+    sm->current_state_exit_handler = S_exit_ptr;
 }
 
 static void S1_InitialState_transition(Spec1Sm* sm)
@@ -221,7 +239,7 @@ static void S1_InitialState_transition(Spec1Sm* sm)
         trace("Transition action `` for S1.InitialState to S11.");
         
         // Step 3: Enter/move towards transition target `S11`.
-        S11_enter(sm);
+        sm->S11_enter(Spec1Sm* sm);
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         sm->state_id = Spec1Sm_StateId_S11;
@@ -238,8 +256,8 @@ static void S1_InitialState_transition(Spec1Sm* sm)
 static void S11_enter(Spec1Sm* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = S11_exit;
-    sm->current_event_handlers[Spec1Sm_EventId_EV1] = S11_ev1;
+    sm->current_state_exit_handler = S11_exit_ptr;
+    sm->current_event_handlers[Spec1Sm_EventId_EV1] = S11_ev1_ptr;
     
     // S11 behavior
     // uml: enter / { trace("Enter S11."); }
@@ -249,7 +267,7 @@ static void S11_enter(Spec1Sm* sm)
     } // end of behavior for S11
 }
 
-static void S11_exit(Spec1Sm* sm)
+static void S11_exit_ptr(Spec1Sm* sm) static void S11_exit(Spec1Sm* sm)
 {
     // S11 behavior
     // uml: exit / { trace("Exit S11."); }
@@ -259,11 +277,11 @@ static void S11_exit(Spec1Sm* sm)
     } // end of behavior for S11
     
     // adjust function pointers for this state's exit
-    sm->current_state_exit_handler = S1_exit;
+    sm->current_state_exit_handler = S1_exit_ptr;
     sm->current_event_handlers[Spec1Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
 }
 
-static void S11_ev1(Spec1Sm* sm)
+static void S11_ev1_ptr(Spec1Sm* sm) static void S11_ev1(Spec1Sm* sm)
 {
     // No ancestor state handles `ev1` event.
     
@@ -272,7 +290,7 @@ static void S11_ev1(Spec1Sm* sm)
     if (trace_guard("State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`.", true))
     {
         // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition).
-        S11_exit(sm);
+        S11_exit(Spec1Sm* sm);
         
         // Step 2: Transition action: `trace("Transition action `` for S11 to S1.ExitPoint(1).");`.
         trace("Transition action `` for S11 to S1.ExitPoint(1).");
@@ -284,14 +302,14 @@ static void S11_ev1(Spec1Sm* sm)
         // uml: / { trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1)."); } TransitionTo(T11.EntryPoint(1))
         {
             // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition).
-            S1_exit(sm);
+            S1_exit(Spec1Sm* sm);
             
             // Step 2: Transition action: `trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");`.
             trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");
             
             // Step 3: Enter/move towards transition target `T11.EntryPoint(1)`.
-            T1_enter(sm);
-            T11_enter(sm);
+            sm->T1_enter(Spec1Sm* sm);
+            sm->T11_enter(Spec1Sm* sm);
             // T11.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
             
             // T11.EntryPoint(1) behavior
@@ -303,7 +321,7 @@ static void S11_ev1(Spec1Sm* sm)
                 trace("Transition action `` for T11.EntryPoint(1) to T111.");
                 
                 // Step 3: Enter/move towards transition target `T111`.
-                T111_enter(sm);
+                sm->T111_enter(Spec1Sm* sm);
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 sm->state_id = Spec1Sm_StateId_T111;
@@ -322,7 +340,7 @@ static void S11_ev1(Spec1Sm* sm)
 static void T1_enter(Spec1Sm* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = T1_exit;
+    sm->current_state_exit_handler = T1_exit_ptr;
     
     // T1 behavior
     // uml: enter / { trace("Enter T1."); }
@@ -332,7 +350,7 @@ static void T1_enter(Spec1Sm* sm)
     } // end of behavior for T1
 }
 
-static void T1_exit(Spec1Sm* sm)
+static void T1_exit_ptr(Spec1Sm* sm) static void T1_exit(Spec1Sm* sm)
 {
     // T1 behavior
     // uml: exit / { trace("Exit T1."); }
@@ -342,7 +360,7 @@ static void T1_exit(Spec1Sm* sm)
     } // end of behavior for T1
     
     // adjust function pointers for this state's exit
-    sm->current_state_exit_handler = S_exit;
+    sm->current_state_exit_handler = S_exit_ptr;
 }
 
 
@@ -353,8 +371,8 @@ static void T1_exit(Spec1Sm* sm)
 static void T11_enter(Spec1Sm* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = T11_exit;
-    sm->current_event_handlers[Spec1Sm_EventId_EV2] = T11_ev2;
+    sm->current_state_exit_handler = T11_exit_ptr;
+    sm->current_event_handlers[Spec1Sm_EventId_EV2] = T11_ev2_ptr;
     
     // T11 behavior
     // uml: enter / { trace("Enter T11."); }
@@ -364,7 +382,7 @@ static void T11_enter(Spec1Sm* sm)
     } // end of behavior for T11
 }
 
-static void T11_exit(Spec1Sm* sm)
+static void T11_exit_ptr(Spec1Sm* sm) static void T11_exit(Spec1Sm* sm)
 {
     // T11 behavior
     // uml: exit / { trace("Exit T11."); }
@@ -374,11 +392,11 @@ static void T11_exit(Spec1Sm* sm)
     } // end of behavior for T11
     
     // adjust function pointers for this state's exit
-    sm->current_state_exit_handler = T1_exit;
+    sm->current_state_exit_handler = T1_exit_ptr;
     sm->current_event_handlers[Spec1Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
 }
 
-static void T11_ev2(Spec1Sm* sm)
+static void T11_ev2_ptr(Spec1Sm* sm) static void T11_ev2(Spec1Sm* sm)
 {
     // No ancestor state handles `ev2` event.
     
@@ -387,16 +405,16 @@ static void T11_ev2(Spec1Sm* sm)
     if (trace_guard("State T11: check behavior `EV2 TransitionTo(S1)`.", true))
     {
         // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition).
-        exit_up_to_state_handler(sm, S_exit);
+        exit_up_to_state_handler(Spec1Sm* sm, S_exit_ptr);
         
         // Step 2: Transition action: `trace("Transition action `` for T11 to S1.");`.
         trace("Transition action `` for T11 to S1.");
         
         // Step 3: Enter/move towards transition target `S1`.
-        S1_enter(sm);
+        sm->S1_enter(Spec1Sm* sm);
         
         // Finish transition by calling pseudo state transition function.
-        S1_InitialState_transition(sm);
+        S1_InitialState_transition(Spec1Sm* sm);
         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
     } // end of behavior for T11
 }
@@ -409,7 +427,7 @@ static void T11_ev2(Spec1Sm* sm)
 static void T111_enter(Spec1Sm* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = T111_exit;
+    sm->current_state_exit_handler = T111_exit_ptr;
     
     // T111 behavior
     // uml: enter / { trace("Enter T111."); }
@@ -419,7 +437,7 @@ static void T111_enter(Spec1Sm* sm)
     } // end of behavior for T111
 }
 
-static void T111_exit(Spec1Sm* sm)
+static void T111_exit_ptr(Spec1Sm* sm) static void T111_exit(Spec1Sm* sm)
 {
     // T111 behavior
     // uml: exit / { trace("Exit T111."); }
@@ -429,7 +447,7 @@ static void T111_exit(Spec1Sm* sm)
     } // end of behavior for T111
     
     // adjust function pointers for this state's exit
-    sm->current_state_exit_handler = T11_exit;
+    sm->current_state_exit_handler = T11_exit_ptr;
 }
 
 // Thread safe.
