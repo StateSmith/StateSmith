@@ -316,7 +316,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for ROOT.InitialState to DECIDE.");
 
                     // Step 3: Enter/move towards transition target `DECIDE`.
-                    this.DECIDE_enter();
+                    DECIDE_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.DECIDE;
@@ -459,7 +459,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for AUTO_VAR_TEST__BLAH to AUTO_VAR_TEST__BLAH2.");
 
                 // Step 3: Enter/move towards transition target `AUTO_VAR_TEST__BLAH2`.
-                this.AUTO_VAR_TEST__BLAH2_enter();
+                AUTO_VAR_TEST__BLAH2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.AUTO_VAR_TEST__BLAH2;
@@ -565,7 +565,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING.");
 
                 // Step 3: Enter/move towards transition target `TEST1_DO_EVENT_TESTING`.
-                this.TEST1_DO_EVENT_TESTING_enter();
+                TEST1_DO_EVENT_TESTING_enter();
 
                 // TEST1_DO_EVENT_TESTING.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT."); } TransitionTo(TEST1_ROOT)
@@ -576,7 +576,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST1_ROOT`.
-                    this.TEST1_ROOT_enter();
+                    TEST1_ROOT_enter();
 
                     // TEST1_ROOT.InitialState behavior
                     // uml: / { trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1."); } TransitionTo(TEST1_S1_1)
@@ -587,8 +587,8 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST1_S1_1`.
-                        this.TEST1_S1_enter();
-                        this.TEST1_S1_1_enter();
+                        TEST1_S1_enter();
+                        TEST1_S1_1_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST1_S1_1;
@@ -614,7 +614,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST10_CHOICE_POINT.");
 
                 // Step 3: Enter/move towards transition target `TEST10_CHOICE_POINT`.
-                this.TEST10_CHOICE_POINT_enter();
+                TEST10_CHOICE_POINT_enter();
 
                 // TEST10_CHOICE_POINT.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1."); } TransitionTo(TEST10_S1)
@@ -625,8 +625,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST10_S1`.
-                    this.TEST10_ROOT_enter();
-                    this.TEST10_S1_enter();
+                    TEST10_ROOT_enter();
+                    TEST10_S1_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST10_S1;
@@ -651,7 +651,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING.");
 
                 // Step 3: Enter/move towards transition target `TEST2_REGULAR_EVENT_TESTING`.
-                this.TEST2_REGULAR_EVENT_TESTING_enter();
+                TEST2_REGULAR_EVENT_TESTING_enter();
 
                 // TEST2_REGULAR_EVENT_TESTING.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT."); } TransitionTo(TEST2_ROOT)
@@ -662,7 +662,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST2_ROOT`.
-                    this.TEST2_ROOT_enter();
+                    TEST2_ROOT_enter();
 
                     // TEST2_ROOT.InitialState behavior
                     // uml: / { trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1."); } TransitionTo(TEST2_S1_1)
@@ -673,8 +673,8 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST2_S1_1`.
-                        this.TEST2_S1_enter();
-                        this.TEST2_S1_1_enter();
+                        TEST2_S1_enter();
+                        TEST2_S1_1_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST2_S1_1;
@@ -700,7 +700,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING.");
 
                 // Step 3: Enter/move towards transition target `TEST3_BEHAVIOR_ORDERING`.
-                this.TEST3_BEHAVIOR_ORDERING_enter();
+                TEST3_BEHAVIOR_ORDERING_enter();
 
                 // TEST3_BEHAVIOR_ORDERING.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT."); } TransitionTo(TEST3_ROOT)
@@ -711,7 +711,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST3_ROOT`.
-                    this.TEST3_ROOT_enter();
+                    TEST3_ROOT_enter();
 
                     // TEST3_ROOT.InitialState behavior
                     // uml: / { trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1."); } TransitionTo(TEST3_S1)
@@ -722,7 +722,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");
 
                         // Step 3: Enter/move towards transition target `TEST3_S1`.
-                        this.TEST3_S1_enter();
+                        TEST3_S1_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST3_S1;
@@ -748,7 +748,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.");
 
                 // Step 3: Enter/move towards transition target `TEST4_PARENT_CHILD_TRANSITIONS`.
-                this.TEST4_PARENT_CHILD_TRANSITIONS_enter();
+                TEST4_PARENT_CHILD_TRANSITIONS_enter();
 
                 // TEST4_PARENT_CHILD_TRANSITIONS.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE."); } TransitionTo(TEST4_DECIDE)
@@ -759,7 +759,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST4_DECIDE`.
-                    this.TEST4_DECIDE_enter();
+                    TEST4_DECIDE_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST4_DECIDE;
@@ -784,7 +784,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
 
                 // Step 3: Enter/move towards transition target `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS`.
-                this.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter();
+                TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter();
 
                 // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
@@ -795,7 +795,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST5_ROOT`.
-                    this.TEST5_ROOT_enter();
+                    TEST5_ROOT_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST5_ROOT;
@@ -820,7 +820,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST6_VARIABLES.");
 
                 // Step 3: Enter/move towards transition target `TEST6_VARIABLES`.
-                this.TEST6_VARIABLES_enter();
+                TEST6_VARIABLES_enter();
 
                 // TEST6_VARIABLES.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT."); } TransitionTo(TEST6_ROOT)
@@ -831,7 +831,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST6_ROOT`.
-                    this.TEST6_ROOT_enter();
+                    TEST6_ROOT_enter();
 
                     // TEST6_ROOT.InitialState behavior
                     // uml: / { trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1."); } TransitionTo(TEST6_S1)
@@ -842,7 +842,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1.");
 
                         // Step 3: Enter/move towards transition target `TEST6_S1`.
-                        this.TEST6_S1_enter();
+                        TEST6_S1_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST6_S1;
@@ -868,7 +868,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST7_INITIAL_OR_HISTORY.");
 
                 // Step 3: Enter/move towards transition target `TEST7_INITIAL_OR_HISTORY`.
-                this.TEST7_INITIAL_OR_HISTORY_enter();
+                TEST7_INITIAL_OR_HISTORY_enter();
 
                 // TEST7_INITIAL_OR_HISTORY.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE."); } TransitionTo(TEST7_DECIDE)
@@ -879,7 +879,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST7_DECIDE`.
-                    this.TEST7_DECIDE_enter();
+                    TEST7_DECIDE_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST7_DECIDE;
@@ -904,7 +904,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST8_ENTRY_CHOICE.");
 
                 // Step 3: Enter/move towards transition target `TEST8_ENTRY_CHOICE`.
-                this.TEST8_ENTRY_CHOICE_enter();
+                TEST8_ENTRY_CHOICE_enter();
 
                 // TEST8_ENTRY_CHOICE.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1)."); } TransitionTo(TEST8_ROOT.EntryPoint(1))
@@ -915,7 +915,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1).");
 
                     // Step 3: Enter/move towards transition target `TEST8_ROOT.EntryPoint(1)`.
-                    this.TEST8_ROOT_enter();
+                    TEST8_ROOT_enter();
                     // TEST8_ROOT.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
 
                     // Finish transition by calling pseudo state transition function.
@@ -940,7 +940,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for DECIDE to TEST9_EXIT_CHOICE.");
 
                 // Step 3: Enter/move towards transition target `TEST9_EXIT_CHOICE`.
-                this.TEST9_EXIT_CHOICE_enter();
+                TEST9_EXIT_CHOICE_enter();
 
                 // TEST9_EXIT_CHOICE.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE."); } TransitionTo(TEST9_DECIDE)
@@ -951,7 +951,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST9_DECIDE`.
-                    this.TEST9_DECIDE_enter();
+                    TEST9_DECIDE_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST9_DECIDE;
@@ -1071,7 +1071,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG`.
-                this.PREFIXING__OM__VEG_enter();
+                PREFIXING__OM__VEG_enter();
 
                 // PREFIXING__OM__VEG.InitialState behavior
                 // uml: / { trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE."); } TransitionTo(PREFIXING__OM__VEG__NONE)
@@ -1082,7 +1082,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");
 
                     // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__NONE`.
-                    this.PREFIXING__OM__VEG__NONE_enter();
+                    PREFIXING__OM__VEG__NONE_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.PREFIXING__OM__VEG__NONE;
@@ -1103,7 +1103,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__NONE`.
-                this.PREFIXING__OM__BEV__NONE_enter();
+                PREFIXING__OM__BEV__NONE_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__OM__BEV__NONE;
@@ -1160,7 +1160,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__WATER`.
-                this.PREFIXING__OM__BEV__WATER_enter();
+                PREFIXING__OM__BEV__WATER_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__OM__BEV__WATER;
@@ -1248,7 +1248,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__TEA`.
-                this.PREFIXING__OM__BEV__TEA_enter();
+                PREFIXING__OM__BEV__TEA_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__OM__BEV__TEA;
@@ -1305,7 +1305,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEVERAGE`.
-                this.PREFIXING__OM__BEVERAGE_enter();
+                PREFIXING__OM__BEVERAGE_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 PREFIXING__OM__BEVERAGE_InitialState_transition();
@@ -1361,7 +1361,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__POTATO`.
-                this.PREFIXING__OM__VEG__POTATO_enter();
+                PREFIXING__OM__VEG__POTATO_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__OM__VEG__POTATO;
@@ -1418,7 +1418,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__YAM`.
-                this.PREFIXING__OM__VEG__YAM_enter();
+                PREFIXING__OM__VEG__YAM_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__OM__VEG__YAM;
@@ -1568,7 +1568,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG`.
-                this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter();
+                PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter();
 
                 // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState behavior
                 // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE)
@@ -1579,7 +1579,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
 
                     // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE`.
-                    this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter();
+                    PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE;
@@ -1600,7 +1600,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE`.
-                this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter();
+                PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE;
@@ -1657,7 +1657,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER`.
-                this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter();
+                PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER;
@@ -1745,7 +1745,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA`.
-                this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter();
+                PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA;
@@ -1802,7 +1802,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE`.
-                this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter();
+                PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition();
@@ -1858,7 +1858,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO`.
-                this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter();
+                PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO;
@@ -1915,7 +1915,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM`.
-                this.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter();
+                PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM;
@@ -2137,7 +2137,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST1_S2`.
-                this.TEST1_S2_enter();
+                TEST1_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST1_S2;
@@ -2382,7 +2382,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");
 
                 // Step 3: Enter/move towards transition target `TEST10_A_1`.
-                this.TEST10_A_1_enter();
+                TEST10_A_1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST10_A_1;
@@ -2525,7 +2525,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");
 
                     // Step 3: Enter/move towards transition target `TEST10_G_S0`.
-                    this.TEST10_G_S0_enter();
+                    TEST10_G_S0_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST10_G_S0;
@@ -2555,7 +2555,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S1`.
-                        this.TEST10_G_S1_enter();
+                        TEST10_G_S1_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST10_G_S1;
@@ -2572,7 +2572,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S2`.
-                        this.TEST10_G_S2_enter();
+                        TEST10_G_S2_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST10_G_S2;
@@ -2602,7 +2602,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S3`.
-                        this.TEST10_G_S3_enter();
+                        TEST10_G_S3_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST10_G_S3;
@@ -2620,7 +2620,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");
 
                         // Step 3: Enter/move towards transition target `TEST10_S4`.
-                        this.TEST10_S4_enter();
+                        TEST10_S4_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST10_S4;
@@ -2817,7 +2817,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).");
 
                 // Step 3: Enter/move towards transition target `TEST10_G.EntryPoint(1)`.
-                this.TEST10_G_enter();
+                TEST10_G_enter();
                 // TEST10_G.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
 
                 // TEST10_G.EntryPoint(1) behavior
@@ -2853,7 +2853,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST10_S1 to TEST10_A.");
 
                 // Step 3: Enter/move towards transition target `TEST10_A`.
-                this.TEST10_A_enter();
+                TEST10_A_enter();
 
                 // TEST10_A.InitialState behavior
                 // uml: [count == 1] / { trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
@@ -2923,7 +2923,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().");
 
                 // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
-                this.TEST10_G_enter();
+                TEST10_G_enter();
                 // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
@@ -2947,7 +2947,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST10_S1 to TEST10_G.");
 
                 // Step 3: Enter/move towards transition target `TEST10_G`.
-                this.TEST10_G_enter();
+                TEST10_G_enter();
 
                 // TEST10_G.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
@@ -3198,7 +3198,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST2_S2`.
-                this.TEST2_S2_enter();
+                TEST2_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST2_S2;
@@ -3302,7 +3302,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST2_S2 to TEST2_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST2_S2`.
-                this.TEST2_S2_enter();
+                TEST2_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST2_S2;
@@ -3446,7 +3446,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST3_S1 to TEST3_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST3_S2`.
-                this.TEST3_S2_enter();
+                TEST3_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST3_S2;
@@ -3538,7 +3538,7 @@ namespace Csharp.Spec2smTests
                 trace("3 woot!");
 
                 // Step 3: Enter/move towards transition target `TEST3_S3`.
-                this.TEST3_S3_enter();
+                TEST3_S3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST3_S3;
@@ -3727,7 +3727,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4B_G to TEST4B_G_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4B_G_1`.
-                this.TEST4B_G_1_enter();
+                TEST4B_G_1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4B_G_1;
@@ -3871,7 +3871,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4C_G to TEST4C_G_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4C_G_1`.
-                this.TEST4C_G_1_enter();
+                TEST4C_G_1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4C_G_1;
@@ -4026,8 +4026,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G_1`.
-                    this.TEST4D_G_enter();
-                    this.TEST4D_G_1_enter();
+                    TEST4D_G_enter();
+                    TEST4D_G_1_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST4D_G_1;
@@ -4096,7 +4096,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G`.
-                    this.TEST4D_G_enter();
+                    TEST4D_G_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST4D_G;
@@ -4160,7 +4160,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.");
 
                 // Step 3: Enter/move towards transition target `TEST4_ROOT`.
-                this.TEST4_ROOT_enter();
+                TEST4_ROOT_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4_ROOT;
@@ -4184,8 +4184,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.");
 
                 // Step 3: Enter/move towards transition target `TEST4B_LOCAL`.
-                this.TEST4_B_AND_OTHERS_enter();
-                this.TEST4B_LOCAL_enter();
+                TEST4_B_AND_OTHERS_enter();
+                TEST4B_LOCAL_enter();
 
                 // TEST4B_LOCAL.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G."); } TransitionTo(TEST4B_G)
@@ -4196,7 +4196,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4B_G`.
-                    this.TEST4B_G_enter();
+                    TEST4B_G_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST4B_G;
@@ -4221,8 +4221,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.");
 
                 // Step 3: Enter/move towards transition target `TEST4C_LOCAL_TO_ALIAS`.
-                this.TEST4_B_AND_OTHERS_enter();
-                this.TEST4C_LOCAL_TO_ALIAS_enter();
+                TEST4_B_AND_OTHERS_enter();
+                TEST4C_LOCAL_TO_ALIAS_enter();
 
                 // TEST4C_LOCAL_TO_ALIAS.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G."); } TransitionTo(TEST4C_G)
@@ -4233,7 +4233,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4C_G`.
-                    this.TEST4C_G_enter();
+                    TEST4C_G_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST4C_G;
@@ -4258,8 +4258,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.");
 
                 // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL`.
-                this.TEST4_B_AND_OTHERS_enter();
-                this.TEST4D_EXTERNAL_enter();
+                TEST4_B_AND_OTHERS_enter();
+                TEST4D_EXTERNAL_enter();
 
                 // TEST4D_EXTERNAL.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G."); } TransitionTo(TEST4D_G)
@@ -4270,7 +4270,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G`.
-                    this.TEST4D_G_enter();
+                    TEST4D_G_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST4D_G;
@@ -4340,7 +4340,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_ROOT to TEST4_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S1`.
-                this.TEST4_S1_enter();
+                TEST4_S1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4_S1;
@@ -4364,8 +4364,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S10_1`.
-                this.TEST4_S10_enter();
-                this.TEST4_S10_1_enter();
+                TEST4_S10_enter();
+                TEST4_S10_1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4_S10_1;
@@ -4389,7 +4389,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_ROOT to TEST4_S20.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S20`.
-                this.TEST4_S20_enter();
+                TEST4_S20_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 TEST4_S20_InitialState_transition();
@@ -4445,7 +4445,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_S1 to TEST4_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S2`.
-                this.TEST4_S2_enter();
+                TEST4_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4_S2;
@@ -4503,7 +4503,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_S10 to TEST4_S10.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S10`.
-                this.TEST4_S10_enter();
+                TEST4_S10_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4_S10;
@@ -4591,7 +4591,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_S2 to TEST4_S3.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S3`.
-                this.TEST4_S3_enter();
+                TEST4_S3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4_S3;
@@ -4649,7 +4649,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_S20 to TEST4_S20.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S20`.
-                this.TEST4_S20_enter();
+                TEST4_S20_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 TEST4_S20_InitialState_transition();
@@ -4668,7 +4668,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S20_1`.
-                this.TEST4_S20_1_enter();
+                TEST4_S20_1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST4_S20_1;
@@ -4851,7 +4851,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST5_ROOT to TEST5_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST5_S1`.
-                this.TEST5_S1_enter();
+                TEST5_S1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST5_S1;
@@ -4908,7 +4908,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST5_S1 to TEST5_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST5_S2`.
-                this.TEST5_S2_enter();
+                TEST5_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST5_S2;
@@ -4965,7 +4965,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST5_S2 to TEST5_S3.");
 
                 // Step 3: Enter/move towards transition target `TEST5_S3`.
-                this.TEST5_S3_enter();
+                TEST5_S3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST5_S3;
@@ -5159,7 +5159,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST6_S1 to TEST6_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST6_S2`.
-                this.TEST6_S2_enter();
+                TEST6_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST6_S2;
@@ -5379,7 +5379,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
-                this.T7__DH1__BUILD_enter();
+                T7__DH1__BUILD_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__DH1__BUILD_InitialState_transition();
@@ -5476,7 +5476,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
-                this.T7__DH1__CALL_THOR_enter();
+                T7__DH1__CALL_THOR_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__CALL_THOR;
@@ -5533,8 +5533,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
-                this.T7__DH1__LOCAL_HELP_enter();
-                this.T7__DH1__BUDDY_ELF_enter();
+                T7__DH1__LOCAL_HELP_enter();
+                T7__DH1__BUDDY_ELF_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__BUDDY_ELF;
@@ -5591,7 +5591,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CALL_BATMAN`.
-                this.T7__DH1__CALL_BATMAN_enter();
+                T7__DH1__CALL_BATMAN_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__CALL_BATMAN;
@@ -5695,7 +5695,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
-                this.T7__DH1__POLAR_BEARS_enter();
+                T7__DH1__POLAR_BEARS_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__POLAR_BEARS;
@@ -5807,9 +5807,9 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
-                this.T7__DH1__GET_BACKUP_enter();
-                this.T7__DH1__HERO_enter();
-                this.T7__DH1__CALL_THOR_enter();
+                T7__DH1__GET_BACKUP_enter();
+                T7__DH1__HERO_enter();
+                T7__DH1__CALL_THOR_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__CALL_THOR;
@@ -5874,7 +5874,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__GIVE_COOKIES`.
-                this.T7__DH1__GIVE_COOKIES_enter();
+                T7__DH1__GIVE_COOKIES_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__GIVE_COOKIES;
@@ -5933,7 +5933,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED`.
-                this.T7__DH1__ALIENS_DETECTED_enter();
+                T7__DH1__ALIENS_DETECTED_enter();
 
                 // T7__DH1__ALIENS_DETECTED.InitialState behavior
                 // uml: / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History."); } TransitionTo(T7__DH1__ALIENS_DETECTED.History)
@@ -5956,7 +5956,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__GIVE_COOKIES`.
-                        this.T7__DH1__GIVE_COOKIES_enter();
+                        T7__DH1__GIVE_COOKIES_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.T7__DH1__GIVE_COOKIES;
@@ -5974,8 +5974,8 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
-                        this.T7__DH1__GET_BACKUP_enter();
-                        this.T7__DH1__HERO_enter();
+                        T7__DH1__GET_BACKUP_enter();
+                        T7__DH1__HERO_enter();
 
                         // Finish transition by calling pseudo state transition function.
                         T7__DH1__HERO_InitialState_transition();
@@ -5992,9 +5992,9 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
-                        this.T7__DH1__GET_BACKUP_enter();
-                        this.T7__DH1__LOCAL_HELP_enter();
-                        this.T7__DH1__BUDDY_ELF_enter();
+                        T7__DH1__GET_BACKUP_enter();
+                        T7__DH1__LOCAL_HELP_enter();
+                        T7__DH1__BUDDY_ELF_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.T7__DH1__BUDDY_ELF;
@@ -6012,9 +6012,9 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
-                        this.T7__DH1__GET_BACKUP_enter();
-                        this.T7__DH1__LOCAL_HELP_enter();
-                        this.T7__DH1__POLAR_BEARS_enter();
+                        T7__DH1__GET_BACKUP_enter();
+                        T7__DH1__LOCAL_HELP_enter();
+                        T7__DH1__POLAR_BEARS_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.T7__DH1__POLAR_BEARS;
@@ -6031,7 +6031,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__SNOWBALL_FIGHT`.
-                        this.T7__DH1__SNOWBALL_FIGHT_enter();
+                        T7__DH1__SNOWBALL_FIGHT_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.T7__DH1__SNOWBALL_FIGHT;
@@ -6057,8 +6057,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.History`.
-                this.T7__DH1__ALIENS_DETECTED_enter();
-                this.T7__DH1__GET_BACKUP_enter();
+                T7__DH1__ALIENS_DETECTED_enter();
+                T7__DH1__GET_BACKUP_enter();
                 // T7__DH1__GET_BACKUP.History is a pseudo state and cannot have an `enter` trigger.
 
                 // T7__DH1__GET_BACKUP.History behavior
@@ -6071,7 +6071,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
-                    this.T7__DH1__HERO_enter();
+                    T7__DH1__HERO_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__HERO_InitialState_transition();
@@ -6088,8 +6088,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
-                    this.T7__DH1__LOCAL_HELP_enter();
-                    this.T7__DH1__BUDDY_ELF_enter();
+                    T7__DH1__LOCAL_HELP_enter();
+                    T7__DH1__BUDDY_ELF_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__BUDDY_ELF;
@@ -6107,8 +6107,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
-                    this.T7__DH1__LOCAL_HELP_enter();
-                    this.T7__DH1__POLAR_BEARS_enter();
+                    T7__DH1__LOCAL_HELP_enter();
+                    T7__DH1__POLAR_BEARS_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__POLAR_BEARS;
@@ -6136,7 +6136,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
-                        this.T7__DH1__HERO_enter();
+                        T7__DH1__HERO_enter();
 
                         // Finish transition by calling pseudo state transition function.
                         T7__DH1__HERO_InitialState_transition();
@@ -6169,7 +6169,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__TOOL`.
-                    this.T7__DH1__TOOL_enter();
+                    T7__DH1__TOOL_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__TOOL_InitialState_transition();
@@ -6186,8 +6186,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
-                    this.T7__DH1__TOY_enter();
-                    this.T7__DH1__RACE_CAR_enter();
+                    T7__DH1__TOY_enter();
+                    T7__DH1__RACE_CAR_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__RACE_CAR;
@@ -6205,8 +6205,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__TEDDY_BEAR`.
-                    this.T7__DH1__TOY_enter();
-                    this.T7__DH1__TEDDY_BEAR_enter();
+                    T7__DH1__TOY_enter();
+                    T7__DH1__TEDDY_BEAR_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__TEDDY_BEAR;
@@ -6224,8 +6224,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__GLOW_WORM`.
-                    this.T7__DH1__TOY_enter();
-                    this.T7__DH1__GLOW_WORM_enter();
+                    T7__DH1__TOY_enter();
+                    T7__DH1__GLOW_WORM_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__GLOW_WORM;
@@ -6243,8 +6243,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__ROBOT`.
-                    this.T7__DH1__TOY_enter();
-                    this.T7__DH1__ROBOT_enter();
+                    T7__DH1__TOY_enter();
+                    T7__DH1__ROBOT_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__ROBOT_InitialState_transition();
@@ -6261,9 +6261,9 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
-                    this.T7__DH1__TOY_enter();
-                    this.T7__DH1__ROBOT_enter();
-                    this.T7__DH1__BATTLEBOT_enter();
+                    T7__DH1__TOY_enter();
+                    T7__DH1__ROBOT_enter();
+                    T7__DH1__BATTLEBOT_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__BATTLEBOT;
@@ -6281,9 +6281,9 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__WALL_E`.
-                    this.T7__DH1__TOY_enter();
-                    this.T7__DH1__ROBOT_enter();
-                    this.T7__DH1__WALL_E_enter();
+                    T7__DH1__TOY_enter();
+                    T7__DH1__ROBOT_enter();
+                    T7__DH1__WALL_E_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__WALL_E;
@@ -6301,8 +6301,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
-                    this.T7__DH1__TOOL_enter();
-                    this.T7__DH1__IMPACT_DRILL_enter();
+                    T7__DH1__TOOL_enter();
+                    T7__DH1__IMPACT_DRILL_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__IMPACT_DRILL;
@@ -6320,8 +6320,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__CIRCULAR_SAW`.
-                    this.T7__DH1__TOOL_enter();
-                    this.T7__DH1__CIRCULAR_SAW_enter();
+                    T7__DH1__TOOL_enter();
+                    T7__DH1__CIRCULAR_SAW_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH1__CIRCULAR_SAW;
@@ -6338,7 +6338,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__TOY`.
-                    this.T7__DH1__TOY_enter();
+                    T7__DH1__TOY_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__TOY_InitialState_transition();
@@ -6403,7 +6403,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__TOY`.
-                this.T7__DH1__TOY_enter();
+                T7__DH1__TOY_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__DH1__TOY_InitialState_transition();
@@ -6422,7 +6422,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
-                this.T7__DH1__IMPACT_DRILL_enter();
+                T7__DH1__IMPACT_DRILL_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__IMPACT_DRILL;
@@ -6526,7 +6526,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CIRCULAR_SAW`.
-                this.T7__DH1__CIRCULAR_SAW_enter();
+                T7__DH1__CIRCULAR_SAW_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__CIRCULAR_SAW;
@@ -6591,7 +6591,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__TOOL`.
-                this.T7__DH1__TOOL_enter();
+                T7__DH1__TOOL_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__DH1__TOOL_InitialState_transition();
@@ -6610,7 +6610,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
-                this.T7__DH1__RACE_CAR_enter();
+                T7__DH1__RACE_CAR_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__RACE_CAR;
@@ -6676,7 +6676,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__ROBOT`.
-                this.T7__DH1__ROBOT_enter();
+                T7__DH1__ROBOT_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__DH1__ROBOT_InitialState_transition();
@@ -6741,7 +6741,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__TEDDY_BEAR`.
-                this.T7__DH1__TEDDY_BEAR_enter();
+                T7__DH1__TEDDY_BEAR_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__TEDDY_BEAR;
@@ -6800,7 +6800,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
-                this.T7__DH1__BATTLEBOT_enter();
+                T7__DH1__BATTLEBOT_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__BATTLEBOT;
@@ -6866,7 +6866,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__WALL_E`.
-                this.T7__DH1__WALL_E_enter();
+                T7__DH1__WALL_E_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__WALL_E;
@@ -6971,7 +6971,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__GLOW_WORM`.
-                this.T7__DH1__GLOW_WORM_enter();
+                T7__DH1__GLOW_WORM_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH1__GLOW_WORM;
@@ -7059,7 +7059,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_3`.
-                this.T7__DH2__STATE_3_enter();
+                T7__DH2__STATE_3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH2__STATE_3;
@@ -7091,7 +7091,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2.");
 
                     // Step 3: Enter/move towards transition target `T7__DH2__state_2`.
-                    this.T7__DH2__STATE_2_enter();
+                    T7__DH2__STATE_2_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH2__state_2_InitialState_transition();
@@ -7108,8 +7108,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6.");
 
                     // Step 3: Enter/move towards transition target `T7__DH2__state_6`.
-                    this.T7__DH2__STATE_2_enter();
-                    this.T7__DH2__STATE_6_enter();
+                    T7__DH2__STATE_2_enter();
+                    T7__DH2__STATE_6_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH2__STATE_6;
@@ -7127,8 +7127,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9.");
 
                     // Step 3: Enter/move towards transition target `T7__DH2__state_9`.
-                    this.T7__DH2__STATE_2_enter();
-                    this.T7__DH2__STATE_9_enter();
+                    T7__DH2__STATE_2_enter();
+                    T7__DH2__STATE_9_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH2__STATE_9;
@@ -7145,7 +7145,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1.");
 
                     // Step 3: Enter/move towards transition target `T7__DH2__state_1`.
-                    this.T7__DH2__STATE_1_enter();
+                    T7__DH2__STATE_1_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH2__STATE_1;
@@ -7211,7 +7211,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_2`.
-                this.T7__DH2__STATE_2_enter();
+                T7__DH2__STATE_2_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__DH2__state_2_InitialState_transition();
@@ -7275,7 +7275,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_1`.
-                this.T7__DH2__STATE_1_enter();
+                T7__DH2__STATE_1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH2__STATE_1;
@@ -7295,7 +7295,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_6`.
-                this.T7__DH2__STATE_6_enter();
+                T7__DH2__STATE_6_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH2__STATE_6;
@@ -7360,7 +7360,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_9`.
-                this.T7__DH2__STATE_9_enter();
+                T7__DH2__STATE_9_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH2__STATE_9;
@@ -7456,7 +7456,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_0`.
-                this.T7__DH2__STATE_0_enter();
+                T7__DH2__STATE_0_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__DH2__state_0_InitialState_transition();
@@ -7543,7 +7543,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_3`.
-                this.T7__DH3__STATE_3_enter();
+                T7__DH3__STATE_3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH3__STATE_3;
@@ -7575,7 +7575,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2.");
 
                     // Step 3: Enter/move towards transition target `T7__DH3__state_2`.
-                    this.T7__DH3__STATE_2_enter();
+                    T7__DH3__STATE_2_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH3__state_2_InitialState_transition();
@@ -7591,7 +7591,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1.");
 
                     // Step 3: Enter/move towards transition target `T7__DH3__state_1`.
-                    this.T7__DH3__STATE_1_enter();
+                    T7__DH3__STATE_1_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__DH3__STATE_1;
@@ -7657,7 +7657,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_2`.
-                this.T7__DH3__STATE_2_enter();
+                T7__DH3__STATE_2_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__DH3__state_2_InitialState_transition();
@@ -7721,7 +7721,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_1`.
-                this.T7__DH3__STATE_1_enter();
+                T7__DH3__STATE_1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH3__STATE_1;
@@ -7741,7 +7741,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_6`.
-                this.T7__DH3__STATE_6_enter();
+                T7__DH3__STATE_6_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH3__STATE_6;
@@ -7798,7 +7798,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_9`.
-                this.T7__DH3__STATE_9_enter();
+                T7__DH3__STATE_9_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__DH3__STATE_9;
@@ -7886,7 +7886,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_0`.
-                this.T7__DH3__STATE_0_enter();
+                T7__DH3__STATE_0_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__DH3__state_0_InitialState_transition();
@@ -7977,7 +7977,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
-                this.T7__H1__OFF3_enter();
+                T7__H1__OFF3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__H1__OFF3;
@@ -8001,7 +8001,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF`.
-                this.T7__H1__OFF_enter();
+                T7__H1__OFF_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__H1__OFF_InitialState_transition();
@@ -8024,7 +8024,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON`.
-                this.T7__H1__ON_enter();
+                T7__H1__ON_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__H1__ON_InitialState_transition();
@@ -8055,7 +8055,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__OFF2`.
-                    this.T7__H1__OFF2_enter();
+                    T7__H1__OFF2_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__H1__OFF2;
@@ -8073,7 +8073,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
-                    this.T7__H1__OFF3_enter();
+                    T7__H1__OFF3_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__H1__OFF3;
@@ -8090,7 +8090,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__OFF1`.
-                    this.T7__H1__OFF1_enter();
+                    T7__H1__OFF1_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__H1__OFF1;
@@ -8156,7 +8156,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF2`.
-                this.T7__H1__OFF2_enter();
+                T7__H1__OFF2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__H1__OFF2;
@@ -8221,7 +8221,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
-                this.T7__H1__OFF3_enter();
+                T7__H1__OFF3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__H1__OFF3;
@@ -8317,7 +8317,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF`.
-                this.T7__H1__OFF_enter();
+                T7__H1__OFF_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__H1__OFF_InitialState_transition();
@@ -8348,7 +8348,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON2`.
-                    this.T7__H1__ON2_enter();
+                    T7__H1__ON2_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__H1__ON2;
@@ -8366,7 +8366,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON3`.
-                    this.T7__H1__ON3_enter();
+                    T7__H1__ON3_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__H1__ON3;
@@ -8383,7 +8383,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON1`.
-                    this.T7__H1__ON1_enter();
+                    T7__H1__ON1_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.T7__H1__ON1;
@@ -8449,7 +8449,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON2`.
-                this.T7__H1__ON2_enter();
+                T7__H1__ON2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__H1__ON2;
@@ -8514,7 +8514,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON3`.
-                this.T7__H1__ON3_enter();
+                T7__H1__ON3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__H1__ON3;
@@ -8579,7 +8579,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON1`.
-                this.T7__H1__ON1_enter();
+                T7__H1__ON1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__H1__ON1;
@@ -8679,7 +8679,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__S1`.
-                this.T7__INITIAL1__S1_enter();
+                T7__INITIAL1__S1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__INITIAL1__S1;
@@ -8756,7 +8756,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S1`.
-                this.T7__INITIAL1__G_S1_enter();
+                T7__INITIAL1__G_S1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__INITIAL1__G_S1;
@@ -8774,7 +8774,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S2`.
-                this.T7__INITIAL1__G_S2_enter();
+                T7__INITIAL1__G_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__INITIAL1__G_S2;
@@ -8791,7 +8791,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S3`.
-                this.T7__INITIAL1__G_S3_enter();
+                T7__INITIAL1__G_S3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.T7__INITIAL1__G_S3;
@@ -8943,7 +8943,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G`.
-                this.T7__INITIAL1__G_enter();
+                T7__INITIAL1__G_enter();
 
                 // Finish transition by calling pseudo state transition function.
                 T7__INITIAL1__G_InitialState_transition();
@@ -8966,7 +8966,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G.InitialState`.
-                this.T7__INITIAL1__G_enter();
+                T7__INITIAL1__G_enter();
                 // T7__INITIAL1__G.InitialState is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
@@ -9039,8 +9039,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1`.
-                this.TEST7_enter();
-                this.T7__INITIAL1_enter();
+                TEST7_enter();
+                T7__INITIAL1_enter();
 
                 // T7__INITIAL1.InitialState behavior
                 // uml: / { trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT."); } TransitionTo(T7__INITIAL1__PARENT)
@@ -9051,7 +9051,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT.");
 
                     // Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT`.
-                    this.T7__INITIAL1__PARENT_enter();
+                    T7__INITIAL1__PARENT_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__INITIAL1__PARENT_InitialState_transition();
@@ -9075,8 +9075,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.");
 
                 // Step 3: Enter/move towards transition target `T7__HISTORY1`.
-                this.TEST7_enter();
-                this.T7__HISTORY1_enter();
+                TEST7_enter();
+                T7__HISTORY1_enter();
 
                 // T7__HISTORY1.InitialState behavior
                 // uml: / { trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON."); } TransitionTo(T7__H1__ON)
@@ -9087,7 +9087,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON`.
-                    this.T7__H1__ON_enter();
+                    T7__H1__ON_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__H1__ON_InitialState_transition();
@@ -9111,8 +9111,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.");
 
                 // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY1`.
-                this.TEST7_enter();
-                this.T7__DEEP_HISTORY1_enter();
+                TEST7_enter();
+                T7__DEEP_HISTORY1_enter();
 
                 // T7__DEEP_HISTORY1.InitialState behavior
                 // uml: / { trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD."); } TransitionTo(T7__DH1__BUILD)
@@ -9123,8 +9123,8 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
-                    this.T7__DH1__SANTAS_WORKSHOP_enter();
-                    this.T7__DH1__BUILD_enter();
+                    T7__DH1__SANTAS_WORKSHOP_enter();
+                    T7__DH1__BUILD_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__BUILD_InitialState_transition();
@@ -9148,8 +9148,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.");
 
                 // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2`.
-                this.TEST7_enter();
-                this.T7__DEEP_HISTORY2_enter();
+                TEST7_enter();
+                T7__DEEP_HISTORY2_enter();
 
                 // T7__DEEP_HISTORY2.InitialState behavior
                 // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0."); } TransitionTo(T7__DH2__state_0)
@@ -9160,7 +9160,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0.");
 
                     // Step 3: Enter/move towards transition target `T7__DH2__state_0`.
-                    this.T7__DH2__STATE_0_enter();
+                    T7__DH2__STATE_0_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH2__state_0_InitialState_transition();
@@ -9184,8 +9184,8 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.");
 
                 // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3`.
-                this.TEST7_enter();
-                this.T7__DEEP_HISTORY3_enter();
+                TEST7_enter();
+                T7__DEEP_HISTORY3_enter();
 
                 // T7__DEEP_HISTORY3.InitialState behavior
                 // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0."); } TransitionTo(T7__DH3__state_0)
@@ -9196,7 +9196,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0.");
 
                     // Step 3: Enter/move towards transition target `T7__DH3__state_0`.
-                    this.T7__DH3__STATE_0_enter();
+                    T7__DH3__STATE_0_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     T7__DH3__state_0_InitialState_transition();
@@ -9320,7 +9320,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST8_S1`.
-                this.TEST8_S1_enter();
+                TEST8_S1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST8_S1;
@@ -9397,7 +9397,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S1`.
-                this.TEST8_G_S1_enter();
+                TEST8_G_S1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST8_G_S1;
@@ -9415,7 +9415,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S2`.
-                this.TEST8_G_S2_enter();
+                TEST8_G_S2_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST8_G_S2;
@@ -9432,7 +9432,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S3`.
-                this.TEST8_G_S3_enter();
+                TEST8_G_S3_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST8_G_S3;
@@ -9606,7 +9606,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).");
 
                 // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(1)`.
-                this.TEST8_G_enter();
+                TEST8_G_enter();
                 // TEST8_G.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
@@ -9642,7 +9642,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
 
                 // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(3)`.
-                this.TEST8_G_enter();
+                TEST8_G_enter();
                 // TEST8_G.EntryPoint(3) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
@@ -9666,7 +9666,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
 
                 // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(3)`.
-                this.TEST8_G_enter();
+                TEST8_G_enter();
                 // TEST8_G.EntryPoint(3) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
@@ -9756,7 +9756,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.");
 
                 // Step 3: Enter/move towards transition target `TEST9_ROOT`.
-                this.TEST9_ROOT_enter();
+                TEST9_ROOT_enter();
 
                 // TEST9_ROOT.InitialState behavior
                 // uml: / { trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1."); } TransitionTo(TEST9_S1)
@@ -9767,7 +9767,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST9_S1`.
-                    this.TEST9_S1_enter();
+                    TEST9_S1_enter();
 
                     // TEST9_S1.InitialState behavior
                     // uml: / { trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1."); } TransitionTo(TEST9_S1_1)
@@ -9778,7 +9778,7 @@ namespace Csharp.Spec2smTests
                         trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST9_S1_1`.
-                        this.TEST9_S1_1_enter();
+                        TEST9_S1_1_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                         this.stateId = StateId.TEST9_S1_1;
@@ -9804,7 +9804,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.");
 
                 // Step 3: Enter/move towards transition target `TEST9A_ROOT`.
-                this.TEST9A_ROOT_enter();
+                TEST9A_ROOT_enter();
 
                 // TEST9A_ROOT.InitialState behavior
                 // uml: / { trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");\ncount = 0; } TransitionTo(TEST9A_S1)
@@ -9816,7 +9816,7 @@ namespace Csharp.Spec2smTests
                     this.vars.count = 0;
 
                     // Step 3: Enter/move towards transition target `TEST9A_S1`.
-                    this.TEST9A_S1_enter();
+                    TEST9A_S1_enter();
 
                     // Finish transition by calling pseudo state transition function.
                     TEST9A_S1_InitialState_transition();
@@ -10098,7 +10098,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S4`.
-                    this.TEST9_G_S4_enter();
+                    TEST9_G_S4_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST9_G_S4;
@@ -10117,7 +10117,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S1`.
-                    this.TEST9_G_S1_enter();
+                    TEST9_G_S1_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST9_G_S1;
@@ -10136,7 +10136,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S2`.
-                    this.TEST9_G_S2_enter();
+                    TEST9_G_S2_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST9_G_S2;
@@ -10154,7 +10154,7 @@ namespace Csharp.Spec2smTests
                     trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S3`.
-                    this.TEST9_G_S3_enter();
+                    TEST9_G_S3_enter();
 
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     this.stateId = StateId.TEST9_G_S3;
@@ -10237,7 +10237,7 @@ namespace Csharp.Spec2smTests
                 trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
 
                 // Step 3: Enter/move towards transition target `TEST9A_S1_1`.
-                this.TEST9A_S1_1_enter();
+                TEST9A_S1_1_enter();
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 this.stateId = StateId.TEST9A_S1_1;

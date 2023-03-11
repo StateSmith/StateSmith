@@ -182,7 +182,7 @@ public class EventHandlerBuilder
             if (stateToEnter is NamedVertex namedVertexToEnter)
             {
                 var enterHandler = mangler.SmTriggerHandlerFuncName(namedVertexToEnter, TriggerHelper.TRIGGER_ENTER);
-                File.AppendLine($"{smAccess}.{enterHandler}();");
+                File.AppendLine($"{enterHandler}();");
             }
             else if (stateToEnter is PseudoStateVertex pv)
             {

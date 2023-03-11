@@ -9,6 +9,7 @@
 
 #include "../../lang-helpers/c/helper.h"
 
+// gcc -g -Wall ../../lang-helpers/c/helper.c main.c Spec1Sm.c
 
 // https://stackoverflow.com/a/4415646/7331858
 #define COUNT_OF(x) ((sizeof(x) / sizeof(0 [x])) / ((size_t)(!(sizeof(x) % sizeof(0 [x])))))
