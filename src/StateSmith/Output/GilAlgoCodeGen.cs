@@ -44,14 +44,14 @@ public class GilAlgoCodeGen : ICodeGenRunner
         try
         {
             transpiler.TranspileAndOutputCode(gilCode);
-            //string gilPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs";
-            //File.WriteAllText(gilPath, gilCode);
+            string gilPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs.txt";
+            File.WriteAllText(gilPath, gilCode);
         }
         catch (Exception e)
         {
             if (runnerSettings.dumpGilCodeOnError)
             {
-                string gilPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs";
+                string gilPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs.txt";
 
                 // get the most accurate GIL code if it is available in case other modifications were made
                 if (e is TranspilerException transpilerException && transpilerException.GilCode != null)
