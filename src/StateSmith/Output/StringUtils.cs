@@ -158,4 +158,22 @@ public class StringUtils
 
         str += toAppend;
     }
+
+    public static string SnakeCaseToCamelCase(string snakeCaseName)
+    {
+        var regex = new Regex(@"(?x) _ (?<letterAfterUnderscore> [a-z] ) ");
+        var newName = regex.Replace(snakeCaseName, (Match m) => m.Groups["letterAfterUnderscore"].Value.ToUpper());
+
+        return newName;
+    }
+
+    public static string SnakeCaseToPascalCase(string snakeCaseName)
+    {
+        var regex = new Regex(@"(?x)
+        ( ^ \s* | _ ) # either start of input or underscore
+        (?<letterToUpperCase> [a-zA-Z] ) ");
+        var newName = regex.Replace(snakeCaseName, (Match m) => m.Groups["letterToUpperCase"].Value.ToUpper());
+
+        return newName;
+    }
 }
