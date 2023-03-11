@@ -311,25 +311,23 @@ internal class C99GenVisitor : CSharpSyntaxWalker
             symbol = model.GetDeclaredSymbol(cds).ThrowIfNull();
         }
 
-        SyntaxToken? toSkip = null;
+        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+
         if (renderingPrototypes)
-            toSkip = node.CloseParenToken;
+            list.Remove(node.CloseParenToken);
 
         if (symbol?.IsStatic == false)
         {
-            node.VisitChildNodesAndTokens(this, node.OpenParenToken, () =>
+            list.VisitUpTo(node.OpenParenToken, including: true);
+
+            sb.Append(GetCName(symbol.ContainingType) + "* sm");
+            if (node.Parameters.Count > 0)
             {
-                sb.Append(GetCName(symbol.ContainingType) + "* sm");
-                if (node.Parameters.Count > 0)
-                {
-                    sb.Append(", ");
-                }
-            }, toSkip);
+                sb.Append(", ");
+            }
         }
-        else
-        {
-            node.VisitChildNodesAndTokens(this, toSkip);
-        }
+
+        list.VisitRest();
     }
 
     // arguments are passed to methods/constructors
@@ -341,14 +339,16 @@ internal class C99GenVisitor : CSharpSyntaxWalker
         // only append sm/self/this var if this is an ordinary non-static method
         if (!iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.Ordinary)
         {
-            node.VisitChildNodesAndTokens(this, node.OpenParenToken, () =>
+            var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+            list.VisitUpTo(node.OpenParenToken, including: true);
+
+            sb.Append(GetCName(iMethodSymbol.ContainingType) + "* sm");
+            if (node.Arguments.Count > 0)
             {
-                sb.Append(GetCName(iMethodSymbol.ContainingType) + "* sm");
-                if (node.Arguments.Count > 0)
-                {
-                    sb.Append(", ");
-                }
-            });
+                sb.Append(", ");
+            }
+
+            list.VisitRest();
         }
         else
         {

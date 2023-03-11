@@ -70,7 +70,7 @@ public static class Extensions
     }
 
     /// <summary>
-    /// TODO use <see cref="WalkableChildSyntaxList"/> instead. Remove this function.
+    /// If you have more advanced needs, see <see cref="WalkableChildSyntaxList"/>.
     /// </summary>
     public static void VisitChildNodesAndTokens(this SyntaxNode node, CSharpSyntaxWalker syntaxWalker, SyntaxToken? toSkip = null)
     {
@@ -80,40 +80,6 @@ public static class Extensions
         {
             if (kid != toSkip)
                 kid.VisitWith(syntaxWalker);
-        }
-    }
-
-    /// <summary>
-    /// TODO use <see cref="WalkableChildSyntaxList"/> instead. Remove this function.
-    /// </summary>
-    public static void VisitChildNodesAndTokens(this SyntaxNode node, CSharpSyntaxWalker syntaxWalker, SyntaxToken token, Action action, SyntaxToken? toSkip = null)
-    {
-        var kids = node.ChildNodesAndTokens();
-        int i = 0;
-
-        while (true)
-        {
-            var kid = kids[i];
-            i++;
-            if (ShouldVisit(toSkip, kid))
-                kid.VisitWith(syntaxWalker);
-
-            if (kid == token)
-                break;
-        }
-
-        action();
-
-        for (; i < kids.Count; i++)
-        {
-            var kid = kids[i];
-            if (ShouldVisit(toSkip, kid))
-                kid.VisitWith(syntaxWalker);
-        }
-
-        static bool ShouldVisit(SyntaxToken? toSkip, SyntaxNodeOrToken kid)
-        {
-            return toSkip != kid;
         }
     }
 

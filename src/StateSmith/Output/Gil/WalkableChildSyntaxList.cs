@@ -1,6 +1,8 @@
-﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 #nullable enable
 
@@ -9,20 +11,20 @@ namespace StateSmith.Output.Gil;
 public class WalkableChildSyntaxList
 {
     private readonly CSharpSyntaxWalker walker;
-    private readonly ChildSyntaxList childSyntaxList;
+    private readonly List<SyntaxNodeOrToken> nodeOrTokenList;
     private int index = 0;
 
     public WalkableChildSyntaxList(CSharpSyntaxWalker walker, ChildSyntaxList childSyntaxList)
     {
         this.walker = walker;
-        this.childSyntaxList = childSyntaxList;
+        this.nodeOrTokenList = childSyntaxList.ToList();
     }
 
     public void VisitUpTo(Predicate<SyntaxNodeOrToken> test, bool including = false)
     {
-        while (index < childSyntaxList.Count)
+        while (index < nodeOrTokenList.Count)
         {
-            SyntaxNodeOrToken syntaxNodeOrToken = childSyntaxList[index];
+            SyntaxNodeOrToken syntaxNodeOrToken = nodeOrTokenList[index];
             if (test(syntaxNodeOrToken))
             {
                 if (including)
@@ -38,7 +40,7 @@ public class WalkableChildSyntaxList
 
     public void VisitNext(SyntaxNodeOrToken? syntaxNodeOrToken = null)
     {
-        syntaxNodeOrToken ??= childSyntaxList[index];
+        syntaxNodeOrToken ??= nodeOrTokenList[index];
         syntaxNodeOrToken.Value.VisitWith(walker);
         index++;
     }
@@ -53,11 +55,22 @@ public class WalkableChildSyntaxList
         VisitUpTo((snot) => snot == syntaxToken, including);
     }
 
+    public bool TryRemove(SyntaxToken syntaxToken)
+    {
+        return nodeOrTokenList.Remove(syntaxToken);
+    }
+
+    public void Remove(SyntaxToken syntaxToken)
+    {
+        if (TryRemove(syntaxToken) == false)
+            throw new ArgumentException("Failed to find syntaxToken to remove " + syntaxToken);
+    }
+
     public void VisitRest()
     {
-        while (index < childSyntaxList.Count)
+        while (index < nodeOrTokenList.Count)
         {
-            SyntaxNodeOrToken syntaxNodeOrToken = childSyntaxList[index];
+            SyntaxNodeOrToken syntaxNodeOrToken = nodeOrTokenList[index];
             VisitNext(syntaxNodeOrToken);
         }
     }
