@@ -22,16 +22,16 @@ public partial class CSharpNoNameSpaceExampleSm
     private delegate void Func(CSharpNoNameSpaceExampleSm sm);
 
     // Used internally by state machine. Feel free to inspect, but don't modify.
-    public StateId state_id;
+    public StateId stateId;
 
     // Used internally by state machine. Don't modify.
-    private Func? ancestor_event_handler;
+    private Func? ancestorEventHandler;
 
     // Used internally by state machine. Don't modify.
-    private readonly Func?[] current_event_handlers = new Func[EventIdCount];
+    private readonly Func?[] currentEventHandlers = new Func[EventIdCount];
 
     // Used internally by state machine. Don't modify.
-    private Func? current_state_exit_handler;
+    private Func? currentStateExitHandler;
 
     // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
     public CSharpNoNameSpaceExampleSm()
@@ -63,33 +63,33 @@ public partial class CSharpNoNameSpaceExampleSm
                 STATE_1_enter(this);
 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.state_id = StateId.STATE_1;
-                // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
+                this.stateId = StateId.STATE_1;
+                // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                 return;
             } // end of behavior for ROOT.InitialState
         } // end of behavior for ROOT
     }
 
     // Dispatches an event to the state machine. Not thread safe.
-    public void DispatchEvent(EventId event_id)
+    public void DispatchEvent(EventId eventId)
     {
-        Func? behavior_func = this.current_event_handlers[(int)event_id];
+        Func? behaviorFunc = this.currentEventHandlers[(int)eventId];
 
-        while (behavior_func != null)
+        while (behaviorFunc != null)
         {
-            this.ancestor_event_handler = null;
-            behavior_func(this);
-            behavior_func = this.ancestor_event_handler;
+            this.ancestorEventHandler = null;
+            behaviorFunc(this);
+            behaviorFunc = this.ancestorEventHandler;
         }
     }
 
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    private static void ExitUpToStateHandler(CSharpNoNameSpaceExampleSm sm, Func desired_state_exit_handler)
+    private static void ExitUpToStateHandler(CSharpNoNameSpaceExampleSm sm, Func desiredStateExitHandler)
     {
-        while (sm.current_state_exit_handler != desired_state_exit_handler)
+        while (sm.currentStateExitHandler != desiredStateExitHandler)
         {
-            sm.current_state_exit_handler!(sm);
+            sm.currentStateExitHandler!(sm);
         }
     }
 
@@ -101,7 +101,7 @@ public partial class CSharpNoNameSpaceExampleSm
     private static void ROOT_enter(CSharpNoNameSpaceExampleSm sm)
     {
         // setup trigger/event handlers
-        sm.current_state_exit_handler = ROOT_exit;
+        sm.currentStateExitHandler = ROOT_exit;
     }
 
     private static readonly Func ROOT_exit = (CSharpNoNameSpaceExampleSm sm) =>
@@ -118,15 +118,15 @@ public partial class CSharpNoNameSpaceExampleSm
     private static void STATE_1_enter(CSharpNoNameSpaceExampleSm sm)
     {
         // setup trigger/event handlers
-        sm.current_state_exit_handler = STATE_1_exit;
-        sm.current_event_handlers[(int)EventId.DO] = STATE_1_do;
+        sm.currentStateExitHandler = STATE_1_exit;
+        sm.currentEventHandlers[(int)EventId.DO] = STATE_1_do;
     }
 
     private static readonly Func STATE_1_exit = (CSharpNoNameSpaceExampleSm sm) =>
     {
         // adjust function pointers for this state's exit
-        sm.current_state_exit_handler = ROOT_exit;
-        sm.current_event_handlers[(int)EventId.DO] = null;  // no ancestor listens to this event
+        sm.currentStateExitHandler = ROOT_exit;
+        sm.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
     };
 
     private static readonly Func STATE_1_do = (CSharpNoNameSpaceExampleSm sm) =>
@@ -145,8 +145,8 @@ public partial class CSharpNoNameSpaceExampleSm
             STATE_2_enter(sm);
 
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            sm.state_id = StateId.STATE_2;
-            // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
+            sm.stateId = StateId.STATE_2;
+            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for STATE_1
     };
@@ -159,13 +159,13 @@ public partial class CSharpNoNameSpaceExampleSm
     private static void STATE_2_enter(CSharpNoNameSpaceExampleSm sm)
     {
         // setup trigger/event handlers
-        sm.current_state_exit_handler = STATE_2_exit;
+        sm.currentStateExitHandler = STATE_2_exit;
     }
 
     private static readonly Func STATE_2_exit = (CSharpNoNameSpaceExampleSm sm) =>
     {
         // adjust function pointers for this state's exit
-        sm.current_state_exit_handler = ROOT_exit;
+        sm.currentStateExitHandler = ROOT_exit;
     };
 
     // Thread safe.

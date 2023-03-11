@@ -36,7 +36,7 @@ public class AlgoTranspilerCustomizer
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToCSharp>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
-                    sp.AddSingletonT<NameMangler, PascalFuncNameMangler>();
+                    sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
                 }
                 break;
         }

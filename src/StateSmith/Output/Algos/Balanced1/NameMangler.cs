@@ -60,6 +60,8 @@ public class NameMangler
 
     public virtual string SmStateEnumType => "StateId";
 
+    public virtual string SmStateIdVarName => "state_id";
+
     public virtual string SmStateEnumValue(NamedVertex namedVertex)
     {
         string stateName = SmStateName(namedVertex);
@@ -125,4 +127,14 @@ public class NameMangler
     /// Name of constructor function. Only used for langauges (like 'C') that lack actual constructors.
     /// </summary>
     public virtual string SmFuncCtor => "ctor";
+
+
+    //------------------------------------------------------
+
+    public virtual string SmAncestorEventHandlerVarName => "ancestor_event_handler";
+    public virtual string SmCurrentEventHandlersVarName => "current_event_handlers";
+    public virtual string SmCurrentStateExitHandlerVarName => "current_state_exit_handler";
+
+    public virtual string MangleVarName(string snakeCaseName) => snakeCaseName;
+
 }

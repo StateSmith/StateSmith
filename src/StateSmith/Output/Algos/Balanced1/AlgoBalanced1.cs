@@ -137,19 +137,19 @@ public class AlgoBalanced1 : IGilAlgo
     internal void OutputStructDefinition()
     {
         file.AppendLine($"// Used internally by state machine. Feel free to inspect, but don't modify.");
-        file.AppendLine($"public {mangler.SmStateEnumType} state_id;");
+        file.AppendLine($"public {mangler.SmStateEnumType} {mangler.SmStateIdVarName};");
 
         file.AppendLine();
         file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private {mangler.SmHandlerFuncType}? ancestor_event_handler;");
+        file.AppendLine($"private {mangler.SmHandlerFuncType}? {mangler.SmAncestorEventHandlerVarName};");
 
         file.AppendLine();
         file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private readonly {mangler.SmHandlerFuncType}?[] current_event_handlers = new {mangler.SmHandlerFuncType}[{mangler.SmEventEnumCount}];");
+        file.AppendLine($"private readonly {mangler.SmHandlerFuncType}?[] {mangler.SmCurrentEventHandlersVarName} = new {mangler.SmHandlerFuncType}[{mangler.SmEventEnumCount}];");
 
         file.AppendLine();
         file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private {mangler.SmHandlerFuncType}? current_state_exit_handler;");
+        file.AppendLine($"private {mangler.SmHandlerFuncType}? {mangler.SmCurrentStateExitHandlerVarName};");
 
         if (IsVarsStructNeeded())
         {
@@ -232,13 +232,15 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine("// This function is used when StateSmith doesn't know what the active leaf state is at");
         file.AppendLine("// compile time due to sub states or when multiple states need to be exited.");
 
-        file.Append($"private static void {mangler.SmExitUpToFuncName}({mangler.SmTypeName} sm, {ConstMarker}{mangler.SmHandlerFuncType} desired_state_exit_handler)");
+        string desired_state_exit_handler = mangler.MangleVarName("desired_state_exit_handler");
+
+        file.Append($"private static void {mangler.SmExitUpToFuncName}({mangler.SmTypeName} sm, {ConstMarker}{mangler.SmHandlerFuncType} {desired_state_exit_handler})");
         file.StartCodeBlock();
 
-        file.Append($"while (sm.current_state_exit_handler != desired_state_exit_handler)");
+        file.Append($"while (sm.{mangler.SmCurrentStateExitHandlerVarName} != {desired_state_exit_handler})");
         file.StartCodeBlock();
         {
-            file.AppendLine("sm.current_state_exit_handler!(sm);");
+            file.AppendLine($"sm.{mangler.SmCurrentStateExitHandlerVarName}!(sm);");
         }
         file.FinishCodeBlock(forceNewLine: true);
 
@@ -249,16 +251,19 @@ public class AlgoBalanced1 : IGilAlgo
     internal void OutputFuncDispatchEvent()
     {
         file.AppendLine("// Dispatches an event to the state machine. Not thread safe.");
-        file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} event_id)");
+        string event_id = mangler.MangleVarName("event_id");
+        string behavior_func = mangler.MangleVarName("behavior_func");
+
+        file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {event_id})");
         file.StartCodeBlock();
-        file.AppendLine($"{mangler.SmHandlerFuncType}? behavior_func = this.current_event_handlers[(int)event_id];");
+        file.AppendLine($"{mangler.SmHandlerFuncType}? {behavior_func} = this.{mangler.SmCurrentEventHandlersVarName}[(int){event_id}];");
         file.AppendLine();
-        file.Append("while (behavior_func != null)");
+        file.Append($"while ({behavior_func} != null)");
         {
             file.StartCodeBlock();
-            file.AppendLine("this.ancestor_event_handler = null;");
-            file.AppendLine("behavior_func(this);");
-            file.AppendLine("behavior_func = this.ancestor_event_handler;");
+            file.AppendLine($"this.{mangler.SmAncestorEventHandlerVarName} = null;");
+            file.AppendLine($"{behavior_func}(this);");
+            file.AppendLine($"{behavior_func} = this.{mangler.SmAncestorEventHandlerVarName};");
             file.FinishCodeBlock(forceNewLine: true);
         }
         file.FinishCodeBlock(forceNewLine: true);

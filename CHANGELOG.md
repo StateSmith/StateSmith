@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GilToCsharp - add `IRenderConfigCSharp.UsePartialClass` which defaults to true.
   Very useful so you can define other part of partial class and easily add functionality
   to the state machine (fields, methods...).
+- Added new name mangling options for state machine variables. See `NameMangler.cs`.
+  - C# defaults to camelCase for vars.
 - Added `StringUtils` helper methods to convert from `snake_case` to `PascalCase` and `camelCase`.
 
 ---
