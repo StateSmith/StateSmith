@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
 ### Added
 - GilToCsharp - method pointers instead of function pointers so that expansions rarely needed.
   - https://github.com/StateSmith/StateSmith/wiki/GIL:-Generic-Intermediate-Language
@@ -13,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added new name mangling options for state machine variables. See `NameMangler.cs`.
   - C# defaults to camelCase for vars.
 - Added `StringUtils` helper methods to convert from `snake_case` to `PascalCase` and `camelCase`.
+- Added `RunnerSettings.outputGilCodeAlways` for troubleshooting or transpiler authors.
 
 ---
 
