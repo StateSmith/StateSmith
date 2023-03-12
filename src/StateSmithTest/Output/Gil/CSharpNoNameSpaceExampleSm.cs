@@ -19,7 +19,7 @@ public partial class CSharpNoNameSpaceExampleSm
     public const int StateIdCount = 3;
 
     // event handler type
-    private delegate void Func();
+    private delegate void Func(CSharpNoNameSpaceExampleSm sm);
 
     // Used internally by state machine. Feel free to inspect, but don't modify.
     public StateId stateId;
@@ -78,7 +78,7 @@ public partial class CSharpNoNameSpaceExampleSm
         while (behaviorFunc != null)
         {
             this.ancestorEventHandler = null;
-            behaviorFunc();
+            behaviorFunc(this);
             behaviorFunc = this.ancestorEventHandler;
         }
     }
@@ -89,7 +89,7 @@ public partial class CSharpNoNameSpaceExampleSm
     {
         while (this.currentStateExitHandler != desiredStateExitHandler)
         {
-            this.currentStateExitHandler!();
+            this.currentStateExitHandler!(this);
         }
     }
 
@@ -101,9 +101,11 @@ public partial class CSharpNoNameSpaceExampleSm
     private void ROOT_enter()
     {
         // setup trigger/event handlers
-        this.currentStateExitHandler = ROOT_exit;
+        this.currentStateExitHandler = ptr_ROOT_exit;
     }
 
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_ROOT_exit = (CSharpNoNameSpaceExampleSm sm) => sm.ROOT_exit();
     private void ROOT_exit()
     {
         // State machine root is a special case. It cannot be exited. Mark as unused.
@@ -118,17 +120,21 @@ public partial class CSharpNoNameSpaceExampleSm
     private void STATE_1_enter()
     {
         // setup trigger/event handlers
-        this.currentStateExitHandler = STATE_1_exit;
-        this.currentEventHandlers[(int)EventId.DO] = STATE_1_do;
+        this.currentStateExitHandler = ptr_STATE_1_exit;
+        this.currentEventHandlers[(int)EventId.DO] = ptr_STATE_1_do;
     }
 
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_STATE_1_exit = (CSharpNoNameSpaceExampleSm sm) => sm.STATE_1_exit();
     private void STATE_1_exit()
     {
         // adjust function pointers for this state's exit
-        this.currentStateExitHandler = ROOT_exit;
+        this.currentStateExitHandler = ptr_ROOT_exit;
         this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
     }
 
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_STATE_1_do = (CSharpNoNameSpaceExampleSm sm) => sm.STATE_1_do();
     private void STATE_1_do()
     {
         // No ancestor state handles `do` event.
@@ -159,13 +165,15 @@ public partial class CSharpNoNameSpaceExampleSm
     private void STATE_2_enter()
     {
         // setup trigger/event handlers
-        this.currentStateExitHandler = STATE_2_exit;
+        this.currentStateExitHandler = ptr_STATE_2_exit;
     }
 
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_STATE_2_exit = (CSharpNoNameSpaceExampleSm sm) => sm.STATE_2_exit();
     private void STATE_2_exit()
     {
         // adjust function pointers for this state's exit
-        this.currentStateExitHandler = ROOT_exit;
+        this.currentStateExitHandler = ptr_ROOT_exit;
     }
 
     // Thread safe.

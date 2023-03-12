@@ -17,8 +17,14 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     private readonly RenderConfigCSharpVars renderConfigCSharp;
     private readonly RenderConfigVars renderConfig;
 
-    private SemanticModel SemanticModel => _semanticModel.ThrowIfNull();
-    private SemanticModel? _semanticModel;
+    private SemanticModel Model => _model.ThrowIfNull();
+    private SemanticModel? _model;
+
+    private bool useStaticDelegates = true;    // could make this a user accessible setting
+    /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
+    private MethodPtrFinder? _methodPtrFinder;
+    /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
+    private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
 
     public CSharpGilVisitor(StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
@@ -31,15 +37,20 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     {
         // get input gil code and then clear string buffer to hold new result
         string gilCode = sb.ToString();
+        GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _model);
         sb.Clear();
+
+        if (useStaticDelegates)
+        {
+            _methodPtrFinder = new(root, _model);
+            MethodPtrFinder.Find();
+        }
 
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
         if (renderConfigCSharp.UseNullable)
             sb.AppendLine($"#nullable enable");
 
         sb.AppendLineIfNotBlank(renderConfigCSharp.Usings);
-
-        GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _semanticModel);
 
         this.Visit(root);
 
@@ -54,6 +65,36 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         // note: we don't use the regular `NormalizeWhitespace()` as it tightens all code up, and actually messes up some indentation.
         outputCode = Formatter.Format(CSharpSyntaxTree.ParseText(outputCode).GetRoot(), new AdhocWorkspace()).ToFullString();
         sb.Append(outputCode);
+    }
+
+    // delegates are assumed to be method pointers
+    public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
+    {
+        if (!useStaticDelegates)
+        {
+            base.VisitDelegateDeclaration(node);
+            return;
+        }
+
+        var symbol = Model.GetDeclaredSymbol(node).ThrowIfNull();
+
+        WalkableChildSyntaxList walkableChildSyntaxList = new(this, node.ChildNodesAndTokens());
+        walkableChildSyntaxList.VisitUpTo(node.ParameterList);
+
+        sb.Append("(" + symbol.ContainingType.Name + " sm)");
+        VisitToken(node.SemicolonToken);
+    }
+
+    public override void VisitIdentifierName(IdentifierNameSyntax node)
+    {
+        if (useStaticDelegates && MethodPtrFinder.identifiers.Contains(node))
+        {
+            sb.Append("ptr_" + node.Identifier.Text);
+        }
+        else
+        {
+            base.VisitIdentifierName(node);
+        }
     }
 
     public override void VisitNullableType(NullableTypeSyntax node)
@@ -74,40 +115,23 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         if (GilHelper.IsGilNoEmit(node))
             return;
 
-        var addressableFunc = GilHelper.GetAddresssableFunctionInfo(node, SemanticModel);
+        MaybeOutputStaticDelegate(node);
 
-        if (addressableFunc != null)
-        {
-            OutputMethodAsStaticLambda(node, addressableFunc);
-        }
-        else
-        {
-            base.VisitMethodDeclaration(node);
-        }
+        base.VisitMethodDeclaration(node);
     }
 
     /// <summary>
-    /// Why do this? See https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support#function-pointers
+    /// Why do this? See https://github.com/StateSmith/StateSmith/wiki/GIL----Generic-Intermediate-Language
     /// </summary>
-    /// <param name="node"></param>
-    /// <param name="addressableFunc"></param>
-    private void OutputMethodAsStaticLambda(MethodDeclarationSyntax node, GilHelper.AddressableFunctionInfo addressableFunc)
+    private void MaybeOutputStaticDelegate(MethodDeclarationSyntax node)
     {
-        VisitLeadingTrivia(node.GetFirstToken());
-        foreach (var m in node.Modifiers)
-            VisitToken(m);
+        if (!useStaticDelegates || !MethodPtrFinder.methods.Contains(node))
+            return;
 
-        sb.Append("readonly ");
-        sb.Append(addressableFunc.DelegateSymbol.Name);
-        sb.Append(' ');
-        sb.Append(node.Identifier);
-        sb.Append($" = ");
-
-        Visit(addressableFunc.ParameterListSyntax);
-
-        sb.Append($" => ");
-        node.Body.ThrowIfNull().VisitChildNodesAndTokens(this, toSkip: node.Body.CloseBraceToken);
-        sb.AppendTokenAndTrivia(node.Body.CloseBraceToken, overrideTokenText: "};");
+        var symbol = MethodPtrFinder.delegateSymbol.ThrowIfNull();
+        sb.AppendLine();
+        sb.AppendLine("// static delegate to avoid implicit conversion and garbage collection");
+        sb.Append($"private static readonly {symbol.Name} ptr_{node.Identifier} = ({symbol.ContainingType.Name} sm) => sm.{node.Identifier}();");
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
@@ -133,6 +157,30 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.GetFirstToken());
     }
 
+    public override void VisitArgumentList(ArgumentListSyntax node)
+    {
+        var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
+        var iMethodSymbol = (IMethodSymbol)Model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
+
+        if (useStaticDelegates && !iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.DelegateInvoke)
+        {
+            var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+            list.VisitUpTo(node.OpenParenToken, including: true);
+
+            sb.Append("this");
+            if (node.Arguments.Count > 0)
+            {
+                sb.Append(", ");
+            }
+
+            list.VisitRest();
+        }
+        else
+        {
+            base.VisitArgumentList(node);
+        }
+    }
+
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
         bool done = false;
@@ -143,6 +191,18 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
             sb.Append(node.GetLeadingTrivia().ToFullString());
             sb.Append($"_ = {argument.ToFullString()}"); // trailing semi-colon is already part of parent ExpressionStatement
         });
+
+        //if (!done)
+        //{
+        //    var symbol = Model.GetSymbolInfo(node).Symbol;
+        //    if (symbol is INamedTypeSymbol namedTypeSymbol)
+        //    {
+        //        if (namedTypeSymbol.DelegateInvokeMethod != null)
+        //        {
+        //            done = true;
+        //        }
+        //    }
+        //}
 
         if (!done)
         {

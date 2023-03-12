@@ -76,7 +76,7 @@ public class GilHelper
     public record AddressableFunctionInfo(INamedTypeSymbol DelegateSymbol, ParameterListSyntax ParameterListSyntax);
 
     /// <summary>
-    /// See <see cref="GilAddessableFunctionAttribute"/>
+    /// See <see cref="GilAddessableFunctionAttribute"/>. FIXME remove.
     /// </summary>
     public static AddressableFunctionInfo? GetAddresssableFunctionInfo(MethodDeclarationSyntax node, SemanticModel semanticModel)
     {

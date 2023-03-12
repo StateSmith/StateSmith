@@ -8,7 +8,7 @@ using Xunit;
 
 namespace StateSmithTest.Output.Gil;
 
-public class MemberFuncPtrFinderTests
+public class MethodPtrFinderTests
 {
     const string input = """
                 
@@ -92,7 +92,7 @@ public class MemberFuncPtrFinderTests
             private void AUTO_VAR_TEST__BLAH_enter()
             {
                 // setup trigger/event handlers
-                this.currentStateExitHandler = AUTO_VAR_TEST__BLAH_exit;
+                //this.currentStateExitHandler = AUTO_VAR_TEST__BLAH_exit; // commented out so we can detect with ExitUpToStateHandler() below
                 this.currentEventHandlers[1] = AUTO_VAR_TEST__BLAH_do;
             }
 
@@ -105,7 +105,7 @@ public class MemberFuncPtrFinderTests
 
             private void AUTO_VAR_TEST__BLAH_do()
             {
-
+                ExitUpToStateHandler(AUTO_VAR_TEST__BLAH_exit);
             }
         }
         """;
@@ -115,9 +115,10 @@ public class MemberFuncPtrFinderTests
     {
         GilHelper.Compile(input, out CompilationUnitSyntax root, out SemanticModel model);
 
-        var finder = new MemberFuncPtrFinder(root, model);
+        var finder = new MethodPtrFinder(root, model);
 
-        List<MethodDeclarationSyntax> found = finder.Find().ToList();
+        finder.Find();
+        List<MethodDeclarationSyntax> found = finder.methods.ToList();
 
         List<string> expected = found.Select(mds => mds.Identifier.Text).ToList();
 
@@ -128,5 +129,8 @@ public class MemberFuncPtrFinderTests
             "AUTO_VAR_TEST__BLAH_exit",
             "AUTO_VAR_TEST__BLAH_do",
         });
+
+        finder.delegateDeclarationSyntax.Identifier.Text.Should().Be("Func");
+        finder.delegateSymbol.Name.Should().Be("Func");
     }
 }

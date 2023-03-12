@@ -257,7 +257,7 @@ namespace Csharp.Spec2smTests
 
 
         // event handler type
-        private delegate void Func();
+        private delegate void Func(Spec2Sm sm);
 
         // Used internally by state machine. Feel free to inspect, but don't modify.
         public StateId stateId;
@@ -334,7 +334,7 @@ namespace Csharp.Spec2smTests
             while (behaviorFunc != null)
             {
                 this.ancestorEventHandler = null;
-                behaviorFunc();
+                behaviorFunc(this);
                 behaviorFunc = this.ancestorEventHandler;
             }
         }
@@ -345,7 +345,7 @@ namespace Csharp.Spec2smTests
         {
             while (this.currentStateExitHandler != desiredStateExitHandler)
             {
-                this.currentStateExitHandler!();
+                this.currentStateExitHandler!(this);
             }
         }
 
@@ -357,7 +357,7 @@ namespace Csharp.Spec2smTests
         private void ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
 
             // ROOT behavior
             // uml: enter / { trace("Enter Spec2Sm."); }
@@ -367,6 +367,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_ROOT_exit = (Spec2Sm sm) => sm.ROOT_exit();
         private void ROOT_exit()
         {
             // ROOT behavior
@@ -388,7 +390,7 @@ namespace Csharp.Spec2smTests
         private void AUTO_VAR_TEST_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = AUTO_VAR_TEST_exit;
+            this.currentStateExitHandler = ptr_AUTO_VAR_TEST_exit;
 
             // AUTO_VAR_TEST behavior
             // uml: enter / { trace("Enter AUTO_VAR_TEST."); }
@@ -398,6 +400,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_AUTO_VAR_TEST_exit = (Spec2Sm sm) => sm.AUTO_VAR_TEST_exit();
         private void AUTO_VAR_TEST_exit()
         {
             // AUTO_VAR_TEST behavior
@@ -408,7 +412,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -419,8 +423,8 @@ namespace Csharp.Spec2smTests
         private void AUTO_VAR_TEST__BLAH_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = AUTO_VAR_TEST__BLAH_exit;
-            this.currentEventHandlers[(int)EventId.DO] = AUTO_VAR_TEST__BLAH_do;
+            this.currentStateExitHandler = ptr_AUTO_VAR_TEST__BLAH_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_AUTO_VAR_TEST__BLAH_do;
 
             // AUTO_VAR_TEST__BLAH behavior
             // uml: enter / { trace("Enter AUTO_VAR_TEST__BLAH."); }
@@ -430,6 +434,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST__BLAH
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_AUTO_VAR_TEST__BLAH_exit = (Spec2Sm sm) => sm.AUTO_VAR_TEST__BLAH_exit();
         private void AUTO_VAR_TEST__BLAH_exit()
         {
             // AUTO_VAR_TEST__BLAH behavior
@@ -440,10 +446,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST__BLAH
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = AUTO_VAR_TEST_exit;
+            this.currentStateExitHandler = ptr_AUTO_VAR_TEST_exit;
             this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_AUTO_VAR_TEST__BLAH_do = (Spec2Sm sm) => sm.AUTO_VAR_TEST__BLAH_do();
         private void AUTO_VAR_TEST__BLAH_do()
         {
             // No ancestor state handles `do` event.
@@ -476,7 +484,7 @@ namespace Csharp.Spec2smTests
         private void AUTO_VAR_TEST__BLAH2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = AUTO_VAR_TEST__BLAH2_exit;
+            this.currentStateExitHandler = ptr_AUTO_VAR_TEST__BLAH2_exit;
 
             // AUTO_VAR_TEST__BLAH2 behavior
             // uml: enter / { trace("Enter AUTO_VAR_TEST__BLAH2."); }
@@ -486,6 +494,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST__BLAH2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_AUTO_VAR_TEST__BLAH2_exit = (Spec2Sm sm) => sm.AUTO_VAR_TEST__BLAH2_exit();
         private void AUTO_VAR_TEST__BLAH2_exit()
         {
             // AUTO_VAR_TEST__BLAH2 behavior
@@ -496,7 +506,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for AUTO_VAR_TEST__BLAH2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = AUTO_VAR_TEST_exit;
+            this.currentStateExitHandler = ptr_AUTO_VAR_TEST_exit;
         }
 
 
@@ -507,17 +517,17 @@ namespace Csharp.Spec2smTests
         private void DECIDE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = DECIDE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = DECIDE_ev1;
-            this.currentEventHandlers[(int)EventId.EV10] = DECIDE_ev10;
-            this.currentEventHandlers[(int)EventId.EV2] = DECIDE_ev2;
-            this.currentEventHandlers[(int)EventId.EV3] = DECIDE_ev3;
-            this.currentEventHandlers[(int)EventId.EV4] = DECIDE_ev4;
-            this.currentEventHandlers[(int)EventId.EV5] = DECIDE_ev5;
-            this.currentEventHandlers[(int)EventId.EV6] = DECIDE_ev6;
-            this.currentEventHandlers[(int)EventId.EV7] = DECIDE_ev7;
-            this.currentEventHandlers[(int)EventId.EV8] = DECIDE_ev8;
-            this.currentEventHandlers[(int)EventId.EV9] = DECIDE_ev9;
+            this.currentStateExitHandler = ptr_DECIDE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_DECIDE_ev1;
+            this.currentEventHandlers[(int)EventId.EV10] = ptr_DECIDE_ev10;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_DECIDE_ev2;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_DECIDE_ev3;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_DECIDE_ev4;
+            this.currentEventHandlers[(int)EventId.EV5] = ptr_DECIDE_ev5;
+            this.currentEventHandlers[(int)EventId.EV6] = ptr_DECIDE_ev6;
+            this.currentEventHandlers[(int)EventId.EV7] = ptr_DECIDE_ev7;
+            this.currentEventHandlers[(int)EventId.EV8] = ptr_DECIDE_ev8;
+            this.currentEventHandlers[(int)EventId.EV9] = ptr_DECIDE_ev9;
 
             // DECIDE behavior
             // uml: enter / { trace("Enter DECIDE."); }
@@ -527,6 +537,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_exit = (Spec2Sm sm) => sm.DECIDE_exit();
         private void DECIDE_exit()
         {
             // DECIDE behavior
@@ -537,7 +549,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV10] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
@@ -550,6 +562,8 @@ namespace Csharp.Spec2smTests
             this.currentEventHandlers[(int)EventId.EV9] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev1 = (Spec2Sm sm) => sm.DECIDE_ev1();
         private void DECIDE_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -599,6 +613,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev10 = (Spec2Sm sm) => sm.DECIDE_ev10();
         private void DECIDE_ev10()
         {
             // No ancestor state handles `ev10` event.
@@ -636,6 +652,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev2 = (Spec2Sm sm) => sm.DECIDE_ev2();
         private void DECIDE_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -685,6 +703,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev3 = (Spec2Sm sm) => sm.DECIDE_ev3();
         private void DECIDE_ev3()
         {
             // No ancestor state handles `ev3` event.
@@ -733,6 +753,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev4 = (Spec2Sm sm) => sm.DECIDE_ev4();
         private void DECIDE_ev4()
         {
             // No ancestor state handles `ev4` event.
@@ -769,6 +791,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev5 = (Spec2Sm sm) => sm.DECIDE_ev5();
         private void DECIDE_ev5()
         {
             // No ancestor state handles `ev5` event.
@@ -805,6 +829,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev6 = (Spec2Sm sm) => sm.DECIDE_ev6();
         private void DECIDE_ev6()
         {
             // No ancestor state handles `ev6` event.
@@ -853,6 +879,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev7 = (Spec2Sm sm) => sm.DECIDE_ev7();
         private void DECIDE_ev7()
         {
             // No ancestor state handles `ev7` event.
@@ -889,6 +917,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev8 = (Spec2Sm sm) => sm.DECIDE_ev8();
         private void DECIDE_ev8()
         {
             // No ancestor state handles `ev8` event.
@@ -925,6 +955,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_DECIDE_ev9 = (Spec2Sm sm) => sm.DECIDE_ev9();
         private void DECIDE_ev9()
         {
             // No ancestor state handles `ev9` event.
@@ -969,7 +1001,7 @@ namespace Csharp.Spec2smTests
         private void PREFIXING_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING_exit;
+            this.currentStateExitHandler = ptr_PREFIXING_exit;
 
             // PREFIXING behavior
             // uml: enter / { trace("Enter PREFIXING."); }
@@ -979,6 +1011,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING_exit = (Spec2Sm sm) => sm.PREFIXING_exit();
         private void PREFIXING_exit()
         {
             // PREFIXING behavior
@@ -989,7 +1023,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -1000,7 +1034,7 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__ORDER_MENU_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__ORDER_MENU_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__ORDER_MENU_exit;
 
             // PREFIXING__ORDER_MENU behavior
             // uml: enter / { trace("Enter PREFIXING__ORDER_MENU."); }
@@ -1010,6 +1044,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__ORDER_MENU
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__ORDER_MENU_exit = (Spec2Sm sm) => sm.PREFIXING__ORDER_MENU_exit();
         private void PREFIXING__ORDER_MENU_exit()
         {
             // PREFIXING__ORDER_MENU behavior
@@ -1020,7 +1056,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__ORDER_MENU
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING_exit;
+            this.currentStateExitHandler = ptr_PREFIXING_exit;
         }
 
 
@@ -1031,8 +1067,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__OM__BEVERAGE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__OM__BEVERAGE_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = PREFIXING__OM__BEVERAGE_ev2;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__BEVERAGE_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_PREFIXING__OM__BEVERAGE_ev2;
 
             // PREFIXING__OM__BEVERAGE behavior
             // uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE."); }
@@ -1042,6 +1078,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEVERAGE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__BEVERAGE_exit = (Spec2Sm sm) => sm.PREFIXING__OM__BEVERAGE_exit();
         private void PREFIXING__OM__BEVERAGE_exit()
         {
             // PREFIXING__OM__BEVERAGE behavior
@@ -1052,10 +1090,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEVERAGE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__ORDER_MENU_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__ORDER_MENU_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__BEVERAGE_ev2 = (Spec2Sm sm) => sm.PREFIXING__OM__BEVERAGE_ev2();
         private void PREFIXING__OM__BEVERAGE_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -1065,7 +1105,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true))
             {
                 // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(PREFIXING__ORDER_MENU_exit);
+                ExitUpToStateHandler(ptr_PREFIXING__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");`.
                 trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
@@ -1120,8 +1160,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__OM__BEV__NONE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__OM__BEV__NONE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = PREFIXING__OM__BEV__NONE_ev1;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__BEV__NONE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_PREFIXING__OM__BEV__NONE_ev1;
 
             // PREFIXING__OM__BEV__NONE behavior
             // uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE."); }
@@ -1131,6 +1171,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__NONE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__BEV__NONE_exit = (Spec2Sm sm) => sm.PREFIXING__OM__BEV__NONE_exit();
         private void PREFIXING__OM__BEV__NONE_exit()
         {
             // PREFIXING__OM__BEV__NONE behavior
@@ -1141,10 +1183,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__NONE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__OM__BEVERAGE_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__BEVERAGE_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__BEV__NONE_ev1 = (Spec2Sm sm) => sm.PREFIXING__OM__BEV__NONE_ev1();
         private void PREFIXING__OM__BEV__NONE_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -1177,7 +1221,7 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__OM__BEV__TEA_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__OM__BEV__TEA_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__BEV__TEA_exit;
 
             // PREFIXING__OM__BEV__TEA behavior
             // uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA."); }
@@ -1187,6 +1231,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__TEA
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__BEV__TEA_exit = (Spec2Sm sm) => sm.PREFIXING__OM__BEV__TEA_exit();
         private void PREFIXING__OM__BEV__TEA_exit()
         {
             // PREFIXING__OM__BEV__TEA behavior
@@ -1197,7 +1243,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__TEA
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__OM__BEVERAGE_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__BEVERAGE_exit;
         }
 
 
@@ -1208,8 +1254,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__OM__BEV__WATER_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__OM__BEV__WATER_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = PREFIXING__OM__BEV__WATER_ev1;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__BEV__WATER_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_PREFIXING__OM__BEV__WATER_ev1;
 
             // PREFIXING__OM__BEV__WATER behavior
             // uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER."); }
@@ -1219,6 +1265,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__WATER
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__BEV__WATER_exit = (Spec2Sm sm) => sm.PREFIXING__OM__BEV__WATER_exit();
         private void PREFIXING__OM__BEV__WATER_exit()
         {
             // PREFIXING__OM__BEV__WATER behavior
@@ -1229,10 +1277,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__BEV__WATER
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__OM__BEVERAGE_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__BEVERAGE_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__BEV__WATER_ev1 = (Spec2Sm sm) => sm.PREFIXING__OM__BEV__WATER_ev1();
         private void PREFIXING__OM__BEV__WATER_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -1265,8 +1315,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__OM__VEG_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__OM__VEG_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = PREFIXING__OM__VEG_ev2;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__VEG_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_PREFIXING__OM__VEG_ev2;
 
             // PREFIXING__OM__VEG behavior
             // uml: enter / { trace("Enter PREFIXING__OM__VEG."); }
@@ -1276,6 +1326,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__VEG_exit = (Spec2Sm sm) => sm.PREFIXING__OM__VEG_exit();
         private void PREFIXING__OM__VEG_exit()
         {
             // PREFIXING__OM__VEG behavior
@@ -1286,10 +1338,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__ORDER_MENU_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__ORDER_MENU_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__VEG_ev2 = (Spec2Sm sm) => sm.PREFIXING__OM__VEG_ev2();
         private void PREFIXING__OM__VEG_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -1299,7 +1353,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true))
             {
                 // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(PREFIXING__ORDER_MENU_exit);
+                ExitUpToStateHandler(ptr_PREFIXING__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");`.
                 trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
@@ -1321,8 +1375,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__OM__VEG__NONE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__OM__VEG__NONE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = PREFIXING__OM__VEG__NONE_ev1;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__VEG__NONE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_PREFIXING__OM__VEG__NONE_ev1;
 
             // PREFIXING__OM__VEG__NONE behavior
             // uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE."); }
@@ -1332,6 +1386,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__NONE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__VEG__NONE_exit = (Spec2Sm sm) => sm.PREFIXING__OM__VEG__NONE_exit();
         private void PREFIXING__OM__VEG__NONE_exit()
         {
             // PREFIXING__OM__VEG__NONE behavior
@@ -1342,10 +1398,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__NONE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__OM__VEG_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__VEG_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__VEG__NONE_ev1 = (Spec2Sm sm) => sm.PREFIXING__OM__VEG__NONE_ev1();
         private void PREFIXING__OM__VEG__NONE_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -1378,8 +1436,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__OM__VEG__POTATO_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__OM__VEG__POTATO_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = PREFIXING__OM__VEG__POTATO_ev1;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__VEG__POTATO_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_PREFIXING__OM__VEG__POTATO_ev1;
 
             // PREFIXING__OM__VEG__POTATO behavior
             // uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO."); }
@@ -1389,6 +1447,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__POTATO
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__VEG__POTATO_exit = (Spec2Sm sm) => sm.PREFIXING__OM__VEG__POTATO_exit();
         private void PREFIXING__OM__VEG__POTATO_exit()
         {
             // PREFIXING__OM__VEG__POTATO behavior
@@ -1399,10 +1459,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__POTATO
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__OM__VEG_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__VEG_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__VEG__POTATO_ev1 = (Spec2Sm sm) => sm.PREFIXING__OM__VEG__POTATO_ev1();
         private void PREFIXING__OM__VEG__POTATO_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -1435,7 +1497,7 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__OM__VEG__YAM_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__OM__VEG__YAM_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__VEG__YAM_exit;
 
             // PREFIXING__OM__VEG__YAM behavior
             // uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM."); }
@@ -1445,6 +1507,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__YAM
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__OM__VEG__YAM_exit = (Spec2Sm sm) => sm.PREFIXING__OM__VEG__YAM_exit();
         private void PREFIXING__OM__VEG__YAM_exit()
         {
             // PREFIXING__OM__VEG__YAM behavior
@@ -1455,7 +1519,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__OM__VEG__YAM
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__OM__VEG_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__OM__VEG_exit;
         }
 
 
@@ -1466,7 +1530,7 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX_exit;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX."); }
@@ -1476,6 +1540,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX behavior
@@ -1486,7 +1552,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING_exit;
+            this.currentStateExitHandler = ptr_PREFIXING_exit;
         }
 
 
@@ -1497,7 +1563,7 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
@@ -1507,6 +1573,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
@@ -1517,7 +1585,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX_exit;
         }
 
 
@@ -1528,8 +1596,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
@@ -1539,6 +1607,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
@@ -1549,10 +1619,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2 = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -1562,7 +1634,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true))
             {
                 // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+                ExitUpToStateHandler(ptr_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`.
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
@@ -1617,8 +1689,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
@@ -1628,6 +1700,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
@@ -1638,10 +1712,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1 = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -1674,7 +1750,7 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
@@ -1684,6 +1760,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
@@ -1694,7 +1772,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
         }
 
 
@@ -1705,8 +1783,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
@@ -1716,6 +1794,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
@@ -1726,10 +1806,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1 = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -1762,8 +1844,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
@@ -1773,6 +1855,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
@@ -1783,10 +1867,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2 = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -1796,7 +1882,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true))
             {
                 // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+                ExitUpToStateHandler(ptr_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`.
                 trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
@@ -1818,8 +1904,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
@@ -1829,6 +1915,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
@@ -1839,10 +1927,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1 = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -1875,8 +1965,8 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
@@ -1886,6 +1976,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
@@ -1896,10 +1988,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1 = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -1932,7 +2026,7 @@ namespace Csharp.Spec2smTests
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit;
 
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
@@ -1942,6 +2036,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit = (Spec2Sm sm) => sm.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit();
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
         {
             // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
@@ -1952,7 +2048,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
+            this.currentStateExitHandler = ptr_PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit;
         }
 
 
@@ -1963,7 +2059,7 @@ namespace Csharp.Spec2smTests
         private void TEST1_DO_EVENT_TESTING_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST1_DO_EVENT_TESTING_exit;
+            this.currentStateExitHandler = ptr_TEST1_DO_EVENT_TESTING_exit;
 
             // TEST1_DO_EVENT_TESTING behavior
             // uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING."); }
@@ -1973,6 +2069,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_DO_EVENT_TESTING
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_DO_EVENT_TESTING_exit = (Spec2Sm sm) => sm.TEST1_DO_EVENT_TESTING_exit();
         private void TEST1_DO_EVENT_TESTING_exit()
         {
             // TEST1_DO_EVENT_TESTING behavior
@@ -1983,7 +2081,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_DO_EVENT_TESTING
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -1994,8 +2092,8 @@ namespace Csharp.Spec2smTests
         private void TEST1_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST1_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.DO] = TEST1_ROOT_do;
+            this.currentStateExitHandler = ptr_TEST1_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_TEST1_ROOT_do;
 
             // TEST1_ROOT behavior
             // uml: enter / { trace("Enter TEST1_ROOT."); }
@@ -2005,6 +2103,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_ROOT_exit = (Spec2Sm sm) => sm.TEST1_ROOT_exit();
         private void TEST1_ROOT_exit()
         {
             // TEST1_ROOT behavior
@@ -2015,10 +2115,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST1_DO_EVENT_TESTING_exit;
+            this.currentStateExitHandler = ptr_TEST1_DO_EVENT_TESTING_exit;
             this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_ROOT_do = (Spec2Sm sm) => sm.TEST1_ROOT_do();
         private void TEST1_ROOT_do()
         {
             // No ancestor state handles `do` event.
@@ -2041,7 +2143,7 @@ namespace Csharp.Spec2smTests
         private void TEST1_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST1_S1_exit;
+            this.currentStateExitHandler = ptr_TEST1_S1_exit;
 
             // TEST1_S1 behavior
             // uml: enter / { trace("Enter TEST1_S1."); }
@@ -2051,6 +2153,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_S1_exit = (Spec2Sm sm) => sm.TEST1_S1_exit();
         private void TEST1_S1_exit()
         {
             // TEST1_S1 behavior
@@ -2061,7 +2165,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST1_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST1_ROOT_exit;
         }
 
 
@@ -2072,9 +2176,9 @@ namespace Csharp.Spec2smTests
         private void TEST1_S1_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST1_S1_1_exit;
-            this.currentEventHandlers[(int)EventId.DO] = TEST1_S1_1_do;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST1_S1_1_ev1;
+            this.currentStateExitHandler = ptr_TEST1_S1_1_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_TEST1_S1_1_do;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST1_S1_1_ev1;
 
             // TEST1_S1_1 behavior
             // uml: enter / { trace("Enter TEST1_S1_1."); }
@@ -2092,6 +2196,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S1_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_S1_1_exit = (Spec2Sm sm) => sm.TEST1_S1_1_exit();
         private void TEST1_S1_1_exit()
         {
             // TEST1_S1_1 behavior
@@ -2102,15 +2208,17 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S1_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST1_S1_exit;
-            this.currentEventHandlers[(int)EventId.DO] = TEST1_ROOT_do;  // the next ancestor that handles this event is TEST1_ROOT
+            this.currentStateExitHandler = ptr_TEST1_S1_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_TEST1_ROOT_do;  // the next ancestor that handles this event is TEST1_ROOT
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_S1_1_do = (Spec2Sm sm) => sm.TEST1_S1_1_do();
         private void TEST1_S1_1_do()
         {
             // Setup handler for next ancestor that listens to `do` event.
-            this.ancestorEventHandler = TEST1_ROOT_do;
+            this.ancestorEventHandler = ptr_TEST1_ROOT_do;
 
             // TEST1_S1_1 behavior
             // uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", true)]
@@ -2122,6 +2230,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S1_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_S1_1_ev1 = (Spec2Sm sm) => sm.TEST1_S1_1_ev1();
         private void TEST1_S1_1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -2131,7 +2241,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST1_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST1_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");`.
                 trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");
@@ -2154,8 +2264,8 @@ namespace Csharp.Spec2smTests
         private void TEST1_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST1_S2_exit;
-            this.currentEventHandlers[(int)EventId.DO] = TEST1_S2_do;
+            this.currentStateExitHandler = ptr_TEST1_S2_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_TEST1_S2_do;
 
             // TEST1_S2 behavior
             // uml: enter / { trace("Enter TEST1_S2."); }
@@ -2165,6 +2275,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_S2_exit = (Spec2Sm sm) => sm.TEST1_S2_exit();
         private void TEST1_S2_exit()
         {
             // TEST1_S2 behavior
@@ -2175,14 +2287,16 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST1_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST1_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.DO] = TEST1_ROOT_do;  // the next ancestor that handles this event is TEST1_ROOT
+            this.currentStateExitHandler = ptr_TEST1_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_TEST1_ROOT_do;  // the next ancestor that handles this event is TEST1_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST1_S2_do = (Spec2Sm sm) => sm.TEST1_S2_do();
         private void TEST1_S2_do()
         {
             // Setup handler for next ancestor that listens to `do` event.
-            this.ancestorEventHandler = TEST1_ROOT_do;
+            this.ancestorEventHandler = ptr_TEST1_ROOT_do;
 
             // TEST1_S2 behavior
             // uml: do [trace_guard("State TEST1_S2: check behavior `do / { consume_event = true; }`.", true)] / { consume_event = true; }
@@ -2209,7 +2323,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_CHOICE_POINT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_CHOICE_POINT_exit;
+            this.currentStateExitHandler = ptr_TEST10_CHOICE_POINT_exit;
 
             // TEST10_CHOICE_POINT behavior
             // uml: enter / { trace("Enter TEST10_CHOICE_POINT."); }
@@ -2219,6 +2333,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_CHOICE_POINT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_CHOICE_POINT_exit = (Spec2Sm sm) => sm.TEST10_CHOICE_POINT_exit();
         private void TEST10_CHOICE_POINT_exit()
         {
             // TEST10_CHOICE_POINT behavior
@@ -2229,7 +2345,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_CHOICE_POINT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -2240,7 +2356,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_A_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_A_exit;
+            this.currentStateExitHandler = ptr_TEST10_A_exit;
 
             // TEST10_A behavior
             // uml: enter / { trace("Enter TEST10_A."); }
@@ -2250,6 +2366,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_A
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_A_exit = (Spec2Sm sm) => sm.TEST10_A_exit();
         private void TEST10_A_exit()
         {
             // TEST10_A behavior
@@ -2260,7 +2378,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_A
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_CHOICE_POINT_exit;
+            this.currentStateExitHandler = ptr_TEST10_CHOICE_POINT_exit;
         }
 
         private void TEST10_A_ChoicePoint__transition()
@@ -2399,7 +2517,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_A_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_A_1_exit;
+            this.currentStateExitHandler = ptr_TEST10_A_1_exit;
 
             // TEST10_A_1 behavior
             // uml: enter / { trace("Enter TEST10_A_1."); }
@@ -2409,6 +2527,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_A_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_A_1_exit = (Spec2Sm sm) => sm.TEST10_A_1_exit();
         private void TEST10_A_1_exit()
         {
             // TEST10_A_1 behavior
@@ -2419,7 +2539,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_A_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_A_exit;
+            this.currentStateExitHandler = ptr_TEST10_A_exit;
         }
 
 
@@ -2430,8 +2550,8 @@ namespace Csharp.Spec2smTests
         private void TEST10_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV5] = TEST10_ROOT_ev5;
+            this.currentStateExitHandler = ptr_TEST10_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV5] = ptr_TEST10_ROOT_ev5;
 
             // TEST10_ROOT behavior
             // uml: enter / { trace("Enter TEST10_ROOT."); }
@@ -2441,6 +2561,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_ROOT_exit = (Spec2Sm sm) => sm.TEST10_ROOT_exit();
         private void TEST10_ROOT_exit()
         {
             // TEST10_ROOT behavior
@@ -2451,10 +2573,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_CHOICE_POINT_exit;
+            this.currentStateExitHandler = ptr_TEST10_CHOICE_POINT_exit;
             this.currentEventHandlers[(int)EventId.EV5] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_ROOT_ev5 = (Spec2Sm sm) => sm.TEST10_ROOT_ev5();
         private void TEST10_ROOT_ev5()
         {
             // No ancestor state handles `ev5` event.
@@ -2479,7 +2603,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_G_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_G_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_exit;
 
             // TEST10_G behavior
             // uml: enter / { trace("Enter TEST10_G."); }
@@ -2489,6 +2613,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_G_exit = (Spec2Sm sm) => sm.TEST10_G_exit();
         private void TEST10_G_exit()
         {
             // TEST10_G behavior
@@ -2499,7 +2625,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST10_ROOT_exit;
         }
 
         private void TEST10_G_ChoicePoint__transition()
@@ -2614,7 +2740,7 @@ namespace Csharp.Spec2smTests
                     // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
                     {
                         // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
-                        ExitUpToStateHandler(TEST10_ROOT_exit);
+                        ExitUpToStateHandler(ptr_TEST10_ROOT_exit);
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");`.
                         trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");
@@ -2639,7 +2765,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_G_S0_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_G_S0_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_S0_exit;
 
             // TEST10_G_S0 behavior
             // uml: enter / { trace("Enter TEST10_G_S0."); }
@@ -2649,6 +2775,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S0
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_G_S0_exit = (Spec2Sm sm) => sm.TEST10_G_S0_exit();
         private void TEST10_G_S0_exit()
         {
             // TEST10_G_S0 behavior
@@ -2659,7 +2787,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S0
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_G_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_exit;
         }
 
 
@@ -2670,7 +2798,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_G_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_G_S1_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_S1_exit;
 
             // TEST10_G_S1 behavior
             // uml: enter / { trace("Enter TEST10_G_S1."); }
@@ -2680,6 +2808,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_G_S1_exit = (Spec2Sm sm) => sm.TEST10_G_S1_exit();
         private void TEST10_G_S1_exit()
         {
             // TEST10_G_S1 behavior
@@ -2690,7 +2820,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_G_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_exit;
         }
 
 
@@ -2701,7 +2831,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_G_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_G_S2_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_S2_exit;
 
             // TEST10_G_S2 behavior
             // uml: enter / { trace("Enter TEST10_G_S2."); }
@@ -2711,6 +2841,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_G_S2_exit = (Spec2Sm sm) => sm.TEST10_G_S2_exit();
         private void TEST10_G_S2_exit()
         {
             // TEST10_G_S2 behavior
@@ -2721,7 +2853,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_G_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_exit;
         }
 
 
@@ -2732,7 +2864,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_G_S3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_G_S3_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_S3_exit;
 
             // TEST10_G_S3 behavior
             // uml: enter / { trace("Enter TEST10_G_S3."); }
@@ -2742,6 +2874,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_G_S3_exit = (Spec2Sm sm) => sm.TEST10_G_S3_exit();
         private void TEST10_G_S3_exit()
         {
             // TEST10_G_S3 behavior
@@ -2752,7 +2886,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_G_S3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_G_exit;
+            this.currentStateExitHandler = ptr_TEST10_G_exit;
         }
 
 
@@ -2763,11 +2897,11 @@ namespace Csharp.Spec2smTests
         private void TEST10_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_S1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST10_S1_ev1;
-            this.currentEventHandlers[(int)EventId.EV10] = TEST10_S1_ev10;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST10_S1_ev2;
-            this.currentEventHandlers[(int)EventId.EV3] = TEST10_S1_ev3;
+            this.currentStateExitHandler = ptr_TEST10_S1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST10_S1_ev1;
+            this.currentEventHandlers[(int)EventId.EV10] = ptr_TEST10_S1_ev10;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST10_S1_ev2;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST10_S1_ev3;
 
             // TEST10_S1 behavior
             // uml: enter / { trace("Enter TEST10_S1."); }
@@ -2785,6 +2919,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_S1_exit = (Spec2Sm sm) => sm.TEST10_S1_exit();
         private void TEST10_S1_exit()
         {
             // TEST10_S1 behavior
@@ -2795,13 +2931,15 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST10_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV10] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_S1_ev1 = (Spec2Sm sm) => sm.TEST10_S1_ev1();
         private void TEST10_S1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -2838,6 +2976,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_S1_ev10 = (Spec2Sm sm) => sm.TEST10_S1_ev10();
         private void TEST10_S1_ev10()
         {
             // No ancestor state handles `ev10` event.
@@ -2847,7 +2987,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST10_CHOICE_POINT_exit);
+                ExitUpToStateHandler(ptr_TEST10_CHOICE_POINT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_A.");`.
                 trace("Transition action `` for TEST10_S1 to TEST10_A.");
@@ -2908,6 +3048,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_S1_ev2 = (Spec2Sm sm) => sm.TEST10_S1_ev2();
         private void TEST10_S1_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -2932,6 +3074,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_S1_ev3 = (Spec2Sm sm) => sm.TEST10_S1_ev3();
         private void TEST10_S1_ev3()
         {
             // No ancestor state handles `ev3` event.
@@ -2975,7 +3119,7 @@ namespace Csharp.Spec2smTests
         private void TEST10_S4_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST10_S4_exit;
+            this.currentStateExitHandler = ptr_TEST10_S4_exit;
 
             // TEST10_S4 behavior
             // uml: enter / { trace("Enter TEST10_S4."); }
@@ -2985,6 +3129,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S4
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST10_S4_exit = (Spec2Sm sm) => sm.TEST10_S4_exit();
         private void TEST10_S4_exit()
         {
             // TEST10_S4 behavior
@@ -2995,7 +3141,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST10_S4
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST10_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST10_ROOT_exit;
         }
 
 
@@ -3006,7 +3152,7 @@ namespace Csharp.Spec2smTests
         private void TEST2_REGULAR_EVENT_TESTING_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST2_REGULAR_EVENT_TESTING_exit;
+            this.currentStateExitHandler = ptr_TEST2_REGULAR_EVENT_TESTING_exit;
 
             // TEST2_REGULAR_EVENT_TESTING behavior
             // uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING."); }
@@ -3016,6 +3162,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_REGULAR_EVENT_TESTING
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_REGULAR_EVENT_TESTING_exit = (Spec2Sm sm) => sm.TEST2_REGULAR_EVENT_TESTING_exit();
         private void TEST2_REGULAR_EVENT_TESTING_exit()
         {
             // TEST2_REGULAR_EVENT_TESTING behavior
@@ -3026,7 +3174,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_REGULAR_EVENT_TESTING
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -3037,10 +3185,10 @@ namespace Csharp.Spec2smTests
         private void TEST2_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST2_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.DO] = TEST2_ROOT_do;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST2_ROOT_ev1;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST2_ROOT_ev2;
+            this.currentStateExitHandler = ptr_TEST2_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_TEST2_ROOT_do;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST2_ROOT_ev1;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST2_ROOT_ev2;
 
             // TEST2_ROOT behavior
             // uml: enter / { trace("Enter TEST2_ROOT."); }
@@ -3050,6 +3198,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_ROOT_exit = (Spec2Sm sm) => sm.TEST2_ROOT_exit();
         private void TEST2_ROOT_exit()
         {
             // TEST2_ROOT behavior
@@ -3060,12 +3210,14 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST2_REGULAR_EVENT_TESTING_exit;
+            this.currentStateExitHandler = ptr_TEST2_REGULAR_EVENT_TESTING_exit;
             this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_ROOT_do = (Spec2Sm sm) => sm.TEST2_ROOT_do();
         private void TEST2_ROOT_do()
         {
             // No ancestor state handles `do` event.
@@ -3080,6 +3232,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_ROOT_ev1 = (Spec2Sm sm) => sm.TEST2_ROOT_ev1();
         private void TEST2_ROOT_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -3094,6 +3248,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_ROOT_ev2 = (Spec2Sm sm) => sm.TEST2_ROOT_ev2();
         private void TEST2_ROOT_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -3116,7 +3272,7 @@ namespace Csharp.Spec2smTests
         private void TEST2_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST2_S1_exit;
+            this.currentStateExitHandler = ptr_TEST2_S1_exit;
 
             // TEST2_S1 behavior
             // uml: enter / { trace("Enter TEST2_S1."); }
@@ -3126,6 +3282,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_S1_exit = (Spec2Sm sm) => sm.TEST2_S1_exit();
         private void TEST2_S1_exit()
         {
             // TEST2_S1 behavior
@@ -3136,7 +3294,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST2_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST2_ROOT_exit;
         }
 
 
@@ -3147,9 +3305,9 @@ namespace Csharp.Spec2smTests
         private void TEST2_S1_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST2_S1_1_exit;
-            this.currentEventHandlers[(int)EventId.DO] = TEST2_S1_1_do;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST2_S1_1_ev1;
+            this.currentStateExitHandler = ptr_TEST2_S1_1_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_TEST2_S1_1_do;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST2_S1_1_ev1;
 
             // TEST2_S1_1 behavior
             // uml: enter / { trace("Enter TEST2_S1_1."); }
@@ -3167,6 +3325,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S1_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_S1_1_exit = (Spec2Sm sm) => sm.TEST2_S1_1_exit();
         private void TEST2_S1_1_exit()
         {
             // TEST2_S1_1 behavior
@@ -3177,22 +3337,24 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S1_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST2_S1_exit;
-            this.currentEventHandlers[(int)EventId.DO] = TEST2_ROOT_do;  // the next ancestor that handles this event is TEST2_ROOT
-            this.currentEventHandlers[(int)EventId.EV1] = TEST2_ROOT_ev1;  // the next ancestor that handles this event is TEST2_ROOT
+            this.currentStateExitHandler = ptr_TEST2_S1_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_TEST2_ROOT_do;  // the next ancestor that handles this event is TEST2_ROOT
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST2_ROOT_ev1;  // the next ancestor that handles this event is TEST2_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_S1_1_do = (Spec2Sm sm) => sm.TEST2_S1_1_do();
         private void TEST2_S1_1_do()
         {
             // Setup handler for next ancestor that listens to `do` event.
-            this.ancestorEventHandler = TEST2_ROOT_do;
+            this.ancestorEventHandler = ptr_TEST2_ROOT_do;
 
             // TEST2_S1_1 behavior
             // uml: do [trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S1_1 to TEST2_S2."); } TransitionTo(TEST2_S2)
             if (trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST2_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST2_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");`.
                 trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");
@@ -3207,10 +3369,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S1_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_S1_1_ev1 = (Spec2Sm sm) => sm.TEST2_S1_1_ev1();
         private void TEST2_S1_1_ev1()
         {
             // Setup handler for next ancestor that listens to `ev1` event.
-            this.ancestorEventHandler = TEST2_ROOT_ev1;
+            this.ancestorEventHandler = ptr_TEST2_ROOT_ev1;
 
             // TEST2_S1_1 behavior
             // uml: EV1 [trace_guard("State TEST2_S1_1: check behavior `EV1`.", true)]
@@ -3230,9 +3394,9 @@ namespace Csharp.Spec2smTests
         private void TEST2_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST2_S2_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST2_S2_ev1;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST2_S2_ev2;
+            this.currentStateExitHandler = ptr_TEST2_S2_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST2_S2_ev1;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST2_S2_ev2;
 
             // TEST2_S2 behavior
             // uml: enter / { trace("Enter TEST2_S2."); }
@@ -3249,6 +3413,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_S2_exit = (Spec2Sm sm) => sm.TEST2_S2_exit();
         private void TEST2_S2_exit()
         {
             // TEST2_S2 behavior
@@ -3259,15 +3425,17 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST2_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST2_ROOT_ev1;  // the next ancestor that handles this event is TEST2_ROOT
-            this.currentEventHandlers[(int)EventId.EV2] = TEST2_ROOT_ev2;  // the next ancestor that handles this event is TEST2_ROOT
+            this.currentStateExitHandler = ptr_TEST2_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST2_ROOT_ev1;  // the next ancestor that handles this event is TEST2_ROOT
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST2_ROOT_ev2;  // the next ancestor that handles this event is TEST2_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_S2_ev1 = (Spec2Sm sm) => sm.TEST2_S2_ev1();
         private void TEST2_S2_ev1()
         {
             // Setup handler for next ancestor that listens to `ev1` event.
-            this.ancestorEventHandler = TEST2_ROOT_ev1;
+            this.ancestorEventHandler = ptr_TEST2_ROOT_ev1;
 
             // TEST2_S2 behavior
             // uml: ev1 [trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = false; }`.", true)] / { consume_event = false; }
@@ -3286,10 +3454,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST2_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST2_S2_ev2 = (Spec2Sm sm) => sm.TEST2_S2_ev2();
         private void TEST2_S2_ev2()
         {
             // Setup handler for next ancestor that listens to `ev2` event.
-            this.ancestorEventHandler = TEST2_ROOT_ev2;
+            this.ancestorEventHandler = ptr_TEST2_ROOT_ev2;
 
             // TEST2_S2 behavior
             // uml: ev2 [trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", true)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2."); } TransitionTo(TEST2_S2)
@@ -3319,7 +3489,7 @@ namespace Csharp.Spec2smTests
         private void TEST3_BEHAVIOR_ORDERING_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST3_BEHAVIOR_ORDERING_exit;
+            this.currentStateExitHandler = ptr_TEST3_BEHAVIOR_ORDERING_exit;
 
             // TEST3_BEHAVIOR_ORDERING behavior
             // uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING."); }
@@ -3329,6 +3499,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_BEHAVIOR_ORDERING
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST3_BEHAVIOR_ORDERING_exit = (Spec2Sm sm) => sm.TEST3_BEHAVIOR_ORDERING_exit();
         private void TEST3_BEHAVIOR_ORDERING_exit()
         {
             // TEST3_BEHAVIOR_ORDERING behavior
@@ -3339,7 +3511,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_BEHAVIOR_ORDERING
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -3350,8 +3522,8 @@ namespace Csharp.Spec2smTests
         private void TEST3_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST3_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST3_ROOT_ev1;
+            this.currentStateExitHandler = ptr_TEST3_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST3_ROOT_ev1;
 
             // TEST3_ROOT behavior
             // uml: enter / { trace("Enter TEST3_ROOT."); }
@@ -3361,6 +3533,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST3_ROOT_exit = (Spec2Sm sm) => sm.TEST3_ROOT_exit();
         private void TEST3_ROOT_exit()
         {
             // TEST3_ROOT behavior
@@ -3371,10 +3545,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST3_BEHAVIOR_ORDERING_exit;
+            this.currentStateExitHandler = ptr_TEST3_BEHAVIOR_ORDERING_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST3_ROOT_ev1 = (Spec2Sm sm) => sm.TEST3_ROOT_ev1();
         private void TEST3_ROOT_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -3397,8 +3573,8 @@ namespace Csharp.Spec2smTests
         private void TEST3_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST3_S1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST3_S1_ev1;
+            this.currentStateExitHandler = ptr_TEST3_S1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST3_S1_ev1;
 
             // TEST3_S1 behavior
             // uml: enter / { trace("Enter TEST3_S1."); }
@@ -3416,6 +3592,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST3_S1_exit = (Spec2Sm sm) => sm.TEST3_S1_exit();
         private void TEST3_S1_exit()
         {
             // TEST3_S1 behavior
@@ -3426,14 +3604,16 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST3_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST3_ROOT_ev1;  // the next ancestor that handles this event is TEST3_ROOT
+            this.currentStateExitHandler = ptr_TEST3_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST3_ROOT_ev1;  // the next ancestor that handles this event is TEST3_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST3_S1_ev1 = (Spec2Sm sm) => sm.TEST3_S1_ev1();
         private void TEST3_S1_ev1()
         {
             // Setup handler for next ancestor that listens to `ev1` event.
-            this.ancestorEventHandler = TEST3_ROOT_ev1;
+            this.ancestorEventHandler = ptr_TEST3_ROOT_ev1;
 
             // TEST3_S1 behavior
             // uml: 1. EV1 [trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", true)] / { trace("Transition action `` for TEST3_S1 to TEST3_S2."); } TransitionTo(TEST3_S2)
@@ -3474,8 +3654,8 @@ namespace Csharp.Spec2smTests
         private void TEST3_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST3_S2_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST3_S2_ev1;
+            this.currentStateExitHandler = ptr_TEST3_S2_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST3_S2_ev1;
 
             // TEST3_S2 behavior
             // uml: enter / { trace("Enter TEST3_S2."); }
@@ -3485,6 +3665,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST3_S2_exit = (Spec2Sm sm) => sm.TEST3_S2_exit();
         private void TEST3_S2_exit()
         {
             // TEST3_S2 behavior
@@ -3495,14 +3677,16 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST3_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST3_ROOT_ev1;  // the next ancestor that handles this event is TEST3_ROOT
+            this.currentStateExitHandler = ptr_TEST3_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST3_ROOT_ev1;  // the next ancestor that handles this event is TEST3_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST3_S2_ev1 = (Spec2Sm sm) => sm.TEST3_S2_ev1();
         private void TEST3_S2_ev1()
         {
             // Setup handler for next ancestor that listens to `ev1` event.
-            this.ancestorEventHandler = TEST3_ROOT_ev1;
+            this.ancestorEventHandler = ptr_TEST3_ROOT_ev1;
 
             // TEST3_S2 behavior
             // uml: 1. EV1 [trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\"); }`.", true)] / { trace("1 woot!"); }
@@ -3555,7 +3739,7 @@ namespace Csharp.Spec2smTests
         private void TEST3_S3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST3_S3_exit;
+            this.currentStateExitHandler = ptr_TEST3_S3_exit;
 
             // TEST3_S3 behavior
             // uml: enter / { trace("Enter TEST3_S3."); }
@@ -3565,6 +3749,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST3_S3_exit = (Spec2Sm sm) => sm.TEST3_S3_exit();
         private void TEST3_S3_exit()
         {
             // TEST3_S3 behavior
@@ -3575,7 +3761,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST3_S3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST3_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST3_ROOT_exit;
         }
 
 
@@ -3586,7 +3772,7 @@ namespace Csharp.Spec2smTests
         private void TEST4_PARENT_CHILD_TRANSITIONS_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
+            this.currentStateExitHandler = ptr_TEST4_PARENT_CHILD_TRANSITIONS_exit;
 
             // TEST4_PARENT_CHILD_TRANSITIONS behavior
             // uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS."); }
@@ -3596,6 +3782,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_PARENT_CHILD_TRANSITIONS_exit = (Spec2Sm sm) => sm.TEST4_PARENT_CHILD_TRANSITIONS_exit();
         private void TEST4_PARENT_CHILD_TRANSITIONS_exit()
         {
             // TEST4_PARENT_CHILD_TRANSITIONS behavior
@@ -3606,7 +3794,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -3617,7 +3805,7 @@ namespace Csharp.Spec2smTests
         private void TEST4_B_AND_OTHERS_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_B_AND_OTHERS_exit;
+            this.currentStateExitHandler = ptr_TEST4_B_AND_OTHERS_exit;
 
             // TEST4_B_AND_OTHERS behavior
             // uml: enter / { trace("Enter TEST4_B_AND_OTHERS."); }
@@ -3635,6 +3823,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_B_AND_OTHERS
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_B_AND_OTHERS_exit = (Spec2Sm sm) => sm.TEST4_B_AND_OTHERS_exit();
         private void TEST4_B_AND_OTHERS_exit()
         {
             // TEST4_B_AND_OTHERS behavior
@@ -3645,7 +3835,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_B_AND_OTHERS
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
+            this.currentStateExitHandler = ptr_TEST4_PARENT_CHILD_TRANSITIONS_exit;
         }
 
 
@@ -3656,7 +3846,7 @@ namespace Csharp.Spec2smTests
         private void TEST4B_LOCAL_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4B_LOCAL_exit;
+            this.currentStateExitHandler = ptr_TEST4B_LOCAL_exit;
 
             // TEST4B_LOCAL behavior
             // uml: enter / { trace("Enter TEST4B_LOCAL."); }
@@ -3666,6 +3856,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_LOCAL
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4B_LOCAL_exit = (Spec2Sm sm) => sm.TEST4B_LOCAL_exit();
         private void TEST4B_LOCAL_exit()
         {
             // TEST4B_LOCAL behavior
@@ -3676,7 +3868,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_LOCAL
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_B_AND_OTHERS_exit;
+            this.currentStateExitHandler = ptr_TEST4_B_AND_OTHERS_exit;
         }
 
 
@@ -3687,8 +3879,8 @@ namespace Csharp.Spec2smTests
         private void TEST4B_G_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4B_G_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST4B_G_ev1;
+            this.currentStateExitHandler = ptr_TEST4B_G_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST4B_G_ev1;
 
             // TEST4B_G behavior
             // uml: enter / { trace("Enter TEST4B_G."); }
@@ -3698,6 +3890,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_G
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4B_G_exit = (Spec2Sm sm) => sm.TEST4B_G_exit();
         private void TEST4B_G_exit()
         {
             // TEST4B_G behavior
@@ -3708,10 +3902,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_G
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4B_LOCAL_exit;
+            this.currentStateExitHandler = ptr_TEST4B_LOCAL_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4B_G_ev1 = (Spec2Sm sm) => sm.TEST4B_G_ev1();
         private void TEST4B_G_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -3721,7 +3917,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4B_G_exit);
+                ExitUpToStateHandler(ptr_TEST4B_G_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4B_G to TEST4B_G_1.");`.
                 trace("Transition action `` for TEST4B_G to TEST4B_G_1.");
@@ -3744,8 +3940,8 @@ namespace Csharp.Spec2smTests
         private void TEST4B_G_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4B_G_1_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST4B_G_1_ev2;
+            this.currentStateExitHandler = ptr_TEST4B_G_1_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST4B_G_1_ev2;
 
             // TEST4B_G_1 behavior
             // uml: enter / { trace("Enter TEST4B_G_1."); }
@@ -3755,6 +3951,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_G_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4B_G_1_exit = (Spec2Sm sm) => sm.TEST4B_G_1_exit();
         private void TEST4B_G_1_exit()
         {
             // TEST4B_G_1 behavior
@@ -3765,10 +3963,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4B_G_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4B_G_exit;
+            this.currentStateExitHandler = ptr_TEST4B_G_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4B_G_1_ev2 = (Spec2Sm sm) => sm.TEST4B_G_1_ev2();
         private void TEST4B_G_1_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -3800,7 +4000,7 @@ namespace Csharp.Spec2smTests
         private void TEST4C_LOCAL_TO_ALIAS_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4C_LOCAL_TO_ALIAS_exit;
+            this.currentStateExitHandler = ptr_TEST4C_LOCAL_TO_ALIAS_exit;
 
             // TEST4C_LOCAL_TO_ALIAS behavior
             // uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS."); }
@@ -3810,6 +4010,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_LOCAL_TO_ALIAS
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4C_LOCAL_TO_ALIAS_exit = (Spec2Sm sm) => sm.TEST4C_LOCAL_TO_ALIAS_exit();
         private void TEST4C_LOCAL_TO_ALIAS_exit()
         {
             // TEST4C_LOCAL_TO_ALIAS behavior
@@ -3820,7 +4022,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_LOCAL_TO_ALIAS
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_B_AND_OTHERS_exit;
+            this.currentStateExitHandler = ptr_TEST4_B_AND_OTHERS_exit;
         }
 
 
@@ -3831,8 +4033,8 @@ namespace Csharp.Spec2smTests
         private void TEST4C_G_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4C_G_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST4C_G_ev1;
+            this.currentStateExitHandler = ptr_TEST4C_G_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST4C_G_ev1;
 
             // TEST4C_G behavior
             // uml: enter / { trace("Enter TEST4C_G."); }
@@ -3842,6 +4044,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_G
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4C_G_exit = (Spec2Sm sm) => sm.TEST4C_G_exit();
         private void TEST4C_G_exit()
         {
             // TEST4C_G behavior
@@ -3852,10 +4056,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_G
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4C_LOCAL_TO_ALIAS_exit;
+            this.currentStateExitHandler = ptr_TEST4C_LOCAL_TO_ALIAS_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4C_G_ev1 = (Spec2Sm sm) => sm.TEST4C_G_ev1();
         private void TEST4C_G_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -3865,7 +4071,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4C_G_exit);
+                ExitUpToStateHandler(ptr_TEST4C_G_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4C_G to TEST4C_G_1.");`.
                 trace("Transition action `` for TEST4C_G to TEST4C_G_1.");
@@ -3888,8 +4094,8 @@ namespace Csharp.Spec2smTests
         private void TEST4C_G_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4C_G_1_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST4C_G_1_ev2;
+            this.currentStateExitHandler = ptr_TEST4C_G_1_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST4C_G_1_ev2;
 
             // TEST4C_G_1 behavior
             // uml: enter / { trace("Enter TEST4C_G_1."); }
@@ -3899,6 +4105,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_G_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4C_G_1_exit = (Spec2Sm sm) => sm.TEST4C_G_1_exit();
         private void TEST4C_G_1_exit()
         {
             // TEST4C_G_1 behavior
@@ -3909,10 +4117,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4C_G_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4C_G_exit;
+            this.currentStateExitHandler = ptr_TEST4C_G_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4C_G_1_ev2 = (Spec2Sm sm) => sm.TEST4C_G_1_ev2();
         private void TEST4C_G_1_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -3944,7 +4154,7 @@ namespace Csharp.Spec2smTests
         private void TEST4D_EXTERNAL_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4D_EXTERNAL_exit;
+            this.currentStateExitHandler = ptr_TEST4D_EXTERNAL_exit;
 
             // TEST4D_EXTERNAL behavior
             // uml: enter / { trace("Enter TEST4D_EXTERNAL."); }
@@ -3954,6 +4164,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_EXTERNAL
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4D_EXTERNAL_exit = (Spec2Sm sm) => sm.TEST4D_EXTERNAL_exit();
         private void TEST4D_EXTERNAL_exit()
         {
             // TEST4D_EXTERNAL behavior
@@ -3964,7 +4176,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_EXTERNAL
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_B_AND_OTHERS_exit;
+            this.currentStateExitHandler = ptr_TEST4_B_AND_OTHERS_exit;
         }
 
 
@@ -3975,8 +4187,8 @@ namespace Csharp.Spec2smTests
         private void TEST4D_G_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4D_G_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST4D_G_ev1;
+            this.currentStateExitHandler = ptr_TEST4D_G_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST4D_G_ev1;
 
             // TEST4D_G behavior
             // uml: enter / { trace("Enter TEST4D_G."); }
@@ -3986,6 +4198,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_G
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4D_G_exit = (Spec2Sm sm) => sm.TEST4D_G_exit();
         private void TEST4D_G_exit()
         {
             // TEST4D_G behavior
@@ -3996,10 +4210,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_G
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4D_EXTERNAL_exit;
+            this.currentStateExitHandler = ptr_TEST4D_EXTERNAL_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4D_G_ev1 = (Spec2Sm sm) => sm.TEST4D_G_ev1();
         private void TEST4D_G_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -4009,7 +4225,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4D_EXTERNAL_exit);
+                ExitUpToStateHandler(ptr_TEST4D_EXTERNAL_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");`.
                 trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");
@@ -4045,8 +4261,8 @@ namespace Csharp.Spec2smTests
         private void TEST4D_G_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4D_G_1_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST4D_G_1_ev2;
+            this.currentStateExitHandler = ptr_TEST4D_G_1_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST4D_G_1_ev2;
 
             // TEST4D_G_1 behavior
             // uml: enter / { trace("Enter TEST4D_G_1."); }
@@ -4056,6 +4272,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_G_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4D_G_1_exit = (Spec2Sm sm) => sm.TEST4D_G_1_exit();
         private void TEST4D_G_1_exit()
         {
             // TEST4D_G_1 behavior
@@ -4066,10 +4284,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4D_G_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4D_G_exit;
+            this.currentStateExitHandler = ptr_TEST4D_G_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4D_G_1_ev2 = (Spec2Sm sm) => sm.TEST4D_G_1_ev2();
         private void TEST4D_G_1_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -4079,7 +4299,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4D_EXTERNAL_exit);
+                ExitUpToStateHandler(ptr_TEST4D_EXTERNAL_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");`.
                 trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");
@@ -4114,11 +4334,11 @@ namespace Csharp.Spec2smTests
         private void TEST4_DECIDE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_DECIDE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST4_DECIDE_ev1;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST4_DECIDE_ev2;
-            this.currentEventHandlers[(int)EventId.EV3] = TEST4_DECIDE_ev3;
-            this.currentEventHandlers[(int)EventId.EV4] = TEST4_DECIDE_ev4;
+            this.currentStateExitHandler = ptr_TEST4_DECIDE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST4_DECIDE_ev1;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST4_DECIDE_ev2;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST4_DECIDE_ev3;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_TEST4_DECIDE_ev4;
 
             // TEST4_DECIDE behavior
             // uml: enter / { trace("Enter TEST4_DECIDE."); }
@@ -4128,6 +4348,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_DECIDE_exit = (Spec2Sm sm) => sm.TEST4_DECIDE_exit();
         private void TEST4_DECIDE_exit()
         {
             // TEST4_DECIDE behavior
@@ -4138,13 +4360,15 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_DECIDE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
+            this.currentStateExitHandler = ptr_TEST4_PARENT_CHILD_TRANSITIONS_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV4] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_DECIDE_ev1 = (Spec2Sm sm) => sm.TEST4_DECIDE_ev1();
         private void TEST4_DECIDE_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -4169,6 +4393,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_DECIDE_ev2 = (Spec2Sm sm) => sm.TEST4_DECIDE_ev2();
         private void TEST4_DECIDE_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -4206,6 +4432,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_DECIDE_ev3 = (Spec2Sm sm) => sm.TEST4_DECIDE_ev3();
         private void TEST4_DECIDE_ev3()
         {
             // No ancestor state handles `ev3` event.
@@ -4243,6 +4471,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_DECIDE_ev4 = (Spec2Sm sm) => sm.TEST4_DECIDE_ev4();
         private void TEST4_DECIDE_ev4()
         {
             // No ancestor state handles `ev4` event.
@@ -4288,10 +4518,10 @@ namespace Csharp.Spec2smTests
         private void TEST4_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST4_ROOT_ev2;
-            this.currentEventHandlers[(int)EventId.EV3] = TEST4_ROOT_ev3;
-            this.currentEventHandlers[(int)EventId.EV4] = TEST4_ROOT_ev4;
+            this.currentStateExitHandler = ptr_TEST4_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST4_ROOT_ev2;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST4_ROOT_ev3;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_TEST4_ROOT_ev4;
 
             // TEST4_ROOT behavior
             // uml: enter / { trace("Enter TEST4_ROOT."); }
@@ -4309,6 +4539,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_ROOT_exit = (Spec2Sm sm) => sm.TEST4_ROOT_exit();
         private void TEST4_ROOT_exit()
         {
             // TEST4_ROOT behavior
@@ -4319,12 +4551,14 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_PARENT_CHILD_TRANSITIONS_exit;
+            this.currentStateExitHandler = ptr_TEST4_PARENT_CHILD_TRANSITIONS_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV4] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_ROOT_ev2 = (Spec2Sm sm) => sm.TEST4_ROOT_ev2();
         private void TEST4_ROOT_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -4334,7 +4568,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S1.");`.
                 trace("Transition action `` for TEST4_ROOT to TEST4_S1.");
@@ -4349,6 +4583,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_ROOT_ev3 = (Spec2Sm sm) => sm.TEST4_ROOT_ev3();
         private void TEST4_ROOT_ev3()
         {
             // No ancestor state handles `ev3` event.
@@ -4358,7 +4594,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");`.
                 trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
@@ -4374,6 +4610,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_ROOT_ev4 = (Spec2Sm sm) => sm.TEST4_ROOT_ev4();
         private void TEST4_ROOT_ev4()
         {
             // No ancestor state handles `ev4` event.
@@ -4383,7 +4621,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S20.");`.
                 trace("Transition action `` for TEST4_ROOT to TEST4_S20.");
@@ -4405,8 +4643,8 @@ namespace Csharp.Spec2smTests
         private void TEST4_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_S1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST4_S1_ev1;
+            this.currentStateExitHandler = ptr_TEST4_S1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST4_S1_ev1;
 
             // TEST4_S1 behavior
             // uml: enter / { trace("Enter TEST4_S1."); }
@@ -4416,6 +4654,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S1_exit = (Spec2Sm sm) => sm.TEST4_S1_exit();
         private void TEST4_S1_exit()
         {
             // TEST4_S1 behavior
@@ -4426,10 +4666,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST4_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S1_ev1 = (Spec2Sm sm) => sm.TEST4_S1_ev1();
         private void TEST4_S1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -4462,8 +4704,8 @@ namespace Csharp.Spec2smTests
         private void TEST4_S10_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_S10_exit;
-            this.currentEventHandlers[(int)EventId.EV4] = TEST4_S10_ev4;
+            this.currentStateExitHandler = ptr_TEST4_S10_exit;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_TEST4_S10_ev4;
 
             // TEST4_S10 behavior
             // uml: enter / { trace("Enter TEST4_S10."); }
@@ -4473,6 +4715,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S10
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S10_exit = (Spec2Sm sm) => sm.TEST4_S10_exit();
         private void TEST4_S10_exit()
         {
             // TEST4_S10 behavior
@@ -4483,21 +4727,23 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S10
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV4] = TEST4_ROOT_ev4;  // the next ancestor that handles this event is TEST4_ROOT
+            this.currentStateExitHandler = ptr_TEST4_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_TEST4_ROOT_ev4;  // the next ancestor that handles this event is TEST4_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S10_ev4 = (Spec2Sm sm) => sm.TEST4_S10_ev4();
         private void TEST4_S10_ev4()
         {
             // Setup handler for next ancestor that listens to `ev4` event.
-            this.ancestorEventHandler = TEST4_ROOT_ev4;
+            this.ancestorEventHandler = ptr_TEST4_ROOT_ev4;
 
             // TEST4_S10 behavior
             // uml: EV4 [trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true)] / { trace("Transition action `` for TEST4_S10 to TEST4_S10."); } TransitionTo(TEST4_S10)
             if (trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S10 to TEST4_S10.");`.
                 trace("Transition action `` for TEST4_S10 to TEST4_S10.");
@@ -4520,7 +4766,7 @@ namespace Csharp.Spec2smTests
         private void TEST4_S10_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_S10_1_exit;
+            this.currentStateExitHandler = ptr_TEST4_S10_1_exit;
 
             // TEST4_S10_1 behavior
             // uml: enter / { trace("Enter TEST4_S10_1."); }
@@ -4530,6 +4776,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S10_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S10_1_exit = (Spec2Sm sm) => sm.TEST4_S10_1_exit();
         private void TEST4_S10_1_exit()
         {
             // TEST4_S10_1 behavior
@@ -4540,7 +4788,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S10_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_S10_exit;
+            this.currentStateExitHandler = ptr_TEST4_S10_exit;
         }
 
 
@@ -4551,8 +4799,8 @@ namespace Csharp.Spec2smTests
         private void TEST4_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_S2_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST4_S2_ev1;
+            this.currentStateExitHandler = ptr_TEST4_S2_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST4_S2_ev1;
 
             // TEST4_S2 behavior
             // uml: enter / { trace("Enter TEST4_S2."); }
@@ -4562,6 +4810,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S2_exit = (Spec2Sm sm) => sm.TEST4_S2_exit();
         private void TEST4_S2_exit()
         {
             // TEST4_S2 behavior
@@ -4572,10 +4822,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST4_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S2_ev1 = (Spec2Sm sm) => sm.TEST4_S2_ev1();
         private void TEST4_S2_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -4608,8 +4860,8 @@ namespace Csharp.Spec2smTests
         private void TEST4_S20_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_S20_exit;
-            this.currentEventHandlers[(int)EventId.EV4] = TEST4_S20_ev4;
+            this.currentStateExitHandler = ptr_TEST4_S20_exit;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_TEST4_S20_ev4;
 
             // TEST4_S20 behavior
             // uml: enter / { trace("Enter TEST4_S20."); }
@@ -4619,6 +4871,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S20
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S20_exit = (Spec2Sm sm) => sm.TEST4_S20_exit();
         private void TEST4_S20_exit()
         {
             // TEST4_S20 behavior
@@ -4629,21 +4883,23 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S20
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV4] = TEST4_ROOT_ev4;  // the next ancestor that handles this event is TEST4_ROOT
+            this.currentStateExitHandler = ptr_TEST4_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_TEST4_ROOT_ev4;  // the next ancestor that handles this event is TEST4_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S20_ev4 = (Spec2Sm sm) => sm.TEST4_S20_ev4();
         private void TEST4_S20_ev4()
         {
             // Setup handler for next ancestor that listens to `ev4` event.
-            this.ancestorEventHandler = TEST4_ROOT_ev4;
+            this.ancestorEventHandler = ptr_TEST4_ROOT_ev4;
 
             // TEST4_S20 behavior
             // uml: EV4 [trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true)] / { trace("Transition action `` for TEST4_S20 to TEST4_S20."); } TransitionTo(TEST4_S20)
             if (trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST4_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S20 to TEST4_S20.");`.
                 trace("Transition action `` for TEST4_S20 to TEST4_S20.");
@@ -4685,7 +4941,7 @@ namespace Csharp.Spec2smTests
         private void TEST4_S20_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_S20_1_exit;
+            this.currentStateExitHandler = ptr_TEST4_S20_1_exit;
 
             // TEST4_S20_1 behavior
             // uml: enter / { trace("Enter TEST4_S20_1."); }
@@ -4695,6 +4951,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S20_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S20_1_exit = (Spec2Sm sm) => sm.TEST4_S20_1_exit();
         private void TEST4_S20_1_exit()
         {
             // TEST4_S20_1 behavior
@@ -4705,7 +4963,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S20_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_S20_exit;
+            this.currentStateExitHandler = ptr_TEST4_S20_exit;
         }
 
 
@@ -4716,8 +4974,8 @@ namespace Csharp.Spec2smTests
         private void TEST4_S3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST4_S3_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST4_S3_ev1;
+            this.currentStateExitHandler = ptr_TEST4_S3_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST4_S3_ev1;
 
             // TEST4_S3 behavior
             // uml: enter / { trace("Enter TEST4_S3."); }
@@ -4727,6 +4985,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S3_exit = (Spec2Sm sm) => sm.TEST4_S3_exit();
         private void TEST4_S3_exit()
         {
             // TEST4_S3 behavior
@@ -4737,10 +4997,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST4_S3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST4_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST4_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST4_S3_ev1 = (Spec2Sm sm) => sm.TEST4_S3_ev1();
         private void TEST4_S3_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -4772,7 +5034,7 @@ namespace Csharp.Spec2smTests
         private void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit;
+            this.currentStateExitHandler = ptr_TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit;
 
             // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
             // uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
@@ -4782,6 +5044,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit = (Spec2Sm sm) => sm.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit();
         private void TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
         {
             // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
@@ -4792,7 +5056,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -4803,8 +5067,8 @@ namespace Csharp.Spec2smTests
         private void TEST5_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST5_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST5_ROOT_ev2;
+            this.currentStateExitHandler = ptr_TEST5_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST5_ROOT_ev2;
 
             // TEST5_ROOT behavior
             // uml: enter / { trace("Enter TEST5_ROOT."); }
@@ -4822,6 +5086,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_ROOT_exit = (Spec2Sm sm) => sm.TEST5_ROOT_exit();
         private void TEST5_ROOT_exit()
         {
             // TEST5_ROOT behavior
@@ -4832,10 +5098,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit;
+            this.currentStateExitHandler = ptr_TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_ROOT_ev2 = (Spec2Sm sm) => sm.TEST5_ROOT_ev2();
         private void TEST5_ROOT_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -4845,7 +5113,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST5_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST5_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST5_ROOT to TEST5_S1.");`.
                 trace("Transition action `` for TEST5_ROOT to TEST5_S1.");
@@ -4868,8 +5136,8 @@ namespace Csharp.Spec2smTests
         private void TEST5_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST5_S1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST5_S1_ev1;
+            this.currentStateExitHandler = ptr_TEST5_S1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST5_S1_ev1;
 
             // TEST5_S1 behavior
             // uml: enter / { trace("Enter TEST5_S1."); }
@@ -4879,6 +5147,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_S1_exit = (Spec2Sm sm) => sm.TEST5_S1_exit();
         private void TEST5_S1_exit()
         {
             // TEST5_S1 behavior
@@ -4889,10 +5159,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST5_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST5_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_S1_ev1 = (Spec2Sm sm) => sm.TEST5_S1_ev1();
         private void TEST5_S1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -4925,8 +5197,8 @@ namespace Csharp.Spec2smTests
         private void TEST5_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST5_S2_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST5_S2_ev1;
+            this.currentStateExitHandler = ptr_TEST5_S2_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST5_S2_ev1;
 
             // TEST5_S2 behavior
             // uml: enter / { trace("Enter TEST5_S2."); }
@@ -4936,6 +5208,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_S2_exit = (Spec2Sm sm) => sm.TEST5_S2_exit();
         private void TEST5_S2_exit()
         {
             // TEST5_S2 behavior
@@ -4946,10 +5220,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST5_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST5_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_S2_ev1 = (Spec2Sm sm) => sm.TEST5_S2_ev1();
         private void TEST5_S2_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -4982,8 +5258,8 @@ namespace Csharp.Spec2smTests
         private void TEST5_S3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST5_S3_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST5_S3_ev1;
+            this.currentStateExitHandler = ptr_TEST5_S3_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST5_S3_ev1;
 
             // TEST5_S3 behavior
             // uml: enter / { trace("Enter TEST5_S3."); }
@@ -4993,6 +5269,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_S3_exit = (Spec2Sm sm) => sm.TEST5_S3_exit();
         private void TEST5_S3_exit()
         {
             // TEST5_S3 behavior
@@ -5003,10 +5281,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST5_S3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST5_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST5_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST5_S3_ev1 = (Spec2Sm sm) => sm.TEST5_S3_ev1();
         private void TEST5_S3_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -5038,7 +5318,7 @@ namespace Csharp.Spec2smTests
         private void TEST6_VARIABLES_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST6_VARIABLES_exit;
+            this.currentStateExitHandler = ptr_TEST6_VARIABLES_exit;
 
             // TEST6_VARIABLES behavior
             // uml: enter / { trace("Enter TEST6_VARIABLES."); }
@@ -5048,6 +5328,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_VARIABLES
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST6_VARIABLES_exit = (Spec2Sm sm) => sm.TEST6_VARIABLES_exit();
         private void TEST6_VARIABLES_exit()
         {
             // TEST6_VARIABLES behavior
@@ -5058,7 +5340,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_VARIABLES
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -5069,7 +5351,7 @@ namespace Csharp.Spec2smTests
         private void TEST6_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST6_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST6_ROOT_exit;
 
             // TEST6_ROOT behavior
             // uml: enter / { trace("Enter TEST6_ROOT."); }
@@ -5079,6 +5361,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST6_ROOT_exit = (Spec2Sm sm) => sm.TEST6_ROOT_exit();
         private void TEST6_ROOT_exit()
         {
             // TEST6_ROOT behavior
@@ -5089,7 +5373,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST6_VARIABLES_exit;
+            this.currentStateExitHandler = ptr_TEST6_VARIABLES_exit;
         }
 
 
@@ -5100,8 +5384,8 @@ namespace Csharp.Spec2smTests
         private void TEST6_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST6_S1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST6_S1_ev1;
+            this.currentStateExitHandler = ptr_TEST6_S1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST6_S1_ev1;
 
             // TEST6_S1 behavior
             // uml: enter / { trace("Enter TEST6_S1."); }
@@ -5119,6 +5403,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST6_S1_exit = (Spec2Sm sm) => sm.TEST6_S1_exit();
         private void TEST6_S1_exit()
         {
             // TEST6_S1 behavior
@@ -5129,10 +5415,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST6_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST6_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST6_S1_ev1 = (Spec2Sm sm) => sm.TEST6_S1_ev1();
         private void TEST6_S1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -5176,7 +5464,7 @@ namespace Csharp.Spec2smTests
         private void TEST6_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST6_S2_exit;
+            this.currentStateExitHandler = ptr_TEST6_S2_exit;
 
             // TEST6_S2 behavior
             // uml: enter / { trace("Enter TEST6_S2."); }
@@ -5186,6 +5474,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST6_S2_exit = (Spec2Sm sm) => sm.TEST6_S2_exit();
         private void TEST6_S2_exit()
         {
             // TEST6_S2 behavior
@@ -5196,7 +5486,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST6_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST6_ROOT_exit;
         }
 
 
@@ -5207,7 +5497,7 @@ namespace Csharp.Spec2smTests
         private void TEST7_INITIAL_OR_HISTORY_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST7_INITIAL_OR_HISTORY_exit;
+            this.currentStateExitHandler = ptr_TEST7_INITIAL_OR_HISTORY_exit;
 
             // TEST7_INITIAL_OR_HISTORY behavior
             // uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY."); }
@@ -5217,6 +5507,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_INITIAL_OR_HISTORY
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST7_INITIAL_OR_HISTORY_exit = (Spec2Sm sm) => sm.TEST7_INITIAL_OR_HISTORY_exit();
         private void TEST7_INITIAL_OR_HISTORY_exit()
         {
             // TEST7_INITIAL_OR_HISTORY behavior
@@ -5227,7 +5519,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_INITIAL_OR_HISTORY
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -5238,7 +5530,7 @@ namespace Csharp.Spec2smTests
         private void TEST7_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST7_exit;
+            this.currentStateExitHandler = ptr_TEST7_exit;
 
             // TEST7 behavior
             // uml: enter / { trace("Enter TEST7."); }
@@ -5256,6 +5548,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST7_exit = (Spec2Sm sm) => sm.TEST7_exit();
         private void TEST7_exit()
         {
             // TEST7 behavior
@@ -5266,7 +5560,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST7_INITIAL_OR_HISTORY_exit;
+            this.currentStateExitHandler = ptr_TEST7_INITIAL_OR_HISTORY_exit;
         }
 
 
@@ -5277,7 +5571,7 @@ namespace Csharp.Spec2smTests
         private void T7__DEEP_HISTORY1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DEEP_HISTORY1_exit;
+            this.currentStateExitHandler = ptr_T7__DEEP_HISTORY1_exit;
 
             // T7__DEEP_HISTORY1 behavior
             // uml: enter / { trace("Enter T7__DEEP_HISTORY1."); }
@@ -5287,6 +5581,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DEEP_HISTORY1_exit = (Spec2Sm sm) => sm.T7__DEEP_HISTORY1_exit();
         private void T7__DEEP_HISTORY1_exit()
         {
             // T7__DEEP_HISTORY1 behavior
@@ -5297,7 +5593,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST7_exit;
+            this.currentStateExitHandler = ptr_TEST7_exit;
         }
 
 
@@ -5308,7 +5604,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__SANTAS_WORKSHOP_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__SANTAS_WORKSHOP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__SANTAS_WORKSHOP_exit;
 
             // T7__DH1__SANTAS_WORKSHOP behavior
             // uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP."); }
@@ -5318,6 +5614,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__SANTAS_WORKSHOP
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__SANTAS_WORKSHOP_exit = (Spec2Sm sm) => sm.T7__DH1__SANTAS_WORKSHOP_exit();
         private void T7__DH1__SANTAS_WORKSHOP_exit()
         {
             // T7__DH1__SANTAS_WORKSHOP behavior
@@ -5328,7 +5626,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__SANTAS_WORKSHOP
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DEEP_HISTORY1_exit;
+            this.currentStateExitHandler = ptr_T7__DEEP_HISTORY1_exit;
         }
 
 
@@ -5339,8 +5637,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__ALIENS_DETECTED_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__ALIENS_DETECTED_exit;
-            this.currentEventHandlers[(int)EventId.EV8] = T7__DH1__ALIENS_DETECTED_ev8;
+            this.currentStateExitHandler = ptr_T7__DH1__ALIENS_DETECTED_exit;
+            this.currentEventHandlers[(int)EventId.EV8] = ptr_T7__DH1__ALIENS_DETECTED_ev8;
 
             // T7__DH1__ALIENS_DETECTED behavior
             // uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED."); }
@@ -5350,6 +5648,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__ALIENS_DETECTED
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__ALIENS_DETECTED_exit = (Spec2Sm sm) => sm.T7__DH1__ALIENS_DETECTED_exit();
         private void T7__DH1__ALIENS_DETECTED_exit()
         {
             // T7__DH1__ALIENS_DETECTED behavior
@@ -5360,10 +5660,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__ALIENS_DETECTED
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__SANTAS_WORKSHOP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__SANTAS_WORKSHOP_exit;
             this.currentEventHandlers[(int)EventId.EV8] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__ALIENS_DETECTED_ev8 = (Spec2Sm sm) => sm.T7__DH1__ALIENS_DETECTED_ev8();
         private void T7__DH1__ALIENS_DETECTED_ev8()
         {
             // No ancestor state handles `ev8` event.
@@ -5373,7 +5675,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DH1__SANTAS_WORKSHOP_exit);
+                ExitUpToStateHandler(ptr_T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");`.
                 trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");
@@ -5395,7 +5697,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__GET_BACKUP_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__GET_BACKUP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__GET_BACKUP_exit;
 
             // T7__DH1__GET_BACKUP behavior
             // uml: enter / { trace("Enter T7__DH1__GET_BACKUP."); }
@@ -5405,6 +5707,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GET_BACKUP
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__GET_BACKUP_exit = (Spec2Sm sm) => sm.T7__DH1__GET_BACKUP_exit();
         private void T7__DH1__GET_BACKUP_exit()
         {
             // T7__DH1__GET_BACKUP behavior
@@ -5415,7 +5719,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GET_BACKUP
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__ALIENS_DETECTED_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__ALIENS_DETECTED_exit;
         }
 
 
@@ -5426,7 +5730,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__HERO_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__HERO_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__HERO_exit;
 
             // T7__DH1__HERO behavior
             // uml: enter / { trace("Enter T7__DH1__HERO."); }
@@ -5452,6 +5756,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__HERO
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__HERO_exit = (Spec2Sm sm) => sm.T7__DH1__HERO_exit();
         private void T7__DH1__HERO_exit()
         {
             // T7__DH1__HERO behavior
@@ -5462,7 +5768,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__HERO
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__GET_BACKUP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__GET_BACKUP_exit;
         }
 
         private void T7__DH1__HERO_InitialState_transition()
@@ -5493,8 +5799,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__CALL_BATMAN_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__CALL_BATMAN_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__CALL_BATMAN_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__CALL_BATMAN_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__CALL_BATMAN_ev1;
 
             // T7__DH1__CALL_BATMAN behavior
             // uml: enter / { trace("Enter T7__DH1__CALL_BATMAN."); }
@@ -5504,6 +5810,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CALL_BATMAN
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__CALL_BATMAN_exit = (Spec2Sm sm) => sm.T7__DH1__CALL_BATMAN_exit();
         private void T7__DH1__CALL_BATMAN_exit()
         {
             // T7__DH1__CALL_BATMAN behavior
@@ -5514,10 +5822,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CALL_BATMAN
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__HERO_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__HERO_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__CALL_BATMAN_ev1 = (Spec2Sm sm) => sm.T7__DH1__CALL_BATMAN_ev1();
         private void T7__DH1__CALL_BATMAN_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -5527,7 +5837,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DH1__GET_BACKUP_exit);
+                ExitUpToStateHandler(ptr_T7__DH1__GET_BACKUP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");`.
                 trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");
@@ -5551,8 +5861,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__CALL_THOR_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__CALL_THOR_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__CALL_THOR_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__CALL_THOR_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__CALL_THOR_ev1;
 
             // T7__DH1__CALL_THOR behavior
             // uml: enter / { trace("Enter T7__DH1__CALL_THOR."); }
@@ -5562,6 +5872,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CALL_THOR
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__CALL_THOR_exit = (Spec2Sm sm) => sm.T7__DH1__CALL_THOR_exit();
         private void T7__DH1__CALL_THOR_exit()
         {
             // T7__DH1__CALL_THOR behavior
@@ -5572,10 +5884,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CALL_THOR
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__HERO_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__HERO_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__CALL_THOR_ev1 = (Spec2Sm sm) => sm.T7__DH1__CALL_THOR_ev1();
         private void T7__DH1__CALL_THOR_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -5608,7 +5922,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__LOCAL_HELP_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__LOCAL_HELP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__LOCAL_HELP_exit;
 
             // T7__DH1__LOCAL_HELP behavior
             // uml: enter / { trace("Enter T7__DH1__LOCAL_HELP."); }
@@ -5618,6 +5932,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__LOCAL_HELP
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__LOCAL_HELP_exit = (Spec2Sm sm) => sm.T7__DH1__LOCAL_HELP_exit();
         private void T7__DH1__LOCAL_HELP_exit()
         {
             // T7__DH1__LOCAL_HELP behavior
@@ -5628,7 +5944,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__LOCAL_HELP
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__GET_BACKUP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__GET_BACKUP_exit;
         }
 
 
@@ -5639,8 +5955,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__BUDDY_ELF_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__BUDDY_ELF_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__BUDDY_ELF_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__BUDDY_ELF_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__BUDDY_ELF_ev1;
 
             // T7__DH1__BUDDY_ELF behavior
             // uml: enter / { trace("Enter T7__DH1__BUDDY_ELF."); }
@@ -5666,6 +5982,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BUDDY_ELF
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__BUDDY_ELF_exit = (Spec2Sm sm) => sm.T7__DH1__BUDDY_ELF_exit();
         private void T7__DH1__BUDDY_ELF_exit()
         {
             // T7__DH1__BUDDY_ELF behavior
@@ -5676,10 +5994,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BUDDY_ELF
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__LOCAL_HELP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__LOCAL_HELP_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__BUDDY_ELF_ev1 = (Spec2Sm sm) => sm.T7__DH1__BUDDY_ELF_ev1();
         private void T7__DH1__BUDDY_ELF_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -5712,7 +6032,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__POLAR_BEARS_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__POLAR_BEARS_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__POLAR_BEARS_exit;
 
             // T7__DH1__POLAR_BEARS behavior
             // uml: enter / { trace("Enter T7__DH1__POLAR_BEARS."); }
@@ -5738,6 +6058,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__POLAR_BEARS
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__POLAR_BEARS_exit = (Spec2Sm sm) => sm.T7__DH1__POLAR_BEARS_exit();
         private void T7__DH1__POLAR_BEARS_exit()
         {
             // T7__DH1__POLAR_BEARS behavior
@@ -5748,7 +6070,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__POLAR_BEARS
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__LOCAL_HELP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__LOCAL_HELP_exit;
         }
 
 
@@ -5759,8 +6081,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__GIVE_COOKIES_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__GIVE_COOKIES_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__GIVE_COOKIES_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__GIVE_COOKIES_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__GIVE_COOKIES_ev1;
 
             // T7__DH1__GIVE_COOKIES behavior
             // uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES."); }
@@ -5778,6 +6100,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GIVE_COOKIES
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__GIVE_COOKIES_exit = (Spec2Sm sm) => sm.T7__DH1__GIVE_COOKIES_exit();
         private void T7__DH1__GIVE_COOKIES_exit()
         {
             // T7__DH1__GIVE_COOKIES behavior
@@ -5788,10 +6112,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GIVE_COOKIES
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__ALIENS_DETECTED_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__ALIENS_DETECTED_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__GIVE_COOKIES_ev1 = (Spec2Sm sm) => sm.T7__DH1__GIVE_COOKIES_ev1();
         private void T7__DH1__GIVE_COOKIES_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -5826,8 +6152,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__SNOWBALL_FIGHT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__SNOWBALL_FIGHT_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__SNOWBALL_FIGHT_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__SNOWBALL_FIGHT_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__SNOWBALL_FIGHT_ev1;
 
             // T7__DH1__SNOWBALL_FIGHT behavior
             // uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT."); }
@@ -5845,6 +6171,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__SNOWBALL_FIGHT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__SNOWBALL_FIGHT_exit = (Spec2Sm sm) => sm.T7__DH1__SNOWBALL_FIGHT_exit();
         private void T7__DH1__SNOWBALL_FIGHT_exit()
         {
             // T7__DH1__SNOWBALL_FIGHT behavior
@@ -5855,10 +6183,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__SNOWBALL_FIGHT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__ALIENS_DETECTED_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__ALIENS_DETECTED_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__SNOWBALL_FIGHT_ev1 = (Spec2Sm sm) => sm.T7__DH1__SNOWBALL_FIGHT_ev1();
         private void T7__DH1__SNOWBALL_FIGHT_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -5891,9 +6221,9 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__BUILD_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__BUILD_exit;
-            this.currentEventHandlers[(int)EventId.EV6] = T7__DH1__BUILD_ev6;
-            this.currentEventHandlers[(int)EventId.EV7] = T7__DH1__BUILD_ev7;
+            this.currentStateExitHandler = ptr_T7__DH1__BUILD_exit;
+            this.currentEventHandlers[(int)EventId.EV6] = ptr_T7__DH1__BUILD_ev6;
+            this.currentEventHandlers[(int)EventId.EV7] = ptr_T7__DH1__BUILD_ev7;
 
             // T7__DH1__BUILD behavior
             // uml: enter / { trace("Enter T7__DH1__BUILD."); }
@@ -5903,6 +6233,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BUILD
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__BUILD_exit = (Spec2Sm sm) => sm.T7__DH1__BUILD_exit();
         private void T7__DH1__BUILD_exit()
         {
             // T7__DH1__BUILD behavior
@@ -5913,11 +6245,13 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BUILD
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__SANTAS_WORKSHOP_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__SANTAS_WORKSHOP_exit;
             this.currentEventHandlers[(int)EventId.EV6] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV7] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__BUILD_ev6 = (Spec2Sm sm) => sm.T7__DH1__BUILD_ev6();
         private void T7__DH1__BUILD_ev6()
         {
             // No ancestor state handles `ev6` event.
@@ -5927,7 +6261,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DH1__SANTAS_WORKSHOP_exit);
+                ExitUpToStateHandler(ptr_T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");`.
                 trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");
@@ -6042,6 +6376,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BUILD
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__BUILD_ev7 = (Spec2Sm sm) => sm.T7__DH1__BUILD_ev7();
         private void T7__DH1__BUILD_ev7()
         {
             // No ancestor state handles `ev7` event.
@@ -6051,7 +6387,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.History)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DH1__SANTAS_WORKSHOP_exit);
+                ExitUpToStateHandler(ptr_T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");`.
                 trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");
@@ -6355,8 +6691,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__TOOL_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__TOOL_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = T7__DH1__TOOL_ev2;
+            this.currentStateExitHandler = ptr_T7__DH1__TOOL_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_T7__DH1__TOOL_ev2;
 
             // T7__DH1__TOOL behavior
             // uml: enter / { trace("Enter T7__DH1__TOOL."); }
@@ -6374,6 +6710,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TOOL
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__TOOL_exit = (Spec2Sm sm) => sm.T7__DH1__TOOL_exit();
         private void T7__DH1__TOOL_exit()
         {
             // T7__DH1__TOOL behavior
@@ -6384,10 +6722,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TOOL
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__BUILD_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__BUILD_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__TOOL_ev2 = (Spec2Sm sm) => sm.T7__DH1__TOOL_ev2();
         private void T7__DH1__TOOL_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -6397,7 +6737,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DH1__BUILD_exit);
+                ExitUpToStateHandler(ptr_T7__DH1__BUILD_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");`.
                 trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");
@@ -6439,7 +6779,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__CIRCULAR_SAW_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__CIRCULAR_SAW_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__CIRCULAR_SAW_exit;
 
             // T7__DH1__CIRCULAR_SAW behavior
             // uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW."); }
@@ -6457,6 +6797,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CIRCULAR_SAW
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__CIRCULAR_SAW_exit = (Spec2Sm sm) => sm.T7__DH1__CIRCULAR_SAW_exit();
         private void T7__DH1__CIRCULAR_SAW_exit()
         {
             // T7__DH1__CIRCULAR_SAW behavior
@@ -6467,7 +6809,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__CIRCULAR_SAW
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__TOOL_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__TOOL_exit;
         }
 
 
@@ -6478,8 +6820,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__IMPACT_DRILL_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__IMPACT_DRILL_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__IMPACT_DRILL_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__IMPACT_DRILL_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__IMPACT_DRILL_ev1;
 
             // T7__DH1__IMPACT_DRILL behavior
             // uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL."); }
@@ -6497,6 +6839,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__IMPACT_DRILL
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__IMPACT_DRILL_exit = (Spec2Sm sm) => sm.T7__DH1__IMPACT_DRILL_exit();
         private void T7__DH1__IMPACT_DRILL_exit()
         {
             // T7__DH1__IMPACT_DRILL behavior
@@ -6507,10 +6851,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__IMPACT_DRILL
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__TOOL_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__TOOL_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__IMPACT_DRILL_ev1 = (Spec2Sm sm) => sm.T7__DH1__IMPACT_DRILL_ev1();
         private void T7__DH1__IMPACT_DRILL_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -6543,8 +6889,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__TOY_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__TOY_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__TOY_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__TOY_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__TOY_ev1;
 
             // T7__DH1__TOY behavior
             // uml: enter / { trace("Enter T7__DH1__TOY."); }
@@ -6562,6 +6908,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TOY
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__TOY_exit = (Spec2Sm sm) => sm.T7__DH1__TOY_exit();
         private void T7__DH1__TOY_exit()
         {
             // T7__DH1__TOY behavior
@@ -6572,10 +6920,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TOY
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__BUILD_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__BUILD_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__TOY_ev1 = (Spec2Sm sm) => sm.T7__DH1__TOY_ev1();
         private void T7__DH1__TOY_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -6585,7 +6935,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DH1__BUILD_exit);
+                ExitUpToStateHandler(ptr_T7__DH1__BUILD_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");`.
                 trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");
@@ -6627,8 +6977,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__GLOW_WORM_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__GLOW_WORM_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__GLOW_WORM_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__GLOW_WORM_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__GLOW_WORM_ev1;
 
             // T7__DH1__GLOW_WORM behavior
             // uml: enter / { trace("Enter T7__DH1__GLOW_WORM."); }
@@ -6646,6 +6996,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GLOW_WORM
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__GLOW_WORM_exit = (Spec2Sm sm) => sm.T7__DH1__GLOW_WORM_exit();
         private void T7__DH1__GLOW_WORM_exit()
         {
             // T7__DH1__GLOW_WORM behavior
@@ -6656,14 +7008,16 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__GLOW_WORM
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__TOY_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
+            this.currentStateExitHandler = ptr_T7__DH1__TOY_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__GLOW_WORM_ev1 = (Spec2Sm sm) => sm.T7__DH1__GLOW_WORM_ev1();
         private void T7__DH1__GLOW_WORM_ev1()
         {
             // Setup handler for next ancestor that listens to `ev1` event.
-            this.ancestorEventHandler = T7__DH1__TOY_ev1;
+            this.ancestorEventHandler = ptr_T7__DH1__TOY_ev1;
 
             // T7__DH1__GLOW_WORM behavior
             // uml: EV1 [trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", true)] / { trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
@@ -6692,8 +7046,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__RACE_CAR_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__RACE_CAR_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__RACE_CAR_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__RACE_CAR_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__RACE_CAR_ev1;
 
             // T7__DH1__RACE_CAR behavior
             // uml: enter / { trace("Enter T7__DH1__RACE_CAR."); }
@@ -6711,6 +7065,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__RACE_CAR
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__RACE_CAR_exit = (Spec2Sm sm) => sm.T7__DH1__RACE_CAR_exit();
         private void T7__DH1__RACE_CAR_exit()
         {
             // T7__DH1__RACE_CAR behavior
@@ -6721,14 +7077,16 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__RACE_CAR
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__TOY_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
+            this.currentStateExitHandler = ptr_T7__DH1__TOY_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__RACE_CAR_ev1 = (Spec2Sm sm) => sm.T7__DH1__RACE_CAR_ev1();
         private void T7__DH1__RACE_CAR_ev1()
         {
             // Setup handler for next ancestor that listens to `ev1` event.
-            this.ancestorEventHandler = T7__DH1__TOY_ev1;
+            this.ancestorEventHandler = ptr_T7__DH1__TOY_ev1;
 
             // T7__DH1__RACE_CAR behavior
             // uml: EV1 [trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", true)] / { trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
@@ -6758,7 +7116,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__ROBOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__ROBOT_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__ROBOT_exit;
 
             // T7__DH1__ROBOT behavior
             // uml: enter / { trace("Enter T7__DH1__ROBOT."); }
@@ -6776,6 +7134,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__ROBOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__ROBOT_exit = (Spec2Sm sm) => sm.T7__DH1__ROBOT_exit();
         private void T7__DH1__ROBOT_exit()
         {
             // T7__DH1__ROBOT behavior
@@ -6786,7 +7146,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__ROBOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__TOY_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__TOY_exit;
         }
 
         private void T7__DH1__ROBOT_InitialState_transition()
@@ -6817,8 +7177,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__BATTLEBOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__BATTLEBOT_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__BATTLEBOT_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__BATTLEBOT_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__BATTLEBOT_ev1;
 
             // T7__DH1__BATTLEBOT behavior
             // uml: enter / { trace("Enter T7__DH1__BATTLEBOT."); }
@@ -6836,6 +7196,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BATTLEBOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__BATTLEBOT_exit = (Spec2Sm sm) => sm.T7__DH1__BATTLEBOT_exit();
         private void T7__DH1__BATTLEBOT_exit()
         {
             // T7__DH1__BATTLEBOT behavior
@@ -6846,14 +7208,16 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__BATTLEBOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__ROBOT_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
+            this.currentStateExitHandler = ptr_T7__DH1__ROBOT_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__BATTLEBOT_ev1 = (Spec2Sm sm) => sm.T7__DH1__BATTLEBOT_ev1();
         private void T7__DH1__BATTLEBOT_ev1()
         {
             // Setup handler for next ancestor that listens to `ev1` event.
-            this.ancestorEventHandler = T7__DH1__TOY_ev1;
+            this.ancestorEventHandler = ptr_T7__DH1__TOY_ev1;
 
             // T7__DH1__BATTLEBOT behavior
             // uml: EV1 [trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", true)] / { trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
@@ -6883,7 +7247,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__WALL_E_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__WALL_E_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__WALL_E_exit;
 
             // T7__DH1__WALL_E behavior
             // uml: enter / { trace("Enter T7__DH1__WALL_E."); }
@@ -6901,6 +7265,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__WALL_E
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__WALL_E_exit = (Spec2Sm sm) => sm.T7__DH1__WALL_E_exit();
         private void T7__DH1__WALL_E_exit()
         {
             // T7__DH1__WALL_E behavior
@@ -6911,7 +7277,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__WALL_E
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__ROBOT_exit;
+            this.currentStateExitHandler = ptr_T7__DH1__ROBOT_exit;
         }
 
 
@@ -6922,8 +7288,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH1__TEDDY_BEAR_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH1__TEDDY_BEAR_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__TEDDY_BEAR_ev1;
+            this.currentStateExitHandler = ptr_T7__DH1__TEDDY_BEAR_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__TEDDY_BEAR_ev1;
 
             // T7__DH1__TEDDY_BEAR behavior
             // uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR."); }
@@ -6941,6 +7307,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TEDDY_BEAR
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__TEDDY_BEAR_exit = (Spec2Sm sm) => sm.T7__DH1__TEDDY_BEAR_exit();
         private void T7__DH1__TEDDY_BEAR_exit()
         {
             // T7__DH1__TEDDY_BEAR behavior
@@ -6951,14 +7319,16 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH1__TEDDY_BEAR
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH1__TOY_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
+            this.currentStateExitHandler = ptr_T7__DH1__TOY_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__DH1__TOY_ev1;  // the next ancestor that handles this event is T7__DH1__TOY
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH1__TEDDY_BEAR_ev1 = (Spec2Sm sm) => sm.T7__DH1__TEDDY_BEAR_ev1();
         private void T7__DH1__TEDDY_BEAR_ev1()
         {
             // Setup handler for next ancestor that listens to `ev1` event.
-            this.ancestorEventHandler = T7__DH1__TOY_ev1;
+            this.ancestorEventHandler = ptr_T7__DH1__TOY_ev1;
 
             // T7__DH1__TEDDY_BEAR behavior
             // uml: EV1 [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", true)] / { trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
@@ -6988,7 +7358,7 @@ namespace Csharp.Spec2smTests
         private void T7__DEEP_HISTORY2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DEEP_HISTORY2_exit;
+            this.currentStateExitHandler = ptr_T7__DEEP_HISTORY2_exit;
 
             // T7__DEEP_HISTORY2 behavior
             // uml: enter / { trace("Enter T7__DEEP_HISTORY2."); }
@@ -6998,6 +7368,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DEEP_HISTORY2_exit = (Spec2Sm sm) => sm.T7__DEEP_HISTORY2_exit();
         private void T7__DEEP_HISTORY2_exit()
         {
             // T7__DEEP_HISTORY2 behavior
@@ -7008,7 +7380,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST7_exit;
+            this.currentStateExitHandler = ptr_TEST7_exit;
         }
 
 
@@ -7019,8 +7391,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH2__STATE_0_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH2__STATE_0_exit;
-            this.currentEventHandlers[(int)EventId.EVOPEN] = T7__DH2__STATE_0_evopen;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_0_exit;
+            this.currentEventHandlers[(int)EventId.EVOPEN] = ptr_T7__DH2__STATE_0_evopen;
 
             // T7__DH2__state_0 behavior
             // uml: enter / { trace("Enter T7__DH2__state_0."); }
@@ -7030,6 +7402,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_0
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_0_exit = (Spec2Sm sm) => sm.T7__DH2__STATE_0_exit();
         private void T7__DH2__STATE_0_exit()
         {
             // T7__DH2__state_0 behavior
@@ -7040,10 +7414,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_0
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DEEP_HISTORY2_exit;
+            this.currentStateExitHandler = ptr_T7__DEEP_HISTORY2_exit;
             this.currentEventHandlers[(int)EventId.EVOPEN] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_0_evopen = (Spec2Sm sm) => sm.T7__DH2__STATE_0_evopen();
         private void T7__DH2__STATE_0_evopen()
         {
             // No ancestor state handles `evopen` event.
@@ -7053,7 +7429,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH2__state_0: check behavior `evOpen TransitionTo(T7__DH2__state_3)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DEEP_HISTORY2_exit);
+                ExitUpToStateHandler(ptr_T7__DEEP_HISTORY2_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");`.
                 trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");
@@ -7163,8 +7539,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH2__STATE_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH2__STATE_1_exit;
-            this.currentEventHandlers[(int)EventId.EVSTEP] = T7__DH2__STATE_1_evstep;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_1_exit;
+            this.currentEventHandlers[(int)EventId.EVSTEP] = ptr_T7__DH2__STATE_1_evstep;
 
             // T7__DH2__state_1 behavior
             // uml: enter / { trace("Enter T7__DH2__state_1."); }
@@ -7182,6 +7558,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_1_exit = (Spec2Sm sm) => sm.T7__DH2__STATE_1_exit();
         private void T7__DH2__STATE_1_exit()
         {
             // T7__DH2__state_1 behavior
@@ -7192,10 +7570,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH2__STATE_0_exit;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_0_exit;
             this.currentEventHandlers[(int)EventId.EVSTEP] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_1_evstep = (Spec2Sm sm) => sm.T7__DH2__STATE_1_evstep();
         private void T7__DH2__STATE_1_evstep()
         {
             // No ancestor state handles `evstep` event.
@@ -7227,8 +7607,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH2__STATE_2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH2__STATE_2_exit;
-            this.currentEventHandlers[(int)EventId.EVBACK] = T7__DH2__STATE_2_evback;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_2_exit;
+            this.currentEventHandlers[(int)EventId.EVBACK] = ptr_T7__DH2__STATE_2_evback;
 
             // T7__DH2__state_2 behavior
             // uml: enter / { trace("Enter T7__DH2__state_2."); }
@@ -7246,6 +7626,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_2_exit = (Spec2Sm sm) => sm.T7__DH2__STATE_2_exit();
         private void T7__DH2__STATE_2_exit()
         {
             // T7__DH2__state_2 behavior
@@ -7256,10 +7638,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH2__STATE_0_exit;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_0_exit;
             this.currentEventHandlers[(int)EventId.EVBACK] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_2_evback = (Spec2Sm sm) => sm.T7__DH2__STATE_2_evback();
         private void T7__DH2__STATE_2_evback()
         {
             // No ancestor state handles `evback` event.
@@ -7269,7 +7653,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH2__state_2: check behavior `evBack TransitionTo(T7__DH2__state_1)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DH2__STATE_0_exit);
+                ExitUpToStateHandler(ptr_T7__DH2__STATE_0_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");`.
                 trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");
@@ -7312,8 +7696,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH2__STATE_6_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH2__STATE_6_exit;
-            this.currentEventHandlers[(int)EventId.EVSTEP] = T7__DH2__STATE_6_evstep;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_6_exit;
+            this.currentEventHandlers[(int)EventId.EVSTEP] = ptr_T7__DH2__STATE_6_evstep;
 
             // T7__DH2__state_6 behavior
             // uml: enter / { trace("Enter T7__DH2__state_6."); }
@@ -7331,6 +7715,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_6
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_6_exit = (Spec2Sm sm) => sm.T7__DH2__STATE_6_exit();
         private void T7__DH2__STATE_6_exit()
         {
             // T7__DH2__state_6 behavior
@@ -7341,10 +7727,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_6
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH2__STATE_2_exit;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_2_exit;
             this.currentEventHandlers[(int)EventId.EVSTEP] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_6_evstep = (Spec2Sm sm) => sm.T7__DH2__STATE_6_evstep();
         private void T7__DH2__STATE_6_evstep()
         {
             // No ancestor state handles `evstep` event.
@@ -7377,7 +7765,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH2__STATE_9_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH2__STATE_9_exit;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_9_exit;
 
             // T7__DH2__state_9 behavior
             // uml: enter / { trace("Enter T7__DH2__state_9."); }
@@ -7395,6 +7783,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_9
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_9_exit = (Spec2Sm sm) => sm.T7__DH2__STATE_9_exit();
         private void T7__DH2__STATE_9_exit()
         {
             // T7__DH2__state_9 behavior
@@ -7405,7 +7795,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_9
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH2__STATE_2_exit;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_2_exit;
         }
 
 
@@ -7416,8 +7806,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH2__STATE_3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH2__STATE_3_exit;
-            this.currentEventHandlers[(int)EventId.EVCLOSE] = T7__DH2__STATE_3_evclose;
+            this.currentStateExitHandler = ptr_T7__DH2__STATE_3_exit;
+            this.currentEventHandlers[(int)EventId.EVCLOSE] = ptr_T7__DH2__STATE_3_evclose;
 
             // T7__DH2__state_3 behavior
             // uml: enter / { trace("Enter T7__DH2__state_3."); }
@@ -7427,6 +7817,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_3_exit = (Spec2Sm sm) => sm.T7__DH2__STATE_3_exit();
         private void T7__DH2__STATE_3_exit()
         {
             // T7__DH2__state_3 behavior
@@ -7437,10 +7829,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH2__state_3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DEEP_HISTORY2_exit;
+            this.currentStateExitHandler = ptr_T7__DEEP_HISTORY2_exit;
             this.currentEventHandlers[(int)EventId.EVCLOSE] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH2__STATE_3_evclose = (Spec2Sm sm) => sm.T7__DH2__STATE_3_evclose();
         private void T7__DH2__STATE_3_evclose()
         {
             // No ancestor state handles `evclose` event.
@@ -7472,7 +7866,7 @@ namespace Csharp.Spec2smTests
         private void T7__DEEP_HISTORY3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DEEP_HISTORY3_exit;
+            this.currentStateExitHandler = ptr_T7__DEEP_HISTORY3_exit;
 
             // T7__DEEP_HISTORY3 behavior
             // uml: enter / { trace("Enter T7__DEEP_HISTORY3."); }
@@ -7482,6 +7876,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DEEP_HISTORY3_exit = (Spec2Sm sm) => sm.T7__DEEP_HISTORY3_exit();
         private void T7__DEEP_HISTORY3_exit()
         {
             // T7__DEEP_HISTORY3 behavior
@@ -7492,7 +7888,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST7_exit;
+            this.currentStateExitHandler = ptr_TEST7_exit;
         }
 
 
@@ -7503,8 +7899,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH3__STATE_0_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH3__STATE_0_exit;
-            this.currentEventHandlers[(int)EventId.EVOPEN] = T7__DH3__STATE_0_evopen;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_0_exit;
+            this.currentEventHandlers[(int)EventId.EVOPEN] = ptr_T7__DH3__STATE_0_evopen;
 
             // T7__DH3__state_0 behavior
             // uml: enter / { trace("Enter T7__DH3__state_0."); }
@@ -7514,6 +7910,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_0
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_0_exit = (Spec2Sm sm) => sm.T7__DH3__STATE_0_exit();
         private void T7__DH3__STATE_0_exit()
         {
             // T7__DH3__state_0 behavior
@@ -7524,10 +7922,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_0
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DEEP_HISTORY3_exit;
+            this.currentStateExitHandler = ptr_T7__DEEP_HISTORY3_exit;
             this.currentEventHandlers[(int)EventId.EVOPEN] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_0_evopen = (Spec2Sm sm) => sm.T7__DH3__STATE_0_evopen();
         private void T7__DH3__STATE_0_evopen()
         {
             // No ancestor state handles `evopen` event.
@@ -7537,7 +7937,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH3__state_0: check behavior `evOpen TransitionTo(T7__DH3__state_3)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DEEP_HISTORY3_exit);
+                ExitUpToStateHandler(ptr_T7__DEEP_HISTORY3_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");`.
                 trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");
@@ -7609,8 +8009,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH3__STATE_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH3__STATE_1_exit;
-            this.currentEventHandlers[(int)EventId.EVSTEP] = T7__DH3__STATE_1_evstep;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_1_exit;
+            this.currentEventHandlers[(int)EventId.EVSTEP] = ptr_T7__DH3__STATE_1_evstep;
 
             // T7__DH3__state_1 behavior
             // uml: enter / { trace("Enter T7__DH3__state_1."); }
@@ -7628,6 +8028,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_1_exit = (Spec2Sm sm) => sm.T7__DH3__STATE_1_exit();
         private void T7__DH3__STATE_1_exit()
         {
             // T7__DH3__state_1 behavior
@@ -7638,10 +8040,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH3__STATE_0_exit;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_0_exit;
             this.currentEventHandlers[(int)EventId.EVSTEP] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_1_evstep = (Spec2Sm sm) => sm.T7__DH3__STATE_1_evstep();
         private void T7__DH3__STATE_1_evstep()
         {
             // No ancestor state handles `evstep` event.
@@ -7673,8 +8077,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH3__STATE_2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH3__STATE_2_exit;
-            this.currentEventHandlers[(int)EventId.EVBACK] = T7__DH3__STATE_2_evback;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_2_exit;
+            this.currentEventHandlers[(int)EventId.EVBACK] = ptr_T7__DH3__STATE_2_evback;
 
             // T7__DH3__state_2 behavior
             // uml: enter / { trace("Enter T7__DH3__state_2."); }
@@ -7692,6 +8096,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_2_exit = (Spec2Sm sm) => sm.T7__DH3__STATE_2_exit();
         private void T7__DH3__STATE_2_exit()
         {
             // T7__DH3__state_2 behavior
@@ -7702,10 +8108,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH3__STATE_0_exit;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_0_exit;
             this.currentEventHandlers[(int)EventId.EVBACK] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_2_evback = (Spec2Sm sm) => sm.T7__DH3__STATE_2_evback();
         private void T7__DH3__STATE_2_evback()
         {
             // No ancestor state handles `evback` event.
@@ -7715,7 +8123,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__DH3__state_2: check behavior `evBack TransitionTo(T7__DH3__state_1)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__DH3__STATE_0_exit);
+                ExitUpToStateHandler(ptr_T7__DH3__STATE_0_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");`.
                 trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");
@@ -7758,8 +8166,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH3__STATE_6_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH3__STATE_6_exit;
-            this.currentEventHandlers[(int)EventId.EVSTEP] = T7__DH3__STATE_6_evstep;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_6_exit;
+            this.currentEventHandlers[(int)EventId.EVSTEP] = ptr_T7__DH3__STATE_6_evstep;
 
             // T7__DH3__state_6 behavior
             // uml: enter / { trace("Enter T7__DH3__state_6."); }
@@ -7769,6 +8177,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_6
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_6_exit = (Spec2Sm sm) => sm.T7__DH3__STATE_6_exit();
         private void T7__DH3__STATE_6_exit()
         {
             // T7__DH3__state_6 behavior
@@ -7779,10 +8189,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_6
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH3__STATE_2_exit;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_2_exit;
             this.currentEventHandlers[(int)EventId.EVSTEP] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_6_evstep = (Spec2Sm sm) => sm.T7__DH3__STATE_6_evstep();
         private void T7__DH3__STATE_6_evstep()
         {
             // No ancestor state handles `evstep` event.
@@ -7815,7 +8227,7 @@ namespace Csharp.Spec2smTests
         private void T7__DH3__STATE_9_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH3__STATE_9_exit;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_9_exit;
 
             // T7__DH3__state_9 behavior
             // uml: enter / { trace("Enter T7__DH3__state_9."); }
@@ -7825,6 +8237,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_9
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_9_exit = (Spec2Sm sm) => sm.T7__DH3__STATE_9_exit();
         private void T7__DH3__STATE_9_exit()
         {
             // T7__DH3__state_9 behavior
@@ -7835,7 +8249,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_9
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DH3__STATE_2_exit;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_2_exit;
         }
 
 
@@ -7846,8 +8260,8 @@ namespace Csharp.Spec2smTests
         private void T7__DH3__STATE_3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__DH3__STATE_3_exit;
-            this.currentEventHandlers[(int)EventId.EVCLOSE] = T7__DH3__STATE_3_evclose;
+            this.currentStateExitHandler = ptr_T7__DH3__STATE_3_exit;
+            this.currentEventHandlers[(int)EventId.EVCLOSE] = ptr_T7__DH3__STATE_3_evclose;
 
             // T7__DH3__state_3 behavior
             // uml: enter / { trace("Enter T7__DH3__state_3."); }
@@ -7857,6 +8271,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_3_exit = (Spec2Sm sm) => sm.T7__DH3__STATE_3_exit();
         private void T7__DH3__STATE_3_exit()
         {
             // T7__DH3__state_3 behavior
@@ -7867,10 +8283,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DH3__state_3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__DEEP_HISTORY3_exit;
+            this.currentStateExitHandler = ptr_T7__DEEP_HISTORY3_exit;
             this.currentEventHandlers[(int)EventId.EVCLOSE] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__DH3__STATE_3_evclose = (Spec2Sm sm) => sm.T7__DH3__STATE_3_evclose();
         private void T7__DH3__STATE_3_evclose()
         {
             // No ancestor state handles `evclose` event.
@@ -7902,7 +8320,7 @@ namespace Csharp.Spec2smTests
         private void T7__HISTORY1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__HISTORY1_exit;
+            this.currentStateExitHandler = ptr_T7__HISTORY1_exit;
 
             // T7__HISTORY1 behavior
             // uml: enter / { trace("Enter T7__HISTORY1."); }
@@ -7912,6 +8330,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__HISTORY1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__HISTORY1_exit = (Spec2Sm sm) => sm.T7__HISTORY1_exit();
         private void T7__HISTORY1_exit()
         {
             // T7__HISTORY1 behavior
@@ -7922,7 +8342,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__HISTORY1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST7_exit;
+            this.currentStateExitHandler = ptr_TEST7_exit;
         }
 
 
@@ -7933,10 +8353,10 @@ namespace Csharp.Spec2smTests
         private void T7__H1__OFF_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__H1__OFF_exit;
-            this.currentEventHandlers[(int)EventId.EV3] = T7__H1__OFF_ev3;
-            this.currentEventHandlers[(int)EventId.EV4] = T7__H1__OFF_ev4;
-            this.currentEventHandlers[(int)EventId.EV7] = T7__H1__OFF_ev7;
+            this.currentStateExitHandler = ptr_T7__H1__OFF_exit;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_T7__H1__OFF_ev3;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_T7__H1__OFF_ev4;
+            this.currentEventHandlers[(int)EventId.EV7] = ptr_T7__H1__OFF_ev7;
 
             // T7__H1__OFF behavior
             // uml: enter / { trace("Enter T7__H1__OFF."); }
@@ -7946,6 +8366,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF_exit = (Spec2Sm sm) => sm.T7__H1__OFF_exit();
         private void T7__H1__OFF_exit()
         {
             // T7__H1__OFF behavior
@@ -7956,12 +8378,14 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__HISTORY1_exit;
+            this.currentStateExitHandler = ptr_T7__HISTORY1_exit;
             this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV4] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV7] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF_ev3 = (Spec2Sm sm) => sm.T7__H1__OFF_ev3();
         private void T7__H1__OFF_ev3()
         {
             // No ancestor state handles `ev3` event.
@@ -7971,7 +8395,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__H1__OFF_exit);
+                ExitUpToStateHandler(ptr_T7__H1__OFF_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");`.
                 trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");
@@ -7986,6 +8410,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF_ev4 = (Spec2Sm sm) => sm.T7__H1__OFF_ev4();
         private void T7__H1__OFF_ev4()
         {
             // No ancestor state handles `ev4` event.
@@ -7995,7 +8421,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__HISTORY1_exit);
+                ExitUpToStateHandler(ptr_T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");`.
                 trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");
@@ -8009,6 +8435,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF_ev7 = (Spec2Sm sm) => sm.T7__H1__OFF_ev7();
         private void T7__H1__OFF_ev7()
         {
             // No ancestor state handles `ev7` event.
@@ -8018,7 +8446,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__HISTORY1_exit);
+                ExitUpToStateHandler(ptr_T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");`.
                 trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");
@@ -8108,8 +8536,8 @@ namespace Csharp.Spec2smTests
         private void T7__H1__OFF1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__H1__OFF1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__H1__OFF1_ev1;
+            this.currentStateExitHandler = ptr_T7__H1__OFF1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__H1__OFF1_ev1;
 
             // T7__H1__OFF1 behavior
             // uml: enter / { trace("Enter T7__H1__OFF1."); }
@@ -8127,6 +8555,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF1_exit = (Spec2Sm sm) => sm.T7__H1__OFF1_exit();
         private void T7__H1__OFF1_exit()
         {
             // T7__H1__OFF1 behavior
@@ -8137,10 +8567,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__H1__OFF_exit;
+            this.currentStateExitHandler = ptr_T7__H1__OFF_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF1_ev1 = (Spec2Sm sm) => sm.T7__H1__OFF1_ev1();
         private void T7__H1__OFF1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -8173,8 +8605,8 @@ namespace Csharp.Spec2smTests
         private void T7__H1__OFF2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__H1__OFF2_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__H1__OFF2_ev1;
+            this.currentStateExitHandler = ptr_T7__H1__OFF2_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__H1__OFF2_ev1;
 
             // T7__H1__OFF2 behavior
             // uml: enter / { trace("Enter T7__H1__OFF2."); }
@@ -8192,6 +8624,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF2_exit = (Spec2Sm sm) => sm.T7__H1__OFF2_exit();
         private void T7__H1__OFF2_exit()
         {
             // T7__H1__OFF2 behavior
@@ -8202,10 +8636,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__H1__OFF_exit;
+            this.currentStateExitHandler = ptr_T7__H1__OFF_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF2_ev1 = (Spec2Sm sm) => sm.T7__H1__OFF2_ev1();
         private void T7__H1__OFF2_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -8238,7 +8674,7 @@ namespace Csharp.Spec2smTests
         private void T7__H1__OFF3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__H1__OFF3_exit;
+            this.currentStateExitHandler = ptr_T7__H1__OFF3_exit;
 
             // T7__H1__OFF3 behavior
             // uml: enter / { trace("Enter T7__H1__OFF3."); }
@@ -8256,6 +8692,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__OFF3_exit = (Spec2Sm sm) => sm.T7__H1__OFF3_exit();
         private void T7__H1__OFF3_exit()
         {
             // T7__H1__OFF3 behavior
@@ -8266,7 +8704,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__OFF3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__H1__OFF_exit;
+            this.currentStateExitHandler = ptr_T7__H1__OFF_exit;
         }
 
 
@@ -8277,8 +8715,8 @@ namespace Csharp.Spec2smTests
         private void T7__H1__ON_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__H1__ON_exit;
-            this.currentEventHandlers[(int)EventId.EV6] = T7__H1__ON_ev6;
+            this.currentStateExitHandler = ptr_T7__H1__ON_exit;
+            this.currentEventHandlers[(int)EventId.EV6] = ptr_T7__H1__ON_ev6;
 
             // T7__H1__ON behavior
             // uml: enter / { trace("Enter T7__H1__ON."); }
@@ -8288,6 +8726,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__ON_exit = (Spec2Sm sm) => sm.T7__H1__ON_exit();
         private void T7__H1__ON_exit()
         {
             // T7__H1__ON behavior
@@ -8298,10 +8738,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__HISTORY1_exit;
+            this.currentStateExitHandler = ptr_T7__HISTORY1_exit;
             this.currentEventHandlers[(int)EventId.EV6] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__ON_ev6 = (Spec2Sm sm) => sm.T7__H1__ON_ev6();
         private void T7__H1__ON_ev6()
         {
             // No ancestor state handles `ev6` event.
@@ -8311,7 +8753,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__HISTORY1_exit);
+                ExitUpToStateHandler(ptr_T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");`.
                 trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");
@@ -8401,8 +8843,8 @@ namespace Csharp.Spec2smTests
         private void T7__H1__ON1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__H1__ON1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__H1__ON1_ev1;
+            this.currentStateExitHandler = ptr_T7__H1__ON1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__H1__ON1_ev1;
 
             // T7__H1__ON1 behavior
             // uml: enter / { trace("Enter T7__H1__ON1."); }
@@ -8420,6 +8862,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__ON1_exit = (Spec2Sm sm) => sm.T7__H1__ON1_exit();
         private void T7__H1__ON1_exit()
         {
             // T7__H1__ON1 behavior
@@ -8430,10 +8874,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__H1__ON_exit;
+            this.currentStateExitHandler = ptr_T7__H1__ON_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__ON1_ev1 = (Spec2Sm sm) => sm.T7__H1__ON1_ev1();
         private void T7__H1__ON1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -8466,8 +8912,8 @@ namespace Csharp.Spec2smTests
         private void T7__H1__ON2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__H1__ON2_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__H1__ON2_ev1;
+            this.currentStateExitHandler = ptr_T7__H1__ON2_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__H1__ON2_ev1;
 
             // T7__H1__ON2 behavior
             // uml: enter / { trace("Enter T7__H1__ON2."); }
@@ -8485,6 +8931,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__ON2_exit = (Spec2Sm sm) => sm.T7__H1__ON2_exit();
         private void T7__H1__ON2_exit()
         {
             // T7__H1__ON2 behavior
@@ -8495,10 +8943,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__H1__ON_exit;
+            this.currentStateExitHandler = ptr_T7__H1__ON_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__ON2_ev1 = (Spec2Sm sm) => sm.T7__H1__ON2_ev1();
         private void T7__H1__ON2_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -8531,8 +8981,8 @@ namespace Csharp.Spec2smTests
         private void T7__H1__ON3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__H1__ON3_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__H1__ON3_ev1;
+            this.currentStateExitHandler = ptr_T7__H1__ON3_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__H1__ON3_ev1;
 
             // T7__H1__ON3 behavior
             // uml: enter / { trace("Enter T7__H1__ON3."); }
@@ -8550,6 +9000,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__ON3_exit = (Spec2Sm sm) => sm.T7__H1__ON3_exit();
         private void T7__H1__ON3_exit()
         {
             // T7__H1__ON3 behavior
@@ -8560,10 +9012,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__H1__ON3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__H1__ON_exit;
+            this.currentStateExitHandler = ptr_T7__H1__ON_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__H1__ON3_ev1 = (Spec2Sm sm) => sm.T7__H1__ON3_ev1();
         private void T7__H1__ON3_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -8596,7 +9050,7 @@ namespace Csharp.Spec2smTests
         private void T7__INITIAL1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__INITIAL1_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1_exit;
 
             // T7__INITIAL1 behavior
             // uml: enter / { trace("Enter T7__INITIAL1."); }
@@ -8606,6 +9060,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1_exit = (Spec2Sm sm) => sm.T7__INITIAL1_exit();
         private void T7__INITIAL1_exit()
         {
             // T7__INITIAL1 behavior
@@ -8616,7 +9072,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST7_exit;
+            this.currentStateExitHandler = ptr_TEST7_exit;
         }
 
 
@@ -8627,8 +9083,8 @@ namespace Csharp.Spec2smTests
         private void T7__INITIAL1__PARENT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__INITIAL1__PARENT_exit;
-            this.currentEventHandlers[(int)EventId.EV5] = T7__INITIAL1__PARENT_ev5;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__PARENT_exit;
+            this.currentEventHandlers[(int)EventId.EV5] = ptr_T7__INITIAL1__PARENT_ev5;
 
             // T7__INITIAL1__PARENT behavior
             // uml: enter / { trace("Enter T7__INITIAL1__PARENT."); }
@@ -8638,6 +9094,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__PARENT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__PARENT_exit = (Spec2Sm sm) => sm.T7__INITIAL1__PARENT_exit();
         private void T7__INITIAL1__PARENT_exit()
         {
             // T7__INITIAL1__PARENT behavior
@@ -8648,10 +9106,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__PARENT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__INITIAL1_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1_exit;
             this.currentEventHandlers[(int)EventId.EV5] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__PARENT_ev5 = (Spec2Sm sm) => sm.T7__INITIAL1__PARENT_ev5();
         private void T7__INITIAL1__PARENT_ev5()
         {
             // No ancestor state handles `ev5` event.
@@ -8696,8 +9156,8 @@ namespace Csharp.Spec2smTests
         private void T7__INITIAL1__G_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__INITIAL1__G_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = T7__INITIAL1__G_ev2;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__G_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_T7__INITIAL1__G_ev2;
 
             // T7__INITIAL1__G behavior
             // uml: enter / { trace("Enter T7__INITIAL1__G."); }
@@ -8707,6 +9167,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__G_exit = (Spec2Sm sm) => sm.T7__INITIAL1__G_exit();
         private void T7__INITIAL1__G_exit()
         {
             // T7__INITIAL1__G behavior
@@ -8717,10 +9179,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__INITIAL1__PARENT_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__PARENT_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__G_ev2 = (Spec2Sm sm) => sm.T7__INITIAL1__G_ev2();
         private void T7__INITIAL1__G_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -8730,7 +9194,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.InitialState)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(T7__INITIAL1__PARENT_exit);
+                ExitUpToStateHandler(ptr_T7__INITIAL1__PARENT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");`.
                 trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");
@@ -8808,7 +9272,7 @@ namespace Csharp.Spec2smTests
         private void T7__INITIAL1__G_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__INITIAL1__G_S1_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__G_S1_exit;
 
             // T7__INITIAL1__G_S1 behavior
             // uml: enter / { trace("Enter T7__INITIAL1__G_S1."); }
@@ -8818,6 +9282,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__G_S1_exit = (Spec2Sm sm) => sm.T7__INITIAL1__G_S1_exit();
         private void T7__INITIAL1__G_S1_exit()
         {
             // T7__INITIAL1__G_S1 behavior
@@ -8828,7 +9294,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__INITIAL1__G_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__G_exit;
         }
 
 
@@ -8839,7 +9305,7 @@ namespace Csharp.Spec2smTests
         private void T7__INITIAL1__G_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__INITIAL1__G_S2_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__G_S2_exit;
 
             // T7__INITIAL1__G_S2 behavior
             // uml: enter / { trace("Enter T7__INITIAL1__G_S2."); }
@@ -8849,6 +9315,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__G_S2_exit = (Spec2Sm sm) => sm.T7__INITIAL1__G_S2_exit();
         private void T7__INITIAL1__G_S2_exit()
         {
             // T7__INITIAL1__G_S2 behavior
@@ -8859,7 +9327,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__INITIAL1__G_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__G_exit;
         }
 
 
@@ -8870,7 +9338,7 @@ namespace Csharp.Spec2smTests
         private void T7__INITIAL1__G_S3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__INITIAL1__G_S3_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__G_S3_exit;
 
             // T7__INITIAL1__G_S3 behavior
             // uml: enter / { trace("Enter T7__INITIAL1__G_S3."); }
@@ -8880,6 +9348,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__G_S3_exit = (Spec2Sm sm) => sm.T7__INITIAL1__G_S3_exit();
         private void T7__INITIAL1__G_S3_exit()
         {
             // T7__INITIAL1__G_S3 behavior
@@ -8890,7 +9360,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__G_S3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__INITIAL1__G_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__G_exit;
         }
 
 
@@ -8901,9 +9371,9 @@ namespace Csharp.Spec2smTests
         private void T7__INITIAL1__S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = T7__INITIAL1__S1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = T7__INITIAL1__S1_ev1;
-            this.currentEventHandlers[(int)EventId.EV3] = T7__INITIAL1__S1_ev3;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__S1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_T7__INITIAL1__S1_ev1;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_T7__INITIAL1__S1_ev3;
 
             // T7__INITIAL1__S1 behavior
             // uml: enter / { trace("Enter T7__INITIAL1__S1."); }
@@ -8913,6 +9383,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__S1_exit = (Spec2Sm sm) => sm.T7__INITIAL1__S1_exit();
         private void T7__INITIAL1__S1_exit()
         {
             // T7__INITIAL1__S1 behavior
@@ -8923,11 +9395,13 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = T7__INITIAL1__PARENT_exit;
+            this.currentStateExitHandler = ptr_T7__INITIAL1__PARENT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__S1_ev1 = (Spec2Sm sm) => sm.T7__INITIAL1__S1_ev1();
         private void T7__INITIAL1__S1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -8951,6 +9425,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__INITIAL1__S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_T7__INITIAL1__S1_ev3 = (Spec2Sm sm) => sm.T7__INITIAL1__S1_ev3();
         private void T7__INITIAL1__S1_ev3()
         {
             // No ancestor state handles `ev3` event.
@@ -8983,12 +9459,12 @@ namespace Csharp.Spec2smTests
         private void TEST7_DECIDE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST7_DECIDE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST7_DECIDE_ev1;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST7_DECIDE_ev2;
-            this.currentEventHandlers[(int)EventId.EV3] = TEST7_DECIDE_ev3;
-            this.currentEventHandlers[(int)EventId.EV4] = TEST7_DECIDE_ev4;
-            this.currentEventHandlers[(int)EventId.EV5] = TEST7_DECIDE_ev5;
+            this.currentStateExitHandler = ptr_TEST7_DECIDE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST7_DECIDE_ev1;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST7_DECIDE_ev2;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST7_DECIDE_ev3;
+            this.currentEventHandlers[(int)EventId.EV4] = ptr_TEST7_DECIDE_ev4;
+            this.currentEventHandlers[(int)EventId.EV5] = ptr_TEST7_DECIDE_ev5;
 
             // TEST7_DECIDE behavior
             // uml: enter / { trace("Enter TEST7_DECIDE."); }
@@ -8998,6 +9474,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST7_DECIDE_exit = (Spec2Sm sm) => sm.TEST7_DECIDE_exit();
         private void TEST7_DECIDE_exit()
         {
             // TEST7_DECIDE behavior
@@ -9016,7 +9494,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_DECIDE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST7_INITIAL_OR_HISTORY_exit;
+            this.currentStateExitHandler = ptr_TEST7_INITIAL_OR_HISTORY_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
@@ -9024,6 +9502,8 @@ namespace Csharp.Spec2smTests
             this.currentEventHandlers[(int)EventId.EV5] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST7_DECIDE_ev1 = (Spec2Sm sm) => sm.TEST7_DECIDE_ev1();
         private void TEST7_DECIDE_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -9060,6 +9540,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST7_DECIDE_ev2 = (Spec2Sm sm) => sm.TEST7_DECIDE_ev2();
         private void TEST7_DECIDE_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -9096,6 +9578,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST7_DECIDE_ev3 = (Spec2Sm sm) => sm.TEST7_DECIDE_ev3();
         private void TEST7_DECIDE_ev3()
         {
             // No ancestor state handles `ev3` event.
@@ -9133,6 +9617,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST7_DECIDE_ev4 = (Spec2Sm sm) => sm.TEST7_DECIDE_ev4();
         private void TEST7_DECIDE_ev4()
         {
             // No ancestor state handles `ev4` event.
@@ -9169,6 +9655,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST7_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST7_DECIDE_ev5 = (Spec2Sm sm) => sm.TEST7_DECIDE_ev5();
         private void TEST7_DECIDE_ev5()
         {
             // No ancestor state handles `ev5` event.
@@ -9213,7 +9701,7 @@ namespace Csharp.Spec2smTests
         private void TEST8_ENTRY_CHOICE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST8_ENTRY_CHOICE_exit;
+            this.currentStateExitHandler = ptr_TEST8_ENTRY_CHOICE_exit;
 
             // TEST8_ENTRY_CHOICE behavior
             // uml: enter / { trace("Enter TEST8_ENTRY_CHOICE."); }
@@ -9223,6 +9711,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_ENTRY_CHOICE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_ENTRY_CHOICE_exit = (Spec2Sm sm) => sm.TEST8_ENTRY_CHOICE_exit();
         private void TEST8_ENTRY_CHOICE_exit()
         {
             // TEST8_ENTRY_CHOICE behavior
@@ -9233,7 +9723,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_ENTRY_CHOICE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -9244,9 +9734,9 @@ namespace Csharp.Spec2smTests
         private void TEST8_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST8_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV3] = TEST8_ROOT_ev3;
-            this.currentEventHandlers[(int)EventId.EV5] = TEST8_ROOT_ev5;
+            this.currentStateExitHandler = ptr_TEST8_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST8_ROOT_ev3;
+            this.currentEventHandlers[(int)EventId.EV5] = ptr_TEST8_ROOT_ev5;
 
             // TEST8_ROOT behavior
             // uml: enter / { trace("Enter TEST8_ROOT."); }
@@ -9264,6 +9754,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_ROOT_exit = (Spec2Sm sm) => sm.TEST8_ROOT_exit();
         private void TEST8_ROOT_exit()
         {
             // TEST8_ROOT behavior
@@ -9274,11 +9766,13 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST8_ENTRY_CHOICE_exit;
+            this.currentStateExitHandler = ptr_TEST8_ENTRY_CHOICE_exit;
             this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV5] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_ROOT_ev3 = (Spec2Sm sm) => sm.TEST8_ROOT_ev3();
         private void TEST8_ROOT_ev3()
         {
             // No ancestor state handles `ev3` event.
@@ -9293,6 +9787,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_ROOT_ev5 = (Spec2Sm sm) => sm.TEST8_ROOT_ev5();
         private void TEST8_ROOT_ev5()
         {
             // No ancestor state handles `ev5` event.
@@ -9337,8 +9833,8 @@ namespace Csharp.Spec2smTests
         private void TEST8_G_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST8_G_exit;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST8_G_ev2;
+            this.currentStateExitHandler = ptr_TEST8_G_exit;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST8_G_ev2;
 
             // TEST8_G behavior
             // uml: enter / { trace("Enter TEST8_G."); }
@@ -9348,6 +9844,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_G_exit = (Spec2Sm sm) => sm.TEST8_G_exit();
         private void TEST8_G_exit()
         {
             // TEST8_G behavior
@@ -9358,10 +9856,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST8_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST8_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_G_ev2 = (Spec2Sm sm) => sm.TEST8_G_ev2();
         private void TEST8_G_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -9371,7 +9871,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
-                ExitUpToStateHandler(TEST8_ROOT_exit);
+                ExitUpToStateHandler(ptr_TEST8_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");`.
                 trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");
@@ -9469,7 +9969,7 @@ namespace Csharp.Spec2smTests
         private void TEST8_G_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST8_G_S1_exit;
+            this.currentStateExitHandler = ptr_TEST8_G_S1_exit;
 
             // TEST8_G_S1 behavior
             // uml: enter / { trace("Enter TEST8_G_S1."); }
@@ -9479,6 +9979,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_G_S1_exit = (Spec2Sm sm) => sm.TEST8_G_S1_exit();
         private void TEST8_G_S1_exit()
         {
             // TEST8_G_S1 behavior
@@ -9489,7 +9991,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST8_G_exit;
+            this.currentStateExitHandler = ptr_TEST8_G_exit;
         }
 
 
@@ -9500,7 +10002,7 @@ namespace Csharp.Spec2smTests
         private void TEST8_G_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST8_G_S2_exit;
+            this.currentStateExitHandler = ptr_TEST8_G_S2_exit;
 
             // TEST8_G_S2 behavior
             // uml: enter / { trace("Enter TEST8_G_S2."); }
@@ -9510,6 +10012,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_G_S2_exit = (Spec2Sm sm) => sm.TEST8_G_S2_exit();
         private void TEST8_G_S2_exit()
         {
             // TEST8_G_S2 behavior
@@ -9520,7 +10024,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST8_G_exit;
+            this.currentStateExitHandler = ptr_TEST8_G_exit;
         }
 
 
@@ -9531,7 +10035,7 @@ namespace Csharp.Spec2smTests
         private void TEST8_G_S3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST8_G_S3_exit;
+            this.currentStateExitHandler = ptr_TEST8_G_S3_exit;
 
             // TEST8_G_S3 behavior
             // uml: enter / { trace("Enter TEST8_G_S3."); }
@@ -9541,6 +10045,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_G_S3_exit = (Spec2Sm sm) => sm.TEST8_G_S3_exit();
         private void TEST8_G_S3_exit()
         {
             // TEST8_G_S3 behavior
@@ -9551,7 +10057,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_G_S3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST8_G_exit;
+            this.currentStateExitHandler = ptr_TEST8_G_exit;
         }
 
 
@@ -9562,10 +10068,10 @@ namespace Csharp.Spec2smTests
         private void TEST8_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST8_S1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST8_S1_ev1;
-            this.currentEventHandlers[(int)EventId.EV3] = TEST8_S1_ev3;
-            this.currentEventHandlers[(int)EventId.EV6] = TEST8_S1_ev6;
+            this.currentStateExitHandler = ptr_TEST8_S1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST8_S1_ev1;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST8_S1_ev3;
+            this.currentEventHandlers[(int)EventId.EV6] = ptr_TEST8_S1_ev6;
 
             // TEST8_S1 behavior
             // uml: enter / { trace("Enter TEST8_S1."); }
@@ -9575,6 +10081,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_S1_exit = (Spec2Sm sm) => sm.TEST8_S1_exit();
         private void TEST8_S1_exit()
         {
             // TEST8_S1 behavior
@@ -9585,12 +10093,14 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST8_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST8_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
-            this.currentEventHandlers[(int)EventId.EV3] = TEST8_ROOT_ev3;  // the next ancestor that handles this event is TEST8_ROOT
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST8_ROOT_ev3;  // the next ancestor that handles this event is TEST8_ROOT
             this.currentEventHandlers[(int)EventId.EV6] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_S1_ev1 = (Spec2Sm sm) => sm.TEST8_S1_ev1();
         private void TEST8_S1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -9626,10 +10136,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_S1_ev3 = (Spec2Sm sm) => sm.TEST8_S1_ev3();
         private void TEST8_S1_ev3()
         {
             // Setup handler for next ancestor that listens to `ev3` event.
-            this.ancestorEventHandler = TEST8_ROOT_ev3;
+            this.ancestorEventHandler = ptr_TEST8_ROOT_ev3;
 
             // TEST8_S1 behavior
             // uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.EntryPoint(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3)."); } TransitionTo(TEST8_G.EntryPoint(3))
@@ -9651,6 +10163,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST8_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST8_S1_ev6 = (Spec2Sm sm) => sm.TEST8_S1_ev6();
         private void TEST8_S1_ev6()
         {
             // No ancestor state handles `ev6` event.
@@ -9683,7 +10197,7 @@ namespace Csharp.Spec2smTests
         private void TEST9_EXIT_CHOICE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_EXIT_CHOICE_exit;
+            this.currentStateExitHandler = ptr_TEST9_EXIT_CHOICE_exit;
 
             // TEST9_EXIT_CHOICE behavior
             // uml: enter / { trace("Enter TEST9_EXIT_CHOICE."); }
@@ -9693,6 +10207,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_EXIT_CHOICE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_EXIT_CHOICE_exit = (Spec2Sm sm) => sm.TEST9_EXIT_CHOICE_exit();
         private void TEST9_EXIT_CHOICE_exit()
         {
             // TEST9_EXIT_CHOICE behavior
@@ -9703,7 +10219,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_EXIT_CHOICE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ROOT_exit;
+            this.currentStateExitHandler = ptr_ROOT_exit;
         }
 
 
@@ -9714,9 +10230,9 @@ namespace Csharp.Spec2smTests
         private void TEST9_DECIDE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_DECIDE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST9_DECIDE_ev1;
-            this.currentEventHandlers[(int)EventId.EV2] = TEST9_DECIDE_ev2;
+            this.currentStateExitHandler = ptr_TEST9_DECIDE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST9_DECIDE_ev1;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST9_DECIDE_ev2;
 
             // TEST9_DECIDE behavior
             // uml: enter / { trace("Enter TEST9_DECIDE."); }
@@ -9726,6 +10242,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_DECIDE_exit = (Spec2Sm sm) => sm.TEST9_DECIDE_exit();
         private void TEST9_DECIDE_exit()
         {
             // TEST9_DECIDE behavior
@@ -9736,11 +10254,13 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_DECIDE
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_EXIT_CHOICE_exit;
+            this.currentStateExitHandler = ptr_TEST9_EXIT_CHOICE_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_DECIDE_ev1 = (Spec2Sm sm) => sm.TEST9_DECIDE_ev1();
         private void TEST9_DECIDE_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -9789,6 +10309,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_DECIDE
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_DECIDE_ev2 = (Spec2Sm sm) => sm.TEST9_DECIDE_ev2();
         private void TEST9_DECIDE_ev2()
         {
             // No ancestor state handles `ev2` event.
@@ -9833,8 +10355,8 @@ namespace Csharp.Spec2smTests
         private void TEST9_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_ROOT_exit;
-            this.currentEventHandlers[(int)EventId.EV5] = TEST9_ROOT_ev5;
+            this.currentStateExitHandler = ptr_TEST9_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV5] = ptr_TEST9_ROOT_ev5;
 
             // TEST9_ROOT behavior
             // uml: enter / { trace("Enter TEST9_ROOT."); }
@@ -9844,6 +10366,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_ROOT_exit = (Spec2Sm sm) => sm.TEST9_ROOT_exit();
         private void TEST9_ROOT_exit()
         {
             // TEST9_ROOT behavior
@@ -9854,10 +10378,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_EXIT_CHOICE_exit;
+            this.currentStateExitHandler = ptr_TEST9_EXIT_CHOICE_exit;
             this.currentEventHandlers[(int)EventId.EV5] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_ROOT_ev5 = (Spec2Sm sm) => sm.TEST9_ROOT_ev5();
         private void TEST9_ROOT_ev5()
         {
             // No ancestor state handles `ev5` event.
@@ -9882,7 +10408,7 @@ namespace Csharp.Spec2smTests
         private void TEST9_G_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_G_S1_exit;
+            this.currentStateExitHandler = ptr_TEST9_G_S1_exit;
 
             // TEST9_G_S1 behavior
             // uml: enter / { trace("Enter TEST9_G_S1."); }
@@ -9892,6 +10418,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_G_S1_exit = (Spec2Sm sm) => sm.TEST9_G_S1_exit();
         private void TEST9_G_S1_exit()
         {
             // TEST9_G_S1 behavior
@@ -9902,7 +10430,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST9_ROOT_exit;
         }
 
 
@@ -9913,7 +10441,7 @@ namespace Csharp.Spec2smTests
         private void TEST9_G_S2_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_G_S2_exit;
+            this.currentStateExitHandler = ptr_TEST9_G_S2_exit;
 
             // TEST9_G_S2 behavior
             // uml: enter / { trace("Enter TEST9_G_S2."); }
@@ -9923,6 +10451,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S2
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_G_S2_exit = (Spec2Sm sm) => sm.TEST9_G_S2_exit();
         private void TEST9_G_S2_exit()
         {
             // TEST9_G_S2 behavior
@@ -9933,7 +10463,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S2
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST9_ROOT_exit;
         }
 
 
@@ -9944,7 +10474,7 @@ namespace Csharp.Spec2smTests
         private void TEST9_G_S3_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_G_S3_exit;
+            this.currentStateExitHandler = ptr_TEST9_G_S3_exit;
 
             // TEST9_G_S3 behavior
             // uml: enter / { trace("Enter TEST9_G_S3."); }
@@ -9954,6 +10484,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S3
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_G_S3_exit = (Spec2Sm sm) => sm.TEST9_G_S3_exit();
         private void TEST9_G_S3_exit()
         {
             // TEST9_G_S3 behavior
@@ -9964,7 +10496,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S3
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST9_ROOT_exit;
         }
 
 
@@ -9975,7 +10507,7 @@ namespace Csharp.Spec2smTests
         private void TEST9_G_S4_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_G_S4_exit;
+            this.currentStateExitHandler = ptr_TEST9_G_S4_exit;
 
             // TEST9_G_S4 behavior
             // uml: enter / { trace("Enter TEST9_G_S4."); }
@@ -9985,6 +10517,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S4
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_G_S4_exit = (Spec2Sm sm) => sm.TEST9_G_S4_exit();
         private void TEST9_G_S4_exit()
         {
             // TEST9_G_S4 behavior
@@ -9995,7 +10529,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_G_S4
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST9_ROOT_exit;
         }
 
 
@@ -10006,7 +10540,7 @@ namespace Csharp.Spec2smTests
         private void TEST9_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_S1_exit;
+            this.currentStateExitHandler = ptr_TEST9_S1_exit;
 
             // TEST9_S1 behavior
             // uml: enter / { trace("Enter TEST9_S1."); }
@@ -10016,6 +10550,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_S1_exit = (Spec2Sm sm) => sm.TEST9_S1_exit();
         private void TEST9_S1_exit()
         {
             // TEST9_S1 behavior
@@ -10026,7 +10562,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST9_ROOT_exit;
         }
 
 
@@ -10037,8 +10573,8 @@ namespace Csharp.Spec2smTests
         private void TEST9_S1_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9_S1_1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST9_S1_1_ev1;
+            this.currentStateExitHandler = ptr_TEST9_S1_1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST9_S1_1_ev1;
 
             // TEST9_S1_1 behavior
             // uml: enter / { trace("Enter TEST9_S1_1."); }
@@ -10056,6 +10592,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_S1_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_S1_1_exit = (Spec2Sm sm) => sm.TEST9_S1_1_exit();
         private void TEST9_S1_1_exit()
         {
             // TEST9_S1_1 behavior
@@ -10066,10 +10604,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9_S1_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_S1_exit;
+            this.currentStateExitHandler = ptr_TEST9_S1_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_S1_1_ev1 = (Spec2Sm sm) => sm.TEST9_S1_1_ev1();
         private void TEST9_S1_1_ev1()
         {
             // No ancestor state handles `ev1` event.
@@ -10172,7 +10712,7 @@ namespace Csharp.Spec2smTests
         private void TEST9A_ROOT_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9A_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST9A_ROOT_exit;
 
             // TEST9A_ROOT behavior
             // uml: enter / { trace("Enter TEST9A_ROOT."); }
@@ -10182,6 +10722,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_ROOT
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9A_ROOT_exit = (Spec2Sm sm) => sm.TEST9A_ROOT_exit();
         private void TEST9A_ROOT_exit()
         {
             // TEST9A_ROOT behavior
@@ -10192,7 +10734,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9_EXIT_CHOICE_exit;
+            this.currentStateExitHandler = ptr_TEST9_EXIT_CHOICE_exit;
         }
 
 
@@ -10203,7 +10745,7 @@ namespace Csharp.Spec2smTests
         private void TEST9A_S1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9A_S1_exit;
+            this.currentStateExitHandler = ptr_TEST9A_S1_exit;
 
             // TEST9A_S1 behavior
             // uml: enter / { trace("Enter TEST9A_S1."); }
@@ -10213,6 +10755,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_S1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9A_S1_exit = (Spec2Sm sm) => sm.TEST9A_S1_exit();
         private void TEST9A_S1_exit()
         {
             // TEST9A_S1 behavior
@@ -10223,7 +10767,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_S1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9A_ROOT_exit;
+            this.currentStateExitHandler = ptr_TEST9A_ROOT_exit;
         }
 
         private void TEST9A_S1_InitialState_transition()
@@ -10254,8 +10798,8 @@ namespace Csharp.Spec2smTests
         private void TEST9A_S1_1_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = TEST9A_S1_1_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = TEST9A_S1_1_ev1;
+            this.currentStateExitHandler = ptr_TEST9A_S1_1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST9A_S1_1_ev1;
 
             // TEST9A_S1_1 behavior
             // uml: enter / { trace("Enter TEST9A_S1_1."); }
@@ -10273,6 +10817,8 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_S1_1
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9A_S1_1_exit = (Spec2Sm sm) => sm.TEST9A_S1_1_exit();
         private void TEST9A_S1_1_exit()
         {
             // TEST9A_S1_1 behavior
@@ -10291,10 +10837,12 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_S1_1
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = TEST9A_S1_exit;
+            this.currentStateExitHandler = ptr_TEST9A_S1_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
         }
 
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9A_S1_1_ev1 = (Spec2Sm sm) => sm.TEST9A_S1_1_ev1();
         private void TEST9A_S1_1_ev1()
         {
             // No ancestor state handles `ev1` event.

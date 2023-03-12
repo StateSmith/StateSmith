@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
+- GilToCsharp - method pointers instead of function pointers so that expansions rarely needed.
+  - https://github.com/StateSmith/StateSmith/wiki/GIL:-Generic-Intermediate-Language
 - GilToCsharp - add `IRenderConfigCSharp.UsePartialClass` which defaults to true.
   Very useful so you can define other part of partial class and easily add functionality
   to the state machine (fields, methods...).
