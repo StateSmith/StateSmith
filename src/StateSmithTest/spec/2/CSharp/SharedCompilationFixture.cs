@@ -57,9 +57,11 @@ public class SharedCompilationFixture
             ";
 
         string IRenderConfigCSharp.ClassCode => @"
-                private static void trace(string message) => MainClass.Trace(message);  // this is needed because TracingModder doesn't understand expansions yet
-                // trace_guard implemented in partial class
+                // trace() implemented in base class
+                // trace_guard() implemented in partial class
             ";
+
+        string IRenderConfigCSharp.BaseList => "Spec2SmBase";
 
         public class CSharpExpansions : Spec2GenericVarExpansions
         {

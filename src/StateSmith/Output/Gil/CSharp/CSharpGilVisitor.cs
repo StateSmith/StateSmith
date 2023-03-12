@@ -145,10 +145,25 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         if (renderConfigCSharp.UsePartialClass)
             sb.Append("partial ");
 
+        iterableChildSyntaxList.VisitUpTo(node.Identifier);
+
+        // handle identifier specially so that it doesn't put base list on newline
+        iterableChildSyntaxList.Remove(node.Identifier);
+        sb.Append(node.Identifier.Text);
+        MaybeOutputBaseList();
+        VisitTrailingTrivia(node.Identifier);
+
         iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
         sb.AppendLineIfNotBlank(renderConfigCSharp.ClassCode);  // append class code after open brace token
 
         iterableChildSyntaxList.VisitRest();
+    }
+
+    private void MaybeOutputBaseList()
+    {
+        var baseList = renderConfigCSharp.BaseList.Trim();
+        if (baseList.Length > 0)
+            sb.Append(" : " + baseList);
     }
 
     // to ignore GIL attributes

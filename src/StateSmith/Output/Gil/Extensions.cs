@@ -54,6 +54,12 @@ public static class Extensions
             sb.AppendLine(text);
     }
 
+    public static void AppendIfNotBlank(this StringBuilder sb, string text)
+    {
+        if (text != string.Empty)
+            sb.Append(text);
+    }
+
     public static void AppendTokenAndTrivia(this StringBuilder sb, SyntaxToken token, string? overrideTokenText = null)
     {
         sb.Append(token.LeadingTrivia);

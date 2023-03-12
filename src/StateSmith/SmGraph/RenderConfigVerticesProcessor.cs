@@ -115,6 +115,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
             case "CSharp" + nameof(IRenderConfigCSharp.NameSpace): AppendOption(ref renderConfigCSharpVars.NameSpace, v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref renderConfigCSharpVars.Usings, v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.ClassCode): AppendOption(ref renderConfigCSharpVars.ClassCode, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.BaseList): AppendOption(ref renderConfigCSharpVars.BaseList, v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.UseNullable): renderConfigCSharpVars.UseNullable = ParseBoolValue(v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.UsePartialClass): renderConfigCSharpVars.UsePartialClass = ParseBoolValue(v); break;
 

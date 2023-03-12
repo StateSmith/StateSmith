@@ -4,10 +4,10 @@ using StateSmithTest.spec._2.CSharp; // to get access to MainClass
 namespace Csharp.Spec2smTests
 {
     // Generated state machine
-    public partial class Spec2Sm
+    public partial class Spec2Sm : Spec2SmBase
     {
-        private static void trace(string message) => MainClass.Trace(message);  // this is needed because TracingModder doesn't understand expansions yet
-                                                                                // trace_guard implemented in partial class
+        // trace() implemented in base class
+        // trace_guard() implemented in partial class
         public enum EventId
         {
             DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.

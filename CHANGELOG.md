@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GilToCsharp - method pointers instead of function pointers so that expansions rarely needed.
   - https://github.com/StateSmith/StateSmith/wiki/GIL:-Generic-Intermediate-Language
 - GilToCsharp - add `IRenderConfigCSharp.UsePartialClass` which defaults to true.
+- GilToCsharp - add `IRenderConfigCSharp.BaseList` allows you to specify a base class and/or implemented interfaces for the state machine.
   Very useful so you can define other part of partial class and easily add functionality
   to the state machine (fields, methods...).
 - Added new name mangling options for state machine variables. See `NameMangler.cs`.

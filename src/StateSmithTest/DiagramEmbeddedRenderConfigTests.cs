@@ -123,10 +123,14 @@ public class DiagramEmbeddedRenderConfigTests
             // sm level - CSharpClassCode
             """);
 
+            renderConfigCSharp.BaseList.ShouldBeShowDiff("""
+                SomeClass, ISomeInterface
+                """);
+
             renderConfigCSharp.UseNullable.Should().BeFalse();
             renderConfigCSharp.UsePartialClass.Should().BeFalse();
 
-            const int expectedOptionCount = 5;
+            const int expectedOptionCount = 6;
             GetTypeFields<RenderConfigCSharpVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
             GetTypeProperties<IRenderConfigCSharp>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
         }
