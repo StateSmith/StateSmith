@@ -191,5 +191,4 @@ public static string EventIdToString(EventId id)
 
     public static bool ____GilNoEmit_echoStringBool(string toEcho) { return true; }
     public static void ____GilNoEmit_GilUnusedVar(object unusedVar) { }
-    public class ____GilNoEmit_GilAddessableFunction<T> : System.Attribute where T : System.Delegate {}
 }
