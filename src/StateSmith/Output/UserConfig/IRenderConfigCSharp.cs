@@ -18,4 +18,10 @@ public interface IRenderConfigCSharp : IRenderConfig
     /// partial class and easily add functionality to the state machine(fields, methods...).
     /// </summary>
     bool UsePartialClass => true;
+
+    /// <summary>
+    /// If non-blank, ":" + <see cref="BaseList"/> will appended after state machine class name to
+    /// allow you to have the state machine implement an interface or have a base class.
+    /// </summary>
+    string BaseList => "";
 }

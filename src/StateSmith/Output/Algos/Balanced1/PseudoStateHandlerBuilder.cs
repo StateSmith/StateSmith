@@ -86,7 +86,7 @@ public class PseudoStateHandlerBuilder
     public void OutputFunctionSignature(PseudoStateVertex pseudoStateVertex)
     {
         var functionName = GetFunctionName(pseudoStateVertex);
-        output.ThrowIfNull().Append($"static void {functionName}({mangler.ThrowIfNull().SmTypeName} sm)");
+        output.ThrowIfNull().Append($"private void {functionName}()");
     }
 
     public void OutputAllPrototypes()

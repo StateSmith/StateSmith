@@ -3,11 +3,9 @@ using System;
 
 namespace StateSmithTest.spec._2.CSharp;
 
-// ported from c equivalent test runner
-
 public class MainClass
 {
-    public static void trace(string str)
+    public static void Trace(string str)
     {
         Console.WriteLine(str);
         Console.Out.Flush();      // might be useful in case code fails in someway
@@ -72,12 +70,8 @@ public class MainClass
         }
     }
 
-    // USEMAIN is defined in .csproj for this project.
-    // This prevents main StateSmith test project seeing multiple program entry points.
-#if USEMAIN
     public static void Main(string[] args)
     {
         ActualMain(args);
     }
-#endif
 }

@@ -44,21 +44,21 @@ public class GilAlgoCodeGen : ICodeGenRunner
         try
         {
             transpiler.TranspileAndOutputCode(gilCode);
+
+            if (runnerSettings.outputGilCodeAlways)
+                DumpGilCode(sm, gilCode);
         }
         catch (Exception e)
         {
             if (runnerSettings.dumpGilCodeOnError)
             {
-                string gilPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs";
-
                 // get the most accurate GIL code if it is available in case other modifications were made
                 if (e is TranspilerException transpilerException && transpilerException.GilCode != null)
                 {
                     gilCode = transpilerException.GilCode;
                 }
 
-                File.WriteAllText(gilPath, gilCode);
-                consolePrinter.WriteErrorLine($"You can inspect the generated Generic Intermediate Language (GIL) code here: {gilPath}");
+                DumpGilCode(sm, gilCode);
             }
             else
             {
@@ -67,5 +67,13 @@ public class GilAlgoCodeGen : ICodeGenRunner
 
             throw new TranspilerException($"Failed transpiling Generic Intermediate Language (GIL) code with transpiler: {transpiler.GetType()}", e);
         }
+    }
+
+    private void DumpGilCode(StateMachine sm, string gilCode)
+    {
+        string gilOutputPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs.txt";
+
+        File.WriteAllText(gilOutputPath, gilCode);
+        consolePrinter.WriteLine($"You can inspect the generated Generic Intermediate Language (GIL) code here: {gilOutputPath}");
     }
 }

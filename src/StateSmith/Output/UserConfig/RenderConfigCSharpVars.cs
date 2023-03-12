@@ -5,6 +5,11 @@ public class RenderConfigCSharpVars
     public string NameSpace = "";
     public string Usings = "";
     public string ClassCode = "";
+
+    /// <summary>
+    /// See <see cref="IRenderConfigCSharp.BaseList"/>
+    /// </summary>
+    public string BaseList = "";
     public bool UseNullable = true;
     public bool UsePartialClass = true;
 
@@ -26,5 +31,6 @@ public class RenderConfigCSharpVars
         ClassCode = Process(config.ClassCode);
         UseNullable = config.UseNullable;
         UsePartialClass = config.UsePartialClass;
+        BaseList = config.BaseList;
     }
 }

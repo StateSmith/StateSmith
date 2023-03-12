@@ -24,6 +24,7 @@ namespace StateSmith.Runner
 
                 if (t.isGilCode)
                 {
+                    // todo - should try to expand `trace()` and `trace_guard()`. See https://github.com/StateSmith/StateSmith/issues/128
                     tracingCode = PostProcessor.RmCommentOut(tracingCode);
                 }
 
@@ -57,6 +58,7 @@ namespace StateSmith.Runner
                 var end = ")";
                 if (b.isGilCode)
                 {
+                    // todo - should try to expand `trace()` and `trace_guard()`. See https://github.com/StateSmith/StateSmith/issues/128
                     start = PostProcessor.RmCommentOut(start);
                     end = PostProcessor.RmCommentOut(end);
                 }

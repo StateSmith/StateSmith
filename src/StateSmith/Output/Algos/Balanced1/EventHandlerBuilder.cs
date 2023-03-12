@@ -13,7 +13,7 @@ namespace StateSmith.Output.Algos.Balanced1;
 
 public class EventHandlerBuilder
 {
-    public string smAccess = "sm";
+    public string smAccess = "this";
 
     public const string consumeEventVarName = "consume_event";
     private readonly NameMangler mangler;
@@ -182,7 +182,7 @@ public class EventHandlerBuilder
             if (stateToEnter is NamedVertex namedVertexToEnter)
             {
                 var enterHandler = mangler.SmTriggerHandlerFuncName(namedVertexToEnter, TriggerHelper.TRIGGER_ENTER);
-                File.AppendLine($"{enterHandler}({smAccess});");
+                File.AppendLine($"{enterHandler}();");
             }
             else if (stateToEnter is PseudoStateVertex pv)
             {
@@ -247,7 +247,7 @@ public class EventHandlerBuilder
         if (transitionFunction != null)
         {
             File.AppendLine($"// Finish transition by calling pseudo state transition function.");
-            File.AppendLine($"{transitionFunction}({smAccess});");
+            File.AppendLine($"{transitionFunction}();");
             File.AppendLine($"return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.");
         }
         else
@@ -307,12 +307,12 @@ public class EventHandlerBuilder
         {
             NamedVertex leafActiveState = (NamedVertex)source;
             string sourceExitHandler = mangler.SmTriggerHandlerFuncName(leafActiveState, TriggerHelper.TRIGGER_EXIT);
-            File.AppendLine($"{sourceExitHandler}({smAccess});");
+            File.AppendLine($"{sourceExitHandler}();");
         }
         else
         {
             string ancestorExitHandler = mangler.SmTriggerHandlerFuncName(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
-            File.AppendLine($"{mangler.SmExitUpToFuncName}({smAccess}, {ancestorExitHandler});");
+            File.AppendLine($"{mangler.SmExitUpToFuncName}({ancestorExitHandler});");
         }
     }
 
@@ -347,8 +347,7 @@ public class EventHandlerBuilder
         else
         {
             File.AppendLine($"// Setup handler for next ancestor that listens to `{triggerName}` event.");
-            File.Append($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = ");
-            File.FinishLine($"{mangler.SmTriggerHandlerFuncName(nextHandlingState, triggerName)};");
+            File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = {mangler.SmTriggerHandlerFuncName(nextHandlingState, triggerName)};");
         }
 
         File.RequestNewLineBeforeMoreCode();
@@ -483,6 +482,8 @@ public class EventHandlerBuilder
 
     public void OutputFuncStateEnter(NamedVertex state)
     {
+        //var oldSmAccess = smAccess;
+        //smAccess = "this";
         OutputTriggerHandlerSignature(state, TriggerHelper.TRIGGER_ENTER);
 
         File.StartCodeBlock();
@@ -506,6 +507,8 @@ public class EventHandlerBuilder
         }
         File.FinishCodeBlock(forceNewLine: true);
         File.AppendLine();
+
+        //smAccess = oldSmAccess;
     }
 
     public void OutputFuncStateExit(NamedVertex state)
@@ -519,7 +522,7 @@ public class EventHandlerBuilder
             if (state.Parent == null)
             {
                 File.AppendLine($"// State machine root is a special case. It cannot be exited. Mark as unused.");
-                File.AppendLine(GilHelper.MarkVarAsUnused("sm"));
+                File.AppendLine(GilHelper.MarkVarAsUnused("this"));
             }
             else
             {
@@ -561,12 +564,8 @@ public class EventHandlerBuilder
     public void OutputTriggerHandlerSignature(NamedVertex state, string eventName)
     {
         // enter functions don't need to be static delegates because we don't take their address
-        if (!TriggerHelper.IsEnterTrigger(eventName))
-        {
-            File.AppendLine($"[{GilHelper.GilAddessableFunctionAttribute}<{mangler.SmHandlerFuncType}>]");
-        }
-
-        File.Append($"private static void {mangler.SmTriggerHandlerFuncName(state, eventName)}({mangler.SmTypeName} sm)");
+        string funcName = mangler.SmTriggerHandlerFuncName(state, eventName);
+        File.Append($"private void {funcName}()");
     }
 
     /// <summary>

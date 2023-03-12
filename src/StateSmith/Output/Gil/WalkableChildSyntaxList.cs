@@ -55,6 +55,11 @@ public class WalkableChildSyntaxList
         VisitUpTo((snot) => snot == syntaxToken, including);
     }
 
+    public void VisitUpTo(SyntaxNode syntaxNode, bool including = false)
+    {
+        VisitUpTo((snot) => snot == syntaxNode, including);
+    }
+
     public bool TryRemove(SyntaxToken syntaxToken)
     {
         return nodeOrTokenList.Remove(syntaxToken);

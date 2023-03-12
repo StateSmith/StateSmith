@@ -739,7 +739,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
     public void Test7_DeepHistory2()
     {
         tester.PreEvents = "EV7 EV4";
-        var historyVar = "sm.vars.state_0_history";
+        var historyVar = Test7History1Helper.SmVars + ".state_0_history";
         var historyEnumAccess = "state_0_HistoryId.";
 
         // go from state_1 to state_6
@@ -800,7 +800,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
     public void Test7_DeepHistory3()
     {
         tester.PreEvents = "EV7 EV5";
-        var historyVar = "sm.vars.state_0_history";
+        var historyVar = Test7History1Helper.SmVars + ".state_0_history";
         var historyEnumAccess = "state_0_HistoryId.";
 
         // go from state_1 to state_6

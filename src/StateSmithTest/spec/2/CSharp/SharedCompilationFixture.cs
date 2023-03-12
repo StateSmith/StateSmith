@@ -37,7 +37,7 @@ public class SharedCompilationFixture
     public class MyGlueFile : IRenderConfigCSharp
     {
         string IRenderConfig.FileTop => @"
-                // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
+                // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
             ";
 
         string IRenderConfig.VariableDeclarations => @"
@@ -57,15 +57,15 @@ public class SharedCompilationFixture
             ";
 
         string IRenderConfigCSharp.ClassCode => @"
-                private static void trace(string message) => MainClass.trace(message);
-                private static bool trace_guard(string message, bool b) => MainClass.trace_guard(message, b);
+                // trace() implemented in base class
+                // trace_guard() implemented in partial class
             ";
+
+        string IRenderConfigCSharp.BaseList => "Spec2SmBase";
 
         public class CSharpExpansions : Spec2GenericVarExpansions
         {
-            public string sb => AutoVarName();
-            public override string trace(string message) => $"trace({message})";
-            public override string trace_guard(string message, string guardCode) => $"trace_guard({message}, {guardCode})";
+            public override string trace(string message) => $"MainClass.Trace({message})"; // this isn't actually needed, but helps ensure expansions are working
         }
     }
 }

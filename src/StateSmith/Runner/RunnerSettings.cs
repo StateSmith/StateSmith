@@ -46,7 +46,15 @@ public class RunnerSettings
     /// </summary>
     public bool dumpErrorsToFile = false;
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/wiki/GIL:-Generic-Intermediate-Language
+    /// </summary>
     public bool dumpGilCodeOnError = false;
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/wiki/GIL:-Generic-Intermediate-Language
+    /// </summary>
+    public bool outputGilCodeAlways = false;
 
     /// <summary>
     /// If false (the default), any exception thrown while running StateSmith will be caught

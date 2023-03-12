@@ -3,7 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output;
-using StateSmith.Runner;
 using System.Text.RegularExpressions;
 
 #nullable enable
@@ -128,9 +127,9 @@ public class HistoryProcessor
         foreach (var stateToTrack in statesToTrack)
         {
             bool isDefaultTransition = stateToTrack == defaultTransition?.TransitionTarget && defaultTransition.HasActionCode() == false;
-            
+
             string expansionVarsPath = expansionVarsPathProvider.ExpansionVarsPath;
-            expansionVarsPath = new Regex(@"(\w+).*?(\w+)").Replace(expansionVarsPath, "$1.$2"); // this converts `sm->vars` (if C99 selected) to `sm.vars` for GIL code.
+            expansionVarsPath = new Regex(@"(\w+).*?(\w+)").Replace(expansionVarsPath, "this.$2"); // this converts `sm->vars` (if C99 selected) to `this.vars` for GIL code.
 
             string enumName = mangler.HistoryVarEnumType(historyState);
             string enumValueName = enumName + "." + mangler.HistoryVarEnumValue(historyState, stateToTrack);

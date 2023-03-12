@@ -8,7 +8,11 @@ public class TranspilerException : Exception
 {
     public string? GilCode { get; }
 
-    public TranspilerException(string? message, string? gilCode = null) : base(message)
+    public TranspilerException(string? message) : base(message)
+    {
+    }
+
+    public TranspilerException(string? message, string gilCode) : base(message)
     {
         GilCode = gilCode;
     }

@@ -14,7 +14,9 @@ using StateSmith.Output.UserConfig;
 
 namespace StateSmith.Output.Gil.C99;
 
-internal class C99GenVisitor : CSharpSyntaxWalker
+// TODO use a single string for `sm` as replacement for `this`. currently scattered.
+
+public class C99GenVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder hFileSb;
     public readonly StringBuilder cFileSb;
@@ -53,8 +55,9 @@ internal class C99GenVisitor : CSharpSyntaxWalker
         done |= GilHelper.HandleGilSpecialInvocations(node, sb);
         done |= GilHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
         {
+            var argName = "sm"; // we only ignore `sm` in ROOT_exit right now so we can cheat here. If that changes, we can visit `argument` instead.
             sb.Append(node.GetLeadingTrivia().ToFullString());
-            sb.Append($"(void){argument.ToFullString()}");   // trailing semi-colon is already part of parent ExpressionStatement
+            sb.Append($"(void){argName}");   // trailing semi-colon is already part of parent ExpressionStatement
         });
 
         if (!done)
@@ -187,7 +190,7 @@ internal class C99GenVisitor : CSharpSyntaxWalker
         return kids;
     }
 
-    // delegates are assumed to be simple C function pointers
+    // delegates are assumed to be method pointers
     public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
     {
         var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
@@ -198,7 +201,8 @@ internal class C99GenVisitor : CSharpSyntaxWalker
         sb.Append("(*");
         sb.Append(GetCName(symbol));
         sb.Append(')');
-        Visit(node.ParameterList);
+        sb.Append("(" + GetCName(symbol.ContainingType) + "* sm)");
+        //Visit(node.ParameterList);
         VisitToken(node.SemicolonToken);
     }
 
@@ -336,13 +340,12 @@ internal class C99GenVisitor : CSharpSyntaxWalker
         var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
         var iMethodSymbol = (IMethodSymbol)model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
 
-        // only append sm/self/this var if this is an ordinary non-static method
-        if (!iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.Ordinary)
+        if (!iMethodSymbol.IsStatic)
         {
             var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
             list.VisitUpTo(node.OpenParenToken, including: true);
 
-            sb.Append(GetCName(iMethodSymbol.ContainingType) + "* sm");
+            sb.Append("sm");
             if (node.Arguments.Count > 0)
             {
                 sb.Append(", ");

@@ -6,11 +6,13 @@ public class Test7History1Helper
 {
     SpecTester tester;
 
+    public const string SmVars = "this.vars";
+
     public readonly string EventOnToOff = "EV6"; 
     public readonly string EventOffToOn = "EV7";
-    public readonly string OnVarName = "sm.vars.ON_history";
+    public readonly string OnVarName = $"{SmVars}.ON_history";
     public readonly string OnEnumAccess = "ON_HistoryId.";
-    public readonly string OffVarName = "sm.vars.OFF_history";
+    public readonly string OffVarName = $"{SmVars}.OFF_history";
     public readonly string OffEnumAccess = "OFF_HistoryId.";
 
     public Test7History1Helper(SpecTester tester)
