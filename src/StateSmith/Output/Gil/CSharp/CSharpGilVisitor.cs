@@ -5,7 +5,6 @@ using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
-using Antlr4.Runtime;
 
 #nullable enable
 
