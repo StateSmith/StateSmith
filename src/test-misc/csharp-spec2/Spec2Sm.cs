@@ -1,4 +1,4 @@
-// any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
+// any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
 #nullable enable
 using StateSmithTest.spec._2.CSharp; // to get access to MainClass
 namespace Csharp.Spec2smTests
@@ -6,8 +6,8 @@ namespace Csharp.Spec2smTests
     // Generated state machine
     public partial class Spec2Sm
     {
-        private static void trace(string message) => MainClass.trace(message);
-        private static bool trace_guard(string message, bool b) => MainClass.trace_guard(message, b);
+        private static void trace(string message) => MainClass.Trace(message);  // this is needed because TracingModder doesn't understand expansions yet
+                                                                                // trace_guard implemented in partial class
         public enum EventId
         {
             DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
@@ -313,7 +313,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for ROOT.InitialState to DECIDE.");`.
-                    trace("Transition action `` for ROOT.InitialState to DECIDE.");
+                    MainClass.Trace("Transition action `` for ROOT.InitialState to DECIDE.");
 
                     // Step 3: Enter/move towards transition target `DECIDE`.
                     DECIDE_enter();
@@ -363,7 +363,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter Spec2Sm."); }
             {
                 // Step 1: execute action `trace("Enter Spec2Sm.");`
-                trace("Enter Spec2Sm.");
+                MainClass.Trace("Enter Spec2Sm.");
             } // end of behavior for ROOT
         }
 
@@ -375,7 +375,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit Spec2Sm."); }
             {
                 // Step 1: execute action `trace("Exit Spec2Sm.");`
-                trace("Exit Spec2Sm.");
+                MainClass.Trace("Exit Spec2Sm.");
             } // end of behavior for ROOT
 
             // State machine root is a special case. It cannot be exited. Mark as unused.
@@ -396,7 +396,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter AUTO_VAR_TEST."); }
             {
                 // Step 1: execute action `trace("Enter AUTO_VAR_TEST.");`
-                trace("Enter AUTO_VAR_TEST.");
+                MainClass.Trace("Enter AUTO_VAR_TEST.");
             } // end of behavior for AUTO_VAR_TEST
         }
 
@@ -408,7 +408,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit AUTO_VAR_TEST."); }
             {
                 // Step 1: execute action `trace("Exit AUTO_VAR_TEST.");`
-                trace("Exit AUTO_VAR_TEST.");
+                MainClass.Trace("Exit AUTO_VAR_TEST.");
             } // end of behavior for AUTO_VAR_TEST
 
             // adjust function pointers for this state's exit
@@ -430,7 +430,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter AUTO_VAR_TEST__BLAH."); }
             {
                 // Step 1: execute action `trace("Enter AUTO_VAR_TEST__BLAH.");`
-                trace("Enter AUTO_VAR_TEST__BLAH.");
+                MainClass.Trace("Enter AUTO_VAR_TEST__BLAH.");
             } // end of behavior for AUTO_VAR_TEST__BLAH
         }
 
@@ -442,7 +442,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit AUTO_VAR_TEST__BLAH."); }
             {
                 // Step 1: execute action `trace("Exit AUTO_VAR_TEST__BLAH.");`
-                trace("Exit AUTO_VAR_TEST__BLAH.");
+                MainClass.Trace("Exit AUTO_VAR_TEST__BLAH.");
             } // end of behavior for AUTO_VAR_TEST__BLAH
 
             // adjust function pointers for this state's exit
@@ -464,7 +464,7 @@ namespace Csharp.Spec2smTests
                 AUTO_VAR_TEST__BLAH_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST__BLAH to AUTO_VAR_TEST__BLAH2.");`.
-                trace("Transition action `` for AUTO_VAR_TEST__BLAH to AUTO_VAR_TEST__BLAH2.");
+                MainClass.Trace("Transition action `` for AUTO_VAR_TEST__BLAH to AUTO_VAR_TEST__BLAH2.");
 
                 // Step 3: Enter/move towards transition target `AUTO_VAR_TEST__BLAH2`.
                 AUTO_VAR_TEST__BLAH2_enter();
@@ -490,7 +490,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter AUTO_VAR_TEST__BLAH2."); }
             {
                 // Step 1: execute action `trace("Enter AUTO_VAR_TEST__BLAH2.");`
-                trace("Enter AUTO_VAR_TEST__BLAH2.");
+                MainClass.Trace("Enter AUTO_VAR_TEST__BLAH2.");
             } // end of behavior for AUTO_VAR_TEST__BLAH2
         }
 
@@ -502,7 +502,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit AUTO_VAR_TEST__BLAH2."); }
             {
                 // Step 1: execute action `trace("Exit AUTO_VAR_TEST__BLAH2.");`
-                trace("Exit AUTO_VAR_TEST__BLAH2.");
+                MainClass.Trace("Exit AUTO_VAR_TEST__BLAH2.");
             } // end of behavior for AUTO_VAR_TEST__BLAH2
 
             // adjust function pointers for this state's exit
@@ -533,7 +533,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter DECIDE."); }
             {
                 // Step 1: execute action `trace("Enter DECIDE.");`
-                trace("Enter DECIDE.");
+                MainClass.Trace("Enter DECIDE.");
             } // end of behavior for DECIDE
         }
 
@@ -545,7 +545,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit DECIDE."); }
             {
                 // Step 1: execute action `trace("Exit DECIDE.");`
-                trace("Exit DECIDE.");
+                MainClass.Trace("Exit DECIDE.");
             } // end of behavior for DECIDE
 
             // adjust function pointers for this state's exit
@@ -576,7 +576,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING.");`.
-                trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST1_DO_EVENT_TESTING.");
 
                 // Step 3: Enter/move towards transition target `TEST1_DO_EVENT_TESTING`.
                 TEST1_DO_EVENT_TESTING_enter();
@@ -587,7 +587,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST1_DO_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");`.
-                    trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");
+                    MainClass.Trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST1_ROOT`.
                     TEST1_ROOT_enter();
@@ -598,7 +598,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");`.
-                        trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");
+                        MainClass.Trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST1_S1_1`.
                         TEST1_S1_enter();
@@ -627,7 +627,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST10_CHOICE_POINT.");`.
-                trace("Transition action `` for DECIDE to TEST10_CHOICE_POINT.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST10_CHOICE_POINT.");
 
                 // Step 3: Enter/move towards transition target `TEST10_CHOICE_POINT`.
                 TEST10_CHOICE_POINT_enter();
@@ -638,7 +638,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1.");`.
-                    trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1.");
+                    MainClass.Trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST10_S1`.
                     TEST10_ROOT_enter();
@@ -666,7 +666,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING.");`.
-                trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST2_REGULAR_EVENT_TESTING.");
 
                 // Step 3: Enter/move towards transition target `TEST2_REGULAR_EVENT_TESTING`.
                 TEST2_REGULAR_EVENT_TESTING_enter();
@@ -677,7 +677,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST2_REGULAR_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");`.
-                    trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");
+                    MainClass.Trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST2_ROOT`.
                     TEST2_ROOT_enter();
@@ -688,7 +688,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");`.
-                        trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");
+                        MainClass.Trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST2_S1_1`.
                         TEST2_S1_enter();
@@ -717,7 +717,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING.");`.
-                trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST3_BEHAVIOR_ORDERING.");
 
                 // Step 3: Enter/move towards transition target `TEST3_BEHAVIOR_ORDERING`.
                 TEST3_BEHAVIOR_ORDERING_enter();
@@ -728,7 +728,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST3_BEHAVIOR_ORDERING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");`.
-                    trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");
+                    MainClass.Trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST3_ROOT`.
                     TEST3_ROOT_enter();
@@ -739,7 +739,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");`.
-                        trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");
+                        MainClass.Trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");
 
                         // Step 3: Enter/move towards transition target `TEST3_S1`.
                         TEST3_S1_enter();
@@ -767,7 +767,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.");`.
-                trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.");
 
                 // Step 3: Enter/move towards transition target `TEST4_PARENT_CHILD_TRANSITIONS`.
                 TEST4_PARENT_CHILD_TRANSITIONS_enter();
@@ -778,7 +778,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");`.
-                    trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");
+                    MainClass.Trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST4_DECIDE`.
                     TEST4_DECIDE_enter();
@@ -805,7 +805,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`.
-                trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
 
                 // Step 3: Enter/move towards transition target `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS`.
                 TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter();
@@ -816,7 +816,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");`.
-                    trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");
+                    MainClass.Trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST5_ROOT`.
                     TEST5_ROOT_enter();
@@ -843,7 +843,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST6_VARIABLES.");`.
-                trace("Transition action `` for DECIDE to TEST6_VARIABLES.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST6_VARIABLES.");
 
                 // Step 3: Enter/move towards transition target `TEST6_VARIABLES`.
                 TEST6_VARIABLES_enter();
@@ -854,7 +854,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST6_VARIABLES` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");`.
-                    trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");
+                    MainClass.Trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST6_ROOT`.
                     TEST6_ROOT_enter();
@@ -865,7 +865,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1.");`.
-                        trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1.");
+                        MainClass.Trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_S1.");
 
                         // Step 3: Enter/move towards transition target `TEST6_S1`.
                         TEST6_S1_enter();
@@ -893,7 +893,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST7_INITIAL_OR_HISTORY.");`.
-                trace("Transition action `` for DECIDE to TEST7_INITIAL_OR_HISTORY.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST7_INITIAL_OR_HISTORY.");
 
                 // Step 3: Enter/move towards transition target `TEST7_INITIAL_OR_HISTORY`.
                 TEST7_INITIAL_OR_HISTORY_enter();
@@ -904,7 +904,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE.");`.
-                    trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE.");
+                    MainClass.Trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST7_DECIDE`.
                     TEST7_DECIDE_enter();
@@ -931,7 +931,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST8_ENTRY_CHOICE.");`.
-                trace("Transition action `` for DECIDE to TEST8_ENTRY_CHOICE.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST8_ENTRY_CHOICE.");
 
                 // Step 3: Enter/move towards transition target `TEST8_ENTRY_CHOICE`.
                 TEST8_ENTRY_CHOICE_enter();
@@ -942,7 +942,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST8_ENTRY_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1).");`.
-                    trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1).");
+                    MainClass.Trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1).");
 
                     // Step 3: Enter/move towards transition target `TEST8_ROOT.EntryPoint(1)`.
                     TEST8_ROOT_enter();
@@ -969,7 +969,7 @@ namespace Csharp.Spec2smTests
                 DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for DECIDE to TEST9_EXIT_CHOICE.");`.
-                trace("Transition action `` for DECIDE to TEST9_EXIT_CHOICE.");
+                MainClass.Trace("Transition action `` for DECIDE to TEST9_EXIT_CHOICE.");
 
                 // Step 3: Enter/move towards transition target `TEST9_EXIT_CHOICE`.
                 TEST9_EXIT_CHOICE_enter();
@@ -980,7 +980,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE.");`.
-                    trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE.");
+                    MainClass.Trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST9_DECIDE`.
                     TEST9_DECIDE_enter();
@@ -1007,7 +1007,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING.");`
-                trace("Enter PREFIXING.");
+                MainClass.Trace("Enter PREFIXING.");
             } // end of behavior for PREFIXING
         }
 
@@ -1019,7 +1019,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING.");`
-                trace("Exit PREFIXING.");
+                MainClass.Trace("Exit PREFIXING.");
             } // end of behavior for PREFIXING
 
             // adjust function pointers for this state's exit
@@ -1040,7 +1040,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__ORDER_MENU."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.");`
-                trace("Enter PREFIXING__ORDER_MENU.");
+                MainClass.Trace("Enter PREFIXING__ORDER_MENU.");
             } // end of behavior for PREFIXING__ORDER_MENU
         }
 
@@ -1052,7 +1052,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__ORDER_MENU."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.");`
-                trace("Exit PREFIXING__ORDER_MENU.");
+                MainClass.Trace("Exit PREFIXING__ORDER_MENU.");
             } // end of behavior for PREFIXING__ORDER_MENU
 
             // adjust function pointers for this state's exit
@@ -1074,7 +1074,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.");`
-                trace("Enter PREFIXING__OM__BEVERAGE.");
+                MainClass.Trace("Enter PREFIXING__OM__BEVERAGE.");
             } // end of behavior for PREFIXING__OM__BEVERAGE
         }
 
@@ -1086,7 +1086,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.");`
-                trace("Exit PREFIXING__OM__BEVERAGE.");
+                MainClass.Trace("Exit PREFIXING__OM__BEVERAGE.");
             } // end of behavior for PREFIXING__OM__BEVERAGE
 
             // adjust function pointers for this state's exit
@@ -1108,7 +1108,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_PREFIXING__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");`.
-                trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
+                MainClass.Trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG`.
                 PREFIXING__OM__VEG_enter();
@@ -1119,7 +1119,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");`.
-                    trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");
+                    MainClass.Trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");
 
                     // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__NONE`.
                     PREFIXING__OM__VEG__NONE_enter();
@@ -1140,7 +1140,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");`.
-                trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");
+                MainClass.Trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__NONE`.
                 PREFIXING__OM__BEV__NONE_enter();
@@ -1167,7 +1167,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.");`
-                trace("Enter PREFIXING__OM__BEV__NONE.");
+                MainClass.Trace("Enter PREFIXING__OM__BEV__NONE.");
             } // end of behavior for PREFIXING__OM__BEV__NONE
         }
 
@@ -1179,7 +1179,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.");`
-                trace("Exit PREFIXING__OM__BEV__NONE.");
+                MainClass.Trace("Exit PREFIXING__OM__BEV__NONE.");
             } // end of behavior for PREFIXING__OM__BEV__NONE
 
             // adjust function pointers for this state's exit
@@ -1201,7 +1201,7 @@ namespace Csharp.Spec2smTests
                 PREFIXING__OM__BEV__NONE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.");`.
-                trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.");
+                MainClass.Trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__WATER`.
                 PREFIXING__OM__BEV__WATER_enter();
@@ -1227,7 +1227,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.");`
-                trace("Enter PREFIXING__OM__BEV__TEA.");
+                MainClass.Trace("Enter PREFIXING__OM__BEV__TEA.");
             } // end of behavior for PREFIXING__OM__BEV__TEA
         }
 
@@ -1239,7 +1239,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.");`
-                trace("Exit PREFIXING__OM__BEV__TEA.");
+                MainClass.Trace("Exit PREFIXING__OM__BEV__TEA.");
             } // end of behavior for PREFIXING__OM__BEV__TEA
 
             // adjust function pointers for this state's exit
@@ -1261,7 +1261,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.");`
-                trace("Enter PREFIXING__OM__BEV__WATER.");
+                MainClass.Trace("Enter PREFIXING__OM__BEV__WATER.");
             } // end of behavior for PREFIXING__OM__BEV__WATER
         }
 
@@ -1273,7 +1273,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.");`
-                trace("Exit PREFIXING__OM__BEV__WATER.");
+                MainClass.Trace("Exit PREFIXING__OM__BEV__WATER.");
             } // end of behavior for PREFIXING__OM__BEV__WATER
 
             // adjust function pointers for this state's exit
@@ -1295,7 +1295,7 @@ namespace Csharp.Spec2smTests
                 PREFIXING__OM__BEV__WATER_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.");`.
-                trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.");
+                MainClass.Trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__TEA`.
                 PREFIXING__OM__BEV__TEA_enter();
@@ -1322,7 +1322,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__OM__VEG."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__OM__VEG.");`
-                trace("Enter PREFIXING__OM__VEG.");
+                MainClass.Trace("Enter PREFIXING__OM__VEG.");
             } // end of behavior for PREFIXING__OM__VEG
         }
 
@@ -1334,7 +1334,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__OM__VEG."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__OM__VEG.");`
-                trace("Exit PREFIXING__OM__VEG.");
+                MainClass.Trace("Exit PREFIXING__OM__VEG.");
             } // end of behavior for PREFIXING__OM__VEG
 
             // adjust function pointers for this state's exit
@@ -1356,7 +1356,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_PREFIXING__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");`.
-                trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
+                MainClass.Trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEVERAGE`.
                 PREFIXING__OM__BEVERAGE_enter();
@@ -1382,7 +1382,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.");`
-                trace("Enter PREFIXING__OM__VEG__NONE.");
+                MainClass.Trace("Enter PREFIXING__OM__VEG__NONE.");
             } // end of behavior for PREFIXING__OM__VEG__NONE
         }
 
@@ -1394,7 +1394,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.");`
-                trace("Exit PREFIXING__OM__VEG__NONE.");
+                MainClass.Trace("Exit PREFIXING__OM__VEG__NONE.");
             } // end of behavior for PREFIXING__OM__VEG__NONE
 
             // adjust function pointers for this state's exit
@@ -1416,7 +1416,7 @@ namespace Csharp.Spec2smTests
                 PREFIXING__OM__VEG__NONE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.");`.
-                trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.");
+                MainClass.Trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__POTATO`.
                 PREFIXING__OM__VEG__POTATO_enter();
@@ -1443,7 +1443,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.");`
-                trace("Enter PREFIXING__OM__VEG__POTATO.");
+                MainClass.Trace("Enter PREFIXING__OM__VEG__POTATO.");
             } // end of behavior for PREFIXING__OM__VEG__POTATO
         }
 
@@ -1455,7 +1455,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.");`
-                trace("Exit PREFIXING__OM__VEG__POTATO.");
+                MainClass.Trace("Exit PREFIXING__OM__VEG__POTATO.");
             } // end of behavior for PREFIXING__OM__VEG__POTATO
 
             // adjust function pointers for this state's exit
@@ -1477,7 +1477,7 @@ namespace Csharp.Spec2smTests
                 PREFIXING__OM__VEG__POTATO_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.");`.
-                trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.");
+                MainClass.Trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__YAM`.
                 PREFIXING__OM__VEG__YAM_enter();
@@ -1503,7 +1503,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.");`
-                trace("Enter PREFIXING__OM__VEG__YAM.");
+                MainClass.Trace("Enter PREFIXING__OM__VEG__YAM.");
             } // end of behavior for PREFIXING__OM__VEG__YAM
         }
 
@@ -1515,7 +1515,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.");`
-                trace("Exit PREFIXING__OM__VEG__YAM.");
+                MainClass.Trace("Exit PREFIXING__OM__VEG__YAM.");
             } // end of behavior for PREFIXING__OM__VEG__YAM
 
             // adjust function pointers for this state's exit
@@ -1536,7 +1536,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
         }
 
@@ -1548,7 +1548,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
 
             // adjust function pointers for this state's exit
@@ -1569,7 +1569,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         }
 
@@ -1581,7 +1581,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
 
             // adjust function pointers for this state's exit
@@ -1603,7 +1603,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         }
 
@@ -1615,7 +1615,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
 
             // adjust function pointers for this state's exit
@@ -1637,7 +1637,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`.
-                trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter();
@@ -1648,7 +1648,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`.
-                    trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+                    MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
 
                     // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE`.
                     PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter();
@@ -1669,7 +1669,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`.
-                trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter();
@@ -1696,7 +1696,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
         }
 
@@ -1708,7 +1708,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
 
             // adjust function pointers for this state's exit
@@ -1730,7 +1730,7 @@ namespace Csharp.Spec2smTests
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`.
-                trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter();
@@ -1756,7 +1756,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         }
 
@@ -1768,7 +1768,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
 
             // adjust function pointers for this state's exit
@@ -1790,7 +1790,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         }
 
@@ -1802,7 +1802,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
 
             // adjust function pointers for this state's exit
@@ -1824,7 +1824,7 @@ namespace Csharp.Spec2smTests
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");`.
-                trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
+                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter();
@@ -1851,7 +1851,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         }
 
@@ -1863,7 +1863,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
 
             // adjust function pointers for this state's exit
@@ -1885,7 +1885,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`.
-                trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
+                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter();
@@ -1911,7 +1911,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         }
 
@@ -1923,7 +1923,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
 
             // adjust function pointers for this state's exit
@@ -1945,7 +1945,7 @@ namespace Csharp.Spec2smTests
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`.
-                trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter();
@@ -1972,7 +1972,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         }
 
@@ -1984,7 +1984,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
 
             // adjust function pointers for this state's exit
@@ -2006,7 +2006,7 @@ namespace Csharp.Spec2smTests
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`.
-                trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter();
@@ -2032,7 +2032,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
             {
                 // Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`
-                trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+                MainClass.Trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         }
 
@@ -2044,7 +2044,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM."); }
             {
                 // Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");`
-                trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
+                MainClass.Trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.");
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
 
             // adjust function pointers for this state's exit
@@ -2065,7 +2065,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING."); }
             {
                 // Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.");`
-                trace("Enter TEST1_DO_EVENT_TESTING.");
+                MainClass.Trace("Enter TEST1_DO_EVENT_TESTING.");
             } // end of behavior for TEST1_DO_EVENT_TESTING
         }
 
@@ -2077,7 +2077,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING."); }
             {
                 // Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.");`
-                trace("Exit TEST1_DO_EVENT_TESTING.");
+                MainClass.Trace("Exit TEST1_DO_EVENT_TESTING.");
             } // end of behavior for TEST1_DO_EVENT_TESTING
 
             // adjust function pointers for this state's exit
@@ -2099,7 +2099,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST1_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST1_ROOT.");`
-                trace("Enter TEST1_ROOT.");
+                MainClass.Trace("Enter TEST1_ROOT.");
             } // end of behavior for TEST1_ROOT
         }
 
@@ -2111,7 +2111,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST1_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST1_ROOT.");`
-                trace("Exit TEST1_ROOT.");
+                MainClass.Trace("Exit TEST1_ROOT.");
             } // end of behavior for TEST1_ROOT
 
             // adjust function pointers for this state's exit
@@ -2149,7 +2149,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST1_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST1_S1.");`
-                trace("Enter TEST1_S1.");
+                MainClass.Trace("Enter TEST1_S1.");
             } // end of behavior for TEST1_S1
         }
 
@@ -2161,7 +2161,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST1_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST1_S1.");`
-                trace("Exit TEST1_S1.");
+                MainClass.Trace("Exit TEST1_S1.");
             } // end of behavior for TEST1_S1
 
             // adjust function pointers for this state's exit
@@ -2184,7 +2184,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST1_S1_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST1_S1_1.");`
-                trace("Enter TEST1_S1_1.");
+                MainClass.Trace("Enter TEST1_S1_1.");
             } // end of behavior for TEST1_S1_1
 
             // TEST1_S1_1 behavior
@@ -2192,7 +2192,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST1_S1_1
         }
 
@@ -2204,7 +2204,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST1_S1_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST1_S1_1.");`
-                trace("Exit TEST1_S1_1.");
+                MainClass.Trace("Exit TEST1_S1_1.");
             } // end of behavior for TEST1_S1_1
 
             // adjust function pointers for this state's exit
@@ -2244,7 +2244,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST1_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");`.
-                trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");
+                MainClass.Trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST1_S2`.
                 TEST1_S2_enter();
@@ -2271,7 +2271,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST1_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST1_S2.");`
-                trace("Enter TEST1_S2.");
+                MainClass.Trace("Enter TEST1_S2.");
             } // end of behavior for TEST1_S2
         }
 
@@ -2283,7 +2283,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST1_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST1_S2.");`
-                trace("Exit TEST1_S2.");
+                MainClass.Trace("Exit TEST1_S2.");
             } // end of behavior for TEST1_S2
 
             // adjust function pointers for this state's exit
@@ -2329,7 +2329,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_CHOICE_POINT."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.");`
-                trace("Enter TEST10_CHOICE_POINT.");
+                MainClass.Trace("Enter TEST10_CHOICE_POINT.");
             } // end of behavior for TEST10_CHOICE_POINT
         }
 
@@ -2341,7 +2341,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_CHOICE_POINT."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.");`
-                trace("Exit TEST10_CHOICE_POINT.");
+                MainClass.Trace("Exit TEST10_CHOICE_POINT.");
             } // end of behavior for TEST10_CHOICE_POINT
 
             // adjust function pointers for this state's exit
@@ -2362,7 +2362,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_A."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_A.");`
-                trace("Enter TEST10_A.");
+                MainClass.Trace("Enter TEST10_A.");
             } // end of behavior for TEST10_A
         }
 
@@ -2374,7 +2374,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_A."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_A.");`
-                trace("Exit TEST10_A.");
+                MainClass.Trace("Exit TEST10_A.");
             } // end of behavior for TEST10_A
 
             // adjust function pointers for this state's exit
@@ -2390,7 +2390,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");`.
-                trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
+                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
 
                 // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
                 // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -2406,7 +2406,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");`.
-                trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
+                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
 
                 // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
                 // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -2426,7 +2426,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");`.
-                trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
+                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
 
                 // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
                 // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
@@ -2442,7 +2442,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");`.
-                trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
+                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
 
                 // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
                 // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
@@ -2462,7 +2462,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");`.
-                trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
+                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
 
                 // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
                 // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
@@ -2478,7 +2478,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");`.
-                trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
+                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
 
                 // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
                 // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
@@ -2497,7 +2497,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");`.
-                trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");
+                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");
 
                 // Step 3: Enter/move towards transition target `TEST10_A_1`.
                 TEST10_A_1_enter();
@@ -2523,7 +2523,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_A_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_A_1.");`
-                trace("Enter TEST10_A_1.");
+                MainClass.Trace("Enter TEST10_A_1.");
             } // end of behavior for TEST10_A_1
         }
 
@@ -2535,7 +2535,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_A_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_A_1.");`
-                trace("Exit TEST10_A_1.");
+                MainClass.Trace("Exit TEST10_A_1.");
             } // end of behavior for TEST10_A_1
 
             // adjust function pointers for this state's exit
@@ -2557,7 +2557,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_ROOT.");`
-                trace("Enter TEST10_ROOT.");
+                MainClass.Trace("Enter TEST10_ROOT.");
             } // end of behavior for TEST10_ROOT
         }
 
@@ -2569,7 +2569,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_ROOT.");`
-                trace("Exit TEST10_ROOT.");
+                MainClass.Trace("Exit TEST10_ROOT.");
             } // end of behavior for TEST10_ROOT
 
             // adjust function pointers for this state's exit
@@ -2609,7 +2609,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_G."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_G.");`
-                trace("Enter TEST10_G.");
+                MainClass.Trace("Enter TEST10_G.");
             } // end of behavior for TEST10_G
         }
 
@@ -2621,7 +2621,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_G."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_G.");`
-                trace("Exit TEST10_G.");
+                MainClass.Trace("Exit TEST10_G.");
             } // end of behavior for TEST10_G
 
             // adjust function pointers for this state's exit
@@ -2636,7 +2636,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");`.
-                trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");
+                MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");
 
                 // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(1)`.
                 // TEST10_G.ChoicePoint(1) is a pseudo state and cannot have an `enter` trigger.
@@ -2648,7 +2648,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");`.
-                    trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");
+                    MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");
 
                     // Step 3: Enter/move towards transition target `TEST10_G_S0`.
                     TEST10_G_S0_enter();
@@ -2666,7 +2666,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");`.
-                    trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");
+                    MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");
 
                     // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(lower)`.
                     // TEST10_G.ChoicePoint(lower) is a pseudo state and cannot have an `enter` trigger.
@@ -2678,7 +2678,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");`.
-                        trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");
+                        MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S1`.
                         TEST10_G_S1_enter();
@@ -2695,7 +2695,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");`.
-                        trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");
+                        MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S2`.
                         TEST10_G_S2_enter();
@@ -2713,7 +2713,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");`.
-                    trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");
+                    MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");
 
                     // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(upper)`.
                     // TEST10_G.ChoicePoint(upper) is a pseudo state and cannot have an `enter` trigger.
@@ -2725,7 +2725,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");`.
-                        trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");
+                        MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S3`.
                         TEST10_G_S3_enter();
@@ -2743,7 +2743,7 @@ namespace Csharp.Spec2smTests
                         ExitUpToStateHandler(ptr_TEST10_ROOT_exit);
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");`.
-                        trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");
+                        MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");
 
                         // Step 3: Enter/move towards transition target `TEST10_S4`.
                         TEST10_S4_enter();
@@ -2771,7 +2771,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_G_S0."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_G_S0.");`
-                trace("Enter TEST10_G_S0.");
+                MainClass.Trace("Enter TEST10_G_S0.");
             } // end of behavior for TEST10_G_S0
         }
 
@@ -2783,7 +2783,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_G_S0."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_G_S0.");`
-                trace("Exit TEST10_G_S0.");
+                MainClass.Trace("Exit TEST10_G_S0.");
             } // end of behavior for TEST10_G_S0
 
             // adjust function pointers for this state's exit
@@ -2804,7 +2804,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_G_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_G_S1.");`
-                trace("Enter TEST10_G_S1.");
+                MainClass.Trace("Enter TEST10_G_S1.");
             } // end of behavior for TEST10_G_S1
         }
 
@@ -2816,7 +2816,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_G_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_G_S1.");`
-                trace("Exit TEST10_G_S1.");
+                MainClass.Trace("Exit TEST10_G_S1.");
             } // end of behavior for TEST10_G_S1
 
             // adjust function pointers for this state's exit
@@ -2837,7 +2837,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_G_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_G_S2.");`
-                trace("Enter TEST10_G_S2.");
+                MainClass.Trace("Enter TEST10_G_S2.");
             } // end of behavior for TEST10_G_S2
         }
 
@@ -2849,7 +2849,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_G_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_G_S2.");`
-                trace("Exit TEST10_G_S2.");
+                MainClass.Trace("Exit TEST10_G_S2.");
             } // end of behavior for TEST10_G_S2
 
             // adjust function pointers for this state's exit
@@ -2870,7 +2870,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_G_S3."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_G_S3.");`
-                trace("Enter TEST10_G_S3.");
+                MainClass.Trace("Enter TEST10_G_S3.");
             } // end of behavior for TEST10_G_S3
         }
 
@@ -2882,7 +2882,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_G_S3."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_G_S3.");`
-                trace("Exit TEST10_G_S3.");
+                MainClass.Trace("Exit TEST10_G_S3.");
             } // end of behavior for TEST10_G_S3
 
             // adjust function pointers for this state's exit
@@ -2907,7 +2907,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_S1.");`
-                trace("Enter TEST10_S1.");
+                MainClass.Trace("Enter TEST10_S1.");
             } // end of behavior for TEST10_S1
 
             // TEST10_S1 behavior
@@ -2915,7 +2915,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST10_S1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST10_S1
         }
 
@@ -2927,7 +2927,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_S1.");`
-                trace("Exit TEST10_S1.");
+                MainClass.Trace("Exit TEST10_S1.");
             } // end of behavior for TEST10_S1
 
             // adjust function pointers for this state's exit
@@ -2952,7 +2952,7 @@ namespace Csharp.Spec2smTests
                 TEST10_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).");`.
-                trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).");
+                MainClass.Trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).");
 
                 // Step 3: Enter/move towards transition target `TEST10_G.EntryPoint(1)`.
                 TEST10_G_enter();
@@ -2964,7 +2964,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().");`.
-                    trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().");
+                    MainClass.Trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().");
 
                     // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
                     // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -2990,7 +2990,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST10_CHOICE_POINT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_A.");`.
-                trace("Transition action `` for TEST10_S1 to TEST10_A.");
+                MainClass.Trace("Transition action `` for TEST10_S1 to TEST10_A.");
 
                 // Step 3: Enter/move towards transition target `TEST10_A`.
                 TEST10_A_enter();
@@ -3002,7 +3002,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");`.
-                    trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+                    MainClass.Trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
 
                     // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
                     // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -3019,7 +3019,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");\ncount++;`.
-                    trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+                    MainClass.Trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
                     this.vars.count++;
 
                     // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
@@ -3036,7 +3036,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");`.
-                    trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+                    MainClass.Trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
 
                     // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
                     // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -3062,7 +3062,7 @@ namespace Csharp.Spec2smTests
                 TEST10_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().");`.
-                trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().");
+                MainClass.Trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().");
 
                 // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
                 TEST10_G_enter();
@@ -3088,7 +3088,7 @@ namespace Csharp.Spec2smTests
                 TEST10_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.");`.
-                trace("Transition action `` for TEST10_S1 to TEST10_G.");
+                MainClass.Trace("Transition action `` for TEST10_S1 to TEST10_G.");
 
                 // Step 3: Enter/move towards transition target `TEST10_G`.
                 TEST10_G_enter();
@@ -3099,7 +3099,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().");`.
-                    trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().");
+                    MainClass.Trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().");
 
                     // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
                     // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -3125,7 +3125,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST10_S4."); }
             {
                 // Step 1: execute action `trace("Enter TEST10_S4.");`
-                trace("Enter TEST10_S4.");
+                MainClass.Trace("Enter TEST10_S4.");
             } // end of behavior for TEST10_S4
         }
 
@@ -3137,7 +3137,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST10_S4."); }
             {
                 // Step 1: execute action `trace("Exit TEST10_S4.");`
-                trace("Exit TEST10_S4.");
+                MainClass.Trace("Exit TEST10_S4.");
             } // end of behavior for TEST10_S4
 
             // adjust function pointers for this state's exit
@@ -3158,7 +3158,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING."); }
             {
                 // Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.");`
-                trace("Enter TEST2_REGULAR_EVENT_TESTING.");
+                MainClass.Trace("Enter TEST2_REGULAR_EVENT_TESTING.");
             } // end of behavior for TEST2_REGULAR_EVENT_TESTING
         }
 
@@ -3170,7 +3170,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING."); }
             {
                 // Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.");`
-                trace("Exit TEST2_REGULAR_EVENT_TESTING.");
+                MainClass.Trace("Exit TEST2_REGULAR_EVENT_TESTING.");
             } // end of behavior for TEST2_REGULAR_EVENT_TESTING
 
             // adjust function pointers for this state's exit
@@ -3194,7 +3194,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST2_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST2_ROOT.");`
-                trace("Enter TEST2_ROOT.");
+                MainClass.Trace("Enter TEST2_ROOT.");
             } // end of behavior for TEST2_ROOT
         }
 
@@ -3206,7 +3206,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST2_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST2_ROOT.");`
-                trace("Exit TEST2_ROOT.");
+                MainClass.Trace("Exit TEST2_ROOT.");
             } // end of behavior for TEST2_ROOT
 
             // adjust function pointers for this state's exit
@@ -3278,7 +3278,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST2_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST2_S1.");`
-                trace("Enter TEST2_S1.");
+                MainClass.Trace("Enter TEST2_S1.");
             } // end of behavior for TEST2_S1
         }
 
@@ -3290,7 +3290,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST2_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST2_S1.");`
-                trace("Exit TEST2_S1.");
+                MainClass.Trace("Exit TEST2_S1.");
             } // end of behavior for TEST2_S1
 
             // adjust function pointers for this state's exit
@@ -3313,7 +3313,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST2_S1_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST2_S1_1.");`
-                trace("Enter TEST2_S1_1.");
+                MainClass.Trace("Enter TEST2_S1_1.");
             } // end of behavior for TEST2_S1_1
 
             // TEST2_S1_1 behavior
@@ -3321,7 +3321,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST2_S1_1
         }
 
@@ -3333,7 +3333,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST2_S1_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST2_S1_1.");`
-                trace("Exit TEST2_S1_1.");
+                MainClass.Trace("Exit TEST2_S1_1.");
             } // end of behavior for TEST2_S1_1
 
             // adjust function pointers for this state's exit
@@ -3357,7 +3357,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST2_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");`.
-                trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");
+                MainClass.Trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST2_S2`.
                 TEST2_S2_enter();
@@ -3402,7 +3402,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST2_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST2_S2.");`
-                trace("Enter TEST2_S2.");
+                MainClass.Trace("Enter TEST2_S2.");
             } // end of behavior for TEST2_S2
 
             // TEST2_S2 behavior
@@ -3421,7 +3421,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST2_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST2_S2.");`
-                trace("Exit TEST2_S2.");
+                MainClass.Trace("Exit TEST2_S2.");
             } // end of behavior for TEST2_S2
 
             // adjust function pointers for this state's exit
@@ -3469,7 +3469,7 @@ namespace Csharp.Spec2smTests
                 TEST2_S2_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST2_S2 to TEST2_S2.");`.
-                trace("Transition action `` for TEST2_S2 to TEST2_S2.");
+                MainClass.Trace("Transition action `` for TEST2_S2 to TEST2_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST2_S2`.
                 TEST2_S2_enter();
@@ -3495,7 +3495,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING."); }
             {
                 // Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.");`
-                trace("Enter TEST3_BEHAVIOR_ORDERING.");
+                MainClass.Trace("Enter TEST3_BEHAVIOR_ORDERING.");
             } // end of behavior for TEST3_BEHAVIOR_ORDERING
         }
 
@@ -3507,7 +3507,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING."); }
             {
                 // Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.");`
-                trace("Exit TEST3_BEHAVIOR_ORDERING.");
+                MainClass.Trace("Exit TEST3_BEHAVIOR_ORDERING.");
             } // end of behavior for TEST3_BEHAVIOR_ORDERING
 
             // adjust function pointers for this state's exit
@@ -3529,7 +3529,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST3_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST3_ROOT.");`
-                trace("Enter TEST3_ROOT.");
+                MainClass.Trace("Enter TEST3_ROOT.");
             } // end of behavior for TEST3_ROOT
         }
 
@@ -3541,7 +3541,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST3_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST3_ROOT.");`
-                trace("Exit TEST3_ROOT.");
+                MainClass.Trace("Exit TEST3_ROOT.");
             } // end of behavior for TEST3_ROOT
 
             // adjust function pointers for this state's exit
@@ -3580,7 +3580,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST3_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST3_S1.");`
-                trace("Enter TEST3_S1.");
+                MainClass.Trace("Enter TEST3_S1.");
             } // end of behavior for TEST3_S1
 
             // TEST3_S1 behavior
@@ -3588,7 +3588,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST3_S1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST3_S1
         }
 
@@ -3600,7 +3600,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST3_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST3_S1.");`
-                trace("Exit TEST3_S1.");
+                MainClass.Trace("Exit TEST3_S1.");
             } // end of behavior for TEST3_S1
 
             // adjust function pointers for this state's exit
@@ -3623,7 +3623,7 @@ namespace Csharp.Spec2smTests
                 TEST3_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST3_S1 to TEST3_S2.");`.
-                trace("Transition action `` for TEST3_S1 to TEST3_S2.");
+                MainClass.Trace("Transition action `` for TEST3_S1 to TEST3_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST3_S2`.
                 TEST3_S2_enter();
@@ -3639,7 +3639,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\"); }`.", true))
             {
                 // Step 1: execute action `trace("failed");`
-                trace("failed");
+                MainClass.Trace("failed");
 
                 // Step 2: determine if ancestor gets to handle event next.
                 this.ancestorEventHandler = null;  // consume event
@@ -3661,7 +3661,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST3_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST3_S2.");`
-                trace("Enter TEST3_S2.");
+                MainClass.Trace("Enter TEST3_S2.");
             } // end of behavior for TEST3_S2
         }
 
@@ -3673,7 +3673,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST3_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST3_S2.");`
-                trace("Exit TEST3_S2.");
+                MainClass.Trace("Exit TEST3_S2.");
             } // end of behavior for TEST3_S2
 
             // adjust function pointers for this state's exit
@@ -3693,7 +3693,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\"); }`.", true))
             {
                 // Step 1: execute action `trace("1 woot!");`
-                trace("1 woot!");
+                MainClass.Trace("1 woot!");
 
                 // Step 2: determine if ancestor gets to handle event next.
                 this.ancestorEventHandler = null;  // consume event
@@ -3704,7 +3704,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\"); }`.", true))
             {
                 // Step 1: execute action `trace("2 woot!");`
-                trace("2 woot!");
+                MainClass.Trace("2 woot!");
 
                 // Step 2: determine if ancestor gets to handle event next.
                 this.ancestorEventHandler = null;  // consume event
@@ -3718,8 +3718,8 @@ namespace Csharp.Spec2smTests
                 TEST3_S2_exit();
 
                 // Step 2: Transition action: `trace("Transition action `trace(\"3 woot!\");` for TEST3_S2 to TEST3_S3.");\ntrace("3 woot!");`.
-                trace("Transition action `trace(\"3 woot!\");` for TEST3_S2 to TEST3_S3.");
-                trace("3 woot!");
+                MainClass.Trace("Transition action `trace(\"3 woot!\");` for TEST3_S2 to TEST3_S3.");
+                MainClass.Trace("3 woot!");
 
                 // Step 3: Enter/move towards transition target `TEST3_S3`.
                 TEST3_S3_enter();
@@ -3745,7 +3745,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST3_S3."); }
             {
                 // Step 1: execute action `trace("Enter TEST3_S3.");`
-                trace("Enter TEST3_S3.");
+                MainClass.Trace("Enter TEST3_S3.");
             } // end of behavior for TEST3_S3
         }
 
@@ -3757,7 +3757,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST3_S3."); }
             {
                 // Step 1: execute action `trace("Exit TEST3_S3.");`
-                trace("Exit TEST3_S3.");
+                MainClass.Trace("Exit TEST3_S3.");
             } // end of behavior for TEST3_S3
 
             // adjust function pointers for this state's exit
@@ -3778,7 +3778,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");`
-                trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");
+                MainClass.Trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.");
             } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
         }
 
@@ -3790,7 +3790,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");`
-                trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
+                MainClass.Trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.");
             } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
 
             // adjust function pointers for this state's exit
@@ -3811,7 +3811,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_B_AND_OTHERS."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.");`
-                trace("Enter TEST4_B_AND_OTHERS.");
+                MainClass.Trace("Enter TEST4_B_AND_OTHERS.");
             } // end of behavior for TEST4_B_AND_OTHERS
 
             // TEST4_B_AND_OTHERS behavior
@@ -3819,7 +3819,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true))
             {
                 // Step 1: execute action `clear_dispatch_output();`
-                trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
             } // end of behavior for TEST4_B_AND_OTHERS
         }
 
@@ -3831,7 +3831,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_B_AND_OTHERS."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.");`
-                trace("Exit TEST4_B_AND_OTHERS.");
+                MainClass.Trace("Exit TEST4_B_AND_OTHERS.");
             } // end of behavior for TEST4_B_AND_OTHERS
 
             // adjust function pointers for this state's exit
@@ -3852,7 +3852,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4B_LOCAL."); }
             {
                 // Step 1: execute action `trace("Enter TEST4B_LOCAL.");`
-                trace("Enter TEST4B_LOCAL.");
+                MainClass.Trace("Enter TEST4B_LOCAL.");
             } // end of behavior for TEST4B_LOCAL
         }
 
@@ -3864,7 +3864,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4B_LOCAL."); }
             {
                 // Step 1: execute action `trace("Exit TEST4B_LOCAL.");`
-                trace("Exit TEST4B_LOCAL.");
+                MainClass.Trace("Exit TEST4B_LOCAL.");
             } // end of behavior for TEST4B_LOCAL
 
             // adjust function pointers for this state's exit
@@ -3886,7 +3886,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4B_G."); }
             {
                 // Step 1: execute action `trace("Enter TEST4B_G.");`
-                trace("Enter TEST4B_G.");
+                MainClass.Trace("Enter TEST4B_G.");
             } // end of behavior for TEST4B_G
         }
 
@@ -3898,7 +3898,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4B_G."); }
             {
                 // Step 1: execute action `trace("Exit TEST4B_G.");`
-                trace("Exit TEST4B_G.");
+                MainClass.Trace("Exit TEST4B_G.");
             } // end of behavior for TEST4B_G
 
             // adjust function pointers for this state's exit
@@ -3920,7 +3920,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4B_G_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4B_G to TEST4B_G_1.");`.
-                trace("Transition action `` for TEST4B_G to TEST4B_G_1.");
+                MainClass.Trace("Transition action `` for TEST4B_G to TEST4B_G_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4B_G_1`.
                 TEST4B_G_1_enter();
@@ -3947,7 +3947,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4B_G_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST4B_G_1.");`
-                trace("Enter TEST4B_G_1.");
+                MainClass.Trace("Enter TEST4B_G_1.");
             } // end of behavior for TEST4B_G_1
         }
 
@@ -3959,7 +3959,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4B_G_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST4B_G_1.");`
-                trace("Exit TEST4B_G_1.");
+                MainClass.Trace("Exit TEST4B_G_1.");
             } // end of behavior for TEST4B_G_1
 
             // adjust function pointers for this state's exit
@@ -3981,7 +3981,7 @@ namespace Csharp.Spec2smTests
                 TEST4B_G_1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4B_G_1 to TEST4B_G.");`.
-                trace("Transition action `` for TEST4B_G_1 to TEST4B_G.");
+                MainClass.Trace("Transition action `` for TEST4B_G_1 to TEST4B_G.");
 
                 // Step 3: Enter/move towards transition target `TEST4B_G`.
                 // Already in target. No entering required.
@@ -4006,7 +4006,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS."); }
             {
                 // Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.");`
-                trace("Enter TEST4C_LOCAL_TO_ALIAS.");
+                MainClass.Trace("Enter TEST4C_LOCAL_TO_ALIAS.");
             } // end of behavior for TEST4C_LOCAL_TO_ALIAS
         }
 
@@ -4018,7 +4018,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS."); }
             {
                 // Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.");`
-                trace("Exit TEST4C_LOCAL_TO_ALIAS.");
+                MainClass.Trace("Exit TEST4C_LOCAL_TO_ALIAS.");
             } // end of behavior for TEST4C_LOCAL_TO_ALIAS
 
             // adjust function pointers for this state's exit
@@ -4040,7 +4040,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4C_G."); }
             {
                 // Step 1: execute action `trace("Enter TEST4C_G.");`
-                trace("Enter TEST4C_G.");
+                MainClass.Trace("Enter TEST4C_G.");
             } // end of behavior for TEST4C_G
         }
 
@@ -4052,7 +4052,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4C_G."); }
             {
                 // Step 1: execute action `trace("Exit TEST4C_G.");`
-                trace("Exit TEST4C_G.");
+                MainClass.Trace("Exit TEST4C_G.");
             } // end of behavior for TEST4C_G
 
             // adjust function pointers for this state's exit
@@ -4074,7 +4074,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4C_G_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4C_G to TEST4C_G_1.");`.
-                trace("Transition action `` for TEST4C_G to TEST4C_G_1.");
+                MainClass.Trace("Transition action `` for TEST4C_G to TEST4C_G_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4C_G_1`.
                 TEST4C_G_1_enter();
@@ -4101,7 +4101,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4C_G_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST4C_G_1.");`
-                trace("Enter TEST4C_G_1.");
+                MainClass.Trace("Enter TEST4C_G_1.");
             } // end of behavior for TEST4C_G_1
         }
 
@@ -4113,7 +4113,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4C_G_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST4C_G_1.");`
-                trace("Exit TEST4C_G_1.");
+                MainClass.Trace("Exit TEST4C_G_1.");
             } // end of behavior for TEST4C_G_1
 
             // adjust function pointers for this state's exit
@@ -4135,7 +4135,7 @@ namespace Csharp.Spec2smTests
                 TEST4C_G_1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4C_G_1 to TEST4C_G.");`.
-                trace("Transition action `` for TEST4C_G_1 to TEST4C_G.");
+                MainClass.Trace("Transition action `` for TEST4C_G_1 to TEST4C_G.");
 
                 // Step 3: Enter/move towards transition target `TEST4C_G`.
                 // Already in target. No entering required.
@@ -4160,7 +4160,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4D_EXTERNAL."); }
             {
                 // Step 1: execute action `trace("Enter TEST4D_EXTERNAL.");`
-                trace("Enter TEST4D_EXTERNAL.");
+                MainClass.Trace("Enter TEST4D_EXTERNAL.");
             } // end of behavior for TEST4D_EXTERNAL
         }
 
@@ -4172,7 +4172,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4D_EXTERNAL."); }
             {
                 // Step 1: execute action `trace("Exit TEST4D_EXTERNAL.");`
-                trace("Exit TEST4D_EXTERNAL.");
+                MainClass.Trace("Exit TEST4D_EXTERNAL.");
             } // end of behavior for TEST4D_EXTERNAL
 
             // adjust function pointers for this state's exit
@@ -4194,7 +4194,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4D_G."); }
             {
                 // Step 1: execute action `trace("Enter TEST4D_G.");`
-                trace("Enter TEST4D_G.");
+                MainClass.Trace("Enter TEST4D_G.");
             } // end of behavior for TEST4D_G
         }
 
@@ -4206,7 +4206,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4D_G."); }
             {
                 // Step 1: execute action `trace("Exit TEST4D_G.");`
-                trace("Exit TEST4D_G.");
+                MainClass.Trace("Exit TEST4D_G.");
             } // end of behavior for TEST4D_G
 
             // adjust function pointers for this state's exit
@@ -4228,7 +4228,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4D_EXTERNAL_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");`.
-                trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");
+                MainClass.Trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");
 
                 // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.ChoicePoint()`.
                 // TEST4D_EXTERNAL.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -4239,7 +4239,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");`.
-                    trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");
+                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G_1`.
                     TEST4D_G_enter();
@@ -4268,7 +4268,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4D_G_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST4D_G_1.");`
-                trace("Enter TEST4D_G_1.");
+                MainClass.Trace("Enter TEST4D_G_1.");
             } // end of behavior for TEST4D_G_1
         }
 
@@ -4280,7 +4280,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4D_G_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST4D_G_1.");`
-                trace("Exit TEST4D_G_1.");
+                MainClass.Trace("Exit TEST4D_G_1.");
             } // end of behavior for TEST4D_G_1
 
             // adjust function pointers for this state's exit
@@ -4302,7 +4302,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4D_EXTERNAL_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");`.
-                trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");
+                MainClass.Trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");
 
                 // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.ChoicePoint()`.
                 // TEST4D_EXTERNAL.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -4313,7 +4313,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");`.
-                    trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");
+                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G`.
                     TEST4D_G_enter();
@@ -4344,7 +4344,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_DECIDE."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_DECIDE.");`
-                trace("Enter TEST4_DECIDE.");
+                MainClass.Trace("Enter TEST4_DECIDE.");
             } // end of behavior for TEST4_DECIDE
         }
 
@@ -4356,7 +4356,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_DECIDE."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_DECIDE.");`
-                trace("Exit TEST4_DECIDE.");
+                MainClass.Trace("Exit TEST4_DECIDE.");
             } // end of behavior for TEST4_DECIDE
 
             // adjust function pointers for this state's exit
@@ -4381,7 +4381,7 @@ namespace Csharp.Spec2smTests
                 TEST4_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.");`.
-                trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.");
+                MainClass.Trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.");
 
                 // Step 3: Enter/move towards transition target `TEST4_ROOT`.
                 TEST4_ROOT_enter();
@@ -4407,7 +4407,7 @@ namespace Csharp.Spec2smTests
                 TEST4_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.");`.
-                trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.");
+                MainClass.Trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.");
 
                 // Step 3: Enter/move towards transition target `TEST4B_LOCAL`.
                 TEST4_B_AND_OTHERS_enter();
@@ -4419,7 +4419,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST4B_LOCAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");`.
-                    trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");
+                    MainClass.Trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4B_G`.
                     TEST4B_G_enter();
@@ -4446,7 +4446,7 @@ namespace Csharp.Spec2smTests
                 TEST4_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.");`.
-                trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.");
+                MainClass.Trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.");
 
                 // Step 3: Enter/move towards transition target `TEST4C_LOCAL_TO_ALIAS`.
                 TEST4_B_AND_OTHERS_enter();
@@ -4458,7 +4458,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST4C_LOCAL_TO_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");`.
-                    trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");
+                    MainClass.Trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4C_G`.
                     TEST4C_G_enter();
@@ -4485,7 +4485,7 @@ namespace Csharp.Spec2smTests
                 TEST4_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.");`.
-                trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.");
+                MainClass.Trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.");
 
                 // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL`.
                 TEST4_B_AND_OTHERS_enter();
@@ -4497,7 +4497,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");`.
-                    trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");
+                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G`.
                     TEST4D_G_enter();
@@ -4527,7 +4527,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_ROOT.");`
-                trace("Enter TEST4_ROOT.");
+                MainClass.Trace("Enter TEST4_ROOT.");
             } // end of behavior for TEST4_ROOT
 
             // TEST4_ROOT behavior
@@ -4535,7 +4535,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST4_ROOT
         }
 
@@ -4547,7 +4547,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_ROOT.");`
-                trace("Exit TEST4_ROOT.");
+                MainClass.Trace("Exit TEST4_ROOT.");
             } // end of behavior for TEST4_ROOT
 
             // adjust function pointers for this state's exit
@@ -4571,7 +4571,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S1.");`.
-                trace("Transition action `` for TEST4_ROOT to TEST4_S1.");
+                MainClass.Trace("Transition action `` for TEST4_ROOT to TEST4_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S1`.
                 TEST4_S1_enter();
@@ -4597,7 +4597,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");`.
-                trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
+                MainClass.Trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S10_1`.
                 TEST4_S10_enter();
@@ -4624,7 +4624,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S20.");`.
-                trace("Transition action `` for TEST4_ROOT to TEST4_S20.");
+                MainClass.Trace("Transition action `` for TEST4_ROOT to TEST4_S20.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S20`.
                 TEST4_S20_enter();
@@ -4650,7 +4650,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_S1.");`
-                trace("Enter TEST4_S1.");
+                MainClass.Trace("Enter TEST4_S1.");
             } // end of behavior for TEST4_S1
         }
 
@@ -4662,7 +4662,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_S1.");`
-                trace("Exit TEST4_S1.");
+                MainClass.Trace("Exit TEST4_S1.");
             } // end of behavior for TEST4_S1
 
             // adjust function pointers for this state's exit
@@ -4684,7 +4684,7 @@ namespace Csharp.Spec2smTests
                 TEST4_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S1 to TEST4_S2.");`.
-                trace("Transition action `` for TEST4_S1 to TEST4_S2.");
+                MainClass.Trace("Transition action `` for TEST4_S1 to TEST4_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S2`.
                 TEST4_S2_enter();
@@ -4711,7 +4711,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_S10."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_S10.");`
-                trace("Enter TEST4_S10.");
+                MainClass.Trace("Enter TEST4_S10.");
             } // end of behavior for TEST4_S10
         }
 
@@ -4723,7 +4723,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_S10."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_S10.");`
-                trace("Exit TEST4_S10.");
+                MainClass.Trace("Exit TEST4_S10.");
             } // end of behavior for TEST4_S10
 
             // adjust function pointers for this state's exit
@@ -4746,7 +4746,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S10 to TEST4_S10.");`.
-                trace("Transition action `` for TEST4_S10 to TEST4_S10.");
+                MainClass.Trace("Transition action `` for TEST4_S10 to TEST4_S10.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S10`.
                 TEST4_S10_enter();
@@ -4772,7 +4772,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_S10_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_S10_1.");`
-                trace("Enter TEST4_S10_1.");
+                MainClass.Trace("Enter TEST4_S10_1.");
             } // end of behavior for TEST4_S10_1
         }
 
@@ -4784,7 +4784,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_S10_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_S10_1.");`
-                trace("Exit TEST4_S10_1.");
+                MainClass.Trace("Exit TEST4_S10_1.");
             } // end of behavior for TEST4_S10_1
 
             // adjust function pointers for this state's exit
@@ -4806,7 +4806,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_S2.");`
-                trace("Enter TEST4_S2.");
+                MainClass.Trace("Enter TEST4_S2.");
             } // end of behavior for TEST4_S2
         }
 
@@ -4818,7 +4818,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_S2.");`
-                trace("Exit TEST4_S2.");
+                MainClass.Trace("Exit TEST4_S2.");
             } // end of behavior for TEST4_S2
 
             // adjust function pointers for this state's exit
@@ -4840,7 +4840,7 @@ namespace Csharp.Spec2smTests
                 TEST4_S2_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S2 to TEST4_S3.");`.
-                trace("Transition action `` for TEST4_S2 to TEST4_S3.");
+                MainClass.Trace("Transition action `` for TEST4_S2 to TEST4_S3.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S3`.
                 TEST4_S3_enter();
@@ -4867,7 +4867,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_S20."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_S20.");`
-                trace("Enter TEST4_S20.");
+                MainClass.Trace("Enter TEST4_S20.");
             } // end of behavior for TEST4_S20
         }
 
@@ -4879,7 +4879,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_S20."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_S20.");`
-                trace("Exit TEST4_S20.");
+                MainClass.Trace("Exit TEST4_S20.");
             } // end of behavior for TEST4_S20
 
             // adjust function pointers for this state's exit
@@ -4902,7 +4902,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST4_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S20 to TEST4_S20.");`.
-                trace("Transition action `` for TEST4_S20 to TEST4_S20.");
+                MainClass.Trace("Transition action `` for TEST4_S20 to TEST4_S20.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S20`.
                 TEST4_S20_enter();
@@ -4921,7 +4921,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");`.
-                trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
+                MainClass.Trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S20_1`.
                 TEST4_S20_1_enter();
@@ -4947,7 +4947,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_S20_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_S20_1.");`
-                trace("Enter TEST4_S20_1.");
+                MainClass.Trace("Enter TEST4_S20_1.");
             } // end of behavior for TEST4_S20_1
         }
 
@@ -4959,7 +4959,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_S20_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_S20_1.");`
-                trace("Exit TEST4_S20_1.");
+                MainClass.Trace("Exit TEST4_S20_1.");
             } // end of behavior for TEST4_S20_1
 
             // adjust function pointers for this state's exit
@@ -4981,7 +4981,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST4_S3."); }
             {
                 // Step 1: execute action `trace("Enter TEST4_S3.");`
-                trace("Enter TEST4_S3.");
+                MainClass.Trace("Enter TEST4_S3.");
             } // end of behavior for TEST4_S3
         }
 
@@ -4993,7 +4993,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST4_S3."); }
             {
                 // Step 1: execute action `trace("Exit TEST4_S3.");`
-                trace("Exit TEST4_S3.");
+                MainClass.Trace("Exit TEST4_S3.");
             } // end of behavior for TEST4_S3
 
             // adjust function pointers for this state's exit
@@ -5015,7 +5015,7 @@ namespace Csharp.Spec2smTests
                 TEST4_S3_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST4_S3 to TEST4_ROOT.");`.
-                trace("Transition action `` for TEST4_S3 to TEST4_ROOT.");
+                MainClass.Trace("Transition action `` for TEST4_S3 to TEST4_ROOT.");
 
                 // Step 3: Enter/move towards transition target `TEST4_ROOT`.
                 // Already in target. No entering required.
@@ -5040,7 +5040,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
             {
                 // Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`
-                trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
+                MainClass.Trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
             } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         }
 
@@ -5052,7 +5052,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS."); }
             {
                 // Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");`
-                trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
+                MainClass.Trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.");
             } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
 
             // adjust function pointers for this state's exit
@@ -5074,7 +5074,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST5_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST5_ROOT.");`
-                trace("Enter TEST5_ROOT.");
+                MainClass.Trace("Enter TEST5_ROOT.");
             } // end of behavior for TEST5_ROOT
 
             // TEST5_ROOT behavior
@@ -5082,7 +5082,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST5_ROOT
         }
 
@@ -5094,7 +5094,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST5_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST5_ROOT.");`
-                trace("Exit TEST5_ROOT.");
+                MainClass.Trace("Exit TEST5_ROOT.");
             } // end of behavior for TEST5_ROOT
 
             // adjust function pointers for this state's exit
@@ -5116,7 +5116,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST5_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST5_ROOT to TEST5_S1.");`.
-                trace("Transition action `` for TEST5_ROOT to TEST5_S1.");
+                MainClass.Trace("Transition action `` for TEST5_ROOT to TEST5_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST5_S1`.
                 TEST5_S1_enter();
@@ -5143,7 +5143,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST5_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST5_S1.");`
-                trace("Enter TEST5_S1.");
+                MainClass.Trace("Enter TEST5_S1.");
             } // end of behavior for TEST5_S1
         }
 
@@ -5155,7 +5155,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST5_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST5_S1.");`
-                trace("Exit TEST5_S1.");
+                MainClass.Trace("Exit TEST5_S1.");
             } // end of behavior for TEST5_S1
 
             // adjust function pointers for this state's exit
@@ -5177,7 +5177,7 @@ namespace Csharp.Spec2smTests
                 TEST5_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST5_S1 to TEST5_S2.");`.
-                trace("Transition action `` for TEST5_S1 to TEST5_S2.");
+                MainClass.Trace("Transition action `` for TEST5_S1 to TEST5_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST5_S2`.
                 TEST5_S2_enter();
@@ -5204,7 +5204,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST5_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST5_S2.");`
-                trace("Enter TEST5_S2.");
+                MainClass.Trace("Enter TEST5_S2.");
             } // end of behavior for TEST5_S2
         }
 
@@ -5216,7 +5216,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST5_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST5_S2.");`
-                trace("Exit TEST5_S2.");
+                MainClass.Trace("Exit TEST5_S2.");
             } // end of behavior for TEST5_S2
 
             // adjust function pointers for this state's exit
@@ -5238,7 +5238,7 @@ namespace Csharp.Spec2smTests
                 TEST5_S2_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST5_S2 to TEST5_S3.");`.
-                trace("Transition action `` for TEST5_S2 to TEST5_S3.");
+                MainClass.Trace("Transition action `` for TEST5_S2 to TEST5_S3.");
 
                 // Step 3: Enter/move towards transition target `TEST5_S3`.
                 TEST5_S3_enter();
@@ -5265,7 +5265,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST5_S3."); }
             {
                 // Step 1: execute action `trace("Enter TEST5_S3.");`
-                trace("Enter TEST5_S3.");
+                MainClass.Trace("Enter TEST5_S3.");
             } // end of behavior for TEST5_S3
         }
 
@@ -5277,7 +5277,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST5_S3."); }
             {
                 // Step 1: execute action `trace("Exit TEST5_S3.");`
-                trace("Exit TEST5_S3.");
+                MainClass.Trace("Exit TEST5_S3.");
             } // end of behavior for TEST5_S3
 
             // adjust function pointers for this state's exit
@@ -5299,7 +5299,7 @@ namespace Csharp.Spec2smTests
                 TEST5_S3_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST5_S3 to TEST5_ROOT.");`.
-                trace("Transition action `` for TEST5_S3 to TEST5_ROOT.");
+                MainClass.Trace("Transition action `` for TEST5_S3 to TEST5_ROOT.");
 
                 // Step 3: Enter/move towards transition target `TEST5_ROOT`.
                 // Already in target. No entering required.
@@ -5324,7 +5324,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST6_VARIABLES."); }
             {
                 // Step 1: execute action `trace("Enter TEST6_VARIABLES.");`
-                trace("Enter TEST6_VARIABLES.");
+                MainClass.Trace("Enter TEST6_VARIABLES.");
             } // end of behavior for TEST6_VARIABLES
         }
 
@@ -5336,7 +5336,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST6_VARIABLES."); }
             {
                 // Step 1: execute action `trace("Exit TEST6_VARIABLES.");`
-                trace("Exit TEST6_VARIABLES.");
+                MainClass.Trace("Exit TEST6_VARIABLES.");
             } // end of behavior for TEST6_VARIABLES
 
             // adjust function pointers for this state's exit
@@ -5357,7 +5357,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST6_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST6_ROOT.");`
-                trace("Enter TEST6_ROOT.");
+                MainClass.Trace("Enter TEST6_ROOT.");
             } // end of behavior for TEST6_ROOT
         }
 
@@ -5369,7 +5369,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST6_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST6_ROOT.");`
-                trace("Exit TEST6_ROOT.");
+                MainClass.Trace("Exit TEST6_ROOT.");
             } // end of behavior for TEST6_ROOT
 
             // adjust function pointers for this state's exit
@@ -5391,7 +5391,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST6_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST6_S1.");`
-                trace("Enter TEST6_S1.");
+                MainClass.Trace("Enter TEST6_S1.");
             } // end of behavior for TEST6_S1
 
             // TEST6_S1 behavior
@@ -5399,7 +5399,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST6_S1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST6_S1
         }
 
@@ -5411,7 +5411,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST6_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST6_S1.");`
-                trace("Exit TEST6_S1.");
+                MainClass.Trace("Exit TEST6_S1.");
             } // end of behavior for TEST6_S1
 
             // adjust function pointers for this state's exit
@@ -5444,7 +5444,7 @@ namespace Csharp.Spec2smTests
                 TEST6_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST6_S1 to TEST6_S2.");`.
-                trace("Transition action `` for TEST6_S1 to TEST6_S2.");
+                MainClass.Trace("Transition action `` for TEST6_S1 to TEST6_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST6_S2`.
                 TEST6_S2_enter();
@@ -5470,7 +5470,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST6_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST6_S2.");`
-                trace("Enter TEST6_S2.");
+                MainClass.Trace("Enter TEST6_S2.");
             } // end of behavior for TEST6_S2
         }
 
@@ -5482,7 +5482,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST6_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST6_S2.");`
-                trace("Exit TEST6_S2.");
+                MainClass.Trace("Exit TEST6_S2.");
             } // end of behavior for TEST6_S2
 
             // adjust function pointers for this state's exit
@@ -5503,7 +5503,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY."); }
             {
                 // Step 1: execute action `trace("Enter TEST7_INITIAL_OR_HISTORY.");`
-                trace("Enter TEST7_INITIAL_OR_HISTORY.");
+                MainClass.Trace("Enter TEST7_INITIAL_OR_HISTORY.");
             } // end of behavior for TEST7_INITIAL_OR_HISTORY
         }
 
@@ -5515,7 +5515,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST7_INITIAL_OR_HISTORY."); }
             {
                 // Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.");`
-                trace("Exit TEST7_INITIAL_OR_HISTORY.");
+                MainClass.Trace("Exit TEST7_INITIAL_OR_HISTORY.");
             } // end of behavior for TEST7_INITIAL_OR_HISTORY
 
             // adjust function pointers for this state's exit
@@ -5536,7 +5536,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST7."); }
             {
                 // Step 1: execute action `trace("Enter TEST7.");`
-                trace("Enter TEST7.");
+                MainClass.Trace("Enter TEST7.");
             } // end of behavior for TEST7
 
             // TEST7 behavior
@@ -5544,7 +5544,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output(); }`.", true))
             {
                 // Step 1: execute action `clear_dispatch_output();`
-                trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
             } // end of behavior for TEST7
         }
 
@@ -5556,7 +5556,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST7."); }
             {
                 // Step 1: execute action `trace("Exit TEST7.");`
-                trace("Exit TEST7.");
+                MainClass.Trace("Exit TEST7.");
             } // end of behavior for TEST7
 
             // adjust function pointers for this state's exit
@@ -5577,7 +5577,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DEEP_HISTORY1."); }
             {
                 // Step 1: execute action `trace("Enter T7__DEEP_HISTORY1.");`
-                trace("Enter T7__DEEP_HISTORY1.");
+                MainClass.Trace("Enter T7__DEEP_HISTORY1.");
             } // end of behavior for T7__DEEP_HISTORY1
         }
 
@@ -5589,7 +5589,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DEEP_HISTORY1."); }
             {
                 // Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.");`
-                trace("Exit T7__DEEP_HISTORY1.");
+                MainClass.Trace("Exit T7__DEEP_HISTORY1.");
             } // end of behavior for T7__DEEP_HISTORY1
 
             // adjust function pointers for this state's exit
@@ -5610,7 +5610,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__SANTAS_WORKSHOP.");`
-                trace("Enter T7__DH1__SANTAS_WORKSHOP.");
+                MainClass.Trace("Enter T7__DH1__SANTAS_WORKSHOP.");
             } // end of behavior for T7__DH1__SANTAS_WORKSHOP
         }
 
@@ -5622,7 +5622,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__SANTAS_WORKSHOP."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.");`
-                trace("Exit T7__DH1__SANTAS_WORKSHOP.");
+                MainClass.Trace("Exit T7__DH1__SANTAS_WORKSHOP.");
             } // end of behavior for T7__DH1__SANTAS_WORKSHOP
 
             // adjust function pointers for this state's exit
@@ -5644,7 +5644,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__ALIENS_DETECTED.");`
-                trace("Enter T7__DH1__ALIENS_DETECTED.");
+                MainClass.Trace("Enter T7__DH1__ALIENS_DETECTED.");
             } // end of behavior for T7__DH1__ALIENS_DETECTED
         }
 
@@ -5656,7 +5656,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__ALIENS_DETECTED."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.");`
-                trace("Exit T7__DH1__ALIENS_DETECTED.");
+                MainClass.Trace("Exit T7__DH1__ALIENS_DETECTED.");
             } // end of behavior for T7__DH1__ALIENS_DETECTED
 
             // adjust function pointers for this state's exit
@@ -5678,7 +5678,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");`.
-                trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");
+                MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
                 T7__DH1__BUILD_enter();
@@ -5703,7 +5703,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__GET_BACKUP."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.");`
-                trace("Enter T7__DH1__GET_BACKUP.");
+                MainClass.Trace("Enter T7__DH1__GET_BACKUP.");
             } // end of behavior for T7__DH1__GET_BACKUP
         }
 
@@ -5715,7 +5715,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__GET_BACKUP."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.");`
-                trace("Exit T7__DH1__GET_BACKUP.");
+                MainClass.Trace("Exit T7__DH1__GET_BACKUP.");
             } // end of behavior for T7__DH1__GET_BACKUP
 
             // adjust function pointers for this state's exit
@@ -5736,7 +5736,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__HERO."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__HERO.");`
-                trace("Enter T7__DH1__HERO.");
+                MainClass.Trace("Enter T7__DH1__HERO.");
             } // end of behavior for T7__DH1__HERO
 
             // T7__DH1__HERO behavior
@@ -5764,7 +5764,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__HERO."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__HERO.");`
-                trace("Exit T7__DH1__HERO.");
+                MainClass.Trace("Exit T7__DH1__HERO.");
             } // end of behavior for T7__DH1__HERO
 
             // adjust function pointers for this state's exit
@@ -5779,7 +5779,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR.");`.
-                trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR.");
+                MainClass.Trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
                 T7__DH1__CALL_THOR_enter();
@@ -5806,7 +5806,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__CALL_BATMAN."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__CALL_BATMAN.");`
-                trace("Enter T7__DH1__CALL_BATMAN.");
+                MainClass.Trace("Enter T7__DH1__CALL_BATMAN.");
             } // end of behavior for T7__DH1__CALL_BATMAN
         }
 
@@ -5818,7 +5818,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__CALL_BATMAN."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.");`
-                trace("Exit T7__DH1__CALL_BATMAN.");
+                MainClass.Trace("Exit T7__DH1__CALL_BATMAN.");
             } // end of behavior for T7__DH1__CALL_BATMAN
 
             // adjust function pointers for this state's exit
@@ -5840,7 +5840,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DH1__GET_BACKUP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");`.
-                trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");
+                MainClass.Trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
                 T7__DH1__LOCAL_HELP_enter();
@@ -5868,7 +5868,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__CALL_THOR."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__CALL_THOR.");`
-                trace("Enter T7__DH1__CALL_THOR.");
+                MainClass.Trace("Enter T7__DH1__CALL_THOR.");
             } // end of behavior for T7__DH1__CALL_THOR
         }
 
@@ -5880,7 +5880,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__CALL_THOR."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.");`
-                trace("Exit T7__DH1__CALL_THOR.");
+                MainClass.Trace("Exit T7__DH1__CALL_THOR.");
             } // end of behavior for T7__DH1__CALL_THOR
 
             // adjust function pointers for this state's exit
@@ -5902,7 +5902,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__CALL_THOR_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.");`.
-                trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.");
+                MainClass.Trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CALL_BATMAN`.
                 T7__DH1__CALL_BATMAN_enter();
@@ -5928,7 +5928,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__LOCAL_HELP."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.");`
-                trace("Enter T7__DH1__LOCAL_HELP.");
+                MainClass.Trace("Enter T7__DH1__LOCAL_HELP.");
             } // end of behavior for T7__DH1__LOCAL_HELP
         }
 
@@ -5940,7 +5940,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__LOCAL_HELP."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.");`
-                trace("Exit T7__DH1__LOCAL_HELP.");
+                MainClass.Trace("Exit T7__DH1__LOCAL_HELP.");
             } // end of behavior for T7__DH1__LOCAL_HELP
 
             // adjust function pointers for this state's exit
@@ -5962,7 +5962,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__BUDDY_ELF."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__BUDDY_ELF.");`
-                trace("Enter T7__DH1__BUDDY_ELF.");
+                MainClass.Trace("Enter T7__DH1__BUDDY_ELF.");
             } // end of behavior for T7__DH1__BUDDY_ELF
 
             // T7__DH1__BUDDY_ELF behavior
@@ -5990,7 +5990,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__BUDDY_ELF."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.");`
-                trace("Exit T7__DH1__BUDDY_ELF.");
+                MainClass.Trace("Exit T7__DH1__BUDDY_ELF.");
             } // end of behavior for T7__DH1__BUDDY_ELF
 
             // adjust function pointers for this state's exit
@@ -6012,7 +6012,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__BUDDY_ELF_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.");`.
-                trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.");
+                MainClass.Trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
                 T7__DH1__POLAR_BEARS_enter();
@@ -6038,7 +6038,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__POLAR_BEARS."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__POLAR_BEARS.");`
-                trace("Enter T7__DH1__POLAR_BEARS.");
+                MainClass.Trace("Enter T7__DH1__POLAR_BEARS.");
             } // end of behavior for T7__DH1__POLAR_BEARS
 
             // T7__DH1__POLAR_BEARS behavior
@@ -6066,7 +6066,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__POLAR_BEARS."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.");`
-                trace("Exit T7__DH1__POLAR_BEARS.");
+                MainClass.Trace("Exit T7__DH1__POLAR_BEARS.");
             } // end of behavior for T7__DH1__POLAR_BEARS
 
             // adjust function pointers for this state's exit
@@ -6088,7 +6088,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__GIVE_COOKIES.");`
-                trace("Enter T7__DH1__GIVE_COOKIES.");
+                MainClass.Trace("Enter T7__DH1__GIVE_COOKIES.");
             } // end of behavior for T7__DH1__GIVE_COOKIES
 
             // T7__DH1__GIVE_COOKIES behavior
@@ -6108,7 +6108,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__GIVE_COOKIES."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.");`
-                trace("Exit T7__DH1__GIVE_COOKIES.");
+                MainClass.Trace("Exit T7__DH1__GIVE_COOKIES.");
             } // end of behavior for T7__DH1__GIVE_COOKIES
 
             // adjust function pointers for this state's exit
@@ -6130,7 +6130,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__GIVE_COOKIES_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.");`.
-                trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.");
+                MainClass.Trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
                 T7__DH1__GET_BACKUP_enter();
@@ -6159,7 +6159,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__SNOWBALL_FIGHT.");`
-                trace("Enter T7__DH1__SNOWBALL_FIGHT.");
+                MainClass.Trace("Enter T7__DH1__SNOWBALL_FIGHT.");
             } // end of behavior for T7__DH1__SNOWBALL_FIGHT
 
             // T7__DH1__SNOWBALL_FIGHT behavior
@@ -6179,7 +6179,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__SNOWBALL_FIGHT."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.");`
-                trace("Exit T7__DH1__SNOWBALL_FIGHT.");
+                MainClass.Trace("Exit T7__DH1__SNOWBALL_FIGHT.");
             } // end of behavior for T7__DH1__SNOWBALL_FIGHT
 
             // adjust function pointers for this state's exit
@@ -6201,7 +6201,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__SNOWBALL_FIGHT_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.");`.
-                trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.");
+                MainClass.Trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__GIVE_COOKIES`.
                 T7__DH1__GIVE_COOKIES_enter();
@@ -6229,7 +6229,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__BUILD."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__BUILD.");`
-                trace("Enter T7__DH1__BUILD.");
+                MainClass.Trace("Enter T7__DH1__BUILD.");
             } // end of behavior for T7__DH1__BUILD
         }
 
@@ -6241,7 +6241,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__BUILD."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__BUILD.");`
-                trace("Exit T7__DH1__BUILD.");
+                MainClass.Trace("Exit T7__DH1__BUILD.");
             } // end of behavior for T7__DH1__BUILD
 
             // adjust function pointers for this state's exit
@@ -6264,7 +6264,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");`.
-                trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");
+                MainClass.Trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED`.
                 T7__DH1__ALIENS_DETECTED_enter();
@@ -6275,7 +6275,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History.");`.
-                    trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History.");
+                    MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED.History`.
                     // T7__DH1__ALIENS_DETECTED.History is a pseudo state and cannot have an `enter` trigger.
@@ -6362,7 +6362,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT.");`.
-                        trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT.");
+                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__SNOWBALL_FIGHT`.
                         T7__DH1__SNOWBALL_FIGHT_enter();
@@ -6390,7 +6390,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DH1__SANTAS_WORKSHOP_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");`.
-                trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");
+                MainClass.Trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.History`.
                 T7__DH1__ALIENS_DETECTED_enter();
@@ -6458,7 +6458,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint().");`.
-                    trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint().");
+                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint().");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.ChoicePoint()`.
                     // T7__DH1__GET_BACKUP.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
@@ -6469,7 +6469,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO.");`.
-                        trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO.");
+                        MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
                         T7__DH1__HERO_enter();
@@ -6490,7 +6490,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History.");`.
-                trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History.");
+                MainClass.Trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__BUILD.History`.
                 // T7__DH1__BUILD.History is a pseudo state and cannot have an `enter` trigger.
@@ -6671,7 +6671,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY.");`.
-                    trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY.");
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__TOY`.
                     T7__DH1__TOY_enter();
@@ -6698,7 +6698,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__TOOL."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__TOOL.");`
-                trace("Enter T7__DH1__TOOL.");
+                MainClass.Trace("Enter T7__DH1__TOOL.");
             } // end of behavior for T7__DH1__TOOL
 
             // T7__DH1__TOOL behavior
@@ -6718,7 +6718,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__TOOL."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__TOOL.");`
-                trace("Exit T7__DH1__TOOL.");
+                MainClass.Trace("Exit T7__DH1__TOOL.");
             } // end of behavior for T7__DH1__TOOL
 
             // adjust function pointers for this state's exit
@@ -6740,7 +6740,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DH1__BUILD_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");`.
-                trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");
+                MainClass.Trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__TOY`.
                 T7__DH1__TOY_enter();
@@ -6759,7 +6759,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL.");`.
-                trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL.");
+                MainClass.Trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
                 T7__DH1__IMPACT_DRILL_enter();
@@ -6785,7 +6785,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__CIRCULAR_SAW.");`
-                trace("Enter T7__DH1__CIRCULAR_SAW.");
+                MainClass.Trace("Enter T7__DH1__CIRCULAR_SAW.");
             } // end of behavior for T7__DH1__CIRCULAR_SAW
 
             // T7__DH1__CIRCULAR_SAW behavior
@@ -6805,7 +6805,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__CIRCULAR_SAW."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.");`
-                trace("Exit T7__DH1__CIRCULAR_SAW.");
+                MainClass.Trace("Exit T7__DH1__CIRCULAR_SAW.");
             } // end of behavior for T7__DH1__CIRCULAR_SAW
 
             // adjust function pointers for this state's exit
@@ -6827,7 +6827,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__IMPACT_DRILL.");`
-                trace("Enter T7__DH1__IMPACT_DRILL.");
+                MainClass.Trace("Enter T7__DH1__IMPACT_DRILL.");
             } // end of behavior for T7__DH1__IMPACT_DRILL
 
             // T7__DH1__IMPACT_DRILL behavior
@@ -6847,7 +6847,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__IMPACT_DRILL."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.");`
-                trace("Exit T7__DH1__IMPACT_DRILL.");
+                MainClass.Trace("Exit T7__DH1__IMPACT_DRILL.");
             } // end of behavior for T7__DH1__IMPACT_DRILL
 
             // adjust function pointers for this state's exit
@@ -6869,7 +6869,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__IMPACT_DRILL_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.");`.
-                trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.");
+                MainClass.Trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CIRCULAR_SAW`.
                 T7__DH1__CIRCULAR_SAW_enter();
@@ -6896,7 +6896,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__TOY."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__TOY.");`
-                trace("Enter T7__DH1__TOY.");
+                MainClass.Trace("Enter T7__DH1__TOY.");
             } // end of behavior for T7__DH1__TOY
 
             // T7__DH1__TOY behavior
@@ -6916,7 +6916,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__TOY."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__TOY.");`
-                trace("Exit T7__DH1__TOY.");
+                MainClass.Trace("Exit T7__DH1__TOY.");
             } // end of behavior for T7__DH1__TOY
 
             // adjust function pointers for this state's exit
@@ -6938,7 +6938,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DH1__BUILD_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");`.
-                trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");
+                MainClass.Trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__TOOL`.
                 T7__DH1__TOOL_enter();
@@ -6957,7 +6957,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR.");`.
-                trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR.");
+                MainClass.Trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
                 T7__DH1__RACE_CAR_enter();
@@ -6984,7 +6984,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__GLOW_WORM."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__GLOW_WORM.");`
-                trace("Enter T7__DH1__GLOW_WORM.");
+                MainClass.Trace("Enter T7__DH1__GLOW_WORM.");
             } // end of behavior for T7__DH1__GLOW_WORM
 
             // T7__DH1__GLOW_WORM behavior
@@ -7004,7 +7004,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__GLOW_WORM."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.");`
-                trace("Exit T7__DH1__GLOW_WORM.");
+                MainClass.Trace("Exit T7__DH1__GLOW_WORM.");
             } // end of behavior for T7__DH1__GLOW_WORM
 
             // adjust function pointers for this state's exit
@@ -7027,7 +7027,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__GLOW_WORM_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.");`.
-                trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.");
+                MainClass.Trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__ROBOT`.
                 T7__DH1__ROBOT_enter();
@@ -7053,7 +7053,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__RACE_CAR."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__RACE_CAR.");`
-                trace("Enter T7__DH1__RACE_CAR.");
+                MainClass.Trace("Enter T7__DH1__RACE_CAR.");
             } // end of behavior for T7__DH1__RACE_CAR
 
             // T7__DH1__RACE_CAR behavior
@@ -7073,7 +7073,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__RACE_CAR."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.");`
-                trace("Exit T7__DH1__RACE_CAR.");
+                MainClass.Trace("Exit T7__DH1__RACE_CAR.");
             } // end of behavior for T7__DH1__RACE_CAR
 
             // adjust function pointers for this state's exit
@@ -7096,7 +7096,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__RACE_CAR_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.");`.
-                trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.");
+                MainClass.Trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__TEDDY_BEAR`.
                 T7__DH1__TEDDY_BEAR_enter();
@@ -7122,7 +7122,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__ROBOT."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__ROBOT.");`
-                trace("Enter T7__DH1__ROBOT.");
+                MainClass.Trace("Enter T7__DH1__ROBOT.");
             } // end of behavior for T7__DH1__ROBOT
 
             // T7__DH1__ROBOT behavior
@@ -7142,7 +7142,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__ROBOT."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__ROBOT.");`
-                trace("Exit T7__DH1__ROBOT.");
+                MainClass.Trace("Exit T7__DH1__ROBOT.");
             } // end of behavior for T7__DH1__ROBOT
 
             // adjust function pointers for this state's exit
@@ -7157,7 +7157,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT.");`.
-                trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT.");
+                MainClass.Trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
                 T7__DH1__BATTLEBOT_enter();
@@ -7184,7 +7184,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__BATTLEBOT."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__BATTLEBOT.");`
-                trace("Enter T7__DH1__BATTLEBOT.");
+                MainClass.Trace("Enter T7__DH1__BATTLEBOT.");
             } // end of behavior for T7__DH1__BATTLEBOT
 
             // T7__DH1__BATTLEBOT behavior
@@ -7204,7 +7204,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__BATTLEBOT."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.");`
-                trace("Exit T7__DH1__BATTLEBOT.");
+                MainClass.Trace("Exit T7__DH1__BATTLEBOT.");
             } // end of behavior for T7__DH1__BATTLEBOT
 
             // adjust function pointers for this state's exit
@@ -7227,7 +7227,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__BATTLEBOT_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.");`.
-                trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.");
+                MainClass.Trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__WALL_E`.
                 T7__DH1__WALL_E_enter();
@@ -7253,7 +7253,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__WALL_E."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__WALL_E.");`
-                trace("Enter T7__DH1__WALL_E.");
+                MainClass.Trace("Enter T7__DH1__WALL_E.");
             } // end of behavior for T7__DH1__WALL_E
 
             // T7__DH1__WALL_E behavior
@@ -7273,7 +7273,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__WALL_E."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__WALL_E.");`
-                trace("Exit T7__DH1__WALL_E.");
+                MainClass.Trace("Exit T7__DH1__WALL_E.");
             } // end of behavior for T7__DH1__WALL_E
 
             // adjust function pointers for this state's exit
@@ -7295,7 +7295,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH1__TEDDY_BEAR.");`
-                trace("Enter T7__DH1__TEDDY_BEAR.");
+                MainClass.Trace("Enter T7__DH1__TEDDY_BEAR.");
             } // end of behavior for T7__DH1__TEDDY_BEAR
 
             // T7__DH1__TEDDY_BEAR behavior
@@ -7315,7 +7315,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH1__TEDDY_BEAR."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.");`
-                trace("Exit T7__DH1__TEDDY_BEAR.");
+                MainClass.Trace("Exit T7__DH1__TEDDY_BEAR.");
             } // end of behavior for T7__DH1__TEDDY_BEAR
 
             // adjust function pointers for this state's exit
@@ -7338,7 +7338,7 @@ namespace Csharp.Spec2smTests
                 T7__DH1__TEDDY_BEAR_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.");`.
-                trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.");
+                MainClass.Trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__GLOW_WORM`.
                 T7__DH1__GLOW_WORM_enter();
@@ -7364,7 +7364,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DEEP_HISTORY2."); }
             {
                 // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2.");`
-                trace("Enter T7__DEEP_HISTORY2.");
+                MainClass.Trace("Enter T7__DEEP_HISTORY2.");
             } // end of behavior for T7__DEEP_HISTORY2
         }
 
@@ -7376,7 +7376,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DEEP_HISTORY2."); }
             {
                 // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.");`
-                trace("Exit T7__DEEP_HISTORY2.");
+                MainClass.Trace("Exit T7__DEEP_HISTORY2.");
             } // end of behavior for T7__DEEP_HISTORY2
 
             // adjust function pointers for this state's exit
@@ -7398,7 +7398,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH2__state_0."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH2__state_0.");`
-                trace("Enter T7__DH2__state_0.");
+                MainClass.Trace("Enter T7__DH2__state_0.");
             } // end of behavior for T7__DH2__state_0
         }
 
@@ -7410,7 +7410,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH2__state_0."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH2__state_0.");`
-                trace("Exit T7__DH2__state_0.");
+                MainClass.Trace("Exit T7__DH2__state_0.");
             } // end of behavior for T7__DH2__state_0
 
             // adjust function pointers for this state's exit
@@ -7432,7 +7432,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DEEP_HISTORY2_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");`.
-                trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");
+                MainClass.Trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_3`.
                 T7__DH2__STATE_3_enter();
@@ -7452,7 +7452,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History.");`.
-                trace("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History.");
+                MainClass.Trace("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_0.History`.
                 // T7__DH2__state_0.History is a pseudo state and cannot have an `enter` trigger.
@@ -7518,7 +7518,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1.");`.
-                    trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1.");
+                    MainClass.Trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1.");
 
                     // Step 3: Enter/move towards transition target `T7__DH2__state_1`.
                     T7__DH2__STATE_1_enter();
@@ -7546,7 +7546,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH2__state_1."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH2__state_1.");`
-                trace("Enter T7__DH2__state_1.");
+                MainClass.Trace("Enter T7__DH2__state_1.");
             } // end of behavior for T7__DH2__state_1
 
             // T7__DH2__state_1 behavior
@@ -7566,7 +7566,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH2__state_1."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH2__state_1.");`
-                trace("Exit T7__DH2__state_1.");
+                MainClass.Trace("Exit T7__DH2__state_1.");
             } // end of behavior for T7__DH2__state_1
 
             // adjust function pointers for this state's exit
@@ -7588,7 +7588,7 @@ namespace Csharp.Spec2smTests
                 T7__DH2__STATE_1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2.");`.
-                trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2.");
+                MainClass.Trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_2`.
                 T7__DH2__STATE_2_enter();
@@ -7614,7 +7614,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH2__state_2."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH2__state_2.");`
-                trace("Enter T7__DH2__state_2.");
+                MainClass.Trace("Enter T7__DH2__state_2.");
             } // end of behavior for T7__DH2__state_2
 
             // T7__DH2__state_2 behavior
@@ -7634,7 +7634,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH2__state_2."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH2__state_2.");`
-                trace("Exit T7__DH2__state_2.");
+                MainClass.Trace("Exit T7__DH2__state_2.");
             } // end of behavior for T7__DH2__state_2
 
             // adjust function pointers for this state's exit
@@ -7656,7 +7656,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DH2__STATE_0_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");`.
-                trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");
+                MainClass.Trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_1`.
                 T7__DH2__STATE_1_enter();
@@ -7676,7 +7676,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH2__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6.");`.
-                trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6.");
+                MainClass.Trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_6`.
                 T7__DH2__STATE_6_enter();
@@ -7703,7 +7703,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH2__state_6."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH2__state_6.");`
-                trace("Enter T7__DH2__state_6.");
+                MainClass.Trace("Enter T7__DH2__state_6.");
             } // end of behavior for T7__DH2__state_6
 
             // T7__DH2__state_6 behavior
@@ -7723,7 +7723,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH2__state_6."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH2__state_6.");`
-                trace("Exit T7__DH2__state_6.");
+                MainClass.Trace("Exit T7__DH2__state_6.");
             } // end of behavior for T7__DH2__state_6
 
             // adjust function pointers for this state's exit
@@ -7745,7 +7745,7 @@ namespace Csharp.Spec2smTests
                 T7__DH2__STATE_6_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9.");`.
-                trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9.");
+                MainClass.Trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_9`.
                 T7__DH2__STATE_9_enter();
@@ -7771,7 +7771,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH2__state_9."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH2__state_9.");`
-                trace("Enter T7__DH2__state_9.");
+                MainClass.Trace("Enter T7__DH2__state_9.");
             } // end of behavior for T7__DH2__state_9
 
             // T7__DH2__state_9 behavior
@@ -7791,7 +7791,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH2__state_9."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH2__state_9.");`
-                trace("Exit T7__DH2__state_9.");
+                MainClass.Trace("Exit T7__DH2__state_9.");
             } // end of behavior for T7__DH2__state_9
 
             // adjust function pointers for this state's exit
@@ -7813,7 +7813,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH2__state_3."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH2__state_3.");`
-                trace("Enter T7__DH2__state_3.");
+                MainClass.Trace("Enter T7__DH2__state_3.");
             } // end of behavior for T7__DH2__state_3
         }
 
@@ -7825,7 +7825,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH2__state_3."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH2__state_3.");`
-                trace("Exit T7__DH2__state_3.");
+                MainClass.Trace("Exit T7__DH2__state_3.");
             } // end of behavior for T7__DH2__state_3
 
             // adjust function pointers for this state's exit
@@ -7847,7 +7847,7 @@ namespace Csharp.Spec2smTests
                 T7__DH2__STATE_3_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0.");`.
-                trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0.");
+                MainClass.Trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0.");
 
                 // Step 3: Enter/move towards transition target `T7__DH2__state_0`.
                 T7__DH2__STATE_0_enter();
@@ -7872,7 +7872,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DEEP_HISTORY3."); }
             {
                 // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3.");`
-                trace("Enter T7__DEEP_HISTORY3.");
+                MainClass.Trace("Enter T7__DEEP_HISTORY3.");
             } // end of behavior for T7__DEEP_HISTORY3
         }
 
@@ -7884,7 +7884,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DEEP_HISTORY3."); }
             {
                 // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.");`
-                trace("Exit T7__DEEP_HISTORY3.");
+                MainClass.Trace("Exit T7__DEEP_HISTORY3.");
             } // end of behavior for T7__DEEP_HISTORY3
 
             // adjust function pointers for this state's exit
@@ -7906,7 +7906,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH3__state_0."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH3__state_0.");`
-                trace("Enter T7__DH3__state_0.");
+                MainClass.Trace("Enter T7__DH3__state_0.");
             } // end of behavior for T7__DH3__state_0
         }
 
@@ -7918,7 +7918,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH3__state_0."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH3__state_0.");`
-                trace("Exit T7__DH3__state_0.");
+                MainClass.Trace("Exit T7__DH3__state_0.");
             } // end of behavior for T7__DH3__state_0
 
             // adjust function pointers for this state's exit
@@ -7940,7 +7940,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DEEP_HISTORY3_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");`.
-                trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");
+                MainClass.Trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_3`.
                 T7__DH3__STATE_3_enter();
@@ -7960,7 +7960,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History.");`.
-                trace("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History.");
+                MainClass.Trace("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_0.History`.
                 // T7__DH3__state_0.History is a pseudo state and cannot have an `enter` trigger.
@@ -7988,7 +7988,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1.");`.
-                    trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1.");
+                    MainClass.Trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1.");
 
                     // Step 3: Enter/move towards transition target `T7__DH3__state_1`.
                     T7__DH3__STATE_1_enter();
@@ -8016,7 +8016,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH3__state_1."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH3__state_1.");`
-                trace("Enter T7__DH3__state_1.");
+                MainClass.Trace("Enter T7__DH3__state_1.");
             } // end of behavior for T7__DH3__state_1
 
             // T7__DH3__state_1 behavior
@@ -8036,7 +8036,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH3__state_1."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH3__state_1.");`
-                trace("Exit T7__DH3__state_1.");
+                MainClass.Trace("Exit T7__DH3__state_1.");
             } // end of behavior for T7__DH3__state_1
 
             // adjust function pointers for this state's exit
@@ -8058,7 +8058,7 @@ namespace Csharp.Spec2smTests
                 T7__DH3__STATE_1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2.");`.
-                trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2.");
+                MainClass.Trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_2`.
                 T7__DH3__STATE_2_enter();
@@ -8084,7 +8084,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH3__state_2."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH3__state_2.");`
-                trace("Enter T7__DH3__state_2.");
+                MainClass.Trace("Enter T7__DH3__state_2.");
             } // end of behavior for T7__DH3__state_2
 
             // T7__DH3__state_2 behavior
@@ -8104,7 +8104,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH3__state_2."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH3__state_2.");`
-                trace("Exit T7__DH3__state_2.");
+                MainClass.Trace("Exit T7__DH3__state_2.");
             } // end of behavior for T7__DH3__state_2
 
             // adjust function pointers for this state's exit
@@ -8126,7 +8126,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__DH3__STATE_0_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");`.
-                trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");
+                MainClass.Trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_1`.
                 T7__DH3__STATE_1_enter();
@@ -8146,7 +8146,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__DH3__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6.");`.
-                trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6.");
+                MainClass.Trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_6`.
                 T7__DH3__STATE_6_enter();
@@ -8173,7 +8173,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH3__state_6."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH3__state_6.");`
-                trace("Enter T7__DH3__state_6.");
+                MainClass.Trace("Enter T7__DH3__state_6.");
             } // end of behavior for T7__DH3__state_6
         }
 
@@ -8185,7 +8185,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH3__state_6."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH3__state_6.");`
-                trace("Exit T7__DH3__state_6.");
+                MainClass.Trace("Exit T7__DH3__state_6.");
             } // end of behavior for T7__DH3__state_6
 
             // adjust function pointers for this state's exit
@@ -8207,7 +8207,7 @@ namespace Csharp.Spec2smTests
                 T7__DH3__STATE_6_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9.");`.
-                trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9.");
+                MainClass.Trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_9`.
                 T7__DH3__STATE_9_enter();
@@ -8233,7 +8233,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH3__state_9."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH3__state_9.");`
-                trace("Enter T7__DH3__state_9.");
+                MainClass.Trace("Enter T7__DH3__state_9.");
             } // end of behavior for T7__DH3__state_9
         }
 
@@ -8245,7 +8245,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH3__state_9."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH3__state_9.");`
-                trace("Exit T7__DH3__state_9.");
+                MainClass.Trace("Exit T7__DH3__state_9.");
             } // end of behavior for T7__DH3__state_9
 
             // adjust function pointers for this state's exit
@@ -8267,7 +8267,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__DH3__state_3."); }
             {
                 // Step 1: execute action `trace("Enter T7__DH3__state_3.");`
-                trace("Enter T7__DH3__state_3.");
+                MainClass.Trace("Enter T7__DH3__state_3.");
             } // end of behavior for T7__DH3__state_3
         }
 
@@ -8279,7 +8279,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__DH3__state_3."); }
             {
                 // Step 1: execute action `trace("Exit T7__DH3__state_3.");`
-                trace("Exit T7__DH3__state_3.");
+                MainClass.Trace("Exit T7__DH3__state_3.");
             } // end of behavior for T7__DH3__state_3
 
             // adjust function pointers for this state's exit
@@ -8301,7 +8301,7 @@ namespace Csharp.Spec2smTests
                 T7__DH3__STATE_3_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0.");`.
-                trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0.");
+                MainClass.Trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0.");
 
                 // Step 3: Enter/move towards transition target `T7__DH3__state_0`.
                 T7__DH3__STATE_0_enter();
@@ -8326,7 +8326,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__HISTORY1."); }
             {
                 // Step 1: execute action `trace("Enter T7__HISTORY1.");`
-                trace("Enter T7__HISTORY1.");
+                MainClass.Trace("Enter T7__HISTORY1.");
             } // end of behavior for T7__HISTORY1
         }
 
@@ -8338,7 +8338,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__HISTORY1."); }
             {
                 // Step 1: execute action `trace("Exit T7__HISTORY1.");`
-                trace("Exit T7__HISTORY1.");
+                MainClass.Trace("Exit T7__HISTORY1.");
             } // end of behavior for T7__HISTORY1
 
             // adjust function pointers for this state's exit
@@ -8362,7 +8362,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__H1__OFF."); }
             {
                 // Step 1: execute action `trace("Enter T7__H1__OFF.");`
-                trace("Enter T7__H1__OFF.");
+                MainClass.Trace("Enter T7__H1__OFF.");
             } // end of behavior for T7__H1__OFF
         }
 
@@ -8374,7 +8374,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__H1__OFF."); }
             {
                 // Step 1: execute action `trace("Exit T7__H1__OFF.");`
-                trace("Exit T7__H1__OFF.");
+                MainClass.Trace("Exit T7__H1__OFF.");
             } // end of behavior for T7__H1__OFF
 
             // adjust function pointers for this state's exit
@@ -8398,7 +8398,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__H1__OFF_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");`.
-                trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");
+                MainClass.Trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
                 T7__H1__OFF3_enter();
@@ -8424,7 +8424,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");`.
-                trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");
+                MainClass.Trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF`.
                 T7__H1__OFF_enter();
@@ -8449,7 +8449,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");`.
-                trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");
+                MainClass.Trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON`.
                 T7__H1__ON_enter();
@@ -8468,7 +8468,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History.");`.
-                trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History.");
+                MainClass.Trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF.History`.
                 // T7__H1__OFF.History is a pseudo state and cannot have an `enter` trigger.
@@ -8515,7 +8515,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1.");`.
-                    trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1.");
+                    MainClass.Trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__OFF1`.
                     T7__H1__OFF1_enter();
@@ -8543,7 +8543,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__H1__OFF1."); }
             {
                 // Step 1: execute action `trace("Enter T7__H1__OFF1.");`
-                trace("Enter T7__H1__OFF1.");
+                MainClass.Trace("Enter T7__H1__OFF1.");
             } // end of behavior for T7__H1__OFF1
 
             // T7__H1__OFF1 behavior
@@ -8563,7 +8563,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__H1__OFF1."); }
             {
                 // Step 1: execute action `trace("Exit T7__H1__OFF1.");`
-                trace("Exit T7__H1__OFF1.");
+                MainClass.Trace("Exit T7__H1__OFF1.");
             } // end of behavior for T7__H1__OFF1
 
             // adjust function pointers for this state's exit
@@ -8585,7 +8585,7 @@ namespace Csharp.Spec2smTests
                 T7__H1__OFF1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.");`.
-                trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.");
+                MainClass.Trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF2`.
                 T7__H1__OFF2_enter();
@@ -8612,7 +8612,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__H1__OFF2."); }
             {
                 // Step 1: execute action `trace("Enter T7__H1__OFF2.");`
-                trace("Enter T7__H1__OFF2.");
+                MainClass.Trace("Enter T7__H1__OFF2.");
             } // end of behavior for T7__H1__OFF2
 
             // T7__H1__OFF2 behavior
@@ -8632,7 +8632,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__H1__OFF2."); }
             {
                 // Step 1: execute action `trace("Exit T7__H1__OFF2.");`
-                trace("Exit T7__H1__OFF2.");
+                MainClass.Trace("Exit T7__H1__OFF2.");
             } // end of behavior for T7__H1__OFF2
 
             // adjust function pointers for this state's exit
@@ -8654,7 +8654,7 @@ namespace Csharp.Spec2smTests
                 T7__H1__OFF2_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.");`.
-                trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.");
+                MainClass.Trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
                 T7__H1__OFF3_enter();
@@ -8680,7 +8680,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__H1__OFF3."); }
             {
                 // Step 1: execute action `trace("Enter T7__H1__OFF3.");`
-                trace("Enter T7__H1__OFF3.");
+                MainClass.Trace("Enter T7__H1__OFF3.");
             } // end of behavior for T7__H1__OFF3
 
             // T7__H1__OFF3 behavior
@@ -8700,7 +8700,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__H1__OFF3."); }
             {
                 // Step 1: execute action `trace("Exit T7__H1__OFF3.");`
-                trace("Exit T7__H1__OFF3.");
+                MainClass.Trace("Exit T7__H1__OFF3.");
             } // end of behavior for T7__H1__OFF3
 
             // adjust function pointers for this state's exit
@@ -8722,7 +8722,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__H1__ON."); }
             {
                 // Step 1: execute action `trace("Enter T7__H1__ON.");`
-                trace("Enter T7__H1__ON.");
+                MainClass.Trace("Enter T7__H1__ON.");
             } // end of behavior for T7__H1__ON
         }
 
@@ -8734,7 +8734,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__H1__ON."); }
             {
                 // Step 1: execute action `trace("Exit T7__H1__ON.");`
-                trace("Exit T7__H1__ON.");
+                MainClass.Trace("Exit T7__H1__ON.");
             } // end of behavior for T7__H1__ON
 
             // adjust function pointers for this state's exit
@@ -8756,7 +8756,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__HISTORY1_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");`.
-                trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");
+                MainClass.Trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__OFF`.
                 T7__H1__OFF_enter();
@@ -8775,7 +8775,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History.");`.
-                trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History.");
+                MainClass.Trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON.History`.
                 // T7__H1__ON.History is a pseudo state and cannot have an `enter` trigger.
@@ -8822,7 +8822,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1.");`.
-                    trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1.");
+                    MainClass.Trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON1`.
                     T7__H1__ON1_enter();
@@ -8850,7 +8850,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__H1__ON1."); }
             {
                 // Step 1: execute action `trace("Enter T7__H1__ON1.");`
-                trace("Enter T7__H1__ON1.");
+                MainClass.Trace("Enter T7__H1__ON1.");
             } // end of behavior for T7__H1__ON1
 
             // T7__H1__ON1 behavior
@@ -8870,7 +8870,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__H1__ON1."); }
             {
                 // Step 1: execute action `trace("Exit T7__H1__ON1.");`
-                trace("Exit T7__H1__ON1.");
+                MainClass.Trace("Exit T7__H1__ON1.");
             } // end of behavior for T7__H1__ON1
 
             // adjust function pointers for this state's exit
@@ -8892,7 +8892,7 @@ namespace Csharp.Spec2smTests
                 T7__H1__ON1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.");`.
-                trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.");
+                MainClass.Trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON2`.
                 T7__H1__ON2_enter();
@@ -8919,7 +8919,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__H1__ON2."); }
             {
                 // Step 1: execute action `trace("Enter T7__H1__ON2.");`
-                trace("Enter T7__H1__ON2.");
+                MainClass.Trace("Enter T7__H1__ON2.");
             } // end of behavior for T7__H1__ON2
 
             // T7__H1__ON2 behavior
@@ -8939,7 +8939,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__H1__ON2."); }
             {
                 // Step 1: execute action `trace("Exit T7__H1__ON2.");`
-                trace("Exit T7__H1__ON2.");
+                MainClass.Trace("Exit T7__H1__ON2.");
             } // end of behavior for T7__H1__ON2
 
             // adjust function pointers for this state's exit
@@ -8961,7 +8961,7 @@ namespace Csharp.Spec2smTests
                 T7__H1__ON2_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.");`.
-                trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.");
+                MainClass.Trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON3`.
                 T7__H1__ON3_enter();
@@ -8988,7 +8988,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__H1__ON3."); }
             {
                 // Step 1: execute action `trace("Enter T7__H1__ON3.");`
-                trace("Enter T7__H1__ON3.");
+                MainClass.Trace("Enter T7__H1__ON3.");
             } // end of behavior for T7__H1__ON3
 
             // T7__H1__ON3 behavior
@@ -9008,7 +9008,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__H1__ON3."); }
             {
                 // Step 1: execute action `trace("Exit T7__H1__ON3.");`
-                trace("Exit T7__H1__ON3.");
+                MainClass.Trace("Exit T7__H1__ON3.");
             } // end of behavior for T7__H1__ON3
 
             // adjust function pointers for this state's exit
@@ -9030,7 +9030,7 @@ namespace Csharp.Spec2smTests
                 T7__H1__ON3_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.");`.
-                trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.");
+                MainClass.Trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.");
 
                 // Step 3: Enter/move towards transition target `T7__H1__ON1`.
                 T7__H1__ON1_enter();
@@ -9056,7 +9056,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__INITIAL1."); }
             {
                 // Step 1: execute action `trace("Enter T7__INITIAL1.");`
-                trace("Enter T7__INITIAL1.");
+                MainClass.Trace("Enter T7__INITIAL1.");
             } // end of behavior for T7__INITIAL1
         }
 
@@ -9068,7 +9068,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__INITIAL1."); }
             {
                 // Step 1: execute action `trace("Exit T7__INITIAL1.");`
-                trace("Exit T7__INITIAL1.");
+                MainClass.Trace("Exit T7__INITIAL1.");
             } // end of behavior for T7__INITIAL1
 
             // adjust function pointers for this state's exit
@@ -9090,7 +9090,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__INITIAL1__PARENT."); }
             {
                 // Step 1: execute action `trace("Enter T7__INITIAL1__PARENT.");`
-                trace("Enter T7__INITIAL1__PARENT.");
+                MainClass.Trace("Enter T7__INITIAL1__PARENT.");
             } // end of behavior for T7__INITIAL1__PARENT
         }
 
@@ -9102,7 +9102,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__INITIAL1__PARENT."); }
             {
                 // Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.");`
-                trace("Exit T7__INITIAL1__PARENT.");
+                MainClass.Trace("Exit T7__INITIAL1__PARENT.");
             } // end of behavior for T7__INITIAL1__PARENT
 
             // adjust function pointers for this state's exit
@@ -9136,7 +9136,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1.");`.
-                trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1.");
+                MainClass.Trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__S1`.
                 T7__INITIAL1__S1_enter();
@@ -9163,7 +9163,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__INITIAL1__G."); }
             {
                 // Step 1: execute action `trace("Enter T7__INITIAL1__G.");`
-                trace("Enter T7__INITIAL1__G.");
+                MainClass.Trace("Enter T7__INITIAL1__G.");
             } // end of behavior for T7__INITIAL1__G
         }
 
@@ -9175,7 +9175,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__INITIAL1__G."); }
             {
                 // Step 1: execute action `trace("Exit T7__INITIAL1__G.");`
-                trace("Exit T7__INITIAL1__G.");
+                MainClass.Trace("Exit T7__INITIAL1__G.");
             } // end of behavior for T7__INITIAL1__G
 
             // adjust function pointers for this state's exit
@@ -9197,7 +9197,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_T7__INITIAL1__PARENT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");`.
-                trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");
+                MainClass.Trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT.InitialState`.
                 // T7__INITIAL1__PARENT.InitialState is a pseudo state and cannot have an `enter` trigger.
@@ -9217,7 +9217,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1.");`.
-                trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1.");
+                MainClass.Trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S1`.
                 T7__INITIAL1__G_S1_enter();
@@ -9235,7 +9235,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2.");`.
-                trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2.");
+                MainClass.Trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S2`.
                 T7__INITIAL1__G_S2_enter();
@@ -9252,7 +9252,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3.");`.
-                trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3.");
+                MainClass.Trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S3`.
                 T7__INITIAL1__G_S3_enter();
@@ -9278,7 +9278,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__INITIAL1__G_S1."); }
             {
                 // Step 1: execute action `trace("Enter T7__INITIAL1__G_S1.");`
-                trace("Enter T7__INITIAL1__G_S1.");
+                MainClass.Trace("Enter T7__INITIAL1__G_S1.");
             } // end of behavior for T7__INITIAL1__G_S1
         }
 
@@ -9290,7 +9290,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__INITIAL1__G_S1."); }
             {
                 // Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.");`
-                trace("Exit T7__INITIAL1__G_S1.");
+                MainClass.Trace("Exit T7__INITIAL1__G_S1.");
             } // end of behavior for T7__INITIAL1__G_S1
 
             // adjust function pointers for this state's exit
@@ -9311,7 +9311,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__INITIAL1__G_S2."); }
             {
                 // Step 1: execute action `trace("Enter T7__INITIAL1__G_S2.");`
-                trace("Enter T7__INITIAL1__G_S2.");
+                MainClass.Trace("Enter T7__INITIAL1__G_S2.");
             } // end of behavior for T7__INITIAL1__G_S2
         }
 
@@ -9323,7 +9323,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__INITIAL1__G_S2."); }
             {
                 // Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.");`
-                trace("Exit T7__INITIAL1__G_S2.");
+                MainClass.Trace("Exit T7__INITIAL1__G_S2.");
             } // end of behavior for T7__INITIAL1__G_S2
 
             // adjust function pointers for this state's exit
@@ -9344,7 +9344,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__INITIAL1__G_S3."); }
             {
                 // Step 1: execute action `trace("Enter T7__INITIAL1__G_S3.");`
-                trace("Enter T7__INITIAL1__G_S3.");
+                MainClass.Trace("Enter T7__INITIAL1__G_S3.");
             } // end of behavior for T7__INITIAL1__G_S3
         }
 
@@ -9356,7 +9356,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__INITIAL1__G_S3."); }
             {
                 // Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.");`
-                trace("Exit T7__INITIAL1__G_S3.");
+                MainClass.Trace("Exit T7__INITIAL1__G_S3.");
             } // end of behavior for T7__INITIAL1__G_S3
 
             // adjust function pointers for this state's exit
@@ -9379,7 +9379,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter T7__INITIAL1__S1."); }
             {
                 // Step 1: execute action `trace("Enter T7__INITIAL1__S1.");`
-                trace("Enter T7__INITIAL1__S1.");
+                MainClass.Trace("Enter T7__INITIAL1__S1.");
             } // end of behavior for T7__INITIAL1__S1
         }
 
@@ -9391,7 +9391,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit T7__INITIAL1__S1."); }
             {
                 // Step 1: execute action `trace("Exit T7__INITIAL1__S1.");`
-                trace("Exit T7__INITIAL1__S1.");
+                MainClass.Trace("Exit T7__INITIAL1__S1.");
             } // end of behavior for T7__INITIAL1__S1
 
             // adjust function pointers for this state's exit
@@ -9414,7 +9414,7 @@ namespace Csharp.Spec2smTests
                 T7__INITIAL1__S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.");`.
-                trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.");
+                MainClass.Trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G`.
                 T7__INITIAL1__G_enter();
@@ -9439,7 +9439,7 @@ namespace Csharp.Spec2smTests
                 T7__INITIAL1__S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState.");`.
-                trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState.");
+                MainClass.Trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G.InitialState`.
                 T7__INITIAL1__G_enter();
@@ -9470,7 +9470,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST7_DECIDE."); }
             {
                 // Step 1: execute action `trace("Enter TEST7_DECIDE.");`
-                trace("Enter TEST7_DECIDE.");
+                MainClass.Trace("Enter TEST7_DECIDE.");
             } // end of behavior for TEST7_DECIDE
         }
 
@@ -9482,7 +9482,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST7_DECIDE."); }
             {
                 // Step 1: execute action `trace("Exit TEST7_DECIDE.");`
-                trace("Exit TEST7_DECIDE.");
+                MainClass.Trace("Exit TEST7_DECIDE.");
             } // end of behavior for TEST7_DECIDE
 
             // TEST7_DECIDE behavior
@@ -9490,7 +9490,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output(); }`.", true))
             {
                 // Step 1: execute action `clear_dispatch_output();`
-                trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
             } // end of behavior for TEST7_DECIDE
 
             // adjust function pointers for this state's exit
@@ -9516,7 +9516,7 @@ namespace Csharp.Spec2smTests
                 TEST7_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.");`.
-                trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.");
+                MainClass.Trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1`.
                 TEST7_enter();
@@ -9528,7 +9528,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__INITIAL1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT.");`.
-                    trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT.");
+                    MainClass.Trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT.");
 
                     // Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT`.
                     T7__INITIAL1__PARENT_enter();
@@ -9554,7 +9554,7 @@ namespace Csharp.Spec2smTests
                 TEST7_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.");`.
-                trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.");
+                MainClass.Trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.");
 
                 // Step 3: Enter/move towards transition target `T7__HISTORY1`.
                 TEST7_enter();
@@ -9566,7 +9566,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON.");`.
-                    trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON.");
+                    MainClass.Trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON`.
                     T7__H1__ON_enter();
@@ -9592,7 +9592,7 @@ namespace Csharp.Spec2smTests
                 TEST7_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.");`.
-                trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.");
+                MainClass.Trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.");
 
                 // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY1`.
                 TEST7_enter();
@@ -9604,7 +9604,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD.");`.
-                    trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD.");
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
                     T7__DH1__SANTAS_WORKSHOP_enter();
@@ -9631,7 +9631,7 @@ namespace Csharp.Spec2smTests
                 TEST7_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.");`.
-                trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.");
+                MainClass.Trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.");
 
                 // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2`.
                 TEST7_enter();
@@ -9643,7 +9643,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0.");`.
-                    trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0.");
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0.");
 
                     // Step 3: Enter/move towards transition target `T7__DH2__state_0`.
                     T7__DH2__STATE_0_enter();
@@ -9669,7 +9669,7 @@ namespace Csharp.Spec2smTests
                 TEST7_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.");`.
-                trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.");
+                MainClass.Trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.");
 
                 // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3`.
                 TEST7_enter();
@@ -9681,7 +9681,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0.");`.
-                    trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0.");
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0.");
 
                     // Step 3: Enter/move towards transition target `T7__DH3__state_0`.
                     T7__DH3__STATE_0_enter();
@@ -9707,7 +9707,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST8_ENTRY_CHOICE."); }
             {
                 // Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.");`
-                trace("Enter TEST8_ENTRY_CHOICE.");
+                MainClass.Trace("Enter TEST8_ENTRY_CHOICE.");
             } // end of behavior for TEST8_ENTRY_CHOICE
         }
 
@@ -9719,7 +9719,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST8_ENTRY_CHOICE."); }
             {
                 // Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.");`
-                trace("Exit TEST8_ENTRY_CHOICE.");
+                MainClass.Trace("Exit TEST8_ENTRY_CHOICE.");
             } // end of behavior for TEST8_ENTRY_CHOICE
 
             // adjust function pointers for this state's exit
@@ -9742,7 +9742,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST8_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST8_ROOT.");`
-                trace("Enter TEST8_ROOT.");
+                MainClass.Trace("Enter TEST8_ROOT.");
             } // end of behavior for TEST8_ROOT
 
             // TEST8_ROOT behavior
@@ -9750,7 +9750,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true))
             {
                 // Step 1: execute action `clear_dispatch_output();`
-                trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
             } // end of behavior for TEST8_ROOT
         }
 
@@ -9762,7 +9762,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST8_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST8_ROOT.");`
-                trace("Exit TEST8_ROOT.");
+                MainClass.Trace("Exit TEST8_ROOT.");
             } // end of behavior for TEST8_ROOT
 
             // adjust function pointers for this state's exit
@@ -9813,7 +9813,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.");`.
-                trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.");
+                MainClass.Trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST8_S1`.
                 TEST8_S1_enter();
@@ -9840,7 +9840,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST8_G."); }
             {
                 // Step 1: execute action `trace("Enter TEST8_G.");`
-                trace("Enter TEST8_G.");
+                MainClass.Trace("Enter TEST8_G.");
             } // end of behavior for TEST8_G
         }
 
@@ -9852,7 +9852,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST8_G."); }
             {
                 // Step 1: execute action `trace("Exit TEST8_G.");`
-                trace("Exit TEST8_G.");
+                MainClass.Trace("Exit TEST8_G.");
             } // end of behavior for TEST8_G
 
             // adjust function pointers for this state's exit
@@ -9874,7 +9874,7 @@ namespace Csharp.Spec2smTests
                 ExitUpToStateHandler(ptr_TEST8_ROOT_exit);
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");`.
-                trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");
+                MainClass.Trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");
 
                 // Step 3: Enter/move towards transition target `TEST8_ROOT.EntryPoint(1)`.
                 // TEST8_ROOT.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
@@ -9894,7 +9894,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1.");`.
-                trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1.");
+                MainClass.Trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S1`.
                 TEST8_G_S1_enter();
@@ -9912,7 +9912,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2.");`.
-                trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2.");
+                MainClass.Trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S2`.
                 TEST8_G_S2_enter();
@@ -9929,7 +9929,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3.");`.
-                trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3.");
+                MainClass.Trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S3`.
                 TEST8_G_S3_enter();
@@ -9949,7 +9949,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");\ncount += 0;`.
-                trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");
+                MainClass.Trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");
                 this.vars.count += 0;
 
                 // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(1)`.
@@ -9975,7 +9975,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST8_G_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST8_G_S1.");`
-                trace("Enter TEST8_G_S1.");
+                MainClass.Trace("Enter TEST8_G_S1.");
             } // end of behavior for TEST8_G_S1
         }
 
@@ -9987,7 +9987,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST8_G_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST8_G_S1.");`
-                trace("Exit TEST8_G_S1.");
+                MainClass.Trace("Exit TEST8_G_S1.");
             } // end of behavior for TEST8_G_S1
 
             // adjust function pointers for this state's exit
@@ -10008,7 +10008,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST8_G_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST8_G_S2.");`
-                trace("Enter TEST8_G_S2.");
+                MainClass.Trace("Enter TEST8_G_S2.");
             } // end of behavior for TEST8_G_S2
         }
 
@@ -10020,7 +10020,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST8_G_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST8_G_S2.");`
-                trace("Exit TEST8_G_S2.");
+                MainClass.Trace("Exit TEST8_G_S2.");
             } // end of behavior for TEST8_G_S2
 
             // adjust function pointers for this state's exit
@@ -10041,7 +10041,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST8_G_S3."); }
             {
                 // Step 1: execute action `trace("Enter TEST8_G_S3.");`
-                trace("Enter TEST8_G_S3.");
+                MainClass.Trace("Enter TEST8_G_S3.");
             } // end of behavior for TEST8_G_S3
         }
 
@@ -10053,7 +10053,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST8_G_S3."); }
             {
                 // Step 1: execute action `trace("Exit TEST8_G_S3.");`
-                trace("Exit TEST8_G_S3.");
+                MainClass.Trace("Exit TEST8_G_S3.");
             } // end of behavior for TEST8_G_S3
 
             // adjust function pointers for this state's exit
@@ -10077,7 +10077,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST8_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST8_S1.");`
-                trace("Enter TEST8_S1.");
+                MainClass.Trace("Enter TEST8_S1.");
             } // end of behavior for TEST8_S1
         }
 
@@ -10089,7 +10089,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST8_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST8_S1.");`
-                trace("Exit TEST8_S1.");
+                MainClass.Trace("Exit TEST8_S1.");
             } // end of behavior for TEST8_S1
 
             // adjust function pointers for this state's exit
@@ -10113,7 +10113,7 @@ namespace Csharp.Spec2smTests
                 TEST8_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).");`.
-                trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).");
+                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).");
 
                 // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(1)`.
                 TEST8_G_enter();
@@ -10151,7 +10151,7 @@ namespace Csharp.Spec2smTests
                 TEST8_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");`.
-                trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
+                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
 
                 // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(3)`.
                 TEST8_G_enter();
@@ -10177,7 +10177,7 @@ namespace Csharp.Spec2smTests
                 TEST8_S1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");`.
-                trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
+                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
 
                 // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(3)`.
                 TEST8_G_enter();
@@ -10203,7 +10203,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_EXIT_CHOICE."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.");`
-                trace("Enter TEST9_EXIT_CHOICE.");
+                MainClass.Trace("Enter TEST9_EXIT_CHOICE.");
             } // end of behavior for TEST9_EXIT_CHOICE
         }
 
@@ -10215,7 +10215,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_EXIT_CHOICE."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.");`
-                trace("Exit TEST9_EXIT_CHOICE.");
+                MainClass.Trace("Exit TEST9_EXIT_CHOICE.");
             } // end of behavior for TEST9_EXIT_CHOICE
 
             // adjust function pointers for this state's exit
@@ -10238,7 +10238,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_DECIDE."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_DECIDE.");`
-                trace("Enter TEST9_DECIDE.");
+                MainClass.Trace("Enter TEST9_DECIDE.");
             } // end of behavior for TEST9_DECIDE
         }
 
@@ -10250,7 +10250,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_DECIDE."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_DECIDE.");`
-                trace("Exit TEST9_DECIDE.");
+                MainClass.Trace("Exit TEST9_DECIDE.");
             } // end of behavior for TEST9_DECIDE
 
             // adjust function pointers for this state's exit
@@ -10273,7 +10273,7 @@ namespace Csharp.Spec2smTests
                 TEST9_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.");`.
-                trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.");
+                MainClass.Trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.");
 
                 // Step 3: Enter/move towards transition target `TEST9_ROOT`.
                 TEST9_ROOT_enter();
@@ -10284,7 +10284,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1.");`.
-                    trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1.");
+                    MainClass.Trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST9_S1`.
                     TEST9_S1_enter();
@@ -10295,7 +10295,7 @@ namespace Csharp.Spec2smTests
                         // Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                         // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1.");`.
-                        trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1.");
+                        MainClass.Trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST9_S1_1`.
                         TEST9_S1_1_enter();
@@ -10323,7 +10323,7 @@ namespace Csharp.Spec2smTests
                 TEST9_DECIDE_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.");`.
-                trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.");
+                MainClass.Trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.");
 
                 // Step 3: Enter/move towards transition target `TEST9A_ROOT`.
                 TEST9A_ROOT_enter();
@@ -10334,7 +10334,7 @@ namespace Csharp.Spec2smTests
                     // Step 1: Exit states until we reach `TEST9A_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                     // Step 2: Transition action: `trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");\ncount = 0;`.
-                    trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");
+                    MainClass.Trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");
                     this.vars.count = 0;
 
                     // Step 3: Enter/move towards transition target `TEST9A_S1`.
@@ -10362,7 +10362,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_ROOT.");`
-                trace("Enter TEST9_ROOT.");
+                MainClass.Trace("Enter TEST9_ROOT.");
             } // end of behavior for TEST9_ROOT
         }
 
@@ -10374,7 +10374,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_ROOT.");`
-                trace("Exit TEST9_ROOT.");
+                MainClass.Trace("Exit TEST9_ROOT.");
             } // end of behavior for TEST9_ROOT
 
             // adjust function pointers for this state's exit
@@ -10414,7 +10414,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_G_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_G_S1.");`
-                trace("Enter TEST9_G_S1.");
+                MainClass.Trace("Enter TEST9_G_S1.");
             } // end of behavior for TEST9_G_S1
         }
 
@@ -10426,7 +10426,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_G_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_G_S1.");`
-                trace("Exit TEST9_G_S1.");
+                MainClass.Trace("Exit TEST9_G_S1.");
             } // end of behavior for TEST9_G_S1
 
             // adjust function pointers for this state's exit
@@ -10447,7 +10447,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_G_S2."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_G_S2.");`
-                trace("Enter TEST9_G_S2.");
+                MainClass.Trace("Enter TEST9_G_S2.");
             } // end of behavior for TEST9_G_S2
         }
 
@@ -10459,7 +10459,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_G_S2."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_G_S2.");`
-                trace("Exit TEST9_G_S2.");
+                MainClass.Trace("Exit TEST9_G_S2.");
             } // end of behavior for TEST9_G_S2
 
             // adjust function pointers for this state's exit
@@ -10480,7 +10480,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_G_S3."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_G_S3.");`
-                trace("Enter TEST9_G_S3.");
+                MainClass.Trace("Enter TEST9_G_S3.");
             } // end of behavior for TEST9_G_S3
         }
 
@@ -10492,7 +10492,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_G_S3."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_G_S3.");`
-                trace("Exit TEST9_G_S3.");
+                MainClass.Trace("Exit TEST9_G_S3.");
             } // end of behavior for TEST9_G_S3
 
             // adjust function pointers for this state's exit
@@ -10513,7 +10513,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_G_S4."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_G_S4.");`
-                trace("Enter TEST9_G_S4.");
+                MainClass.Trace("Enter TEST9_G_S4.");
             } // end of behavior for TEST9_G_S4
         }
 
@@ -10525,7 +10525,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_G_S4."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_G_S4.");`
-                trace("Exit TEST9_G_S4.");
+                MainClass.Trace("Exit TEST9_G_S4.");
             } // end of behavior for TEST9_G_S4
 
             // adjust function pointers for this state's exit
@@ -10546,7 +10546,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_S1.");`
-                trace("Enter TEST9_S1.");
+                MainClass.Trace("Enter TEST9_S1.");
             } // end of behavior for TEST9_S1
         }
 
@@ -10558,7 +10558,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_S1.");`
-                trace("Exit TEST9_S1.");
+                MainClass.Trace("Exit TEST9_S1.");
             } // end of behavior for TEST9_S1
 
             // adjust function pointers for this state's exit
@@ -10580,7 +10580,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9_S1_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST9_S1_1.");`
-                trace("Enter TEST9_S1_1.");
+                MainClass.Trace("Enter TEST9_S1_1.");
             } // end of behavior for TEST9_S1_1
 
             // TEST9_S1_1 behavior
@@ -10588,7 +10588,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST9_S1_1
         }
 
@@ -10600,7 +10600,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9_S1_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST9_S1_1.");`
-                trace("Exit TEST9_S1_1.");
+                MainClass.Trace("Exit TEST9_S1_1.");
             } // end of behavior for TEST9_S1_1
 
             // adjust function pointers for this state's exit
@@ -10622,7 +10622,7 @@ namespace Csharp.Spec2smTests
                 TEST9_S1_1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).");`.
-                trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).");
+                MainClass.Trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).");
 
                 // Step 3: Enter/move towards transition target `TEST9_S1.ExitPoint(1)`.
                 // TEST9_S1.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
@@ -10635,7 +10635,7 @@ namespace Csharp.Spec2smTests
                     TEST9_S1_exit();
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");`.
-                    trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");
+                    MainClass.Trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S4`.
                     TEST9_G_S4_enter();
@@ -10654,7 +10654,7 @@ namespace Csharp.Spec2smTests
                     TEST9_S1_exit();
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1.");`.
-                    trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1.");
+                    MainClass.Trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S1`.
                     TEST9_G_S1_enter();
@@ -10673,7 +10673,7 @@ namespace Csharp.Spec2smTests
                     TEST9_S1_exit();
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2.");`.
-                    trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2.");
+                    MainClass.Trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S2`.
                     TEST9_G_S2_enter();
@@ -10691,7 +10691,7 @@ namespace Csharp.Spec2smTests
                     TEST9_S1_exit();
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3.");`.
-                    trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3.");
+                    MainClass.Trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S3`.
                     TEST9_G_S3_enter();
@@ -10718,7 +10718,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9A_ROOT."); }
             {
                 // Step 1: execute action `trace("Enter TEST9A_ROOT.");`
-                trace("Enter TEST9A_ROOT.");
+                MainClass.Trace("Enter TEST9A_ROOT.");
             } // end of behavior for TEST9A_ROOT
         }
 
@@ -10730,7 +10730,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9A_ROOT."); }
             {
                 // Step 1: execute action `trace("Exit TEST9A_ROOT.");`
-                trace("Exit TEST9A_ROOT.");
+                MainClass.Trace("Exit TEST9A_ROOT.");
             } // end of behavior for TEST9A_ROOT
 
             // adjust function pointers for this state's exit
@@ -10751,7 +10751,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9A_S1."); }
             {
                 // Step 1: execute action `trace("Enter TEST9A_S1.");`
-                trace("Enter TEST9A_S1.");
+                MainClass.Trace("Enter TEST9A_S1.");
             } // end of behavior for TEST9A_S1
         }
 
@@ -10763,7 +10763,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9A_S1."); }
             {
                 // Step 1: execute action `trace("Exit TEST9A_S1.");`
-                trace("Exit TEST9A_S1.");
+                MainClass.Trace("Exit TEST9A_S1.");
             } // end of behavior for TEST9A_S1
 
             // adjust function pointers for this state's exit
@@ -10778,7 +10778,7 @@ namespace Csharp.Spec2smTests
                 // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");`.
-                trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
+                MainClass.Trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
 
                 // Step 3: Enter/move towards transition target `TEST9A_S1_1`.
                 TEST9A_S1_1_enter();
@@ -10805,7 +10805,7 @@ namespace Csharp.Spec2smTests
             // uml: enter / { trace("Enter TEST9A_S1_1."); }
             {
                 // Step 1: execute action `trace("Enter TEST9A_S1_1.");`
-                trace("Enter TEST9A_S1_1.");
+                MainClass.Trace("Enter TEST9A_S1_1.");
             } // end of behavior for TEST9A_S1_1
 
             // TEST9A_S1_1 behavior
@@ -10813,7 +10813,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", this.vars.count == 0))
             {
                 // Step 1: execute action `clear_output();`
-                trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
             } // end of behavior for TEST9A_S1_1
         }
 
@@ -10825,7 +10825,7 @@ namespace Csharp.Spec2smTests
             // uml: exit / { trace("Exit TEST9A_S1_1."); }
             {
                 // Step 1: execute action `trace("Exit TEST9A_S1_1.");`
-                trace("Exit TEST9A_S1_1.");
+                MainClass.Trace("Exit TEST9A_S1_1.");
             } // end of behavior for TEST9A_S1_1
 
             // TEST9A_S1_1 behavior
@@ -10855,7 +10855,7 @@ namespace Csharp.Spec2smTests
                 TEST9A_S1_1_exit();
 
                 // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).");`.
-                trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).");
+                MainClass.Trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).");
 
                 // Step 3: Enter/move towards transition target `TEST9A_S1.ExitPoint(1)`.
                 // TEST9A_S1.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
@@ -10868,7 +10868,7 @@ namespace Csharp.Spec2smTests
                     TEST9A_S1_exit();
 
                     // Step 2: Transition action: `trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");\ncount++;`.
-                    trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");
+                    MainClass.Trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");
                     this.vars.count++;
 
                     // Step 3: Enter/move towards transition target `TEST9A_S1`.
