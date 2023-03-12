@@ -21,6 +21,8 @@ public class TimeStringParserTests
 
         ExpectOk("8h", 8 * 60 * 60 * 1000);
         ExpectOk("8 hours", 8 * 60 * 60 * 1000);
+
+        // TODO add all variations https://github.com/StateSmith/StateSmith/issues/131
     }
 
     [Fact]
@@ -28,12 +30,16 @@ public class TimeStringParserTests
     {
         ExpectBadInput("+1.25 s");
         ExpectBadInput("5 long arse days");
+
+        // TODO add more https://github.com/StateSmith/StateSmith/issues/131
     }
 
     [Fact]
     public void BadTimeUnits()
     {
         ExpectBadTimeUnit("125 ns", badUnits: "ns");
+
+        // TODO add more https://github.com/StateSmith/StateSmith/issues/131
     }
 
     private static void ExpectOk(string timeString, int expectatedMs)
