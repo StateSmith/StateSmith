@@ -11147,7 +11147,7 @@ namespace Csharp.Spec2smTests
                 // uml: / { trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4."); } TransitionTo(TEST9B_ROOT__B4)
                 {
                     // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
-                    TEST9B_ROOT__A3_exit();
+                    ExitUpToStateHandler(ptr_TEST9B_ROOT_exit);
 
                     // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4.");`.
                     MainClass.Trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4.");

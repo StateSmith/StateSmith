@@ -117,7 +117,7 @@ public class EventHandlerBuilder
             if (checkForExiting && IsExitingRequired(source, target, transitionPath))
             {
                 File.FinishLine();
-                ExitUntilStateReached(source, (NamedVertex)transitionPath.leastCommonAncestor.ThrowIfNull());
+                ExitUntilLcaReached(source, transitionPath);
             }
             else
             {
@@ -299,9 +299,9 @@ public class EventHandlerBuilder
         return true;
     }
 
-    private void ExitUntilStateReached(Vertex source, NamedVertex leastCommonAncestor)
+    private void ExitUntilLcaReached(Vertex source, TransitionPath transitionPath)
     {
-        bool canUseDirectExit = CanUseDirectExit(ref source, leastCommonAncestor);
+        bool canUseDirectExit = CanUseSingleDirectExit(ref source, transitionPath);
 
         if (canUseDirectExit)
         {
@@ -311,22 +311,36 @@ public class EventHandlerBuilder
         }
         else
         {
+            NamedVertex leastCommonAncestor = (NamedVertex)transitionPath.leastCommonAncestor.ThrowIfNull();
+
             string ancestorExitHandler = mangler.SmTriggerHandlerFuncName(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
             File.AppendLine($"{mangler.SmExitUpToFuncName}({ancestorExitHandler});");
         }
     }
 
-    private static bool CanUseDirectExit(ref Vertex source, NamedVertex leastCommonAncestor)
+    private static bool CanUseSingleDirectExit(ref Vertex source, TransitionPath transitionPath)
     {
-        bool canUseDirectExit = false; // if true, requires while loop exit
+        bool canUseDirectExit = false;
+
+        // We can only be exiting one state to use direct exit.
+        var statesToExitCount = transitionPath.toExit.Count;
+
+        // If source doesn't have any children, we know that it is the active leaf state and we may be able
+        // to use a direct exit.
+        bool sourceIsLeafState = source.Children.Any() == false;
 
         if (source is ExitPoint)
         {
-            source = source.NonNullParent;  // an exit point is really a part of its parent state.
-            canUseDirectExit = true;
+            // This code assumes that first node to exit in transition path is source exit point.
+            // That may change in the future as pseudo states cannot be exited so we add an assertion below to catch any future problems.
+            if (transitionPath.toExit.First() != source)
+                throw new VertexValidationException(source, "expected transition path exit list to start with source vertex");
+
+            statesToExitCount--; // an exit point isn't a state that can be exited so decrement count.
+            source = source.NonNullParent;  // an exit point should be treated as parent state.
         }
 
-        if (source is NamedVertex && source.Children.Any() == false && leastCommonAncestor == source.Parent)
+        if (source is NamedVertex && sourceIsLeafState && statesToExitCount <= 1)
         {
             canUseDirectExit = true;
         }
