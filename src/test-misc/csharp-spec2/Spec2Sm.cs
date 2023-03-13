@@ -186,9 +186,18 @@ namespace Csharp.Spec2smTests
             TEST9A_ROOT = 152,
             TEST9A_S1 = 153,
             TEST9A_S1_1 = 154,
+            TEST9B_ROOT = 155,
+            TEST9B_ROOT__A1 = 156,
+            TEST9B_ROOT__A2 = 157,
+            TEST9B_ROOT__A3 = 158,
+            TEST9B_ROOT__A4 = 159,
+            TEST9B_ROOT__B1 = 160,
+            TEST9B_ROOT__B2 = 161,
+            TEST9B_ROOT__B3 = 162,
+            TEST9B_ROOT__B4 = 163,
         }
 
-        public const int StateIdCount = 155;
+        public const int StateIdCount = 164;
 
         public enum T7__H1__ON_HistoryId
         {
@@ -10233,6 +10242,7 @@ namespace Csharp.Spec2smTests
             this.currentStateExitHandler = ptr_TEST9_DECIDE_exit;
             this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST9_DECIDE_ev1;
             this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST9_DECIDE_ev2;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST9_DECIDE_ev3;
 
             // TEST9_DECIDE behavior
             // uml: enter / { trace("Enter TEST9_DECIDE."); }
@@ -10257,6 +10267,7 @@ namespace Csharp.Spec2smTests
             this.currentStateExitHandler = ptr_TEST9_EXIT_CHOICE_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
+            this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
         }
 
         // static delegate to avoid implicit conversion and garbage collection
@@ -10344,6 +10355,32 @@ namespace Csharp.Spec2smTests
                     TEST9A_S1_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
                 } // end of behavior for TEST9A_ROOT.InitialState
+            } // end of behavior for TEST9_DECIDE
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9_DECIDE_ev3 = (Spec2Sm sm) => sm.TEST9_DECIDE_ev3();
+        private void TEST9_DECIDE_ev3()
+        {
+            // No ancestor state handles `ev3` event.
+
+            // TEST9_DECIDE behavior
+            // uml: EV3 [trace_guard("State TEST9_DECIDE: check behavior `EV3 TransitionTo(TEST9B_ROOT)`.", true)] / { trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT."); } TransitionTo(TEST9B_ROOT)
+            if (trace_guard("State TEST9_DECIDE: check behavior `EV3 TransitionTo(TEST9B_ROOT)`.", true))
+            {
+                // Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
+                TEST9_DECIDE_exit();
+
+                // Step 2: Transition action: `trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT.");`.
+                MainClass.Trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT.");
+
+                // Step 3: Enter/move towards transition target `TEST9B_ROOT`.
+                TEST9B_ROOT_enter();
+
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                this.stateId = StateId.TEST9B_ROOT;
+                // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+                return;
             } // end of behavior for TEST9_DECIDE
         }
 
@@ -10880,6 +10917,387 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST9A_S1_1
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST9B_ROOT_ev1;
+
+            // TEST9B_ROOT behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT.");`
+                MainClass.Trace("Enter TEST9B_ROOT.");
+            } // end of behavior for TEST9B_ROOT
+
+            // TEST9B_ROOT behavior
+            // uml: enter [trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
+            if (trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output(); }`.", true))
+            {
+                // Step 1: execute action `clear_output();`
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+            } // end of behavior for TEST9B_ROOT
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT_exit = (Spec2Sm sm) => sm.TEST9B_ROOT_exit();
+        private void TEST9B_ROOT_exit()
+        {
+            // TEST9B_ROOT behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT.");`
+                MainClass.Trace("Exit TEST9B_ROOT.");
+            } // end of behavior for TEST9B_ROOT
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9_EXIT_CHOICE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT_ev1 = (Spec2Sm sm) => sm.TEST9B_ROOT_ev1();
+        private void TEST9B_ROOT_ev1()
+        {
+            // No ancestor state handles `ev1` event.
+
+            // TEST9B_ROOT behavior
+            // uml: EV1 [trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", true)] / { trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4."); } TransitionTo(TEST9B_ROOT__A4)
+            if (trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", true))
+            {
+                // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
+                ExitUpToStateHandler(ptr_TEST9B_ROOT_exit);
+
+                // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.");`.
+                MainClass.Trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.");
+
+                // Step 3: Enter/move towards transition target `TEST9B_ROOT__A4`.
+                TEST9B_ROOT__A1_enter();
+                TEST9B_ROOT__A2_enter();
+                TEST9B_ROOT__A3_enter();
+                TEST9B_ROOT__A4_enter();
+
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                this.stateId = StateId.TEST9B_ROOT__A4;
+                // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+                return;
+            } // end of behavior for TEST9B_ROOT
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT__A1
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT__A1_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__A1_exit;
+
+            // TEST9B_ROOT__A1 behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT__A1."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT__A1.");`
+                MainClass.Trace("Enter TEST9B_ROOT__A1.");
+            } // end of behavior for TEST9B_ROOT__A1
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__A1_exit = (Spec2Sm sm) => sm.TEST9B_ROOT__A1_exit();
+        private void TEST9B_ROOT__A1_exit()
+        {
+            // TEST9B_ROOT__A1 behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT__A1."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT__A1.");`
+                MainClass.Trace("Exit TEST9B_ROOT__A1.");
+            } // end of behavior for TEST9B_ROOT__A1
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9B_ROOT_exit;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT__A2
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT__A2_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__A2_exit;
+
+            // TEST9B_ROOT__A2 behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT__A2."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT__A2.");`
+                MainClass.Trace("Enter TEST9B_ROOT__A2.");
+            } // end of behavior for TEST9B_ROOT__A2
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__A2_exit = (Spec2Sm sm) => sm.TEST9B_ROOT__A2_exit();
+        private void TEST9B_ROOT__A2_exit()
+        {
+            // TEST9B_ROOT__A2 behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT__A2."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT__A2.");`
+                MainClass.Trace("Exit TEST9B_ROOT__A2.");
+            } // end of behavior for TEST9B_ROOT__A2
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__A1_exit;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT__A3
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT__A3_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__A3_exit;
+
+            // TEST9B_ROOT__A3 behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT__A3."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT__A3.");`
+                MainClass.Trace("Enter TEST9B_ROOT__A3.");
+            } // end of behavior for TEST9B_ROOT__A3
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__A3_exit = (Spec2Sm sm) => sm.TEST9B_ROOT__A3_exit();
+        private void TEST9B_ROOT__A3_exit()
+        {
+            // TEST9B_ROOT__A3 behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT__A3."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT__A3.");`
+                MainClass.Trace("Exit TEST9B_ROOT__A3.");
+            } // end of behavior for TEST9B_ROOT__A3
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__A2_exit;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT__A4
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT__A4_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__A4_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST9B_ROOT__A4_ev1;
+
+            // TEST9B_ROOT__A4 behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT__A4."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT__A4.");`
+                MainClass.Trace("Enter TEST9B_ROOT__A4.");
+            } // end of behavior for TEST9B_ROOT__A4
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__A4_exit = (Spec2Sm sm) => sm.TEST9B_ROOT__A4_exit();
+        private void TEST9B_ROOT__A4_exit()
+        {
+            // TEST9B_ROOT__A4 behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT__A4."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT__A4.");`
+                MainClass.Trace("Exit TEST9B_ROOT__A4.");
+            } // end of behavior for TEST9B_ROOT__A4
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__A3_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST9B_ROOT_ev1;  // the next ancestor that handles this event is TEST9B_ROOT
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__A4_ev1 = (Spec2Sm sm) => sm.TEST9B_ROOT__A4_ev1();
+        private void TEST9B_ROOT__A4_ev1()
+        {
+            // Setup handler for next ancestor that listens to `ev1` event.
+            this.ancestorEventHandler = ptr_TEST9B_ROOT_ev1;
+
+            // TEST9B_ROOT__A4 behavior
+            // uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.ExitPoint(1))`.", true)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.ExitPoint(1)."); } TransitionTo(TEST9B_ROOT__A3.ExitPoint(1))
+            if (trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.ExitPoint(1))`.", true))
+            {
+                // Step 1: Exit states until we reach `TEST9B_ROOT__A3` state (Least Common Ancestor for transition).
+                TEST9B_ROOT__A4_exit();
+
+                // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.ExitPoint(1).");`.
+                MainClass.Trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.ExitPoint(1).");
+
+                // Step 3: Enter/move towards transition target `TEST9B_ROOT__A3.ExitPoint(1)`.
+                // TEST9B_ROOT__A3.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
+
+                // TEST9B_ROOT__A3.ExitPoint(1) behavior
+                // uml: / { trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4."); } TransitionTo(TEST9B_ROOT__B4)
+                {
+                    // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
+                    TEST9B_ROOT__A3_exit();
+
+                    // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4.");`.
+                    MainClass.Trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4.");
+
+                    // Step 3: Enter/move towards transition target `TEST9B_ROOT__B4`.
+                    TEST9B_ROOT__B1_enter();
+                    TEST9B_ROOT__B2_enter();
+                    TEST9B_ROOT__B3_enter();
+                    TEST9B_ROOT__B4_enter();
+
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                    this.stateId = StateId.TEST9B_ROOT__B4;
+                    this.ancestorEventHandler = null;
+                    return;
+                } // end of behavior for TEST9B_ROOT__A3.ExitPoint(1)
+            } // end of behavior for TEST9B_ROOT__A4
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT__B1
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT__B1_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__B1_exit;
+
+            // TEST9B_ROOT__B1 behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT__B1."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT__B1.");`
+                MainClass.Trace("Enter TEST9B_ROOT__B1.");
+            } // end of behavior for TEST9B_ROOT__B1
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__B1_exit = (Spec2Sm sm) => sm.TEST9B_ROOT__B1_exit();
+        private void TEST9B_ROOT__B1_exit()
+        {
+            // TEST9B_ROOT__B1 behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT__B1."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT__B1.");`
+                MainClass.Trace("Exit TEST9B_ROOT__B1.");
+            } // end of behavior for TEST9B_ROOT__B1
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9B_ROOT_exit;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT__B2
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT__B2_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__B2_exit;
+
+            // TEST9B_ROOT__B2 behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT__B2."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT__B2.");`
+                MainClass.Trace("Enter TEST9B_ROOT__B2.");
+            } // end of behavior for TEST9B_ROOT__B2
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__B2_exit = (Spec2Sm sm) => sm.TEST9B_ROOT__B2_exit();
+        private void TEST9B_ROOT__B2_exit()
+        {
+            // TEST9B_ROOT__B2 behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT__B2."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT__B2.");`
+                MainClass.Trace("Exit TEST9B_ROOT__B2.");
+            } // end of behavior for TEST9B_ROOT__B2
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__B1_exit;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT__B3
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT__B3_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__B3_exit;
+
+            // TEST9B_ROOT__B3 behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT__B3."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT__B3.");`
+                MainClass.Trace("Enter TEST9B_ROOT__B3.");
+            } // end of behavior for TEST9B_ROOT__B3
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__B3_exit = (Spec2Sm sm) => sm.TEST9B_ROOT__B3_exit();
+        private void TEST9B_ROOT__B3_exit()
+        {
+            // TEST9B_ROOT__B3 behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT__B3."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT__B3.");`
+                MainClass.Trace("Exit TEST9B_ROOT__B3.");
+            } // end of behavior for TEST9B_ROOT__B3
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__B2_exit;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state TEST9B_ROOT__B4
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void TEST9B_ROOT__B4_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__B4_exit;
+
+            // TEST9B_ROOT__B4 behavior
+            // uml: enter / { trace("Enter TEST9B_ROOT__B4."); }
+            {
+                // Step 1: execute action `trace("Enter TEST9B_ROOT__B4.");`
+                MainClass.Trace("Enter TEST9B_ROOT__B4.");
+            } // end of behavior for TEST9B_ROOT__B4
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST9B_ROOT__B4_exit = (Spec2Sm sm) => sm.TEST9B_ROOT__B4_exit();
+        private void TEST9B_ROOT__B4_exit()
+        {
+            // TEST9B_ROOT__B4 behavior
+            // uml: exit / { trace("Exit TEST9B_ROOT__B4."); }
+            {
+                // Step 1: execute action `trace("Exit TEST9B_ROOT__B4.");`
+                MainClass.Trace("Exit TEST9B_ROOT__B4.");
+            } // end of behavior for TEST9B_ROOT__B4
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST9B_ROOT__B3_exit;
+        }
+
         // Thread safe.
         public static string StateIdToString(StateId id)
         {
@@ -11040,6 +11458,15 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9A_ROOT: return "TEST9A_ROOT";
                 case StateId.TEST9A_S1: return "TEST9A_S1";
                 case StateId.TEST9A_S1_1: return "TEST9A_S1_1";
+                case StateId.TEST9B_ROOT: return "TEST9B_ROOT";
+                case StateId.TEST9B_ROOT__A1: return "TEST9B_ROOT__A1";
+                case StateId.TEST9B_ROOT__A2: return "TEST9B_ROOT__A2";
+                case StateId.TEST9B_ROOT__A3: return "TEST9B_ROOT__A3";
+                case StateId.TEST9B_ROOT__A4: return "TEST9B_ROOT__A4";
+                case StateId.TEST9B_ROOT__B1: return "TEST9B_ROOT__B1";
+                case StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
+                case StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
+                case StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
                 default: return "?";
             }
         }

@@ -45,6 +45,9 @@ public class SpecTester
         if (expected != actualChunk)
         {
             var diff = StringDiffer.Diff(expected, actualChunk);
+
+            diff += "\n<expected>\n" + expected + "\n</expected>\n";
+            diff += "\n<actual>\n" + actualChunk + "\n</actual>\n";
             Assert.True(false, diff);
         }
 
