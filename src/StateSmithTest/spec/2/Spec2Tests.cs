@@ -1058,6 +1058,38 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
     ///////////////////////////////////////////////////////////////////////////////////
 
+    // https://github.com/StateSmith/StateSmith/issues/132
+    [Fact]
+    public void Test9B_ExitPointExitOptimization()
+    {
+        tester.PreEvents = "EV9 EV3";
+
+        tester.AddEventHandling("EV1", t => t(@"
+            State TEST9B_ROOT: check behavior `EV1 TransitionTo(A4)`. Behavior running.
+            Transition action `` for TEST9B_ROOT to A4.
+            Enter A1.
+            Enter A2.
+            Enter A3.
+            Enter A4.
+        "));
+
+        tester.AddEventHandling("EV1", t => t(@"
+            State A4: check behavior `EV1 TransitionTo(A3.ExitPoint(1))`. Behavior running.
+            Exit A4.
+            Transition action `` for A4 to A3.ExitPoint(1).
+            Exit A3.
+            Exit A2.
+            Exit A1.
+            Transition action `` for A3.ExitPoint(1) to B4.
+            Enter B1.
+            Enter B2.
+            Enter B3.
+            Enter B4.
+        "));
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
     [Fact]
     public void Test10_Choice_0()
     {

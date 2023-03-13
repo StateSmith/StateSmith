@@ -189,11 +189,20 @@ typedef enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST9A_ROOT = 152,
     Spec2Sm_StateId_TEST9A_S1 = 153,
     Spec2Sm_StateId_TEST9A_S1_1 = 154,
+    Spec2Sm_StateId_TEST9B_ROOT = 155,
+    Spec2Sm_StateId_TEST9B_ROOT__A1 = 156,
+    Spec2Sm_StateId_TEST9B_ROOT__A2 = 157,
+    Spec2Sm_StateId_TEST9B_ROOT__A3 = 158,
+    Spec2Sm_StateId_TEST9B_ROOT__A4 = 159,
+    Spec2Sm_StateId_TEST9B_ROOT__B1 = 160,
+    Spec2Sm_StateId_TEST9B_ROOT__B2 = 161,
+    Spec2Sm_StateId_TEST9B_ROOT__B3 = 162,
+    Spec2Sm_StateId_TEST9B_ROOT__B4 = 163,
 } Spec2Sm_StateId;
 
 enum
 {
-    Spec2Sm_StateIdCount = 155
+    Spec2Sm_StateIdCount = 164
 };
 
 typedef enum Spec2Sm_T7__H1__ON_HistoryId
