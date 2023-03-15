@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="MKuSY8VSyavK2Ai-hcvc" name="Page-1">
-        <mxGraphModel dx="835" dy="513" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1282" dy="693" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="5" value="$STATEMACHINE : ShortFqn1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#545454;fontColor=#EBEBEB;" parent="1" vertex="1">
-                    <mxGeometry x="40" y="40" width="810" height="490" as="geometry"/>
+                    <mxGeometry x="20" y="40" width="810" height="490" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value=" " style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="5" vertex="1" connectable="0">
                     <mxGeometry y="30" width="30" height="20" as="geometry"/>

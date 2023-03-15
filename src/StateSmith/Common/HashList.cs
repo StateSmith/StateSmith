@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StateSmith.Common
 {
@@ -10,6 +11,11 @@ namespace StateSmith.Common
         public List<V> GetValues(K key)
         {
             return dictionary[key];
+        }
+
+        public List<K> GetKeys()
+        {
+            return dictionary.Keys.ToList();
         }
 
         public List<V> GetValuesOrEmpty(K key)
