@@ -1,4 +1,4 @@
-﻿using StateSmith.Common;
+using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
 using System;
 using System.Collections.Generic;
@@ -119,6 +119,17 @@ namespace StateSmith.SmGraph
             RenumberSubTreeDepth(child);
             _children.Add(child);
             return child;
+        }
+
+        /// <summary>
+        /// Experimental. Mostly for test code. Needs more tests before non-experimental.
+        /// </summary>
+        public void ChangeParent(Vertex parent)
+        {
+            if (!this.NonNullParent._children.Remove(this))
+                throw new VertexValidationException(this, "can't remove self from parent");
+            this._parent = null;
+            parent.AddChild(this);
         }
 
         protected void RenumberSubTreeDepth(Vertex subTreeRoot)
