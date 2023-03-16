@@ -1,15 +1,39 @@
 # StateSmith
-StateSmith is a cross platform, free/open source tool for generating state machines. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, kernels, or servers. It avoids dynamic memory allocations for the safety or performance inclined.
+StateSmith is a cross platform, free/open source tool for generating state machines in multiple languages. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, kernels, computers... It avoids dynamic memory allocations for the safety or performance inclined.
 
-StateSmith is now generating code for multiple different languages! We will always support good old `C` (or `C++`) with zero dependencies.
+StateSmith is now generating code for multiple different languages! We will always support good old `C` (or `C++`) with zero dependencies though.
 
 ![pipeline-Page-2 drawio (1)](https://user-images.githubusercontent.com/274012/224869149-c2edd266-ab5e-4488-845a-8176be3e14df.png)
 
+*We will be adding support for [more languages](https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support) after the above are complete.*
+
+## But Why Is It Written In C# ????
+I hear you. We all have our favorite languages. I'm actually an embedded C programmer, so why did I go with C#?
+
+**The Open Source Roslyn Compiler.** I never paid too much attention to C# until they released and documented the official C# compiler. This was huge for me! In a few lines of C# code, I can compile user code, traverse the AST, do semantic analysis, emit executable code! We actually use a subset of C# as our [Generic Intermediate Language](https://github.com/StateSmith/StateSmith/wiki/GIL:-Generic-Intermediate-Language) to make supporting multiple languages relatively easy.
+
+That and I'm far too lazy to write StateSmith in pure C.
+
+## StateSmith as a Platform
+Instead of 60 different state machine projects generating code for 10 different languages and slight variations, why not combine some of our efforts? If we work together, we could make something truly amazing that is fully free and open source! If you are crazy about state machines, I'd love to work together!
+
+## Doesn't do what you want out of the box?
+StateSmith is written so that you can easily swap out almost any part of it to accomplish your goals.
+
+* ✅ Support a new input file type.
+* ✅ Output a different algorithm.
+* ✅ Transpile to a new language.
+* ✅ Totally change the code generation step for very unique use case.
+* ✅ Add custom behaviors and features...
+
+Open an GitHub issue, GitHub discussion or head to discord if you have any questions or ideas.
 
 # What's new?
 Multiple language support! Also stuff below.
 
-It's been about 5 months since StateSmith was initially released and we've got a lot of awesome improvements!
+The [backlog project](https://github.com/orgs/StateSmith/projects/1) shows planning and status of features.
+
+## 5 Month Update
 
 ![image](https://user-images.githubusercontent.com/274012/218263552-cd4d1510-8824-496a-afe1-896f61cd0289.png)
 ![image](https://user-images.githubusercontent.com/274012/218209851-c904835e-0989-40ce-8868-4f1ac964cbe8.png)
@@ -23,9 +47,8 @@ It's been about 5 months since StateSmith was initially released and we've got a
 
 [Full 5 month update details here.](https://github.com/StateSmith/StateSmith/wiki/Update-Highlights-(v0.5.4-to-v0.7.11))
 
-The [backlog project](https://github.com/orgs/StateSmith/projects/1) shows planning and status of features.
 
-## Draw.io Quick Start 🚀
+# Draw.io Quick Start 🚀
 Want to jump right in and just try it!?
 https://youtu.be/qej8pXp3dX4
 
@@ -71,9 +94,9 @@ void blinky1_printf_sm_ctor(blinky1_printf_sm* self);
 <!-- Here's the example customization [code](https://github.com/StateSmith/StateSmith/blob/dev/examples/Blinky1Printf/CodeGen/Blinky1PrintfSm.cs#L84-L109) used for `blink1_printf_sm` above. -->
 
 ## Show me the code!
+*Need to update for C# target...*
 
-In the future, StateSmith will support numerous state machine code generators. You'll be able to choose from super fast, balanced, and tiny size. You'll also be able to implement your own. 
-The current code generation strategy implements a balanced approach that will work well for various targets.
+StateSmith already supports multiple target languages, but does not yet have [multiple algorithms](https://github.com/StateSmith/StateSmith/wiki/Algorithms) implemented (waiting for contributor or more time). The current code generation strategy implements a balanced approach that will work well for various targets.
 
 For the below diagram, here's the generated [.h file](./examples/BlankTemplate/BlankTemplate/BlankTemplateSm.h) and [.c file](./examples/BlankTemplate/BlankTemplate/BlankTemplateSm.c).
 
@@ -122,7 +145,7 @@ Why use these programs? I like that we just type in text. Some of the other stri
 
 
 # Is StateSmith ready for use? 🧪
-StateSmith is generating working code, and has decent test (236+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable .c state machine code, then compile and execute that .c code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
+StateSmith is generating working code, and has decent test (330+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
 ![picture 1](images/test-coverage-2022-12.png)  
 
@@ -141,7 +164,6 @@ Exit TEST6_S1.
 Transition action `` for TEST6_S1 to TEST6_S2.
 Enter TEST6_S2.
 ```
-*Note that there isn't a stable API yet for user modification of state machine designs, but it is coming (super useful).*
 
 
 Release 0.5.4-alpha added a lot of helpful error messages for when the input design is incorrect in some way:
