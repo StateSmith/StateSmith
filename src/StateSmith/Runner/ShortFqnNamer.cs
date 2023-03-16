@@ -1,57 +1,90 @@
+#nullable enable
+
 using StateSmith.Common;
 using StateSmith.SmGraph;
-using StateSmith.SmGraph.Visitors;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace StateSmith.Runner;
 
 /// <summary>
+/// Resolves state name conflicts using a short Fully Qualified Name.
 /// https://github.com/StateSmith/StateSmith/issues/138
 /// </summary>
 public class ShortFqnNamer
 {
-    HashSet<Tuple<State, string>> childNameClaims = new();
+    /// <summary>
+    /// Specifies how to resolve naming conflict.
+    /// https://github.com/StateSmith/StateSmith/issues/138#issuecomment-1470041906
+    /// </summary>
+    private readonly bool resolveWithHighestState;
 
-    public void Process(StateMachine sm)
+    public ShortFqnNamer(bool resolveWithAncestor = true)
     {
-        BreadthLayerWalker layerWalker = new();
-
-        layerWalker.visitAction = (layerVertices) =>
-        {
-            // find any name collisions
-            HashList<string, State> nameHashList = new();
-
-            foreach (var vertex in layerVertices.OfType<State>()) {
-                nameHashList.AddIfMissing(vertex.Name, vertex);
-            }
-
-            foreach (var key in nameHashList.GetKeys())
-            {
-                var statesWithKeyName = nameHashList.GetValues(key);
-
-                if (statesWithKeyName.Count > 1)
-                {
-                    ResolveNameConflict(statesWithKeyName);
-                }
-            }
-        };
-
-        layerWalker.Walk(sm);
+        this.resolveWithHighestState = resolveWithAncestor;
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="statesWithKeyName">All at the same depth</param>
-    /// <exception cref="NotImplementedException"></exception>
-    private void ResolveNameConflict(List<State> statesWithKeyName)
+    public void ResolveNameConflicts(StateMachine sm)
     {
-        // find common ancestor
+        NamedVertexMap nameMap = new(sm, skipRoot: true);
 
+        sm.VisitTypeRecursively<NamedVertex>(skipSelf: true, (vertex =>
+        {
+            List<NamedVertex> conflictingVertices = nameMap.GetNamedVerticesWithName(vertex.Name);
+            if (conflictingVertices.Count > 1)
+            {
+                ResolveNameConflict(vertex, conflictingVertices);
+            }
+        }));
+    }
 
+    private void ResolveNameConflict(NamedVertex vertex, List<NamedVertex> verticesWithSameName)
+    {
+        TransitionPath? shortestPath = null;
+
+        foreach (var otherVertex in verticesWithSameName)
+        {
+            if (vertex == otherVertex) continue;
+
+            var path = vertex.FindTransitionPathTo(otherVertex);
+
+            if (path.toExit.Count == 1 && path.toEnter.Count == 1)
+            {
+                throw new VertexValidationException(vertex.NonNullParent, $"State has multiple children with the same name `{vertex.Name}`");
+            }
+
+            if (shortestPath == null || IsNewShortestPath(shortestPath, path))
+            {
+                shortestPath = path;
+            }
+        }
+
+        NamedVertex namedAncestor;
+
+        if (resolveWithHighestState == false)
+        {
+            namedAncestor = (NamedVertex)vertex.NonNullParent; // parent name must be unique at this point
+        }
+        else
+        {
+            if (shortestPath!.toExit.Count == 1)
+            {
+                namedAncestor = (NamedVertex)shortestPath.leastCommonAncestor.ThrowIfNull();
+            }
+            else
+            {
+                namedAncestor = (NamedVertex)shortestPath.toExit.Last();
+            }
+        }
+
+        vertex.Rename(namedAncestor.Name + "__" + vertex.Name);
+    }
+
+    private static bool IsNewShortestPath(TransitionPath shortestPath, TransitionPath path)
+    {
+        if (path.toExit.Count == 0) // this will happen if compared against child state with same name
+            return false;
+
+        return path.toExit.Count < shortestPath.toExit.Count;
     }
 }
-
-// FIXME also add validation step. No state can have two children with same name (ignore case).

@@ -20,6 +20,7 @@ public class StandardSmTransformer : SmTransformer
         /// See https://github.com/StateSmith/StateSmith/issues/108
         /// </summary>
         Standard_SupportAlternateTriggers,
+        Standard_NameConflictResolution,
         Standard_Validation1,
         Standard_DefaultUnspecifiedEventsAsDoEvent,
         Standard_AddUsedEventsToSm,
@@ -27,7 +28,7 @@ public class StandardSmTransformer : SmTransformer
     };
 
     // this ctor used for Dependency Injection
-    public StandardSmTransformer(RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor)
+    public StandardSmTransformer(RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver)
     {
         AddStep(TransformationId.Standard_RemoveNotesVertices, (sm) => NotesProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());
@@ -37,6 +38,7 @@ public class StandardSmTransformer : SmTransformer
         AddStep(TransformationId.Standard_SupportHistory, (sm) => historyProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportOrderAndElse, (sm) => OrderAndElseProcessor.Process(sm)); // should happen after most steps as it orders behaviors
         AddStep(TransformationId.Standard_SupportAlternateTriggers, (sm) => SupportAlternateTriggersProcessor.Process(sm));
+        AddStep(TransformationId.Standard_NameConflictResolution, (sm) => nameConflictResolver.ResolveNameConflicts(sm));
         AddStep(TransformationId.Standard_Validation1, (sm) => Validate(sm));
         AddStep(TransformationId.Standard_DefaultUnspecifiedEventsAsDoEvent, (sm) => DefaultToDoEventVisitor.Process(sm));
         AddStep(TransformationId.Standard_AddUsedEventsToSm, (sm) => AddUsedEventsToSmClass.Process(sm));

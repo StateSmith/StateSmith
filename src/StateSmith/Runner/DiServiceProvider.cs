@@ -77,6 +77,8 @@ public class DiServiceProvider
             services.AddSingleton<PseudoStateHandlerBuilder>();
             services.AddSingleton<EnumBuilder>();
             services.AddSingleton<EventHandlerBuilder>();
+
+            services.AddSingleton<StateNameConflictResolver>();
         });
     }
 
@@ -142,6 +144,7 @@ public class DiServiceProvider
         services.AddSingleton<RenderConfigCVars>();
         services.AddSingleton<RenderConfigCSharpVars>();
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+        services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
     }
 
     /// <summary>
@@ -191,3 +194,4 @@ public class DiServiceProvider
         return new ConvertableType(host.ThrowIfNull());
     }
 }
+

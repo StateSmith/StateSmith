@@ -185,7 +185,12 @@ namespace StateSmith.SmGraph
 
         public static void VisitTypeRecursively<T>(this Vertex vertex, Action<T> action) where T : Vertex
         {
-            if (vertex is T t)
+            vertex.VisitTypeRecursively(skipSelf: false, action);
+        }
+
+        public static void VisitTypeRecursively<T>(this Vertex vertex, bool skipSelf, Action<T> action) where T : Vertex
+        {
+            if (!skipSelf && vertex is T t)
             {
                 action(t);
             }
