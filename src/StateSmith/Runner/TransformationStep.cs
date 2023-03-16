@@ -1,5 +1,6 @@
 using StateSmith.SmGraph;
 using System;
+using System.Diagnostics;
 
 namespace StateSmith.Runner;
 
@@ -16,6 +17,11 @@ public class TransformationStep
     {
         Id = id;
         this.action = action;
+    }
+
+    public static implicit operator TransformationStep(Action<StateMachine> action)
+    {
+        return new TransformationStep("<unspecified transformation step id>", action);
     }
 
     public override string ToString()

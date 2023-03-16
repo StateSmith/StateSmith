@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+### Added
+- Added support for automatically resolving state name conflicts.
+  - Defaults to manual conflict resolution for now, but will be enabled by default in the future.
+  - You can enable with `SmRunner runner; runner.Settings.nameConflictResolution`.
+  - You can also register your own `StateNameConflictResolver` class for custom control.
+  - https://github.com/StateSmith/StateSmith/issues/138
+
+---
+
 ## [0.8.6-alpha]
 ### Fixed
 - fix specification bug - exit point transition only exits parent (not ancestors).

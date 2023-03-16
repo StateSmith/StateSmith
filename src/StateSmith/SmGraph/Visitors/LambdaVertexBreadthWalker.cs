@@ -1,27 +1,25 @@
-﻿using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 
-namespace StateSmith.SmGraph.Visitors
+namespace StateSmith.SmGraph.Visitors;
+
+public class LambdaVertexBreadthWalker
 {
-    public class LambdaVertexBreadthWalker
+    public Action<Vertex> visitAction;
+    private Queue<Vertex> toVisit = new();
+
+    public void Walk(Vertex root)
     {
-        public Action<Vertex> visitAction;
-        private Queue<Vertex> toVisit = new();
+        toVisit.Enqueue(root);
 
-        public void Walk(Vertex root)
+        while (toVisit.Count > 0)
         {
-            toVisit.Enqueue(root);
+            var v = toVisit.Dequeue();
+            visitAction(v);
 
-            while (toVisit.Count > 0)
+            foreach (var kid in v.Children)
             {
-                var v = toVisit.Dequeue();
-                visitAction(v);
-
-                foreach (var kid in v.Children)
-                {
-                    toVisit.Enqueue(kid);
-                }
+                toVisit.Enqueue(kid);
             }
         }
     }

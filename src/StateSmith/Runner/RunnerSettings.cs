@@ -65,11 +65,26 @@ public class RunnerSettings
 
     public bool autoDeIndentAndTrimRenderConfigItems = true;
 
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/138
+    /// </summary>
+    public NameConflictResolution nameConflictResolution = NameConflictResolution.Manual;
+
     public RunnerSettings(string diagramFile, string? outputDirectory = null, AlgorithmId algorithmId = default, TranspilerId transpilerId = default)
     {
         this.diagramFile = diagramFile;
         this.outputDirectory = outputDirectory;
         this.algorithmId = algorithmId;
         this.transpilerId = transpilerId;
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/138
+    /// </summary>
+    public enum NameConflictResolution
+    {
+        Manual,
+        ShortFqnAncestor,
+        ShortFqnParent
     }
 }
