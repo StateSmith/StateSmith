@@ -94,11 +94,10 @@ void blinky1_printf_sm_ctor(blinky1_printf_sm* self);
 <!-- Here's the example customization [code](https://github.com/StateSmith/StateSmith/blob/dev/examples/Blinky1Printf/CodeGen/Blinky1PrintfSm.cs#L84-L109) used for `blink1_printf_sm` above. -->
 
 ## Show me the code!
-*Need to update for C# target...*
-
 StateSmith already supports multiple target languages, but does not yet have [multiple algorithms](https://github.com/StateSmith/StateSmith/wiki/Algorithms) implemented (waiting for contributor or more time). The current code generation strategy implements a balanced approach that will work well for various targets.
 
 For the below diagram, here's the generated [.h file](./examples/BlankTemplate/BlankTemplate/BlankTemplateSm.h) and [.c file](./examples/BlankTemplate/BlankTemplate/BlankTemplateSm.c).
+*Need to update for C# target...*
 
 ![picture 6](images/blank-template-sm.png)  
 
@@ -192,8 +191,10 @@ There will eventually be a standalone CLI tool that has no installation dependen
 
 For now, we actually just run StateSmith as a regular C# project from the command line, vscode, or visual studio.
 
-# Tutorials
+# More Info And Tutorials
+
+Tutorials:
 * [draw.io quick start](https://youtu.be/qej8pXp3dX4)
 * [yEd quick-start.md](./docs/quickstart1/quick-start.md)
 
-
+Wiki: https://github.com/StateSmith/StateSmith/wiki
