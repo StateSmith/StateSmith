@@ -25,6 +25,9 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ```
 
 ## [wip]
+### Fixed
+- Fix auto name conflict resolution when all conflicting are descendants.
+  - https://github.com/StateSmith/StateSmith/issues/198
 ### Added
 - draw.io - support note shapes. They look nice, are less verbose, and more user friendly.
   - https://github.com/StateSmith/StateSmith/issues/192
