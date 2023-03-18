@@ -1,10 +1,10 @@
+#nullable enable
+
 using StateSmith.Common;
+using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-
-#nullable enable
 
 namespace StateSmith.SmGraph
 {
@@ -160,6 +160,11 @@ namespace StateSmith.SmGraph
             return str;
         }
 
+        public static bool IsContainedBy<T>(this T t, HashSet<T> set)
+        {
+            return set.Contains(t);
+        }
+
         public static IEnumerable<Behavior> GetBehaviorsWithTrigger(this Vertex vertex, string triggerName)
         {
             return TriggerHelper.GetBehaviorsWithTrigger(vertex, triggerName);
@@ -178,25 +183,6 @@ namespace StateSmith.SmGraph
                 return false;
             }
         }
-
-        //public enum VisitInstruction { Continue, SkipChildren, Stop };
-        //public static VisitInstruction VisitRecursively(this Vertex vertex, Func<Vertex, VisitInstruction> visitFunc)
-        //{
-        //    VisitInstruction visitInstruction = visitFunc(vertex);
-
-        //    if (visitInstruction == VisitInstruction.SkipChildren)
-        //        return VisitInstruction.Continue;
-
-        //    foreach (var child in vertex.Children)
-        //    {
-        //        if (visitInstruction == VisitInstruction.Stop)
-        //            return VisitInstruction.Stop;
-
-        //        visitInstruction = child.VisitRecursively(visitFunc);
-        //    }
-
-        //    return VisitInstruction.Continue;
-        //}
 
         public class VisitContext {
             public bool ShouldStop = false;

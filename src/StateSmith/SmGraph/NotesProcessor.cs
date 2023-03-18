@@ -14,8 +14,7 @@ public class NotesProcessor
     /// Contains Notes vertices or vertices inside of a Notes vertice.
     /// </summary>
     readonly HashSet<Vertex> notedVertices = new();
-
-    List<NotesVertex> topLevelNotes = new();
+    readonly List<NotesVertex> topLevelNotes = new();
 
     public static void Process(StateMachine sm)
     {
@@ -25,33 +24,8 @@ public class NotesProcessor
 
     public void ValidateAndRemoveNotes(StateMachine sm)
     {
-        ValidateNotesWithoutRemoving(sm);
-        RemoveTopLevelNotes();
-    }
-
-    // only use for unit testing
-    internal void ValidateNotesWithoutRemoving(StateMachine sm)
-    {
         FindAllNotedVertices(sm);
-        LookForIllegalTransitionsToNotes(sm);
-    }
-
-    private void LookForIllegalTransitionsToNotes(StateMachine sm)
-    {
-        sm.VisitRecursively((vertex, context) =>
-        {
-            if (vertex is NotesVertex)
-            {
-                context.SkipChildren();
-                return;
-            }
-
-            foreach (var b in vertex.Behaviors)
-            {
-                if (b.TransitionTarget != null && notedVertices.Contains(b.TransitionTarget))
-                    throw new VertexValidationException(vertex, "Illegal transition to Notes.");
-            }
-        });
+        RemoveTopLevelNotes();
     }
 
     private void FindAllNotedVertices(StateMachine sm)
@@ -70,16 +44,32 @@ public class NotesProcessor
 
     private void RemoveTopLevelNotes()
     {
+        // Temp list so that we don't modify collections we are iterating over.
+        // Probably faster than copying each vertex's behavior list pre-emptively as well.
+        List<Behavior> transitionsToRemove = new();
+
+        // Gather up all transition behaviors to remove.
+        // Only transitions from "non-noted" vertices to noted vertices need to be removed.
+        foreach (var noted in notedVertices)
+        {
+            transitionsToRemove.AddRange(FindNonNotedTransitionsToNoted(noted));
+        }
+
+        Behavior.RemoveBehaviorsAndUnlink(transitionsToRemove);
+
         foreach (var v in topLevelNotes)
         {
-            // We know there are no illegal transitions at this point because of validations, but
-            // there might be transitions between top level notes we have to worry about.
-            foreach(var t in v.IncomingTransitions.ToList()) // ToList() to create copy as it is modified
-            {
-                t.OwningVertex.RemoveBehaviorAndUnlink(t);
-            }
-            v.RemoveSelf();
+            v.ForceRemoveSelf(); // auto removes any incoming transitions. helpful incase a noted vertex has an edge to a top level note.
         }
     }
 
+    private IEnumerable<Behavior> FindNonNotedTransitionsToNoted(Vertex noted)
+    {
+        return noted.IncomingTransitions.Where(transition => IsNonNoted(transition.OwningVertex));
+    }
+
+    private bool IsNonNoted(Vertex v)
+    {
+        return v.IsContainedBy(notedVertices) == false;
+    }
 }

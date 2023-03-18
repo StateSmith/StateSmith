@@ -2,6 +2,7 @@ using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 #nullable enable
 
@@ -112,10 +113,6 @@ namespace StateSmith.SmGraph
             return behavior;
         }
 
-        /// <summary>
-        /// NOTE! Must manually update descendants after calling.
-        /// </summary>
-        /// <param name="child"></param>
         public T AddChild<T>(T child) where T : Vertex
         {
             if (child.Parent != null)
@@ -157,10 +154,6 @@ namespace StateSmith.SmGraph
             walker.Walk(subTreeRoot);
         }
 
-        /// <summary>
-        /// NOTE! Must manually update descendants after calling.
-        /// </summary>
-        /// <param name="child"></param>
         public void RemoveChild(Vertex child)
         {
             _children.RemoveOrThrow(child);
@@ -169,10 +162,7 @@ namespace StateSmith.SmGraph
             foreach (var childBehavior in child.Behaviors)
             {
                 var target = childBehavior.TransitionTarget;
-                if (target != null)
-                {
-                    target._incomingTransitions.RemoveOrThrow(childBehavior);
-                }
+                target?._incomingTransitions.RemoveOrThrow(childBehavior);
             }
 
             if (child._incomingTransitions.Count > 0)
@@ -181,9 +171,30 @@ namespace StateSmith.SmGraph
             }
         }
 
+        /// <summary>
+        /// Auto removes any incoming transitions and then removes child.
+        /// </summary>
+        public void ForceRemoveChild(Vertex child)
+        {
+            foreach (var t in child.IncomingTransitions.ToList()) // copy so we can modify
+            {
+                child.RemoveBehaviorAndUnlink(t);
+            }
+
+            RemoveChild(child);
+        }
+
         public void RemoveSelf()
         {
             NonNullParent.RemoveChild(this);
+        }
+
+        /// <summary>
+        /// Auto removes any incoming transitions and then removes self.
+        /// </summary>
+        public void ForceRemoveSelf()
+        {
+            NonNullParent.ForceRemoveChild(this);
         }
 
         public int FindIndexInParentKids()

@@ -266,6 +266,14 @@ namespace StateSmith.SmGraph
             return str;
         }
 
+        public static void RemoveBehaviorsAndUnlink(IEnumerable<Behavior> behaviors)
+        {
+            foreach (var behavior in behaviors)
+            {
+                behavior.OwningVertex.RemoveBehaviorAndUnlink(behavior);
+            }
+        }
+
         public override string ToString()
         {
             return DescribeAsUml();
