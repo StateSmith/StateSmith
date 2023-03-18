@@ -178,7 +178,7 @@ namespace StateSmith.SmGraph
         {
             foreach (var t in child.IncomingTransitions.ToList()) // copy so we can modify
             {
-                child.RemoveBehaviorAndUnlink(t);
+                t.OwningVertex.RemoveBehaviorAndUnlink(t);
             }
 
             RemoveChild(child);

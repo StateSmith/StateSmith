@@ -1,7 +1,6 @@
 #nullable enable
 
 using System.Collections.Generic;
-using System.Linq;
 
 namespace StateSmith.SmGraph;
 
@@ -14,7 +13,6 @@ public class NotesProcessor
     /// Contains Notes vertices or vertices inside of a Notes vertice.
     /// </summary>
     readonly HashSet<Vertex> notedVertices = new();
-    readonly List<NotesVertex> topLevelNotes = new();
 
     public static void Process(StateMachine sm)
     {
@@ -25,7 +23,7 @@ public class NotesProcessor
     public void ValidateAndRemoveNotes(StateMachine sm)
     {
         FindAllNotedVertices(sm);
-        RemoveTopLevelNotes();
+        RemoveNoted();
     }
 
     private void FindAllNotedVertices(StateMachine sm)
@@ -34,7 +32,6 @@ public class NotesProcessor
         {
             if (vertex is NotesVertex notesVertex)
             {
-                topLevelNotes.Add(notesVertex);
                 context.SkipChildren();
                 vertex.VisitRecursively(v => { notedVertices.Add(v); });
                 return;
@@ -42,34 +39,11 @@ public class NotesProcessor
         });
     }
 
-    private void RemoveTopLevelNotes()
+    private void RemoveNoted()
     {
-        // Temp list so that we don't modify collections we are iterating over.
-        // Probably faster than copying each vertex's behavior list pre-emptively as well.
-        List<Behavior> transitionsToRemove = new();
-
-        // Gather up all transition behaviors to remove.
-        // Only transitions from "non-noted" vertices to noted vertices need to be removed.
-        foreach (var noted in notedVertices)
+        foreach (var v in notedVertices)
         {
-            transitionsToRemove.AddRange(FindNonNotedTransitionsToNoted(noted));
+            v.ForceRemoveSelf(); // auto removes any incoming transitions
         }
-
-        Behavior.RemoveBehaviorsAndUnlink(transitionsToRemove);
-
-        foreach (var v in topLevelNotes)
-        {
-            v.ForceRemoveSelf(); // auto removes any incoming transitions. helpful incase a noted vertex has an edge to a top level note.
-        }
-    }
-
-    private IEnumerable<Behavior> FindNonNotedTransitionsToNoted(Vertex noted)
-    {
-        return noted.IncomingTransitions.Where(transition => IsNonNoted(transition.OwningVertex));
-    }
-
-    private bool IsNonNoted(Vertex v)
-    {
-        return v.IsContainedBy(notedVertices) == false;
     }
 }

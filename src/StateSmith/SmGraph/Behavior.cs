@@ -1,13 +1,10 @@
+#nullable enable
+
 using StateSmith.Common;
-using StateSmith.SmGraph;
 using StateSmith.Output;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.RegularExpressions;
-
-#nullable enable
 
 namespace StateSmith.SmGraph
 {
