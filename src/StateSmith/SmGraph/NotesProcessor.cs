@@ -1,17 +1,21 @@
-using StateSmith.SmGraph.Visitors;
+#nullable enable
+
 using System.Collections.Generic;
 using System.Linq;
 
-#nullable enable
-
 namespace StateSmith.SmGraph;
 
-public class NotesProcessor : OnlyVertexVisitor
+/// <summary>
+/// https://github.com/StateSmith/StateSmith/issues/190
+/// </summary>
+public class NotesProcessor
 {
-    int noteNestingCount = 0;
-    HashSet<Vertex> notedVertices = new();
-    HashSet<Vertex> nonNotedVertices = new();
-    List<NotesVertex> topNotesVertices = new();
+    /// <summary>
+    /// Contains Notes vertices or vertices inside of a Notes vertice.
+    /// </summary>
+    readonly HashSet<Vertex> notedVertices = new();
+
+    List<NotesVertex> topLevelNotes = new();
 
     public static void Process(StateMachine sm)
     {
@@ -28,103 +32,54 @@ public class NotesProcessor : OnlyVertexVisitor
     // only use for unit testing
     internal void ValidateNotesWithoutRemoving(StateMachine sm)
     {
-        Visit(sm);
-        EnsureNoInvalidTransitionsToNotesVertex();
-        EnsureNoInvalidTransitionsFromNotesVertex();
+        FindAllNotedVertices(sm);
+        LookForIllegalTransitionsToNotes(sm);
+    }
+
+    private void LookForIllegalTransitionsToNotes(StateMachine sm)
+    {
+        sm.VisitRecursively((vertex, context) =>
+        {
+            if (vertex is NotesVertex)
+            {
+                context.SkipChildren();
+                return;
+            }
+
+            foreach (var b in vertex.Behaviors)
+            {
+                if (b.TransitionTarget != null && notedVertices.Contains(b.TransitionTarget))
+                    throw new VertexValidationException(vertex, "Illegal transition to Notes.");
+            }
+        });
+    }
+
+    private void FindAllNotedVertices(StateMachine sm)
+    {
+        sm.VisitRecursively((vertex, context) =>
+        {
+            if (vertex is NotesVertex notesVertex)
+            {
+                topLevelNotes.Add(notesVertex);
+                context.SkipChildren();
+                vertex.VisitRecursively(v => { notedVertices.Add(v); });
+                return;
+            }
+        });
     }
 
     private void RemoveTopLevelNotes()
     {
-        foreach (var v in topNotesVertices)
+        foreach (var v in topLevelNotes)
         {
+            // We know there are no illegal transitions at this point because of validations, but
+            // there might be transitions between top level notes we have to worry about.
+            foreach(var t in v.IncomingTransitions.ToList()) // ToList() to create copy as it is modified
+            {
+                t.OwningVertex.RemoveBehaviorAndUnlink(t);
+            }
             v.RemoveSelf();
         }
     }
 
-    private void EnsureNoInvalidTransitionsToNotesVertex()
-    {
-        // loop over noted vertices because there are probably way fewer of them
-        foreach (var v in notedVertices)
-        {
-            foreach (var transition in v.IncomingTransitions)
-            {
-                List<Vertex> all = GetAllVerticesInvolvedInTransition(transition);
-
-                foreach (var part in all)
-                {
-                    if (nonNotedVertices.Contains(part))
-                    {
-                        throw new BehaviorValidationException(transition, "Transition from non-notes section to notes section detected.");
-                    }
-                }
-            }
-        }
-    }
-
-    private void EnsureNoInvalidTransitionsFromNotesVertex()
-    {
-        // loop over noted vertices because there are probably way fewer of them than non-noted vertices
-        foreach (var v in notedVertices)
-        {
-            foreach (var transition in v.TransitionBehaviors())
-            {
-                // this section of code can be simpler as we don't have to worry about transitions to other noted states as
-                // EnsureNoInvalidTransitionsToNotesVertex() will catch that.
-                if (nonNotedVertices.Contains(transition.TransitionTarget!))
-                {
-                    throw new BehaviorValidationException(transition, "Transition from notes section to non-notes section detected.");
-                }
-            }
-        }
-    }
-
-    public override void Visit(Vertex v)
-    {
-        if (noteNestingCount == 0)
-        {
-            nonNotedVertices.Add(v);
-        }
-        else
-        {
-            notedVertices.Add(v);
-        }
-
-        VisitChildren(v);
-    }
-
-    public override void Visit(NotesVertex v)
-    {
-        noteNestingCount++;
-
-        if (v.Behaviors.Count > 0)
-        {
-            throw new VertexValidationException(v, "Notes vertices cannot have any behaviors");
-        }
-
-        if (v.IncomingTransitions.Count > 0)
-        {
-            throw new VertexValidationException(v, "Notes vertices cannot have any incoming transitions");
-        }
-
-        Visit((Vertex)v);
-
-        noteNestingCount--;
-
-        if (noteNestingCount == 0)
-        {
-            topNotesVertices.Add(v);
-        }
-    }
-
-    private static List<Vertex> GetAllVerticesInvolvedInTransition(Behavior transition)
-    {
-        var path = transition.FindTransitionPath();
-        var all = path.toExit.ToList();
-        all.AddRange(path.toEnter);
-
-        if (path.leastCommonAncestor != null)
-            all.Add(path.leastCommonAncestor);
-
-        return all;
-    }
 }

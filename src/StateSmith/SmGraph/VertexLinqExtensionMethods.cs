@@ -2,6 +2,7 @@ using StateSmith.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 #nullable enable
 
@@ -175,6 +176,53 @@ namespace StateSmith.SmGraph
             {
                 initialState = null;
                 return false;
+            }
+        }
+
+        //public enum VisitInstruction { Continue, SkipChildren, Stop };
+        //public static VisitInstruction VisitRecursively(this Vertex vertex, Func<Vertex, VisitInstruction> visitFunc)
+        //{
+        //    VisitInstruction visitInstruction = visitFunc(vertex);
+
+        //    if (visitInstruction == VisitInstruction.SkipChildren)
+        //        return VisitInstruction.Continue;
+
+        //    foreach (var child in vertex.Children)
+        //    {
+        //        if (visitInstruction == VisitInstruction.Stop)
+        //            return VisitInstruction.Stop;
+
+        //        visitInstruction = child.VisitRecursively(visitFunc);
+        //    }
+
+        //    return VisitInstruction.Continue;
+        //}
+
+        public class VisitContext {
+            public bool ShouldStop = false;
+            public bool ShouldSkipChildren;
+
+            public void Stop() => ShouldStop = true;
+            public void SkipChildren() => ShouldSkipChildren = true;
+        }
+        public static void VisitRecursively(this Vertex vertex, Action<Vertex, VisitContext> action)
+        {
+            var context = new VisitContext();
+
+            action(vertex, context);
+
+            if (context.ShouldSkipChildren)
+            {
+                context.ShouldSkipChildren = false;
+                return;
+            }
+
+            foreach (var child in vertex.Children)
+            {
+                if (context.ShouldStop)
+                    return;
+
+                child.VisitRecursively(action);
             }
         }
 
