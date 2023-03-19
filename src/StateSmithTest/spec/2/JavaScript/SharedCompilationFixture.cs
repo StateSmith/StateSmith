@@ -36,10 +36,11 @@ public class SharedCompilationFixture
 
     public class MyGlueFile : IRenderConfigJavaScript
     {
-        string IRenderConfig.FileTop => @"
-                // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
-                import { trace, trace_guard } from ""./printer.js"";
-            ";
+        string IRenderConfig.FileTop => """
+            "use strict";    
+            // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
+            import { trace, trace_guard } from "./printer.js";
+            """;
 
         bool IRenderConfigJavaScript.UseExportOnClass => true;
 
@@ -50,7 +51,7 @@ public class SharedCompilationFixture
             ";
 
         string IRenderConfig.AutoExpandedVars => @"
-                
+                auto_var_1: 0,
             ";
 
         string IRenderConfigJavaScript.ClassCode => @"

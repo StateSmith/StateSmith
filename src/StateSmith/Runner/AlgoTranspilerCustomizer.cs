@@ -3,6 +3,7 @@ using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.Gil.JavaScript;
+using StateSmith.Output.UserConfig;
 
 #nullable enable
 
@@ -50,6 +51,7 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IGilTranspiler, GilToJavaScript>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();    // todo - rename to something common
                     sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>(); // fixme: use camelCase
+                    sp.AddSingletonT<IAutoVarsParser, JsAutoVarsParser>();
                     algoBalanced1Settings.skipClassIndentation = false;
                 }
                 break;
