@@ -1,20 +1,19 @@
 #!/usr/bin/env node
 import { Spec2Sm } from "./Spec2Sm.js";
 
-// console.log("hi there");
+// ported from C spec test
 
 /** @type {string[]} */
 const args = process.argv.slice(2); // skip past first two which are node exe and file being run
-// console.log(args);
 
 let sm = new Spec2Sm();
 print_start()
-sm.Start();
+sm.start();
 console.log();
 
 args.forEach(eventArg => {
     print_dispatch_event_name(eventArg);
-    sm.DispatchEvent(Spec2Sm.EventId[eventArg.toUpperCase()]);
+    sm.dispatchEvent(Spec2Sm.EventId[eventArg.toUpperCase()]);
     console.log();
 });
 

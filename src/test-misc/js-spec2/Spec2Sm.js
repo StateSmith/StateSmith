@@ -304,7 +304,7 @@ trace_guard(msg, condition) {
     };
     
     // Starts the state machine. Must be called before dispatching events. Not thread safe.
-    Start()
+    start()
     {
         this._ROOT_enter();
         // ROOT behavior
@@ -337,7 +337,7 @@ trace_guard(msg, condition) {
     }
     
     // Dispatches an event to the state machine. Not thread safe.
-    DispatchEvent(/** @type {Spec2Sm.EventId} */ eventId)
+    dispatchEvent(/** @type {Spec2Sm.EventId} */ eventId)
     {
         let behaviorFunc = this._currentEventHandlers[eventId];
         
@@ -351,7 +351,7 @@ trace_guard(msg, condition) {
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    _ExitUpToStateHandler(/** @type {Spec2Sm.Func} */ desiredStateExitHandler)
+    _exitUpToStateHandler(/** @type {Spec2Sm.Func} */ desiredStateExitHandler)
     {
         while (this._currentStateExitHandler != desiredStateExitHandler)
         {
@@ -954,7 +954,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", true))
         {
             // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._PREFIXING__ORDER_MENU_exit);
+            this._exitUpToStateHandler(this._PREFIXING__ORDER_MENU_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");`.
             console.log("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.");
@@ -1188,7 +1188,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", true))
         {
             // Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._PREFIXING__ORDER_MENU_exit);
+            this._exitUpToStateHandler(this._PREFIXING__ORDER_MENU_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");`.
             console.log("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.");
@@ -1451,7 +1451,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", true))
         {
             // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+            this._exitUpToStateHandler(this._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");`.
             console.log("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.");
@@ -1685,7 +1685,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", true))
         {
             // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
+            this._exitUpToStateHandler(this._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");`.
             console.log("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.");
@@ -2020,7 +2020,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", true))
         {
             // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST1_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST1_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST1_S1_1 to TEST1_S2.");`.
             console.log("Transition action `` for TEST1_S1_1 to TEST1_S2.");
@@ -2503,7 +2503,7 @@ trace_guard(msg, condition) {
                 // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
                 {
                     // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
-                    this._ExitUpToStateHandler(this._TEST10_ROOT_exit);
+                    this._exitUpToStateHandler(this._TEST10_ROOT_exit);
                     
                     // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");`.
                     console.log("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");
@@ -2736,7 +2736,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", true))
         {
             // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST10_CHOICE_POINT_exit);
+            this._exitUpToStateHandler(this._TEST10_CHOICE_POINT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_A.");`.
             console.log("Transition action `` for TEST10_S1 to TEST10_A.");
@@ -3081,7 +3081,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", true))
         {
             // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST2_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST2_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST2_S1_1 to TEST2_S2.");`.
             console.log("Transition action `` for TEST2_S1_1 to TEST2_S2.");
@@ -3610,7 +3610,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", true))
         {
             // Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4B_G_exit);
+            this._exitUpToStateHandler(this._TEST4B_G_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4B_G to TEST4B_G_1.");`.
             console.log("Transition action `` for TEST4B_G to TEST4B_G_1.");
@@ -3754,7 +3754,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", true))
         {
             // Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4C_G_exit);
+            this._exitUpToStateHandler(this._TEST4C_G_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4C_G to TEST4C_G_1.");`.
             console.log("Transition action `` for TEST4C_G to TEST4C_G_1.");
@@ -3898,7 +3898,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
         {
             // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4D_EXTERNAL_exit);
+            this._exitUpToStateHandler(this._TEST4D_EXTERNAL_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");`.
             console.log("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");
@@ -3968,7 +3968,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
         {
             // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4D_EXTERNAL_exit);
+            this._exitUpToStateHandler(this._TEST4D_EXTERNAL_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");`.
             console.log("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");
@@ -4223,7 +4223,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", true))
         {
             // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST4_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S1.");`.
             console.log("Transition action `` for TEST4_ROOT to TEST4_S1.");
@@ -4247,7 +4247,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", true))
         {
             // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST4_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.");`.
             console.log("Transition action `` for TEST4_ROOT to TEST4_S10_1.");
@@ -4272,7 +4272,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
         {
             // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST4_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S20.");`.
             console.log("Transition action `` for TEST4_ROOT to TEST4_S20.");
@@ -4386,7 +4386,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", true))
         {
             // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST4_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4_S10 to TEST4_S10.");`.
             console.log("Transition action `` for TEST4_S10 to TEST4_S10.");
@@ -4532,7 +4532,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", true))
         {
             // Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST4_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST4_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST4_S20 to TEST4_S20.");`.
             console.log("Transition action `` for TEST4_S20 to TEST4_S20.");
@@ -4734,7 +4734,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", true))
         {
             // Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST5_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST5_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST5_ROOT to TEST5_S1.");`.
             console.log("Transition action `` for TEST5_ROOT to TEST5_S1.");
@@ -5538,7 +5538,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DH1__SANTAS_WORKSHOP_exit);
+            this._exitUpToStateHandler(this._T7__DH1__SANTAS_WORKSHOP_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");`.
             console.log("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.");
@@ -5692,7 +5692,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DH1__GET_BACKUP_exit);
+            this._exitUpToStateHandler(this._T7__DH1__GET_BACKUP_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");`.
             console.log("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.");
@@ -6092,7 +6092,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DH1__SANTAS_WORKSHOP_exit);
+            this._exitUpToStateHandler(this._T7__DH1__SANTAS_WORKSHOP_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");`.
             console.log("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.");
@@ -6216,7 +6216,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.History)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DH1__SANTAS_WORKSHOP_exit);
+            this._exitUpToStateHandler(this._T7__DH1__SANTAS_WORKSHOP_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");`.
             console.log("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");
@@ -6562,7 +6562,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DH1__BUILD_exit);
+            this._exitUpToStateHandler(this._T7__DH1__BUILD_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");`.
             console.log("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.");
@@ -6750,7 +6750,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DH1__BUILD_exit);
+            this._exitUpToStateHandler(this._T7__DH1__BUILD_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");`.
             console.log("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.");
@@ -7218,7 +7218,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH2__state_0: check behavior `evOpen TransitionTo(T7__DH2__state_3)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DEEP_HISTORY2_exit);
+            this._exitUpToStateHandler(this._T7__DEEP_HISTORY2_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");`.
             console.log("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");
@@ -7434,7 +7434,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH2__state_2: check behavior `evBack TransitionTo(T7__DH2__state_1)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DH2__STATE_0_exit);
+            this._exitUpToStateHandler(this._T7__DH2__STATE_0_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");`.
             console.log("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");
@@ -7702,7 +7702,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH3__state_0: check behavior `evOpen TransitionTo(T7__DH3__state_3)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DEEP_HISTORY3_exit);
+            this._exitUpToStateHandler(this._T7__DEEP_HISTORY3_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");`.
             console.log("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");
@@ -7880,7 +7880,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__DH3__state_2: check behavior `evBack TransitionTo(T7__DH3__state_1)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__DH3__STATE_0_exit);
+            this._exitUpToStateHandler(this._T7__DH3__STATE_0_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");`.
             console.log("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");
@@ -8136,7 +8136,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", true))
         {
             // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__H1__OFF_exit);
+            this._exitUpToStateHandler(this._T7__H1__OFF_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");`.
             console.log("Transition action `` for T7__H1__OFF to T7__H1__OFF3.");
@@ -8160,7 +8160,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", true))
         {
             // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__HISTORY1_exit);
+            this._exitUpToStateHandler(this._T7__HISTORY1_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.");`.
             console.log("Transition action `` for T7__H1__OFF to T7__H1__OFF.");
@@ -8183,7 +8183,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", true))
         {
             // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__HISTORY1_exit);
+            this._exitUpToStateHandler(this._T7__HISTORY1_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__ON.");`.
             console.log("Transition action `` for T7__H1__OFF to T7__H1__ON.");
@@ -8476,7 +8476,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", true))
         {
             // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__HISTORY1_exit);
+            this._exitUpToStateHandler(this._T7__HISTORY1_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON to T7__H1__OFF.");`.
             console.log("Transition action `` for T7__H1__ON to T7__H1__OFF.");
@@ -8895,7 +8895,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.InitialState)`.", true))
         {
             // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._T7__INITIAL1__PARENT_exit);
+            this._exitUpToStateHandler(this._T7__INITIAL1__PARENT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");`.
             console.log("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");
@@ -9536,7 +9536,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`.", true))
         {
             // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST8_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST8_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");`.
             console.log("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");
@@ -10573,7 +10573,7 @@ trace_guard(msg, condition) {
         if (trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", true))
         {
             // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
-            this._ExitUpToStateHandler(this._TEST9B_ROOT_exit);
+            this._exitUpToStateHandler(this._TEST9B_ROOT_exit);
             
             // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.");`.
             console.log("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.");
@@ -10739,7 +10739,7 @@ trace_guard(msg, condition) {
             // uml: / { trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4."); } TransitionTo(TEST9B_ROOT__B4)
             {
                 // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
-                this._ExitUpToStateHandler(this._TEST9B_ROOT_exit);
+                this._exitUpToStateHandler(this._TEST9B_ROOT_exit);
                 
                 // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4.");`.
                 console.log("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4.");
@@ -10883,7 +10883,7 @@ trace_guard(msg, condition) {
     }
     
     // Thread safe.
-    StateIdToString(/** @type {Spec2Sm.StateId} */ id)
+    stateIdToString(/** @type {Spec2Sm.StateId} */ id)
     {
         switch (id)
         {
@@ -11058,7 +11058,7 @@ trace_guard(msg, condition) {
     }
     
     // Thread safe.
-    EventIdToString(/** @type {Spec2Sm.EventId} */ id)
+    eventIdToString(/** @type {Spec2Sm.EventId} */ id)
     {
         switch (id)
         {

@@ -1,35 +1,9 @@
 #nullable enable
 
-using System.Text.RegularExpressions;
-
 namespace StateSmith.Output.Algos.Balanced1;
 
-public class PascalFuncCamelVarNameMangler : NameMangler
+public class PascalFuncCamelVarNameMangler : AbstractMangler
 {
-    /// <summary><inheritdoc/></summary>
-    public override string SmStartFuncName => MangleFuncName(base.SmStartFuncName);
-
-    /// <summary><inheritdoc/></summary>
-    public override string SmFuncCtor => MangleFuncName(base.SmFuncCtor);
-
-    /// <summary><inheritdoc/></summary>
-    public override string SmDispatchEventFuncName => MangleFuncName(base.SmDispatchEventFuncName);
-
-    /// <summary><inheritdoc/></summary>
-    public override string SmEventIdToStringFuncName => MangleFuncName(base.SmEventIdToStringFuncName);
-
-    /// <summary><inheritdoc/></summary>
-    public override string SmStateIdToStringFuncName => MangleFuncName(base.SmStateIdToStringFuncName);
-
-    /// <summary><inheritdoc/></summary>
-    public override string SmExitUpToFuncName => MangleFuncName(base.SmExitUpToFuncName);
-
-    public override string SmStateIdVarName => MangleVarName(base.SmStateIdVarName);
-    public override string SmAncestorEventHandlerVarName => MangleVarName(base.SmAncestorEventHandlerVarName);
-    public override string SmCurrentEventHandlersVarName => MangleVarName(base.SmCurrentEventHandlersVarName);
-    public override string SmCurrentStateExitHandlerVarName => MangleVarName(base.SmCurrentStateExitHandlerVarName);
-
     public override string MangleVarName(string snakeCaseName) => StringUtils.SnakeCaseToCamelCase(snakeCaseName);
-
-    public virtual string MangleFuncName(string originalName) => StringUtils.SnakeCaseToPascalCase(originalName);
+    public override string MangleFuncName(string originalName) => StringUtils.SnakeCaseToPascalCase(originalName);
 }
