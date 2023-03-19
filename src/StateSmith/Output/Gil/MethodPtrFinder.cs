@@ -43,7 +43,17 @@ public class MethodPtrFinder : CSharpSyntaxWalker
         if (!node.IsKind(SyntaxKind.SimpleAssignmentExpression))
             return;
 
-        if (node.Right is IdentifierNameSyntax identifierNameSyntax)
+        var right = node.Right;
+
+        if (right is MemberAccessExpressionSyntax accessExpressionSyntax)
+        {
+            if (GilHelper.IsThisMethodAccess(accessExpressionSyntax, model))
+            {
+                right = accessExpressionSyntax.Name;
+            }
+        }
+
+        if (right is IdentifierNameSyntax identifierNameSyntax)
         {
             MaybeAdd(identifierNameSyntax);
         }
@@ -51,7 +61,14 @@ public class MethodPtrFinder : CSharpSyntaxWalker
 
     public override void VisitArgument(ArgumentSyntax node)
     {
-        if (node.Expression is IdentifierNameSyntax identifierNameSyntax)
+        var expression = node.Expression;
+
+        if (expression.IsThisMemberAccess(out var memberAccess))
+        {
+            expression = memberAccess!.Name;
+        }
+
+        if (expression is IdentifierNameSyntax identifierNameSyntax)
         {
             MaybeAdd(identifierNameSyntax);
         }

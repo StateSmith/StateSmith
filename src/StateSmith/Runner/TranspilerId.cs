@@ -7,7 +7,8 @@ public enum TranspilerId
     Default,
 
     C99,
-    CSharp
+    CSharp,
+    JavaScript,
 }
 
 

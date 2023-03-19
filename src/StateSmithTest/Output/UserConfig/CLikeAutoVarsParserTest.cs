@@ -1,20 +1,23 @@
+#nullable enable
+
 using FluentAssertions;
 using StateSmith.Output.UserConfig;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace StateSmithTest;
+namespace StateSmithTest.Output.UserConfig;
 
-public class AutoExpandedVarsProcessorTest
+public class CLikeAutoVarsParserTest
 {
+    readonly CLikeAutoVarsParser autoVarsParser = new();
+
+    private List<string> ParseIdentifiers(string str) => autoVarsParser.ParseIdentifiers(str);
+
     [Fact]
     public void Parse()
     {
-        AutoExpandedVarsProcessor.ParseIdentifiers("""
+        ParseIdentifiers("""
             struct MyType blah;
             int x [33];   
             uint8_t b ;
@@ -30,17 +33,17 @@ public class AutoExpandedVarsProcessorTest
     [Fact]
     public void ParseMultiple()
     {
-        AutoExpandedVarsProcessor.ParseIdentifiers("""
+        ParseIdentifiers("""
             struct MyType blah1, blah2 ;
             int a, b, c;
             int an, *wacky[34][21], example;
             """).Should().BeEquivalentTo("blah1, blah2, a, b, c, an, wacky, example".Split(", "));
 
-        AutoExpandedVarsProcessor.ParseIdentifiers("""
+        ParseIdentifiers("""
             int an, **** wacky [34] [SOME_SIZE], example;
             """).Should().BeEquivalentTo("an, wacky, example".Split(", "));
 
-        AutoExpandedVarsProcessor.ParseIdentifiers("""
+        ParseIdentifiers("""
             int an, **** wacky [34];
             """).Should().BeEquivalentTo("an, wacky".Split(", "));
     }
@@ -48,7 +51,7 @@ public class AutoExpandedVarsProcessorTest
     [Fact]
     public void ParseWithComments()
     {
-        AutoExpandedVarsProcessor.ParseIdentifiers("""
+        ParseIdentifiers("""
                      struct MyType blah; // some wacky leading white space
             
             // int x [33];   
@@ -64,7 +67,7 @@ public class AutoExpandedVarsProcessorTest
     [Fact]
     public void ParseAnonymousStructShouldThrow()
     {
-        Action a = () => AutoExpandedVarsProcessor.ParseIdentifiers("""
+        Action a = () => ParseIdentifiers("""
                           struct MyType blah;
             int x [33];   
             

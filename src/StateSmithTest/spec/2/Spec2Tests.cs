@@ -353,25 +353,45 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
     }
 
     [Fact]
-    public void Test6_Variables()
+    public void Test6_Variables_Normal()
     {
-        tester.PreEvents = "EV6";
+        tester.PreEvents = "EV6 EV1";
 
         // 
         tester.AddEventHandling("EV1", t => t(@"
-            State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
-            State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior skipped.
+            State S1: check behavior `1. EV1 / { count++; }`. Behavior running.
+            State S1: check behavior `2. EV1 [count >= 2] TransitionTo(S2)`. Behavior skipped.
         "));
 
         // 
         tester.AddEventHandling("EV1", t => t(@"
-            State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
-            State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior running.
-            Exit TEST6_S1.
-            Transition action `` for TEST6_S1 to TEST6_S2.
-            Enter TEST6_S2.
+            State S1: check behavior `1. EV1 / { count++; }`. Behavior running.
+            State S1: check behavior `2. EV1 [count >= 2] TransitionTo(S2)`. Behavior running.
+            Exit S1.
+            Transition action `` for S1 to S2.
+            Enter S2.
+        "));
+    }
+
+    [Fact]
+    public void Test6_Variables_AutoVar()
+    {
+        tester.PreEvents = "EV6 EV2";
+
+        // 
+        tester.AddEventHandling("EV1", t => t(@"
+            State S1: check behavior `1. EV1 / { auto_var_1++; }`. Behavior running.
+            State S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(S2)`. Behavior skipped.
         "));
 
+        // 
+        tester.AddEventHandling("EV1", t => t(@"
+            State S1: check behavior `1. EV1 / { auto_var_1++; }`. Behavior running.
+            State S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(S2)`. Behavior running.
+            Exit S1.
+            Transition action `` for S1 to S2.
+            Enter S2.
+        "));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
