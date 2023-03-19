@@ -295,7 +295,7 @@ namespace Csharp.Spec2smTests
         }
 
         // Variables. Can be used for inputs, outputs, user variables...
-        public Vars vars;
+        public Vars vars = new Vars();
 
         // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
         public Spec2Sm()

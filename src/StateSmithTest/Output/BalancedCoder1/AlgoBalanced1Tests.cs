@@ -140,7 +140,7 @@ public class AlgoBalanced1Tests
         var s1 = sm.AddChild(new State("S1"));
         var s2 = sm.AddChild(new State("S2"));
 
-        sm.AddChild(new InitialState()).AddTransitionTo(s1).actionCode = "self->vars.b = false;";
+        sm.AddChild(new InitialState()).AddTransitionTo(s1).actionCode = "this.vars.b = false;";
         s1.AddTransitionTo(s2);
 
         sm.variables += "bool b;";
@@ -149,7 +149,7 @@ public class AlgoBalanced1Tests
         {
             sp.AddSingletonT(new RenderConfigVars()
             {
-                VariableDeclarations = "//This is super cool!\nbyte x;"
+                VariableDeclarations = "//This is super cool!\nx: 0,"
             });
 
             sp.AddSingletonT(new AlgoBalanced1Settings()

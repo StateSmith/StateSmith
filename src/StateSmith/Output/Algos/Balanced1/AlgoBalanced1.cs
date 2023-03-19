@@ -175,7 +175,7 @@ public class AlgoBalanced1 : IGilAlgo
 
             file.AppendLine();
             file.AppendLine("// Variables. Can be used for inputs, outputs, user variables...");
-            file.AppendLine("public Vars vars;");
+            file.AppendLine("public Vars vars = new Vars();");
         }
     }
 
@@ -212,7 +212,7 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine("// Starts the state machine. Must be called before dispatching events. Not thread safe.");
         file.Append($"public void {mangler.SmStartFuncName}()");
         file.StartCodeBlock();
-        file.AppendLine("ROOT_enter();");
+        file.AppendLine("this.ROOT_enter();");
 
         var initialState = Sm.Children.OfType<InitialState>().Single();
 

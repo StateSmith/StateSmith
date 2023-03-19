@@ -93,7 +93,7 @@ public class MethodPtrFinderTests
             {
                 // setup trigger/event handlers
                 //this.currentStateExitHandler = AUTO_VAR_TEST__BLAH_exit; // commented out so we can detect with ExitUpToStateHandler() below
-                this.currentEventHandlers[1] = AUTO_VAR_TEST__BLAH_do;
+                this.currentEventHandlers[1] = this.AUTO_VAR_TEST__BLAH_do;
             }
 
             private void AUTO_VAR_TEST__BLAH_exit()
@@ -105,7 +105,7 @@ public class MethodPtrFinderTests
 
             private void AUTO_VAR_TEST__BLAH_do()
             {
-                ExitUpToStateHandler(AUTO_VAR_TEST__BLAH_exit);
+                ExitUpToStateHandler(this.AUTO_VAR_TEST__BLAH_exit);
             }
         }
         """;

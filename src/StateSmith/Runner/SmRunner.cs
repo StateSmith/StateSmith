@@ -105,14 +105,21 @@ public class SmRunner : SmRunner.IExperimentalAccess
             renderConfigCSharpVars.SetFrom(irccs, settings.autoDeIndentAndTrimRenderConfigItems);
         }
 
+        var renderConfigJavaScriptVars = new RenderConfigJavaScriptVars();
+        if (iRenderConfig is IRenderConfigJavaScript rcjs)
+        {
+            renderConfigJavaScriptVars.SetFrom(rcjs, settings.autoDeIndentAndTrimRenderConfigItems);
+        }
+
         diServiceProvider.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.style);
             services.AddSingleton<OutputInfo>();
-            services.AddSingleton<RenderConfigVars>(renderConfigVars);
-            services.AddSingleton<RenderConfigCVars>(renderConfigCVars);
-            services.AddSingleton<RenderConfigCSharpVars>(renderConfigCSharpVars);
+            services.AddSingleton(renderConfigVars);
+            services.AddSingleton(renderConfigCVars);
+            services.AddSingleton(renderConfigCSharpVars);
+            services.AddSingleton(renderConfigJavaScriptVars);
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<ExpansionsPrep>();

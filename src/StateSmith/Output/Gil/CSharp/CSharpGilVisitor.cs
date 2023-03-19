@@ -109,6 +109,17 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         }
     }
 
+    public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
+    {
+        bool done = false;
+
+        if (GilHelper.HandleThisMethodAccess(node, Model, this))
+            done = true;
+
+        if (!done)
+            base.VisitMemberAccessExpression(node);
+    }
+
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
         if (GilHelper.IsGilNoEmit(node))
@@ -169,6 +180,11 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     public override void VisitAttributeList(AttributeListSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
+    }
+
+    public override void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node)
+    {
+        sb.Append(node.ToFullString());
     }
 
     public override void VisitArgumentList(ArgumentListSyntax node)

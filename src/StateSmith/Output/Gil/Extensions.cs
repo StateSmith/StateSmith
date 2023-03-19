@@ -1,10 +1,12 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using StateSmith.Input.Antlr4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 
 #nullable enable
 
@@ -89,6 +91,16 @@ public static class Extensions
         }
     }
 
+    public static void VisitWith(this SyntaxNode node, CSharpSyntaxWalker syntaxWalker)
+    {
+        syntaxWalker.Visit(node);
+    }
+
+    public static void VisitWith(this SyntaxToken token, CSharpSyntaxWalker syntaxWalker)
+    {
+        syntaxWalker.VisitToken(token);
+    }
+
     public static bool HasModifier(this SyntaxTokenList syntaxTokens, SyntaxKind syntaxKind)
     {
         return syntaxTokens.Any(d => (SyntaxKind)d.RawKind == syntaxKind);
@@ -111,4 +123,72 @@ public static class Extensions
         if (node == null) return false;
         return node.Modifiers.HasModifier(SyntaxKind.ReadOnlyKeyword);
     }
+
+    public static bool IsEnumMember(this ISymbol? symbol)
+    {
+        if (symbol == null)
+            return false;
+
+        if (symbol is IParameterSymbol ps && ps.Type.TypeKind == TypeKind.Enum)
+        {
+            return true;
+        }
+
+        if (symbol is IFieldSymbol f && f.Type.TypeKind == TypeKind.Enum)
+        {
+            return true;
+        }
+
+        if (symbol is INamedTypeSymbol nts && nts.TypeKind == TypeKind.Enum)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool IsThisMemberAccess(this ExpressionSyntax node)
+    {
+        return node.IsThisMemberAccess(out _);
+    }
+
+    public static bool IsThisMemberAccess(this ExpressionSyntax node, out MemberAccessExpressionSyntax? memberAccessExpressionSyntax)
+    {
+        if (node is MemberAccessExpressionSyntax memberAccess && memberAccess.IsSimpleMemberAccess())
+        {
+            if (memberAccess.Expression is ThisExpressionSyntax)
+            {
+                memberAccessExpressionSyntax = memberAccess;
+                return true;
+            }
+        }
+
+        memberAccessExpressionSyntax = null;
+        return false;
+    }
+
+    public static bool IsSimpleMemberAccess(this MemberAccessExpressionSyntax node)
+    {
+        return node.IsKind(SyntaxKind.SimpleMemberAccessExpression);
+    }
+
+    public static bool IsIMethodSymbol(this SimpleNameSyntax simpleNameSyntax, SemanticModel semanticModel)
+    {
+        return simpleNameSyntax.IsIMethodSymbol(semanticModel, out _);
+    }
+
+    public static bool IsIMethodSymbol(this SimpleNameSyntax simpleNameSyntax, SemanticModel semanticModel, out IMethodSymbol? methodSymbol)
+    {
+        if (semanticModel.GetSymbolInfo(simpleNameSyntax).Symbol is IMethodSymbol ims)
+        {
+            methodSymbol = ims;
+            return true;
+        }
+        else
+        {
+            methodSymbol = null;
+            return false;
+        }
+    }
+
 }

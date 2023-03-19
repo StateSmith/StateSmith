@@ -6,7 +6,7 @@ public interface IRenderConfigCSharp : IRenderConfig
     string Usings => "";
 
     /// <summary>
-    /// Use to add custom code to generated state machine class, although <seealso cref="UsePartialClass"/> this
+    /// Use to add custom code to generated state machine class, although <seealso cref="UsePartialClass"/>
     /// may suit your needs better.
     /// </summary>
     string ClassCode => "";

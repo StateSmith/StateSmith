@@ -120,4 +120,89 @@ public class GilHelper
             throw new TranspilerException(message, programText);
         }
     }
+
+    public static string GetFQN(ISymbol symbol)
+    {
+        var parts = new List<string>();
+
+        parts.Insert(index: 0, symbol.Name);
+        symbol = symbol.ContainingSymbol;
+
+        while (symbol != null)
+        {
+            if (symbol is INamespaceSymbol namespaceSymbol)
+            {
+                // need to stop at global namespace to prevent ascending into dll
+                if (namespaceSymbol.IsGlobalNamespace)
+                {
+                    break;
+                }
+            }
+
+            if (symbol is not IMethodSymbol)
+                parts.Insert(index: 0, symbol.Name);
+
+            symbol = symbol.ContainingSymbol;
+        }
+
+        var fqn = string.Join(".", parts);
+        return fqn;
+    }
+
+    public static bool ExpressionIsEnumMember(SemanticModel model, ExpressionSyntax expressionSyntax)
+    {
+        ISymbol? symbol = model.GetSymbolInfo(expressionSyntax).Symbol;
+        return symbol.IsEnumMember();
+    }
+
+    public static bool IsEnumMemberConversionToInt(SemanticModel model, CastExpressionSyntax node)
+    {
+        if (node.Type is PredefinedTypeSyntax pts && pts.Keyword.IsKind(SyntaxKind.IntKeyword))
+        {
+            if (GilHelper.ExpressionIsEnumMember(model, node.Expression))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// returns true if `this.SomeMethod`
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="model"></param>
+    /// <returns></returns>
+    public static bool IsThisMethodAccess(MemberAccessExpressionSyntax node, SemanticModel model)
+    {
+        if (node.IsThisMemberAccess())
+        {
+            if (node.Name.IsIMethodSymbol(model))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// `this.SomeMethod` to `SomeMethod`
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="model"></param>
+    /// <param name="walker"></param>
+    /// <returns></returns>
+    public static bool HandleThisMethodAccess(MemberAccessExpressionSyntax node, SemanticModel model, CSharpSyntaxWalker walker)
+    {
+        if (IsThisMethodAccess(node, model))
+        {
+            walker.VisitLeadingTrivia(node.GetFirstToken());
+            node.Name.VisitWith(walker);
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -382,59 +382,71 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         bool done = false;
 
-        if (ExpressionIsEnumMember(node.Expression))
+        if (GilHelper.ExpressionIsEnumMember(model, node.Expression))
         {
             // used for enum access: `MyEnumClass.EnumName`
             Visit(node.Name);
             done = true;
         }
+        else if (GilHelper.HandleThisMethodAccess(node, model, this))
+        {
+            done = true;
+        }
         else
         {
-            bool isPtr = false;
-
-            if (node.IsKind(SyntaxKind.SimpleMemberAccessExpression))
+            if (node.IsSimpleMemberAccess())
             {
-                // `this.stuff` to `sm->stuff`
-                if (node.Expression is ThisExpressionSyntax tes)
-                {
-                    VisitLeadingTrivia(tes.Token);
-                    sb.Append("sm");
-                    VisitTrailingTrivia(tes.Token);
-                    isPtr = true;
-                }
-                // `sm.stuff` to `sm->stuff`
-                else if (node.Expression is IdentifierNameSyntax identifierNameSyntax)
-                {
-                    ISymbol? symbol = model.GetSymbolInfo(identifierNameSyntax).Symbol;
-
-                    if (symbol is IParameterSymbol parameterSymbol && parameterSymbol.Type.IsReferenceType)
-                    {
-                        Visit(identifierNameSyntax);
-                        isPtr = true;
-                    }
-                }
-                else
-                {
-                    Visit(node.Expression);
-                }
-
-                if (isPtr)
-                {
-                    sb.Append("->");
-                    VisitTrailingTrivia(node.OperatorToken);
-                }
-                else
-                {
-                    VisitToken(node.OperatorToken);
-                }
-
-                Visit(node.Name);
-                done = true;
+                done = HandleSimpleMemberAccess(node, done);
             }
         }
 
         if (!done)
             base.VisitMemberAccessExpression(node);
+    }
+
+    private bool HandleSimpleMemberAccess(MemberAccessExpressionSyntax node, bool done)
+    {
+        bool isPtr = false;
+
+        if (node.Expression is ThisExpressionSyntax tes)
+        {
+            // `this.stuff` to `sm->stuff`
+            VisitLeadingTrivia(tes.Token);
+            sb.Append("sm");
+            VisitTrailingTrivia(tes.Token);
+            isPtr = true;
+        }
+        // `sm.stuff` to `sm->stuff`
+        else if (node.Expression is IdentifierNameSyntax identifierNameSyntax)
+        {
+            ISymbol? symbol = model.GetSymbolInfo(identifierNameSyntax).Symbol;
+
+            if (symbol is IParameterSymbol parameterSymbol && parameterSymbol.Type.IsReferenceType)
+            {
+                Visit(identifierNameSyntax);
+                isPtr = true;
+            }
+        }
+        else
+        {
+            Visit(node.Expression);
+        }
+
+        if (isPtr)
+        {
+            sb.Append("->");
+            VisitTrailingTrivia(node.OperatorToken);
+        }
+        else
+        {
+            VisitToken(node.OperatorToken);
+        }
+
+        Visit(node.Name);
+        done = true;
+        
+
+        return done;
     }
 
     public override void VisitNullableType(NullableTypeSyntax node)
@@ -443,31 +455,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
         Visit(node.ElementType);
         VisitLeadingTrivia(node.QuestionToken);
         VisitTrailingTrivia(node.QuestionToken);
-    }
-
-    private bool ExpressionIsEnumMember(ExpressionSyntax expressionSyntax)
-    {
-        ISymbol? symbol = model.GetSymbolInfo(expressionSyntax).Symbol;
-
-        if (symbol == null)
-            return false;
-
-        if (symbol is IParameterSymbol ps && ps.Type.TypeKind == TypeKind.Enum)
-        {
-            return true;
-        }
-
-        if (symbol is IFieldSymbol f && f.Type.TypeKind == TypeKind.Enum)
-        {
-            return true;
-        }
-
-        if (symbol is INamedTypeSymbol nts && nts.TypeKind == TypeKind.Enum)
-        {
-            return true;
-        }
-
-        return false;
     }
 
     public override void VisitToken(SyntaxToken token)
@@ -515,7 +502,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public override void VisitCastExpression(CastExpressionSyntax node)
     {
-        if (IsEnumMemberConversionToInt(node))
+        if (GilHelper.IsEnumMemberConversionToInt(model, node))
         {
             // just visit expression so we omit int cast
             // `(int32_t)event_id` ---> `event_id`
@@ -527,18 +514,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         }
     }
 
-    private bool IsEnumMemberConversionToInt(CastExpressionSyntax node)
-    {
-        if (node.Type is PredefinedTypeSyntax pts && pts.Keyword.IsKind(SyntaxKind.IntKeyword))
-        {
-            if (ExpressionIsEnumMember(node.Expression))
-            {
-                return true;
-            }
-        }
 
-        return false;
-    }
 
     public override void VisitIdentifierName(IdentifierNameSyntax node)
     {
@@ -726,34 +702,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
         sb.Append($"{node.GetLeadingTrivia()}");
     }
 
-    private static string GetFQN(ISymbol symbol)
-    {
-        var parts = new List<string>();
-
-        parts.Insert(index: 0, symbol.Name);
-        symbol = symbol.ContainingSymbol;
-
-        while (symbol != null)
-        {
-            if (symbol is INamespaceSymbol namespaceSymbol)
-            {
-                // need to stop at global namespace to prevent ascending into dll
-                if (namespaceSymbol.IsGlobalNamespace)
-                {
-                    break;
-                }
-            }
-
-            if (symbol is not IMethodSymbol)
-                parts.Insert(index: 0, symbol.Name);
-
-            symbol = symbol.ContainingSymbol;
-        }
-
-        var fqn = string.Join(".", parts);
-        return fqn;
-    }
-
     private static string MangleTypeSymbolName(string fullyQualifiedName)
     {
         string textName = fullyQualifiedName.Replace(oldChar: '.', newChar: '_');
@@ -798,7 +746,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
             return methodSymbol.Name;
         }
 
-        var fqn = GetFQN(symbol);
+        var fqn = GilHelper.GetFQN(symbol);
         var name = MangleTypeSymbolName(fqn);
         return name;
     }

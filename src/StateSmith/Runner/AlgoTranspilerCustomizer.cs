@@ -2,6 +2,7 @@ using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Gil.CSharp;
+using StateSmith.Output.Gil.JavaScript;
 
 #nullable enable
 
@@ -23,6 +24,9 @@ public class AlgoTranspilerCustomizer
         if (transpilerId == TranspilerId.Default)
             transpilerId = TranspilerId.C99;
 
+        AlgoBalanced1Settings algoBalanced1Settings = new();
+        sp.AddSingletonT(algoBalanced1Settings);
+
         switch (transpilerId)
         {
             case TranspilerId.C99:
@@ -37,6 +41,16 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IGilTranspiler, GilToCSharp>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
+                    algoBalanced1Settings.skipClassIndentation = false;
+                }
+                break;
+
+            case TranspilerId.JavaScript:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToJavaScript>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();    // todo - rename to something common
+                    sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>(); // fixme: use camelCase
+                    algoBalanced1Settings.skipClassIndentation = false;
                 }
                 break;
         }

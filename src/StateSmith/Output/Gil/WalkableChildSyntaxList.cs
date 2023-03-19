@@ -20,6 +20,11 @@ public class WalkableChildSyntaxList
         this.nodeOrTokenList = childSyntaxList.ToList();
     }
 
+    public WalkableChildSyntaxList(CSharpSyntaxWalker walker, SyntaxNode syntaxNode) : this(walker, syntaxNode.ChildNodesAndTokens())
+    {
+
+    }
+
     public void VisitUpTo(Predicate<SyntaxNodeOrToken> test, bool including = false)
     {
         while (index < nodeOrTokenList.Count)
@@ -38,6 +43,24 @@ public class WalkableChildSyntaxList
         }
     }
 
+    public void SkipUpTo(Predicate<SyntaxNodeOrToken> test, bool including = false)
+    {
+        while (index < nodeOrTokenList.Count)
+        {
+            SyntaxNodeOrToken syntaxNodeOrToken = nodeOrTokenList[index];
+            if (test(syntaxNodeOrToken))
+            {
+                if (including)
+                {
+                    index++;
+                }
+                return;
+            }
+
+            index++;
+        }
+    }
+
     public void VisitNext(SyntaxNodeOrToken? syntaxNodeOrToken = null)
     {
         syntaxNodeOrToken ??= nodeOrTokenList[index];
@@ -53,6 +76,11 @@ public class WalkableChildSyntaxList
     public void VisitUpTo(SyntaxToken syntaxToken, bool including = false)
     {
         VisitUpTo((snot) => snot == syntaxToken, including);
+    }
+
+    public void SkipUpTo(SyntaxToken syntaxToken, bool including = false)
+    {
+        SkipUpTo((snot) => snot == syntaxToken, including);
     }
 
     public void VisitUpTo(SyntaxNode syntaxNode, bool including = false)
