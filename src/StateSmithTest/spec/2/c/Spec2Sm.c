@@ -11564,7 +11564,7 @@ static void TEST9B_ROOT__B4_exit(Spec2Sm* sm)
 }
 
 // Thread safe.
-char const * const Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
+char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
 {
     switch (id)
     {
@@ -11739,7 +11739,7 @@ char const * const Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
 }
 
 // Thread safe.
-char const * const Spec2Sm_event_id_to_string(Spec2Sm_EventId id)
+char const * Spec2Sm_event_id_to_string(Spec2Sm_EventId id)
 {
     switch (id)
     {

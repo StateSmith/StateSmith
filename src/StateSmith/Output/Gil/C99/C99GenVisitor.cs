@@ -563,7 +563,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
             "ulong" => "uint64_t",
             "float" => "float",
             "double" => "double",
-            "string" => "char const * const",
+            "string" => "char const *",
             _ => throw new NotImplementedException(node + ""),
         };
 

@@ -43,7 +43,7 @@ void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id);
 
 
 // Thread safe.
-char const * const Ex1_event_id_to_string(Ex1_EventId id);
+char const * Ex1_event_id_to_string(Ex1_EventId id);
 
 // Generated state machine
 struct Ex1

@@ -166,7 +166,7 @@ static void STATE_2_exit(Ex1* sm)
 
 
 // Thread safe.
-char const * const Ex1_event_id_to_string(Ex1_EventId id)
+char const * Ex1_event_id_to_string(Ex1_EventId id)
 {
     switch (id)
     {

@@ -44,10 +44,10 @@ void Ex2_start(Ex2* sm);
 void Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id);
 
 // Thread safe.
-char const * const Ex2_state_id_to_string(Ex2_StateId id);
+char const * Ex2_state_id_to_string(Ex2_StateId id);
 
 // Thread safe.
-char const * const Ex2_event_id_to_string(Ex2_EventId id);
+char const * Ex2_event_id_to_string(Ex2_EventId id);
 
 // Generated state machine
 struct Ex2

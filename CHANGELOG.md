@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
+### Fixed
+- Minor fix of extra gcc warning for `char const * const`
+  - https://github.com/StateSmith/StateSmith/issues/150
 
 ---
 

@@ -197,7 +197,7 @@ static void STATE_2_myev1(Ex2* sm)
 }
 
 // Thread safe.
-char const * const Ex2_state_id_to_string(Ex2_StateId id)
+char const * Ex2_state_id_to_string(Ex2_StateId id)
 {
     switch (id)
     {
@@ -209,7 +209,7 @@ char const * const Ex2_state_id_to_string(Ex2_StateId id)
 }
 
 // Thread safe.
-char const * const Ex2_event_id_to_string(Ex2_EventId id)
+char const * Ex2_event_id_to_string(Ex2_EventId id)
 {
     switch (id)
     {

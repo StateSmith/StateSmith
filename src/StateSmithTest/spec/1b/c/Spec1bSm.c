@@ -289,7 +289,7 @@ static void S2_1_exit(Spec1bSm* sm)
 }
 
 // Thread safe.
-char const * const Spec1bSm_state_id_to_string(Spec1bSm_StateId id)
+char const * Spec1bSm_state_id_to_string(Spec1bSm_StateId id)
 {
     switch (id)
     {
@@ -304,7 +304,7 @@ char const * const Spec1bSm_state_id_to_string(Spec1bSm_StateId id)
 }
 
 // Thread safe.
-char const * const Spec1bSm_event_id_to_string(Spec1bSm_EventId id)
+char const * Spec1bSm_event_id_to_string(Spec1bSm_EventId id)
 {
     switch (id)
     {
