@@ -14,46 +14,68 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder sb;
     private readonly RenderConfigCSharpVars renderConfigCSharp;
+    private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigVars renderConfig;
 
-    private SemanticModel Model => _model.ThrowIfNull();
-    private SemanticModel? _model;
-
+    private SemanticModel model;
+    
     private bool useStaticDelegates = true;    // could make this a user accessible setting
+
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder? _methodPtrFinder;
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
 
-    public CSharpGilVisitor(StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public CSharpGilVisitor(string gilCode, StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = sb;
         this.renderConfig = renderConfig;
         this.renderConfigCSharp = renderConfigCSharp;
+        transpilerHelper = GilTranspilerHelper.Create(this, gilCode);
+        model = transpilerHelper.model;
     }
 
     public void Process()
     {
-        // get input gil code and then clear string buffer to hold new result
-        string gilCode = sb.ToString();
-        GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _model);
-        sb.Clear();
-
         if (useStaticDelegates)
         {
-            _methodPtrFinder = new(root, _model);
+            _methodPtrFinder = new(transpilerHelper.root, transpilerHelper.model);
             MethodPtrFinder.Find();
         }
 
+        transpilerHelper.PreProcess();
+
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
+
         if (renderConfigCSharp.UseNullable)
             sb.AppendLine($"#nullable enable");
 
         sb.AppendLineIfNotBlank(renderConfigCSharp.Usings);
 
-        this.Visit(root);
+        var nameSpace = renderConfigCSharp.NameSpace.Trim();
+
+        if (nameSpace.Length > 0)
+        {
+            sb.AppendLine("namespace " + renderConfigCSharp.NameSpace);
+            if (NameSpaceNeedsBraces(nameSpace))
+            {
+                sb.AppendLine("{");
+            }
+        }
+
+        this.Visit(transpilerHelper.root);
+
+        if (NameSpaceNeedsBraces(nameSpace))
+        {
+            sb.AppendLine("}");
+        }
 
         FormatOutput();
+    }
+
+    private static bool NameSpaceNeedsBraces(string trimmedNameSpace)
+    {
+        return trimmedNameSpace.Length > 0 && !trimmedNameSpace.EndsWith(";");
     }
 
     private void FormatOutput()
@@ -75,7 +97,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
             return;
         }
 
-        var symbol = Model.GetDeclaredSymbol(node).ThrowIfNull();
+        var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
 
         WalkableChildSyntaxList walkableChildSyntaxList = new(this, node.ChildNodesAndTokens());
         walkableChildSyntaxList.VisitUpTo(node.ParameterList);
@@ -113,7 +135,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     {
         bool done = false;
 
-        if (GilHelper.HandleThisMethodAccess(node, Model, this))
+        if (transpilerHelper.HandleThisMethodAccess(node))
             done = true;
 
         if (!done)
@@ -122,7 +144,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        if (GilHelper.IsGilNoEmit(node))
+        if (transpilerHelper.IsGilNoEmit(node))
             return;
 
         MaybeOutputStaticDelegate(node);
@@ -146,7 +168,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
-        if (GilHelper.HandleSpecialGilEmitClasses(node, this)) return;
+        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
 
         var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
 
@@ -190,7 +212,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     public override void VisitArgumentList(ArgumentListSyntax node)
     {
         var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
-        var iMethodSymbol = (IMethodSymbol)Model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
+        var iMethodSymbol = (IMethodSymbol)model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
 
         if (useStaticDelegates && !iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.DelegateInvoke)
         {
@@ -215,8 +237,8 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     {
         bool done = false;
 
-        done |= GilHelper.HandleGilSpecialInvocations(node, sb);
-        done |= GilHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
+        done |= transpilerHelper.HandleGilSpecialInvocations(node, sb);
+        done |= transpilerHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
         {
             sb.Append(node.GetLeadingTrivia().ToFullString());
             sb.Append($"_ = {argument.ToFullString()}"); // trailing semi-colon is already part of parent ExpressionStatement

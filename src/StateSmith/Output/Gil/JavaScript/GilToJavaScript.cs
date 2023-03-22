@@ -27,8 +27,8 @@ public class GilToJavaScript : IGilTranspiler
 
     public void TranspileAndOutputCode(string gilCode)
     {
-        JavaScriptGilVisitor visitor = new(fileSb, renderConfig, renderConfigJavaScript);
-        visitor.Process(gilCode);
+        JavaScriptGilVisitor visitor = new(gilCode, fileSb, renderConfig, renderConfigJavaScript);
+        visitor.Process();
 
         PostProcessor.PostProcess(fileSb);
 

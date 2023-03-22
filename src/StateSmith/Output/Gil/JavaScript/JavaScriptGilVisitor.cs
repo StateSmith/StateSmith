@@ -16,23 +16,24 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
     private readonly RenderConfigVars renderConfig;
     private readonly RenderConfigJavaScriptVars renderConfigJavaScript;
 
-    private SemanticModel Model => _model.ThrowIfNull();
-    private SemanticModel? _model;
+    private readonly SemanticModel model;
+    private readonly GilTranspilerHelper transpilerHelper;
 
-    public JavaScriptGilVisitor(StringBuilder fileSb, RenderConfigVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public JavaScriptGilVisitor(string gilCode, StringBuilder fileSb, RenderConfigVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = fileSb;
         this.renderConfig = renderConfig;
         this.renderConfigJavaScript = renderConfigJavaScript;
+        transpilerHelper = GilTranspilerHelper.Create(this, gilCode);
+        model = transpilerHelper.model;
     }
 
-    public void Process(string gilCode)
+    public void Process()
     {
-        GilHelper.Compile(gilCode, out CompilationUnitSyntax root, out _model);
+        transpilerHelper.PreProcess();
 
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
-
-        this.Visit(root);
+        this.Visit(transpilerHelper.root);
     }
 
     // delegates are assumed to be method pointers
@@ -49,7 +50,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
-        if (GilHelper.IsGilNoEmit(node))
+        if (transpilerHelper.IsGilNoEmit(node))
             return;
 
         VisitLeadingTrivia(node.GetFirstToken());
@@ -57,14 +58,14 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
         var kids = new WalkableChildSyntaxList(this, node);
         kids.SkipUpTo(node.Identifier, including: true);
 
-        sb.Append(GetJsName(Model.GetDeclaredSymbol(node).ThrowIfNull()));
+        sb.Append(GetJsName(model.GetDeclaredSymbol(node).ThrowIfNull()));
 
         kids.VisitRest();
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
-        if (GilHelper.HandleSpecialGilEmitClasses(node, this)) return;
+        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
 
         var kidsList = new WalkableChildSyntaxList(this, node);
 
@@ -168,7 +169,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitObjectCreationExpression(ObjectCreationExpressionSyntax node)
     {
-        var symbol = (INamedTypeSymbol)Model.GetSymbolInfo(node.Type).Symbol.ThrowIfNull();
+        var symbol = (INamedTypeSymbol)model.GetSymbolInfo(node.Type).Symbol.ThrowIfNull();
 
         if (symbol.TypeKind == TypeKind.Struct)
         {
@@ -212,7 +213,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
         }
         else
         {
-            sb.Append(GetJsName(Model.GetDeclaredSymbol(node).ThrowIfNull()));
+            sb.Append(GetJsName(model.GetDeclaredSymbol(node).ThrowIfNull()));
             node.Identifier.TrailingTrivia.VisitWith(this);
         }
 
@@ -243,8 +244,8 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
     {
         bool done = false;
 
-        done |= GilHelper.HandleGilSpecialInvocations(node, sb);
-        done |= GilHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
+        done |= transpilerHelper.HandleGilSpecialInvocations(node, sb);
+        done |= transpilerHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
         {
             // do nothing
         });
@@ -259,7 +260,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
     {
         bool isDelegateInvoke = false;
 
-        if (((IMethodSymbol?)(Model.GetSymbolInfo(node.Parent.ThrowIfNull()).Symbol))?.MethodKind == MethodKind.DelegateInvoke)
+        if (((IMethodSymbol?)(model.GetSymbolInfo(node.Parent.ThrowIfNull()).Symbol))?.MethodKind == MethodKind.DelegateInvoke)
         {
             // js doesn't bind an instance to a delegate method.
             // we have to use `delegateMethod.call(this)`.
@@ -293,7 +294,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitCastExpression(CastExpressionSyntax node)
     {
-        if (GilHelper.IsEnumMemberConversionToInt(Model, node))
+        if (transpilerHelper.IsEnumMemberConversionToInt(node))
         {
             // just visit expression so we omit int cast
             // `(int32_t)event_id` ---> `event_id`
@@ -350,7 +351,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
             default:
                 {
-                    SymbolInfo symbol = Model.GetSymbolInfo(node);
+                    SymbolInfo symbol = model.GetSymbolInfo(node);
                     result = GetJsName(symbol.Symbol.ThrowIfNull());
                     break;
                 }
@@ -407,7 +408,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
             return result;
         }
 
-        var fqn = GilHelper.GetFQN(symbol);
+        var fqn = transpilerHelper.GetFQN(symbol);
         return fqn;
     }
 }

@@ -78,7 +78,7 @@ public class EventHandlerBuilder
             string expandedGuardCode = MaybeExpandCode(b, b.guardCode); // FIXME should we expand GIL code?
             if (!b.isGilCode)
             {
-                expandedGuardCode = GilHelper.WrapRawCodeWithBoolReturn(expandedGuardCode);
+                expandedGuardCode = GilCreationHelper.WrapRawCodeWithBoolReturn(expandedGuardCode);
             }
 
             File.Append($"if ({expandedGuardCode})");
@@ -536,7 +536,7 @@ public class EventHandlerBuilder
             if (state.Parent == null)
             {
                 File.AppendLine($"// State machine root is a special case. It cannot be exited. Mark as unused.");
-                File.AppendLine(GilHelper.MarkVarAsUnused("this"));
+                File.AppendLine(GilCreationHelper.MarkVarAsUnused("this"));
             }
             else
             {

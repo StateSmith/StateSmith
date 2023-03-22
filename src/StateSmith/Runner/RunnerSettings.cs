@@ -57,6 +57,13 @@ public class RunnerSettings
     public bool outputGilCodeAlways = false;
 
     /// <summary>
+    /// If true, a message will be added to the top of generated files with the date and time
+    /// when the file was written.
+    /// Defaults to false so that it doesn't add noise to version control systems like git.
+    /// </summary>
+    public bool outputCodeGenTimestamp = false;
+
+    /// <summary>
     /// If false (the default), any exception thrown while running StateSmith will be caught
     /// and printed with details. If true, the original exception will propagate with its
     /// original stack trace.

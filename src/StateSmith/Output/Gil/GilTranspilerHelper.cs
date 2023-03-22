@@ -5,51 +5,55 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
 using System.Text;
-using StateSmith.Common;
 using System;
 
 namespace StateSmith.Output.Gil;
 
-public class GilHelper
+public class GilTranspilerHelper
 {
-    protected const string GilNoEmitPrefix = "____GilNoEmit_";
-    protected const string GilNoEmitEchoStringBoolFuncName = GilNoEmitPrefix + "echoStringBool";
-    protected const string GilUnusedVarFuncName = GilNoEmitPrefix + "GilUnusedVar";
+    private readonly CSharpSyntaxWalker transpilerWalker;
+    public readonly SemanticModel model;
+    public readonly CompilationUnitSyntax root;
 
-    public static void AppendGilHelpersFuncs(OutputFile file)
+    public GilTranspilerHelper(CSharpSyntaxWalker transpilerWalker, SemanticModel model, CompilationUnitSyntax? root = null)
     {
-        file.AppendLine($"public static bool {GilNoEmitEchoStringBoolFuncName}(string toEcho) {{ return true; }}");
-        file.AppendLine($"public static void {GilUnusedVarFuncName}(object unusedVar) {{ }}");
+        this.transpilerWalker = transpilerWalker;
+        this.model = model;
+        this.root = root ?? model.SyntaxTree.GetCompilationUnitRoot();
     }
 
-    public static string MarkVarAsUnused(string varName)
+    public static GilTranspilerHelper Create(CSharpSyntaxWalker transpilerWalker, string gilCode)
     {
-        return $"{GilUnusedVarFuncName}({varName});";
+        Compile(gilCode, out var root, out var model);
+        return new GilTranspilerHelper(transpilerWalker, model, root);
     }
 
-    public static string WrapRawCodeWithBoolReturn(string codeToWrap)
+    public void PreProcess()
     {
-        codeToWrap = SymbolDisplay.FormatLiteral(codeToWrap, quote: true);
-        return $"{GilNoEmitEchoStringBoolFuncName}({codeToWrap})";
+        var gilFileTopClasses = root.ChildNodes().OfType<ClassDeclarationSyntax>().Where(cds => IsGilFileTopClass(cds));
+
+        foreach (var node in gilFileTopClasses)
+        {
+            node.GetLeadingTrivia().VisitWith(transpilerWalker);
+        }
     }
 
-    public static bool IsGilNoEmit(string identifierName)
+    public bool IsGilNoEmit(string identifierName)
     {
-        return identifierName.StartsWith(GilNoEmitPrefix);
+        return identifierName.StartsWith(GilCreationHelper.GilNoEmitPrefix);
     }
 
-    public static bool IsGilNoEmit(MethodDeclarationSyntax node)
+    public bool IsGilNoEmit(MethodDeclarationSyntax node)
     {
         return IsGilNoEmit(node.Identifier.ValueText);
     }
 
-    public static void Compile(string programText, out CompilationUnitSyntax root, out SemanticModel model)
+    public static void Compile(string gilCode, out CompilationUnitSyntax root, out SemanticModel model)
     {
-        SyntaxTree tree = CSharpSyntaxTree.ParseText(programText);
+        SyntaxTree tree = CSharpSyntaxTree.ParseText(gilCode);
         root = tree.GetCompilationUnitRoot();
-        ThrowOnError(tree.GetDiagnostics(), programText);
+        ThrowOnError(tree.GetDiagnostics(), gilCode);
 
         var compilation = CSharpCompilation.Create("GilCompilation")
             .AddReferences(MetadataReference.CreateFromFile(
@@ -57,24 +61,48 @@ public class GilHelper
             .AddSyntaxTrees(tree);
 
         model = compilation.GetSemanticModel(tree);
-        ThrowOnError(model.GetDiagnostics(), programText);
+        ThrowOnError(model.GetDiagnostics(), gilCode);
+
+        static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText)
+        {
+            var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
+
+            var message = "";
+
+            foreach (var error in errors)
+            {
+                message += error.ToString() + "\n";
+            }
+
+            if (message.Length > 0)
+            {
+                throw new TranspilerException(message, programText);
+            }
+        }
     }
 
-    public record AddressableFunctionInfo(INamedTypeSymbol DelegateSymbol, ParameterListSyntax ParameterListSyntax);
-
-    public static bool HandleSpecialGilEmitClasses(ClassDeclarationSyntax classDeclarationSyntax, CSharpSyntaxWalker walker)
+    public bool HandleSpecialGilEmitClasses(ClassDeclarationSyntax classDeclarationSyntax)
     {
-        // remove method if not used in an a while
+        if (IsGilFileTopClass(classDeclarationSyntax))
+        {
+            return true;
+        }
+
         return false;
     }
 
-    public static bool HandleGilSpecialInvocations(InvocationExpressionSyntax node, StringBuilder sb)
+    public static bool IsGilFileTopClass(ClassDeclarationSyntax classDeclarationSyntax)
+    {
+        return classDeclarationSyntax.Identifier.Text == GilCreationHelper.GilFileTopClassName;
+    }
+
+    public bool HandleGilSpecialInvocations(InvocationExpressionSyntax node, StringBuilder sb)
     {
         bool gilEmitMethodFoundAndHandled = false;
 
         if (node.Expression is IdentifierNameSyntax ins)
         {
-            if (ins.Identifier.Text == GilHelper.GilNoEmitEchoStringBoolFuncName)
+            if (ins.Identifier.Text == GilCreationHelper.GilNoEmitEchoStringBoolFuncName)
             {
                 gilEmitMethodFoundAndHandled = true;
                 ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
@@ -87,13 +115,13 @@ public class GilHelper
         return gilEmitMethodFoundAndHandled;
     }
 
-    public static bool HandleGilUnusedVarSpecialInvocation(InvocationExpressionSyntax node, Action<ArgumentSyntax> codeBuilder)
+    public bool HandleGilUnusedVarSpecialInvocation(InvocationExpressionSyntax node, Action<ArgumentSyntax> codeBuilder)
     {
         bool gilMethodFoundAndHandled = false;
 
         if (node.Expression is IdentifierNameSyntax ins)
         {
-            if (ins.Identifier.Text == GilHelper.GilUnusedVarFuncName)
+            if (ins.Identifier.Text == GilCreationHelper.GilUnusedVarFuncName)
             {
                 gilMethodFoundAndHandled = true;
                 ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
@@ -104,24 +132,7 @@ public class GilHelper
         return gilMethodFoundAndHandled;
     }
 
-    private static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText)
-    {
-        var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
-
-        var message = "";
-
-        foreach (var error in errors)
-        {
-            message += error.ToString() + "\n";
-        }
-
-        if (message.Length > 0)
-        {
-            throw new TranspilerException(message, programText);
-        }
-    }
-
-    public static string GetFQN(ISymbol symbol)
+    public string GetFQN(ISymbol symbol)
     {
         var parts = new List<string>();
 
@@ -149,17 +160,17 @@ public class GilHelper
         return fqn;
     }
 
-    public static bool ExpressionIsEnumMember(SemanticModel model, ExpressionSyntax expressionSyntax)
+    public bool ExpressionIsEnumMember(ExpressionSyntax expressionSyntax)
     {
         ISymbol? symbol = model.GetSymbolInfo(expressionSyntax).Symbol;
         return symbol.IsEnumMember();
     }
 
-    public static bool IsEnumMemberConversionToInt(SemanticModel model, CastExpressionSyntax node)
+    public bool IsEnumMemberConversionToInt(CastExpressionSyntax node)
     {
         if (node.Type is PredefinedTypeSyntax pts && pts.Keyword.IsKind(SyntaxKind.IntKeyword))
         {
-            if (GilHelper.ExpressionIsEnumMember(model, node.Expression))
+            if (ExpressionIsEnumMember(node.Expression))
             {
                 return true;
             }
@@ -172,8 +183,14 @@ public class GilHelper
     /// returns true if `this.SomeMethod`
     /// </summary>
     /// <param name="node"></param>
-    /// <param name="model"></param>
     /// <returns></returns>
+    public bool IsThisMethodAccess(MemberAccessExpressionSyntax node)
+    {
+        var m = model;
+
+        return IsThisMethodAccess(node, m);
+    }
+
     public static bool IsThisMethodAccess(MemberAccessExpressionSyntax node, SemanticModel model)
     {
         if (node.IsThisMemberAccess())
@@ -191,15 +208,13 @@ public class GilHelper
     /// `this.SomeMethod` to `SomeMethod`
     /// </summary>
     /// <param name="node"></param>
-    /// <param name="model"></param>
-    /// <param name="walker"></param>
     /// <returns></returns>
-    public static bool HandleThisMethodAccess(MemberAccessExpressionSyntax node, SemanticModel model, CSharpSyntaxWalker walker)
+    public bool HandleThisMethodAccess(MemberAccessExpressionSyntax node)
     {
-        if (IsThisMethodAccess(node, model))
+        if (IsThisMethodAccess(node))
         {
-            walker.VisitLeadingTrivia(node.GetFirstToken());
-            node.Name.VisitWith(walker);
+            transpilerWalker.VisitLeadingTrivia(node.GetFirstToken());
+            node.Name.VisitWith(transpilerWalker);
             return true;
         }
 

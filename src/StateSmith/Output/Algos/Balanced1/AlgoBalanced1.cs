@@ -8,6 +8,7 @@ using System;
 using StateSmith.Output.Gil;
 using System.Text;
 using StateSmith.Output.UserConfig;
+using StateSmith.Runner;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
@@ -22,13 +23,14 @@ public class AlgoBalanced1 : IGilAlgo
     protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
     protected readonly IAlgoEventIdToString algoEventIdToString;
     protected readonly IAlgoStateIdToString algoStateIdToString;
+    protected readonly StandardFileHeaderPrinter standardFileHeaderPrinter;
 
     protected StateMachine? _sm;
     protected StateMachine Sm => _sm.ThrowIfNull("Must be set before use");
 
     string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
 
-    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString)
+    public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter)
     {
         this.mangler = mangler;
         this.file = new OutputFile(styler, new StringBuilder());
@@ -39,6 +41,7 @@ public class AlgoBalanced1 : IGilAlgo
         this.settings = settings;
         this.algoEventIdToString = algoEventIdToString;
         this.algoStateIdToString = algoStateIdToString;
+        this.standardFileHeaderPrinter = standardFileHeaderPrinter;
     }
 
     public string GenerateGil(StateMachine sm)
@@ -46,13 +49,17 @@ public class AlgoBalanced1 : IGilAlgo
         this._sm = sm;
         mangler.SetStateMachine(sm);
         eventHandlerBuilder.SetFile(this.file);
+
+        GilCreationHelper.AddFileTopComment(file, standardFileHeaderPrinter.GetFileGilHeader() +
+            $"// Algorithm: {nameof(AlgorithmId.Balanced1)}. See https://github.com/StateSmith/StateSmith/wiki/Algorithms\n");
+
         file.AppendLine($"// Generated state machine");
         file.Append($"public class {mangler.SmTypeName}");
 
         StartClassBlock();
         GenerateInner();
 
-        GilHelper.AppendGilHelpersFuncs(file);
+        GilCreationHelper.AppendGilHelpersFuncs(file);
 
         EndClassBlock();
         return file.ToString();

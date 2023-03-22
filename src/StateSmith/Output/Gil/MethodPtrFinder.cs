@@ -47,7 +47,7 @@ public class MethodPtrFinder : CSharpSyntaxWalker
 
         if (right is MemberAccessExpressionSyntax accessExpressionSyntax)
         {
-            if (GilHelper.IsThisMethodAccess(accessExpressionSyntax, model))
+            if (GilTranspilerHelper.IsThisMethodAccess(accessExpressionSyntax, model))
             {
                 right = accessExpressionSyntax.Name;
             }

@@ -113,7 +113,7 @@ public class MethodPtrFinderTests
     [Fact]
     public void Test1()
     {
-        GilHelper.Compile(input, out CompilationUnitSyntax root, out SemanticModel model);
+        GilTranspilerHelper.Compile(input, out CompilationUnitSyntax root, out SemanticModel model);
 
         var finder = new MethodPtrFinder(root, model);
 

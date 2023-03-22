@@ -79,6 +79,7 @@ public class DiServiceProvider
             services.AddSingleton<EventHandlerBuilder>();
 
             services.AddSingleton<StateNameConflictResolver>();
+            services.AddSingleton<StandardFileHeaderPrinter>();
 
             services.AddSingleton<IAutoVarsParser, CLikeAutoVarsParser>();
         });

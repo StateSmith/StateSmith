@@ -25,38 +25,15 @@ public class GilToCSharp : IGilTranspiler
         this.codeFileWriter = codeFileWriter;
     }
 
-    public void TranspileAndOutputCode(string programText)
+    public void TranspileAndOutputCode(string gilCode)
     {
         //File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.SmName}.gil.cs", programText);
 
-        var nameSpace = renderConfigCSharp.NameSpace.Trim();
-
-        if (nameSpace.Length > 0)
-        {
-            fileSb.AppendLine("namespace " + renderConfigCSharp.NameSpace);
-            if (NameSpaceNeedsBraces(nameSpace))
-            {
-                fileSb.AppendLine("{");
-            }
-        }
-
-        fileSb.AppendLine(programText);
-
-        if (NameSpaceNeedsBraces(nameSpace))
-        {
-            fileSb.AppendLine("}");
-        }
-
-        CSharpGilVisitor cSharpGilVisitor = new(fileSb, renderConfigCSharp, renderConfig);
+        CSharpGilVisitor cSharpGilVisitor = new(gilCode, fileSb, renderConfigCSharp, renderConfig);
         cSharpGilVisitor.Process();
 
         PostProcessor.PostProcess(fileSb);
 
         codeFileWriter.WriteFile($"{outputInfo.outputDirectory}{nameMangler.BaseFileName}.cs", code: fileSb.ToString());
-    }
-
-    private static bool NameSpaceNeedsBraces(string trimmedNameSpace)
-    {
-        return trimmedNameSpace.Length > 0 && !trimmedNameSpace.EndsWith(";");
     }
 }

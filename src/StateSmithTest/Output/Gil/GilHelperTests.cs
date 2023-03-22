@@ -13,7 +13,7 @@ public class GilHelperTests
     [Fact]
     public void GilHelperCompile()
     {
-        Action a = () => GilHelper.Compile(GilCode, out CompilationUnitSyntax _, out SemanticModel _);
+        Action a = () => GilTranspilerHelper.Compile(GilCode, out CompilationUnitSyntax _, out SemanticModel _);
         a.Should().Throw<TranspilerException>().WithMessage("*CS0102*").WithMessage("*CS0229*");
 
         //StateSmith.Output.TranspilerException : (21, 19): error CS0102: The type 'blinky1_printf_sm' already contains a definition for 'state_id'
