@@ -12,6 +12,12 @@ namespace StateSmith.SmGraph
         public string DiagramId { get; set; } = "";
 
         /// <summary>
+        /// Used to track the diagram IDs of other diagram elements that make up this vertex.
+        /// One example is a state's nested handler node like: https://github.com/StateSmith/StateSmith/wiki/Getting-started-using-draw.io-with-StateSmith#restrictions-on-styling-
+        /// </summary>
+        public List<string> DiagramSubIds { get; set; } = new();
+
+        /// <summary>
         /// Depth is used to optimize tree searching. See https://github.com/adamfk/StateSmith/issues/3
         /// </summary>
         internal int _depth;
@@ -37,19 +43,19 @@ namespace StateSmith.SmGraph
         /// <summary>
         /// data structure may change
         /// </summary>
-        internal List<Vertex> _children = new List<Vertex>();
+        internal List<Vertex> _children = new();
         public IReadOnlyList<Vertex> Children => _children;
 
         /// <summary>
         /// data structure may change
         /// </summary>
-        internal List<Behavior> _behaviors = new List<Behavior>();
+        internal List<Behavior> _behaviors = new();
         public IReadOnlyList<Behavior> Behaviors => _behaviors;
 
         /// <summary>
         /// data structure may change
         /// </summary>
-        internal List<Behavior> _incomingTransitions = new List<Behavior>();
+        internal List<Behavior> _incomingTransitions = new();
 
         public IReadOnlyList<Behavior> IncomingTransitions => _incomingTransitions;
 

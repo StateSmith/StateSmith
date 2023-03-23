@@ -97,7 +97,7 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
         var sourceVertex = GetVertexFromNode(edge.source);
         var targetVertex = GetVertexFromNode(edge.target);
 
-        LabelParser labelParser = new LabelParser();
+        LabelParser labelParser = new();
         List<NodeBehavior> nodeBehaviors = labelParser.ParseEdgeLabel(edge.label);
 
         PrintAndThrowIfEdgeParseFail(edge, sourceVertex, targetVertex, labelParser);
@@ -132,6 +132,7 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
 
         Vertex thisVertex = ParseNode(diagramNode, parentVertex);
         thisVertex.DiagramId = diagramNode.id;
+        thisVertex.DiagramSubIds = diagramNode.subIds;
         diagramVertexMap.Add(diagramNode, thisVertex);
 
         parentVertex?.AddChild(thisVertex);

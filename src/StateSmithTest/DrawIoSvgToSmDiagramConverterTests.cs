@@ -22,7 +22,18 @@ public class DrawIoSvgToSmDiagramConverterTests
         var smDiagramRoot = converter.Roots.Single();
         smDiagramRoot.label.Should().Be("$STATEMACHINE : Design1Sm_svg");
         smDiagramRoot.children.Count.Should().Be(4);
-        int i = 2;
+        smDiagramRoot.id.Should().Be("27");
+        
+        int i;
+
+        i = 1;
+        smDiagramRoot.children[i].label.Should().Be("OFF\nenter / light_off();");
+        smDiagramRoot.children[i].parent.Should().Be(smDiagramRoot);
+        smDiagramRoot.children[i].children.Count.Should().Be(0);
+        smDiagramRoot.children[i].id.Should().BeEquivalentTo("31");
+        smDiagramRoot.children[i].subIds.Should().BeEquivalentTo("32");
+
+        i = 2;
         smDiagramRoot.children[i].label.Should().Be("ON_GROUP");
         smDiagramRoot.children[i].parent.Should().Be(smDiagramRoot);
         smDiagramRoot.children[i].children.Count.Should().Be(3);
@@ -32,6 +43,12 @@ public class DrawIoSvgToSmDiagramConverterTests
         runner.FindSingleStateMachine();
         runner.GetStateMachine().Name.Should().Be("Design1Sm_svg");
         ValidateSm(runner);
+
+        var sm = runner.GetStateMachine();
+        NamedVertexMap map = new(sm);
+        var off = map.GetState("OFF");
+        off.DiagramId.Should().Be("31");
+        off.DiagramSubIds.Should().BeEquivalentTo("32");
     }
 
     [Fact]

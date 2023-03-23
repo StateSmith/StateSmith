@@ -125,6 +125,7 @@ public class MxCellsToSmDiagramConverter
         }
         var parent = nodeMap[cell.parent];
         parent.label += "\n" + label;
+        parent.subIds.Add(cell.id);
     }
 
     private DiagramNode? GetParentNode(string? parentId)

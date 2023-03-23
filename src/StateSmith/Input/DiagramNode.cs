@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Linq;
@@ -18,6 +18,12 @@ namespace StateSmith.Input
     public class DiagramNode
     {
         public string id = "";
+
+        /// <summary>
+        /// Used to track the diagram IDs of other diagram elements that make up this DiagramNode.
+        /// One example is a state's nested handler node like: https://github.com/StateSmith/StateSmith/wiki/Getting-started-using-draw.io-with-StateSmith#restrictions-on-styling-
+        /// </summary>
+        public List<string> subIds = new();
         public string label = "";
         public DiagramNode? parent;
         public List<DiagramNode> children = new();
