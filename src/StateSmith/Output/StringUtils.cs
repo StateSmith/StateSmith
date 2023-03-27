@@ -97,10 +97,11 @@ public class StringUtils
         return output;
     }
 
-    internal static string EscapeCharsForString(string str)
+    public static string EscapeCharsForString(string str)
     {
         if (str == null) return null;
 
+        str = StringUtils.ReplaceNewLineChars(str, "\\n");
         str = Regex.Replace(str, @"(\\|"")", "\\$1");
         return str;
     }
