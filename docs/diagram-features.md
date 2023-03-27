@@ -1,3 +1,6 @@
+# Note About Images
+Even though the images in this document feature the old yEd UI, the features are all still the same as what is available in draw.io or plantuml.
+
 # Diagram Features And Syntax
 StateSmith is based on UML2 StateMachines with a few differences.
 
