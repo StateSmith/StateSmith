@@ -1880,7 +1880,7 @@ enter / clear_output();</y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                       <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                       <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-                      <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="1.1368683772161603E-13" top="0" topF="0.0"/>
+                      <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="1.1368683772161603E-13" top="58" topF="58.13635446003218"/>
                     </y:GroupNode>
                     <y:GroupNode>
                       <y:Geometry height="50.0" width="50.0" x="0.0" y="60.0"/>
@@ -1900,18 +1900,6 @@ enter / clear_output();</y:NodeLabel>
                 <node id="n0::n7::n2::n0">
                   <data key="d6">
                     <y:ShapeNode>
-                      <y:Geometry height="36.60000000000002" width="307.1702867450386" x="282.1462547627996" y="850.4202171116776"/>
-                      <y:Fill color="#FFFF99" transparent="false"/>
-                      <y:BorderStyle color="#9E9E10" raised="false" type="dashed" width="1.0"/>
-                      <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="36.60000000000002" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="307.1702867450386" x="0.0" xml:space="preserve" y="-1.1368683772161603E-13">$PARENT_ALIAS
-$mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                      <y:Shape type="roundrectangle"/>
-                    </y:ShapeNode>
-                  </data>
-                </node>
-                <node id="n0::n7::n2::n1">
-                  <data key="d6">
-                    <y:ShapeNode>
                       <y:Geometry height="46.200000000000045" width="554.4869759517527" x="282.14625476279946" y="908.5565715717097"/>
                       <y:Fill color="#FFFFFF" transparent="false"/>
                       <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
@@ -1920,7 +1908,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                     </y:ShapeNode>
                   </data>
                 </node>
-                <node id="n0::n7::n2::n2" yfiles.foldertype="folder">
+                <node id="n0::n7::n2::n1" yfiles.foldertype="folder">
                   <data key="d4" xml:space="preserve"/>
                   <data key="d6">
                     <y:ProxyAutoBoundsNode>
@@ -1948,8 +1936,8 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                       </y:Realizers>
                     </y:ProxyAutoBoundsNode>
                   </data>
-                  <graph edgedefault="directed" id="n0::n7::n2::n2:">
-                    <node id="n0::n7::n2::n2::n0">
+                  <graph edgedefault="directed" id="n0::n7::n2::n1:">
+                    <node id="n0::n7::n2::n1::n0">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="46.200000000000045" width="164.45028674503868" x="637.171202583399" y="952.6800000000001"/>
@@ -1962,7 +1950,7 @@ enter / clear_output();
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n7::n2::n2::n1">
+                    <node id="n0::n7::n2::n1::n1">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="46.200000000000045" width="164.45028674503868" x="637.171202583399" y="1046.96086844671"/>
@@ -1974,7 +1962,7 @@ enter / clear_output();
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n7::n2::n2::n2">
+                    <node id="n0::n7::n2::n1::n2">
                       <data key="d4" xml:space="preserve"/>
                       <data key="d5" xml:space="preserve"><![CDATA[pseudo_initial]]></data>
                       <data key="d6">
@@ -1987,19 +1975,7 @@ enter / clear_output();
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n7::n2::n2::n3">
-                      <data key="d6">
-                        <y:ShapeNode>
-                          <y:Geometry height="36.60000000000002" width="164.4502867450388" x="637.171202583399" y="837.0800000000002"/>
-                          <y:Fill color="#FFFF99" transparent="false"/>
-                          <y:BorderStyle color="#9E9E10" raised="false" type="dashed" width="1.0"/>
-                          <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="36.60000000000002" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="164.4502867450388" x="0.0" xml:space="preserve" y="0.0">$PARENT_ALIAS
-$mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                          <y:Shape type="roundrectangle"/>
-                        </y:ShapeNode>
-                      </data>
-                    </node>
-                    <edge id="n0::n7::n2::n2::e0" source="n0::n7::n2::n2::n0" target="n0::n7::n2::n2::n1">
+                    <edge id="n0::n7::n2::n1::e0" source="n0::n7::n2::n1::n0" target="n0::n7::n2::n1::n1">
                       <data key="d10">
                         <y:QuadCurveEdge straightness="0.1">
                           <y:Path sx="0.0" sy="23.100000000000023" tx="0.0" ty="-23.100000000000023"/>
@@ -2009,7 +1985,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                         </y:QuadCurveEdge>
                       </data>
                     </edge>
-                    <edge id="n0::n7::n2::n2::e1" source="n0::n7::n2::n2::n2" target="n0::n7::n2::n2::n0">
+                    <edge id="n0::n7::n2::n1::e1" source="n0::n7::n2::n1::n2" target="n0::n7::n2::n1::n0">
                       <data key="d10">
                         <y:QuadCurveEdge straightness="0.1">
                           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -2020,7 +1996,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                     </edge>
                   </graph>
                 </node>
-                <node id="n0::n7::n2::n3" yfiles.foldertype="folder">
+                <node id="n0::n7::n2::n2" yfiles.foldertype="folder">
                   <data key="d4" xml:space="preserve"/>
                   <data key="d6">
                     <y:ProxyAutoBoundsNode>
@@ -2048,8 +2024,8 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                       </y:Realizers>
                     </y:ProxyAutoBoundsNode>
                   </data>
-                  <graph edgedefault="directed" id="n0::n7::n2::n3:">
-                    <node id="n0::n7::n2::n3::n0">
+                  <graph edgedefault="directed" id="n0::n7::n2::n2:">
+                    <node id="n0::n7::n2::n2::n0">
                       <data key="d4" xml:space="preserve"/>
                       <data key="d5" xml:space="preserve"><![CDATA[pseudo_initial]]></data>
                       <data key="d6">
@@ -2062,7 +2038,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n7::n2::n3::n1">
+                    <node id="n0::n7::n2::n2::n1">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="46.200000000000045" width="77.12514337251935" x="1478.9005781257538" y="1114.093854853535"/>
@@ -2073,7 +2049,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n7::n2::n3::n2">
+                    <node id="n0::n7::n2::n2::n2">
                       <data key="d6">
                         <y:ShapeNode>
                           <y:Geometry height="46.200000000000045" width="164.45028674503868" x="1162.0884588014815" y="1114.0938548535353"/>
@@ -2086,19 +2062,7 @@ enter / clear_output();
                         </y:ShapeNode>
                       </data>
                     </node>
-                    <node id="n0::n7::n2::n3::n3">
-                      <data key="d6">
-                        <y:ShapeNode>
-                          <y:Geometry height="36.60000000000002" width="307.1702867450386" x="1162.0884588014815" y="998.4938548535354"/>
-                          <y:Fill color="#FFFF99" transparent="false"/>
-                          <y:BorderStyle color="#9E9E10" raised="false" type="dashed" width="1.0"/>
-                          <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="36.60000000000002" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="307.1702867450386" x="0.0" xml:space="preserve" y="-1.1368683772161603E-13">$PARENT_ALIAS
-$mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
-                          <y:Shape type="roundrectangle"/>
-                        </y:ShapeNode>
-                      </data>
-                    </node>
-                    <edge id="n0::n7::n2::n3::e0" source="n0::n7::n2::n3::n2" target="n0::n7::n2::n3::n1">
+                    <edge id="n0::n7::n2::n2::e0" source="n0::n7::n2::n2::n2" target="n0::n7::n2::n2::n1">
                       <data key="d10">
                         <y:BezierEdge>
                           <y:Path sx="82.18305012443716" sy="0.0" tx="0.0" ty="0.0"/>
@@ -2108,8 +2072,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                         </y:BezierEdge>
                       </data>
                     </edge>
-                    <edge id="n0::n7::n2::n3::e1" source="n0::n7::n2::n3::n0" target="n0::n7::n2::n3::n2">
-                      <data key="d9"/>
+                    <edge id="n0::n7::n2::n2::e1" source="n0::n7::n2::n2::n0" target="n0::n7::n2::n2::n2">
                       <data key="d10">
                         <y:BezierEdge>
                           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -2120,7 +2083,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                     </edge>
                   </graph>
                 </node>
-                <node id="n0::n7::n2::n4">
+                <node id="n0::n7::n2::n3">
                   <data key="d4" xml:space="preserve"/>
                   <data key="d5" xml:space="preserve"><![CDATA[pseudo_initial]]></data>
                   <data key="d6">
@@ -2144,8 +2107,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                 </y:QuadCurveEdge>
               </data>
             </edge>
-            <edge id="n0::n7::n2::e0" source="n0::n7::n2::n1" target="n0::n7::n2::n2">
-              <data key="d9"/>
+            <edge id="n0::n7::n2::e0" source="n0::n7::n2::n0" target="n0::n7::n2::n1">
               <data key="d10">
                 <y:BezierEdge>
                   <y:Path sx="-176.7434879758763" sy="23.100000000000023" tx="0.0" ty="-63.5"/>
@@ -2155,8 +2117,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                 </y:BezierEdge>
               </data>
             </edge>
-            <edge id="n0::n7::n2::e1" source="n0::n7::n2::n1" target="n0::n7::n2::n3">
-              <data key="d9"/>
+            <edge id="n0::n7::n2::e1" source="n0::n7::n2::n0" target="n0::n7::n2::n2">
               <data key="d10">
                 <y:BezierEdge>
                   <y:Path sx="197.5172566883423" sy="23.100000000000023" tx="-16.773768712465994" ty="-63.5"/>
@@ -2166,8 +2127,7 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                 </y:BezierEdge>
               </data>
             </edge>
-            <edge id="n0::n7::n2::e2" source="n0::n7::n2::n4" target="n0::n7::n2::n1">
-              <data key="d9"/>
+            <edge id="n0::n7::n2::e2" source="n0::n7::n2::n3" target="n0::n7::n2::n0">
               <data key="d10">
                 <y:BezierEdge>
                   <y:Path sx="10.0" sy="0.0" tx="-277.2434879758763" ty="0.0"/>

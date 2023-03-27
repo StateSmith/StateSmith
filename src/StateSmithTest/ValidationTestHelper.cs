@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+using System;
 using FluentAssertions;
 using StateSmith.SmGraph;
 using StateSmith.Runner;
@@ -19,6 +16,7 @@ namespace StateSmithTest
         {
             inputSmBuilder = new InputSmBuilder();
             diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
+            inputSmBuilder.sp.GetInstanceOf<RunnerSettings>().nameConflictResolution = RunnerSettings.NameConflictResolution.Manual; // required for old duplicate state name detection
         }
 
         public void ExpectBehaviorValidationException(string exceptionMessagePart, Action? additionalAction = null)

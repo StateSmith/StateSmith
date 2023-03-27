@@ -75,7 +75,7 @@ public class RunnerSettings
     /// <summary>
     /// See https://github.com/StateSmith/StateSmith/issues/138
     /// </summary>
-    public NameConflictResolution nameConflictResolution = NameConflictResolution.Manual;
+    public NameConflictResolution nameConflictResolution = NameConflictResolution.ShortFqnAncestor;
 
     public RunnerSettings(string diagramFile, string? outputDirectory = null, AlgorithmId algorithmId = default, TranspilerId transpilerId = default)
     {

@@ -153,6 +153,7 @@ public class ShortFqnNamerTests
 
         runner.Settings.propagateExceptions = true; // for unit testing
         runner.Settings.outputDirectory = Path.GetTempPath(); // for unit testing
+        runner.Settings.nameConflictResolution = RunnerSettings.NameConflictResolution.Manual;
         runner.Run();
     }
 
