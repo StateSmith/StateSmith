@@ -10885,7 +10885,7 @@ trace_guard(msg, condition) {
     }
     
     // Thread safe.
-    stateIdToString(id)
+    static stateIdToString(id)
     {
         switch (id)
         {
@@ -11060,7 +11060,7 @@ trace_guard(msg, condition) {
     }
     
     // Thread safe.
-    eventIdToString(id)
+    static eventIdToString(id)
     {
         switch (id)
         {

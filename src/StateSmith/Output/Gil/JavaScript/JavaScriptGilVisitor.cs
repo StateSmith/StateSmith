@@ -59,8 +59,12 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
         var kids = new WalkableChildSyntaxList(this, node);
         kids.SkipUpTo(node.Identifier, including: true);
 
-        sb.Append(GetJsName(model.GetDeclaredSymbol(node).ThrowIfNull()));
+        IMethodSymbol symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
 
+        if (symbol.IsStatic)
+            sb.Append("static ");
+
+        sb.Append(GetJsName(symbol));
         kids.VisitRest();
     }
 
@@ -323,7 +327,6 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
         {
             case SyntaxKind.PublicKeyword:
             case SyntaxKind.EnumKeyword:
-            case SyntaxKind.StaticKeyword:
             case SyntaxKind.ReadOnlyKeyword:
             case SyntaxKind.PrivateKeyword:
             case SyntaxKind.ConstKeyword:
