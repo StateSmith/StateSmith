@@ -340,7 +340,7 @@ trace_guard(msg, condition) {
     }
     
     // Dispatches an event to the state machine. Not thread safe.
-    dispatchEvent(/** @type {Spec2Sm.EventId} */ eventId)
+    dispatchEvent(eventId)
     {
         let behaviorFunc = this._currentEventHandlers[eventId];
         
@@ -354,7 +354,7 @@ trace_guard(msg, condition) {
     
     // This function is used when StateSmith doesn't know what the active leaf state is at
     // compile time due to sub states or when multiple states need to be exited.
-    _exitUpToStateHandler(/** @type {Spec2Sm.Func} */ desiredStateExitHandler)
+    _exitUpToStateHandler(desiredStateExitHandler)
     {
         while (this._currentStateExitHandler != desiredStateExitHandler)
         {
@@ -10886,7 +10886,7 @@ trace_guard(msg, condition) {
     }
     
     // Thread safe.
-    stateIdToString(/** @type {Spec2Sm.StateId} */ id)
+    stateIdToString(id)
     {
         switch (id)
         {
@@ -11061,7 +11061,7 @@ trace_guard(msg, condition) {
     }
     
     // Thread safe.
-    eventIdToString(/** @type {Spec2Sm.EventId} */ id)
+    eventIdToString(id)
     {
         switch (id)
         {

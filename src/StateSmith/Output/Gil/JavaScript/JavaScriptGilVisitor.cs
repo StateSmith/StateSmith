@@ -283,12 +283,10 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitParameter(ParameterSyntax node)
     {
-        sb.Append("/** @type {");
-
-        node.Type.ThrowIfNull().VisitWith(this);
-
-        sb.Append(PostProcessor.trimHorizontalWhiteSpaceMarker);
-        sb.Append("} */ ");
+        //sb.Append("/** @type {");
+        //node.Type.ThrowIfNull().VisitWith(this);
+        //sb.Append(PostProcessor.trimHorizontalWhiteSpaceMarker);
+        //sb.Append("} */ ");
         node.Identifier.VisitWith(this);
     }
 
