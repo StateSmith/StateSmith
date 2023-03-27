@@ -111,8 +111,6 @@ public partial class CSharpNoNameSpaceExampleSm
     private static readonly Func ptr_ROOT_exit = (CSharpNoNameSpaceExampleSm sm) => sm.ROOT_exit();
     private void ROOT_exit()
     {
-        // State machine root is a special case. It cannot be exited. Mark as unused.
-        _ = this;
     }
 
 

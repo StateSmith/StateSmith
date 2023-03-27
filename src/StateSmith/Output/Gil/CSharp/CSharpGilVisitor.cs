@@ -23,6 +23,8 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
 
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder? _methodPtrFinder;
+    private SyntaxToken? tokenToSkip;
+
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
 
@@ -240,8 +242,9 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         done |= transpilerHelper.HandleGilSpecialInvocations(node, sb);
         done |= transpilerHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
         {
-            sb.Append(node.GetLeadingTrivia().ToFullString());
-            sb.Append($"_ = {argument.ToFullString()}"); // trailing semi-colon is already part of parent ExpressionStatement
+            // skip parent expression semicolon and end of line trivia
+            ExpressionStatementSyntax expressionParent = (ExpressionStatementSyntax)node.Parent!;
+            tokenToSkip = expressionParent.SemicolonToken;
         });
 
         //if (!done)
@@ -265,6 +268,12 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references
     public override void VisitToken(SyntaxToken token)
     {
+        if (token == tokenToSkip)
+        {
+            tokenToSkip = null;
+            return;
+        }
+
         this.VisitLeadingTrivia(token);
         sb.Append(token.Text);
         this.VisitTrailingTrivia(token);

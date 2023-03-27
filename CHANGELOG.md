@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Minor Fixes
 - js - remove incorrect type hinting for "enums"
   - https://github.com/StateSmith/StateSmith/issues/153
+- js, c# - tidy unused argument GIL instruction.
+  - https://github.com/StateSmith/StateSmith/issues/148
 
 ---
 

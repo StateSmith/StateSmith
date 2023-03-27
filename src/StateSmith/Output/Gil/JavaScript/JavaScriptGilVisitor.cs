@@ -18,6 +18,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     private readonly SemanticModel model;
     private readonly GilTranspilerHelper transpilerHelper;
+    private SyntaxToken? tokenToSkip;
 
     public JavaScriptGilVisitor(string gilCode, StringBuilder fileSb, RenderConfigVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
@@ -247,7 +248,9 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
         done |= transpilerHelper.HandleGilSpecialInvocations(node, sb);
         done |= transpilerHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
         {
-            // do nothing
+            // skip parent expression semicolon and end of line trivia
+            ExpressionStatementSyntax expressionParent = (ExpressionStatementSyntax)node.Parent!;
+            tokenToSkip = expressionParent.SemicolonToken;
         });
 
         if (!done)
@@ -308,6 +311,12 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitToken(SyntaxToken token)
     {
+        if (token == tokenToSkip)
+        {
+            tokenToSkip = null;
+            return;
+        }
+
         token.LeadingTrivia.VisitWith(this);
 
         switch ((SyntaxKind)token.RawKind)

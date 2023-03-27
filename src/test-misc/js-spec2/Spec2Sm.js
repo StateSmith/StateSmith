@@ -388,7 +388,6 @@ trace_guard(msg, condition) {
             // Step 1: execute action `trace("Exit Spec2Sm.");`
             console.log("Exit Spec2Sm.");
         } // end of behavior for ROOT
-;
     }
     
     
