@@ -68,6 +68,11 @@ public class WalkableChildSyntaxList
         index++;
     }
 
+    public void SkipNext()
+    {
+        index++;
+    }
+
     public void VisitUpTo(SyntaxKind syntaxKind, bool including = false)
     {
         VisitUpTo((snot) => snot.IsKind(syntaxKind), including);

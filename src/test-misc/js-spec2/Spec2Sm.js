@@ -7,7 +7,6 @@ import { trace, trace_guard } from "./printer.js";
 // Generated state machine
 export class Spec2Sm
 {
-// trace() implemented in base class
 trace_guard(msg, condition) {
     console.log(msg);
     return condition;

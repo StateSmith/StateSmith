@@ -55,7 +55,6 @@ public class SharedCompilationFixture
             ";
 
         string IRenderConfigJavaScript.ClassCode => @"
-                // trace() implemented in base class
                 trace_guard(msg, condition) {
                     console.log(msg);
                     return condition;

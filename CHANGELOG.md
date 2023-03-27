@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - https://github.com/StateSmith/StateSmith/issues/148
 - js - output static functions as static
   - https://github.com/StateSmith/StateSmith/issues/149
+- js - improve whitespace when extending base class
+  - https://github.com/StateSmith/StateSmith/issues/154
 
 ---
 

@@ -1,33 +1,48 @@
+#nullable enable
+
 using Xunit;
 using StateSmithTest.Output.BalancedCoder1;
-using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
-using System.IO;
 using StateSmith.Output.Gil.JavaScript;
+using FluentAssertions;
 
 namespace StateSmithTest.Output.Gil;
 
 public class GilToJavaScriptTests
 {
+    public class CapturingCodeFileWriter : ICodeFileWriter
+    {
+        public string code = "";
+        public void WriteFile(string filePath, string code)
+        {
+            this.code = code;
+        }
+    }
+
     [Fact]
     public void Test()
     {
         string gilCode = AlgoBalanced1Tests.BuildExampleGilFile(skipIndentation: false, out var sm).ToString();
 
-        RenderConfigJavaScriptVars renderConfig = new();
-        renderConfig.UseExportOnClass = true;
+        RenderConfigJavaScriptVars renderConfig = new()
+        {
+            UseExportOnClass = true,
+            ExtendsSuperClass = "MyBaseClass"
+        };
 
         OutputInfo outputInfo = new()
         {
-            outputDirectory = Path.GetTempPath(),
-            //outputDirectory = TestHelper.GetThisDir() // use this one when troubleshooting
+            outputDirectory = TestHelper.GetThisDir()
         };
 
         //File.WriteAllText($"{outputInfo.outputDirectory}temp.gil.cs", gilCode);
 
-        GilToJavaScript transpiler = new(outputInfo, new(sm), new(), renderConfig, new CodeFileWriter());
+        CapturingCodeFileWriter capturingWriter = new();
+        GilToJavaScript transpiler = new(outputInfo, new(sm), new(), renderConfig, capturingWriter);
 
         transpiler.TranspileAndOutputCode(gilCode);
+
+        capturingWriter.code.Should().Contain("export class TestsMySm1 extends MyBaseClass\n{");
     }
 }

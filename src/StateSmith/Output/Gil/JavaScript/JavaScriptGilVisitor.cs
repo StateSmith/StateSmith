@@ -81,9 +81,13 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
             sb.Append("export ");
         }
 
-        kidsList.VisitUpTo(node.Identifier, including: true);
+        kidsList.VisitUpTo(node.Identifier, including: false);
+        kidsList.SkipNext();
 
+        VisitLeadingTrivia(node.Identifier);
+        sb.Append(node.Identifier.Text);
         MaybeOutputExtends();
+        VisitTrailingTrivia(node.Identifier);
 
         kidsList.VisitUpTo(node.OpenBraceToken, including: true);
         sb.AppendLineIfNotBlank(renderConfigJavaScript.ClassCode);  // append class code after open brace token
