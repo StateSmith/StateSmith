@@ -79,24 +79,24 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            RenderConfigCVars renderConfigC = runner.sp.GetServiceOrCreateInstance();
+            RenderConfigCVars renderConfig = runner.sp.GetServiceOrCreateInstance();
 
-            renderConfigC.HFileIncludes.ShouldBeShowDiff("""
+            renderConfig.HFileIncludes.ShouldBeShowDiff("""
             // top level - HFileIncludes
             // sm level - HFileIncludes
             """);
 
-            renderConfigC.CFileIncludes.ShouldBeShowDiff("""
+            renderConfig.CFileIncludes.ShouldBeShowDiff("""
             // top level - CFileIncludes
             // sm level - CFileIncludes
             """);
 
-            renderConfigC.HFileTop.ShouldBeShowDiff("""
+            renderConfig.HFileTop.ShouldBeShowDiff("""
             // top level - HFileTop
             // sm level - HFileTop
             """);
 
-            renderConfigC.CFileTop.ShouldBeShowDiff("""
+            renderConfig.CFileTop.ShouldBeShowDiff("""
             // top level - CFileTop
             // sm level - CFileTop
             """);
@@ -107,32 +107,59 @@ public class DiagramEmbeddedRenderConfigTests
         }
 
         {
-            RenderConfigCSharpVars renderConfigCSharp = runner.sp.GetServiceOrCreateInstance();
+            var renderConfig = runner.sp.GetInstanceOf<RenderConfigCSharpVars>();
+            var defaultConfig = new RenderConfigCSharpVars();
 
-            renderConfigCSharp.Usings.ShouldBeShowDiff("""
+            renderConfig.Usings.ShouldBeShowDiff("""
             // top level - Usings
             // sm level - Usings
             """);
 
-            renderConfigCSharp.NameSpace.ShouldBeShowDiff("""
+            renderConfig.NameSpace.ShouldBeShowDiff("""
             // top level - NameSpace
             // sm level - NameSpace
             """);
 
-            renderConfigCSharp.ClassCode.ShouldBeShowDiff("""
+            renderConfig.ClassCode.ShouldBeShowDiff("""
             // sm level - CSharpClassCode
             """);
 
-            renderConfigCSharp.BaseList.ShouldBeShowDiff("""
+            renderConfig.BaseList.ShouldBeShowDiff("""
                 SomeClass, ISomeInterface
                 """);
 
-            renderConfigCSharp.UseNullable.Should().BeFalse();
-            renderConfigCSharp.UsePartialClass.Should().BeFalse();
+            renderConfig.UseNullable.Should().BeFalse();
+            defaultConfig.UseNullable.Should().BeTrue();
+            renderConfig.UsePartialClass.Should().BeFalse();
+            defaultConfig.UsePartialClass.Should().BeTrue();
 
             const int expectedOptionCount = 6;
             GetTypeFields<RenderConfigCSharpVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
             GetTypeProperties<IRenderConfigCSharp>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+        }
+
+        {
+            var renderConfig = runner.sp.GetInstanceOf<RenderConfigJavaScriptVars>();
+            var defaultConfig = new RenderConfigJavaScriptVars();
+
+            renderConfig.ExtendsSuperClass.ShouldBeShowDiff("""
+                sm level - ExtendsSuperClass
+                """);
+
+            renderConfig.ClassCode.ShouldBeShowDiff("""
+                sm level - ClassCode
+                """);
+
+            renderConfig.UseExportOnClass.Should().BeTrue();
+            defaultConfig.UseExportOnClass.Should().BeFalse();
+
+            renderConfig.PrivatePrefix.ShouldBeShowDiff("""
+                sm level - PrivatePrefix
+                """);
+
+            const int expectedOptionCount = 4;
+            GetTypeFields<RenderConfigJavaScriptVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            GetTypeProperties<IRenderConfigJavaScript>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
         }
     }
 

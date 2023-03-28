@@ -16,6 +16,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     private readonly RenderConfigVars renderConfigVars;
     private readonly RenderConfigCVars renderConfigCVars;
     private readonly RenderConfigCSharpVars renderConfigCSharpVars;
+    private readonly RenderConfigJavaScriptVars renderConfigJavaScriptVars;
     private readonly IStateMachineProvider targetStateMachineProvider;
     private readonly IDiagramVerticesProvider diagramVerticesProvider;
 
@@ -24,12 +25,13 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     /// </summary>
     StateMachine? currentStateMachine = null;
 
-    public RenderConfigVerticesProcessor(RenderConfigVars renderConfig, RenderConfigCVars renderConfigC, IStateMachineProvider targetStateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider, RenderConfigCSharpVars renderConfigCSharpVars)
+    public RenderConfigVerticesProcessor(RenderConfigVars renderConfig, RenderConfigCVars renderConfigC, IStateMachineProvider targetStateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider, RenderConfigCSharpVars renderConfigCSharpVars, RenderConfigJavaScriptVars renderConfigJavaScriptVars)
     {
         this.renderConfigVars = renderConfig;
         this.renderConfigCVars = renderConfigC;
         this.renderConfigCSharpVars = renderConfigCSharpVars;
-     
+        this.renderConfigJavaScriptVars = renderConfigJavaScriptVars;
+
         this.targetStateMachineProvider = targetStateMachineProvider;
         this.diagramVerticesProvider = diagramVerticesProvider;
     }
@@ -119,6 +121,11 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
             case "CSharp" + nameof(IRenderConfigCSharp.UseNullable): renderConfigCSharpVars.UseNullable = ParseBoolValue(v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.UsePartialClass): renderConfigCSharpVars.UsePartialClass = ParseBoolValue(v); break;
 
+            case "JavaScript" + nameof(IRenderConfigJavaScript.ClassCode): AppendOption(ref renderConfigJavaScriptVars.ClassCode, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.ExtendsSuperClass): AppendOption(ref renderConfigJavaScriptVars.ExtendsSuperClass, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.PrivatePrefix): SetOption(ref renderConfigJavaScriptVars.PrivatePrefix, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.UseExportOnClass): renderConfigJavaScriptVars.UseExportOnClass = ParseBoolValue(v); break;
+
             default:
                 throw new VertexValidationException(v, $"Unknown Render Config option `{v.name}`");
         }
@@ -140,6 +147,11 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
     {
         var toAppend = option.value;
         str = StringUtils.AppendWithNewlineIfNeeded(str, toAppend);
+    }
+
+    private static void SetOption(ref string str, ConfigOptionVertex option)
+    {
+        str = option.value;
     }
 
     // applies to any StateMachine in diagram
