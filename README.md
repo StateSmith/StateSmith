@@ -3,7 +3,7 @@ StateSmith is a cross platform, free/open source tool for generating state machi
 
 StateSmith is now generating code for multiple different languages! We will always support good old `C` (or `C++`) with zero dependencies though.
 
-![pipeline-Page-2 drawio (1)](https://user-images.githubusercontent.com/274012/224869149-c2edd266-ab5e-4488-845a-8176be3e14df.png)
+![pipeline-Page-2](https://user-images.githubusercontent.com/274012/228115188-7a711715-099f-4fd7-9555-a14d973add8e.png)
 
 *We will be adding support for [more languages](https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support) after the above are complete.*
 
