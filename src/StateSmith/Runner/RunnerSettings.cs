@@ -33,7 +33,6 @@ public class RunnerSettings
     /// <summary>
     /// Optional. This is used to control how file paths are printed.
     /// Set to an empty string "" if you want the full absolute path to be printed.
-    /// https://github.com/StateSmith/StateSmith/issues/79
     /// </summary>
     public string? filePathPrintBase;
 

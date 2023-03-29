@@ -149,6 +149,7 @@ public class DiServiceProvider
         services.AddSingleton<RenderConfigJavaScriptVars>();
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
+        services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
     }
 
     /// <summary>

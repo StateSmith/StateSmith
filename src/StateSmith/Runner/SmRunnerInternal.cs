@@ -19,14 +19,16 @@ public class SmRunnerInternal
     readonly ICodeGenRunner codeGenRunner;
     readonly ExceptionPrinter exceptionPrinter;
     readonly IConsolePrinter consolePrinter;
+    readonly FilePathPrinter filePathPrinter;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
         this.codeGenRunner = codeGenRunner;
         this.exceptionPrinter = exceptionPrinter;
         this.consolePrinter = consolePrinter;
+        this.filePathPrinter = filePathPrinter;
     }
 
     public void Run()
@@ -98,13 +100,8 @@ public class SmRunnerInternal
 
     private void OutputCompilingDiagramMessage()
     {
-        // https://github.com/StateSmith/StateSmith/issues/79
         string filePath = settings.diagramFile;
-        if (settings.filePathPrintBase?.Trim().Length > 0)
-        {
-            filePath = Path.GetRelativePath(settings.filePathPrintBase, settings.diagramFile);
-        }
-        filePath = filePath.Replace('\\', '/');
+        filePath = filePathPrinter.PrintPath(filePath);
 
         consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
             + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
@@ -130,6 +127,3 @@ public class SmRunnerInternal
         return resultPath;
     }
 }
-
-
-

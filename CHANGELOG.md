@@ -8,7 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - js - added diagram based render config options
   - https://github.com/StateSmith/StateSmith/issues/23
-  
+- Now prints message saying files that are being written
+  - `StateSmith Runner - Writing to file 'some_path/some_file.c'`
+
 ---
 
 ## [0.8.11-alpha]

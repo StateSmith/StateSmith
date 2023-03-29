@@ -4,6 +4,7 @@ using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
 using System.IO;
+using StateSmith.Runner;
 
 namespace StateSmithTest.Output.Gil;
 
@@ -24,7 +25,8 @@ public class GilToC99Tests
 
         //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.Sm.Name}.gil.cs", programText);
 
-        GilToC99 gilToC = new(renderConfigC, outputInfo, new GilToC99Customizer(sm), new CodeFileWriter());
+        FilePathPrinter pathPrinter = new(outputInfo.outputDirectory);
+        GilToC99 gilToC = new(renderConfigC, outputInfo, new GilToC99Customizer(sm), new CodeFileWriter(new StringBufferConsolePrinter(), pathPrinter));
 
         gilToC.TranspileAndOutputCode(programText);
     }

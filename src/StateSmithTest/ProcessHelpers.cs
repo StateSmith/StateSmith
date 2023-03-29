@@ -64,7 +64,7 @@ public class BashRunnerException : InvalidOperationException
 
 public class BashRunner
 {
-    public static void RunCommand(SimpleProcess simpleProcess, int timeoutMs = 3000, bool throwOnStdErr = true)
+    public static void RunCommand(SimpleProcess simpleProcess, int timeoutMs = 8000, bool throwOnStdErr = true)
     {
         try
         {
