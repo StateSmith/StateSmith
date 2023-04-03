@@ -41,7 +41,7 @@ public class GilTranspilerHelper
 
     public bool IsGilNoEmit(string identifierName)
     {
-        return identifierName.StartsWith(GilCreationHelper.GilNoEmitPrefix);
+        return identifierName.StartsWith(GilCreationHelper.GilPrefix);
     }
 
     public bool IsGilNoEmit(MethodDeclarationSyntax node)
@@ -102,13 +102,21 @@ public class GilTranspilerHelper
 
         if (node.Expression is IdentifierNameSyntax ins)
         {
-            if (ins.Identifier.Text == GilCreationHelper.GilNoEmitEchoStringBoolFuncName)
+            if (ins.Identifier.Text == GilCreationHelper.GilEchoStringBoolReturnFuncName)
             {
                 gilEmitMethodFoundAndHandled = true;
                 ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
                 var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
                 unescaped = unescaped[1..^1]; // range operator
                 sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
+            }
+            else if (ins.Identifier.Text == GilCreationHelper.GilVisitVarArgsBoolReturnFuncName)
+            {
+                gilEmitMethodFoundAndHandled = true;
+                foreach (var arg in node.ArgumentList.Arguments)
+                {
+                    this.transpilerWalker.Visit(arg);
+                }
             }
         }
 

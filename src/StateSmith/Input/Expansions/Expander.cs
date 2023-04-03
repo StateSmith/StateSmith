@@ -1,18 +1,22 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Reflection;
 
 namespace StateSmith.Input.Expansions;
 
 public class Expander
 {
-    private Dictionary<string, string> variableExpansions = new Dictionary<string, string>();
-    private Dictionary<string, ExpansionFunction> functionExpansions = new Dictionary<string, ExpansionFunction>();
+    private readonly Dictionary<string, string> variableExpansions = new();
+    private readonly Dictionary<string, ExpansionFunction> functionExpansions = new();
+
+    /// <summary>This access may change in the future.</summary>
+    public IDictionary<string, string> VariableExpansions => variableExpansions;
+    /// <summary>This access may change in the future.</summary>
+    public IDictionary<string, ExpansionFunction> FunctionExpansions => functionExpansions;
 
     private void ThrowIfExpansionNameAlreadyUsed(string expansionName)
     {
-        //todolow make custom exception
+        //todo_low make custom exception
         if (variableExpansions.ContainsKey(expansionName))
         {
             throw new ArgumentException($"Expansion name `{expansionName}` already has a variable mapping");

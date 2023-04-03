@@ -1,20 +1,48 @@
 #nullable enable
 
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace StateSmith.Output.Gil;
 
 public class GilCreationHelper
 {
-    public const string GilNoEmitPrefix = "____GilNoEmit_";
-    public const string GilNoEmitEchoStringBoolFuncName = GilNoEmitPrefix + "echoStringBool";
-    public const string GilUnusedVarFuncName = GilNoEmitPrefix + "GilUnusedVar";
-    public const string GilFileTopClassName = GilNoEmitPrefix + "FileTop";
+    /// <summary>
+    /// Helps prevent clashing with code to transpile.
+    /// </summary>
+    public const string GilPrefix = "____GilNoEmit_";
+
+    /// <summary>
+    /// The string passed to this function will be unescaped and then emitted without the transpiler getting to see it.
+    /// This is useful for outputting user code that isn't valid GIL/C# code that the transpiler would otherwise error on.
+    /// </summary>
+    public const string GilEchoStringBoolReturnFuncName = GilPrefix + "EchoStringBool";
+
+    /// <summary>
+    /// Causes transpiler to visit a variable number of arguments passed to this function. Has a fake bool return so
+    /// that it can be used where a bool is expected (like in guard code).
+    /// </summary>
+    public const string GilVisitVarArgsBoolReturnFuncName = GilPrefix + "VarArgsToBool";
+
+    /// <summary>
+    /// Gives any interested transpilers a chance to mark a variable as unused.
+    /// </summary>
+    public const string GilUnusedVarFuncName = GilPrefix + "UnusedVar";
+
+    /// <summary>
+    /// Allows us to output a GIL comment at the top of the file for the transpiler to handle.
+    /// This is not the same as the RenderConfig FileTop. Transpilers output that directly.
+    /// </summary>
+    public const string GilFileTopClassName = GilPrefix + "FileTop";
+
+    /// <summary>
+    /// `$gil(code...)`
+    /// </summary>
+    public const string GilExpansionMarkerFuncName = "$gil";
 
     public static void AppendGilHelpersFuncs(OutputFile file)
     {
-        file.AppendLine($"public static bool {GilNoEmitEchoStringBoolFuncName}(string toEcho) {{ return true; }}");
+        file.AppendLine($"public static bool {GilEchoStringBoolReturnFuncName}(string toEcho) {{ return true; }}");
+        file.AppendLine($"public static bool {GilVisitVarArgsBoolReturnFuncName}(params object[] args) {{ return true; }}");
         file.AppendLine($"public static void {GilUnusedVarFuncName}(object unusedVar) {{ }}");
     }
 
@@ -32,9 +60,17 @@ public class GilCreationHelper
         file.AppendLine($"public class {GilFileTopClassName} {{ }}");
     }
 
+    /// <summary>
+    /// This is useful for outputting user code that isn't valid GIL/C# code that the transpiler would otherwise error on.
+    /// </summary>
     public static string WrapRawCodeWithBoolReturn(string codeToWrap)
     {
         codeToWrap = SymbolDisplay.FormatLiteral(codeToWrap, quote: true);
-        return $"{GilNoEmitEchoStringBoolFuncName}({codeToWrap})";
+        return $"{GilEchoStringBoolReturnFuncName}({codeToWrap})";
+    }
+
+    public static string MarkAsGilExpansionCode(string code)
+    {
+        return $"{GilExpansionMarkerFuncName}({code})";
     }
 }

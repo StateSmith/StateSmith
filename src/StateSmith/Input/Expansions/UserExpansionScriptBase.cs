@@ -1,34 +1,33 @@
 #nullable enable
 using System.Runtime.CompilerServices;
 
-namespace StateSmith.Input.Expansions
+namespace StateSmith.Input.Expansions;
+
+public class UserExpansionScriptBase
 {
-    public class UserExpansionScriptBase
+    /// <summary>
+    /// This value will be updated as necessary for target language and rendering engine
+    /// </summary>
+    internal string? varsPath = null;
+
+    /// <summary>
+    /// This value will be updated as necessary for target language and rendering engine
+    /// </summary>
+    public string VarsPath => varsPath!;
+
+    /// <summary>
+    /// todolow
+    /// </summary>
+    public static string AutoNameCopy([CallerMemberName] string methodName = "")
     {
-        /// <summary>
-        /// This value will be updated as necessary for target language and rendering engine
-        /// </summary>
-        internal string? varsPath = null;
+        return methodName;
+    }
 
-        /// <summary>
-        /// This value will be updated as necessary for target language and rendering engine
-        /// </summary>
-        public string VarsPath => varsPath!;
-
-        /// <summary>
-        /// todolow
-        /// </summary>
-        public static string AutoNameCopy([CallerMemberName] string methodName = "")
-        {
-            return methodName;
-        }
-
-        /// <summary>
-        /// todolow
-        /// </summary>
-        public string AutoVarName([CallerMemberName] string methodName = "")
-        {
-            return VarsPath + methodName;
-        }
+    /// <summary>
+    /// todolow
+    /// </summary>
+    public string AutoVarName([CallerMemberName] string methodName = "")
+    {
+        return VarsPath + methodName;
     }
 }

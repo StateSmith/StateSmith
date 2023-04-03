@@ -20,6 +20,9 @@ public class Test7DeepHistory1Helper
     public readonly string GetBackupVarName = Test7History1Helper.SmVars + ".GET_BACKUP_history";
     public readonly string GetBackupEnumAccess = "GET_BACKUP_HistoryId.";
 
+    readonly string GilStart = Test7History1Helper.GilStart;
+    readonly string GilEnd = Test7History1Helper.GilEnd;
+
     public Test7DeepHistory1Helper(SpecTester tester)
     {
         this.tester = tester;
@@ -51,7 +54,7 @@ public class Test7DeepHistory1Helper
             Exit RACE_CAR.
             Transition action `` for RACE_CAR to TEDDY_BEAR.
             Enter TEDDY_BEAR.
-            State TEDDY_BEAR: check behavior `enter / {{ {BuildVarName} = {BuildEnumAccess}TEDDY_BEAR; }}`. Behavior running.
+            State TEDDY_BEAR: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}TEDDY_BEAR;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -64,7 +67,7 @@ public class Test7DeepHistory1Helper
             Exit TEDDY_BEAR.
             Transition action `` for TEDDY_BEAR to GLOW_WORM.
             Enter GLOW_WORM.
-            State GLOW_WORM: check behavior `enter / {{ {BuildVarName} = {BuildEnumAccess}GLOW_WORM; }}`. Behavior running.
+            State GLOW_WORM: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}GLOW_WORM;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -77,10 +80,10 @@ public class Test7DeepHistory1Helper
             Exit GLOW_WORM.
             Transition action `` for GLOW_WORM to ROBOT.
             Enter ROBOT.
-            State ROBOT: check behavior `enter / {{ {BuildVarName} = {BuildEnumAccess}ROBOT; }}`. Behavior running.
+            State ROBOT: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}ROBOT;{GilEnd} }}`. Behavior running.
             Transition action `` for ROBOT.InitialState to BATTLEBOT.
             Enter BATTLEBOT.
-            State BATTLEBOT: check behavior `enter / {{ {BuildVarName} = {BuildEnumAccess}BATTLEBOT; }}`. Behavior running.
+            State BATTLEBOT: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}BATTLEBOT;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -93,7 +96,7 @@ public class Test7DeepHistory1Helper
             Exit BATTLEBOT.
             Transition action `` for BATTLEBOT to WALL_E.
             Enter WALL_E.
-            State WALL_E: check behavior `enter / {{ {BuildVarName} = {BuildEnumAccess}WALL_E; }}`. Behavior running.
+            State WALL_E: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}WALL_E;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -117,7 +120,7 @@ public class Test7DeepHistory1Helper
     {
         return $@"
             Enter TOOL.
-            State TOOL: check behavior `enter / {{ {BuildVarName} = {BuildEnumAccess}TOOL; }}`. Behavior running.
+            State TOOL: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}TOOL;{GilEnd} }}`. Behavior running.
         ".Trim();
     }
 
@@ -141,7 +144,7 @@ public class Test7DeepHistory1Helper
     {
         return $@"
             Enter CIRCULAR_SAW.
-            State CIRCULAR_SAW: check behavior `enter / {{ {BuildVarName} = {BuildEnumAccess}CIRCULAR_SAW; }}`. Behavior running.
+            State CIRCULAR_SAW: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}CIRCULAR_SAW;{GilEnd} }}`. Behavior running.
         ".Trim();
     }
 
@@ -149,7 +152,7 @@ public class Test7DeepHistory1Helper
     {
         return $@"
             Enter IMPACT_DRILL.
-            State IMPACT_DRILL: check behavior `enter / {{ {BuildVarName} = {BuildEnumAccess}IMPACT_DRILL; }}`. Behavior running.
+            State IMPACT_DRILL: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}IMPACT_DRILL;{GilEnd} }}`. Behavior running.
         ".Trim();
     }
 
@@ -167,7 +170,7 @@ public class Test7DeepHistory1Helper
     {
         return $@"
             Enter GIVE_COOKIES.
-            State GIVE_COOKIES: check behavior `enter / {{ {AliensVarName} = {AliensEnumAccess}GIVE_COOKIES; }}`. Behavior running.
+            State GIVE_COOKIES: check behavior `enter / {{ {GilStart}{AliensVarName} = {AliensEnumAccess}GIVE_COOKIES;{GilEnd} }}`. Behavior running.
         ".Trim();
     }
 
@@ -194,8 +197,8 @@ public class Test7DeepHistory1Helper
     {
         return $@"
              Enter HERO.
-             State HERO: check behavior `enter / {{ {AliensVarName} = {AliensEnumAccess}HERO; }}`. Behavior running.
-             State HERO: check behavior `enter / {{ {GetBackupVarName} = {GetBackupEnumAccess}HERO; }}`. Behavior running.
+             State HERO: check behavior `enter / {{ {GilStart}{AliensVarName} = {AliensEnumAccess}HERO;{GilEnd} }}`. Behavior running.
+             State HERO: check behavior `enter / {{ {GilStart}{GetBackupVarName} = {GetBackupEnumAccess}HERO;{GilEnd} }}`. Behavior running.
         ".Trim();
     }
 
@@ -225,8 +228,8 @@ public class Test7DeepHistory1Helper
     {
         return $@"
              Enter BUDDY_ELF.
-             State BUDDY_ELF: check behavior `enter / {{ {AliensVarName} = {AliensEnumAccess}BUDDY_ELF; }}`. Behavior running.
-             State BUDDY_ELF: check behavior `enter / {{ {GetBackupVarName} = {GetBackupEnumAccess}BUDDY_ELF; }}`. Behavior running.
+             State BUDDY_ELF: check behavior `enter / {{ {GilStart}{AliensVarName} = {AliensEnumAccess}BUDDY_ELF;{GilEnd} }}`. Behavior running.
+             State BUDDY_ELF: check behavior `enter / {{ {GilStart}{GetBackupVarName} = {GetBackupEnumAccess}BUDDY_ELF;{GilEnd} }}`. Behavior running.
         ".Trim();
     }
 

@@ -17,8 +17,8 @@ public class EventHandlerBuilder
 
     public const string consumeEventVarName = "consume_event";
     private readonly NameMangler mangler;
-    private readonly Expander expander;
     private readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
+    private readonly WrappingExpander wrappingExpander;
 
     private OutputFile? _file;
 
@@ -26,9 +26,9 @@ public class EventHandlerBuilder
 
     public EventHandlerBuilder(Expander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler)
     {
-        this.expander = expander;
         this.pseudoStateHandlerBuilder = pseudoStateHandlerBuilder;
         this.mangler = mangler;
+        this.wrappingExpander = new(expander);
     }
 
     public void SetFile(OutputFile file)
@@ -75,27 +75,15 @@ public class EventHandlerBuilder
     {
         if (b.HasGuardCode())
         {
-            string expandedGuardCode = MaybeExpandCode(b, b.guardCode); // FIXME should we expand GIL code?
-            if (!b.isGilCode)
-            {
-                expandedGuardCode = GilCreationHelper.WrapRawCodeWithBoolReturn(expandedGuardCode);
-            }
-
-            File.Append($"if ({expandedGuardCode})");
+            string expandedGuardCode = wrappingExpander.ExpandWrapGuardCode(b);
+            File.AppendLines($"if ({expandedGuardCode})");
         }
-    }
-
-    private string MaybeExpandCode(Behavior b, string code)
-    {
-        if (b.isGilCode)
-            return code;
-
-        return ExpandingVisitor.ParseAndExpandCode(expander, code);
     }
 
     private void DescribeBehaviorWithUmlComment(Behavior b)
     {
-        File.AppendLine($"// uml: {b.DescribeAsUml()}");
+        string uml = b.DescribeAsUml();
+        File.AppendLine($"// uml: {uml}");
     }
 
     private void OutputTransitionCodeInner(Behavior behavior, bool noAncestorHandlesEvent, bool checkForExiting = true)
@@ -207,7 +195,7 @@ public class EventHandlerBuilder
     {
         if (behavior.HasActionCode())
         {
-            var expandedAction = MaybeExpandCode(behavior, behavior.actionCode);
+            var expandedAction = wrappingExpander.ExpandCode(behavior.actionCode);
             var inspector = new ActionCodeInspector();
             inspector.Parse(expandedAction);
             if (inspector.identifiersUsed.Contains(consumeEventVarName))
@@ -229,13 +217,8 @@ public class EventHandlerBuilder
                 }
             }
 
-            var expandedAction = MaybeExpandCode(behavior, behavior.actionCode);
-            string prefix = PostProcessor.echoLineMarker;
-
-            if (behavior.isGilCode)
-                prefix = "";
-
-            File.AppendLines($"{expandedAction}", prefix: prefix);
+            var expandedAction = wrappingExpander.ExpandWrapActionCode(behavior);
+            File.AppendLines(expandedAction);
             File.RequestNewLineBeforeMoreCode();
         }
     }

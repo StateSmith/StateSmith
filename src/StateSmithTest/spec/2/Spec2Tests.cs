@@ -1,11 +1,7 @@
 using Spec;
 using Spec.Spec2;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace StateSmithTest.spec2;
@@ -13,6 +9,8 @@ namespace StateSmithTest.spec2;
 public abstract class Spec2Tests : Spec2Fixture, IDisposable
 {
     SpecTester tester = new();
+    public const string GilStart = Test7History1Helper.GilStart;
+    public const string GilEnd = Test7History1Helper.GilEnd;
 
     public abstract string RunProcess(string testEvents);
 
@@ -502,7 +500,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for ON.InitialState to ON.History.
             Transition action `` for ON.History to ON2.
             Enter ON2.
-            State ON2: check behavior `enter / {{ {helper.OnVarName} = {helper.OnEnumAccess}ON2; }}`. Behavior running.
+            State ON2: check behavior `enter / {{ {GilStart}{helper.OnVarName} = {helper.OnEnumAccess}ON2;{GilEnd} }}`. Behavior running.
         "));
 
         // over to off states
@@ -515,7 +513,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF2.
             Enter OFF2.
-            State OFF2: check behavior `enter / {{ {helper.OffVarName} = {helper.OffEnumAccess}OFF2; }}`. Behavior running.
+            State OFF2: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF2;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -530,7 +528,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF1.
             Transition action `` for OFF to OFF3.
             Enter OFF3.
-            State OFF3: check behavior `enter / {{ {helper.OffVarName} = {helper.OffEnumAccess}OFF3; }}`. Behavior running.
+            State OFF3: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF3;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -549,7 +547,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF1.
             Enter OFF1.
-            State OFF1: check behavior `enter / {{ {helper.OffVarName} = {helper.OffEnumAccess}OFF1; }}`. Behavior running.
+            State OFF1: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF1;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -568,7 +566,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF2.
             Enter OFF2.
-            State OFF2: check behavior `enter / {{ {helper.OffVarName} = {helper.OffEnumAccess}OFF2; }}`. Behavior running.
+            State OFF2: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF2;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -587,7 +585,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF3.
             Enter OFF3.
-            State OFF3: check behavior `enter / {{ {helper.OffVarName} = {helper.OffEnumAccess}OFF3; }}`. Behavior running.
+            State OFF3: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF3;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -603,7 +601,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
              {helper.ExpectBuildToAliensExiting("WALL_E", "ROBOT", "TOY")}
              Transition action `` for ALIENS_DETECTED.History to SNOWBALL_FIGHT.
              Enter SNOWBALL_FIGHT.
-             State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = {helper.AliensEnumAccess}SNOWBALL_FIGHT; }}`. Behavior running.
+             State SNOWBALL_FIGHT: check behavior `enter / {{ {GilStart}{helper.AliensVarName} = {helper.AliensEnumAccess}SNOWBALL_FIGHT;{GilEnd} }}`. Behavior running.
          "));
 
         helper.SnowballFight_to_GiveCookies();
@@ -617,11 +615,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for BUILD.InitialState to BUILD.History.
             Transition action `` for BUILD.History to WALL_E.
             Enter TOY.
-            State TOY: check behavior `enter / {{ {helper.BuildVarName} = {helper.BuildEnumAccess}TOY; }}`. Behavior running.
+            State TOY: check behavior `enter / {{ {GilStart}{helper.BuildVarName} = {helper.BuildEnumAccess}TOY;{GilEnd} }}`. Behavior running.
             Enter ROBOT.
-            State ROBOT: check behavior `enter / {{ {helper.BuildVarName} = {helper.BuildEnumAccess}ROBOT; }}`. Behavior running.
+            State ROBOT: check behavior `enter / {{ {GilStart}{helper.BuildVarName} = {helper.BuildEnumAccess}ROBOT;{GilEnd} }}`. Behavior running.
             Enter WALL_E.
-            State WALL_E: check behavior `enter / {{ {helper.BuildVarName} = {helper.BuildEnumAccess}WALL_E; }}`. Behavior running.
+            State WALL_E: check behavior `enter / {{ {GilStart}{helper.BuildVarName} = {helper.BuildEnumAccess}WALL_E;{GilEnd} }}`. Behavior running.
         "));
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
@@ -642,7 +640,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
              {helper.ExpectBuildToAliensExiting("IMPACT_DRILL", "TOOL")}
              Transition action `` for ALIENS_DETECTED.History to SNOWBALL_FIGHT.
              Enter SNOWBALL_FIGHT.
-             State SNOWBALL_FIGHT: check behavior `enter / {{ {helper.AliensVarName} = {helper.AliensEnumAccess}SNOWBALL_FIGHT; }}`. Behavior running.
+             State SNOWBALL_FIGHT: check behavior `enter / {{ {GilStart}{helper.AliensVarName} = {helper.AliensEnumAccess}SNOWBALL_FIGHT;{GilEnd} }}`. Behavior running.
          "));
 
         helper.SnowballFight_to_GiveCookies();
@@ -768,10 +766,10 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit state_1.
             Transition action `` for state_1 to state_2.
             Enter state_2.
-            State state_2: check behavior `enter / { {{historyVar}} = {{historyEnumAccess}}state_2; }`. Behavior running.
+            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_2;{{GilEnd}} }`. Behavior running.
             Transition action `` for state_2.InitialState to state_6.
             Enter state_6.
-            State state_6: check behavior `enter / { {{historyVar}} = {{historyEnumAccess}}state_6; }`. Behavior running.
+            State state_6: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_6;{{GilEnd}} }`. Behavior running.
             """
          ));
 
@@ -781,7 +779,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit state_6.
             Transition action `` for state_6 to state_9.
             Enter state_9.
-            State state_9: check behavior `enter / { {{historyVar}} = {{historyEnumAccess}}state_9; }`. Behavior running.
+            State state_9: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_9;{{GilEnd}} }`. Behavior running.
             """
         ));
 
@@ -805,9 +803,9 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for state_0.InitialState to state_0.History.
             Transition action `` for state_0.History to state_9.
             Enter state_2.
-            State state_2: check behavior `enter / { {{historyVar}} = {{historyEnumAccess}}state_2; }`. Behavior running.
+            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_2;{{GilEnd}} }`. Behavior running.
             Enter state_9.
-            State state_9: check behavior `enter / { {{historyVar}} = {{historyEnumAccess}}state_9; }`. Behavior running.
+            State state_9: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_9;{{GilEnd}} }`. Behavior running.
             """
         ));
 
@@ -829,7 +827,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit state_1.
             Transition action `` for state_1 to state_2.
             Enter state_2.
-            State state_2: check behavior `enter / { {{historyVar}} = {{historyEnumAccess}}state_2; }`. Behavior running.
+            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_2;{{GilEnd}} }`. Behavior running.
             Transition action `` for state_2.InitialState to state_6.
             Enter state_6.
             """
@@ -864,7 +862,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Transition action `` for state_0.InitialState to state_0.History.
             Transition action `` for state_0.History to state_2.
             Enter state_2.
-            State state_2: check behavior `enter / { {{historyVar}} = {{historyEnumAccess}}state_2; }`. Behavior running.
+            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_2;{{GilEnd}} }`. Behavior running.
             Transition action `` for state_2.InitialState to state_6.
             Enter state_6.
             """
