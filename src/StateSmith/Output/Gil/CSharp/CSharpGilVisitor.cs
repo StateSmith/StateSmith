@@ -50,9 +50,9 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
 
         if (renderConfigCSharp.UseNullable)
-            sb.AppendLine($"#nullable enable");
+            sb.AppendLine($"#nullable enable\n");
 
-        sb.AppendLineIfNotBlank(renderConfigCSharp.Usings);
+        sb.AppendLineIfNotBlank(renderConfigCSharp.Usings, optionalTrailer: "\n");
 
         var nameSpace = renderConfigCSharp.NameSpace.Trim();
 
@@ -62,6 +62,10 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
             if (NameSpaceNeedsBraces(nameSpace))
             {
                 sb.AppendLine("{");
+            }
+            else
+            {
+                sb.AppendLine(); // give some space after file scope namespace
             }
         }
 

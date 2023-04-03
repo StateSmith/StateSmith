@@ -50,10 +50,13 @@ public static class Extensions
         return node.Modifiers.Any(d => (SyntaxKind)d.RawKind == SyntaxKind.PublicKeyword);
     }
 
-    public static void AppendLineIfNotBlank(this StringBuilder sb, string text)
+    public static void AppendLineIfNotBlank(this StringBuilder sb, string text, string optionalTrailer = "")
     {
         if (text != string.Empty)
+        {
             sb.AppendLine(text);
+            sb.AppendIfNotBlank(optionalTrailer);
+        }
     }
 
     public static void AppendIfNotBlank(this StringBuilder sb, string text)

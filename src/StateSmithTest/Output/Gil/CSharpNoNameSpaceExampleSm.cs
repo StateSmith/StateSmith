@@ -2,6 +2,7 @@
 // Algorithm: Balanced1. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 #nullable enable
+
 // Generated state machine
 public partial class CSharpNoNameSpaceExampleSm
 {

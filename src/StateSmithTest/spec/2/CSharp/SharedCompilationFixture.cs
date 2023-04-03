@@ -48,9 +48,7 @@ public class SharedCompilationFixture
                 public byte auto_var_1;
             ";
 
-        string IRenderConfigCSharp.NameSpace => @"
-                Csharp.Spec2smTests
-            ";
+        string IRenderConfigCSharp.NameSpace => "Csharp.Spec2smTests";
 
         string IRenderConfigCSharp.Usings => @"
                 using StateSmithTest.spec._2.CSharp; // to get access to MainClass

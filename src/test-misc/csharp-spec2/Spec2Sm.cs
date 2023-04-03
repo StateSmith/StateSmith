@@ -3,7 +3,9 @@
 
 // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
 #nullable enable
+
 using StateSmithTest.spec._2.CSharp; // to get access to MainClass
+
 namespace Csharp.Spec2smTests
 {
     // Generated state machine
