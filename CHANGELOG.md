@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ability to mix GIL and user code. Very helpful for functionality like TracingModder.
   - `$gil()` is now a reserved function used to mark GIL code.
   - https://github.com/StateSmith/StateSmith/issues/128
-- c# - add whitespace around render config options
+- js/c# - add whitespace around render config options
   - https://github.com/StateSmith/StateSmith/issues/156
 
 ---

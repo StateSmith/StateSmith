@@ -33,7 +33,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
     {
         transpilerHelper.PreProcess();
 
-        sb.AppendLineIfNotBlank(renderConfig.FileTop);
+        sb.AppendLineIfNotBlank(renderConfig.FileTop, optionalTrailer:"\n");
         this.Visit(transpilerHelper.root);
     }
 
