@@ -15,6 +15,10 @@ public class StandardSmTransformer : SmTransformer
         Standard_SupportEntryExit,
         Standard_SupportPrefixingModder,
         Standard_SupportHistory,
+        /// <summary>
+        /// https://github.com/StateSmith/StateSmith/issues/136
+        /// </summary>
+        Standard_SupportElseGuard,
         Standard_SupportOrderAndElse,
         /// <summary>
         /// See https://github.com/StateSmith/StateSmith/issues/108
@@ -36,6 +40,7 @@ public class StandardSmTransformer : SmTransformer
         AddStep(TransformationId.Standard_SupportEntryExit, (sm) => EntryExitProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportPrefixingModder, (sm) => PrefixingModder.Process(sm));
         AddStep(TransformationId.Standard_SupportHistory, (sm) => historyProcessor.Process(sm));
+        AddStep(TransformationId.Standard_SupportElseGuard, (sm) => ElseGuardProcessor.Process(sm)); // must happen before ordering step
         AddStep(TransformationId.Standard_SupportOrderAndElse, (sm) => OrderAndElseProcessor.Process(sm)); // should happen after most steps as it orders behaviors
         AddStep(TransformationId.Standard_SupportAlternateTriggers, (sm) => SupportAlternateTriggersProcessor.Process(sm));
         AddStep(TransformationId.Standard_NameConflictResolution, (sm) => nameConflictResolver.ResolveNameConflicts(sm));

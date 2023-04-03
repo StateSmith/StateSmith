@@ -6,12 +6,12 @@ using System;
 using System.Linq;
 using StateSmith.Runner;
 
-namespace StateSmithTest;
+namespace StateSmithTest.SmGraph;
 
 public class OrderAndElseProcessorTests
 {
-    private PlantUMLToNodesEdges translator = new();
-    private InputSmBuilder inputSmBuilder = new();
+    private readonly PlantUMLToNodesEdges translator = new();
+    private readonly InputSmBuilder inputSmBuilder = new();
 
     // https://github.com/StateSmith/StateSmith/issues/59
     [Fact]

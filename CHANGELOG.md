@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 ### Added
+- Support `else` guard.
+  - See https://github.com/StateSmith/StateSmith/issues/136
 - Ability to mix GIL and user code. Very helpful for functionality like TracingModder.
   - `$gil()` is now a reserved function used to mark GIL code.
   - https://github.com/StateSmith/StateSmith/issues/128
