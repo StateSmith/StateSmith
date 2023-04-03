@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output;
 using System.Text.RegularExpressions;
+using StateSmith.Output.Gil;
 
 #nullable enable
 
@@ -135,15 +136,19 @@ public class HistoryProcessor
             string enumValueName = enumName + "." + mangler.HistoryVarEnumValue(historyState, stateToTrack);
 
             {
-                Behavior enterTrackingBehavior = new(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: $"{expansionVarsPath}{historyState.stateTrackingVarName} = {enumValueName};");
-                enterTrackingBehavior.isGilCode = true;
+                string actionCode = $"{expansionVarsPath}{historyState.stateTrackingVarName} = {enumValueName};";
+                actionCode = GilCreationHelper.MarkAsGilExpansionCode(actionCode);
+
+                Behavior enterTrackingBehavior = new(trigger: TriggerHelper.TRIGGER_ENTER, actionCode: actionCode);
                 stateToTrack.AddBehavior(enterTrackingBehavior);
             }
 
             if (!isDefaultTransition)
             {
-                Behavior historyTransitionBehavior = new(guardCode: $"{expansionVarsPath}{historyState.stateTrackingVarName} == {enumValueName}", transitionTarget: stateToTrack);
-                historyTransitionBehavior.isGilCode = true;
+                string guardCode = $"{expansionVarsPath}{historyState.stateTrackingVarName} == {enumValueName}";
+                guardCode = GilCreationHelper.MarkAsGilExpansionCode(guardCode);
+
+                Behavior historyTransitionBehavior = new(guardCode: guardCode, transitionTarget: stateToTrack);
                 historyState.AddBehavior(historyTransitionBehavior);
             }
         }

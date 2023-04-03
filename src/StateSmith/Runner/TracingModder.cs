@@ -3,7 +3,6 @@ using StateSmith.SmGraph.Visitors;
 using StateSmith.SmGraph;
 using StateSmith.Output;
 using System.Linq;
-using StateSmith.Output.Gil;
 
 namespace StateSmith.Runner
 {
@@ -21,12 +20,6 @@ namespace StateSmith.Runner
             foreach (var t in transitions)
             {
                 var tracingCode = $"trace(\"Transition action `{StringUtils.EscapeCharsForString(t.actionCode)}` for {Vertex.Describe(v)} to {Vertex.Describe(t.TransitionTarget)}.\");";
-
-                if (t.isGilCode)
-                {
-                    // todo - should try to expand `trace()` and `trace_guard()`. See https://github.com/StateSmith/StateSmith/issues/128
-                    tracingCode = PostProcessor.RmCommentOut(tracingCode);
-                }
 
                 if (t.HasActionCode())
                 {
@@ -56,12 +49,6 @@ namespace StateSmith.Runner
                 string escapedUml = StringUtils.EscapeCharsForString(uml);
                 var start = $"trace_guard(\"State {v.Name}: check behavior `{escapedUml}`.\", ";
                 var end = ")";
-                if (b.isGilCode)
-                {
-                    // todo - should try to expand `trace()` and `trace_guard()`. See https://github.com/StateSmith/StateSmith/issues/128
-                    start = PostProcessor.RmCommentOut(start);
-                    end = PostProcessor.RmCommentOut(end);
-                }
                 
                 var newGuard = $"{start}{originalGuard}{end}";
                 b.guardCode = newGuard;

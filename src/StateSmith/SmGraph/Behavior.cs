@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 #nullable enable
 
@@ -56,8 +57,6 @@ namespace StateSmith.SmGraph
 
         // https://github.com/StateSmith/StateSmith/issues/3
         public string? viaExit;
-
-        public bool isGilCode = false;
 
         public Behavior() {
             _owningVertex = new State("nullable_dummy_for_tests");  // todo_low: update test code to do this instead.
@@ -246,12 +245,18 @@ namespace StateSmith.SmGraph
 
         public string GetSingleLineGuardCode()
         {
-            return StringUtils.ReplaceNewLineChars(guardCode.Trim(), @"\n");
+            return MakeSingleLineCode(guardCode);
         }
 
         public string GetSingleLineActionCode()
         {
-            return StringUtils.ReplaceNewLineChars(actionCode.Trim(), @"\n");
+            return MakeSingleLineCode(actionCode);
+        }
+
+        internal static string MakeSingleLineCode(string str)
+        {
+            str = StringUtils.ReplaceNewLineChars(str.Trim(), @"\n");
+            return str;
         }
 
         public override string ToString()

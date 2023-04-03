@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+### Added
+- Ability to mix GIL and user code. Very helpful for functionality like TracingModder.
+  - `$gil()` is now a reserved function used to mark GIL code.
+  - https://github.com/StateSmith/StateSmith/issues/128
+
+---
+
 ## [0.8.12-alpha]
 ### Added
 - js - added diagram based render config options

@@ -1,4 +1,3 @@
-using StateSmith.Input.Expansions;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
@@ -10,15 +9,11 @@ namespace StateSmith.Output;
 public class DynamicVarsResolver
 {
     readonly NameMangler mangler;
-    readonly Expander expander;
-    readonly IExpansionVarsPathProvider expansionVarsPathProvider;
     readonly IStateMachineProvider stateMachineProvider;
 
-    public DynamicVarsResolver(NameMangler mangler, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, IStateMachineProvider stateMachineProvider)
+    public DynamicVarsResolver(NameMangler mangler, IStateMachineProvider stateMachineProvider)
     {
         this.mangler = mangler;
-        this.expander = expander;
-        this.expansionVarsPathProvider = expansionVarsPathProvider;
         this.stateMachineProvider = stateMachineProvider;
     }
 
@@ -29,7 +24,6 @@ public class DynamicVarsResolver
         foreach (var h in sm.historyStates)
         {
             string actualVarName = h.stateTrackingVarName;
-            //expander.AddVariableExpansion(h.stateTrackingVarName, expansionVarsPathProvider.ExpansionVarsPath + actualVarName);
             bool useU8 = false;
 
             if (useU8)

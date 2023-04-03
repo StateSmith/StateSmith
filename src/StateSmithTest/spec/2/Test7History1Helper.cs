@@ -15,6 +15,9 @@ public class Test7History1Helper
     public readonly string OffVarName = $"{SmVars}.OFF_history";
     public readonly string OffEnumAccess = "OFF_HistoryId.";
 
+    public const string GilStart = "$gil(";
+    public const string GilEnd = ")";
+
     public Test7History1Helper(SpecTester tester)
     {
         this.tester = tester;
@@ -29,7 +32,7 @@ public class Test7History1Helper
             Exit ON1.
             Transition action `` for ON1 to ON2.
             Enter ON2.
-            State ON2: check behavior `enter / {{ {OnVarName} = {OnEnumAccess}ON2; }}`. Behavior running.
+            State ON2: check behavior `enter / {{ {GilStart}{OnVarName} = {OnEnumAccess}ON2;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -46,7 +49,7 @@ public class Test7History1Helper
             Transition action `` for OFF.InitialState to OFF.History.
             Transition action `` for OFF.History to OFF1.
             Enter OFF1.
-            State OFF1: check behavior `enter / {{ {OffVarName} = {OffEnumAccess}OFF1; }}`. Behavior running.
+            State OFF1: check behavior `enter / {{ {GilStart}{OffVarName} = {OffEnumAccess}OFF1;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -59,7 +62,7 @@ public class Test7History1Helper
             Exit OFF1.
             Transition action `` for OFF1 to OFF2.
             Enter OFF2.
-            State OFF2: check behavior `enter / {{ {OffVarName} = {OffEnumAccess}OFF2; }}`. Behavior running.
+            State OFF2: check behavior `enter / {{ {GilStart}{OffVarName} = {OffEnumAccess}OFF2;{GilEnd} }}`. Behavior running.
         "));
     }
 
@@ -72,7 +75,7 @@ public class Test7History1Helper
             Exit OFF2.
             Transition action `` for OFF2 to OFF3.
             Enter OFF3.
-            State OFF3: check behavior `enter / {{ {OffVarName} = {OffEnumAccess}OFF3; }}`. Behavior running.
+            State OFF3: check behavior `enter / {{ {GilStart}{OffVarName} = {OffEnumAccess}OFF3;{GilEnd} }}`. Behavior running.
         "));
     }
 }

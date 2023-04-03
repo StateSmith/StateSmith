@@ -1,6 +1,7 @@
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using StateSmith.Input.Expansions;
+using StateSmith.Output.Gil;
 
 namespace StateSmith.Input.Antlr4;
 
@@ -38,7 +39,12 @@ public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
 
         var functionName = context.IDENTIFIER().GetText();
 
-        if (expander.HasFunctionName(functionName))
+        if (functionName == GilCreationHelper.GilExpansionMarkerFuncName)
+        {
+            string code = context.braced_function_args().function_args().GetText();
+            result += WrappingExpander.HandleGilFunctionCode(code);
+        }
+        else if (expander.HasFunctionName(functionName))
         {
             result = ExpandFunctionCall(context, result, functionName);
         }

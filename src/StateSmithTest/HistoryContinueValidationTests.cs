@@ -1,3 +1,4 @@
+using StateSmith.Output.Gil;
 using StateSmith.SmGraph;
 using StateSmithTest.spec2;
 using System.Linq;
@@ -15,6 +16,9 @@ public class HistoryContinueValidationTests : ValidationTestHelper
     private string h1EnumAccess = "G1_HistoryId.";
     NamedVertexMap map;
     State GetState(string stateName) => map.GetState(stateName);
+
+    public const string GilStart = GilCreationHelper.GilExpansionMarkerFuncName + "(";
+    public const string GilEnd = ")";
 
     public HistoryContinueValidationTests()
     {
@@ -50,15 +54,15 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         RunCompiler();
 
         h1.ShouldHaveUmlBehaviors($"""
-            [{h1VarName} == {h1EnumAccess}G3] TransitionTo(G3)
-            [{h1VarName} == {h1EnumAccess}G4] TransitionTo(G4)
+            [{GilStart}{h1VarName} == {h1EnumAccess}G3{GilEnd}] TransitionTo(G3)
+            [{GilStart}{h1VarName} == {h1EnumAccess}G4{GilEnd}] TransitionTo(G4)
             else TransitionTo(G2)
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G2; }""");
-        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G3; }""");
-        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G4; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G2;{{GilEnd}} }""");
+        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G3;{{GilEnd}} }""");
+        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G4;{{GilEnd}} }""");
     }
 
     [Fact]
@@ -69,13 +73,13 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         RunCompiler();
 
         h1.ShouldHaveUmlBehaviors($"""
-            [{h1VarName} == {h1EnumAccess}G3] TransitionTo(G3)
+            [{GilStart}{h1VarName} == {h1EnumAccess}G3{GilEnd}] TransitionTo(G3)
             else TransitionTo(G2)
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G2; }""");
-        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G3; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G2;{{GilEnd}} }""");
+        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G3;{{GilEnd}} }""");
         GetState("G4").ShouldHaveUmlBehaviors(""); // note that G4 has no incoming tarnsitions anymore. It is no longer tracked.
     }
 
@@ -87,13 +91,13 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         RunCompiler();
 
         h1.ShouldHaveUmlBehaviors($"""
-            [{h1VarName} == {h1EnumAccess}G4] TransitionTo(G4)
+            [{GilStart}{h1VarName} == {h1EnumAccess}G4{GilEnd}] TransitionTo(G4)
             else TransitionTo(G2)
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G2; }""");
-        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G4; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G2;{{GilEnd}} }""");
+        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G4;{{GilEnd}} }""");
         GetState("G3").ShouldHaveUmlBehaviors(""); // note that G3 has no incoming tarnsitions anymore. It is no longer tracked.
     }
 
@@ -105,16 +109,16 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         RunCompiler();
 
         h1.ShouldHaveUmlBehaviors($$"""
-            [{{h1VarName}} == {{h1EnumAccess}}G2] TransitionTo(G2)
-            [{{h1VarName}} == {{h1EnumAccess}}G3] TransitionTo(G3)
-            [{{h1VarName}} == {{h1EnumAccess}}G4] TransitionTo(G4)
+            [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G2{{GilEnd}}] TransitionTo(G2)
+            [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G3{{GilEnd}}] TransitionTo(G3)
+            [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G4{{GilEnd}}] TransitionTo(G4)
             else / { p = 100; } TransitionTo(G2)
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G2; }""");
-        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G3; }""");
-        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G4; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G2;{{GilEnd}} }""");
+        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G3;{{GilEnd}} }""");
+        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G4;{{GilEnd}} }""");
     }
 
     [Fact]
@@ -127,16 +131,16 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         RunCompiler();
 
         h1.ShouldHaveUmlBehaviors($$"""
-            [{{h1VarName}} == {{h1EnumAccess}}G2] TransitionTo(G2)
-            [{{h1VarName}} == {{h1EnumAccess}}G3] TransitionTo(G3)
-            [{{h1VarName}} == {{h1EnumAccess}}G4] TransitionTo(G4)
+            [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G2{{GilEnd}}] TransitionTo(G2)
+            [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G3{{GilEnd}}] TransitionTo(G3)
+            [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G4{{GilEnd}}] TransitionTo(G4)
             else TransitionTo(G1.ChoicePoint())
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G2; }""");
-        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G3; }""");
-        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G4; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G2;{{GilEnd}} }""");
+        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G3;{{GilEnd}} }""");
+        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G4;{{GilEnd}} }""");
     }
 
     [Fact]
@@ -197,14 +201,14 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         );
 
         h2.ShouldHaveUmlBehaviors($$"""
-            [{{h2VarName}} == {{h2EnumAccess}}G4] TransitionTo(G4)
+            [{{GilStart}}{{h2VarName}} == {{h2EnumAccess}}G4{{GilEnd}}] TransitionTo(G4)
             else TransitionTo(G3)
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G2; }""");
-        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{h2VarName}} = {{h2EnumAccess}}G3; }""");
-        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{h2VarName}} = {{h2EnumAccess}}G4; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G2;{{GilEnd}} }""");
+        GetState("G3").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h2VarName}} = {{h2EnumAccess}}G3;{{GilEnd}} }""");
+        GetState("G4").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h2VarName}} = {{h2EnumAccess}}G4;{{GilEnd}} }""");
     }
 
     [Fact]
@@ -217,20 +221,20 @@ public class HistoryContinueValidationTests : ValidationTestHelper
         RunCompiler();
 
         h1.ShouldHaveUmlBehaviors($"""
-            [{h1VarName} == {h1EnumAccess}G3] TransitionTo(G3)
-            [{h1VarName} == {h1EnumAccess}G4] TransitionTo(G4)
+            [{GilStart}{h1VarName} == {h1EnumAccess}G3{GilEnd}] TransitionTo(G3)
+            [{GilStart}{h1VarName} == {h1EnumAccess}G4{GilEnd}] TransitionTo(G4)
             else TransitionTo(G2)
             """
         );
 
-        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{h1VarName}} = {{h1EnumAccess}}G2; }""");
+        GetState("G2").ShouldHaveUmlBehaviors($$"""enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G2;{{GilEnd}} }""");
         GetState("G3").ShouldHaveUmlBehaviors($$"""
-            enter / { {{h1VarName}} = {{h1EnumAccess}}G3; }
-            enter / { {{h2VarName}} = {{h2EnumAccess}}G3; }
+            enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G3;{{GilEnd}} }
+            enter / { {{GilStart}}{{h2VarName}} = {{h2EnumAccess}}G3;{{GilEnd}} }
             """);
         GetState("G4").ShouldHaveUmlBehaviors($$"""
-            enter / { {{h1VarName}} = {{h1EnumAccess}}G4; }
-            enter / { {{h2VarName}} = {{h2EnumAccess}}G4; }
+            enter / { {{GilStart}}{{h1VarName}} = {{h1EnumAccess}}G4;{{GilEnd}} }
+            enter / { {{GilStart}}{{h2VarName}} = {{h2EnumAccess}}G4;{{GilEnd}} }
             """);
     }
 }
