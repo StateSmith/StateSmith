@@ -1,3 +1,10 @@
+# NOTE! These examples are a bit outdated
+Please see https://github.com/StateSmith/example-drawio-1 instead.
+
+I'm currently working on a multi-programming language tutorial as well.
+
+---
+
 The best way to learn something is by doing. This directory has a bunch of examples you can explore.
 
 🌿 A few of the below examples also have PlantUML files.
