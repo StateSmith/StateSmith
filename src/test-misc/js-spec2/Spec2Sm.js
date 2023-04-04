@@ -4,6 +4,7 @@
 "use strict";    
 // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
 import { trace, trace_guard } from "./printer.js";
+// inside sm - diagram embedded FileTop
 
 // Generated state machine
 export class Spec2Sm

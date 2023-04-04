@@ -29,7 +29,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     protected readonly IGilToC99Customizer customizer;
     protected readonly GilTranspilerHelper transpilerHelper;
 
-    public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.model = model;
         this.hFileSb = hFileSb;
@@ -40,6 +40,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
         sb = hFileSb;
         transpilerHelper.PreProcess();
+        hFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileTop);
         hFileSb.AppendLine("#pragma once");
         hFileSb.AppendLine("#include <stdint.h>\n");
@@ -47,6 +48,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
         sb = cFileSb;
         transpilerHelper.PreProcess();
+        cFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileTop);
         cFileSb.AppendLine($"#include \"{customizer.MakeHFileName()}\"");
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);

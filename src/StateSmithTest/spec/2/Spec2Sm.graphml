@@ -7182,6 +7182,18 @@ blah blah<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:
                 </y:ShapeNode>
               </data>
             </node>
+            <node id="n0::n14::n6">
+              <data key="d6">
+                <y:ShapeNode>
+                  <y:Geometry height="70.16000000000008" width="269.05314337251923" x="-299.4741266434804" y="-326.9907440532794"/>
+                  <y:Fill color="#FFFFFF" transparent="false"/>
+                  <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+                  <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="70.16000000000008" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="269.05314337251923" x="0.0" xml:space="preserve" y="0.0">$CONFIG: FileTop
+// inside sm - diagram embedded FileTop<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                  <y:Shape type="roundrectangle"/>
+                </y:ShapeNode>
+              </data>
+            </node>
           </graph>
         </node>
         <edge id="n0::e0" source="n0::n0" target="n0::n1">

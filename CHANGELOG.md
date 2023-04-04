@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - https://github.com/StateSmith/StateSmith/issues/128
 - js/c# - add whitespace around render config options
   - https://github.com/StateSmith/StateSmith/issues/156
+- c/c++ - support RenderConfig.FileTop in addition to HFileTop and CFileTop
+  - https://github.com/StateSmith/StateSmith/issues/155
 
 ---
 

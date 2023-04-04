@@ -2,6 +2,7 @@
 // Algorithm: Balanced1. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
+// inside sm - diagram embedded FileTop
 #nullable enable
 
 using StateSmithTest.spec._2.CSharp; // to get access to MainClass

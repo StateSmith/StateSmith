@@ -15,6 +15,7 @@ public class GilToC99Tests
     {
         string programText = AlgoBalanced1Tests.BuildExampleGilFile(skipIndentation:true, out var sm).ToString();
 
+        RenderConfigVars renderConfig = new();
         RenderConfigCVars renderConfigC = new();
 
         OutputInfo outputInfo = new()
@@ -23,10 +24,8 @@ public class GilToC99Tests
             //outputDirectory = TestHelper.GetThisDir() // use this one when troubleshooting
         };
 
-        //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.Sm.Name}.gil.cs", programText);
-
         FilePathPrinter pathPrinter = new(outputInfo.outputDirectory);
-        GilToC99 gilToC = new(renderConfigC, outputInfo, new GilToC99Customizer(sm), new CodeFileWriter(new StringBufferConsolePrinter(), pathPrinter));
+        GilToC99 gilToC = new(outputInfo, new GilToC99Customizer(sm), new CodeFileWriter(new StringBufferConsolePrinter(), pathPrinter), renderConfig, renderConfigC);
 
         gilToC.TranspileAndOutputCode(programText);
     }

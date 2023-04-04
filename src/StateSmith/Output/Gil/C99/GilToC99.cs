@@ -1,7 +1,6 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Text;
-using System.IO;
 using StateSmith.Output.UserConfig;
 
 #nullable enable
@@ -13,17 +12,19 @@ public class GilToC99 : IGilTranspiler
     public readonly StringBuilder hFileSb = new();
     public readonly StringBuilder cFileSb = new();
     public readonly RenderConfigCVars renderConfigC;
+    public readonly RenderConfigVars renderConfig;
 
     private readonly ICodeFileWriter codeFileWriter;
     private readonly OutputInfo outputInfo;
     private readonly IGilToC99Customizer cCustomizer;
 
-    public GilToC99(RenderConfigCVars renderConfigC, OutputInfo outputInfo, IGilToC99Customizer cCustomizer, ICodeFileWriter codeFileWriter)
+    public GilToC99(OutputInfo outputInfo, IGilToC99Customizer cCustomizer, ICodeFileWriter codeFileWriter, RenderConfigVars renderConfig, RenderConfigCVars renderConfigC)
     {
         this.renderConfigC = renderConfigC;
         this.outputInfo = outputInfo;
         this.cCustomizer = cCustomizer;
         this.codeFileWriter = codeFileWriter;
+        this.renderConfig = renderConfig;
     }
 
     public void TranspileAndOutputCode(string programText)
@@ -32,7 +33,7 @@ public class GilToC99 : IGilTranspiler
 
         GilTranspilerHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
-        C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfigC, cCustomizer);
+        C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfig, renderConfigC, cCustomizer);
 
         visitor.Visit(root);
 
