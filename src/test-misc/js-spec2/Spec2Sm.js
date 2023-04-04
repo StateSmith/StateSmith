@@ -8,10 +8,7 @@ import { trace, trace_guard } from "./printer.js";
 // Generated state machine
 export class Spec2Sm
 {
-trace_guard(msg, condition) {
-    console.log(msg);
-    return condition;
-}
+// some class code
     static EventId = 
     {
         DO : 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.

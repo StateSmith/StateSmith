@@ -55,10 +55,7 @@ public class SharedCompilationFixture
             ";
 
         string IRenderConfigJavaScript.ClassCode => @"
-                trace_guard(msg, condition) {
-                    console.log(msg);
-                    return condition;
-                }
+                // some class code
             ";
 
         public class CSharpExpansions : Spec2GenericVarExpansions
