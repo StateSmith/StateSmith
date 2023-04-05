@@ -16,7 +16,7 @@ public class UserExpansionScriptBase
     public string VarsPath => varsPath!;
 
     /// <summary>
-    /// todolow
+    /// Expands to just the expansion name.
     /// </summary>
     public static string AutoNameCopy([CallerMemberName] string methodName = "")
     {
@@ -24,7 +24,7 @@ public class UserExpansionScriptBase
     }
 
     /// <summary>
-    /// todolow
+    /// Equivalent to `VarsPath + AutoNameCopy()`
     /// </summary>
     public string AutoVarName([CallerMemberName] string methodName = "")
     {
