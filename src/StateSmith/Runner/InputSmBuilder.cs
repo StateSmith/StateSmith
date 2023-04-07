@@ -43,6 +43,8 @@ public class InputSmBuilder
 
     public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, NameMangler mangler, DrawIoToSmDiagramConverter converter, DiServiceProvider sp, StateMachineProvider stateMachineProvider)
     {
+        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
+
         this.transformer = transformer;
         this.diagramToSmConverter = diagramToSmConverter;
         this.mangler = mangler;
@@ -55,6 +57,8 @@ public class InputSmBuilder
     // The factory helper could setup DI and then this class could rely on it.
     internal InputSmBuilder(Action<DiServiceProvider>? setupAction = null)
     {
+        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
+
         sp = DiServiceProvider.CreateDefault();
         sp.AddSingleton(this);
         setupAction?.Invoke(sp);

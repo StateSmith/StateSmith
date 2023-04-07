@@ -2,6 +2,8 @@ using System.IO;
 using StateSmith.Output;
 using StateSmith.Common;
 using StateSmith.SmGraph;
+using System.Globalization;
+using System.Threading;
 
 #nullable enable
 
@@ -33,6 +35,8 @@ public class SmRunnerInternal
 
     public void Run()
     {
+        AppUseDecimalPeriod();   // done here as well to help with unit tests
+
         try
         {
             consolePrinter.WriteLine();
@@ -107,6 +111,16 @@ public class SmRunnerInternal
             + ((settings.stateMachineName == null) ? "(no state machine name specified)" : $"with target state machine name: `{settings.stateMachineName}`")
             + "."
         );
+    }
+
+    /// <summary>
+    /// Force application number parsing to use periods for decimal points instead of commas.
+    /// Fix for https://github.com/StateSmith/StateSmith/issues/159
+    /// </summary>
+    public static void AppUseDecimalPeriod()
+    {
+        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+        CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
     }
 
     public static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)

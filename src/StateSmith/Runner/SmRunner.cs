@@ -2,7 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
-using StateSmith.Output.Algos.Balanced1;
+using System.Threading;
+using System.Globalization;
 
 #nullable enable
 
@@ -38,6 +39,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
     public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
+        SmRunnerInternal.AppUseDecimalPeriod();
+
         this.settings = settings;
         this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
         this.callerFilePath = callerFilePath.ThrowIfNull();
@@ -78,6 +81,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
+        SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
+
         PrepareBeforeRun();
         SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
         smRunnerInternal.Run();
