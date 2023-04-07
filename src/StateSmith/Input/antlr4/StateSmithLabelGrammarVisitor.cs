@@ -302,18 +302,6 @@ public interface IStateSmithLabelGrammarVisitor<Result> : IParseTreeVisitor<Resu
 	/// <return>The visitor result.</return>
 	Result VisitFunction_args([NotNull] StateSmithLabelGrammarParser.Function_argsContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.function_arg_code"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFunction_arg_code([NotNull] StateSmithLabelGrammarParser.Function_arg_codeContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.function_arg"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFunction_arg([NotNull] StateSmithLabelGrammarParser.Function_argContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.leading_optional_any_space"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

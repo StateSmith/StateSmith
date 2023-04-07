@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## WIP
+### Added
+- More flexible grammar to support syntax like `enter / menu.setItems(["BUILD YOUR BOT!", "ABOUT"]);`
+  - https://github.com/StateSmith/StateSmith/issues/160
+
+---
+
 ## [0.8.14-alpha]
 ### Fixed
 - Fix number parsing for `decimal comma` cultures (`15,6` vs. `15.6`).

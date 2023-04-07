@@ -576,30 +576,6 @@ public partial class StateSmithLabelGrammarBaseListener : IStateSmithLabelGramma
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitFunction_args([NotNull] StateSmithLabelGrammarParser.Function_argsContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.function_arg_code"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFunction_arg_code([NotNull] StateSmithLabelGrammarParser.Function_arg_codeContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.function_arg_code"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFunction_arg_code([NotNull] StateSmithLabelGrammarParser.Function_arg_codeContext context) { }
-	/// <summary>
-	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.function_arg"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFunction_arg([NotNull] StateSmithLabelGrammarParser.Function_argContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.function_arg"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFunction_arg([NotNull] StateSmithLabelGrammarParser.Function_argContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.leading_optional_any_space"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
