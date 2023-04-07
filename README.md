@@ -1,150 +1,65 @@
 # StateSmith
-StateSmith is a cross platform, free/open source tool for generating state machines in multiple languages. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, kernels, computers... It avoids dynamic memory allocations for the safety or performance inclined.
-
-StateSmith is now generating code for multiple different languages! We will always support good old `C` (or `C++`) with zero dependencies though.
+StateSmith is a cross platform, free/open source tool for generating state machines in multiple programming languages. The generated code is human readable, has zero dependencies and is suitable for use with tiny bare metal microcontrollers, video games, apps, web, computers... It avoids dynamic memory allocations for the safety or performance inclined.
 
 ![pipeline-Page-2](https://user-images.githubusercontent.com/274012/228115188-7a711715-099f-4fd7-9555-a14d973add8e.png)
 
-*We will be adding support for [more languages](https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support) after the above are complete.*
-
-## But Why Is It Written In C# ????
-I hear you. We all have our favorite languages. I'm actually an embedded C programmer, so why did I go with C#?
-
-**The Open Source Roslyn Compiler.** I never paid too much attention to C# until they released and documented the official C# compiler. This was huge for me! In a few lines of C# code, I can compile user code, traverse the AST, do semantic analysis, emit executable code! We actually use a subset of C# as our [Generic Intermediate Language](https://github.com/StateSmith/StateSmith/wiki/GIL:-Generic-Intermediate-Language) to make supporting multiple languages relatively easy.
-
-That and I'm far too lazy to write StateSmith in pure C.
-
-## StateSmith as a Platform
-Instead of 60 different state machine projects generating code for 10 different languages and slight variations, why not combine some of our efforts? If we work together, we could make something truly amazing that is fully free and open source! If you are crazy about state machines, I'd love to work together!
-
-## Doesn't do what you want out of the box?
-StateSmith is written so that you can easily swap out almost any part of it to accomplish your goals.
-
-* ✅ Support a new input file type.
-* ✅ Output a different algorithm.
-* ✅ Transpile to a new language.
-* ✅ Totally change the code generation step for very unique use case.
-* ✅ Add custom behaviors and features...
-
-Open an GitHub issue, GitHub discussion or head to discord if you have any questions or ideas.
-
-# What's new?
-Multiple language support! Also stuff below.
-
-The [backlog project](https://github.com/orgs/StateSmith/projects/1) shows planning and status of features.
-
-## 5 Month Update
-
-![image](https://user-images.githubusercontent.com/274012/218263552-cd4d1510-8824-496a-afe1-896f61cd0289.png)
-![image](https://user-images.githubusercontent.com/274012/218209851-c904835e-0989-40ce-8868-4f1ac964cbe8.png)
-![image](https://user-images.githubusercontent.com/274012/218264022-e29afff0-7f42-4159-bb7b-a0818be5b972.png)
-
-🎉 The biggest news is that we now have `draw.io` support and a plugin for it! It's working really well!
-
-⭐ Collaboration ready - Join us on [discord](https://discord.com/invite/rNxNGQXWsU). StateSmith's core has been significantly cleaned up and is ready for collaboration. I'll be spending more time on [documentation](https://github.com/StateSmith/StateSmith/wiki) and [creating videos](https://www.youtube.com/@statesmith).
-
-💻The other massive improvement is that the workflow is way nicer with `dotnet script`.
-
-[Full 5 month update details here.](https://github.com/StateSmith/StateSmith/wiki/Update-Highlights-(v0.5.4-to-v0.7.11))
+*The above is [my current plan](https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support), but I'll gladly help anyone add a new language. I'm hoping contributors will help me with this effort.*
 
 
-# Draw.io Quick Start 🚀
+
+<br>
+
+# Features and Interactive Examples 🌟
+The [fundamentals-1](https://statesmith.github.io/fundamentals-1/) webpage has simple interactive examples that let you explore most StateSmith features.
+
+[![interactive-examples-preview-small](https://user-images.githubusercontent.com/274012/230135908-ce14fd9f-c459-4b54-8c39-a3a8129956bd.gif)](https://statesmith.github.io/fundamentals-1/)
+
+
+
+<br>
+
+# Quick Start (all supported languages) 🚀
 Want to jump right in and just try it!?
-https://youtu.be/qej8pXp3dX4
+[Tutorial-2](https://github.com/StateSmith/tutorial-2) will get you up and running as quick as possible.
 
-You'll be controlling a self destructing light bulb in no time!
 
-![new quick start gif](https://user-images.githubusercontent.com/274012/218385633-139e917c-c338-4a57-823b-426b351d8f13.gif)
 
-## More Complex Demo
+
+<br>
+
+# Please Consider Advising/Contributing 📈
+If you like StateSmith and want to help improve it, your help would be very much appreciated! StateSmith is a pretty decent tool right now, but it is going to take a team to elevate it to the next level.
+
+* You can help without writing code. StateSmith needs more [user feedback/guidance](https://github.com/StateSmith/StateSmith/wiki/User-Feedback) before it can hit version 1.0.
+* If you are up for coding, check out [Contributing](https://github.com/StateSmith/StateSmith/wiki/Contributing).
+
+Thanks!
+
+
+
+
+<br>
+
+# More Examples 🔫
+
 Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showing a Laser Tag menu implemented with StateSmith and running in an Arduino simulation.
 
 [![picture 1](images/main-lasertag-demo1.png)](https://www.youtube.com/watch?v=9czSDothuzM)
 
-## Need help? Suggestion? Brainstorm?
-Join us on [discord](https://discord.com/invite/rNxNGQXWsU).
-
-Feel free to open a [github issue](https://github.com/StateSmith/StateSmith/issues).
-
-Or you can use the project's [discussion space](https://github.com/StateSmith/StateSmith/discussions).
-
-## Why StateSmith?
-I couldn't find a state machine code generator that was suitable for low level embedded application use, had an attractive license, and was enjoyable to use.
-
-Many options were painfully slow to use. You couldn't just start designing/writing code. You had to spend a bunch of time creating object oriented mappings of every little thing in an awkward GUI.
-
-One of the reasons why I like StateSmith so much is that you can just get started using it and write code how you want. You can even start with pseudo code and gradually shape it into real code. Even though StateSmith uses a GUI for drawing state machines, all of a state's functionality is written in text - no annoying awkward GUIs that slow you down.
-
-## Human Readable Code
-
-To make the generated code as enjoyable to look at as possible, there are a fair number of customizations possible. You can easily create a custom name mangling for pretty much everything.
-
-The default naming strategy looks like this:
-```c
-// State machine constructor...
-void LaserTagMenu1Sm_ctor(LaserTagMenu1Sm* self);
-```
-
-But, you can easily customize to output another common naming convention like this:
-```c
-// State machine constructor...
-void blinky1_printf_sm_ctor(blinky1_printf_sm* self);
-```
-
-<!-- Here's the example customization [code](https://github.com/StateSmith/StateSmith/blob/dev/examples/Blinky1Printf/CodeGen/Blinky1PrintfSm.cs#L84-L109) used for `blink1_printf_sm` above. -->
-
-## Show me the code!
-StateSmith already supports multiple target languages, but does not yet have [multiple algorithms](https://github.com/StateSmith/StateSmith/wiki/Algorithms) implemented (waiting for contributor or more time). The current code generation strategy implements a balanced approach that will work well for various targets.
-
-For the below diagram, here's the generated [.h file](./examples/BlankTemplate/BlankTemplate/BlankTemplateSm.h) and [.c file](./examples/BlankTemplate/BlankTemplate/BlankTemplateSm.c).
-*Need to update for C# target...*
-
-![picture 6](images/blank-template-sm.png)  
-
-The above state machine isn't very interesting. It just transitions between one state and another state when the `do` event is dispatched to it.
-
-## A more interesting example: Laser Tag Menu! Pew pew! 🔫
-
-There are a bunch of [examples](./examples/README.md). Below is one of them.
-
-![picture 7](images/wokwi-lasertagmenu1sm.png)  
-
 You can interact with the generated laser tag menu code using the [wokwi simulation](https://wokwi.com/projects/351165738904453719).
 
-Here's the menu layout:
-```
-APP
-├── HOME
-│   ├── HOME1
-│   ├── HOME2
-│   └── HOME3
-└── MAIN MENU
-        ├── SELECT CLASS
-        │   ├── ENGINEER
-        │   ├── HEAVY
-        │   ├── ARCHER
-        │   ├── WIZARD
-        │   └── SPY
-        │── SHOW INFO
-        │   ├── INFO 1
-        │   ├── INFO 2
-        │   └── INFO 3
-        └── EAT BACK PRESSES
-            └── <stuff to show event handling>
-```
+There are also some [old examples](./examples/README.md) in this repo. They are perfectly valid, but use an older style of running StateSmith and some use the old yEd editor (draw.io is better).
 
-Here's the [design diagram](images/yed-LaserTagMenu1Sm-outer.png). To view inside collapsed states like `MM_SELECT_CLASS`, you'll need to open the diagram using the UI (see below).
+The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) repo has a collection of various projects that explore proposals or advanced ideas.
 
 
 
-## User Interfaces
-StateSmith currently supports draw.io, yEd and PlantUML diagrams.
 
-Why use these programs? I like that we just type in text. Some of the other strict UML State Machine tools I tried drove me crazy. It was just so slow to do anything.
 
+<br>
 
 # Is StateSmith ready for use? 🧪
-StateSmith is generating working code, and has decent test (330+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
+StateSmith is generating working code, and has decent test (388+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
 ![picture 1](images/test-coverage-2022-12.png)  
 
@@ -176,25 +91,27 @@ Reason(s): mismatched input 'exitt' expecting {'entry', 'exit'} at line 1 column
 Edge diagram id: n0::n3::e3
 ```
 
-The main thing I'd like to caution at this point is that there will be some refactoring in the near future which may affect user code generation scripts. Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CHANGELOG.md) however and should be pretty minimal.
+Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CHANGELOG.md) and should be pretty minimal.
 
 
-# Features
-See [./docs/diagram-features.md](./docs/diagram-features.md)
 
 
-# How To Run StateSmith
+<br>
 
-StateSmith is still in alpha development phase so please be patient :)
+# More Info 📖
+There is also a slightly older quick start. Some issues covered in the video have already been fixed. It is specific to C, but has some useful info. The video is a bit lengthy, but has chapter markers to let you skip to the section you are interested in. https://youtu.be/qej8pXp3dX4
 
-There will eventually be a standalone CLI tool that has no installation dependencies and works cross platform. See [issue 10](https://github.com/StateSmith/StateSmith/issues/10).
+See the StateSmith [GitHub wiki](https://github.com/StateSmith/StateSmith/wiki) or ask a question.
 
-For now, we actually just run StateSmith as a regular C# project from the command line, vscode, or visual studio.
 
-# More Info And Tutorials
 
-Tutorials:
-* [draw.io quick start](https://youtu.be/qej8pXp3dX4)
-* [yEd quick-start.md](./docs/quickstart1/quick-start.md)
 
-Wiki: https://github.com/StateSmith/StateSmith/wiki
+<br>
+
+# Need help? Suggestion? Brainstorm? 🙋
+Join us on [discord](https://discord.com/invite/rNxNGQXWsU).
+
+Feel free to open a [github issue](https://github.com/StateSmith/StateSmith/issues).
+
+Or you can use the project's [discussion space](https://github.com/StateSmith/StateSmith/discussions).
+
