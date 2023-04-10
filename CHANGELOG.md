@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - More flexible grammar to support syntax like `enter / menu.setItems(["BUILD YOUR BOT!", "ABOUT"]);`
   - https://github.com/StateSmith/StateSmith/issues/160
+- Add setting to disable writing StateSmith version to generated files.
+  - `SmRunner runner; runner.Settings.outputStateSmithVersionInfo = false;`
 
 ---
 

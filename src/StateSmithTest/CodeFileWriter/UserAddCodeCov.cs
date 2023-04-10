@@ -93,6 +93,7 @@ public class UserRemoveStateIdFuncAddCoverage
 
         // adjust settings because we are unit testing. Normally wouldn't do below.
         runner.Settings.propagateExceptions = true;
+        runner.Settings.outputStateSmithVersionInfo = false;
 
         // run StateSmith with our custom code file writer
         runner.Run();

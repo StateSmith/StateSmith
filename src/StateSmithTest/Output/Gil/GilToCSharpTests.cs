@@ -14,6 +14,7 @@ public class GilToCSharpTests
     {
         SmRunner runner = new(diagramPath: "CSharpNoNameSpaceExampleSm.drawio.svg", new MyGlueLogic(), transpilerId: TranspilerId.CSharp);
         runner.GetExperimentalAccess().Settings.propagateExceptions = true;
+        runner.Settings.outputStateSmithVersionInfo = false;
         //runner.GetExperimentalAccess().Settings.dumpGilCodeOnError = true;
         runner.Run();
     }
