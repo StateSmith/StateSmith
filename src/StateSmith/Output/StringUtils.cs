@@ -130,17 +130,22 @@ public class StringUtils
         return str;
     }
 
-    internal static string RemoveCCodeComments(string code)
+    internal static string RemoveCCodeComments(string code, bool keepLineEnding = false)
     {
         var regex = new Regex(@"(?x)
-                // .* (?: \r\n | \r | \n | $ )
+                // .* (?<lineEnding> \r\n | \r | \n | $ )
                 |
                 /[*]
                 [\s\S]*? # anything, lazy
                 [*]/
             ");
 
-        var result = regex.Replace(code, "");
+        var result = regex.Replace(code, (m) => {
+            if (keepLineEnding)
+                return m.Groups["lineEnding"].Value;
+            return "";
+        });
+
         return result;
     }
     

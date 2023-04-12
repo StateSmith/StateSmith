@@ -107,6 +107,7 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
             case nameof(IRenderConfig.VariableDeclarations): AppendOption(ref tempRenderConfigVars.VariableDeclarations, v); break;
             case nameof(IRenderConfig.AutoExpandedVars): AppendOption(ref tempRenderConfigVars.AutoExpandedVars, v); break;
             case nameof(IRenderConfig.EventCommaList): AppendOption(ref tempRenderConfigVars.EventCommaList, v); break;
+            case nameof(IRenderConfig.TriggerMap): AppendOption(ref tempRenderConfigVars.TriggerMap, v); break;
             case nameof(IRenderConfig.FileTop): AppendOption(ref tempRenderConfigVars.FileTop, v); break;
 
             case nameof(IRenderConfigC.HFileTop): AppendOption(ref renderConfigCVars.HFileTop, v); break;

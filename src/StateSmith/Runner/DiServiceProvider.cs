@@ -9,6 +9,7 @@ using StateSmith.Output;
 using StateSmith.Common;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Algos.Balanced1;
+using StateSmith.SmGraph.TriggerMap;
 
 #nullable enable
 
@@ -82,6 +83,7 @@ public class DiServiceProvider
             services.AddSingleton<StandardFileHeaderPrinter>();
 
             services.AddSingleton<IAutoVarsParser, CLikeAutoVarsParser>();
+            services.AddSingleton<TriggerMapProcessor>();
         });
     }
 

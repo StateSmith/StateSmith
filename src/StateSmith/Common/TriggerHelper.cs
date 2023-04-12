@@ -84,6 +84,12 @@ public static class TriggerHelper
     /// <exception cref="BehaviorValidationException"></exception>
     public static void MaybeAddEventToSm(StateMachine sm, Behavior behavior, string triggerName)
     {
+        var eventSet = sm._events;
+        MaybeAddEventToSet(eventSet, behavior, triggerName);
+    }
+
+    public static void MaybeAddEventToSet(HashSet<string> eventSet, Behavior behavior, string triggerName)
+    {
         string cleanTrigger = SanitizeTriggerName(triggerName);
 
         if (cleanTrigger.Length == 0)
@@ -96,7 +102,7 @@ public static class TriggerHelper
             return;
         }
 
-        sm._events.Add(cleanTrigger);
+        eventSet.Add(cleanTrigger);
     }
 
     /// <summary>

@@ -14,7 +14,7 @@ public interface IRenderConfig
     string AutoExpandedVars => "";
 
     /// <summary>
-    /// Not used yet. A comma seperated list of allowed event names. TODO case sensitive?
+    /// Not used yet. A comma separated list of allowed event names. TODO case sensitive?
     /// </summary>
     string EventCommaList => "";
 
@@ -22,6 +22,11 @@ public interface IRenderConfig
     /// `FileTop` text will appear at the top of the file. Use for comments, copyright notices, code...
     /// </summary>
     string FileTop => "";
+
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/161
+    /// </summary>
+    string TriggerMap => "";
 }
 
 public class DummyIRenderConfig : IRenderConfig

@@ -1,12 +1,11 @@
 using StateSmith.SmGraph;
+using StateSmith.SmGraph.TriggerMap;
 using System;
 
 namespace StateSmith.Runner;
 
 public class StandardSmTransformer : SmTransformer
 {
-    readonly HistoryProcessor historyProcessor;
-
     public enum TransformationId
     {
         Standard_RemoveNotesVertices,
@@ -27,12 +26,16 @@ public class StandardSmTransformer : SmTransformer
         Standard_NameConflictResolution,
         Standard_Validation1,
         Standard_DefaultUnspecifiedEventsAsDoEvent,
+        /// <summary>
+        /// https://github.com/StateSmith/StateSmith/issues/161
+        /// </summary>
+        Standard_TriggerMapping,
         Standard_AddUsedEventsToSm,
         Standard_FinalValidation,
     };
 
     // this ctor used for Dependency Injection
-    public StandardSmTransformer(RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver)
+    public StandardSmTransformer(RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor)
     {
         AddStep(TransformationId.Standard_RemoveNotesVertices, (sm) => NotesProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());
@@ -46,9 +49,9 @@ public class StandardSmTransformer : SmTransformer
         AddStep(TransformationId.Standard_NameConflictResolution, (sm) => nameConflictResolver.ResolveNameConflicts(sm));
         AddStep(TransformationId.Standard_Validation1, (sm) => Validate(sm));
         AddStep(TransformationId.Standard_DefaultUnspecifiedEventsAsDoEvent, (sm) => DefaultToDoEventVisitor.Process(sm));
+        AddStep(TransformationId.Standard_TriggerMapping, (sm) => triggerMapProcessor.Process(sm));
         AddStep(TransformationId.Standard_AddUsedEventsToSm, (sm) => AddUsedEventsToSmClass.Process(sm));
         AddStep(TransformationId.Standard_FinalValidation, (sm) => Validate(sm));
-        this.historyProcessor = historyProcessor;
     }
 
     private void AddStep(TransformationId id, Action<StateMachine> action)
