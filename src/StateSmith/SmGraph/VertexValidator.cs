@@ -1,3 +1,4 @@
+using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
 using System;
 using System.Collections.Generic;
@@ -49,8 +50,15 @@ namespace StateSmith.SmGraph
             else
             {
                 ValidateViaEntry(b);
-
                 ValidateViaExit(b);
+
+                foreach (var trigger in b.Triggers)
+                {
+                    if (TriggerHelper.IsEnterExitTrigger(trigger))
+                    {
+                        throw new BehaviorValidationException(b, "A transition behavior cannot have an enter or exit trigger.");
+                    }
+                }
             }
 
             DetectYedHiddenEdges(b);

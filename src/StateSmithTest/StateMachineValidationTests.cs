@@ -6,6 +6,8 @@ namespace StateSmithTest;
 
 public class StateMachineValidationTests : ValidationTestHelper
 {
+    private const string expectedInvalidTriggerErrorText = "A transition behavior cannot have an enter or exit trigger.";
+
     InitialState initialStateVertex;
     State s1;
     State s2;
@@ -38,10 +40,36 @@ public class StateMachineValidationTests : ValidationTestHelper
     }
 
     [Fact]
-    public void TransitionTriggers()
+    public void InvalidTransitionTrigger1()
     {
         var transition = s1.AddTransitionTo(s2);
-        ExpectVertexValidationException(exceptionMessagePart: "State machines cannot be nested, yet");
+        transition._triggers.Add("enter");
+        ExpectBehaviorValidationException(exceptionMessagePart: expectedInvalidTriggerErrorText);
+    }
+
+    [Fact]
+    public void InvalidTransitionTrigger2()
+    {
+        var transition = s1.AddTransitionTo(s2);
+        transition._triggers.Add("entry");
+        ExpectBehaviorValidationException(exceptionMessagePart: expectedInvalidTriggerErrorText);
+    }
+
+    [Fact]
+    public void InvalidTransitionTrigger3()
+    {
+        var transition = s1.AddTransitionTo(s2);
+        transition._triggers.Add("exit");
+        ExpectBehaviorValidationException(exceptionMessagePart: expectedInvalidTriggerErrorText);
+    }
+
+    [Fact]
+    public void InvalidTransitionTriggerInList()
+    {
+        var transition = s1.AddTransitionTo(s2);
+        transition._triggers.Add("do");
+        transition._triggers.Add("exit");
+        ExpectBehaviorValidationException(exceptionMessagePart: expectedInvalidTriggerErrorText);
     }
 
     [Fact]
