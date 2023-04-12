@@ -1,38 +1,28 @@
 using StateSmith.Common;
-using StateSmith.SmGraph.Visitors;
 
 #nullable enable
 
 namespace StateSmith.SmGraph;
 
-public class AddUsedEventsToSmClass : VertexWalker
+public class AddUsedEventsToSmClass
 {
-    private readonly StateMachine stateMachine;
-
-    public AddUsedEventsToSmClass(StateMachine stateMachine)
-    {
-        this.stateMachine = stateMachine;
-    }
-
     public static void Process(StateMachine stateMachine)
     {
-        var cls = new AddUsedEventsToSmClass(stateMachine);
-        cls.Walk(stateMachine);
-    }
-
-    private void ProcessBehaviors(Vertex v)
-    {
-        foreach (var behavior in v.Behaviors)
+        stateMachine.VisitRecursively(v =>
         {
-            foreach (var trigger in behavior.Triggers)
+            foreach (var behavior in v.Behaviors)
             {
-                TriggerHelper.MaybeAddEventToSm(stateMachine, behavior, trigger);
+                foreach (var trigger in behavior.Triggers)
+                {
+                    TriggerHelper.MaybeAddEventToSm(stateMachine, behavior, trigger);
+                }
             }
-        }
-    }
+        });
 
-    public override void VertexEntered(Vertex v)
-    {
-        ProcessBehaviors(v);
+        // https://github.com/StateSmith/StateSmith/issues/121
+        if (stateMachine._events.Count == 0)
+        {
+            stateMachine._events.Add(TriggerHelper.TRIGGER_DO);
+        }
     }
 }

@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - https://github.com/StateSmith/StateSmith/issues/43
 - Added validation to prevent `enter`/`exit` triggers on transition behaviors.
   - https://github.com/StateSmith/StateSmith/issues/162
+- Ensure state machine has at least one event
+  - https://github.com/StateSmith/StateSmith/issues/121
 
 ---
 
