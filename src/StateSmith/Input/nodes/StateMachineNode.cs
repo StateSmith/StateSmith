@@ -1,13 +1,10 @@
-﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
+#nullable enable
 using System.Collections.Generic;
 
-namespace StateSmith.Input.Antlr4
+namespace StateSmith.Input.Antlr4;
+
+public class StateMachineNode : Node, INodeWithBehaviors
 {
-    //todolow allow state machine nodes to have behaviors
-    public class StateMachineNode : Node
-    {
-        public string name;
-    }
+    public string? name;
+    public List<NodeBehavior> Behaviors { get; set; } = new();
 }

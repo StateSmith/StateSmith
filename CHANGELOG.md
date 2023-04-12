@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - https://github.com/StateSmith/StateSmith/issues/160
 - Add setting to disable writing StateSmith version to generated files.
   - `SmRunner runner; runner.Settings.outputStateSmithVersionInfo = false;`
+- Allow State Machine root to have behaviors.
+  - https://github.com/StateSmith/StateSmith/issues/163
 
 ---
 

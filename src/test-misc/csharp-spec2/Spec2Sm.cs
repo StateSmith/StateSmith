@@ -375,6 +375,7 @@ namespace Csharp.Spec2smTests
         {
             // setup trigger/event handlers
             this.currentStateExitHandler = ptr_ROOT_exit;
+            this.currentEventHandlers[(int)EventId.DO] = ptr_ROOT_do;
 
             // ROOT behavior
             // uml: enter / { trace("Enter Spec2Sm."); }
@@ -393,6 +394,22 @@ namespace Csharp.Spec2smTests
             {
                 // Step 1: execute action `trace("Exit Spec2Sm.");`
                 MainClass.Trace("Exit Spec2Sm.");
+            } // end of behavior for ROOT
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_ROOT_do = (Spec2Sm sm) => sm.ROOT_do();
+        private void ROOT_do()
+        {
+            // No ancestor state handles `do` event.
+
+            // ROOT behavior
+            // uml: do [trace_guard("State Spec2Sm: check behavior `do`.", true)]
+            if (trace_guard("State Spec2Sm: check behavior `do`.", true))
+            {
+                // Step 1: execute action ``
+                // Step 2: determine if ancestor gets to handle event next.
+                // Don't consume special `do` event.
             } // end of behavior for ROOT
         }
 
@@ -2003,14 +2020,15 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             this.currentStateExitHandler = ptr_TEST1_DO_EVENT_TESTING_exit;
-            this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
+            this.currentEventHandlers[(int)EventId.DO] = ptr_ROOT_do;  // the next ancestor that handles this event is ROOT
         }
 
         // static delegate to avoid implicit conversion and garbage collection
         private static readonly Func ptr_TEST1_ROOT_do = (Spec2Sm sm) => sm.TEST1_ROOT_do();
         private void TEST1_ROOT_do()
         {
-            // No ancestor state handles `do` event.
+            // Setup handler for next ancestor that listens to `do` event.
+            this.ancestorEventHandler = ptr_ROOT_do;
 
             // TEST1_ROOT behavior
             // uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", true)]
@@ -3098,7 +3116,7 @@ namespace Csharp.Spec2smTests
 
             // adjust function pointers for this state's exit
             this.currentStateExitHandler = ptr_TEST2_REGULAR_EVENT_TESTING_exit;
-            this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
+            this.currentEventHandlers[(int)EventId.DO] = ptr_ROOT_do;  // the next ancestor that handles this event is ROOT
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
         }
@@ -3107,7 +3125,8 @@ namespace Csharp.Spec2smTests
         private static readonly Func ptr_TEST2_ROOT_do = (Spec2Sm sm) => sm.TEST2_ROOT_do();
         private void TEST2_ROOT_do()
         {
-            // No ancestor state handles `do` event.
+            // Setup handler for next ancestor that listens to `do` event.
+            this.ancestorEventHandler = ptr_ROOT_do;
 
             // TEST2_ROOT behavior
             // uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", true)]

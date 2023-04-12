@@ -19,6 +19,8 @@ static void ROOT_enter(Spec2Sm* sm);
 
 static void ROOT_exit(Spec2Sm* sm);
 
+static void ROOT_do(Spec2Sm* sm);
+
 static void PREFIXING_enter(Spec2Sm* sm);
 
 static void PREFIXING_exit(Spec2Sm* sm);
@@ -1049,6 +1051,7 @@ static void ROOT_enter(Spec2Sm* sm)
 {
     // setup trigger/event handlers
     sm->current_state_exit_handler = ROOT_exit;
+    sm->current_event_handlers[Spec2Sm_EventId_DO] = ROOT_do;
     
     // ROOT behavior
     // uml: enter / { trace("Enter Spec2Sm."); }
@@ -1069,6 +1072,20 @@ static void ROOT_exit(Spec2Sm* sm)
     
     // State machine root is a special case. It cannot be exited. Mark as unused.
     (void)sm;
+}
+
+static void ROOT_do(Spec2Sm* sm)
+{
+    // No ancestor state handles `do` event.
+    
+    // ROOT behavior
+    // uml: do [trace_guard("State Spec2Sm: check behavior `do`.", true)]
+    if (trace_guard("State Spec2Sm: check behavior `do`.", true))
+    {
+        // Step 1: execute action ``
+        // Step 2: determine if ancestor gets to handle event next.
+        // Don't consume special `do` event.
+    } // end of behavior for ROOT
 }
 
 
@@ -2588,12 +2605,13 @@ static void TEST1_ROOT_exit(Spec2Sm* sm)
     
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = TEST1_DO_EVENT_TESTING_exit;
-    sm->current_event_handlers[Spec2Sm_EventId_DO] = NULL;  // no ancestor listens to this event
+    sm->current_event_handlers[Spec2Sm_EventId_DO] = ROOT_do;  // the next ancestor that handles this event is ROOT
 }
 
 static void TEST1_ROOT_do(Spec2Sm* sm)
 {
-    // No ancestor state handles `do` event.
+    // Setup handler for next ancestor that listens to `do` event.
+    sm->ancestor_event_handler = ROOT_do;
     
     // TEST1_ROOT behavior
     // uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", true)]
@@ -3633,14 +3651,15 @@ static void TEST2_ROOT_exit(Spec2Sm* sm)
     
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = TEST2_REGULAR_EVENT_TESTING_exit;
-    sm->current_event_handlers[Spec2Sm_EventId_DO] = NULL;  // no ancestor listens to this event
+    sm->current_event_handlers[Spec2Sm_EventId_DO] = ROOT_do;  // the next ancestor that handles this event is ROOT
     sm->current_event_handlers[Spec2Sm_EventId_EV1] = NULL;  // no ancestor listens to this event
     sm->current_event_handlers[Spec2Sm_EventId_EV2] = NULL;  // no ancestor listens to this event
 }
 
 static void TEST2_ROOT_do(Spec2Sm* sm)
 {
-    // No ancestor state handles `do` event.
+    // Setup handler for next ancestor that listens to `do` event.
+    sm->ancestor_event_handler = ROOT_do;
     
     // TEST2_ROOT behavior
     // uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", true)]

@@ -1,15 +1,13 @@
-﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
+#nullable enable
 using System.Collections.Generic;
 
-namespace StateSmith.Input.Antlr4
-{
+namespace StateSmith.Input.Antlr4;
 
-    public class StateNode : Node
-    {
-        public string stateName;
-        public bool stateNameIsGlobal = false;
-        public List<NodeBehavior> behaviors = new List<NodeBehavior>();
-    }
+public class StateNode : Node, INodeWithBehaviors
+{
+    public string? stateName;
+    public bool stateNameIsGlobal = false;
+    public List<NodeBehavior> Behaviors { get; set; } = new();
 }
+
+

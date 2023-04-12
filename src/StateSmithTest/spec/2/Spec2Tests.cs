@@ -47,6 +47,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         tester.AddEventHandling("DO", t => t(@"
             State TEST1_S1_1: check behavior `do`. Behavior running.
             State TEST1_ROOT: check behavior `do`. Behavior running.
+            State Spec2Sm: check behavior `do`. Behavior running.
         ")); tester.AddEventHandling("EV1", t => t(@"
             State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`. Behavior running.
             Exit TEST1_S1_1.

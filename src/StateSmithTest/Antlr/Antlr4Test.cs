@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using FluentAssertions;
-using Antlr4.Runtime;
-using Antlr4.Runtime.Tree;
-using Antlr4.Runtime.Misc;
 using Xunit.Abstractions;
 using StateSmith.Input.Antlr4;
 using StateSmith.Output;
+using StateSmith.Runner;
+using StateSmith.SmGraph;
 
-//todolow look into this: https://www.antlr.org/api/Java/org/antlr/v4/runtime/TokenStreamRewriter.html
+// todolow look into this: https://www.antlr.org/api/Java/org/antlr/v4/runtime/TokenStreamRewriter.html
 
 namespace StateSmithTest.Antlr;
 
@@ -29,7 +25,7 @@ public class Antlr4Test : CommonTestHelper
             ";
         var textState = (StateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("SOME_SM_STATE_NAME");
-        textState.behaviors.Count.Should().Be(0);
+        textState.Behaviors.Count.Should().Be(0);
     }
 
     [Fact]
@@ -43,11 +39,11 @@ public class Antlr4Test : CommonTestHelper
             ";
         var textState = (StateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("SOME_SM_STATE_NAME");
-        textState.behaviors.Count.Should().Be(1);
-        textState.behaviors[0].order.Should().Be("11");
-        textState.behaviors[0].triggers.Should().BeEquivalentTo(new string[] { "MY_EVENT" });
-        textState.behaviors[0].guardCode.Should().Be(@"some_guard( ""my }str with spaces"" ) && blah");
-        textState.behaviors[0].actionCode.Should().Be("my_action();");
+        textState.Behaviors.Count.Should().Be(1);
+        textState.Behaviors[0].order.Should().Be("11");
+        textState.Behaviors[0].triggers.Should().BeEquivalentTo(new string[] { "MY_EVENT" });
+        textState.Behaviors[0].guardCode.Should().Be(@"some_guard( ""my }str with spaces"" ) && blah");
+        textState.Behaviors[0].actionCode.Should().Be("my_action();");
     }
 
 
@@ -61,16 +57,16 @@ public class Antlr4Test : CommonTestHelper
             ";
         var textState = (StateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("a_lowercase_state_name");
-        textState.behaviors.Count.Should().Be(2);
-        textState.behaviors[0].order.Should().Be(null);
-        textState.behaviors[0].triggers.Count.Should().Be(0);
-        textState.behaviors[0].guardCode.Should().Be("true");
-        textState.behaviors[0].actionCode.Trim().Should().Be("");
+        textState.Behaviors.Count.Should().Be(2);
+        textState.Behaviors[0].order.Should().Be(null);
+        textState.Behaviors[0].triggers.Count.Should().Be(0);
+        textState.Behaviors[0].guardCode.Should().Be("true");
+        textState.Behaviors[0].actionCode.Trim().Should().Be("");
 
-        textState.behaviors[1].order.Should().Be(null);
-        textState.behaviors[1].triggers.Should().BeEquivalentTo(new string[] { "event" });
-        textState.behaviors[1].guardCode.Should().Be(null);
-        textState.behaviors[1].actionCode.Trim().Should().Be("action_code(123);");
+        textState.Behaviors[1].order.Should().Be(null);
+        textState.Behaviors[1].triggers.Should().BeEquivalentTo(new string[] { "event" });
+        textState.Behaviors[1].guardCode.Should().Be(null);
+        textState.Behaviors[1].actionCode.Trim().Should().Be("action_code(123);");
     }
 
     [Fact]
@@ -84,11 +80,11 @@ public class Antlr4Test : CommonTestHelper
             ";
         var textState = (StateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("STATE123");
-        textState.behaviors.Count.Should().Be(1);
-        textState.behaviors[0].order.Should().Be(null);
-        textState.behaviors[0].triggers.Count.Should().Be(1);
-        textState.behaviors[0].guardCode.Should().Be(null);
-        textState.behaviors[0].actionCode.Trim().Should().Be("action_code(123);");
+        textState.Behaviors.Count.Should().Be(1);
+        textState.Behaviors[0].order.Should().Be(null);
+        textState.Behaviors[0].triggers.Count.Should().Be(1);
+        textState.Behaviors[0].guardCode.Should().Be(null);
+        textState.Behaviors[0].actionCode.Trim().Should().Be("action_code(123);");
     }
 
     [Fact]
@@ -106,11 +102,11 @@ public class Antlr4Test : CommonTestHelper
             ");
         var textState = (StateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("OVEN_OFF");
-        textState.behaviors.Count.Should().Be(1);
-        textState.behaviors[0].order.Should().Be(null);
-        textState.behaviors[0].triggers.Count.Should().Be(1);
-        textState.behaviors[0].guardCode.Should().Be(null);
-        textState.behaviors[0].actionCode.Should().Be("var += 3;\n" +
+        textState.Behaviors.Count.Should().Be(1);
+        textState.Behaviors[0].order.Should().Be(null);
+        textState.Behaviors[0].triggers.Count.Should().Be(1);
+        textState.Behaviors[0].guardCode.Should().Be(null);
+        textState.Behaviors[0].actionCode.Should().Be("var += 3;\n" +
                                                       "if (func(123))\n" +
                                                       "    stuff( func(8 * 2) );\n" +
                                                       "if (true) {\n" +
@@ -158,16 +154,16 @@ public class Antlr4Test : CommonTestHelper
         var textState = (OrthoStateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("a_lowercase_state_name");
         textState.order.Should().Be(null);
-        textState.behaviors.Count.Should().Be(2);
-        textState.behaviors[0].order.Should().Be(null);
-        textState.behaviors[0].triggers.Count.Should().Be(0);
-        textState.behaviors[0].guardCode.Should().Be("true");
-        textState.behaviors[0].actionCode.Trim().Should().Be("");
+        textState.Behaviors.Count.Should().Be(2);
+        textState.Behaviors[0].order.Should().Be(null);
+        textState.Behaviors[0].triggers.Count.Should().Be(0);
+        textState.Behaviors[0].guardCode.Should().Be("true");
+        textState.Behaviors[0].actionCode.Trim().Should().Be("");
 
-        textState.behaviors[1].order.Should().Be(null);
-        textState.behaviors[1].triggers.Should().BeEquivalentTo(new string[] { "event" });
-        textState.behaviors[1].guardCode.Should().Be(null);
-        textState.behaviors[1].actionCode.Trim().Should().Be("action_code(123);");
+        textState.Behaviors[1].order.Should().Be(null);
+        textState.Behaviors[1].triggers.Should().BeEquivalentTo(new string[] { "event" });
+        textState.Behaviors[1].guardCode.Should().Be(null);
+        textState.Behaviors[1].actionCode.Trim().Should().Be("action_code(123);");
     }
 
     [Fact]
@@ -181,26 +177,71 @@ public class Antlr4Test : CommonTestHelper
         var textState = (OrthoStateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("a_lowercase_state_name");
         textState.order.Should().Be("26.7");
-        textState.behaviors.Count.Should().Be(2);
-        textState.behaviors[0].order.Should().Be(null);
-        textState.behaviors[0].triggers.Count.Should().Be(0);
-        textState.behaviors[0].guardCode.Should().Be("true");
-        textState.behaviors[0].actionCode.Trim().Should().Be("");
+        textState.Behaviors.Count.Should().Be(2);
+        textState.Behaviors[0].order.Should().Be(null);
+        textState.Behaviors[0].triggers.Count.Should().Be(0);
+        textState.Behaviors[0].guardCode.Should().Be("true");
+        textState.Behaviors[0].actionCode.Trim().Should().Be("");
 
-        textState.behaviors[1].order.Should().Be(null);
-        textState.behaviors[1].triggers.Should().BeEquivalentTo(new string[] { "event" });
-        textState.behaviors[1].guardCode.Should().Be(null);
-        textState.behaviors[1].actionCode.Trim().Should().Be("action_code(123);");
+        textState.Behaviors[1].order.Should().Be(null);
+        textState.Behaviors[1].triggers.Should().BeEquivalentTo(new string[] { "event" });
+        textState.Behaviors[1].guardCode.Should().Be(null);
+        textState.Behaviors[1].actionCode.Trim().Should().Be("action_code(123);");
     }
 
     [Fact]
-    public void StatemachineNode()
+    public void StateMachineNode()
     {
         string input = @"
                 $STATEMACHINE : MicrowaveSm
             ";
         var node = (StateMachineNode)ParseNodeWithNoErrors(input);
         node.name.Should().Be("MicrowaveSm");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/163
+    /// </summary>
+    [Fact]
+    public void StateMachineNodeWithBehaviors()
+    {
+        string input = """
+            $STATEMACHINE : MicrowaveSm
+            enter / x++;
+            2. DEC [x > 1] / y--;
+            """;
+        var sm = (StateMachineNode)ParseNodeWithNoErrors(input);
+        sm.name.Should().Be("MicrowaveSm");
+        sm.Behaviors.Count.Should().Be(2);
+        //
+        sm.Behaviors[0].order.Should().Be(null);
+        sm.Behaviors[0].triggers.Should().BeEquivalentTo("enter");
+        sm.Behaviors[0].guardCode.Should().BeNull();
+        sm.Behaviors[0].actionCode.Trim().Should().Be("x++;");
+        //
+        sm.Behaviors[1].order.Should().Be("2");
+        sm.Behaviors[1].triggers.Should().BeEquivalentTo("DEC");
+        sm.Behaviors[1].guardCode.Should().Be("x > 1");
+        sm.Behaviors[1].actionCode.Trim().Should().Be("y--;");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/163
+    /// </summary>
+    [Fact]
+    public void StateMachineWithBehaviorsIntegrationTest()
+    {
+        InputSmBuilder inputSmBuilder = new();
+        inputSmBuilder.ConvertDiagramFileToSmVertices(TestHelper.GetThisDir() + "/" + "Antlr4Tests.drawio");
+        inputSmBuilder.FindStateMachineByName("MySm1");
+        inputSmBuilder.FinishRunning();
+        var sm = inputSmBuilder.GetStateMachine();
+
+        sm.Name.Should().Be("MySm1");
+        sm.ShouldHaveUmlBehaviors("""
+            enter / { print("MySm1 enter"); }
+            do / { print("MySm1 do"); }
+            """);
     }
 
     [Fact]
@@ -223,9 +264,9 @@ public class Antlr4Test : CommonTestHelper
             ";
         var textState = (StateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("S2_1");
-        textState.behaviors.Count.Should().Be(1);
-        textState.behaviors[0].triggers.Should().BeEquivalentTo(new string[] { "enter" });
-        textState.behaviors[0].actionCode.Should().Be("e();");
+        textState.Behaviors.Count.Should().Be(1);
+        textState.Behaviors[0].triggers.Should().BeEquivalentTo(new string[] { "enter" });
+        textState.Behaviors[0].actionCode.Should().Be("e();");
     }
     
     /// <summary>

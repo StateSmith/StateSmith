@@ -47,6 +47,7 @@ statemachine_defn:
     ohs
     IDENTIFIER
     optional_any_space
+    state_behaviors
     EOF
     ;
 
