@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,6 +68,28 @@ namespace StateSmithTest
             var b = new Behavior();
             b.actionCode = "a1();\na2();";
             b.DescribeAsUml().Should().Be("/ { a1();\\na2(); }");
+        }
+
+        [Fact]
+        public void DescribeAsUml_MultipleTriggers()
+        {
+            var b = new Behavior();
+            b._triggers.Add("enter");
+            b._triggers.Add("do");
+            b._triggers.Add("exit");
+            b.DescribeAsUml().Should().Be("(enter, do, exit)");
+        }
+
+        [Fact]
+        public void DescribeAsUml_MultipleTriggers2()
+        {
+            var b = new Behavior();
+            b._triggers.Add("enter");
+            b._triggers.Add("do");
+            b._triggers.Add("exit");
+            b.guardCode = "ready";
+            b.actionCode = "get_some();";
+            b.DescribeAsUml().Should().Be("(enter, do, exit) [ready] / { get_some(); }");
         }
     }
 }

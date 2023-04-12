@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `SmRunner runner; runner.Settings.outputStateSmithVersionInfo = false;`
 - Allow State Machine root to have behaviors.
   - https://github.com/StateSmith/StateSmith/issues/163
+- Added grammar support for eating events with behavior text `MyEvent/`.
+  - Before this change, you could use behavior text `MyEvent` instead.
+  - https://github.com/StateSmith/StateSmith/issues/43
 
 ---
 

@@ -31,8 +31,6 @@ public class Antlr4Test : CommonTestHelper
     [Fact]
     public void Test1()
     {
-        //Console.SetOut(new ConsoleCaptureConverter(output));
-
         string input = @"
                 SOME_SM_STATE_NAME
                 11. MY_EVENT [some_guard( ""my }str with spaces"" ) && blah] / my_action();
@@ -44,11 +42,13 @@ public class Antlr4Test : CommonTestHelper
         textState.Behaviors[0].triggers.Should().BeEquivalentTo(new string[] { "MY_EVENT" });
         textState.Behaviors[0].guardCode.Should().Be(@"some_guard( ""my }str with spaces"" ) && blah");
         textState.Behaviors[0].actionCode.Should().Be("my_action();");
+
+        ShouldBeEquivalentToUml(textState.Behaviors[0], """11. MY_EVENT [some_guard( "my }str with spaces" ) && blah] / { my_action(); }""");
     }
 
 
     [Fact]
-    public void MultipleBehaviors()
+    public void NodeMultipleBehaviors()
     {
         string input = @"
                 a_lowercase_state_name
@@ -62,11 +62,87 @@ public class Antlr4Test : CommonTestHelper
         textState.Behaviors[0].triggers.Count.Should().Be(0);
         textState.Behaviors[0].guardCode.Should().Be("true");
         textState.Behaviors[0].actionCode.Trim().Should().Be("");
+        ShouldBeEquivalentToUml(textState.Behaviors[0], """[true]""");
 
         textState.Behaviors[1].order.Should().Be(null);
         textState.Behaviors[1].triggers.Should().BeEquivalentTo(new string[] { "event" });
         textState.Behaviors[1].guardCode.Should().Be(null);
         textState.Behaviors[1].actionCode.Trim().Should().Be("action_code(123);");
+        ShouldBeEquivalentToUml(textState.Behaviors[1], """event / { action_code(123); }""");
+    }
+
+    [Fact]
+    public void NodeMultipleBehaviors2()
+    {
+        string input = @"
+                a_lowercase_state_name
+                event1
+                [ true ] / { }
+                event / { action_code(123); }
+            ";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        textState.Behaviors.Count.Should().Be(3);
+        ShouldBeEquivalentToUml(textState.Behaviors[0], """event1""");
+        ShouldBeEquivalentToUml(textState.Behaviors[1], """[true]""");
+        ShouldBeEquivalentToUml(textState.Behaviors[2], """event / { action_code(123); }""");
+    }
+
+    /// <summary>
+    /// Relates to https://github.com/StateSmith/StateSmith/issues/164
+    /// </summary>
+    [Fact]
+    public void EntryExitTrailingNewlines()
+    {
+        string input = """
+            event1/
+            via exit done
+            via entry skip_start
+            """;
+        var behaviors = ParseEdgeWithoutErrors(input);
+        behaviors.Count.Should().Be(1);
+        ShouldBeEquivalentToUml(behaviors[0], "event1 via exit done via entry skip_start");
+    }
+
+    /// <summary>
+    /// Relates to https://github.com/StateSmith/StateSmith/issues/164
+    /// </summary>
+    [Fact]
+    public void ExitEntryBeforeBehaviors()
+    {
+        string input = """
+            via exit done
+            via entry skip_start
+            event1/
+            """;
+        var behaviors = ParseEdgeWithoutErrors(input);
+        behaviors.Count.Should().Be(2);
+        ShouldBeEquivalentToUml(behaviors[0], "via exit done via entry skip_start");
+        ShouldBeEquivalentToUml(behaviors[1], "event1");
+    }
+
+    private static void ShouldBeEquivalentToUml(NodeBehavior nodeBehavior, string uml)
+    {
+        ConvertNodeBehaviorToBehavior(nodeBehavior).DescribeAsUml().Should().Be(uml);
+    }
+
+    public static Behavior ConvertNodeBehaviorToBehavior(NodeBehavior nodeBehavior)
+    {
+        return DiagramToSmConverter.ConvertBehavior(new State("dummy"), nodeBehavior);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/43
+    /// </summary>
+    [Fact]
+    public void ShortHandForCatchingEvents_43()
+    {
+        string input = @"
+                a_lowercase_state_name
+                event1/";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        textState.Behaviors.Count.Should().Be(1);
+
+        ParseEdgeWithoutErrors("event/").Count.Should().Be(1);
     }
 
     [Fact]
@@ -90,43 +166,45 @@ public class Antlr4Test : CommonTestHelper
     [Fact]
     public void DeIndentMultilineAction()
     {
-        string input = StringUtils.ConvertToSlashNLines(@"
-                OVEN_OFF
-                event / { var += 3;
-                    if (func(123))
-                        stuff( func(8 * 2) );
-                    if (true) {
-                        a = ""hello there"";
-                    }
+        string input = StringUtils.ConvertToSlashNLines("""
+            OVEN_OFF
+            event / { var += 3;
+                if (func(123))
+                    stuff( func(8 * 2) );
+                if (true) {
+                    a = "hello there";
                 }
-            ");
+            }
+            """);
         var textState = (StateNode)ParseNodeWithNoErrors(input);
         textState.stateName.Should().Be("OVEN_OFF");
         textState.Behaviors.Count.Should().Be(1);
         textState.Behaviors[0].order.Should().Be(null);
         textState.Behaviors[0].triggers.Count.Should().Be(1);
         textState.Behaviors[0].guardCode.Should().Be(null);
-        textState.Behaviors[0].actionCode.Should().Be("var += 3;\n" +
-                                                      "if (func(123))\n" +
-                                                      "    stuff( func(8 * 2) );\n" +
-                                                      "if (true) {\n" +
-                                                      "    a = \"hello there\";\n" +
-                                                      "}"
-                                                      );
+        textState.Behaviors[0].actionCode.Should().Be("""
+            var += 3;
+            if (func(123))
+                stuff( func(8 * 2) );
+            if (true) {
+                a = "hello there";
+            }
+            """
+        );
     }
 
     [Fact]
     public void EdgeDeIndentMultilineAction()
     {
-        string input = StringUtils.ConvertToSlashNLines(@"
-                event / { var += 3;
-                    if (func(123))
-                        stuff( func(8 * 2) );
-                    if (true) {
-                        a = ""hello there"";
-                    }
+        string input = StringUtils.ConvertToSlashNLines("""
+            event / { var += 3;
+                if (func(123))
+                    stuff( func(8 * 2) );
+                if (true) {
+                    a = "hello there";
                 }
-            ");
+            }
+            """);
 
         var behaviors = parser.ParseEdgeLabel(input);
         AssertNoErrors();
@@ -134,13 +212,15 @@ public class Antlr4Test : CommonTestHelper
         behaviors[0].order.Should().Be(null);
         behaviors[0].triggers.Count.Should().Be(1);
         behaviors[0].guardCode.Should().Be(null);
-        behaviors[0].actionCode.Should().Be("var += 3;\n" +
-                                            "if (func(123))\n" +
-                                            "    stuff( func(8 * 2) );\n" +
-                                            "if (true) {\n" +
-                                            "    a = \"hello there\";\n" +
-                                            "}"
-                                            );
+        behaviors[0].actionCode.Should().Be("""
+            var += 3;
+            if (func(123))
+                stuff( func(8 * 2) );
+            if (true) {
+                a = "hello there";
+            }
+            """
+        );
     }
 
     [Fact]

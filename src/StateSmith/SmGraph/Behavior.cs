@@ -207,7 +207,14 @@ namespace StateSmith.SmGraph
 
             if (HasAtLeastOneTrigger())
             {
-                result += joiner + string.Join(", ", Triggers);
+                string prefix = "", postfix = "";
+                if (Triggers.Count > 1)
+                {
+                    prefix = "(";
+                    postfix = ")";
+                }
+
+                result += prefix + joiner + string.Join(", ", Triggers) + postfix;
                 joiner = " ";
             }
 

@@ -302,7 +302,7 @@ action:
     ohs
     '/'
     ohs
-    action_code
+    action_code? // optional to support consuming events with `SOME_EVENT /` https://github.com/StateSmith/StateSmith/issues/43
     ;
 
 /*

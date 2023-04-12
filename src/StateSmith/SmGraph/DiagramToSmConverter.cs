@@ -283,7 +283,7 @@ Reason(s): {reasons}
         }
     }
 
-    private static Behavior ConvertBehavior(Vertex owningVertex, NodeBehavior nodeBehavior, Vertex? targetVertex = null)
+    public static Behavior ConvertBehavior(Vertex owningVertex, NodeBehavior nodeBehavior, Vertex? targetVertex = null)
     {
         var behavior = new Behavior(owningVertex: owningVertex, transitionTarget: targetVertex)
         {
