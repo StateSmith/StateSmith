@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace StateSmith.Common;
@@ -68,7 +69,7 @@ public class TimeStringParser
         if (!match.Success)
             throw new ArgumentException("Failed to match elapsed time for input: " + elapsedTimeStr);
 
-        number = double.Parse(match.Groups["number"].Value);
+        number = double.Parse(match.Groups["number"].Value, CultureInfo.InvariantCulture);
         units = match.Groups["units"].Value;
     }
 }
