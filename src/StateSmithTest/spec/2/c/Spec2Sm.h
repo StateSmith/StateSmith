@@ -144,19 +144,19 @@ typedef enum Spec2Sm_StateId
     Spec2Sm_StateId_T7__DH1__WALL_E = 105,
     Spec2Sm_StateId_T7__DH1__TEDDY_BEAR = 106,
     Spec2Sm_StateId_T7__DEEP_HISTORY2 = 107,
-    Spec2Sm_StateId_T7__DH2__STATE_0 = 108,
-    Spec2Sm_StateId_T7__DH2__STATE_1 = 109,
-    Spec2Sm_StateId_T7__DH2__STATE_2 = 110,
-    Spec2Sm_StateId_T7__DH2__STATE_6 = 111,
-    Spec2Sm_StateId_T7__DH2__STATE_9 = 112,
-    Spec2Sm_StateId_T7__DH2__STATE_3 = 113,
+    Spec2Sm_StateId_T7__DEEP_HISTORY2__T7__STATE_0 = 108,
+    Spec2Sm_StateId_T7__DEEP_HISTORY2__T7__STATE_1 = 109,
+    Spec2Sm_StateId_T7__DEEP_HISTORY2__T7__STATE_2 = 110,
+    Spec2Sm_StateId_T7__DEEP_HISTORY2__T7__STATE_6 = 111,
+    Spec2Sm_StateId_T7__DEEP_HISTORY2__T7__STATE_9 = 112,
+    Spec2Sm_StateId_T7__DEEP_HISTORY2__T7__STATE_3 = 113,
     Spec2Sm_StateId_T7__DEEP_HISTORY3 = 114,
-    Spec2Sm_StateId_T7__DH3__STATE_0 = 115,
-    Spec2Sm_StateId_T7__DH3__STATE_1 = 116,
-    Spec2Sm_StateId_T7__DH3__STATE_2 = 117,
-    Spec2Sm_StateId_T7__DH3__STATE_6 = 118,
-    Spec2Sm_StateId_T7__DH3__STATE_9 = 119,
-    Spec2Sm_StateId_T7__DH3__STATE_3 = 120,
+    Spec2Sm_StateId_T7__DEEP_HISTORY3__T7__STATE_0 = 115,
+    Spec2Sm_StateId_T7__DEEP_HISTORY3__T7__STATE_1 = 116,
+    Spec2Sm_StateId_T7__DEEP_HISTORY3__T7__STATE_2 = 117,
+    Spec2Sm_StateId_T7__DEEP_HISTORY3__T7__STATE_6 = 118,
+    Spec2Sm_StateId_T7__DEEP_HISTORY3__T7__STATE_9 = 119,
+    Spec2Sm_StateId_T7__DEEP_HISTORY3__T7__STATE_3 = 120,
     Spec2Sm_StateId_T7__HISTORY1 = 121,
     Spec2Sm_StateId_T7__H1__OFF = 122,
     Spec2Sm_StateId_T7__H1__OFF1 = 123,
@@ -259,20 +259,20 @@ typedef enum Spec2Sm_T7__DH1__BUILD_HistoryId
 } Spec2Sm_T7__DH1__BUILD_HistoryId;
 
 
-typedef enum Spec2Sm_T7__DH2__state_0_HistoryId
+typedef enum Spec2Sm_T7__DEEP_HISTORY2__T7__state_0_HistoryId
 {
-    Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_1 = 0, // default transition
-    Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_2 = 1,
-    Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_6 = 2,
-    Spec2Sm_T7__DH2__state_0_HistoryId_T7__DH2__state_9 = 3,
-} Spec2Sm_T7__DH2__state_0_HistoryId;
+    Spec2Sm_T7__DEEP_HISTORY2__T7__state_0_HistoryId_T7__DEEP_HISTORY2__T7__state_1 = 0, // default transition
+    Spec2Sm_T7__DEEP_HISTORY2__T7__state_0_HistoryId_T7__DEEP_HISTORY2__T7__state_2 = 1,
+    Spec2Sm_T7__DEEP_HISTORY2__T7__state_0_HistoryId_T7__DEEP_HISTORY2__T7__state_6 = 2,
+    Spec2Sm_T7__DEEP_HISTORY2__T7__state_0_HistoryId_T7__DEEP_HISTORY2__T7__state_9 = 3,
+} Spec2Sm_T7__DEEP_HISTORY2__T7__state_0_HistoryId;
 
 
-typedef enum Spec2Sm_T7__DH3__state_0_HistoryId
+typedef enum Spec2Sm_T7__DEEP_HISTORY3__T7__state_0_HistoryId
 {
-    Spec2Sm_T7__DH3__state_0_HistoryId_T7__DH3__state_1 = 0, // default transition
-    Spec2Sm_T7__DH3__state_0_HistoryId_T7__DH3__state_2 = 1,
-} Spec2Sm_T7__DH3__state_0_HistoryId;
+    Spec2Sm_T7__DEEP_HISTORY3__T7__state_0_HistoryId_T7__DEEP_HISTORY3__T7__state_1 = 0, // default transition
+    Spec2Sm_T7__DEEP_HISTORY3__T7__state_0_HistoryId_T7__DEEP_HISTORY3__T7__state_2 = 1,
+} Spec2Sm_T7__DEEP_HISTORY3__T7__state_0_HistoryId;
 
 
 // Generated state machine
@@ -287,8 +287,8 @@ typedef struct Spec2Sm_Vars
     Spec2Sm_T7__DH1__ALIENS_DETECTED_HistoryId T7__DH1__ALIENS_DETECTED_history;
     Spec2Sm_T7__DH1__GET_BACKUP_HistoryId T7__DH1__GET_BACKUP_history;
     Spec2Sm_T7__DH1__BUILD_HistoryId T7__DH1__BUILD_history;
-    Spec2Sm_T7__DH2__state_0_HistoryId T7__DH2__state_0_history;
-    Spec2Sm_T7__DH3__state_0_HistoryId T7__DH3__state_0_history;
+    Spec2Sm_T7__DEEP_HISTORY2__T7__state_0_HistoryId T7__DEEP_HISTORY2__T7__state_0_history;
+    Spec2Sm_T7__DEEP_HISTORY3__T7__state_0_HistoryId T7__DEEP_HISTORY3__T7__state_0_history;
     uint8_t count;
     uint8_t auto_var_1;
 } Spec2Sm_Vars;

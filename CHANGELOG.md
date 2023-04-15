@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## WIP
+### Fixed
+- Fix history states when auto state name conflict resolution occurs.
+  - https://github.com/StateSmith/StateSmith/issues/168
+### Changed
+- Altered order of `StandardSmTransformer` to fix #168 above.
+  - `Standard_NameConflictResolution` now happens before supporting history.
+
+---
+
 ## [0.8.14-alpha]
 ### Fixed
 - Fix number parsing for `decimal comma` cultures (`15,6` vs. `15.6`).

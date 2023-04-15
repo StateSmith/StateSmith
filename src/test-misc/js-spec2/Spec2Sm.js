@@ -143,19 +143,19 @@ export class Spec2Sm
         T7__DH1__WALL_E : 105,
         T7__DH1__TEDDY_BEAR : 106,
         T7__DEEP_HISTORY2 : 107,
-        T7__DH2__STATE_0 : 108,
-        T7__DH2__STATE_1 : 109,
-        T7__DH2__STATE_2 : 110,
-        T7__DH2__STATE_6 : 111,
-        T7__DH2__STATE_9 : 112,
-        T7__DH2__STATE_3 : 113,
+        T7__DEEP_HISTORY2__T7__STATE_0 : 108,
+        T7__DEEP_HISTORY2__T7__STATE_1 : 109,
+        T7__DEEP_HISTORY2__T7__STATE_2 : 110,
+        T7__DEEP_HISTORY2__T7__STATE_6 : 111,
+        T7__DEEP_HISTORY2__T7__STATE_9 : 112,
+        T7__DEEP_HISTORY2__T7__STATE_3 : 113,
         T7__DEEP_HISTORY3 : 114,
-        T7__DH3__STATE_0 : 115,
-        T7__DH3__STATE_1 : 116,
-        T7__DH3__STATE_2 : 117,
-        T7__DH3__STATE_6 : 118,
-        T7__DH3__STATE_9 : 119,
-        T7__DH3__STATE_3 : 120,
+        T7__DEEP_HISTORY3__T7__STATE_0 : 115,
+        T7__DEEP_HISTORY3__T7__STATE_1 : 116,
+        T7__DEEP_HISTORY3__T7__STATE_2 : 117,
+        T7__DEEP_HISTORY3__T7__STATE_6 : 118,
+        T7__DEEP_HISTORY3__T7__STATE_9 : 119,
+        T7__DEEP_HISTORY3__T7__STATE_3 : 120,
         T7__HISTORY1 : 121,
         T7__H1__OFF : 122,
         T7__H1__OFF1 : 123,
@@ -262,22 +262,22 @@ export class Spec2Sm
     static { Object.freeze(this.T7__DH1__BUILD_HistoryId); }
 
     
-    static T7__DH2__state_0_HistoryId = 
+    static T7__DEEP_HISTORY2__T7__state_0_HistoryId = 
     {
-        T7__DH2__state_1 : 0, // default transition
-        T7__DH2__state_2 : 1,
-        T7__DH2__state_6 : 2,
-        T7__DH2__state_9 : 3,
+        T7__DEEP_HISTORY2__T7__state_1 : 0, // default transition
+        T7__DEEP_HISTORY2__T7__state_2 : 1,
+        T7__DEEP_HISTORY2__T7__state_6 : 2,
+        T7__DEEP_HISTORY2__T7__state_9 : 3,
     }
-    static { Object.freeze(this.T7__DH2__state_0_HistoryId); }
+    static { Object.freeze(this.T7__DEEP_HISTORY2__T7__state_0_HistoryId); }
 
     
-    static T7__DH3__state_0_HistoryId = 
+    static T7__DEEP_HISTORY3__T7__state_0_HistoryId = 
     {
-        T7__DH3__state_1 : 0, // default transition
-        T7__DH3__state_2 : 1,
+        T7__DEEP_HISTORY3__T7__state_1 : 0, // default transition
+        T7__DEEP_HISTORY3__T7__state_2 : 1,
     }
-    static { Object.freeze(this.T7__DH3__state_0_HistoryId); }
+    static { Object.freeze(this.T7__DEEP_HISTORY3__T7__state_0_HistoryId); }
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
@@ -298,8 +298,8 @@ export class Spec2Sm
         T7__DH1__ALIENS_DETECTED_history: undefined,
         T7__DH1__GET_BACKUP_history: undefined,
         T7__DH1__BUILD_history: undefined,
-        T7__DH2__state_0_history: undefined,
-        T7__DH3__state_0_history: undefined,
+        T7__DEEP_HISTORY2__T7__state_0_history: undefined,
+        T7__DEEP_HISTORY3__T7__state_0_history: undefined,
         count: 0,
         auto_var_1: 0,
     };
@@ -7178,455 +7178,455 @@ export class Spec2Sm
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH2__STATE_0
+    // event handlers for state T7__DEEP_HISTORY2__T7__STATE_0
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH2__STATE_0_enter()
+    _T7__DEEP_HISTORY2__T7__STATE_0_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH2__STATE_0_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVOPEN] = this._T7__DH2__STATE_0_evopen;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_0_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVOPEN] = this._T7__DEEP_HISTORY2__T7__STATE_0_evopen;
         
-        // T7__DH2__state_0 behavior
-        // uml: enter / { trace("Enter T7__DH2__state_0."); }
+        // T7__DEEP_HISTORY2__T7__state_0 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_0."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH2__state_0.");`
-            console.log("Enter T7__DH2__state_0.");
-        } // end of behavior for T7__DH2__state_0
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_0.");`
+            console.log("Enter T7__DEEP_HISTORY2__T7__state_0.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
     }
     
-    _T7__DH2__STATE_0_exit()
+    _T7__DEEP_HISTORY2__T7__STATE_0_exit()
     {
-        // T7__DH2__state_0 behavior
-        // uml: exit / { trace("Exit T7__DH2__state_0."); }
+        // T7__DEEP_HISTORY2__T7__state_0 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_0."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH2__state_0.");`
-            console.log("Exit T7__DH2__state_0.");
-        } // end of behavior for T7__DH2__state_0
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_0.");`
+            console.log("Exit T7__DEEP_HISTORY2__T7__state_0.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
         
         // adjust function pointers for this state's exit
         this._currentStateExitHandler = this._T7__DEEP_HISTORY2_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVOPEN] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH2__STATE_0_evopen()
+    _T7__DEEP_HISTORY2__T7__STATE_0_evopen()
     {
         // No ancestor state handles `evopen` event.
         
-        // T7__DH2__state_0 behavior
-        // uml: evOpen [trace_guard("State T7__DH2__state_0: check behavior `evOpen TransitionTo(T7__DH2__state_3)`.", true)] / { trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3."); } TransitionTo(T7__DH2__state_3)
-        if (trace_guard("State T7__DH2__state_0: check behavior `evOpen TransitionTo(T7__DH2__state_3)`.", true))
+        // T7__DEEP_HISTORY2__T7__state_0 behavior
+        // uml: evOpen [trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_3)
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
             this._exitUpToStateHandler(this._T7__DEEP_HISTORY2_exit);
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");`.
-            console.log("Transition action `` for T7__DH2__state_0 to T7__DH2__state_3.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.");
             
-            // Step 3: Enter/move towards transition target `T7__DH2__state_3`.
-            this._T7__DH2__STATE_3_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_3`.
+            this._T7__DEEP_HISTORY2__T7__STATE_3_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = Spec2Sm.StateId.T7__DH2__STATE_3;
+            this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_3;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
-        } // end of behavior for T7__DH2__state_0
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0
     }
     
-    _T7__DH2__state_0_InitialState_transition()
+    _T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
     {
-        // T7__DH2__state_0.InitialState behavior
-        // uml: / { trace("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History."); } TransitionTo(T7__DH2__state_0.History)
+        // T7__DEEP_HISTORY2__T7__state_0.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.InitialState to T7__DEEP_HISTORY2__T7__state_0.History."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0.History)
         {
-            // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History.");`.
-            console.log("Transition action `` for T7__DH2__state_0.InitialState to T7__DH2__state_0.History.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.InitialState to T7__DEEP_HISTORY2__T7__state_0.History.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.InitialState to T7__DEEP_HISTORY2__T7__state_0.History.");
             
-            // Step 3: Enter/move towards transition target `T7__DH2__state_0.History`.
-            // T7__DH2__state_0.History is a pseudo state and cannot have an `enter` trigger.
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0.History`.
+            // T7__DEEP_HISTORY2__T7__state_0.History is a pseudo state and cannot have an `enter` trigger.
             
-            // T7__DH2__state_0.History behavior
-            // uml: [$gil(this.vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_2)] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2."); } TransitionTo(T7__DH2__state_2)
-            if (this.vars.T7__DH2__state_0_history == Spec2Sm.T7__DH2__state_0_HistoryId.T7__DH2__state_2)
+            // T7__DEEP_HISTORY2__T7__state_0.History behavior
+            // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
+            if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2)
             {
-                // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2.");`.
-                console.log("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_2.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_2.");`.
+                console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_2.");
                 
-                // Step 3: Enter/move towards transition target `T7__DH2__state_2`.
-                this._T7__DH2__STATE_2_enter();
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_2`.
+                this._T7__DEEP_HISTORY2__T7__STATE_2_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this._T7__DH2__state_2_InitialState_transition();
+                this._T7__DEEP_HISTORY2__T7__state_2_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for T7__DH2__state_0.History
+            } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.History
             
-            // T7__DH2__state_0.History behavior
-            // uml: [$gil(this.vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_6)] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6."); } TransitionTo(T7__DH2__state_6)
-            if (this.vars.T7__DH2__state_0_history == Spec2Sm.T7__DH2__state_0_HistoryId.T7__DH2__state_6)
+            // T7__DEEP_HISTORY2__T7__state_0.History behavior
+            // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
+            if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6)
             {
-                // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6.");`.
-                console.log("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_6.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_6.");`.
+                console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_6.");
                 
-                // Step 3: Enter/move towards transition target `T7__DH2__state_6`.
-                this._T7__DH2__STATE_2_enter();
-                this._T7__DH2__STATE_6_enter();
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_6`.
+                this._T7__DEEP_HISTORY2__T7__STATE_2_enter();
+                this._T7__DEEP_HISTORY2__T7__STATE_6_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.stateId = Spec2Sm.StateId.T7__DH2__STATE_6;
+                this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_6;
                 this._ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DH2__state_0.History
+            } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.History
             
-            // T7__DH2__state_0.History behavior
-            // uml: [$gil(this.vars.T7__DH2__state_0_history == T7__DH2__state_0_HistoryId.T7__DH2__state_9)] / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9."); } TransitionTo(T7__DH2__state_9)
-            if (this.vars.T7__DH2__state_0_history == Spec2Sm.T7__DH2__state_0_HistoryId.T7__DH2__state_9)
+            // T7__DEEP_HISTORY2__T7__state_0.History behavior
+            // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_9."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
+            if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9)
             {
-                // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9.");`.
-                console.log("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_9.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_9.");`.
+                console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_9.");
                 
-                // Step 3: Enter/move towards transition target `T7__DH2__state_9`.
-                this._T7__DH2__STATE_2_enter();
-                this._T7__DH2__STATE_9_enter();
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_9`.
+                this._T7__DEEP_HISTORY2__T7__STATE_2_enter();
+                this._T7__DEEP_HISTORY2__T7__STATE_9_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.stateId = Spec2Sm.StateId.T7__DH2__STATE_9;
+                this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9;
                 this._ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DH2__state_0.History
+            } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.History
             
-            // T7__DH2__state_0.History behavior
-            // uml: else / { trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1."); } TransitionTo(T7__DH2__state_1)
+            // T7__DEEP_HISTORY2__T7__state_0.History behavior
+            // uml: else / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
             {
-                // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1.");`.
-                console.log("Transition action `` for T7__DH2__state_0.History to T7__DH2__state_1.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_1.");`.
+                console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_1.");
                 
-                // Step 3: Enter/move towards transition target `T7__DH2__state_1`.
-                this._T7__DH2__STATE_1_enter();
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_1`.
+                this._T7__DEEP_HISTORY2__T7__STATE_1_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.stateId = Spec2Sm.StateId.T7__DH2__STATE_1;
+                this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_1;
                 this._ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DH2__state_0.History
-        } // end of behavior for T7__DH2__state_0.InitialState
+            } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.History
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.InitialState
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH2__STATE_1
+    // event handlers for state T7__DEEP_HISTORY2__T7__STATE_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH2__STATE_1_enter()
+    _T7__DEEP_HISTORY2__T7__STATE_1_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH2__STATE_1_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = this._T7__DH2__STATE_1_evstep;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_1_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = this._T7__DEEP_HISTORY2__T7__STATE_1_evstep;
         
-        // T7__DH2__state_1 behavior
-        // uml: enter / { trace("Enter T7__DH2__state_1."); }
+        // T7__DEEP_HISTORY2__T7__state_1 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_1."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH2__state_1.");`
-            console.log("Enter T7__DH2__state_1.");
-        } // end of behavior for T7__DH2__state_1
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_1.");`
+            console.log("Enter T7__DEEP_HISTORY2__T7__state_1.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
         
-        // T7__DH2__state_1 behavior
-        // uml: enter [trace_guard("State T7__DH2__state_1: check behavior `enter / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1;) }`.", true)] / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1;) }
-        if (trace_guard("State T7__DH2__state_1: check behavior `enter / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1;) }`.", true))
+        // T7__DEEP_HISTORY2__T7__state_1 behavior
+        // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;) }
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;) }`.", true))
         {
-            // Step 1: execute action `$gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_1;)`
-            this.vars.T7__DH2__state_0_history = Spec2Sm.T7__DH2__state_0_HistoryId.T7__DH2__state_1;
-        } // end of behavior for T7__DH2__state_1
+            // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;)`
+            this.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
     }
     
-    _T7__DH2__STATE_1_exit()
+    _T7__DEEP_HISTORY2__T7__STATE_1_exit()
     {
-        // T7__DH2__state_1 behavior
-        // uml: exit / { trace("Exit T7__DH2__state_1."); }
+        // T7__DEEP_HISTORY2__T7__state_1 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_1."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH2__state_1.");`
-            console.log("Exit T7__DH2__state_1.");
-        } // end of behavior for T7__DH2__state_1
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_1.");`
+            console.log("Exit T7__DEEP_HISTORY2__T7__state_1.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
         
         // adjust function pointers for this state's exit
-        this._currentStateExitHandler = this._T7__DH2__STATE_0_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_0_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH2__STATE_1_evstep()
+    _T7__DEEP_HISTORY2__T7__STATE_1_evstep()
     {
         // No ancestor state handles `evstep` event.
         
-        // T7__DH2__state_1 behavior
-        // uml: evStep [trace_guard("State T7__DH2__state_1: check behavior `evStep TransitionTo(T7__DH2__state_2)`.", true)] / { trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2."); } TransitionTo(T7__DH2__state_2)
-        if (trace_guard("State T7__DH2__state_1: check behavior `evStep TransitionTo(T7__DH2__state_2)`.", true))
+        // T7__DEEP_HISTORY2__T7__state_1 behavior
+        // uml: evStep [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_2)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_2)`.", true))
         {
-            // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition).
-            this._T7__DH2__STATE_1_exit();
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition).
+            this._T7__DEEP_HISTORY2__T7__STATE_1_exit();
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2.");`.
-            console.log("Transition action `` for T7__DH2__state_1 to T7__DH2__state_2.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2.");
             
-            // Step 3: Enter/move towards transition target `T7__DH2__state_2`.
-            this._T7__DH2__STATE_2_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_2`.
+            this._T7__DEEP_HISTORY2__T7__STATE_2_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this._T7__DH2__state_2_InitialState_transition();
+            this._T7__DEEP_HISTORY2__T7__state_2_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior for T7__DH2__state_1
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH2__STATE_2
+    // event handlers for state T7__DEEP_HISTORY2__T7__STATE_2
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH2__STATE_2_enter()
+    _T7__DEEP_HISTORY2__T7__STATE_2_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH2__STATE_2_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVBACK] = this._T7__DH2__STATE_2_evback;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_2_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVBACK] = this._T7__DEEP_HISTORY2__T7__STATE_2_evback;
         
-        // T7__DH2__state_2 behavior
-        // uml: enter / { trace("Enter T7__DH2__state_2."); }
+        // T7__DEEP_HISTORY2__T7__state_2 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_2."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH2__state_2.");`
-            console.log("Enter T7__DH2__state_2.");
-        } // end of behavior for T7__DH2__state_2
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_2.");`
+            console.log("Enter T7__DEEP_HISTORY2__T7__state_2.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
         
-        // T7__DH2__state_2 behavior
-        // uml: enter [trace_guard("State T7__DH2__state_2: check behavior `enter / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2;) }`.", true)] / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2;) }
-        if (trace_guard("State T7__DH2__state_2: check behavior `enter / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2;) }`.", true))
+        // T7__DEEP_HISTORY2__T7__state_2 behavior
+        // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;) }
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;) }`.", true))
         {
-            // Step 1: execute action `$gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_2;)`
-            this.vars.T7__DH2__state_0_history = Spec2Sm.T7__DH2__state_0_HistoryId.T7__DH2__state_2;
-        } // end of behavior for T7__DH2__state_2
+            // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;)`
+            this.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
     }
     
-    _T7__DH2__STATE_2_exit()
+    _T7__DEEP_HISTORY2__T7__STATE_2_exit()
     {
-        // T7__DH2__state_2 behavior
-        // uml: exit / { trace("Exit T7__DH2__state_2."); }
+        // T7__DEEP_HISTORY2__T7__state_2 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_2."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH2__state_2.");`
-            console.log("Exit T7__DH2__state_2.");
-        } // end of behavior for T7__DH2__state_2
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_2.");`
+            console.log("Exit T7__DEEP_HISTORY2__T7__state_2.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
         
         // adjust function pointers for this state's exit
-        this._currentStateExitHandler = this._T7__DH2__STATE_0_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_0_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVBACK] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH2__STATE_2_evback()
+    _T7__DEEP_HISTORY2__T7__STATE_2_evback()
     {
         // No ancestor state handles `evback` event.
         
-        // T7__DH2__state_2 behavior
-        // uml: evBack [trace_guard("State T7__DH2__state_2: check behavior `evBack TransitionTo(T7__DH2__state_1)`.", true)] / { trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1."); } TransitionTo(T7__DH2__state_1)
-        if (trace_guard("State T7__DH2__state_2: check behavior `evBack TransitionTo(T7__DH2__state_1)`.", true))
+        // T7__DEEP_HISTORY2__T7__state_2 behavior
+        // uml: evBack [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", true))
         {
-            // Step 1: Exit states until we reach `T7__DH2__state_0` state (Least Common Ancestor for transition).
-            this._exitUpToStateHandler(this._T7__DH2__STATE_0_exit);
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition).
+            this._exitUpToStateHandler(this._T7__DEEP_HISTORY2__T7__STATE_0_exit);
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");`.
-            console.log("Transition action `` for T7__DH2__state_2 to T7__DH2__state_1.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.");
             
-            // Step 3: Enter/move towards transition target `T7__DH2__state_1`.
-            this._T7__DH2__STATE_1_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_1`.
+            this._T7__DEEP_HISTORY2__T7__STATE_1_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = Spec2Sm.StateId.T7__DH2__STATE_1;
+            this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_1;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
-        } // end of behavior for T7__DH2__state_2
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
     }
     
-    _T7__DH2__state_2_InitialState_transition()
+    _T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
     {
-        // T7__DH2__state_2.InitialState behavior
-        // uml: / { trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6."); } TransitionTo(T7__DH2__state_6)
+        // T7__DEEP_HISTORY2__T7__state_2.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.InitialState to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
         {
-            // Step 1: Exit states until we reach `T7__DH2__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6.");`.
-            console.log("Transition action `` for T7__DH2__state_2.InitialState to T7__DH2__state_6.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.InitialState to T7__DEEP_HISTORY2__T7__state_6.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.InitialState to T7__DEEP_HISTORY2__T7__state_6.");
             
-            // Step 3: Enter/move towards transition target `T7__DH2__state_6`.
-            this._T7__DH2__STATE_6_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_6`.
+            this._T7__DEEP_HISTORY2__T7__STATE_6_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = Spec2Sm.StateId.T7__DH2__STATE_6;
+            this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_6;
             this._ancestorEventHandler = null;
             return;
-        } // end of behavior for T7__DH2__state_2.InitialState
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_2.InitialState
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH2__STATE_6
+    // event handlers for state T7__DEEP_HISTORY2__T7__STATE_6
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH2__STATE_6_enter()
+    _T7__DEEP_HISTORY2__T7__STATE_6_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH2__STATE_6_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = this._T7__DH2__STATE_6_evstep;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_6_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = this._T7__DEEP_HISTORY2__T7__STATE_6_evstep;
         
-        // T7__DH2__state_6 behavior
-        // uml: enter / { trace("Enter T7__DH2__state_6."); }
+        // T7__DEEP_HISTORY2__T7__state_6 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_6."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH2__state_6.");`
-            console.log("Enter T7__DH2__state_6.");
-        } // end of behavior for T7__DH2__state_6
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_6.");`
+            console.log("Enter T7__DEEP_HISTORY2__T7__state_6.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
         
-        // T7__DH2__state_6 behavior
-        // uml: enter [trace_guard("State T7__DH2__state_6: check behavior `enter / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6;) }`.", true)] / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6;) }
-        if (trace_guard("State T7__DH2__state_6: check behavior `enter / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6;) }`.", true))
+        // T7__DEEP_HISTORY2__T7__state_6 behavior
+        // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;) }
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;) }`.", true))
         {
-            // Step 1: execute action `$gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_6;)`
-            this.vars.T7__DH2__state_0_history = Spec2Sm.T7__DH2__state_0_HistoryId.T7__DH2__state_6;
-        } // end of behavior for T7__DH2__state_6
+            // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;)`
+            this.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
     }
     
-    _T7__DH2__STATE_6_exit()
+    _T7__DEEP_HISTORY2__T7__STATE_6_exit()
     {
-        // T7__DH2__state_6 behavior
-        // uml: exit / { trace("Exit T7__DH2__state_6."); }
+        // T7__DEEP_HISTORY2__T7__state_6 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_6."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH2__state_6.");`
-            console.log("Exit T7__DH2__state_6.");
-        } // end of behavior for T7__DH2__state_6
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_6.");`
+            console.log("Exit T7__DEEP_HISTORY2__T7__state_6.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
         
         // adjust function pointers for this state's exit
-        this._currentStateExitHandler = this._T7__DH2__STATE_2_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_2_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH2__STATE_6_evstep()
+    _T7__DEEP_HISTORY2__T7__STATE_6_evstep()
     {
         // No ancestor state handles `evstep` event.
         
-        // T7__DH2__state_6 behavior
-        // uml: evStep [trace_guard("State T7__DH2__state_6: check behavior `evStep TransitionTo(T7__DH2__state_9)`.", true)] / { trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9."); } TransitionTo(T7__DH2__state_9)
-        if (trace_guard("State T7__DH2__state_6: check behavior `evStep TransitionTo(T7__DH2__state_9)`.", true))
+        // T7__DEEP_HISTORY2__T7__state_6 behavior
+        // uml: evStep [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_9)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_9)`.", true))
         {
-            // Step 1: Exit states until we reach `T7__DH2__state_2` state (Least Common Ancestor for transition).
-            this._T7__DH2__STATE_6_exit();
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition).
+            this._T7__DEEP_HISTORY2__T7__STATE_6_exit();
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9.");`.
-            console.log("Transition action `` for T7__DH2__state_6 to T7__DH2__state_9.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9.");
             
-            // Step 3: Enter/move towards transition target `T7__DH2__state_9`.
-            this._T7__DH2__STATE_9_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_9`.
+            this._T7__DEEP_HISTORY2__T7__STATE_9_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = Spec2Sm.StateId.T7__DH2__STATE_9;
+            this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
-        } // end of behavior for T7__DH2__state_6
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH2__STATE_9
+    // event handlers for state T7__DEEP_HISTORY2__T7__STATE_9
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH2__STATE_9_enter()
+    _T7__DEEP_HISTORY2__T7__STATE_9_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH2__STATE_9_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_9_exit;
         
-        // T7__DH2__state_9 behavior
-        // uml: enter / { trace("Enter T7__DH2__state_9."); }
+        // T7__DEEP_HISTORY2__T7__state_9 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_9."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH2__state_9.");`
-            console.log("Enter T7__DH2__state_9.");
-        } // end of behavior for T7__DH2__state_9
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_9.");`
+            console.log("Enter T7__DEEP_HISTORY2__T7__state_9.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
         
-        // T7__DH2__state_9 behavior
-        // uml: enter [trace_guard("State T7__DH2__state_9: check behavior `enter / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9;) }`.", true)] / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9;) }
-        if (trace_guard("State T7__DH2__state_9: check behavior `enter / { $gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9;) }`.", true))
+        // T7__DEEP_HISTORY2__T7__state_9 behavior
+        // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;) }
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;) }`.", true))
         {
-            // Step 1: execute action `$gil(this.vars.T7__DH2__state_0_history = T7__DH2__state_0_HistoryId.T7__DH2__state_9;)`
-            this.vars.T7__DH2__state_0_history = Spec2Sm.T7__DH2__state_0_HistoryId.T7__DH2__state_9;
-        } // end of behavior for T7__DH2__state_9
+            // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;)`
+            this.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
     }
     
-    _T7__DH2__STATE_9_exit()
+    _T7__DEEP_HISTORY2__T7__STATE_9_exit()
     {
-        // T7__DH2__state_9 behavior
-        // uml: exit / { trace("Exit T7__DH2__state_9."); }
+        // T7__DEEP_HISTORY2__T7__state_9 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_9."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH2__state_9.");`
-            console.log("Exit T7__DH2__state_9.");
-        } // end of behavior for T7__DH2__state_9
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_9.");`
+            console.log("Exit T7__DEEP_HISTORY2__T7__state_9.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
         
         // adjust function pointers for this state's exit
-        this._currentStateExitHandler = this._T7__DH2__STATE_2_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_2_exit;
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH2__STATE_3
+    // event handlers for state T7__DEEP_HISTORY2__T7__STATE_3
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH2__STATE_3_enter()
+    _T7__DEEP_HISTORY2__T7__STATE_3_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH2__STATE_3_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVCLOSE] = this._T7__DH2__STATE_3_evclose;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY2__T7__STATE_3_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVCLOSE] = this._T7__DEEP_HISTORY2__T7__STATE_3_evclose;
         
-        // T7__DH2__state_3 behavior
-        // uml: enter / { trace("Enter T7__DH2__state_3."); }
+        // T7__DEEP_HISTORY2__T7__state_3 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_3."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH2__state_3.");`
-            console.log("Enter T7__DH2__state_3.");
-        } // end of behavior for T7__DH2__state_3
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_3.");`
+            console.log("Enter T7__DEEP_HISTORY2__T7__state_3.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
     }
     
-    _T7__DH2__STATE_3_exit()
+    _T7__DEEP_HISTORY2__T7__STATE_3_exit()
     {
-        // T7__DH2__state_3 behavior
-        // uml: exit / { trace("Exit T7__DH2__state_3."); }
+        // T7__DEEP_HISTORY2__T7__state_3 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_3."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH2__state_3.");`
-            console.log("Exit T7__DH2__state_3.");
-        } // end of behavior for T7__DH2__state_3
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_3.");`
+            console.log("Exit T7__DEEP_HISTORY2__T7__state_3.");
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
         
         // adjust function pointers for this state's exit
         this._currentStateExitHandler = this._T7__DEEP_HISTORY2_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVCLOSE] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH2__STATE_3_evclose()
+    _T7__DEEP_HISTORY2__T7__STATE_3_evclose()
     {
         // No ancestor state handles `evclose` event.
         
-        // T7__DH2__state_3 behavior
-        // uml: evClose [trace_guard("State T7__DH2__state_3: check behavior `evClose TransitionTo(T7__DH2__state_0)`.", true)] / { trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0."); } TransitionTo(T7__DH2__state_0)
-        if (trace_guard("State T7__DH2__state_3: check behavior `evClose TransitionTo(T7__DH2__state_0)`.", true))
+        // T7__DEEP_HISTORY2__T7__state_3 behavior
+        // uml: evClose [trace_guard("State T7__DEEP_HISTORY2__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY2__T7__state_0)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
+        if (trace_guard("State T7__DEEP_HISTORY2__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY2__T7__state_0)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
-            this._T7__DH2__STATE_3_exit();
+            this._T7__DEEP_HISTORY2__T7__STATE_3_exit();
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0.");`.
-            console.log("Transition action `` for T7__DH2__state_3 to T7__DH2__state_0.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0.");
             
-            // Step 3: Enter/move towards transition target `T7__DH2__state_0`.
-            this._T7__DH2__STATE_0_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0`.
+            this._T7__DEEP_HISTORY2__T7__STATE_0_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this._T7__DH2__state_0_InitialState_transition();
+            this._T7__DEEP_HISTORY2__T7__state_0_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior for T7__DH2__state_3
+        } // end of behavior for T7__DEEP_HISTORY2__T7__state_3
     }
     
     
@@ -7662,401 +7662,401 @@ export class Spec2Sm
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH3__STATE_0
+    // event handlers for state T7__DEEP_HISTORY3__T7__STATE_0
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH3__STATE_0_enter()
+    _T7__DEEP_HISTORY3__T7__STATE_0_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH3__STATE_0_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVOPEN] = this._T7__DH3__STATE_0_evopen;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_0_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVOPEN] = this._T7__DEEP_HISTORY3__T7__STATE_0_evopen;
         
-        // T7__DH3__state_0 behavior
-        // uml: enter / { trace("Enter T7__DH3__state_0."); }
+        // T7__DEEP_HISTORY3__T7__state_0 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_0."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH3__state_0.");`
-            console.log("Enter T7__DH3__state_0.");
-        } // end of behavior for T7__DH3__state_0
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_0.");`
+            console.log("Enter T7__DEEP_HISTORY3__T7__state_0.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
     }
     
-    _T7__DH3__STATE_0_exit()
+    _T7__DEEP_HISTORY3__T7__STATE_0_exit()
     {
-        // T7__DH3__state_0 behavior
-        // uml: exit / { trace("Exit T7__DH3__state_0."); }
+        // T7__DEEP_HISTORY3__T7__state_0 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_0."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH3__state_0.");`
-            console.log("Exit T7__DH3__state_0.");
-        } // end of behavior for T7__DH3__state_0
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_0.");`
+            console.log("Exit T7__DEEP_HISTORY3__T7__state_0.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
         
         // adjust function pointers for this state's exit
         this._currentStateExitHandler = this._T7__DEEP_HISTORY3_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVOPEN] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH3__STATE_0_evopen()
+    _T7__DEEP_HISTORY3__T7__STATE_0_evopen()
     {
         // No ancestor state handles `evopen` event.
         
-        // T7__DH3__state_0 behavior
-        // uml: evOpen [trace_guard("State T7__DH3__state_0: check behavior `evOpen TransitionTo(T7__DH3__state_3)`.", true)] / { trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3."); } TransitionTo(T7__DH3__state_3)
-        if (trace_guard("State T7__DH3__state_0: check behavior `evOpen TransitionTo(T7__DH3__state_3)`.", true))
+        // T7__DEEP_HISTORY3__T7__state_0 behavior
+        // uml: evOpen [trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_3)
+        if (trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
             this._exitUpToStateHandler(this._T7__DEEP_HISTORY3_exit);
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");`.
-            console.log("Transition action `` for T7__DH3__state_0 to T7__DH3__state_3.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.");
             
-            // Step 3: Enter/move towards transition target `T7__DH3__state_3`.
-            this._T7__DH3__STATE_3_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_3`.
+            this._T7__DEEP_HISTORY3__T7__STATE_3_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = Spec2Sm.StateId.T7__DH3__STATE_3;
+            this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_3;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
-        } // end of behavior for T7__DH3__state_0
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0
     }
     
-    _T7__DH3__state_0_InitialState_transition()
+    _T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
     {
-        // T7__DH3__state_0.InitialState behavior
-        // uml: / { trace("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History."); } TransitionTo(T7__DH3__state_0.History)
+        // T7__DEEP_HISTORY3__T7__state_0.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.InitialState to T7__DEEP_HISTORY3__T7__state_0.History."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0.History)
         {
-            // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History.");`.
-            console.log("Transition action `` for T7__DH3__state_0.InitialState to T7__DH3__state_0.History.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.InitialState to T7__DEEP_HISTORY3__T7__state_0.History.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.InitialState to T7__DEEP_HISTORY3__T7__state_0.History.");
             
-            // Step 3: Enter/move towards transition target `T7__DH3__state_0.History`.
-            // T7__DH3__state_0.History is a pseudo state and cannot have an `enter` trigger.
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0.History`.
+            // T7__DEEP_HISTORY3__T7__state_0.History is a pseudo state and cannot have an `enter` trigger.
             
-            // T7__DH3__state_0.History behavior
-            // uml: [$gil(this.vars.T7__DH3__state_0_history == T7__DH3__state_0_HistoryId.T7__DH3__state_2)] / { trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2."); } TransitionTo(T7__DH3__state_2)
-            if (this.vars.T7__DH3__state_0_history == Spec2Sm.T7__DH3__state_0_HistoryId.T7__DH3__state_2)
+            // T7__DEEP_HISTORY3__T7__state_0.History behavior
+            // uml: [$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
+            if (this.vars.T7__DEEP_HISTORY3__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2)
             {
-                // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2.");`.
-                console.log("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_2.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_2.");`.
+                console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_2.");
                 
-                // Step 3: Enter/move towards transition target `T7__DH3__state_2`.
-                this._T7__DH3__STATE_2_enter();
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_2`.
+                this._T7__DEEP_HISTORY3__T7__STATE_2_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this._T7__DH3__state_2_InitialState_transition();
+                this._T7__DEEP_HISTORY3__T7__state_2_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for T7__DH3__state_0.History
+            } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.History
             
-            // T7__DH3__state_0.History behavior
-            // uml: else / { trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1."); } TransitionTo(T7__DH3__state_1)
+            // T7__DEEP_HISTORY3__T7__state_0.History behavior
+            // uml: else / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
             {
-                // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1.");`.
-                console.log("Transition action `` for T7__DH3__state_0.History to T7__DH3__state_1.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_1.");`.
+                console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_1.");
                 
-                // Step 3: Enter/move towards transition target `T7__DH3__state_1`.
-                this._T7__DH3__STATE_1_enter();
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_1`.
+                this._T7__DEEP_HISTORY3__T7__STATE_1_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.stateId = Spec2Sm.StateId.T7__DH3__STATE_1;
+                this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_1;
                 this._ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DH3__state_0.History
-        } // end of behavior for T7__DH3__state_0.InitialState
+            } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.History
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.InitialState
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH3__STATE_1
+    // event handlers for state T7__DEEP_HISTORY3__T7__STATE_1
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH3__STATE_1_enter()
+    _T7__DEEP_HISTORY3__T7__STATE_1_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH3__STATE_1_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = this._T7__DH3__STATE_1_evstep;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_1_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = this._T7__DEEP_HISTORY3__T7__STATE_1_evstep;
         
-        // T7__DH3__state_1 behavior
-        // uml: enter / { trace("Enter T7__DH3__state_1."); }
+        // T7__DEEP_HISTORY3__T7__state_1 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_1."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH3__state_1.");`
-            console.log("Enter T7__DH3__state_1.");
-        } // end of behavior for T7__DH3__state_1
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_1.");`
+            console.log("Enter T7__DEEP_HISTORY3__T7__state_1.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
         
-        // T7__DH3__state_1 behavior
-        // uml: enter [trace_guard("State T7__DH3__state_1: check behavior `enter / { $gil(this.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1;) }`.", true)] / { $gil(this.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1;) }
-        if (trace_guard("State T7__DH3__state_1: check behavior `enter / { $gil(this.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1;) }`.", true))
+        // T7__DEEP_HISTORY3__T7__state_1 behavior
+        // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;) }
+        if (trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;) }`.", true))
         {
-            // Step 1: execute action `$gil(this.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_1;)`
-            this.vars.T7__DH3__state_0_history = Spec2Sm.T7__DH3__state_0_HistoryId.T7__DH3__state_1;
-        } // end of behavior for T7__DH3__state_1
+            // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;)`
+            this.vars.T7__DEEP_HISTORY3__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
     }
     
-    _T7__DH3__STATE_1_exit()
+    _T7__DEEP_HISTORY3__T7__STATE_1_exit()
     {
-        // T7__DH3__state_1 behavior
-        // uml: exit / { trace("Exit T7__DH3__state_1."); }
+        // T7__DEEP_HISTORY3__T7__state_1 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_1."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH3__state_1.");`
-            console.log("Exit T7__DH3__state_1.");
-        } // end of behavior for T7__DH3__state_1
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_1.");`
+            console.log("Exit T7__DEEP_HISTORY3__T7__state_1.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
         
         // adjust function pointers for this state's exit
-        this._currentStateExitHandler = this._T7__DH3__STATE_0_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_0_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH3__STATE_1_evstep()
+    _T7__DEEP_HISTORY3__T7__STATE_1_evstep()
     {
         // No ancestor state handles `evstep` event.
         
-        // T7__DH3__state_1 behavior
-        // uml: evStep [trace_guard("State T7__DH3__state_1: check behavior `evStep TransitionTo(T7__DH3__state_2)`.", true)] / { trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2."); } TransitionTo(T7__DH3__state_2)
-        if (trace_guard("State T7__DH3__state_1: check behavior `evStep TransitionTo(T7__DH3__state_2)`.", true))
+        // T7__DEEP_HISTORY3__T7__state_1 behavior
+        // uml: evStep [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_2)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
+        if (trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_2)`.", true))
         {
-            // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition).
-            this._T7__DH3__STATE_1_exit();
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition).
+            this._T7__DEEP_HISTORY3__T7__STATE_1_exit();
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2.");`.
-            console.log("Transition action `` for T7__DH3__state_1 to T7__DH3__state_2.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2.");
             
-            // Step 3: Enter/move towards transition target `T7__DH3__state_2`.
-            this._T7__DH3__STATE_2_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_2`.
+            this._T7__DEEP_HISTORY3__T7__STATE_2_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this._T7__DH3__state_2_InitialState_transition();
+            this._T7__DEEP_HISTORY3__T7__state_2_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior for T7__DH3__state_1
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH3__STATE_2
+    // event handlers for state T7__DEEP_HISTORY3__T7__STATE_2
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH3__STATE_2_enter()
+    _T7__DEEP_HISTORY3__T7__STATE_2_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH3__STATE_2_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVBACK] = this._T7__DH3__STATE_2_evback;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_2_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVBACK] = this._T7__DEEP_HISTORY3__T7__STATE_2_evback;
         
-        // T7__DH3__state_2 behavior
-        // uml: enter / { trace("Enter T7__DH3__state_2."); }
+        // T7__DEEP_HISTORY3__T7__state_2 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_2."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH3__state_2.");`
-            console.log("Enter T7__DH3__state_2.");
-        } // end of behavior for T7__DH3__state_2
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_2.");`
+            console.log("Enter T7__DEEP_HISTORY3__T7__state_2.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
         
-        // T7__DH3__state_2 behavior
-        // uml: enter [trace_guard("State T7__DH3__state_2: check behavior `enter / { $gil(this.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2;) }`.", true)] / { $gil(this.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2;) }
-        if (trace_guard("State T7__DH3__state_2: check behavior `enter / { $gil(this.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2;) }`.", true))
+        // T7__DEEP_HISTORY3__T7__state_2 behavior
+        // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;) }
+        if (trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;) }`.", true))
         {
-            // Step 1: execute action `$gil(this.vars.T7__DH3__state_0_history = T7__DH3__state_0_HistoryId.T7__DH3__state_2;)`
-            this.vars.T7__DH3__state_0_history = Spec2Sm.T7__DH3__state_0_HistoryId.T7__DH3__state_2;
-        } // end of behavior for T7__DH3__state_2
+            // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;)`
+            this.vars.T7__DEEP_HISTORY3__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
     }
     
-    _T7__DH3__STATE_2_exit()
+    _T7__DEEP_HISTORY3__T7__STATE_2_exit()
     {
-        // T7__DH3__state_2 behavior
-        // uml: exit / { trace("Exit T7__DH3__state_2."); }
+        // T7__DEEP_HISTORY3__T7__state_2 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_2."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH3__state_2.");`
-            console.log("Exit T7__DH3__state_2.");
-        } // end of behavior for T7__DH3__state_2
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_2.");`
+            console.log("Exit T7__DEEP_HISTORY3__T7__state_2.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
         
         // adjust function pointers for this state's exit
-        this._currentStateExitHandler = this._T7__DH3__STATE_0_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_0_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVBACK] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH3__STATE_2_evback()
+    _T7__DEEP_HISTORY3__T7__STATE_2_evback()
     {
         // No ancestor state handles `evback` event.
         
-        // T7__DH3__state_2 behavior
-        // uml: evBack [trace_guard("State T7__DH3__state_2: check behavior `evBack TransitionTo(T7__DH3__state_1)`.", true)] / { trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1."); } TransitionTo(T7__DH3__state_1)
-        if (trace_guard("State T7__DH3__state_2: check behavior `evBack TransitionTo(T7__DH3__state_1)`.", true))
+        // T7__DEEP_HISTORY3__T7__state_2 behavior
+        // uml: evBack [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
+        if (trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", true))
         {
-            // Step 1: Exit states until we reach `T7__DH3__state_0` state (Least Common Ancestor for transition).
-            this._exitUpToStateHandler(this._T7__DH3__STATE_0_exit);
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition).
+            this._exitUpToStateHandler(this._T7__DEEP_HISTORY3__T7__STATE_0_exit);
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");`.
-            console.log("Transition action `` for T7__DH3__state_2 to T7__DH3__state_1.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.");
             
-            // Step 3: Enter/move towards transition target `T7__DH3__state_1`.
-            this._T7__DH3__STATE_1_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_1`.
+            this._T7__DEEP_HISTORY3__T7__STATE_1_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = Spec2Sm.StateId.T7__DH3__STATE_1;
+            this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_1;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
-        } // end of behavior for T7__DH3__state_2
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
     }
     
-    _T7__DH3__state_2_InitialState_transition()
+    _T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
     {
-        // T7__DH3__state_2.InitialState behavior
-        // uml: / { trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6."); } TransitionTo(T7__DH3__state_6)
+        // T7__DEEP_HISTORY3__T7__state_2.InitialState behavior
+        // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.InitialState to T7__DEEP_HISTORY3__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_6)
         {
-            // Step 1: Exit states until we reach `T7__DH3__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6.");`.
-            console.log("Transition action `` for T7__DH3__state_2.InitialState to T7__DH3__state_6.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.InitialState to T7__DEEP_HISTORY3__T7__state_6.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.InitialState to T7__DEEP_HISTORY3__T7__state_6.");
             
-            // Step 3: Enter/move towards transition target `T7__DH3__state_6`.
-            this._T7__DH3__STATE_6_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_6`.
+            this._T7__DEEP_HISTORY3__T7__STATE_6_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = Spec2Sm.StateId.T7__DH3__STATE_6;
+            this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_6;
             this._ancestorEventHandler = null;
             return;
-        } // end of behavior for T7__DH3__state_2.InitialState
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_2.InitialState
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH3__STATE_6
+    // event handlers for state T7__DEEP_HISTORY3__T7__STATE_6
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH3__STATE_6_enter()
+    _T7__DEEP_HISTORY3__T7__STATE_6_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH3__STATE_6_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = this._T7__DH3__STATE_6_evstep;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_6_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = this._T7__DEEP_HISTORY3__T7__STATE_6_evstep;
         
-        // T7__DH3__state_6 behavior
-        // uml: enter / { trace("Enter T7__DH3__state_6."); }
+        // T7__DEEP_HISTORY3__T7__state_6 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_6."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH3__state_6.");`
-            console.log("Enter T7__DH3__state_6.");
-        } // end of behavior for T7__DH3__state_6
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_6.");`
+            console.log("Enter T7__DEEP_HISTORY3__T7__state_6.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
     }
     
-    _T7__DH3__STATE_6_exit()
+    _T7__DEEP_HISTORY3__T7__STATE_6_exit()
     {
-        // T7__DH3__state_6 behavior
-        // uml: exit / { trace("Exit T7__DH3__state_6."); }
+        // T7__DEEP_HISTORY3__T7__state_6 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_6."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH3__state_6.");`
-            console.log("Exit T7__DH3__state_6.");
-        } // end of behavior for T7__DH3__state_6
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_6.");`
+            console.log("Exit T7__DEEP_HISTORY3__T7__state_6.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
         
         // adjust function pointers for this state's exit
-        this._currentStateExitHandler = this._T7__DH3__STATE_2_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_2_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVSTEP] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH3__STATE_6_evstep()
+    _T7__DEEP_HISTORY3__T7__STATE_6_evstep()
     {
         // No ancestor state handles `evstep` event.
         
-        // T7__DH3__state_6 behavior
-        // uml: evStep [trace_guard("State T7__DH3__state_6: check behavior `evStep TransitionTo(T7__DH3__state_9)`.", true)] / { trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9."); } TransitionTo(T7__DH3__state_9)
-        if (trace_guard("State T7__DH3__state_6: check behavior `evStep TransitionTo(T7__DH3__state_9)`.", true))
+        // T7__DEEP_HISTORY3__T7__state_6 behavior
+        // uml: evStep [trace_guard("State T7__DEEP_HISTORY3__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_9)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_9)
+        if (trace_guard("State T7__DEEP_HISTORY3__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_9)`.", true))
         {
-            // Step 1: Exit states until we reach `T7__DH3__state_2` state (Least Common Ancestor for transition).
-            this._T7__DH3__STATE_6_exit();
+            // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition).
+            this._T7__DEEP_HISTORY3__T7__STATE_6_exit();
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9.");`.
-            console.log("Transition action `` for T7__DH3__state_6 to T7__DH3__state_9.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9.");
             
-            // Step 3: Enter/move towards transition target `T7__DH3__state_9`.
-            this._T7__DH3__STATE_9_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_9`.
+            this._T7__DEEP_HISTORY3__T7__STATE_9_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = Spec2Sm.StateId.T7__DH3__STATE_9;
+            this.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_9;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
-        } // end of behavior for T7__DH3__state_6
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_6
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH3__STATE_9
+    // event handlers for state T7__DEEP_HISTORY3__T7__STATE_9
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH3__STATE_9_enter()
+    _T7__DEEP_HISTORY3__T7__STATE_9_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH3__STATE_9_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_9_exit;
         
-        // T7__DH3__state_9 behavior
-        // uml: enter / { trace("Enter T7__DH3__state_9."); }
+        // T7__DEEP_HISTORY3__T7__state_9 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_9."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH3__state_9.");`
-            console.log("Enter T7__DH3__state_9.");
-        } // end of behavior for T7__DH3__state_9
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_9.");`
+            console.log("Enter T7__DEEP_HISTORY3__T7__state_9.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_9
     }
     
-    _T7__DH3__STATE_9_exit()
+    _T7__DEEP_HISTORY3__T7__STATE_9_exit()
     {
-        // T7__DH3__state_9 behavior
-        // uml: exit / { trace("Exit T7__DH3__state_9."); }
+        // T7__DEEP_HISTORY3__T7__state_9 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_9."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH3__state_9.");`
-            console.log("Exit T7__DH3__state_9.");
-        } // end of behavior for T7__DH3__state_9
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_9.");`
+            console.log("Exit T7__DEEP_HISTORY3__T7__state_9.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_9
         
         // adjust function pointers for this state's exit
-        this._currentStateExitHandler = this._T7__DH3__STATE_2_exit;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_2_exit;
     }
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state T7__DH3__STATE_3
+    // event handlers for state T7__DEEP_HISTORY3__T7__STATE_3
     ////////////////////////////////////////////////////////////////////////////////
     
-    _T7__DH3__STATE_3_enter()
+    _T7__DEEP_HISTORY3__T7__STATE_3_enter()
     {
         // setup trigger/event handlers
-        this._currentStateExitHandler = this._T7__DH3__STATE_3_exit;
-        this._currentEventHandlers[Spec2Sm.EventId.EVCLOSE] = this._T7__DH3__STATE_3_evclose;
+        this._currentStateExitHandler = this._T7__DEEP_HISTORY3__T7__STATE_3_exit;
+        this._currentEventHandlers[Spec2Sm.EventId.EVCLOSE] = this._T7__DEEP_HISTORY3__T7__STATE_3_evclose;
         
-        // T7__DH3__state_3 behavior
-        // uml: enter / { trace("Enter T7__DH3__state_3."); }
+        // T7__DEEP_HISTORY3__T7__state_3 behavior
+        // uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_3."); }
         {
-            // Step 1: execute action `trace("Enter T7__DH3__state_3.");`
-            console.log("Enter T7__DH3__state_3.");
-        } // end of behavior for T7__DH3__state_3
+            // Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_3.");`
+            console.log("Enter T7__DEEP_HISTORY3__T7__state_3.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
     }
     
-    _T7__DH3__STATE_3_exit()
+    _T7__DEEP_HISTORY3__T7__STATE_3_exit()
     {
-        // T7__DH3__state_3 behavior
-        // uml: exit / { trace("Exit T7__DH3__state_3."); }
+        // T7__DEEP_HISTORY3__T7__state_3 behavior
+        // uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_3."); }
         {
-            // Step 1: execute action `trace("Exit T7__DH3__state_3.");`
-            console.log("Exit T7__DH3__state_3.");
-        } // end of behavior for T7__DH3__state_3
+            // Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_3.");`
+            console.log("Exit T7__DEEP_HISTORY3__T7__state_3.");
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
         
         // adjust function pointers for this state's exit
         this._currentStateExitHandler = this._T7__DEEP_HISTORY3_exit;
         this._currentEventHandlers[Spec2Sm.EventId.EVCLOSE] = null;  // no ancestor listens to this event
     }
     
-    _T7__DH3__STATE_3_evclose()
+    _T7__DEEP_HISTORY3__T7__STATE_3_evclose()
     {
         // No ancestor state handles `evclose` event.
         
-        // T7__DH3__state_3 behavior
-        // uml: evClose [trace_guard("State T7__DH3__state_3: check behavior `evClose TransitionTo(T7__DH3__state_0)`.", true)] / { trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0."); } TransitionTo(T7__DH3__state_0)
-        if (trace_guard("State T7__DH3__state_3: check behavior `evClose TransitionTo(T7__DH3__state_0)`.", true))
+        // T7__DEEP_HISTORY3__T7__state_3 behavior
+        // uml: evClose [trace_guard("State T7__DEEP_HISTORY3__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY3__T7__state_0)`.", true)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
+        if (trace_guard("State T7__DEEP_HISTORY3__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY3__T7__state_0)`.", true))
         {
             // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
-            this._T7__DH3__STATE_3_exit();
+            this._T7__DEEP_HISTORY3__T7__STATE_3_exit();
             
-            // Step 2: Transition action: `trace("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0.");`.
-            console.log("Transition action `` for T7__DH3__state_3 to T7__DH3__state_0.");
+            // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0.");`.
+            console.log("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0.");
             
-            // Step 3: Enter/move towards transition target `T7__DH3__state_0`.
-            this._T7__DH3__STATE_0_enter();
+            // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0`.
+            this._T7__DEEP_HISTORY3__T7__STATE_0_enter();
             
             // Finish transition by calling pseudo state transition function.
-            this._T7__DH3__state_0_InitialState_transition();
+            this._T7__DEEP_HISTORY3__T7__state_0_InitialState_transition();
             return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-        } // end of behavior for T7__DH3__state_3
+        } // end of behavior for T7__DEEP_HISTORY3__T7__state_3
     }
     
     
@@ -9317,18 +9317,18 @@ export class Spec2Sm
             this._T7__DEEP_HISTORY2_enter();
             
             // T7__DEEP_HISTORY2.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0."); } TransitionTo(T7__DH2__state_0)
+            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DEEP_HISTORY2__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0.");`.
-                console.log("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DH2__state_0.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DEEP_HISTORY2__T7__state_0.");`.
+                console.log("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DEEP_HISTORY2__T7__state_0.");
                 
-                // Step 3: Enter/move towards transition target `T7__DH2__state_0`.
-                this._T7__DH2__STATE_0_enter();
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0`.
+                this._T7__DEEP_HISTORY2__T7__STATE_0_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this._T7__DH2__state_0_InitialState_transition();
+                this._T7__DEEP_HISTORY2__T7__state_0_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DEEP_HISTORY2.InitialState
         } // end of behavior for TEST7_DECIDE
@@ -9353,18 +9353,18 @@ export class Spec2Sm
             this._T7__DEEP_HISTORY3_enter();
             
             // T7__DEEP_HISTORY3.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0."); } TransitionTo(T7__DH3__state_0)
+            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DEEP_HISTORY3__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0.");`.
-                console.log("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DH3__state_0.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DEEP_HISTORY3__T7__state_0.");`.
+                console.log("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DEEP_HISTORY3__T7__state_0.");
                 
-                // Step 3: Enter/move towards transition target `T7__DH3__state_0`.
-                this._T7__DH3__STATE_0_enter();
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0`.
+                this._T7__DEEP_HISTORY3__T7__STATE_0_enter();
                 
                 // Finish transition by calling pseudo state transition function.
-                this._T7__DH3__state_0_InitialState_transition();
+                this._T7__DEEP_HISTORY3__T7__state_0_InitialState_transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
             } // end of behavior for T7__DEEP_HISTORY3.InitialState
         } // end of behavior for TEST7_DECIDE
@@ -10995,19 +10995,19 @@ export class Spec2Sm
             case Spec2Sm.StateId.T7__DH1__WALL_E: return "T7__DH1__WALL_E";
             case Spec2Sm.StateId.T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR";
             case Spec2Sm.StateId.T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2";
-            case Spec2Sm.StateId.T7__DH2__STATE_0: return "T7__DH2__STATE_0";
-            case Spec2Sm.StateId.T7__DH2__STATE_1: return "T7__DH2__STATE_1";
-            case Spec2Sm.StateId.T7__DH2__STATE_2: return "T7__DH2__STATE_2";
-            case Spec2Sm.StateId.T7__DH2__STATE_6: return "T7__DH2__STATE_6";
-            case Spec2Sm.StateId.T7__DH2__STATE_9: return "T7__DH2__STATE_9";
-            case Spec2Sm.StateId.T7__DH2__STATE_3: return "T7__DH2__STATE_3";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3";
             case Spec2Sm.StateId.T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3";
-            case Spec2Sm.StateId.T7__DH3__STATE_0: return "T7__DH3__STATE_0";
-            case Spec2Sm.StateId.T7__DH3__STATE_1: return "T7__DH3__STATE_1";
-            case Spec2Sm.StateId.T7__DH3__STATE_2: return "T7__DH3__STATE_2";
-            case Spec2Sm.StateId.T7__DH3__STATE_6: return "T7__DH3__STATE_6";
-            case Spec2Sm.StateId.T7__DH3__STATE_9: return "T7__DH3__STATE_9";
-            case Spec2Sm.StateId.T7__DH3__STATE_3: return "T7__DH3__STATE_3";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9";
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3";
             case Spec2Sm.StateId.T7__HISTORY1: return "T7__HISTORY1";
             case Spec2Sm.StateId.T7__H1__OFF: return "T7__H1__OFF";
             case Spec2Sm.StateId.T7__H1__OFF1: return "T7__H1__OFF1";
