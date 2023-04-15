@@ -2210,7 +2210,7 @@ exit / clear_dispatch_output();<y:LabelModel><y:SmartNodeLabelModel distance="4.
                 <y:ProxyAutoBoundsNode>
                   <y:Realizers active="0">
                     <y:GroupNode>
-                      <y:Geometry height="482.9167096782903" width="1501.6826646304298" x="229.41120258339902" y="930.9745748483549"/>
+                      <y:Geometry height="488.86846749079064" width="1501.6826646304298" x="229.41120258339902" y="930.9745748483549"/>
                       <y:Fill color="#F5F5F5" transparent="false"/>
                       <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
                       <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="59.12939453125" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="1501.6826646304298" x="0.0" xml:space="preserve" y="0.0">     TEST7
@@ -2219,7 +2219,7 @@ $mod / prefix.add(T7);</y:NodeLabel>
                       <y:Shape type="roundrectangle"/>
                       <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                       <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-                      <y:BorderInsets bottom="231" bottomF="231.0" left="58" leftF="58.0" right="400" rightF="399.8022879871303" top="36" topF="35.78731514704032"/>
+                      <y:BorderInsets bottom="151" bottomF="150.75175781250005" left="58" leftF="58.0" right="400" rightF="399.8022879871303" top="36" topF="35.78731514704032"/>
                     </y:GroupNode>
                     <y:GroupNode>
                       <y:Geometry height="50.0" width="50.0" x="229.41120258339902" y="930.9745748483549"/>
@@ -3803,8 +3803,8 @@ $mod / prefix.auto();<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:La
                           <y:Geometry height="401.71048966908074" width="382.84800360763506" x="730.411202583399" y="946.1039693796049"/>
                           <y:Fill color="#F5F5F5" transparent="false"/>
                           <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                          <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="382.84800360763506" x="0.0" xml:space="preserve" y="0.0">    DEEP_HISTORY2
-$mod / prefix.add(DH2);</y:NodeLabel>
+                          <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="382.84800360763506" x="0.0" xml:space="preserve" y="0.0">    DEEP_HISTORY2
+</y:NodeLabel>
                           <y:Shape type="roundrectangle"/>
                           <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                           <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
@@ -3814,8 +3814,8 @@ $mod / prefix.add(DH2);</y:NodeLabel>
                           <y:Geometry height="78.78731514704032" width="192.17304964539005" x="907.2327535960069" y="1089.103969379605"/>
                           <y:Fill color="#F5F5F5" transparent="false"/>
                           <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="192.17304964539005" x="0.0" xml:space="preserve" y="0.0">    DEEP_HISTORY2
-$mod / prefix.add(DH2);</y:NodeLabel>
+                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="192.17304964539005" x="0.0" xml:space="preserve" y="0.0">    DEEP_HISTORY2
+</y:NodeLabel>
                           <y:Shape type="roundrectangle"/>
                           <y:State closed="true" closedHeight="78.78731514704032" closedWidth="192.17304964539005" innerGraphDisplayEnabled="false"/>
                           <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
@@ -4120,8 +4120,7 @@ Example from https://github.com/StateSmith/StateSmith/issues/56<y:LabelModel><y:
                           <y:Geometry height="401.71048966908074" width="382.84800360763506" x="730.411202583399" y="946.1039693796049"/>
                           <y:Fill color="#F5F5F5" transparent="false"/>
                           <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                          <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="382.84800360763506" x="0.0" xml:space="preserve" y="0.0">    DEEP_HISTORY3
-$mod / prefix.add(DH3);</y:NodeLabel>
+                          <y:NodeLabel alignment="left" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="382.84800360763506" x="0.0" xml:space="preserve" y="0.0">    DEEP_HISTORY3</y:NodeLabel>
                           <y:Shape type="roundrectangle"/>
                           <y:State closed="false" closedHeight="50.0" closedWidth="50.0" innerGraphDisplayEnabled="false"/>
                           <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
@@ -4131,8 +4130,7 @@ $mod / prefix.add(DH3);</y:NodeLabel>
                           <y:Geometry height="78.78731514704032" width="192.17304964539005" x="1124.1185295813084" y="1089.103969379605"/>
                           <y:Fill color="#F5F5F5" transparent="false"/>
                           <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="40.7529296875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="192.17304964539005" x="0.0" xml:space="preserve" y="0.0">    DEEP_HISTORY3
-$mod / prefix.add(DH3);</y:NodeLabel>
+                          <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="192.17304964539005" x="0.0" xml:space="preserve" y="0.0">    DEEP_HISTORY3</y:NodeLabel>
                           <y:Shape type="roundrectangle"/>
                           <y:State closed="true" closedHeight="78.78731514704032" closedWidth="192.17304964539005" innerGraphDisplayEnabled="false"/>
                           <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
@@ -4401,6 +4399,19 @@ Example from https://github.com/StateSmith/StateSmith/issues/56<y:LabelModel><y:
                       </data>
                     </edge>
                   </graph>
+                </node>
+                <node id="n0::n8::n3::n5">
+                  <data key="d6">
+                    <y:ShapeNode>
+                      <y:Geometry height="56.200000000000045" width="398.55010435880115" x="912.4871142319519" y="1197.8912845266454"/>
+                      <y:Fill color="#CCFFFF" transparent="false"/>
+                      <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
+                      <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="56.200000000000045" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="398.55010435880115" x="0.0" xml:space="preserve" y="0.0">$NOTES
+Important that above states don't use $mod prefix so that we can test
+https://github.com/StateSmith/StateSmith/issues/168 properly.<y:LabelModel><y:SmartNodeLabelModel distance="4.0"/></y:LabelModel><y:ModelParameter><y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/></y:ModelParameter></y:NodeLabel>
+                      <y:Shape type="roundrectangle"/>
+                    </y:ShapeNode>
+                  </data>
                 </node>
               </graph>
             </node>
