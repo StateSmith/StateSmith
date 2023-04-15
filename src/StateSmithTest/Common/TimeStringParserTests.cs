@@ -35,8 +35,6 @@ public class TimeStringParserTests
         ExpectOk("777 secs", 777 * 1000);
         ExpectOk("444 seconds", 444 * 1000);
 
-
-        // TODO add all variations https://github.com/StateSmith/StateSmith/issues/131
     }
 
     [Fact]
@@ -50,8 +48,6 @@ public class TimeStringParserTests
         ExpectBadInput("0.9 successful relationships");
         ExpectBadInput("100 days of coding");
         ExpectBadInput("-15 blissful sniffs");
-
-        // TODO add more https://github.com/StateSmith/StateSmith/issues/131
     }
 
     [Fact]
@@ -64,8 +60,6 @@ public class TimeStringParserTests
         ExpectBadTimeUnit("1 lunarYear", badUnits: "lunarYear");
         ExpectBadTimeUnit("3 longSighs", badUnits: "longSighs");
         ExpectBadTimeUnit("70 sneezes", badUnits: "sneezes");
-
-        // TODO add more https://github.com/StateSmith/StateSmith/issues/131
     }
 
     private static void ExpectOk(string timeString, int expectatedMs)
