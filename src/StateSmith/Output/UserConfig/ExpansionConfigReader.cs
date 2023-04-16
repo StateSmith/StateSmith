@@ -12,7 +12,6 @@ public class ExpansionConfigReader
 {
     private readonly ExpanderFileReflection expanderFileReflection;
     private readonly string expansionVarsPath;
-    private readonly UserExpansionScriptBases userExpansionScriptBases;
 
     // required for Dependency Injection
     public ExpansionConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, UserExpansionScriptBases userExpansionScriptBases) : this(expander, expansionVarsPathProvider.ExpansionVarsPath, userExpansionScriptBases)
@@ -21,9 +20,8 @@ public class ExpansionConfigReader
 
     internal ExpansionConfigReader(Expander expander, string expansionVarsPath, UserExpansionScriptBases userExpansionScriptBases)
     {
-        expanderFileReflection = new ExpanderFileReflection(expander);
+        expanderFileReflection = new ExpanderFileReflection(expander, userExpansionScriptBases);
         this.expansionVarsPath = expansionVarsPath;
-        this.userExpansionScriptBases = userExpansionScriptBases;
     }
 
     private void FindExpansionsFromFields(ExpansionConfigReaderObjectProvider objectProvider)
@@ -46,7 +44,6 @@ public class ExpansionConfigReader
         if (expansionObject != null)
         {
             expansionObject.VarsPath = expansionVarsPath;
-            userExpansionScriptBases.Add(expansionObject);
             expanderFileReflection.AddAllExpansions(expansionObject);
         }
     }

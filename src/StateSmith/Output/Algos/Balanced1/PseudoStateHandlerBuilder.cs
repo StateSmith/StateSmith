@@ -20,9 +20,8 @@ public class PseudoStateHandlerBuilder
     /// needs to be set before using this class
     /// </summary>
     public NameMangler? mangler;
-
-    Dictionary<PseudoStateVertex, string> functionNameMap = new();
-    HashList<NamedVertex, PseudoStateVertex> parentMapping = new();
+    readonly Dictionary<PseudoStateVertex, string> functionNameMap = new();
+    readonly HashList<NamedVertex, PseudoStateVertex> parentMapping = new();
 
     public void Gather(StateMachine sm)
     {
@@ -114,7 +113,7 @@ public class PseudoStateHandlerBuilder
         }
     }
 
-    public void OutputFunction(PseudoStateVertex pseudoStateVertex, Action<PseudoStateVertex> renderLambda)
+    protected void OutputFunction(PseudoStateVertex pseudoStateVertex, Action<PseudoStateVertex> renderLambda)
     {
         output.ThrowIfNull();
 

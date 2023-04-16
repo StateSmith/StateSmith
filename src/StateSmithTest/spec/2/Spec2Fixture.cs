@@ -1,5 +1,6 @@
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
+using StateSmith.SmGraph;
 using System;
 
 #nullable enable
@@ -14,7 +15,17 @@ public class Spec2GenericVarExpansions : SpecGenericVarExpansions
 {
     #pragma warning disable IDE1006 // Naming Styles
     public string count => AutoVarName();
-    #pragma warning restore IDE1006 // Naming Styles
+
+    public string trace_meta()
+    {
+        var quotedMessage = $"""
+        "META: State: {CurrentNamedVertex.Name}, trigger: {CurrentTrigger}, behavior vertex: {Vertex.Describe(CurrentBehavior.OwningVertex)}"
+        """;
+
+        return trace(quotedMessage);
+    }
+
+#pragma warning restore IDE1006 // Naming Styles
 }
 
 public class Spec2Fixture : SpecFixture

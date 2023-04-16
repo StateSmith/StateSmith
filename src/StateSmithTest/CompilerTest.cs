@@ -160,7 +160,7 @@ namespace StateSmithTest
             InputSmBuilder inputSmBuilder = new();
             DiagramToSmConverter diagramToSmConverter = inputSmBuilder.diagramToSmConverter;
             var expander = new Expander();
-            ExpanderFileReflection expanderFileReflection = new ExpanderFileReflection(expander);
+            ExpanderFileReflection expanderFileReflection = new(expander, new());
             Tiny1Expansions userExpansions = new Tiny1Expansions();
             userExpansions.VarsPath = "sm->vars.";
             expanderFileReflection.AddAllExpansions(userExpansions);

@@ -110,102 +110,108 @@ namespace Csharp.Spec2smTests
             TEST5_S1 = 70,
             TEST5_S2 = 71,
             TEST5_S3 = 72,
-            TEST6_VARIABLES = 73,
+            TEST6_VARS_EXPANSIONS = 73,
             TEST6_ROOT = 74,
             AUTO_VAR_TEST = 75,
             AUTO_VAR_TEST__S1 = 76,
             AUTO_VAR_TEST__S2 = 77,
-            NORMAL = 78,
-            NORMAL__S1 = 79,
-            NORMAL__S2 = 80,
-            TEST6_VARIABLES__DECIDE = 81,
-            TEST7_INITIAL_OR_HISTORY = 82,
-            TEST7 = 83,
-            T7__DEEP_HISTORY1 = 84,
-            T7__DH1__SANTAS_WORKSHOP = 85,
-            T7__DH1__ALIENS_DETECTED = 86,
-            T7__DH1__GET_BACKUP = 87,
-            T7__DH1__HERO = 88,
-            T7__DH1__CALL_BATMAN = 89,
-            T7__DH1__CALL_THOR = 90,
-            T7__DH1__LOCAL_HELP = 91,
-            T7__DH1__BUDDY_ELF = 92,
-            T7__DH1__POLAR_BEARS = 93,
-            T7__DH1__GIVE_COOKIES = 94,
-            T7__DH1__SNOWBALL_FIGHT = 95,
-            T7__DH1__BUILD = 96,
-            T7__DH1__TOOL = 97,
-            T7__DH1__CIRCULAR_SAW = 98,
-            T7__DH1__IMPACT_DRILL = 99,
-            T7__DH1__TOY = 100,
-            T7__DH1__GLOW_WORM = 101,
-            T7__DH1__RACE_CAR = 102,
-            T7__DH1__ROBOT = 103,
-            T7__DH1__BATTLEBOT = 104,
-            T7__DH1__WALL_E = 105,
-            T7__DH1__TEDDY_BEAR = 106,
-            T7__DEEP_HISTORY2 = 107,
-            T7__DEEP_HISTORY2__T7__STATE_0 = 108,
-            T7__DEEP_HISTORY2__T7__STATE_1 = 109,
-            T7__DEEP_HISTORY2__T7__STATE_2 = 110,
-            T7__DEEP_HISTORY2__T7__STATE_6 = 111,
-            T7__DEEP_HISTORY2__T7__STATE_9 = 112,
-            T7__DEEP_HISTORY2__T7__STATE_3 = 113,
-            T7__DEEP_HISTORY3 = 114,
-            T7__DEEP_HISTORY3__T7__STATE_0 = 115,
-            T7__DEEP_HISTORY3__T7__STATE_1 = 116,
-            T7__DEEP_HISTORY3__T7__STATE_2 = 117,
-            T7__DEEP_HISTORY3__T7__STATE_6 = 118,
-            T7__DEEP_HISTORY3__T7__STATE_9 = 119,
-            T7__DEEP_HISTORY3__T7__STATE_3 = 120,
-            T7__HISTORY1 = 121,
-            T7__H1__OFF = 122,
-            T7__H1__OFF1 = 123,
-            T7__H1__OFF2 = 124,
-            T7__H1__OFF3 = 125,
-            T7__H1__ON = 126,
-            T7__H1__ON1 = 127,
-            T7__H1__ON2 = 128,
-            T7__H1__ON3 = 129,
-            T7__INITIAL1 = 130,
-            T7__INITIAL1__PARENT = 131,
-            T7__INITIAL1__G = 132,
-            T7__INITIAL1__G_S1 = 133,
-            T7__INITIAL1__G_S2 = 134,
-            T7__INITIAL1__G_S3 = 135,
-            T7__INITIAL1__S1 = 136,
-            TEST7_DECIDE = 137,
-            TEST8_ENTRY_CHOICE = 138,
-            TEST8_ROOT = 139,
-            TEST8_G = 140,
-            TEST8_G_S1 = 141,
-            TEST8_G_S2 = 142,
-            TEST8_G_S3 = 143,
-            TEST8_S1 = 144,
-            TEST9_EXIT_CHOICE = 145,
-            TEST9_DECIDE = 146,
-            TEST9_ROOT = 147,
-            TEST9_G_S1 = 148,
-            TEST9_G_S2 = 149,
-            TEST9_G_S3 = 150,
-            TEST9_G_S4 = 151,
-            TEST9_S1 = 152,
-            TEST9_S1_1 = 153,
-            TEST9A_ROOT = 154,
-            TEST9A_S1 = 155,
-            TEST9A_S1_1 = 156,
-            TEST9B_ROOT = 157,
-            TEST9B_ROOT__A1 = 158,
-            TEST9B_ROOT__A2 = 159,
-            TEST9B_ROOT__A3 = 160,
-            TEST9B_ROOT__A4 = 161,
-            TEST9B_ROOT__B1 = 162,
-            TEST9B_ROOT__B2 = 163,
-            TEST9B_ROOT__B3 = 164,
-            TEST9B_ROOT__B4 = 165,
+            META_EXPANSIONS = 78,
+            META_EXPANSIONS__S1 = 79,
+            META_EXPANSIONS__S2 = 80,
+            S3 = 81,
+            S4 = 82,
+            S5 = 83,
+            NORMAL = 84,
+            NORMAL__S1 = 85,
+            NORMAL__S2 = 86,
+            TEST6_VARS_EXPANSIONS__DECIDE = 87,
+            TEST7_INITIAL_OR_HISTORY = 88,
+            TEST7 = 89,
+            T7__DEEP_HISTORY1 = 90,
+            T7__DH1__SANTAS_WORKSHOP = 91,
+            T7__DH1__ALIENS_DETECTED = 92,
+            T7__DH1__GET_BACKUP = 93,
+            T7__DH1__HERO = 94,
+            T7__DH1__CALL_BATMAN = 95,
+            T7__DH1__CALL_THOR = 96,
+            T7__DH1__LOCAL_HELP = 97,
+            T7__DH1__BUDDY_ELF = 98,
+            T7__DH1__POLAR_BEARS = 99,
+            T7__DH1__GIVE_COOKIES = 100,
+            T7__DH1__SNOWBALL_FIGHT = 101,
+            T7__DH1__BUILD = 102,
+            T7__DH1__TOOL = 103,
+            T7__DH1__CIRCULAR_SAW = 104,
+            T7__DH1__IMPACT_DRILL = 105,
+            T7__DH1__TOY = 106,
+            T7__DH1__GLOW_WORM = 107,
+            T7__DH1__RACE_CAR = 108,
+            T7__DH1__ROBOT = 109,
+            T7__DH1__BATTLEBOT = 110,
+            T7__DH1__WALL_E = 111,
+            T7__DH1__TEDDY_BEAR = 112,
+            T7__DEEP_HISTORY2 = 113,
+            T7__DEEP_HISTORY2__T7__STATE_0 = 114,
+            T7__DEEP_HISTORY2__T7__STATE_1 = 115,
+            T7__DEEP_HISTORY2__T7__STATE_2 = 116,
+            T7__DEEP_HISTORY2__T7__STATE_6 = 117,
+            T7__DEEP_HISTORY2__T7__STATE_9 = 118,
+            T7__DEEP_HISTORY2__T7__STATE_3 = 119,
+            T7__DEEP_HISTORY3 = 120,
+            T7__DEEP_HISTORY3__T7__STATE_0 = 121,
+            T7__DEEP_HISTORY3__T7__STATE_1 = 122,
+            T7__DEEP_HISTORY3__T7__STATE_2 = 123,
+            T7__DEEP_HISTORY3__T7__STATE_6 = 124,
+            T7__DEEP_HISTORY3__T7__STATE_9 = 125,
+            T7__DEEP_HISTORY3__T7__STATE_3 = 126,
+            T7__HISTORY1 = 127,
+            T7__H1__OFF = 128,
+            T7__H1__OFF1 = 129,
+            T7__H1__OFF2 = 130,
+            T7__H1__OFF3 = 131,
+            T7__H1__ON = 132,
+            T7__H1__ON1 = 133,
+            T7__H1__ON2 = 134,
+            T7__H1__ON3 = 135,
+            T7__INITIAL1 = 136,
+            T7__INITIAL1__PARENT = 137,
+            T7__INITIAL1__G = 138,
+            T7__INITIAL1__G_S1 = 139,
+            T7__INITIAL1__G_S2 = 140,
+            T7__INITIAL1__G_S3 = 141,
+            T7__INITIAL1__S1 = 142,
+            TEST7_DECIDE = 143,
+            TEST8_ENTRY_CHOICE = 144,
+            TEST8_ROOT = 145,
+            TEST8_G = 146,
+            TEST8_G_S1 = 147,
+            TEST8_G_S2 = 148,
+            TEST8_G_S3 = 149,
+            TEST8_S1 = 150,
+            TEST9_EXIT_CHOICE = 151,
+            TEST9_DECIDE = 152,
+            TEST9_ROOT = 153,
+            TEST9_G_S1 = 154,
+            TEST9_G_S2 = 155,
+            TEST9_G_S3 = 156,
+            TEST9_G_S4 = 157,
+            TEST9_S1 = 158,
+            TEST9_S1_1 = 159,
+            TEST9A_ROOT = 160,
+            TEST9A_S1 = 161,
+            TEST9A_S1_1 = 162,
+            TEST9B_ROOT = 163,
+            TEST9B_ROOT__A1 = 164,
+            TEST9B_ROOT__A2 = 165,
+            TEST9B_ROOT__A3 = 166,
+            TEST9B_ROOT__A4 = 167,
+            TEST9B_ROOT__B1 = 168,
+            TEST9B_ROOT__B2 = 169,
+            TEST9B_ROOT__B3 = 170,
+            TEST9B_ROOT__B4 = 171,
         }
 
-        public const int StateIdCount = 166;
+        public const int StateIdCount = 172;
 
         public enum T7__H1__ON_HistoryId
         {
@@ -1798,46 +1804,46 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev6` event.
 
             // Spec2Sm__DECIDE behavior
-            // uml: EV6 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARIABLES)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARIABLES."); } TransitionTo(TEST6_VARIABLES)
-            if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARIABLES)`.", true))
+            // uml: EV6 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARS_EXPANSIONS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS."); } TransitionTo(TEST6_VARS_EXPANSIONS)
+            if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARS_EXPANSIONS)`.", true))
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
                 SPEC2SM__DECIDE_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARIABLES.");`.
-                MainClass.Trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARIABLES.");
+                // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS.");`.
+                MainClass.Trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS.");
 
-                // Step 3: Enter/move towards transition target `TEST6_VARIABLES`.
-                TEST6_VARIABLES_enter();
+                // Step 3: Enter/move towards transition target `TEST6_VARS_EXPANSIONS`.
+                TEST6_VARS_EXPANSIONS_enter();
 
-                // TEST6_VARIABLES.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT."); } TransitionTo(TEST6_ROOT)
+                // TEST6_VARS_EXPANSIONS.InitialState behavior
+                // uml: / { trace("Transition action `` for TEST6_VARS_EXPANSIONS.InitialState to TEST6_ROOT."); } TransitionTo(TEST6_ROOT)
                 {
-                    // Step 1: Exit states until we reach `TEST6_VARIABLES` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                    // Step 1: Exit states until we reach `TEST6_VARS_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");`.
-                    MainClass.Trace("Transition action `` for TEST6_VARIABLES.InitialState to TEST6_ROOT.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS.InitialState to TEST6_ROOT.");`.
+                    MainClass.Trace("Transition action `` for TEST6_VARS_EXPANSIONS.InitialState to TEST6_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST6_ROOT`.
                     TEST6_ROOT_enter();
 
                     // TEST6_ROOT.InitialState behavior
-                    // uml: / { trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARIABLES__DECIDE."); } TransitionTo(TEST6_VARIABLES__DECIDE)
+                    // uml: / { trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARS_EXPANSIONS__DECIDE."); } TransitionTo(TEST6_VARS_EXPANSIONS__DECIDE)
                     {
                         // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARIABLES__DECIDE.");`.
-                        MainClass.Trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARIABLES__DECIDE.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARS_EXPANSIONS__DECIDE.");`.
+                        MainClass.Trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARS_EXPANSIONS__DECIDE.");
 
-                        // Step 3: Enter/move towards transition target `TEST6_VARIABLES__DECIDE`.
-                        TEST6_VARIABLES__DECIDE_enter();
+                        // Step 3: Enter/move towards transition target `TEST6_VARS_EXPANSIONS__DECIDE`.
+                        TEST6_VARS_EXPANSIONS__DECIDE_enter();
 
                         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                        this.stateId = StateId.TEST6_VARIABLES__DECIDE;
+                        this.stateId = StateId.TEST6_VARS_EXPANSIONS__DECIDE;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
                     } // end of behavior for TEST6_ROOT.InitialState
-                } // end of behavior for TEST6_VARIABLES.InitialState
+                } // end of behavior for TEST6_VARS_EXPANSIONS.InitialState
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -5218,32 +5224,32 @@ namespace Csharp.Spec2smTests
 
 
         ////////////////////////////////////////////////////////////////////////////////
-        // event handlers for state TEST6_VARIABLES
+        // event handlers for state TEST6_VARS_EXPANSIONS
         ////////////////////////////////////////////////////////////////////////////////
 
-        private void TEST6_VARIABLES_enter()
+        private void TEST6_VARS_EXPANSIONS_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = ptr_TEST6_VARIABLES_exit;
+            this.currentStateExitHandler = ptr_TEST6_VARS_EXPANSIONS_exit;
 
-            // TEST6_VARIABLES behavior
-            // uml: enter / { trace("Enter TEST6_VARIABLES."); }
+            // TEST6_VARS_EXPANSIONS behavior
+            // uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS."); }
             {
-                // Step 1: execute action `trace("Enter TEST6_VARIABLES.");`
-                MainClass.Trace("Enter TEST6_VARIABLES.");
-            } // end of behavior for TEST6_VARIABLES
+                // Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS.");`
+                MainClass.Trace("Enter TEST6_VARS_EXPANSIONS.");
+            } // end of behavior for TEST6_VARS_EXPANSIONS
         }
 
         // static delegate to avoid implicit conversion and garbage collection
-        private static readonly Func ptr_TEST6_VARIABLES_exit = (Spec2Sm sm) => sm.TEST6_VARIABLES_exit();
-        private void TEST6_VARIABLES_exit()
+        private static readonly Func ptr_TEST6_VARS_EXPANSIONS_exit = (Spec2Sm sm) => sm.TEST6_VARS_EXPANSIONS_exit();
+        private void TEST6_VARS_EXPANSIONS_exit()
         {
-            // TEST6_VARIABLES behavior
-            // uml: exit / { trace("Exit TEST6_VARIABLES."); }
+            // TEST6_VARS_EXPANSIONS behavior
+            // uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS."); }
             {
-                // Step 1: execute action `trace("Exit TEST6_VARIABLES.");`
-                MainClass.Trace("Exit TEST6_VARIABLES.");
-            } // end of behavior for TEST6_VARIABLES
+                // Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS.");`
+                MainClass.Trace("Exit TEST6_VARS_EXPANSIONS.");
+            } // end of behavior for TEST6_VARS_EXPANSIONS
 
             // adjust function pointers for this state's exit
             this.currentStateExitHandler = ptr_ROOT_exit;
@@ -5279,7 +5285,7 @@ namespace Csharp.Spec2smTests
             } // end of behavior for TEST6_ROOT
 
             // adjust function pointers for this state's exit
-            this.currentStateExitHandler = ptr_TEST6_VARIABLES_exit;
+            this.currentStateExitHandler = ptr_TEST6_VARS_EXPANSIONS_exit;
         }
 
 
@@ -5430,6 +5436,403 @@ namespace Csharp.Spec2smTests
 
 
         ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state META_EXPANSIONS
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void META_EXPANSIONS_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_META_EXPANSIONS_exit;
+
+            // META_EXPANSIONS behavior
+            // uml: enter / { trace("Enter META_EXPANSIONS."); }
+            {
+                // Step 1: execute action `trace("Enter META_EXPANSIONS.");`
+                MainClass.Trace("Enter META_EXPANSIONS.");
+            } // end of behavior for META_EXPANSIONS
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_META_EXPANSIONS_exit = (Spec2Sm sm) => sm.META_EXPANSIONS_exit();
+        private void META_EXPANSIONS_exit()
+        {
+            // META_EXPANSIONS behavior
+            // uml: exit / { trace("Exit META_EXPANSIONS."); }
+            {
+                // Step 1: execute action `trace("Exit META_EXPANSIONS.");`
+                MainClass.Trace("Exit META_EXPANSIONS.");
+            } // end of behavior for META_EXPANSIONS
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_TEST6_ROOT_exit;
+        }
+
+        private void META_EXPANSIONS_ChoicePoint_2__transition()
+        {
+            // META_EXPANSIONS.ChoicePoint(2) behavior
+            // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S5.");\ntrace_meta(); } TransitionTo(S5)
+            {
+                // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S5.");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S5.");
+                MainClass.Trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.ChoicePoint(2)");
+
+                // Step 3: Enter/move towards transition target `S5`.
+                S5_enter();
+
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                this.stateId = StateId.S5;
+                this.ancestorEventHandler = null;
+                return;
+            } // end of behavior for META_EXPANSIONS.ChoicePoint(2)
+
+            // META_EXPANSIONS.ChoicePoint(2) behavior
+            // uml: else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S4.");\ntrace_meta(); } TransitionTo(S4)
+            {
+                // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S4.");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S4.");
+                MainClass.Trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.ChoicePoint(2)");
+
+                // Step 3: Enter/move towards transition target `S4`.
+                S4_enter();
+
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                this.stateId = StateId.S4;
+                this.ancestorEventHandler = null;
+                return;
+            } // end of behavior for META_EXPANSIONS.ChoicePoint(2)
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state META_EXPANSIONS__S1
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void META_EXPANSIONS__S1_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_META_EXPANSIONS__S1_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_META_EXPANSIONS__S1_ev1;
+
+            // META_EXPANSIONS__S1 behavior
+            // uml: enter / { trace("Enter META_EXPANSIONS__S1."); }
+            {
+                // Step 1: execute action `trace("Enter META_EXPANSIONS__S1.");`
+                MainClass.Trace("Enter META_EXPANSIONS__S1.");
+            } // end of behavior for META_EXPANSIONS__S1
+
+            // META_EXPANSIONS__S1 behavior
+            // uml: enter [trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output(); }`.", true)] / { clear_output(); }
+            if (trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output(); }`.", true))
+            {
+                // Step 1: execute action `clear_output();`
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+            } // end of behavior for META_EXPANSIONS__S1
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_META_EXPANSIONS__S1_exit = (Spec2Sm sm) => sm.META_EXPANSIONS__S1_exit();
+        private void META_EXPANSIONS__S1_exit()
+        {
+            // META_EXPANSIONS__S1 behavior
+            // uml: exit / { trace("Exit META_EXPANSIONS__S1."); }
+            {
+                // Step 1: execute action `trace("Exit META_EXPANSIONS__S1.");`
+                MainClass.Trace("Exit META_EXPANSIONS__S1.");
+            } // end of behavior for META_EXPANSIONS__S1
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_META_EXPANSIONS_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_META_EXPANSIONS__S1_ev1 = (Spec2Sm sm) => sm.META_EXPANSIONS__S1_ev1();
+        private void META_EXPANSIONS__S1_ev1()
+        {
+            // No ancestor state handles `ev1` event.
+
+            // META_EXPANSIONS__S1 behavior
+            // uml: EV1 [trace_guard("State META_EXPANSIONS__S1: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS__S2)`.", true)] / { trace("Transition action `trace_meta();` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.");\ntrace_meta(); } TransitionTo(META_EXPANSIONS__S2)
+            if (trace_guard("State META_EXPANSIONS__S1: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS__S2)`.", true))
+            {
+                // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
+                META_EXPANSIONS__S1_exit();
+
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.");
+                MainClass.Trace("META: State: META_EXPANSIONS__S1, trigger: ev1, behavior vertex: META_EXPANSIONS__S1");
+
+                // Step 3: Enter/move towards transition target `META_EXPANSIONS__S2`.
+                META_EXPANSIONS__S2_enter();
+
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                this.stateId = StateId.META_EXPANSIONS__S2;
+                // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+                return;
+            } // end of behavior for META_EXPANSIONS__S1
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state META_EXPANSIONS__S2
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void META_EXPANSIONS__S2_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_META_EXPANSIONS__S2_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_META_EXPANSIONS__S2_ev1;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_META_EXPANSIONS__S2_ev2;
+
+            // META_EXPANSIONS__S2 behavior
+            // uml: enter / { trace("Enter META_EXPANSIONS__S2."); }
+            {
+                // Step 1: execute action `trace("Enter META_EXPANSIONS__S2.");`
+                MainClass.Trace("Enter META_EXPANSIONS__S2.");
+            } // end of behavior for META_EXPANSIONS__S2
+
+            // META_EXPANSIONS__S2 behavior
+            // uml: enter [trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta(); }`.", true)] / { trace_meta(); }
+            if (trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta(); }`.", true))
+            {
+                // Step 1: execute action `trace_meta();`
+                MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: enter, behavior vertex: META_EXPANSIONS__S2");
+            } // end of behavior for META_EXPANSIONS__S2
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_META_EXPANSIONS__S2_exit = (Spec2Sm sm) => sm.META_EXPANSIONS__S2_exit();
+        private void META_EXPANSIONS__S2_exit()
+        {
+            // META_EXPANSIONS__S2 behavior
+            // uml: exit / { trace("Exit META_EXPANSIONS__S2."); }
+            {
+                // Step 1: execute action `trace("Exit META_EXPANSIONS__S2.");`
+                MainClass.Trace("Exit META_EXPANSIONS__S2.");
+            } // end of behavior for META_EXPANSIONS__S2
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_META_EXPANSIONS_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
+            this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_META_EXPANSIONS__S2_ev1 = (Spec2Sm sm) => sm.META_EXPANSIONS__S2_ev1();
+        private void META_EXPANSIONS__S2_ev1()
+        {
+            // No ancestor state handles `ev1` event.
+
+            // META_EXPANSIONS__S2 behavior
+            // uml: EV1 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(1))`.", true)] / { trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(1).");\ntrace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(1))
+            if (trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(1))`.", true))
+            {
+                // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
+                META_EXPANSIONS__S2_exit();
+
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(1).");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(1).");
+                MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS__S2");
+
+                // Step 3: Enter/move towards transition target `META_EXPANSIONS.ChoicePoint(1)`.
+                // META_EXPANSIONS.ChoicePoint(1) is a pseudo state and cannot have an `enter` trigger.
+
+                // META_EXPANSIONS.ChoicePoint(1) behavior
+                // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S3.");\ntrace_meta(); } TransitionTo(S3)
+                {
+                    // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+
+                    // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S3.");\ntrace_meta();`.
+                    MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S3.");
+                    MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.ChoicePoint(1)");
+
+                    // Step 3: Enter/move towards transition target `S3`.
+                    S3_enter();
+
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                    this.stateId = StateId.S3;
+                    // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+                    return;
+                } // end of behavior for META_EXPANSIONS.ChoicePoint(1)
+
+                // META_EXPANSIONS.ChoicePoint(1) behavior
+                // uml: else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S4.");\ntrace_meta(); } TransitionTo(S4)
+                {
+                    // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+
+                    // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S4.");\ntrace_meta();`.
+                    MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S4.");
+                    MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.ChoicePoint(1)");
+
+                    // Step 3: Enter/move towards transition target `S4`.
+                    S4_enter();
+
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                    this.stateId = StateId.S4;
+                    // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+                    return;
+                } // end of behavior for META_EXPANSIONS.ChoicePoint(1)
+            } // end of behavior for META_EXPANSIONS__S2
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_META_EXPANSIONS__S2_ev2 = (Spec2Sm sm) => sm.META_EXPANSIONS__S2_ev2();
+        private void META_EXPANSIONS__S2_ev2()
+        {
+            // No ancestor state handles `ev2` event.
+
+            // META_EXPANSIONS__S2 behavior
+            // uml: EV2 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.ChoicePoint(2))`.", true)] / { trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(2)."); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))
+            if (trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.ChoicePoint(2))`.", true))
+            {
+                // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
+                META_EXPANSIONS__S2_exit();
+
+                // Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(2).");`.
+                MainClass.Trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(2).");
+
+                // Step 3: Enter/move towards transition target `META_EXPANSIONS.ChoicePoint(2)`.
+                // META_EXPANSIONS.ChoicePoint(2) is a pseudo state and cannot have an `enter` trigger.
+
+                // Finish transition by calling pseudo state transition function.
+                META_EXPANSIONS_ChoicePoint_2__transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for META_EXPANSIONS__S2
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state S3
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void S3_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_S3_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_S3_ev1;
+
+            // S3 behavior
+            // uml: enter / { trace("Enter S3."); }
+            {
+                // Step 1: execute action `trace("Enter S3.");`
+                MainClass.Trace("Enter S3.");
+            } // end of behavior for S3
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_S3_exit = (Spec2Sm sm) => sm.S3_exit();
+        private void S3_exit()
+        {
+            // S3 behavior
+            // uml: exit / { trace("Exit S3."); }
+            {
+                // Step 1: execute action `trace("Exit S3.");`
+                MainClass.Trace("Exit S3.");
+            } // end of behavior for S3
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_META_EXPANSIONS_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_S3_ev1 = (Spec2Sm sm) => sm.S3_ev1();
+        private void S3_ev1()
+        {
+            // No ancestor state handles `ev1` event.
+
+            // S3 behavior
+            // uml: EV1 [trace_guard("State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))`.", true)] / { trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.ChoicePoint(2).");\ntrace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))
+            if (trace_guard("State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))`.", true))
+            {
+                // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
+                S3_exit();
+
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.ChoicePoint(2).");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.ChoicePoint(2).");
+                MainClass.Trace("META: State: S3, trigger: ev1, behavior vertex: S3");
+
+                // Step 3: Enter/move towards transition target `META_EXPANSIONS.ChoicePoint(2)`.
+                // META_EXPANSIONS.ChoicePoint(2) is a pseudo state and cannot have an `enter` trigger.
+
+                // Finish transition by calling pseudo state transition function.
+                META_EXPANSIONS_ChoicePoint_2__transition();
+                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            } // end of behavior for S3
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state S4
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void S4_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_S4_exit;
+
+            // S4 behavior
+            // uml: enter / { trace("Enter S4."); }
+            {
+                // Step 1: execute action `trace("Enter S4.");`
+                MainClass.Trace("Enter S4.");
+            } // end of behavior for S4
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_S4_exit = (Spec2Sm sm) => sm.S4_exit();
+        private void S4_exit()
+        {
+            // S4 behavior
+            // uml: exit / { trace("Exit S4."); }
+            {
+                // Step 1: execute action `trace("Exit S4.");`
+                MainClass.Trace("Exit S4.");
+            } // end of behavior for S4
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_META_EXPANSIONS_exit;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state S5
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void S5_enter()
+        {
+            // setup trigger/event handlers
+            this.currentStateExitHandler = ptr_S5_exit;
+
+            // S5 behavior
+            // uml: enter / { trace("Enter S5."); }
+            {
+                // Step 1: execute action `trace("Enter S5.");`
+                MainClass.Trace("Enter S5.");
+            } // end of behavior for S5
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_S5_exit = (Spec2Sm sm) => sm.S5_exit();
+        private void S5_exit()
+        {
+            // S5 behavior
+            // uml: exit / { trace("Exit S5."); }
+            {
+                // Step 1: execute action `trace("Exit S5.");`
+                MainClass.Trace("Exit S5.");
+            } // end of behavior for S5
+
+            // adjust function pointers for this state's exit
+            this.currentStateExitHandler = ptr_META_EXPANSIONS_exit;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
         // event handlers for state NORMAL
         ////////////////////////////////////////////////////////////////////////////////
 
@@ -5576,56 +5979,58 @@ namespace Csharp.Spec2smTests
 
 
         ////////////////////////////////////////////////////////////////////////////////
-        // event handlers for state TEST6_VARIABLES__DECIDE
+        // event handlers for state TEST6_VARS_EXPANSIONS__DECIDE
         ////////////////////////////////////////////////////////////////////////////////
 
-        private void TEST6_VARIABLES__DECIDE_enter()
+        private void TEST6_VARS_EXPANSIONS__DECIDE_enter()
         {
             // setup trigger/event handlers
-            this.currentStateExitHandler = ptr_TEST6_VARIABLES__DECIDE_exit;
-            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST6_VARIABLES__DECIDE_ev1;
-            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST6_VARIABLES__DECIDE_ev2;
+            this.currentStateExitHandler = ptr_TEST6_VARS_EXPANSIONS__DECIDE_exit;
+            this.currentEventHandlers[(int)EventId.EV1] = ptr_TEST6_VARS_EXPANSIONS__DECIDE_ev1;
+            this.currentEventHandlers[(int)EventId.EV2] = ptr_TEST6_VARS_EXPANSIONS__DECIDE_ev2;
+            this.currentEventHandlers[(int)EventId.EV3] = ptr_TEST6_VARS_EXPANSIONS__DECIDE_ev3;
 
-            // TEST6_VARIABLES__DECIDE behavior
-            // uml: enter / { trace("Enter TEST6_VARIABLES__DECIDE."); }
+            // TEST6_VARS_EXPANSIONS__DECIDE behavior
+            // uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS__DECIDE."); }
             {
-                // Step 1: execute action `trace("Enter TEST6_VARIABLES__DECIDE.");`
-                MainClass.Trace("Enter TEST6_VARIABLES__DECIDE.");
-            } // end of behavior for TEST6_VARIABLES__DECIDE
+                // Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.");`
+                MainClass.Trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.");
+            } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         }
 
         // static delegate to avoid implicit conversion and garbage collection
-        private static readonly Func ptr_TEST6_VARIABLES__DECIDE_exit = (Spec2Sm sm) => sm.TEST6_VARIABLES__DECIDE_exit();
-        private void TEST6_VARIABLES__DECIDE_exit()
+        private static readonly Func ptr_TEST6_VARS_EXPANSIONS__DECIDE_exit = (Spec2Sm sm) => sm.TEST6_VARS_EXPANSIONS__DECIDE_exit();
+        private void TEST6_VARS_EXPANSIONS__DECIDE_exit()
         {
-            // TEST6_VARIABLES__DECIDE behavior
-            // uml: exit / { trace("Exit TEST6_VARIABLES__DECIDE."); }
+            // TEST6_VARS_EXPANSIONS__DECIDE behavior
+            // uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS__DECIDE."); }
             {
-                // Step 1: execute action `trace("Exit TEST6_VARIABLES__DECIDE.");`
-                MainClass.Trace("Exit TEST6_VARIABLES__DECIDE.");
-            } // end of behavior for TEST6_VARIABLES__DECIDE
+                // Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.");`
+                MainClass.Trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.");
+            } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
 
             // adjust function pointers for this state's exit
             this.currentStateExitHandler = ptr_TEST6_ROOT_exit;
             this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
             this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
+            this.currentEventHandlers[(int)EventId.EV3] = null;  // no ancestor listens to this event
         }
 
         // static delegate to avoid implicit conversion and garbage collection
-        private static readonly Func ptr_TEST6_VARIABLES__DECIDE_ev1 = (Spec2Sm sm) => sm.TEST6_VARIABLES__DECIDE_ev1();
-        private void TEST6_VARIABLES__DECIDE_ev1()
+        private static readonly Func ptr_TEST6_VARS_EXPANSIONS__DECIDE_ev1 = (Spec2Sm sm) => sm.TEST6_VARS_EXPANSIONS__DECIDE_ev1();
+        private void TEST6_VARS_EXPANSIONS__DECIDE_ev1()
         {
             // No ancestor state handles `ev1` event.
 
-            // TEST6_VARIABLES__DECIDE behavior
-            // uml: EV1 [trace_guard("State TEST6_VARIABLES__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", true)] / { trace("Transition action `` for TEST6_VARIABLES__DECIDE to NORMAL."); } TransitionTo(NORMAL)
-            if (trace_guard("State TEST6_VARIABLES__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", true))
+            // TEST6_VARS_EXPANSIONS__DECIDE behavior
+            // uml: EV1 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL."); } TransitionTo(NORMAL)
+            if (trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
-                TEST6_VARIABLES__DECIDE_exit();
+                TEST6_VARS_EXPANSIONS__DECIDE_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST6_VARIABLES__DECIDE to NORMAL.");`.
-                MainClass.Trace("Transition action `` for TEST6_VARIABLES__DECIDE to NORMAL.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL.");`.
+                MainClass.Trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL.");
 
                 // Step 3: Enter/move towards transition target `NORMAL`.
                 NORMAL_enter();
@@ -5646,24 +6051,24 @@ namespace Csharp.Spec2smTests
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
                 } // end of behavior for NORMAL.InitialState
-            } // end of behavior for TEST6_VARIABLES__DECIDE
+            } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         }
 
         // static delegate to avoid implicit conversion and garbage collection
-        private static readonly Func ptr_TEST6_VARIABLES__DECIDE_ev2 = (Spec2Sm sm) => sm.TEST6_VARIABLES__DECIDE_ev2();
-        private void TEST6_VARIABLES__DECIDE_ev2()
+        private static readonly Func ptr_TEST6_VARS_EXPANSIONS__DECIDE_ev2 = (Spec2Sm sm) => sm.TEST6_VARS_EXPANSIONS__DECIDE_ev2();
+        private void TEST6_VARS_EXPANSIONS__DECIDE_ev2()
         {
             // No ancestor state handles `ev2` event.
 
-            // TEST6_VARIABLES__DECIDE behavior
-            // uml: EV2 [trace_guard("State TEST6_VARIABLES__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", true)] / { trace("Transition action `` for TEST6_VARIABLES__DECIDE to AUTO_VAR_TEST."); } TransitionTo(AUTO_VAR_TEST)
-            if (trace_guard("State TEST6_VARIABLES__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", true))
+            // TEST6_VARS_EXPANSIONS__DECIDE behavior
+            // uml: EV2 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST."); } TransitionTo(AUTO_VAR_TEST)
+            if (trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", true))
             {
                 // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
-                TEST6_VARIABLES__DECIDE_exit();
+                TEST6_VARS_EXPANSIONS__DECIDE_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST6_VARIABLES__DECIDE to AUTO_VAR_TEST.");`.
-                MainClass.Trace("Transition action `` for TEST6_VARIABLES__DECIDE to AUTO_VAR_TEST.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST.");`.
+                MainClass.Trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST.");
 
                 // Step 3: Enter/move towards transition target `AUTO_VAR_TEST`.
                 AUTO_VAR_TEST_enter();
@@ -5684,7 +6089,45 @@ namespace Csharp.Spec2smTests
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
                 } // end of behavior for AUTO_VAR_TEST.InitialState
-            } // end of behavior for TEST6_VARIABLES__DECIDE
+            } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+        }
+
+        // static delegate to avoid implicit conversion and garbage collection
+        private static readonly Func ptr_TEST6_VARS_EXPANSIONS__DECIDE_ev3 = (Spec2Sm sm) => sm.TEST6_VARS_EXPANSIONS__DECIDE_ev3();
+        private void TEST6_VARS_EXPANSIONS__DECIDE_ev3()
+        {
+            // No ancestor state handles `ev3` event.
+
+            // TEST6_VARS_EXPANSIONS__DECIDE behavior
+            // uml: EV3 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV3 TransitionTo(META_EXPANSIONS)`.", true)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS."); } TransitionTo(META_EXPANSIONS)
+            if (trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV3 TransitionTo(META_EXPANSIONS)`.", true))
+            {
+                // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
+                TEST6_VARS_EXPANSIONS__DECIDE_exit();
+
+                // Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS.");`.
+                MainClass.Trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS.");
+
+                // Step 3: Enter/move towards transition target `META_EXPANSIONS`.
+                META_EXPANSIONS_enter();
+
+                // META_EXPANSIONS.InitialState behavior
+                // uml: / { trace("Transition action `` for META_EXPANSIONS.InitialState to META_EXPANSIONS__S1."); } TransitionTo(META_EXPANSIONS__S1)
+                {
+                    // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+
+                    // Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS.InitialState to META_EXPANSIONS__S1.");`.
+                    MainClass.Trace("Transition action `` for META_EXPANSIONS.InitialState to META_EXPANSIONS__S1.");
+
+                    // Step 3: Enter/move towards transition target `META_EXPANSIONS__S1`.
+                    META_EXPANSIONS__S1_enter();
+
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                    this.stateId = StateId.META_EXPANSIONS__S1;
+                    // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+                    return;
+                } // end of behavior for META_EXPANSIONS.InitialState
+            } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         }
 
 
@@ -11565,15 +12008,21 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST5_S1: return "TEST5_S1";
                 case StateId.TEST5_S2: return "TEST5_S2";
                 case StateId.TEST5_S3: return "TEST5_S3";
-                case StateId.TEST6_VARIABLES: return "TEST6_VARIABLES";
+                case StateId.TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS";
                 case StateId.TEST6_ROOT: return "TEST6_ROOT";
                 case StateId.AUTO_VAR_TEST: return "AUTO_VAR_TEST";
                 case StateId.AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1";
                 case StateId.AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2";
+                case StateId.META_EXPANSIONS: return "META_EXPANSIONS";
+                case StateId.META_EXPANSIONS__S1: return "META_EXPANSIONS__S1";
+                case StateId.META_EXPANSIONS__S2: return "META_EXPANSIONS__S2";
+                case StateId.S3: return "S3";
+                case StateId.S4: return "S4";
+                case StateId.S5: return "S5";
                 case StateId.NORMAL: return "NORMAL";
                 case StateId.NORMAL__S1: return "NORMAL__S1";
                 case StateId.NORMAL__S2: return "NORMAL__S2";
-                case StateId.TEST6_VARIABLES__DECIDE: return "TEST6_VARIABLES__DECIDE";
+                case StateId.TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE";
                 case StateId.TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY";
                 case StateId.TEST7: return "TEST7";
                 case StateId.T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1";

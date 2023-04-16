@@ -24,7 +24,7 @@ public class ExpandingVisitorTest
     public void Recursive()
     {
         var expander = new Expander();
-        ExpanderFileReflection expanderFileReflection = new(expander);
+        ExpanderFileReflection expanderFileReflection = new(expander, new());
 
         expanderFileReflection.AddAllExpansions(new MyExpansions());
         ExpandingVisitor.ParseAndExpandCode(expander, "mult( mult( 2, 4 ), mult(1, 10))").Should().Be("80");
@@ -34,7 +34,7 @@ public class ExpandingVisitorTest
     public void ShouldNotAffectMethods()
     {
         var expander = new Expander();
-        ExpanderFileReflection expanderFileReflection = new(expander);
+        ExpanderFileReflection expanderFileReflection = new(expander, new());
         MyExpansions myExpansions = new();
         myExpansions.VarsPath = "sm->vars.";
 

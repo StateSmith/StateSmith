@@ -15,11 +15,27 @@ public class UserExpansionScriptBases
         scriptBases.Add(script);
     }
 
-    public void UpdateCurrentBehavior(Behavior behavior)
+    public void UpdateNamedVertex(NamedVertex? namedVertex)
     {
         foreach (var scriptBase in scriptBases)
         {
-            scriptBase.CurrentBehavior = behavior;
+            scriptBase.CurrentNamedVertex = namedVertex!;
+        }
+    }
+
+    public void UpdateCurrentTrigger(string? triggerName)
+    {
+        foreach (var scriptBase in scriptBases)
+        {
+            scriptBase.CurrentTrigger = triggerName!;
+        }
+    }
+
+    public void UpdateCurrentBehavior(Behavior? behavior)
+    {
+        foreach (var scriptBase in scriptBases)
+        {
+            scriptBase.CurrentBehavior = behavior!;
         }
     }
 }

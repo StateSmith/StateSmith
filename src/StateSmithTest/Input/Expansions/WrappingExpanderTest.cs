@@ -4,8 +4,8 @@ using Xunit;
 using StateSmith.Input.Expansions;
 using FluentAssertions;
 using StateSmith.Output.Gil;
-using System;
 using StateSmith.SmGraph;
+using StateSmith.Output.UserConfig;
 
 namespace StateSmithTest.Input.Expansions;
 
@@ -17,9 +17,10 @@ public class WrappingExpanderTest
     public WrappingExpanderTest()
     {
         var expander = new Expander();
-        ExpanderFileReflection expanderFileReflection = new(expander);
+        UserExpansionScriptBases userExpansionScriptBases = new();
+        ExpanderFileReflection expanderFileReflection = new(expander, userExpansionScriptBases);
         expanderFileReflection.AddAllExpansions(new MyExpansions());
-        wrappingExpander = new WrappingExpander(expander, new());
+        wrappingExpander = new WrappingExpander(expander, userExpansionScriptBases);
     }
 
     private class MyExpansions : UserExpansionScriptBase
@@ -28,7 +29,7 @@ public class WrappingExpanderTest
         string print(string arg) => $"""some_printer("{arg}")""";
         string print2(string arg) => $"""some_printer2({arg})""";
         string log() => $"""
-            log("State: {CurrentVertex.As<State>().Name}, trigger: FIXME");
+            log("State: {CurrentNamedVertex.Name}, trigger: {CurrentTrigger}");
             """;
     }
 
@@ -42,7 +43,6 @@ public class WrappingExpanderTest
         code.Should().Be(expectedBeforePostProcess);
         PostProcessor.PostProcess(expectedBeforePostProcess).Should().Be("expanded_var_a = 33; var_a = 45; expanded_var_a++;");
     }
-
 
     [Fact]
     public void ActionCodeWrappingGil()

@@ -6,9 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 ### Added
-- 
+- Expansions - provide meta info (current state/vertex, trigger, behavior).
+  - https://github.com/StateSmith/StateSmith/issues/45
+
 ### Fixed
 - 
+
 ### Changed
 - 
 

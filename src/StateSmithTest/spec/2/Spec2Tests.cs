@@ -393,6 +393,48 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         "));
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/45
+    /// </summary>
+    [Fact]
+    public void Test6_MetaExpansions()
+    {
+        tester.PreEvents = "EV6 EV3";
+
+        // 
+        tester.AddEventHandling("EV1", t => t(@"
+            State S1: check behavior `EV1 / { trace_meta(); } TransitionTo(S2)`. Behavior running.
+            Exit S1.
+            Transition action `trace_meta();` for S1 to S2.
+            META: State: S1, trigger: ev1, behavior vertex: S1
+            Enter S2.
+            State S2: check behavior `enter / { trace_meta(); }`. Behavior running.
+            META: State: S2, trigger: enter, behavior vertex: S2
+        "));
+
+        // 
+        tester.AddEventHandling("EV1", t => t(@"
+            State S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(1))`. Behavior running.
+            Exit S2.
+            Transition action `trace_meta();` for S2 to META_EXPANSIONS.ChoicePoint(1).
+            META: State: S2, trigger: ev1, behavior vertex: S2
+            Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S3.
+            META: State: S2, trigger: ev1, behavior vertex: META_EXPANSIONS.ChoicePoint(1)
+            Enter S3.
+        "));
+
+        // 
+        tester.AddEventHandling("EV1", t => t(@"
+            State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))`. Behavior running.
+            Exit S3.
+            Transition action `trace_meta();` for S3 to META_EXPANSIONS.ChoicePoint(2).
+            META: State: S3, trigger: ev1, behavior vertex: S3
+            Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S5.
+            META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.ChoicePoint(2)
+            Enter S5.
+        "));
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////
 
     [Fact]
