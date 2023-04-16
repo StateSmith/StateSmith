@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -162,7 +162,7 @@ namespace StateSmithTest
             var expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new ExpanderFileReflection(expander);
             Tiny1Expansions userExpansions = new Tiny1Expansions();
-            userExpansions.varsPath = "sm->vars.";
+            userExpansions.VarsPath = "sm->vars.";
             expanderFileReflection.AddAllExpansions(userExpansions);
             // could also add events
             // could also check for valid events in diagram

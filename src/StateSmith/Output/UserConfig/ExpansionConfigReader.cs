@@ -2,6 +2,7 @@ using StateSmith.Input.Expansions;
 using System;
 using System.Reflection;
 using System.Linq;
+using System.Collections.Generic;
 
 #nullable enable
 
@@ -11,17 +12,18 @@ public class ExpansionConfigReader
 {
     private readonly ExpanderFileReflection expanderFileReflection;
     private readonly string expansionVarsPath;
+    private readonly UserExpansionScriptBases userExpansionScriptBases;
 
     // required for Dependency Injection
-    public ExpansionConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider) : this(expander, expansionVarsPathProvider.ExpansionVarsPath)
+    public ExpansionConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, UserExpansionScriptBases userExpansionScriptBases) : this(expander, expansionVarsPathProvider.ExpansionVarsPath, userExpansionScriptBases)
     {
-
     }
 
-    internal ExpansionConfigReader(Expander expander, string expansionVarsPath)
+    internal ExpansionConfigReader(Expander expander, string expansionVarsPath, UserExpansionScriptBases userExpansionScriptBases)
     {
         expanderFileReflection = new ExpanderFileReflection(expander);
         this.expansionVarsPath = expansionVarsPath;
+        this.userExpansionScriptBases = userExpansionScriptBases;
     }
 
     private void FindExpansionsFromFields(ExpansionConfigReaderObjectProvider objectProvider)
@@ -43,7 +45,8 @@ public class ExpansionConfigReader
     {
         if (expansionObject != null)
         {
-            expansionObject.varsPath = expansionVarsPath;
+            expansionObject.VarsPath = expansionVarsPath;
+            userExpansionScriptBases.Add(expansionObject);
             expanderFileReflection.AddAllExpansions(expansionObject);
         }
     }

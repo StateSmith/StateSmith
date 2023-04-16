@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -26,7 +26,7 @@ namespace StateSmithTest
             Expander expander = new Expander();
             ExpanderFileReflection expanderFileReflection = new ExpanderFileReflection(expander);
             var expansionObject = (UserExpansionScriptBase)codeCompilationResult.createdObject;
-            expansionObject.varsPath = "sm->vars.";
+            expansionObject.VarsPath = "sm->vars.";
             expanderFileReflection.AddAllExpansions(expansionObject);
 
             expander.GetVariableNames().Should().BeEquivalentTo(new string[] {

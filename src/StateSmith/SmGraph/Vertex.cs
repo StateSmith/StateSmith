@@ -59,7 +59,7 @@ namespace StateSmith.SmGraph
 
         public IReadOnlyList<Behavior> IncomingTransitions => _incomingTransitions;
 
-        public void AddBehavior(Behavior behavior, int index = -1)
+        public Behavior AddBehavior(Behavior behavior, int index = -1)
         {
             behavior._owningVertex = this;
 
@@ -71,6 +71,8 @@ namespace StateSmith.SmGraph
             {
                 _behaviors.Add(behavior);
             }
+
+            return behavior;
         }
 
         public void RemoveBehaviorAndUnlink(Behavior behavior)

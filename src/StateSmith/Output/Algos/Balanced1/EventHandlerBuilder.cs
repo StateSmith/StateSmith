@@ -8,6 +8,7 @@ using StateSmith.Input.Antlr4;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.Gil;
 using System.Collections.Generic;
+using StateSmith.Output.UserConfig;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
@@ -24,11 +25,11 @@ public class EventHandlerBuilder
 
     private OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
-    public EventHandlerBuilder(Expander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler)
+    public EventHandlerBuilder(Expander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases)
     {
         this.pseudoStateHandlerBuilder = pseudoStateHandlerBuilder;
         this.mangler = mangler;
-        this.wrappingExpander = new(expander);
+        this.wrappingExpander = new(expander, userExpansionScriptBases);
     }
 
     public void SetFile(OutputFile file)
@@ -195,7 +196,7 @@ public class EventHandlerBuilder
     {
         if (behavior.HasActionCode())
         {
-            var expandedAction = wrappingExpander.ExpandCode(behavior.actionCode);
+            var expandedAction = wrappingExpander.ExpandActionCode(behavior);
             var inspector = new ActionCodeInspector();
             inspector.Parse(expandedAction);
             if (inspector.identifiersUsed.Contains(consumeEventVarName))

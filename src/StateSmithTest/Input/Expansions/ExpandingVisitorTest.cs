@@ -36,7 +36,7 @@ public class ExpandingVisitorTest
         var expander = new Expander();
         ExpanderFileReflection expanderFileReflection = new(expander);
         MyExpansions myExpansions = new();
-        myExpansions.varsPath = "sm->vars.";
+        myExpansions.VarsPath = "sm->vars.";
 
         expanderFileReflection.AddAllExpansions(myExpansions);
 
