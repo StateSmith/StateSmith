@@ -76,7 +76,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit TEST2_S1.
             Transition action `` for TEST2_S1_1 to TEST2_S2.
             Enter TEST2_S2.
-            State TEST2_S2: check behavior `ENTER`. Behavior running.
+            State TEST2_S2: check behavior `en`. Behavior running.
         ")); tester.AddEventHandling("EV1", t => t(@"
             State TEST2_S2: check behavior `ev1 / { consume_event = false; }`. Behavior running.
             State TEST2_ROOT: check behavior `EV1`. Behavior running.
@@ -85,7 +85,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit TEST2_S2.
             Transition action `` for TEST2_S2 to TEST2_S2.
             Enter TEST2_S2.
-            State TEST2_S2: check behavior `ENTER`. Behavior running.
+            State TEST2_S2: check behavior `en`. Behavior running.
         "));
     }
 

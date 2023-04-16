@@ -11,6 +11,7 @@ using Xunit;
 
 namespace StateSmithTest.SmGraph.TriggerMap;
 
+// https://github.com/StateSmith/StateSmith/issues/161
 public class TriggerMapProcessorTests
 {
     Dictionary<string, TriggerMapRule> matches = new();

@@ -3148,8 +3148,8 @@ export class Spec2Sm
         } // end of behavior for TEST2_S2
         
         // TEST2_S2 behavior
-        // uml: ENTER [trace_guard("State TEST2_S2: check behavior `ENTER`.", true)]
-        if (trace_guard("State TEST2_S2: check behavior `ENTER`.", true))
+        // uml: enter [trace_guard("State TEST2_S2: check behavior `en`.", true)]
+        if (trace_guard("State TEST2_S2: check behavior `en`.", true))
         {
             // Step 1: execute action ``
         } // end of behavior for TEST2_S2
