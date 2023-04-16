@@ -25,6 +25,16 @@ Want to jump right in and just try it!?
 
 
 
+
+<br>
+
+# Stay in the Know 📰
+Our announcements [discord](https://discord.com/invite/rNxNGQXWsU) channel is updated when new tutorials and features are added.
+
+
+
+
+
 <br>
 
 # Please Consider Advising/Contributing 📈
@@ -59,37 +69,11 @@ The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) rep
 <br>
 
 # Is StateSmith ready for use? 🧪
-StateSmith is generating working code, and has decent test (388+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
+StateSmith is generating working code, and has decent test (420+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
 ![picture 1](images/test-coverage-2022-12.png)  
 
-Every aspect of state behavior is printed during specification testing with the help of the `TracingModder` class which modifies the state machine design before the code generation step.
-```
-Dispatch event EV1
-===================================================
-State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
-State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior skipped.
-
-Dispatch event EV1
-===================================================
-State TEST6_S1: check behavior `1. EV1 / { count++; }`. Behavior running.
-State TEST6_S1: check behavior `2. EV1 [count >= 2] TransitionTo(TEST6_S2)`. Behavior running.
-Exit TEST6_S1.
-Transition action `` for TEST6_S1 to TEST6_S2.
-Enter TEST6_S2.
-```
-
-
-Release 0.5.4-alpha added a lot of helpful error messages for when the input design is incorrect in some way:
-```c
-Failed parsing diagram edge
-from: Statemachine{LaserTagMenu1Sm}.State{MENUS_GROUP}.State{MM_SELECT_CLASS}
-to:   Statemachine{LaserTagMenu1Sm}.State{MENUS_GROUP}.State{CLASS_SAVED}
-Edge label: `via exitt saved`
-Reason(s): mismatched input 'exitt' expecting {'entry', 'exit'} at line 1 column 4. Offending symbol: `exitt`.
-           extraneous input 'saved' expecting <EOF> at line 1 column 10. Offending symbol: `saved`.
-Edge diagram id: n0::n3::e3
-```
+Every aspect of state behavior is verified during specification testing.
 
 Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CHANGELOG.md) and should be pretty minimal.
 
