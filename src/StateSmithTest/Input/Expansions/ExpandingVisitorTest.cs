@@ -16,6 +16,8 @@ public class ExpandingVisitorTest
             int b = int.Parse(b_str);
             return $"{a*b}";
         }
+
+        string menu => AutoVarName();
     }
 
     [Fact]
@@ -23,6 +25,7 @@ public class ExpandingVisitorTest
     {
         var expander = new Expander();
         ExpanderFileReflection expanderFileReflection = new(expander);
+
         expanderFileReflection.AddAllExpansions(new MyExpansions());
         ExpandingVisitor.ParseAndExpandCode(expander, "mult( mult( 2, 4 ), mult(1, 10))").Should().Be("80");
     }
@@ -32,7 +35,10 @@ public class ExpandingVisitorTest
     {
         var expander = new Expander();
         ExpanderFileReflection expanderFileReflection = new(expander);
-        expanderFileReflection.AddAllExpansions(new MyExpansions());
+        MyExpansions myExpansions = new();
+        myExpansions.varsPath = "sm->vars.";
+
+        expanderFileReflection.AddAllExpansions(myExpansions);
 
         var code = "obj->mult(3, 10)";
         ExpandingVisitor.ParseAndExpandCode(expander, code).Should().Be(code);
@@ -52,5 +58,8 @@ public class ExpandingVisitorTest
         //not really valid code in this case, but still should expand it
         code = "Obj mult(3, 10)";
         ExpandingVisitor.ParseAndExpandCode(expander, code).Should().Be("Obj 30");
+
+        // https://github.com/StateSmith/StateSmith/issues/160
+        ExpandingVisitor.ParseAndExpandCode(expander, """menu.setItems(["BUILD YOUR BOT!", "ABOUT"]);""").ShouldBeShowDiff("""sm->vars.menu.setItems(["BUILD YOUR BOT!", "ABOUT"]);""");
     }
 }

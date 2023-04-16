@@ -63,6 +63,12 @@ public class RunnerSettings
     public bool outputCodeGenTimestamp = false;
 
     /// <summary>
+    /// If true, a message will be added to the top of generated files with the StateSmith
+    /// version. Defaults to true as it is generally important to know.
+    /// </summary>
+    public bool outputStateSmithVersionInfo = true;
+
+    /// <summary>
     /// If false (the default), any exception thrown while running StateSmith will be caught
     /// and printed with details. If true, the original exception will propagate with its
     /// original stack trace.

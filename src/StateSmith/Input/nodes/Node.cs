@@ -1,12 +1,9 @@
-﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
+#nullable enable
 using Antlr4.Runtime.Tree;
-using System.Collections.Generic;
 
-namespace StateSmith.Input.Antlr4
+namespace StateSmith.Input.Antlr4;
+
+public class Node
 {
-    public class Node
-    {
-        public IParseTree tree;
-    }
+    public IParseTree? tree;
 }

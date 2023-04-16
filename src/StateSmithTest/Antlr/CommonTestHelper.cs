@@ -1,14 +1,14 @@
 using FluentAssertions;
 using Xunit.Abstractions;
 using StateSmith.Input.Antlr4;
-
+using System.Collections.Generic;
 
 namespace StateSmithTest.Antlr;
 
 public class CommonTestHelper
 {
     protected ITestOutputHelper output;
-    protected LabelParser parser = new LabelParser();
+    protected LabelParser parser = new();
 
     protected void AssertNoErrors()
     {
@@ -34,6 +34,13 @@ public class CommonTestHelper
         var result = parser.ParseNodeLabel(input);
         AssertNoErrors();
         return result;
+    }
+
+    protected List<NodeBehavior> ParseEdgeWithoutErrors(string input)
+    {
+        var behaviors = parser.ParseEdgeLabel(input);
+        AssertNoErrors();
+        return behaviors;
     }
 
 }

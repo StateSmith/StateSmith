@@ -47,6 +47,7 @@ statemachine_defn:
     ohs
     IDENTIFIER
     optional_any_space
+    state_behaviors
     EOF
     ;
 
@@ -301,7 +302,7 @@ action:
     ohs
     '/'
     ohs
-    action_code
+    action_code? // optional to support consuming events with `SOME_EVENT /` https://github.com/StateSmith/StateSmith/issues/43
     ;
 
 /*
@@ -380,21 +381,7 @@ line_comment:
 star_comment: STAR_COMMENT;
 
 function_args:
-    function_arg
-    (
-        optional_any_space
-        COMMA
-        function_arg
-    )*
-    ;
-
-function_arg_code:
     code_element+
-    ;
-
-function_arg:
-    optional_any_space
-    function_arg_code
     ;
 
 leading_optional_any_space:
@@ -490,7 +477,7 @@ string_literal: STRING | TICK_STRING | BACKTICK_STRING; // don't name as `string
 
 code_symbol:
     PERIOD |
-    // COMMA | //can't include because otherwise it messes up function arguments
+    COMMA |
     PLUS |
     DASH |
     COLON |

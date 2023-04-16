@@ -1,4 +1,4 @@
-﻿using StateSmith.Common;
+using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
 
 namespace StateSmith.SmGraph;

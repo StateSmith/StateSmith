@@ -73,7 +73,11 @@ public class DiagramEmbeddedRenderConfigTests
 
             """);
 
-            const int expectedOptionCount = 4;
+            renderConfig.TriggerMap.ShouldBeShowDiff("""
+                // some trigger mapping...
+                """);
+
+            const int expectedOptionCount = 5;
             GetTypeFields<RenderConfigVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
             GetTypeProperties<IRenderConfig>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
         }

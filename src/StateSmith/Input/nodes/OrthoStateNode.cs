@@ -1,12 +1,7 @@
-﻿using Antlr4.Runtime;
-using Antlr4.Runtime.Misc;
-using Antlr4.Runtime.Tree;
-using System.Collections.Generic;
+#nullable enable
+namespace StateSmith.Input.Antlr4;
 
-namespace StateSmith.Input.Antlr4
+public class OrthoStateNode : StateNode
 {
-    public class OrthoStateNode : StateNode
-    {
-        public string order;
-    }
+    public string? order;
 }

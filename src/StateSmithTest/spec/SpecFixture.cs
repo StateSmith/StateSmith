@@ -20,6 +20,7 @@ public class SpecFixture
     public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null)
     {
         RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
+        settings.outputStateSmithVersionInfo = false; // too much noise in repo
         SmRunner runner = new(settings, renderConfig);
 
         smRunnerAction?.Invoke(runner);

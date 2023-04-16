@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## WIP
+### Added
+- TriggerMap - easier custom triggers
+  - https://github.com/StateSmith/StateSmith/issues/161
+- More flexible grammar to support syntax like `enter / menu.setItems(["BUILD YOUR BOT!", "ABOUT"]);`
+  - https://github.com/StateSmith/StateSmith/issues/160
+- Add setting to disable writing StateSmith version to generated files.
+  - `SmRunner runner; runner.Settings.outputStateSmithVersionInfo = false;`
+- Allow State Machine root to have behaviors.
+  - https://github.com/StateSmith/StateSmith/issues/163
+- Added grammar support for eating events with behavior text `MyEvent/`.
+  - Before this change, you could use behavior text `MyEvent` instead.
+  - https://github.com/StateSmith/StateSmith/issues/43
+- Added validation to prevent `enter`/`exit` triggers on transition behaviors.
+  - https://github.com/StateSmith/StateSmith/issues/162
+- Ensure state machine has at least one event
+  - https://github.com/StateSmith/StateSmith/issues/121
+
+---
+
 ## [0.8.15-alpha]
 ### Fixed
 - Fix history states when auto state name conflict resolution occurs.

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using StateSmith.Input;
 using StateSmith.SmGraph.Visitors;
 using System.Text.RegularExpressions;
+using StateSmith.Common;
 
 #nullable enable
 
@@ -61,7 +62,7 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
                 throw;  // let it continue
             }
 
-            DiagramEdgeException diagramEdgeException = new DiagramEdgeException(edge, $"Failed while converting {nameof(DiagramEdge)} with id: `{edge.id}` to state transition", ex);
+            DiagramEdgeException diagramEdgeException = new(edge, $"Failed while converting {nameof(DiagramEdge)} with id: `{edge.id}` to state transition", ex);
             throw diagramEdgeException;
         }
     }
@@ -173,9 +174,10 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
 
             case StateMachineNode stateMachineNode:
                 {
-                    var sm = new StateMachine(stateMachineNode.name);
+                    var sm = new StateMachine(stateMachineNode.name.ThrowIfNull());
                     sm.nameIsGloballyUnique = true;
                     thisVertex = sm;
+                    ConvertBehaviors(thisVertex, stateMachineNode);
                     break;
                 }
 
@@ -185,7 +187,7 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
                     {
                         var orthoState = new OrthoState(stateNode.stateName);
                         thisVertex = orthoState;
-                        orthoState.order = Double.Parse(orthoStateNode.order);
+                        orthoState.order = Double.Parse(orthoStateNode.order ?? "0");
                         SetStateFromStateNode(stateNode, orthoState);
                     }
                     else
@@ -272,16 +274,16 @@ Reason(s): {reasons}
         }
     }
 
-    private static void ConvertBehaviors(Vertex vertex, StateNode stateNode)
+    private static void ConvertBehaviors(Vertex vertex, INodeWithBehaviors node)
     {
-        foreach (var nodeBehavior in stateNode.behaviors)
+        foreach (var nodeBehavior in node.Behaviors)
         {
             Behavior behavior = ConvertBehavior(vertex, nodeBehavior);
             vertex.AddBehavior(behavior);
         }
     }
 
-    private static Behavior ConvertBehavior(Vertex owningVertex, NodeBehavior nodeBehavior, Vertex? targetVertex = null)
+    public static Behavior ConvertBehavior(Vertex owningVertex, NodeBehavior nodeBehavior, Vertex? targetVertex = null)
     {
         var behavior = new Behavior(owningVertex: owningVertex, transitionTarget: targetVertex)
         {

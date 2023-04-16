@@ -16,6 +16,8 @@ public class RenderConfigVars
 
     public string VariableDeclarations = "";
 
+    public string TriggerMap = "";
+
     public void SetFrom(IRenderConfig config, bool autoDeIndentAndTrim)
     {
         string Process(string str)
@@ -34,6 +36,7 @@ public class RenderConfigVars
 
         AutoExpandedVars = Process(config.AutoExpandedVars);
         EventCommaList = Process(config.EventCommaList);
+        TriggerMap = Process(config.TriggerMap);
     }
 
     public void CopyFrom(RenderConfigVars otherConfig)
@@ -46,6 +49,7 @@ public class RenderConfigVars
         SmartAppend(ref VariableDeclarations, otherConfig.VariableDeclarations);
         SmartAppend(ref AutoExpandedVars, otherConfig.AutoExpandedVars);
         SmartAppend(ref EventCommaList, otherConfig.EventCommaList);
+        SmartAppend(ref TriggerMap, otherConfig.TriggerMap);
 
         IgnorePureCommentVarDecls();
     }

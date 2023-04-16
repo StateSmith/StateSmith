@@ -1,7 +1,10 @@
+#nullable enable
+
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.Gil;
+using System.Collections.Generic;
 
 namespace StateSmith.Input.Antlr4;
 
@@ -60,18 +63,33 @@ public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
     private string ExpandFunctionCall(StateSmithLabelGrammarParser.Expandable_function_callContext context, string result, string functionName)
     {
         //We can't just visit the `function_args` rule because it includes commas and additional white space.
-        //We need to manually visit each `function_arg_code` rule
-        var functionArgContexts = context.braced_function_args().function_args()?.function_arg();
 
-        var stringArgs = new string[functionArgContexts?.Length ?? 0];
+        var codeElements = context.braced_function_args().function_args()?.code_element();
+        List<string> stringArgs = new();
 
-        for (int i = 0; i < stringArgs.Length; i++)
+        if (codeElements != null)
         {
-            var argContext = functionArgContexts[i];
-            stringArgs[i] = argContext.function_arg_code().Accept(this);
+            stringArgs.Add("");
+
+            foreach (var item in codeElements)
+            {
+                if (item.code_line_element()?.code_symbol()?.COMMA() != null)
+                {
+                    stringArgs.Add("");
+                }
+                else
+                {
+                    stringArgs[^1] += item.Accept(this);
+                }
+            }
         }
 
-        var expandedCode = expander.TryExpandFunctionExpansion(functionName, stringArgs);
+        for (int i = 0; i < stringArgs.Count; i++)
+        {
+            stringArgs[i] = stringArgs[i].Trim();
+        }
+
+        var expandedCode = expander.TryExpandFunctionExpansion(functionName, stringArgs.ToArray());
         result += expandedCode;
         return result;
     }
