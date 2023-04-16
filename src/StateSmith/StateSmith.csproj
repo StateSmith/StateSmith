@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PackageId>StateSmith</PackageId>
-    <Version>0.8.14-alpha-grammar-2</Version>
     <Version>0.8.15-alpha</Version>
     <Authors>Adam Fraser-Kruck</Authors>
     <Copyright>Adam Fraser-Kruck</Copyright>
