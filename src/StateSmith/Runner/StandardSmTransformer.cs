@@ -13,6 +13,10 @@ public class StandardSmTransformer : SmTransformer
         Standard_SupportParentAlias,
         Standard_SupportEntryExit,
         Standard_SupportPrefixingModder,
+        /// <summary>
+        /// https://github.com/StateSmith/StateSmith/issues/138
+        /// </summary>
+        Standard_NameConflictResolution,
         Standard_SupportHistory,
         /// <summary>
         /// https://github.com/StateSmith/StateSmith/issues/136
@@ -23,7 +27,6 @@ public class StandardSmTransformer : SmTransformer
         /// See https://github.com/StateSmith/StateSmith/issues/108
         /// </summary>
         Standard_SupportAlternateTriggers,
-        Standard_NameConflictResolution,
         Standard_Validation1,
         Standard_DefaultUnspecifiedEventsAsDoEvent,
         /// <summary>
@@ -41,12 +44,12 @@ public class StandardSmTransformer : SmTransformer
         AddStep(TransformationId.Standard_SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());
         AddStep(TransformationId.Standard_SupportParentAlias, (sm) => ParentAliasStateProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportEntryExit, (sm) => EntryExitProcessor.Process(sm));
-        AddStep(TransformationId.Standard_SupportPrefixingModder, (sm) => PrefixingModder.Process(sm));
+        AddStep(TransformationId.Standard_SupportPrefixingModder, (sm) => PrefixingModder.Process(sm)); // must happen before name conflict resolution
+        AddStep(TransformationId.Standard_NameConflictResolution, (sm) => nameConflictResolver.ResolveNameConflicts(sm)); // must happen before supporting history https://github.com/StateSmith/StateSmith/issues/168
         AddStep(TransformationId.Standard_SupportHistory, (sm) => historyProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportElseGuard, (sm) => ElseGuardProcessor.Process(sm)); // must happen before ordering step
         AddStep(TransformationId.Standard_SupportOrderAndElse, (sm) => OrderAndElseProcessor.Process(sm)); // should happen after most steps as it orders behaviors
         AddStep(TransformationId.Standard_SupportAlternateTriggers, (sm) => SupportAlternateTriggersProcessor.Process(sm));
-        AddStep(TransformationId.Standard_NameConflictResolution, (sm) => nameConflictResolver.ResolveNameConflicts(sm));
         AddStep(TransformationId.Standard_Validation1, (sm) => Validate(sm));
         AddStep(TransformationId.Standard_DefaultUnspecifiedEventsAsDoEvent, (sm) => DefaultToDoEventVisitor.Process(sm));
         AddStep(TransformationId.Standard_TriggerMapping, (sm) => triggerMapProcessor.Process(sm));
