@@ -8,6 +8,7 @@ using StateSmith.Input.Antlr4;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.Gil;
 using System.Collections.Generic;
+using StateSmith.Output.UserConfig;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
@@ -19,16 +20,18 @@ public class EventHandlerBuilder
     private readonly NameMangler mangler;
     private readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
     private readonly WrappingExpander wrappingExpander;
+    private readonly UserExpansionScriptBases userExpansionScriptBases;
 
     private OutputFile? _file;
 
     private OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
-    public EventHandlerBuilder(Expander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler)
+    public EventHandlerBuilder(Expander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases)
     {
         this.pseudoStateHandlerBuilder = pseudoStateHandlerBuilder;
         this.mangler = mangler;
-        this.wrappingExpander = new(expander);
+        this.wrappingExpander = new(expander, userExpansionScriptBases);
+        this.userExpansionScriptBases = userExpansionScriptBases;
     }
 
     public void SetFile(OutputFile file)
@@ -39,18 +42,21 @@ public class EventHandlerBuilder
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="state"></param>
+    /// <param name="namedVertex"></param>
     /// <param name="triggerName"></param>
-    public void OutputStateBehaviorsForTrigger(NamedVertex state, string triggerName)
+    public void OutputStateBehaviorsForTrigger(NamedVertex namedVertex, string triggerName)
     {
+        userExpansionScriptBases.UpdateNamedVertex(namedVertex);
+        userExpansionScriptBases.UpdateCurrentTrigger(triggerName);
+
         bool noAncestorHandlesEvent = true;
 
         if (TriggerHelper.IsEvent(triggerName))
         {
-            noAncestorHandlesEvent = OutputNextAncestorHandler(state, triggerName);
+            noAncestorHandlesEvent = OutputNextAncestorHandler(namedVertex, triggerName);
         }
 
-        var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(state, triggerName);
+        var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(namedVertex, triggerName);
         foreach (var b in behaviorsWithTrigger)
         {
             if (b.HasTransition())
@@ -64,6 +70,9 @@ public class EventHandlerBuilder
 
             File.RequestNewLineBeforeMoreCode();
         }
+
+        userExpansionScriptBases.UpdateNamedVertex(null);
+        userExpansionScriptBases.UpdateCurrentTrigger(null);
     }
 
     public void OutputTransitionCode(Behavior behavior, bool noAncestorHandlesEvent, bool checkForExiting = true)
@@ -195,7 +204,7 @@ public class EventHandlerBuilder
     {
         if (behavior.HasActionCode())
         {
-            var expandedAction = wrappingExpander.ExpandCode(behavior.actionCode);
+            var expandedAction = wrappingExpander.ExpandActionCode(behavior);
             var inspector = new ActionCodeInspector();
             inspector.Parse(expandedAction);
             if (inspector.identifiersUsed.Contains(consumeEventVarName))
@@ -241,7 +250,7 @@ public class EventHandlerBuilder
 
     public void RenderPseudoStateTransitionFunctionInner(PseudoStateVertex pseudoState)
     {
-        var functionName = pseudoStateHandlerBuilder.GetFunctionName(pseudoState); // just throws if not found
+        pseudoStateHandlerBuilder.GetFunctionName(pseudoState); // just throws if not found
 
         const bool NoAncestorHandlesEvent = false; // assume ancestor might handle event because the pseudo state transition code can be called from multiple states.
         RenderPseudoStateTransitionsInner(pseudoState, noAncestorHandlesEvent: NoAncestorHandlesEvent);
@@ -474,13 +483,13 @@ public class EventHandlerBuilder
             File.RequestNewLineBeforeMoreCode();
         }
 
+        userExpansionScriptBases.UpdateNamedVertex(state);
         pseudoStateHandlerBuilder.OutputFunctionsForParent(state, RenderPseudoStateTransitionFunctionInner);
+        userExpansionScriptBases.UpdateNamedVertex(null);
     }
 
     public void OutputFuncStateEnter(NamedVertex state)
     {
-        //var oldSmAccess = smAccess;
-        //smAccess = "this";
         OutputTriggerHandlerSignature(state, TriggerHelper.TRIGGER_ENTER);
 
         File.StartCodeBlock();
@@ -504,8 +513,6 @@ public class EventHandlerBuilder
         }
         File.FinishCodeBlock(forceNewLine: true);
         File.AppendLine();
-
-        //smAccess = oldSmAccess;
     }
 
     public void OutputFuncStateExit(NamedVertex state)

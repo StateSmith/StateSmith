@@ -84,6 +84,8 @@ public class DiServiceProvider
 
             services.AddSingleton<IAutoVarsParser, CLikeAutoVarsParser>();
             services.AddSingleton<TriggerMapProcessor>();
+
+            services.AddSingleton<UserExpansionScriptBases>();
         });
     }
 

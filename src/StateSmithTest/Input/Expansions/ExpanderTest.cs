@@ -33,8 +33,8 @@ public class ExpanderTest
     {
         Expander expander = new();
         var userExpansions = new ExpansionsExample();
-        ExpanderFileReflection expanderFileReflection = new(expander);
-        userExpansions.varsPath = "sm->vars.";
+        ExpanderFileReflection expanderFileReflection = new(expander, new());
+        userExpansions.VarsPath = "sm->vars.";
         expanderFileReflection.AddAllExpansions(userExpansions);
 
         expander.GetVariableNames().Should().BeEquivalentTo(new string[] { 

@@ -2,6 +2,7 @@ using StateSmith.Input.Expansions;
 using System;
 using System.Reflection;
 using System.Linq;
+using System.Collections.Generic;
 
 #nullable enable
 
@@ -13,14 +14,13 @@ public class ExpansionConfigReader
     private readonly string expansionVarsPath;
 
     // required for Dependency Injection
-    public ExpansionConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider) : this(expander, expansionVarsPathProvider.ExpansionVarsPath)
+    public ExpansionConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, UserExpansionScriptBases userExpansionScriptBases) : this(expander, expansionVarsPathProvider.ExpansionVarsPath, userExpansionScriptBases)
     {
-
     }
 
-    internal ExpansionConfigReader(Expander expander, string expansionVarsPath)
+    internal ExpansionConfigReader(Expander expander, string expansionVarsPath, UserExpansionScriptBases userExpansionScriptBases)
     {
-        expanderFileReflection = new ExpanderFileReflection(expander);
+        expanderFileReflection = new ExpanderFileReflection(expander, userExpansionScriptBases);
         this.expansionVarsPath = expansionVarsPath;
     }
 
@@ -43,7 +43,7 @@ public class ExpansionConfigReader
     {
         if (expansionObject != null)
         {
-            expansionObject.varsPath = expansionVarsPath;
+            expansionObject.VarsPath = expansionVarsPath;
             expanderFileReflection.AddAllExpansions(expansionObject);
         }
     }

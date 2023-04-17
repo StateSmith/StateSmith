@@ -5,6 +5,7 @@ using StateSmith.SmGraph;
 using StateSmith.Input.Antlr4;
 using StateSmith.Output.Gil;
 using System.Text.RegularExpressions;
+using StateSmith.Output.UserConfig;
 
 namespace StateSmith.Input.Expansions;
 
@@ -19,10 +20,12 @@ public class WrappingExpander
 
     private readonly Expander expander;
     private static readonly Regex codeTypeSplittingRegex = new($@"<(?<type>{XML_FINAL_CODE_TAG_NAME}|{XML_GIL_CODE_TAG_NAME})>(?<value>[\s\S]*?){XML_END_CODE_TAG}"); // MUST be lazy match to prevent skipping over multiple matches
+    private readonly UserExpansionScriptBases userExpansionScriptBases;
 
-    public WrappingExpander(Expander expander)
+    public WrappingExpander(Expander expander, UserExpansionScriptBases userExpansionScriptBases)
     {
         this.expander = expander;
+        this.userExpansionScriptBases = userExpansionScriptBases;
     }
 
     /// <summary>
@@ -37,15 +40,23 @@ public class WrappingExpander
 
     public string ExpandWrapGuardCode(Behavior b)
     {
+        UpdateForBehavior(b);
         return ExpandWrapCode(b.guardCode, isGuard: true);
     }
 
     public string ExpandWrapActionCode(Behavior b)
     {
+        UpdateForBehavior(b);
         return ExpandWrapCode(b.actionCode, isGuard: false);
     }
 
-    public string ExpandWrapCode(string code, bool isGuard)
+    public string ExpandActionCode(Behavior behavior)
+    {
+        UpdateForBehavior(behavior);
+        return ExpandCode(behavior.actionCode);
+    }
+
+    protected string ExpandWrapCode(string code, bool isGuard)
     {
         string expanded = ExpandCode(code);
 
@@ -57,7 +68,7 @@ public class WrappingExpander
         return WrapExpandedForAction(expanded);
     }
 
-    public static string WrapExpandedForGuard(string expanded)
+    protected static string WrapExpandedForGuard(string expanded)
     {
         int count = 0;
         var wrappedArgs = codeTypeSplittingRegex.Replace(expanded, (match) =>
@@ -87,7 +98,7 @@ public class WrappingExpander
         return result;
     }
 
-    public static string WrapExpandedForAction(string expanded)
+    protected static string WrapExpandedForAction(string expanded)
     {
         var result = codeTypeSplittingRegex.Replace(expanded, (match) =>
         {
@@ -111,8 +122,13 @@ public class WrappingExpander
         return result;
     }
 
-    public string ExpandCode(string code)
+    protected string ExpandCode(string code)
     {
         return ExpandingVisitor.ParseAndExpandCode(expander, code);
+    }
+
+    private void UpdateForBehavior(Behavior b)
+    {
+        userExpansionScriptBases.UpdateCurrentBehavior(b);
     }
 }
