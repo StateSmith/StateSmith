@@ -318,8 +318,6 @@ There is one exception - the `do` event. The `do` event is special in that state
 
 If a transition occurs, no other behaviors will be checked for any state (doesn't matter if it is the `do` event).
 
-State's can choose to not consume an event or consume the `do` event modifying a state's `consume_event` flag (see a state's event handler code).
-
 If any of this is confusing, just read the generated comments for a state's event handler. They try to be pretty explanatory.
 
 StateSmith's balanced generated code automatically skips over parent states that aren't interested in an event. This is especially helpful when debugging, or when the nesting gets past a few layers deep.
