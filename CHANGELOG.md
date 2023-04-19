@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## WIP
 ### Added
+- Dispatch event function returns result ID (consumed, active, invalid)
+  - https://github.com/StateSmith/StateSmith/issues/141
 - Exposed `AlgoBalanced1Settings` to disable event/state ID to string functions.
   - https://github.com/StateSmith/StateSmith/issues/181
 

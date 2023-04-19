@@ -80,10 +80,32 @@ public class EnumBuilder
         file.FinishCodeBlock("");
         file.AppendLine();
 
-        OutputStateIdCount(file, smName, namedVertices.Count);
+        OutputStateIdCount(file, namedVertices.Count);
     }
 
-    protected void OutputStateIdCount(OutputFile file, string smName, int count)
+    public void OutputResultIdCode(OutputFile file)
+    {
+        file.Append($"public enum {mangler.SmResultEnumType}");
+        file.StartCodeBlock();
+
+        var enumValues = new string[] { "Consumed", "Active", "Invalid" };
+        file.AppendLine($"{mangler.SmResultEnumValueConsumed} = 0, // dispatched event was consumed.");
+        file.AppendLine($"{mangler.SmResultEnumValueActive} = 1,   // dispatched event still active (not consumed).");
+        file.AppendLine($"{mangler.SmResultEnumValueInvalid} = 2   // event to be dispatched is unknown and was ignored.");
+
+        file.FinishCodeBlock("");
+        file.AppendLine();
+
+        OutputResultIdCount(file, enumValues.Length);
+    }
+
+    protected void OutputResultIdCount(OutputFile file, int count)
+    {
+        var enumValueName = mangler.SmResultEnumCount;
+        OutputEnumCount(file, enumValueName, count);
+    }
+
+    protected void OutputStateIdCount(OutputFile file, int count)
     {
         var enumValueName = mangler.SmStateEnumCount;
         OutputEnumCount(file, enumValueName, count);

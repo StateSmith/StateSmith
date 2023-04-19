@@ -96,6 +96,12 @@ public class AlgoBalanced1 : IGilAlgo
             enumBuilder.OutputStateIdCode(file);
             file.AppendLine();
 
+            if (settings.enableDispatchEventResult)
+            {
+                enumBuilder.OutputResultIdCode(file);
+                file.AppendLine();
+            }
+
             foreach (var h in Sm.historyStates)
             {
                 enumBuilder.OutputHistoryIdCode(file, h);
@@ -260,10 +266,23 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine("// Dispatches an event to the state machine. Not thread safe.");
         string event_id = mangler.MangleVarName("event_id");
         string behavior_func = mangler.MangleVarName("behavior_func");
+        string resultEnumType = mangler.SmResultEnumType;
 
-        // FIXME me update here
-        file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {event_id})");
+        string returnType = "void";
+
+        if (settings.enableDispatchEventResult)
+        {
+            returnType = resultEnumType;
+        }
+
+        file.Append($"public {returnType} {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {event_id})");
         file.StartCodeBlock();
+
+        if (settings.enableDispatchEventResult)
+        {
+            file.AppendLine($"if ((int){event_id} < 0 || (int){event_id} >= (int){mangler.SmEventEnumCount}) return {resultEnumType}.{mangler.SmResultEnumValueInvalid};");
+        }
+
         file.AppendLine($"{mangler.SmHandlerFuncType}? {behavior_func} = this.{mangler.SmCurrentEventHandlersVarName}[(int){event_id}];");
         file.AppendLine();
         file.Append($"while ({behavior_func} != null)");
@@ -274,6 +293,12 @@ public class AlgoBalanced1 : IGilAlgo
             file.AppendLine($"{behavior_func} = this.{mangler.SmAncestorEventHandlerVarName};");
             file.FinishCodeBlock(forceNewLine: true);
         }
+
+        if (settings.enableDispatchEventResult)
+        {
+            file.AppendLine($"return {resultEnumType}.{mangler.SmResultEnumValueConsumed}; // FIXME finish here!");
+        }
+
         file.FinishCodeBlock(forceNewLine: true);
         file.AppendLine();
     }

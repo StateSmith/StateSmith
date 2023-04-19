@@ -52,9 +52,35 @@ public class AlgoBalanced1SettingsTests
         capturedFile.code.Should().Contain("public static string EventIdToString(");
     }
 
+
+    // https://github.com/StateSmith/StateSmith/issues/141
+    [Fact]
+    public void NormalDispatchHasVoidReturn()
+    {
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
+        SetupForUnitTest(capturedFile, runner);
+        runner.Run();
+
+        capturedFile.code.Should().Contain("public void DispatchEvent(");
+    }
+
+    // https://github.com/StateSmith/StateSmith/issues/141
+    [Fact]
+    public void DispatchEventReturnAndValidation()
+    {
+        SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
+        SetupForUnitTest(capturedFile, runner);
+        runner.Settings.algoBalanced1Settings.enableDispatchEventResult = true; // Here's the setting you want
+        runner.Run();
+
+        capturedFile.code.Should().NotContain("public void DispatchEvent(");
+        capturedFile.code.Should().Contain("public ResultId DispatchEvent(");
+    }
+
     private static void SetupForUnitTest(CapturingCodeFileWriter capturedFile, SmRunner runner)
     {
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(capturedFile);
         runner.Settings.propagateExceptions = true;
+        runner.Settings.dumpGilCodeOnError = true;
     }
 }

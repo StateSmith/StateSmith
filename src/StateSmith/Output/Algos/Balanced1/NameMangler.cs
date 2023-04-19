@@ -91,6 +91,32 @@ public class NameMangler
     //--------------------------------------------------------
     //--------------------------------------------------------
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/141
+    /// </summary>
+    public virtual string SmResultEnumType => "ResultId";
+    
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/141
+    /// </summary>
+    public virtual string SmResultEnumValue(string name) => name.ToUpper();
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/141
+    /// </summary>
+    public virtual string SmResultEnumValueConsumed => SmResultEnumValue("Consumed");
+    public virtual string SmResultEnumValueActive => SmResultEnumValue("Active");
+    public virtual string SmResultEnumValueInvalid => SmResultEnumValue("Invalid");
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/141
+    /// </summary>
+    public virtual string SmResultEnumCount => $"{SmResultEnumType}Count";
+
+    //--------------------------------------------------------
+    //--------------------------------------------------------
+    //--------------------------------------------------------
+
     public virtual string SmTypeName => Sm.Name;
 
     public virtual string SmHandlerFuncType => "Func";
