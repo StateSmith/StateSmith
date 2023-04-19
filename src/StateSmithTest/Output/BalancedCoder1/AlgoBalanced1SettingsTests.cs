@@ -70,7 +70,7 @@ public class AlgoBalanced1SettingsTests
     {
         SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
         SetupForUnitTest(capturedFile, runner);
-        runner.Settings.algoBalanced1Settings.enableDispatchEventResult = true; // Here's the setting you want
+        runner.Settings.outputGilCodeAlways = true;
         runner.Run();
 
         capturedFile.code.Should().NotContain("public void DispatchEvent(");

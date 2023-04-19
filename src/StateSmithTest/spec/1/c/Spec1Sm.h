@@ -4,6 +4,13 @@
 #pragma once
 #include <stdint.h>
 
+// forward declaration
+typedef struct Spec1Sm Spec1Sm;
+typedef struct Spec1Sm_EventContext Spec1Sm_EventContext;
+typedef struct Spec1Sm_Vars Spec1Sm_Vars;
+
+typedef Spec1Sm_Func Spec1Sm_Func;
+
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
 typedef enum Spec1Sm_EventId
 {
@@ -32,10 +39,25 @@ enum
     Spec1Sm_StateIdCount = 7
 };
 
+typedef enum Spec1Sm_ResultId
+{
+    Spec1Sm_ResultId_CONSUMED = 0, // dispatched event was consumed.
+    Spec1Sm_ResultId_ACTIVE = 1,   // dispatched event still active (not consumed).
+    Spec1Sm_ResultId_INVALID = 2   // event to be dispatched is unknown and was ignored.
+} Spec1Sm_ResultId;
+
+enum
+{
+    Spec1Sm_ResultIdCount = 3
+};
+
 
 // Generated state machine
-// forward declaration
-typedef struct Spec1Sm Spec1Sm;
+
+
+
+// event handler type
+typedef void (*Spec1Sm_Func)(Spec1Sm* sm);
 
 // State machine variables. Can be used for inputs, outputs, user variables...
 typedef struct Spec1Sm_Vars
@@ -44,8 +66,17 @@ typedef struct Spec1Sm_Vars
 } Spec1Sm_Vars;
 
 
-// event handler type
-typedef void (*Spec1Sm_Func)(Spec1Sm* sm);
+
+// forward declaration
+typedef struct Spec1Sm_EventContext Spec1Sm_EventContext;
+
+struct Spec1Sm_EventContext
+{
+    Spec1Sm_EventId id;
+    Spec1Sm_Func nextHandler; // Users should ignore this field. Used by state machine.
+    Spec1Sm_ResultId resultId;
+};
+
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Spec1Sm_ctor(Spec1Sm* sm);
@@ -54,7 +85,7 @@ void Spec1Sm_ctor(Spec1Sm* sm);
 void Spec1Sm_start(Spec1Sm* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
-void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id);
+Spec1Sm_ResultId Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id);
 
 // Thread safe.
 char const * Spec1Sm_state_id_to_string(Spec1Sm_StateId id);

@@ -96,11 +96,10 @@ public class AlgoBalanced1 : IGilAlgo
             enumBuilder.OutputStateIdCode(file);
             file.AppendLine();
 
-            if (settings.enableDispatchEventResult)
-            {
-                enumBuilder.OutputResultIdCode(file);
-                file.AppendLine();
-            }
+            enumBuilder.OutputResultIdCode(file);
+            file.AppendLine();
+
+            GenerateEventContextClass();
 
             foreach (var h in Sm.historyStates)
             {
@@ -109,7 +108,7 @@ public class AlgoBalanced1 : IGilAlgo
             }
 
             file.AppendLine($"// event handler type");
-            file.AppendLine($"private delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
+            file.AppendLine($"public delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
             file.AppendLine();
         });
 
@@ -132,6 +131,19 @@ public class AlgoBalanced1 : IGilAlgo
             OutputTriggerHandlers();
             MaybeOutputToStringFunctions();
         });
+    }
+
+    private void GenerateEventContextClass()
+    {
+        file.AppendLine("public class EventContext");
+        file.StartCodeBlock();
+        {
+            file.AppendLine($"public {mangler.SmEventEnumType} id;");  //fixme more mangler
+            file.AppendLine($"public {mangler.SmHandlerFuncType} nextHandler; // Users should ignore this field. Used by state machine.");  //fixme more mangler
+            file.AppendLine($"public {mangler.SmResultEnumType} resultId;");  //fixme more mangler
+        }
+        file.FinishCodeBlock();
+        file.AppendLine();
     }
 
     private void MaybeOutputToStringFunctions()
@@ -269,19 +281,12 @@ public class AlgoBalanced1 : IGilAlgo
         string resultEnumType = mangler.SmResultEnumType;
 
         string returnType = "void";
-
-        if (settings.enableDispatchEventResult)
-        {
-            returnType = resultEnumType;
-        }
+        returnType = resultEnumType;
 
         file.Append($"public {returnType} {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {event_id})");
         file.StartCodeBlock();
 
-        if (settings.enableDispatchEventResult)
-        {
-            file.AppendLine($"if ((int){event_id} < 0 || (int){event_id} >= (int){mangler.SmEventEnumCount}) return {resultEnumType}.{mangler.SmResultEnumValueInvalid};");
-        }
+        file.AppendLine($"if ((int){event_id} < 0 || (int){event_id} >= (int){mangler.SmEventEnumCount}) return {resultEnumType}.{mangler.SmResultEnumValueInvalid};");
 
         file.AppendLine($"{mangler.SmHandlerFuncType}? {behavior_func} = this.{mangler.SmCurrentEventHandlersVarName}[(int){event_id}];");
         file.AppendLine();
@@ -294,10 +299,7 @@ public class AlgoBalanced1 : IGilAlgo
             file.FinishCodeBlock(forceNewLine: true);
         }
 
-        if (settings.enableDispatchEventResult)
-        {
-            file.AppendLine($"return {resultEnumType}.{mangler.SmResultEnumValueConsumed}; // FIXME finish here!");
-        }
+        file.AppendLine($"return {resultEnumType}.{mangler.SmResultEnumValueConsumed}; // FIXME finish here!");
 
         file.FinishCodeBlock(forceNewLine: true);
         file.AppendLine();

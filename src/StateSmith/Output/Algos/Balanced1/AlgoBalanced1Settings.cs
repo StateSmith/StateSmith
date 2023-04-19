@@ -19,9 +19,4 @@ public class AlgoBalanced1Settings
 
     public bool generateEventIdToStringFunction = true;
     public bool generateStateIdToStringFunction = true;
-
-    /// <summary>
-    /// https://github.com/StateSmith/StateSmith/issues/141
-    /// </summary>
-    public bool enableDispatchEventResult = false;
 }
