@@ -28,7 +28,7 @@ public class AlgoBalanced1 : IGilAlgo
     protected StateMachine? _sm;
     protected StateMachine Sm => _sm.ThrowIfNull("Must be set before use");
 
-    string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
+    static string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
 
     public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter)
     {
@@ -261,6 +261,7 @@ public class AlgoBalanced1 : IGilAlgo
         string event_id = mangler.MangleVarName("event_id");
         string behavior_func = mangler.MangleVarName("behavior_func");
 
+        // FIXME me update here
         file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {event_id})");
         file.StartCodeBlock();
         file.AppendLine($"{mangler.SmHandlerFuncType}? {behavior_func} = this.{mangler.SmCurrentEventHandlersVarName}[(int){event_id}];");

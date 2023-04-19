@@ -2,8 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
-using System.Threading;
-using System.Globalization;
+using StateSmith.Output.Algos.Balanced1;
 
 #nullable enable
 
@@ -129,17 +128,19 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<ExpansionsPrep>();
             services.AddSingleton<FilePathPrinter>(new FilePathPrinter(settings.filePathPrintBase.ThrowIfNull()));
+            services.AddSingleton(settings.algoBalanced1Settings);
         });
 
         AlgoOrTranspilerUpdated();
     }
 
     /// <summary>
-    /// You only need to call this if you adjust the algorithm or transpiler id after constructing an <see cref="SmRunner"/>.
+    /// You only need to call this if you adjust the algorithm or transpiler id after constructing a <see cref="SmRunner"/>.
+    /// Will put in some defaults appropriate for algorithm and transpiler.
     /// </summary>
     public void AlgoOrTranspilerUpdated()
     {
-        new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId);
+        new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId, settings.algoBalanced1Settings);
     }
 
     // exists just for testing. can be removed in the future.

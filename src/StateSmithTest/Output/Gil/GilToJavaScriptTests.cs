@@ -11,15 +11,6 @@ namespace StateSmithTest.Output.Gil;
 
 public class GilToJavaScriptTests
 {
-    public class CapturingCodeFileWriter : ICodeFileWriter
-    {
-        public string code = "";
-        public void WriteFile(string filePath, string code)
-        {
-            this.code = code;
-        }
-    }
-
     [Fact]
     public void Test()
     {
