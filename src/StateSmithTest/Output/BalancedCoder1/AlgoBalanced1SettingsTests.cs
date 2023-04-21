@@ -32,7 +32,7 @@ public class AlgoBalanced1SettingsTests
     {
         SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
         SetupForUnitTest(capturedFile, runner);
-        runner.Settings.algoBalanced1Settings.generateEventIdToStringFunction = false; // Here's the setting you want
+        runner.Settings.algoBalanced1.outputEventIdToStringFunction = false; // Here's the setting you want
         runner.Run();
 
         capturedFile.code.Should().Contain("public static string StateIdToString");
@@ -45,7 +45,7 @@ public class AlgoBalanced1SettingsTests
     {
         SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
         SetupForUnitTest(capturedFile, runner);
-        runner.Settings.algoBalanced1Settings.generateStateIdToStringFunction = false; // Here's the setting you want
+        runner.Settings.algoBalanced1.outputStateIdToStringFunction = false; // Here's the setting you want
         runner.Run();
 
         capturedFile.code.Should().NotContain("public static string StateIdToString");

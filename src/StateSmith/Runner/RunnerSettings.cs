@@ -1,7 +1,5 @@
 using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
-using StateSmith.Output.UserConfig;
-using System;
 
 #nullable enable
 
@@ -18,6 +16,7 @@ public class RunnerSettings
 
     /// <summary>
     /// Ignored if custom code generator used.
+    /// https://github.com/StateSmith/StateSmith/wiki/Algorithms
     /// </summary>
     public AlgorithmId algorithmId = AlgorithmId.Default;
 
@@ -31,7 +30,11 @@ public class RunnerSettings
     /// </summary>
     public string? stateMachineName;
 
-    public AlgoBalanced1Settings algoBalanced1Settings = new();
+    /// <summary>
+    /// Algorithm Balanced 1 settings.
+    /// https://github.com/StateSmith/StateSmith/wiki/Algorithms
+    /// </summary>
+    public AlgoBalanced1Settings algoBalanced1 = new();
 
     /// <summary>
     /// Optional. This is used to control how file paths are printed.
