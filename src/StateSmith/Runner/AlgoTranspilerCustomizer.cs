@@ -14,7 +14,7 @@ namespace StateSmith.Runner;
 /// </summary>
 public class AlgoTranspilerCustomizer
 {
-    public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId)
+    public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings)
     {
         if (algorithmId == AlgorithmId.Default)
             algorithmId = AlgorithmId.Balanced1;
@@ -24,9 +24,6 @@ public class AlgoTranspilerCustomizer
 
         if (transpilerId == TranspilerId.Default)
             transpilerId = TranspilerId.C99;
-
-        AlgoBalanced1Settings algoBalanced1Settings = new();
-        sp.AddSingletonT(algoBalanced1Settings);
 
         switch (transpilerId)
         {
