@@ -35,7 +35,7 @@ public class GilToC99 : IGilTranspiler
 
         C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfig, renderConfigC, cCustomizer);
 
-        visitor.Visit(root);
+        visitor.Process();
 
         PostProcessor.PostProcess(hFileSb);
         PostProcessor.PostProcess(cFileSb);
