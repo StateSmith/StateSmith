@@ -34,6 +34,15 @@ Our announcements [discord](https://discord.com/invite/rNxNGQXWsU) channel is up
 
 
 
+<br>
+
+# More Examples 🔫
+The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) repo has a growing list of examples showcasing different [application uses](https://github.com/StateSmith/StateSmith/wiki/App-Notes).
+
+[![mario-sm](https://user-images.githubusercontent.com/274012/234160417-c2fcb028-0c7f-465f-b453-b04a53b48bcf.gif)](https://github.com/StateSmith/StateSmith-examples)
+
+
+
 
 <br>
 
@@ -44,24 +53,6 @@ If you like StateSmith and want to help improve it, your help would be very much
 * If you are up for coding, check out [Contributing](https://github.com/StateSmith/StateSmith/wiki/Contributing).
 
 Thanks!
-
-
-
-
-<br>
-
-# More Examples 🔫
-
-Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showing a Laser Tag menu implemented with StateSmith and running in an Arduino simulation.
-
-[![picture 1](images/main-lasertag-demo1.png)](https://www.youtube.com/watch?v=9czSDothuzM)
-
-You can interact with the generated laser tag menu code using the [wokwi simulation](https://wokwi.com/projects/351165738904453719).
-
-There are also some [old examples](./examples/README.md) in this repo. They are perfectly valid, but use an older style of running StateSmith and some use the old yEd editor (draw.io is better).
-
-The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) repo has a collection of various projects that explore proposals or advanced ideas.
-
 
 
 
@@ -83,9 +74,7 @@ Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CH
 <br>
 
 # More Info 📖
-There is also a slightly older quick start. Some issues covered in the video have already been fixed. It is specific to C, but has some useful info. The video is a bit lengthy, but has chapter markers to let you skip to the section you are interested in. https://youtu.be/qej8pXp3dX4
-
-See the StateSmith [GitHub wiki](https://github.com/StateSmith/StateSmith/wiki) or ask a question.
+The StateSmith [GitHub wiki](https://github.com/StateSmith/StateSmith/wiki) has a good amount of documentation right now, but always feel free to ask a question.
 
 
 
