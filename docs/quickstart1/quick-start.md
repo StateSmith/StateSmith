@@ -1,4 +1,18 @@
-# Quick Start
+# See Tutorial 2 Instead
+This is our original quick start from when we used the yEd editor. That is still supported, but not recommended for new users.
+
+https://github.com/StateSmith/tutorial-2
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Old yEd Quick Start
 
 Download the StateSmith repo and copy `./examples/Tutorial1-blank/` somewhere you want to use it. You can also leave it where it is.
 
