@@ -4,11 +4,6 @@ Even though the images in this document feature the old yEd UI, the features are
 # Diagram Features And Syntax
 StateSmith is based on UML2 StateMachines with a few differences.
 
-If you are unfamiliar with the general UML state machine syntax, here are some great resources:
-- [clickable diagram that highlights elements](https://statecharts.dev/concepts.html)
-- [Derek Banas video](https://www.youtube.com/watch?v=_6TFVzBW7oo). Stop watching at package diagrams.
-
-
 ## General state behavior syntax
 Each state behavior can have:
 - a **trigger**: can be `enter`, `exit`, an event like `do` or a user specified event. User events can be any identifier that is a valid variable name. Regex: `[a-zA-z_]\w*`
