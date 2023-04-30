@@ -28,7 +28,7 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 
 # Releases
 
-## [wip]
+## [0.9.3-alpha]
 ### Added
 - Add C render config settings for enum attributes and file extension naming to support c++ nicer.
   - https://github.com/StateSmith/StateSmith/issues/185
