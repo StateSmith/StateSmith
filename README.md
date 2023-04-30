@@ -36,6 +36,23 @@ Our announcements [discord](https://discord.com/invite/rNxNGQXWsU) channel is up
 
 <br>
 
+# Why State Machines and StateSmith? 🤔
+If you are new to state machines, then prepare to level up your toolbox! They are incredibly helpful for [certain applications](https://github.com/StateSmith/StateSmith/wiki/App-Notes).
+
+Why StateSmith?
+I couldn't find a quality state machine code generator that met my needs, had an attractive license, and was enjoyable to use.
+
+## The Diagram is Always Accurate! 📚
+Before I created StateSmith, it was always a pain trying to manually synchronize a hand written state machine with a drawing. Urgent client requests come in and you update the code, but do you and your team always remember to update the drawing? Probably not and so the rot begins. Documentation trust issues arise and as designs get larger, the effort to ensure the diagram is accurate starts to become quite punishing.
+
+Now that we use StateSmith at my work, I never have to worry about the above. I love generating fully working code **from** the documentation. Incredibly helpful for teams and communicating with clients.
+
+
+
+
+
+<br>
+
 # More Examples 🔫
 The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) repo has a growing list of examples showcasing different [application uses](https://github.com/StateSmith/StateSmith/wiki/App-Notes).
 
@@ -60,11 +77,11 @@ Thanks!
 <br>
 
 # Is StateSmith ready for use? 🧪
-StateSmith is generating working code, and has decent test (420+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
+> We use StateSmith in a fair number of production projects at my work. It's a been super helpful.
+
+StateSmith is generating working code, and has good test (420+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
 ![picture 1](images/test-coverage-2022-12.png)  
-
-Every aspect of state behavior is verified during specification testing.
 
 Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CHANGELOG.md) and should be pretty minimal.
 
