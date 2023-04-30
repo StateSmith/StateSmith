@@ -29,6 +29,8 @@ public class GilToC99 : IGilTranspiler
 
     public void TranspileAndOutputCode(string programText)
     {
+        cCustomizer.Setup();
+
         //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
 
         GilTranspilerHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);

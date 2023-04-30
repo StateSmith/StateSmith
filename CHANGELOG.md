@@ -28,10 +28,21 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 
 # Releases
 
+## [wip]
+### Added
+- Add C render config settings for enum attributes and file extension naming to support c++ nicer.
+  - https://github.com/StateSmith/StateSmith/issues/185
+### Fixed
+- Fixed version 0.9.2 mistake that made `RunnerSettings.style` field readonly.
+
+---
+
 ## [0.9.2-alpha]
 ### Added
 - Exposed `AlgoBalanced1Settings` to disable event/state ID to string functions.
   - https://github.com/StateSmith/StateSmith/issues/181
+### Regressions
+- Mistakenly made `RunnerSettings.style` field readonly which broke advanced example that overrides code style.
 
 ---
 

@@ -32,7 +32,23 @@ namespace StateSmith.Common
             return dictionary.ContainsKey(key);
         }
 
-        public void AddIfMissing(K key, V value)
+        public void Add(K key, V value)
+        {
+            if (dictionary.ContainsKey(key))
+            {
+                List<V> list = dictionary[key];
+                list.Add(value);
+            }
+            else
+            {
+                dictionary[key] = new List<V>()
+                {
+                    value
+                };
+            }
+        }
+
+        public void AddIfValueMissing(K key, V value)
         {
             if (dictionary.ContainsKey(key))
             {

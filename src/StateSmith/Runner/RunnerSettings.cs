@@ -34,7 +34,7 @@ public class RunnerSettings
     /// Algorithm Balanced 1 settings.
     /// https://github.com/StateSmith/StateSmith/wiki/Algorithms
     /// </summary>
-    public AlgoBalanced1Settings algoBalanced1 = new();
+    public readonly AlgoBalanced1Settings algoBalanced1 = new();
 
     /// <summary>
     /// Optional. This is used to control how file paths are printed.
@@ -42,6 +42,10 @@ public class RunnerSettings
     /// </summary>
     public string? filePathPrintBase;
 
+    /// <summary>
+    /// Experimental. You can extend CodeStyleSettings and override settings to your liking.
+    /// </summary>
+    /// Maintainers note: don't make readonly so that users can assign to it.
     public CodeStyleSettings style = new();
 
     public readonly DrawIoSettings drawIoSettings = new();

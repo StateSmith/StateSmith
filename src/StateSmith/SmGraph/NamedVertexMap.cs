@@ -31,7 +31,7 @@ public class NamedVertexMap
         root.VisitTypeRecursively<NamedVertex>(vertex =>
         {
             if (skipRoot && root == vertex) return;
-            hashList.AddIfMissing(vertex.Name, vertex);
+            hashList.AddIfValueMissing(vertex.Name, vertex);
         });
     }
 
