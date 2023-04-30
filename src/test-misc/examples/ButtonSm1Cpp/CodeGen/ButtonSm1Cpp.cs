@@ -22,17 +22,15 @@ namespace ExampleButtonSm1Cpp
             }
 
             SmRunner runner = new(diagramPath: $"../ButtonSm1Cpp/{diagramFileName}", new MyGlueFile());
-
-            // NOTE! We choose to output as c++ code (c is default) so that it can be used directly with Arduino.
-            var customizer = runner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<GilToC99Customizer>();
-            customizer.CFileNameBuilder = (StateMachine sm) => $"{sm.Name}.cpp";
-            customizer.EnumDeclarationBuilder = (string enumName) => $"typedef enum __attribute__((packed)) {enumName}";
-
             runner.Run();
         }
 
         public class MyGlueFile : IRenderConfigC
         {
+            string IRenderConfigC.CFileExtension => ".cpp"; // the generated StateSmith C code is also valid C++ code
+            string IRenderConfigC.HFileExtension => ".h";
+            string IRenderConfigC.CEnumDeclarer => "typedef enum __attribute__((packed)) {enumName}";
+
             // These are required for user specified variables
             string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file

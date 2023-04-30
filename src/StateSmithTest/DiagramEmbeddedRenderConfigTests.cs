@@ -63,7 +63,6 @@ public class DiagramEmbeddedRenderConfigTests
             // sm level - FileTop
             """);
 
-
             renderConfig.AutoExpandedVars.ShouldBeShowDiff("""
             // top level - AutoExpandedVars
             // sm level - AutoExpandedVars
@@ -105,7 +104,19 @@ public class DiagramEmbeddedRenderConfigTests
             // sm level - CFileTop
             """);
 
-            const int expectedOptionCount = 4;
+            renderConfig.HFileExtension.ShouldBeShowDiff("""
+            .hpp
+            """);
+
+            renderConfig.CFileExtension.ShouldBeShowDiff("""
+            .cpp
+            """);
+
+            renderConfig.CEnumDeclarer.ShouldBeShowDiff("""
+            typedef enum __attribute__((packed)) {enumName}
+            """);
+
+            const int expectedOptionCount = 7;
             GetTypeFields<RenderConfigCVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
             GetTypeProperties<IRenderConfigC>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
         }

@@ -12,20 +12,17 @@ namespace Blinky1
         public static void GenFile()
         {
             SmRunner runner = new(diagramPath: "../Blinky1/Blinky1Sm.graphml", new MyGlueFile());
-
-            // NOTE! We choose to output as c++ code (c is default) so that it can be used directly with Arduino.
-            var customizer = runner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<GilToC99Customizer>();
-            customizer.CFileNameBuilder = (StateMachine sm) => $"{sm.Name}.cpp";
-
             runner.Run();
         }
-
 
         /// <summary>
         /// This class 
         /// </summary>
         public class MyGlueFile : IRenderConfigC
         {
+            string IRenderConfigC.CFileExtension => ".cpp"; // the generated StateSmith C code is also valid C++ code
+            string IRenderConfigC.HFileExtension => ".h";
+
             string IRenderConfigC.HFileIncludes => StringUtils.DeIndentTrim(@"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
             ");

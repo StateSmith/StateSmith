@@ -11,16 +11,13 @@ namespace ExampleLaserTagMenu1
         public static void GenFile()
         {
             SmRunner runner = new(diagramPath: "../LaserTagMenu1/ButtonSm1.graphml", new MyGlueFile());
-
-            // customize how enumerations are declared so that we can use GCC packed attribute.
-            var customizer = runner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<GilToC99Customizer>();
-            customizer.EnumDeclarationBuilder = (string enumName) => $"typedef enum __attribute__((packed)) {enumName}";
-
             runner.Run();
         }
 
         public class MyGlueFile : IRenderConfigC
         {
+            string IRenderConfigC.CEnumDeclarer => "typedef enum __attribute__((packed)) {enumName}";
+
             string IRenderConfigC.HFileIncludes => @"
                 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
             ";

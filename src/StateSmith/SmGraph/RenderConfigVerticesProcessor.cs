@@ -114,6 +114,10 @@ public class RenderConfigVerticesProcessor : DummyVertexVisitor
             case nameof(IRenderConfigC.HFileIncludes): AppendOption(ref renderConfigCVars.HFileIncludes, v); break;
             case nameof(IRenderConfigC.CFileTop): AppendOption(ref renderConfigCVars.CFileTop, v); break;
             case nameof(IRenderConfigC.CFileIncludes): AppendOption(ref renderConfigCVars.CFileIncludes, v); break;
+            //
+            case nameof(IRenderConfigC.HFileExtension): SetOption(ref renderConfigCVars.HFileExtension, v); break;
+            case nameof(IRenderConfigC.CFileExtension): SetOption(ref renderConfigCVars.CFileExtension, v); break;
+            case nameof(IRenderConfigC.CEnumDeclarer): SetOption(ref renderConfigCVars.CEnumDeclarer, v); break;
 
             case "CSharp" + nameof(IRenderConfigCSharp.NameSpace): AppendOption(ref renderConfigCSharpVars.NameSpace, v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref renderConfigCSharpVars.Usings, v); break;

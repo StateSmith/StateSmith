@@ -16,6 +16,25 @@ public class RenderConfigCVars
 
     public string CFileIncludes = "";
 
+    /// <summary>
+    /// Can be changed to ".cpp" (or whatever) to support C++ until idiomatic C++ support is added.
+    /// </summary>
+    public string CFileExtension = ".c";
+
+    /// <summary>
+    /// Can be changed to ".hpp" (or whatever) if you like.
+    /// </summary>
+    public string HFileExtension = ".h";
+
+    /// <summary>
+    /// Will replace `{enumName}` with name of enumeration. Use like this:
+    /// <code>
+    /// typedef enum __attribute__((packed)) {enumName}
+    /// </code>
+    /// https://github.com/StateSmith/StateSmith/issues/185
+    /// </summary>
+    public string CEnumDeclarer = "";
+
     public void SetFrom(IRenderConfigC config, bool autoDeIndentAndTrim)
     {
         string Process(string str)
@@ -34,5 +53,10 @@ public class RenderConfigCVars
 
         CFileTop = Process(config.CFileTop);
         CFileIncludes = Process(config.CFileIncludes);
+
+        CFileExtension = Process(config.CFileExtension);
+        HFileExtension = Process(config.HFileExtension);
+
+        CEnumDeclarer = Process(config.CEnumDeclarer);
     }
 }

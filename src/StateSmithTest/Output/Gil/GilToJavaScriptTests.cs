@@ -34,6 +34,6 @@ public class GilToJavaScriptTests
 
         transpiler.TranspileAndOutputCode(gilCode);
 
-        capturingWriter.code.Should().Contain("export class TestsMySm1 extends MyBaseClass\n{");
+        capturingWriter.LastCode.Should().Contain("export class TestsMySm1 extends MyBaseClass\n{");
     }
 }
