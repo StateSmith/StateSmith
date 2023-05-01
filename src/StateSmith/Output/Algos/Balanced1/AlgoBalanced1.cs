@@ -78,7 +78,7 @@ public class AlgoBalanced1 : IGilAlgo
     // this is a bit of a hack that helps create the proper indentation for the GIL to C99 step
     private void RunWithPossibleIndentation(Action action)
     {
-        //settings.skipClassIndentation = false;
+        settings.skipClassIndentation = false;
         if (settings.skipClassIndentation)
             file.DecreaseIndentLevel();
 

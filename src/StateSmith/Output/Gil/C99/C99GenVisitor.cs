@@ -1,3 +1,5 @@
+#nullable enable
+
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
@@ -7,8 +9,7 @@ using System.Text;
 using StateSmith.Common;
 using System.Linq;
 using StateSmith.Output.UserConfig;
-
-#nullable enable
+using Microsoft.Extensions.Primitives;
 
 // spell-checker: ignore customizer
 
@@ -33,7 +34,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     private readonly IEnumerable<DelegateDeclarationSyntax> allDelegates;
     protected readonly IGilToC99Customizer customizer;
     protected readonly GilTranspilerHelper transpilerHelper;
-    protected int deIndentCount = 0;
+    protected string deIndent = "";
 
     public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
@@ -97,7 +98,8 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         sb = hFileSb;
 
-        cls.GetLeadingTrivia();
+        var ws = cls.GetLeadingTrivia().Where(t => t.IsKind(SyntaxKind.WhitespaceTrivia)).LastOrDefault(); // will return None trivia on default
+        deIndent = ws.ToString();
 
         string name = GetCName(cls);
 
@@ -778,9 +780,27 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public void VisitTriviaList(IReadOnlyList<SyntaxTrivia> syntaxTrivias)
     {
+        bool shouldDeIndent = true; // true for first
         foreach (var trivia in syntaxTrivias)
         {
-            VisitTrivia(trivia);
+            string toAppend = "";
+            if (trivia.IsKind(SyntaxKind.EndOfLineTrivia))
+            {
+                shouldDeIndent = true;
+                toAppend = trivia.ToString();
+            }
+            else
+            {
+                toAppend = trivia.ToString();
+
+                if (shouldDeIndent && toAppend.StartsWith(deIndent))
+                    toAppend = toAppend.Substring(deIndent.Length);
+
+                shouldDeIndent = false;
+            }
+
+            sb.Append(toAppend);
+            //VisitTrivia(trivia);
         }
     }
 
