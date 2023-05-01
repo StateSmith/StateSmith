@@ -260,51 +260,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
         }
     }
 
-    private void OutputFunctionLeadingTrivia(SyntaxNode node)
-    {
-        if (!renderingPrototypes)
-        {
-            AppendNodeLeadingTrivia(node);
-        }
-        else
-        {
-            OutputAttachedCommentTrivia(node);
-        }
-    }
-
-    private void OutputAttachedCommentTrivia(SyntaxNode node)
-    {
-        // Only output attached comments. If we find 2 or more end of line trivia without a comment trivia,
-        // clear any stored trivia.
-        List<SyntaxTrivia> toOutput = new();
-
-        int endOfLineCount = 0;
-        foreach (var t in node.GetLeadingTrivia())
-        {
-            bool isComment = t.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                          || t.IsKind(SyntaxKind.MultiLineCommentTrivia); // can also look at others like SingleLineDocumentationCommentTrivia
-
-            if (t.IsKind(SyntaxKind.EndOfLineTrivia))
-            {
-                endOfLineCount++;
-                if (endOfLineCount > 1)
-                    toOutput.Clear();
-                else if (toOutput.Any()) // append end of line if we already had a comment stored
-                    toOutput.Add(t);
-            }
-            else if (isComment)
-            {
-                endOfLineCount = 0;
-                toOutput.Add(t);
-            }
-        }
-
-        foreach (var t in toOutput)
-        {
-            sb.Append(t);
-        }
-    }
-
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
         sb = node.IsPublic() ? publicSb : privateSb;
@@ -531,11 +486,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
         token.TrailingTrivia.VisitWith(this);
     }
 
-    public override void VisitTrivia(SyntaxTrivia trivia)
-    {
-        sb.Append(trivia);
-    }
-
     public override void VisitCastExpression(CastExpressionSyntax node)
     {
         if (transpilerHelper.IsEnumMemberConversionToInt(node))
@@ -549,8 +499,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
             base.VisitCastExpression(node);
         }
     }
-
-
 
     public override void VisitIdentifierName(IdentifierNameSyntax node)
     {
@@ -733,11 +681,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
         VisitTrailingTrivia(node.CloseBraceToken);
     }
 
-    private void AppendNodeLeadingTrivia(SyntaxNode node)
-    {
-        sb.Append($"{node.GetLeadingTrivia()}");
-    }
-
     private static string MangleTypeSymbolName(string fullyQualifiedName)
     {
         string textName = fullyQualifiedName.Replace(oldChar: '.', newChar: '_');
@@ -791,4 +734,63 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         return GetCName(symbolInfo.Symbol.ThrowIfNull());
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+    public override void VisitTrivia(SyntaxTrivia trivia)
+    {
+        sb.Append(trivia);
+    }
+
+    private void OutputFunctionLeadingTrivia(SyntaxNode node)
+    {
+        if (!renderingPrototypes)
+        {
+            AppendNodeLeadingTrivia(node);
+        }
+        else
+        {
+            OutputAttachedCommentTrivia(node);
+        }
+    }
+
+    private void AppendNodeLeadingTrivia(SyntaxNode node)
+    {
+        node.VisitLeadingTriviaWith(this);
+    }
+
+    private void OutputAttachedCommentTrivia(SyntaxNode node)
+    {
+        // Only output attached comments. If we find 2 or more end of line trivia without a comment trivia,
+        // clear any stored trivia.
+        List<SyntaxTrivia> toOutput = new();
+
+        int endOfLineCount = 0;
+        foreach (var t in node.GetLeadingTrivia())
+        {
+            bool isComment = t.IsKind(SyntaxKind.SingleLineCommentTrivia)
+                          || t.IsKind(SyntaxKind.MultiLineCommentTrivia); // can also look at others like SingleLineDocumentationCommentTrivia
+
+            if (t.IsKind(SyntaxKind.EndOfLineTrivia))
+            {
+                endOfLineCount++;
+                if (endOfLineCount > 1)
+                    toOutput.Clear();
+                else if (toOutput.Any()) // append end of line if we already had a comment stored
+                    toOutput.Add(t);
+            }
+            else if (isComment)
+            {
+                endOfLineCount = 0;
+                toOutput.Add(t);
+            }
+        }
+
+        foreach (var t in toOutput)
+        {
+            VisitTrivia(t);
+        }
+    }
+
 }
