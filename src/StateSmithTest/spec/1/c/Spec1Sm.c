@@ -46,9 +46,9 @@ static void T111_exit(Spec1Sm* sm);
 
         
         void Spec1Sm_EventContext_ctor(Spec1Sm_EventContext* sm)
-    {
+        {
     memset(sm, 0, sizeof(*sm));
-    }
+        }
     
     // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
     void Spec1Sm_ctor(Spec1Sm* sm)

@@ -34,7 +34,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
     private readonly IEnumerable<DelegateDeclarationSyntax> allDelegates;
     protected readonly IGilToC99Customizer customizer;
     protected readonly GilTranspilerHelper transpilerHelper;
-    protected string deIndent = "";
 
     public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
@@ -97,9 +96,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
     public override void VisitClassDeclaration(ClassDeclarationSyntax cls)
     {
         sb = hFileSb;
-
-        var ws = cls.GetLeadingTrivia().Where(t => t.IsKind(SyntaxKind.WhitespaceTrivia)).LastOrDefault(); // will return None trivia on default
-        deIndent = ws.ToString();
 
         string name = GetCName(cls);
 
@@ -240,7 +236,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
 
-        AppendNodeLeadingTrivia(node);
+        VisitLeadingTrivia(node);
         sb.Append("typedef ");
         Visit(node.ReturnType);
         sb.Append("(*");
@@ -539,9 +535,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
                 }
         }
 
-        node.VisitLeadingTriviaWith(this);
+        VisitLeadingTrivia(node);
         sb.Append(result);
-        node.VisitTrailingTriviaWith(this);
+        VisitTrailingTrivia(node);
     }
 
     public override void VisitPredefinedType(PredefinedTypeSyntax node)
@@ -564,9 +560,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
             _ => throw new NotImplementedException(node + ""),
         };
 
-        node.VisitLeadingTriviaWith(this);
+        VisitLeadingTrivia(node);
         sb.Append(result);
-        node.VisitTrailingTriviaWith(this);
+        VisitTrailingTrivia(node);
     }
 
     public override void VisitLiteralExpression(LiteralExpressionSyntax node)
@@ -605,7 +601,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
             if (useDefine)
             {
                 done = true;
-                AppendNodeLeadingTrivia(node);
+                VisitLeadingTrivia(node);
                 sb.Append("#define ");
                 var decl = node.Declaration.Variables.Single();
                 sb.Append(GetCName(model.GetDeclaredSymbol(decl).ThrowIfNull()));
@@ -616,7 +612,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
             else if (useEnum)
             {
                 done = true;
-                AppendNodeLeadingTrivia(node);
+                VisitLeadingTrivia(node);
                 sb.Append("enum\n{\n    ");
                 VisitVariableDeclarator(node.Declaration.Variables.Single());
                 sb.Append("\n};\n");
@@ -670,7 +666,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
     {
-        AppendNodeLeadingTrivia(node);
+        VisitLeadingTrivia(node);
         string name = GetCName(node);
 
         sb.AppendTokenAndTrivia(node.Identifier, overrideTokenText: customizer.MakeEnumDeclaration(name));
@@ -780,27 +776,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public void VisitTriviaList(IReadOnlyList<SyntaxTrivia> syntaxTrivias)
     {
-        bool shouldDeIndent = true; // true for first
         foreach (var trivia in syntaxTrivias)
         {
-            string toAppend = "";
-            if (trivia.IsKind(SyntaxKind.EndOfLineTrivia))
-            {
-                shouldDeIndent = true;
-                toAppend = trivia.ToString();
-            }
-            else
-            {
-                toAppend = trivia.ToString();
-
-                if (shouldDeIndent && toAppend.StartsWith(deIndent))
-                    toAppend = toAppend.Substring(deIndent.Length);
-
-                shouldDeIndent = false;
-            }
-
-            sb.Append(toAppend);
-            //VisitTrivia(trivia);
+            VisitTrivia(trivia);
         }
     }
 
@@ -808,7 +786,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         if (!renderingPrototypes)
         {
-            AppendNodeLeadingTrivia(node);
+            VisitLeadingTrivia(node);
         }
         else
         {
@@ -821,9 +799,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
         VisitLeadingTrivia(node.GetFirstToken());
     }
 
-    private void AppendNodeLeadingTrivia(SyntaxNode node)
+    private void VisitTrailingTrivia(SyntaxNode node)
     {
-        node.VisitLeadingTriviaWith(this);
+        VisitTrailingTrivia(node.GetFirstToken());
     }
 
     private void OutputAttachedCommentTrivia(SyntaxNode node)

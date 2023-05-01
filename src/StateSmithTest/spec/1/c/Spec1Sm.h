@@ -90,15 +90,15 @@ char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id);
 // State machine variables. Can be used for inputs, outputs, user variables...
 struct Spec1Sm_Vars
     {
-    uint8_t count;
-};
+        uint8_t count;
+    };
 
 struct Spec1Sm_EventContext
     {
-    Spec1Sm_EventId id;
-    Spec1Sm_Func nextHandler; // Users should ignore this field. Used by state machine.
-    Spec1Sm_ResultId resultId;
-};
+        Spec1Sm_EventId id;
+        Spec1Sm_Func nextHandler; // Users should ignore this field. Used by state machine.
+        Spec1Sm_ResultId resultId;
+    };
 
 // Generated state machine
 struct Spec1Sm
