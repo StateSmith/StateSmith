@@ -37,6 +37,11 @@ static void S2_1_enter(Spec1bSm* sm);
 
 static void S2_1_exit(Spec1bSm* sm);
 
+    
+    void Spec1bSm_EventContext_ctor(Spec1bSm_EventContext* sm)
+    {
+    memset(sm, 0, sizeof(*sm));
+    }
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Spec1bSm_ctor(Spec1bSm* sm)

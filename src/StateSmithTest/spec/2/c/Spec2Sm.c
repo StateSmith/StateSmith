@@ -1015,6 +1015,11 @@ static void TEST9B_ROOT__B4_enter(Spec2Sm* sm);
 
 static void TEST9B_ROOT__B4_exit(Spec2Sm* sm);
 
+    
+    void Spec2Sm_EventContext_ctor(Spec2Sm_EventContext* sm)
+    {
+    memset(sm, 0, sizeof(*sm));
+    }
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Spec2Sm_ctor(Spec2Sm* sm)

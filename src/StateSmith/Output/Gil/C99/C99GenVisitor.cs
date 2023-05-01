@@ -7,9 +7,6 @@ using System.Text;
 using StateSmith.Common;
 using System.Linq;
 using StateSmith.Output.UserConfig;
-using System.Reflection;
-using StateSmith.Input.Antlr4;
-using System.Xml.Linq;
 
 #nullable enable
 
@@ -18,11 +15,14 @@ using System.Xml.Linq;
 namespace StateSmith.Output.Gil.C99;
 
 // TODO use a single string for `sm` as replacement for `this`. currently scattered.
+//FIXME - use "self" 
 
 public class C99GenVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder hFileSb;
     public readonly StringBuilder cFileSb;
+    private readonly RenderConfigVars renderConfig;
+    private readonly RenderConfigCVars renderConfigC;
     public StringBuilder privateSb = new();
     public StringBuilder publicSb = new();
     public StringBuilder sb;
@@ -39,13 +39,19 @@ public class C99GenVisitor : CSharpSyntaxWalker
         this.model = model;
         this.hFileSb = hFileSb;
         this.cFileSb = cFileSb;
+        this.renderConfig = renderConfig;
+        this.renderConfigC = renderConfigC;
         this.customizer = customizer;
 
         transpilerHelper = new(this, model);
         allClasses = model.SyntaxTree.GetRoot().DescendantNodes().OfType<ClassDeclarationSyntax>().Where(c => !transpilerHelper.HandleSpecialGilEmitClasses(c));
         allEnums = model.SyntaxTree.GetRoot().DescendantNodes().OfType<EnumDeclarationSyntax>();
         allDelegates = model.SyntaxTree.GetRoot().DescendantNodes().OfType<DelegateDeclarationSyntax>();
+        sb = hFileSb;
+    }
 
+    public void Process()
+    {
         sb = hFileSb;
         transpilerHelper.PreProcess();
         hFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
@@ -62,7 +68,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
         cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
         cFileSb.AppendLine("#include <string.h> // for memset\n");
-        
+
         sb = hFileSb;
 
         OutputForwardClassStuff();
@@ -102,11 +108,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
                 Visit(kid);
             }
         }
-    }
-
-    public void Process()
-    {
-
     }
 
     private void OutputCommentSection(string title)
