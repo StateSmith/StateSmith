@@ -61,7 +61,7 @@ public class AlgoBalanced1SettingsTests
         SetupForUnitTest(capturedFile, runner);
         runner.Run();
 
-        capturedFile.code.Should().Contain("public void DispatchEvent(");
+        capturedFile.LastCode.Should().Contain("public void DispatchEvent(");
     }
 
     // https://github.com/StateSmith/StateSmith/issues/141
@@ -73,8 +73,8 @@ public class AlgoBalanced1SettingsTests
         runner.Settings.outputGilCodeAlways = true;
         runner.Run();
 
-        capturedFile.code.Should().NotContain("public void DispatchEvent(");
-        capturedFile.code.Should().Contain("public ResultId DispatchEvent(");
+        capturedFile.LastCode.Should().NotContain("public void DispatchEvent(");
+        capturedFile.LastCode.Should().Contain("public ResultId DispatchEvent(");
     }
 
     private static void SetupForUnitTest(CapturingCodeFileWriter capturedFile, SmRunner runner)
