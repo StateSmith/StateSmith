@@ -148,12 +148,12 @@ public class AlgoBalanced1 : IGilAlgo
 
     private void MaybeOutputToStringFunctions()
     {
-        if (settings.generateStateIdToStringFunction)
+        if (settings.outputStateIdToStringFunction)
         {
             algoStateIdToString.CreateStateIdToStringFunction(file, Sm);
         }
 
-        if (settings.generateEventIdToStringFunction)
+        if (settings.outputEventIdToStringFunction)
         {
             algoEventIdToString.CreateEventIdToStringFunction(file, Sm);
         }

@@ -22,8 +22,8 @@ public class AlgoBalanced1SettingsTests
         SetupForUnitTest(capturedFile, runner);
         runner.Run();
 
-        capturedFile.code.Should().Contain("public static string StateIdToString(");
-        capturedFile.code.Should().Contain("public static string EventIdToString(");
+        capturedFile.LastCode.Should().Contain("public static string StateIdToString(");
+        capturedFile.LastCode.Should().Contain("public static string EventIdToString(");
     }
 
     // https://github.com/StateSmith/StateSmith/issues/181
@@ -32,11 +32,11 @@ public class AlgoBalanced1SettingsTests
     {
         SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
         SetupForUnitTest(capturedFile, runner);
-        runner.Settings.algoBalanced1Settings.generateEventIdToStringFunction = false; // Here's the setting you want
+        runner.Settings.algoBalanced1.outputEventIdToStringFunction = false; // Here's the setting you want
         runner.Run();
 
-        capturedFile.code.Should().Contain("public static string StateIdToString");
-        capturedFile.code.Should().NotContain("public static string EventIdToString(");
+        capturedFile.LastCode.Should().Contain("public static string StateIdToString");
+        capturedFile.LastCode.Should().NotContain("public static string EventIdToString(");
     }
 
     // https://github.com/StateSmith/StateSmith/issues/181
@@ -45,11 +45,11 @@ public class AlgoBalanced1SettingsTests
     {
         SmRunner runner = new(diagramPath: "ExBc1.drawio", transpilerId: TranspilerId.CSharp);
         SetupForUnitTest(capturedFile, runner);
-        runner.Settings.algoBalanced1Settings.generateStateIdToStringFunction = false; // Here's the setting you want
+        runner.Settings.algoBalanced1.outputStateIdToStringFunction = false; // Here's the setting you want
         runner.Run();
 
-        capturedFile.code.Should().NotContain("public static string StateIdToString");
-        capturedFile.code.Should().Contain("public static string EventIdToString(");
+        capturedFile.LastCode.Should().NotContain("public static string StateIdToString");
+        capturedFile.LastCode.Should().Contain("public static string EventIdToString(");
     }
 
 

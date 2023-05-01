@@ -55,7 +55,7 @@ public class PseudoStateHandlerBuilder
     {
         foreach (var pseudoState in functionNameMap.Keys)
         {
-            parentMapping.AddIfMissing((NamedVertex)pseudoState.NonNullParent, pseudoState);
+            parentMapping.AddIfValueMissing((NamedVertex)pseudoState.NonNullParent, pseudoState);
         }
     }
 

@@ -34,6 +34,32 @@ Our announcements [discord](https://discord.com/invite/rNxNGQXWsU) channel is up
 
 
 
+<br>
+
+# Why State Machines and StateSmith? 🤔
+If you are new to state machines, then prepare to level up your toolbox! They are incredibly helpful for [certain applications](https://github.com/StateSmith/StateSmith/wiki/App-Notes).
+
+Why StateSmith?
+I couldn't find a quality state machine code generator that met my needs, had an attractive license, and was enjoyable to use.
+
+## The Diagram is Always Accurate! 📚
+Before I created StateSmith, it was always a pain trying to manually synchronize a hand written state machine with a drawing. Urgent client requests come in and you update the code, but do you and your team always remember to update the drawing? Probably not and so the rot begins. Documentation trust issues arise and as designs get larger, the effort to ensure the diagram is accurate starts to become quite punishing.
+
+Now that we use StateSmith at my work, I never have to worry about the above. I love generating fully working code **from** the documentation. Incredibly helpful for teams and communicating with clients.
+
+
+
+
+
+<br>
+
+# More Examples 🔫
+The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) repo has a growing list of examples showcasing different [application uses](https://github.com/StateSmith/StateSmith/wiki/App-Notes).
+
+[![mario-sm](https://user-images.githubusercontent.com/274012/234160417-c2fcb028-0c7f-465f-b453-b04a53b48bcf.gif)](https://github.com/StateSmith/StateSmith-examples)
+
+
+
 
 <br>
 
@@ -50,30 +76,12 @@ Thanks!
 
 <br>
 
-# More Examples 🔫
-
-Here's a demo [youtube video](https://www.youtube.com/watch?v=9czSDothuzM) showing a Laser Tag menu implemented with StateSmith and running in an Arduino simulation.
-
-[![picture 1](images/main-lasertag-demo1.png)](https://www.youtube.com/watch?v=9czSDothuzM)
-
-You can interact with the generated laser tag menu code using the [wokwi simulation](https://wokwi.com/projects/351165738904453719).
-
-There are also some [old examples](./examples/README.md) in this repo. They are perfectly valid, but use an older style of running StateSmith and some use the old yEd editor (draw.io is better).
-
-The [StateSmith-examples](https://github.com/StateSmith/StateSmith-examples) repo has a collection of various projects that explore proposals or advanced ideas.
-
-
-
-
-
-<br>
-
 # Is StateSmith ready for use? 🧪
-StateSmith is generating working code, and has decent test (420+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
+> We use StateSmith in a fair number of production projects at my work. It's a been super helpful.
+
+StateSmith is generating working code, and has good test (420+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
 ![picture 1](images/test-coverage-2022-12.png)  
-
-Every aspect of state behavior is verified during specification testing.
 
 Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CHANGELOG.md) and should be pretty minimal.
 
@@ -83,9 +91,7 @@ Breaking changes and migration steps will be documented in [./CHANGELOG.md](./CH
 <br>
 
 # More Info 📖
-There is also a slightly older quick start. Some issues covered in the video have already been fixed. It is specific to C, but has some useful info. The video is a bit lengthy, but has chapter markers to let you skip to the section you are interested in. https://youtu.be/qej8pXp3dX4
-
-See the StateSmith [GitHub wiki](https://github.com/StateSmith/StateSmith/wiki) or ask a question.
+The StateSmith [GitHub wiki](https://github.com/StateSmith/StateSmith/wiki) has a good amount of documentation right now, but always feel free to ask a question.
 
 
 

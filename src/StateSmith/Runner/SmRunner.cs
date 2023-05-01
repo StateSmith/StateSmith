@@ -128,7 +128,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<ExpansionsPrep>();
             services.AddSingleton<FilePathPrinter>(new FilePathPrinter(settings.filePathPrintBase.ThrowIfNull()));
-            services.AddSingleton(settings.algoBalanced1Settings);
+            services.AddSingleton(settings.algoBalanced1);
         });
 
         AlgoOrTranspilerUpdated();
@@ -140,7 +140,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void AlgoOrTranspilerUpdated()
     {
-        new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId, settings.algoBalanced1Settings);
+        new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId, settings.algoBalanced1);
     }
 
     // exists just for testing. can be removed in the future.
