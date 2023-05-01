@@ -164,7 +164,8 @@ public class C99GenVisitor : CSharpSyntaxWalker
         done |= transpilerHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
         {
             var argName = "sm"; // we only ignore `sm` in ROOT_exit right now so we can cheat here. If that changes, we can visit `argument` instead.
-            sb.Append(node.GetLeadingTrivia().ToFullString());
+
+            VisitLeadingTrivia(node);
             sb.Append($"(void){argName}");   // trailing semi-colon is already part of parent ExpressionStatement
         });
 
@@ -177,7 +178,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     // to ignore GIL attributes
     public override void VisitAttributeList(AttributeListSyntax node)
     {
-        VisitLeadingTrivia(node.GetFirstToken());
+        VisitLeadingTrivia(node);
     }
 
     private void OutputStruct(TypeDeclarationSyntax node, string name, bool outputTypedef = false)
@@ -761,6 +762,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
         {
             OutputAttachedCommentTrivia(node);
         }
+    }
+
+    private void VisitLeadingTrivia(SyntaxNode node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
     }
 
     private void AppendNodeLeadingTrivia(SyntaxNode node)
