@@ -33,6 +33,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     private readonly IEnumerable<DelegateDeclarationSyntax> allDelegates;
     protected readonly IGilToC99Customizer customizer;
     protected readonly GilTranspilerHelper transpilerHelper;
+    protected int deIndentCount = 0;
 
     public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
@@ -95,6 +96,8 @@ public class C99GenVisitor : CSharpSyntaxWalker
     public override void VisitClassDeclaration(ClassDeclarationSyntax cls)
     {
         sb = hFileSb;
+
+        cls.GetLeadingTrivia();
 
         string name = GetCName(cls);
 
@@ -458,7 +461,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public override void VisitToken(SyntaxToken token)
     {
-        token.LeadingTrivia.VisitWith(this);
+        VisitLeadingTrivia(token);
 
         switch ((SyntaxKind)token.RawKind)
         {
@@ -491,7 +494,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
             sb.Append(token);
         }
 
-        token.TrailingTrivia.VisitWith(this);
+        VisitTrailingTrivia(token);
     }
 
     public override void VisitCastExpression(CastExpressionSyntax node)
@@ -750,6 +753,30 @@ public class C99GenVisitor : CSharpSyntaxWalker
     public override void VisitTrivia(SyntaxTrivia trivia)
     {
         sb.Append(trivia);
+    }
+
+    public override void VisitLeadingTrivia(SyntaxToken token)
+    {
+        if (!token.HasLeadingTrivia)
+            return;
+
+        VisitTriviaList(token.LeadingTrivia);
+    }
+
+    public override void VisitTrailingTrivia(SyntaxToken token)
+    {
+        if (!token.HasTrailingTrivia)
+            return;
+
+        VisitTriviaList(token.TrailingTrivia);
+    }
+
+    public void VisitTriviaList(SyntaxTriviaList syntaxTrivias)
+    {
+        foreach (var trivia in syntaxTrivias)
+        {
+            VisitTrivia(trivia);
+        }
     }
 
     private void OutputFunctionLeadingTrivia(SyntaxNode node)
