@@ -95,27 +95,27 @@ struct Spec1Sm_Vars
 
 struct Spec1Sm_EventContext
 {
-Spec1Sm_EventId id;
-Spec1Sm_Func nextHandler; // Users should ignore this field. Used by state machine.
-Spec1Sm_ResultId resultId;
+    Spec1Sm_EventId id;
+    Spec1Sm_Func nextHandler; // Users should ignore this field. Used by state machine.
+    Spec1Sm_ResultId resultId;
 };
 
 // Generated state machine
 struct Spec1Sm
 {
-// Used internally by state machine. Feel free to inspect, but don't modify.
-Spec1Sm_StateId state_id;
-
-// Used internally by state machine. Don't modify.
-Spec1Sm_Func ancestor_event_handler;
-
-// Used internally by state machine. Don't modify.
-Spec1Sm_Func current_event_handlers[Spec1Sm_EventIdCount];
-
-// Used internally by state machine. Don't modify.
-Spec1Sm_Func current_state_exit_handler;
-
-// Variables. Can be used for inputs, outputs, user variables...
-Spec1Sm_Vars vars;
+    // Used internally by state machine. Feel free to inspect, but don't modify.
+    Spec1Sm_StateId state_id;
+    
+    // Used internally by state machine. Don't modify.
+    Spec1Sm_Func ancestor_event_handler;
+    
+    // Used internally by state machine. Don't modify.
+    Spec1Sm_Func current_event_handlers[Spec1Sm_EventIdCount];
+    
+    // Used internally by state machine. Don't modify.
+    Spec1Sm_Func current_state_exit_handler;
+    
+    // Variables. Can be used for inputs, outputs, user variables...
+    Spec1Sm_Vars vars;
 };
 

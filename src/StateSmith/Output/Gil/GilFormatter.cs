@@ -1,6 +1,8 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using StateSmith.Input.Antlr4;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,10 @@ public class GilFormatter : CSharpSyntaxWalker
 {
     public bool deIndentInnerClass = true;
     public bool deIndentMethods = true;
+    public bool deIndentEnums = true;
+    public bool deIndentDelegates = true;
+    public bool deIndentConst = true;
+
     public StringBuilder sb = new();
     private readonly Stack<string> deIndentStack = new();
     private bool atStartOfLine = false;
@@ -28,17 +34,41 @@ public class GilFormatter : CSharpSyntaxWalker
         return formatter.sb.ToString();
     }
 
-    public override void VisitClassDeclaration(ClassDeclarationSyntax cls)
+    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
-        var tokensAndKids = new WalkableChildSyntaxList(this, cls);
-        tokensAndKids.VisitUpTo(cls.OpenBraceToken, including: true);
+        MaybeDeIndent(deIndentInnerClass, node, () => base.VisitClassDeclaration(node));
+    }
 
-        var indentationAfterOpeningBrace = cls.OpenBraceToken.GetNextToken().LeadingTrivia.Where(t => t.IsKind(SyntaxKind.WhitespaceTrivia)).LastOrDefault(); // will return None trivia on default
-        deIndentStack.Push(indentationAfterOpeningBrace.ToString());
+    public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
+    {
+        MaybeDeIndent(deIndentMethods, node, () => base.VisitMethodDeclaration(node));
+    }
 
-        tokensAndKids.VisitUpTo(cls.CloseBraceToken, including: false);
-        deIndentStack.Pop();
-        VisitToken(cls.CloseBraceToken);
+    public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
+    {
+        MaybeDeIndent(deIndentMethods, node, () => base.VisitConstructorDeclaration(node));
+    }
+
+    public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
+    {
+        MaybeDeIndent(deIndentEnums, node, () => base.VisitEnumDeclaration(node));
+    }
+
+    public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
+    {
+        MaybeDeIndent(deIndentDelegates, node, () => base.VisitDelegateDeclaration(node));
+    }
+
+    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    {
+        bool shouldDeIndent = deIndentConst && node.IsConst();
+        MaybeDeIndent(shouldDeIndent, node, () => base.VisitFieldDeclaration(node));
+    }
+
+    private static SyntaxTrivia GetIndentationLevel(SyntaxNode node)
+    {
+        // will return None trivia on default
+        return node.GetFirstToken().LeadingTrivia.Where(t => t.IsKind(SyntaxKind.WhitespaceTrivia)).LastOrDefault();
     }
 
     public override void VisitToken(SyntaxToken token)
@@ -69,5 +99,21 @@ public class GilFormatter : CSharpSyntaxWalker
         }
 
         sb.Append(toAppend);
+    }
+
+    public void MaybeDeIndent(bool shouldDeIndent, SyntaxNode node, Action a)
+    {
+        if (shouldDeIndent)
+        {
+            var deIndent = GetIndentationLevel(node);
+            deIndentStack.Push(deIndent.ToString());
+        }
+
+        a();
+
+        if (shouldDeIndent)
+        {
+            deIndentStack.Pop();
+        }
     }
 }
