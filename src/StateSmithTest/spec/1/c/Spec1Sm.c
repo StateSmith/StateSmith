@@ -45,7 +45,7 @@ static void T111_enter(Spec1Sm* sm);
 static void T111_exit(Spec1Sm* sm);
 
     
-    void EventContext_ctor(Spec1Sm_EventContext* sm)
+    void Spec1Sm_EventContext_ctor(Spec1Sm_EventContext* sm)
     {
     memset(sm, 0, sizeof(*sm));
     }

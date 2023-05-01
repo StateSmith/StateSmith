@@ -140,11 +140,20 @@ public class GilTranspilerHelper
         return gilMethodFoundAndHandled;
     }
 
+    private static string GetName(ISymbol symbol)
+    {
+        if (symbol is IMethodSymbol methodSymbol && methodSymbol.MethodKind == MethodKind.Constructor)
+        {
+            return "ctor";
+        }
+        return symbol.Name;
+    }
+
     public string GetFQN(ISymbol symbol)
     {
         var parts = new List<string>();
 
-        parts.Insert(index: 0, symbol.Name);
+        parts.Insert(index: 0, GetName(symbol));
         symbol = symbol.ContainingSymbol;
 
         while (symbol != null)
@@ -159,7 +168,7 @@ public class GilTranspilerHelper
             }
 
             if (symbol is not IMethodSymbol)
-                parts.Insert(index: 0, symbol.Name);
+                parts.Insert(index: 0, GetName(symbol));
 
             symbol = symbol.ContainingSymbol;
         }

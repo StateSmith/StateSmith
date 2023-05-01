@@ -241,9 +241,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
     {
-        OutputFunctionLeadingTrivia(node);
+        var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
 
-        sb.Append($"void {node.Identifier.Text}_ctor");
+        OutputFunctionLeadingTrivia(node);
+        
+        sb.Append($"void {GetCName(symbol)}");
 
         Visit(node.ParameterList);
 
