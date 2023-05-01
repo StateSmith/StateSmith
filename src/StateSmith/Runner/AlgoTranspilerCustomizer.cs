@@ -31,6 +31,9 @@ public class AlgoTranspilerCustomizer
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToC99>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
+                    algoBalanced1Settings.nestClasses = false;
+                    algoBalanced1Settings.indentEnums = false;
+                    algoBalanced1Settings.indentFunctions = false;
                 }
                 break;
 
@@ -39,7 +42,7 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IGilTranspiler, GilToCSharp>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, PascalFuncCamelVarNameMangler>();
-                    algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.nestClasses = true;
                 }
                 break;
 
@@ -49,7 +52,7 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();    // todo - rename to something common
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     sp.AddSingletonT<IAutoVarsParser, JsAutoVarsParser>();
-                    algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.nestClasses = false;
                 }
                 break;
         }

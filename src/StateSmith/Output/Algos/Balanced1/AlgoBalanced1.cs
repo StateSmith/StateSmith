@@ -53,6 +53,16 @@ public class AlgoBalanced1 : IGilAlgo
         GilCreationHelper.AddFileTopComment(file, standardFileHeaderPrinter.GetFileGilHeader() +
             $"// Algorithm: {nameof(AlgorithmId.Balanced1)}. See https://github.com/StateSmith/StateSmith/wiki/Algorithms\n");
 
+        if (!settings.nestClasses)
+            GenerateEventContextClass();
+
+        if (!settings.nestClasses)
+            MaybeOutputVarsClass();
+
+        file.AppendLine($"// event handler type");
+        file.AppendLine($"public delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
+        file.AppendLine();
+
         file.AppendLine($"// Generated state machine");
         file.Append($"public class {mangler.SmTypeName}");
 
@@ -75,52 +85,32 @@ public class AlgoBalanced1 : IGilAlgo
         file.StartCodeBlock();
     }
 
-    // this is a bit of a hack that helps create the proper indentation for the GIL to C99 step
-    private void RunWithPossibleIndentation(Action action)
+    private void RunWithPossibleDeIndent(bool deIndent, Action action)
     {
-        settings.skipClassIndentation = false;
-        if (settings.skipClassIndentation)
+        if (deIndent)
             file.DecreaseIndentLevel();
 
         action();
 
-        if (settings.skipClassIndentation)
+        if (deIndent)
             file.IncreaseIndentLevel();
     }
 
     private void GenerateInner()
     {
-        RunWithPossibleIndentation(() =>
-        {
-            enumBuilder.OutputEventIdCode(file);
-            file.AppendLine();
-            enumBuilder.OutputStateIdCode(file);
-            file.AppendLine();
+        RunWithPossibleDeIndent(!settings.indentEnums, () => OutputEnums());
 
-            enumBuilder.OutputResultIdCode(file);
-            file.AppendLine();
-
+        if (settings.nestClasses)
             GenerateEventContextClass();
-
-            foreach (var h in Sm.historyStates)
-            {
-                enumBuilder.OutputHistoryIdCode(file, h);
-                file.AppendLine();
-            }
-
-            file.AppendLine($"// event handler type");
-            file.AppendLine($"public delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
-            file.AppendLine();
-        });
 
         pseudoStateHandlerBuilder.output = file;
         pseudoStateHandlerBuilder.mangler = mangler;
         pseudoStateHandlerBuilder.Gather(Sm);
         pseudoStateHandlerBuilder.MapParents();
 
-        OutputStructDefinition();
+        OutputFields();
 
-        RunWithPossibleIndentation(() =>
+        RunWithPossibleDeIndent(!settings.indentFunctions, () =>
         {
             OutputFuncCtor();
 
@@ -132,6 +122,22 @@ public class AlgoBalanced1 : IGilAlgo
             OutputTriggerHandlers();
             MaybeOutputToStringFunctions();
         });
+    }
+
+    private void OutputEnums()
+    {
+        enumBuilder.OutputEventIdCode(file);
+        file.AppendLine();
+        enumBuilder.OutputStateIdCode(file);
+        file.AppendLine();
+        enumBuilder.OutputResultIdCode(file);
+        file.AppendLine();
+
+        foreach (var h in Sm.historyStates)
+        {
+            enumBuilder.OutputHistoryIdCode(file, h);
+            file.AppendLine();
+        }
     }
 
     private void GenerateEventContextClass()
@@ -165,7 +171,7 @@ public class AlgoBalanced1 : IGilAlgo
         }
     }
 
-    internal void OutputStructDefinition()
+    internal void OutputFields()
     {
         file.AppendLine($"// Used internally by state machine. Feel free to inspect, but don't modify.");
         file.AppendLine($"public {mangler.SmStateEnumType} {mangler.SmStateIdVarName};");
@@ -184,30 +190,36 @@ public class AlgoBalanced1 : IGilAlgo
 
         if (IsVarsStructNeeded())
         {
-            RunWithPossibleIndentation(() =>
-            {
-                file.AppendLine();
-                file.AppendLine("// State machine variables. Can be used for inputs, outputs, user variables...");
-                file.Append("public class Vars");
-                file.StartCodeBlock();
-                {
-                    foreach (var line in StringUtils.SplitIntoLinesOrEmpty(Sm.variables.Trim()))
-                    {
-                        file.AppendLine("public " + line);
-                    }
-
-                    foreach (var line in StringUtils.SplitIntoLinesOrEmpty(renderConfig.VariableDeclarations.Trim()))
-                    {
-                        file.AppendLine(PostProcessor.echoLineMarker + line);
-                    }
-                }
-                file.FinishCodeBlock();
-            });
+            if (settings.nestClasses)
+                MaybeOutputVarsClass();
 
             file.AppendLine();
             file.AppendLine("// Variables. Can be used for inputs, outputs, user variables...");
             file.AppendLine("public Vars vars = new Vars();");
         }
+    }
+
+    private void MaybeOutputVarsClass()
+    {
+        if (!IsVarsStructNeeded())
+            return;
+
+        file.AppendLine();
+        file.AppendLine("// State machine variables. Can be used for inputs, outputs, user variables...");
+        file.Append("public class Vars");
+        file.StartCodeBlock();
+        {
+            foreach (var line in StringUtils.SplitIntoLinesOrEmpty(Sm.variables.Trim()))
+            {
+                file.AppendLine("public " + line);
+            }
+
+            foreach (var line in StringUtils.SplitIntoLinesOrEmpty(renderConfig.VariableDeclarations.Trim()))
+            {
+                file.AppendLine(PostProcessor.echoLineMarker + line);
+            }
+        }
+        file.FinishCodeBlock();
     }
 
     internal bool IsVarsStructNeeded()
