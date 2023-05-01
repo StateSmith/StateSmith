@@ -5,6 +5,14 @@
 #include <stdint.h>
 
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
+
+// struct forward declarations
+typedef struct Spec1bSm Spec1bSm;
+typedef struct Spec1bSm_EventContext Spec1bSm_EventContext;
+typedef struct Spec1bSm_Vars Spec1bSm_Vars;
+
+
+// enumerations and constant numbers
 typedef enum Spec1bSm_EventId
 {
     Spec1bSm_EventId_T1 = 0,
@@ -30,20 +38,30 @@ enum
     Spec1bSm_StateIdCount = 6
 };
 
+typedef enum Spec1bSm_ResultId
+{
+    Spec1bSm_ResultId_CONSUMED = 0, // dispatched event was consumed.
+    Spec1bSm_ResultId_ACTIVE = 1,   // dispatched event still active (not consumed).
+    Spec1bSm_ResultId_INVALID = 2   // event to be dispatched is unknown and was ignored.
+} Spec1bSm_ResultId;
 
-// Generated state machine
-// forward declaration
-typedef struct Spec1bSm Spec1bSm;
+enum
+{
+    Spec1bSm_ResultIdCount = 3
+};
+
+
+// function pointers
+
+// event handler type
+typedef void (*Spec1bSm_Func)(Spec1bSm* sm);
+
 
 // State machine variables. Can be used for inputs, outputs, user variables...
 typedef struct Spec1bSm_Vars
 {
     uint8_t count;
 } Spec1bSm_Vars;
-
-
-// event handler type
-typedef void (*Spec1bSm_Func)(Spec1bSm* sm);
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Spec1bSm_ctor(Spec1bSm* sm);
@@ -52,7 +70,7 @@ void Spec1bSm_ctor(Spec1bSm* sm);
 void Spec1bSm_start(Spec1bSm* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
-void Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id);
+Spec1bSm_ResultId Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id);
 
 // Thread safe.
 char const * Spec1bSm_state_id_to_string(Spec1bSm_StateId id);
@@ -77,5 +95,12 @@ struct Spec1bSm
     
     // Variables. Can be used for inputs, outputs, user variables...
     Spec1bSm_Vars vars;
+};
+
+struct Spec1bSm_EventContext
+{
+    Spec1bSm_EventId id;
+    Spec1bSm_Func nextHandler; // Users should ignore this field. Used by state machine.
+    Spec1bSm_ResultId resultId;
 };
 

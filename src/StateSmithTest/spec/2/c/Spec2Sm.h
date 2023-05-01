@@ -10,6 +10,14 @@
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
 // diagram embedded HFileIncludes
 // inside sm - diagram embedded HFileIncludes
+
+// struct forward declarations
+typedef struct Spec2Sm Spec2Sm;
+typedef struct Spec2Sm_EventContext Spec2Sm_EventContext;
+typedef struct Spec2Sm_Vars Spec2Sm_Vars;
+
+
+// enumerations and constant numbers
 typedef enum Spec2Sm_EventId
 {
     Spec2Sm_EventId_DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
@@ -215,6 +223,18 @@ enum
     Spec2Sm_StateIdCount = 172
 };
 
+typedef enum Spec2Sm_ResultId
+{
+    Spec2Sm_ResultId_CONSUMED = 0, // dispatched event was consumed.
+    Spec2Sm_ResultId_ACTIVE = 1,   // dispatched event still active (not consumed).
+    Spec2Sm_ResultId_INVALID = 2   // event to be dispatched is unknown and was ignored.
+} Spec2Sm_ResultId;
+
+enum
+{
+    Spec2Sm_ResultIdCount = 3
+};
+
 typedef enum Spec2Sm_T7__H1__ON_HistoryId
 {
     Spec2Sm_T7__H1__ON_HistoryId_T7__H1__ON1 = 0, // default transition
@@ -281,9 +301,12 @@ typedef enum Spec2Sm_T7__DEEP_HISTORY3__T7__state_0_HistoryId
 } Spec2Sm_T7__DEEP_HISTORY3__T7__state_0_HistoryId;
 
 
-// Generated state machine
-// forward declaration
-typedef struct Spec2Sm Spec2Sm;
+// function pointers
+
+
+// event handler type
+typedef void (*Spec2Sm_Func)(Spec2Sm* sm);
+
 
 // State machine variables. Can be used for inputs, outputs, user variables...
 typedef struct Spec2Sm_Vars
@@ -299,11 +322,6 @@ typedef struct Spec2Sm_Vars
     uint8_t auto_var_1;
 } Spec2Sm_Vars;
 
-
-
-// event handler type
-typedef void (*Spec2Sm_Func)(Spec2Sm* sm);
-
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Spec2Sm_ctor(Spec2Sm* sm);
 
@@ -311,7 +329,7 @@ void Spec2Sm_ctor(Spec2Sm* sm);
 void Spec2Sm_start(Spec2Sm* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
-void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id);
+Spec2Sm_ResultId Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id);
 
 // Thread safe.
 char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id);
@@ -336,5 +354,12 @@ struct Spec2Sm
     
     // Variables. Can be used for inputs, outputs, user variables...
     Spec2Sm_Vars vars;
+};
+
+struct Spec2Sm_EventContext
+{
+    Spec2Sm_EventId id;
+    Spec2Sm_Func nextHandler; // Users should ignore this field. Used by state machine.
+    Spec2Sm_ResultId resultId;
 };
 

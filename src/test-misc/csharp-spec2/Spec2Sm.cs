@@ -213,6 +213,24 @@ namespace Csharp.Spec2smTests
 
         public const int StateIdCount = 172;
 
+        public enum ResultId
+        {
+            CONSUMED = 0, // dispatched event was consumed.
+            ACTIVE = 1,   // dispatched event still active (not consumed).
+            INVALID = 2   // event to be dispatched is unknown and was ignored.
+        }
+
+        public const int ResultIdCount = 3;
+
+        public partial class EventContext : Spec2SmBase
+        {
+            // trace() implemented in base class
+            // trace_guard() implemented in partial class
+            public EventId id;
+            public Func nextHandler; // Users should ignore this field. Used by state machine.
+            public ResultId resultId;
+        }
+
         public enum T7__H1__ON_HistoryId
         {
             T7__H1__ON1 = 0, // default transition
@@ -280,7 +298,7 @@ namespace Csharp.Spec2smTests
 
 
         // event handler type
-        private delegate void Func(Spec2Sm sm);
+        public delegate void Func(Spec2Sm sm);
 
         // Used internally by state machine. Feel free to inspect, but don't modify.
         public StateId stateId;
@@ -350,8 +368,9 @@ namespace Csharp.Spec2smTests
         }
 
         // Dispatches an event to the state machine. Not thread safe.
-        public void DispatchEvent(EventId eventId)
+        public ResultId DispatchEvent(EventId eventId)
         {
+            if ((int)eventId < 0 || (int)eventId >= (int)EventIdCount) return ResultId.INVALID;
             Func? behaviorFunc = this.currentEventHandlers[(int)eventId];
 
             while (behaviorFunc != null)
@@ -360,6 +379,7 @@ namespace Csharp.Spec2smTests
                 behaviorFunc(this);
                 behaviorFunc = this.ancestorEventHandler;
             }
+            return ResultId.CONSUMED; // FIXME finish here!
         }
 
         // This function is used when StateSmith doesn't know what the active leaf state is at

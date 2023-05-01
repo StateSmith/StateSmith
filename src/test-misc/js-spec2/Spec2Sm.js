@@ -213,6 +213,16 @@ export class Spec2Sm
     static StateIdCount = 172;
     static { Object.freeze(this.StateIdCount); }
     
+    static ResultId = 
+    {
+        CONSUMED : 0, // dispatched event was consumed.
+        ACTIVE : 1,   // dispatched event still active (not consumed).
+        INVALID : 2    }
+    static { Object.freeze(this.ResultId); }
+    
+    static ResultIdCount = 3;
+    static { Object.freeze(this.ResultIdCount); }
+    
     static T7__H1__ON_HistoryId = 
     {
         T7__H1__ON1 : 0, // default transition
@@ -346,6 +356,7 @@ export class Spec2Sm
     // Dispatches an event to the state machine. Not thread safe.
     dispatchEvent(eventId)
     {
+        if (eventId < 0 || eventId >= ()Spec2Sm.EventIdCount) return Spec2Sm.ResultId.INVALID;
         let behaviorFunc = this._currentEventHandlers[eventId];
         
         while (behaviorFunc != null)
@@ -354,6 +365,7 @@ export class Spec2Sm
             behaviorFunc.call(this);
             behaviorFunc = this._ancestorEventHandler;
         }
+        return Spec2Sm.ResultId.CONSUMED; // FIXME finish here!
     }
     
     // This function is used when StateSmith doesn't know what the active leaf state is at

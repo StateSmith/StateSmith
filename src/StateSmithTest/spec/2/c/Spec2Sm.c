@@ -1056,8 +1056,9 @@ void Spec2Sm_start(Spec2Sm* sm)
 }
 
 // Dispatches an event to the state machine. Not thread safe.
-void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
+Spec2Sm_ResultId Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
 {
+    if (event_id < 0 || event_id >= (int32_t)Spec2Sm_EventIdCount) return Spec2Sm_ResultId_INVALID;
     Spec2Sm_Func behavior_func = sm->current_event_handlers[event_id];
     
     while (behavior_func != NULL)
@@ -1066,6 +1067,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
         behavior_func(sm);
         behavior_func = sm->ancestor_event_handler;
     }
+    return Spec2Sm_ResultId_CONSUMED; // FIXME finish here!
 }
 
 // This function is used when StateSmith doesn't know what the active leaf state is at

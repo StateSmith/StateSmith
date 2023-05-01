@@ -5,6 +5,9 @@
 #include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
 
+// State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
+void Ex1_ctor(Ex1* sm);
+
 // This function is used when StateSmith doesn't know what the active leaf state is at
 // compile time due to sub states or when multiple states need to be exited.
 static void exit_up_to_state_handler(Ex1* sm, Ex1_Func desired_state_exit_handler);
@@ -63,8 +66,9 @@ void Ex1_start(Ex1* sm)
 }
 
 // Dispatches an event to the state machine. Not thread safe.
-void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id)
+Ex1_ResultId Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id)
 {
+    if (event_id < 0 || event_id >= (int32_t)Ex1_EventIdCount) return Ex1_ResultId_INVALID;
     Ex1_Func behavior_func = sm->current_event_handlers[event_id];
     
     while (behavior_func != NULL)
@@ -73,6 +77,7 @@ void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id)
         behavior_func(sm);
         behavior_func = sm->ancestor_event_handler;
     }
+    return Ex1_ResultId_CONSUMED; // FIXME finish here!
 }
 
 // This function is used when StateSmith doesn't know what the active leaf state is at

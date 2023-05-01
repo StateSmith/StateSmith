@@ -4,6 +4,13 @@
 #pragma once
 #include <stdint.h>
 
+
+// struct forward declarations
+typedef struct Ex2 Ex2;
+typedef struct Ex2_EventContext Ex2_EventContext;
+
+
+// enumerations and constant numbers
 typedef enum Ex2_EventId
 {
     Ex2_EventId_DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
@@ -28,22 +35,29 @@ enum
     Ex2_StateIdCount = 3
 };
 
+typedef enum Ex2_ResultId
+{
+    Ex2_ResultId_CONSUMED = 0, // dispatched event was consumed.
+    Ex2_ResultId_ACTIVE = 1,   // dispatched event still active (not consumed).
+    Ex2_ResultId_INVALID = 2   // event to be dispatched is unknown and was ignored.
+} Ex2_ResultId;
 
-// Generated state machine
-// forward declaration
-typedef struct Ex2 Ex2;
+enum
+{
+    Ex2_ResultIdCount = 3
+};
+
+
+// function pointers
 
 // event handler type
 typedef void (*Ex2_Func)(Ex2* sm);
-
-// State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
-void Ex2_ctor(Ex2* sm);
 
 // Starts the state machine. Must be called before dispatching events. Not thread safe.
 void Ex2_start(Ex2* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
-void Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id);
+Ex2_ResultId Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id);
 
 // Thread safe.
 char const * Ex2_state_id_to_string(Ex2_StateId id);
@@ -65,6 +79,13 @@ struct Ex2
     
     // Used internally by state machine. Don't modify.
     Ex2_Func current_state_exit_handler;
+};
+
+struct Ex2_EventContext
+{
+    Ex2_EventId id;
+    Ex2_Func nextHandler; // Users should ignore this field. Used by state machine.
+    Ex2_ResultId resultId;
 };
 
 // Converts an event id to a string. Thread safe.
