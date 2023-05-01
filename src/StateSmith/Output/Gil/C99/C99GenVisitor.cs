@@ -88,25 +88,30 @@ public class C99GenVisitor : CSharpSyntaxWalker
         OutputCommentSection($"structures");
         foreach (var cls in allClasses.Reverse())   // reversing allows dependencies between structs to work out OK.
         {
-            sb = hFileSb;
+            VisitClassDeclaration(cls);
+        }
+    }
 
-            string name = GetCName(cls);
+    public override void VisitClassDeclaration(ClassDeclarationSyntax cls)
+    {
+        sb = hFileSb;
 
-            OutputStruct(cls, name);
+        string name = GetCName(cls);
 
-            sb = cFileSb;
-            publicSb = cFileSb;
-            privateSb = cFileSb;
+        OutputStruct(cls, name);
 
-            foreach (var kid in cls.ChildNodes().OfType<ConstructorDeclarationSyntax>())
-            {
-                Visit(kid);
-            }
+        sb = cFileSb;
+        publicSb = cFileSb;
+        privateSb = cFileSb;
 
-            foreach (var kid in cls.ChildNodes().OfType<MethodDeclarationSyntax>())
-            {
-                Visit(kid);
-            }
+        foreach (var kid in cls.ChildNodes().OfType<ConstructorDeclarationSyntax>())
+        {
+            VisitConstructorDeclaration(kid);
+        }
+
+        foreach (var kid in cls.ChildNodes().OfType<MethodDeclarationSyntax>())
+        {
+            VisitMethodDeclaration(kid);
         }
     }
 
@@ -134,7 +139,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         }
         foreach (var d in allDelegates)
         {
-            Visit(d);
+            VisitDelegateDeclaration(d);
         }
         sb.AppendLine();
 
@@ -189,7 +194,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         foreach (var kid in node.ChildNodes())
         {
             if (kid is FieldDeclarationSyntax field && !field.IsConst())
-                Visit(kid);
+                VisitFieldDeclaration(field);
         }
 
         sb.AppendLine(PostProcessor.trimBlankLinesMarker);
@@ -248,7 +253,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         
         sb.Append($"void {GetCName(symbol)}");
 
-        Visit(node.ParameterList);
+        VisitParameterList(node.ParameterList);
 
         if (!renderingPrototypes)
         {
@@ -278,14 +283,16 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
         Visit(node.ReturnType);
         VisitToken(node.Identifier);
-        Visit(node.ParameterList);
+        VisitParameterList(node.ParameterList);
 
         if (!renderingPrototypes)
-            Visit(node.Body);
+            VisitBlock(node.Body);
     }
 
-    public override void VisitBlock(BlockSyntax node)
+    public override void VisitBlock(BlockSyntax? node)
     {
+        if (node == null) return;
+
         if (renderingPrototypes)
             return;
 
@@ -605,7 +612,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
                 done = true;
                 AppendNodeLeadingTrivia(node);
                 sb.Append("enum\n{\n    ");
-                Visit(node.Declaration.Variables.Single());
+                VisitVariableDeclarator(node.Declaration.Variables.Single());
                 sb.Append("\n};\n");
             }
         }
@@ -634,7 +641,8 @@ public class C99GenVisitor : CSharpSyntaxWalker
         }
         else
         {
-            Visit(node.Initializer);
+            if (node.Initializer != null)
+                VisitEqualsValueClause(node.Initializer);
         }
     }
 
@@ -650,7 +658,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
             var rank = v.DescendantNodes().OfType<ArrayRankSpecifierSyntax>().SingleOrDefault();
             if (rank != null)
-                Visit(rank);
+                VisitArrayRankSpecifier(rank);
         }
     }
 
