@@ -31,6 +31,7 @@ public class AlgoTranspilerCustomizer
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToC99>();
                     sp.AddSingletonT<IExpansionVarsPathProvider, CExpansionVarsPathProvider>();
+                    algoBalanced1Settings.skipClassIndentation = true;
                 }
                 break;
 

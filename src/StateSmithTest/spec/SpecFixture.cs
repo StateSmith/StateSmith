@@ -27,6 +27,7 @@ public class SpecFixture
 
         settings.propagateExceptions = true;
         settings.dumpGilCodeOnError = true;
+        settings.outputGilCodeAlways = true;
 
         if (useTracingModder)
         {

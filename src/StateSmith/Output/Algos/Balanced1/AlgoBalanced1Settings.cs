@@ -1,6 +1,5 @@
 #nullable enable
 
-
 namespace StateSmith.Output.Algos.Balanced1;
 
 // Useful info: https://github.com/StateSmith/StateSmith/wiki/Multiple-Language-Support
@@ -12,9 +11,9 @@ namespace StateSmith.Output.Algos.Balanced1;
 public class AlgoBalanced1Settings
 {
     /// <summary>
-    /// Used for C like stuff that has to hoist stuff out of class.
+    /// Used for C like languages that do not support nested classes.
     /// In the future, it would be nice to remove this and just run a code formatter for the transpilers
-    /// that don't want the class indentation.
+    /// that don't want the class indentation. Need to balance that against speed however.
     /// </summary>
     internal bool skipClassIndentation = true;
 
