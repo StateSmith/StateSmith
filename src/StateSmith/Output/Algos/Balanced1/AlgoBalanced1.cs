@@ -141,6 +141,11 @@ public class AlgoBalanced1 : IGilAlgo
             file.AppendLine($"public {mangler.SmEventEnumType} id;");  //fixme more mangler
             file.AppendLine($"public {mangler.SmHandlerFuncType} nextHandler; // Users should ignore this field. Used by state machine.");  //fixme more mangler
             file.AppendLine($"public {mangler.SmResultEnumType} resultId;");  //fixme more mangler
+
+            file.AppendLine();
+            file.AppendLine($"public EventContext()");
+            file.StartCodeBlock();
+            file.FinishCodeBlock();
         }
         file.FinishCodeBlock();
         file.AppendLine();

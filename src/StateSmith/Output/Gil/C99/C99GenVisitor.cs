@@ -68,7 +68,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         OutputForwardClassStuff();
 
         sb.AppendLine();
-        sb.AppendLine($"// enumerations and constant numbers");
+        OutputCommentSection($"enumerations and constant numbers");
         foreach (var cls in allClasses)
         {
             foreach (var kid in cls.ChildNodes())
@@ -79,11 +79,13 @@ public class C99GenVisitor : CSharpSyntaxWalker
         }
         sb.AppendLine();
 
-        foreach (var cls in allClasses.Reverse())
+        OutputCommentSection($"structures");
+        foreach (var cls in allClasses.Reverse())   // reversing allows dependencies between structs to work out OK.
         {
+            sb = hFileSb;
+
             string name = GetCName(cls);
 
-            sb = hFileSb;
             OutputStruct(cls, name);
 
             sb = cFileSb;
