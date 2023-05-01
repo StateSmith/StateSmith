@@ -29,7 +29,8 @@ public class C99GenVisitor : CSharpSyntaxWalker
     protected readonly SemanticModel model;
     protected bool renderingPrototypes = false;
     private readonly IEnumerable<ClassDeclarationSyntax> allClasses;
-    private readonly IEnumerable<StructDeclarationSyntax> allStructs;
+    private readonly IEnumerable<EnumDeclarationSyntax> allEnums;
+    private readonly IEnumerable<DelegateDeclarationSyntax> allDelegates;
     protected readonly IGilToC99Customizer customizer;
     protected readonly GilTranspilerHelper transpilerHelper;
 
@@ -41,8 +42,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
         this.customizer = customizer;
 
         transpilerHelper = new(this, model);
-        allClasses = model.SyntaxTree.GetRoot().DescendantNodes().OfType<ClassDeclarationSyntax>();
-        allStructs = model.SyntaxTree.GetRoot().DescendantNodes().OfType<StructDeclarationSyntax>();
+        allClasses = model.SyntaxTree.GetRoot().DescendantNodes().OfType<ClassDeclarationSyntax>().Where(c => !transpilerHelper.HandleSpecialGilEmitClasses(c));
+        allEnums = model.SyntaxTree.GetRoot().DescendantNodes().OfType<EnumDeclarationSyntax>();
+        allDelegates = model.SyntaxTree.GetRoot().DescendantNodes().OfType<DelegateDeclarationSyntax>();
 
         sb = hFileSb;
         transpilerHelper.PreProcess();
@@ -52,8 +54,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
         hFileSb.AppendLine("#include <stdint.h>\n");
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
 
-        OutputForwardClassStuff();
-
         sb = cFileSb;
         transpilerHelper.PreProcess();
         cFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
@@ -62,44 +62,10 @@ public class C99GenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
         cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
         cFileSb.AppendLine("#include <string.h> // for memset\n");
-    }
+        
+        sb = hFileSb;
 
-    public void Process()
-    {
-        foreach (var structDecl in allStructs)
-        {
-            Visit(structDecl);
-        }
-
-        foreach (var cls in allClasses)
-        {
-            if (!transpilerHelper.HandleSpecialGilEmitClasses(cls))
-            {
-                Visit(cls);
-            }
-        }
-    }
-
-    private void OutputForwardClassStuff()
-    {
-        sb.AppendLine();
-        sb.AppendLine($"// struct forward declarations");
-        foreach (var cls in allClasses)
-        {
-            if (!transpilerHelper.HandleSpecialGilEmitClasses(cls))
-            {
-                string name = GetCName(cls);
-                sb.AppendLine($"typedef struct {name} {name};");
-            }
-        }
-        foreach (var structDecl in allStructs)
-        {
-            string name = GetCName(structDecl);
-            sb.AppendLine($"typedef struct {name} {name};");
-        }
-        sb.AppendLine();
-
-
+        OutputForwardClassStuff();
 
         sb.AppendLine();
         sb.AppendLine($"// enumerations and constant numbers");
@@ -113,61 +79,74 @@ public class C99GenVisitor : CSharpSyntaxWalker
         }
         sb.AppendLine();
 
-
-        sb.AppendLine();
-        sb.AppendLine($"// function pointers");
-        foreach (var cls in allClasses)
+        foreach (var cls in allClasses.Reverse())
         {
-            foreach (var kid in cls.ChildNodes().OfType<DelegateDeclarationSyntax>())
+            string name = GetCName(cls);
+
+            sb = hFileSb;
+            OutputStruct(cls, name);
+
+            sb = cFileSb;
+            publicSb = cFileSb;
+            privateSb = cFileSb;
+
+            foreach (var kid in cls.ChildNodes().OfType<ConstructorDeclarationSyntax>())
+            {
+                Visit(kid);
+            }
+
+            foreach (var kid in cls.ChildNodes().OfType<MethodDeclarationSyntax>())
             {
                 Visit(kid);
             }
         }
+    }
+
+    public void Process()
+    {
+
+    }
+
+    private void OutputCommentSection(string title)
+    {
+        sb.AppendLine("//////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+        sb.AppendLine($"// {title}");
+        sb.AppendLine("//////////////////////////////////////////////////////////////////////////////////////////////////////////////");
         sb.AppendLine();
     }
 
-
-
-    public override void VisitStructDeclaration(StructDeclarationSyntax node)
+    private void OutputForwardClassStuff()
     {
-        string name = GetCName(node);
-        sb = hFileSb;
-        sb.AppendLine($"");
-        OutputStruct(node, name, outputTypedef: true);
-    }
-
-    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
-    {
-        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
-
-        string name = GetCName(node);
-
-        publicSb = hFileSb;
-        privateSb = cFileSb;
-        CaptureFunctionPrototypes(node);
-
-        sb = hFileSb;
-        OutputStruct(node, name);
-
-        sb = cFileSb;
-        publicSb = cFileSb;
-        privateSb = cFileSb;
-
-        foreach (var kid in node.ChildNodes().OfType<ConstructorDeclarationSyntax>())
+        sb.AppendLine();
+        OutputCommentSection("typedefs");
+        foreach (var cls in allClasses)
         {
-            Visit(kid);
+            string name = GetCName(cls);
+            sb.AppendLine($"typedef struct {name} {name};");
         }
-
-        foreach (var kid in node.ChildNodes().OfType<MethodDeclarationSyntax>())
+        foreach (var enumDecl in allEnums)
         {
-            Visit(kid);
+            string name = GetCName(enumDecl);
+            sb.AppendLine($"typedef enum {name} {name};");
+        }
+        foreach (var d in allDelegates)
+        {
+            Visit(d);
+        }
+        sb.AppendLine();
+
+        foreach (var cls in allClasses)
+        {
+            if (cls.DescendantNodes().OfType<MethodDeclarationSyntax>().Any() == false)
+                continue;
+
+            OutputCommentSection($"public {cls.Identifier.ValueText} functions");
+
+            publicSb = hFileSb;
+            privateSb = cFileSb;
+            CaptureFunctionPrototypes(cls);
         }
     }
-
-
-
-
-
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {

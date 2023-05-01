@@ -6,10 +6,38 @@
 
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
 
-// struct forward declarations
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// typedefs
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 typedef struct Spec1bSm Spec1bSm;
 typedef struct Spec1bSm_EventContext Spec1bSm_EventContext;
 typedef struct Spec1bSm_Vars Spec1bSm_Vars;
+typedef enum Spec1bSm_EventId Spec1bSm_EventId;
+typedef enum Spec1bSm_StateId Spec1bSm_StateId;
+typedef enum Spec1bSm_ResultId Spec1bSm_ResultId;
+
+// event handler type
+typedef void (*Spec1bSm_Func)(Spec1bSm* sm);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// public Spec1bSm functions
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
+void Spec1bSm_ctor(Spec1bSm* sm);
+
+// Starts the state machine. Must be called before dispatching events. Not thread safe.
+void Spec1bSm_start(Spec1bSm* sm);
+
+// Dispatches an event to the state machine. Not thread safe.
+Spec1bSm_ResultId Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id);
+
+// Thread safe.
+char const * Spec1bSm_state_id_to_string(Spec1bSm_StateId id);
+
+// Thread safe.
+char const * Spec1bSm_event_id_to_string(Spec1bSm_EventId id);
 
 
 // enumerations and constant numbers
@@ -50,33 +78,18 @@ enum
     Spec1bSm_ResultIdCount = 3
 };
 
-
-// function pointers
-
-// event handler type
-typedef void (*Spec1bSm_Func)(Spec1bSm* sm);
-
-
 // State machine variables. Can be used for inputs, outputs, user variables...
-typedef struct Spec1bSm_Vars
+struct Spec1bSm_Vars
 {
     uint8_t count;
-} Spec1bSm_Vars;
+};
 
-// State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
-void Spec1bSm_ctor(Spec1bSm* sm);
-
-// Starts the state machine. Must be called before dispatching events. Not thread safe.
-void Spec1bSm_start(Spec1bSm* sm);
-
-// Dispatches an event to the state machine. Not thread safe.
-Spec1bSm_ResultId Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id);
-
-// Thread safe.
-char const * Spec1bSm_state_id_to_string(Spec1bSm_StateId id);
-
-// Thread safe.
-char const * Spec1bSm_event_id_to_string(Spec1bSm_EventId id);
+struct Spec1bSm_EventContext
+{
+    Spec1bSm_EventId id;
+    Spec1bSm_Func nextHandler; // Users should ignore this field. Used by state machine.
+    Spec1bSm_ResultId resultId;
+};
 
 // Generated state machine
 struct Spec1bSm
@@ -95,12 +108,5 @@ struct Spec1bSm
     
     // Variables. Can be used for inputs, outputs, user variables...
     Spec1bSm_Vars vars;
-};
-
-struct Spec1bSm_EventContext
-{
-    Spec1bSm_EventId id;
-    Spec1bSm_Func nextHandler; // Users should ignore this field. Used by state machine.
-    Spec1bSm_ResultId resultId;
 };
 
