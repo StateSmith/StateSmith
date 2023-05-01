@@ -773,6 +773,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public void VisitTriviaList(SyntaxTriviaList syntaxTrivias)
     {
+        VisitTriviaList((IReadOnlyList<SyntaxTrivia>)syntaxTrivias);
+    }
+
+    public void VisitTriviaList(IReadOnlyList<SyntaxTrivia> syntaxTrivias)
+    {
         foreach (var trivia in syntaxTrivias)
         {
             VisitTrivia(trivia);
@@ -828,10 +833,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
             }
         }
 
-        foreach (var t in toOutput)
-        {
-            VisitTrivia(t);
-        }
+        VisitTriviaList(toOutput);
     }
 
 }
