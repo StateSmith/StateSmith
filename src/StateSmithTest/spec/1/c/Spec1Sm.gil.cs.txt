@@ -2,59 +2,53 @@
 // Algorithm: Balanced1. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 public class ____GilNoEmit_FileTop { }
-public class EventContext
-{
-    public EventId id;
-    public Func nextHandler; // Users should ignore this field. Used by state machine.
-    public ResultId resultId;
-    
-    public EventContext()
-    {
-    }
-}
-
-
-// State machine variables. Can be used for inputs, outputs, user variables...
-public class Vars
-{
-    //>>>>>ECHO:uint8_t count;
-}
-// event handler type
-public delegate void Func();
-
 // Generated state machine
 public class Spec1Sm
 {
-public enum EventId
-{
-    EV1 = 0,
-    EV2 = 1,
-}
-
-public const int EventIdCount = 2;
-
-public enum StateId
-{
-    ROOT = 0,
-    S = 1,
-    S1 = 2,
-    S11 = 3,
-    T1 = 4,
-    T11 = 5,
-    T111 = 6,
-}
-
-public const int StateIdCount = 7;
-
-public enum ResultId
-{
-    CONSUMED = 0, // dispatched event was consumed.
-    ACTIVE = 1,   // dispatched event still active (not consumed).
-    INVALID = 2   // event to be dispatched is unknown and was ignored.
-}
-
-public const int ResultIdCount = 3;
-
+    public enum EventId
+    {
+        EV1 = 0,
+        EV2 = 1,
+    }
+    
+    public const int EventIdCount = 2;
+    
+    public enum StateId
+    {
+        ROOT = 0,
+        S = 1,
+        S1 = 2,
+        S11 = 3,
+        T1 = 4,
+        T11 = 5,
+        T111 = 6,
+    }
+    
+    public const int StateIdCount = 7;
+    
+    public enum ResultId
+    {
+        CONSUMED = 0, // dispatched event was consumed.
+        ACTIVE = 1,   // dispatched event still active (not consumed).
+        INVALID = 2   // event to be dispatched is unknown and was ignored.
+    }
+    
+    public const int ResultIdCount = 3;
+    
+    public class EventContext
+    {
+        public EventId id;
+        public Func nextHandler; // Users should ignore this field. Used by state machine.
+        public ResultId resultId;
+        
+        public EventContext()
+        {
+        }
+    }
+    
+    // event handler type
+    public delegate void Func();
+    
     // Used internally by state machine. Feel free to inspect, but don't modify.
     public StateId state_id;
     
@@ -67,425 +61,431 @@ public const int ResultIdCount = 3;
     // Used internally by state machine. Don't modify.
     private Func? current_state_exit_handler;
     
+    // State machine variables. Can be used for inputs, outputs, user variables...
+    public class Vars
+    {
+        //>>>>>ECHO:uint8_t count;
+    }
+    
     // Variables. Can be used for inputs, outputs, user variables...
     public Vars vars = new Vars();
-
-// State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
-public Spec1Sm()
-{
-}
-
-// Starts the state machine. Must be called before dispatching events. Not thread safe.
-public void start()
-{
-    this.ROOT_enter();
-    // ROOT behavior
-    // uml: TransitionTo(ROOT.InitialState)
+    
+    // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
+    public Spec1Sm()
     {
-        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-        
-        // Step 2: Transition action: ``.
-        
-        // Step 3: Enter/move towards transition target `ROOT.InitialState`.
-        // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
-        
-        // ROOT.InitialState behavior
-        // uml: / { trace("Transition action `` for ROOT.InitialState to S."); } TransitionTo(S)
+    }
+    
+    // Starts the state machine. Must be called before dispatching events. Not thread safe.
+    public void start()
+    {
+        this.ROOT_enter();
+        // ROOT behavior
+        // uml: TransitionTo(ROOT.InitialState)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
-            // Step 2: Transition action: `trace("Transition action `` for ROOT.InitialState to S.");`.
-            /*<<<<<rm2<<<<<trace("Transition action `` for ROOT.InitialState to S.");>>>>>rm2>>>>>*/
+            // Step 2: Transition action: ``.
             
-            // Step 3: Enter/move towards transition target `S`.
-            this.S_enter();
+            // Step 3: Enter/move towards transition target `ROOT.InitialState`.
+            // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
             
-            // S.InitialState behavior
-            // uml: / { trace("Transition action `` for S.InitialState to S1."); } TransitionTo(S1)
+            // ROOT.InitialState behavior
+            // uml: / { trace("Transition action `` for ROOT.InitialState to S."); } TransitionTo(S)
             {
-                // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `trace("Transition action `` for S.InitialState to S1.");`.
-                /*<<<<<rm2<<<<<trace("Transition action `` for S.InitialState to S1.");>>>>>rm2>>>>>*/
+                // Step 2: Transition action: `trace("Transition action `` for ROOT.InitialState to S.");`.
+                /*<<<<<rm2<<<<<trace("Transition action `` for ROOT.InitialState to S.");>>>>>rm2>>>>>*/
                 
-                // Step 3: Enter/move towards transition target `S1`.
-                this.S1_enter();
+                // Step 3: Enter/move towards transition target `S`.
+                this.S_enter();
                 
-                // Finish transition by calling pseudo state transition function.
-                this.S1_InitialState_transition();
-                return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for S.InitialState
-        } // end of behavior for ROOT.InitialState
-    } // end of behavior for ROOT
-}
-
-// Dispatches an event to the state machine. Not thread safe.
-public ResultId dispatch_event(EventId event_id)
-{
-    if ((int)event_id < 0 || (int)event_id >= (int)EventIdCount) return ResultId.INVALID;
-    Func? behavior_func = this.current_event_handlers[(int)event_id];
-    
-    while (behavior_func != null)
-    {
-        this.ancestor_event_handler = null;
-        behavior_func();
-        behavior_func = this.ancestor_event_handler;
+                // S.InitialState behavior
+                // uml: / { trace("Transition action `` for S.InitialState to S1."); } TransitionTo(S1)
+                {
+                    // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                    
+                    // Step 2: Transition action: `trace("Transition action `` for S.InitialState to S1.");`.
+                    /*<<<<<rm2<<<<<trace("Transition action `` for S.InitialState to S1.");>>>>>rm2>>>>>*/
+                    
+                    // Step 3: Enter/move towards transition target `S1`.
+                    this.S1_enter();
+                    
+                    // Finish transition by calling pseudo state transition function.
+                    this.S1_InitialState_transition();
+                    return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                } // end of behavior for S.InitialState
+            } // end of behavior for ROOT.InitialState
+        } // end of behavior for ROOT
     }
-    return ResultId.CONSUMED; // FIXME finish here!
-}
-
-// This function is used when StateSmith doesn't know what the active leaf state is at
-// compile time due to sub states or when multiple states need to be exited.
-private void exit_up_to_state_handler(Func desired_state_exit_handler)
-{
-    while (this.current_state_exit_handler != desired_state_exit_handler)
+    
+    // Dispatches an event to the state machine. Not thread safe.
+    public ResultId dispatch_event(EventId event_id)
     {
-        this.current_state_exit_handler!();
+        if ((int)event_id < 0 || (int)event_id >= (int)EventIdCount) return ResultId.INVALID;
+        Func? behavior_func = this.current_event_handlers[(int)event_id];
+        
+        while (behavior_func != null)
+        {
+            this.ancestor_event_handler = null;
+            behavior_func();
+            behavior_func = this.ancestor_event_handler;
+        }
+        return ResultId.CONSUMED; // FIXME finish here!
     }
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state ROOT
-////////////////////////////////////////////////////////////////////////////////
-
-private void ROOT_enter()
-{
-    // setup trigger/event handlers
-    this.current_state_exit_handler = this.ROOT_exit;
     
-    // ROOT behavior
-    // uml: enter / { trace("Enter Spec1Sm."); }
+    // This function is used when StateSmith doesn't know what the active leaf state is at
+    // compile time due to sub states or when multiple states need to be exited.
+    private void exit_up_to_state_handler(Func desired_state_exit_handler)
     {
-        // Step 1: execute action `trace("Enter Spec1Sm.");`
-        /*<<<<<rm2<<<<<trace("Enter Spec1Sm.");>>>>>rm2>>>>>*/
-    } // end of behavior for ROOT
-}
-
-private void ROOT_exit()
-{
-    // ROOT behavior
-    // uml: exit / { trace("Exit Spec1Sm."); }
-    {
-        // Step 1: execute action `trace("Exit Spec1Sm.");`
-        /*<<<<<rm2<<<<<trace("Exit Spec1Sm.");>>>>>rm2>>>>>*/
-    } // end of behavior for ROOT
+        while (this.current_state_exit_handler != desired_state_exit_handler)
+        {
+            this.current_state_exit_handler!();
+        }
+    }
     
-    // State machine root is a special case. It cannot be exited. Mark as unused.
-    ____GilNoEmit_UnusedVar(this);
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state S
-////////////////////////////////////////////////////////////////////////////////
-
-private void S_enter()
-{
-    // setup trigger/event handlers
-    this.current_state_exit_handler = this.S_exit;
     
-    // S behavior
-    // uml: enter / { trace("Enter S."); }
-    {
-        // Step 1: execute action `trace("Enter S.");`
-        /*<<<<<rm2<<<<<trace("Enter S.");>>>>>rm2>>>>>*/
-    } // end of behavior for S
-}
-
-private void S_exit()
-{
-    // S behavior
-    // uml: exit / { trace("Exit S."); }
-    {
-        // Step 1: execute action `trace("Exit S.");`
-        /*<<<<<rm2<<<<<trace("Exit S.");>>>>>rm2>>>>>*/
-    } // end of behavior for S
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state ROOT
+    ////////////////////////////////////////////////////////////////////////////////
     
-    // adjust function pointers for this state's exit
-    this.current_state_exit_handler = this.ROOT_exit;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state S1
-////////////////////////////////////////////////////////////////////////////////
-
-private void S1_enter()
-{
-    // setup trigger/event handlers
-    this.current_state_exit_handler = this.S1_exit;
-    
-    // S1 behavior
-    // uml: enter / { trace("Enter S1."); }
+    private void ROOT_enter()
     {
-        // Step 1: execute action `trace("Enter S1.");`
-        /*<<<<<rm2<<<<<trace("Enter S1.");>>>>>rm2>>>>>*/
-    } // end of behavior for S1
-}
-
-private void S1_exit()
-{
-    // S1 behavior
-    // uml: exit / { trace("Exit S1."); }
-    {
-        // Step 1: execute action `trace("Exit S1.");`
-        /*<<<<<rm2<<<<<trace("Exit S1.");>>>>>rm2>>>>>*/
-    } // end of behavior for S1
-    
-    // adjust function pointers for this state's exit
-    this.current_state_exit_handler = this.S_exit;
-}
-
-private void S1_InitialState_transition()
-{
-    // S1.InitialState behavior
-    // uml: / { trace("Transition action `` for S1.InitialState to S11."); } TransitionTo(S11)
-    {
-        // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+        // setup trigger/event handlers
+        this.current_state_exit_handler = this.ROOT_exit;
         
-        // Step 2: Transition action: `trace("Transition action `` for S1.InitialState to S11.");`.
-        /*<<<<<rm2<<<<<trace("Transition action `` for S1.InitialState to S11.");>>>>>rm2>>>>>*/
-        
-        // Step 3: Enter/move towards transition target `S11`.
-        this.S11_enter();
-        
-        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-        this.state_id = StateId.S11;
-        this.ancestor_event_handler = null;
-        return;
-    } // end of behavior for S1.InitialState
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state S11
-////////////////////////////////////////////////////////////////////////////////
-
-private void S11_enter()
-{
-    // setup trigger/event handlers
-    this.current_state_exit_handler = this.S11_exit;
-    this.current_event_handlers[(int)EventId.EV1] = this.S11_ev1;
+        // ROOT behavior
+        // uml: enter / { trace("Enter Spec1Sm."); }
+        {
+            // Step 1: execute action `trace("Enter Spec1Sm.");`
+            /*<<<<<rm2<<<<<trace("Enter Spec1Sm.");>>>>>rm2>>>>>*/
+        } // end of behavior for ROOT
+    }
     
-    // S11 behavior
-    // uml: enter / { trace("Enter S11."); }
+    private void ROOT_exit()
     {
-        // Step 1: execute action `trace("Enter S11.");`
-        /*<<<<<rm2<<<<<trace("Enter S11.");>>>>>rm2>>>>>*/
-    } // end of behavior for S11
-}
-
-private void S11_exit()
-{
-    // S11 behavior
-    // uml: exit / { trace("Exit S11."); }
-    {
-        // Step 1: execute action `trace("Exit S11.");`
-        /*<<<<<rm2<<<<<trace("Exit S11.");>>>>>rm2>>>>>*/
-    } // end of behavior for S11
+        // ROOT behavior
+        // uml: exit / { trace("Exit Spec1Sm."); }
+        {
+            // Step 1: execute action `trace("Exit Spec1Sm.");`
+            /*<<<<<rm2<<<<<trace("Exit Spec1Sm.");>>>>>rm2>>>>>*/
+        } // end of behavior for ROOT
+        
+        // State machine root is a special case. It cannot be exited. Mark as unused.
+        ____GilNoEmit_UnusedVar(this);
+    }
     
-    // adjust function pointers for this state's exit
-    this.current_state_exit_handler = this.S1_exit;
-    this.current_event_handlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
-}
-
-private void S11_ev1()
-{
-    // No ancestor state handles `ev1` event.
     
-    // S11 behavior
-    // uml: EV1 [trace_guard("State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`.", true)] / { trace("Transition action `` for S11 to S1.ExitPoint(1)."); } TransitionTo(S1.ExitPoint(1))
-    if (____GilNoEmit_VarArgsToBool(____GilNoEmit_EchoStringBool("trace_guard(\"State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`.\", true)")))
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state S
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    private void S_enter()
     {
-        // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition).
-        this.S11_exit();
+        // setup trigger/event handlers
+        this.current_state_exit_handler = this.S_exit;
         
-        // Step 2: Transition action: `trace("Transition action `` for S11 to S1.ExitPoint(1).");`.
-        /*<<<<<rm2<<<<<trace("Transition action `` for S11 to S1.ExitPoint(1).");>>>>>rm2>>>>>*/
+        // S behavior
+        // uml: enter / { trace("Enter S."); }
+        {
+            // Step 1: execute action `trace("Enter S.");`
+            /*<<<<<rm2<<<<<trace("Enter S.");>>>>>rm2>>>>>*/
+        } // end of behavior for S
+    }
+    
+    private void S_exit()
+    {
+        // S behavior
+        // uml: exit / { trace("Exit S."); }
+        {
+            // Step 1: execute action `trace("Exit S.");`
+            /*<<<<<rm2<<<<<trace("Exit S.");>>>>>rm2>>>>>*/
+        } // end of behavior for S
         
-        // Step 3: Enter/move towards transition target `S1.ExitPoint(1)`.
-        // S1.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
+        // adjust function pointers for this state's exit
+        this.current_state_exit_handler = this.ROOT_exit;
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state S1
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    private void S1_enter()
+    {
+        // setup trigger/event handlers
+        this.current_state_exit_handler = this.S1_exit;
         
-        // S1.ExitPoint(1) behavior
-        // uml: / { trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1)."); } TransitionTo(T11.EntryPoint(1))
+        // S1 behavior
+        // uml: enter / { trace("Enter S1."); }
+        {
+            // Step 1: execute action `trace("Enter S1.");`
+            /*<<<<<rm2<<<<<trace("Enter S1.");>>>>>rm2>>>>>*/
+        } // end of behavior for S1
+    }
+    
+    private void S1_exit()
+    {
+        // S1 behavior
+        // uml: exit / { trace("Exit S1."); }
+        {
+            // Step 1: execute action `trace("Exit S1.");`
+            /*<<<<<rm2<<<<<trace("Exit S1.");>>>>>rm2>>>>>*/
+        } // end of behavior for S1
+        
+        // adjust function pointers for this state's exit
+        this.current_state_exit_handler = this.S_exit;
+    }
+    
+    private void S1_InitialState_transition()
+    {
+        // S1.InitialState behavior
+        // uml: / { trace("Transition action `` for S1.InitialState to S11."); } TransitionTo(S11)
+        {
+            // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+            
+            // Step 2: Transition action: `trace("Transition action `` for S1.InitialState to S11.");`.
+            /*<<<<<rm2<<<<<trace("Transition action `` for S1.InitialState to S11.");>>>>>rm2>>>>>*/
+            
+            // Step 3: Enter/move towards transition target `S11`.
+            this.S11_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            this.state_id = StateId.S11;
+            this.ancestor_event_handler = null;
+            return;
+        } // end of behavior for S1.InitialState
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state S11
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    private void S11_enter()
+    {
+        // setup trigger/event handlers
+        this.current_state_exit_handler = this.S11_exit;
+        this.current_event_handlers[(int)EventId.EV1] = this.S11_ev1;
+        
+        // S11 behavior
+        // uml: enter / { trace("Enter S11."); }
+        {
+            // Step 1: execute action `trace("Enter S11.");`
+            /*<<<<<rm2<<<<<trace("Enter S11.");>>>>>rm2>>>>>*/
+        } // end of behavior for S11
+    }
+    
+    private void S11_exit()
+    {
+        // S11 behavior
+        // uml: exit / { trace("Exit S11."); }
+        {
+            // Step 1: execute action `trace("Exit S11.");`
+            /*<<<<<rm2<<<<<trace("Exit S11.");>>>>>rm2>>>>>*/
+        } // end of behavior for S11
+        
+        // adjust function pointers for this state's exit
+        this.current_state_exit_handler = this.S1_exit;
+        this.current_event_handlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
+    }
+    
+    private void S11_ev1()
+    {
+        // No ancestor state handles `ev1` event.
+        
+        // S11 behavior
+        // uml: EV1 [trace_guard("State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`.", true)] / { trace("Transition action `` for S11 to S1.ExitPoint(1)."); } TransitionTo(S1.ExitPoint(1))
+        if (____GilNoEmit_VarArgsToBool(____GilNoEmit_EchoStringBool("trace_guard(\"State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`.\", true)")))
+        {
+            // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition).
+            this.S11_exit();
+            
+            // Step 2: Transition action: `trace("Transition action `` for S11 to S1.ExitPoint(1).");`.
+            /*<<<<<rm2<<<<<trace("Transition action `` for S11 to S1.ExitPoint(1).");>>>>>rm2>>>>>*/
+            
+            // Step 3: Enter/move towards transition target `S1.ExitPoint(1)`.
+            // S1.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
+            
+            // S1.ExitPoint(1) behavior
+            // uml: / { trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1)."); } TransitionTo(T11.EntryPoint(1))
+            {
+                // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition).
+                this.S1_exit();
+                
+                // Step 2: Transition action: `trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");`.
+                /*<<<<<rm2<<<<<trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");>>>>>rm2>>>>>*/
+                
+                // Step 3: Enter/move towards transition target `T11.EntryPoint(1)`.
+                this.T1_enter();
+                this.T11_enter();
+                // T11.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                
+                // T11.EntryPoint(1) behavior
+                // uml: / { trace("Transition action `` for T11.EntryPoint(1) to T111."); } TransitionTo(T111)
+                {
+                    // Step 1: Exit states until we reach `T11` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                    
+                    // Step 2: Transition action: `trace("Transition action `` for T11.EntryPoint(1) to T111.");`.
+                    /*<<<<<rm2<<<<<trace("Transition action `` for T11.EntryPoint(1) to T111.");>>>>>rm2>>>>>*/
+                    
+                    // Step 3: Enter/move towards transition target `T111`.
+                    this.T111_enter();
+                    
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                    this.state_id = StateId.T111;
+                    // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
+                    return;
+                } // end of behavior for T11.EntryPoint(1)
+            } // end of behavior for S1.ExitPoint(1)
+        } // end of behavior for S11
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state T1
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    private void T1_enter()
+    {
+        // setup trigger/event handlers
+        this.current_state_exit_handler = this.T1_exit;
+        
+        // T1 behavior
+        // uml: enter / { trace("Enter T1."); }
+        {
+            // Step 1: execute action `trace("Enter T1.");`
+            /*<<<<<rm2<<<<<trace("Enter T1.");>>>>>rm2>>>>>*/
+        } // end of behavior for T1
+    }
+    
+    private void T1_exit()
+    {
+        // T1 behavior
+        // uml: exit / { trace("Exit T1."); }
+        {
+            // Step 1: execute action `trace("Exit T1.");`
+            /*<<<<<rm2<<<<<trace("Exit T1.");>>>>>rm2>>>>>*/
+        } // end of behavior for T1
+        
+        // adjust function pointers for this state's exit
+        this.current_state_exit_handler = this.S_exit;
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state T11
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    private void T11_enter()
+    {
+        // setup trigger/event handlers
+        this.current_state_exit_handler = this.T11_exit;
+        this.current_event_handlers[(int)EventId.EV2] = this.T11_ev2;
+        
+        // T11 behavior
+        // uml: enter / { trace("Enter T11."); }
+        {
+            // Step 1: execute action `trace("Enter T11.");`
+            /*<<<<<rm2<<<<<trace("Enter T11.");>>>>>rm2>>>>>*/
+        } // end of behavior for T11
+    }
+    
+    private void T11_exit()
+    {
+        // T11 behavior
+        // uml: exit / { trace("Exit T11."); }
+        {
+            // Step 1: execute action `trace("Exit T11.");`
+            /*<<<<<rm2<<<<<trace("Exit T11.");>>>>>rm2>>>>>*/
+        } // end of behavior for T11
+        
+        // adjust function pointers for this state's exit
+        this.current_state_exit_handler = this.T1_exit;
+        this.current_event_handlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
+    }
+    
+    private void T11_ev2()
+    {
+        // No ancestor state handles `ev2` event.
+        
+        // T11 behavior
+        // uml: EV2 [trace_guard("State T11: check behavior `EV2 TransitionTo(S1)`.", true)] / { trace("Transition action `` for T11 to S1."); } TransitionTo(S1)
+        if (____GilNoEmit_VarArgsToBool(____GilNoEmit_EchoStringBool("trace_guard(\"State T11: check behavior `EV2 TransitionTo(S1)`.\", true)")))
         {
             // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition).
-            this.S1_exit();
+            this.exit_up_to_state_handler(this.S_exit);
             
-            // Step 2: Transition action: `trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");`.
-            /*<<<<<rm2<<<<<trace("Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).");>>>>>rm2>>>>>*/
+            // Step 2: Transition action: `trace("Transition action `` for T11 to S1.");`.
+            /*<<<<<rm2<<<<<trace("Transition action `` for T11 to S1.");>>>>>rm2>>>>>*/
             
-            // Step 3: Enter/move towards transition target `T11.EntryPoint(1)`.
-            this.T1_enter();
-            this.T11_enter();
-            // T11.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
+            // Step 3: Enter/move towards transition target `S1`.
+            this.S1_enter();
             
-            // T11.EntryPoint(1) behavior
-            // uml: / { trace("Transition action `` for T11.EntryPoint(1) to T111."); } TransitionTo(T111)
-            {
-                // Step 1: Exit states until we reach `T11` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-                
-                // Step 2: Transition action: `trace("Transition action `` for T11.EntryPoint(1) to T111.");`.
-                /*<<<<<rm2<<<<<trace("Transition action `` for T11.EntryPoint(1) to T111.");>>>>>rm2>>>>>*/
-                
-                // Step 3: Enter/move towards transition target `T111`.
-                this.T111_enter();
-                
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.state_id = StateId.T111;
-                // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
-                return;
-            } // end of behavior for T11.EntryPoint(1)
-        } // end of behavior for S1.ExitPoint(1)
-    } // end of behavior for S11
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state T1
-////////////////////////////////////////////////////////////////////////////////
-
-private void T1_enter()
-{
-    // setup trigger/event handlers
-    this.current_state_exit_handler = this.T1_exit;
-    
-    // T1 behavior
-    // uml: enter / { trace("Enter T1."); }
-    {
-        // Step 1: execute action `trace("Enter T1.");`
-        /*<<<<<rm2<<<<<trace("Enter T1.");>>>>>rm2>>>>>*/
-    } // end of behavior for T1
-}
-
-private void T1_exit()
-{
-    // T1 behavior
-    // uml: exit / { trace("Exit T1."); }
-    {
-        // Step 1: execute action `trace("Exit T1.");`
-        /*<<<<<rm2<<<<<trace("Exit T1.");>>>>>rm2>>>>>*/
-    } // end of behavior for T1
-    
-    // adjust function pointers for this state's exit
-    this.current_state_exit_handler = this.S_exit;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state T11
-////////////////////////////////////////////////////////////////////////////////
-
-private void T11_enter()
-{
-    // setup trigger/event handlers
-    this.current_state_exit_handler = this.T11_exit;
-    this.current_event_handlers[(int)EventId.EV2] = this.T11_ev2;
-    
-    // T11 behavior
-    // uml: enter / { trace("Enter T11."); }
-    {
-        // Step 1: execute action `trace("Enter T11.");`
-        /*<<<<<rm2<<<<<trace("Enter T11.");>>>>>rm2>>>>>*/
-    } // end of behavior for T11
-}
-
-private void T11_exit()
-{
-    // T11 behavior
-    // uml: exit / { trace("Exit T11."); }
-    {
-        // Step 1: execute action `trace("Exit T11.");`
-        /*<<<<<rm2<<<<<trace("Exit T11.");>>>>>rm2>>>>>*/
-    } // end of behavior for T11
-    
-    // adjust function pointers for this state's exit
-    this.current_state_exit_handler = this.T1_exit;
-    this.current_event_handlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
-}
-
-private void T11_ev2()
-{
-    // No ancestor state handles `ev2` event.
-    
-    // T11 behavior
-    // uml: EV2 [trace_guard("State T11: check behavior `EV2 TransitionTo(S1)`.", true)] / { trace("Transition action `` for T11 to S1."); } TransitionTo(S1)
-    if (____GilNoEmit_VarArgsToBool(____GilNoEmit_EchoStringBool("trace_guard(\"State T11: check behavior `EV2 TransitionTo(S1)`.\", true)")))
-    {
-        // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition).
-        this.exit_up_to_state_handler(this.S_exit);
-        
-        // Step 2: Transition action: `trace("Transition action `` for T11 to S1.");`.
-        /*<<<<<rm2<<<<<trace("Transition action `` for T11 to S1.");>>>>>rm2>>>>>*/
-        
-        // Step 3: Enter/move towards transition target `S1`.
-        this.S1_enter();
-        
-        // Finish transition by calling pseudo state transition function.
-        this.S1_InitialState_transition();
-        return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-    } // end of behavior for T11
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// event handlers for state T111
-////////////////////////////////////////////////////////////////////////////////
-
-private void T111_enter()
-{
-    // setup trigger/event handlers
-    this.current_state_exit_handler = this.T111_exit;
-    
-    // T111 behavior
-    // uml: enter / { trace("Enter T111."); }
-    {
-        // Step 1: execute action `trace("Enter T111.");`
-        /*<<<<<rm2<<<<<trace("Enter T111.");>>>>>rm2>>>>>*/
-    } // end of behavior for T111
-}
-
-private void T111_exit()
-{
-    // T111 behavior
-    // uml: exit / { trace("Exit T111."); }
-    {
-        // Step 1: execute action `trace("Exit T111.");`
-        /*<<<<<rm2<<<<<trace("Exit T111.");>>>>>rm2>>>>>*/
-    } // end of behavior for T111
-    
-    // adjust function pointers for this state's exit
-    this.current_state_exit_handler = this.T11_exit;
-}
-
-// Thread safe.
-public static string state_id_to_string(StateId id)
-{
-    switch (id)
-    {
-        case StateId.ROOT: return "ROOT";
-        case StateId.S: return "S";
-        case StateId.S1: return "S1";
-        case StateId.S11: return "S11";
-        case StateId.T1: return "T1";
-        case StateId.T11: return "T11";
-        case StateId.T111: return "T111";
-        default: return "?";
+            // Finish transition by calling pseudo state transition function.
+            this.S1_InitialState_transition();
+            return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        } // end of behavior for T11
     }
-}
-
-// Thread safe.
-public static string event_id_to_string(EventId id)
-{
-    switch (id)
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state T111
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    private void T111_enter()
     {
-        case EventId.EV1: return "EV1";
-        case EventId.EV2: return "EV2";
-        default: return "?";
+        // setup trigger/event handlers
+        this.current_state_exit_handler = this.T111_exit;
+        
+        // T111 behavior
+        // uml: enter / { trace("Enter T111."); }
+        {
+            // Step 1: execute action `trace("Enter T111.");`
+            /*<<<<<rm2<<<<<trace("Enter T111.");>>>>>rm2>>>>>*/
+        } // end of behavior for T111
     }
-}
-
+    
+    private void T111_exit()
+    {
+        // T111 behavior
+        // uml: exit / { trace("Exit T111."); }
+        {
+            // Step 1: execute action `trace("Exit T111.");`
+            /*<<<<<rm2<<<<<trace("Exit T111.");>>>>>rm2>>>>>*/
+        } // end of behavior for T111
+        
+        // adjust function pointers for this state's exit
+        this.current_state_exit_handler = this.T11_exit;
+    }
+    
+    // Thread safe.
+    public static string state_id_to_string(StateId id)
+    {
+        switch (id)
+        {
+            case StateId.ROOT: return "ROOT";
+            case StateId.S: return "S";
+            case StateId.S1: return "S1";
+            case StateId.S11: return "S11";
+            case StateId.T1: return "T1";
+            case StateId.T11: return "T11";
+            case StateId.T111: return "T111";
+            default: return "?";
+        }
+    }
+    
+    // Thread safe.
+    public static string event_id_to_string(EventId id)
+    {
+        switch (id)
+        {
+            case EventId.EV1: return "EV1";
+            case EventId.EV2: return "EV2";
+            default: return "?";
+        }
+    }
+    
     public static bool ____GilNoEmit_EchoStringBool(string toEcho) { return true; }
     public static bool ____GilNoEmit_VarArgsToBool(params object[] args) { return true; }
     public static void ____GilNoEmit_UnusedVar(object unusedVar) { }

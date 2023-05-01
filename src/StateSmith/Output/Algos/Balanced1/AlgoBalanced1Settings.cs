@@ -11,9 +11,12 @@ namespace StateSmith.Output.Algos.Balanced1;
 /// </summary>
 public class AlgoBalanced1Settings
 {
-    public bool nestClasses = false;
-    public bool indentEnums = true;
-    public bool indentFunctions = true;
+    /// <summary>
+    /// Used for C like stuff that has to hoist stuff out of class.
+    /// In the future, it would be nice to remove this and just run a code formatter for the transpilers
+    /// that don't want the class indentation.
+    /// </summary>
+    internal bool skipClassIndentation = true;
 
     /// <summary>
     /// Set to false if don't want the event ID to string function to be generated and output.

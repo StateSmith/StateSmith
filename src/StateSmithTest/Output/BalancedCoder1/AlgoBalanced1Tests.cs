@@ -154,7 +154,7 @@ public class AlgoBalanced1Tests
 
             sp.AddSingletonT(new AlgoBalanced1Settings()
             {
-                nestClasses = skipIndentation,
+                skipClassIndentation = skipIndentation,
             });
         }
 
