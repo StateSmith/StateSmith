@@ -11,13 +11,6 @@ namespace StateSmith.Output.Algos.Balanced1;
 public class AlgoBalanced1Settings
 {
     /// <summary>
-    /// Used for C like languages that do not support nested classes.
-    /// In the future, it would be nice to remove this and just run a code formatter for the transpilers
-    /// that don't want the class indentation. Need to balance that against speed however.
-    /// </summary>
-    internal bool skipClassIndentation = true;
-
-    /// <summary>
     /// Set to false if don't want the event ID to string function to be generated and output.
     /// https://github.com/StateSmith/StateSmith/issues/181
     /// </summary>

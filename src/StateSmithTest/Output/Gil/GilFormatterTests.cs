@@ -175,10 +175,7 @@ public class GilFormatterTests
 
     private static void Test(string input, string Expected)
     {
-        GilTranspilerHelper.Compile(input, out var root, out var _);
-        var formatter = new GilFormatter();
-        formatter.Visit(root);
-        formatter.sb.ToString().ShouldBeShowDiff(Expected);
+        GilFormatter.Format(input).ShouldBeShowDiff(Expected);
     }
 }
 

@@ -75,43 +75,27 @@ public class AlgoBalanced1 : IGilAlgo
         file.StartCodeBlock();
     }
 
-    // this is a bit of a hack that helps create the proper indentation for the GIL to C99 step
-    private void RunWithPossibleIndentation(Action action)
-    {
-        settings.skipClassIndentation = false;
-        if (settings.skipClassIndentation)
-            file.DecreaseIndentLevel();
-
-        action();
-
-        if (settings.skipClassIndentation)
-            file.IncreaseIndentLevel();
-    }
-
     private void GenerateInner()
     {
-        RunWithPossibleIndentation(() =>
+        enumBuilder.OutputEventIdCode(file);
+        file.AppendLine();
+        enumBuilder.OutputStateIdCode(file);
+        file.AppendLine();
+
+        enumBuilder.OutputResultIdCode(file);
+        file.AppendLine();
+
+        GenerateEventContextClass();
+
+        foreach (var h in Sm.historyStates)
         {
-            enumBuilder.OutputEventIdCode(file);
+            enumBuilder.OutputHistoryIdCode(file, h);
             file.AppendLine();
-            enumBuilder.OutputStateIdCode(file);
-            file.AppendLine();
+        }
 
-            enumBuilder.OutputResultIdCode(file);
-            file.AppendLine();
-
-            GenerateEventContextClass();
-
-            foreach (var h in Sm.historyStates)
-            {
-                enumBuilder.OutputHistoryIdCode(file, h);
-                file.AppendLine();
-            }
-
-            file.AppendLine($"// event handler type");
-            file.AppendLine($"public delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
-            file.AppendLine();
-        });
+        file.AppendLine($"// event handler type");
+        file.AppendLine($"public delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
+        file.AppendLine();
 
         pseudoStateHandlerBuilder.output = file;
         pseudoStateHandlerBuilder.mangler = mangler;
@@ -120,18 +104,15 @@ public class AlgoBalanced1 : IGilAlgo
 
         OutputStructDefinition();
 
-        RunWithPossibleIndentation(() =>
-        {
-            OutputFuncCtor();
+        OutputFuncCtor();
 
-            OutputFuncStart();
-            OutputFuncDispatchEvent();
+        OutputFuncStart();
+        OutputFuncDispatchEvent();
 
-            OutputExitUpToFunction();
+        OutputExitUpToFunction();
 
-            OutputTriggerHandlers();
-            MaybeOutputToStringFunctions();
-        });
+        OutputTriggerHandlers();
+        MaybeOutputToStringFunctions();
     }
 
     private void GenerateEventContextClass()
@@ -184,25 +165,22 @@ public class AlgoBalanced1 : IGilAlgo
 
         if (IsVarsStructNeeded())
         {
-            RunWithPossibleIndentation(() =>
+            file.AppendLine();
+            file.AppendLine("// State machine variables. Can be used for inputs, outputs, user variables...");
+            file.Append("public class Vars");
+            file.StartCodeBlock();
             {
-                file.AppendLine();
-                file.AppendLine("// State machine variables. Can be used for inputs, outputs, user variables...");
-                file.Append("public class Vars");
-                file.StartCodeBlock();
+                foreach (var line in StringUtils.SplitIntoLinesOrEmpty(Sm.variables.Trim()))
                 {
-                    foreach (var line in StringUtils.SplitIntoLinesOrEmpty(Sm.variables.Trim()))
-                    {
-                        file.AppendLine("public " + line);
-                    }
-
-                    foreach (var line in StringUtils.SplitIntoLinesOrEmpty(renderConfig.VariableDeclarations.Trim()))
-                    {
-                        file.AppendLine(PostProcessor.echoLineMarker + line);
-                    }
+                    file.AppendLine("public " + line);
                 }
-                file.FinishCodeBlock();
-            });
+
+                foreach (var line in StringUtils.SplitIntoLinesOrEmpty(renderConfig.VariableDeclarations.Trim()))
+                {
+                    file.AppendLine(PostProcessor.echoLineMarker + line);
+                }
+            }
+            file.FinishCodeBlock();
 
             file.AppendLine();
             file.AppendLine("// Variables. Can be used for inputs, outputs, user variables...");

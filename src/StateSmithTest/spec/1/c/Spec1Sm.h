@@ -16,9 +16,9 @@ typedef struct Spec1Sm_Vars Spec1Sm_Vars;
 typedef enum Spec1Sm_EventId Spec1Sm_EventId;
 typedef enum Spec1Sm_StateId Spec1Sm_StateId;
 typedef enum Spec1Sm_ResultId Spec1Sm_ResultId;
-    
-    // event handler type
-    typedef void (*Spec1Sm_Func)(Spec1Sm* sm);
+
+// event handler type
+typedef void (*Spec1Sm_Func)(Spec1Sm* sm);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // public Spec1Sm functions
@@ -44,41 +44,41 @@ char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id);
 // enumerations and constant numbers
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    typedef enum Spec1Sm_EventId
-    {
-        Spec1Sm_EventId_EV1 = 0,
-        Spec1Sm_EventId_EV2 = 1,
-    } Spec1Sm_EventId;
-    
-    enum
+typedef enum Spec1Sm_EventId
+{
+    Spec1Sm_EventId_EV1 = 0,
+    Spec1Sm_EventId_EV2 = 1,
+} Spec1Sm_EventId;
+
+enum
 {
     Spec1Sm_EventIdCount = 2
 };
-    
-    typedef enum Spec1Sm_StateId
-    {
-        Spec1Sm_StateId_ROOT = 0,
-        Spec1Sm_StateId_S = 1,
-        Spec1Sm_StateId_S1 = 2,
-        Spec1Sm_StateId_S11 = 3,
-        Spec1Sm_StateId_T1 = 4,
-        Spec1Sm_StateId_T11 = 5,
-        Spec1Sm_StateId_T111 = 6,
-    } Spec1Sm_StateId;
-    
-    enum
+
+typedef enum Spec1Sm_StateId
+{
+    Spec1Sm_StateId_ROOT = 0,
+    Spec1Sm_StateId_S = 1,
+    Spec1Sm_StateId_S1 = 2,
+    Spec1Sm_StateId_S11 = 3,
+    Spec1Sm_StateId_T1 = 4,
+    Spec1Sm_StateId_T11 = 5,
+    Spec1Sm_StateId_T111 = 6,
+} Spec1Sm_StateId;
+
+enum
 {
     Spec1Sm_StateIdCount = 7
 };
-    
-    typedef enum Spec1Sm_ResultId
-    {
-        Spec1Sm_ResultId_CONSUMED = 0, // dispatched event was consumed.
-        Spec1Sm_ResultId_ACTIVE = 1,   // dispatched event still active (not consumed).
-        Spec1Sm_ResultId_INVALID = 2   // event to be dispatched is unknown and was ignored.
-    } Spec1Sm_ResultId;
-    
-    enum
+
+typedef enum Spec1Sm_ResultId
+{
+    Spec1Sm_ResultId_CONSUMED = 0, // dispatched event was consumed.
+    Spec1Sm_ResultId_ACTIVE = 1,   // dispatched event still active (not consumed).
+    Spec1Sm_ResultId_INVALID = 2   // event to be dispatched is unknown and was ignored.
+} Spec1Sm_ResultId;
+
+enum
 {
     Spec1Sm_ResultIdCount = 3
 };
@@ -89,33 +89,33 @@ char const * Spec1Sm_event_id_to_string(Spec1Sm_EventId id);
 
 // State machine variables. Can be used for inputs, outputs, user variables...
 struct Spec1Sm_Vars
-    {
-        uint8_t count;
-    };
+{
+    uint8_t count;
+};
 
 struct Spec1Sm_EventContext
-    {
-        Spec1Sm_EventId id;
-        Spec1Sm_Func nextHandler; // Users should ignore this field. Used by state machine.
-        Spec1Sm_ResultId resultId;
-    };
+{
+Spec1Sm_EventId id;
+Spec1Sm_Func nextHandler; // Users should ignore this field. Used by state machine.
+Spec1Sm_ResultId resultId;
+};
 
 // Generated state machine
 struct Spec1Sm
 {
-    // Used internally by state machine. Feel free to inspect, but don't modify.
-    Spec1Sm_StateId state_id;
-    
-    // Used internally by state machine. Don't modify.
-    Spec1Sm_Func ancestor_event_handler;
-    
-    // Used internally by state machine. Don't modify.
-    Spec1Sm_Func current_event_handlers[Spec1Sm_EventIdCount];
-    
-    // Used internally by state machine. Don't modify.
-    Spec1Sm_Func current_state_exit_handler;
-    
-    // Variables. Can be used for inputs, outputs, user variables...
-    Spec1Sm_Vars vars;
+// Used internally by state machine. Feel free to inspect, but don't modify.
+Spec1Sm_StateId state_id;
+
+// Used internally by state machine. Don't modify.
+Spec1Sm_Func ancestor_event_handler;
+
+// Used internally by state machine. Don't modify.
+Spec1Sm_Func current_event_handlers[Spec1Sm_EventIdCount];
+
+// Used internally by state machine. Don't modify.
+Spec1Sm_Func current_state_exit_handler;
+
+// Variables. Can be used for inputs, outputs, user variables...
+Spec1Sm_Vars vars;
 };
 

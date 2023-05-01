@@ -1,12 +1,9 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using StateSmith.Input.Antlr4;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace StateSmith.Output.Gil;
 
@@ -15,12 +12,20 @@ public class GilFormatter : CSharpSyntaxWalker
     public bool deIndentInnerClass = true;
     public bool deIndentMethods = true;
     public StringBuilder sb = new();
-    Stack<string> deIndentStack = new();
-    bool atStartOfLine = false;
+    private readonly Stack<string> deIndentStack = new();
+    private bool atStartOfLine = false;
 
     public GilFormatter() : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         deIndentStack.Push("");
+    }
+
+    public static string Format(string input)
+    {
+        var root = CSharpSyntaxTree.ParseText(input).GetCompilationUnitRoot();
+        var formatter = new GilFormatter();
+        formatter.Visit(root);
+        return formatter.sb.ToString();
     }
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax cls)

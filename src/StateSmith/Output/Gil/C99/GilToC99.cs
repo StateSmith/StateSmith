@@ -33,6 +33,8 @@ public class GilToC99 : IGilTranspiler
 
         //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
 
+        programText = GilFormatter.Format(programText); // de-indent
+
         GilTranspilerHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
         C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfig, renderConfigC, cCustomizer);
