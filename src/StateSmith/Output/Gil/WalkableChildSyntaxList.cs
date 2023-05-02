@@ -104,6 +104,16 @@ public class WalkableChildSyntaxList
             throw new ArgumentException("Failed to find syntaxToken to remove " + syntaxToken);
     }
 
+    public void Replace(SyntaxToken toFind, SyntaxToken replacement)
+    {
+        int index = nodeOrTokenList.IndexOf(toFind);
+        if (index == -1)
+            throw new ArgumentException("Failed to find syntaxToken to replace " + replacement);
+
+        nodeOrTokenList.Remove(toFind);
+        nodeOrTokenList.Insert(index, replacement);
+    }
+
     public void VisitRest()
     {
         while (index < nodeOrTokenList.Count)

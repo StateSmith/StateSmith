@@ -218,7 +218,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         foreach (var kid in kids)
         {
             Visit(kid);
-            sb.Append(");\n\n");
+            sb.Append(";\n\n");
         }
         renderingPrototypes = false;
     }
@@ -251,8 +251,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
 
-        OutputDesiredFunctionLeadingTrivia(node);
-        
+        if (!renderingPrototypes)
+            VisitLeadingTrivia(node); // this will output any unattached comment sections
+        else
+            OutputAttachedCommentTrivia(node);
+
         sb.Append($"void {GetCName(symbol)}");
 
         VisitParameterList(node.ParameterList);
@@ -272,16 +275,15 @@ public class C99GenVisitor : CSharpSyntaxWalker
         sb = node.IsPublic() ? publicSb : privateSb;
 
         if (transpilerHelper.IsGilNoEmit(node))
-        {
             return;
-        }
 
-        OutputDesiredFunctionLeadingTrivia(node);
+        if (!renderingPrototypes)
+            VisitLeadingTrivia(node); // this will output any unattached comment sections
+        else
+            OutputAttachedCommentTrivia(node);
 
         if (!node.IsPublic())
-        {
             sb.Append("static ");
-        }
 
         Visit(node.ReturnType);
         VisitToken(node.Identifier);
@@ -294,9 +296,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
     public override void VisitBlock(BlockSyntax? node)
     {
         if (node == null) return;
-
-        if (renderingPrototypes)
-            return;
 
         base.VisitBlock(node);
     }
@@ -317,8 +316,10 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
         var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
 
+        // If rendering prototypes, we don't want to output closing parenthesis's trailing trivia which is likely an end of line.
+        // That would result in weird output like `void some_func()\n;`.
         if (renderingPrototypes)
-            list.Remove(node.CloseParenToken);
+            list.Replace(node.CloseParenToken, replacement: node.CloseParenToken.WithTrailingTrivia());
 
         if (symbol?.IsStatic == false)
         {
@@ -779,22 +780,6 @@ public class C99GenVisitor : CSharpSyntaxWalker
         foreach (var trivia in syntaxTrivias)
         {
             VisitTrivia(trivia);
-        }
-    }
-
-    /// <summary>
-    /// Either outputs all leading trivia or just attached comment trivia if rendering prototypes.
-    /// </summary>
-    /// <param name="node"></param>
-    private void OutputDesiredFunctionLeadingTrivia(SyntaxNode node)
-    {
-        if (!renderingPrototypes)
-        {
-            VisitLeadingTrivia(node);
-        }
-        else
-        {
-            OutputAttachedCommentTrivia(node);
         }
     }
 
