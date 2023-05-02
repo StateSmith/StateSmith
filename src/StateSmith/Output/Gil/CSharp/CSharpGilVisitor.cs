@@ -174,7 +174,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
-        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
+        if (transpilerHelper.HandleSpecialGilClasses(node)) return;
 
         var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
 

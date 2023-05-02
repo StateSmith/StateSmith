@@ -5,11 +5,77 @@ using Xunit;
 using System;
 using FluentAssertions;
 using StateSmith.Output;
+using Microsoft.CodeAnalysis.CSharp;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
 
 namespace StateSmithTest.Output.Gil;
 
 public class GilHelperTests
 {
+    [Fact]
+    public void GetAttachedCommentTrivia()
+    {
+        const string code = """
+        // unattached comment
+
+        // attached comment
+        public class SomeClass {
+        }
+        """;
+
+        const string Expected = """
+            // attached comment
+
+            """;
+
+        TestAttachedComment(code, Expected);
+    }
+
+    [Fact]
+    public void GetAttachedCommentTrivia_KeepsLeadingWhiteSpace()
+    {
+        const string code = """
+        // unattached comment
+
+        // attached comment
+            // attached comment 2
+        public class SomeClass {
+        }
+        """;
+
+        const string Expected = """
+            // attached comment
+                // attached comment 2
+            
+            """;
+
+        TestAttachedComment(code, Expected);
+    }
+
+    private static void TestAttachedComment(string code, string Expected)
+    {
+        var tree = GilTranspilerHelper.ParseToSyntaxTree(code);
+        var cls = tree.GetCompilationUnitRoot().DescendantNodes().OfType<ClassDeclarationSyntax>().Single();
+
+        var triviaList = GilTranspilerHelper.GetAttachedCommentTrivia(cls);
+
+        ToString(triviaList).ShouldBeShowDiff(Expected);
+    }
+
+    private static string ToString(List<SyntaxTrivia> triviaList)
+    {
+        string s;
+        StringBuilder sb = new();
+        foreach (var t in triviaList)
+        {
+            sb.Append(t.ToString());
+        }
+        s = sb.ToString();
+        return s;
+    }
+
     [Fact]
     public void GilHelperCompile()
     {

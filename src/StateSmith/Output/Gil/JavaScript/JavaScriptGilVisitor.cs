@@ -70,7 +70,7 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
 
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
-        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
+        if (transpilerHelper.HandleSpecialGilClasses(node)) return;
 
         var kidsList = new WalkableChildSyntaxList(this, node);
 

@@ -45,7 +45,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         this.customizer = customizer;
 
         transpilerHelper = new(this, model);
-        allClasses = model.SyntaxTree.GetRoot().DescendantNodes().OfType<ClassDeclarationSyntax>().Where(c => !transpilerHelper.HandleSpecialGilEmitClasses(c));
+        allClasses = model.SyntaxTree.GetRoot().DescendantNodes().OfType<ClassDeclarationSyntax>().Where(c => !transpilerHelper.HandleSpecialGilClasses(c));
         allEnums = model.SyntaxTree.GetRoot().DescendantNodes().OfType<EnumDeclarationSyntax>();
         allDelegates = model.SyntaxTree.GetRoot().DescendantNodes().OfType<DelegateDeclarationSyntax>();
         sb = hFileSb;
@@ -251,7 +251,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
     {
         var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
 
-        OutputFunctionLeadingTrivia(node);
+        OutputDesiredFunctionLeadingTrivia(node);
         
         sb.Append($"void {GetCName(symbol)}");
 
@@ -276,7 +276,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
             return;
         }
 
-        OutputFunctionLeadingTrivia(node);
+        OutputDesiredFunctionLeadingTrivia(node);
 
         if (!node.IsPublic())
         {
@@ -782,7 +782,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
         }
     }
 
-    private void OutputFunctionLeadingTrivia(SyntaxNode node)
+    /// <summary>
+    /// Either outputs all leading trivia or just attached comment trivia if rendering prototypes.
+    /// </summary>
+    /// <param name="node"></param>
+    private void OutputDesiredFunctionLeadingTrivia(SyntaxNode node)
     {
         if (!renderingPrototypes)
         {
@@ -806,32 +810,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     private void OutputAttachedCommentTrivia(SyntaxNode node)
     {
-        // Only output attached comments. If we find 2 or more end of line trivia without a comment trivia,
-        // clear any stored trivia.
-        List<SyntaxTrivia> toOutput = new();
-
-        int endOfLineCount = 0;
-        foreach (var t in node.GetLeadingTrivia())
-        {
-            bool isComment = t.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                          || t.IsKind(SyntaxKind.MultiLineCommentTrivia); // can also look at others like SingleLineDocumentationCommentTrivia
-
-            if (t.IsKind(SyntaxKind.EndOfLineTrivia))
-            {
-                endOfLineCount++;
-                if (endOfLineCount > 1)
-                    toOutput.Clear();
-                else if (toOutput.Any()) // append end of line if we already had a comment stored
-                    toOutput.Add(t);
-            }
-            else if (isComment)
-            {
-                endOfLineCount = 0;
-                toOutput.Add(t);
-            }
-        }
-
+        List<SyntaxTrivia> toOutput = GilTranspilerHelper.GetAttachedCommentTrivia(node);
         VisitTriviaList(toOutput);
     }
+
 
 }

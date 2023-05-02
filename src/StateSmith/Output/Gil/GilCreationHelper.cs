@@ -9,7 +9,7 @@ public class GilCreationHelper
     /// <summary>
     /// Helps prevent clashing with code to transpile.
     /// </summary>
-    public const string GilPrefix = "____GilNoEmit_";
+    public const string GilPrefix = "____GilSpecial_";
 
     /// <summary>
     /// The string passed to this function will be unescaped and then emitted without the transpiler getting to see it.
@@ -26,13 +26,13 @@ public class GilCreationHelper
     /// <summary>
     /// Gives any interested transpilers a chance to mark a variable as unused.
     /// </summary>
-    public const string GilUnusedVarFuncName = GilPrefix + "UnusedVar";
+    internal const string GilUnusedVarFuncName = GilPrefix + "UnusedVar";
 
     /// <summary>
     /// Allows us to output a GIL comment at the top of the file for the transpiler to handle.
     /// This is not the same as the RenderConfig FileTop. Transpilers output that directly.
     /// </summary>
-    public const string GilFileTopClassName = GilPrefix + "FileTop";
+    private const string GilFileTopClassName = GilPrefix + "FileTop";
 
     /// <summary>
     /// `$gil(code...)`
@@ -58,6 +58,11 @@ public class GilCreationHelper
     {
         file.AppendLine(gilCommentCode);
         file.AppendLine($"public class {GilFileTopClassName} {{ }}");
+    }
+
+    public static bool IsFileTopCommentClass(string name)
+    {
+        return name == GilFileTopClassName;
     }
 
     /// <summary>

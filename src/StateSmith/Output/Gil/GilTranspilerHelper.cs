@@ -49,11 +49,23 @@ public class GilTranspilerHelper
         return IsGilNoEmit(node.Identifier.ValueText);
     }
 
-    public static void Compile(string gilCode, out CompilationUnitSyntax root, out SemanticModel model)
+    /// <summary>
+    /// You'll probably want to get the compilation unit root with `tree.GetCompilationUnitRoot()`.
+    /// </summary>
+    /// <param name="gilCode"></param>
+    /// <returns></returns>
+    public static SyntaxTree ParseToSyntaxTree(string gilCode)
     {
         SyntaxTree tree = CSharpSyntaxTree.ParseText(gilCode);
+        ThrowAnyDiagnosticError(tree.GetDiagnostics(), gilCode);
+        return tree;
+    }
+
+    public static void Compile(string gilCode, out CompilationUnitSyntax root, out SemanticModel model)
+    {
+        SyntaxTree tree = ParseToSyntaxTree(gilCode);
         root = tree.GetCompilationUnitRoot();
-        ThrowOnError(tree.GetDiagnostics(), gilCode);
+        ThrowAnyDiagnosticError(tree.GetDiagnostics(), gilCode);
 
         var compilation = CSharpCompilation.Create("GilCompilation")
             .AddReferences(MetadataReference.CreateFromFile(
@@ -61,27 +73,27 @@ public class GilTranspilerHelper
             .AddSyntaxTrees(tree);
 
         model = compilation.GetSemanticModel(tree);
-        ThrowOnError(model.GetDiagnostics(), gilCode);
+        ThrowAnyDiagnosticError(model.GetDiagnostics(), gilCode);
+    }
 
-        static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText)
+    internal static void ThrowAnyDiagnosticError(IEnumerable<Diagnostic> enumerable, string programText)
+    {
+        var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
+
+        var message = "";
+
+        foreach (var error in errors)
         {
-            var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
+            message += error.ToString() + "\n";
+        }
 
-            var message = "";
-
-            foreach (var error in errors)
-            {
-                message += error.ToString() + "\n";
-            }
-
-            if (message.Length > 0)
-            {
-                throw new TranspilerException(message, programText);
-            }
+        if (message.Length > 0)
+        {
+            throw new TranspilerException(message, programText);
         }
     }
 
-    public bool HandleSpecialGilEmitClasses(ClassDeclarationSyntax classDeclarationSyntax)
+    public bool HandleSpecialGilClasses(ClassDeclarationSyntax classDeclarationSyntax)
     {
         if (IsGilFileTopClass(classDeclarationSyntax))
         {
@@ -93,18 +105,18 @@ public class GilTranspilerHelper
 
     public static bool IsGilFileTopClass(ClassDeclarationSyntax classDeclarationSyntax)
     {
-        return classDeclarationSyntax.Identifier.Text == GilCreationHelper.GilFileTopClassName;
+        return GilCreationHelper.IsFileTopCommentClass(classDeclarationSyntax.Identifier.Text);
     }
 
     public bool HandleGilSpecialInvocations(InvocationExpressionSyntax node, StringBuilder sb)
     {
-        bool gilEmitMethodFoundAndHandled = false;
+        bool gilMethodFoundAndHandled = false;
 
         if (node.Expression is IdentifierNameSyntax ins)
         {
             if (ins.Identifier.Text == GilCreationHelper.GilEchoStringBoolReturnFuncName)
             {
-                gilEmitMethodFoundAndHandled = true;
+                gilMethodFoundAndHandled = true;
                 ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
                 var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
                 unescaped = unescaped[1..^1]; // range operator
@@ -112,7 +124,7 @@ public class GilTranspilerHelper
             }
             else if (ins.Identifier.Text == GilCreationHelper.GilVisitVarArgsBoolReturnFuncName)
             {
-                gilEmitMethodFoundAndHandled = true;
+                gilMethodFoundAndHandled = true;
                 foreach (var arg in node.ArgumentList.Arguments)
                 {
                     this.transpilerWalker.Visit(arg);
@@ -120,7 +132,7 @@ public class GilTranspilerHelper
             }
         }
 
-        return gilEmitMethodFoundAndHandled;
+        return gilMethodFoundAndHandled;
     }
 
     public bool HandleGilUnusedVarSpecialInvocation(InvocationExpressionSyntax node, Action<ArgumentSyntax> codeBuilder)
@@ -236,5 +248,51 @@ public class GilTranspilerHelper
         }
 
         return false;
+    }
+
+    /// <summary>
+    /// Returns attached comment trivia and possible trailing end of line trivia.
+    /// Unattached comments have a full blank line trailing them:
+    /// <code>
+    /// // unattached comment
+    /// 
+    /// // attached comment
+    /// void some_function()
+    /// </code>
+    /// </summary>
+    /// <param name="node"></param>
+    /// <returns></returns>
+    public static List<SyntaxTrivia> GetAttachedCommentTrivia(SyntaxNode node)
+    {
+        // Only output attached comments. If we find 2 or more end of line trivia without a comment trivia,
+        // clear any stored trivia.
+        List<SyntaxTrivia> toOutput = new();
+
+        int endOfLineCount = 0;
+        foreach (var t in node.GetLeadingTrivia())
+        {
+            bool isComment = t.IsKind(SyntaxKind.SingleLineCommentTrivia)
+                          || t.IsKind(SyntaxKind.MultiLineCommentTrivia); // can also look at others like SingleLineDocumentationCommentTrivia
+
+            if (t.IsKind(SyntaxKind.EndOfLineTrivia))
+            {
+                endOfLineCount++;
+                if (endOfLineCount > 1)
+                    toOutput.Clear();
+                else if (toOutput.Any()) // append end of line if we already had a comment stored
+                    toOutput.Add(t);
+            }
+            else if (isComment)
+            {
+                endOfLineCount = 0;
+                toOutput.Add(t);
+            }
+            else
+            {
+                toOutput.Add(t);
+            }
+        }
+
+        return toOutput;
     }
 }
