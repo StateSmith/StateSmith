@@ -149,6 +149,32 @@ public class GilFormatterTests
     }
 
     [Fact]
+    public void Comment()
+    {
+        var input = """
+            public class Class1 {
+                public void SomeMethod() {
+                    int x = 55;
+                    /* line1
+                    line2 */
+                }
+            }
+            """;
+
+        const string Expected = """
+            public class Class1 {
+            public void SomeMethod() {
+                int x = 55;
+                /* line1
+                line2 */
+            }
+            }
+            """;
+
+        Test(input, Expected);
+    }
+
+    [Fact]
     public void Constructor()
     {
         var input = """

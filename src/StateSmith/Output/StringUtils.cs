@@ -1,5 +1,8 @@
+#nullable enable
+
+using Microsoft.CodeAnalysis.CSharp;
 using System;
-using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace StateSmith.Output;
@@ -34,6 +37,60 @@ public class StringUtils
 
         return output;
     }
+
+    public static void RemoveSpecificIndentSb(StringBuilder sb, string input, string indent)
+    {
+        bool atStartOfLine = true;
+        for (int i = 0; i < input.Length; i++)
+        {
+            bool append = true;
+
+            char c = input[i];
+            if (c == '\n' || c == '\r')
+            {
+                atStartOfLine = true;
+            }
+            else
+            {
+                if (atStartOfLine)
+                {
+                    if (MatchesAtOffset(input, toFind: indent, i))
+                    {
+                        i += indent.Length - 1;  // -1 because `i++`
+                        append = false;
+                    }
+                }
+                atStartOfLine = false;
+            }
+
+            if (append)
+                sb.Append(c);
+        }
+    }
+
+    internal static bool MatchesAtOffset(string a, string toFind, int aOffset)
+    {
+        if (aOffset < 0 || aOffset >= a.Length)
+        {
+            throw new ArgumentOutOfRangeException(nameof(aOffset), "Invalid starting index");
+        }
+
+        if ((a.Length - aOffset) < toFind.Length)
+        {
+            return false; // toFind cannot fit within the remaining length of `a` starting from aOffset
+        }
+
+        for (int i = 0; i < toFind.Length; i++)
+        {
+            if (a[aOffset + i] != toFind[i])
+            {
+                return false; // mismatch found
+            }
+        }
+
+        return true; // no mismatch found, strings match
+    }
+
 
     public static string[] SplitIntoLinesOrEmpty(string str)
     {
@@ -99,9 +156,7 @@ public class StringUtils
 
     public static string EscapeCharsForString(string str)
     {
-        if (str == null) return null;
-
-        str = StringUtils.ReplaceNewLineChars(str, "\\n");
+        str = ReplaceNewLineChars(str, "\\n");
         str = Regex.Replace(str, @"(\\|"")", "\\$1");
         return str;
     }

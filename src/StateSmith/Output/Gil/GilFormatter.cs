@@ -86,19 +86,30 @@ public class GilFormatter : CSharpSyntaxWalker
         if (trivia.IsKind(SyntaxKind.EndOfLineTrivia))
         {
             atStartOfLine = true;
+            sb.Append(toAppend);
         }
         else
         {
-            if (atStartOfLine && trivia.IsKind(SyntaxKind.WhitespaceTrivia))
+            var deIndent = deIndentStack.Peek();
+
+            if (trivia.IsKind(SyntaxKind.MultiLineCommentTrivia))
             {
-                var deIndent = deIndentStack.Peek();
+                StringUtils.RemoveSpecificIndentSb(sb, toAppend, indent: deIndent);
+            }
+            else if (atStartOfLine && trivia.IsKind(SyntaxKind.WhitespaceTrivia))
+            {
                 if (toAppend.StartsWith(deIndent))
                     toAppend = toAppend.Substring(deIndent.Length);
+
+                sb.Append(toAppend);
+            }
+            else
+            {
+                sb.Append(toAppend);
             }
             atStartOfLine = false;
         }
 
-        sb.Append(toAppend);
     }
 
     public void MaybeDeIndent(bool shouldDeIndent, SyntaxNode node, Action a)
