@@ -1,9 +1,7 @@
-using StateSmith.Runner;
-using System;
+#nullable enable
+
 using System.Collections.Generic;
 using System.Linq;
-
-#nullable enable
 
 namespace StateSmith.Input.DrawIo;
 
@@ -92,7 +90,7 @@ public class MxCellsToSmDiagramConverter
 
         if (IsInnerHandlerText(cell))
         {
-            AddInnerEventHanlderTextToParent(cell);
+            AddInnerHanlderTextToParent(cell);
         }
         else
         {
@@ -110,7 +108,10 @@ public class MxCellsToSmDiagramConverter
         }
     }
 
-    private void AddInnerEventHanlderTextToParent(MxCell cell)
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/191
+    /// </summary>
+    private void AddInnerHanlderTextToParent(MxCell cell)
     {
         string label = (cell.label ?? "").Trim();
 
@@ -121,7 +122,7 @@ public class MxCellsToSmDiagramConverter
 
         if (cell.parent == null)
         {
-            throw new DrawIoException("InnerEventHandlerHandlerText found with a null parent");
+            throw new DrawIoException("InnerHandlerText found with a null parent. https://github.com/StateSmith/StateSmith/issues/191 .");
         }
         var parent = nodeMap[cell.parent];
         parent.label += "\n" + label;
