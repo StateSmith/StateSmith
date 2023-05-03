@@ -80,8 +80,8 @@ public class MxCellParserTests
         smRoot.primaryBounds.Should().BeEquivalentTo(new MxBounds { x = 20, y = 30, width = 200, height = 90 });
         smRoot.alternateBounds.Should().BeEquivalentTo(new MxBounds { x = 20, y = 30, width = 430.7, height = 510 });
 
-        smRoot.style.Should().Be("swimlane;fontStyle=1;align=left;spacingLeft=17;");
-        smRoot.styleMap.Should().BeEquivalentTo(new Dictionary<string,string> {
+        smRoot.styleString.Should().Be("swimlane;fontStyle=1;align=left;spacingLeft=17;");
+        smRoot.StyleMap.Should().BeEquivalentTo(new Dictionary<string,string> {
             {"swimlane", ""},
             {"fontStyle", "1"},
             {"align", "left"},
@@ -172,7 +172,7 @@ public class MxCellParserTests
     private static MxCell GetHtmlCell()
     {
         MxCell cell = new("some_id");
-        cell.styleMap[MxCellSanitizer.StyleHtml] = "1";
+        cell.SetStyle(MxCellSanitizer.StyleHtml, "1");
         return cell;
     }
 }

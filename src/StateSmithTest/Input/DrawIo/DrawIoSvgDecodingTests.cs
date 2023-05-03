@@ -4,7 +4,7 @@ using Xunit;
 using StateSmith.Input.DrawIo;
 using FluentAssertions;
 
-namespace StateSmithTest.DrawIo;
+namespace StateSmithTest.Input.DrawIo;
 
 public class DrawIoSvgDecodingTests
 {

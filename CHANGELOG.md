@@ -24,6 +24,11 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
 
+## [wip]
+### Changed (minor)
+- Relaxed and improved InnerHandlerText detection. Probably won't be noticed by users.
+  - https://github.com/StateSmith/StateSmith/issues/191
+
 ---
 
 # Releases

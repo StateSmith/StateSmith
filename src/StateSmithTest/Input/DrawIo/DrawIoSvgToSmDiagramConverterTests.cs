@@ -6,7 +6,7 @@ using FluentAssertions;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 
-namespace StateSmithTest.DrawIo;
+namespace StateSmithTest.Input.DrawIo;
 
 public class DrawIoSvgToSmDiagramConverterTests
 {
@@ -23,7 +23,7 @@ public class DrawIoSvgToSmDiagramConverterTests
         smDiagramRoot.label.Should().Be("$STATEMACHINE : Design1Sm_svg");
         smDiagramRoot.children.Count.Should().Be(4);
         smDiagramRoot.id.Should().Be("27");
-        
+
         int i;
 
         i = 1;

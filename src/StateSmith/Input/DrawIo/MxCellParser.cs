@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 #nullable enable
 
@@ -100,13 +101,13 @@ public class MxCellParser
         mxCells.Add(mxCell.id, mxCell);
     }
 
-    private void SetStyle(MxCell mxCell)
+    internal void SetStyle(MxCell mxCell)
     {
-        mxCell.style = MaybeGetAttribute("style");
-        if (mxCell.style == null)
+        mxCell.styleString = MaybeGetAttribute("style");
+        if (mxCell.styleString == null)
             return;
 
-        var matches = Regex.Matches(mxCell.style, @"(?x)
+        var matches = Regex.Matches(mxCell.styleString, @"(?x)
             (\w+) #
             \s*
             (?:
@@ -118,9 +119,9 @@ public class MxCellParser
             (?: ;|$ )
         ");
 
-        foreach (Match item in matches)
+        foreach (Match item in matches.Cast<Match>())
         {
-            mxCell.styleMap.Add(item.Groups[1].Value, item.Groups[2].Value);
+            mxCell.SetStyle(item.Groups[1].Value, item.Groups[2].Value);
         }
     }
 

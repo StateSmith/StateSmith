@@ -1,4 +1,4 @@
-﻿using StateSmith.Runner;
+using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,7 +90,7 @@ public class MxCellsToSmDiagramConverter
             return;
         }
 
-        if (IsInnerEventHandlerHandlerText(cell))
+        if (IsInnerHandlerText(cell))
         {
             AddInnerEventHanlderTextToParent(cell);
         }
@@ -159,7 +159,7 @@ public class MxCellsToSmDiagramConverter
             return;
         }
 
-        if (IsInnerEventHandlerHandlerText(cell))
+        if (IsInnerHandlerText(cell))
         {
             return;
         }
@@ -175,21 +175,19 @@ public class MxCellsToSmDiagramConverter
     /// <summary>
     /// Starting with draw.io plugin support, we allow an MxCell to have its event handlers specified in its label
     /// and also inside it.
+    /// https://github.com/StateSmith/StateSmith/issues/191
     /// </summary>
     /// <param name="cell"></param>
     /// <returns></returns>
-    private static bool IsInnerEventHandlerHandlerText(MxCell cell)
+    internal static bool IsInnerHandlerText(MxCell cell)
     {
-        if (cell.style == null)
+        if (cell.StyleMap.Count == 0)
             return false;
 
         var matches = cell.HasMatchingStyle("fillColor", "none") &&
-            cell.HasMatchingStyle("gradientColor", "none");
-            cell.HasMatchingStyle("strokeColor", "none");
-            cell.HasMatchingStyle("resizable", "0");
-            cell.HasMatchingStyle("movable", "0");
-            cell.HasMatchingStyle("deletable", "0");
-            cell.HasMatchingStyle("rotatable", "0");
+                      cell.HasMatchingStyle("gradientColor", "none") &&
+                      cell.HasMatchingStyle("strokeColor", "none") &&
+                      cell.HasShape() == false;
 
         return matches;
     }
