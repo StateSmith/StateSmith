@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +12,6 @@ using StateSmith.Input.DrawIo;
 using System.Diagnostics.CodeAnalysis;
 using StateSmith.Common;
 using StateSmith.Output.Algos.Balanced1;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 
@@ -212,5 +212,12 @@ public class InputSmBuilder
     {
         Sm = stateMachine;
         stateMachineProvider.SetStateMachine(Sm);
+    }
+
+    //------------------------------------------------------------------------
+
+    internal List<Vertex> GetRootVertices()
+    {
+        return diagramToSmConverter.GetRootVertices();
     }
 }

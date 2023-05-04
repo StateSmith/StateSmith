@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+using Antlr4.Runtime;
 using Antlr4.Runtime.Misc;
 using StateSmith.Common;
 using System;
@@ -63,7 +63,7 @@ namespace StateSmith.Input.PlantUML
             {
                 historyState = new DiagramNode
                 {
-                    label = SmGraph.DiagramToSmConverter.HistoryStateString,
+                    label = SmGraph.VertexParseStrings.HistoryStateString,
                     id = MakeId(historyStateContext)
                 };
                 nodeHistoryStateMap.Add(parentNode, historyState);
@@ -79,7 +79,7 @@ namespace StateSmith.Input.PlantUML
             {
                 initialState = new DiagramNode
                 {
-                    label = SmGraph.DiagramToSmConverter.InitialStateString,
+                    label = SmGraph.VertexParseStrings.InitialStateString,
                     id = MakeId(startEndContext)
                 };
                 nodeInitialStateMap.Add(currentNode, initialState);
@@ -142,7 +142,7 @@ namespace StateSmith.Input.PlantUML
                 label: label
             );
 
-            if (destination.label == SmGraph.DiagramToSmConverter.InitialStateString)
+            if (destination.label == SmGraph.VertexParseStrings.InitialStateString)
             {
                 ThrowValidationFailure("StateSmith doesn't support end states", context);
                 return;

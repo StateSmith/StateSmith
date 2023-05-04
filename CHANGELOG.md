@@ -25,6 +25,9 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ```
 
 ## [wip]
+### Added
+- draw.io - support note shapes. They look nice, are less verbose, and more user friendly.
+  - https://github.com/StateSmith/StateSmith/issues/192
 ### Changed (minor)
 - Relaxed and improved InnerHandlerText detection. Probably won't be noticed by users.
   - https://github.com/StateSmith/StateSmith/issues/191

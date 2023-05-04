@@ -1,5 +1,7 @@
 #nullable enable
 
+using StateSmith.SmGraph;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -170,7 +172,35 @@ public class MxCellsToSmDiagramConverter
             id = cell.id,
             label = cell.label ?? ""
         };
+
+        // https://github.com/StateSmith/StateSmith/issues/192
+        if (IsNoteShape(cell))
+        {
+            node.label = VertexParseStrings.Notes + "\n" + node.label;
+        }
+
         nodeMap.Add(node.id, node);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/192
+    /// </summary>
+    private static bool IsNoteShape(MxCell cell)
+    {
+        var shape = cell.GetStyleFor("shape");
+
+        if (shape == null)
+            return false;
+
+        switch (shape)
+        {
+            case "note":
+            case "note2":
+            case "mxgraph.mockup.text.stickyNote2":
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>

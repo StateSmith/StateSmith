@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using StateSmith.Input;
 using StateSmith.SmGraph.Visitors;
-using System.Text.RegularExpressions;
 using StateSmith.Common;
 
 #nullable enable
@@ -12,14 +11,8 @@ namespace StateSmith.SmGraph;
 
 public class DiagramToSmConverter : IDiagramVerticesProvider
 {
-    public const string RenderConfigString = "$RenderConfig";
-    public const string InitialStateString = "$initial_state";
-    public const string HistoryStateString = "$h";
-    public const string HistoryContinueString = "$hc";
-
     public List<Vertex> rootVertices = new();
 
-    private readonly List<string> eventNames = new();
     private readonly Dictionary<DiagramNode, Vertex> diagramVertexMap = new();
 
     public List<Vertex> GetRootVertices() => rootVertices;
@@ -192,19 +185,19 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
                     }
                     else
                     {
-                        if (string.Equals(stateNode.stateName, InitialStateString, StringComparison.OrdinalIgnoreCase))
+                        if (string.Equals(stateNode.stateName, VertexParseStrings.InitialStateString, StringComparison.OrdinalIgnoreCase))
                         {
                             thisVertex = new InitialState();
                         }
-                        else if (string.Equals(stateNode.stateName, HistoryStateString, StringComparison.OrdinalIgnoreCase))
+                        else if (string.Equals(stateNode.stateName, VertexParseStrings.HistoryStateString, StringComparison.OrdinalIgnoreCase))
                         {
                             thisVertex = new HistoryVertex();
                         }
-                        else if (string.Equals(stateNode.stateName, HistoryContinueString, StringComparison.OrdinalIgnoreCase))
+                        else if (string.Equals(stateNode.stateName, VertexParseStrings.HistoryContinueString, StringComparison.OrdinalIgnoreCase))
                         {
                             thisVertex = new HistoryContinueVertex();
                         }
-                        else if (string.Equals(stateNode.stateName, RenderConfigString, StringComparison.OrdinalIgnoreCase))
+                        else if (string.Equals(stateNode.stateName, VertexParseStrings.RenderConfigString, StringComparison.OrdinalIgnoreCase))
                         {
                             thisVertex = new RenderConfigVertex();
                         }
