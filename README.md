@@ -77,7 +77,7 @@ Thanks!
 <br>
 
 # Is StateSmith ready for use? 🧪
-> We use StateSmith in a fair number of production projects at my work. It's a been super helpful.
+> We use StateSmith in a fair number of production projects at my work. It's been super helpful.
 
 StateSmith is generating working code, and has good test (420+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
