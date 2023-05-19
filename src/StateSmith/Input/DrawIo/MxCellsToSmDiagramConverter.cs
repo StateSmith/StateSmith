@@ -1,9 +1,9 @@
-using StateSmith.Runner;
+#nullable enable
+
+using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-#nullable enable
 
 namespace StateSmith.Input.DrawIo;
 
@@ -92,7 +92,7 @@ public class MxCellsToSmDiagramConverter
 
         if (IsInnerHandlerText(cell))
         {
-            AddInnerEventHanlderTextToParent(cell);
+            AddInnerHanlderTextToParent(cell);
         }
         else
         {
@@ -110,7 +110,10 @@ public class MxCellsToSmDiagramConverter
         }
     }
 
-    private void AddInnerEventHanlderTextToParent(MxCell cell)
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/191
+    /// </summary>
+    private void AddInnerHanlderTextToParent(MxCell cell)
     {
         string label = (cell.label ?? "").Trim();
 
@@ -121,7 +124,7 @@ public class MxCellsToSmDiagramConverter
 
         if (cell.parent == null)
         {
-            throw new DrawIoException("InnerEventHandlerHandlerText found with a null parent");
+            throw new DrawIoException("InnerHandlerText found with a null parent. https://github.com/StateSmith/StateSmith/issues/191 .");
         }
         var parent = nodeMap[cell.parent];
         parent.label += "\n" + label;
@@ -169,7 +172,35 @@ public class MxCellsToSmDiagramConverter
             id = cell.id,
             label = cell.label ?? ""
         };
+
+        // https://github.com/StateSmith/StateSmith/issues/192
+        if (IsNoteShape(cell))
+        {
+            node.label = VertexParseStrings.Notes + "\n" + node.label;
+        }
+
         nodeMap.Add(node.id, node);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/192
+    /// </summary>
+    private static bool IsNoteShape(MxCell cell)
+    {
+        var shape = cell.GetStyleFor("shape");
+
+        if (shape == null)
+            return false;
+
+        switch (shape)
+        {
+            case "note":
+            case "note2":
+            case "mxgraph.mockup.text.stickyNote2":
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>

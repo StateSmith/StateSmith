@@ -1,5 +1,9 @@
 using FluentAssertions;
 using StateSmith.Input.DrawIo;
+using StateSmith.Output;
+using StateSmith.Runner;
+using StateSmith.SmGraph;
+using StateSmithTest.Output;
 using Xunit;
 
 namespace StateSmithTest.Input.DrawIo;
@@ -93,5 +97,34 @@ public class MxCellsToSmDiagramConverterTests
         mxCell.SetStyle("gradientColor", "none");
         mxCell.SetStyle("strokeColor", "none");
         return mxCell;
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/192
+    /// </summary>
+    [Fact]
+    public void Notes_IntegrationTest()
+    {
+        CapturingCodeFileWriter capturedFile = new();
+
+        SmRunner runner = new(diagramPath: "NotesTest.drawio");
+        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(capturedFile); // for unit testing
+        runner.Settings.propagateExceptions = true; // for unit testing
+        runner.Run();
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/192
+    /// </summary>
+    [Fact]
+    public void Notes_CheckVertices()
+    {
+        InputSmBuilder builder = new();
+        builder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + "NotesTest.drawio");
+        builder.FindSingleStateMachine();
+
+        var sm = builder.GetStateMachine();
+
+        sm.DescendantsOfType<NotesVertex>().Count.Should().Be(6);
     }
 }

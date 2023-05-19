@@ -3,3 +3,7 @@
 
 example-output/render2
 /.vs
+
+*.bkp
+
+*.dtmp

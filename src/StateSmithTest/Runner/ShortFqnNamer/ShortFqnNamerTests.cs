@@ -178,4 +178,34 @@ public class ShortFqnNamerTests
             map.GetState("G2").ShouldHaveChildrenAndUmlBehaviors("", "A__G2");
         }
     }
+
+    [Fact]
+    public void NestedClash1()
+    {
+        string relativeFilePath = "NestedClash1.drawio";
+        TestNestedClashX(relativeFilePath);
+    }
+
+    [Fact]
+    public void NestedClash2()
+    {
+        string relativeFilePath = "NestedClash2.drawio";
+        TestNestedClashX(relativeFilePath);
+    }
+
+    private static void TestNestedClashX(string relativeFilePath)
+    {
+        InputSmBuilder inputSmBuilder = new();
+        inputSmBuilder.ConvertDrawIoFileNodesToVertices(TestHelper.GetThisDir() + relativeFilePath);
+        inputSmBuilder.FinishRunning();
+
+        NamedVertexMap map = new(inputSmBuilder.GetStateMachine());
+        map.GetState("S1").ShouldHaveUmlBehaviors("EV1");
+        map.GetState("S1__S1").ShouldHaveUmlBehaviors("EV2");
+        map.GetState("S1__S1__S1").ShouldHaveUmlBehaviors("EV3");
+        map.GetState("S1__S2__S1").ShouldHaveUmlBehaviors("EV4");
+
+        map.GetState("S1__S1__S2").ShouldHaveUmlBehaviors("EV20");
+        map.GetState("S1__S2").ShouldHaveUmlBehaviors("EV21");
+    }
 }

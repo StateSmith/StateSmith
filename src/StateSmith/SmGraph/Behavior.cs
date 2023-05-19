@@ -1,13 +1,10 @@
+#nullable enable
+
 using StateSmith.Common;
-using StateSmith.SmGraph;
 using StateSmith.Output;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.RegularExpressions;
-
-#nullable enable
 
 namespace StateSmith.SmGraph
 {
@@ -264,6 +261,14 @@ namespace StateSmith.SmGraph
         {
             str = StringUtils.ReplaceNewLineChars(str.Trim(), @"\n");
             return str;
+        }
+
+        public static void RemoveBehaviorsAndUnlink(IEnumerable<Behavior> behaviors)
+        {
+            foreach (var behavior in behaviors)
+            {
+                behavior.OwningVertex.RemoveBehaviorAndUnlink(behavior);
+            }
         }
 
         public override string ToString()

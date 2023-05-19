@@ -25,7 +25,15 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ```
 
 ## [wip]
+### Fixed
+- Fix auto name conflict resolution when all conflicting are descendants.
+  - https://github.com/StateSmith/StateSmith/issues/198
+### Added
+- draw.io - support note shapes. They look nice, are less verbose, and more user friendly.
+  - https://github.com/StateSmith/StateSmith/issues/192
 ### Changed (minor)
+- Relaxed `$notes` validation. You can now have notes point to states and vice versa.
+  - https://github.com/StateSmith/StateSmith/issues/190
 - Relaxed and improved InnerHandlerText detection. Probably won't be noticed by users.
   - https://github.com/StateSmith/StateSmith/issues/191
 

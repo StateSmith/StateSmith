@@ -80,7 +80,7 @@ State1 -> State2 : EVENT2 [guard2] / tx_action();
         DiagramNode state1 = translator.Root.children[1];
         DiagramNode state2 = translator.Root.children[2];
 
-        initialState.label.Should().Be(DiagramToSmConverter.InitialStateString);
+        initialState.label.Should().Be(VertexParseStrings.InitialStateString);
         state1.label.Should().Be("State1\nenter / some_action();\nEVENT [guard] { action(); cout << Obj::cpp_rules(); x->v = 100 >> 2; }");
         state2.label.Should().Be("State2");
 

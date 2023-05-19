@@ -1,9 +1,10 @@
+#nullable enable
+
 using StateSmith.Common;
+using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-#nullable enable
 
 namespace StateSmith.SmGraph
 {
@@ -159,6 +160,11 @@ namespace StateSmith.SmGraph
             return str;
         }
 
+        public static bool IsContainedBy<T>(this T t, HashSet<T> set)
+        {
+            return set.Contains(t);
+        }
+
         public static IEnumerable<Behavior> GetBehaviorsWithTrigger(this Vertex vertex, string triggerName)
         {
             return TriggerHelper.GetBehaviorsWithTrigger(vertex, triggerName);
@@ -175,6 +181,34 @@ namespace StateSmith.SmGraph
             {
                 initialState = null;
                 return false;
+            }
+        }
+
+        public class VisitContext {
+            public bool ShouldStop = false;
+            public bool ShouldSkipChildren;
+
+            public void Stop() => ShouldStop = true;
+            public void SkipChildren() => ShouldSkipChildren = true;
+        }
+        public static void VisitRecursively(this Vertex vertex, Action<Vertex, VisitContext> action)
+        {
+            var context = new VisitContext();
+
+            action(vertex, context);
+
+            if (context.ShouldSkipChildren)
+            {
+                context.ShouldSkipChildren = false;
+                return;
+            }
+
+            foreach (var child in vertex.Children)
+            {
+                if (context.ShouldStop)
+                    return;
+
+                child.VisitRecursively(action);
             }
         }
 
