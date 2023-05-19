@@ -24,7 +24,7 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
 
-## [wip]
+## [0.9.4-alpha]
 ### Fixed
 - Fix auto name conflict resolution when all conflicting are descendants.
   - https://github.com/StateSmith/StateSmith/issues/198
