@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace StateSmith.SmGraph;
 
-public class RenderConfigVerticesProcessor : DummyVertexVisitor
+public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
 {
     readonly RenderConfigVars tempRenderConfigVars = new();
 

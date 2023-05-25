@@ -8,7 +8,7 @@ namespace StateSmith.SmGraph;
 /// Currently unused! See https://github.com/StateSmith/StateSmith/issues/67
 /// Assumes validation already done.
 /// </summary>
-public class InitialStateProcessor : DummyVertexVisitor
+public class InitialStateProcessor : RecursiveVertexVisitor
 {
     public static void Process(Vertex v)
     {
