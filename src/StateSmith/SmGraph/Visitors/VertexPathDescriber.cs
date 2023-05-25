@@ -7,7 +7,7 @@ namespace StateSmith.SmGraph.Visitors;
 
 public class VertexPathDescriber
 {
-    public static string Describe(Vertex vertex)
+    public static string Describe(Vertex? vertex)
     {
         if (vertex == null)
         {
@@ -32,7 +32,7 @@ public class VertexPathDescriber
         return stringBuilder.ToString();
     }
 
-    private static Stack<Vertex> GetReversedPathVertices(Vertex vertex)
+    private static Stack<Vertex> GetReversedPathVertices(Vertex? vertex)
     {
         Stack<Vertex> reversedVertices = new();
 
