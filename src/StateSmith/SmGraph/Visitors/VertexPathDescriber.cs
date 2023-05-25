@@ -1,47 +1,47 @@
-﻿using StateSmith.SmGraph;
+#nullable enable
+
 using System.Collections.Generic;
 using System.Text;
 
-namespace StateSmith.SmGraph.Visitors
+namespace StateSmith.SmGraph.Visitors;
+
+public class VertexPathDescriber
 {
-    public class VertexPathDescriber
+    public static string Describe(Vertex vertex)
     {
-        public static string Describe(Vertex vertex)
+        if (vertex == null)
         {
-            if (vertex == null)
-            {
-                return "";
-            }
-
-            Stack<Vertex> reversedVertices = GetReversedPathVertices(vertex);
-
-            StringBuilder stringBuilder = new StringBuilder();
-            ShortDescribingVisitor visitor = new ShortDescribingVisitor(stringBuilder);
-
-            string appender = "";
-
-            while (reversedVertices.Count > 0)
-            {
-                stringBuilder.Append(appender);
-                appender = ".";
-                vertex = reversedVertices.Pop();
-                vertex.Accept(visitor);
-            }
-
-            return stringBuilder.ToString();
+            return "";
         }
 
-        private static Stack<Vertex> GetReversedPathVertices(Vertex vertex)
+        Stack<Vertex> reversedVertices = GetReversedPathVertices(vertex);
+
+        StringBuilder stringBuilder = new();
+        ShortDescribingVisitor visitor = new(stringBuilder);
+
+        string appender = "";
+
+        while (reversedVertices.Count > 0)
         {
-            Stack<Vertex> reversedVertices = new Stack<Vertex>();
-
-            while (vertex != null)
-            {
-                reversedVertices.Push(vertex);
-                vertex = vertex.Parent;
-            }
-
-            return reversedVertices;
+            stringBuilder.Append(appender);
+            appender = ".";
+            vertex = reversedVertices.Pop();
+            vertex.Accept(visitor);
         }
+
+        return stringBuilder.ToString();
+    }
+
+    private static Stack<Vertex> GetReversedPathVertices(Vertex vertex)
+    {
+        Stack<Vertex> reversedVertices = new();
+
+        while (vertex != null)
+        {
+            reversedVertices.Push(vertex);
+            vertex = vertex.Parent;
+        }
+
+        return reversedVertices;
     }
 }
