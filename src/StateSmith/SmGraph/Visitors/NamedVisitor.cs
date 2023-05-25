@@ -1,6 +1,6 @@
 namespace StateSmith.SmGraph.Visitors;
 
-public class NamedVisitor : OnlyVertexVisitor
+public class NamedVisitor : VertexVisitor
 {
     public override void Visit(State v)
     {

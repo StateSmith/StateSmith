@@ -5,7 +5,7 @@ using StateSmith.SmGraph.Visitors;
 
 namespace StateSmith.SmGraph;
 
-public class SpecificVertexValidator : OnlyVertexVisitor
+public class SpecificVertexValidator : VertexVisitor
 {
     public override void Visit(InitialState initialState)
     {

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace StateSmith.SmGraph
 {
-    public class VertexValidator : OnlyVertexVisitor
+    public class VertexValidator : VertexVisitor
     {
         PseudoLoopDetector pseudoLoopDetector = new();
         Dictionary<string, NamedVertex> stateNames = new();

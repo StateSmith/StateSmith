@@ -2,7 +2,7 @@
 
 namespace StateSmith.SmGraph.Visitors;
 
-public class DummyVertexVisitor : OnlyVertexVisitor
+public class DummyVertexVisitor : VertexVisitor
 {
     public override void Visit(Vertex v) { VisitChildren(v); }
 

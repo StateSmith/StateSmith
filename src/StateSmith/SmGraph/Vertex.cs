@@ -89,7 +89,7 @@ public abstract class Vertex
         }
     }
 
-    public abstract void Accept(VertexVisitor visitor);
+    public abstract void Accept(IVertexVisitor visitor);
 
     internal void RemoveIncomingTransition(Behavior behavior)
     {

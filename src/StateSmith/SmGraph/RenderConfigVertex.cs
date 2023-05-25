@@ -5,7 +5,7 @@ namespace StateSmith.SmGraph;
 
 public class RenderConfigVertex : Vertex
 {
-    public override void Accept(VertexVisitor visitor)
+    public override void Accept(IVertexVisitor visitor)
     {
         visitor.Visit(this);
     }
