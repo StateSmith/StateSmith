@@ -9,7 +9,7 @@ namespace StateSmith.SmGraph
     {
         internal List<HistoryVertex> historyVertices = new();
 
-        public override void Accept(VertexVisitor visitor)
+        public override void Accept(IVertexVisitor visitor)
         {
             visitor.Visit(this);
         }

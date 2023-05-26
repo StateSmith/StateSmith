@@ -39,16 +39,16 @@ void Ex2_start(Ex2* sm)
 {
     ROOT_enter(sm);
     // ROOT behavior
-    // uml: TransitionTo(ROOT.InitialState)
+    // uml: TransitionTo(ROOT.<InitialState>)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: ``.
         
-        // Step 3: Enter/move towards transition target `ROOT.InitialState`.
-        // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
+        // Step 3: Enter/move towards transition target `ROOT.<InitialState>`.
+        // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
         
-        // ROOT.InitialState behavior
+        // ROOT.<InitialState> behavior
         // uml: TransitionTo(STATE_1)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -62,7 +62,7 @@ void Ex2_start(Ex2* sm)
             sm->state_id = Ex2_StateId_STATE_1;
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             return;
-        } // end of behavior for ROOT.InitialState
+        } // end of behavior for ROOT.<InitialState>
     } // end of behavior for ROOT
 }
 

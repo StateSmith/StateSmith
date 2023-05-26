@@ -52,11 +52,11 @@ public class Spec1CTests
             Start Statemachine
             ===================================================
             Enter Spec1Sm.
-            Transition action `` for ROOT.InitialState to S.
+            Transition action `` for ROOT.<InitialState> to S.
             Enter S.
-            Transition action `` for S.InitialState to S1.
+            Transition action `` for S.<InitialState> to S1.
             Enter S1.
-            Transition action `` for S1.InitialState to S11.
+            Transition action `` for S1.<InitialState> to S11.
             Enter S11.
 
             Dispatch event EV2
@@ -64,14 +64,14 @@ public class Spec1CTests
 
             Dispatch event EV1
             ===================================================
-            State S11: check behavior `EV1 TransitionTo(S1.ExitPoint(1))`. Behavior running.
+            State S11: check behavior `EV1 TransitionTo(S1.<ExitPoint>(1))`. Behavior running.
             Exit S11.
-            Transition action `` for S11 to S1.ExitPoint(1).
+            Transition action `` for S11 to S1.<ExitPoint>(1).
             Exit S1.
-            Transition action `` for S1.ExitPoint(1) to T11.EntryPoint(1).
+            Transition action `` for S1.<ExitPoint>(1) to T11.<EntryPoint>(1).
             Enter T1.
             Enter T11.
-            Transition action `` for T11.EntryPoint(1) to T111.
+            Transition action `` for T11.<EntryPoint>(1) to T111.
             Enter T111.
 
             Dispatch event EV2
@@ -82,7 +82,7 @@ public class Spec1CTests
             Exit T1.
             Transition action `` for T11 to S1.
             Enter S1.
-            Transition action `` for S1.InitialState to S11.
+            Transition action `` for S1.<InitialState> to S11.
             Enter S11.
         ");
 

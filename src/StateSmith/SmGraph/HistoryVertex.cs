@@ -11,7 +11,7 @@ namespace StateSmith.SmGraph
 
         internal Dictionary<Behavior, string> enumValueNameMap = new();
 
-        public override void Accept(VertexVisitor visitor)
+        public override void Accept(IVertexVisitor visitor)
         {
             visitor.Visit(this);
         }

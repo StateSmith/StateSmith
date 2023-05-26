@@ -68,7 +68,9 @@ public class PseudoStateHandlerBuilder
     private string CreateUniqueName(PseudoStateVertex pseudoStateVertex)
     {
         var functionName = Vertex.Describe(pseudoStateVertex);
-        functionName = Regex.Replace(functionName, @"[.()]+", "_") + "_transition";
+        functionName = Regex.Replace(functionName, @"[.()]+", "_");
+        functionName = Regex.Replace(functionName, @"[<>]+", "");
+        functionName += "_transition";
         while (functionNameMap.ContainsValue(functionName))
         {
             functionName += "_kid_index" + pseudoStateVertex.FindIndexInParentKids();

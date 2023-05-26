@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
@@ -11,9 +11,9 @@ using StateSmith.Input.Antlr4;
 
 namespace StateSmithTest.Antlr;
 
-public class EntryExitParseTests : CommonTestHelper
+public class ChoiceEntryExitParseTests : CommonTestHelper
 {
-    public EntryExitParseTests(ITestOutputHelper output)
+    public ChoiceEntryExitParseTests(ITestOutputHelper output)
     {
         this.output = output;
     }
@@ -25,6 +25,9 @@ public class EntryExitParseTests : CommonTestHelper
         ParseExitPointWithLabel(@"exit: 1", expected_label: "1");
         ParseExitPointWithLabel(@"exit : 1", expected_label: "1");
         ParseExitPointWithLabel(@"exit : some_THING_342", expected_label: "some_THING_342");
+
+        ParseExitPointWithLabel(@"exit:10", expected_label: "10");  // https://github.com/StateSmith/StateSmith/issues/207
+        ParseExitPointWithLabel(@"exit:123", expected_label: "123");// https://github.com/StateSmith/StateSmith/issues/207
     }
 
     [Fact]
@@ -34,12 +37,27 @@ public class EntryExitParseTests : CommonTestHelper
         ParseEntryPointWithLabel(@"entry: 1", expected_label: "1");
         ParseEntryPointWithLabel(@"entry : 1", expected_label: "1");
         ParseEntryPointWithLabel(@"entry : some_THING_342", expected_label: "some_THING_342");
+
+        ParseEntryPointWithLabel(@"entry:10", expected_label: "10");   // https://github.com/StateSmith/StateSmith/issues/207
+        ParseEntryPointWithLabel(@"entry:123", expected_label: "123"); // https://github.com/StateSmith/StateSmith/issues/207
+    }
+
+    [Fact]
+    public void ChoicePointLabels_Valid()
+    {
+        ParseChoicePointWithLabel(@"$choice:1", expected_label: "1");
+        ParseChoicePointWithLabel(@"$choice: 1", expected_label: "1");
+        ParseChoicePointWithLabel(@"$choice : 1", expected_label: "1");
+        ParseChoicePointWithLabel(@"$choice : some_THING_342", expected_label: "some_THING_342");
+
+        ParseChoicePointWithLabel(@"$choice:10", expected_label: "10");   // https://github.com/StateSmith/StateSmith/issues/207
+        ParseChoicePointWithLabel(@"$choice:123", expected_label: "123"); // https://github.com/StateSmith/StateSmith/issues/207
     }
 
     [Fact]
     public void ExitPointLabels_Invalid()
     {
-        var node = (ExitPointNode)ParseNodeWithAtLeastOneError("exit:");
+        var _ = (ExitPointNode)ParseNodeWithAtLeastOneError("exit:");
 
         // test a valid one after to make sure test state not getting kept
         ParseExitPointWithLabel(@"exit:1", expected_label: "1");
@@ -58,6 +76,12 @@ public class EntryExitParseTests : CommonTestHelper
         node.label.Should().Be(expected_label);
     }
 
+    private void ParseChoicePointWithLabel(string input, string expected_label)
+    {
+        var node = (ChoiceNode)ParseNodeWithNoErrors(input);
+        node.label.Should().Be(expected_label);
+    }
+
     [Fact]
     public void ExitNoKeywordConflict()
     {
@@ -65,7 +89,7 @@ public class EntryExitParseTests : CommonTestHelper
         exit / { }
         exit / exit = 45; exit();
         ";
-        var node = (StateNode)ParseNodeWithNoErrors(input);
+        var _ = (StateNode)ParseNodeWithNoErrors(input);
     }
 
     [Fact]

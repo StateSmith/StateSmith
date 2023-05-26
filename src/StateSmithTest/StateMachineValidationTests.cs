@@ -77,6 +77,6 @@ public class StateMachineValidationTests : ValidationTestHelper
     {
         s1.AddChild(new State("s2"));
         // Note! We only get this failure because this test disables auto name conflict resolution
-        ExpectVertexValidationExceptionWildcard(s2, "*name `s2` also used by state `Statemachine{root}.State{s1}.State{s2}`*");
+        ExpectVertexValidationExceptionWildcard(s2, "*name `s2` also used by state `ROOT.s1.s2`*");
     }
 }

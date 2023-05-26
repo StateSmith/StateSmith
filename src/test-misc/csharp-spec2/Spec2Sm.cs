@@ -241,7 +241,7 @@ namespace Csharp.Spec2smTests
 
         public enum T7__DH1__GET_BACKUP_HistoryId
         {
-            T7__DH1__GET_BACKUPChoicePoint = 0, // default transition
+            T7__DH1__GET_BACKUP_CHOICEPOINT = 0, // default transition
             T7__DH1__HERO = 1,
             T7__DH1__BUDDY_ELF = 2,
             T7__DH1__POLAR_BEARS = 3,
@@ -265,17 +265,17 @@ namespace Csharp.Spec2smTests
 
         public enum T7__DEEP_HISTORY2__T7__state_0_HistoryId
         {
-            T7__DEEP_HISTORY2__T7__state_1 = 0, // default transition
-            T7__DEEP_HISTORY2__T7__state_2 = 1,
-            T7__DEEP_HISTORY2__T7__state_6 = 2,
-            T7__DEEP_HISTORY2__T7__state_9 = 3,
+            T7__DEEP_HISTORY2__T7__STATE_1 = 0, // default transition
+            T7__DEEP_HISTORY2__T7__STATE_2 = 1,
+            T7__DEEP_HISTORY2__T7__STATE_6 = 2,
+            T7__DEEP_HISTORY2__T7__STATE_9 = 3,
         }
 
 
         public enum T7__DEEP_HISTORY3__T7__state_0_HistoryId
         {
-            T7__DEEP_HISTORY3__T7__state_1 = 0, // default transition
-            T7__DEEP_HISTORY3__T7__state_2 = 1,
+            T7__DEEP_HISTORY3__T7__STATE_1 = 0, // default transition
+            T7__DEEP_HISTORY3__T7__STATE_2 = 1,
         }
 
 
@@ -321,22 +321,22 @@ namespace Csharp.Spec2smTests
         {
             ROOT_enter();
             // ROOT behavior
-            // uml: TransitionTo(ROOT.InitialState)
+            // uml: TransitionTo(ROOT.<InitialState>)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: ``.
 
-                // Step 3: Enter/move towards transition target `ROOT.InitialState`.
-                // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `ROOT.<InitialState>`.
+                // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
 
-                // ROOT.InitialState behavior
-                // uml: / { trace("Transition action `` for ROOT.InitialState to Spec2Sm__DECIDE."); } TransitionTo(Spec2Sm__DECIDE)
+                // ROOT.<InitialState> behavior
+                // uml: / { trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE."); } TransitionTo(Spec2Sm__DECIDE)
                 {
                     // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for ROOT.InitialState to Spec2Sm__DECIDE.");`.
-                    MainClass.Trace("Transition action `` for ROOT.InitialState to Spec2Sm__DECIDE.");
+                    // Step 2: Transition action: `trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.");`.
+                    MainClass.Trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.");
 
                     // Step 3: Enter/move towards transition target `Spec2Sm__DECIDE`.
                     SPEC2SM__DECIDE_enter();
@@ -345,7 +345,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.SPEC2SM__DECIDE;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for ROOT.InitialState
+                } // end of behavior for ROOT.<InitialState>
             } // end of behavior for ROOT
         }
 
@@ -539,13 +539,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG`.
                 PREFIXING__OM__VEG_enter();
 
-                // PREFIXING__OM__VEG.InitialState behavior
-                // uml: / { trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE."); } TransitionTo(PREFIXING__OM__VEG__NONE)
+                // PREFIXING__OM__VEG.<InitialState> behavior
+                // uml: / { trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE."); } TransitionTo(PREFIXING__OM__VEG__NONE)
                 {
                     // Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");`.
-                    MainClass.Trace("Transition action `` for PREFIXING__OM__VEG.InitialState to PREFIXING__OM__VEG__NONE.");
+                    // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.");`.
+                    MainClass.Trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.");
 
                     // Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__NONE`.
                     PREFIXING__OM__VEG__NONE_enter();
@@ -554,19 +554,19 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.PREFIXING__OM__VEG__NONE;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for PREFIXING__OM__VEG.InitialState
+                } // end of behavior for PREFIXING__OM__VEG.<InitialState>
             } // end of behavior for PREFIXING__OM__BEVERAGE
         }
 
         private void PREFIXING__OM__BEVERAGE_InitialState_transition()
         {
-            // PREFIXING__OM__BEVERAGE.InitialState behavior
-            // uml: / { trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE."); } TransitionTo(PREFIXING__OM__BEV__NONE)
+            // PREFIXING__OM__BEVERAGE.<InitialState> behavior
+            // uml: / { trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE."); } TransitionTo(PREFIXING__OM__BEV__NONE)
             {
                 // Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");`.
-                MainClass.Trace("Transition action `` for PREFIXING__OM__BEVERAGE.InitialState to PREFIXING__OM__BEV__NONE.");
+                // Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.");`.
+                MainClass.Trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__NONE`.
                 PREFIXING__OM__BEV__NONE_enter();
@@ -575,7 +575,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.PREFIXING__OM__BEV__NONE;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for PREFIXING__OM__BEVERAGE.InitialState
+            } // end of behavior for PREFIXING__OM__BEVERAGE.<InitialState>
         }
 
 
@@ -1068,13 +1068,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter();
 
-                // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState behavior
-                // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE)
+                // PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> behavior
+                // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE)
                 {
                     // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`.
-                    MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
+                    // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");`.
+                    MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.");
 
                     // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE`.
                     PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter();
@@ -1083,19 +1083,19 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.InitialState
+                } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState>
             } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         }
 
         private void PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition()
         {
-            // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState behavior
-            // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE)
+            // PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> behavior
+            // uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE."); } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE)
             {
                 // Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`.
-                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
+                // Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");`.
+                MainClass.Trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.");
 
                 // Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE`.
                 PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter();
@@ -1104,7 +1104,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.InitialState
+            } // end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState>
         }
 
 
@@ -1549,24 +1549,24 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST1_DO_EVENT_TESTING`.
                 TEST1_DO_EVENT_TESTING_enter();
 
-                // TEST1_DO_EVENT_TESTING.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT."); } TransitionTo(TEST1_ROOT)
+                // TEST1_DO_EVENT_TESTING.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT."); } TransitionTo(TEST1_ROOT)
                 {
                     // Step 1: Exit states until we reach `TEST1_DO_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");`.
-                    MainClass.Trace("Transition action `` for TEST1_DO_EVENT_TESTING.InitialState to TEST1_ROOT.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.");`.
+                    MainClass.Trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST1_ROOT`.
                     TEST1_ROOT_enter();
 
-                    // TEST1_ROOT.InitialState behavior
-                    // uml: / { trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1."); } TransitionTo(TEST1_S1_1)
+                    // TEST1_ROOT.<InitialState> behavior
+                    // uml: / { trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1."); } TransitionTo(TEST1_S1_1)
                     {
                         // Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");`.
-                        MainClass.Trace("Transition action `` for TEST1_ROOT.InitialState to TEST1_S1_1.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.");`.
+                        MainClass.Trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST1_S1_1`.
                         TEST1_S1_enter();
@@ -1576,8 +1576,8 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST1_S1_1;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for TEST1_ROOT.InitialState
-                } // end of behavior for TEST1_DO_EVENT_TESTING.InitialState
+                    } // end of behavior for TEST1_ROOT.<InitialState>
+                } // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1600,13 +1600,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST10_CHOICE_POINT`.
                 TEST10_CHOICE_POINT_enter();
 
-                // TEST10_CHOICE_POINT.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1."); } TransitionTo(TEST10_S1)
+                // TEST10_CHOICE_POINT.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1."); } TransitionTo(TEST10_S1)
                 {
                     // Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1.");`.
-                    MainClass.Trace("Transition action `` for TEST10_CHOICE_POINT.InitialState to TEST10_S1.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.");`.
+                    MainClass.Trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST10_S1`.
                     TEST10_ROOT_enter();
@@ -1616,7 +1616,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST10_S1;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST10_CHOICE_POINT.InitialState
+                } // end of behavior for TEST10_CHOICE_POINT.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1639,24 +1639,24 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST2_REGULAR_EVENT_TESTING`.
                 TEST2_REGULAR_EVENT_TESTING_enter();
 
-                // TEST2_REGULAR_EVENT_TESTING.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT."); } TransitionTo(TEST2_ROOT)
+                // TEST2_REGULAR_EVENT_TESTING.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT."); } TransitionTo(TEST2_ROOT)
                 {
                     // Step 1: Exit states until we reach `TEST2_REGULAR_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");`.
-                    MainClass.Trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.InitialState to TEST2_ROOT.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.");`.
+                    MainClass.Trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST2_ROOT`.
                     TEST2_ROOT_enter();
 
-                    // TEST2_ROOT.InitialState behavior
-                    // uml: / { trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1."); } TransitionTo(TEST2_S1_1)
+                    // TEST2_ROOT.<InitialState> behavior
+                    // uml: / { trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1."); } TransitionTo(TEST2_S1_1)
                     {
                         // Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");`.
-                        MainClass.Trace("Transition action `` for TEST2_ROOT.InitialState to TEST2_S1_1.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.");`.
+                        MainClass.Trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST2_S1_1`.
                         TEST2_S1_enter();
@@ -1666,8 +1666,8 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST2_S1_1;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for TEST2_ROOT.InitialState
-                } // end of behavior for TEST2_REGULAR_EVENT_TESTING.InitialState
+                    } // end of behavior for TEST2_ROOT.<InitialState>
+                } // end of behavior for TEST2_REGULAR_EVENT_TESTING.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1690,24 +1690,24 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST3_BEHAVIOR_ORDERING`.
                 TEST3_BEHAVIOR_ORDERING_enter();
 
-                // TEST3_BEHAVIOR_ORDERING.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT."); } TransitionTo(TEST3_ROOT)
+                // TEST3_BEHAVIOR_ORDERING.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT."); } TransitionTo(TEST3_ROOT)
                 {
                     // Step 1: Exit states until we reach `TEST3_BEHAVIOR_ORDERING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");`.
-                    MainClass.Trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.InitialState to TEST3_ROOT.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.");`.
+                    MainClass.Trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST3_ROOT`.
                     TEST3_ROOT_enter();
 
-                    // TEST3_ROOT.InitialState behavior
-                    // uml: / { trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1."); } TransitionTo(TEST3_S1)
+                    // TEST3_ROOT.<InitialState> behavior
+                    // uml: / { trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1."); } TransitionTo(TEST3_S1)
                     {
                         // Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");`.
-                        MainClass.Trace("Transition action `` for TEST3_ROOT.InitialState to TEST3_S1.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.");`.
+                        MainClass.Trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.");
 
                         // Step 3: Enter/move towards transition target `TEST3_S1`.
                         TEST3_S1_enter();
@@ -1716,8 +1716,8 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST3_S1;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for TEST3_ROOT.InitialState
-                } // end of behavior for TEST3_BEHAVIOR_ORDERING.InitialState
+                    } // end of behavior for TEST3_ROOT.<InitialState>
+                } // end of behavior for TEST3_BEHAVIOR_ORDERING.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1740,13 +1740,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST4_PARENT_CHILD_TRANSITIONS`.
                 TEST4_PARENT_CHILD_TRANSITIONS_enter();
 
-                // TEST4_PARENT_CHILD_TRANSITIONS.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE."); } TransitionTo(TEST4_DECIDE)
+                // TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE."); } TransitionTo(TEST4_DECIDE)
                 {
                     // Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");`.
-                    MainClass.Trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.InitialState to TEST4_DECIDE.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.");`.
+                    MainClass.Trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST4_DECIDE`.
                     TEST4_DECIDE_enter();
@@ -1755,7 +1755,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST4_DECIDE;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.InitialState
+                } // end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1778,13 +1778,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS`.
                 TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter();
 
-                // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
+                // TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT."); } TransitionTo(TEST5_ROOT)
                 {
                     // Step 1: Exit states until we reach `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");`.
-                    MainClass.Trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState to TEST5_ROOT.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.");`.
+                    MainClass.Trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST5_ROOT`.
                     TEST5_ROOT_enter();
@@ -1793,7 +1793,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST5_ROOT;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.InitialState
+                } // end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1816,24 +1816,24 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST6_VARS_EXPANSIONS`.
                 TEST6_VARS_EXPANSIONS_enter();
 
-                // TEST6_VARS_EXPANSIONS.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST6_VARS_EXPANSIONS.InitialState to TEST6_ROOT."); } TransitionTo(TEST6_ROOT)
+                // TEST6_VARS_EXPANSIONS.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT."); } TransitionTo(TEST6_ROOT)
                 {
                     // Step 1: Exit states until we reach `TEST6_VARS_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS.InitialState to TEST6_ROOT.");`.
-                    MainClass.Trace("Transition action `` for TEST6_VARS_EXPANSIONS.InitialState to TEST6_ROOT.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.");`.
+                    MainClass.Trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.");
 
                     // Step 3: Enter/move towards transition target `TEST6_ROOT`.
                     TEST6_ROOT_enter();
 
-                    // TEST6_ROOT.InitialState behavior
-                    // uml: / { trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARS_EXPANSIONS__DECIDE."); } TransitionTo(TEST6_VARS_EXPANSIONS__DECIDE)
+                    // TEST6_ROOT.<InitialState> behavior
+                    // uml: / { trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE."); } TransitionTo(TEST6_VARS_EXPANSIONS__DECIDE)
                     {
                         // Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARS_EXPANSIONS__DECIDE.");`.
-                        MainClass.Trace("Transition action `` for TEST6_ROOT.InitialState to TEST6_VARS_EXPANSIONS__DECIDE.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.");`.
+                        MainClass.Trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.");
 
                         // Step 3: Enter/move towards transition target `TEST6_VARS_EXPANSIONS__DECIDE`.
                         TEST6_VARS_EXPANSIONS__DECIDE_enter();
@@ -1842,8 +1842,8 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST6_VARS_EXPANSIONS__DECIDE;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for TEST6_ROOT.InitialState
-                } // end of behavior for TEST6_VARS_EXPANSIONS.InitialState
+                    } // end of behavior for TEST6_ROOT.<InitialState>
+                } // end of behavior for TEST6_VARS_EXPANSIONS.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1866,13 +1866,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST7_INITIAL_OR_HISTORY`.
                 TEST7_INITIAL_OR_HISTORY_enter();
 
-                // TEST7_INITIAL_OR_HISTORY.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE."); } TransitionTo(TEST7_DECIDE)
+                // TEST7_INITIAL_OR_HISTORY.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE."); } TransitionTo(TEST7_DECIDE)
                 {
                     // Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE.");`.
-                    MainClass.Trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.InitialState to TEST7_DECIDE.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.");`.
+                    MainClass.Trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST7_DECIDE`.
                     TEST7_DECIDE_enter();
@@ -1881,7 +1881,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST7_DECIDE;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST7_INITIAL_OR_HISTORY.InitialState
+                } // end of behavior for TEST7_INITIAL_OR_HISTORY.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1904,22 +1904,22 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST8_ENTRY_CHOICE`.
                 TEST8_ENTRY_CHOICE_enter();
 
-                // TEST8_ENTRY_CHOICE.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1)."); } TransitionTo(TEST8_ROOT.EntryPoint(1))
+                // TEST8_ENTRY_CHOICE.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1)."); } TransitionTo(TEST8_ROOT.<EntryPoint>(1))
                 {
                     // Step 1: Exit states until we reach `TEST8_ENTRY_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1).");`.
-                    MainClass.Trace("Transition action `` for TEST8_ENTRY_CHOICE.InitialState to TEST8_ROOT.EntryPoint(1).");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).");`.
+                    MainClass.Trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).");
 
-                    // Step 3: Enter/move towards transition target `TEST8_ROOT.EntryPoint(1)`.
+                    // Step 3: Enter/move towards transition target `TEST8_ROOT.<EntryPoint>(1)`.
                     TEST8_ROOT_enter();
-                    // TEST8_ROOT.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                    // TEST8_ROOT.<EntryPoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
                     // Finish transition by calling pseudo state transition function.
                     TEST8_ROOT_EntryPoint_1__transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for TEST8_ENTRY_CHOICE.InitialState
+                } // end of behavior for TEST8_ENTRY_CHOICE.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -1942,13 +1942,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST9_EXIT_CHOICE`.
                 TEST9_EXIT_CHOICE_enter();
 
-                // TEST9_EXIT_CHOICE.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE."); } TransitionTo(TEST9_DECIDE)
+                // TEST9_EXIT_CHOICE.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE."); } TransitionTo(TEST9_DECIDE)
                 {
                     // Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE.");`.
-                    MainClass.Trace("Transition action `` for TEST9_EXIT_CHOICE.InitialState to TEST9_DECIDE.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.");`.
+                    MainClass.Trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.");
 
                     // Step 3: Enter/move towards transition target `TEST9_DECIDE`.
                     TEST9_DECIDE_enter();
@@ -1957,7 +1957,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST9_DECIDE;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST9_EXIT_CHOICE.InitialState
+                } // end of behavior for TEST9_EXIT_CHOICE.<InitialState>
             } // end of behavior for Spec2Sm__DECIDE
         }
 
@@ -2294,121 +2294,121 @@ namespace Csharp.Spec2smTests
 
         private void TEST10_A_ChoicePoint__transition()
         {
-            // TEST10_A.ChoicePoint() behavior
-            // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
+            // TEST10_A.<ChoicePoint>() behavior
+            // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
             if (this.vars.count == 1)
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");`.
-                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().");`.
+                MainClass.Trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().");
 
-                // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
-                // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
+                // TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST10_A_ChoicePoint__transition_kid_index3();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for TEST10_A.ChoicePoint()
+            } // end of behavior for TEST10_A.<ChoicePoint>()
 
-            // TEST10_A.ChoicePoint() behavior
-            // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
+            // TEST10_A.<ChoicePoint>() behavior
+            // uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");`.
-                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint().");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().");`.
+                MainClass.Trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().");
 
-                // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
-                // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
+                // TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST10_A_ChoicePoint__transition_kid_index3();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for TEST10_A.ChoicePoint()
+            } // end of behavior for TEST10_A.<ChoicePoint>()
         }
 
         private void TEST10_A_ChoicePoint__transition_kid_index3()
         {
-            // TEST10_A.ChoicePoint() behavior
-            // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
+            // TEST10_A.<ChoicePoint>() behavior
+            // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
             if (this.vars.count == 1)
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");`.
-                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).");`.
+                MainClass.Trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).");
 
-                // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
-                // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>(a)`.
+                // TEST10_A.<ChoicePoint>(a) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST10_A_ChoicePoint_a__transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for TEST10_A.ChoicePoint()
+            } // end of behavior for TEST10_A.<ChoicePoint>()
 
-            // TEST10_A.ChoicePoint() behavior
-            // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
+            // TEST10_A.<ChoicePoint>() behavior
+            // uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");`.
-                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint() to TEST10_A.ChoicePoint(a).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).");`.
+                MainClass.Trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).");
 
-                // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
-                // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>(a)`.
+                // TEST10_A.<ChoicePoint>(a) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST10_A_ChoicePoint_a__transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for TEST10_A.ChoicePoint()
+            } // end of behavior for TEST10_A.<ChoicePoint>()
         }
 
         private void TEST10_A_ChoicePoint_a__transition()
         {
-            // TEST10_A.ChoicePoint(a) behavior
-            // uml: [count == 1] / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
+            // TEST10_A.<ChoicePoint>(a) behavior
+            // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
             if (this.vars.count == 1)
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");`.
-                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).");`.
+                MainClass.Trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).");
 
-                // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
-                // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>(a)`.
+                // TEST10_A.<ChoicePoint>(a) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST10_A_ChoicePoint_a__transition_kid_index5();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for TEST10_A.ChoicePoint(a)
+            } // end of behavior for TEST10_A.<ChoicePoint>(a)
 
-            // TEST10_A.ChoicePoint(a) behavior
-            // uml: else / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a)."); } TransitionTo(TEST10_A.ChoicePoint(a))
+            // TEST10_A.<ChoicePoint>(a) behavior
+            // uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a)."); } TransitionTo(TEST10_A.<ChoicePoint>(a))
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");`.
-                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A.ChoicePoint(a).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).");`.
+                MainClass.Trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).");
 
-                // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint(a)`.
-                // TEST10_A.ChoicePoint(a) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>(a)`.
+                // TEST10_A.<ChoicePoint>(a) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST10_A_ChoicePoint_a__transition_kid_index5();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for TEST10_A.ChoicePoint(a)
+            } // end of behavior for TEST10_A.<ChoicePoint>(a)
         }
 
         private void TEST10_A_ChoicePoint_a__transition_kid_index5()
         {
-            // TEST10_A.ChoicePoint(a) behavior
-            // uml: / { trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)
+            // TEST10_A.<ChoicePoint>(a) behavior
+            // uml: / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1."); } TransitionTo(TEST10_A_1)
             {
                 // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");`.
-                MainClass.Trace("Transition action `` for TEST10_A.ChoicePoint(a) to TEST10_A_1.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.");`.
+                MainClass.Trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.");
 
                 // Step 3: Enter/move towards transition target `TEST10_A_1`.
                 TEST10_A_1_enter();
@@ -2417,7 +2417,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.TEST10_A_1;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for TEST10_A.ChoicePoint(a)
+            } // end of behavior for TEST10_A.<ChoicePoint>(a)
         }
 
 
@@ -2541,25 +2541,25 @@ namespace Csharp.Spec2smTests
 
         private void TEST10_G_ChoicePoint__transition()
         {
-            // TEST10_G.ChoicePoint() behavior
-            // uml: / { trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1)."); } TransitionTo(TEST10_G.ChoicePoint(1))
+            // TEST10_G.<ChoicePoint>() behavior
+            // uml: / { trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1)."); } TransitionTo(TEST10_G.<ChoicePoint>(1))
             {
                 // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");`.
-                MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).");`.
+                MainClass.Trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).");
 
-                // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(1)`.
-                // TEST10_G.ChoicePoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>(1)`.
+                // TEST10_G.<ChoicePoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
-                // TEST10_G.ChoicePoint(1) behavior
-                // uml: 1. [count <= 0] / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0."); } TransitionTo(TEST10_G_S0)
+                // TEST10_G.<ChoicePoint>(1) behavior
+                // uml: 1. [count <= 0] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0."); } TransitionTo(TEST10_G_S0)
                 if (this.vars.count <= 0)
                 {
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");`.
-                    MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G_S0.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.");`.
+                    MainClass.Trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.");
 
                     // Step 3: Enter/move towards transition target `TEST10_G_S0`.
                     TEST10_G_S0_enter();
@@ -2568,28 +2568,28 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST10_G_S0;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for TEST10_G.ChoicePoint(1)
+                } // end of behavior for TEST10_G.<ChoicePoint>(1)
 
-                // TEST10_G.ChoicePoint(1) behavior
-                // uml: [count <= 2] / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower)."); } TransitionTo(TEST10_G.ChoicePoint(lower))
+                // TEST10_G.<ChoicePoint>(1) behavior
+                // uml: [count <= 2] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower)."); } TransitionTo(TEST10_G.<ChoicePoint>(lower))
                 if (this.vars.count <= 2)
                 {
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");`.
-                    MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).");`.
+                    MainClass.Trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).");
 
-                    // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(lower)`.
-                    // TEST10_G.ChoicePoint(lower) is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>(lower)`.
+                    // TEST10_G.<ChoicePoint>(lower) is a pseudo state and cannot have an `enter` trigger.
 
-                    // TEST10_G.ChoicePoint(lower) behavior
-                    // uml: [count <=1] / { trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1."); } TransitionTo(TEST10_G_S1)
+                    // TEST10_G.<ChoicePoint>(lower) behavior
+                    // uml: [count <=1] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1."); } TransitionTo(TEST10_G_S1)
                     if (this.vars.count <= 1)
                     {
                         // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");`.
-                        MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S1.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.");`.
+                        MainClass.Trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S1`.
                         TEST10_G_S1_enter();
@@ -2598,15 +2598,15 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST10_G_S1;
                         this.ancestorEventHandler = null;
                         return;
-                    } // end of behavior for TEST10_G.ChoicePoint(lower)
+                    } // end of behavior for TEST10_G.<ChoicePoint>(lower)
 
-                    // TEST10_G.ChoicePoint(lower) behavior
-                    // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2."); } TransitionTo(TEST10_G_S2)
+                    // TEST10_G.<ChoicePoint>(lower) behavior
+                    // uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2."); } TransitionTo(TEST10_G_S2)
                     {
                         // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");`.
-                        MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(lower) to TEST10_G_S2.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.");`.
+                        MainClass.Trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S2`.
                         TEST10_G_S2_enter();
@@ -2615,28 +2615,28 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST10_G_S2;
                         this.ancestorEventHandler = null;
                         return;
-                    } // end of behavior for TEST10_G.ChoicePoint(lower)
-                } // end of behavior for TEST10_G.ChoicePoint(1)
+                    } // end of behavior for TEST10_G.<ChoicePoint>(lower)
+                } // end of behavior for TEST10_G.<ChoicePoint>(1)
 
-                // TEST10_G.ChoicePoint(1) behavior
-                // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper)."); } TransitionTo(TEST10_G.ChoicePoint(upper))
+                // TEST10_G.<ChoicePoint>(1) behavior
+                // uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper)."); } TransitionTo(TEST10_G.<ChoicePoint>(upper))
                 {
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");`.
-                    MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).");`.
+                    MainClass.Trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).");
 
-                    // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint(upper)`.
-                    // TEST10_G.ChoicePoint(upper) is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>(upper)`.
+                    // TEST10_G.<ChoicePoint>(upper) is a pseudo state and cannot have an `enter` trigger.
 
-                    // TEST10_G.ChoicePoint(upper) behavior
-                    // uml: [count <= 3] / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3."); } TransitionTo(TEST10_G_S3)
+                    // TEST10_G.<ChoicePoint>(upper) behavior
+                    // uml: [count <= 3] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3."); } TransitionTo(TEST10_G_S3)
                     if (this.vars.count <= 3)
                     {
                         // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");`.
-                        MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_G_S3.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.");`.
+                        MainClass.Trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.");
 
                         // Step 3: Enter/move towards transition target `TEST10_G_S3`.
                         TEST10_G_S3_enter();
@@ -2645,16 +2645,16 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST10_G_S3;
                         this.ancestorEventHandler = null;
                         return;
-                    } // end of behavior for TEST10_G.ChoicePoint(upper)
+                    } // end of behavior for TEST10_G.<ChoicePoint>(upper)
 
-                    // TEST10_G.ChoicePoint(upper) behavior
-                    // uml: else / { trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
+                    // TEST10_G.<ChoicePoint>(upper) behavior
+                    // uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4."); } TransitionTo(TEST10_S4)
                     {
                         // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
                         ExitUpToStateHandler(ptr_TEST10_ROOT_exit);
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");`.
-                        MainClass.Trace("Transition action `` for TEST10_G.ChoicePoint(upper) to TEST10_S4.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.");`.
+                        MainClass.Trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.");
 
                         // Step 3: Enter/move towards transition target `TEST10_S4`.
                         TEST10_S4_enter();
@@ -2663,9 +2663,9 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST10_S4;
                         this.ancestorEventHandler = null;
                         return;
-                    } // end of behavior for TEST10_G.ChoicePoint(upper)
-                } // end of behavior for TEST10_G.ChoicePoint(1)
-            } // end of behavior for TEST10_G.ChoicePoint()
+                    } // end of behavior for TEST10_G.<ChoicePoint>(upper)
+                } // end of behavior for TEST10_G.<ChoicePoint>(1)
+            } // end of behavior for TEST10_G.<ChoicePoint>()
         }
 
 
@@ -2856,34 +2856,34 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev1` event.
 
             // TEST10_S1 behavior
-            // uml: EV1 [trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1)."); } TransitionTo(TEST10_G.EntryPoint(1))
-            if (trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.EntryPoint(1))`.", true))
+            // uml: EV1 [trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1)."); } TransitionTo(TEST10_G.<EntryPoint>(1))
+            if (trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
                 TEST10_S1_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).");`.
-                MainClass.Trace("Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).");`.
+                MainClass.Trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).");
 
-                // Step 3: Enter/move towards transition target `TEST10_G.EntryPoint(1)`.
+                // Step 3: Enter/move towards transition target `TEST10_G.<EntryPoint>(1)`.
                 TEST10_G_enter();
-                // TEST10_G.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // TEST10_G.<EntryPoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
-                // TEST10_G.EntryPoint(1) behavior
-                // uml: / { trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
+                // TEST10_G.<EntryPoint>(1) behavior
+                // uml: / { trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>()."); } TransitionTo(TEST10_G.<ChoicePoint>())
                 {
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().");`.
-                    MainClass.Trace("Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().");`.
+                    MainClass.Trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().");
 
-                    // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
-                    // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>()`.
+                    // TEST10_G.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
                     // Finish transition by calling pseudo state transition function.
                     TEST10_G_ChoicePoint__transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for TEST10_G.EntryPoint(1)
+                } // end of behavior for TEST10_G.<EntryPoint>(1)
             } // end of behavior for TEST10_S1
         }
 
@@ -2906,56 +2906,56 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST10_A`.
                 TEST10_A_enter();
 
-                // TEST10_A.InitialState behavior
-                // uml: [count == 1] / { trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
+                // TEST10_A.<InitialState> behavior
+                // uml: [count == 1] / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
                 if (this.vars.count == 1)
                 {
                     // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");`.
-                    MainClass.Trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");`.
+                    MainClass.Trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");
 
-                    // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
-                    // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
+                    // TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
                     // Finish transition by calling pseudo state transition function.
                     TEST10_A_ChoicePoint__transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for TEST10_A.InitialState
+                } // end of behavior for TEST10_A.<InitialState>
 
-                // TEST10_A.InitialState behavior
-                // uml: [count == 0] / { trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");\ncount++; } TransitionTo(TEST10_A.ChoicePoint())
+                // TEST10_A.<InitialState> behavior
+                // uml: [count == 0] / { trace("Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");\ncount++; } TransitionTo(TEST10_A.<ChoicePoint>())
                 if (this.vars.count == 0)
                 {
                     // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");\ncount++;`.
-                    MainClass.Trace("Transition action `count++;` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+                    // Step 2: Transition action: `trace("Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");\ncount++;`.
+                    MainClass.Trace("Transition action `count++;` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");
                     this.vars.count++;
 
-                    // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
-                    // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
+                    // TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
                     // Finish transition by calling pseudo state transition function.
                     TEST10_A_ChoicePoint__transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for TEST10_A.InitialState
+                } // end of behavior for TEST10_A.<InitialState>
 
-                // TEST10_A.InitialState behavior
-                // uml: else / { trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint()."); } TransitionTo(TEST10_A.ChoicePoint())
+                // TEST10_A.<InitialState> behavior
+                // uml: else / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>()."); } TransitionTo(TEST10_A.<ChoicePoint>())
                 {
                     // Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");`.
-                    MainClass.Trace("Transition action `` for TEST10_A.InitialState to TEST10_A.ChoicePoint().");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");`.
+                    MainClass.Trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().");
 
-                    // Step 3: Enter/move towards transition target `TEST10_A.ChoicePoint()`.
-                    // TEST10_A.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
+                    // TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
                     // Finish transition by calling pseudo state transition function.
                     TEST10_A_ChoicePoint__transition_kid_index3();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for TEST10_A.InitialState
+                } // end of behavior for TEST10_A.<InitialState>
             } // end of behavior for TEST10_S1
         }
 
@@ -2966,18 +2966,18 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev2` event.
 
             // TEST10_S1 behavior
-            // uml: EV2 [trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
-            if (trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.ChoicePoint())`.", true))
+            // uml: EV2 [trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>()."); } TransitionTo(TEST10_G.<ChoicePoint>())
+            if (trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`.", true))
             {
                 // Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
                 TEST10_S1_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().");`.
-                MainClass.Trace("Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().");
+                // Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().");`.
+                MainClass.Trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().");
 
-                // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
+                // Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>()`.
                 TEST10_G_enter();
-                // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                // TEST10_G.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST10_G_ChoicePoint__transition();
@@ -3004,21 +3004,21 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST10_G`.
                 TEST10_G_enter();
 
-                // TEST10_G.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint()."); } TransitionTo(TEST10_G.ChoicePoint())
+                // TEST10_G.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>()."); } TransitionTo(TEST10_G.<ChoicePoint>())
                 {
                     // Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().");`.
-                    MainClass.Trace("Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().");`.
+                    MainClass.Trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().");
 
-                    // Step 3: Enter/move towards transition target `TEST10_G.ChoicePoint()`.
-                    // TEST10_G.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>()`.
+                    // TEST10_G.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
                     // Finish transition by calling pseudo state transition function.
                     TEST10_G_ChoicePoint__transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for TEST10_G.InitialState
+                } // end of behavior for TEST10_G.<InitialState>
             } // end of behavior for TEST10_S1
         }
 
@@ -4133,25 +4133,25 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev1` event.
 
             // TEST4D_G behavior
-            // uml: EV1 [trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint()."); } TransitionTo(TEST4D_EXTERNAL.ChoicePoint())
-            if (trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
+            // uml: EV1 [trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>()."); } TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())
+            if (trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
                 ExitUpToStateHandler(ptr_TEST4D_EXTERNAL_exit);
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");`.
-                MainClass.Trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().");
+                // Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().");`.
+                MainClass.Trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().");
 
-                // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.ChoicePoint()`.
-                // TEST4D_EXTERNAL.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.<ChoicePoint>()`.
+                // TEST4D_EXTERNAL.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
-                // TEST4D_EXTERNAL.ChoicePoint() behavior
-                // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1."); } TransitionTo(TEST4D_G_1)
+                // TEST4D_EXTERNAL.<ChoicePoint>() behavior
+                // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1."); } TransitionTo(TEST4D_G_1)
                 {
                     // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");`.
-                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.");`.
+                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G_1`.
                     TEST4D_G_enter();
@@ -4161,7 +4161,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST4D_G_1;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
+                } // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
             } // end of behavior for TEST4D_G
         }
 
@@ -4207,25 +4207,25 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev2` event.
 
             // TEST4D_G_1 behavior
-            // uml: EV2 [trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true)] / { trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint()."); } TransitionTo(TEST4D_EXTERNAL.ChoicePoint())
-            if (trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`.", true))
+            // uml: EV2 [trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true)] / { trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>()."); } TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())
+            if (trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", true))
             {
                 // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
                 ExitUpToStateHandler(ptr_TEST4D_EXTERNAL_exit);
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");`.
-                MainClass.Trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().");
+                // Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().");`.
+                MainClass.Trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().");
 
-                // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.ChoicePoint()`.
-                // TEST4D_EXTERNAL.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.<ChoicePoint>()`.
+                // TEST4D_EXTERNAL.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
-                // TEST4D_EXTERNAL.ChoicePoint() behavior
-                // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G."); } TransitionTo(TEST4D_G)
+                // TEST4D_EXTERNAL.<ChoicePoint>() behavior
+                // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G."); } TransitionTo(TEST4D_G)
                 {
                     // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");`.
-                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.");`.
+                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G`.
                     TEST4D_G_enter();
@@ -4234,7 +4234,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST4D_G;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST4D_EXTERNAL.ChoicePoint()
+                } // end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
             } // end of behavior for TEST4D_G_1
         }
 
@@ -4325,13 +4325,13 @@ namespace Csharp.Spec2smTests
                 TEST4_B_AND_OTHERS_enter();
                 TEST4B_LOCAL_enter();
 
-                // TEST4B_LOCAL.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G."); } TransitionTo(TEST4B_G)
+                // TEST4B_LOCAL.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G."); } TransitionTo(TEST4B_G)
                 {
                     // Step 1: Exit states until we reach `TEST4B_LOCAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");`.
-                    MainClass.Trace("Transition action `` for TEST4B_LOCAL.InitialState to TEST4B_G.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.");`.
+                    MainClass.Trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4B_G`.
                     TEST4B_G_enter();
@@ -4340,7 +4340,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST4B_G;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST4B_LOCAL.InitialState
+                } // end of behavior for TEST4B_LOCAL.<InitialState>
             } // end of behavior for TEST4_DECIDE
         }
 
@@ -4364,13 +4364,13 @@ namespace Csharp.Spec2smTests
                 TEST4_B_AND_OTHERS_enter();
                 TEST4C_LOCAL_TO_ALIAS_enter();
 
-                // TEST4C_LOCAL_TO_ALIAS.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G."); } TransitionTo(TEST4C_G)
+                // TEST4C_LOCAL_TO_ALIAS.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G."); } TransitionTo(TEST4C_G)
                 {
                     // Step 1: Exit states until we reach `TEST4C_LOCAL_TO_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");`.
-                    MainClass.Trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.InitialState to TEST4C_G.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.");`.
+                    MainClass.Trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4C_G`.
                     TEST4C_G_enter();
@@ -4379,7 +4379,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST4C_G;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST4C_LOCAL_TO_ALIAS.InitialState
+                } // end of behavior for TEST4C_LOCAL_TO_ALIAS.<InitialState>
             } // end of behavior for TEST4_DECIDE
         }
 
@@ -4403,13 +4403,13 @@ namespace Csharp.Spec2smTests
                 TEST4_B_AND_OTHERS_enter();
                 TEST4D_EXTERNAL_enter();
 
-                // TEST4D_EXTERNAL.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G."); } TransitionTo(TEST4D_G)
+                // TEST4D_EXTERNAL.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G."); } TransitionTo(TEST4D_G)
                 {
                     // Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");`.
-                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.InitialState to TEST4D_G.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.");`.
+                    MainClass.Trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.");
 
                     // Step 3: Enter/move towards transition target `TEST4D_G`.
                     TEST4D_G_enter();
@@ -4418,7 +4418,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST4D_G;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST4D_EXTERNAL.InitialState
+                } // end of behavior for TEST4D_EXTERNAL.<InitialState>
             } // end of behavior for TEST4_DECIDE
         }
 
@@ -4827,13 +4827,13 @@ namespace Csharp.Spec2smTests
 
         private void TEST4_S20_InitialState_transition()
         {
-            // TEST4_S20.InitialState behavior
-            // uml: / { trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
+            // TEST4_S20.<InitialState> behavior
+            // uml: / { trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1."); } TransitionTo(TEST4_S20_1)
             {
                 // Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");`.
-                MainClass.Trace("Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.");`.
+                MainClass.Trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.");
 
                 // Step 3: Enter/move towards transition target `TEST4_S20_1`.
                 TEST4_S20_1_enter();
@@ -4842,7 +4842,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.TEST4_S20_1;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for TEST4_S20.InitialState
+            } // end of behavior for TEST4_S20.<InitialState>
         }
 
 
@@ -5469,14 +5469,14 @@ namespace Csharp.Spec2smTests
 
         private void META_EXPANSIONS_ChoicePoint_2__transition()
         {
-            // META_EXPANSIONS.ChoicePoint(2) behavior
-            // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S5.");\ntrace_meta(); } TransitionTo(S5)
+            // META_EXPANSIONS.<ChoicePoint>(2) behavior
+            // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S5.");\ntrace_meta(); } TransitionTo(S5)
             {
                 // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S5.");\ntrace_meta();`.
-                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S5.");
-                MainClass.Trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.ChoicePoint(2)");
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S5.");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S5.");
+                MainClass.Trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.<ChoicePoint>(2)");
 
                 // Step 3: Enter/move towards transition target `S5`.
                 S5_enter();
@@ -5485,16 +5485,16 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.S5;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for META_EXPANSIONS.ChoicePoint(2)
+            } // end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
 
-            // META_EXPANSIONS.ChoicePoint(2) behavior
-            // uml: else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S4.");\ntrace_meta(); } TransitionTo(S4)
+            // META_EXPANSIONS.<ChoicePoint>(2) behavior
+            // uml: else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S4.");\ntrace_meta(); } TransitionTo(S4)
             {
                 // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S4.");\ntrace_meta();`.
-                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S4.");
-                MainClass.Trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.ChoicePoint(2)");
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S4.");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S4.");
+                MainClass.Trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.<ChoicePoint>(2)");
 
                 // Step 3: Enter/move towards transition target `S4`.
                 S4_enter();
@@ -5503,7 +5503,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.S4;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for META_EXPANSIONS.ChoicePoint(2)
+            } // end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
         }
 
 
@@ -5628,27 +5628,27 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev1` event.
 
             // META_EXPANSIONS__S2 behavior
-            // uml: EV1 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(1))`.", true)] / { trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(1).");\ntrace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(1))
-            if (trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(1))`.", true))
+            // uml: EV1 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`.", true)] / { trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).");\ntrace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))
+            if (trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`.", true))
             {
                 // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
                 META_EXPANSIONS__S2_exit();
 
-                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(1).");\ntrace_meta();`.
-                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(1).");
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).");
                 MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS__S2");
 
-                // Step 3: Enter/move towards transition target `META_EXPANSIONS.ChoicePoint(1)`.
-                // META_EXPANSIONS.ChoicePoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `META_EXPANSIONS.<ChoicePoint>(1)`.
+                // META_EXPANSIONS.<ChoicePoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
-                // META_EXPANSIONS.ChoicePoint(1) behavior
-                // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S3.");\ntrace_meta(); } TransitionTo(S3)
+                // META_EXPANSIONS.<ChoicePoint>(1) behavior
+                // uml: / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S3.");\ntrace_meta(); } TransitionTo(S3)
                 {
                     // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S3.");\ntrace_meta();`.
-                    MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S3.");
-                    MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.ChoicePoint(1)");
+                    // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S3.");\ntrace_meta();`.
+                    MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S3.");
+                    MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.<ChoicePoint>(1)");
 
                     // Step 3: Enter/move towards transition target `S3`.
                     S3_enter();
@@ -5657,16 +5657,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.S3;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for META_EXPANSIONS.ChoicePoint(1)
+                } // end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
 
-                // META_EXPANSIONS.ChoicePoint(1) behavior
-                // uml: else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S4.");\ntrace_meta(); } TransitionTo(S4)
+                // META_EXPANSIONS.<ChoicePoint>(1) behavior
+                // uml: else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S4.");\ntrace_meta(); } TransitionTo(S4)
                 {
                     // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S4.");\ntrace_meta();`.
-                    MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S4.");
-                    MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.ChoicePoint(1)");
+                    // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S4.");\ntrace_meta();`.
+                    MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S4.");
+                    MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.<ChoicePoint>(1)");
 
                     // Step 3: Enter/move towards transition target `S4`.
                     S4_enter();
@@ -5675,7 +5675,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.S4;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for META_EXPANSIONS.ChoicePoint(1)
+                } // end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
             } // end of behavior for META_EXPANSIONS__S2
         }
 
@@ -5686,17 +5686,17 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev2` event.
 
             // META_EXPANSIONS__S2 behavior
-            // uml: EV2 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.ChoicePoint(2))`.", true)] / { trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(2)."); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))
-            if (trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.ChoicePoint(2))`.", true))
+            // uml: EV2 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true)] / { trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2)."); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))
+            if (trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true))
             {
                 // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
                 META_EXPANSIONS__S2_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(2).");`.
-                MainClass.Trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.ChoicePoint(2).");
+                // Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2).");`.
+                MainClass.Trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2).");
 
-                // Step 3: Enter/move towards transition target `META_EXPANSIONS.ChoicePoint(2)`.
-                // META_EXPANSIONS.ChoicePoint(2) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `META_EXPANSIONS.<ChoicePoint>(2)`.
+                // META_EXPANSIONS.<ChoicePoint>(2) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 META_EXPANSIONS_ChoicePoint_2__transition();
@@ -5746,18 +5746,18 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev1` event.
 
             // S3 behavior
-            // uml: EV1 [trace_guard("State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))`.", true)] / { trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.ChoicePoint(2).");\ntrace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))
-            if (trace_guard("State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))`.", true))
+            // uml: EV1 [trace_guard("State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true)] / { trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.<ChoicePoint>(2).");\ntrace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))
+            if (trace_guard("State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", true))
             {
                 // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
                 S3_exit();
 
-                // Step 2: Transition action: `trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.ChoicePoint(2).");\ntrace_meta();`.
-                MainClass.Trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.ChoicePoint(2).");
+                // Step 2: Transition action: `trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.<ChoicePoint>(2).");\ntrace_meta();`.
+                MainClass.Trace("Transition action `trace_meta();` for S3 to META_EXPANSIONS.<ChoicePoint>(2).");
                 MainClass.Trace("META: State: S3, trigger: ev1, behavior vertex: S3");
 
-                // Step 3: Enter/move towards transition target `META_EXPANSIONS.ChoicePoint(2)`.
-                // META_EXPANSIONS.ChoicePoint(2) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `META_EXPANSIONS.<ChoicePoint>(2)`.
+                // META_EXPANSIONS.<ChoicePoint>(2) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 META_EXPANSIONS_ChoicePoint_2__transition();
@@ -6035,13 +6035,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `NORMAL`.
                 NORMAL_enter();
 
-                // NORMAL.InitialState behavior
-                // uml: / { trace("Transition action `` for NORMAL.InitialState to NORMAL__S1."); } TransitionTo(NORMAL__S1)
+                // NORMAL.<InitialState> behavior
+                // uml: / { trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1."); } TransitionTo(NORMAL__S1)
                 {
                     // Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for NORMAL.InitialState to NORMAL__S1.");`.
-                    MainClass.Trace("Transition action `` for NORMAL.InitialState to NORMAL__S1.");
+                    // Step 2: Transition action: `trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.");`.
+                    MainClass.Trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.");
 
                     // Step 3: Enter/move towards transition target `NORMAL__S1`.
                     NORMAL__S1_enter();
@@ -6050,7 +6050,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.NORMAL__S1;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for NORMAL.InitialState
+                } // end of behavior for NORMAL.<InitialState>
             } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         }
 
@@ -6073,13 +6073,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `AUTO_VAR_TEST`.
                 AUTO_VAR_TEST_enter();
 
-                // AUTO_VAR_TEST.InitialState behavior
-                // uml: / { trace("Transition action `` for AUTO_VAR_TEST.InitialState to AUTO_VAR_TEST__S1."); } TransitionTo(AUTO_VAR_TEST__S1)
+                // AUTO_VAR_TEST.<InitialState> behavior
+                // uml: / { trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1."); } TransitionTo(AUTO_VAR_TEST__S1)
                 {
                     // Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST.InitialState to AUTO_VAR_TEST__S1.");`.
-                    MainClass.Trace("Transition action `` for AUTO_VAR_TEST.InitialState to AUTO_VAR_TEST__S1.");
+                    // Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.");`.
+                    MainClass.Trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.");
 
                     // Step 3: Enter/move towards transition target `AUTO_VAR_TEST__S1`.
                     AUTO_VAR_TEST__S1_enter();
@@ -6088,7 +6088,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.AUTO_VAR_TEST__S1;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for AUTO_VAR_TEST.InitialState
+                } // end of behavior for AUTO_VAR_TEST.<InitialState>
             } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         }
 
@@ -6111,13 +6111,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `META_EXPANSIONS`.
                 META_EXPANSIONS_enter();
 
-                // META_EXPANSIONS.InitialState behavior
-                // uml: / { trace("Transition action `` for META_EXPANSIONS.InitialState to META_EXPANSIONS__S1."); } TransitionTo(META_EXPANSIONS__S1)
+                // META_EXPANSIONS.<InitialState> behavior
+                // uml: / { trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1."); } TransitionTo(META_EXPANSIONS__S1)
                 {
                     // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS.InitialState to META_EXPANSIONS__S1.");`.
-                    MainClass.Trace("Transition action `` for META_EXPANSIONS.InitialState to META_EXPANSIONS__S1.");
+                    // Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.");`.
+                    MainClass.Trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.");
 
                     // Step 3: Enter/move towards transition target `META_EXPANSIONS__S1`.
                     META_EXPANSIONS__S1_enter();
@@ -6126,7 +6126,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.META_EXPANSIONS__S1;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for META_EXPANSIONS.InitialState
+                } // end of behavior for META_EXPANSIONS.<InitialState>
             } // end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         }
 
@@ -6414,13 +6414,13 @@ namespace Csharp.Spec2smTests
 
         private void T7__DH1__HERO_InitialState_transition()
         {
-            // T7__DH1__HERO.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR."); } TransitionTo(T7__DH1__CALL_THOR)
+            // T7__DH1__HERO.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR."); } TransitionTo(T7__DH1__CALL_THOR)
             {
                 // Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR.");`.
-                MainClass.Trace("Transition action `` for T7__DH1__HERO.InitialState to T7__DH1__CALL_THOR.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.");`.
+                MainClass.Trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
                 T7__DH1__CALL_THOR_enter();
@@ -6429,7 +6429,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__DH1__CALL_THOR;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DH1__HERO.InitialState
+            } // end of behavior for T7__DH1__HERO.<InitialState>
         }
 
 
@@ -6910,25 +6910,25 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED`.
                 T7__DH1__ALIENS_DETECTED_enter();
 
-                // T7__DH1__ALIENS_DETECTED.InitialState behavior
-                // uml: / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History."); } TransitionTo(T7__DH1__ALIENS_DETECTED.History)
+                // T7__DH1__ALIENS_DETECTED.<InitialState> behavior
+                // uml: / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>."); } TransitionTo(T7__DH1__ALIENS_DETECTED.<History>)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.InitialState to T7__DH1__ALIENS_DETECTED.History.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.");
 
-                    // Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED.History`.
-                    // T7__DH1__ALIENS_DETECTED.History is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED.<History>`.
+                    // T7__DH1__ALIENS_DETECTED.<History> is a pseudo state and cannot have an `enter` trigger.
 
-                    // T7__DH1__ALIENS_DETECTED.History behavior
-                    // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
+                    // T7__DH1__ALIENS_DETECTED.<History> behavior
+                    // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES."); } TransitionTo(T7__DH1__GIVE_COOKIES)
                     if (this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES)
                     {
                         // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES.");`.
-                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__GIVE_COOKIES.");
+                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.");`.
+                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__GIVE_COOKIES`.
                         T7__DH1__GIVE_COOKIES_enter();
@@ -6937,16 +6937,16 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.T7__DH1__GIVE_COOKIES;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+                    } // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
 
-                    // T7__DH1__ALIENS_DETECTED.History behavior
-                    // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
+                    // T7__DH1__ALIENS_DETECTED.<History> behavior
+                    // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
                     if (this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)
                     {
                         // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO.");`.
-                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__HERO.");
+                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.");`.
+                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
                         T7__DH1__GET_BACKUP_enter();
@@ -6955,16 +6955,16 @@ namespace Csharp.Spec2smTests
                         // Finish transition by calling pseudo state transition function.
                         T7__DH1__HERO_InitialState_transition();
                         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                    } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+                    } // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
 
-                    // T7__DH1__ALIENS_DETECTED.History behavior
-                    // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
+                    // T7__DH1__ALIENS_DETECTED.<History> behavior
+                    // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
                     if (this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)
                     {
                         // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF.");`.
-                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__BUDDY_ELF.");
+                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.");`.
+                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
                         T7__DH1__GET_BACKUP_enter();
@@ -6975,16 +6975,16 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.T7__DH1__BUDDY_ELF;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+                    } // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
 
-                    // T7__DH1__ALIENS_DETECTED.History behavior
-                    // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
+                    // T7__DH1__ALIENS_DETECTED.<History> behavior
+                    // uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
                     if (this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)
                     {
                         // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS.");`.
-                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__POLAR_BEARS.");
+                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.");`.
+                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
                         T7__DH1__GET_BACKUP_enter();
@@ -6995,15 +6995,15 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.T7__DH1__POLAR_BEARS;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for T7__DH1__ALIENS_DETECTED.History
+                    } // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
 
-                    // T7__DH1__ALIENS_DETECTED.History behavior
-                    // uml: else / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT."); } TransitionTo(T7__DH1__SNOWBALL_FIGHT)
+                    // T7__DH1__ALIENS_DETECTED.<History> behavior
+                    // uml: else / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT."); } TransitionTo(T7__DH1__SNOWBALL_FIGHT)
                     {
                         // Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT.");`.
-                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.History to T7__DH1__SNOWBALL_FIGHT.");
+                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.");`.
+                        MainClass.Trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__SNOWBALL_FIGHT`.
                         T7__DH1__SNOWBALL_FIGHT_enter();
@@ -7012,8 +7012,8 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.T7__DH1__SNOWBALL_FIGHT;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for T7__DH1__ALIENS_DETECTED.History
-                } // end of behavior for T7__DH1__ALIENS_DETECTED.InitialState
+                    } // end of behavior for T7__DH1__ALIENS_DETECTED.<History>
+                } // end of behavior for T7__DH1__ALIENS_DETECTED.<InitialState>
             } // end of behavior for T7__DH1__BUILD
         }
 
@@ -7024,28 +7024,28 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev7` event.
 
             // T7__DH1__BUILD behavior
-            // uml: EV7 [trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.History)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History."); } TransitionTo(T7__DH1__GET_BACKUP.History)
-            if (trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.History)`.", true))
+            // uml: EV7 [trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", true)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>."); } TransitionTo(T7__DH1__GET_BACKUP.<History>)
+            if (trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
                 ExitUpToStateHandler(ptr_T7__DH1__SANTAS_WORKSHOP_exit);
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");`.
-                MainClass.Trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.History.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.");`.
+                MainClass.Trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.");
 
-                // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.History`.
+                // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.<History>`.
                 T7__DH1__ALIENS_DETECTED_enter();
                 T7__DH1__GET_BACKUP_enter();
-                // T7__DH1__GET_BACKUP.History is a pseudo state and cannot have an `enter` trigger.
+                // T7__DH1__GET_BACKUP.<History> is a pseudo state and cannot have an `enter` trigger.
 
-                // T7__DH1__GET_BACKUP.History behavior
-                // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
+                // T7__DH1__GET_BACKUP.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
                 if (this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__HERO.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
                     T7__DH1__HERO_enter();
@@ -7053,16 +7053,16 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__HERO_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DH1__GET_BACKUP.History
+                } // end of behavior for T7__DH1__GET_BACKUP.<History>
 
-                // T7__DH1__GET_BACKUP.History behavior
-                // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
+                // T7__DH1__GET_BACKUP.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF."); } TransitionTo(T7__DH1__BUDDY_ELF)
                 if (this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__BUDDY_ELF.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
                     T7__DH1__LOCAL_HELP_enter();
@@ -7072,16 +7072,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__BUDDY_ELF;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for T7__DH1__GET_BACKUP.History
+                } // end of behavior for T7__DH1__GET_BACKUP.<History>
 
-                // T7__DH1__GET_BACKUP.History behavior
-                // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
+                // T7__DH1__GET_BACKUP.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS."); } TransitionTo(T7__DH1__POLAR_BEARS)
                 if (this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__POLAR_BEARS.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
                     T7__DH1__LOCAL_HELP_enter();
@@ -7091,26 +7091,26 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__POLAR_BEARS;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for T7__DH1__GET_BACKUP.History
+                } // end of behavior for T7__DH1__GET_BACKUP.<History>
 
-                // T7__DH1__GET_BACKUP.History behavior
-                // uml: else / { trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint()."); } TransitionTo(T7__DH1__GET_BACKUP.ChoicePoint())
+                // T7__DH1__GET_BACKUP.<History> behavior
+                // uml: else / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>()."); } TransitionTo(T7__DH1__GET_BACKUP.<ChoicePoint>())
                 {
                     // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint().");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.History to T7__DH1__GET_BACKUP.ChoicePoint().");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().");
 
-                    // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.ChoicePoint()`.
-                    // T7__DH1__GET_BACKUP.ChoicePoint() is a pseudo state and cannot have an `enter` trigger.
+                    // Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.<ChoicePoint>()`.
+                    // T7__DH1__GET_BACKUP.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
 
-                    // T7__DH1__GET_BACKUP.ChoicePoint() behavior
-                    // uml: / { trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
+                    // T7__DH1__GET_BACKUP.<ChoicePoint>() behavior
+                    // uml: / { trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO."); } TransitionTo(T7__DH1__HERO)
                     {
                         // Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO.");`.
-                        MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.ChoicePoint() to T7__DH1__HERO.");
+                        // Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.");`.
+                        MainClass.Trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.");
 
                         // Step 3: Enter/move towards transition target `T7__DH1__HERO`.
                         T7__DH1__HERO_enter();
@@ -7118,32 +7118,32 @@ namespace Csharp.Spec2smTests
                         // Finish transition by calling pseudo state transition function.
                         T7__DH1__HERO_InitialState_transition();
                         return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                    } // end of behavior for T7__DH1__GET_BACKUP.ChoicePoint()
-                } // end of behavior for T7__DH1__GET_BACKUP.History
+                    } // end of behavior for T7__DH1__GET_BACKUP.<ChoicePoint>()
+                } // end of behavior for T7__DH1__GET_BACKUP.<History>
             } // end of behavior for T7__DH1__BUILD
         }
 
         private void T7__DH1__BUILD_InitialState_transition()
         {
-            // T7__DH1__BUILD.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History."); } TransitionTo(T7__DH1__BUILD.History)
+            // T7__DH1__BUILD.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>."); } TransitionTo(T7__DH1__BUILD.<History>)
             {
                 // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History.");`.
-                MainClass.Trace("Transition action `` for T7__DH1__BUILD.InitialState to T7__DH1__BUILD.History.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.");`.
+                MainClass.Trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.");
 
-                // Step 3: Enter/move towards transition target `T7__DH1__BUILD.History`.
-                // T7__DH1__BUILD.History is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `T7__DH1__BUILD.<History>`.
+                // T7__DH1__BUILD.<History> is a pseudo state and cannot have an `enter` trigger.
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL."); } TransitionTo(T7__DH1__TOOL)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOOL.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__TOOL`.
                     T7__DH1__TOOL_enter();
@@ -7151,16 +7151,16 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__TOOL_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__RACE_CAR.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
                     T7__DH1__TOY_enter();
@@ -7170,16 +7170,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__RACE_CAR;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR."); } TransitionTo(T7__DH1__TEDDY_BEAR)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TEDDY_BEAR.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__TEDDY_BEAR`.
                     T7__DH1__TOY_enter();
@@ -7189,16 +7189,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__TEDDY_BEAR;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM."); } TransitionTo(T7__DH1__GLOW_WORM)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__GLOW_WORM.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__GLOW_WORM`.
                     T7__DH1__TOY_enter();
@@ -7208,16 +7208,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__GLOW_WORM;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT."); } TransitionTo(T7__DH1__ROBOT)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__ROBOT.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__ROBOT`.
                     T7__DH1__TOY_enter();
@@ -7226,16 +7226,16 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__ROBOT_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__BATTLEBOT.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
                     T7__DH1__TOY_enter();
@@ -7246,16 +7246,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__BATTLEBOT;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E."); } TransitionTo(T7__DH1__WALL_E)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__WALL_E.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__WALL_E`.
                     T7__DH1__TOY_enter();
@@ -7266,16 +7266,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__WALL_E;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__IMPACT_DRILL.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
                     T7__DH1__TOOL_enter();
@@ -7285,16 +7285,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__IMPACT_DRILL;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)] / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW."); } TransitionTo(T7__DH1__CIRCULAR_SAW)
                 if (this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__CIRCULAR_SAW.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__CIRCULAR_SAW`.
                     T7__DH1__TOOL_enter();
@@ -7304,15 +7304,15 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DH1__CIRCULAR_SAW;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DH1__BUILD.History
+                } // end of behavior for T7__DH1__BUILD.<History>
 
-                // T7__DH1__BUILD.History behavior
-                // uml: else / { trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY."); } TransitionTo(T7__DH1__TOY)
+                // T7__DH1__BUILD.<History> behavior
+                // uml: else / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY."); } TransitionTo(T7__DH1__TOY)
                 {
                     // Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY.");`.
-                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.History to T7__DH1__TOY.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.");`.
+                    MainClass.Trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__TOY`.
                     T7__DH1__TOY_enter();
@@ -7320,8 +7320,8 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__TOY_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DH1__BUILD.History
-            } // end of behavior for T7__DH1__BUILD.InitialState
+                } // end of behavior for T7__DH1__BUILD.<History>
+            } // end of behavior for T7__DH1__BUILD.<InitialState>
         }
 
 
@@ -7394,13 +7394,13 @@ namespace Csharp.Spec2smTests
 
         private void T7__DH1__TOOL_InitialState_transition()
         {
-            // T7__DH1__TOOL.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
+            // T7__DH1__TOOL.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL."); } TransitionTo(T7__DH1__IMPACT_DRILL)
             {
                 // Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL.");`.
-                MainClass.Trace("Transition action `` for T7__DH1__TOOL.InitialState to T7__DH1__IMPACT_DRILL.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.");`.
+                MainClass.Trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
                 T7__DH1__IMPACT_DRILL_enter();
@@ -7409,7 +7409,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__DH1__IMPACT_DRILL;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DH1__TOOL.InitialState
+            } // end of behavior for T7__DH1__TOOL.<InitialState>
         }
 
 
@@ -7592,13 +7592,13 @@ namespace Csharp.Spec2smTests
 
         private void T7__DH1__TOY_InitialState_transition()
         {
-            // T7__DH1__TOY.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
+            // T7__DH1__TOY.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR."); } TransitionTo(T7__DH1__RACE_CAR)
             {
                 // Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR.");`.
-                MainClass.Trace("Transition action `` for T7__DH1__TOY.InitialState to T7__DH1__RACE_CAR.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.");`.
+                MainClass.Trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
                 T7__DH1__RACE_CAR_enter();
@@ -7607,7 +7607,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__DH1__RACE_CAR;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DH1__TOY.InitialState
+            } // end of behavior for T7__DH1__TOY.<InitialState>
         }
 
 
@@ -7792,13 +7792,13 @@ namespace Csharp.Spec2smTests
 
         private void T7__DH1__ROBOT_InitialState_transition()
         {
-            // T7__DH1__ROBOT.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
+            // T7__DH1__ROBOT.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT."); } TransitionTo(T7__DH1__BATTLEBOT)
             {
                 // Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT.");`.
-                MainClass.Trace("Transition action `` for T7__DH1__ROBOT.InitialState to T7__DH1__BATTLEBOT.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.");`.
+                MainClass.Trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.");
 
                 // Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
                 T7__DH1__BATTLEBOT_enter();
@@ -7807,7 +7807,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__DH1__BATTLEBOT;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DH1__ROBOT.InitialState
+            } // end of behavior for T7__DH1__ROBOT.<InitialState>
         }
 
 
@@ -8087,25 +8087,25 @@ namespace Csharp.Spec2smTests
 
         private void T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
         {
-            // T7__DEEP_HISTORY2__T7__state_0.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.InitialState to T7__DEEP_HISTORY2__T7__state_0.History."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0.History)
+            // T7__DEEP_HISTORY2__T7__state_0.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0.<History>)
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.InitialState to T7__DEEP_HISTORY2__T7__state_0.History.");`.
-                MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.InitialState to T7__DEEP_HISTORY2__T7__state_0.History.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.");`.
+                MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.");
 
-                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0.History`.
-                // T7__DEEP_HISTORY2__T7__state_0.History is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0.<History>`.
+                // T7__DEEP_HISTORY2__T7__state_0.<History> is a pseudo state and cannot have an `enter` trigger.
 
-                // T7__DEEP_HISTORY2__T7__state_0.History behavior
-                // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
-                if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2)
+                // T7__DEEP_HISTORY2__T7__state_0.<History> behavior
+                // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
+                if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_2.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_2.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.");
 
                     // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_2`.
                     T7__DEEP_HISTORY2__T7__STATE_2_enter();
@@ -8113,16 +8113,16 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DEEP_HISTORY2__T7__state_2_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.History
+                } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
 
-                // T7__DEEP_HISTORY2__T7__state_0.History behavior
-                // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
-                if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6)
+                // T7__DEEP_HISTORY2__T7__state_0.<History> behavior
+                // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
+                if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_6.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_6.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.");
 
                     // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_6`.
                     T7__DEEP_HISTORY2__T7__STATE_2_enter();
@@ -8132,16 +8132,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_6;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.History
+                } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
 
-                // T7__DEEP_HISTORY2__T7__state_0.History behavior
-                // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_9."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
-                if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9)
+                // T7__DEEP_HISTORY2__T7__state_0.<History> behavior
+                // uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
+                if (this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_9.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_9.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.");
 
                     // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_9`.
                     T7__DEEP_HISTORY2__T7__STATE_2_enter();
@@ -8151,15 +8151,15 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_9;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.History
+                } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
 
-                // T7__DEEP_HISTORY2__T7__state_0.History behavior
-                // uml: else / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
+                // T7__DEEP_HISTORY2__T7__state_0.<History> behavior
+                // uml: else / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_1.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.History to T7__DEEP_HISTORY2__T7__state_1.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.");
 
                     // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_1`.
                     T7__DEEP_HISTORY2__T7__STATE_1_enter();
@@ -8168,8 +8168,8 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_1;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.History
-            } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.InitialState
+                } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
+            } // end of behavior for T7__DEEP_HISTORY2__T7__state_0.<InitialState>
         }
 
 
@@ -8191,11 +8191,11 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
 
             // T7__DEEP_HISTORY2__T7__state_1 behavior
-            // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;) }
-            if (trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;) }`.", true))
+            // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }
+            if (trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", true))
             {
-                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;)`
-                this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_1;
+                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;)`
+                this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_1
         }
 
@@ -8259,11 +8259,11 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
 
             // T7__DEEP_HISTORY2__T7__state_2 behavior
-            // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;) }
-            if (trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;) }`.", true))
+            // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }
+            if (trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", true))
             {
-                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;)`
-                this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_2;
+                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;)`
+                this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_2
         }
 
@@ -8311,13 +8311,13 @@ namespace Csharp.Spec2smTests
 
         private void T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
         {
-            // T7__DEEP_HISTORY2__T7__state_2.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.InitialState to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
+            // T7__DEEP_HISTORY2__T7__state_2.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.InitialState to T7__DEEP_HISTORY2__T7__state_6.");`.
-                MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.InitialState to T7__DEEP_HISTORY2__T7__state_6.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.");`.
+                MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.");
 
                 // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_6`.
                 T7__DEEP_HISTORY2__T7__STATE_6_enter();
@@ -8326,7 +8326,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_6;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DEEP_HISTORY2__T7__state_2.InitialState
+            } // end of behavior for T7__DEEP_HISTORY2__T7__state_2.<InitialState>
         }
 
 
@@ -8348,11 +8348,11 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
 
             // T7__DEEP_HISTORY2__T7__state_6 behavior
-            // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;) }
-            if (trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;) }`.", true))
+            // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }
+            if (trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", true))
             {
-                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;)`
-                this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_6;
+                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;)`
+                this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_6
         }
 
@@ -8416,11 +8416,11 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
 
             // T7__DEEP_HISTORY2__T7__state_9 behavior
-            // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;) }
-            if (trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;) }`.", true))
+            // uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }
+            if (trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", true))
             {
-                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;)`
-                this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__state_9;
+                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;)`
+                this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;
             } // end of behavior for T7__DEEP_HISTORY2__T7__state_9
         }
 
@@ -8595,25 +8595,25 @@ namespace Csharp.Spec2smTests
 
         private void T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
         {
-            // T7__DEEP_HISTORY3__T7__state_0.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.InitialState to T7__DEEP_HISTORY3__T7__state_0.History."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0.History)
+            // T7__DEEP_HISTORY3__T7__state_0.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0.<History>)
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.InitialState to T7__DEEP_HISTORY3__T7__state_0.History.");`.
-                MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.InitialState to T7__DEEP_HISTORY3__T7__state_0.History.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.");`.
+                MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.");
 
-                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0.History`.
-                // T7__DEEP_HISTORY3__T7__state_0.History is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0.<History>`.
+                // T7__DEEP_HISTORY3__T7__state_0.<History> is a pseudo state and cannot have an `enter` trigger.
 
-                // T7__DEEP_HISTORY3__T7__state_0.History behavior
-                // uml: [$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
-                if (this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2)
+                // T7__DEEP_HISTORY3__T7__state_0.<History> behavior
+                // uml: [$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
+                if (this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_2.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_2.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.");
 
                     // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_2`.
                     T7__DEEP_HISTORY3__T7__STATE_2_enter();
@@ -8621,15 +8621,15 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DEEP_HISTORY3__T7__state_2_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.History
+                } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
 
-                // T7__DEEP_HISTORY3__T7__state_0.History behavior
-                // uml: else / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
+                // T7__DEEP_HISTORY3__T7__state_0.<History> behavior
+                // uml: else / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_1.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.History to T7__DEEP_HISTORY3__T7__state_1.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.");
 
                     // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_1`.
                     T7__DEEP_HISTORY3__T7__STATE_1_enter();
@@ -8638,8 +8638,8 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_1;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.History
-            } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.InitialState
+                } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
+            } // end of behavior for T7__DEEP_HISTORY3__T7__state_0.<InitialState>
         }
 
 
@@ -8661,11 +8661,11 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
 
             // T7__DEEP_HISTORY3__T7__state_1 behavior
-            // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;) }
-            if (trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;) }`.", true))
+            // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }
+            if (trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", true))
             {
-                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;)`
-                this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_1;
+                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;)`
+                this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;
             } // end of behavior for T7__DEEP_HISTORY3__T7__state_1
         }
 
@@ -8729,11 +8729,11 @@ namespace Csharp.Spec2smTests
             } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
 
             // T7__DEEP_HISTORY3__T7__state_2 behavior
-            // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;) }
-            if (trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;) }`.", true))
+            // uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }
+            if (trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", true))
             {
-                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;)`
-                this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__state_2;
+                // Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;)`
+                this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;
             } // end of behavior for T7__DEEP_HISTORY3__T7__state_2
         }
 
@@ -8781,13 +8781,13 @@ namespace Csharp.Spec2smTests
 
         private void T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
         {
-            // T7__DEEP_HISTORY3__T7__state_2.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.InitialState to T7__DEEP_HISTORY3__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_6)
+            // T7__DEEP_HISTORY3__T7__state_2.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_6)
             {
                 // Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.InitialState to T7__DEEP_HISTORY3__T7__state_6.");`.
-                MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.InitialState to T7__DEEP_HISTORY3__T7__state_6.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.");`.
+                MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.");
 
                 // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_6`.
                 T7__DEEP_HISTORY3__T7__STATE_6_enter();
@@ -8796,7 +8796,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_6;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__DEEP_HISTORY3__T7__state_2.InitialState
+            } // end of behavior for T7__DEEP_HISTORY3__T7__state_2.<InitialState>
         }
 
 
@@ -9103,25 +9103,25 @@ namespace Csharp.Spec2smTests
 
         private void T7__H1__OFF_InitialState_transition()
         {
-            // T7__H1__OFF.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History."); } TransitionTo(T7__H1__OFF.History)
+            // T7__H1__OFF.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>."); } TransitionTo(T7__H1__OFF.<History>)
             {
                 // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History.");`.
-                MainClass.Trace("Transition action `` for T7__H1__OFF.InitialState to T7__H1__OFF.History.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.");`.
+                MainClass.Trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.");
 
-                // Step 3: Enter/move towards transition target `T7__H1__OFF.History`.
-                // T7__H1__OFF.History is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `T7__H1__OFF.<History>`.
+                // T7__H1__OFF.<History> is a pseudo state and cannot have an `enter` trigger.
 
-                // T7__H1__OFF.History behavior
-                // uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2)] / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
+                // T7__H1__OFF.<History> behavior
+                // uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2."); } TransitionTo(T7__H1__OFF2)
                 if (this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2)
                 {
                     // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2.");`.
-                    MainClass.Trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF2.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.");`.
+                    MainClass.Trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__OFF2`.
                     T7__H1__OFF2_enter();
@@ -9130,16 +9130,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__H1__OFF2;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__H1__OFF.History
+                } // end of behavior for T7__H1__OFF.<History>
 
-                // T7__H1__OFF.History behavior
-                // uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)] / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
+                // T7__H1__OFF.<History> behavior
+                // uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3."); } TransitionTo(T7__H1__OFF3)
                 if (this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)
                 {
                     // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3.");`.
-                    MainClass.Trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF3.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.");`.
+                    MainClass.Trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__OFF3`.
                     T7__H1__OFF3_enter();
@@ -9148,15 +9148,15 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__H1__OFF3;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__H1__OFF.History
+                } // end of behavior for T7__H1__OFF.<History>
 
-                // T7__H1__OFF.History behavior
-                // uml: else / { trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1."); } TransitionTo(T7__H1__OFF1)
+                // T7__H1__OFF.<History> behavior
+                // uml: else / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1."); } TransitionTo(T7__H1__OFF1)
                 {
                     // Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1.");`.
-                    MainClass.Trace("Transition action `` for T7__H1__OFF.History to T7__H1__OFF1.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.");`.
+                    MainClass.Trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__OFF1`.
                     T7__H1__OFF1_enter();
@@ -9165,8 +9165,8 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__H1__OFF1;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__H1__OFF.History
-            } // end of behavior for T7__H1__OFF.InitialState
+                } // end of behavior for T7__H1__OFF.<History>
+            } // end of behavior for T7__H1__OFF.<InitialState>
         }
 
 
@@ -9410,25 +9410,25 @@ namespace Csharp.Spec2smTests
 
         private void T7__H1__ON_InitialState_transition()
         {
-            // T7__H1__ON.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History."); } TransitionTo(T7__H1__ON.History)
+            // T7__H1__ON.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>."); } TransitionTo(T7__H1__ON.<History>)
             {
                 // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History.");`.
-                MainClass.Trace("Transition action `` for T7__H1__ON.InitialState to T7__H1__ON.History.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.");`.
+                MainClass.Trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.");
 
-                // Step 3: Enter/move towards transition target `T7__H1__ON.History`.
-                // T7__H1__ON.History is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `T7__H1__ON.<History>`.
+                // T7__H1__ON.<History> is a pseudo state and cannot have an `enter` trigger.
 
-                // T7__H1__ON.History behavior
-                // uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2)] / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
+                // T7__H1__ON.<History> behavior
+                // uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2."); } TransitionTo(T7__H1__ON2)
                 if (this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2)
                 {
                     // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2.");`.
-                    MainClass.Trace("Transition action `` for T7__H1__ON.History to T7__H1__ON2.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.");`.
+                    MainClass.Trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON2`.
                     T7__H1__ON2_enter();
@@ -9437,16 +9437,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__H1__ON2;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__H1__ON.History
+                } // end of behavior for T7__H1__ON.<History>
 
-                // T7__H1__ON.History behavior
-                // uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)] / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
+                // T7__H1__ON.<History> behavior
+                // uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3."); } TransitionTo(T7__H1__ON3)
                 if (this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)
                 {
                     // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3.");`.
-                    MainClass.Trace("Transition action `` for T7__H1__ON.History to T7__H1__ON3.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.");`.
+                    MainClass.Trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON3`.
                     T7__H1__ON3_enter();
@@ -9455,15 +9455,15 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__H1__ON3;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__H1__ON.History
+                } // end of behavior for T7__H1__ON.<History>
 
-                // T7__H1__ON.History behavior
-                // uml: else / { trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1."); } TransitionTo(T7__H1__ON1)
+                // T7__H1__ON.<History> behavior
+                // uml: else / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1."); } TransitionTo(T7__H1__ON1)
                 {
                     // Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1.");`.
-                    MainClass.Trace("Transition action `` for T7__H1__ON.History to T7__H1__ON1.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.");`.
+                    MainClass.Trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON1`.
                     T7__H1__ON1_enter();
@@ -9472,8 +9472,8 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.T7__H1__ON1;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for T7__H1__ON.History
-            } // end of behavior for T7__H1__ON.InitialState
+                } // end of behavior for T7__H1__ON.<History>
+            } // end of behavior for T7__H1__ON.<InitialState>
         }
 
 
@@ -9771,13 +9771,13 @@ namespace Csharp.Spec2smTests
 
         private void T7__INITIAL1__PARENT_InitialState_transition()
         {
-            // T7__INITIAL1__PARENT.InitialState behavior
-            // uml: / { trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1."); } TransitionTo(T7__INITIAL1__S1)
+            // T7__INITIAL1__PARENT.<InitialState> behavior
+            // uml: / { trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1."); } TransitionTo(T7__INITIAL1__S1)
             {
                 // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1.");`.
-                MainClass.Trace("Transition action `` for T7__INITIAL1__PARENT.InitialState to T7__INITIAL1__S1.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.");`.
+                MainClass.Trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__S1`.
                 T7__INITIAL1__S1_enter();
@@ -9786,7 +9786,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__INITIAL1__S1;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__INITIAL1__PARENT.InitialState
+            } // end of behavior for T7__INITIAL1__PARENT.<InitialState>
         }
 
 
@@ -9831,17 +9831,17 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev2` event.
 
             // T7__INITIAL1__G behavior
-            // uml: EV2 [trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.InitialState)`.", true)] / { trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState."); } TransitionTo(T7__INITIAL1__PARENT.InitialState)
-            if (trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.InitialState)`.", true))
+            // uml: EV2 [trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", true)] / { trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>."); } TransitionTo(T7__INITIAL1__PARENT.<InitialState>)
+            if (trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
                 ExitUpToStateHandler(ptr_T7__INITIAL1__PARENT_exit);
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");`.
-                MainClass.Trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.InitialState.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.");`.
+                MainClass.Trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.");
 
-                // Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT.InitialState`.
-                // T7__INITIAL1__PARENT.InitialState is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT.<InitialState>`.
+                // T7__INITIAL1__PARENT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 T7__INITIAL1__PARENT_InitialState_transition();
@@ -9851,14 +9851,14 @@ namespace Csharp.Spec2smTests
 
         private void T7__INITIAL1__G_InitialState_transition()
         {
-            // T7__INITIAL1__G.InitialState behavior
-            // uml: [count == 1] / { trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1."); } TransitionTo(T7__INITIAL1__G_S1)
+            // T7__INITIAL1__G.<InitialState> behavior
+            // uml: [count == 1] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1."); } TransitionTo(T7__INITIAL1__G_S1)
             if (this.vars.count == 1)
             {
                 // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1.");`.
-                MainClass.Trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S1.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.");`.
+                MainClass.Trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S1`.
                 T7__INITIAL1__G_S1_enter();
@@ -9867,16 +9867,16 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__INITIAL1__G_S1;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__INITIAL1__G.InitialState
+            } // end of behavior for T7__INITIAL1__G.<InitialState>
 
-            // T7__INITIAL1__G.InitialState behavior
-            // uml: [count == 2] / { trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2."); } TransitionTo(T7__INITIAL1__G_S2)
+            // T7__INITIAL1__G.<InitialState> behavior
+            // uml: [count == 2] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2."); } TransitionTo(T7__INITIAL1__G_S2)
             if (this.vars.count == 2)
             {
                 // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2.");`.
-                MainClass.Trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S2.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.");`.
+                MainClass.Trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S2`.
                 T7__INITIAL1__G_S2_enter();
@@ -9885,15 +9885,15 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__INITIAL1__G_S2;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__INITIAL1__G.InitialState
+            } // end of behavior for T7__INITIAL1__G.<InitialState>
 
-            // T7__INITIAL1__G.InitialState behavior
-            // uml: else / { trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3."); } TransitionTo(T7__INITIAL1__G_S3)
+            // T7__INITIAL1__G.<InitialState> behavior
+            // uml: else / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3."); } TransitionTo(T7__INITIAL1__G_S3)
             {
                 // Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3.");`.
-                MainClass.Trace("Transition action `` for T7__INITIAL1__G.InitialState to T7__INITIAL1__G_S3.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.");`.
+                MainClass.Trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.");
 
                 // Step 3: Enter/move towards transition target `T7__INITIAL1__G_S3`.
                 T7__INITIAL1__G_S3_enter();
@@ -9902,7 +9902,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.T7__INITIAL1__G_S3;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for T7__INITIAL1__G.InitialState
+            } // end of behavior for T7__INITIAL1__G.<InitialState>
         }
 
 
@@ -10073,18 +10073,18 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev3` event.
 
             // T7__INITIAL1__S1 behavior
-            // uml: EV3 [trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.InitialState)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState."); } TransitionTo(T7__INITIAL1__G.InitialState)
-            if (trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.InitialState)`.", true))
+            // uml: EV3 [trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.<InitialState>)`.", true)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>."); } TransitionTo(T7__INITIAL1__G.<InitialState>)
+            if (trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.<InitialState>)`.", true))
             {
                 // Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
                 T7__INITIAL1__S1_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState.");`.
-                MainClass.Trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.InitialState.");
+                // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>.");`.
+                MainClass.Trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>.");
 
-                // Step 3: Enter/move towards transition target `T7__INITIAL1__G.InitialState`.
+                // Step 3: Enter/move towards transition target `T7__INITIAL1__G.<InitialState>`.
                 T7__INITIAL1__G_enter();
-                // T7__INITIAL1__G.InitialState is a pseudo state and cannot have an `enter` trigger.
+                // T7__INITIAL1__G.<InitialState> is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 T7__INITIAL1__G_InitialState_transition();
@@ -10163,13 +10163,13 @@ namespace Csharp.Spec2smTests
                 TEST7_enter();
                 T7__INITIAL1_enter();
 
-                // T7__INITIAL1.InitialState behavior
-                // uml: / { trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT."); } TransitionTo(T7__INITIAL1__PARENT)
+                // T7__INITIAL1.<InitialState> behavior
+                // uml: / { trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT."); } TransitionTo(T7__INITIAL1__PARENT)
                 {
                     // Step 1: Exit states until we reach `T7__INITIAL1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT.");`.
-                    MainClass.Trace("Transition action `` for T7__INITIAL1.InitialState to T7__INITIAL1__PARENT.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.");`.
+                    MainClass.Trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.");
 
                     // Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT`.
                     T7__INITIAL1__PARENT_enter();
@@ -10177,7 +10177,7 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__INITIAL1__PARENT_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__INITIAL1.InitialState
+                } // end of behavior for T7__INITIAL1.<InitialState>
             } // end of behavior for TEST7_DECIDE
         }
 
@@ -10201,13 +10201,13 @@ namespace Csharp.Spec2smTests
                 TEST7_enter();
                 T7__HISTORY1_enter();
 
-                // T7__HISTORY1.InitialState behavior
-                // uml: / { trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON."); } TransitionTo(T7__H1__ON)
+                // T7__HISTORY1.<InitialState> behavior
+                // uml: / { trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON."); } TransitionTo(T7__H1__ON)
                 {
                     // Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON.");`.
-                    MainClass.Trace("Transition action `` for T7__HISTORY1.InitialState to T7__H1__ON.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.");`.
+                    MainClass.Trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.");
 
                     // Step 3: Enter/move towards transition target `T7__H1__ON`.
                     T7__H1__ON_enter();
@@ -10215,7 +10215,7 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__H1__ON_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__HISTORY1.InitialState
+                } // end of behavior for T7__HISTORY1.<InitialState>
             } // end of behavior for TEST7_DECIDE
         }
 
@@ -10239,13 +10239,13 @@ namespace Csharp.Spec2smTests
                 TEST7_enter();
                 T7__DEEP_HISTORY1_enter();
 
-                // T7__DEEP_HISTORY1.InitialState behavior
-                // uml: / { trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD."); } TransitionTo(T7__DH1__BUILD)
+                // T7__DEEP_HISTORY1.<InitialState> behavior
+                // uml: / { trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD."); } TransitionTo(T7__DH1__BUILD)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY1.InitialState to T7__DH1__BUILD.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.");
 
                     // Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
                     T7__DH1__SANTAS_WORKSHOP_enter();
@@ -10254,7 +10254,7 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DH1__BUILD_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DEEP_HISTORY1.InitialState
+                } // end of behavior for T7__DEEP_HISTORY1.<InitialState>
             } // end of behavior for TEST7_DECIDE
         }
 
@@ -10278,13 +10278,13 @@ namespace Csharp.Spec2smTests
                 TEST7_enter();
                 T7__DEEP_HISTORY2_enter();
 
-                // T7__DEEP_HISTORY2.InitialState behavior
-                // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DEEP_HISTORY2__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
+                // T7__DEEP_HISTORY2.<InitialState> behavior
+                // uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DEEP_HISTORY2__T7__state_0.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2.InitialState to T7__DEEP_HISTORY2__T7__state_0.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.");
 
                     // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0`.
                     T7__DEEP_HISTORY2__T7__STATE_0_enter();
@@ -10292,7 +10292,7 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DEEP_HISTORY2__T7__state_0_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DEEP_HISTORY2.InitialState
+                } // end of behavior for T7__DEEP_HISTORY2.<InitialState>
             } // end of behavior for TEST7_DECIDE
         }
 
@@ -10316,13 +10316,13 @@ namespace Csharp.Spec2smTests
                 TEST7_enter();
                 T7__DEEP_HISTORY3_enter();
 
-                // T7__DEEP_HISTORY3.InitialState behavior
-                // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DEEP_HISTORY3__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
+                // T7__DEEP_HISTORY3.<InitialState> behavior
+                // uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0."); } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
                 {
                     // Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DEEP_HISTORY3__T7__state_0.");`.
-                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3.InitialState to T7__DEEP_HISTORY3__T7__state_0.");
+                    // Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.");`.
+                    MainClass.Trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.");
 
                     // Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0`.
                     T7__DEEP_HISTORY3__T7__STATE_0_enter();
@@ -10330,7 +10330,7 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     T7__DEEP_HISTORY3__T7__state_0_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for T7__DEEP_HISTORY3.InitialState
+                } // end of behavior for T7__DEEP_HISTORY3.<InitialState>
             } // end of behavior for TEST7_DECIDE
         }
 
@@ -10448,13 +10448,13 @@ namespace Csharp.Spec2smTests
 
         private void TEST8_ROOT_EntryPoint_1__transition()
         {
-            // TEST8_ROOT.EntryPoint(1) behavior
-            // uml: / { trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1."); } TransitionTo(TEST8_S1)
+            // TEST8_ROOT.<EntryPoint>(1) behavior
+            // uml: / { trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1."); } TransitionTo(TEST8_S1)
             {
                 // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.");`.
-                MainClass.Trace("Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.");`.
+                MainClass.Trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST8_S1`.
                 TEST8_S1_enter();
@@ -10463,7 +10463,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.TEST8_S1;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for TEST8_ROOT.EntryPoint(1)
+            } // end of behavior for TEST8_ROOT.<EntryPoint>(1)
         }
 
 
@@ -10508,17 +10508,17 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev2` event.
 
             // TEST8_G behavior
-            // uml: EV2 [trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1)."); } TransitionTo(TEST8_ROOT.EntryPoint(1))
-            if (trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`.", true))
+            // uml: EV2 [trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1)."); } TransitionTo(TEST8_ROOT.<EntryPoint>(1))
+            if (trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
                 ExitUpToStateHandler(ptr_TEST8_ROOT_exit);
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");`.
-                MainClass.Trace("Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).");`.
+                MainClass.Trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).");
 
-                // Step 3: Enter/move towards transition target `TEST8_ROOT.EntryPoint(1)`.
-                // TEST8_ROOT.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST8_ROOT.<EntryPoint>(1)`.
+                // TEST8_ROOT.<EntryPoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST8_ROOT_EntryPoint_1__transition();
@@ -10528,14 +10528,14 @@ namespace Csharp.Spec2smTests
 
         private void TEST8_G_EntryPoint_1__transition()
         {
-            // TEST8_G.EntryPoint(1) behavior
-            // uml: [count == 1] / { trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1."); } TransitionTo(TEST8_G_S1)
+            // TEST8_G.<EntryPoint>(1) behavior
+            // uml: [count == 1] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1."); } TransitionTo(TEST8_G_S1)
             if (this.vars.count == 1)
             {
                 // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1.");`.
-                MainClass.Trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S1.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.");`.
+                MainClass.Trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S1`.
                 TEST8_G_S1_enter();
@@ -10544,16 +10544,16 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.TEST8_G_S1;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for TEST8_G.EntryPoint(1)
+            } // end of behavior for TEST8_G.<EntryPoint>(1)
 
-            // TEST8_G.EntryPoint(1) behavior
-            // uml: [count == 2] / { trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2."); } TransitionTo(TEST8_G_S2)
+            // TEST8_G.<EntryPoint>(1) behavior
+            // uml: [count == 2] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2."); } TransitionTo(TEST8_G_S2)
             if (this.vars.count == 2)
             {
                 // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2.");`.
-                MainClass.Trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S2.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.");`.
+                MainClass.Trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S2`.
                 TEST8_G_S2_enter();
@@ -10562,15 +10562,15 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.TEST8_G_S2;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for TEST8_G.EntryPoint(1)
+            } // end of behavior for TEST8_G.<EntryPoint>(1)
 
-            // TEST8_G.EntryPoint(1) behavior
-            // uml: else / { trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3."); } TransitionTo(TEST8_G_S3)
+            // TEST8_G.<EntryPoint>(1) behavior
+            // uml: else / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3."); } TransitionTo(TEST8_G_S3)
             {
                 // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3.");`.
-                MainClass.Trace("Transition action `` for TEST8_G.EntryPoint(1) to TEST8_G_S3.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.");`.
+                MainClass.Trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.");
 
                 // Step 3: Enter/move towards transition target `TEST8_G_S3`.
                 TEST8_G_S3_enter();
@@ -10579,27 +10579,27 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.TEST8_G_S3;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for TEST8_G.EntryPoint(1)
+            } // end of behavior for TEST8_G.<EntryPoint>(1)
         }
 
         private void TEST8_G_EntryPoint_3__transition()
         {
-            // TEST8_G.EntryPoint(3) behavior
-            // uml: / { trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");\ncount += 0; } TransitionTo(TEST8_G.EntryPoint(1))
+            // TEST8_G.<EntryPoint>(3) behavior
+            // uml: / { trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");\ncount += 0; } TransitionTo(TEST8_G.<EntryPoint>(1))
             {
                 // Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");\ncount += 0;`.
-                MainClass.Trace("Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).");
+                // Step 2: Transition action: `trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");\ncount += 0;`.
+                MainClass.Trace("Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).");
                 this.vars.count += 0;
 
-                // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(1)`.
-                // TEST8_G.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(1)`.
+                // TEST8_G.<EntryPoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST8_G_EntryPoint_1__transition();
                 return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-            } // end of behavior for TEST8_G.EntryPoint(3)
+            } // end of behavior for TEST8_G.<EntryPoint>(3)
         }
 
 
@@ -10747,18 +10747,18 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev1` event.
 
             // TEST8_S1 behavior
-            // uml: 1. EV1 [trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.EntryPoint(1))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1)."); } TransitionTo(TEST8_G.EntryPoint(1))
-            if (trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.EntryPoint(1))`.", true))
+            // uml: 1. EV1 [trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1)."); } TransitionTo(TEST8_G.<EntryPoint>(1))
+            if (trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
                 TEST8_S1_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).");`.
-                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).");`.
+                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).");
 
-                // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(1)`.
+                // Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(1)`.
                 TEST8_G_enter();
-                // TEST8_G.EntryPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // TEST8_G.<EntryPoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST8_G_EntryPoint_1__transition();
@@ -10785,18 +10785,18 @@ namespace Csharp.Spec2smTests
             this.ancestorEventHandler = ptr_TEST8_ROOT_ev3;
 
             // TEST8_S1 behavior
-            // uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.EntryPoint(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3)."); } TransitionTo(TEST8_G.EntryPoint(3))
-            if (trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.EntryPoint(3))`.", true))
+            // uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3)."); } TransitionTo(TEST8_G.<EntryPoint>(3))
+            if (trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
                 TEST8_S1_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");`.
-                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).");`.
+                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).");
 
-                // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(3)`.
+                // Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(3)`.
                 TEST8_G_enter();
-                // TEST8_G.EntryPoint(3) is a pseudo state and cannot have an `enter` trigger.
+                // TEST8_G.<EntryPoint>(3) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST8_G_EntryPoint_3__transition();
@@ -10811,18 +10811,18 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev6` event.
 
             // TEST8_S1 behavior
-            // uml: EV6 [trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.EntryPoint(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3)."); } TransitionTo(TEST8_G.EntryPoint(3))
-            if (trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.EntryPoint(3))`.", true))
+            // uml: EV6 [trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3)."); } TransitionTo(TEST8_G.<EntryPoint>(3))
+            if (trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
                 TEST8_S1_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");`.
-                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).");`.
+                MainClass.Trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).");
 
-                // Step 3: Enter/move towards transition target `TEST8_G.EntryPoint(3)`.
+                // Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(3)`.
                 TEST8_G_enter();
-                // TEST8_G.EntryPoint(3) is a pseudo state and cannot have an `enter` trigger.
+                // TEST8_G.<EntryPoint>(3) is a pseudo state and cannot have an `enter` trigger.
 
                 // Finish transition by calling pseudo state transition function.
                 TEST8_G_EntryPoint_3__transition();
@@ -10921,24 +10921,24 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST9_ROOT`.
                 TEST9_ROOT_enter();
 
-                // TEST9_ROOT.InitialState behavior
-                // uml: / { trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1."); } TransitionTo(TEST9_S1)
+                // TEST9_ROOT.<InitialState> behavior
+                // uml: / { trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1."); } TransitionTo(TEST9_S1)
                 {
                     // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1.");`.
-                    MainClass.Trace("Transition action `` for TEST9_ROOT.InitialState to TEST9_S1.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.");`.
+                    MainClass.Trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST9_S1`.
                     TEST9_S1_enter();
 
-                    // TEST9_S1.InitialState behavior
-                    // uml: / { trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1."); } TransitionTo(TEST9_S1_1)
+                    // TEST9_S1.<InitialState> behavior
+                    // uml: / { trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1."); } TransitionTo(TEST9_S1_1)
                     {
                         // Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                        // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1.");`.
-                        MainClass.Trace("Transition action `` for TEST9_S1.InitialState to TEST9_S1_1.");
+                        // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.");`.
+                        MainClass.Trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.");
 
                         // Step 3: Enter/move towards transition target `TEST9_S1_1`.
                         TEST9_S1_1_enter();
@@ -10947,8 +10947,8 @@ namespace Csharp.Spec2smTests
                         this.stateId = StateId.TEST9_S1_1;
                         // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                         return;
-                    } // end of behavior for TEST9_S1.InitialState
-                } // end of behavior for TEST9_ROOT.InitialState
+                    } // end of behavior for TEST9_S1.<InitialState>
+                } // end of behavior for TEST9_ROOT.<InitialState>
             } // end of behavior for TEST9_DECIDE
         }
 
@@ -10971,13 +10971,13 @@ namespace Csharp.Spec2smTests
                 // Step 3: Enter/move towards transition target `TEST9A_ROOT`.
                 TEST9A_ROOT_enter();
 
-                // TEST9A_ROOT.InitialState behavior
-                // uml: / { trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");\ncount = 0; } TransitionTo(TEST9A_S1)
+                // TEST9A_ROOT.<InitialState> behavior
+                // uml: / { trace("Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.");\ncount = 0; } TransitionTo(TEST9A_S1)
                 {
                     // Step 1: Exit states until we reach `TEST9A_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                    // Step 2: Transition action: `trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");\ncount = 0;`.
-                    MainClass.Trace("Transition action `count = 0;` for TEST9A_ROOT.InitialState to TEST9A_S1.");
+                    // Step 2: Transition action: `trace("Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.");\ncount = 0;`.
+                    MainClass.Trace("Transition action `count = 0;` for TEST9A_ROOT.<InitialState> to TEST9A_S1.");
                     this.vars.count = 0;
 
                     // Step 3: Enter/move towards transition target `TEST9A_S1`.
@@ -10986,7 +10986,7 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     TEST9A_S1_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for TEST9A_ROOT.InitialState
+                } // end of behavior for TEST9A_ROOT.<InitialState>
             } // end of behavior for TEST9_DECIDE
         }
 
@@ -11284,27 +11284,27 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev1` event.
 
             // TEST9_S1_1 behavior
-            // uml: EV1 [trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.ExitPoint(1))`.", true)] / { trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1)."); } TransitionTo(TEST9_S1.ExitPoint(1))
-            if (trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.ExitPoint(1))`.", true))
+            // uml: EV1 [trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1)."); } TransitionTo(TEST9_S1.<ExitPoint>(1))
+            if (trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition).
                 TEST9_S1_1_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).");`.
-                MainClass.Trace("Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).");`.
+                MainClass.Trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).");
 
-                // Step 3: Enter/move towards transition target `TEST9_S1.ExitPoint(1)`.
-                // TEST9_S1.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST9_S1.<ExitPoint>(1)`.
+                // TEST9_S1.<ExitPoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
-                // TEST9_S1.ExitPoint(1) behavior
-                // uml: [count == 4] / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4."); } TransitionTo(TEST9_G_S4)
+                // TEST9_S1.<ExitPoint>(1) behavior
+                // uml: [count == 4] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4."); } TransitionTo(TEST9_G_S4)
                 if (this.vars.count == 4)
                 {
                     // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                     TEST9_S1_exit();
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");`.
-                    MainClass.Trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S4.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4.");`.
+                    MainClass.Trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S4`.
                     TEST9_G_S4_enter();
@@ -11313,17 +11313,17 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST9_G_S4;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST9_S1.ExitPoint(1)
+                } // end of behavior for TEST9_S1.<ExitPoint>(1)
 
-                // TEST9_S1.ExitPoint(1) behavior
-                // uml: [count == 1] / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1."); } TransitionTo(TEST9_G_S1)
+                // TEST9_S1.<ExitPoint>(1) behavior
+                // uml: [count == 1] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1."); } TransitionTo(TEST9_G_S1)
                 if (this.vars.count == 1)
                 {
                     // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                     TEST9_S1_exit();
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1.");`.
-                    MainClass.Trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S1.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1.");`.
+                    MainClass.Trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S1`.
                     TEST9_G_S1_enter();
@@ -11332,17 +11332,17 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST9_G_S1;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST9_S1.ExitPoint(1)
+                } // end of behavior for TEST9_S1.<ExitPoint>(1)
 
-                // TEST9_S1.ExitPoint(1) behavior
-                // uml: [count == 2] / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2."); } TransitionTo(TEST9_G_S2)
+                // TEST9_S1.<ExitPoint>(1) behavior
+                // uml: [count == 2] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2."); } TransitionTo(TEST9_G_S2)
                 if (this.vars.count == 2)
                 {
                     // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                     TEST9_S1_exit();
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2.");`.
-                    MainClass.Trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S2.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2.");`.
+                    MainClass.Trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S2`.
                     TEST9_G_S2_enter();
@@ -11351,16 +11351,16 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST9_G_S2;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST9_S1.ExitPoint(1)
+                } // end of behavior for TEST9_S1.<ExitPoint>(1)
 
-                // TEST9_S1.ExitPoint(1) behavior
-                // uml: else / { trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3."); } TransitionTo(TEST9_G_S3)
+                // TEST9_S1.<ExitPoint>(1) behavior
+                // uml: else / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3."); } TransitionTo(TEST9_G_S3)
                 {
                     // Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                     TEST9_S1_exit();
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3.");`.
-                    MainClass.Trace("Transition action `` for TEST9_S1.ExitPoint(1) to TEST9_G_S3.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3.");`.
+                    MainClass.Trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3.");
 
                     // Step 3: Enter/move towards transition target `TEST9_G_S3`.
                     TEST9_G_S3_enter();
@@ -11369,7 +11369,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST9_G_S3;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
-                } // end of behavior for TEST9_S1.ExitPoint(1)
+                } // end of behavior for TEST9_S1.<ExitPoint>(1)
             } // end of behavior for TEST9_S1_1
         }
 
@@ -11441,13 +11441,13 @@ namespace Csharp.Spec2smTests
 
         private void TEST9A_S1_InitialState_transition()
         {
-            // TEST9A_S1.InitialState behavior
-            // uml: / { trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
+            // TEST9A_S1.<InitialState> behavior
+            // uml: / { trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1."); } TransitionTo(TEST9A_S1_1)
             {
                 // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");`.
-                MainClass.Trace("Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.");
+                // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.");`.
+                MainClass.Trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.");
 
                 // Step 3: Enter/move towards transition target `TEST9A_S1_1`.
                 TEST9A_S1_1_enter();
@@ -11456,7 +11456,7 @@ namespace Csharp.Spec2smTests
                 this.stateId = StateId.TEST9A_S1_1;
                 this.ancestorEventHandler = null;
                 return;
-            } // end of behavior for TEST9A_S1.InitialState
+            } // end of behavior for TEST9A_S1.<InitialState>
         }
 
 
@@ -11517,27 +11517,27 @@ namespace Csharp.Spec2smTests
             // No ancestor state handles `ev1` event.
 
             // TEST9A_S1_1 behavior
-            // uml: EV1 [trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.ExitPoint(1))`.", true)] / { trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1)."); } TransitionTo(TEST9A_S1.ExitPoint(1))
-            if (trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.ExitPoint(1))`.", true))
+            // uml: EV1 [trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1)."); } TransitionTo(TEST9A_S1.<ExitPoint>(1))
+            if (trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
                 TEST9A_S1_1_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).");`.
-                MainClass.Trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).");`.
+                MainClass.Trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).");
 
-                // Step 3: Enter/move towards transition target `TEST9A_S1.ExitPoint(1)`.
-                // TEST9A_S1.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST9A_S1.<ExitPoint>(1)`.
+                // TEST9A_S1.<ExitPoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
-                // TEST9A_S1.ExitPoint(1) behavior
-                // uml: [true] / { trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");\ncount++; } TransitionTo(TEST9A_S1)
+                // TEST9A_S1.<ExitPoint>(1) behavior
+                // uml: [true] / { trace("Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.");\ncount++; } TransitionTo(TEST9A_S1)
                 if (true)
                 {
                     // Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
                     TEST9A_S1_exit();
 
-                    // Step 2: Transition action: `trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");\ncount++;`.
-                    MainClass.Trace("Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.");
+                    // Step 2: Transition action: `trace("Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.");\ncount++;`.
+                    MainClass.Trace("Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.");
                     this.vars.count++;
 
                     // Step 3: Enter/move towards transition target `TEST9A_S1`.
@@ -11545,7 +11545,7 @@ namespace Csharp.Spec2smTests
                     // Finish transition by calling pseudo state transition function.
                     TEST9A_S1_InitialState_transition();
                     return; // event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
-                } // end of behavior for TEST9A_S1.ExitPoint(1)
+                } // end of behavior for TEST9A_S1.<ExitPoint>(1)
             } // end of behavior for TEST9A_S1_1
         }
 
@@ -11763,26 +11763,26 @@ namespace Csharp.Spec2smTests
             this.ancestorEventHandler = ptr_TEST9B_ROOT_ev1;
 
             // TEST9B_ROOT__A4 behavior
-            // uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.ExitPoint(1))`.", true)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.ExitPoint(1)."); } TransitionTo(TEST9B_ROOT__A3.ExitPoint(1))
-            if (trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.ExitPoint(1))`.", true))
+            // uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", true)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1)."); } TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))
+            if (trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", true))
             {
                 // Step 1: Exit states until we reach `TEST9B_ROOT__A3` state (Least Common Ancestor for transition).
                 TEST9B_ROOT__A4_exit();
 
-                // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.ExitPoint(1).");`.
-                MainClass.Trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.ExitPoint(1).");
+                // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1).");`.
+                MainClass.Trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1).");
 
-                // Step 3: Enter/move towards transition target `TEST9B_ROOT__A3.ExitPoint(1)`.
-                // TEST9B_ROOT__A3.ExitPoint(1) is a pseudo state and cannot have an `enter` trigger.
+                // Step 3: Enter/move towards transition target `TEST9B_ROOT__A3.<ExitPoint>(1)`.
+                // TEST9B_ROOT__A3.<ExitPoint>(1) is a pseudo state and cannot have an `enter` trigger.
 
-                // TEST9B_ROOT__A3.ExitPoint(1) behavior
-                // uml: / { trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4."); } TransitionTo(TEST9B_ROOT__B4)
+                // TEST9B_ROOT__A3.<ExitPoint>(1) behavior
+                // uml: / { trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4."); } TransitionTo(TEST9B_ROOT__B4)
                 {
                     // Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
                     ExitUpToStateHandler(ptr_TEST9B_ROOT_exit);
 
-                    // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4.");`.
-                    MainClass.Trace("Transition action `` for TEST9B_ROOT__A3.ExitPoint(1) to TEST9B_ROOT__B4.");
+                    // Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.");`.
+                    MainClass.Trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.");
 
                     // Step 3: Enter/move towards transition target `TEST9B_ROOT__B4`.
                     TEST9B_ROOT__B1_enter();
@@ -11794,7 +11794,7 @@ namespace Csharp.Spec2smTests
                     this.stateId = StateId.TEST9B_ROOT__B4;
                     this.ancestorEventHandler = null;
                     return;
-                } // end of behavior for TEST9B_ROOT__A3.ExitPoint(1)
+                } // end of behavior for TEST9B_ROOT__A3.<ExitPoint>(1)
             } // end of behavior for TEST9B_ROOT__A4
         }
 

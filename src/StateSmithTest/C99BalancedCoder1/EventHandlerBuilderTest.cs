@@ -30,7 +30,7 @@ c3 --> s3 : [c]
 c3 --> c1 : else
 @enduml
 ";
-        var expectedWildcardPattern = "*loop*ROOT.ChoicePoint(c1) -> ROOT.ChoicePoint(c2) -> ROOT.ChoicePoint(c3) -> ROOT.ChoicePoint(c1)*";
+        var expectedWildcardPattern = "*loop*ROOT.<ChoicePoint>(c1) -> ROOT.<ChoicePoint>(c2) -> ROOT.<ChoicePoint>(c3) -> ROOT.<ChoicePoint>(c1)*";
         CompileAndExpectException(plantUmlText: plantUmlText, expectedWildcardPattern);
     }
 
@@ -57,7 +57,7 @@ state group1 {
 }
 @enduml
 ";
-        var expectedWildcardPattern = "*loop*group1.InitialState -> group1.ChoicePoint(c1) -> group1.ChoicePoint(c2) -> ROOT.ChoicePoint(c3) -> group1.InitialState*";
+        var expectedWildcardPattern = "*loop*group1.<InitialState> -> group1.<ChoicePoint>(c1) -> group1.<ChoicePoint>(c2) -> ROOT.<ChoicePoint>(c3) -> group1.<InitialState>*";
         CompileAndExpectException(plantUmlText: plantUmlText, expectedWildcardPattern);
     }
 

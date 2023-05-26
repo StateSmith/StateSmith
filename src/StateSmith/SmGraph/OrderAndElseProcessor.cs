@@ -6,7 +6,7 @@ namespace StateSmith.SmGraph;
 /// <summary>
 /// https://github.com/StateSmith/StateSmith/issues/59
 /// </summary>
-public class OrderAndElseProcessor : OnlyVertexVisitor
+public class OrderAndElseProcessor : VertexVisitor
 {
     public static void Process(Vertex v)
     {

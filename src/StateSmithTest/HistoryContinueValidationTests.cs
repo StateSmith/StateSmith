@@ -134,7 +134,7 @@ public class HistoryContinueValidationTests : ValidationTestHelper
             [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G2{{GilEnd}}] TransitionTo(G2)
             [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G3{{GilEnd}}] TransitionTo(G3)
             [{{GilStart}}{{h1VarName}} == {{h1EnumAccess}}G4{{GilEnd}}] TransitionTo(G4)
-            else TransitionTo(G1.ChoicePoint())
+            else TransitionTo(G1.<ChoicePoint>())
             """
         );
 

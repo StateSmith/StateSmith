@@ -1,19 +1,20 @@
-﻿using StateSmith.SmGraph.Visitors;
+#nullable enable
 
-namespace StateSmith.SmGraph
+using StateSmith.SmGraph.Visitors;
+
+namespace StateSmith.SmGraph;
+
+public class ChoicePoint : PseudoStateVertex
 {
-    public class ChoicePoint : PseudoStateVertex
+    public string label;
+
+    public ChoicePoint(string label = "")
     {
-        public string label;
+        this.label = label;
+    }
 
-        public ChoicePoint(string label = "")
-        {
-            this.label = label;
-        }
-
-        public override void Accept(VertexVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
+    public override void Accept(IVertexVisitor visitor)
+    {
+        visitor.Visit(this);
     }
 }

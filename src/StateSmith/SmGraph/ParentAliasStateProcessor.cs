@@ -8,7 +8,7 @@ namespace StateSmith.SmGraph;
 /// https://github.com/StateSmith/StateSmith/issues/2
 /// Still needs thorough testing.
 /// </summary>
-public class ParentAliasStateProcessor : DummyVertexVisitor
+public class ParentAliasStateProcessor : RecursiveVertexVisitor
 {
     // https://github.com/StateSmith/StateSmith/issues/2
     public static void Process(Vertex vertex)

@@ -6,7 +6,7 @@ namespace StateSmith.SmGraph
     {
         public string notes;
 
-        public override void Accept(VertexVisitor visitor)
+        public override void Accept(IVertexVisitor visitor)
         {
             visitor.Visit(this);
         }

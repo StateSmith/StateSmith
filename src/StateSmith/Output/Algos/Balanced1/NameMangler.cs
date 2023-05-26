@@ -112,7 +112,9 @@ public class NameMangler
     public virtual string HistoryVarEnumValue(HistoryVertex historyVertex, Vertex transitionTarget)
     {
         var description = Vertex.Describe(transitionTarget);
-        description = Regex.Replace(description, @"[().]", "");
+        description = Regex.Replace(description, @"[.]", "_");
+        description = Regex.Replace(description, @"[().<>]", "");
+        description = description.ToUpper();
         return description;
     }
 

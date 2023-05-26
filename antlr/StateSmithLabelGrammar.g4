@@ -153,7 +153,7 @@ nl_behavior:
 
 // https://github.com/StateSmith/StateSmith/issues/3
 point_label:
-    DIGIT IDENTIFIER?
+    DIGIT+ IDENTIFIER?
     |
     IDENTIFIER
     ;

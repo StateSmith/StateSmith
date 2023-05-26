@@ -8,7 +8,7 @@ namespace StateSmith.SmGraph
     /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/3
     /// </summary>
-    public class EntryExitProcessor : DummyVertexVisitor
+    public class EntryExitProcessor : RecursiveVertexVisitor
     {
         public static void Process(Vertex v)
         {

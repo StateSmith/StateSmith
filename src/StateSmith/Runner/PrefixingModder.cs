@@ -12,7 +12,7 @@ namespace StateSmith.Runner;
 /// <summary>
 /// Currently uses rather simple regular expressions for matching.
 /// </summary>
-public class PrefixingModder : OnlyVertexVisitor
+public class PrefixingModder : VertexVisitor
 {
     private static readonly Regex autoPrefixRegex = new(@"\bprefix[.]auto\(\s*\)");
     private static readonly Regex addPrefixRegex = new(@"\bprefix[.]add\(\s*(\w+)\s*\)");
