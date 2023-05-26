@@ -13,7 +13,7 @@ public class ShortDescribingVisitor : IVertexVisitor // Note! This class should 
     /// 
     /// </summary>
     /// <param name="stringBuilder"></param>
-    /// <param name="skipParentForRelative">Useful when describing an ancestry chain like `ROOT.S1.S2.<InitialState>`</param>
+    /// <param name="skipParentForRelative">Useful when describing an ancestry chain like `ROOT.S1.S2.InitialState`</param>
     public ShortDescribingVisitor(StringBuilder stringBuilder, bool skipParentForRelative = false)
     {
         this.stringBuilder = stringBuilder;
