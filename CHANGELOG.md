@@ -31,7 +31,9 @@ The majority of our breaking changes have been to code generation scripts (.csx 
   - https://github.com/StateSmith/StateSmith/issues/204
 
 ### Changed (minor)
-- Exception detail messages about vertices are slightly different now from `ShortDescribingVisitor` fix.
+- special state vertices are described slightly differently to avoid clashing with user state names.
+  - `ROOT.InitialState` becomes `ROOT.<InitialState>`...
+  - https://github.com/StateSmith/StateSmith/issues/206
 
 ---
 

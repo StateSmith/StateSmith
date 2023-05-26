@@ -76,16 +76,16 @@ public class GilHelperTests
         public void start() {
           ROOT_enter(this);
           // ROOT behavior
-          // uml: TransitionTo(ROOT.InitialState)
+          // uml: TransitionTo(ROOT.<InitialState>)
          {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
             // Step 2: Transition action: ``.
 
-            // Step 3: Enter/move towards transition target `ROOT.InitialState`.
-            // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
+            // Step 3: Enter/move towards transition target `ROOT.<InitialState>`.
+            // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
 
-            // ROOT.InitialState behavior
+            // ROOT.<InitialState> behavior
             // uml: TransitionTo(LED_OFF)
          {
               // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -99,7 +99,7 @@ public class GilHelperTests
               this.state_id = state_id.STATE_ID_LED_OFF;
               // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
               return;
-            } // end of behavior for ROOT.InitialState
+            } // end of behavior for ROOT.<InitialState>
           } // end of behavior for ROOT
         }
 

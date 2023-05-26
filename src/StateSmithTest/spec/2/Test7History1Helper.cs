@@ -46,8 +46,8 @@ public class Test7History1Helper
             Exit ON.
             Transition action `` for ON to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.History.
-            Transition action `` for OFF.History to OFF1.
+            Transition action `` for OFF.<InitialState> to OFF.<History>.
+            Transition action `` for OFF.<History> to OFF1.
             Enter OFF1.
             State OFF1: check behavior `enter / {{ {GilStart}{OffVarName} = {OffEnumAccess}OFF1;{GilEnd} }}`. Behavior running.
         "));

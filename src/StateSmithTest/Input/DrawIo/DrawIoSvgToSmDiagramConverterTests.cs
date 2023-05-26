@@ -130,7 +130,7 @@ public class DrawIoSvgToSmDiagramConverterTests
 
         State GetState(string stateName) => map.GetState(stateName);
 
-        sm.ShouldHaveChildrenAndUmlBehaviors("ROOT.InitialState, OFF, ON_GROUP, BOOM", "");
+        sm.ShouldHaveChildrenAndUmlBehaviors("ROOT.<InitialState>, OFF, ON_GROUP, BOOM", "");
 
         GetState("OFF").ShouldHaveChildrenAndUmlBehaviors("", $$"""
             enter / { light_off(); }

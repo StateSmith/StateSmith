@@ -49,16 +49,16 @@ void Spec1bSm_start(Spec1bSm* sm)
 {
     ROOT_enter(sm);
     // ROOT behavior
-    // uml: TransitionTo(ROOT.InitialState)
+    // uml: TransitionTo(ROOT.<InitialState>)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
         
         // Step 2: Transition action: ``.
         
-        // Step 3: Enter/move towards transition target `ROOT.InitialState`.
-        // ROOT.InitialState is a pseudo state and cannot have an `enter` trigger.
+        // Step 3: Enter/move towards transition target `ROOT.<InitialState>`.
+        // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
         
-        // ROOT.InitialState behavior
+        // ROOT.<InitialState> behavior
         // uml: TransitionTo(S)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -68,7 +68,7 @@ void Spec1bSm_start(Spec1bSm* sm)
             // Step 3: Enter/move towards transition target `S`.
             S_enter(sm);
             
-            // S.InitialState behavior
+            // S.<InitialState> behavior
             // uml: TransitionTo(S1)
             {
                 // Step 1: Exit states until we reach `S` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -78,7 +78,7 @@ void Spec1bSm_start(Spec1bSm* sm)
                 // Step 3: Enter/move towards transition target `S1`.
                 S1_enter(sm);
                 
-                // S1.InitialState behavior
+                // S1.<InitialState> behavior
                 // uml: TransitionTo(S1_1)
                 {
                     // Step 1: Exit states until we reach `S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -92,9 +92,9 @@ void Spec1bSm_start(Spec1bSm* sm)
                     sm->state_id = Spec1bSm_StateId_S1_1;
                     // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
                     return;
-                } // end of behavior for S1.InitialState
-            } // end of behavior for S.InitialState
-        } // end of behavior for ROOT.InitialState
+                } // end of behavior for S1.<InitialState>
+            } // end of behavior for S.<InitialState>
+        } // end of behavior for ROOT.<InitialState>
     } // end of behavior for ROOT
 }
 
@@ -198,7 +198,7 @@ static void S1_t1(Spec1bSm* sm)
         // Step 3: Enter/move towards transition target `S2`.
         S2_enter(sm);
         
-        // S2.InitialState behavior
+        // S2.<InitialState> behavior
         // uml: / { d(); } TransitionTo(S2_1)
         {
             // Step 1: Exit states until we reach `S2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
@@ -213,7 +213,7 @@ static void S1_t1(Spec1bSm* sm)
             sm->state_id = Spec1bSm_StateId_S2_1;
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             return;
-        } // end of behavior for S2.InitialState
+        } // end of behavior for S2.<InitialState>
     } // end of behavior for S1
 }
 

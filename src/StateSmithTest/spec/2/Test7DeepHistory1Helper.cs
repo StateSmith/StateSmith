@@ -36,7 +36,7 @@ public class Test7DeepHistory1Helper
             Exit BUILD.
             Transition action `` for BUILD to ALIENS_DETECTED.
             Enter ALIENS_DETECTED.
-            Transition action `` for ALIENS_DETECTED.InitialState to ALIENS_DETECTED.History.
+            Transition action `` for ALIENS_DETECTED.<InitialState> to ALIENS_DETECTED.<History>.
         ".Trim();
     }
 
@@ -81,7 +81,7 @@ public class Test7DeepHistory1Helper
             Transition action `` for GLOW_WORM to ROBOT.
             Enter ROBOT.
             State ROBOT: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}ROBOT;{GilEnd} }}`. Behavior running.
-            Transition action `` for ROBOT.InitialState to BATTLEBOT.
+            Transition action `` for ROBOT.<InitialState> to BATTLEBOT.
             Enter BATTLEBOT.
             State BATTLEBOT: check behavior `enter / {{ {GilStart}{BuildVarName} = {BuildEnumAccess}BATTLEBOT;{GilEnd} }}`. Behavior running.
         "));
@@ -111,7 +111,7 @@ public class Test7DeepHistory1Helper
             Exit TOY.
             Transition action `` for TOY to TOOL.
             {EnterToolText()}
-            Transition action `` for TOOL.InitialState to IMPACT_DRILL.
+            Transition action `` for TOOL.<InitialState> to IMPACT_DRILL.
             { EnterImpactDrillText() }
         "));
     }

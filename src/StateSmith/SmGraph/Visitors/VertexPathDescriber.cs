@@ -17,7 +17,7 @@ public class VertexPathDescriber
         Stack<Vertex> reversedVertices = GetReversedPathVertices(vertex);
 
         StringBuilder stringBuilder = new();
-        ShortDescribingVisitor visitor = new(stringBuilder);
+        ShortDescribingVisitor visitor = new(stringBuilder, skipParentForRelative:true);
 
         string appender = "";
 

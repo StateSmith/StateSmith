@@ -207,7 +207,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`. Behavior running.
             Transition action `` for TEST4_ROOT to TEST4_S20.
             Enter TEST4_S20.
-            Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.
+            Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.
             Enter TEST4_S20_1.
         "));
 
@@ -217,7 +217,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit TEST4_S20.
             Transition action `` for TEST4_S20 to TEST4_S20.
             Enter TEST4_S20.
-            Transition action `` for TEST4_S20.InitialState to TEST4_S20_1.
+            Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.
             Enter TEST4_S20_1.
         "));
     }
@@ -268,20 +268,20 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         tester.PreEvents = "EV4 EV4";
 
         tester.AddEventHandling("EV1", t => t(@"
-            State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
+            State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`. Behavior running.
             Exit TEST4D_G.
-            Transition action `` for TEST4D_G to TEST4D_EXTERNAL.ChoicePoint().
-            Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G_1.
+            Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().
+            Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.
             Enter TEST4D_G.
             Enter TEST4D_G_1.
         "));
 
         tester.AddEventHandling("EV2", t => t(@"
-            State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.ChoicePoint())`. Behavior running.
+            State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`. Behavior running.
             Exit TEST4D_G_1.
             Exit TEST4D_G.
-            Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.ChoicePoint().
-            Transition action `` for TEST4D_EXTERNAL.ChoicePoint() to TEST4D_G.
+            Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().
+            Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.
             Enter TEST4D_G.
         "));
     }
@@ -414,23 +414,23 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         // 
         tester.AddEventHandling("EV1", t => t(@"
-            State S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(1))`. Behavior running.
+            State S2: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`. Behavior running.
             Exit S2.
-            Transition action `trace_meta();` for S2 to META_EXPANSIONS.ChoicePoint(1).
+            Transition action `trace_meta();` for S2 to META_EXPANSIONS.<ChoicePoint>(1).
             META: State: S2, trigger: ev1, behavior vertex: S2
-            Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(1) to S3.
-            META: State: S2, trigger: ev1, behavior vertex: META_EXPANSIONS.ChoicePoint(1)
+            Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S3.
+            META: State: S2, trigger: ev1, behavior vertex: META_EXPANSIONS.<ChoicePoint>(1)
             Enter S3.
         "));
 
         // 
         tester.AddEventHandling("EV1", t => t(@"
-            State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.ChoicePoint(2))`. Behavior running.
+            State S3: check behavior `EV1 / { trace_meta(); } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`. Behavior running.
             Exit S3.
-            Transition action `trace_meta();` for S3 to META_EXPANSIONS.ChoicePoint(2).
+            Transition action `trace_meta();` for S3 to META_EXPANSIONS.<ChoicePoint>(2).
             META: State: S3, trigger: ev1, behavior vertex: S3
-            Transition action `trace_meta();` for META_EXPANSIONS.ChoicePoint(2) to S5.
-            META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.ChoicePoint(2)
+            Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S5.
+            META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.<ChoicePoint>(2)
             Enter S5.
         "));
     }
@@ -493,11 +493,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         {
             // 
             tester.AddEventHandling("EV3", t => t(@$"
-                State S1: check behavior `EV3 TransitionTo(G.InitialState)`. Behavior running.
+                State S1: check behavior `EV3 TransitionTo(G.<InitialState>)`. Behavior running.
                 Exit S1.
-                Transition action `` for S1 to G.InitialState.
+                Transition action `` for S1 to G.<InitialState>.
                 Enter G.
-                Transition action `` for G.InitialState to {expectedState}.
+                Transition action `` for G.<InitialState> to {expectedState}.
                 Enter {expectedState}.
             "));
         }
@@ -509,18 +509,18 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
                 Exit S1.
                 Transition action `` for S1 to G.
                 Enter G.
-                Transition action `` for G.InitialState to {expectedState}.
+                Transition action `` for G.<InitialState> to {expectedState}.
                 Enter {expectedState}.
             "));
         }
 
         // 
         tester.AddEventHandling("EV2", t => t(@$"
-            State G: check behavior `EV2 TransitionTo(PARENT.InitialState)`. Behavior running.
+            State G: check behavior `EV2 TransitionTo(PARENT.<InitialState>)`. Behavior running.
             Exit {expectedState}.
             Exit G.
-            Transition action `` for G to PARENT.InitialState.
-            Transition action `` for PARENT.InitialState to S1.
+            Transition action `` for G to PARENT.<InitialState>.
+            Transition action `` for PARENT.<InitialState> to S1.
             Enter S1.
         "));
     }
@@ -540,8 +540,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF.
             Transition action `` for OFF to ON.
             Enter ON.
-            Transition action `` for ON.InitialState to ON.History.
-            Transition action `` for ON.History to ON2.
+            Transition action `` for ON.<InitialState> to ON.<History>.
+            Transition action `` for ON.<History> to ON2.
             Enter ON2.
             State ON2: check behavior `enter / {{ {GilStart}{helper.OnVarName} = {helper.OnEnumAccess}ON2;{GilEnd} }}`. Behavior running.
         "));
@@ -553,8 +553,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ON.
             Transition action `` for ON to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.History.
-            Transition action `` for OFF.History to OFF2.
+            Transition action `` for OFF.<InitialState> to OFF.<History>.
+            Transition action `` for OFF.<History> to OFF2.
             Enter OFF2.
             State OFF2: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF2;{GilEnd} }}`. Behavior running.
         "));
@@ -587,8 +587,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF.
             Transition action `` for OFF to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.History.
-            Transition action `` for OFF.History to OFF1.
+            Transition action `` for OFF.<InitialState> to OFF.<History>.
+            Transition action `` for OFF.<History> to OFF1.
             Enter OFF1.
             State OFF1: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF1;{GilEnd} }}`. Behavior running.
         "));
@@ -606,8 +606,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF.
             Transition action `` for OFF to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.History.
-            Transition action `` for OFF.History to OFF2.
+            Transition action `` for OFF.<InitialState> to OFF.<History>.
+            Transition action `` for OFF.<History> to OFF2.
             Enter OFF2.
             State OFF2: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF2;{GilEnd} }}`. Behavior running.
         "));
@@ -625,8 +625,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit OFF.
             Transition action `` for OFF to OFF.
             Enter OFF.
-            Transition action `` for OFF.InitialState to OFF.History.
-            Transition action `` for OFF.History to OFF3.
+            Transition action `` for OFF.<InitialState> to OFF.<History>.
+            Transition action `` for OFF.<History> to OFF3.
             Enter OFF3.
             State OFF3: check behavior `enter / {{ {GilStart}{helper.OffVarName} = {helper.OffEnumAccess}OFF3;{GilEnd} }}`. Behavior running.
         "));
@@ -642,7 +642,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("WALL_E", "ROBOT", "TOY")}
-             Transition action `` for ALIENS_DETECTED.History to SNOWBALL_FIGHT.
+             Transition action `` for ALIENS_DETECTED.<History> to SNOWBALL_FIGHT.
              Enter SNOWBALL_FIGHT.
              State SNOWBALL_FIGHT: check behavior `enter / {{ {GilStart}{helper.AliensVarName} = {helper.AliensEnumAccess}SNOWBALL_FIGHT;{GilEnd} }}`. Behavior running.
          "));
@@ -655,8 +655,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ALIENS_DETECTED.
             Transition action `` for ALIENS_DETECTED to BUILD.
             Enter BUILD.
-            Transition action `` for BUILD.InitialState to BUILD.History.
-            Transition action `` for BUILD.History to WALL_E.
+            Transition action `` for BUILD.<InitialState> to BUILD.<History>.
+            Transition action `` for BUILD.<History> to WALL_E.
             Enter TOY.
             State TOY: check behavior `enter / {{ {GilStart}{helper.BuildVarName} = {helper.BuildEnumAccess}TOY;{GilEnd} }}`. Behavior running.
             Enter ROBOT.
@@ -667,7 +667,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("WALL_E", "ROBOT", "TOY")}
-             Transition action `` for ALIENS_DETECTED.History to GIVE_COOKIES.
+             Transition action `` for ALIENS_DETECTED.<History> to GIVE_COOKIES.
              {helper.EnterGiveCookiesText()}
          "));
     }
@@ -681,7 +681,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("IMPACT_DRILL", "TOOL")}
-             Transition action `` for ALIENS_DETECTED.History to SNOWBALL_FIGHT.
+             Transition action `` for ALIENS_DETECTED.<History> to SNOWBALL_FIGHT.
              Enter SNOWBALL_FIGHT.
              State SNOWBALL_FIGHT: check behavior `enter / {{ {GilStart}{helper.AliensVarName} = {helper.AliensEnumAccess}SNOWBALL_FIGHT;{GilEnd} }}`. Behavior running.
          "));
@@ -698,8 +698,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ALIENS_DETECTED.
             Transition action `` for ALIENS_DETECTED to BUILD.
             Enter BUILD.
-            Transition action `` for BUILD.InitialState to BUILD.History.
-            Transition action `` for BUILD.History to IMPACT_DRILL.
+            Transition action `` for BUILD.<InitialState> to BUILD.<History>.
+            Transition action `` for BUILD.<History> to IMPACT_DRILL.
             {helper.EnterToolText()}
             {helper.EnterImpactDrillText()}
         "));
@@ -709,10 +709,10 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         // was in CALL_BATMAN last, but it isn't saved in history. HERO state is though.
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("CIRCULAR_SAW", "TOOL")}
-             Transition action `` for ALIENS_DETECTED.History to HERO.
+             Transition action `` for ALIENS_DETECTED.<History> to HERO.
              {helper.EnterGetBackupText()}
              {helper.EnterHeroText()}
-             Transition action `` for HERO.InitialState to CALL_THOR.
+             Transition action `` for HERO.<InitialState> to CALL_THOR.
              Enter CALL_THOR.
          "));
 
@@ -727,15 +727,15 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ALIENS_DETECTED.
             Transition action `` for ALIENS_DETECTED to BUILD.
             Enter BUILD.
-            Transition action `` for BUILD.InitialState to BUILD.History.
-            Transition action `` for BUILD.History to CIRCULAR_SAW.
+            Transition action `` for BUILD.<InitialState> to BUILD.<History>.
+            Transition action `` for BUILD.<History> to CIRCULAR_SAW.
             {helper.EnterToolText()}
             {helper.EnterCircularSawText()}
         "));
 
         tester.AddEventHandling(helper.EventAlienDetected, t => t($@"
              {helper.ExpectBuildToAliensExiting("CIRCULAR_SAW", "TOOL")}
-             Transition action `` for ALIENS_DETECTED.History to BUDDY_ELF.
+             Transition action `` for ALIENS_DETECTED.<History> to BUDDY_ELF.
              {helper.EnterGetBackupText()}
              {helper.EnterLocalHelpText()}
              {helper.EnterBuddyELfText()}
@@ -749,21 +749,21 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit ALIENS_DETECTED.
             Transition action `` for ALIENS_DETECTED to BUILD.
             Enter BUILD.
-            Transition action `` for BUILD.InitialState to BUILD.History.
-            Transition action `` for BUILD.History to CIRCULAR_SAW.
+            Transition action `` for BUILD.<InitialState> to BUILD.<History>.
+            Transition action `` for BUILD.<History> to CIRCULAR_SAW.
             {helper.EnterToolText()}
             {helper.EnterCircularSawText()}
         "));
 
         tester.AddEventHandling(helper.EventAlienDetectedWantHero, t => t($@"
-            State BUILD: check behavior `EV7 TransitionTo(GET_BACKUP.History)`. Behavior running.
+            State BUILD: check behavior `EV7 TransitionTo(GET_BACKUP.<History>)`. Behavior running.
             Exit CIRCULAR_SAW.
             Exit TOOL.
             Exit BUILD.
-            Transition action `` for BUILD to GET_BACKUP.History.
+            Transition action `` for BUILD to GET_BACKUP.<History>.
             Enter ALIENS_DETECTED.
             {helper.EnterGetBackupText()}
-            Transition action `` for GET_BACKUP.History to BUDDY_ELF.
+            Transition action `` for GET_BACKUP.<History> to BUDDY_ELF.
             {helper.EnterLocalHelpText()}
             {helper.EnterBuddyELfText()}
          "));
@@ -775,20 +775,20 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         Test7DeepHistory1Helper helper = new(tester);
         helper.StartToToyRaceCar();
 
-        // go directly to GET_BACKUP.History without it having stored a value so that we see it
+        // go directly to GET_BACKUP.<History> without it having stored a value so that we see it
         // use its default transition to a choice state
         tester.AddEventHandling(helper.EventAlienDetectedWantHero, t => t($@"
-            State BUILD: check behavior `EV7 TransitionTo(GET_BACKUP.History)`. Behavior running.
+            State BUILD: check behavior `EV7 TransitionTo(GET_BACKUP.<History>)`. Behavior running.
             Exit RACE_CAR.
             Exit TOY.
             Exit BUILD.
-            Transition action `` for BUILD to GET_BACKUP.History.
+            Transition action `` for BUILD to GET_BACKUP.<History>.
             Enter ALIENS_DETECTED.
             {helper.EnterGetBackupText()}
-            Transition action `` for GET_BACKUP.History to GET_BACKUP.ChoicePoint().
-            Transition action `` for GET_BACKUP.ChoicePoint() to HERO.
+            Transition action `` for GET_BACKUP.<History> to GET_BACKUP.<ChoicePoint>().
+            Transition action `` for GET_BACKUP.<ChoicePoint>() to HERO.
             {helper.EnterHeroText()}
-            Transition action `` for HERO.InitialState to CALL_THOR.
+            Transition action `` for HERO.<InitialState> to CALL_THOR.
             Enter CALL_THOR.
          "));
     }
@@ -809,10 +809,10 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit state_1.
             Transition action `` for state_1 to state_2.
             Enter state_2.
-            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_2;{{GilEnd}} }`. Behavior running.
-            Transition action `` for state_2.InitialState to state_6.
+            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}STATE_2;{{GilEnd}} }`. Behavior running.
+            Transition action `` for state_2.<InitialState> to state_6.
             Enter state_6.
-            State state_6: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_6;{{GilEnd}} }`. Behavior running.
+            State state_6: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}STATE_6;{{GilEnd}} }`. Behavior running.
             """
          ));
 
@@ -822,7 +822,7 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit state_6.
             Transition action `` for state_6 to state_9.
             Enter state_9.
-            State state_9: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_9;{{GilEnd}} }`. Behavior running.
+            State state_9: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}STATE_9;{{GilEnd}} }`. Behavior running.
             """
         ));
 
@@ -843,12 +843,12 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit state_3.
             Transition action `` for state_3 to state_0.
             Enter state_0.
-            Transition action `` for state_0.InitialState to state_0.History.
-            Transition action `` for state_0.History to state_9.
+            Transition action `` for state_0.<InitialState> to state_0.<History>.
+            Transition action `` for state_0.<History> to state_9.
             Enter state_2.
-            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_2;{{GilEnd}} }`. Behavior running.
+            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}STATE_2;{{GilEnd}} }`. Behavior running.
             Enter state_9.
-            State state_9: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_9;{{GilEnd}} }`. Behavior running.
+            State state_9: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}STATE_9;{{GilEnd}} }`. Behavior running.
             """
         ));
 
@@ -870,8 +870,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit state_1.
             Transition action `` for state_1 to state_2.
             Enter state_2.
-            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_2;{{GilEnd}} }`. Behavior running.
-            Transition action `` for state_2.InitialState to state_6.
+            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}STATE_2;{{GilEnd}} }`. Behavior running.
+            Transition action `` for state_2.<InitialState> to state_6.
             Enter state_6.
             """
          ));
@@ -902,11 +902,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
             Exit state_3.
             Transition action `` for state_3 to state_0.
             Enter state_0.
-            Transition action `` for state_0.InitialState to state_0.History.
-            Transition action `` for state_0.History to state_2.
+            Transition action `` for state_0.<InitialState> to state_0.<History>.
+            Transition action `` for state_0.<History> to state_2.
             Enter state_2.
-            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}state_2;{{GilEnd}} }`. Behavior running.
-            Transition action `` for state_2.InitialState to state_6.
+            State state_2: check behavior `enter / { {{GilStart}}{{historyVar}} = {{historyEnumAccess}}STATE_2;{{GilEnd}} }`. Behavior running.
+            Transition action `` for state_2.<InitialState> to state_6.
             Enter state_6.
             """
         ));
@@ -982,11 +982,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         {
             // 
             tester.AddEventHandling("EV1", t => t(@$"
-                State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.EntryPoint(1))`. Behavior running.
+                State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`. Behavior running.
                 Exit TEST8_S1.
-                Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(1).
+                Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).
                 Enter TEST8_G.
-                Transition action `` for TEST8_G.EntryPoint(1) to {expectedState}.
+                Transition action `` for TEST8_G.<EntryPoint>(1) to {expectedState}.
                 Enter {expectedState}.
             "));
         }
@@ -994,12 +994,12 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         {
             // 
             tester.AddEventHandling("EV6", t => t(@$"
-                State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.EntryPoint(3))`. Behavior running.
+                State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`. Behavior running.
                 Exit TEST8_S1.
-                Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).
+                Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).
                 Enter TEST8_G.
-                Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).
-                Transition action `` for TEST8_G.EntryPoint(1) to {expectedState}.
+                Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).
+                Transition action `` for TEST8_G.<EntryPoint>(1) to {expectedState}.
                 Enter {expectedState}.
             "));
         }
@@ -1007,12 +1007,12 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         {
             // 
             tester.AddEventHandling("EV3", t => t(@$"
-                State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.EntryPoint(3))`. Behavior running.
+                State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`. Behavior running.
                 Exit TEST8_S1.
-                Transition action `` for TEST8_S1 to TEST8_G.EntryPoint(3).
+                Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).
                 Enter TEST8_G.
-                Transition action `count += 0;` for TEST8_G.EntryPoint(3) to TEST8_G.EntryPoint(1).
-                Transition action `` for TEST8_G.EntryPoint(1) to {expectedState}.
+                Transition action `count += 0;` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).
+                Transition action `` for TEST8_G.<EntryPoint>(1) to {expectedState}.
                 Enter {expectedState}.
             "));
         }
@@ -1023,11 +1023,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         // 
         tester.AddEventHandling("EV2", t => t(@$"
-            State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.EntryPoint(1))`. Behavior running.
+            State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`. Behavior running.
             Exit {expectedState}.
             Exit TEST8_G.
-            Transition action `` for TEST8_G to TEST8_ROOT.EntryPoint(1).
-            Transition action `` for TEST8_ROOT.EntryPoint(1) to TEST8_S1.
+            Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).
+            Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.
             Enter TEST8_S1.
         "));
     }
@@ -1088,11 +1088,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
 
         // 
         tester.AddEventHandling("EV1", t => t(@$"
-            State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.ExitPoint(1))`. Behavior running.
+            State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`. Behavior running.
             Exit TEST9_S1_1.
-            Transition action `` for TEST9_S1_1 to TEST9_S1.ExitPoint(1).
+            Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).
             Exit TEST9_S1.
-            Transition action `` for TEST9_S1.ExitPoint(1) to {expectedState}.
+            Transition action `` for TEST9_S1.<ExitPoint>(1) to {expectedState}.
             Enter {expectedState}.
         "));
     }
@@ -1105,13 +1105,13 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         tester.PreEvents = "EV9 EV2";
 
         tester.AddEventHandling("EV1", t => t(@"
-            State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.ExitPoint(1))`. Behavior running.
+            State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`. Behavior running.
             Exit TEST9A_S1_1.
             State TEST9A_S1_1: check behavior `exit / { count = 100; }`. Behavior running.
-            Transition action `` for TEST9A_S1_1 to TEST9A_S1.ExitPoint(1).
+            Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).
             Exit TEST9A_S1.
-            Transition action `count++;` for TEST9A_S1.ExitPoint(1) to TEST9A_S1.
-            Transition action `` for TEST9A_S1.InitialState to TEST9A_S1_1.
+            Transition action `count++;` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.
+            Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.
             Enter TEST9A_S1_1.
             State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`. Behavior skipped.
         "));
@@ -1135,13 +1135,13 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         "));
 
         tester.AddEventHandling("EV1", t => t(@"
-            State A4: check behavior `EV1 TransitionTo(A3.ExitPoint(1))`. Behavior running.
+            State A4: check behavior `EV1 TransitionTo(A3.<ExitPoint>(1))`. Behavior running.
             Exit A4.
-            Transition action `` for A4 to A3.ExitPoint(1).
+            Transition action `` for A4 to A3.<ExitPoint>(1).
             Exit A3.
             Exit A2.
             Exit A1.
-            Transition action `` for A3.ExitPoint(1) to B4.
+            Transition action `` for A3.<ExitPoint>(1) to B4.
             Enter B1.
             Enter B2.
             Enter B3.
@@ -1215,32 +1215,32 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         if (incCount == 0)
         {
             end = @$"
-            Transition action `` for TEST10_G.ChoicePoint(1) to {expectedState}.
+            Transition action `` for TEST10_G.<ChoicePoint>(1) to {expectedState}.
             Enter {expectedState}.
             ";
         }
         else if (incCount == 1 || incCount == 2)
         {
             end = @$"
-            Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(lower).
-            Transition action `` for TEST10_G.ChoicePoint(lower) to {expectedState}.
+            Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).
+            Transition action `` for TEST10_G.<ChoicePoint>(lower) to {expectedState}.
             Enter {expectedState}.
             ";
         }
         else if (incCount == 3)
         {
             end = @$"
-            Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).
-            Transition action `` for TEST10_G.ChoicePoint(upper) to {expectedState}.
+            Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).
+            Transition action `` for TEST10_G.<ChoicePoint>(upper) to {expectedState}.
             Enter {expectedState}.
             ";
         }
         else if (incCount == 4)
         {
             end = @$"
-            Transition action `` for TEST10_G.ChoicePoint(1) to TEST10_G.ChoicePoint(upper).
+            Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).
             Exit TEST10_G.
-            Transition action `` for TEST10_G.ChoicePoint(upper) to {expectedState}.
+            Transition action `` for TEST10_G.<ChoicePoint>(upper) to {expectedState}.
             Enter {expectedState}.
             ";
         }
@@ -1255,12 +1255,12 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         {
             // 
             tester.AddEventHandling("EV1", t => t(@$"
-                State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.EntryPoint(1))`. Behavior running.
+                State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`. Behavior running.
                 Exit TEST10_S1.
-                Transition action `` for TEST10_S1 to TEST10_G.EntryPoint(1).
+                Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).
                 Enter TEST10_G.
-                Transition action `` for TEST10_G.EntryPoint(1) to TEST10_G.ChoicePoint().
-                Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).
+                Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().
+                Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).
                 {end}
             "));
         }
@@ -1268,11 +1268,11 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
         {
             // 
             tester.AddEventHandling("EV2", t => t(@$"
-                State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.ChoicePoint())`. Behavior running.
+                State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`. Behavior running.
                 Exit TEST10_S1.
-                Transition action `` for TEST10_S1 to TEST10_G.ChoicePoint().
+                Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().
                 Enter TEST10_G.
-                Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).
+                Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).
                 {end}
             "));
         }
@@ -1284,8 +1284,8 @@ public abstract class Spec2Tests : Spec2Fixture, IDisposable
                 Exit TEST10_S1.
                 Transition action `` for TEST10_S1 to TEST10_G.
                 Enter TEST10_G.
-                Transition action `` for TEST10_G.InitialState to TEST10_G.ChoicePoint().
-                Transition action `` for TEST10_G.ChoicePoint() to TEST10_G.ChoicePoint(1).
+                Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().
+                Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).
                 {end}
             "));
         }
