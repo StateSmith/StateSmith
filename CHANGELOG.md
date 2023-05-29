@@ -25,7 +25,7 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ```
 ---
 
-## [wip]
+## [0.9.5-alpha]
 ### Fixed (minor)
 - Fix `ShortDescribingVisitor` to handle all vertex types and improve exception reporting.
   - https://github.com/StateSmith/StateSmith/issues/204
