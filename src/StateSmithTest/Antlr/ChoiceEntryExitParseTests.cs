@@ -8,6 +8,7 @@ using Antlr4.Runtime.Tree;
 using Antlr4.Runtime.Misc;
 using Xunit.Abstractions;
 using StateSmith.Input.Antlr4;
+using System.Linq;
 
 namespace StateSmithTest.Antlr;
 
@@ -108,9 +109,9 @@ public class ChoiceEntryExitParseTests : CommonTestHelper
         string input = @"
         EVENT via entry 1
         ";
-        var edge = parser.ParseEdgeLabel(input);
-        edge[0].viaEntry.Should().Be("1");
-        edge[0].viaExit.Should().BeNull();
+        var edge = parser.ParseEdgeLabel(input).Single();
+        edge.viaEntry.Should().Be("1");
+        edge.viaExit.Should().BeNull();
         AssertNoErrors();
     }
 
@@ -120,9 +121,9 @@ public class ChoiceEntryExitParseTests : CommonTestHelper
         string input = @"
         EVENT [guard] / action_code(); via entry MY_ENTRY_POINT
         ";
-        var edge = parser.ParseEdgeLabel(input);
-        edge[0].viaEntry.Should().Be("MY_ENTRY_POINT");
-        edge[0].viaExit.Should().BeNull();
+        var edge = parser.ParseEdgeLabel(input).Single();
+        edge.viaEntry.Should().Be("MY_ENTRY_POINT");
+        edge.viaExit.Should().BeNull();
         AssertNoErrors();
     }
 
@@ -132,9 +133,9 @@ public class ChoiceEntryExitParseTests : CommonTestHelper
         string input = @"
         EVENT [guard] / { action_code(); } via exit MY_ENTRY_POINT
         ";
-        var edge = parser.ParseEdgeLabel(input);
-        edge[0].viaExit.Should().Be("MY_ENTRY_POINT");
-        edge[0].viaEntry.Should().BeNull();
+        var edge = parser.ParseEdgeLabel(input).Single();
+        edge.viaExit.Should().Be("MY_ENTRY_POINT");
+        edge.viaEntry.Should().BeNull();
         AssertNoErrors();
     }
 
@@ -144,9 +145,9 @@ public class ChoiceEntryExitParseTests : CommonTestHelper
         string input = @"
         EVENT via exit finished_normally
         ";
-        var edge = parser.ParseEdgeLabel(input);
-        edge[0].viaExit.Should().Be("finished_normally");
-        edge[0].viaEntry.Should().BeNull();
+        var edge = parser.ParseEdgeLabel(input).Single();
+        edge.viaExit.Should().Be("finished_normally");
+        edge.viaEntry.Should().BeNull();
         AssertNoErrors();
     }
 
@@ -156,9 +157,24 @@ public class ChoiceEntryExitParseTests : CommonTestHelper
         string input = @"
         EVENT via exit finished_normally   via entry start_at_b
         ";
-        var edge = parser.ParseEdgeLabel(input);
-        edge[0].viaExit.Should().Be("finished_normally");
-        edge[0].viaEntry.Should().Be("start_at_b");
+        var edge = parser.ParseEdgeLabel(input).Single();
+        edge.viaExit.Should().Be("finished_normally");
+        edge.viaEntry.Should().Be("start_at_b");
+        AssertNoErrors();
+    }
+
+    [Fact]
+    public void ViaEntryExit_ValidMultiLine()
+    {
+        string input = """
+        / x++;
+        via exit aborted
+        via entry again
+        """;
+        var edge = parser.ParseEdgeLabel(input).Single();
+        edge.viaExit.Should().Be("aborted");
+        edge.viaEntry.Should().Be("again");
+        edge.actionCode.Should().Be("x++;");
         AssertNoErrors();
     }
 
