@@ -65,9 +65,17 @@ public class StandardSmTransformer : SmTransformer
 
     public static void Validate(StateMachine sm)
     {
-        var validator = new SpecificVertexValidator();
-        sm.Accept(validator);
-        var validator2 = new VertexValidator();
-        sm.Accept(validator2);
+        {
+            var validator = new SpecificVertexValidator();
+            sm.Accept(validator);
+        }
+        {
+            var validator2 = new VertexValidator();
+            sm.Accept(validator2);
+        }
+        {
+            StateNameValidator stateNameValidator = new();
+            stateNameValidator.Visit(sm);
+        }
     }
 }

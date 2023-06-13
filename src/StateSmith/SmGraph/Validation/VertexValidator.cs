@@ -1,15 +1,13 @@
 #nullable enable
 using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace StateSmith.SmGraph.Validation;
 
-public class VertexValidator : NamedVisitor
+public class VertexValidator : VertexVisitor
 {
     readonly PseudoLoopDetector pseudoLoopDetector = new();
-    readonly Dictionary<string, NamedVertex> stateNames = new();
 
     public override void Visit(Vertex v)
     {
@@ -21,39 +19,6 @@ public class VertexValidator : NamedVisitor
         }
 
         VisitChildren(v);
-    }
-
-    public override void Visit(NamedVertex v)
-    {
-        ValidateStateName(v);
-        ValidateUniqueStateName(v);
-
-        Visit((Vertex)v);
-    }
-
-    /// <summary>
-    /// https://github.com/StateSmith/StateSmith/issues/199
-    /// </summary>
-    private static void ValidateStateName(NamedVertex namedVertex)
-    {
-        const string rootStateName = "ROOT";
-        if (string.Equals(namedVertex.Name, rootStateName, System.StringComparison.OrdinalIgnoreCase))
-        {
-            throw new VertexValidationException(namedVertex, $"`{rootStateName}` is a reserved state name. Please pick another.");
-        }
-    }
-
-    private void ValidateUniqueStateName(Vertex v)
-    {
-        if (v is NamedVertex namedVertex)
-        {
-            var name = namedVertex.Name;
-            if (stateNames.TryGetValue(name, out var otherState))
-            {
-                throw new VertexValidationException(v, $"Duplicate state name `{name}` also used by state `{VertexPathDescriber.Describe(otherState)}`.");
-            }
-            stateNames.Add(name, namedVertex);
-        }
     }
 
     private static void ValidateBehavior(Behavior b)
