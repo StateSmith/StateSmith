@@ -23,6 +23,14 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Changed
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
+
+---
+
+## [wip]
+### Added
+- Add validation message for reserved state name "ROOT".
+  - https://github.com/StateSmith/StateSmith/issues/199
+
 ---
 
 ## [0.9.5-alpha]
