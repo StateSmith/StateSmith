@@ -1,9 +1,10 @@
+#nullable enable
 using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace StateSmith.SmGraph;
+namespace StateSmith.SmGraph.Validation;
 
 public class VertexValidator : NamedVisitor
 {
@@ -106,7 +107,7 @@ public class VertexValidator : NamedVisitor
 
     private static void ValidateViaExit(Behavior b)
     {
-        string exitLabel = b.viaExit;
+        string? exitLabel = b.viaExit;
         if (exitLabel == null)
         {
             return;
@@ -125,7 +126,9 @@ public class VertexValidator : NamedVisitor
 
     private static void ValidateViaEntry(Behavior b)
     {
-        string entryLabel = b.viaEntry;
+        b.TransitionTarget.ThrowIfNull();
+
+        string? entryLabel = b.viaEntry;
         if (entryLabel == null)
         {
             return;

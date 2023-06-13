@@ -3,6 +3,7 @@ using System;
 using Xunit;
 using FluentAssertions;
 using StateSmith.Runner;
+using StateSmith.SmGraph.Validation;
 
 namespace StateSmithTest
 {

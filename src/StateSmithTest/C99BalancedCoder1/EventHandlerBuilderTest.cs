@@ -1,9 +1,9 @@
 ﻿using Xunit;
 using System.Linq;
-using StateSmith.SmGraph;
 using StateSmith.Runner;
 using System;
 using FluentAssertions;
+using StateSmith.SmGraph.Validation;
 
 namespace StateSmithTest.C99BalancedCoder1;
 

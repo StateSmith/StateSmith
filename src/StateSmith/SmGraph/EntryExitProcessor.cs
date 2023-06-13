@@ -2,6 +2,7 @@ using StateSmith.SmGraph.Visitors;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using StateSmith.SmGraph.Validation;
 
 namespace StateSmith.SmGraph
 {

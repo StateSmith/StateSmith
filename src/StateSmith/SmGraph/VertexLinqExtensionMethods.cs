@@ -2,6 +2,7 @@
 
 using StateSmith.Common;
 using StateSmith.SmGraph;
+using StateSmith.SmGraph.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;

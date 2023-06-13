@@ -148,6 +148,7 @@ namespace StateSmith.SmGraph
             return Triggers.Any();
         }
 
+        [MemberNotNullWhen(true, nameof(TransitionTarget))]
         public bool IsBlankTransition()
         {
             return (HasTransition() && !HasAtLeastOneTrigger() && !HasGuardCode() && !HasActionCode() && order == DEFAULT_ORDER && !HasViaEntry() && !HasViaExit());

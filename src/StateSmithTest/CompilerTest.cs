@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using FluentAssertions;
-using StateSmith;
 using StateSmith.SmGraph;
 using static StateSmithTest.VertexTestHelper;
 using StateSmith.Input.Expansions;
 using StateSmith.Runner;
 using StateSmith.Input.Antlr4;
+using StateSmith.SmGraph.Validation;
 
 namespace StateSmithTest
 {

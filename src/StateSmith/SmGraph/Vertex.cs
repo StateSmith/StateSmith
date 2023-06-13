@@ -1,8 +1,8 @@
 #nullable enable
 
 using StateSmith.Common;
+using StateSmith.SmGraph.Validation;
 using StateSmith.SmGraph.Visitors;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -218,10 +218,16 @@ public abstract class Vertex
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public bool ContainsVertex(Vertex v)
+    public bool ContainsVertex(Vertex? v)
     {
         Vertex? current = v;
-        int vParentHops = v.Depth - Depth;
+
+        if (current == null)
+        {
+            return false;
+        }
+
+        int vParentHops = current.Depth - Depth;
 
         if (vParentHops < 0)
         {

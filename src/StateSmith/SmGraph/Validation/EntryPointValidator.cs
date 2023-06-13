@@ -1,6 +1,7 @@
-﻿namespace StateSmith.SmGraph;
-using StateSmith.SmGraph;
+#nullable enable
 using System.Linq;
+
+namespace StateSmith.SmGraph.Validation;
 
 public class EntryPointValidator
 {

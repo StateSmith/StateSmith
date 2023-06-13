@@ -1,4 +1,6 @@
-﻿namespace StateSmith.SmGraph;
+using StateSmith.SmGraph.Validation;
+
+namespace StateSmith.SmGraph;
 
 /// <summary>
 /// https://github.com/StateSmith/StateSmith/issues/136

@@ -9,6 +9,7 @@ using StateSmith.Input.Expansions;
 using StateSmith.Output.Gil;
 using System.Collections.Generic;
 using StateSmith.Output.UserConfig;
+using StateSmith.SmGraph.Validation;
 
 namespace StateSmith.Output.Algos.Balanced1;
 
