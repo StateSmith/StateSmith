@@ -1,4 +1,5 @@
-﻿using StateSmith.SmGraph.Visitors;
+using StateSmith.SmGraph.Validation;
+using StateSmith.SmGraph.Visitors;
 using System.Diagnostics;
 using System.Linq;
 

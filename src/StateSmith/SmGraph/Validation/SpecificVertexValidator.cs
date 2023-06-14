@@ -1,9 +1,8 @@
 #nullable enable
-
 using System.Linq;
 using StateSmith.SmGraph.Visitors;
 
-namespace StateSmith.SmGraph;
+namespace StateSmith.SmGraph.Validation;
 
 public class SpecificVertexValidator : VertexVisitor
 {

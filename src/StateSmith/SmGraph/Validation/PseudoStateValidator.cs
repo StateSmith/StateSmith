@@ -1,6 +1,7 @@
-﻿using System;
+#nullable enable
+using System;
 
-namespace StateSmith.SmGraph;
+namespace StateSmith.SmGraph.Validation;
 
 public class PseudoStateValidator
 {
@@ -12,7 +13,7 @@ public class PseudoStateValidator
     public static void ValidateEnteringBehaviors(PseudoStateVertex state)
     {
         bool hasDefaultTransition = false;
-        var parent = state.Parent;
+        var parent = state.NonNullParent;
 
         foreach (var b in state.Behaviors)
         {
@@ -33,7 +34,7 @@ public class PseudoStateValidator
     public static void ValidateBehaviors(PseudoStateVertex state)
     {
         bool hasDefaultTransition = false;
-        var parent = state.Parent;
+        var parent = state.NonNullParent;
 
         foreach (var b in state.Behaviors)
         {
@@ -54,7 +55,7 @@ public class PseudoStateValidator
     public static void ValidateExitingBehaviors(PseudoStateVertex state)
     {
         bool hasDefaultTransition = false;
-        var parent = state.Parent;
+        var parent = state.NonNullParent;
 
         foreach (var b in state.Behaviors)
         {

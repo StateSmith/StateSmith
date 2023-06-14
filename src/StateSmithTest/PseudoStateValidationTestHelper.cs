@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Xunit;
 using StateSmith.SmGraph;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace StateSmithTest.PseudoStateTests
 
         private StateMachine BuildTestGraph()
         {
-            sm = new StateMachine(name: "root");
+            sm = new StateMachine(name: "SomeSm");
             rootInitialState = sm.AddChild(new InitialState());
             s1 = sm.AddChild(new State(name: "s1"));
             s2 = sm.AddChild(new State(name: "s2"));

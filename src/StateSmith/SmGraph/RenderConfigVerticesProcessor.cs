@@ -1,6 +1,7 @@
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
+using StateSmith.SmGraph.Validation;
 using StateSmith.SmGraph.Visitors;
 using System.Collections.Generic;
 using System.Linq;

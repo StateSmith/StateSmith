@@ -1,4 +1,5 @@
-﻿namespace StateSmith.SmGraph;
+#nullable enable
+namespace StateSmith.SmGraph.Validation;
 
 public class ChoicePointValidator
 {

@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using StateSmith.SmGraph;
+#nullable enable
+using System.Linq;
 
-namespace StateSmith.SmGraph;
+namespace StateSmith.SmGraph.Validation;
 
 public class InitialStateValidator
 {
@@ -9,7 +9,7 @@ public class InitialStateValidator
     {
         PseudoStateValidator.ValidateParentAndNoChildren(initialState);
 
-        var parent = initialState.Parent;
+        var parent = initialState.NonNullParent;
 
         // Ensure that containing state only has a single initial state.
         // This seems like it might be inefficient, but it isn't because we throw if more than 1 initial state

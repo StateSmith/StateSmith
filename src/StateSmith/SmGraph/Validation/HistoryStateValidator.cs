@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using StateSmith.SmGraph;
+#nullable enable
+using System.Linq;
 
-namespace StateSmith.SmGraph;
+namespace StateSmith.SmGraph.Validation;
 
 public class HistoryStateValidator
 {
@@ -13,7 +13,7 @@ public class HistoryStateValidator
         var siblingCount = v.SiblingsOfMyType().Count();
         if (siblingCount > 0)
         {
-            throw new VertexValidationException(v, $"Only 1 history vertex is allowed in a state. Found {siblingCount+1}.");
+            throw new VertexValidationException(v, $"Only 1 history vertex is allowed in a state. Found {siblingCount + 1}.");
         }
 
         if (v.Behaviors.Count() != 1)

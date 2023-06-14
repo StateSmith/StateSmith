@@ -23,6 +23,17 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Changed
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
+
+---
+
+## [wip]
+### Added
+- Add validation message for reserved state name "ROOT".
+  - https://github.com/StateSmith/StateSmith/issues/199
+### Changed (minor)
+- Moved internal validation classes into `namespace StateSmith.SmGraph.Validation` from `namespace StateSmith.SmGraph`.
+  - Most users won't be affected unless they perform their own custom validations.
+
 ---
 
 ## [0.9.5-alpha]
@@ -31,7 +42,6 @@ The majority of our breaking changes have been to code generation scripts (.csx 
   - https://github.com/StateSmith/StateSmith/issues/204
 - Fix grammar so that entry/exit/choice point labels can be multiple digits
   - https://github.com/StateSmith/StateSmith/issues/207
-
 ### Changed (minor)
 - special state vertices are described slightly differently to avoid clashing with user state names.
   - `ROOT.InitialState` becomes `ROOT.<InitialState>`...

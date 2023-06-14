@@ -2,6 +2,7 @@ using System;
 using FluentAssertions;
 using StateSmith.SmGraph;
 using StateSmith.Runner;
+using StateSmith.SmGraph.Validation;
 
 #nullable enable
 

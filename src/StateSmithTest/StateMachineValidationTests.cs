@@ -20,7 +20,7 @@ public class StateMachineValidationTests : ValidationTestHelper
 
     private Vertex BuildTestGraph()
     {
-        var sm = new StateMachine(name: "root");
+        var sm = new StateMachine(name: "SomeSm");
 
         s1 = sm.AddChild(new State(name: "s1"));
         s2 = sm.AddChild(new State(name: "s2"));
@@ -78,5 +78,15 @@ public class StateMachineValidationTests : ValidationTestHelper
         s1.AddChild(new State("s2"));
         // Note! We only get this failure because this test disables auto name conflict resolution
         ExpectVertexValidationExceptionWildcard(s2, "*name `s2` also used by state `ROOT.s1.s2`*");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/199
+    /// </summary>
+    [Fact]
+    public void UsingReservedRootName()
+    {
+        var badRoot = s1.AddChild(new State("root"));
+        ExpectVertexValidationExceptionWildcard(badRoot, "*`ROOT`*reserved*");
     }
 }

@@ -1,6 +1,7 @@
-﻿using System;
+#nullable enable
+using System;
 
-namespace StateSmith.SmGraph
+namespace StateSmith.SmGraph.Validation
 {
     public class VertexValidationException : Exception
     {

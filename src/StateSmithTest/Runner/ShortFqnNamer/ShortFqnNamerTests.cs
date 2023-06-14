@@ -3,6 +3,7 @@
 using FluentAssertions;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using StateSmith.SmGraph.Validation;
 using System;
 using System.IO;
 using System.Linq;
