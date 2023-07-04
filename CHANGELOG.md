@@ -26,6 +26,13 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 
 ---
 
+# WIP
+### Added
+- Add state machine description file for easier git diffing and understanding.
+  - https://github.com/StateSmith/StateSmith/issues/200
+
+---
+
 ## [0.9.6-alpha]
 ### Added
 - Add validation message for reserved state name "ROOT".

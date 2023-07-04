@@ -148,6 +148,11 @@ public static class TriggerHelper
         return vertex.Behaviors.Where(b => b.Triggers.Any(t => SanitizeTriggerName(t) == triggerName));
     }
 
+    public static bool HasAnEventTrigger(Behavior b)
+    {
+        return b.Triggers.Any(t => IsEvent(t));
+    }
+
     /// <summary>
     /// Sanitizes triggers.
     /// </summary>
