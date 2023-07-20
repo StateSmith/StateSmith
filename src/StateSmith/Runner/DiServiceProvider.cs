@@ -86,6 +86,8 @@ public class DiServiceProvider
             services.AddSingleton<TriggerMapProcessor>();
 
             services.AddSingleton<UserExpansionScriptBases>();
+
+            services.AddSingleton<ISmBaseFileNameProvider>((s) => s.GetService<NameMangler>().ThrowIfNull());
         });
     }
 

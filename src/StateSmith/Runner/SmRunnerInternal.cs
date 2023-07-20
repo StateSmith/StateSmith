@@ -67,14 +67,14 @@ public class SmRunnerInternal
 
     private void MaybeAddSmDescriber()
     {
-        if (settings.smDescriber.enabled == false)
+        if (settings.smDesignDescriber.enabled == false)
         {
             return;
         }
 
         this.inputSmBuilder.transformer.InsertAfterFirstMatch(TransformationId.Standard_FinalValidation, new TransformationStep("", (StateMachine sm) =>
         {
-            string filePath = settings.smDescriber.outputDirectory + ".sm.txt";
+            string filePath = settings.smDesignDescriber.outputDirectory + ".sm.txt";
             string prettyPath = filePathPrinter.PrintPath(filePath);
 
             consolePrinter.OutputStageMessage($"State machine description written to file: `{prettyPath}`");
@@ -155,8 +155,8 @@ public class SmRunnerInternal
         settings.filePathPrintBase ??= relativeDirectory;
         settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
 
-        settings.smDescriber.outputDirectory ??= settings.outputDirectory;
-        settings.smDescriber.outputDirectory = ProcessDirPath(settings.smDescriber.outputDirectory, relativeDirectory);
+        settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
+        settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
     }
 
     private static string ProcessDirPath(string dirPath, string relativeDirectory)

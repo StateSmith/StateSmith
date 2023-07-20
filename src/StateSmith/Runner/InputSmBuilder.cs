@@ -217,10 +217,10 @@ public class InputSmBuilder
     //------------------------------------------------------------------------
 
     /// <summary>
-    /// May be removed in the future.
+    /// May be removed in the future. Better to get IDiagramVerticesProvider from DI instead.
     /// </summary>
     /// <returns></returns>
-    public List<Vertex> GetRootVertices()
+    internal List<Vertex> GetRootVertices()
     {
         return diagramToSmConverter.GetRootVertices();
     }

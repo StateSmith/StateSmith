@@ -90,7 +90,10 @@ public class RunnerSettings
     /// </summary>
     public bool autoDeIndentAndTrimRenderConfigItems = true;
 
-    public SmDescriberSettings smDescriber = new ();
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/200
+    /// </summary>
+    public SmDesignDescriberSettings smDesignDescriber = new ();
 
     /// <summary>
     /// See https://github.com/StateSmith/StateSmith/issues/138

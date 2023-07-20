@@ -2,7 +2,10 @@
 
 namespace StateSmith.Runner;
 
-public class SmDescriberSettings
+/// <summary>
+/// https://github.com/StateSmith/StateSmith/issues/200
+/// </summary>
+public class SmDesignDescriberSettings
 {
     public bool enabled = false;
 
