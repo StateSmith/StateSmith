@@ -1,13 +1,12 @@
+#nullable enable
+
 using StateSmith.Common;
-using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System.Text.RegularExpressions;
 
-#nullable enable
-
 namespace StateSmith.Output.Algos.Balanced1;
 
-public class NameMangler : ISmBaseFileNameProvider
+public class NameMangler
 {
     protected StateMachine? _sm;
     public StateMachine Sm => _sm.ThrowIfNull();
@@ -31,8 +30,6 @@ public class NameMangler : ISmBaseFileNameProvider
     /// File name without dot or extension
     /// </summary>
     public virtual string BaseFileName => Sm.Name;
-
-    string ISmBaseFileNameProvider.Get() => BaseFileName;
 
     //--------------------------------------------------------
     //--------------------------------------------------------

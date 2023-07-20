@@ -3,7 +3,6 @@
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System.IO;
-using System.Text;
 
 namespace StateSmith.Output;
 
@@ -13,21 +12,18 @@ public class SmDesignDescriber
     protected IDiagramVerticesProvider diagramVerticesProvider;
     protected SmGraphDescriber smDescriber;
 
-    public SmDesignDescriber(SmDesignDescriberSettings settings, IDiagramVerticesProvider diagramVerticesProvider)
+    public SmDesignDescriber(SmDesignDescriberSettings settings, IDiagramVerticesProvider diagramVerticesProvider, IOutputInfo outputInfo)
     {
         this.settings = settings;
         this.diagramVerticesProvider = diagramVerticesProvider;
 
+        var filePath = $"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.md";
         using var writer = new StreamWriter(filePath);
-        var describer = new SmGraphDescriber(writer);
-
+        smDescriber = new SmGraphDescriber(writer);
     }
 
     public void DescribeBeforeTransformations()
     {
-        var sb = new StringBuilder();
-
-        SmGraphDescriber smDescriber = new(new StringWriter(sb));
 
     }
 

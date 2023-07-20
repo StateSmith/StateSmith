@@ -1,3 +1,5 @@
+#nullable enable
+
 using StateSmith.Input.DrawIo;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,8 +12,6 @@ using StateSmith.Common;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.SmGraph.TriggerMap;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 
@@ -86,8 +86,6 @@ public class DiServiceProvider
             services.AddSingleton<TriggerMapProcessor>();
 
             services.AddSingleton<UserExpansionScriptBases>();
-
-            services.AddSingleton<ISmBaseFileNameProvider>((s) => s.GetService<NameMangler>().ThrowIfNull());
         });
     }
 

@@ -14,16 +14,14 @@ public class GilToCSharp : IGilTranspiler
     private readonly ICodeFileWriter codeFileWriter;
     private readonly RenderConfigCSharpVars renderConfigCSharp;
     private readonly RenderConfigVars renderConfig;
-    private readonly OutputInfo outputInfo;
-    private readonly ISmBaseFileNameProvider stateMachineBaseFileNameProvider;
+    private readonly IOutputInfo outputInfo;
 
-    public GilToCSharp(OutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig, ICodeFileWriter codeFileWriter, ISmBaseFileNameProvider stateMachineBaseFileNameProvider)
+    public GilToCSharp(IOutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig, ICodeFileWriter codeFileWriter)
     {
         this.outputInfo = outputInfo;
         this.renderConfigCSharp = renderConfigCSharp;
         this.renderConfig = renderConfig;
         this.codeFileWriter = codeFileWriter;
-        this.stateMachineBaseFileNameProvider = stateMachineBaseFileNameProvider;
     }
 
     public void TranspileAndOutputCode(string gilCode)
@@ -35,6 +33,6 @@ public class GilToCSharp : IGilTranspiler
 
         PostProcessor.PostProcess(fileSb);
 
-        codeFileWriter.WriteFile($"{outputInfo.outputDirectory}{stateMachineBaseFileNameProvider.Get()}.cs", code: fileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.cs", code: fileSb.ToString());
     }
 }

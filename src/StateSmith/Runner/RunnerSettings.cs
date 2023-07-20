@@ -1,7 +1,7 @@
+#nullable enable
+
 using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 

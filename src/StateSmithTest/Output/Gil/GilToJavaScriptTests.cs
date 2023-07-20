@@ -30,7 +30,7 @@ public class GilToJavaScriptTests
         //File.WriteAllText($"{outputInfo.outputDirectory}temp.gil.cs", gilCode);
 
         CapturingCodeFileWriter capturingWriter = new();
-        GilToJavaScript transpiler = new(outputInfo, new(sm), new(), renderConfig, capturingWriter);
+        GilToJavaScript transpiler = new(outputInfo, new(), renderConfig, capturingWriter);
 
         transpiler.TranspileAndOutputCode(gilCode);
 

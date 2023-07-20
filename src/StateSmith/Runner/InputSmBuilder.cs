@@ -12,6 +12,7 @@ using StateSmith.Input.DrawIo;
 using System.Diagnostics.CodeAnalysis;
 using StateSmith.Common;
 using StateSmith.Output.Algos.Balanced1;
+using StateSmith.Output;
 
 namespace StateSmith.Runner;
 
@@ -195,6 +196,7 @@ public class InputSmBuilder
     {
         SetupForSingleSm();
         mangler.SetStateMachine(GetStateMachine());
+        sp.GetInstanceOf<OutputInfo>().baseFileName = mangler.BaseFileName;
         transformer.RunTransformationPipeline(GetStateMachine());
     }
 
