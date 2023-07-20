@@ -1,11 +1,12 @@
+#nullable enable
+
 using System.IO;
 using StateSmith.Output;
 using StateSmith.Common;
 using StateSmith.SmGraph;
 using System.Globalization;
 using System.Threading;
-
-#nullable enable
+using static StateSmith.Runner.StandardSmTransformer;
 
 namespace StateSmith.Runner;
 
@@ -37,6 +38,8 @@ public class SmRunnerInternal
     {
         AppUseDecimalPeriod();   // done here as well to help with unit tests
 
+        MaybeAddSmDescriber();
+
         try
         {
             consolePrinter.WriteLine();
@@ -60,6 +63,24 @@ public class SmRunnerInternal
         }
 
         consolePrinter.WriteLine();
+    }
+
+    private void MaybeAddSmDescriber()
+    {
+        if (settings.smDescriber.enabled == false)
+        {
+            return;
+        }
+
+        this.inputSmBuilder.transformer.InsertAfterFirstMatch(TransformationId.Standard_FinalValidation, new TransformationStep("", (StateMachine sm) =>
+        {
+            string filePath = settings.smDescriber.outputDirectory + ".sm.txt";
+            string prettyPath = filePathPrinter.PrintPath(filePath);
+
+            consolePrinter.OutputStageMessage($"State machine description written to file: `{prettyPath}`");
+
+            SmDescriber.DescribeToFile(sm, filePath);
+        }));
     }
 
     private void HandleException(System.Exception e)
@@ -127,11 +148,15 @@ public class SmRunnerInternal
     {
         var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
         settings.diagramFile = PathUtils.EnsurePathAbsolute(settings.diagramFile, relativeDirectory);
+        
         settings.outputDirectory ??= Path.GetDirectoryName(settings.diagramFile).ThrowIfNull();
-        settings.filePathPrintBase ??= relativeDirectory;
-
         settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
+
+        settings.filePathPrintBase ??= relativeDirectory;
         settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
+
+        settings.smDescriber.outputDirectory ??= settings.outputDirectory;
+        settings.smDescriber.outputDirectory = ProcessDirPath(settings.smDescriber.outputDirectory, relativeDirectory);
     }
 
     private static string ProcessDirPath(string dirPath, string relativeDirectory)

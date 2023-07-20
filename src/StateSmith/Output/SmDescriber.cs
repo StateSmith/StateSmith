@@ -18,6 +18,13 @@ public class SmDescriber
         this.writer = writer;
     }
 
+    public static void DescribeToFile(StateMachine stateMachine, string filePath)
+    {
+        using var writer = new StreamWriter(filePath);
+        var describer = new SmDescriber(writer);
+        describer.Describe(stateMachine);
+    }
+
     public void Describe(StateMachine stateMachine)
     {
         BehaviorDescriber behaviorDescriber = new(singleLineFormat: false, multilinePrefix: "    ");
@@ -74,7 +81,6 @@ public class SmDescriber
                 ancestor = ancestor.Parent;
             }
         }
-
     }
 
     private void MaybeOutputAncestorBehaviors(BehaviorDescriber behaviorDescriber, Vertex ancestor)
