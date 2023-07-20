@@ -1,4 +1,3 @@
-using StateSmith.Output;
 using StateSmith.SmGraph;
 using StateSmith.SmGraph.TriggerMap;
 using StateSmith.SmGraph.Validation;
@@ -36,12 +35,6 @@ public class StandardSmTransformer : SmTransformer
         /// </summary>
         Standard_TriggerMapping,
         Standard_AddUsedEventsToSm,
-
-        /// <summary>
-        /// https://github.com/StateSmith/StateSmith/issues/200
-        /// </summary>
-        Standard_SmDescription,
-
         Standard_FinalValidation,
     };
 
@@ -62,7 +55,6 @@ public class StandardSmTransformer : SmTransformer
         AddStep(TransformationId.Standard_DefaultUnspecifiedEventsAsDoEvent, (sm) => DefaultToDoEventVisitor.Process(sm));
         AddStep(TransformationId.Standard_TriggerMapping, (sm) => triggerMapProcessor.Process(sm));
         AddStep(TransformationId.Standard_AddUsedEventsToSm, (sm) => AddUsedEventsToSmClass.Process(sm));
-        AddStep(TransformationId.Standard_SmDescription, (sm) => SmDescriber.Process(sm));
         AddStep(TransformationId.Standard_FinalValidation, (sm) => Validate(sm));
     }
 

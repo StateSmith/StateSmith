@@ -9,35 +9,53 @@ using System.Text;
 
 namespace StateSmith.Output;
 
-public class SmDescriber
+public class SmGraphDescriber
 {
+    protected string indentStr = "    ";
     protected TextWriter writer;
+    protected bool prependSeparator = false;
 
-    public SmDescriber(TextWriter writer)
+    public SmGraphDescriber(TextWriter writer)
     {
         this.writer = writer;
     }
 
-    public static void DescribeToFile(StateMachine stateMachine, string filePath)
+    public static void DescribeToFile(Vertex vertex, string filePath)
     {
         using var writer = new StreamWriter(filePath);
-        var describer = new SmDescriber(writer);
-        describer.Describe(stateMachine);
+        var describer = new SmGraphDescriber(writer);
+        describer.Describe(vertex);
     }
 
-    public void Describe(StateMachine stateMachine)
+    public void OutputHeader(string header)
     {
-        BehaviorDescriber behaviorDescriber = new(singleLineFormat: false, multilinePrefix: "    ");
+        WriteLine($"##################################################");
+        WriteLine($"# {header}");
+        WriteLine($"##################################################");
+        WriteLine("");
+    }
+
+    // describe array of vertices
+    public void Describe(IEnumerable<Vertex> vertices)
+    {
+        foreach (var v in vertices)
+        {
+            Describe(v);
+        }
+    }
+
+    public void Describe(Vertex vertex)
+    {
+        BehaviorDescriber behaviorDescriber = new(singleLineFormat: false, indent: indentStr);
 
         // sort vertices by diagram id so that they are always in the same order
         SortedDictionary<string, Vertex> vertices = new();
 
-        stateMachine.VisitRecursively(v =>
+        vertex.VisitRecursively(v =>
         {
             vertices.Add(v.DiagramId, v);
         });
 
-        bool prependSeparator = false;
         foreach (var v in vertices.Values)
         {
             OutputForVertex(behaviorDescriber, v, prependSeparator:prependSeparator);
@@ -50,7 +68,7 @@ public class SmDescriber
         if (prependSeparator)
         {
             WriteLine($"\n");
-        }   
+        }
 
         WriteLine($"Vertex: {Vertex.Describe(v)}");
         WriteLine($"=================");
@@ -63,24 +81,46 @@ public class SmDescriber
         WriteLine($"Type: {v.GetType().Name}");
         WriteLine($"Diagram Id: {v.DiagramId}");
 
-        InitialState? initialState = v.Children.OfType<InitialState>().FirstOrDefault();
-        if (initialState != null)
+        if (v is ConfigOptionVertex configOptionVertex)
         {
-            WriteLine($"Initial State: {Vertex.Describe(initialState)}");
+            WriteLine($"Option:");
+            WriteLine(Indent(configOptionVertex.value));
         }
-
-        WriteLine($"Behaviors:");
-        OutputBehaviors(writer, behaviorDescriber, v);
-
-        var ancestor = v.Parent;
-        if (v is NamedVertex)
+        else if (v is RenderConfigVertex)
         {
-            while (ancestor != null)
+            // nothing to add here
+        }
+        else if (v is NotesVertex notesVertex)
+        {
+            WriteLine($"Notes:");
+            WriteLine(Indent(notesVertex.notes));
+        }
+        else
+        {
+            InitialState? initialState = v.Children.OfType<InitialState>().FirstOrDefault();
+            if (initialState != null)
             {
-                MaybeOutputAncestorBehaviors(behaviorDescriber, ancestor);
-                ancestor = ancestor.Parent;
+                WriteLine($"Initial State: {Vertex.Describe(initialState)}");
+            }
+
+            WriteLine($"Behaviors:");
+            OutputBehaviors(writer, behaviorDescriber, v);
+
+            var ancestor = v.Parent;
+            if (v is NamedVertex)
+            {
+                while (ancestor != null)
+                {
+                    MaybeOutputAncestorBehaviors(behaviorDescriber, ancestor);
+                    ancestor = ancestor.Parent;
+                }
             }
         }
+    }
+
+    private string Indent(string str)
+    {
+        return StringUtils.Indent(str, indentStr);
     }
 
     private void MaybeOutputAncestorBehaviors(BehaviorDescriber behaviorDescriber, Vertex ancestor)
@@ -119,13 +159,13 @@ public class SmDescriber
         }
     }
 
-    protected void WriteLine(string text)
+    public void WriteLine(string text)
     {
         Write(text);
         writer.Write("\n");
     }
 
-    protected void Write(string text)
+    public void Write(string text)
     {
         writer.Write(text);
     }

@@ -216,7 +216,11 @@ public class InputSmBuilder
 
     //------------------------------------------------------------------------
 
-    internal List<Vertex> GetRootVertices()
+    /// <summary>
+    /// May be removed in the future.
+    /// </summary>
+    /// <returns></returns>
+    public List<Vertex> GetRootVertices()
     {
         return diagramToSmConverter.GetRootVertices();
     }

@@ -35,6 +35,13 @@ public class StringUtils
         return output;
     }
 
+    public static string Indent(string str, string indent)
+    {
+        var result = new Regex("^", RegexOptions.Multiline);
+        var output = result.Replace(str, indent);
+        return output;
+    }
+
     public static string[] SplitIntoLinesOrEmpty(string str)
     {
         var lines = Regex.Split(str, @"\r\n|\r|\n");    // TODOLOW compile common regex

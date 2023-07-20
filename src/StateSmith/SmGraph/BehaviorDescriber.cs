@@ -8,12 +8,12 @@ namespace StateSmith.SmGraph;
 public class BehaviorDescriber
 {
     readonly bool _singleLineFormat;
-    readonly string _multilinePrefix = "";
+    readonly string indent = "";
 
-    public BehaviorDescriber(bool singleLineFormat = false, string multilinePrefix = "")
+    public BehaviorDescriber(bool singleLineFormat = false, string indent = "")
     {
         _singleLineFormat = singleLineFormat;
-        _multilinePrefix = multilinePrefix;
+        this.indent = indent;
     }
 
     public string Describe(Behavior b)
@@ -74,9 +74,9 @@ public class BehaviorDescriber
             result += joiner + "TransitionTo(" + Vertex.Describe(b.TransitionTarget) + ")";
         }
 
-        if (_multilinePrefix != "")
+        if (indent != "")
         {
-            result = Regex.Replace(result, @"^", _multilinePrefix, RegexOptions.Multiline);
+            result = StringUtils.Indent(result, indent);
         }
 
         return result;

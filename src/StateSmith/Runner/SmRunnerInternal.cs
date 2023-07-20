@@ -79,7 +79,7 @@ public class SmRunnerInternal
 
             consolePrinter.OutputStageMessage($"State machine description written to file: `{prettyPath}`");
 
-            SmDescriber.DescribeToFile(sm, filePath);
+            SmGraphDescriber.DescribeToFile(sm, filePath);
         }));
     }
 
