@@ -26,6 +26,13 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 
 ---
 
+## [WIP]
+### Added
+- Allow specifying index for `NamedVertex.AddEnterAction()` and `NamedVertex.AddExitAction()`.
+  - https://github.com/StateSmith/StateSmith/issues/214
+
+---
+
 ## [0.9.6-alpha]
 ### Added
 - Add validation message for reserved state name "ROOT".

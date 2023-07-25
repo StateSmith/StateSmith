@@ -3,6 +3,7 @@
 using StateSmith.Common;
 using StateSmith.SmGraph.Validation;
 using StateSmith.SmGraph.Visitors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -60,12 +61,20 @@ public abstract class Vertex
 
     public IReadOnlyList<Behavior> IncomingTransitions => _incomingTransitions;
 
+    /// <summary>
+    /// Adds a behavior to end (unless index specified).
+    /// </summary>
+    /// <param name="behavior"></param>
+    /// <param name="index">Set to -1 to ignore index, 0 to insert behavior at start. Too large values are clamped 
+    /// to be valid so you don't have to worry.</param>
+    /// <returns></returns>
     public Behavior AddBehavior(Behavior behavior, int index = -1)
     {
         behavior._owningVertex = this;
 
         if (index >= 0)
         {
+            index = Math.Min(index, _behaviors.Count);
             _behaviors.Insert(index, behavior);
         }
         else

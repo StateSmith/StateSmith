@@ -4,7 +4,7 @@ using Xunit;
 
 namespace StateSmithTest;
 
-public class VertexTests
+public class VertexDescribeTests
 {
     [Fact]
     public void Describe_Statemachine()

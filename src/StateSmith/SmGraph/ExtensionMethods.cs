@@ -29,13 +29,13 @@ public static class ExtensionMethods
         }
     }
 
-    public static void AddEnterAction(this NamedVertex namedVertex, string actionCode)
+    public static void AddEnterAction(this NamedVertex namedVertex, string actionCode, int index = -1)
     {
-        namedVertex.AddBehavior(Behavior.NewEnterBehavior(actionCode: actionCode));
+        namedVertex.AddBehavior(Behavior.NewEnterBehavior(actionCode: actionCode), index: index);
     }
 
-    public static void AddExitAction(this NamedVertex namedVertex, string actionCode)
+    public static void AddExitAction(this NamedVertex namedVertex, string actionCode, int index = -1)
     {
-        namedVertex.AddBehavior(Behavior.NewExitBehavior(actionCode: actionCode));
+        namedVertex.AddBehavior(Behavior.NewExitBehavior(actionCode: actionCode), index: index);
     }
 }
