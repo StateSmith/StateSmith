@@ -26,7 +26,7 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 
 ---
 
-## [WIP]
+## [0.9.7-alpha]
 ### Added
 - Allow specifying index for `NamedVertex.AddEnterAction()` and `NamedVertex.AddExitAction()`.
   - https://github.com/StateSmith/StateSmith/issues/214
