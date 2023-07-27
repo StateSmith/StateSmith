@@ -15,4 +15,5 @@ If you want to uninstall java later, see https://stackoverflow.com/questions/239
 
 . setup.sh
 . compile.sh
+. test.sh
 ```

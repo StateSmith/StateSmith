@@ -1,0 +1,6 @@
+@startuml system
+
+[*] -> ACTIVE : POWER_BUTTON
+ACTIVE -> IDLE : POWER_BUTTON
+
+@enduml

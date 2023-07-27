@@ -12,7 +12,7 @@ Saw this with multiline comment (when it was a parse rule instead of a lexer rul
     invalid parse line
     /' blah2 '/
 blah1 stretched over the invalid parse line to join with blah2.
-We don't want want. We want to detect invalid diagram elements.
+We don't want that. We want to detect invalid diagram elements.
 
 Investigate semantic predicates: https://github.com/antlr/antlr4/blob/master/doc/predicates.md
 */
