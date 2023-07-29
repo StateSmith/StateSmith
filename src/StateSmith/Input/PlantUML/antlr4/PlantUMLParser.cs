@@ -1469,9 +1469,6 @@ public partial class PlantUMLParser : Parser {
 	}
 
 	public partial class Diagram_elementContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public IgnoreContext ignore() {
-			return GetRuleContext<IgnoreContext>(0);
-		}
 		[System.Diagnostics.DebuggerNonUserCode] public State_contentsContext state_contents() {
 			return GetRuleContext<State_contentsContext>(0);
 		}
@@ -1483,6 +1480,9 @@ public partial class PlantUMLParser : Parser {
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public NoteContext note() {
 			return GetRuleContext<NoteContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IgnoreContext ignore() {
+			return GetRuleContext<IgnoreContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public Line_ending_owsContext[] line_ending_ows() {
 			return GetRuleContexts<Line_ending_owsContext>();
@@ -1541,31 +1541,31 @@ public partial class PlantUMLParser : Parser {
 			case 1:
 				{
 				State = 224;
-				ignore();
+				state_contents();
 				}
 				break;
 			case 2:
 				{
 				State = 225;
-				state_contents();
+				transition();
 				}
 				break;
 			case 3:
 				{
 				State = 226;
-				transition();
+				state_explicit();
 				}
 				break;
 			case 4:
 				{
 				State = 227;
-				state_explicit();
+				note();
 				}
 				break;
 			case 5:
 				{
 				State = 228;
-				note();
+				ignore();
 				}
 				break;
 			}
@@ -2505,9 +2505,9 @@ public partial class PlantUMLParser : Parser {
 		'\xDE', '\xDD', '\x3', '\x2', '\x2', '\x2', '\xDF', '\xE0', '\x3', '\x2', 
 		'\x2', '\x2', '\xE0', '\xDE', '\x3', '\x2', '\x2', '\x2', '\xE0', '\xE1', 
 		'\x3', '\x2', '\x2', '\x2', '\xE1', '\xE7', '\x3', '\x2', '\x2', '\x2', 
-		'\xE2', '\xE8', '\x5', ' ', '\x11', '\x2', '\xE3', '\xE8', '\x5', '\x1E', 
-		'\x10', '\x2', '\xE4', '\xE8', '\x5', '\x14', '\v', '\x2', '\xE5', '\xE8', 
-		'\x5', '\x1A', '\xE', '\x2', '\xE6', '\xE8', '\x5', ',', '\x17', '\x2', 
+		'\xE2', '\xE8', '\x5', '\x1E', '\x10', '\x2', '\xE3', '\xE8', '\x5', '\x14', 
+		'\v', '\x2', '\xE4', '\xE8', '\x5', '\x1A', '\xE', '\x2', '\xE5', '\xE8', 
+		'\x5', ',', '\x17', '\x2', '\xE6', '\xE8', '\x5', ' ', '\x11', '\x2', 
 		'\xE7', '\xE2', '\x3', '\x2', '\x2', '\x2', '\xE7', '\xE3', '\x3', '\x2', 
 		'\x2', '\x2', '\xE7', '\xE4', '\x3', '\x2', '\x2', '\x2', '\xE7', '\xE5', 
 		'\x3', '\x2', '\x2', '\x2', '\xE7', '\xE6', '\x3', '\x2', '\x2', '\x2', 

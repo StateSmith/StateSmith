@@ -134,21 +134,21 @@ ignore:
     'scale' HWS rest_of_line
     |
     'skinparam' HWS identifier optional_any_space
-        '{' ohs LINE_ENDER
-            (
-                ohs 
-                ( 
-                    identifier
-                    stereotype?
-                    HWS+
-                    (
-                        identifier | DIGIT | '#'
-                    )+
-                )?
-                LINE_ENDER
-            )*
-        ohs
-        '}'
+    '{' ohs LINE_ENDER
+        (
+            ohs 
+            ( 
+                identifier
+                stereotype?
+                HWS+
+                (
+                    identifier | DIGIT | '#'
+                )+
+            )?
+            LINE_ENDER
+        )*
+    ohs
+    '}'
     |
     'skinparam' HWS rest_of_line
     ;
@@ -156,8 +156,6 @@ ignore:
 diagram_element:
     line_ending_ows+
     (
-        ignore
-        |
         state_contents
         |
         transition
@@ -165,6 +163,8 @@ diagram_element:
         state_explicit
         |
         note
+        |
+        ignore
     )
     ;
 
@@ -258,7 +258,7 @@ identifier
     | 'scale'
     | 'skinparam'
     ;
-IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+IDENTIFIER  :   IDENTIFIER_NON_DIGIT   ( IDENTIFIER_NON_DIGIT | DIGIT )*  ;
 DIGIT :   [0-9]  ;
 
 fragment BLOCK_COMMENT_START : '/' SINGLE_QUOTE;
