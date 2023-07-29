@@ -8,7 +8,9 @@ To be perfectly honest, the StateSmith grammars are not perfect. Contributions w
 # Requirements
 Please use WSL2 or linux to run the scripts in this directory.
 
-## WSL2 installation that allows GUI use
+Please let me know if any of the files have bad chmod permissions (sometimes happens when I use wsl).
+
+## WSL2 installation that allows GUI use (Windows only)
 https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview
 
 ## install java jdk for antlr4
@@ -16,6 +18,8 @@ https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-suppo
 
 If you want to uninstall java later, see https://stackoverflow.com/questions/23959615/how-to-remove-default-jre-java-installation-from-ubuntu
 
+## Download antlr
+Run `./install.sh` script.
 
 
 <br>
@@ -32,11 +36,40 @@ It gives highlighting, navigation and live error checking!
 
 <br>
 
-# Read and use the scripts in this directory
+# Compile the grammar(s)
+Run `. setup.sh` to setup some variables to allow us to run antlr easily. Note the dot infront of the script file so that we [source it](https://stackoverflow.com/questions/9772036/pass-all-variables-from-one-shell-script-to-another).
 ```
-./install.sh
-
 . setup.sh
-. compile.sh
+```
+
+Now compile the grammars you are interested in using one of the scripts below. Note that we are sourcing these scripts as well.
+
+```
+. compile-plantuml.sh
+. compile-ss.sh
+. compile-all.sh
+```
+
+
+
+<br>
+
+# Manually test
+Put the text you want to parse in `test_input.txt`.
+
+Edit the `test.sh` file to select the command you want. Or write your own. It's just a collection of samples.
+
+Run the test script sourcing it as well.
+```
 . test.sh
 ```
+
+If you ran the GUI, it can look a bit overwhelming at first for even tiny input files!
+
+![image](https://github.com/StateSmith/StateSmith/assets/274012/0f537f0c-1179-462b-a745-4649e07997a5)
+
+Use the tree explorer in the left tab to drill down and focus on areas one at a time.
+
+![image](https://github.com/StateSmith/StateSmith/assets/274012/3650b568-b4b8-47f6-b55c-3f5e2bb20a74)
+
+Read `test.sh` for more tips.
