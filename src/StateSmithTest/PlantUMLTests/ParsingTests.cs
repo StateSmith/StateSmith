@@ -9,7 +9,6 @@ using StateSmith.Runner;
 
 namespace StateSmithTest.PlantUMLTests;
 
-
 public class ParsingTests
 {
     private PlantUMLToNodesEdges translator = new();
@@ -17,63 +16,63 @@ public class ParsingTests
     [Fact]
     public void DiagramName()
     {
-        ParseAssertNoError(@"
-@startuml MyPumlSm1
+        ParseAssertNoError("""
+            @startuml MyPumlSm1
 
-@enduml
-");
+            @enduml
+            """);
         translator.Root.id.Should().Be("MyPumlSm1");
     }
 
     [Fact]
     public void InvalidInput()
     {
-        ParseAssertHasAtLeastOneError(@"
-@startuml MyPumlSm1 Blah
+        ParseAssertHasAtLeastOneError("""
+            @startuml MyPumlSm1 Blah
 
-@enduml
-");
+            @enduml
+            """);
     }
 
     [Fact]
     public void NoDiagramNameThrows()
     {
-        Action action = () => ParseAssertNoError(@"
-@startuml
-State1 --> State2
-@enduml
-");
+        Action action = () => ParseAssertNoError("""
+            @startuml
+            State1 --> State2
+            @enduml
+            """);
 
         action.Should().Throw<Exception>()
-            .WithMessage("PlantUML diagrams need a name and should start like `@startuml MySmName`. Location Details { line: 2, column: 0, text: `@startuml`. }");
+            .WithMessage("PlantUML diagrams need a name and should start like `@startuml MySmName`. Location Details { line: 1, column: 0, text: `@startuml`. }");
     }
 
     [Fact]
     public void ThrowOnEndState()
     {
-        Action action = () => ParseAssertNoError(@"
-@startuml SomeName
-State1 --> [*]
-@enduml
-");
+        Action action = () => ParseAssertNoError("""
+            @startuml SomeName
+            State1 --> [*]
+            @enduml
+            """);
 
         action.Should().Throw<Exception>()
-            .WithMessage("StateSmith doesn't support end states. Location Details { line: 3, column: 0, text: `State1 --> [*]`. }");
+            .WithMessage("StateSmith doesn't support end states. Location Details { line: 2, column: 0, text: `State1 --> [*]`. }");
     }
 
     [Fact]
     public void TwoStates()
     {
-        ParseAssertNoError(@"
-@startuml SomeSmName
+        ParseAssertNoError("""
+            @startuml SomeSmName
 
-[*] --> State1
-State1 : enter / some_action();
-State1 : EVENT [guard] { action(); cout << Obj::cpp_rules(); x->v = 100 >> 2; }
-State1 -> State2 : EVENT2 [guard2] / tx_action();
+            [*] --> State1
+            State1 : enter / some_action();
+            State1 : EVENT [guard] { action(); cout << Obj::cpp_rules(); x->v = 100 >> 2; }
+            State1 -> State2 : EVENT2 [guard2] / tx_action();
 
-@enduml
-");
+            @enduml
+            """);
         translator.Root.children.Count.Should().Be(3);
 
         DiagramNode initialState = translator.Root.children[0];
@@ -81,7 +80,11 @@ State1 -> State2 : EVENT2 [guard2] / tx_action();
         DiagramNode state2 = translator.Root.children[2];
 
         initialState.label.Should().Be(VertexParseStrings.InitialStateString);
-        state1.label.Should().Be("State1\nenter / some_action();\nEVENT [guard] { action(); cout << Obj::cpp_rules(); x->v = 100 >> 2; }");
+        state1.label.Should().Be("""
+            State1
+            enter / some_action();
+            EVENT [guard] { action(); cout << Obj::cpp_rules(); x->v = 100 >> 2; }
+            """);
         state2.label.Should().Be("State2");
 
         translator.Edges.Count.Should().Be(2);
@@ -102,27 +105,27 @@ State1 -> State2 : EVENT2 [guard2] / tx_action();
     public void CompositeStatesWithLongName()
     {
         // mod from https://plantuml.com/state-diagram#3b0649c72650c313
-        ParseAssertNoError(@"
-@startuml DiagramName
-state A {
-  state X {
-  }
-  state Y {
-    state ""Y_1"" as State1 {
-        State1 : exit / some_exit_action(); x++; y--;
-    }
-  }
-}
- 
-state B {
-  state Z {
-  }
-}
+        ParseAssertNoError("""
+            @startuml DiagramName
+            state A {
+              state X {
+              }
+              state Y {
+                state "Y_1" as State1 {
+                    State1 : exit / some_exit_action(); x++; y--;
+                }
+              }
+            }
+             
+            state B {
+              state Z {
+              }
+            }
 
-X --> Z
-Z --> Y
-@enduml
-");
+            X --> Z
+            Z --> Y
+            @enduml
+            """);
         DiagramNode root = translator.Root;
         DiagramNode stateA = root.children[0];
         DiagramNode stateB = root.children[1];
@@ -141,7 +144,10 @@ Z --> Y
         AssertNodeHasNoKids(stateX);
         AssertNodeHasNoKids(stateZ);
 
-        state1.label.Should().Be("Y_1\nexit / some_exit_action(); x++; y--;");
+        state1.label.Should().Be("""
+            Y_1
+            exit / some_exit_action(); x++; y--;
+            """);
 
         translator.Edges.Count.Should().Be(2);
         translator.Edges[0].source.Should().Be(stateX);
@@ -171,24 +177,23 @@ Z --> Y
     public void EntryExitStates()
     {
         // input modified from https://plantuml.com/state-diagram#3b0649c72650c313
-        ParseAssertNoError(@"
-@startuml SompySm
-state Somp {
-  state entry1 <<entryPoint>>
-  state entry2 <<entryPoint>>
-  state sin
-  entry1 --> sin
-  entry2 -> sin
-  sin -> sin2
-  sin2 --> exitA <<exitPoint>>
-}
+        ParseAssertNoError("""
+            @startuml SompySm
+            state Somp {
+              state entry1 <<entryPoint>>
+              state entry2 <<entryPoint>>
+              state sin
+              entry1 --> sin
+              entry2 -> sin
+              sin -> sin2
+              sin2 --> exitA <<exitPoint>>
+            }
 
-[*] --> entry1 : / initial_tx_action();
-exitA --> Foo
-Foo1 -> entry2 : EV1 [guard()] / action_e2();
-@enduml
-
-");
+            [*] --> entry1 : / initial_tx_action();
+            exitA --> Foo
+            Foo1 -> entry2 : EV1 [guard()] / action_e2();
+            @enduml
+            """);
 
         DiagramNode root = translator.Root;
 
@@ -231,14 +236,14 @@ Foo1 -> entry2 : EV1 [guard()] / action_e2();
     [Fact]
     public void ChoicePoints()
     {
-        var plantUmlText = @"
-@startuml ExampleSm
-state c1 <<choice>>
-[*] --> c1
-c1 --> s1 : [id <= 10]
-c1 --> s2 : else
-@enduml
-";
+        var plantUmlText = """
+            @startuml ExampleSm
+            state c1 <<choice>>
+            [*] --> c1
+            c1 --> s1 : [id <= 10]
+            c1 --> s2 : else
+            @enduml
+            """;
         InputSmBuilder inputSmBuilder = new();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.FinishRunning();
@@ -267,78 +272,85 @@ c1 --> s2 : else
     public void UnescapeNewlines()
     {
         // input modified from https://plantuml.com/state-diagram#3b0649c72650c313
-        ParseAssertNoError(@"
-@startuml SomeSmName
-s1 :  / { initial_tx_action(); \n x++; }
-[*]-->s1:[\n guard1\n && guard2 ]
-@enduml
+        ParseAssertNoError("""
+            @startuml SomeSmName
+            s1 :  / { initial_tx_action(); \n x++; }
+            [*]-->s1:[\n guard1\n && guard2 ]
+            @enduml
+            """);
 
-");
-
-        translator.Edges[0].label.Should().Be("[\n guard1\n && guard2 ]");
-        translator.Root.children[0].label.Should().Be("s1\n/ { initial_tx_action(); \n x++; }");
+        translator.Edges[0].label.Should().Be("""
+            [
+             guard1
+             && guard2 ]
+            """);
+        translator.Root.children[0].label.Should().Be("""
+            s1
+            / { initial_tx_action(); 
+             x++; }
+            """);
     }
 
     [Fact]
     public void LotsOfNotesAndComments()
     {
-        ParseAssertNoError(@"
-@startuml ButtonSm1Cpp
+        ParseAssertNoError("""
+            @startuml ButtonSm1Cpp
 
-state BetweenNotes1
+            state BetweenNotes1
 
-note ""This is a PlantUML diagram"" as N1
+            note "This is a PlantUML diagram" as N1
 
-state BetweenNotes2
+            state BetweenNotes2
 
-note left of Active : this is a short\nnote
+            note left of Active : this is a short\nnote
 
-state BetweenNotes3
+            state BetweenNotes3
 
-note right of Inactive
-  A note can also
-  state DontFindMe1
-state DontFindMe2
-end note
-
-'state DontFindMe2
-
-    state BetweenNotes4
-
-        note right of Inactive
-          A note can also
-          state DontFindMe1
+            note right of Inactive
+              A note can also
+              state DontFindMe1
             state DontFindMe2
-        end note
+            end note
 
-state BetweenNotes5
+            'state DontFindMe2
 
-  note right of Inactive
-    A note can also
-    state DontFindMe1
-state DontFindMe2
-  endnote
+                state BetweenNotes4
 
-state BetweenNotes6
+                    note right of Inactive
+                      A note can also
+                      state DontFindMe1
+                        state DontFindMe2
+                    end note
 
-/'
-Shouldn't find this
-state DontFindMe1
-state DontFindMe2
+            state BetweenNotes5
 
-'/
+              note right of Inactive
+                A note can also
+                state DontFindMe1
+            state DontFindMe2
+              endnote
 
-    /'
-    Shouldn't find this
-    state DontFindMe1
-    state DontFindMe2
-    '/
+            state BetweenNotes6
+
+            /'
+            Shouldn't find this
+            state DontFindMe1
+            state DontFindMe2
+
+            '/
+
+                /'
+                Shouldn't find this
+                state DontFindMe1
+                state DontFindMe2
+                '/
 
 
-state BetweenNotes7
+            state BetweenNotes7
 
-@enduml
-");
+            @enduml
+            """);
 
         for (int i = 1; i <= 7; i++)
         {
@@ -355,73 +367,76 @@ state BetweenNotes7
     [Fact]
     public void SkinparamBlock()
     {
-        ParseAssertNoError(@"
+        ParseAssertNoError("""
             @startuml blinky1_printf_sm
             skinparam state {
             }
 
             @enduml
-            ");
+            """);
 
-        ParseAssertNoError(@"
+        ParseAssertNoError("""
+                @startuml blinky1_printf_sm
+                skinparam state {
+
+                }
+                @enduml
+            """);
+
+        ParseAssertNoError("""
+
             @startuml blinky1_printf_sm
             skinparam state {
-
             }
             @enduml
-            ");
+                        
+            """);
 
-        ParseAssertNoError(@"
-            @startuml blinky1_printf_sm
-            skinparam state {
-            }
-            @enduml
-            ");
-
-        ParseAssertNoError(@"
+        ParseAssertNoError("""
             @startuml blinky1_printf_sm
             skinparam state
             {
             }
             @enduml
-            ");
+            """);
 
-        ParseAssertNoError(@"
+        ParseAssertNoError("""
             @startuml blinky1_printf_sm
             skinparam state
-        
+                    
             {
             }
             @enduml
-            ");
+            """);
 
-        ParseAssertNoError(@"
-@startuml blinky1_printf_sm
-skinparam state {
- BorderColor<<on_style>> #AA0000
- BackgroundColor<<on_style>> #ffcccc
- FontColor<<on_style>> darkred
- 
- BorderColor Black
-}
+        ParseAssertNoError("""
+            @startuml blinky1_printf_sm
+            skinparam state {
+             BorderColor<<on_style>> #AA0000
+             BackgroundColor<<on_style>> #ffcccc
+             FontColor<<on_style>> darkred
+             
+             BorderColor Black
+            }
 
-@enduml
-");
-        ParseAssertNoError(@"
+            @enduml
+            """);
+
+        ParseAssertNoError("""
             @startuml blinky1_printf_sm
             skinparam state {
 
                 BorderColor<<on_style>> #AA0000
                 BackgroundColor<<on_style>> #ffcccc
                 FontColor<<on_style>> darkred
- 
+             
                 BorderColor Black
 
             }
             @enduml
-        ");
+            """);
 
-        ParseAssertNoError(@"
+        ParseAssertNoError("""
             @startuml blinky1_printf_sm
             skinparam state {
                 BackgroundColor<<on_style>> #ffcccc
@@ -429,33 +444,33 @@ skinparam state {
             }
 
             @enduml
-        ");
+            """);
     }
 
     [Fact]
     public void SkinparamBlockBad()
     {
-        ParseAssertHasAtLeastOneError(@"
+        ParseAssertHasAtLeastOneError("""
             @startuml blinky1_printf_sm
             skinparam state {
                 BackgroundColor<<on_style>> #ffcccc
                 [*] --> B
             }
             @enduml
-            ");
+            """);
     }
 
     [Fact]
     public void SkinparamBlockBad2()
     {
-        ParseAssertHasAtLeastOneError(@"
+        ParseAssertHasAtLeastOneError("""
             @startuml blinky1_printf_sm
             skinparam state {
                 BackgroundColor<<on_style>> #ffcccc
             }'
             LED_ON : enter / { action(); }
             @enduml
-            ");
+            """);
     }
 
 
@@ -475,179 +490,5 @@ skinparam state {
         AssertEdge(diagramEdge, source, target);
         diagramEdge.label.Should().Be(label);
     }
-}
-
-public class HistoryPlantUmlTests
-{
-    private InputSmBuilder inputSmBuilder = new();
-
-    [Fact]
-    public void HistoryPlantumlParse_Implicit()
-    {
-        var plantUmlText = @"
-@startuml ExampleSm
-[*] --> [H]
-[H] --> S1
-S1-->S2
-@enduml
-";
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
-        inputSmBuilder.SetupForSingleSm();
-
-        StateMachine root = inputSmBuilder.GetStateMachine();
-        InitialState initial = root.ChildType<InitialState>();
-        HistoryVertex history = root.ChildType<HistoryVertex>();
-        State s1 = root.Child<State>("S1");
-        State s2 = root.Child<State>("S2");
-
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
-
-        initial.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
-            new Behavior(){ _transitionTarget = history },
-        }, behaviorMatcher);
-
-        history.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
-            new Behavior(){ _transitionTarget = s1 },
-        }, behaviorMatcher);
-    }
-
-    [Fact]
-    public void HistoryPlantumlParse_ImplicitInGroup()
-    {
-        var plantUmlText = @"
-@startuml ExampleSm
-[*] --> Relaxing
-state Relaxing {
-    [*] --> Reading
-    Reading --> Snacking
-    Snacking --> Napping
-    Napping --> Napping
-}
-Relaxing --> Interrupted
-Interrupted --> Relaxing[H]
-Relaxing[H] --> Snacking
-@enduml
-";
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
-        inputSmBuilder.SetupForSingleSm();
-
-        StateMachine root = inputSmBuilder.GetStateMachine();
-        State relaxing = root.Child<State>("Relaxing");
-        HistoryVertex history = relaxing.ChildType<HistoryVertex>();
-        State snacking = relaxing.Child<State>("Snacking");
-        State interrupted = root.Child<State>("Interrupted");
-
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
-
-        interrupted.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
-            new Behavior(){ _transitionTarget = history },
-        }, behaviorMatcher);
-
-        history.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
-            new Behavior(){ _transitionTarget = snacking },
-        }, behaviorMatcher);
-    }
-
-    [Fact]
-    public void HistoryPlantumlParse_ExplicitState()
-    {
-        var plantUmlText = @"
-@startuml ExampleSm
-[*] --> Group[H]
-Group[H] --> S1
-S1-->S2
-@enduml
-";
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
-        inputSmBuilder.SetupForSingleSm();
-
-        StateMachine root = inputSmBuilder.GetStateMachine();
-        InitialState initial = root.ChildType<InitialState>();
-        State group = root.Child<State>("Group");
-        HistoryVertex history = group.ChildType<HistoryVertex>();
-        State s1 = root.Child<State>("S1");
-        State s2 = root.Child<State>("S2");
-
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
-
-        initial.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
-            new Behavior(){ _transitionTarget = history },
-        }, behaviorMatcher);
-
-        history.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
-            new Behavior(){ _transitionTarget = s1 },
-        }, behaviorMatcher);
-    }
-
-    [Fact]
-    public void HistoryPlantumlParse_Continue()
-    {
-        var plantUmlText = """
-
-            @startuml ExampleSm
-            hide empty description
-
-            skinparam state {
-              BackgroundColor<<hc>> orange
-            }
-
-            [*] --> Relaxing
-            state Relaxing {
-                [*] --> [H]
-                [H] --> Reading
-                Reading --> Snacking
-                Snacking --> Napping
-
-                state Snacking {
-                    state "$hc" as hc1<<hc>>
-                    [*] --> Toast
-                    state Toast
-                    state Oatmeal
-                }
-            }
-            Relaxing --> Interrupted
-            Interrupted --> Relaxing[H]
-            @enduml
-
-            """;
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
-        inputSmBuilder.SetupForSingleSm();
-
-        StateMachine root = inputSmBuilder.GetStateMachine();
-        var map = new NamedVertexMap(root);
-        map.GetState("Snacking").ChildType<HistoryContinueVertex>();
-    }
-
-    [Fact]
-    public void HistoryPlantumlParse_Continue2()
-    {
-        var plantUmlText = """
-            @startuml ExampleSm
-            [*] --> G1
-            state G1 {
-                [*] --> [H]
-                [H] --> G2
-                state G2 {
-                    [*] --> G3
-                    state "$HC" as hc1
-                    state G3 {
-                        [*] --> G4
-                        state "$HC" as hc2
-                    }
-                }
-            }
-            @enduml
-            """;
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
-        inputSmBuilder.SetupForSingleSm();
-
-        StateMachine root = inputSmBuilder.GetStateMachine();
-        var map = new NamedVertexMap(inputSmBuilder.GetStateMachine());
-        State GetState(string stateName) => map.GetState(stateName);
-
-        GetState("G2").ChildType<HistoryContinueVertex>();
-        GetState("G3").ChildType<HistoryContinueVertex>();
-    }
-
 }
 
