@@ -31,7 +31,11 @@ Highly recommend using vscode and this extension https://marketplace.visualstudi
 
 It gives highlighting, navigation and live error checking!
 
+One very useful feature is to enable the railroad diagram.
 
+![image](https://github.com/StateSmith/StateSmith/assets/274012/b8755aa7-e62c-4a66-ae80-19ce53f6c455)
+
+![image](https://github.com/StateSmith/StateSmith/assets/274012/05be7944-381c-44fb-8b5a-55b07b0cd78d)
 
 
 <br>
