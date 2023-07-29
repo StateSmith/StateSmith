@@ -24,6 +24,12 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
 
+## WIP
+### Added
+- PlantUML - extend ignored diagram elements list (@chriesibaum).
+  - Now supports `mainframe` and old skin `skin rose`.
+  - https://github.com/StateSmith/StateSmith/issues/215
+
 ---
 
 ## [0.9.7-alpha]
