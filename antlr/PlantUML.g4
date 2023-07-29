@@ -246,6 +246,7 @@ fragment IDENTIFIER_NON_DIGIT :  [a-zA-Z_] ;
 START_UML: '@startuml';
 END_UML: '@enduml';
 
+// Horizontal white space
 HWS : [ \t]+ ;
 LINE_ENDER: '\r\n' | '\r' | '\n';
 identifier
