@@ -49,7 +49,7 @@ public class SmDesignDescriber : IDisposable
         if (!settings.enabled)
             return;
 
-        smDescriber.OutputHeader("Before transformations");
+        smDescriber.OutputHeader("BEFORE TRANSFORMATIONS");
 
         // Sort by diagram ID to keep consistent
         var sortedRootVertices = diagramVerticesProvider.GetRootVertices().OrderBy(v => v.DiagramId).ToList();
@@ -64,13 +64,24 @@ public class SmDesignDescriber : IDisposable
         }
     }
 
+    protected void AddBigDividingLine()
+    {
+        for (int i = 0; i < 3; i++)
+            smDescriber.WriteLine("");
+
+        for (int i = 0; i < 6; i++) 
+            smDescriber.Write("<br>\n");
+
+        smDescriber.WriteLine("");
+    }
+
     public void DescribeAfterTransformations()
     {
         if (!settings.enabled)
             return;
 
-        smDescriber.WriteLine("\n\n\n\n");
-        smDescriber.OutputHeader("After transformations");
+        AddBigDividingLine();
+        smDescriber.OutputHeader("AFTER TRANSFORMATIONS");
         smDescriber.Describe(stateMachineProvider.GetStateMachine());
     }
 

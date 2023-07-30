@@ -1,5 +1,6 @@
 #nullable enable
 
+using FluentAssertions;
 using StateSmith.Output;
 using StateSmith.SmGraph;
 using System.IO;
@@ -15,28 +16,32 @@ public class SmDescriberTests
     {
         var sb = new StringBuilder();
         SmGraphDescriber smDescriber = new(new StringWriter(sb));
-
         StateMachine sm = BuildTestSm();
-
         smDescriber.Describe(sm);
+
+        bool debugShowFullText = false;
+        if (debugShowFullText)
+            sb.ToString().Should().Be("");
 
         sb.ToString().ShouldBeShowDiff("""
             Vertex: ROOT
-            =================
-            Type: StateMachine
-            Diagram Id: 123
-            Behaviors:
+            -----------------------------------------
+            - Type: StateMachine
+            - Diagram Id: 123
+
+            ### Behaviors
                 enter / { sm_enter(); }
 
                 ev1 / { sm_ev1_stuff(); }
 
 
             Vertex: S1
-            =================
-            Parent: ROOT
-            Type: State
-            Diagram Id: 456
-            Behaviors:
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: 456
+
+            ### Behaviors
                 enter / { s1_enter(); }
 
                 ev1 / { s1_ev1_stuff(); }

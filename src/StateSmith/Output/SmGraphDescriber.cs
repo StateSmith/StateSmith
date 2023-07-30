@@ -30,9 +30,8 @@ public class SmGraphDescriber : IDisposable
 
     public void OutputHeader(string header)
     {
-        WriteLine($"##################################################");
-        WriteLine($"# {header}");
-        WriteLine($"##################################################");
+        WriteLine($"{header}");
+        WriteLine($"==========================================================="); // this is a markdown H1
         WriteLine("");
     }
 
@@ -71,20 +70,20 @@ public class SmGraphDescriber : IDisposable
             WriteLine($"\n");
         }
 
-        WriteLine($"Vertex: {Vertex.Describe(v)}");
-        WriteLine($"=================");
+        WriteLine($"Vertex: {DescribeVertex(v)}");
+        WriteLine($"-----------------------------------------"); // this is a markdown H2
 
         if (v.Parent != null)
         {
-            WriteLine($"Parent: {Vertex.Describe(v.Parent)}");
+            WriteLine($"- Parent: {DescribeVertex(v.Parent)}");
         }
-        
-        WriteLine($"Type: {v.GetType().Name}");
-        WriteLine($"Diagram Id: {v.DiagramId}");
+
+        WriteLine($"- Type: {v.GetType().Name}");
+        WriteLine($"- Diagram Id: {v.DiagramId}");
 
         if (v is ConfigOptionVertex configOptionVertex)
         {
-            WriteLine($"Option:");
+            WriteLine($"\n### Option Content:");
             WriteLine(Indent(configOptionVertex.value));
         }
         else if (v is RenderConfigVertex)
@@ -93,7 +92,7 @@ public class SmGraphDescriber : IDisposable
         }
         else if (v is NotesVertex notesVertex)
         {
-            WriteLine($"Notes:");
+            WriteLine($"\n### Notes Content:");
             WriteLine(Indent(notesVertex.notes));
         }
         else
@@ -101,10 +100,10 @@ public class SmGraphDescriber : IDisposable
             InitialState? initialState = v.Children.OfType<InitialState>().FirstOrDefault();
             if (initialState != null)
             {
-                WriteLine($"Initial State: {Vertex.Describe(initialState)}");
+                WriteLine($"- Initial State: {DescribeVertex(initialState)}");
             }
 
-            WriteLine($"Behaviors:");
+            WriteLine($"\n### Behaviors");
             OutputBehaviors(writer, behaviorDescriber, v);
 
             var ancestor = v.Parent;
@@ -117,6 +116,13 @@ public class SmGraphDescriber : IDisposable
                 }
             }
         }
+    }
+
+    private static string DescribeVertex(Vertex v)
+    {
+        string description = Vertex.Describe(v);
+        description = description.Replace("<", @"\<"); // for markdown
+        return description;
     }
 
     internal void SetTextWriter(TextWriter writer)
@@ -139,7 +145,7 @@ public class SmGraphDescriber : IDisposable
             return;
         }
 
-        WriteLine($"\n    =========== from ancestor {Vertex.Describe(ancestor)} ===========\n");
+        WriteLine($"\n    =========== from ancestor {DescribeVertex(ancestor)} ===========\n");
         Write(sb.ToString());
     }
 

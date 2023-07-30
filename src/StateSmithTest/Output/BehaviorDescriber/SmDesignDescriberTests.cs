@@ -72,7 +72,7 @@ public class SmDesignDescriberTests
 
     private static SmRunner SetupSmRunner(out DiServiceProvider di)
     {
-        SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + "Ex1.drawio");
+        SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + "Ex564.drawio");
         smRunner.Settings.propagateExceptions = true; // for testing
         di = smRunner.GetExperimentalAccess().DiServiceProvider;
         di.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
@@ -81,42 +81,44 @@ public class SmDesignDescriberTests
     }
 
     private const string Expected = """
-            ##################################################
-            # Before transformations
-            ##################################################
+            BEFORE TRANSFORMATIONS
+            ===========================================================
 
-            Vertex: <Notes>
-            =================
-            Type: NotesVertex
-            Diagram Id: 140
-            Notes:
+            Vertex: \<Notes>
+            -----------------------------------------
+            - Type: NotesVertex
+            - Diagram Id: 140
+
+            ### Notes Content:
                 This is some stuff.
                 
                 Bold text.
 
 
-            Vertex: <RenderConfig>
-            =================
-            Type: RenderConfigVertex
-            Diagram Id: 141
+            Vertex: \<RenderConfig>
+            -----------------------------------------
+            - Type: RenderConfigVertex
+            - Diagram Id: 141
 
 
-            Vertex: <Config>(AutoExpandedVars)
-            =================
-            Parent: <RenderConfig>
-            Type: ConfigOptionVertex
-            Diagram Id: 145
-            Option:
+            Vertex: \<Config>(AutoExpandedVars)
+            -----------------------------------------
+            - Parent: \<RenderConfig>
+            - Type: ConfigOptionVertex
+            - Diagram Id: 145
+
+            ### Option Content:
                 int x;
                 int y;
 
 
             Vertex: NORMAL
-            =================
-            Parent: ROOT
-            Type: State
-            Diagram Id: 138
-            Behaviors:
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: 138
+
+            ### Behaviors
                 enter / { x = 0; }
 
                 do / { x++; }
@@ -133,31 +135,34 @@ public class SmDesignDescriberTests
 
 
             Vertex: ROOT
-            =================
-            Type: StateMachine
-            Diagram Id: 5
-            Initial State: ROOT.<InitialState>
-            Behaviors:
+            -----------------------------------------
+            - Type: StateMachine
+            - Diagram Id: 5
+            - Initial State: ROOT.\<InitialState>
+
+            ### Behaviors
                 ANY / { log("unhandled event"); }
 
                 INC_ERR / { err++; }
 
 
-            Vertex: ROOT.<InitialState>
-            =================
-            Parent: ROOT
-            Type: InitialState
-            Diagram Id: 8
-            Behaviors:
+            Vertex: ROOT.\<InitialState>
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: InitialState
+            - Diagram Id: 8
+
+            ### Behaviors
                 TransitionTo(DELAY)
 
 
             Vertex: DELAY
-            =================
-            Parent: NORMAL
-            Type: State
-            Diagram Id: 9
-            Behaviors:
+            -----------------------------------------
+            - Parent: NORMAL
+            - Type: State
+            - Diagram Id: 9
+
+            ### Behaviors
                 enter / { buzz(); }
 
                 EV1 / { y = 33; }
@@ -179,11 +184,12 @@ public class SmDesignDescriberTests
 
 
             Vertex: ERROR
-            =================
-            Parent: ROOT
-            Type: State
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-140
-            Behaviors:
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-140
+
+            ### Behaviors
                 PRESS / { buzz(); }
 
                 =========== from ancestor ROOT ===========
@@ -194,12 +200,13 @@ public class SmDesignDescriberTests
 
 
             Vertex: RUNNING
-            =================
-            Parent: NORMAL
-            Type: State
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-143
-            Initial State: RUNNING.<InitialState>
-            Behaviors:
+            -----------------------------------------
+            - Parent: NORMAL
+            - Type: State
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-143
+            - Initial State: RUNNING.\<InitialState>
+
+            ### Behaviors
 
                 =========== from ancestor NORMAL ===========
 
@@ -212,29 +219,31 @@ public class SmDesignDescriberTests
                 INC_ERR / { err++; }
 
 
-            Vertex: <RenderConfig>
-            =================
-            Parent: ROOT
-            Type: RenderConfigVertex
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-146
+            Vertex: \<RenderConfig>
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: RenderConfigVertex
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-146
 
 
-            Vertex: <Config>(TriggerMap)
-            =================
-            Parent: <RenderConfig>
-            Type: ConfigOptionVertex
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-148
-            Option:
+            Vertex: \<Config>(TriggerMap)
+            -----------------------------------------
+            - Parent: \<RenderConfig>
+            - Type: ConfigOptionVertex
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-148
+
+            ### Option Content:
                 // some comment
                 ANY => * /* wildcard */
 
 
             Vertex: PRE_HEAT
-            =================
-            Parent: RUNNING
-            Type: State
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-150
-            Behaviors:
+            -----------------------------------------
+            - Parent: RUNNING
+            - Type: State
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-150
+
+            ### Behaviors
                 enter / { set_timeout(5 min);
                 x *= 23; }
 
@@ -249,30 +258,36 @@ public class SmDesignDescriberTests
                 INC_ERR / { err++; }
 
 
-            Vertex: RUNNING.<InitialState>
-            =================
-            Parent: RUNNING
-            Type: InitialState
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-152
-            Behaviors:
+            Vertex: RUNNING.\<InitialState>
+            -----------------------------------------
+            - Parent: RUNNING
+            - Type: InitialState
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-152
+
+            ### Behaviors
                 TransitionTo(PRE_HEAT)
 
 
 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
-
-            ##################################################
-            # After transformations
-            ##################################################
+            AFTER TRANSFORMATIONS
+            ===========================================================
 
 
 
             Vertex: NORMAL
-            =================
-            Parent: ROOT
-            Type: State
-            Diagram Id: 138
-            Behaviors:
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: 138
+
+            ### Behaviors
                 enter / { x = 0; }
 
                 do / { x++; }
@@ -289,31 +304,34 @@ public class SmDesignDescriberTests
 
 
             Vertex: ROOT
-            =================
-            Type: StateMachine
-            Diagram Id: 5
-            Initial State: ROOT.<InitialState>
-            Behaviors:
+            -----------------------------------------
+            - Type: StateMachine
+            - Diagram Id: 5
+            - Initial State: ROOT.\<InitialState>
+
+            ### Behaviors
                 (INC_ERR, do, EV1, PRESS) / { log("unhandled event"); }
 
                 INC_ERR / { err++; }
 
 
-            Vertex: ROOT.<InitialState>
-            =================
-            Parent: ROOT
-            Type: InitialState
-            Diagram Id: 8
-            Behaviors:
+            Vertex: ROOT.\<InitialState>
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: InitialState
+            - Diagram Id: 8
+
+            ### Behaviors
                 TransitionTo(DELAY)
 
 
             Vertex: DELAY
-            =================
-            Parent: NORMAL
-            Type: State
-            Diagram Id: 9
-            Behaviors:
+            -----------------------------------------
+            - Parent: NORMAL
+            - Type: State
+            - Diagram Id: 9
+
+            ### Behaviors
                 enter / { buzz(); }
 
                 EV1 / { y = 33; }
@@ -337,11 +355,12 @@ public class SmDesignDescriberTests
 
 
             Vertex: ERROR
-            =================
-            Parent: ROOT
-            Type: State
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-140
-            Behaviors:
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-140
+
+            ### Behaviors
                 PRESS / { buzz(); }
 
                 =========== from ancestor ROOT ===========
@@ -352,12 +371,13 @@ public class SmDesignDescriberTests
 
 
             Vertex: RUNNING
-            =================
-            Parent: NORMAL
-            Type: State
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-143
-            Initial State: RUNNING.<InitialState>
-            Behaviors:
+            -----------------------------------------
+            - Parent: NORMAL
+            - Type: State
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-143
+            - Initial State: RUNNING.\<InitialState>
+
+            ### Behaviors
 
                 =========== from ancestor NORMAL ===========
 
@@ -373,11 +393,12 @@ public class SmDesignDescriberTests
 
 
             Vertex: PRE_HEAT
-            =================
-            Parent: RUNNING
-            Type: State
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-150
-            Behaviors:
+            -----------------------------------------
+            - Parent: RUNNING
+            - Type: State
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-150
+
+            ### Behaviors
                 enter / { set_timeout(5 min);
                 x *= 23; }
 
@@ -394,12 +415,13 @@ public class SmDesignDescriberTests
                 INC_ERR / { err++; }
 
 
-            Vertex: RUNNING.<InitialState>
-            =================
-            Parent: RUNNING
-            Type: InitialState
-            Diagram Id: gO1ZRfetmGtumTaL4_i4-152
-            Behaviors:
+            Vertex: RUNNING.\<InitialState>
+            -----------------------------------------
+            - Parent: RUNNING
+            - Type: InitialState
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-152
+
+            ### Behaviors
                 TransitionTo(PRE_HEAT)
             
             """;
