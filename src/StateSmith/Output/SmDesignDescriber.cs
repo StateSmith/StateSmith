@@ -41,8 +41,6 @@ public class SmDesignDescriber : IDisposable
 
     public void Dispose()
     {
-        // Note: this doesn't appear to be getting called by dependency injection. Not a big deal with current use though.
-        // See https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-guidelines
         smDescriber.Dispose();
     }
 

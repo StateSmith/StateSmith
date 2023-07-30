@@ -18,7 +18,7 @@ namespace StateSmith.Runner;
 /// <summary>
 /// Dependency Injection Service Provider
 /// </summary>
-public class DiServiceProvider
+public class DiServiceProvider : IDisposable
 {
     private IHost? host;
     private readonly IHostBuilder hostBuilder;
@@ -41,7 +41,7 @@ public class DiServiceProvider
         {
             AddDefaultsForTesting(services);
 
-            services.AddSingleton(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
+            services.AddSingleton<DiServiceProvider>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<Expander>();
@@ -203,6 +203,11 @@ public class DiServiceProvider
     {
         BuildIfNeeded();
         return new ConvertableType(host.ThrowIfNull());
+    }
+
+    public void Dispose()
+    {
+        host?.Dispose();
     }
 }
 

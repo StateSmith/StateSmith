@@ -83,7 +83,17 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         PrepareBeforeRun();
         SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-        smRunnerInternal.Run();
+        
+        // Wrap in try finally so that we can ensure that the service provider is disposed which will
+        // dispose of objects that it created.
+        try
+        {
+            smRunnerInternal.Run();
+        }
+        finally
+        {
+            diServiceProvider.Dispose();
+        }
 
         if (smRunnerInternal.exception != null)
             throw new System.Exception("Finished with failure");
