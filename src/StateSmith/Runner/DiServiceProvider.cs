@@ -86,6 +86,7 @@ public class DiServiceProvider
             services.AddSingleton<TriggerMapProcessor>();
 
             services.AddSingleton<UserExpansionScriptBases>();
+            services.AddSingleton<SmDesignDescriber>();
         });
     }
 
@@ -154,6 +155,7 @@ public class DiServiceProvider
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
         services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
+        services.AddSingleton(new SmDesignDescriberSettings());
     }
 
     /// <summary>

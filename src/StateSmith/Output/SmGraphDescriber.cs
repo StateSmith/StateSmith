@@ -118,6 +118,11 @@ public class SmGraphDescriber
         }
     }
 
+    internal void SetTextWriter(TextWriter writer)
+    {
+        this.writer = writer;
+    }
+
     private string Indent(string str)
     {
         return StringUtils.Indent(str, indentStr);

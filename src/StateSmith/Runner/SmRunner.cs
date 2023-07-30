@@ -117,6 +117,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         diServiceProvider.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
+            services.AddSingleton(settings.smDesignDescriber);
             services.AddSingleton(settings.style);
             services.AddSingleton<OutputInfo>();
             services.AddSingleton<IOutputInfo>((s) => s.GetService<OutputInfo>().ThrowIfNull());

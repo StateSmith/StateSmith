@@ -6,7 +6,6 @@ using StateSmith.Common;
 using StateSmith.SmGraph;
 using System.Globalization;
 using System.Threading;
-using static StateSmith.Runner.StandardSmTransformer;
 
 namespace StateSmith.Runner;
 
@@ -23,8 +22,10 @@ public class SmRunnerInternal
     readonly ExceptionPrinter exceptionPrinter;
     readonly IConsolePrinter consolePrinter;
     readonly FilePathPrinter filePathPrinter;
+    readonly SmDesignDescriber smDesignDescriber;
+    readonly OutputInfo outputInfo;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
@@ -32,13 +33,13 @@ public class SmRunnerInternal
         this.exceptionPrinter = exceptionPrinter;
         this.consolePrinter = consolePrinter;
         this.filePathPrinter = filePathPrinter;
+        this.smDesignDescriber = smDesignDescriber;
+        this.outputInfo = outputInfo;
     }
 
     public void Run()
     {
         AppUseDecimalPeriod();   // done here as well to help with unit tests
-
-        MaybeAddSmDescriber();
 
         try
         {
@@ -46,9 +47,14 @@ public class SmRunnerInternal
             OutputCompilingDiagramMessage();
 
             var sm = SetupAndFindStateMachine();
+            outputInfo.baseFileName = sm.Name;
+
             consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
+            smDesignDescriber.Setup();
+            smDesignDescriber.DescribeBeforeTransformations();
 
             inputSmBuilder.FinishRunning();
+            smDesignDescriber.DescribeAfterTransformations();
             codeGenRunner.Run();
             consolePrinter.OutputStageMessage("Finished normally.");
         }
@@ -63,24 +69,6 @@ public class SmRunnerInternal
         }
 
         consolePrinter.WriteLine();
-    }
-
-    private void MaybeAddSmDescriber()
-    {
-        if (settings.smDesignDescriber.enabled == false)
-        {
-            return;
-        }
-
-        this.inputSmBuilder.transformer.InsertAfterFirstMatch(TransformationId.Standard_FinalValidation, new TransformationStep("", (StateMachine sm) =>
-        {
-            string filePath = settings.smDesignDescriber.outputDirectory + ".sm.txt";
-            string prettyPath = filePathPrinter.PrintPath(filePath);
-
-            consolePrinter.OutputStageMessage($"State machine description written to file: `{prettyPath}`");
-
-            SmGraphDescriber.DescribeToFile(sm, filePath);
-        }));
     }
 
     private void HandleException(System.Exception e)
