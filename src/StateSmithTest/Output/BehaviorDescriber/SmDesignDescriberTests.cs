@@ -13,23 +13,74 @@ public class SmDesignDescriberTests
     [Fact]
     public void IntegrationTestDefault()
     {
-        StringBuilder sb = Setup(SetupMode.Default);
+        StringBuilder sb = SetupForCapture(SetupMode.Default);
         sb.ToString().ShouldBeShowDiff("");
     }
 
     [Fact]
     public void IntegrationTestDisabled()
     {
-        StringBuilder sb = Setup(SetupMode.Disabled);
+        StringBuilder sb = SetupForCapture(SetupMode.Disabled);
         sb.ToString().ShouldBeShowDiff("");
     }
 
     [Fact]
     public void IntegrationTestEnabled()
     {
-        StringBuilder sb = Setup(SetupMode.Enabled);
+        StringBuilder sb = SetupForCapture(SetupMode.Enabled);
 
-        sb.ToString().ShouldBeShowDiff("""
+        sb.ToString().ShouldBeShowDiff(Expected);
+    }
+
+    [Fact]
+    public void IntegrationTestToFile()
+    {
+        var smRunner = SetupSmRunner();
+        smRunner.Settings.smDesignDescriber.enabled = true;
+        smRunner.Run();
+    }
+
+    private enum SetupMode { Enabled, Disabled, Default }
+
+    private static StringBuilder SetupForCapture(SetupMode setupMode)
+    {
+        var sb = new StringBuilder();
+        SmRunner smRunner = SetupSmRunner(out var diServiceProvider);
+
+        switch (setupMode)
+        {
+            case SetupMode.Enabled:
+                smRunner.Settings.smDesignDescriber.enabled = true;
+                break;
+            case SetupMode.Disabled:
+                smRunner.Settings.smDesignDescriber.enabled = false;
+                break;
+        }
+
+        var describer = diServiceProvider.GetInstanceOf<SmDesignDescriber>();
+        describer.SetTextWriter(new StringWriter(sb));
+        smRunner.Run();
+
+        return sb;
+    }
+
+    private static SmRunner SetupSmRunner()
+    {
+        return SetupSmRunner(out _);
+    }
+
+
+    private static SmRunner SetupSmRunner(out DiServiceProvider di)
+    {
+        SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + "Ex1.drawio");
+        smRunner.Settings.propagateExceptions = true; // for testing
+        di = smRunner.GetExperimentalAccess().DiServiceProvider;
+        di.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
+
+        return smRunner;
+    }
+
+    private const string Expected = """
             ##################################################
             # Before transformations
             ##################################################
@@ -351,35 +402,5 @@ public class SmDesignDescriberTests
             Behaviors:
                 TransitionTo(PRE_HEAT)
             
-            """);
-    }
-
-    private enum SetupMode { Enabled, Disabled, Default }
-
-    private static StringBuilder Setup(SetupMode setupMode)
-    {
-        var sb = new StringBuilder();
-        DiServiceProvider di;
-
-        SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + "Ex1.drawio");
-
-        switch (setupMode)
-        {
-            case SetupMode.Enabled:
-                smRunner.Settings.smDesignDescriber.enabled = true;
-                break;
-            case SetupMode.Disabled:
-                smRunner.Settings.smDesignDescriber.enabled = false;
-                break;
-        }
-
-        di = smRunner.GetExperimentalAccess().DiServiceProvider;
-        di.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
-
-        var describer = di.GetInstanceOf<SmDesignDescriber>();
-        describer.SetTextWriter(new StringWriter(sb));
-        smRunner.Run();
-
-        return sb;
-    }
+            """;
 }

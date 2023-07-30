@@ -195,8 +195,6 @@ public class InputSmBuilder
     public void FinishRunning()
     {
         SetupForSingleSm();
-        mangler.SetStateMachine(GetStateMachine());
-        sp.GetInstanceOf<OutputInfo>().baseFileName = mangler.BaseFileName;
         transformer.RunTransformationPipeline(GetStateMachine());
     }
 
@@ -214,6 +212,8 @@ public class InputSmBuilder
     {
         Sm = stateMachine;
         stateMachineProvider.SetStateMachine(Sm);
+        mangler.SetStateMachine(GetStateMachine());
+        sp.GetInstanceOf<OutputInfo>().baseFileName = mangler.BaseFileName;
     }
 
     //------------------------------------------------------------------------

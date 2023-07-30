@@ -2,6 +2,7 @@
 
 using StateSmith.Common;
 using StateSmith.SmGraph;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace StateSmith.Output;
 
-public class SmGraphDescriber
+public class SmGraphDescriber : IDisposable
 {
     protected string indentStr = "    ";
     protected TextWriter writer;
@@ -174,5 +175,7 @@ public class SmGraphDescriber
     {
         writer.Write(text);
     }
+
+    public void Dispose() => writer.Dispose();
 }
 

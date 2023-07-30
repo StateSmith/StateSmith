@@ -50,7 +50,7 @@ public class SmRunnerInternal
             outputInfo.baseFileName = sm.Name;
 
             consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
-            smDesignDescriber.Setup();
+            smDesignDescriber.DefaultPrepareToWriteToFile();
             smDesignDescriber.DescribeBeforeTransformations();
 
             inputSmBuilder.FinishRunning();
