@@ -31,7 +31,11 @@ Highly recommend using vscode and this extension https://marketplace.visualstudi
 
 It gives highlighting, navigation and live error checking!
 
+One very useful feature is to enable the railroad diagram.
 
+![image](https://github.com/StateSmith/StateSmith/assets/274012/b8755aa7-e62c-4a66-ae80-19ce53f6c455)
+
+![image](https://github.com/StateSmith/StateSmith/assets/274012/05be7944-381c-44fb-8b5a-55b07b0cd78d)
 
 
 <br>
@@ -73,3 +77,32 @@ Use the tree explorer in the left tab to drill down and focus on areas one at a 
 ![image](https://github.com/StateSmith/StateSmith/assets/274012/3650b568-b4b8-47f6-b55c-3f5e2bb20a74)
 
 Read `test.sh` for more tips.
+
+
+
+
+<br>
+
+# Tips
+## Add new keywords to identifiers as well
+The `ignore` parse rule for PlantUML matches against the string literal `scale`. We also need to add `scale` to the list of possible identifiers. It would probably be better to use a common lexer rule instead of string literals..
+
+```g4
+ignore:
+    //... snip
+    'scale' HWS rest_of_line
+    //... snip
+    ;
+
+identifier
+    : IDENTIFIER
+    | 'state'
+    | 'State'
+    | 'note'
+    | 'end'
+    | 'as'
+    | 'scale'
+    | 'skinparam'
+    ;
+```
+
