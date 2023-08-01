@@ -48,7 +48,7 @@ edge:
     //ex: `-->`
     //ex: `Third -left-> Last`
     //ex: `S1 -right[dotted,#blue]-> S5`
-    '-' IDENTIFIER? 
+    '-' IDENTIFIER?
     (
         '['
             (
@@ -56,7 +56,7 @@ edge:
             )*
         ']'
     )?
-    '->' 
+    '->'
     ;
 
 transition_event_guard_code:
@@ -133,11 +133,13 @@ ignore:
     |
     'scale' HWS rest_of_line
     |
+    'title' HWS rest_of_line
+    |
     'skinparam' HWS identifier optional_any_space
         '{' ohs LINE_ENDER
             (
-                ohs 
-                ( 
+                ohs
+                (
                     identifier
                     stereotype?
                     HWS+
@@ -233,7 +235,7 @@ startuml:
 diagram:
     optional_any_space
     startuml ohs
-    
+
     diagram_element*
 
     line_ending_ows+
@@ -276,7 +278,7 @@ LINE_COMMENT:
     -> skip
     ;
 
-SYMBOLS: 
+SYMBOLS:
     [-~`!@#$%^&*()_+=\\|{};:",<.>/?] | '[' | ']';
 SINGLE_QUOTE: ['];
 
