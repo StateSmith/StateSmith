@@ -26,6 +26,12 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 
 ---
 
+- PlantUML - extend ignored diagram elements list
+  - Now supports `title`.
+  - https://github.com/StateSmith/StateSmith/issues/216
+
+---
+
 ## [0.9.7-alpha]
 ### Added
 - Allow specifying index for `NamedVertex.AddEnterAction()` and `NamedVertex.AddExitAction()`.
