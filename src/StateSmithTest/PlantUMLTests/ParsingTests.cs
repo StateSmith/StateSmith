@@ -116,7 +116,7 @@ public class ParsingTests
                 }
               }
             }
-
+             
             state B {
               state Z {
               }
@@ -286,7 +286,7 @@ public class ParsingTests
             """);
         translator.Root.children[0].label.Should().Be("""
             s1
-            / { initial_tx_action();
+            / { initial_tx_action(); 
              x++; }
             """);
     }
@@ -389,7 +389,7 @@ public class ParsingTests
             skinparam state {
             }
             @enduml
-
+                        
             """);
 
         ParseAssertNoError("""
@@ -403,7 +403,7 @@ public class ParsingTests
         ParseAssertNoError("""
             @startuml blinky1_printf_sm
             skinparam state
-
+                    
             {
             }
             @enduml
@@ -415,7 +415,7 @@ public class ParsingTests
              BorderColor<<on_style>> #AA0000
              BackgroundColor<<on_style>> #ffcccc
              FontColor<<on_style>> darkred
-
+             
              BorderColor Black
             }
 
@@ -429,7 +429,7 @@ public class ParsingTests
                 BorderColor<<on_style>> #AA0000
                 BackgroundColor<<on_style>> #ffcccc
                 FontColor<<on_style>> darkred
-
+             
                 BorderColor Black
 
             }
