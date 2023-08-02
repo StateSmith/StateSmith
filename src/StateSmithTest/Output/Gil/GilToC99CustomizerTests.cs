@@ -16,14 +16,18 @@ namespace StateSmithTest.Output.Gil;
 /// </summary>
 public class GilToC99CustomizerTests
 {
-    private readonly StateMachine sm = new("MySuperSm");
     private readonly RenderConfigCVars renderConfigC = new();
     private readonly GilToC99Customizer customizer;
     private readonly CapturingCodeFileWriter capturingWriter = new();
 
     public GilToC99CustomizerTests()
     {
-        customizer = new GilToC99Customizer(new StateMachineProvider(sm), renderConfigC);
+        var outputInfo = new OutputInfo()
+        {
+            outputDirectory = "null",
+            baseFileName = "MySuperSm",
+        };
+        customizer = new GilToC99Customizer(renderConfigC, outputInfo);
     }
 
     [Fact]

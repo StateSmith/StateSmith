@@ -84,13 +84,19 @@ namespace StateSmithTest
         /// </summary>
         /// <param name="actual"></param>
         /// <param name="expected"></param>
-        public static void ShouldBeShowDiff(this string actual, string expected)
+        public static void ShouldBeShowDiff(this string actual, string expected, bool outputCleanActual = false)
         {
             expected = expected.ConvertLineEndingsToN();
 
             if (expected != actual)
             {
                 var diff = StringDiffer.Diff(expected, actual);
+
+                if (outputCleanActual)
+                {
+                    diff += "\n\n\nActual:\n" + actual;
+                }
+
                 Assert.True(false, diff);
             }
         }

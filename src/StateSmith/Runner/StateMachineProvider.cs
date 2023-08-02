@@ -1,7 +1,7 @@
+#nullable enable
+
 using StateSmith.Common;
 using StateSmith.SmGraph;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 

@@ -1,9 +1,6 @@
 #nullable enable
 
-using StateSmith.Common;
 using StateSmith.Output.UserConfig;
-using StateSmith.Runner;
-using StateSmith.SmGraph;
 using System;
 using System.Text.RegularExpressions;
 
@@ -13,24 +10,23 @@ namespace StateSmith.Output.Gil.C99;
 
 public class GilToC99Customizer : IGilToC99Customizer
 {
-    protected StateMachineProvider stateMachineProvider;
-    protected StateMachine Sm => stateMachineProvider.GetStateMachine().ThrowIfNull();
     protected RenderConfigCVars renderConfigCVars;
+    protected IOutputInfo outputInfo;
 
-    public GilToC99Customizer(StateMachineProvider stateMachineProvider, RenderConfigCVars renderConfigCVars)
+    public GilToC99Customizer(RenderConfigCVars renderConfigCVars, IOutputInfo outputInfo)
     {
-        this.stateMachineProvider = stateMachineProvider;
         this.renderConfigCVars = renderConfigCVars;
+        this.outputInfo = outputInfo;
     }
 
-    public Func<StateMachine, string> HFileNameBuilder = (StateMachine sm) => throw new InvalidOperationException("IGilToC99Customizer.Setup() needs to be called");
-    public Func<StateMachine, string> CFileNameBuilder = (StateMachine sm) => throw new InvalidOperationException("IGilToC99Customizer.Setup() needs to be called");
+    public Func<string> HFileNameBuilder = () => throw new InvalidOperationException("IGilToC99Customizer.Setup() needs to be called");
+    public Func<string> CFileNameBuilder = () => throw new InvalidOperationException("IGilToC99Customizer.Setup() needs to be called");
     public Func<string, string> EnumDeclarationBuilder = (string enumName) => $"typedef enum {enumName}";
 
     public void Setup()
     {
-        HFileNameBuilder = (StateMachine sm) => $"{sm.Name}{renderConfigCVars.HFileExtension}";
-        CFileNameBuilder = (StateMachine sm) => $"{sm.Name}{renderConfigCVars.CFileExtension}";
+        HFileNameBuilder = () => $"{outputInfo.BaseFileName}{renderConfigCVars.HFileExtension}";
+        CFileNameBuilder = () => $"{outputInfo.BaseFileName}{renderConfigCVars.CFileExtension}";
 
         SupportEnumDeclarer();
     }
@@ -52,7 +48,7 @@ public class GilToC99Customizer : IGilToC99Customizer
         }
     }
 
-    string IGilToC99Customizer.MakeHFileName() => HFileNameBuilder(Sm);
-    string IGilToC99Customizer.MakeCFileName() => CFileNameBuilder(Sm);
+    string IGilToC99Customizer.MakeHFileName() => HFileNameBuilder();
+    string IGilToC99Customizer.MakeCFileName() => CFileNameBuilder();
     string IGilToC99Customizer.MakeEnumDeclaration(string enumName) => EnumDeclarationBuilder(enumName);
 }

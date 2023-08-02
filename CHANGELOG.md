@@ -26,8 +26,12 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 
 ---
 
+# WIP
+### Added
+- Add state machine description file for easier git diffing and understanding.
+  - https://github.com/StateSmith/StateSmith/issues/200
 - PlantUML - extend ignored diagram elements list
-  - Now supports `title`.
+  - Now supports `title` (@yongzhy).
   - https://github.com/StateSmith/StateSmith/issues/216
 
 ---

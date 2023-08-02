@@ -1,10 +1,9 @@
+#nullable enable
+
 using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
-using StateSmith.Output.Algos.Balanced1;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 
@@ -84,7 +83,17 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         PrepareBeforeRun();
         SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-        smRunnerInternal.Run();
+        
+        // Wrap in try finally so that we can ensure that the service provider is disposed which will
+        // dispose of objects that it created.
+        try
+        {
+            smRunnerInternal.Run();
+        }
+        finally
+        {
+            diServiceProvider.Dispose();
+        }
 
         if (smRunnerInternal.exception != null)
             throw new System.Exception("Finished with failure");
@@ -118,8 +127,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
         diServiceProvider.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
+            services.AddSingleton(settings.smDesignDescriber);
             services.AddSingleton(settings.style);
             services.AddSingleton<OutputInfo>();
+            services.AddSingleton<IOutputInfo>((s) => s.GetService<OutputInfo>().ThrowIfNull());
             services.AddSingleton(renderConfigVars);
             services.AddSingleton(renderConfigCVars);
             services.AddSingleton(renderConfigCSharpVars);
@@ -148,7 +159,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
     {
         diServiceProvider.BuildIfNeeded();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
-        diServiceProvider.GetInstanceOf<OutputInfo>().outputDirectory = settings.outputDirectory;
+        OutputInfo outputInfo = diServiceProvider.GetInstanceOf<OutputInfo>();
+        outputInfo.outputDirectory = settings.outputDirectory.ThrowIfNull();
     }
 
     // ----------- experimental access  -------------

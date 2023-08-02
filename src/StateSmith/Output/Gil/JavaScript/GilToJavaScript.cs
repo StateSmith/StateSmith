@@ -1,6 +1,7 @@
 using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output.Algos.Balanced1;    // todo need a generic way of getting file name. RenderConfig?
+using StateSmith.Runner;
 
 #nullable enable
 
@@ -13,13 +14,11 @@ public class GilToJavaScript : IGilTranspiler
     private readonly ICodeFileWriter codeFileWriter;
     private readonly RenderConfigVars renderConfig;
     private readonly RenderConfigJavaScriptVars renderConfigJavaScript;
-    private readonly OutputInfo outputInfo;
-    private readonly NameMangler nameMangler;
+    private readonly IOutputInfo outputInfo;
 
-    public GilToJavaScript(OutputInfo outputInfo, NameMangler nameMangler, RenderConfigVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript, ICodeFileWriter codeFileWriter)
+    public GilToJavaScript(IOutputInfo outputInfo, RenderConfigVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript, ICodeFileWriter codeFileWriter)
     {
         this.outputInfo = outputInfo;
-        this.nameMangler = nameMangler;
         this.renderConfig = renderConfig;
         this.codeFileWriter = codeFileWriter;
         this.renderConfigJavaScript = renderConfigJavaScript;
@@ -32,7 +31,7 @@ public class GilToJavaScript : IGilTranspiler
 
         PostProcessor.PostProcess(fileSb);
 
-        codeFileWriter.WriteFile($"{outputInfo.outputDirectory}{nameMangler.BaseFileName}.js", code: fileSb.ToString());
+        codeFileWriter.WriteFile($"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.js", code: fileSb.ToString());
     }
 
 }

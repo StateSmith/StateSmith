@@ -1,8 +1,8 @@
+#nullable enable
+
 using StateSmith.Common;
 using StateSmith.SmGraph;
 using System.Text.RegularExpressions;
-
-#nullable enable
 
 namespace StateSmith.Output.Algos.Balanced1;
 

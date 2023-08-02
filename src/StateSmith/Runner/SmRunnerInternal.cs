@@ -1,11 +1,11 @@
+#nullable enable
+
 using System.IO;
 using StateSmith.Output;
 using StateSmith.Common;
 using StateSmith.SmGraph;
 using System.Globalization;
 using System.Threading;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 
@@ -22,8 +22,10 @@ public class SmRunnerInternal
     readonly ExceptionPrinter exceptionPrinter;
     readonly IConsolePrinter consolePrinter;
     readonly FilePathPrinter filePathPrinter;
+    readonly SmDesignDescriber smDesignDescriber;
+    readonly OutputInfo outputInfo;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
@@ -31,6 +33,8 @@ public class SmRunnerInternal
         this.exceptionPrinter = exceptionPrinter;
         this.consolePrinter = consolePrinter;
         this.filePathPrinter = filePathPrinter;
+        this.smDesignDescriber = smDesignDescriber;
+        this.outputInfo = outputInfo;
     }
 
     public void Run()
@@ -43,9 +47,14 @@ public class SmRunnerInternal
             OutputCompilingDiagramMessage();
 
             var sm = SetupAndFindStateMachine();
+            outputInfo.baseFileName = sm.Name;
+
             consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
+            smDesignDescriber.Prepare();
+            smDesignDescriber.DescribeBeforeTransformations();
 
             inputSmBuilder.FinishRunning();
+            smDesignDescriber.DescribeAfterTransformations();
             codeGenRunner.Run();
             consolePrinter.OutputStageMessage("Finished normally.");
         }
@@ -127,11 +136,15 @@ public class SmRunnerInternal
     {
         var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
         settings.diagramFile = PathUtils.EnsurePathAbsolute(settings.diagramFile, relativeDirectory);
+        
         settings.outputDirectory ??= Path.GetDirectoryName(settings.diagramFile).ThrowIfNull();
-        settings.filePathPrintBase ??= relativeDirectory;
-
         settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
+
+        settings.filePathPrintBase ??= relativeDirectory;
         settings.filePathPrintBase = ProcessDirPath(settings.filePathPrintBase, relativeDirectory);
+
+        settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
+        settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
     }
 
     private static string ProcessDirPath(string dirPath, string relativeDirectory)

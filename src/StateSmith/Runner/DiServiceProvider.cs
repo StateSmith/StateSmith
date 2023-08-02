@@ -1,3 +1,5 @@
+#nullable enable
+
 using StateSmith.Input.DrawIo;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,14 +13,12 @@ using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.SmGraph.TriggerMap;
 
-#nullable enable
-
 namespace StateSmith.Runner;
 
 /// <summary>
 /// Dependency Injection Service Provider
 /// </summary>
-public class DiServiceProvider
+public class DiServiceProvider : IDisposable
 {
     private IHost? host;
     private readonly IHostBuilder hostBuilder;
@@ -41,7 +41,7 @@ public class DiServiceProvider
         {
             AddDefaultsForTesting(services);
 
-            services.AddSingleton(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
+            services.AddSingleton<DiServiceProvider>(this); // todo_low remove. See https://github.com/StateSmith/StateSmith/issues/97
             services.AddSingleton<SmRunnerInternal>();
             services.AddSingleton<SmTransformer, StandardSmTransformer>();
             services.AddSingleton<Expander>();
@@ -86,6 +86,7 @@ public class DiServiceProvider
             services.AddSingleton<TriggerMapProcessor>();
 
             services.AddSingleton<UserExpansionScriptBases>();
+            services.AddSingleton<SmDesignDescriber>();
         });
     }
 
@@ -154,6 +155,7 @@ public class DiServiceProvider
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
         services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
+        services.AddSingleton(new SmDesignDescriberSettings());
     }
 
     /// <summary>
@@ -201,6 +203,11 @@ public class DiServiceProvider
     {
         BuildIfNeeded();
         return new ConvertableType(host.ThrowIfNull());
+    }
+
+    public void Dispose()
+    {
+        host?.Dispose();
     }
 }
 

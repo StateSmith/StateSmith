@@ -13,11 +13,11 @@ public class GilAlgoCodeGen : ICodeGenRunner
     protected readonly IGilTranspiler transpiler;
     protected readonly IStateMachineProvider stateMachineProvider; // todo - pass to Run() instead.
     protected readonly ExpansionsPrep expansionsPrep;
-    protected readonly OutputInfo outputInfo;
+    protected readonly IOutputInfo outputInfo;
     protected readonly RunnerSettings runnerSettings;
     protected readonly IConsolePrinter consolePrinter;
 
-    public GilAlgoCodeGen(IGilAlgo gilAlgo, IGilTranspiler transpiler, IStateMachineProvider stateMachineProvider, ExpansionsPrep expansionsPrep, OutputInfo outputInfo, RunnerSettings runnerSettings, IConsolePrinter consolePrinter)
+    public GilAlgoCodeGen(IGilAlgo gilAlgo, IGilTranspiler transpiler, IStateMachineProvider stateMachineProvider, ExpansionsPrep expansionsPrep, IOutputInfo outputInfo, RunnerSettings runnerSettings, IConsolePrinter consolePrinter)
     {
         this.gilAlgo = gilAlgo;
         this.transpiler = transpiler;
@@ -71,7 +71,7 @@ public class GilAlgoCodeGen : ICodeGenRunner
 
     private void DumpGilCode(StateMachine sm, string gilCode)
     {
-        string gilOutputPath = $"{outputInfo.outputDirectory}{sm.Name}.gil.cs.txt";
+        string gilOutputPath = $"{outputInfo.OutputDirectory}{sm.Name}.gil.cs.txt";
 
         File.WriteAllText(gilOutputPath, gilCode);
         consolePrinter.WriteLine($"You can inspect the generated Generic Intermediate Language (GIL) code here: {gilOutputPath}");
