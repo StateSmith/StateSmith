@@ -1,39 +1,39 @@
+#nullable enable
+
 using StateSmith.SmGraph.Visitors;
-using System.Diagnostics;
 
-namespace StateSmith.SmGraph
+namespace StateSmith.SmGraph;
+
+/// <summary>
+/// Includes regular states, super states, orthogonal states and state machines
+/// </summary>
+public abstract class NamedVertex : Vertex
 {
+    internal string _name;
+    public string Name => _name;
+
     /// <summary>
-    /// Includes regular states, super states, orthogonal states and state machines
+    /// todo_low - remove
     /// </summary>
-    public class NamedVertex : Vertex
+    public bool nameIsGloballyUnique = false;
+
+    public NamedVertex(string name)
     {
-        internal string _name;
-        public string Name => _name;
+        this._name = name;
+    }
 
-        /// <summary>
-        /// todo_low - remove
-        /// </summary>
-        public bool nameIsGloballyUnique = false;
+    public void Rename(string newName)
+    {
+        _name = newName;
+    }
 
-        public NamedVertex(string name)
-        {
-            this._name = name;
-        }
+    public override void Accept(IVertexVisitor visitor)
+    {
+        visitor.Visit(this);
+    }
 
-        public void Rename(string newName)
-        {
-            _name = newName;
-        }
-
-        public override void Accept(IVertexVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
-
-        public override string ToString()
-        {
-            return GetType().Name + ": " + Name;
-        }
+    public override string ToString()
+    {
+        return GetType().Name + ": " + Name;
     }
 }

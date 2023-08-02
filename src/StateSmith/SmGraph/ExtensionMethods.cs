@@ -29,13 +29,29 @@ public static class ExtensionMethods
         }
     }
 
-    public static void AddEnterAction(this NamedVertex namedVertex, string actionCode)
+    /// <summary>
+    /// Adds an enter behavior action to list end (unless index specified).
+    /// </summary>
+    /// <param name="namedVertex"></param>
+    /// <param name="actionCode"></param>
+    /// <param name="index">Set to -1 to ignore index, 0 to insert behavior at start. Too large values are clamped 
+    /// to be valid so you don't have to worry.</param>
+    /// <returns></returns>
+    public static void AddEnterAction(this NamedVertex namedVertex, string actionCode, int index = -1)
     {
-        namedVertex.AddBehavior(Behavior.NewEnterBehavior(actionCode: actionCode));
+        namedVertex.AddBehavior(Behavior.NewEnterBehavior(actionCode: actionCode), index: index);
     }
 
-    public static void AddExitAction(this NamedVertex namedVertex, string actionCode)
+    /// <summary>
+    /// Adds an exit behavior action to list end (unless index specified).
+    /// </summary>
+    /// <param name="namedVertex"></param>
+    /// <param name="actionCode"></param>
+    /// <param name="index">Set to -1 to ignore index, 0 to insert behavior at start. Too large values are clamped 
+    /// to be valid so you don't have to worry.</param>
+    /// <returns></returns>
+    public static void AddExitAction(this NamedVertex namedVertex, string actionCode, int index = -1)
     {
-        namedVertex.AddBehavior(Behavior.NewExitBehavior(actionCode: actionCode));
+        namedVertex.AddBehavior(Behavior.NewExitBehavior(actionCode: actionCode), index: index);
     }
 }

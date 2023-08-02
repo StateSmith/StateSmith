@@ -30,6 +30,16 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Added
 - Add state machine description file for easier git diffing and understanding.
   - https://github.com/StateSmith/StateSmith/issues/200
+- PlantUML - extend ignored diagram elements list
+  - Now supports `title`.
+  - https://github.com/StateSmith/StateSmith/issues/216
+
+---
+
+## [0.9.7-alpha]
+### Added
+- Allow specifying index for `NamedVertex.AddEnterAction()` and `NamedVertex.AddExitAction()`.
+  - https://github.com/StateSmith/StateSmith/issues/214
 
 ---
 

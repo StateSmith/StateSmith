@@ -1,2 +1,0 @@
-MAIN_MENU
-enter / menu.setItems(["BUILD YOUR BOT!", "ABOUT"]);
