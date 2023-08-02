@@ -26,7 +26,7 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 
 ---
 
-# WIP
+# [0.9.8-alpha]
 ### Added
 - Add state machine description file for easier git diffing and understanding.
   - https://github.com/StateSmith/StateSmith/issues/200
