@@ -8,6 +8,11 @@ using System.Linq;
 
 namespace StateSmith.Output;
 
+/// <summary>
+/// Has ability to summarize a design before and after transformations.
+/// The before stage will also include render config nodes at the root of the diagram (outside state machine).
+/// https://github.com/StateSmith/StateSmith/issues/200
+/// </summary>
 public class SmDesignDescriber : IDisposable
 {
     protected SmDesignDescriberSettings settings;
@@ -16,6 +21,7 @@ public class SmDesignDescriber : IDisposable
     private readonly IOutputInfo outputInfo;
     protected SmGraphDescriber smDescriber;
     protected TextWriter? writer;
+    protected bool needsSeparator = false;
 
     public SmDesignDescriber(SmDesignDescriberSettings settings, IStateMachineProvider stateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider, IOutputInfo outputInfo)
     {
@@ -46,9 +52,10 @@ public class SmDesignDescriber : IDisposable
 
     public void DescribeBeforeTransformations()
     {
-        if (!settings.enabled)
+        if (!settings.enabled || !settings.outputSections.beforeTransformations)
             return;
-
+        
+        MaybeAddSeparator();
         smDescriber.OutputHeader("BEFORE TRANSFORMATIONS");
 
         // Sort by diagram ID to keep consistent
@@ -62,6 +69,18 @@ public class SmDesignDescriber : IDisposable
 
             smDescriber.Describe(v);
         }
+
+        needsSeparator = true;
+    }
+
+    protected void MaybeAddSeparator()
+    {
+        if (!needsSeparator)
+            return;
+
+        smDescriber.ClearSeparatorFlag();
+        AddBigDividingLine();
+        needsSeparator = false;
     }
 
     protected void AddBigDividingLine()
@@ -77,10 +96,10 @@ public class SmDesignDescriber : IDisposable
 
     public void DescribeAfterTransformations()
     {
-        if (!settings.enabled)
+        if (!settings.enabled || !settings.outputSections.afterTransformations)
             return;
 
-        AddBigDividingLine();
+        MaybeAddSeparator();
         smDescriber.OutputHeader("AFTER TRANSFORMATIONS");
         smDescriber.Describe(stateMachineProvider.GetStateMachine());
     }

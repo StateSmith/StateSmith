@@ -10,6 +10,9 @@ using System.Text;
 
 namespace StateSmith.Output;
 
+/// <summary>
+/// https://github.com/StateSmith/StateSmith/issues/200
+/// </summary>
 public class SmGraphDescriber : IDisposable
 {
     protected string indentStr = "    ";
@@ -58,9 +61,14 @@ public class SmGraphDescriber : IDisposable
 
         foreach (var v in vertices.Values)
         {
-            OutputForVertex(behaviorDescriber, v, prependSeparator:prependSeparator);
+            OutputForVertex(behaviorDescriber, v, prependSeparator: prependSeparator);
             prependSeparator = true;
         }
+    }
+
+    public void ClearSeparatorFlag()
+    {
+        prependSeparator = false;
     }
 
     private void OutputForVertex(BehaviorDescriber behaviorDescriber, Vertex v, bool prependSeparator)

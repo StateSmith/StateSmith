@@ -1,7 +1,9 @@
 #nullable enable
 
+using FluentAssertions;
 using StateSmith.Output;
 using StateSmith.Runner;
+using System;
 using System.IO;
 using System.Text;
 using Xunit;
@@ -11,25 +13,40 @@ namespace StateSmithTest.Output.SmDescriberTest;
 public class SmDesignDescriberTests
 {
     [Fact]
-    public void IntegrationTestDefault()
+    public void IntegrationTestOffByDefault()
     {
-        StringBuilder sb = SetupForCapture(SetupMode.Default);
-        sb.ToString().ShouldBeShowDiff("");
+        new Tester().RunAndExpect("");
     }
 
     [Fact]
     public void IntegrationTestDisabled()
     {
-        StringBuilder sb = SetupForCapture(SetupMode.Disabled);
-        sb.ToString().ShouldBeShowDiff("");
+        new Tester().disable().RunAndExpect("");
     }
 
     [Fact]
     public void IntegrationTestEnabled()
     {
-        StringBuilder sb = SetupForCapture(SetupMode.Enabled);
+        new Tester().enable().RunAndExpect(ExpectedFull);
+    }
 
-        sb.ToString().ShouldBeShowDiff(Expected);
+    [Fact]
+    public void IntegrationTestDisableBeforeTransformations()
+    {
+        new Tester().enable().disableBeforeTransformations().RunAndExpect(ExpectedAfterTransformations);
+    }
+
+    [Fact]
+    public void IntegrationTestDisableAfterTransformations()
+    {
+        new Tester().enable().disableAfterTransformations().RunAndExpect(ExpectedBeforeTransformations);
+    }
+
+    [Fact]
+    public void IntegrationTestDisableBoth()
+    {
+        Action a = () => new Tester().disableAfterTransformations().disableBeforeTransformations().RunAndExpect(ExpectedAfterTransformations);
+        a.Should().Throw<Exception>(); //TODO: better exception
     }
 
     [Fact]
@@ -40,28 +57,48 @@ public class SmDesignDescriberTests
         smRunner.Run();
     }
 
-    private enum SetupMode { Enabled, Disabled, Default }
-
-    private static StringBuilder SetupForCapture(SetupMode setupMode)
+    private class Tester
     {
-        var sb = new StringBuilder();
-        SmRunner smRunner = SetupSmRunner(out var diServiceProvider);
+        public StringBuilder sb = new();
+        public SmRunner smRunner;
+        public SmDesignDescriber describer;
 
-        switch (setupMode)
+        public Tester()
         {
-            case SetupMode.Enabled:
-                smRunner.Settings.smDesignDescriber.enabled = true;
-                break;
-            case SetupMode.Disabled:
-                smRunner.Settings.smDesignDescriber.enabled = false;
-                break;
+            smRunner = SetupSmRunner(out var diServiceProvider);
+            describer = diServiceProvider.GetInstanceOf<SmDesignDescriber>();
+            describer.SetTextWriter(new StringWriter(sb));
         }
 
-        var describer = diServiceProvider.GetInstanceOf<SmDesignDescriber>();
-        describer.SetTextWriter(new StringWriter(sb));
-        smRunner.Run();
+        public Tester enable()
+        {
+            smRunner.Settings.smDesignDescriber.enabled = true;
+            return this;
+        }
 
-        return sb;
+        public Tester disable()
+        {
+            smRunner.Settings.smDesignDescriber.enabled = false;
+            return this;
+        }
+
+        public Tester disableBeforeTransformations()
+        {
+            smRunner.Settings.smDesignDescriber.outputSections.beforeTransformations = false;
+            return this;
+        }
+
+        public Tester disableAfterTransformations()
+        {
+            smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = false;
+            return this;
+        }
+
+        public void RunAndExpect(string expected)
+        {
+            smRunner.Run();
+            sb.ToString().ShouldBeShowDiff(expected);
+        }   
     }
 
     private static SmRunner SetupSmRunner()
@@ -80,7 +117,23 @@ public class SmDesignDescriberTests
         return smRunner;
     }
 
-    private const string Expected = """
+
+    private const string ExpectedFull = $"""
+            {ExpectedBeforeTransformations}
+
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            {ExpectedAfterTransformations}
+            """;
+
+
+    private const string ExpectedBeforeTransformations = """
             BEFORE TRANSFORMATIONS
             ===========================================================
 
@@ -267,19 +320,11 @@ public class SmDesignDescriberTests
             ### Behaviors
                 TransitionTo(PRE_HEAT)
 
+            """;
 
-
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-
+    private const string ExpectedAfterTransformations = """
             AFTER TRANSFORMATIONS
             ===========================================================
-
-
 
             Vertex: NORMAL
             -----------------------------------------
@@ -425,4 +470,5 @@ public class SmDesignDescriberTests
                 TransitionTo(PRE_HEAT)
             
             """;
+
 }
