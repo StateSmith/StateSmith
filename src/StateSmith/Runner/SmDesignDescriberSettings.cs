@@ -19,17 +19,17 @@ public class SmDesignDescriberSettings
     public class Sections
     {
         /// <summary>
-        /// Set to false to disable outputting before transformations.
+        /// Set to true to output before transformations section.
         /// Before transformations is good for when you want to see the original design.
         /// </summary>
         public bool beforeTransformations = true;
 
         /// <summary>
-        /// Set to false to disable outputting after transformations.
+        /// Set to true to output after transformations section.
         /// After transformations is good for when you want to see what is passed to the code generator.
         /// This is especially useful when you want to understand transformation steps like
-        /// TriggerMaps and other custom transformations.
+        /// TriggerMaps and other custom transformations or optimizations.
         /// </summary>
-        public bool afterTransformations = true;
+        public bool afterTransformations = false;
     }
 }

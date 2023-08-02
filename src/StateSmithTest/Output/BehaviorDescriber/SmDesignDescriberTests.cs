@@ -25,21 +25,21 @@ public class SmDesignDescriberTests
     }
 
     [Fact]
-    public void IntegrationTestEnabled()
+    public void IntegrationTestEnabledDefault()
     {
-        new Tester().enable().RunAndExpect(ExpectedFull);
+        new Tester().enable().RunAndExpect(ExpectedBeforeTransformations);
     }
 
     [Fact]
-    public void IntegrationTestDisableBeforeTransformations()
-    {
-        new Tester().enable().disableBeforeTransformations().RunAndExpect(ExpectedAfterTransformations);
-    }
-
-    [Fact]
-    public void IntegrationTestDisableAfterTransformations()
+    public void IntegrationTestBeforeTransformationsOnly()
     {
         new Tester().enable().disableAfterTransformations().RunAndExpect(ExpectedBeforeTransformations);
+    }
+
+    [Fact]
+    public void IntegrationTestAfterTransformationsOnly()
+    {
+        new Tester().enable().disableBeforeTransformations().enableAfterTransformations().RunAndExpect(ExpectedAfterTransformations);
     }
 
     [Fact]
@@ -52,9 +52,7 @@ public class SmDesignDescriberTests
     [Fact]
     public void IntegrationTestToFile()
     {
-        var smRunner = SetupSmRunner();
-        smRunner.Settings.smDesignDescriber.enabled = true;
-        smRunner.Run();
+        new Tester(captureToBuffer:false).enable().enableAfterTransformations().Run();
     }
 
     private class Tester
@@ -63,11 +61,12 @@ public class SmDesignDescriberTests
         public SmRunner smRunner;
         public SmDesignDescriber describer;
 
-        public Tester()
+        public Tester(bool captureToBuffer = true)
         {
             smRunner = SetupSmRunner(out var diServiceProvider);
             describer = diServiceProvider.GetInstanceOf<SmDesignDescriber>();
-            describer.SetTextWriter(new StringWriter(sb));
+            if (captureToBuffer)
+                describer.SetTextWriter(new StringWriter(sb));
         }
 
         public Tester enable()
@@ -94,11 +93,22 @@ public class SmDesignDescriberTests
             return this;
         }
 
+        public Tester enableAfterTransformations()
+        {
+            smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = true;
+            return this;
+        }
+
         public void RunAndExpect(string expected)
         {
-            smRunner.Run();
+            Run();
             sb.ToString().ShouldBeShowDiff(expected);
-        }   
+        }
+
+        public void Run()
+        {
+            smRunner.Run();
+        }
     }
 
     private static SmRunner SetupSmRunner()
