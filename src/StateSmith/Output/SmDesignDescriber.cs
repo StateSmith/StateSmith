@@ -32,17 +32,19 @@ public class SmDesignDescriber : IDisposable
         smDescriber = new SmGraphDescriber(new DummyTextWriter());
     }
 
-    public void DefaultPrepareToWriteToFile()
+    public void Prepare()
     {
         if (!settings.enabled)
             return;
 
-        if (writer != null)
-            return;
+        smDescriber.SetOutputAncestorHandlers(settings.outputAncestorHandlers);
 
-        var filePath = $"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.md";
-        writer = new StreamWriter(filePath);
-        smDescriber.SetTextWriter(writer);
+        if (writer == null)
+        {
+            var filePath = $"{outputInfo.OutputDirectory}{outputInfo.BaseFileName}.md";
+            writer = new StreamWriter(filePath);
+            smDescriber.SetTextWriter(writer);
+        }
     }
 
     public void Dispose()

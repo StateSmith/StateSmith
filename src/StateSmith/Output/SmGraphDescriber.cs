@@ -18,10 +18,16 @@ public class SmGraphDescriber : IDisposable
     protected string indentStr = "    ";
     protected TextWriter writer;
     protected bool prependSeparator = false;
+    protected bool outputAncestorHandlers = false;
 
     public SmGraphDescriber(TextWriter writer)
     {
         this.writer = writer;
+    }
+
+    public void SetOutputAncestorHandlers(bool outputAncestorHandlers)
+    {
+        this.outputAncestorHandlers = outputAncestorHandlers;
     }
 
     public static void DescribeToFile(Vertex vertex, string filePath)
@@ -145,6 +151,9 @@ public class SmGraphDescriber : IDisposable
 
     private void MaybeOutputAncestorBehaviors(BehaviorDescriber behaviorDescriber, Vertex ancestor)
     {
+        if (!outputAncestorHandlers)
+            return;
+
         StringBuilder sb = new();
         OutputBehaviors(new StringWriter(sb), behaviorDescriber, ancestor, eventsOnly: true);
 

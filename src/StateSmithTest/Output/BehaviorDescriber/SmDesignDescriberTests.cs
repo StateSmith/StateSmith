@@ -21,79 +21,228 @@ public class SmDesignDescriberTests
     [Fact]
     public void IntegrationTestDisabled()
     {
-        new Tester().disable().RunAndExpect("");
+        new Tester().Disable().RunAndExpect("");
     }
 
     [Fact]
-    public void IntegrationTestEnabledDefault()
+    public void IntegrationTestSmallEnabledDefault()
     {
-        new Tester().enable().RunAndExpect(ExpectedBeforeTransformations);
+        new Tester(diagramFile: "Ex565Tiny.drawio").Enable().RunAndExpect("""
+            BEFORE TRANSFORMATIONS
+            ===========================================================
+
+            Vertex: ROOT
+            -----------------------------------------
+            - Type: StateMachine
+            - Diagram Id: 5
+            - Initial State: ROOT.\<InitialState>
+
+            ### Behaviors
+                do / { x++; }
+
+
+            Vertex: ROOT.\<InitialState>
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: InitialState
+            - Diagram Id: 7OOmFb1p9FNjOZE7ZJ_8-8
+
+            ### Behaviors
+                TransitionTo(S1)
+
+
+            Vertex: S1
+            -----------------------------------------
+            - Parent: GROUP
+            - Type: State
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-140
+
+            ### Behaviors
+                PRESS / { a++; }
+
+                [a > 10] / { blah(); } TransitionTo(S1)
+
+
+            Vertex: S2
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: R4VN_IkJmzDVKIfME6CC-146
+
+            ### Behaviors
+                PRESS / { b++; }
+
+
+            Vertex: GROUP
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: R4VN_IkJmzDVKIfME6CC-149
+
+            ### Behaviors
+                do / { b++; }
+
+                PRESS [x > 10] TransitionTo(S2)
+
+            """);
     }
+
+
+    [Fact]
+    public void IntegrationTestEnableAncestors()
+    {
+        new Tester(diagramFile: "Ex565Tiny.drawio").Enable().EnableOutputAncestorHandlers().RunAndExpect("""
+            BEFORE TRANSFORMATIONS
+            ===========================================================
+
+            Vertex: ROOT
+            -----------------------------------------
+            - Type: StateMachine
+            - Diagram Id: 5
+            - Initial State: ROOT.\<InitialState>
+
+            ### Behaviors
+                do / { x++; }
+
+
+            Vertex: ROOT.\<InitialState>
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: InitialState
+            - Diagram Id: 7OOmFb1p9FNjOZE7ZJ_8-8
+
+            ### Behaviors
+                TransitionTo(S1)
+
+
+            Vertex: S1
+            -----------------------------------------
+            - Parent: GROUP
+            - Type: State
+            - Diagram Id: gO1ZRfetmGtumTaL4_i4-140
+
+            ### Behaviors
+                PRESS / { a++; }
+
+                [a > 10] / { blah(); } TransitionTo(S1)
+
+                =========== from ancestor GROUP ===========
+
+                do / { b++; }
+
+                PRESS [x > 10] TransitionTo(S2)
+
+                =========== from ancestor ROOT ===========
+
+                do / { x++; }
+
+
+            Vertex: S2
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: R4VN_IkJmzDVKIfME6CC-146
+
+            ### Behaviors
+                PRESS / { b++; }
+
+                =========== from ancestor ROOT ===========
+
+                do / { x++; }
+
+
+            Vertex: GROUP
+            -----------------------------------------
+            - Parent: ROOT
+            - Type: State
+            - Diagram Id: R4VN_IkJmzDVKIfME6CC-149
+
+            ### Behaviors
+                do / { b++; }
+
+                PRESS [x > 10] TransitionTo(S2)
+
+                =========== from ancestor ROOT ===========
+
+                do / { x++; }
+
+            """);
+    }
+
 
     [Fact]
     public void IntegrationTestBeforeTransformationsOnly()
     {
-        new Tester().enable().disableAfterTransformations().RunAndExpect(ExpectedBeforeTransformations);
+        new Tester().Enable().DisableAfterTransformations().EnableOutputAncestorHandlers().RunAndExpect(ExpectedBeforeTransformations);
     }
 
     [Fact]
     public void IntegrationTestAfterTransformationsOnly()
     {
-        new Tester().enable().disableBeforeTransformations().enableAfterTransformations().RunAndExpect(ExpectedAfterTransformations);
+        new Tester().Enable().DisableBeforeTransformations().EnableAfterTransformations().EnableOutputAncestorHandlers().RunAndExpect(ExpectedAfterTransformations);
     }
 
     [Fact]
     public void IntegrationTestDisableBoth()
     {
-        Action a = () => new Tester().disableAfterTransformations().disableBeforeTransformations().RunAndExpect(ExpectedAfterTransformations);
+        Action a = () => new Tester().DisableAfterTransformations().DisableBeforeTransformations().RunAndExpect(ExpectedAfterTransformations);
         a.Should().Throw<Exception>(); //TODO: better exception
     }
 
     [Fact]
     public void IntegrationTestToFile()
     {
-        new Tester(captureToBuffer:false).enable().enableAfterTransformations().Run();
+        new Tester(captureToBuffer:false).Enable().EnableOutputAncestorHandlers().EnableAfterTransformations().Run();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private class Tester
     {
         public StringBuilder sb = new();
         public SmRunner smRunner;
         public SmDesignDescriber describer;
 
-        public Tester(bool captureToBuffer = true)
+        public Tester(bool captureToBuffer = true, string diagramFile = "Ex564.drawio")
         {
-            smRunner = SetupSmRunner(out var diServiceProvider);
+            smRunner = SetupSmRunner(out var diServiceProvider, diagramFile);
             describer = diServiceProvider.GetInstanceOf<SmDesignDescriber>();
             if (captureToBuffer)
                 describer.SetTextWriter(new StringWriter(sb));
         }
 
-        public Tester enable()
+        public Tester Enable()
         {
             smRunner.Settings.smDesignDescriber.enabled = true;
             return this;
         }
 
-        public Tester disable()
+        public Tester EnableOutputAncestorHandlers()
+        {
+            smRunner.Settings.smDesignDescriber.outputAncestorHandlers = true;
+            return this;
+        }
+
+        public Tester Disable()
         {
             smRunner.Settings.smDesignDescriber.enabled = false;
             return this;
         }
 
-        public Tester disableBeforeTransformations()
+        public Tester DisableBeforeTransformations()
         {
             smRunner.Settings.smDesignDescriber.outputSections.beforeTransformations = false;
             return this;
         }
 
-        public Tester disableAfterTransformations()
+        public Tester DisableAfterTransformations()
         {
             smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = false;
             return this;
         }
 
-        public Tester enableAfterTransformations()
+        public Tester EnableAfterTransformations()
         {
             smRunner.Settings.smDesignDescriber.outputSections.afterTransformations = true;
             return this;
@@ -102,31 +251,24 @@ public class SmDesignDescriberTests
         public void RunAndExpect(string expected)
         {
             Run();
-            sb.ToString().ShouldBeShowDiff(expected);
+            sb.ToString().ShouldBeShowDiff(expected, outputCleanActual:true);
         }
 
         public void Run()
         {
             smRunner.Run();
         }
+
+        private static SmRunner SetupSmRunner(out DiServiceProvider di, string diagramFile)
+        {
+            SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + diagramFile);
+            smRunner.Settings.propagateExceptions = true; // for testing
+            di = smRunner.GetExperimentalAccess().DiServiceProvider;
+            di.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
+
+            return smRunner;
+        }
     }
-
-    private static SmRunner SetupSmRunner()
-    {
-        return SetupSmRunner(out _);
-    }
-
-
-    private static SmRunner SetupSmRunner(out DiServiceProvider di)
-    {
-        SmRunner smRunner = new(diagramPath: TestHelper.GetThisDir() + "Ex564.drawio");
-        smRunner.Settings.propagateExceptions = true; // for testing
-        di = smRunner.GetExperimentalAccess().DiServiceProvider;
-        di.AddSingletonT<ICodeGenRunner>(new DummyCodeGenRunner()); // to make test run faster
-
-        return smRunner;
-    }
-
 
     private const string ExpectedFull = $"""
             {ExpectedBeforeTransformations}
