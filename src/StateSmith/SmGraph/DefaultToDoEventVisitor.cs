@@ -15,7 +15,7 @@ public class DefaultToDoEventVisitor : NamedVisitor
     {
         foreach (var b in v.Behaviors)
         {
-            if (b.HasAtLeastOneTrigger() == false)
+            if (b.HasImplicitDoTriggerOnly())
             {
                 b._triggers.Add(TriggerHelper.TRIGGER_DO);
             }

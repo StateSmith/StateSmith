@@ -148,6 +148,15 @@ public class Behavior
         return Triggers.Any();
     }
 
+    /// <summary>
+    /// If there are no triggers, then StateSmith assumes an implicit `do` event/trigger.
+    /// </summary>
+    /// <returns></returns>
+    public bool HasImplicitDoTriggerOnly()
+    {
+        return HasAtLeastOneTrigger() == false;
+    }
+
     [MemberNotNullWhen(true, nameof(TransitionTarget))]
     public bool IsBlankTransition()
     {

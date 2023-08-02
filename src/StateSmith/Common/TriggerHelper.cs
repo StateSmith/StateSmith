@@ -148,9 +148,15 @@ public static class TriggerHelper
         return vertex.Behaviors.Where(b => b.Triggers.Any(t => SanitizeTriggerName(t) == triggerName));
     }
 
+    /// <summary>
+    /// This function is special in that it can be called before transformations are applied,
+    /// like the one that adds the implicit do trigger.
+    /// </summary>
+    /// <param name="b"></param>
+    /// <returns></returns>
     public static bool HasAnEventTrigger(Behavior b)
     {
-        return b.Triggers.Any(t => IsEvent(t));
+        return b.Triggers.Any(t => IsEvent(t)) || b.HasImplicitDoTriggerOnly();
     }
 
     /// <summary>

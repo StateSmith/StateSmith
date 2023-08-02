@@ -229,6 +229,8 @@ public class SmDesignDescriberTests
 
                 do / { x++; }
 
+                [err] TransitionTo(ERROR)
+            
                 =========== from ancestor ROOT ===========
 
                 ANY / { log("unhandled event"); }
@@ -264,6 +266,8 @@ public class SmDesignDescriberTests
                 =========== from ancestor NORMAL ===========
 
                 do / { x++; }
+
+                [err] TransitionTo(ERROR)
 
                 =========== from ancestor ROOT ===========
 
@@ -303,6 +307,8 @@ public class SmDesignDescriberTests
                 =========== from ancestor NORMAL ===========
 
                 do / { x++; }
+
+                [err] TransitionTo(ERROR)
 
                 =========== from ancestor ROOT ===========
 
