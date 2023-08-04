@@ -24,7 +24,8 @@ Release Template
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
 
-# Versions
+# Releases
+Test/interim releases are not documented here.
 
 ## [0.9.8-alpha]
 ### Added
@@ -80,8 +81,6 @@ Release Template
   - https://github.com/StateSmith/StateSmith/issues/191
 
 ---
-
-# Releases
 
 ## [0.9.3-alpha]
 ### Added
