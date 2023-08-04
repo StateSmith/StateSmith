@@ -13,7 +13,7 @@ We have a slew of state machine behavior specification tests to help ensure we d
 
 The majority of our breaking changes have been to code generation scripts (.csx files) as major features are implemented and require rework. Updating the .csx file scripts usually only takes a few minutes. Feel free to ask for help if you have any problems.
 
-# Release Template
+Release Template
 
 ```
 ## [some_version]
@@ -24,7 +24,7 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
 
----
+# Versions
 
 ## [0.9.8-alpha]
 ### Added
