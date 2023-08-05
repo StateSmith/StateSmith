@@ -1,14 +1,15 @@
 using System;
 using Xunit;
 
-namespace StateSmithCliTest
-{
-    public class UnitTest1
-    {
-        [Fact]
-        public void Test1()
-        {
+using StateSmith.Runner;
 
-        }
+namespace StateSmithCliTest;
+
+public class NugetTest
+{
+    [Fact]
+    public void Test1()
+    {
+        NugetVersionGrabber.RunAsync().Wait();
     }
 }
