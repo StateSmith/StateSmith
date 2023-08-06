@@ -6,6 +6,9 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Reflection;
+using System.Text.Json;
 
 namespace StateSmith.Runner;
 
@@ -19,19 +22,28 @@ enum TargetLanguageId
     JavaScript,
 }
 
+
+class Settings
+{
+    public string fileExtension = ".drawio.svg";
+    public string smName = "MySm";
+    public string diagramFileName = ".drawio.svg";
+    public string scriptFileName = "MySm.csx";
+    public TargetLanguageId targetLanguageId = TargetLanguageId.CSharp;
+    public string drawIoDiagramTemplateId = "drawio-simple-1"; // string to accommodate user templates someday
+    public string plantUmlDiagramTemplateId = "advanced-1";    // string to accommodate user templates someday
+    internal string version = "0.9.8-alpha";
+}
+
 class CreateUi
 {
-    string fileExtension = ".drawio.svg";
-    private string smName = "MySm";
-    private string diagramFileName = ".drawio.svg";
-    private string scriptFileName = "MySm.csx";
-    private TargetLanguageId targetLanguageId = TargetLanguageId.CSharp;
-    private string drawIoDiagramTemplateId = "drawio-simple-1"; // string to accomodate user templates someday
-    private string plantUmlDiagramTemplateId = "advanced-1";    // string to accomodate user templates someday
+    Settings settings = new();
 
     public void Run()
     {
-        fileExtension = ".plantuml";
+        //settings.fileExtension = ".plantuml";
+
+        ReadSettingsFromJson();
 
         Updates();
 
@@ -50,26 +62,70 @@ class CreateUi
         DiagramTemplate();
 
         // TODO:
-
         // (if version supports it)
         // Generate state machine description markdown file?
-        // <remember>
-        // yes
-        // no
 
-        // help setup vscode script intellisense?
+        // TODOLOW - help setup vscode script intellisense?
 
-        // # Confirm
-        // State Machine Name: MySm
-        // Target Language: C
-        // StateSmith Version: 0.9.7-alpha
-        // Diagram file: MySm.drawio.svg
-        // Script file: MySm.csx
-        // Template: basic
-        // Generate markdown file: yes
-        // hit enter to generate!
+        // TODO save settings
 
+        bool confirmation = AskConfirmation();
 
+        if (!confirmation)
+        {
+            AnsiConsole.MarkupLine("[red]Aborted.[/]");
+            return;
+        }
+
+        // TODO write files
+    }
+
+    private void ReadSettingsFromJson()
+    {
+        string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!; //TODO consider null
+
+        string path = $"{assemblyFolder}/settings.json";
+
+        string relativePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), path);
+
+        AnsiConsole.MarkupLine($"[yellow]Reading settings from path '{relativePath}'.[/]");
+
+        if (!File.Exists(path))
+        {
+            AnsiConsole.MarkupLine($"[yellow]Settings file not found. Using defaults.[/]");
+            return;
+        }
+
+        try
+        {
+            var jsonOptions = new JsonSerializerOptions();
+            jsonOptions.IncludeFields = true;
+            settings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(path), jsonOptions)!; // TODO consider null
+        }
+        catch (Exception ex)
+        {
+            AnsiConsole.MarkupLine($"[red]Error reading settings file: {ex.Message}[/]. Using defaults.");
+        }
+    }
+
+    private bool AskConfirmation()
+    {
+        AddSectionHeader("Confirmation");
+        AnsiConsole.MarkupLine($"State Machine Name: [blue]{settings.smName}[/]");
+        AnsiConsole.MarkupLine($"Target Language: [blue]{settings.targetLanguageId}[/]");
+        AnsiConsole.MarkupLine($"StateSmith Version: [blue]{settings.version}[/]");
+        AnsiConsole.MarkupLine($"Diagram file: [blue]{settings.diagramFileName}[/]");
+        AnsiConsole.MarkupLine($"Script file: [blue]{settings.scriptFileName}[/]");
+
+        if (IsDrawIoSelected())
+            AnsiConsole.MarkupLine($"Template: [blue]{settings.drawIoDiagramTemplateId}[/]");
+        else
+            AnsiConsole.MarkupLine($"Template: [blue]{settings.plantUmlDiagramTemplateId}[/]");
+
+        AnsiConsole.MarkupLine("");
+
+        var confirmation = YesNoPrompt("Generate?");
+        return confirmation;
     }
 
     private void ScriptFileName()
@@ -79,11 +135,11 @@ class CreateUi
         AnsiConsole.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
         AnsiConsole.MarkupLine("");
 
-        string defaultValue = smName + ".csx";
-        scriptFileName = Ask("Enter script file name/path", defaultValue);
+        string defaultValue = settings.smName + ".csx";
+        settings.scriptFileName = Ask("Enter script file name/path", defaultValue);
 
-        scriptFileName = scriptFileName.Replace("$$", smName);
-        AnsiConsole.MarkupLine($"Script file name/path: [blue]{scriptFileName}[/]");
+        settings.scriptFileName = settings.scriptFileName.Replace("$$", settings.smName);
+        AnsiConsole.MarkupLine($"Script file name/path: [blue]{settings.scriptFileName}[/]");
     }
 
     private void DiagramFileName()
@@ -93,11 +149,11 @@ class CreateUi
         AnsiConsole.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
         AnsiConsole.MarkupLine("");
 
-        string defaultValue = smName + fileExtension;
-        diagramFileName = Ask("Enter diagram file name/path", defaultValue);
+        string defaultValue = settings.smName + settings.fileExtension;
+        settings.diagramFileName = Ask("Enter diagram file name/path", defaultValue);
 
-        diagramFileName = diagramFileName.Replace("$$", smName);
-        AnsiConsole.MarkupLine($"Diagram file name/path: [blue]{diagramFileName}[/]");
+        settings.diagramFileName = settings.diagramFileName.Replace("$$", settings.smName);
+        AnsiConsole.MarkupLine($"Diagram file name/path: [blue]{settings.diagramFileName}[/]");
     }
 
     private void DiagramType()
@@ -112,15 +168,15 @@ class CreateUi
             new Item<string>(id: ".drawio",     display: "draw.io XML [grey]\".drawio\"[/]" ),
             new Item<string>(id: ".plantuml",   display: "PlantUML    [grey]\".plantuml\"[/]" ),
         };
-        AddRememberedToChoices(choices, id:fileExtension);
+        AddRememberedToChoices(choices, id: settings.fileExtension);
 
-        fileExtension = AnsiConsole.Prompt(
+        settings.fileExtension = AnsiConsole.Prompt(
                 new SelectionPrompt<Item<string>>()
                     .Title("")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
 
-        AnsiConsole.WriteLine($"Selected {fileExtension}");
+        AnsiConsole.WriteLine($"Selected {settings.fileExtension}");
     }
 
     private static bool AddRememberedToChoices<T>(List<Item<T>> choices, T id) where T : notnull
@@ -154,9 +210,9 @@ class CreateUi
 
         AnsiConsole.MarkupLine("");
 
-        string versionChoice = Ask("Enter StateSmith version", defaultValue:"0.9.7-alpha");
+        settings.version = Ask("Enter StateSmith version", defaultValue:"0.9.7-alpha");
 
-        AnsiConsole.WriteLine($"Selected {versionChoice}");
+        AnsiConsole.WriteLine($"Selected {settings.version}");
 
         // TODO validate version is valid
     }
@@ -193,7 +249,7 @@ class CreateUi
                 new Item<string>(id: "drawio-advanced",    display: "" ),
             };
         var templateTypeName = "draw.io";
-        AskTemplate(choices, templateTypeName, ref drawIoDiagramTemplateId);
+        AskTemplate(choices, templateTypeName, ref settings.drawIoDiagramTemplateId);
     }
 
     private void AskPlantUmlTemplate()
@@ -203,7 +259,7 @@ class CreateUi
             new Item<string>(id: "plantuml-simple-1",    display: "" ),
         };
         var templateTypeName = "PlantUML";
-        AskTemplate(choices, templateTypeName, ref plantUmlDiagramTemplateId);
+        AskTemplate(choices, templateTypeName, ref settings.plantUmlDiagramTemplateId);
     }
 
     private static void AskTemplate(List<Item<string>> choices, string templateTypeName, ref string templateSetting)
@@ -226,7 +282,7 @@ class CreateUi
 
     private bool IsDrawIoSelected()
     {
-        return (fileExtension.Contains(".drawio"));
+        return settings.fileExtension.Contains(".drawio");
     }
 
     private void AskTargetLanguage()
@@ -241,15 +297,15 @@ class CreateUi
             new Item<TargetLanguageId>(id: TargetLanguageId.JavaScript,  display: "JavaScript" ),
         };
 
-        AddRememberedToChoices(choices, id: targetLanguageId);
+        AddRememberedToChoices(choices, id: settings.targetLanguageId);
 
-        targetLanguageId = AnsiConsole.Prompt(
+        settings.targetLanguageId = AnsiConsole.Prompt(
                 new SelectionPrompt<Item<TargetLanguageId>>()
                     .Title("")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
 
-        AnsiConsole.MarkupLine($"Selected [blue]{targetLanguageId}[/]");
+        AnsiConsole.MarkupLine($"Selected [blue]{settings.targetLanguageId}[/]");
     }
 
     private void AddSectionHeader(string header)
@@ -271,19 +327,17 @@ class CreateUi
         AnsiConsole.MarkupLine("and will be used for auto suggesting file names in later steps.");
         AnsiConsole.MarkupLine("[grey]Default shown in (parenthesis).[/]");
         AnsiConsole.MarkupLine("");
-        smName = Ask("Enter your state machine name", "MySm");
+        settings.smName = Ask("Enter your state machine name", "MySm");
     }
 
     private void Updates()
     {
         AddSectionHeader("Updates");
 
-        var checkForUpdates = AnsiConsole.Prompt(
-                new SelectionPrompt<string>()
-                    .Title("Check for updates?")
-                    .AddChoices(new[] { "yes", "no" }));
+        const string title = "Check for updates?";
+        bool checkForUpdates = YesNoPrompt(title);
 
-        if (checkForUpdates == "yes")
+        if (checkForUpdates)
         {
             CheckForUpdates();
         }
@@ -291,6 +345,15 @@ class CreateUi
         {
             AnsiConsole.MarkupLine("[grey]Skipping updates...[/]");
         }
+    }
+
+    private static bool YesNoPrompt(string title)
+    {
+        const string yes = "yes";
+        return yes == AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title(title)
+                    .AddChoices(new[] { yes, "no" }));
     }
 
     private void CheckForUpdates()
