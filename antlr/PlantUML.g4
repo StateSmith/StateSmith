@@ -133,6 +133,10 @@ ignore:
     |
     'scale' HWS rest_of_line
     |
+    'skin' HWS rest_of_line
+    |
+    'mainframe' HWS rest_of_line
+    |
     'skinparam' HWS identifier optional_any_space
     '{' ohs LINE_ENDER
         (
@@ -257,6 +261,8 @@ identifier
     | 'end'
     | 'as'
     | 'scale'
+    | 'skin'
+    | 'mainframe'
     | 'skinparam'
     ;
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   ( IDENTIFIER_NON_DIGIT | DIGIT )*  ;
