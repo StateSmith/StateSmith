@@ -585,17 +585,34 @@ public class ParsingTests
     }
 
     /// <summary>
-    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// skin basic https://github.com/StateSmith/StateSmith/issues/215
     /// </summary>
     [Fact]
-    public void IgnoreSkinRose1_215()
+    public void IgnoreSkinBasicTiny_215()
     {
         ParseAssertNoError("""
             @startuml SomeName
-            skin rose
+            skin basic
             [*] --> S1
             @enduml
             """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// We shouldn't ignore skin if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void SkinStateName_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            skin --> S1
+            [*] --> skin
+            @enduml
+            """);
+
+        GetVertexById("skin");
     }
 
     //###############################################################################################
