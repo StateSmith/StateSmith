@@ -9,40 +9,23 @@ using System.Linq;
 using System.IO;
 using System.Reflection;
 using System.Text.Json;
+using NuGet.Configuration;
 
 namespace StateSmith.Runner;
-
-// statesmith --create
-
-enum TargetLanguageId
-{
-    C,
-    CppC,
-    CSharp,
-    JavaScript,
-}
-
-
-class Settings
-{
-    public string fileExtension = ".drawio.svg";
-    public string smName = "MySm";
-    public string diagramFileName = ".drawio.svg";
-    public string scriptFileName = "MySm.csx";
-    public TargetLanguageId targetLanguageId = TargetLanguageId.CSharp;
-    public string drawIoDiagramTemplateId = "drawio-simple-1"; // string to accommodate user templates someday
-    public string plantUmlDiagramTemplateId = "advanced-1";    // string to accommodate user templates someday
-    internal string version = "0.9.8-alpha";
-}
 
 class CreateUi
 {
     Settings settings = new();
+    private string settingsPath;
+
+    public CreateUi()
+    {
+        string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!; //TODO consider null
+        settingsPath = $"{assemblyFolder}/settings.json";
+    }
 
     public void Run()
     {
-        //settings.fileExtension = ".plantuml";
-
         ReadSettingsFromJson();
 
         Updates();
@@ -67,7 +50,7 @@ class CreateUi
 
         // TODOLOW - help setup vscode script intellisense?
 
-        // TODO save settings
+        SaveSettings();
 
         bool confirmation = AskConfirmation();
 
@@ -82,15 +65,11 @@ class CreateUi
 
     private void ReadSettingsFromJson()
     {
-        string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!; //TODO consider null
-
-        string path = $"{assemblyFolder}/settings.json";
-
-        string relativePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), path);
+        string relativePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), settingsPath);
 
         AnsiConsole.MarkupLine($"[yellow]Reading settings from path '{relativePath}'.[/]");
 
-        if (!File.Exists(path))
+        if (!File.Exists(settingsPath))
         {
             AnsiConsole.MarkupLine($"[yellow]Settings file not found. Using defaults.[/]");
             return;
@@ -99,8 +78,12 @@ class CreateUi
         try
         {
             var jsonOptions = new JsonSerializerOptions();
-            jsonOptions.IncludeFields = true;
-            settings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(path), jsonOptions)!; // TODO consider null
+            //jsonOptions.IncludeFields = true;
+            jsonOptions.PropertyNameCaseInsensitive = true;
+            jsonOptions.AllowTrailingCommas = true;
+            //jsonOptions.ReadCommentHandling = JsonCommentHandling.Skip;
+            jsonOptions.WriteIndented = true;
+            settings = JsonSerializer.Deserialize<Settings>(File.ReadAllText(settingsPath), jsonOptions)!; // TODO consider null
         }
         catch (Exception ex)
         {
@@ -112,15 +95,15 @@ class CreateUi
     {
         AddSectionHeader("Confirmation");
         AnsiConsole.MarkupLine($"State Machine Name: [blue]{settings.smName}[/]");
-        AnsiConsole.MarkupLine($"Target Language: [blue]{settings.targetLanguageId}[/]");
-        AnsiConsole.MarkupLine($"StateSmith Version: [blue]{settings.version}[/]");
+        AnsiConsole.MarkupLine($"Target Language: [blue]{settings.TargetLanguageId}[/]");
+        AnsiConsole.MarkupLine($"StateSmith Version: [blue]{settings.StateSmithVersion}[/]");
         AnsiConsole.MarkupLine($"Diagram file: [blue]{settings.diagramFileName}[/]");
         AnsiConsole.MarkupLine($"Script file: [blue]{settings.scriptFileName}[/]");
 
         if (IsDrawIoSelected())
-            AnsiConsole.MarkupLine($"Template: [blue]{settings.drawIoDiagramTemplateId}[/]");
+            AnsiConsole.MarkupLine($"Template: [blue]{settings.DrawIoDiagramTemplateId}[/]");
         else
-            AnsiConsole.MarkupLine($"Template: [blue]{settings.plantUmlDiagramTemplateId}[/]");
+            AnsiConsole.MarkupLine($"Template: [blue]{settings.PlantUmlDiagramTemplateId}[/]");
 
         AnsiConsole.MarkupLine("");
 
@@ -149,7 +132,7 @@ class CreateUi
         AnsiConsole.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
         AnsiConsole.MarkupLine("");
 
-        string defaultValue = settings.smName + settings.fileExtension;
+        string defaultValue = settings.smName + settings.FileExtension;
         settings.diagramFileName = Ask("Enter diagram file name/path", defaultValue);
 
         settings.diagramFileName = settings.diagramFileName.Replace("$$", settings.smName);
@@ -168,15 +151,15 @@ class CreateUi
             new Item<string>(id: ".drawio",     display: "draw.io XML [grey]\".drawio\"[/]" ),
             new Item<string>(id: ".plantuml",   display: "PlantUML    [grey]\".plantuml\"[/]" ),
         };
-        AddRememberedToChoices(choices, id: settings.fileExtension);
+        AddRememberedToChoices(choices, id: settings.FileExtension);
 
-        settings.fileExtension = AnsiConsole.Prompt(
+        settings.FileExtension = AnsiConsole.Prompt(
                 new SelectionPrompt<Item<string>>()
                     .Title("")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
 
-        AnsiConsole.WriteLine($"Selected {settings.fileExtension}");
+        AnsiConsole.WriteLine($"Selected {settings.FileExtension}");
     }
 
     private static bool AddRememberedToChoices<T>(List<Item<T>> choices, T id) where T : notnull
@@ -210,9 +193,9 @@ class CreateUi
 
         AnsiConsole.MarkupLine("");
 
-        settings.version = Ask("Enter StateSmith version", defaultValue:"0.9.7-alpha");
+        settings.StateSmithVersion = Ask("Enter StateSmith version", defaultValue:"0.9.7-alpha");
 
-        AnsiConsole.WriteLine($"Selected {settings.version}");
+        AnsiConsole.WriteLine($"Selected {settings.StateSmithVersion}");
 
         // TODO validate version is valid
     }
@@ -249,7 +232,7 @@ class CreateUi
                 new Item<string>(id: "drawio-advanced",    display: "" ),
             };
         var templateTypeName = "draw.io";
-        AskTemplate(choices, templateTypeName, ref settings.drawIoDiagramTemplateId);
+        settings.DrawIoDiagramTemplateId = AskTemplate(choices, templateTypeName, settings.DrawIoDiagramTemplateId);
     }
 
     private void AskPlantUmlTemplate()
@@ -259,10 +242,10 @@ class CreateUi
             new Item<string>(id: "plantuml-simple-1",    display: "" ),
         };
         var templateTypeName = "PlantUML";
-        AskTemplate(choices, templateTypeName, ref settings.plantUmlDiagramTemplateId);
+        settings.PlantUmlDiagramTemplateId = AskTemplate(choices, templateTypeName, settings.PlantUmlDiagramTemplateId);
     }
 
-    private static void AskTemplate(List<Item<string>> choices, string templateTypeName, ref string templateSetting)
+    private string AskTemplate(List<Item<string>> choices, string templateTypeName, string templateSetting)
     {
         bool found = AddRememberedToChoices(choices, id: templateSetting);
 
@@ -278,11 +261,13 @@ class CreateUi
                     .AddChoices(choices)).Id;
 
         AnsiConsole.MarkupLine($"Selected [blue]{templateSetting}[/]");
+
+        return templateSetting;
     }
 
     private bool IsDrawIoSelected()
     {
-        return settings.fileExtension.Contains(".drawio");
+        return settings.FileExtension.Contains(".drawio");
     }
 
     private void AskTargetLanguage()
@@ -297,15 +282,15 @@ class CreateUi
             new Item<TargetLanguageId>(id: TargetLanguageId.JavaScript,  display: "JavaScript" ),
         };
 
-        AddRememberedToChoices(choices, id: settings.targetLanguageId);
+        AddRememberedToChoices(choices, id: settings.TargetLanguageId);
 
-        settings.targetLanguageId = AnsiConsole.Prompt(
+        settings.TargetLanguageId = AnsiConsole.Prompt(
                 new SelectionPrompt<Item<TargetLanguageId>>()
                     .Title("")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
 
-        AnsiConsole.MarkupLine($"Selected [blue]{settings.targetLanguageId}[/]");
+        AnsiConsole.MarkupLine($"Selected [blue]{settings.TargetLanguageId}[/]");
     }
 
     private void AddSectionHeader(string header)
@@ -380,5 +365,16 @@ class CreateUi
 
         // Done
         AnsiConsole.MarkupLine("You are all up to date!");
+    }
+
+    private void SaveSettings()
+    {
+        AnsiConsole.MarkupLine("");
+        AnsiConsole.MarkupLine("[grey]Saving settings...[/]");
+
+        var json = JsonSerializer.Serialize(settings, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText(settingsPath, json);
+
+        AnsiConsole.MarkupLine("[grey]Settings saved.[/]");
     }
 }
