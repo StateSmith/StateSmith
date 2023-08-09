@@ -1,6 +1,5 @@
 using StateSmith.SmGraph;
 using System;
-using System.Diagnostics;
 
 namespace StateSmith.Runner;
 

@@ -12,6 +12,7 @@ using StateSmith.Input.DrawIo;
 using System.Diagnostics.CodeAnalysis;
 using StateSmith.Common;
 using StateSmith.Output.Algos.Balanced1;
+using StateSmith.Output;
 
 namespace StateSmith.Runner;
 
@@ -194,7 +195,6 @@ public class InputSmBuilder
     public void FinishRunning()
     {
         SetupForSingleSm();
-        mangler.SetStateMachine(GetStateMachine());
         transformer.RunTransformationPipeline(GetStateMachine());
     }
 
@@ -212,10 +212,16 @@ public class InputSmBuilder
     {
         Sm = stateMachine;
         stateMachineProvider.SetStateMachine(Sm);
+        mangler.SetStateMachine(GetStateMachine());
+        sp.GetInstanceOf<OutputInfo>().baseFileName = mangler.BaseFileName;
     }
 
     //------------------------------------------------------------------------
 
+    /// <summary>
+    /// May be removed in the future. Better to get IDiagramVerticesProvider from DI instead.
+    /// </summary>
+    /// <returns></returns>
     internal List<Vertex> GetRootVertices()
     {
         return diagramToSmConverter.GetRootVertices();

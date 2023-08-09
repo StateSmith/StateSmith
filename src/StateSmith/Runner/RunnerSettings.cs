@@ -1,7 +1,7 @@
+#nullable enable
+
 using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 
@@ -89,6 +89,11 @@ public class RunnerSettings
     /// TODO_LOW check if we can remove. Scripts can use C# raw strings instead.
     /// </summary>
     public bool autoDeIndentAndTrimRenderConfigItems = true;
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/200
+    /// </summary>
+    public SmDesignDescriberSettings smDesignDescriber = new ();
 
     /// <summary>
     /// See https://github.com/StateSmith/StateSmith/issues/138

@@ -137,6 +137,8 @@ ignore:
     |
     'mainframe' HWS rest_of_line
     |
+    'title' HWS rest_of_line
+    |
     'skinparam' HWS identifier optional_any_space
     '{' ohs LINE_ENDER
         (

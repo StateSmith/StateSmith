@@ -473,6 +473,27 @@ public class ParsingTests
             """);
     }
 
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/216
+    /// Ignore title line
+    /// </summary>
+    [Fact]
+    public void DiagramIgnoreTitle()
+    {
+        ParseAssertNoError("""
+            @startuml MyPumlSm1
+            title Test Title
+            @enduml
+            """);
+
+        ParseAssertNoError("""
+            @startuml MyPumlSm1
+            title ""Test Title""
+            @enduml
+            """);
+    }
+
+
     //###############################################################################################
     // Start of tests for https://github.com/StateSmith/StateSmith/issues/215
     //###############################################################################################

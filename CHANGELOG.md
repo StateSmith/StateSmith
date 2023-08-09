@@ -13,7 +13,7 @@ We have a slew of state machine behavior specification tests to help ensure we d
 
 The majority of our breaking changes have been to code generation scripts (.csx files) as major features are implemented and require rework. Updating the .csx file scripts usually only takes a few minutes. Feel free to ask for help if you have any problems.
 
-# Release Template
+Release Template
 
 ```
 ## [some_version]
@@ -24,11 +24,22 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
 
+# Releases
+Test/interim releases are not documented here.
+
 ## WIP
 ### Added
 - PlantUML - extend ignored diagram elements list (@chriesibaum).
   - Now supports `mainframe` and old skin `skin rose`.
   - https://github.com/StateSmith/StateSmith/issues/215
+
+## [0.9.8-alpha]
+### Added
+- Add state machine description file for easier git diffing and understanding.
+  - https://github.com/StateSmith/StateSmith/issues/200
+- PlantUML - extend ignored diagram elements list
+  - Now supports `title` (@yongzhy).
+  - https://github.com/StateSmith/StateSmith/issues/216
 
 ---
 
@@ -76,8 +87,6 @@ The majority of our breaking changes have been to code generation scripts (.csx 
   - https://github.com/StateSmith/StateSmith/issues/191
 
 ---
-
-# Releases
 
 ## [0.9.3-alpha]
 ### Added

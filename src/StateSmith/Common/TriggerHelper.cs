@@ -149,6 +149,17 @@ public static class TriggerHelper
     }
 
     /// <summary>
+    /// This function is special in that it can be called before transformations are applied,
+    /// like the one that adds the implicit do trigger.
+    /// </summary>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static bool HasAnEventTrigger(Behavior b)
+    {
+        return b.Triggers.Any(t => IsEvent(t)) || b.HasImplicitDoTriggerOnly();
+    }
+
+    /// <summary>
     /// Sanitizes triggers.
     /// </summary>
     /// <param name="vertex"></param>
