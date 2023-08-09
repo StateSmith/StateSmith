@@ -54,6 +54,84 @@ public class TemplateRenderTest
     }
 
     [Fact]
+    public void MultiLineFilter()
+    {
+        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
+
+        const string Template = """
+            Header 
+            //!!<filter:CppC>
+            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
+            // See https://github.com/StateSmith/StateSmith/issues/126
+            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
+            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
+            //!!</filter>
+            Footer stuff
+            """;
+        r.SetTemplate(Template);
+
+        r.Render().ShouldBeShowDiff("""
+            Header 
+            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
+            // See https://github.com/StateSmith/StateSmith/issues/126
+            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
+            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
+            Footer stuff
+            """);
+    }
+
+    [Fact]
+    public void MultiLineFilter_MultiTag()
+    {
+        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
+
+        const string Template = """
+            Header 
+            //!!<filter:JavaScript,CppC>
+            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
+            // See https://github.com/StateSmith/StateSmith/issues/126
+            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
+            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
+            //!!</filter>
+            Footer stuff
+            """;
+        r.SetTemplate(Template);
+
+        r.Render().ShouldBeShowDiff("""
+            Header 
+            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
+            // See https://github.com/StateSmith/StateSmith/issues/126
+            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
+            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
+            Footer stuff
+            """);
+    }
+
+    [Fact]
+    public void MultiLineFilter_Negative()
+    {
+        var r = new TemplateRenderer(TargetLanguageId.C, "0.8.1-alpha", "../../MySm.drawio");
+
+        const string Template = """
+            Header 
+            //!!<filter:CppC>
+            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
+            // See https://github.com/StateSmith/StateSmith/issues/126
+            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
+            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
+            //!!</filter>
+            Footer stuff
+            """;
+        r.SetTemplate(Template);
+
+        r.Render().ShouldBeShowDiff("""
+            Header 
+            Footer stuff
+            """);
+    }
+
+
+    [Fact]
     public void ReplaceStateSmithVersion()
     {
         var r = new TemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");

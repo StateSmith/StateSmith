@@ -37,8 +37,48 @@ public class TemplateRenderer
             _ => throw new System.NotImplementedException(),
         };
 
-        Regex regex = new(@"//!!<filter:(?<tags>[^>]+)>(?<inner>(?:.|\n)*?)//!!<\/filter>");
+        str = ReplaceMultiLineFilters(str, langKey);
 
+        str = ReplaceLineFilters(str, langKey);
+
+        return str;
+    }
+
+    private static string ReplaceMultiLineFilters(string str, string langKey)
+    {
+        Regex multilineFilter = new(@"(?x)
+            (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
+            //!!<filter:
+            (?<tags>
+                [^>]+
+            )
+            >
+            (?<inner>
+                (?:.|\n)
+            *?)
+            (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
+            //!!<\/filter>
+            [ \t]*
+        ");
+
+
+        str = multilineFilter.Replace(str, (Match match) =>
+        {
+            var tags = match.Groups["tags"].Value.Split(',');
+            var inner = match.Groups["inner"].Value;
+
+            if (tags.Contains(langKey))
+            {
+                return inner;
+            }
+
+            return "";
+        });
+        return str;
+    }
+
+    private static string ReplaceLineFilters(string str, string langKey)
+    {
         Regex lineRegex = new(@"(?x)
             (?<line>
                 (?:\r\n|\r|\n|^)    # line break or start of string
@@ -63,8 +103,6 @@ public class TemplateRenderer
 
             return "";
         });
-
-
         return str;
     }
 
