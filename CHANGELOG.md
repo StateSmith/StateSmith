@@ -27,7 +27,7 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-## WIP
+## [0.9.9-alpha]
 ### Added
 - Add state machine description file for easier git diffing and understanding.
   - https://github.com/StateSmith/StateSmith/issues/200
