@@ -27,6 +27,12 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## WIP
+### Added
+- PlantUML - extend ignored diagram elements list (@chriesibaum).
+  - Now supports `mainframe` and old skin `skin rose`.
+  - https://github.com/StateSmith/StateSmith/issues/215
+
 ## [0.9.8-alpha]
 ### Added
 - Add state machine description file for easier git diffing and understanding.

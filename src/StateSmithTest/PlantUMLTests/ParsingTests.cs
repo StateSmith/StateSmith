@@ -493,6 +493,155 @@ public class ParsingTests
             """);
     }
 
+
+    //###############################################################################################
+    // Start of tests for https://github.com/StateSmith/StateSmith/issues/215
+    //###############################################################################################
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeSimple_215()
+    {
+        ParseAssertNoError("""
+            @startuml blinky1_printf_sm
+            mainframe This is a **mainframe**
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeStartingWithLetter_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe This is a **mainframe** and other characters 12398753298-->:!@(*&^%##$%^&*()_+{}|:"<>?[]\;',./
+            [*] --> S1
+            @enduml
+            """);
+
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe lowercase title and other characters 12398753298-->:!@(*&^%##$%^&*()_+{}|:"<>?[]\;',./
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeStartingWithDigit_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe 1234 This is a **mainframe** and other characters 12398753298-->:!@(*&^%##$%^&*()_+{}|:"<>?[]\;',./
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeStartingWithBold_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe **1234 title**
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeStartingWithItalic_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe //**1234 title**//
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// We shouldn't ignore mainframe if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void MainframeStateName_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe --> S1
+            [*] --> mainframe
+            @enduml
+            """);
+
+        GetVertexById("mainframe");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// skin rose https://twitter.com/PlantUML/status/1492968858960990222?lang=en
+    /// </summary>
+    [Fact]
+    public void IgnoreSkinRoseTiny_215()
+    {
+        ParseAssertNoError("""
+            @startuml blinky1_printf_sm
+            skin rose
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// skin basic https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreSkinBasicTiny_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            skin basic
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// We shouldn't ignore skin if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void SkinStateName_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            skin --> S1
+            [*] --> skin
+            @enduml
+            """);
+
+        GetVertexById("skin");
+    }
+
+    //###############################################################################################
+    // End of tests for https://github.com/StateSmith/StateSmith/issues/215
+    //###############################################################################################
+
+
+
     private DiagramNode GetVertexById(string id)
     {
         return translator.GetDiagramNode(id);

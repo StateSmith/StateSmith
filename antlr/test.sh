@@ -25,7 +25,7 @@
 grun PlantUML diagram -gui -tokens -trace test_input.txt
 
 ## parses and shows which tokens are consumed
-# grun PlantUML diagram -tokens -trace test_input.txt | grep "consume"
+grun PlantUML diagram -tokens -trace test_input.txt | grep "consume"
 
 ## if you are looking for an error, this will show only stderr
 # grun PlantUML diagram -tokens -trace test_input.txt > /dev/null
