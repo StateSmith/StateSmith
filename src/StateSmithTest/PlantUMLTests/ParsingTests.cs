@@ -478,7 +478,7 @@ public class ParsingTests
     /// Ignore title line
     /// </summary>
     [Fact]
-    public void DiagramIgnoreTitle()
+    public void DiagramIgnoreTitle_216()
     {
         ParseAssertNoError("""
             @startuml MyPumlSm1
@@ -491,8 +491,47 @@ public class ParsingTests
             title ""Test Title""
             @enduml
             """);
+
+        ParseAssertNoError("""
+            @startuml MyPumlSm1
+            title //**Test// Title**
+            @enduml
+            """);
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/216
+    /// We shouldn't ignore title if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void TitleStateName_216()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            title --> S1
+            [*] --> mainframe
+            @enduml
+            """);
+
+        GetVertexById("title");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/216
+    /// We shouldn't ignore title if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void TitleStateName2_216()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            S1 --> title
+            [*] --> S1
+            @enduml
+            """);
+
+        GetVertexById("title");
+    }
 
     //###############################################################################################
     // Start of tests for https://github.com/StateSmith/StateSmith/issues/215

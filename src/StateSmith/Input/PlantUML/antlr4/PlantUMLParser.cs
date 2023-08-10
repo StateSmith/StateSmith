@@ -537,6 +537,7 @@ public partial class PlantUMLParser : Parser {
 			case T__16:
 			case T__17:
 			case T__18:
+			case T__19:
 			case T__20:
 			case T__22:
 			case T__23:
@@ -1395,7 +1396,7 @@ public partial class PlantUMLParser : Parser {
 						State = 211;
 						ErrorHandler.Sync(this);
 						_la = TokenStream.LA(1);
-						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__20) | (1L << T__22) | (1L << T__23) | (1L << IDENTIFIER))) != 0)) {
+						if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__22) | (1L << T__23) | (1L << IDENTIFIER))) != 0)) {
 							{
 							State = 195;
 							identifier();
@@ -1437,6 +1438,7 @@ public partial class PlantUMLParser : Parser {
 								case T__16:
 								case T__17:
 								case T__18:
+								case T__19:
 								case T__20:
 								case T__22:
 								case T__23:
@@ -1465,7 +1467,7 @@ public partial class PlantUMLParser : Parser {
 								State = 209;
 								ErrorHandler.Sync(this);
 								_la = TokenStream.LA(1);
-							} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << IDENTIFIER) | (1L << DIGIT))) != 0) );
+							} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << IDENTIFIER) | (1L << DIGIT))) != 0) );
 							}
 						}
 
@@ -2316,7 +2318,7 @@ public partial class PlantUMLParser : Parser {
 			{
 			State = 332;
 			_la = TokenStream.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__20) | (1L << T__22) | (1L << T__23) | (1L << IDENTIFIER))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__12) | (1L << T__13) | (1L << T__14) | (1L << T__16) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__22) | (1L << T__23) | (1L << IDENTIFIER))) != 0)) ) {
 			ErrorHandler.RecoverInline(this);
 			}
 			else {
@@ -2414,13 +2416,13 @@ public partial class PlantUMLParser : Parser {
 		'*', ',', '.', '\x30', '\x32', '\x2', '\t', '\x3', '\x2', '\x1D', '\x1E', 
 		'\x3', '\x2', '\x5', '\x6', '\x5', '\x2', '\x4', '\x4', '\a', '\a', '\x1E', 
 		'\x1E', '\x3', '\x2', '\xF', '\x10', '\x3', '\x2', '\x1E', '\x1E', '\x4', 
-		'\x2', '\x1E', '\x1E', '&', '&', '\a', '\x2', '\xF', '\x11', '\x13', '\x15', 
-		'\x17', '\x17', '\x19', '\x1A', '\x1F', '\x1F', '\x2', '\x16A', '\x2', 
-		'\x34', '\x3', '\x2', '\x2', '\x2', '\x4', ';', '\x3', '\x2', '\x2', '\x2', 
-		'\x6', '\x41', '\x3', '\x2', '\x2', '\x2', '\b', '\x44', '\x3', '\x2', 
-		'\x2', '\x2', '\n', '\x46', '\x3', '\x2', '\x2', '\x2', '\f', 'J', '\x3', 
-		'\x2', '\x2', '\x2', '\xE', 'V', '\x3', '\x2', '\x2', '\x2', '\x10', 'h', 
-		'\x3', '\x2', '\x2', '\x2', '\x12', 'j', '\x3', '\x2', '\x2', '\x2', '\x14', 
+		'\x2', '\x1E', '\x1E', '&', '&', '\x6', '\x2', '\xF', '\x11', '\x13', 
+		'\x17', '\x19', '\x1A', '\x1F', '\x1F', '\x2', '\x16A', '\x2', '\x34', 
+		'\x3', '\x2', '\x2', '\x2', '\x4', ';', '\x3', '\x2', '\x2', '\x2', '\x6', 
+		'\x41', '\x3', '\x2', '\x2', '\x2', '\b', '\x44', '\x3', '\x2', '\x2', 
+		'\x2', '\n', '\x46', '\x3', '\x2', '\x2', '\x2', '\f', 'J', '\x3', '\x2', 
+		'\x2', '\x2', '\xE', 'V', '\x3', '\x2', '\x2', '\x2', '\x10', 'h', '\x3', 
+		'\x2', '\x2', '\x2', '\x12', 'j', '\x3', '\x2', '\x2', '\x2', '\x14', 
 		'l', '\x3', '\x2', '\x2', '\x2', '\x16', 'x', '\x3', '\x2', '\x2', '\x2', 
 		'\x18', '\x82', '\x3', '\x2', '\x2', '\x2', '\x1A', '\x86', '\x3', '\x2', 
 		'\x2', '\x2', '\x1C', '\xA7', '\x3', '\x2', '\x2', '\x2', '\x1E', '\xAA', 

@@ -265,6 +265,7 @@ identifier
     | 'scale'
     | 'skin'
     | 'mainframe'
+    | 'title'
     | 'skinparam'
     ;
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   ( IDENTIFIER_NON_DIGIT | DIGIT )*  ;
