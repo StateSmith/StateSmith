@@ -32,7 +32,7 @@ Test/interim releases are not documented here.
 - PlantUML - support case insensitive stereo types for entryPoint, exitPoint, choice.
   - https://github.com/StateSmith/StateSmith/issues/227
 ### Changed (minor)
-- PlantUML - diagram element IDs improved for states.
+- PlantUML - improve diagram element IDs for states.
   - Most people won't notice this unless generating an output file for git diffing.
   - Used to be something like `line_2_column_6`, but now matches unique state ID used in PlantUML diagram.
 
