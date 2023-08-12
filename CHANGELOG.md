@@ -28,6 +28,9 @@ Release Template
 Test/interim releases are not documented here.
 
 ## WIP
+### Added
+- PlantUML - support case insensitive stereo types for entryPoint, exitPoint, choice.
+  - https://github.com/StateSmith/StateSmith/issues/227
 ### Changed (minor)
 - PlantUML - diagram element IDs improved for states.
   - Most people won't notice this unless generating an output file for git diffing.

@@ -6,6 +6,7 @@ using StateSmith.SmGraph;
 using StateSmith.Input;
 using FluentAssertions;
 using StateSmith.Runner;
+using System.Linq;
 
 namespace StateSmithTest.PlantUMLTests;
 
@@ -181,7 +182,7 @@ public class ParsingTests
             @startuml SompySm
             state Somp {
               state entry1 <<entryPoint>>
-              state entry2 <<entryPoint>>
+              state entry2 <<entrypoint>>    /' case insensitive allowed https://github.com/StateSmith/StateSmith/issues/227 '/
               state sin
               entry1 --> sin
               entry2 -> sin
@@ -266,6 +267,35 @@ public class ParsingTests
             new Behavior(){ _transitionTarget = s1, guardCode = "id <= 10" },
             new Behavior(){ _transitionTarget = s2 },
         }, behaviorMatcher);
+    }
+
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/227
+    /// </summary>
+    [Fact]
+    public void ChoicePointsCaseInsensitive_227()
+    {
+        var plantUmlText = """
+            @startuml ExampleSm
+            state c1 <<choice>>
+            state c2 <<Choice>>
+            state c3 <<CHOICE>>
+            [*] --> c1
+            c1 --> c2
+            c2 -> c3
+            c3 --> S1
+            @enduml
+            """;
+        InputSmBuilder inputSmBuilder = new();
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.FinishRunning();
+
+        StateMachine root = inputSmBuilder.GetStateMachine();
+
+        // find choice points by diagram id
+        root.ChildWithDiagramId("c1").As<ChoicePoint>(); // will throw if not found, or wrong type
+        root.ChildWithDiagramId("c2").As<ChoicePoint>(); // will throw if not found, or wrong type
+        root.ChildWithDiagramId("c3").As<ChoicePoint>(); // will throw if not found, or wrong type
     }
 
     [Fact]
