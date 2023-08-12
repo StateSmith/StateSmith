@@ -27,6 +27,14 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## WIP
+### Changed (minor)
+- PlantUML - diagram element IDs improved for states.
+  - Most people won't notice this unless generating an output file for git diffing.
+  - Used to be something like `line_2_column_6`, but now matches unique state ID used in PlantUML diagram.
+
+---
+
 ## [0.9.9-alpha]
 ### Added
 - Add state machine description file for easier git diffing and understanding.
