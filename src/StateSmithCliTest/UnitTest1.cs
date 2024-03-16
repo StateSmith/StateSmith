@@ -1,7 +1,6 @@
 using System;
 using Xunit;
-
-using StateSmith.Runner;
+using StateSmithCli.Create;
 
 namespace StateSmithCliTest;
 

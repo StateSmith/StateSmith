@@ -1,9 +1,7 @@
-#nullable enable
-
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace StateSmith.Runner;
+namespace StateSmithCli.Create;
 
 public class TemplateRenderer
 {
@@ -62,7 +60,7 @@ public class TemplateRenderer
         ");
 
 
-        str = multilineFilter.Replace(str, (Match match) =>
+        str = multilineFilter.Replace(str, (match) =>
         {
             var tags = match.Groups["tags"].Value.Split(',');
             var inner = match.Groups["inner"].Value;
@@ -91,7 +89,7 @@ public class TemplateRenderer
             >
         .*");
 
-        str = lineRegex.Replace(str, (Match match) =>
+        str = lineRegex.Replace(str, (match) =>
         {
             var tags = match.Groups["tags"].Value.Split(',');
             var line = match.Groups["line"].Value.TrimEnd();

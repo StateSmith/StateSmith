@@ -7,6 +7,7 @@
     <Company>Adam Fraser-Kruck</Company>
     <Product>StateSmith</Product>
     <Authors>Adam Fraser-Kruck</Authors>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

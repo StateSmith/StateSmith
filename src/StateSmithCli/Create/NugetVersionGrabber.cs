@@ -7,7 +7,7 @@ using NuGet.Versioning;
 using System.Threading.Tasks;
 using NuGet.Common;
 
-namespace StateSmith.Runner;
+namespace StateSmithCli.Create;
 
 public class NugetVersionGrabber
 {

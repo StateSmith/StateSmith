@@ -1,13 +1,4 @@
-#nullable enable
-
-namespace StateSmith.Runner;
-
-//internal class Item : Item<string>
-//{
-//    public Item(string id, string display) : base(id, display)
-//    {
-//    }
-//}
+namespace StateSmithCli.Create;
 
 internal class Item<T> : ICloneable<Item<T>> where T : notnull
 {

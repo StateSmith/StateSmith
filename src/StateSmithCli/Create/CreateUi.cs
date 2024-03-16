@@ -1,7 +1,4 @@
-#nullable enable
-
 using Spectre.Console;
-using System.Text;
 using System;
 using System.Threading;
 using System.Collections.Generic;
@@ -9,9 +6,8 @@ using System.Linq;
 using System.IO;
 using System.Reflection;
 using System.Text.Json;
-using NuGet.Configuration;
 
-namespace StateSmith.Runner;
+namespace StateSmithCli.Create;
 
 class CreateUi
 {
@@ -193,7 +189,7 @@ class CreateUi
 
         AnsiConsole.MarkupLine("");
 
-        settings.StateSmithVersion = Ask("Enter StateSmith version", defaultValue:"0.9.7-alpha");
+        settings.StateSmithVersion = Ask("Enter StateSmith version", defaultValue: "0.9.7-alpha");
 
         AnsiConsole.WriteLine($"Selected {settings.StateSmithVersion}");
 
@@ -202,7 +198,7 @@ class CreateUi
 
     private static string Ask(string prompt, string defaultValue)
     {
-        return AnsiConsole.Prompt<string>(
+        return AnsiConsole.Prompt(
             new TextPrompt<string>(prompt)
                 .DefaultValue(defaultValue)
                 .DefaultValueStyle("grey")

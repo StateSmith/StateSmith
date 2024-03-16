@@ -1,6 +1,4 @@
-#nullable enable
-
-namespace StateSmith.Runner;
+namespace StateSmithCli.Create;
 
 internal interface ICloneable<T>
 {

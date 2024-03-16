@@ -1,5 +1,6 @@
 using FluentAssertions;
 using StateSmith.Runner;
+using StateSmithCli.Create;
 using StateSmithTest;
 using Xunit;
 
