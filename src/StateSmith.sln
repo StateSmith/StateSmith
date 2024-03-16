@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmith", "StateSmith\StateSmith.csproj", "{A13DA37C-A1BF-4E23-A27C-E33A313F261D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmithTest", "StateSmithTest\StateSmithTest.csproj", "{9794BE7A-9263-4A81-B4F4-39514274AA2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateSmithCli", "StateSmithCli\StateSmithCli.csproj", "{FF88C66A-8271-4BE3-BB28-2606987457E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmithCli", "StateSmithCli\StateSmithCli.csproj", "{FF88C66A-8271-4BE3-BB28-2606987457E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StateSmithCliTest", "StateSmithCliTest\StateSmithCliTest.csproj", "{57CC9C7B-0FCF-4E0B-8BCF-CEA4FABD9040}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmithCliTest", "StateSmithCliTest\StateSmithCliTest.csproj", "{57CC9C7B-0FCF-4E0B-8BCF-CEA4FABD9040}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
