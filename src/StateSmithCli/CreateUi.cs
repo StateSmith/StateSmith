@@ -308,7 +308,7 @@ class CreateUi
     {
         AddSectionHeader("State Machine Name");
 
-        AnsiConsole.MarkupLine("This sets the name of the state machine in the diagram, generated code");
+        AnsiConsole.MarkupLine("This sets the name of the state machine in the diagram, generated code,");
         AnsiConsole.MarkupLine("and will be used for auto suggesting file names in later steps.");
         AnsiConsole.MarkupLine("[grey]Default shown in (parenthesis).[/]");
         AnsiConsole.MarkupLine("");
