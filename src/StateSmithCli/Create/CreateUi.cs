@@ -225,7 +225,6 @@ class CreateUi
         var choices = new List<Item<string>>()
             {
                 new Item<string>(id: "drawio-simple-1",    display: "" ),
-                new Item<string>(id: "drawio-advanced",    display: "" ),
             };
         var templateTypeName = "draw.io";
         settings.DrawIoDiagramTemplateId = AskTemplate(choices, templateTypeName, settings.DrawIoDiagramTemplateId);

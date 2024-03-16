@@ -1,0 +1,17 @@
+@startuml MySmName
+
+/' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML '/
+
+state OFF {
+  OFF : enter / outputText("OFF");
+}
+
+state ON1 {
+  ON1 : enter / outputText("ON");
+}
+
+[*] -> OFF
+OFF --> ON1 : INCREASE
+ON1 --> OFF : DIM
+
+@enduml
