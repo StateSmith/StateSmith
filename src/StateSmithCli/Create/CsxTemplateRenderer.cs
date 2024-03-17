@@ -3,14 +3,14 @@ using System.Text.RegularExpressions;
 
 namespace StateSmithCli.Create;
 
-public class TemplateRenderer
+public class CsxTemplateRenderer
 {
     protected TargetLanguageId targetLanguageId;
     protected string stateSmithVersion;
     protected string diagramPath;
     protected string template;
 
-    public TemplateRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath, string template = "")
+    public CsxTemplateRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath, string template = "")
     {
         this.targetLanguageId = targetLanguageId;
         this.stateSmithVersion = stateSmithVersion;

@@ -11,7 +11,7 @@ public class TemplateRenderTest
     [Fact]
     public void LineFilterSingle()
     {
-        var r = new TemplateRenderer(TargetLanguageId.C, "0.8.1-alpha", "../../MySm.drawio");
+        var r = new CsxTemplateRenderer(TargetLanguageId.C, "0.8.1-alpha", "../../MySm.drawio");
 
         const string Template = """
             Header stuff
@@ -33,7 +33,7 @@ public class TemplateRenderTest
     [Fact]
     public void LineFilterMulti()
     {
-        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
+        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
 
         const string Template = """
             Header 
@@ -57,7 +57,7 @@ public class TemplateRenderTest
     [Fact]
     public void MultiLineFilter()
     {
-        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
+        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
 
         const string Template = """
             Header 
@@ -84,7 +84,7 @@ public class TemplateRenderTest
     [Fact]
     public void MultiLineFilter_MultiTag()
     {
-        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
+        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
 
         const string Template = """
             Header 
@@ -111,7 +111,7 @@ public class TemplateRenderTest
     [Fact]
     public void MultiLineFilter_Negative()
     {
-        var r = new TemplateRenderer(TargetLanguageId.C, "0.8.1-alpha", "../../MySm.drawio");
+        var r = new CsxTemplateRenderer(TargetLanguageId.C, "0.8.1-alpha", "../../MySm.drawio");
 
         const string Template = """
             Header 
@@ -135,7 +135,7 @@ public class TemplateRenderTest
     [Fact]
     public void ReplaceStateSmithVersion()
     {
-        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
+        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
 
         const string Template = """
             #!/usr/bin/env dotnet-script
@@ -156,7 +156,7 @@ public class TemplateRenderTest
     [Fact]
     public void ReplaceDiagramPath()
     {
-        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
+        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
 
         const string Template = """
             SmRunner runner = new(diagramPath: "{{diagramPath}}", new MyRenderConfig(), transpilerId: {{transpilerId}});
@@ -175,7 +175,7 @@ public class TemplateRenderTest
     {
         var csxTemplate = TemplateLoader.LoadCsx("drawio-simple-1");
 
-        var r = new TemplateRenderer(TargetLanguageId.C, "0.9.9-alpha", "../../MySm.drawio", template: csxTemplate);
+        var r = new CsxTemplateRenderer(TargetLanguageId.C, "0.9.9-alpha", "../../MySm.drawio", template: csxTemplate);
 
         var result = r.Render();
 

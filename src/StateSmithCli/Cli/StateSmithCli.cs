@@ -8,7 +8,7 @@ namespace StateSmithCli.Cli;
 
 
 /// <summary>
-/// StateSmithUI --create
+/// StateSmithUI create
 /// </summary>
 class StateSmithCli
 {
@@ -24,13 +24,16 @@ class StateSmithCli
         //public bool Create { get; set; }
     }
 
-    [Verb("run", HelpText = "Runs the StateSmith project.")]
+    [Verb("run", HelpText = "Runs the StateSmith code generation for a diagram. Not implemented yet.")]
     class DrawioUpdateOptions
     {
-        [Option("fileName", Required = true, HelpText = "The name of the file to run.")]
-        public bool Run { get; set; }
+        [Option('i', "input_digram", Required = true, HelpText = "The name of the diagram to generate code for.")]
+        public bool inputDiagram { get; set; }
     }
 
+    // TODOLOW - help setup vscode script intellisense
+    // TODOLOW - setup vscode with StateSmith plugin for draw.io extension
+    // TODOLOW - colorize drawio file
 
     static void Main(string[] args)
     {
@@ -43,7 +46,7 @@ class StateSmithCli
             },
             (DrawioUpdateOptions opts) =>
             {
-                Console.WriteLine("Run");
+                Console.WriteLine("Run. Not implemented yet.");
                 return 0;
             },
             errs =>

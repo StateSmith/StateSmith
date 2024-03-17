@@ -6,6 +6,7 @@ using System.Linq;
 using System.IO;
 using System.Reflection;
 using System.Text.Json;
+using StateSmithCli.Utils;
 
 namespace StateSmithCli.Create;
 
@@ -40,11 +41,8 @@ class CreateUi
 
         DiagramTemplate();
 
-        // TODO:
-        // (if version supports it)
-        // Generate state machine description markdown file?
-
-        // TODOLOW - help setup vscode script intellisense?
+        // TODO: ask if should generate state machine description markdown file (if version supports it)
+        // TODOLOW - generate runnable example?
 
         SaveSettings();
 
@@ -56,39 +54,7 @@ class CreateUi
             return;
         }
 
-        GenerateFiles();
-    }
-
-    private void GenerateFiles()
-    {
-        var templateName = IsDrawIoSelected() ? settings.DrawIoDiagramTemplateId : settings.PlantUmlDiagramTemplateId;
-        GenerateCsx(templateName);
-        GenerateDiagramFile(templateName);
-    }
-
-    private void GenerateCsx(string templateName)
-    {
-        var templateStr = TemplateLoader.LoadCsx(templateName);
-        var r = new TemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: settings.diagramFileName, template: templateStr);
-        var result = r.Render();
-        File.WriteAllText(settings.scriptFileName, result);
-    }
-
-    private void GenerateDiagramFile(string templateName)
-    {
-        var inputFileExtension = IsDrawIoSelected() ? ".drawio" : ".plantuml";
-        var templateStr = TemplateLoader.LoadResource(templateName, fileExtension: inputFileExtension);
-        var result = templateStr.Replace("{{smName}}", settings.smName);
-
-        if (IsDrawIoSvgSelected())
-        {
-            // TODO create global template SVG file that is an image saying to load file with drawio and save it again
-            // TODO base64 encode.
-            // TODO update template
-            throw new Exception("SVG support not implemented yet");
-        }
-
-        File.WriteAllText(settings.diagramFileName, result);
+        new Generator(settings).GenerateFiles();
     }
 
     private void ReadSettingsFromJson()
@@ -128,7 +94,7 @@ class CreateUi
         AnsiConsole.MarkupLine($"Diagram file: [blue]{settings.diagramFileName}[/]");
         AnsiConsole.MarkupLine($"Script file: [blue]{settings.scriptFileName}[/]");
 
-        if (IsDrawIoSelected())
+        if (settings.IsDrawIoSelected())
             AnsiConsole.MarkupLine($"Template: [blue]{settings.DrawIoDiagramTemplateId}[/]");
         else
             AnsiConsole.MarkupLine($"Template: [blue]{settings.PlantUmlDiagramTemplateId}[/]");
@@ -173,16 +139,16 @@ class CreateUi
         AnsiConsole.MarkupLine($"Choose the diagram file type you want to use.");
         AnsiConsole.MarkupLine("[grey italic]More info: https://github.com/StateSmith/StateSmith/wiki/draw.io:-file-choice [/]");
 
-        var choices = new List<Item<string>>()
+        var choices = new List<UiItem<string>>()
         {
-            new Item<string>(id: ".drawio.svg", display: "draw.io SVG [grey]\".drawio.svg\"[/]" ),
-            new Item<string>(id: ".drawio",     display: "draw.io XML [grey]\".drawio\"[/]" ),
-            new Item<string>(id: ".plantuml",   display: "PlantUML    [grey]\".plantuml\"[/]" ),
+            new UiItem<string>(id: ".drawio.svg", display: "draw.io SVG [grey]\".drawio.svg\"[/]" ),
+            new UiItem<string>(id: ".drawio",     display: "draw.io XML [grey]\".drawio\"[/]" ),
+            new UiItem<string>(id: ".plantuml",   display: "PlantUML    [grey]\".plantuml\"[/]" ),
         };
         AddRememberedToChoices(choices, id: settings.FileExtension);
 
         settings.FileExtension = AnsiConsole.Prompt(
-                new SelectionPrompt<Item<string>>()
+                new SelectionPrompt<UiItem<string>>()
                     .Title("")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
@@ -190,7 +156,7 @@ class CreateUi
         AnsiConsole.WriteLine($"Selected {settings.FileExtension}");
     }
 
-    private static bool AddRememberedToChoices<T>(List<Item<T>> choices, T id) where T : notnull
+    private static bool AddRememberedToChoices<T>(List<UiItem<T>> choices, T id) where T : notnull
     {
         bool found = false;
         var defaultItem = choices.FirstOrDefault(x => x.Id.Equals(id));
@@ -242,7 +208,7 @@ class CreateUi
         AddSectionHeader("Diagram Template");
         //AnsiConsole.MarkupLine("[grey]?[/]");
 
-        if (IsDrawIoSelected())
+        if (settings.IsDrawIoSelected())
         {
             AskDrawIoTemplate();
         }
@@ -254,9 +220,9 @@ class CreateUi
 
     private void AskDrawIoTemplate()
     {
-        var choices = new List<Item<string>>()
+        var choices = new List<UiItem<string>>()
             {
-                new Item<string>(id: "drawio-simple-1",    display: "" ),
+                new UiItem<string>(id: "drawio-simple-1",    display: "" ),
             };
         var templateTypeName = "draw.io";
         settings.DrawIoDiagramTemplateId = AskTemplate(choices, templateTypeName, settings.DrawIoDiagramTemplateId);
@@ -264,15 +230,15 @@ class CreateUi
 
     private void AskPlantUmlTemplate()
     {
-        var choices = new List<Item<string>>()
+        var choices = new List<UiItem<string>>()
         {
-            new Item<string>(id: "plantuml-simple-1",    display: "" ),
+            new UiItem<string>(id: "plantuml-simple-1",    display: "" ),
         };
         var templateTypeName = "PlantUML";
         settings.PlantUmlDiagramTemplateId = AskTemplate(choices, templateTypeName, settings.PlantUmlDiagramTemplateId);
     }
 
-    private string AskTemplate(List<Item<string>> choices, string templateTypeName, string templateSetting)
+    private string AskTemplate(List<UiItem<string>> choices, string templateTypeName, string templateSetting)
     {
         bool found = AddRememberedToChoices(choices, id: templateSetting);
 
@@ -282,7 +248,7 @@ class CreateUi
         }
 
         templateSetting = AnsiConsole.Prompt(
-                new SelectionPrompt<Item<string>>()
+                new SelectionPrompt<UiItem<string>>()
                     .Title($"Select {templateTypeName} template")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
@@ -292,33 +258,22 @@ class CreateUi
         return templateSetting;
     }
 
-    private bool IsDrawIoSelected()
-    {
-        return settings.FileExtension.Contains(".drawio");
-    }
-
-    private bool IsDrawIoSvgSelected()
-    {
-        return settings.FileExtension.Contains(".drawio.svg");
-    }
-
-
     private void AskTargetLanguage()
     {
         AddSectionHeader("Target Language");
 
-        var choices = new List<Item<TargetLanguageId>>()
+        var choices = new List<UiItem<TargetLanguageId>>()
         {
-            new Item<TargetLanguageId>(id: TargetLanguageId.C,           display: "C99" ),
-            new Item<TargetLanguageId>(id: TargetLanguageId.CppC,        display: "C++ [grey](c style, improvements coming)[/]" ),
-            new Item<TargetLanguageId>(id: TargetLanguageId.CSharp,      display: "C#" ),
-            new Item<TargetLanguageId>(id: TargetLanguageId.JavaScript,  display: "JavaScript" ),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.C,           display: "C99" ),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.CppC,        display: "C++ [grey](c style, improvements coming)[/]" ),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.CSharp,      display: "C#" ),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.JavaScript,  display: "JavaScript" ),
         };
 
         AddRememberedToChoices(choices, id: settings.TargetLanguageId);
 
         settings.TargetLanguageId = AnsiConsole.Prompt(
-                new SelectionPrompt<Item<TargetLanguageId>>()
+                new SelectionPrompt<UiItem<TargetLanguageId>>()
                     .Title("")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
