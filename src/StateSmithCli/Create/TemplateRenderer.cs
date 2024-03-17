@@ -27,7 +27,18 @@ public class TemplateRenderer
     {
         var str = template.Replace("{{stateSmithVersion}}", stateSmithVersion).Replace("{{diagramPath}}", diagramPath);
 
-        var langKey = targetLanguageId switch
+        var transpilerId = targetLanguageId switch
+        {
+            TargetLanguageId.C => "C99",
+            TargetLanguageId.CppC => "C99",
+            TargetLanguageId.CSharp => "CSharp",
+            TargetLanguageId.JavaScript => "JavaScript",
+            _ => throw new System.NotImplementedException(),
+        };
+
+        str = str.Replace("{{transpilerId}}", transpilerId);
+
+        var langKeyFilterKey = targetLanguageId switch
         {
             TargetLanguageId.C => "C",
             TargetLanguageId.CppC => "CppC",
@@ -36,9 +47,9 @@ public class TemplateRenderer
             _ => throw new System.NotImplementedException(),
         };
 
-        str = ReplaceMultiLineFilters(str, langKey);
+        str = ReplaceMultiLineFilters(str, langKeyFilterKey);
 
-        str = ReplaceLineFilters(str, langKey);
+        str = ReplaceLineFilters(str, langKeyFilterKey);
 
         return str;
     }

@@ -9,10 +9,15 @@ public class TemplateLoader
 
     public static string LoadCsx(string templateName)
     {
-        // See https://stackoverflow.com/questions/3314140/how-to-read-embedded-resource-text-file
+        var result = LoadResource(templateName, fileExtension: ".csx");
+        return result;
+    }
 
+    public static string LoadResource(string templateName, string fileExtension)
+    {
+        // See https://stackoverflow.com/questions/3314140/how-to-read-embedded-resource-text-file
         var assembly = Assembly.GetExecutingAssembly();
-        string path = basePath + templateName + ".MySmName.csx";
+        string path = basePath + templateName + ".MySmName" + fileExtension;
         path = path.Replace("-", "_"); // embedded resource name has dashes to underscores. https://stackoverflow.com/questions/14705211/how-is-net-renaming-my-embedded-resources
         using var stream = assembly.GetManifestResourceStream(path);
 

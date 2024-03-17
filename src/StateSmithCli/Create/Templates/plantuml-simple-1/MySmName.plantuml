@@ -1,4 +1,4 @@
-@startuml MySmName
+@startuml {{smName}}
 
 /' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML '/
 

@@ -14,7 +14,6 @@
     <None Remove="Create\Templates\drawio-simple-1\csx.txt" />
     <None Remove="Create\Templates\drawio-simple-1\MySmName.csx" />
     <None Remove="Create\Templates\drawio-simple-1\MySmName.drawio" />
-    <None Remove="Create\Templates\drawio-simple-1\MySmName.drawio.svg" />
     <None Remove="Create\Templates\plantuml-simple-1\MySmName.csx" />
     <None Remove="Create\Templates\plantuml-simple-1\MySmName.plantuml" />
   </ItemGroup>
@@ -22,7 +21,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Create\Templates\drawio-simple-1\MySmName.csx" />
     <EmbeddedResource Include="Create\Templates\drawio-simple-1\MySmName.drawio" />
-    <EmbeddedResource Include="Create\Templates\drawio-simple-1\MySmName.drawio.svg" />
     <EmbeddedResource Include="Create\Templates\plantuml-simple-1\MySmName.csx" />
     <EmbeddedResource Include="Create\Templates\plantuml-simple-1\MySmName.plantuml" />
   </ItemGroup>

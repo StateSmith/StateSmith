@@ -56,7 +56,39 @@ class CreateUi
             return;
         }
 
-        // TODO write files
+        GenerateFiles();
+    }
+
+    private void GenerateFiles()
+    {
+        var templateName = IsDrawIoSelected() ? settings.DrawIoDiagramTemplateId : settings.PlantUmlDiagramTemplateId;
+        GenerateCsx(templateName);
+        GenerateDiagramFile(templateName);
+    }
+
+    private void GenerateCsx(string templateName)
+    {
+        var templateStr = TemplateLoader.LoadCsx(templateName);
+        var r = new TemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: settings.diagramFileName, template: templateStr);
+        var result = r.Render();
+        File.WriteAllText(settings.scriptFileName, result);
+    }
+
+    private void GenerateDiagramFile(string templateName)
+    {
+        var inputFileExtension = IsDrawIoSelected() ? ".drawio" : ".plantuml";
+        var templateStr = TemplateLoader.LoadResource(templateName, fileExtension: inputFileExtension);
+        var result = templateStr.Replace("{{smName}}", settings.smName);
+
+        if (IsDrawIoSvgSelected())
+        {
+            // TODO create global template SVG file that is an image saying to load file with drawio and save it again
+            // TODO base64 encode.
+            // TODO update template
+            throw new Exception("SVG support not implemented yet");
+        }
+
+        File.WriteAllText(settings.diagramFileName, result);
     }
 
     private void ReadSettingsFromJson()
@@ -264,6 +296,12 @@ class CreateUi
     {
         return settings.FileExtension.Contains(".drawio");
     }
+
+    private bool IsDrawIoSvgSelected()
+    {
+        return settings.FileExtension.Contains(".drawio.svg");
+    }
+
 
     private void AskTargetLanguage()
     {
