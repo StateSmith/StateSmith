@@ -191,7 +191,7 @@ public class CreateUi
         string defaultValue = _settings.smName + ".csx";
         _settings.scriptFileName = Ask("Enter script file name/path", defaultValue);
 
-        _settings.scriptFileName = _settings.scriptFileName.Replace("$$", _settings.smName);
+        _settings.scriptFileName = _settings.scriptFileName.Replace("$$", defaultValue);
         _console.MarkupLine($"Script file name/path: [blue]{_settings.scriptFileName}[/]");
     }
 
@@ -205,7 +205,7 @@ public class CreateUi
         string defaultValue = _settings.smName + _settings.FileExtension;
         _settings.diagramFileName = Ask("Enter diagram file name/path", defaultValue);
 
-        _settings.diagramFileName = _settings.diagramFileName.Replace("$$", _settings.smName);
+        _settings.diagramFileName = _settings.diagramFileName.Replace("$$", defaultValue);
         _console.MarkupLine($"Diagram file name/path: [blue]{_settings.diagramFileName}[/]");
     }
 
