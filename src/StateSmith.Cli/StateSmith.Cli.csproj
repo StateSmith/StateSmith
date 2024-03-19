@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>0.5.0</Version>
+    <Company>Adam Fraser-Kruck</Company>
+    <Product>StateSmith</Product>
+    <Authors>Adam Fraser-Kruck</Authors>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Create\Templates\drawio-simple-1\csx.txt" />
+    <None Remove="Create\Templates\drawio-simple-1\diagram.drawio" />
+    <None Remove="Create\Templates\drawio-simple-1\script.csx" />
+    <None Remove="Create\Templates\plantuml-simple-1\diagram.plantuml" />
+    <None Remove="Create\Templates\plantuml-simple-1\script.csx" />
+    <None Remove="Create\Templates\_global-svg\svg-wrapper.drawio.svg" />
+    <None Remove="Create\Templates\_test-drawio-1\diagram.drawio" />
+    <None Remove="Create\Templates\_test-drawio-1\script.csx" />
+    <None Remove="Create\Templates\_test-plantuml-1\diagram.plantuml" />
+    <None Remove="Create\Templates\_test-plantuml-1\script.csx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Create\Templates\drawio-simple-1\script.csx" />
+    <EmbeddedResource Include="Create\Templates\drawio-simple-1\diagram.drawio" />
+    <EmbeddedResource Include="Create\Templates\plantuml-simple-1\diagram.plantuml" />
+    <EmbeddedResource Include="Create\Templates\plantuml-simple-1\script.csx" />
+    <EmbeddedResource Include="Create\Templates\_global-svg\svg-wrapper.drawio.svg" />
+    <EmbeddedResource Include="Create\Templates\_test-plantuml-1\script.csx" />
+    <EmbeddedResource Include="Create\Templates\_test-drawio-1\script.csx" />
+    <EmbeddedResource Include="Create\Templates\_test-drawio-1\diagram.drawio" />
+    <EmbeddedResource Include="Create\Templates\_test-plantuml-1\diagram.plantuml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StateSmith\StateSmith.csproj" />
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="NuGet.Protocol" Version="6.6.1" />
+    <PackageReference Include="Spectre.Console" Version="0.47.0" />
+  </ItemGroup>
+
+</Project>

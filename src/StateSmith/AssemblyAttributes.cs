@@ -2,5 +2,5 @@
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("StateSmithTest")]
-[assembly: InternalsVisibleTo("StateSmithCliTest")]
+[assembly: InternalsVisibleTo("StateSmith.CliTest")]
 [assembly: CLSCompliant(false)]

@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmith", "StateSmith\St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmithTest", "StateSmithTest\StateSmithTest.csproj", "{9794BE7A-9263-4A81-B4F4-39514274AA2A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmithCli", "StateSmithCli\StateSmithCli.csproj", "{FF88C66A-8271-4BE3-BB28-2606987457E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmith.Cli", "StateSmith.Cli\StateSmith.Cli.csproj", "{FF88C66A-8271-4BE3-BB28-2606987457E0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmithCliTest", "StateSmithCliTest\StateSmithCliTest.csproj", "{57CC9C7B-0FCF-4E0B-8BCF-CEA4FABD9040}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StateSmith.CliTest", "StateSmith.CliTest\StateSmith.CliTest.csproj", "{57CC9C7B-0FCF-4E0B-8BCF-CEA4FABD9040}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
