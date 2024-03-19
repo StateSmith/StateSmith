@@ -4,9 +4,9 @@ using StateSmith.Cli.Create;
 using CommandLine.Text;
 using System.Diagnostics;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
+
 namespace StateSmith.Cli;
-
-
 
 /// <summary>
 /// StateSmithUI create

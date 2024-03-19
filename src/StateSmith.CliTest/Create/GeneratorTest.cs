@@ -1,5 +1,6 @@
 using FluentAssertions;
 using NSubstitute;
+using Spectre.Console;
 using StateSmith.Cli.Create;
 using StateSmith.Cli.Utils;
 using StateSmithTest;
@@ -102,8 +103,8 @@ public class GeneratorTest
     [Fact]
     public void PlantumlTest()
     {
-        const string CsxFilePath = "../../TrafficCodeGen.csx";
-        const string DiagramPath = "./a/b/c/TrafficDiagram.plantuml";
+        const string CsxFilePath = "TrafficCodeGen.csx";
+        const string DiagramPath = "TrafficDiagram.plantuml";
 
         var settings = new Settings
         {
@@ -125,7 +126,7 @@ public class GeneratorTest
             x.ArgAt<string>(1).ShouldBeShowDiff("""
             #!/usr/bin/env dotnet-script
             #r "nuget: StateSmith, 0.9.7-alpha"
-            SmRunner runner = new(diagramPath: "./a/b/c/TrafficDiagram.plantuml", new MyRenderConfig(), transpilerId: TranspilerId.JavaScript);
+            SmRunner runner = new(diagramPath: "TrafficDiagram.plantuml", new MyRenderConfig(), transpilerId: TranspilerId.JavaScript);
 
             """);
         });
@@ -144,5 +145,28 @@ public class GeneratorTest
         // make sure the calls were made
         mockFileWriter.Received().Write(CsxFilePath, Arg.Any<string>());
         mockFileWriter.Received().Write(DiagramPath, Arg.Any<string>());
+    }
+
+    [Fact]
+    public void DiagramInSiblingDirectory()
+    {
+        var settings = new Settings
+        {
+            diagramFileName = "./diagrams/RocketSm.drawio",
+            scriptFileName = "./code_gen/RocketSm.csx",
+            TargetLanguageId = TargetLanguageId.JavaScript,
+            FileExtension = ".drawio",
+            smName = "RocketSm"
+        };
+
+        var mockFileWriter = Substitute.For<IFileWriter>();
+        Generator generator = new(settings);
+        generator.SetFileWriter(mockFileWriter);
+
+        generator.GenerateFiles();
+
+        // make sure the calls were made
+        mockFileWriter.Received().Write("./code_gen/RocketSm.csx", Arg.Any<string>());
+        mockFileWriter.Received().Write("../diagrams/RocketSm.drawio", Arg.Any<string>());
     }
 }

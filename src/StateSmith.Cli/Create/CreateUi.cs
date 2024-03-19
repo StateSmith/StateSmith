@@ -1,6 +1,5 @@
 using Spectre.Console;
 using System;
-using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -9,19 +8,25 @@ using StateSmith.Cli.Utils;
 
 namespace StateSmith.Cli.Create;
 
-class CreateUi
+public class CreateUi
 {
-    Settings _settings = new();
+    internal Settings _settings = new();
     UpdateInfo _updatesInfo = new();
     private readonly string _settingsPersistencePath;
     private readonly string _updateInfoPersistencePath;
     string _latestStateSmithVersion = UpdateInfo.DefaultStateSmithLibVersion;
+    IAnsiConsole _console = AnsiConsole.Console;
 
     public CreateUi()
     {
         string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!; //TODO consider null
         _settingsPersistencePath = $"{assemblyFolder}/ss-create-settings.json";
         _updateInfoPersistencePath = $"{assemblyFolder}/ss-create-update-info.json";
+    }
+
+    public void SetConsole(IAnsiConsole console)
+    {
+        _console = console;
     }
 
     public string GetSettingsPersistencePath() => _settingsPersistencePath;
@@ -31,8 +36,8 @@ class CreateUi
     {
         AddSectionHeader("Data/Settings Persistence Info");
 
-        AnsiConsole.MarkupLine($"Settings persistance path:\n  {GetSettingsPersistencePath()}\n");
-        AnsiConsole.MarkupLine($"Update Info persistance path:\n  {GetUpdateInfoPersistencePath()}\n");
+        _console.MarkupLine($"Settings persistance path:\n  {GetSettingsPersistencePath()}\n");
+        _console.MarkupLine($"Update Info persistance path:\n  {GetUpdateInfoPersistencePath()}\n");
     }
 
     public void Run()
@@ -63,20 +68,20 @@ class CreateUi
         bool confirmation = AskConfirmation();
         if (!confirmation)
         {
-            AnsiConsole.MarkupLine("[red]Aborted.[/]");
+            _console.MarkupLine("[red]Aborted.[/]");
             return;
         }
 
         confirmation = AskForOverwriteIfNeeded();
         if (!confirmation)
         {
-            AnsiConsole.MarkupLine("[red]Aborted.[/]");
+            _console.MarkupLine("[red]Aborted.[/]");
             return;
         }
 
         new Generator(_settings).GenerateFiles();
 
-        AnsiConsole.MarkupLine($"[green]Success!.[/]");
+        _console.MarkupLine($"[green]Success!.[/]");
     }
 
     private bool AskForOverwriteIfNeeded()
@@ -86,21 +91,21 @@ class CreateUi
         // if files exist, ask if should overwrite
         if (File.Exists(_settings.diagramFileName) || File.Exists(_settings.scriptFileName))
         {
-            AnsiConsole.MarkupLine("[red]Warning![/] Files already exist.");
+            _console.MarkupLine("[red]Warning![/] Files already exist.");
 
             const string yesOverwriteStr = "yes, overwrite the existing files";
-            bool overwrite = yesOverwriteStr == AnsiConsole.Prompt(
+            bool overwrite = yesOverwriteStr == _console.Prompt(
                      new SelectionPrompt<string>()
                      .Title("Overwrite existing files?")
                      .AddChoices(new[] { "no", yesOverwriteStr }));
 
             if (overwrite)
             {
-                AnsiConsole.MarkupLine("[yellow]Overwriting existing files.[/]");
+                _console.MarkupLine("[yellow]Overwriting existing files.[/]");
             }
             else
             {
-                AnsiConsole.MarkupLine("[red]Not overwriting files.[/]");
+                _console.MarkupLine("[red]Not overwriting files.[/]");
                 proceed = false;
             }
         }
@@ -117,11 +122,11 @@ class CreateUi
     private void LoadSettingsFromFile()
     {
         //string relativePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), settingsPath);
-        //AnsiConsole.MarkupLine($"Reading settings/data from path '{settingsPath}'.");
+        //_console.MarkupLine($"Reading settings/data from path '{settingsPath}'.");
 
         if (!File.Exists(_settingsPersistencePath))
         {
-            AnsiConsole.MarkupLine($"[grey]Settings file not found. Using defaults.[/]");
+            _console.MarkupLine($"[grey]Settings file not found. Using defaults.[/]");
             return;
         }
 
@@ -131,17 +136,17 @@ class CreateUi
         }
         catch (Exception ex)
         {
-            AnsiConsole.MarkupLine($"[red]Error reading {nameof(Settings)} file: {ex.Message}[/]. Using defaults.");
+            _console.MarkupLine($"[red]Error reading {nameof(Settings)} file: {ex.Message}[/]. Using defaults.");
         }
     }
 
     private void LoadVersionCheckInfoFromFile()
     {
-        //AnsiConsole.MarkupLine($"Reading {nameof(UpdatesCheckInfo)} from path '{updatesCheckInfoPath}'.");
+        //_console.MarkupLine($"Reading {nameof(UpdatesCheckInfo)} from path '{updatesCheckInfoPath}'.");
 
         if (!File.Exists(_updateInfoPersistencePath))
         {
-            AnsiConsole.MarkupLine($"[grey]{nameof(UpdateInfo)} file not found. Using defaults.[/]");
+            _console.MarkupLine($"[grey]{nameof(UpdateInfo)} file not found. Using defaults.[/]");
             return;
         }
 
@@ -152,63 +157,63 @@ class CreateUi
         }
         catch (Exception ex)
         {
-            AnsiConsole.MarkupLine($"[red]Error reading {nameof(UpdateInfo)} file: {ex.Message}[/]. Using defaults.");
+            _console.MarkupLine($"[red]Error reading {nameof(UpdateInfo)} file: {ex.Message}[/]. Using defaults.");
         }
     }
 
     private bool AskConfirmation()
     {
         AddSectionHeader("Confirmation");
-        AnsiConsole.MarkupLine($"State Machine Name: [blue]{_settings.smName}[/]");
-        AnsiConsole.MarkupLine($"Target Language: [blue]{_settings.TargetLanguageId}[/]");
-        AnsiConsole.MarkupLine($"StateSmith Version: [blue]{_settings.StateSmithVersion}[/]");
-        AnsiConsole.MarkupLine($"Diagram file: [blue]{_settings.diagramFileName}[/]");
-        AnsiConsole.MarkupLine($"Script file: [blue]{_settings.scriptFileName}[/]");
+        _console.MarkupLine($"State Machine Name: [blue]{_settings.smName}[/]");
+        _console.MarkupLine($"Target Language: [blue]{_settings.TargetLanguageId}[/]");
+        _console.MarkupLine($"StateSmith Version: [blue]{_settings.StateSmithVersion}[/]");
+        _console.MarkupLine($"Diagram file: [blue]{_settings.diagramFileName}[/]");
+        _console.MarkupLine($"Script file: [blue]{_settings.scriptFileName}[/]");
 
         if (_settings.IsDrawIoSelected())
-            AnsiConsole.MarkupLine($"Template: [blue]{_settings.DrawIoDiagramTemplateId}[/]");
+            _console.MarkupLine($"Template: [blue]{_settings.DrawIoDiagramTemplateId}[/]");
         else
-            AnsiConsole.MarkupLine($"Template: [blue]{_settings.PlantUmlDiagramTemplateId}[/]");
+            _console.MarkupLine($"Template: [blue]{_settings.PlantUmlDiagramTemplateId}[/]");
 
-        AnsiConsole.MarkupLine("");
+        _console.MarkupLine("");
 
         var confirmation = YesNoPrompt("Generate?");
         return confirmation;
     }
 
-    private void ScriptFileName()
+    internal void ScriptFileName()
     {
         AddSectionHeader("Script File Name/Path");
-        AnsiConsole.MarkupLine("Script will be created in this directory unless you specify an absolute or relative path.");
-        AnsiConsole.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
-        AnsiConsole.MarkupLine("");
+        _console.MarkupLine("Script will be created in this directory unless you specify an absolute or relative path.");
+        _console.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
+        _console.MarkupLine("");
 
         string defaultValue = _settings.smName + ".csx";
         _settings.scriptFileName = Ask("Enter script file name/path", defaultValue);
 
         _settings.scriptFileName = _settings.scriptFileName.Replace("$$", _settings.smName);
-        AnsiConsole.MarkupLine($"Script file name/path: [blue]{_settings.scriptFileName}[/]");
+        _console.MarkupLine($"Script file name/path: [blue]{_settings.scriptFileName}[/]");
     }
 
-    private void DiagramFileName()
+    internal void DiagramFileName()
     {
         AddSectionHeader("Diagram File Name/Path");
-        AnsiConsole.MarkupLine("Diagram will be created in this directory unless you specify an absolute or relative path.");
-        AnsiConsole.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
-        AnsiConsole.MarkupLine("");
+        _console.MarkupLine("Diagram will be created in this directory unless you specify an absolute or relative path.");
+        _console.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
+        _console.MarkupLine("");
 
         string defaultValue = _settings.smName + _settings.FileExtension;
         _settings.diagramFileName = Ask("Enter diagram file name/path", defaultValue);
 
         _settings.diagramFileName = _settings.diagramFileName.Replace("$$", _settings.smName);
-        AnsiConsole.MarkupLine($"Diagram file name/path: [blue]{_settings.diagramFileName}[/]");
+        _console.MarkupLine($"Diagram file name/path: [blue]{_settings.diagramFileName}[/]");
     }
 
     private void DiagramType()
     {
         AddSectionHeader("Diagram Type");
-        AnsiConsole.MarkupLine($"Choose the diagram file type you want to use.");
-        AnsiConsole.MarkupLine("[grey italic]More info: https://github.com/StateSmith/StateSmith/wiki/draw.io:-file-choice [/]");
+        _console.MarkupLine($"Choose the diagram file type you want to use.");
+        _console.MarkupLine("[grey italic]More info: https://github.com/StateSmith/StateSmith/wiki/draw.io:-file-choice [/]");
 
         var choices = new List<UiItem<string>>()
         {
@@ -218,13 +223,13 @@ class CreateUi
         };
         AddRememberedToChoices(choices, id: _settings.FileExtension);
 
-        _settings.FileExtension = AnsiConsole.Prompt(
+        _settings.FileExtension = _console.Prompt(
                 new SelectionPrompt<UiItem<string>>()
                     .Title("")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
 
-        AnsiConsole.WriteLine($"Selected {_settings.FileExtension}");
+        _console.WriteLine($"Selected {_settings.FileExtension}");
     }
 
     private static bool AddRememberedToChoices<T>(List<UiItem<T>> choices, T id) where T : notnull
@@ -250,7 +255,7 @@ class CreateUi
         string myLastUsedOption = $"my last used ([grey]{_settings.StateSmithVersion}[/])";
         const string customOption = "custom";
 
-        string choice = AnsiConsole.Prompt(
+        string choice = _console.Prompt(
                 new SelectionPrompt<string>()
                     .Title("Which version of the StateSmith library do you want to use?")
                     .AddChoices(new[] { latestStableOption, myLastUsedOption, customOption }));
@@ -269,12 +274,12 @@ class CreateUi
             // TODOLOW validate version is valid
         }
 
-        AnsiConsole.WriteLine($"Selected {_settings.StateSmithVersion}");
+        _console.WriteLine($"Selected {_settings.StateSmithVersion}");
     }
 
-    private static string Ask(string prompt, string defaultValue)
+    private string Ask(string prompt, string defaultValue)
     {
-        return AnsiConsole.Prompt(
+        return _console.Prompt(
             new TextPrompt<string>(prompt)
                 .DefaultValue(defaultValue)
                 .DefaultValueStyle("grey")
@@ -284,7 +289,7 @@ class CreateUi
     private void DiagramTemplate()
     {
         AddSectionHeader("Diagram Template");
-        //AnsiConsole.MarkupLine("[grey]?[/]");
+        //_console.MarkupLine("[grey]?[/]");
 
         if (_settings.IsDrawIoSelected())
         {
@@ -322,16 +327,16 @@ class CreateUi
 
         if (!found)
         {
-            AnsiConsole.MarkupLine($"[bold yellow]Warning:[/] Remembered setting `[yellow]{templateSetting}[/]` not found.\n");
+            _console.MarkupLine($"[bold yellow]Warning:[/] Remembered setting `[yellow]{templateSetting}[/]` not found.\n");
         }
 
-        templateSetting = AnsiConsole.Prompt(
+        templateSetting = _console.Prompt(
                 new SelectionPrompt<UiItem<string>>()
                     .Title($"Select {templateTypeName} template")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
 
-        AnsiConsole.MarkupLine($"Selected [blue]{templateSetting}[/]");
+        _console.MarkupLine($"Selected [blue]{templateSetting}[/]");
 
         return templateSetting;
     }
@@ -350,34 +355,34 @@ class CreateUi
 
         AddRememberedToChoices(choices, id: _settings.TargetLanguageId);
 
-        _settings.TargetLanguageId = AnsiConsole.Prompt(
+        _settings.TargetLanguageId = _console.Prompt(
                 new SelectionPrompt<UiItem<TargetLanguageId>>()
                     .Title("")
                     .UseConverter(x => x.Display)
                     .AddChoices(choices)).Id;
 
-        AnsiConsole.MarkupLine($"Selected [blue]{_settings.TargetLanguageId}[/]");
+        _console.MarkupLine($"Selected [blue]{_settings.TargetLanguageId}[/]");
     }
 
     private void AddSectionHeader(string header)
     {
-        AnsiConsole.MarkupLine("");
+        _console.MarkupLine("");
 
         var rule = new Rule($"[yellow]{header}[/]")
         {
             Justification = Justify.Left
         };
-        AnsiConsole.Write(rule);
+        _console.Write(rule);
     }
 
     private void StateMachineName()
     {
         AddSectionHeader("State Machine Name");
 
-        AnsiConsole.MarkupLine("This sets the name of the state machine in the diagram, generated code,");
-        AnsiConsole.MarkupLine("and will be used for auto suggesting file names in later steps.");
-        AnsiConsole.MarkupLine("[grey]Default shown in (parenthesis).[/]");
-        AnsiConsole.MarkupLine("");
+        _console.MarkupLine("This sets the name of the state machine in the diagram, generated code,");
+        _console.MarkupLine("and will be used for auto suggesting file names in later steps.");
+        _console.MarkupLine("[grey]Default shown in (parenthesis).[/]");
+        _console.MarkupLine("");
         _settings.smName = Ask("Enter your state machine name", "MySm");
     }
 
@@ -404,7 +409,7 @@ class CreateUi
         }
         else
         {
-            AnsiConsole.MarkupLine("[grey]Skipping updates...[/]");
+            _console.MarkupLine("[grey]Skipping updates...[/]");
         }
     }
 
@@ -415,18 +420,18 @@ class CreateUi
         return _updatesInfo.GetMsSinceLastCheck() > RecommendedMsBetweenChecks;
     }
 
-    private static bool YesNoPrompt(string title, string yesText = "yes")
+    private bool YesNoPrompt(string title, string yesText = "yes")
     {
-        return yesText == AnsiConsole.Prompt(
+        return yesText == _console.Prompt(
                 new SelectionPrompt<string>()
                     .Title(title)
                     .AddChoices(new[] { yesText, "no" }));
     }
 
-    private static bool NoYesPrompt(string title, string noText = "no")
+    private bool NoYesPrompt(string title, string noText = "no")
     {
         const string yes = "yes";
-        return yes == AnsiConsole.Prompt(
+        return yes == _console.Prompt(
                 new SelectionPrompt<string>()
                     .Title(title)
                     .AddChoices(new[] { noText, yes }));
@@ -434,17 +439,16 @@ class CreateUi
 
     private void CheckForUpdates()
     {
-        static void WriteLogMessage(string message)
-        {
-            AnsiConsole.MarkupLine($"[grey]LOG:[/] {message}[grey]...[/]");
-        }
-
+        //void WriteLogMessage(string message)
+        //{
+        //    _console.MarkupLine($"[grey]LOG:[/] {message}[grey]...[/]");
+        //}
 
         NuGet.Versioning.NuGetVersion? latestStable = null;
         string? latestStableStr = null;
 
         // spinners in action: https://jsfiddle.net/sindresorhus/2eLtsbey/embedded/result/
-        AnsiConsole.Status()
+        _console.Status()
             .AutoRefresh(true)
             .Spinner(Spinner.Known.Dots2)
             .Start("[yellow]Checking for updates[/]", ctx =>
@@ -468,7 +472,7 @@ class CreateUi
 
         if (latestStable == null || latestStableStr == null)
         {
-            AnsiConsole.MarkupLine("[red]Failed to get version info from nuget.org[/]");
+            _console.MarkupLine("[red]Failed to get version info from nuget.org[/]");
             return;
         }
 
@@ -477,14 +481,14 @@ class CreateUi
 
         if (!newVersionFound)
         {
-            AnsiConsole.MarkupLine($"[grey]No new updates found since last check. The latest stable version is still {latestStable}.[/]");
+            _console.MarkupLine($"[grey]No new updates found since last check. The latest stable version is still {latestStable}.[/]");
         }
         else
         {
-            AnsiConsole.MarkupLine($"[green]New version found! {latestStable}.[/]");
+            _console.MarkupLine($"[green]New version found! {latestStable}.[/]");
         }
 
-        AnsiConsole.MarkupLine("");
+        _console.MarkupLine("");
 
         _latestStateSmithVersion = latestStableStr;
 
@@ -499,7 +503,7 @@ class CreateUi
         //}
         //else
         //{
-        //    //AnsiConsole.MarkupLine($"You are already using the latest stable version of StateSmith: {latestStableStr}");
+        //    //_console.MarkupLine($"You are already using the latest stable version of StateSmith: {latestStableStr}");
         //}
 
         JsonFilePersistence.PersistToFile(_updatesInfo, _updateInfoPersistencePath);
@@ -507,11 +511,11 @@ class CreateUi
 
     private void SaveSettings()
     {
-        AnsiConsole.MarkupLine("");
-        AnsiConsole.MarkupLine("[grey]Saving settings...[/]");
+        _console.MarkupLine("");
+        _console.MarkupLine("[grey]Saving settings...[/]");
 
         JsonFilePersistence.PersistToFile(_settings, _settingsPersistencePath);
 
-        AnsiConsole.MarkupLine("[grey]Settings saved.[/]");
+        _console.MarkupLine("[grey]Settings saved.[/]");
     }
 }
