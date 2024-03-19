@@ -1,4 +1,6 @@
 using StateSmith.Cli.Utils;
+using StateSmith.Common;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -29,9 +31,21 @@ public class Generator
     public void GenerateCsx(string templateName)
     {
         var templateStr = TemplateLoader.LoadCsx(templateName);
-        var r = new CsxTemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: settings.diagramFileName, template: templateStr);
+
+        string diagramFilePathRelative = GetDiagramPathRelativeToCsx();
+
+        var r = new CsxTemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: diagramFilePathRelative, template: templateStr);
         var result = r.Render();
         fileWriter.Write(settings.scriptFileName, result);
+    }
+
+    private string GetDiagramPathRelativeToCsx()
+    {
+        var currentDir = Directory.GetCurrentDirectory();
+        var scriptAbsolutePath = PathUtils.EnsurePathAbsolute(settings.scriptFileName, currentDir);
+        var diagramAbsolutePath = PathUtils.EnsurePathAbsolute(settings.diagramFileName, currentDir);
+        string diagramFilePathRelative = Path.GetRelativePath(Path.GetDirectoryName(scriptAbsolutePath).ThrowIfNull(), diagramAbsolutePath);
+        return diagramFilePathRelative;
     }
 
     public void GenerateDiagramFile(string templateName)

@@ -23,8 +23,14 @@ public class CsxTemplateRenderer
         this.template = template;
     }
 
+    private static string ConvertPathsToForwardSlashes(string path)
+    {
+        return path.Replace('\\', '/');
+    }
+
     public string Render()
     {
+        diagramPath = ConvertPathsToForwardSlashes(diagramPath);  // we do this so that we don't need to escape backslashes in the generated string
         var str = template.Replace("{{stateSmithVersion}}", stateSmithVersion).Replace("{{diagramPath}}", diagramPath);
 
         var transpilerId = targetLanguageId switch

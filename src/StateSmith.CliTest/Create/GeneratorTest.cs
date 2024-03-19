@@ -150,10 +150,12 @@ public class GeneratorTest
     [Fact]
     public void DiagramInSiblingDirectory()
     {
+        const string CsxPath = "./code_gen/RocketSm.csx";
+        const string DiagramPath = "./diagrams/RocketSm.drawio";
         var settings = new Settings
         {
-            diagramFileName = "./diagrams/RocketSm.drawio",
-            scriptFileName = "./code_gen/RocketSm.csx",
+            diagramFileName = DiagramPath,
+            scriptFileName = CsxPath,
             TargetLanguageId = TargetLanguageId.JavaScript,
             FileExtension = ".drawio",
             smName = "RocketSm"
@@ -163,10 +165,15 @@ public class GeneratorTest
         Generator generator = new(settings);
         generator.SetFileWriter(mockFileWriter);
 
+        // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
+        mockFileWriter.When(x => x.Write(CsxPath, Arg.Any<string>())).Do(x => {
+            x.ArgAt<string>(1).Should().Contain("../diagrams/RocketSm.drawio");
+        });
+
         generator.GenerateFiles();
 
         // make sure the calls were made
-        mockFileWriter.Received().Write("./code_gen/RocketSm.csx", Arg.Any<string>());
-        mockFileWriter.Received().Write("../diagrams/RocketSm.drawio", Arg.Any<string>());
+        mockFileWriter.Received().Write(CsxPath, Arg.Any<string>());
+        mockFileWriter.Received().Write(DiagramPath, Arg.Any<string>());
     }
 }
