@@ -25,10 +25,10 @@ class Program
         public bool PrintDataSettingsPaths { get; set; }
     }
 
-    [Verb("run", HelpText = "Runs the StateSmith code generation for a diagram. Not implemented yet.")]
+    [Verb("run", HelpText = "Runs the StateSmith code generation. Not implemented yet.")]
     class DrawioUpdateOptions
     {
-        [Option('i', "input_digram", Required = true, HelpText = "The name of the diagram to generate code for.")]
+        [Option('h', "here", Required = true, HelpText = "The name of the diagram to generate code for.")]
         public bool InputDiagram { get; set; }
     }
 

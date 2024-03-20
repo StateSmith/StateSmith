@@ -25,4 +25,8 @@
     <ProjectReference Include="..\StateSmithTest\StateSmithTest.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Run\examples\1\" />
+  </ItemGroup>
+
 </Project>
