@@ -6,7 +6,7 @@ using StateSmith.SmGraph;
 using System.Linq;
 using StateSmith.Runner;
 
-namespace StateSmithTest.DrawIo;
+namespace StateSmithTest.DrawIo.Issue81;
 
 /// <summary>
 /// https://github.com/StateSmith/StateSmith/issues/81
@@ -88,7 +88,7 @@ public class VisualGroupingValidatorTests
     private void AssertThrows(string filePath, string expectedMessageEnd)
     {
         Action action = () => converter.ProcessFile(filePath);
-        action.Should().Throw<DiagramNodeException>().Where(e => e.Node.label.StartsWith("ACTUALLY_IN_GROUP\n")).WithMessage($"*outside of parent grouping*{expectedMessageEnd}*");
+        action.Should().Throw<DiagramNodeException>().Where(e => e.Node.label.StartsWith("ACTUALLY_IN_GROUP\n")).WithMessage($"*outside of parent grouping*{expectedMessageEnd}*").WithMessage("* https://github.com/StateSmith/StateSmith/issues/81 *");
     }
 }
 

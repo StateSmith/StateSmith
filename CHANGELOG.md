@@ -31,6 +31,8 @@ Test/interim releases are not documented here.
 ### Added
 - PlantUML - support case insensitive stereo types for entryPoint, exitPoint, choice.
   - https://github.com/StateSmith/StateSmith/issues/227
+- draw.io - validation - add help url to exception message for "nodes overlap"
+  - https://github.com/StateSmith/StateSmith/issues/81
 ### Changed (minor)
 - PlantUML - improve diagram element IDs for states.
   - Most people won't notice this unless generating an output file for git diffing.
