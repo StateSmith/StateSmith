@@ -5,27 +5,29 @@ namespace StateSmith.Cli.Utils;
 
 public class JsonFilePersistence
 {
-    public static void PersistToFile<T>(T obj, string filePath)
+    public bool IncludeFields { get; set; } = true;
+
+    public void PersistToFile<T>(T obj, string filePath)
     {
         string json = PersistToString(obj);
         File.WriteAllText(filePath, json);
     }
 
-    public static string PersistToString<T>(T obj)
+    public string PersistToString<T>(T obj)
     {
         JsonSerializerOptions serializeOptions = GetSerializeOptions();
         string json = JsonSerializer.Serialize(obj, serializeOptions);
         return json;
     }
 
-    public static T RestoreFromFile<T>(string filePath)
+    public T RestoreFromFile<T>(string filePath)
     {
         string json = File.ReadAllText(filePath);
         T obj = RestoreFromString<T>(json);
         return obj;
     }
 
-    public static T RestoreFromString<T>(string json)
+    public T RestoreFromString<T>(string json)
     {
         JsonSerializerOptions serializeOptions = GetSerializeOptions();
         var obj = JsonSerializer.Deserialize<T>(json, serializeOptions);
@@ -35,11 +37,11 @@ public class JsonFilePersistence
         return obj;
     }
 
-    private static JsonSerializerOptions GetSerializeOptions()
+    private JsonSerializerOptions GetSerializeOptions()
     {
         var serializeOptions = new JsonSerializerOptions
         {
-            IncludeFields = false, // we don't want to persist fields
+            IncludeFields = IncludeFields,
             PropertyNameCaseInsensitive = true,
             AllowTrailingCommas = true,
             //ReadCommentHandling = JsonCommentHandling.Skip;

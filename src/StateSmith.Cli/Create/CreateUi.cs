@@ -10,6 +10,7 @@ namespace StateSmith.Cli.Create;
 
 public class CreateUi
 {
+    JsonFilePersistence _persistence = new() { IncludeFields = false };
     internal Settings _settings = new();
     UpdateInfo _updatesInfo = new();
     private readonly string _settingsPersistencePath;
@@ -132,7 +133,7 @@ public class CreateUi
 
         try
         {
-            _settings = JsonFilePersistence.RestoreFromFile<Settings>(_settingsPersistencePath);
+            _settings = _persistence.RestoreFromFile<Settings>(_settingsPersistencePath);
         }
         catch (Exception ex)
         {
@@ -152,7 +153,7 @@ public class CreateUi
 
         try
         {
-            _updatesInfo = JsonFilePersistence.RestoreFromFile<UpdateInfo>(_updateInfoPersistencePath);
+            _updatesInfo = _persistence.RestoreFromFile<UpdateInfo>(_updateInfoPersistencePath);
             _latestStateSmithVersion = _updatesInfo.LastestStateSmithLibStableVersion;
         }
         catch (Exception ex)
@@ -506,7 +507,7 @@ public class CreateUi
         //    //_console.MarkupLine($"You are already using the latest stable version of StateSmith: {latestStableStr}");
         //}
 
-        JsonFilePersistence.PersistToFile(_updatesInfo, _updateInfoPersistencePath);
+        _persistence.PersistToFile(_updatesInfo, _updateInfoPersistencePath);
     }
 
     private void SaveSettings()
@@ -514,7 +515,7 @@ public class CreateUi
         _console.MarkupLine("");
         _console.MarkupLine("[grey]Saving settings...[/]");
 
-        JsonFilePersistence.PersistToFile(_settings, _settingsPersistencePath);
+        _persistence.PersistToFile(_settings, _settingsPersistencePath);
 
         _console.MarkupLine("[grey]Settings saved.[/]");
     }

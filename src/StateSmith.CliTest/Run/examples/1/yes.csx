@@ -8,7 +8,10 @@ using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 
 // See https://github.com/StateSmith/tutorial-2/blob/main/lesson-1/
-SmRunner runner = new(diagramPath: "yes.plantuml", new MyRenderConfig(), transpilerId: TranspilerId.C99);
+SmRunner runner = new(diagramPath: "yes1.plantuml", new MyRenderConfig(), transpilerId: TranspilerId.C99);
+runner.Run();
+
+runner = new(diagramPath: "yes2.plantuml", new MyRenderConfig(), transpilerId: TranspilerId.C99);
 runner.Run();
 
 // See https://github.com/StateSmith/tutorial-2/tree/main/lesson-2

@@ -8,6 +8,13 @@ namespace StateSmithCliTest.Create;
 
 public class JsonSettingsTest
 {
+    private JsonFilePersistence _persistence;
+
+    public JsonSettingsTest()
+    {
+        _persistence = new JsonFilePersistence() { IncludeFields = false };
+    }
+
     [Fact]
     public void EnumFromString()
     {
@@ -21,7 +28,7 @@ public class JsonSettingsTest
             }
             """;
 
-        var settings =  JsonFilePersistence.RestoreFromString<Settings>(json);
+        var settings = _persistence.RestoreFromString<Settings>(json);
         settings.TargetLanguageId.Should().Be(TargetLanguageId.JavaScript);
     }
 
@@ -37,7 +44,7 @@ public class JsonSettingsTest
             PlantUmlDiagramTemplateId = "plantuml-simple-1"
         };
 
-        var json = JsonFilePersistence.PersistToString(settings).ConvertLineEndingsToN();
+        var json = _persistence.PersistToString(settings).ConvertLineEndingsToN();
         json.ShouldBeShowDiff("""
             {
               "StateSmithVersion": "0.9.9-alpha",

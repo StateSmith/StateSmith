@@ -7,3 +7,5 @@ example-output/render2
 *.bkp
 
 *.dtmp
+
+src/StateSmith.CliTest/Run/examples/1/statesmith.runinfo.json
