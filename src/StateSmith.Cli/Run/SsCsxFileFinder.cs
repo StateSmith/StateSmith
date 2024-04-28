@@ -13,6 +13,11 @@ public class SsCsxFileFinder
     public SsCsxFileFinder()
     {
         matcher = new();
+        matcher.AddInclude("./*.csx");
+    }
+
+    public void SetAsRecursive()
+    {
         matcher.AddInclude("./**/*.csx");
     }
 

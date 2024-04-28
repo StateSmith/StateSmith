@@ -37,6 +37,20 @@ public class TestScan
 
         var found = finder.Scan(TestHelper.GetThisDir() + "/examples/1");
         found.Should().BeEquivalentTo(
+            "yes.csx"
+        );
+    }
+
+    [Fact]
+    public void IntegrationTestRecursive()
+    {
+        SsCsxFileFinder finder = new();
+
+        finder.AddExcludePattern("a/a3");
+        finder.SetAsRecursive();
+
+        var found = finder.Scan(TestHelper.GetThisDir() + "/examples/1");
+        found.Should().BeEquivalentTo(
             "a/a1/yes-a1a.csx",
             "a/a1/yes-a1b.csx",
             "yes.csx"
