@@ -1,0 +1,1 @@
+..\..\..\..\StateSmith.Cli\bin\Debug\net6.0\StateSmith.Cli.exe run

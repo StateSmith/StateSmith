@@ -1,6 +1,5 @@
 using FluentAssertions;
 using StateSmith.Cli.Run;
-using StateSmith.Common;
 using Xunit;
 
 namespace StateSmith.CliTest.Run;
@@ -35,7 +34,7 @@ public class TestScan
 
         finder.AddExcludePattern("a/a3");
 
-        var found = finder.Scan(TestHelper.GetThisDir() + "/examples/1");
+        var found = finder.Scan(ExamplesHelper.GetExamplesDir() + "/1");
         found.Should().BeEquivalentTo(
             "yes.csx"
         );
@@ -49,7 +48,7 @@ public class TestScan
         finder.AddExcludePattern("a/a3");
         finder.SetAsRecursive();
 
-        var found = finder.Scan(TestHelper.GetThisDir() + "/examples/1");
+        var found = finder.Scan(ExamplesHelper.GetExamplesDir() + "/1");
         found.Should().BeEquivalentTo(
             "a/a1/yes-a1a.csx",
             "a/a1/yes-a1b.csx",

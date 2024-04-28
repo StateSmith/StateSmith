@@ -3,6 +3,7 @@ using System;
 using StateSmith.Cli.Create;
 using CommandLine.Text;
 using System.Diagnostics;
+using StateSmith.Cli.Run;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
 
@@ -25,10 +26,10 @@ class Program
         public bool PrintDataSettingsPaths { get; set; }
     }
 
-    [Verb("run", HelpText = "Runs the StateSmith code generation. Not implemented yet.")]
+    [Verb("run", HelpText = "Runs the StateSmith code generation. !! Work In Progress !!")]
     class DrawioUpdateOptions
     {
-        [Option('h', "here", Required = true, HelpText = "The name of the diagram to generate code for.")]
+        [Option('h', "here", Required = false, HelpText = "The name of the diagram to generate code for.")]
         public bool InputDiagram { get; set; }
     }
 
@@ -60,6 +61,10 @@ class Program
             (DrawioUpdateOptions opts) =>
             {
                 Console.WriteLine("Run. Not implemented yet.");
+
+                var runHandler = new RunHandler();
+                runHandler.Run(Environment.CurrentDirectory);
+
                 return 0;
             },
             errs =>
