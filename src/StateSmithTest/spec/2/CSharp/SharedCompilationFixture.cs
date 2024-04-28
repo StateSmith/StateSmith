@@ -29,7 +29,7 @@ public class SharedCompilationFixture
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandText = "dotnet build --verbosity quiet"
+            CommandAndArgs = "dotnet build --verbosity quiet"
         };
         BashRunner.RunCommand(process, timeoutMs: 16000);
     }

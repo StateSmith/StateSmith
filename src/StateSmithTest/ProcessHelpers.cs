@@ -1,4 +1,6 @@
+using Antlr4.Runtime.Misc;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -9,8 +11,20 @@ namespace StateSmithTest.Processes;
 
 public class SimpleProcess
 {
+    Process cmd = new();
+
     public string WorkingDirectory = "";
-    public string CommandText = "";
+
+    /// <summary>
+    /// This splits the command and args at the first space char. If you need fancier (like a space in a path to the executable), use <see cref="SpecificCommand"/> instead.
+    /// </summary>
+    public string CommandAndArgs = "";
+
+    /// <summary>
+    /// If this set to a non-empty string, it and <see cref="SpecificArgs"/> will be used instead of <see cref="CommandAndArgs"/>.
+    /// </summary>
+    public string SpecificCommand = "";
+    public string SpecificArgs = "";
 
     public string StdOutput => StdOutputBuf.ToString();
     public string StdError => StdErrorBuf.ToString();
@@ -20,13 +34,18 @@ public class SimpleProcess
 
     public bool throwOnExitCode = true;
 
-    public void Run(Process cmd, int timeoutMs)
+    public void Run(int timeoutMs)
     {
+        SetupCommandAndArgs();
+
+        cmd.StartInfo.WorkingDirectory = WorkingDirectory;
+
         cmd.StartInfo.RedirectStandardOutput = true;
         cmd.StartInfo.RedirectStandardError = true;
 
-        cmd.OutputDataReceived += (sender, args) => this.StdOutputBuf.Append(args.Data).Append('\n');
-        cmd.ErrorDataReceived += (sender, args) => this.StdErrorBuf.Append(args.Data).Append('\n');
+        // add our listeners that append to buf
+        AddStdOutListener((sender, args) => this.StdOutputBuf.Append(args.Data).Append('\n'));
+        AddStdErrListener((sender, args) => this.StdErrorBuf.Append(args.Data).Append('\n'));
 
         // If modifying this code, make sure you read all of the below to avoid deadlocks.
         // https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.process.standardoutput?view=net-7.0
@@ -45,13 +64,54 @@ public class SimpleProcess
 
         cmd.WaitForExitAsync().Wait();  // required so that async std err and output operations finish before we return from method.
 
-        if (cmd.ExitCode != 0)
+        if (throwOnExitCode && cmd.ExitCode != 0)
         {
             string message = "Exit code: " + cmd.ExitCode + ".\nOutput:\n" + this.StdOutput + "\nError Output:\n" + this.StdError;
             if (killedProcess)
                 message = $"Timed out {timeoutMs}ms and killed process. " + message;
             throw new BashRunnerException(message);
         }
+    }
+
+    public int GetExitCode()
+    {
+        return cmd.ExitCode;
+    }
+
+    private void SetupCommandAndArgs()
+    {
+        if (SpecificCommand.Length > 0)
+        {
+            cmd.StartInfo.FileName = SpecificCommand;
+            cmd.StartInfo.Arguments = SpecificArgs;
+        }
+        else
+        {
+            var split = CommandAndArgs.Split(' ', count: 1);
+            cmd.StartInfo.FileName = split[0];
+
+            if (split.Length > 1)
+                cmd.StartInfo.Arguments = split[1];
+        }
+
+        if (cmd.StartInfo.FileName.Length == 0)
+            throw new BashRunnerException("Command needs to be specified");
+    }
+
+    public void AddStdOutListener(DataReceivedEventHandler handler)
+    {
+        cmd.OutputDataReceived += handler;
+    }
+
+    public void AddStdErrListener(DataReceivedEventHandler handler)
+    {
+        cmd.ErrorDataReceived += handler;
+    }
+
+    public void EnableEchoToTerminal()
+    {
+        AddStdOutListener((sender, args) => Console.WriteLine(args.Data));
+        AddStdErrListener((sender, args) => Console.Error.WriteLine(args.Data));
     }
 }
 
@@ -84,21 +144,23 @@ public class BashRunner
 
     public static void RunCommandSimple(SimpleProcess simpleProcess, int timeoutMs = 6000)
     {
-        Process cmd = new();
-        cmd.StartInfo.WorkingDirectory = simpleProcess.WorkingDirectory;
-
         bool runningOnWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        string command;
+        string args;
+
         if (runningOnWindows)
         {
-            cmd.StartInfo.FileName = "wsl.exe";
-            cmd.StartInfo.Arguments = $"{simpleProcess.CommandText}";
+            command = "wsl.exe";
+            args = $"{simpleProcess.CommandAndArgs}";
         }
         else
         {
-            cmd.StartInfo.FileName = "/bin/bash";
-            cmd.StartInfo.Arguments = $"-c \"{simpleProcess.CommandText}\"";
+            command = "/bin/bash";
+            args = $"-c \"{simpleProcess.CommandAndArgs}\"";
         }
 
-        simpleProcess.Run(cmd, timeoutMs);
+        simpleProcess.SpecificCommand = command;
+        simpleProcess.SpecificArgs = args;
+        simpleProcess.Run(timeoutMs);
     }
 }

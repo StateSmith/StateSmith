@@ -13,7 +13,7 @@ public class Spec2TestsJavaScript : Spec2Tests, IClassFixture<SharedCompilationF
         SimpleProcess process = new()
         {
             WorkingDirectory = SharedCompilationFixture.OutputDirectory,
-            CommandText = $"node index.js {testEvents}"
+            CommandAndArgs = $"node index.js {testEvents}"
         };
         BashRunner.RunCommand(process);
 
