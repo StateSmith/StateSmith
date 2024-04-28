@@ -131,6 +131,26 @@ public class TemplateRenderTest
             """);
     }
 
+    [Fact]
+    public void InlineFilter()
+    {
+        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.8.1-alpha", "../../MySm.drawio");
+        const string Template = """
+            public class MyRenderConfig : IRenderConfig /*!!<filter:CppC>*/, IRenderConfigC/*!!</filter>*/
+            """;
+        r.SetTemplate(Template);
+
+        r.Render().ShouldBeShowDiff("""
+            public class MyRenderConfig : IRenderConfig, IRenderConfigC
+            """);
+
+        // test negative now
+        r = new CsxTemplateRenderer(TargetLanguageId.C, "0.8.1-alpha", "../../MySm.drawio");
+        r.SetTemplate(Template);
+        r.Render().ShouldBeShowDiff("""
+            public class MyRenderConfig : IRenderConfig
+            """);
+    }
 
     [Fact]
     public void ReplaceStateSmithVersion()

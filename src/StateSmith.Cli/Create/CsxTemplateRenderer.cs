@@ -54,7 +54,7 @@ public class CsxTemplateRenderer
         };
 
         str = ReplaceMultiLineFilters(str, langKeyFilterKey);
-
+        str = ReplaceInlineFilters(str, langKeyFilterKey);
         str = ReplaceLineFilters(str, langKeyFilterKey);
 
         return str;
@@ -69,7 +69,7 @@ public class CsxTemplateRenderer
                 [^>]+
             )
             >
-            (?<inner>
+            (?<content>
                 (?:.|\n)
             *?)
             (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
@@ -77,29 +77,39 @@ public class CsxTemplateRenderer
             [ \t]*
         ");
 
+        str = ReplaceContentForTags(str, langKey, multilineFilter);
+        return str;
+    }
 
-        str = multilineFilter.Replace(str, (match) =>
-        {
-            var tags = match.Groups["tags"].Value.Split(',');
-            var inner = match.Groups["inner"].Value;
+    private static string ReplaceInlineFilters(string str, string langKey)
+    {
+        Regex inlineFilter = new(@"(?x)
+            (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
+            /[*]!!<filter:
+            (?<tags>
+                [^>]+
+            )
+            >[*]/
+            (?<content>
+                (?:.|\n)
+            *?)
+            (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
+            /[*]!!<\/filter>[*]/
+            [ \t]*
+        ");
 
-            if (tags.Contains(langKey))
-            {
-                return inner;
-            }
-
-            return "";
-        });
+        str = ReplaceContentForTags(str, langKey, inlineFilter);
         return str;
     }
 
     private static string ReplaceLineFilters(string str, string langKey)
     {
         Regex lineRegex = new(@"(?x)
-            (?<line>
+            (?<content>
                 (?:\r\n|\r|\n|^)    # line break or start of string
-                .+                  # line content before filter
+                .+?                 # line content before filter
             )
+            [ \t]*
             //!!<line-filter:
             (?<tags>
                 [^>]+
@@ -107,14 +117,21 @@ public class CsxTemplateRenderer
             >
         .*");
 
-        str = lineRegex.Replace(str, (match) =>
+        str = ReplaceContentForTags(str, langKey, lineRegex);
+        return str;
+    }
+
+
+    private static string ReplaceContentForTags(string str, string langKey, Regex regex)
+    {
+        str = regex.Replace(str, (match) =>
         {
             var tags = match.Groups["tags"].Value.Split(',');
-            var line = match.Groups["line"].Value.TrimEnd();
+            var content = match.Groups["content"].Value;
 
             if (tags.Contains(langKey))
             {
-                return line;
+                return content;
             }
 
             return "";
