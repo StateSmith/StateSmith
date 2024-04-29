@@ -6,6 +6,7 @@ using System.Diagnostics;
 using StateSmith.Cli.Run;
 using System.Collections.Generic;
 using StateSmith.Common;
+using System.IO;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
 
@@ -28,7 +29,7 @@ class Program
         public bool PrintDataSettingsPaths { get; set; }
     }
 
-    [Verb("run", HelpText = "Runs the StateSmith code generation.")]
+    [Verb("run", HelpText = "Not ready yet. Runs the StateSmith code generation.")]
     class RunOptions
     {
         [Option('p', "path", SetName = "normal", HelpText = "Path to manifest file or directory with manifest file. Can't use with -u.")]
@@ -42,9 +43,12 @@ class Program
 
         [Option(SetName = "choose", HelpText = "Shows a terminal GUI with choices. Don't use with other options.")]
         public bool Choose { get; set; } = false;
+
+        //[Option(HelpText = "Allows experimenting with run functionality. Not advised yet.")]
+        //public bool AllowExperiment { get; set; } = false;
     }
 
-    [Verb("run-csx", HelpText = "")]
+    [Verb("run-csx", HelpText = "Not ready yet.")]
     class RunCsxOptions
     {
         [Option('b', "rebuild", HelpText = "Ensures code generation is run. Ignores change detection.")]
@@ -90,16 +94,17 @@ class Program
             },
             (RunOptions opts) =>
             {
-                var runHandler = new RunHandler(manifest, Environment.CurrentDirectory);
-                runHandler.SetForceRebuild(opts.Rebuild);
-                // FIXME!
+                Console.WriteLine($"Not ready yet.");
                 return 0;
+
+                //var runHandler = new RunHandler(manifest, Environment.CurrentDirectory);
+                //runHandler.SetForceRebuild(opts.Rebuild);
+                //// FIXME!
+                //return 0;
             },
             (RunCsxOptions opts) =>
             {
-                foreach (var path in opts.ExcludePatterns)
-                    Console.WriteLine($"`{path}`");
-
+                Console.WriteLine($"Not ready yet.");
                 return 0;
             },
             errs =>
