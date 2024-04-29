@@ -13,7 +13,7 @@ We have a slew of state machine behavior specification tests to help ensure we d
 
 The majority of our breaking changes have been to code generation scripts (.csx files) as major features are implemented and require rework. Updating the .csx file scripts usually only takes a few minutes. Feel free to ask for help if you have any problems.
 
-# Release Template
+Release Template
 
 ```
 ## [some_version]
@@ -24,13 +24,35 @@ The majority of our breaking changes have been to code generation scripts (.csx 
 ### Changed (BREAKING-CHANGES, minor, ...)
 ```
 
+# Releases
+Test/interim releases are not documented here.
+
 ---
 
-# [0.9.8-alpha]
+## WIP
+
+---
+
+## [0.9.10-alpha]
+### Added
+- PlantUML - support case insensitive stereo types for entryPoint, exitPoint, choice.
+  - https://github.com/StateSmith/StateSmith/issues/227
+- draw.io - validation - add help url to exception message for "nodes overlap"
+  - https://github.com/StateSmith/StateSmith/issues/81
+### Changed (minor)
+- PlantUML - improve diagram element IDs for states.
+  - Most people won't notice this unless generating an output file for git diffing.
+  - Used to be something like `line_2_column_6`, but now matches unique state ID used in PlantUML diagram.
+
+---
+
+## [0.9.9-alpha]
 ### Added
 - Add state machine description file for easier git diffing and understanding.
   - https://github.com/StateSmith/StateSmith/issues/200
-- PlantUML - extend ignored diagram elements list
+- PlantUML - extend ignored diagram elements list.
+  - Now supports `mainframe` and old skin `skin rose` (@chriesibaum).
+  - https://github.com/StateSmith/StateSmith/issues/215
   - Now supports `title` (@yongzhy).
   - https://github.com/StateSmith/StateSmith/issues/216
 
@@ -80,8 +102,6 @@ The majority of our breaking changes have been to code generation scripts (.csx 
   - https://github.com/StateSmith/StateSmith/issues/191
 
 ---
-
-# Releases
 
 ## [0.9.3-alpha]
 ### Added

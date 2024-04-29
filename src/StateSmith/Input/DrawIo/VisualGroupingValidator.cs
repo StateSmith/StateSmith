@@ -1,9 +1,10 @@
-﻿#nullable enable
+#nullable enable
 
 using StateSmith.SmGraph;
 using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace StateSmith.Input.DrawIo;
 
@@ -75,24 +76,30 @@ public class VisualGroupingValidator
 
             if (childPoints.left < myPoints.left)
             {
-                throw new DiagramNodeException(child, $"{errMessagePrefix} (to the left).");
+                ThrowException(child, $"{errMessagePrefix} (to the left).");
             }
 
             if (childPoints.top < myPoints.top)
             {
-                throw new DiagramNodeException(child, $"{errMessagePrefix} (above).");
+                ThrowException(child, $"{errMessagePrefix} (above).");
             }
 
             if (childPoints.right > myPoints.right)
             {
-                throw new DiagramNodeException(child, $"{errMessagePrefix} (to the right).");
+                ThrowException(child, $"{errMessagePrefix} (to the right).");
             }
 
             if (childPoints.bottom > myPoints.bottom)
             {
-                throw new DiagramNodeException(child, $"{errMessagePrefix} (below).");
+                ThrowException(child, $"{errMessagePrefix} (below).");
             }
         }
+    }
+
+    [DoesNotReturn]
+    private static void ThrowException(DiagramNode child, string message)
+    {
+        throw new DiagramNodeException(child, message + $"\nSee {NotTouchingValidator.HelpUrl} for how to fix.");
     }
 
     private void AddCornerPointsRecursively(DiagramNode node)

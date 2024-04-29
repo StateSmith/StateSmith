@@ -133,24 +133,28 @@ ignore:
     |
     'scale' HWS rest_of_line
     |
+    'skin' HWS rest_of_line
+    |
+    'mainframe' HWS rest_of_line
+    |
     'title' HWS rest_of_line
     |
     'skinparam' HWS identifier optional_any_space
-        '{' ohs LINE_ENDER
-            (
-                ohs 
-                ( 
-                    identifier
-                    stereotype?
-                    HWS+
-                    (
-                        identifier | DIGIT | '#'
-                    )+
-                )?
-                LINE_ENDER
-            )*
-        ohs
-        '}'
+    '{' ohs LINE_ENDER
+        (
+            ohs 
+            ( 
+                identifier
+                stereotype?
+                HWS+
+                (
+                    identifier | DIGIT | '#'
+                )+
+            )?
+            LINE_ENDER
+        )*
+    ohs
+    '}'
     |
     'skinparam' HWS rest_of_line
     ;
@@ -158,8 +162,6 @@ ignore:
 diagram_element:
     line_ending_ows+
     (
-        ignore
-        |
         state_contents
         |
         transition
@@ -167,6 +169,8 @@ diagram_element:
         state_explicit
         |
         note
+        |
+        ignore
     )
     ;
 
@@ -248,6 +252,7 @@ fragment IDENTIFIER_NON_DIGIT :  [a-zA-Z_] ;
 START_UML: '@startuml';
 END_UML: '@enduml';
 
+// Horizontal white space
 HWS : [ \t]+ ;
 LINE_ENDER: '\r\n' | '\r' | '\n';
 identifier
@@ -258,9 +263,12 @@ identifier
     | 'end'
     | 'as'
     | 'scale'
+    | 'skin'
+    | 'mainframe'
+    | 'title'
     | 'skinparam'
     ;
-IDENTIFIER  :   IDENTIFIER_NON_DIGIT   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+IDENTIFIER  :   IDENTIFIER_NON_DIGIT   ( IDENTIFIER_NON_DIGIT | DIGIT )*  ;
 DIGIT :   [0-9]  ;
 
 fragment BLOCK_COMMENT_START : '/' SINGLE_QUOTE;

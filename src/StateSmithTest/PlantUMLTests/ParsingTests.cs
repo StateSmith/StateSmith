@@ -6,6 +6,7 @@ using StateSmith.SmGraph;
 using StateSmith.Input;
 using FluentAssertions;
 using StateSmith.Runner;
+using System.Linq;
 
 namespace StateSmithTest.PlantUMLTests;
 
@@ -181,7 +182,7 @@ public class ParsingTests
             @startuml SompySm
             state Somp {
               state entry1 <<entryPoint>>
-              state entry2 <<entryPoint>>
+              state entry2 <<entrypoint>>    /' case insensitive allowed https://github.com/StateSmith/StateSmith/issues/227 '/
               state sin
               entry1 --> sin
               entry2 -> sin
@@ -266,6 +267,35 @@ public class ParsingTests
             new Behavior(){ _transitionTarget = s1, guardCode = "id <= 10" },
             new Behavior(){ _transitionTarget = s2 },
         }, behaviorMatcher);
+    }
+
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/227
+    /// </summary>
+    [Fact]
+    public void ChoicePointsCaseInsensitive_227()
+    {
+        var plantUmlText = """
+            @startuml ExampleSm
+            state c1 <<choice>>
+            state c2 <<Choice>>
+            state c3 <<CHOICE>>
+            [*] --> c1
+            c1 --> c2
+            c2 -> c3
+            c3 --> S1
+            @enduml
+            """;
+        InputSmBuilder inputSmBuilder = new();
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.FinishRunning();
+
+        StateMachine root = inputSmBuilder.GetStateMachine();
+
+        // find choice points by diagram id
+        root.ChildWithDiagramId("c1").As<ChoicePoint>(); // will throw if not found, or wrong type
+        root.ChildWithDiagramId("c2").As<ChoicePoint>(); // will throw if not found, or wrong type
+        root.ChildWithDiagramId("c3").As<ChoicePoint>(); // will throw if not found, or wrong type
     }
 
     [Fact]
@@ -478,7 +508,7 @@ public class ParsingTests
     /// Ignore title line
     /// </summary>
     [Fact]
-    public void DiagramIgnoreTitle()
+    public void DiagramIgnoreTitle_216()
     {
         ParseAssertNoError("""
             @startuml MyPumlSm1
@@ -491,7 +521,195 @@ public class ParsingTests
             title ""Test Title""
             @enduml
             """);
+
+        ParseAssertNoError("""
+            @startuml MyPumlSm1
+            title //**Test// Title**
+            @enduml
+            """);
     }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/216
+    /// We shouldn't ignore title if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void TitleStateName_216()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            title --> S1
+            [*] --> mainframe
+            @enduml
+            """);
+
+        GetVertexById("title");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/216
+    /// We shouldn't ignore title if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void TitleStateName2_216()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            S1 --> title
+            [*] --> S1
+            @enduml
+            """);
+
+        GetVertexById("title");
+    }
+
+    //###############################################################################################
+    // Start of tests for https://github.com/StateSmith/StateSmith/issues/215
+    //###############################################################################################
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeSimple_215()
+    {
+        ParseAssertNoError("""
+            @startuml blinky1_printf_sm
+            mainframe This is a **mainframe**
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeStartingWithLetter_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe This is a **mainframe** and other characters 12398753298-->:!@(*&^%##$%^&*()_+{}|:"<>?[]\;',./
+            [*] --> S1
+            @enduml
+            """);
+
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe lowercase title and other characters 12398753298-->:!@(*&^%##$%^&*()_+{}|:"<>?[]\;',./
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeStartingWithDigit_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe 1234 This is a **mainframe** and other characters 12398753298-->:!@(*&^%##$%^&*()_+{}|:"<>?[]\;',./
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeStartingWithBold_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe **1234 title**
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreMainframeStartingWithItalic_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe //**1234 title**//
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// We shouldn't ignore mainframe if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void MainframeStateName_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            mainframe --> S1
+            [*] --> mainframe
+            @enduml
+            """);
+
+        GetVertexById("mainframe");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// skin rose https://twitter.com/PlantUML/status/1492968858960990222?lang=en
+    /// </summary>
+    [Fact]
+    public void IgnoreSkinRoseTiny_215()
+    {
+        ParseAssertNoError("""
+            @startuml blinky1_printf_sm
+            skin rose
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// skin basic https://github.com/StateSmith/StateSmith/issues/215
+    /// </summary>
+    [Fact]
+    public void IgnoreSkinBasicTiny_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            skin basic
+            [*] --> S1
+            @enduml
+            """);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/215
+    /// We shouldn't ignore skin if it is used as a state name
+    /// </summary>
+    [Fact]
+    public void SkinStateName_215()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            skin --> S1
+            [*] --> skin
+            @enduml
+            """);
+
+        GetVertexById("skin");
+    }
+
+    //###############################################################################################
+    // End of tests for https://github.com/StateSmith/StateSmith/issues/215
+    //###############################################################################################
+
+
 
     private DiagramNode GetVertexById(string id)
     {

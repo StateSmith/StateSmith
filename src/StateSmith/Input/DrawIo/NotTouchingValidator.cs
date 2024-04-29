@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using StateSmith.SmGraph;
 using StateSmith.Input.Antlr4;
@@ -11,6 +11,8 @@ namespace StateSmith.Input.DrawIo;
 /// </summary>
 public class NotTouchingValidator
 {
+    public const string HelpUrl = "https://github.com/StateSmith/StateSmith/issues/81";
+
     Dictionary<string, CornerPoints> cellIdToCornerPointsMapping;
     Dictionary<string, MxCell> mxCellMap;
 
@@ -63,7 +65,7 @@ public class NotTouchingValidator
             var otherCorners = cellIdToCornerPointsMapping[other.id];
             if (myCorners.Overlaps(otherCorners))
             {
-                throw new DiagramNodeException(node, $"Non-related nodes overlap: {node.DescribeShort()} with {other.DescribeShort()}.");
+                throw new DiagramNodeException(node, $"Non-related nodes overlap: {node.DescribeShort()} with {other.DescribeShort()}.\nSee {HelpUrl} for how to fix.");
             }
         }
 
