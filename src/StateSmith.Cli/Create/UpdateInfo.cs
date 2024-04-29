@@ -1,13 +1,18 @@
+using StateSmith.Output;
 using System;
 
 namespace StateSmith.Cli.Create;
 
 public class UpdateInfo
 {
-    public const string DefaultStateSmithLibVersion = "0.9.9-alpha";
-
+    public static readonly string DefaultStateSmithLibVersion = GetDefaultStateSmithLibVersion();
     public string LastestStateSmithLibStableVersion { get; set; } = DefaultStateSmithLibVersion;
     public string LastCheckDateTime { get; set; } = "2021-09-01T00:00:00Z";
+
+    static string GetDefaultStateSmithLibVersion()
+    {
+        return LibVersionInfo.GetVersionInfoString(removeBuildInfo: true);
+    }
 
     public double GetMsSinceLastCheck()
     {
