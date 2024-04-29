@@ -29,7 +29,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## WIP
+## [0.9.12-alpha]
 ### Added
 - Added `LibVersionInfo` class to make it easier to get StateSmith version info.
 
