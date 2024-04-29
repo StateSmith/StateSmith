@@ -12,9 +12,6 @@ public class EmbeddedFilesTest
     {
         const string templateName = TemplateIds.DrawIoSimple1;
 
-        var csxContents = TemplateLoader.LoadCsx(templateName);
-        csxContents.Should().Contain("#r \"nuget: StateSmith,");
-
         var diagramContents = TemplateLoader.LoadDiagram(templateName, isDrawIoSelected: true);
         diagramContents.Should().Contain("mxCell");
     }
@@ -23,9 +20,6 @@ public class EmbeddedFilesTest
     public void LoadPlantumlSimple1()
     {
         const string templateName = TemplateIds.PlantUmlSimple1;
-
-        var csxContents = TemplateLoader.LoadCsx(templateName);
-        csxContents.Should().Contain("#r \"nuget: StateSmith,");
 
         var diagramContents = TemplateLoader.LoadDiagram(templateName, isDrawIoSelected: false);
         diagramContents.Should().Contain("@startuml ");

@@ -1,3 +1,4 @@
+using StateSmith.Output.UserConfig;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -41,8 +42,17 @@ public class CsxTemplateRenderer
             TargetLanguageId.JavaScript => "JavaScript",
             _ => throw new System.NotImplementedException(),
         };
-
         str = str.Replace("{{transpilerId}}", transpilerId);
+
+        var renderConfigBase = targetLanguageId switch
+        {
+            TargetLanguageId.C => nameof(IRenderConfigC),
+            TargetLanguageId.CppC => nameof(IRenderConfigC),
+            TargetLanguageId.CSharp => nameof(IRenderConfigCSharp),
+            TargetLanguageId.JavaScript => nameof(IRenderConfigJavaScript),
+            _ => throw new System.NotImplementedException(),
+        };
+        str = str.Replace("{{renderConfigBase}}", renderConfigBase);
 
         var langKeyFilterKey = targetLanguageId switch
         {

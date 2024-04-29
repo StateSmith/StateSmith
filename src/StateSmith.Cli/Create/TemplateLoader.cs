@@ -11,6 +11,19 @@ public class TemplateLoader
     public const string PlantUmlFileName = DiagramFileNamePrefix + ".plantuml";
     public const string CsxFileName = "script.csx";
 
+    public static string LoadDefaultCsx()
+    {
+        var result = LoadFileResource(TemplateIds._scripts, fileName: "default.csx");
+        return result;
+    }
+
+    public static string LoadCsxOrDefault(string templateName)
+    {
+        string? result = MaybeLoadFileResource(templateName, fileName: CsxFileName);
+        result ??= LoadDefaultCsx();
+        return result;
+    }
+
     public static string LoadCsx(string templateName)
     {
         var result = LoadFileResource(templateName, fileName: CsxFileName);
@@ -36,20 +49,38 @@ public class TemplateLoader
 
     public static string LoadFileResource(string templateName, string fileName)
     {
+        string? result = MaybeLoadFileResource(templateName, fileName);
+        
+        if (result == null)
+        {
+            var path = GetResourcePath(templateName, fileName);
+            throw new InvalidOperationException($"Resource not found: {path}");
+        }
+
+        return result;
+    }
+
+    public static string? MaybeLoadFileResource(string templateName, string fileName)
+    {
         // See https://stackoverflow.com/questions/3314140/how-to-read-embedded-resource-text-file
+        string resourcePath = GetResourcePath(templateName, fileName);
+
         var assembly = Assembly.GetExecutingAssembly();
-        string path = $"{basePath}{templateName}.";
-        path = path.Replace("-", "_"); // embedded resource directory path has dashes to underscores. https://stackoverflow.com/questions/14705211/how-is-net-renaming-my-embedded-resources
-        path += fileName; // dashes are fine in file names
-
-        using var stream = assembly.GetManifestResourceStream(path);
-
+        using var stream = assembly.GetManifestResourceStream(resourcePath);
         if (stream == null)
-            throw new Exception($"Could not find resource {path}");
+            return null;
 
         using var reader = new System.IO.StreamReader(stream);
         string result = reader.ReadToEnd();
 
         return result;
+    }
+
+    private static string GetResourcePath(string templateName, string fileName)
+    {
+        string path = $"{basePath}{templateName}.";
+        path = path.Replace("-", "_"); // embedded resource directory path has dashes to underscores. https://stackoverflow.com/questions/14705211/how-is-net-renaming-my-embedded-resources
+        path += fileName; // dashes are fine in file names
+        return path;
     }
 }

@@ -12,7 +12,7 @@ SmRunner runner = new(diagramPath: "{{diagramPath}}", new MyRenderConfig(), tran
 runner.Run();
 
 // See https://github.com/StateSmith/tutorial-2/tree/main/lesson-2
-public class MyRenderConfig : IRenderConfig
+public class MyRenderConfig : {{renderConfigBase}}
 {
     //!!<filter:CppC>
     // NOTE!!! Idiomatic C++ code generation is coming. This will improve.

@@ -30,7 +30,7 @@ public class Generator
 
     public void GenerateCsx(string templateName)
     {
-        var templateStr = TemplateLoader.LoadCsx(templateName);
+        var templateStr = TemplateLoader.LoadCsxOrDefault(templateName);
 
         string diagramFilePathRelative = GetDiagramPathRelativeToCsx();
 

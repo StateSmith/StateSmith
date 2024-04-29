@@ -193,7 +193,7 @@ public class TemplateRenderTest
     [Fact]
     public void IntegrationTest()
     {
-        var csxTemplate = TemplateLoader.LoadCsx(TemplateIds.DrawIoSimple1);
+        var csxTemplate = TemplateLoader.LoadDefaultCsx();
 
         var r = new CsxTemplateRenderer(TargetLanguageId.C, "0.9.9-alpha", "../../MySm.drawio", template: csxTemplate);
 
@@ -214,7 +214,7 @@ public class TemplateRenderTest
             runner.Run();
 
             // See https://github.com/StateSmith/tutorial-2/tree/main/lesson-2
-            public class MyRenderConfig : IRenderConfig
+            public class MyRenderConfig : IRenderConfigC
             {
 
                 // See https://github.com/StateSmith/tutorial-2/tree/main/lesson-3
@@ -224,5 +224,69 @@ public class TemplateRenderTest
             }
             
             """);
+    }
+
+    [Fact]
+    public void RenderConfigTestC()
+    {
+        var csxTemplate = TemplateLoader.LoadDefaultCsx();
+        var r = new CsxTemplateRenderer(TargetLanguageId.C, "0.9.9-alpha", "../../MySm.drawio", template: csxTemplate);
+        var result = r.Render();
+
+        result.Should().Contain("""
+            public class MyRenderConfig : IRenderConfigC
+            {
+            """);
+    }
+
+    [Fact]
+    public void RenderConfigTestCpp()
+    {
+        var csxTemplate = TemplateLoader.LoadDefaultCsx();
+        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.9.9-alpha", "../../MySm.drawio", template: csxTemplate);
+        var result = r.Render();
+
+        result.Should().Contain("""
+            public class MyRenderConfig : IRenderConfigC
+            {
+            """);
+    }
+
+    [Fact]
+    public void RenderConfigTestCSharp()
+    {
+        var csxTemplate = TemplateLoader.LoadDefaultCsx();
+        var r = new CsxTemplateRenderer(TargetLanguageId.CSharp, "0.9.9-alpha", "../../MySm.drawio", template: csxTemplate);
+        var result = r.Render();
+
+        result.Should().Contain("""
+            public class MyRenderConfig : IRenderConfigCSharp
+            {
+            """);
+    }
+
+    [Fact]
+    public void RenderConfigTestJavaScript()
+    {
+        var csxTemplate = TemplateLoader.LoadDefaultCsx();
+        var r = new CsxTemplateRenderer(TargetLanguageId.JavaScript, "0.9.9-alpha", "../../MySm.drawio", template: csxTemplate);
+        var result = r.Render();
+
+        result.Should().Contain("""
+            public class MyRenderConfig : IRenderConfigJavaScript
+            {
+            """);
+    }
+
+
+    [Fact]
+    public void TestCppFilter()
+    {
+        var csxTemplate = TemplateLoader.LoadDefaultCsx();
+        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.9.9-alpha", "../../MySm.drawio", template: csxTemplate);
+        var result = r.Render();
+
+        result.Should().Contain("""string IRenderConfigC.CFileExtension => ".cpp";""");
+        result.Should().Contain("""string IRenderConfigC.HFileExtension => ".h";""");
     }
 }
