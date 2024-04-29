@@ -45,14 +45,14 @@ public class Spec1b_CTests
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandText = "gcc -Wall ../../lang-helpers/c/helper.c main.c Spec1bSm.c"
+            CommandAndArgs = "gcc -Wall ../../lang-helpers/c/helper.c main.c Spec1bSm.c"
         };
         BashRunner.RunCommand(process);
 
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandText = "./a.out"
+            CommandAndArgs = "./a.out"
         };
         BashRunner.RunCommand(process);
 

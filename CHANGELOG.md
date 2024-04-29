@@ -30,6 +30,8 @@ Test/interim releases are not documented here.
 ---
 
 ## WIP
+### Added
+- Added `LibVersionInfo` class to make it easier to get StateSmith version info.
 
 ---
 

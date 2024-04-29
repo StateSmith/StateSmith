@@ -33,27 +33,7 @@ public class StandardFileHeaderPrinter
         var versionInfo = "";
         if (settings.outputStateSmithVersionInfo)
         {
-            versionInfo = " " + GetVersionInfoString();
-        }
-
-        return versionInfo;
-    }
-
-    public static string GetVersionInfoString()
-    {
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        AssemblyInformationalVersionAttribute? attr = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
-
-        string versionInfo;
-
-        if (attr != null)
-        {
-            versionInfo = attr.InformationalVersion;
-        }
-        else
-        {
-            System.Version? version = assembly.GetName().Version;
-            versionInfo = version?.ToString() + "-<unable-to-get-suffix>";
+            versionInfo = " " + LibVersionInfo.GetVersionInfoString();
         }
 
         return versionInfo;

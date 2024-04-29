@@ -3,6 +3,7 @@ using FluentAssertions;
 using System.IO;
 using StateSmith.Input.Expansions;
 using StateSmith.Output;
+using StateSmith.Cli.CompRun;
 
 namespace StateSmithTest;
 

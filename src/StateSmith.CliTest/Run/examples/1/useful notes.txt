@@ -1,0 +1,3 @@
+..\..\..\..\StateSmith.Cli\bin\Debug\net6.0\StateSmith.Cli.exe run
+
+..\..\..\..\StateSmith.Cli\bin\Debug\net6.0\StateSmith.Cli.exe run -r --ignore-paths "blah, **/a3, doodleDo"

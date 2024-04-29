@@ -13,7 +13,7 @@ public class Spec2TestsCSharp : Spec2Tests, IClassFixture<SharedCompilationFixtu
         SimpleProcess process = new()
         {
             WorkingDirectory = SharedCompilationFixture.OutputDirectory,
-            CommandText = $"dotnet bin/Debug/net6.0/Spec2Test.dll {testEvents}" // like 5x faster!!! Tip from https://github.com/dotnet/sdk/issues/8697#issuecomment-327943066
+            CommandAndArgs = $"dotnet bin/Debug/net6.0/Spec2Test.dll {testEvents}" // like 5x faster!!! Tip from https://github.com/dotnet/sdk/issues/8697#issuecomment-327943066
             //CommandText = $"dotnet run --no-build {testEvents}"   // slow compared to above
         };
         BashRunner.RunCommand(process);

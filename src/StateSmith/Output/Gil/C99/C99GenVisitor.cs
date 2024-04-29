@@ -539,8 +539,8 @@ public class C99GenVisitor : CSharpSyntaxWalker
             case "UInt32": result = "uint32_t"; break;
             case "Int64": result = "int64_t"; break;
             case "UInt64": result = "uint64_t"; break;
-            case "Double": result = "float"; break;
-            case "Single": result = "double"; break;
+            case "Single": result = "float"; break;
+            case "Double": result = "double"; break;
 
             default:
                 {

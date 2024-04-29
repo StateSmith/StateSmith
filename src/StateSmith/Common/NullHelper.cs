@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StateSmith.Common
 {
-    internal static class NullHelper
+    public static class NullHelper
     {
         public static T ThrowIfNull<T>([NotNull] this T? value, string valueExpression = "")
         {
