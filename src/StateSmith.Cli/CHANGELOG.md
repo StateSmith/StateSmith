@@ -6,6 +6,15 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+---
+
+## [wip]
+### Fixed
+- Fixed user settings surviving tool upgrade.
+    - On windows: `C:\Users\user\AppData\Roaming\StateSmith.Cli\`
+    - On unix/mac: `~/.config/StateSmith.Cli/`
+    - https://github.com/StateSmith/StateSmith/issues/244
+
 --- 
 
 ## [0.6.4]

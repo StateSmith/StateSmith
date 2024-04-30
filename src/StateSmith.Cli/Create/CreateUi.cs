@@ -20,9 +20,9 @@ public class CreateUi
 
     public CreateUi()
     {
-        string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!; //TODO consider null
-        _settingsPersistencePath = $"{assemblyFolder}/ss-create-settings.json";
-        _updateInfoPersistencePath = $"{assemblyFolder}/ss-create-update-info.json";
+        string configFolder = new ConfigDataPath().GetConfigDirPath();
+        _settingsPersistencePath = $"{configFolder}/create-settings.json";
+        _updateInfoPersistencePath = $"{configFolder}/create-update-info.json";
     }
 
     public void SetConsole(IAnsiConsole console)
