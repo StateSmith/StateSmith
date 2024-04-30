@@ -7,16 +7,18 @@ namespace StateSmith.Cli.Create;
 public class CsxTemplateRenderer
 {
     protected TargetLanguageId targetLanguageId;
+    protected string smName;
     protected string stateSmithVersion;
     protected string diagramPath;
     protected string template;
 
-    public CsxTemplateRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath, string template = "")
+    public CsxTemplateRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath, string smName, string template = "")
     {
         this.targetLanguageId = targetLanguageId;
         this.stateSmithVersion = stateSmithVersion;
         this.diagramPath = diagramPath;
         this.template = template;
+        this.smName = smName;
     }
 
     public void SetTemplate(string template)
@@ -32,7 +34,9 @@ public class CsxTemplateRenderer
     public string Render()
     {
         diagramPath = ConvertPathsToForwardSlashes(diagramPath);  // we do this so that we don't need to escape backslashes in the generated string
-        var str = template.Replace("{{stateSmithVersion}}", stateSmithVersion).Replace("{{diagramPath}}", diagramPath);
+        var str = template.Replace("{{stateSmithVersion}}", stateSmithVersion);
+        str = str.Replace("{{diagramPath}}", diagramPath);
+        str = str.Replace("{{smName}}", smName);
 
         var transpilerId = targetLanguageId switch
         {
@@ -72,8 +76,8 @@ public class CsxTemplateRenderer
 
     private static string ReplaceMultiLineFilters(string str, string langKey)
     {
-        Regex multilineFilter = new(@"(?x)
-            (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
+        Regex multilineFilter = new(@"(?xm)
+            (?: [ \t]* (?:\r\n|\r|\n) *)*   # leading whitespace
             //!!<filter:
             (?<tags>
                 [^>]+
@@ -85,6 +89,7 @@ public class CsxTemplateRenderer
             (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
             //!!<\/filter>
             [ \t]*
+            (?: (?:\r\n|\r|\n) [ \t]* $)*   # blank lines
         ");
 
         str = ReplaceContentForTags(str, langKey, multilineFilter);

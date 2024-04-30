@@ -14,6 +14,8 @@ Test/interim releases are not documented here.
     - On windows: `C:\Users\user\AppData\Roaming\StateSmith.Cli\`
     - On unix/mac: `~/.config/StateSmith.Cli/`
     - https://github.com/StateSmith/StateSmith/issues/244
+### Added
+- Updated language templates with common features needed.
 
 --- 
 
