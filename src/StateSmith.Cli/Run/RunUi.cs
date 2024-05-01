@@ -1,49 +1,165 @@
 using Spectre.Console;
+using System;
+using System.IO;
 
 namespace StateSmith.Cli.Run;
 
 public class RunUi
 {
-    public RunHandler runHandler;
     IAnsiConsole _console = AnsiConsole.Console;
+    RunOptions opts;
+    RunHandler runHandler = new(Environment.CurrentDirectory);
 
-
-    public RunUi(RunHandler runHandler)
+    public RunUi(RunOptions opts)
     {
-        this.runHandler = runHandler;
+        this.opts = opts;
     }
 
-    public void HandleNoManifest()
+    public void SetConsole(IAnsiConsole console)
     {
-        const string autoCreateManifestFile = "Automatically create a manifest file. [grey]Recursively finds StateSmith csx files in this directory.[/]";
-        const string blankManifest = "Create a blank manifest file here. [grey]You'll need to set it up. Good for huge directories.[/]";
-        const string findAndRunCsxFilesRecursively = "Find and run StateSmith csx files [cyan]Recursively[/]. [grey]No manifest used or created.[/]";
-        const string findAndRunCsxFiles = "Find and run StateSmith csx files here. [grey]No manifest used or created.[/]";
-        const string searchUpForManifest = "Search up the directory tree for a manifest file and use that";
+        _console = console;
+    }
+
+    public int HandleRunCommand()
+    {
+        _console.MarkupLine("");
+
+        var rule = new Rule($"[yellow]Run Command Handling[/]")
+        {
+            Justification = Justify.Left
+        };
+        _console.Write(rule);
+
+        runHandler.SetConsole(_console);
+
+        SetRunHandlerFromOptions();
+
+        if (opts.Menu)
+        {
+            AskWhatToDo("What did you want to do?");
+            return 0;
+        }
+
+        if (opts.Here)
+        {
+            // ignore any manifest file
+            runHandler.Finder.AddDefaultIncludePatternIfNone();
+            runHandler.Run();
+            return 0;
+        }
+
+        if (opts.Up)
+        {
+            SearchUpForManifestAndRun();
+            return 0;
+        }
+
+        var manPersistance = new ManifestPersistance(Environment.CurrentDirectory);
+        Manifest? manifest = null;
+
+        if (manPersistance.ManifestExists())
+        {
+            try
+            {
+                manifest = manPersistance.ReadOrThrow();
+                _console.MarkupLine($"[green]Using manifest file:[/] {ManifestPersistance.ManifestFileName}");
+            }
+            catch (Exception e)
+            {
+                _console.MarkupLine($"[red]Error reading manifest file:[/] {ManifestPersistance.ManifestFileName}");
+                _console.WriteException(e);
+
+                // let it fall through and it will show the menu
+            }
+        }
+
+        if (manifest == null)
+        {
+            AskWhatToDo();
+            return 0;
+        }
+        else
+        {
+            runHandler.AddFromManifest(manifest);
+            runHandler.Run();
+            return 0;
+        }
+    }
+
+    private void SetRunHandlerFromOptions()
+    {
+        // add patterns from command line
+        runHandler.Finder.AddIncludePatterns(opts.IncludePatterns);
+        runHandler.Finder.AddExcludePatterns(opts.ExcludePatterns);
+
+        runHandler.SetForceRebuild(opts.Rebuild);
+
+        if (opts.Recursive)
+            runHandler.Finder.SetAsRecursive();
+    }
+
+    private void AskWhatToDo(string? title = null)
+    {
+        const string findAndRunCsxFiles = "[cyan]Run Here.[/] Find and run StateSmith csx files here. No manifest used or created.";
+        const string findAndRunCsxFilesRecursively = "[cyan]Run Here Recursively.[/] Find and run StateSmith csx files here recursively. No manifest used or created.";
+        const string searchUpForManifest = "[cyan]Search Upwards For Manifest[/] and use that.";
+        //const string autoCreateManifestFile = "[cyan]Create Manifest From Scan.[/] Recursively finds StateSmith csx files in this directory and stores in manifest.";
+        const string blankManifest = "[cyan]Create Default Manifest[/] file here. Useful for filtering files in large directories.";
         string choice = _console.Prompt(new SelectionPrompt<string>()
-            .Title("No statesmith.manifest.json found. What did you want to do?")
+            .Title(title ?? $"No valid manifest ({ManifestPersistance.ManifestFileName}) found. What did you want to do?")
             .AddChoices(new[] {
-                autoCreateManifestFile,
-                blankManifest,
-                findAndRunCsxFilesRecursively,
                 findAndRunCsxFiles,
+                findAndRunCsxFilesRecursively,
                 searchUpForManifest,
+                //autoCreateManifestFile,
+                blankManifest,
             }));
 
         switch (choice)
         {
-            case autoCreateManifestFile:
-                runHandler.ScanAndCreateManifest();
+            case findAndRunCsxFiles:
+                runHandler.Finder.AddDefaultIncludePatternIfNone();
+                runHandler.Run();
                 break;
+            case findAndRunCsxFilesRecursively:
+                runHandler.Finder.AddDefaultIncludePatternIfNone();
+                runHandler.Finder.SetAsRecursive();
+                runHandler.Run();
+                break;
+            case searchUpForManifest:
+                SearchUpForManifestAndRun();
+                break;
+            //case autoCreateManifestFile:
+            //    runHandler.Finder.SetAsRecursive();
+            //    runHandler.ScanAndCreateManifest();
+            //    break;
             case blankManifest:
                 runHandler.CreateBlankManifest();
                 break;
-            //case findAndRunCsxFiles:
-            //    runHandler.Fin
-            //    break;
-            //case searchUpForManifest:
-            //    runHandler.SearchUpForManifest();
-            //    break;
         }
+    }
+
+    internal void SearchUpForManifestAndRun()
+    {
+        DirectoryInfo? dir = new(Environment.CurrentDirectory);
+
+        while (dir != null && !ManifestPersistance.ManifestExists(dir.FullName))
+        {
+            dir = dir.Parent;
+        }
+
+        if (dir == null)
+        {
+            throw new FileNotFoundException($"Could not find a manifest file ({ManifestPersistance.ManifestFileName}) in this or parent directories.");
+        }
+
+        _console.MarkupLine($"Found manifest in directory: {dir.FullName}");
+
+        Manifest manifest = new ManifestPersistance(dir.FullName).ReadOrThrow();
+        runHandler = new RunHandler(dir.FullName);
+        runHandler.SetConsole(_console);    // fixme should be in constructor
+        SetRunHandlerFromOptions();
+        runHandler.AddFromManifest(manifest);
+        runHandler.Run();
     }
 }

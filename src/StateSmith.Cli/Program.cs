@@ -4,9 +4,9 @@ using StateSmith.Cli.Create;
 using CommandLine.Text;
 using System.Diagnostics;
 using StateSmith.Cli.Run;
-using System.Collections.Generic;
 using StateSmith.Common;
 using System.IO;
+using Spectre.Console;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
 
@@ -23,46 +23,13 @@ class Program
     // https://github.com/commandlineparser/commandline/issues/818
 
     [Verb("create", HelpText = "Creates a new StateSmith project from template.")]
-    class CreateOptions
+    public class CreateOptions
     {
         [Option("print-storage-paths", HelpText = "Shows the paths where data/settings is stored.")]
         public bool PrintDataSettingsPaths { get; set; }
     }
 
-    [Verb("run", HelpText = "Not ready yet. Runs the StateSmith code generation.")]
-    class RunOptions
-    {
-        [Option('p', "path", SetName = "normal", HelpText = "Path to manifest file or directory with manifest file. Can't use with -u.")]
-        public string PathToDirOrManifest { get; set; } = "";
 
-        [Option('b', "rebuild", HelpText = "Ensures code generation is run. Ignores change detection.")]
-        public bool Rebuild { get; set; } = false;
-
-        [Option('u', "up", SetName="up", HelpText = "Searches upwards for manifest file. Can't use with -p.")]
-        public bool Up { get; set; } = false;
-
-        [Option(SetName = "choose", HelpText = "Shows a terminal GUI with choices. Don't use with other options.")]
-        public bool Choose { get; set; } = false;
-
-        //[Option(HelpText = "Allows experimenting with run functionality. Not advised yet.")]
-        //public bool AllowExperiment { get; set; } = false;
-    }
-
-    [Verb("run-csx", HelpText = "Not ready yet.")]
-    class RunCsxOptions
-    {
-        [Option('b', "rebuild", HelpText = "Ensures code generation is run. Ignores change detection.")]
-        public bool Rebuild { get; set; } = false;
-
-        [Option('r', "recursive", SetName = "recursive", HelpText = "Recursive. Can't use with -i.")]
-        public bool Recursive { get; set; } = false;
-
-        [Option('x', "exclude-paths", HelpText = "Glob patterns to exclude")]
-        public IEnumerable<string> ExcludePatterns { get; set; } = new List<string>();
-
-        [Option('i', "include", SetName = "include", HelpText = "Glob patterns to include. ex: `**/src/*.csx`. Can't use with -r.")]
-        public IEnumerable<string> IncludePatterns { get; set; } = new List<string>();
-    }
 
     // TODOLOW - help setup vscode script intellisense
     // TODOLOW - setup vscode with StateSmith plugin for draw.io extension
@@ -70,20 +37,39 @@ class Program
 
     static void Main(string[] args)
     {
+        IAnsiConsole _console = AnsiConsole.Console;
+
         if (Debugger.IsAttached)
         {
             //new CreateUi().Run();
         }
         //args = new[] { "run-here", "--help" };
 
-        var parserResult = Parser.Default.ParseArguments<CreateOptions, RunOptions, RunCsxOptions>(args);
+        try
+        {
+            ParseCommandsAndRun(args, _console);
+        }
+        catch (Exception ex)
+        {
+            _console.WriteException(ex);
+            Environment.ExitCode = 1;
+        }
+        finally
+        {
+            _console.WriteLine("");
+            _console.WriteLine("");
+        }
+    }
 
-        Manifest? manifest = new ManifestPersistance(Environment.CurrentDirectory).Read();
+    private static void ParseCommandsAndRun(string[] args, IAnsiConsole _console)
+    {
+        var parserResult = Parser.Default.ParseArguments<CreateOptions, RunOptions>(args);
 
         parserResult.MapResult(
             (CreateOptions opts) =>
             {
                 var createUi = new CreateUi();
+                createUi.SetConsole(_console);
 
                 if (opts.PrintDataSettingsPaths)
                     createUi.PrintPersistencePaths();
@@ -94,18 +80,9 @@ class Program
             },
             (RunOptions opts) =>
             {
-                Console.WriteLine($"Not ready yet.");
-                return 0;
-
-                //var runHandler = new RunHandler(manifest, Environment.CurrentDirectory);
-                //runHandler.SetForceRebuild(opts.Rebuild);
-                //// FIXME!
-                //return 0;
-            },
-            (RunCsxOptions opts) =>
-            {
-                Console.WriteLine($"Not ready yet.");
-                return 0;
+                var runUi = new RunUi(opts);
+                runUi.SetConsole(_console);
+                return runUi.HandleRunCommand();
             },
             errs =>
             {
@@ -114,6 +91,8 @@ class Program
             }
         );
     }
+
+
 
     private static void PrintHelp(ParserResult<object> parserResult)
     {

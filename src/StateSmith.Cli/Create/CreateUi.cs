@@ -43,6 +43,19 @@ public class CreateUi
 
     public void Run()
     {
+        //try
+        {
+            RunInner();
+        }
+        //catch (Exception ex)
+        //{
+        //    _console.WriteException(ex);
+        //    //throw;
+        //}
+    }
+
+    private void RunInner()
+    {
         ReadSettingsFromJson();
 
         Updates();
@@ -92,23 +105,7 @@ public class CreateUi
         // if files exist, ask if should overwrite
         if (File.Exists(_settings.diagramFileName) || File.Exists(_settings.scriptFileName))
         {
-            _console.MarkupLine("[red]Warning![/] Files already exist.");
-
-            const string yesOverwriteStr = "yes, overwrite the existing files";
-            bool overwrite = yesOverwriteStr == _console.Prompt(
-                     new SelectionPrompt<string>()
-                     .Title("Overwrite existing files?")
-                     .AddChoices(new[] { "no", yesOverwriteStr }));
-
-            if (overwrite)
-            {
-                _console.MarkupLine("[yellow]Overwriting existing files.[/]");
-            }
-            else
-            {
-                _console.MarkupLine("[red]Not overwriting files.[/]");
-                proceed = false;
-            }
+            proceed = UiHelper.AskForOverwrite(_console);
         }
 
         return proceed;

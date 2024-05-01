@@ -1,4 +1,5 @@
 using Spectre.Console;
+using StateSmith.Cli.Utils;
 using StateSmith.Common;
 using StateSmithTest.Processes;
 using System;
@@ -12,17 +13,16 @@ public class RunHandler
 {
     private CsxOutputParser _parser;
     RunInfo _runInfo;
-    private SsCsxFileFinder _finder;
+    public SsCsxFileFinder Finder;
     internal IncrementalRunChecker _incrementalRunChecker;
     internal RunInfoDataBase _runInfoDataBase;
     bool _forceRebuild = false;
-    private Manifest? manifest;
     string dirOrManifestPath;
     private ManifestPersistance _manifestPersistance;
     IAnsiConsole _console = AnsiConsole.Console;
     private string manifestDirectory;
 
-    public RunHandler(Manifest? manifest, string dirOrManifestPath)
+    public RunHandler(string dirOrManifestPath)
     {
         dirOrManifestPath = Path.GetFullPath(dirOrManifestPath);
 
@@ -36,8 +36,7 @@ public class RunHandler
         _runInfo = new RunInfo(dirOrManifestPath);
         _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath);
         _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory);
-        _finder = new SsCsxFileFinder();
-        this.manifest = manifest;
+        Finder = new SsCsxFileFinder();
         this.dirOrManifestPath = dirOrManifestPath;
         _manifestPersistance = new ManifestPersistance(manifestDirectory);
     }
@@ -52,58 +51,42 @@ public class RunHandler
         _forceRebuild = forceRebuild;
     }
 
-    /// <summary>
-    /// Ignores null arguments
-    /// </summary>
-    /// <param name="path"></param>
-    public void IgnorePath(string? path)
-    {
-        if (path == null)
-            return;
-
-        _finder.AddExcludePattern(path);
-    }
-
     public void CreateBlankManifest()
     {
-        manifest = new Manifest();
-        _manifestPersistance.Write(manifest, overWrite: true);
+        var manifest = new Manifest();
+        manifest.RunManifest.IncludePathGlobs.Add("**/*.csx");
+        WriteManifest(manifest);
     }
 
-    public void ScanAndCreateManifest()
+    private void WriteManifest(Manifest manifest)
     {
-        manifest = new Manifest();
-
-        var csxScripts = _finder.Scan(searchDirectory: manifestDirectory);
-        foreach (var csxRelativePath in csxScripts)
+        if (_manifestPersistance.ManifestExists() && UiHelper.AskForOverwrite(_console) == false)
         {
-            manifest.RunManifest.AutoDiscoveredProjects.Add(new ProjectSetting(csxRelativePath));
+            return;
         }
 
         _manifestPersistance.Write(manifest, overWrite: true);
     }
 
-    public void Run(bool recursive = false)
+    public void Run()
     {
-        _console.MarkupLine($"[cyan]This feature Still a work in progress...[/]");
+        try
+        {
+            RunInner();
+        }
+        catch (Exception ex)
+        {
+            _console.WriteException(ex);
+            //throw;
+        }
+    }
+
+    private void RunInner()
+    {
+        //_console.MarkupLine($"[cyan]This feature Still a work in progress...[/]");
 
         ReadPastRunInfoDatabase();
-
-        if (manifest == null)
-        {
-            new RunUi(this).HandleNoManifest();
-        }
-        else
-        {
-            
-        }
-
-
-        if (recursive)
-            _finder.SetAsRecursive();
-
-        var csxScripts = _finder.Scan(searchDirectory: manifestDirectory);
-
+        var csxScripts = Finder.Scan(searchDirectory: manifestDirectory);
         RunScriptsIfNeeded(csxScripts);
     }
 
@@ -207,53 +190,30 @@ public class RunHandler
     {
         _console.MarkupLine(message);
     }
-}
 
-/*
+    public void AddFromManifest(Manifest manifest)
+    {
+        Finder.AddIncludePatterns(manifest.RunManifest.IncludePathGlobs);
+        Finder.AddExcludePatterns(manifest.RunManifest.ExcludePathGlobs);
+    }
 
-ss.cli run --here
+    [Obsolete("This method will probably be removed soon")]
+    public void ScanAndCreateManifest()
+    {
+        var throwNotImplemented = true;
+        // not quite ready to remove this code yet
 
+        if (throwNotImplemented)
+            throw new NotImplementedException();
 
+        var manifest = new Manifest();
 
-ss.cli run
-
-    > no statesmith manifest found. What do you want to do?
-    >> automatically create a manifest file here
-    >> search up the directory tree for manifest and run that (limit of X directories)
-    >> find and run StateSmith csx files in this directory
-    >> exit
-
-
-statesmith.manifest.json
-{
-    DiscoveredProjects: [
+        var csxScripts = Finder.Scan(searchDirectory: manifestDirectory);
+        foreach (var csxRelativePath in csxScripts)
         {
-            CsxPath: "./path/to/project/RocketSm.csx",
-            DiagramPath: "./path/to/project/RocketSm.csx",
-            AlwaysBuild: false
+            //manifest.RunManifest.ManuallySpecifiedProjects.Add(new ProjectSetting(csxRelativePath));
         }
-    ],
+
+        WriteManifest(manifest);
+    }
 }
-
-
-
-ss.cli run
-
-> reading statesmith.manifest.json
-> found 3 project to build
-> project 1 of 3: C:\path\to\project.csx
-> project is already up to date. skipping.
-> project 2 of 3: C:\path\to\project2.csx
-> project needs to be built. building.
-
-
-
-ss.cli run --discover --recursive
-> respects the `PathsToIgnoreForDiscovery` list
-> updates the manifest file with the new projects found
-
-ss.cli run --force-build
-> forces a rebuild of all projects
-
-
-*/

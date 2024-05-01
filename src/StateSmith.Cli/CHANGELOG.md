@@ -8,6 +8,12 @@ Test/interim releases are not documented here.
 
 ---
 
+## WIP
+### Added
+- Initial support for `run` command.
+
+---
+
 ## [0.6.5]
 ### Fixed
 - Fixed user settings surviving tool upgrade.
