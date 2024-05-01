@@ -14,7 +14,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [0.6.5]
+## [0.6.6]
 ### Fixed
 - Fixed user settings surviving tool upgrade.
     - On windows: `C:\Users\user\AppData\Roaming\StateSmith.Cli\`
