@@ -9,11 +9,11 @@ namespace StateSmith.Cli.Run;
 public class SsCsxFileFinder
 {
     Matcher matcher;
+    private bool hasIncludePatterns;
 
     public SsCsxFileFinder()
     {
         matcher = new();
-        matcher.AddInclude("./*.csx");
     }
 
     public void SetAsRecursive()
@@ -21,9 +21,50 @@ public class SsCsxFileFinder
         matcher.AddInclude("./**/*.csx");
     }
 
+    public void ClearIncludePatterns()
+    {
+        matcher = new(); // Reset the matcher
+    }
+
+    public void AddDefaultIncludePatternIfNone()
+    {
+        if (!hasIncludePatterns)
+        {
+            matcher.AddInclude("./*.csx");
+        }
+    }
+
+    public void AddIncludePattern(string pathPattern)
+    {
+        hasIncludePatterns = true;
+        matcher.AddInclude(pathPattern);
+    }
+
+    public void AddIncludePatterns(IEnumerable<string>? pathPatterns)
+    {
+        if (pathPatterns == null)
+            return;
+
+        foreach (var pattern in pathPatterns)
+        {
+            AddIncludePattern(pattern);
+        }
+    }
+
     public void AddExcludePattern(string pathPattern)
     {
         matcher.AddExclude(pathPattern);
+    }
+
+    public void AddExcludePatterns(IEnumerable<string>? pathPatterns)
+    {
+        if (pathPatterns == null)
+            return;
+        
+        foreach (var pattern in pathPatterns)
+        {
+            AddExcludePattern(pattern);
+        }
     }
 
     public List<string> Scan(string searchDirectory)

@@ -5,6 +5,7 @@ namespace StateSmith.Cli;
 
 public class ManifestPersistance
 {
+    public const string ManifestFileName = "statesmith.cli.json";
     string dirPath;
 
     public ManifestPersistance(string dirPath)
@@ -12,7 +13,14 @@ public class ManifestPersistance
         this.dirPath = dirPath;
     }
 
-    public Manifest? Read()
+    public Manifest ReadOrThrow()
+    {
+        string filePath = GetManifestPath();
+        JsonFilePersistence jsonFilePersistence = new() { IncludeFields = true };
+        return jsonFilePersistence.RestoreFromFile<Manifest>(filePath);
+    }
+
+    public Manifest? ReadIfExistsAndValid()
     {
         string filePath = GetManifestPath();
         JsonFilePersistence jsonFilePersistence = new() { IncludeFields = true };
@@ -24,6 +32,18 @@ public class ManifestPersistance
         {
             return null;
         }
+    }
+
+    public bool ManifestExists()
+    {
+        string filePath = GetManifestPath();
+        return File.Exists(filePath);
+    }
+
+    public static bool ManifestExists(string dirPath)
+    {
+        string filePath = Path.Combine(dirPath, ManifestFileName);
+        return File.Exists(filePath);
     }
 
     public void Write(Manifest manifest, bool overWrite = false)
@@ -45,6 +65,6 @@ public class ManifestPersistance
 
     public string GetManifestPath()
     {
-        return Path.Combine(dirPath, "statesmith.manifest.json");
+        return Path.Combine(dirPath, ManifestFileName);
     }
 }

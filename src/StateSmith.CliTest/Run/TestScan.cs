@@ -31,6 +31,7 @@ public class TestScan
     public void IntegrationTest()
     {
         SsCsxFileFinder finder = new();
+        finder.AddDefaultIncludePatternIfNone();
 
         finder.AddExcludePattern("a/a3");
 

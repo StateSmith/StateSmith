@@ -12,8 +12,8 @@ public class RunTest
         if (!Debugger.IsAttached)
             return;
 
-        RunHandler runHandler = new(manifest:null, ExamplesHelper.GetExamplesDir() + "/1/");
-        runHandler.IgnorePath("a/a3");
-        runHandler.Run(recursive: true);
+        RunHandler runHandler = new(ExamplesHelper.GetExamplesDir() + "/1/");
+        runHandler.Finder.AddExcludePattern("a/a3");
+        runHandler.Finder.SetAsRecursive();
     }
 }
