@@ -79,14 +79,13 @@ public static class TestExtensions
         vertex.ShouldHaveUmlBehaviors(expectedBehaviors);
     }
 
-    /// <summary>
-    /// automatically converts expected input line endings to \n
-    /// </summary>
-    /// <param name="actual"></param>
-    /// <param name="expected"></param>
-    public static void ShouldBeShowDiff(this string actual, string expected, bool outputCleanActual = false)
+    public static void ShouldBeShowDiff(this string actual, string expected, bool outputCleanActual = false, bool convertLineEndings = true)
     {
-        expected = expected.ConvertLineEndingsToN();
+        if (convertLineEndings)
+        {
+            expected = expected.ConvertLineEndingsToN();
+            actual = actual.ConvertLineEndingsToN();
+        }
 
         if (expected != actual)
         {
