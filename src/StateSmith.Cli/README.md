@@ -2,7 +2,7 @@
 This tool is still a work in progress, but the project creation command is ready for early access. Please try it out and let me know what you think.
 
 ## Install
-Ensure that you have a [dotnet sdk version 6, 7 or 8)](https://dotnet.microsoft.com/en-us/download/dotnet/sdk-for-vs-code) installed. It's used for StateSmith as well.
+Ensure that you have a [dotnet sdk (version 6, 7 or 8)](https://dotnet.microsoft.com/en-us/download/dotnet/sdk-for-vs-code) installed. It's used for StateSmith as well.
 
 Then install the CLI tool with the following command:
 ```
