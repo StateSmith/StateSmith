@@ -92,6 +92,15 @@ public class SetupVscodeCsxAction
         }
 
         // TODO: check if generated launch file has absolute paths that should be fixed
+        // read launch.json and check if it has absolute paths
+
+        var launchJson = File.ReadAllText(".vscode/launch.json");
+
+        string? newLaunchJson = LaunchJsonModder.MaybeMod(launchJson);
+        if (newLaunchJson != null)
+        {
+            File.WriteAllText(".vscode/launch.json", newLaunchJson);
+        }
     }
 
     private void AddNewLaunchJson()
