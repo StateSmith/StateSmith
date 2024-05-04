@@ -54,17 +54,16 @@ public class VscodeSettingsUpdater
     {
         UiHelper.AddSectionLeftHeader(_console, Description);
 
-        //_console.WriteLine("Setting up vscode drawio extension with StateSmith plugin.");
-        _console.WriteLine("\n");
-        _console.MarkupLine("[cyan]↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/]");
-        _console.MarkupLine("[cyan]>>> MAKE SURE you already have the vscode draw.io extension installed:       <<<[/]");
-        _console.MarkupLine("[cyan]>>> [u]https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio[/] <<<[/]");
-        _console.MarkupLine("[cyan]↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/]");
-        _console.MarkupLine("[grey]This tool can't detect if you have it installed or not. Just a reminder.[/]");
-        _console.WriteLine("\n");
+        //_console.WriteLine("\n");
+        //_console.MarkupLine("[cyan]↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/]");
+        //_console.MarkupLine("[cyan]>>> MAKE SURE you already have the vscode draw.io extension installed:       <<<[/]");
+        //_console.MarkupLine("[cyan]>>> [u]https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio[/] <<<[/]");
+        //_console.MarkupLine("[cyan]↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/]");
+        //_console.MarkupLine("[grey]This tool can't detect if you have it installed or not. Just a reminder.[/]");
+        //_console.WriteLine("\n");
 
-        //sleep for 1 second to give user time to read
-        System.Threading.Thread.Sleep(1000);
+        ////sleep for 1 second to give user time to read
+        //System.Threading.Thread.Sleep(1000);
 
         if (!System.IO.Directory.Exists(".vscode"))
         {
@@ -74,6 +73,12 @@ public class VscodeSettingsUpdater
 
         DownloadIfNeeded();
         ModifyVscodeSettingsFileIfNeeded();
+
+        UiHelper.AddSectionLeftHeader(_console, "vscode drawio StateSmith setup complete", "green");
+        _console.Markup("Tip! Important info: ");
+        _console.MarkupLine("  [blue][u]https://github.com/StateSmith/StateSmith-drawio-plugin/wiki/Use-with-vscode[/][/]");
+        _console.Markup("Tip! More drawio info: ");
+        _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/draw.io[/][/]");
     }
 
     private void ModifyVscodeSettingsFileIfNeeded()

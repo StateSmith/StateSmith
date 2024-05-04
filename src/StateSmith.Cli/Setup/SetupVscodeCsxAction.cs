@@ -74,7 +74,7 @@ public class SetupVscodeCsxAction
 
         CreateOmnisharpFileIfNeeded();
 
-        UiHelper.AddSectionLeftHeader(_console, "Setup complete", "green");
+        UiHelper.AddSectionLeftHeader(_console, "vscode csx setup complete", "green");
         _console.MarkupLine("Tip! You may want to git ignore the [yellow]omnisharp.json[/] file.");
         _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Restart OmniSharp[/]");
         _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Select Project[/]");
