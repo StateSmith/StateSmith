@@ -7,6 +7,7 @@ using StateSmith.Cli.Run;
 using StateSmith.Common;
 using System.IO;
 using Spectre.Console;
+using StateSmith.Cli.Setup;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
 
@@ -63,7 +64,7 @@ class Program
 
     private static void ParseCommandsAndRun(string[] args, IAnsiConsole _console)
     {
-        var parserResult = Parser.Default.ParseArguments<CreateOptions, RunOptions>(args);
+        var parserResult = Parser.Default.ParseArguments<CreateOptions, RunOptions, SetupOptions>(args);
 
         parserResult.MapResult(
             (CreateOptions opts) =>
@@ -83,6 +84,11 @@ class Program
                 var runUi = new RunUi(opts);
                 runUi.SetConsole(_console);
                 return runUi.HandleRunCommand();
+            },
+            (SetupOptions opts) =>
+            {
+                var ui = new SetupUi(opts, _console);
+                return ui.Run();
             },
             errs =>
             {
