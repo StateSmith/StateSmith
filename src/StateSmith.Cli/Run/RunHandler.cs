@@ -148,6 +148,7 @@ public class RunHandler
         // This ensures that we can detect if diagram or csx file was modified after our run.
         var info = new CsxRunInfo(csxAbsolutePath: csxAbsolutePath);
         process.Run(timeoutMs: 6000);
+        info.lastCodeGenEndDateTime = DateTime.Now;
 
         _parser.ParseAndResolveFilePaths(process.StdOutput, info);
         _runInfo.csxRuns[csxAbsolutePath] = info; // will overwrite if already exists

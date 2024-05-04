@@ -40,13 +40,20 @@ public class IncrementalRunChecker
         Result result;
 
         var csxRun = _readRunInfo.csxRuns[csxAbsolutePath];
-        result = CheckFile(csxAbsolutePath, csxRun.lastCodeGenDateTime);
+        result = CheckFile(csxAbsolutePath, csxRun.lastCodeGenStartDateTime);
         if (result != Result.OkToSkip)
             return result;
 
         foreach (var diagramPath in csxRun.diagramAbsolutePaths)
         {
-            result = CheckFile(diagramPath, csxRun.lastCodeGenDateTime);
+            result = CheckFile(diagramPath, csxRun.lastCodeGenStartDateTime);
+            if (result != Result.OkToSkip)
+                return result;
+        }
+
+        foreach (var diagramPath in csxRun.writtenFileAbsolutePaths)
+        {
+            result = CheckFile(diagramPath, csxRun.lastCodeGenEndDateTime);
             if (result != Result.OkToSkip)
                 return result;
         }

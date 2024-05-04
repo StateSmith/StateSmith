@@ -9,8 +9,10 @@ Test/interim releases are not documented here.
 ---
 
 ## WIP
-### Added
-- Initial support for `run` command.
+### Fixed
+- Fixed detect if written/output files changed for skip detection
+    - https://github.com/StateSmith/StateSmith/issues/246
+
 
 ---
 
@@ -22,6 +24,7 @@ Test/interim releases are not documented here.
     - https://github.com/StateSmith/StateSmith/issues/244
 ### Added
 - Updated language templates with common features needed.
+- Initial support for `run` command.
 
 --- 
 

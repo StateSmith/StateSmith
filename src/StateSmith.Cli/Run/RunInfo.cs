@@ -3,7 +3,10 @@ using System.Collections.Generic;
 
 namespace StateSmith.Cli.Run;
 
-public class RunInfo
+/// <summary>
+/// This class is persisted to disk in json format.
+/// </summary>
+public class RunInfo : Versionable
 {
     public string dirOrManifestPath;
     public Dictionary<string, CsxRunInfo> csxRuns = new();

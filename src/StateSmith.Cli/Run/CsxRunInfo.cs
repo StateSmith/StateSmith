@@ -10,11 +10,13 @@ namespace StateSmith.Cli.Run;
 /// If git committed a changed csx file, but code gen wasn't run, then the generated files will be "dirty", but still have the same modified timestamp.
 /// This would make it look like the generated files are up to date, when they are not.
 /// </summary>
-public class CsxRunInfo
+public class CsxRunInfo : Versionable
 {
-    public DateTime lastCodeGenDateTime = DateTime.Now;
+    public DateTime lastCodeGenStartDateTime = DateTime.Now;
     public string csxAbsolutePath;
     public List<string> diagramAbsolutePaths = new();
+    public List<string> writtenFileAbsolutePaths = new();
+    public DateTime lastCodeGenEndDateTime = DateTime.Now;
 
     public CsxRunInfo(string csxAbsolutePath)
     {
