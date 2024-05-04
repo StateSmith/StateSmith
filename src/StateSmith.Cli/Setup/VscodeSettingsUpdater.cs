@@ -1,4 +1,5 @@
 using Spectre.Console;
+using StateSmith.Cli.Utils;
 
 namespace StateSmith.Cli.Setup;
 
@@ -51,12 +52,15 @@ public class VscodeSettingsUpdater
 
     internal void Run()
     {
+        UiHelper.AddSectionLeftHeader(_console, Description);
+
         //_console.WriteLine("Setting up vscode drawio extension with StateSmith plugin.");
         _console.WriteLine("\n");
         _console.MarkupLine("[cyan]↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/]");
         _console.MarkupLine("[cyan]>>> MAKE SURE you already have the vscode draw.io extension installed:       <<<[/]");
         _console.MarkupLine("[cyan]>>> [u]https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio[/] <<<[/]");
         _console.MarkupLine("[cyan]↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑[/]");
+        _console.MarkupLine("[grey]This tool can't detect if you have it installed or not. Just a reminder.[/]");
         _console.WriteLine("\n");
 
         //sleep for 1 second to give user time to read

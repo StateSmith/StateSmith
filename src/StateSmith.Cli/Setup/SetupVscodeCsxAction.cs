@@ -8,6 +8,8 @@ namespace StateSmith.Cli.Setup;
 
 public class SetupVscodeCsxAction
 {
+    public const string Description = "Set up vscode for C# script debugging and intellisense.";
+
     private IAnsiConsole _console;
     private const string vscodeWorkspaceSettingsPath = ".vscode";
     private const string launchJsonPath = vscodeWorkspaceSettingsPath + "/launch.json";
@@ -54,7 +56,7 @@ public class SetupVscodeCsxAction
 
         NotifyIfDotnetScriptOld();
 
-        UiHelper.AddSectionLeftHeader(_console, "Setup vscode for C# script debugging");
+        UiHelper.AddSectionLeftHeader(_console, Description);
 
         if (!File.Exists(launchJsonPath))
         {
@@ -62,7 +64,7 @@ public class SetupVscodeCsxAction
         }
         else
         {
-            autoModExistingLaunchJson();
+            AutoModExistingLaunchJson();
 
             _console.MarkupLine($"[cyan]WARN![/] [yellow]{launchJsonPath}[/] already exists. You should manually add this config:");
             _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/vscode-csx-launch.json-file[/][/]");
@@ -73,12 +75,14 @@ public class SetupVscodeCsxAction
         CreateOmnisharpFileIfNeeded();
 
         UiHelper.AddSectionLeftHeader(_console, "Setup complete", "green");
-        _console.MarkupLine("Tip: you may want to git ignore the [yellow]omnisharp.json[/] file.");
-        _console.Markup("Tip: more .csx related information: ");
+        _console.MarkupLine("Tip! You may want to git ignore the [yellow]omnisharp.json[/] file.");
+        _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Restart OmniSharp[/]");
+        _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Select Project[/]");
+        _console.MarkupLine("Tip! More .csx related information: ");
         _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/csx[/][/]");
     }
 
-    private static void autoModExistingLaunchJson()
+    private static void AutoModExistingLaunchJson()
     {
         // todolow - automatically add config to existing launch.json
 

@@ -1,6 +1,4 @@
 using Spectre.Console;
-using System;
-using System.IO;
 
 namespace StateSmith.Cli.Setup;
 
@@ -17,11 +15,27 @@ public class SetupUi
 
     public int Run()
     {
+        bool oneRun = false;
+
+        if (opts.VscodeAll)
+        {
+            VscodeAll();
+            oneRun = true;
+        }
+
+        if (opts.VscodeCsx)
+        {
+            SetupVscodeCsx();
+            oneRun = true;
+        }
+        
         if (opts.VscodeDrawioPlugin)
         {
             SetupVscodeDrawioPlugin();
+            oneRun = true;
         }
-        else
+        
+        if (!oneRun)
         {
             AskWhatToDo();
         }
@@ -29,6 +43,12 @@ public class SetupUi
         // TODOLOW - colorize drawio file
 
         return 0;
+    }
+
+    private void VscodeAll()
+    {
+        SetupVscodeDrawioPlugin();
+        SetupVscodeCsx();
     }
 
     private void SetupVscodeDrawioPlugin()
@@ -43,17 +63,20 @@ public class SetupUi
 
     private void AskWhatToDo(string? title = null)
     {
+        const string all = SetupOptions.SetupAllVscode;
         const string setupVscodeDrawio = VscodeSettingsUpdater.Description;
-        const string setupVscodeCsx = "Set up vscode for C# script (csx) debugging & intellisense";
+        const string setupVscodeCsx = SetupVscodeCsxAction.Description;
         string choice = _console.Prompt(new SelectionPrompt<string>()
             .Title(title ?? $"What did you want to do?")
             .AddChoices(new[] {
+                all,
                 setupVscodeDrawio,
                 setupVscodeCsx,
             }));
 
         switch (choice)
         {
+            case all: VscodeAll(); break;
             case setupVscodeDrawio: SetupVscodeDrawioPlugin(); break;
             case setupVscodeCsx: SetupVscodeCsx(); break;
         }
