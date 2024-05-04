@@ -6,18 +6,15 @@ namespace StateSmith.Cli.Run;
 
 public class RunUi
 {
-    IAnsiConsole _console = AnsiConsole.Console;
+    IAnsiConsole _console;
     RunOptions opts;
-    RunHandler runHandler = new(Environment.CurrentDirectory);
+    RunHandler runHandler;
 
-    public RunUi(RunOptions opts)
+    public RunUi(RunOptions opts, IAnsiConsole _console)
     {
         this.opts = opts;
-    }
-
-    public void SetConsole(IAnsiConsole console)
-    {
-        _console = console;
+        runHandler = new(_console, Environment.CurrentDirectory);
+        this._console = _console;
     }
 
     public int HandleRunCommand()
@@ -29,8 +26,6 @@ public class RunUi
             Justification = Justify.Left
         };
         _console.Write(rule);
-
-        runHandler.SetConsole(_console);
 
         SetRunHandlerFromOptions();
 
@@ -156,8 +151,7 @@ public class RunUi
         _console.MarkupLine($"Found manifest in directory: {dir.FullName}");
 
         Manifest manifest = new ManifestPersistance(dir.FullName).ReadOrThrow();
-        runHandler = new RunHandler(dir.FullName);
-        runHandler.SetConsole(_console);    // fixme should be in constructor
+        runHandler = new RunHandler(_console, dir.FullName);
         SetRunHandlerFromOptions();
         runHandler.AddFromManifest(manifest);
         runHandler.Run();

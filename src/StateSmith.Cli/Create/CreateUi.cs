@@ -18,16 +18,12 @@ public class CreateUi
     string _latestStateSmithVersion = UpdateInfo.DefaultStateSmithLibVersion;
     IAnsiConsole _console = AnsiConsole.Console;
 
-    public CreateUi()
+    public CreateUi(IAnsiConsole console)
     {
         string configFolder = new ConfigDataPath().GetConfigDirPath();
         _settingsPersistencePath = $"{configFolder}/create-settings.json";
         _updateInfoPersistencePath = $"{configFolder}/create-update-info.json";
-    }
-
-    public void SetConsole(IAnsiConsole console)
-    {
-        _console = console;
+        this._console = console;
     }
 
     public string GetSettingsPersistencePath() => _settingsPersistencePath;

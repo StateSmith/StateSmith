@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Spectre.Console;
 using Spectre.Console.Testing;
 using StateSmith.Cli.Create;
 using Xunit;
@@ -12,9 +13,8 @@ public class CreateUiTest
 
     public CreateUiTest()
     {
-        cUi = new CreateUi();
         fakeConsole = new TestConsole();
-        cUi.SetConsole(fakeConsole);
+        cUi = new CreateUi(fakeConsole);
     }
 
     [Fact]

@@ -8,8 +8,6 @@ using System.Reflection;
 
 namespace StateSmith.Cli.Run;
 
-
-
 public class RunHandler
 {
     private CsxOutputParser _parser;
@@ -20,11 +18,12 @@ public class RunHandler
     bool _forceRebuild = false;
     string dirOrManifestPath;
     private ManifestPersistance _manifestPersistance;
-    IAnsiConsole _console = AnsiConsole.Console;
+    IAnsiConsole _console;
     private string manifestDirectory;
 
-    public RunHandler(string dirOrManifestPath)
+    public RunHandler(IAnsiConsole console, string dirOrManifestPath)
     {
+        _console = console;
         dirOrManifestPath = Path.GetFullPath(dirOrManifestPath);
 
         FileAttributes attr = File.GetAttributes(dirOrManifestPath);
@@ -40,11 +39,6 @@ public class RunHandler
         Finder = new SsCsxFileFinder();
         this.dirOrManifestPath = dirOrManifestPath;
         _manifestPersistance = new ManifestPersistance(manifestDirectory);
-    }
-
-    public void SetConsole(IAnsiConsole console)
-    {
-        _console = console;
     }
 
     public void SetForceRebuild(bool forceRebuild)

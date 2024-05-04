@@ -4,8 +4,6 @@ using StateSmith.Cli.Create;
 using CommandLine.Text;
 using System.Diagnostics;
 using StateSmith.Cli.Run;
-using StateSmith.Common;
-using System.IO;
 using Spectre.Console;
 using StateSmith.Cli.Setup;
 
@@ -69,8 +67,7 @@ class Program
         parserResult.MapResult(
             (CreateOptions opts) =>
             {
-                var createUi = new CreateUi();
-                createUi.SetConsole(_console);
+                var createUi = new CreateUi(_console);
 
                 if (opts.PrintDataSettingsPaths)
                     createUi.PrintPersistencePaths();
@@ -81,8 +78,7 @@ class Program
             },
             (RunOptions opts) =>
             {
-                var runUi = new RunUi(opts);
-                runUi.SetConsole(_console);
+                var runUi = new RunUi(opts, _console);
                 return runUi.HandleRunCommand();
             },
             (SetupOptions opts) =>
