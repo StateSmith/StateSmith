@@ -29,7 +29,7 @@ public class SetupVscodeCsxAction
             SpecificArgs = "--version",
             throwOnExitCode = true
         };
-        process.Run(timeoutMs: 3000);
+        process.Run(timeoutMs: 30000);
 
         // parse version into major, minor, patch
         string versionStr = process.StdOutputBuf.ToString().Trim();
@@ -121,7 +121,7 @@ public class SetupVscodeCsxAction
             throwOnExitCode = true
         };
         process.EnableEchoToTerminal();
-        process.Run(timeoutMs: 3000);
+        process.Run(timeoutMs: 20000);
 
         // delete dummy file if it exists
         if (File.Exists(dummyCsxName))
