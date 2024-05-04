@@ -9,6 +9,8 @@ namespace StateSmith.Cli.Setup;
 public class SetupVscodeCsxAction
 {
     private IAnsiConsole _console;
+    private const string vscodeWorkspaceSettingsPath = ".vscode";
+    private const string launchJsonPath = vscodeWorkspaceSettingsPath + "/launch.json";
 
     public SetupVscodeCsxAction(IAnsiConsole console)
     {
@@ -48,18 +50,27 @@ public class SetupVscodeCsxAction
 
     public void Run()
     {
+        Directory.CreateDirectory(vscodeWorkspaceSettingsPath); // ensure .vscode folder exists
+
         NotifyIfDotnetScriptOld();
 
         UiHelper.AddSectionLeftHeader(_console, "Setup vscode for C# script debugging");
 
-        if (!File.Exists("launch.json"))
+        if (!File.Exists(launchJsonPath))
         {
             AddNewLaunchJson();
         }
         else
         {
-            ModifyExistingLaunchJsonFile();
+            autoModExistingLaunchJson();
+
+            _console.MarkupLine($"[cyan]WARN![/] [yellow]{launchJsonPath}[/] already exists. You should manually add this config:");
+            _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/vscode-csx-launch.json-file[/][/]");
+            _console.WriteLine();
+            Thread.Sleep(1000); // give time for user to read
         }
+
+        CreateOmnisharpFileIfNeeded();
 
         UiHelper.AddSectionLeftHeader(_console, "Setup complete", "green");
         _console.MarkupLine("Tip: you may want to git ignore the [yellow]omnisharp.json[/] file.");
@@ -67,11 +78,35 @@ public class SetupVscodeCsxAction
         _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/csx[/][/]");
     }
 
-    private void ModifyExistingLaunchJsonFile()
+    private static void autoModExistingLaunchJson()
     {
+        // todolow - automatically add config to existing launch.json
+
+        // Below code assumed that dotnet-script init would add the config, but it doesn't.
+        // It needs some adjustments to add to existing launch.json
+        bool supported = false;
+        if (supported)
+        {
+            var launchJson = File.ReadAllText(launchJsonPath);
+
+            string? newLaunchJson = LaunchJsonModder.MaybeMod(launchJson);
+            if (newLaunchJson != null)
+            {
+                File.WriteAllText(launchJsonPath, newLaunchJson);
+            }
+        }
+    }
+
+    private void CreateOmnisharpFileIfNeeded()
+    {
+        if (File.Exists("omnisharp.json"))
+        {
+            _console.MarkupLine("[grey]omnisharp.json already exists (skipping).[/]");
+            return;
+        }
+
         const string dummyCsxName = "delete_me_dummy_file.csx";
 
-        _console.MarkupLine("Modifying existing `launch.json` file for debugging .csx files in vscode.");
         _console.MarkupLine($"Running command [yellow]dotnet-script init {dummyCsxName}[/]:");
 
         SimpleProcess process = new()
@@ -90,25 +125,14 @@ public class SetupVscodeCsxAction
             _console.MarkupLine("Deleting dummy .csx file from above command.");
             File.Delete(dummyCsxName);
         }
-
-        // TODO: check if generated launch file has absolute paths that should be fixed
-        // read launch.json and check if it has absolute paths
-
-        var launchJson = File.ReadAllText(".vscode/launch.json");
-
-        string? newLaunchJson = LaunchJsonModder.MaybeMod(launchJson);
-        if (newLaunchJson != null)
-        {
-            File.WriteAllText(".vscode/launch.json", newLaunchJson);
-        }
     }
 
     private void AddNewLaunchJson()
     {
         _console.MarkupLine("Creating a brand new `launch.json` file for debugging .csx files in VSCode.");
 
-        const string template = @"
-{
+        const string template = 
+@"{
     ""version"": ""0.2.0"",
     ""configurations"": [
         {
@@ -131,6 +155,6 @@ public class SetupVscodeCsxAction
     ]
 }";
 
-        File.WriteAllText("launch.json", template);
+        File.WriteAllText(launchJsonPath, template);
     }
 }
