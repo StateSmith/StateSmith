@@ -31,7 +31,7 @@ public class CreateUi
 
     public void PrintPersistencePaths()
     {
-        AddSectionHeader("Data/Settings Persistence Info");
+        AddSectionLeftHeader("Data/Settings Persistence Info");
 
         _console.MarkupLine($"Settings persistance path:\n  {GetSettingsPersistencePath()}\n");
         _console.MarkupLine($"Update Info persistance path:\n  {GetUpdateInfoPersistencePath()}\n");
@@ -157,7 +157,7 @@ public class CreateUi
 
     private bool AskConfirmation()
     {
-        AddSectionHeader("Confirmation");
+        AddSectionLeftHeader("Confirmation");
         _console.MarkupLine($"State Machine Name: [blue]{_settings.smName}[/]");
         _console.MarkupLine($"Target Language: [blue]{_settings.TargetLanguageId}[/]");
         _console.MarkupLine($"StateSmith Version: [blue]{_settings.StateSmithVersion}[/]");
@@ -171,13 +171,13 @@ public class CreateUi
 
         _console.MarkupLine("");
 
-        var confirmation = YesNoPrompt("Generate?");
+        var confirmation = UiHelper.YesNoPrompt(_console, "Generate?");
         return confirmation;
     }
 
     internal void ScriptFileName()
     {
-        AddSectionHeader("Script File Name/Path");
+        AddSectionLeftHeader("Script File Name/Path");
         _console.MarkupLine("Script will be created in this directory unless you specify an absolute or relative path.");
         _console.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
         _console.MarkupLine("");
@@ -191,7 +191,7 @@ public class CreateUi
 
     internal void DiagramFileName()
     {
-        AddSectionHeader("Diagram File Name/Path");
+        AddSectionLeftHeader("Diagram File Name/Path");
         _console.MarkupLine("Diagram will be created in this directory unless you specify an absolute or relative path.");
         _console.MarkupLine("[grey]You can use \"$$\" as the suggested filename if you want to specify a path.[/] [grey italic]ex: ../../$$ [/]");
         _console.MarkupLine("");
@@ -205,7 +205,7 @@ public class CreateUi
 
     private void DiagramType()
     {
-        AddSectionHeader("Diagram Type");
+        AddSectionLeftHeader("Diagram Type");
         _console.MarkupLine($"Choose the diagram file type you want to use.");
         _console.MarkupLine("[grey italic]More info: https://github.com/StateSmith/StateSmith/wiki/draw.io:-file-choice [/]");
 
@@ -243,7 +243,7 @@ public class CreateUi
 
     private void StateSmithVersion()
     {
-        AddSectionHeader("StateSmith Version");
+        AddSectionLeftHeader("StateSmith Version");
 
         string latestStableOption = $"latest stable available ([green]{_latestStateSmithVersion}[/])";
         string myLastUsedOption = $"my last used ([grey]{_settings.StateSmithVersion}[/])";
@@ -282,7 +282,7 @@ public class CreateUi
 
     private void DiagramTemplate()
     {
-        AddSectionHeader("Diagram Template");
+        AddSectionLeftHeader("Diagram Template");
         //_console.MarkupLine("[grey]?[/]");
 
         if (_settings.IsDrawIoSelected())
@@ -337,7 +337,7 @@ public class CreateUi
 
     private void AskTargetLanguage()
     {
-        AddSectionHeader("Target Language");
+        AddSectionLeftHeader("Target Language");
 
         var choices = new List<UiItem<TargetLanguageId>>()
         {
@@ -358,20 +358,14 @@ public class CreateUi
         _console.MarkupLine($"Selected [blue]{_settings.TargetLanguageId}[/]");
     }
 
-    private void AddSectionHeader(string header)
+    private void AddSectionLeftHeader(string header)
     {
-        _console.MarkupLine("");
-
-        var rule = new Rule($"[yellow]{header}[/]")
-        {
-            Justification = Justify.Left
-        };
-        _console.Write(rule);
+        UiHelper.AddSectionLeftHeader(_console, header);
     }
 
     private void StateMachineName()
     {
-        AddSectionHeader("State Machine Name");
+        AddSectionLeftHeader("State Machine Name");
 
         _console.MarkupLine("This sets the name of the state machine in the diagram, generated code,");
         _console.MarkupLine("and will be used for auto suggesting file names in later steps.");
@@ -382,7 +376,7 @@ public class CreateUi
 
     private void Updates()
     {
-        AddSectionHeader("Updates");
+        AddSectionLeftHeader("Updates");
 
         const string title = "Check for updates?";
 
@@ -390,11 +384,11 @@ public class CreateUi
 
         if (TimeToCheckForUpdates())
         {
-            checkForUpdates = YesNoPrompt(title, yesText: "yes [grey](it has been a while since we last checked)[/]");
+            checkForUpdates = UiHelper.YesNoPrompt(_console, title, yesText: "yes [grey](it has been a while since we last checked)[/]");
         }
         else
         {
-            checkForUpdates = NoYesPrompt(title, noText: "no [grey](we just recently checked)[/]");
+            checkForUpdates = UiHelper.NoYesPrompt(_console, title, noText: "no [grey](we just recently checked)[/]");
         }
 
         if (checkForUpdates)
@@ -412,23 +406,6 @@ public class CreateUi
         const int RecommendedMsBetweenChecks = 1000 * 60 * 60 * 24;  // 1 day
         //const int RecommendedMsBetweenChecks = 1000 * 20; // for testing
         return _updatesInfo.GetMsSinceLastCheck() > RecommendedMsBetweenChecks;
-    }
-
-    private bool YesNoPrompt(string title, string yesText = "yes")
-    {
-        return yesText == _console.Prompt(
-                new SelectionPrompt<string>()
-                    .Title(title)
-                    .AddChoices(new[] { yesText, "no" }));
-    }
-
-    private bool NoYesPrompt(string title, string noText = "no")
-    {
-        const string yes = "yes";
-        return yes == _console.Prompt(
-                new SelectionPrompt<string>()
-                    .Title(title)
-                    .AddChoices(new[] { noText, yes }));
     }
 
     private void CheckForUpdates()

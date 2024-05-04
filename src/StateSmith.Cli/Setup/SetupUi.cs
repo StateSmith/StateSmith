@@ -26,8 +26,6 @@ public class SetupUi
             AskWhatToDo();
         }
 
-        // TODOLOW - help setup vscode script intellisense
-        // TODOLOW - setup vscode with StateSmith plugin for draw.io extension
         // TODOLOW - colorize drawio file
 
         return 0;
@@ -38,31 +36,26 @@ public class SetupUi
         new VscodeSettingsUpdater(_console).Run();
     }
 
-    private void SetupIntellisense()
+    private void SetupVscodeCsx()
     {
-        // run command to setup intellisense
-        // dotnet script init delete_me_dummy_file.csx
-
-        // remove dummy file
-        File.Delete("delete_me_dummy_file.csx");
-
-        // provide help URL: https://github.com/StateSmith/StateSmith/wiki/Using-c%23-script-files-(.CSX)-instead-of-solutions-and-projects
+        new SetupVscodeCsxAction(_console).Run();
     }
 
     private void AskWhatToDo(string? title = null)
     {
         const string setupVscodeDrawio = VscodeSettingsUpdater.Description;
+        const string setupVscodeCsx = "Set up vscode for C# script (csx) debugging & intellisense";
         string choice = _console.Prompt(new SelectionPrompt<string>()
             .Title(title ?? $"What did you want to do?")
             .AddChoices(new[] {
                 setupVscodeDrawio,
+                setupVscodeCsx,
             }));
 
         switch (choice)
         {
-            case setupVscodeDrawio:
-                SetupVscodeDrawioPlugin();
-                break;
+            case setupVscodeDrawio: SetupVscodeDrawioPlugin(); break;
+            case setupVscodeCsx: SetupVscodeCsx(); break;
         }
     }
 }
