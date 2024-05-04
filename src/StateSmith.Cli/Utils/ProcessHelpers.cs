@@ -1,15 +1,11 @@
-using Antlr4.Runtime.Misc;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
-#nullable enable
 
-namespace StateSmithTest.Processes;
+// TODO : This is a copy of the SimpleProcess class from StateSmithTest. It should be moved to a shared library. https://github.com/StateSmith/StateSmith/issues/252
+namespace StateSmith.Cli.Utils;
 
-// TODO this is a copy of the class in StateSmith.Cli. It should be moved to a shared project. https://github.com/StateSmith/StateSmith/issues/252
 public class SimpleProcess
 {
     Process cmd = new();
