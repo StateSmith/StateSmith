@@ -70,7 +70,7 @@ public class SetupUi
         const string setupVscodeDrawio = VscodeSettingsUpdater.Description;
         const string setupVscodeCsx = SetupVscodeCsxAction.Description;
         string choice = _console.Prompt(new SelectionPrompt<string>()
-            .Title(title ?? $"What did you want to do?")
+            .Title(title ?? $"What did you want to set up?")
             .AddChoices(new[] {
                 all,
                 setupVscodeDrawio,

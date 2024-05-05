@@ -5,7 +5,7 @@ namespace StateSmith.Cli.Setup;
 
 public class VscodeSettingsUpdater
 {
-    public const string Description = "Set up vscode drawio extension with StateSmith plugin.";
+    public const string Description = "vscode drawio extension with StateSmith plugin.";
     public const string stateSmithPluginFilePath = ".vscode/" + stateSmithFileName;
 
     const string settingsJsonPath = ".vscode/settings.json";
@@ -52,7 +52,7 @@ public class VscodeSettingsUpdater
 
     internal void Run()
     {
-        UiHelper.AddSectionLeftHeader(_console, Description);
+        UiHelper.AddSectionLeftHeader(_console, "Set up " + Description);
 
         //_console.WriteLine("\n");
         //_console.MarkupLine("[cyan]↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓[/]");

@@ -6,14 +6,14 @@ namespace StateSmith.Cli.Setup;
 public class SetupOptions
 {
     public const string Description = "Set up vscode for StateSmith & csx files.";
-    public const string SetupAllVscode = "Set up everything for vscode.";
+    public const string SetupAllVscode = "vscode all.";
 
-    [Option("vscode-all", HelpText = SetupAllVscode)]
+    [Option("vscode-all", HelpText = "Set up " + SetupAllVscode)]
     public bool VscodeAll { get; set; }
 
-    [Option("vscode-drawio-plugin", HelpText = VscodeSettingsUpdater.Description)]
+    [Option("vscode-drawio-plugin", HelpText = "Set up " + VscodeSettingsUpdater.Description)]
     public bool VscodeDrawioPlugin { get; set; }
 
-    [Option("vscode-csx", HelpText = SetupVscodeCsxAction.Description)]
+    [Option("vscode-csx", HelpText = "Set up " + SetupVscodeCsxAction.Description)]
     public bool VscodeCsx { get; set; }
 }

@@ -8,7 +8,7 @@ namespace StateSmith.Cli.Setup;
 
 public class SetupVscodeCsxAction
 {
-    public const string Description = "Set up vscode for C# script debugging and intellisense.";
+    public const string Description = "vscode for C# script debugging and intellisense.";
 
     private IAnsiConsole _console;
     private const string vscodeWorkspaceSettingsPath = ".vscode";
@@ -56,7 +56,7 @@ public class SetupVscodeCsxAction
 
         NotifyIfDotnetScriptOld();
 
-        UiHelper.AddSectionLeftHeader(_console, Description);
+        UiHelper.AddSectionLeftHeader(_console, "Set up "+ Description);
 
         if (!File.Exists(launchJsonPath))
         {
@@ -79,7 +79,7 @@ public class SetupVscodeCsxAction
         _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Restart OmniSharp[/]");
         _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Select Project[/]");
         _console.MarkupLine("Tip! [cyan]READ THIS[/] install/setup info: ");
-        _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/csx[/][/]");
+        _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/vscode-csx[/][/]");
     }
 
     private static void AutoModExistingLaunchJson()
