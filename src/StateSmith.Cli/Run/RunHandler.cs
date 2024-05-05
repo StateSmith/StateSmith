@@ -86,6 +86,12 @@ public class RunHandler
 
     public void RunScriptsIfNeeded(List<string> csxScripts)
     {
+        if (csxScripts.Count == 0)
+        {
+            _console.MarkupLine("[red]No scripts found to run.[/]");
+            return;
+        }
+
         bool anyScriptsRan = false;
 
         foreach (var csxShortPath in csxScripts)
