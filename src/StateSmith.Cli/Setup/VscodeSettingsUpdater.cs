@@ -75,9 +75,9 @@ public class VscodeSettingsUpdater
         ModifyVscodeSettingsFileIfNeeded();
 
         UiHelper.AddSectionLeftHeader(_console, "vscode drawio StateSmith setup complete", "green");
-        _console.Markup("Tip! Important info: ");
-        _console.MarkupLine("  [blue][u]https://github.com/StateSmith/StateSmith-drawio-plugin/wiki/Use-with-vscode[/][/]");
-        _console.Markup("Tip! More drawio info: ");
+        _console.Markup("Tip! [cyan]Requires extension:[/] ");
+        _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith-drawio-plugin/wiki/Use-with-vscode[/][/]");
+        _console.Markup("Tip! More draw.io info : ");
         _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/draw.io[/][/]");
     }
 
