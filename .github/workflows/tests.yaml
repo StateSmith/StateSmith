@@ -6,8 +6,8 @@ jobs:
   build:
     strategy:
       matrix:
-        dotnet: ['6.0.x', '7.0.x', '8.0.x']
         os: [ubuntu-latest, windows-latest, macos-latest]
+        dotnet: ['6.0.x', '7.0.x', '8.0.x']        
     runs-on: ${{ matrix.os }}
 
     steps:
