@@ -8,6 +8,16 @@ Test/interim releases are not documented here.
 
 ---
 
+##
+### Fixed
+- Fix settings directory sometimes blank on WSL2
+    - https://github.com/StateSmith/StateSmith/issues/255
+### Changed
+- Removed `--print-storage-paths` option from `create` verb
+    - It now prints storage path always.
+
+---
+
 ## [0.7.1]
 ### Added
 - Support for `run` command.
