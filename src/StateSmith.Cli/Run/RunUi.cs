@@ -103,8 +103,8 @@ public class RunUi
         string choice = _console.Prompt(new SelectionPrompt<string>()
             .Title(title ?? $"No valid manifest ({ManifestPersistance.ManifestFileName}) found. What did you want to do?")
             .AddChoices(new[] {
-                findAndRunCsxFiles,
                 findAndRunCsxFilesRecursively,
+                findAndRunCsxFiles,
                 searchUpForManifest,
                 //autoCreateManifestFile,
                 blankManifest,
