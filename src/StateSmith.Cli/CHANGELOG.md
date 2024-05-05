@@ -8,7 +8,7 @@ Test/interim releases are not documented here.
 
 ---
 
-##
+## [0.7.2]
 ### Fixed
 - Fix settings directory sometimes blank on WSL2
     - https://github.com/StateSmith/StateSmith/issues/255
