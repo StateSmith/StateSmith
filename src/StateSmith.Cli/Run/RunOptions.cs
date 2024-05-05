@@ -3,9 +3,13 @@ using System.Collections.Generic;
 
 namespace StateSmith.Cli.Run;
 
-[Verb("run", HelpText = "Runs StateSmith code generation.")]
+// https://github.com/commandlineparser/commandline
+// https://github.com/commandlineparser/commandline/wiki/Mutually-Exclusive-Options
+[Verb("run", HelpText = Description)]
 public class RunOptions
 {
+    public const string Description = "Run StateSmith code generation.";
+
     [Option('h', "here", HelpText = "Runs code generation in this directory.")]
     public bool Here { get; set; } = false;
 

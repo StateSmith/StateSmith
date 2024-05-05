@@ -2,9 +2,10 @@ using CommandLine;
 
 namespace StateSmith.Cli.Setup;
 
-[Verb("setup", HelpText = "Helps setup stuff.")]
+[Verb("setup", HelpText = Description)]
 public class SetupOptions
 {
+    public const string Description = "Set up vscode for StateSmith & csx files.";
     public const string SetupAllVscode = "Set up everything for vscode.";
 
     [Option("vscode-all", HelpText = SetupAllVscode)]

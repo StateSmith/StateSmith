@@ -1,4 +1,5 @@
 using Spectre.Console;
+using StateSmith.Cli.Utils;
 using System;
 using System.IO;
 
@@ -21,11 +22,7 @@ public class RunUi
     {
         _console.MarkupLine("");
 
-        var rule = new Rule($"[yellow]Run Command Handling[/]")
-        {
-            Justification = Justify.Left
-        };
-        _console.Write(rule);
+        UiHelper.AddSectionLeftHeader(_console, "StateSmith Run Command");
 
         SetRunHandlerFromOptions();
 

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using StateSmith.Cli.Run;
 using Spectre.Console;
 using StateSmith.Cli.Setup;
+using System.Linq;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
 
@@ -16,33 +17,9 @@ namespace StateSmith.Cli;
 /// </summary>
 class Program
 {
-    // https://github.com/commandlineparser/commandline
-    // https://github.com/commandlineparser/commandline/wiki/Mutually-Exclusive-Options
-    // This lib isn't perfect. It isn't very strict. You can do `-cx` and it will still work (there is no `x` command). But it's good enough for now.
-    // https://github.com/commandlineparser/commandline/issues/818
-
-    [Verb("create", HelpText = "Creates a new StateSmith project from template.")]
-    public class CreateOptions
-    {
-        [Option("print-storage-paths", HelpText = "Shows the paths where data/settings is stored.")]
-        public bool PrintDataSettingsPaths { get; set; }
-    }
-
-
-
-    // TODOLOW - help setup vscode script intellisense
-    // TODOLOW - setup vscode with StateSmith plugin for draw.io extension
-    // TODOLOW - colorize drawio file
-
     static void Main(string[] args)
     {
         IAnsiConsole _console = AnsiConsole.Console;
-
-        if (Debugger.IsAttached)
-        {
-            //new CreateUi().Run();
-        }
-        //args = new[] { "run-here", "--help" };
 
         try
         {
@@ -62,48 +39,102 @@ class Program
 
     private static void ParseCommandsAndRun(string[] args, IAnsiConsole _console)
     {
-        var parserResult = Parser.Default.ParseArguments<CreateOptions, RunOptions, SetupOptions>(args);
+        var parser = new Parser(settings =>
+        {
+            settings.HelpWriter = null;
+            settings.IgnoreUnknownArguments = false;
+            settings.AutoVersion = false;
+            settings.AutoHelp = false;
+        });
+
+        var parserResult = parser.ParseArguments<RunOptions, CreateOptions, SetupOptions>(args);
 
         parserResult.MapResult(
+            (RunOptions opts) =>
+            {
+                PrintVersionInfo(_console);
+                var runUi = new RunUi(opts, _console);
+                return runUi.HandleRunCommand();
+            },
             (CreateOptions opts) =>
             {
+                PrintVersionInfo(_console);
                 var createUi = new CreateUi(_console);
 
                 if (opts.PrintDataSettingsPaths)
                     createUi.PrintPersistencePaths();
 
                 createUi.Run();
-
                 return 0;
-            },
-            (RunOptions opts) =>
-            {
-                var runUi = new RunUi(opts, _console);
-                return runUi.HandleRunCommand();
             },
             (SetupOptions opts) =>
             {
+                PrintVersionInfo(_console);
                 var ui = new SetupUi(opts, _console);
                 return ui.Run();
             },
             errs =>
             {
-                //PrintHelp(parserResult); // already printed by the lib
+                PrintHelp(parserResult, _console);
+                if (errs.Count() == 1 && errs.First().Tag == ErrorType.NoVerbSelectedError)
+                {
+                    return ProvideMenu(_console);
+                }
                 return 1;
             }
         );
     }
 
+    private static int ProvideMenu(IAnsiConsole _console)
+    {
+        _console.MarkupLine("[cyan]No command verb was specified (see above).[/]");
 
+        const string run = RunOptions.Description;
+        const string create = CreateOptions.Description;
+        const string setup = SetupOptions.Description;
+
+        string choice = _console.Prompt(new SelectionPrompt<string>()
+            .Title($"What did you want to do?")
+            .AddChoices(new[] {
+                run,
+                create,
+                setup
+            }));
+
+        switch (choice)
+        {
+            case run:
+                var runUi = new RunUi(new(), _console);
+                return runUi.HandleRunCommand();
+
+            case create:
+                var createUi = new CreateUi(_console);
+                createUi.Run();
+                return 0;
+
+            case setup:
+                var setupUi = new SetupUi(new(), _console);
+                return setupUi.Run();
+        }
+
+        return 0;
+    }
+
+    private static void PrintVersionInfo(IAnsiConsole _console)
+    {
+        _console.WriteLine(HeadingInfo.Default);
+    }
 
     private static void PrintHelp(ParserResult<object> parserResult, IAnsiConsole _console)
     {
         var helpText = HelpText.AutoBuild(parserResult, h =>
         {
-            h.AutoHelp = false;     // hides --help
-            h.AutoVersion = false;  // hides --version
+            h.AutoHelp = false;
+            h.AutoVersion = false;
+            h.Copyright = "";
             return HelpText.DefaultParsingErrorsHandler(parserResult, h);
         }, e => e);
+
         _console.WriteLine(helpText);
     }
 }

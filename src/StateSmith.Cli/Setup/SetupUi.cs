@@ -1,4 +1,5 @@
 using Spectre.Console;
+using StateSmith.Cli.Utils;
 
 namespace StateSmith.Cli.Setup;
 
@@ -15,6 +16,8 @@ public class SetupUi
 
     public int Run()
     {
+        UiHelper.AddSectionLeftHeader(_console, "Set up");
+
         bool oneRun = false;
 
         if (opts.VscodeAll)

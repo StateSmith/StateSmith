@@ -5,6 +5,7 @@ using System.Linq;
 using System.IO;
 using System.Reflection;
 using StateSmith.Cli.Utils;
+using CommandLine;
 
 namespace StateSmith.Cli.Create;
 
