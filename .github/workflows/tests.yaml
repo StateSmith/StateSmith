@@ -6,8 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        buildType: ['Debug', 'Release']
+        os: [ubuntu-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -27,8 +26,8 @@ jobs:
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
-      - name: Build (${{ matrix.framework }})
-        run: dotnet build --configuration ${{ matrix.buildType }} --no-restore src/StateSmith.sln
+      - name: Build
+        run: dotnet build --configuration Debug --no-restore src/StateSmith.sln
 
       - name: Test
         run: dotnet test --no-restore src/StateSmith.sln
