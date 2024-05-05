@@ -7,7 +7,15 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        dotnet-version: ['6.0.x', '7.0.x', '8.0.x']        
+        dotnet-version: ['6.0.x', '7.0.x', '8.0.x']     
+        include:
+          - dotnet-version: 6.0.x
+            framework: net6.0
+          - dotnet-version: 7.0.x
+            framework: net7.0
+          - dotnet-version: 8.0.x
+            framework: net8.0
+
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -16,17 +24,11 @@ jobs:
         with:
           node-version: latest
 
-      - name: Setup .NET SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-      - name: Display dotnet version
-        run: dotnet --version
       - name: Install dependencies
-        run: dotnet restore src/StateSmith.sln
+        run: dotnet restore -p:TargetFramework=${{ matrix.framework }} src/StateSmith.sln
 
-      - name: Build
-        run: dotnet build --configuration Debug --no-restore src/StateSmith.sln
+      - name: Build (${{ matrix.framework }})
+        run: dotnet build --framework ${{ matrix.framework }} --configuration Debug --no-restore src/StateSmith.sln
 
       - name: Test
-        run: dotnet test --no-restore src/StateSmith.sln
+        run: dotnet test --framework ${{ matrix.framework }} --no-restore src/StateSmith.sln
