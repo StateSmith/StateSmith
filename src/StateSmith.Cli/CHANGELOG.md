@@ -8,7 +8,8 @@ Test/interim releases are not documented here.
 
 ---
 
-## WIP
+## [0.7.0]
+
 ### Fixed
 - Fixed detect if written/output files changed for skip detection
     - https://github.com/StateSmith/StateSmith/issues/246
