@@ -1,3 +1,4 @@
+using Spectre.Console;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -103,6 +104,20 @@ public class SimpleProcess
     public void AddStdErrListener(DataReceivedEventHandler handler)
     {
         cmd.ErrorDataReceived += handler;
+    }
+
+    public void EnableEchoToTerminal(IAnsiConsole console)
+    {
+        AddStdOutListener((sender, args) =>
+        {
+            if (args.Data != null)
+                console.WriteLine(args.Data);
+        });
+        AddStdErrListener((sender, args) =>
+        {
+            if (args.Data != null)
+                console.MarkupLine($"[red]{args.Data.EscapeMarkup()}[/]");
+        });
     }
 
     public void EnableEchoToTerminal()

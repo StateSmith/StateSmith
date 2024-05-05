@@ -97,7 +97,7 @@ public class RunHandler
         foreach (var csxShortPath in csxScripts)
         {
             anyScriptsRan |= RunScriptIfNeeded(manifestDirectory, csxShortPath);
-            _console.WriteLine();
+            //_console.WriteLine(); // already lots of newlines in RunScriptIfNeeded
         }
 
         if (!anyScriptsRan)
@@ -147,7 +147,7 @@ public class RunHandler
             SpecificArgs = csxAbsolutePath,
             throwOnExitCode = true
         };
-        process.EnableEchoToTerminal();
+        process.EnableEchoToTerminal(_console);
 
         // Important that we grab time before running the process.
         // This ensures that we can detect if diagram or csx file was modified after our run.
