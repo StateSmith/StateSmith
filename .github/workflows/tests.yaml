@@ -6,15 +6,8 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        dotnet-version: ['6.0.x', '7.0.x', '8.0.x']     
-        include:
-          - dotnet-version: 6.0.x
-            framework: net6.0
-          - dotnet-version: 7.0.x
-            framework: net7.0
-          - dotnet-version: 8.0.x
-            framework: net8.0
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        buildType: ['Debug', 'Release']
 
     runs-on: ${{ matrix.os }}
 
@@ -25,10 +18,10 @@ jobs:
           node-version: latest
 
       - name: Install dependencies
-        run: dotnet restore -p:TargetFramework=${{ matrix.framework }} src/StateSmith.sln
+        run: dotnet restore src/StateSmith.sln
 
       - name: Build (${{ matrix.framework }})
-        run: dotnet build --framework ${{ matrix.framework }} --configuration Debug --no-restore src/StateSmith.sln
+        run: dotnet build --configuration ${{ matrix.buildType }} --no-restore src/StateSmith.sln
 
       - name: Test
-        run: dotnet test --framework ${{ matrix.framework }} --no-restore src/StateSmith.sln
+        run: dotnet test --no-restore src/StateSmith.sln
