@@ -96,7 +96,7 @@ class Program
 
 
 
-    private static void PrintHelp(ParserResult<object> parserResult)
+    private static void PrintHelp(ParserResult<object> parserResult, IAnsiConsole _console)
     {
         var helpText = HelpText.AutoBuild(parserResult, h =>
         {
@@ -104,6 +104,6 @@ class Program
             h.AutoVersion = false;  // hides --version
             return HelpText.DefaultParsingErrorsHandler(parserResult, h);
         }, e => e);
-        Console.WriteLine(helpText);
+        _console.WriteLine(helpText);
     }
 }

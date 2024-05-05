@@ -4,22 +4,22 @@ using StateSmith.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 
 namespace StateSmith.Cli.Run;
 
 public class RunHandler
 {
-    private CsxOutputParser _parser;
-    RunInfo _runInfo;
     public SsCsxFileFinder Finder;
+
+    private CsxOutputParser _parser;
+    private ManifestPersistance _manifestPersistance;
+    private string manifestDirectory;
+
+    RunInfo _runInfo;
     internal IncrementalRunChecker _incrementalRunChecker;
     internal RunInfoDataBase _runInfoDataBase;
     bool _forceRebuild = false;
-    string dirOrManifestPath;
-    private ManifestPersistance _manifestPersistance;
     IAnsiConsole _console;
-    private string manifestDirectory;
 
     public RunHandler(IAnsiConsole console, string dirOrManifestPath)
     {
@@ -34,10 +34,9 @@ public class RunHandler
 
         _parser = new CsxOutputParser();
         _runInfo = new RunInfo(dirOrManifestPath);
-        _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath);
+        _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath, console);
         _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory);
         Finder = new SsCsxFileFinder();
-        this.dirOrManifestPath = dirOrManifestPath;
         _manifestPersistance = new ManifestPersistance(manifestDirectory);
     }
 
@@ -92,16 +91,16 @@ public class RunHandler
         foreach (var csxShortPath in csxScripts)
         {
             anyScriptsRan |= RunScriptIfNeeded(manifestDirectory, csxShortPath);
-            Console.WriteLine();
+            _console.WriteLine();
         }
 
         if (!anyScriptsRan)
         {
-            Console.WriteLine("No scripts needed to be run.");
+            _console.WriteLine("No scripts needed to be run.");
         }
         else
         {
-            Console.WriteLine("Finished running scripts.");
+            _console.WriteLine("Finished running scripts.");
             _runInfoDataBase.PersistRunInfo(_runInfo);
         }
     }
@@ -117,7 +116,7 @@ public class RunHandler
         if (runCheck != IncrementalRunChecker.Result.OkToSkip)
         {
             // already basically printed by IncrementalRunChecker
-            //Console.WriteLine($"Script or its diagram dependencies have changed. Running script.");
+            //_console.WriteLine($"Script or its diagram dependencies have changed. Running script.");
         }
         else
         {
@@ -132,7 +131,7 @@ public class RunHandler
             }
         }
 
-        Console.WriteLine($"Running script: `{csxShortPath}`");
+        _console.WriteLine($"Running script: `{csxShortPath}`");
         scriptRan = true;
 
         SimpleProcess process = new()
@@ -204,11 +203,11 @@ public class RunHandler
 
         var manifest = new Manifest();
 
-        var csxScripts = Finder.Scan(searchDirectory: manifestDirectory);
-        foreach (var csxRelativePath in csxScripts)
-        {
-            //manifest.RunManifest.ManuallySpecifiedProjects.Add(new ProjectSetting(csxRelativePath));
-        }
+        //var csxScripts = Finder.Scan(searchDirectory: manifestDirectory);
+        //foreach (var csxRelativePath in csxScripts)
+        //{
+        //    //manifest.RunManifest.ManuallySpecifiedProjects.Add(new ProjectSetting(csxRelativePath));
+        //}
 
         WriteManifest(manifest);
     }

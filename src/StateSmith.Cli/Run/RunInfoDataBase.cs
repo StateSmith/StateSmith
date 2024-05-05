@@ -1,3 +1,4 @@
+using Spectre.Console;
 using StateSmith.Cli.Utils;
 using System;
 using System.IO;
@@ -9,10 +10,12 @@ public class RunInfoDataBase
 {
     protected string _tempPath = Path.GetTempPath() + "StateSmith.Cli";
     string dirOrManifestPath;
+    IAnsiConsole _console;
 
-    public RunInfoDataBase(string dirOrManifestPath)
+    public RunInfoDataBase(string dirOrManifestPath, IAnsiConsole console)
     {
         this.dirOrManifestPath = dirOrManifestPath;
+        this._console = console;
     }
 
     public RunInfo? ReadRunInfoDatabase()
@@ -22,12 +25,13 @@ public class RunInfoDataBase
         string runInfoFilePath = GetRunInfoFilePath(dirOrManifestPath);
         if (!File.Exists(runInfoFilePath))
         {
-            Console.WriteLine("No run info found at: " + runInfoFilePath);
+            _console.WriteLine("No run info found at: " + runInfoFilePath);
         }
         else
         {
-            Console.WriteLine("Reading run info from: " + runInfoFilePath);
-            Console.Out.Flush(); //flush to ensure that the message is printed incase of a crash/exception
+            _console.WriteLine("Reading run info from: " + runInfoFilePath);
+            //_console.Out.Flush(); //flush to ensure that the message is printed incase of a crash/exception
+            // no option to flush in AnsiConsole
 
             JsonFilePersistence jsonFilePersistence = new()
             {
@@ -40,7 +44,7 @@ public class RunInfoDataBase
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error reading run info: " + e.Message);
+                _console.WriteLine("Error reading run info: " + e.Message);
             }
         }
 
@@ -62,7 +66,7 @@ public class RunInfoDataBase
             IncludeFields = true
         };
         jsonFilePersistence.PersistToFile(runInfo, runInfoFilePath);
-        Console.WriteLine("Run info stored in " + runInfoFilePath);
+        _console.WriteLine("Run info stored in " + runInfoFilePath);
     }
 
     private string GetRunInfoFilePath(string targetDirOrFile)

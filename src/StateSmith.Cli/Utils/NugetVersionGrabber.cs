@@ -6,12 +6,13 @@ using NuGet.Protocol;
 using NuGet.Versioning;
 using System.Threading.Tasks;
 using NuGet.Common;
+using Spectre.Console;
 
 namespace StateSmith.Cli.Utils;
 
 public class NugetVersionGrabber
 {
-    public static async Task RunAsync()
+    public static async Task RunAsync(IAnsiConsole console)
     {
         ILogger logger = NullLogger.Instance;
         CancellationToken cancellationToken = CancellationToken.None;
@@ -28,7 +29,7 @@ public class NugetVersionGrabber
 
         foreach (NuGetVersion version in versions)
         {
-            Console.WriteLine($"Found version {version}");
+            console.WriteLine($"Found version {version}");
         }
     }
 
