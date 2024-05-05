@@ -21,7 +21,11 @@ public class CreateUi
 
     public CreateUi(IAnsiConsole console)
     {
-        string configFolder = new ConfigDataPath().GetConfigDirPath();
+        // printing in constructor because GetOrMakeConfigDirPath() prints.
+        console.MarkupLine("");
+        UiHelper.AddSectionLeftHeader(console, "Create");
+
+        string configFolder = new ConfigDataPath().GetOrMakeConfigDirPath(console);
         _settingsPersistencePath = $"{configFolder}/create-settings.json";
         _updateInfoPersistencePath = $"{configFolder}/create-update-info.json";
         this._console = console;
@@ -30,28 +34,7 @@ public class CreateUi
     public string GetSettingsPersistencePath() => _settingsPersistencePath;
     public string GetUpdateInfoPersistencePath() => _updateInfoPersistencePath;
 
-    public void PrintPersistencePaths()
-    {
-        AddSectionLeftHeader("Data/Settings Persistence Info");
-
-        _console.MarkupLine($"Settings persistance path:\n  {GetSettingsPersistencePath()}\n");
-        _console.MarkupLine($"Update Info persistance path:\n  {GetUpdateInfoPersistencePath()}\n");
-    }
-
     public void Run()
-    {
-        //try
-        {
-            RunInner();
-        }
-        //catch (Exception ex)
-        //{
-        //    _console.WriteException(ex);
-        //    //throw;
-        //}
-    }
-
-    private void RunInner()
     {
         ReadSettingsFromJson();
 

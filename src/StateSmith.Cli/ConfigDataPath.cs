@@ -1,3 +1,4 @@
+using Spectre.Console;
 using System;
 using System.IO;
 
@@ -5,30 +6,42 @@ namespace StateSmith.Cli;
 
 public class ConfigDataPath
 {
-    public string GetConfigDirPath()
+    public string GetOrMakeConfigDirPath(Spectre.Console.IAnsiConsole console)
     {
-        string dirPath;
+        string dirPath = "";
 
-        bool local = false;
-
-        if (local)
+        Environment.SpecialFolder[] preferredFolders =
         {
-            // local is a bit more for cache, temp, etc.
+            Environment.SpecialFolder.ApplicationData,
+            Environment.SpecialFolder.LocalApplicationData,
+            Environment.SpecialFolder.Personal,
+            Environment.SpecialFolder.UserProfile   // WSL2 on one of my computers returns blank for everything except for UserProfile
+        };
 
-            // "C:\\Users\\user\\AppData\\Local" - specific to the user, stays on the machine
-            // "/home/user/.local/share"
-            dirPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        foreach (var specialFolder in preferredFolders)
+        {
+            dirPath = Environment.GetFolderPath(specialFolder);
+            if (dirPath.Length > 0)
+                break;
+        }
+
+        if (dirPath.Length == 0)
+        {
+            console.MarkupLine("[red]Error![/] Couldn't find a directory to store settings! Using this directory.");
+        }
+
+        dirPath = Path.Combine(dirPath, "StateSmith.Cli");
+
+        // alert user to us creating the settings directory
+        if (!Directory.Exists(dirPath))
+        {
+            console.MarkupLine($"[cyan]Creating settings directory: {dirPath}[/]");
+            Directory.CreateDirectory(dirPath);
         }
         else
         {
-            // "C:\\Users\\user\\AppData\\Roaming" - specific to the user, roams with the user (other machines with same user)
-            // "/home/user/.config"
-            dirPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            console.MarkupLine($"[grey]Using settings directory: {dirPath}[/]");
         }
-
-        // create directory if it doesn't exist
-        dirPath = Path.Combine(dirPath, "StateSmith.Cli");
-        Directory.CreateDirectory(dirPath);
 
         return dirPath;
     }

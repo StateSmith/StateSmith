@@ -16,7 +16,8 @@ public class SetupUi
 
     public int Run()
     {
-        UiHelper.AddSectionLeftHeader(_console, "Set up");
+        _console.MarkupLine("");
+        UiHelper.AddSectionLeftHeader(_console, "Set Up");
 
         bool oneRun = false;
 

@@ -60,10 +60,6 @@ class Program
             {
                 PrintVersionInfo(_console);
                 var createUi = new CreateUi(_console);
-
-                if (opts.PrintDataSettingsPaths)
-                    createUi.PrintPersistencePaths();
-
                 createUi.Run();
                 return 0;
             },

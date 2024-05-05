@@ -21,8 +21,7 @@ public class RunUi
     public int HandleRunCommand()
     {
         _console.MarkupLine("");
-
-        UiHelper.AddSectionLeftHeader(_console, "StateSmith Run Command");
+        UiHelper.AddSectionLeftHeader(_console, "Run");
 
         SetRunHandlerFromOptions();
 
