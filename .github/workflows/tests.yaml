@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        dotnet: ['6.0.x', '7.0.x', '8.0.x']        
+        dotnet-version: ['6.0.x', '7.0.x', '8.0.x']        
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -16,11 +16,12 @@ jobs:
         with:
           node-version: latest
 
-      - name: Setup .NET SDK
+      - name: Setup .NET SDK ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ matrix.dotnet }}
-
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Display dotnet version
+        run: dotnet --version
       - name: Install dependencies
         run: dotnet restore src/StateSmith.sln
 
