@@ -78,7 +78,7 @@ public class SetupVscodeCsxAction
         _console.MarkupLine("Tip! You may want to git ignore the [yellow]omnisharp.json[/] file.");
         _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Restart OmniSharp[/]");
         _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Select Project[/]");
-        _console.MarkupLine("Tip! More .csx related information: ");
+        _console.MarkupLine("Tip! [cyan]READ THIS[/] install/setup info: ");
         _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/csx[/][/]");
     }
 
