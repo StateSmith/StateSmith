@@ -1,18 +1,18 @@
-﻿using CommandLine;
+using CommandLine;
 using System.Collections.Generic;
 
 namespace StateSmith.Cli.Run;
 
-[Verb("run", HelpText = "Not ready yet. Runs the StateSmith code generation.")]
+[Verb("run", HelpText = "Runs StateSmith code generation.")]
 public class RunOptions
 {
-    [Option('h', "here", HelpText = "Runs ")]
+    [Option('h', "here", HelpText = "Runs code generation in this directory.")]
     public bool Here { get; set; } = false;
 
     [Option('b', "rebuild", HelpText = "Ensures code generation is run. Ignores change detection.")]
     public bool Rebuild { get; set; } = false;
 
-    [Option('u', "up", SetName = "up", HelpText = "Searches upwards for manifest file. Can't use with -p.")]
+    [Option('u', "up", SetName = "up", HelpText = "Searches upwards for manifest file.")]
     public bool Up { get; set; } = false;
 
     [Option('r', "recursive", SetName = "recursive", HelpText = "Recursive. Can't use with -i.")]
