@@ -111,13 +111,15 @@ class Program
         const string run = RunOptions.Description;
         const string create = CreateOptions.Description;
         const string setup = SetupOptions.Description;
+        const string checkForToolUpdate = "Check for tool update";
 
         string choice = _console.Prompt(new SelectionPrompt<string>()
             .Title($"What did you want to do?")
             .AddChoices(new[] {
                 run,
                 create,
-                setup
+                setup,
+                checkForToolUpdate
             }));
 
         switch (choice)
@@ -134,6 +136,11 @@ class Program
             case setup:
                 var setupUi = new SetupUi(new(), _console);
                 return setupUi.Run();
+
+            case checkForToolUpdate:
+                ToolUpdateChecker updateChecker = new(_console, _settingsPaths);
+                updateChecker.CheckForUpdates(pauseForKeyboardEnter: false);
+                return 0;
         }
 
         return 0;
@@ -150,8 +157,8 @@ class Program
         ToolSettingsLoader loader = new(_console, _settingsPaths);
         loader.LoadOrAskUser();
 
-        ToolUpdateChecker updateChecker = new(_console, _settingsPaths, loader.GetToolSettings());
-        updateChecker.AskToCheckIfTime();
+        ToolUpdateChecker updateChecker = new(_console, _settingsPaths);
+        updateChecker.AskToCheckIfTime(loader.GetToolSettings());
 
         bool printed = loader.Printed || updateChecker.Printed;
         if (printed)

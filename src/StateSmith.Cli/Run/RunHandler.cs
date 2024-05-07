@@ -61,6 +61,7 @@ public class RunHandler
         }
 
         _manifestPersistance.Write(manifest, overWrite: true);
+        _console.MarkupLine($"Manifest written successfully to [green]{ManifestPersistance.ManifestFileName}[/].");
     }
 
     public void Run()

@@ -13,26 +13,24 @@ public class ToolUpdateChecker
 {
     readonly TrackingConsole _console;
     readonly string _dataPath;
-    readonly ToolSettings toolSettings;
     readonly JsonFilePersistence _persistence = new() { IncludeFields = false };
 
     public bool Printed => _console.Accessed;
 
-    public ToolUpdateChecker(IAnsiConsole console, DataPaths settingsPaths, ToolSettings toolSettings)
+    public ToolUpdateChecker(IAnsiConsole console, DataPaths settingsPaths)
     {
         _console = new TrackingConsole(console);
         _dataPath = settingsPaths.Tool_UpdateInfo;
-        this.toolSettings = toolSettings;
     }
 
-    public void AskToCheckIfTime()
+    public void AskToCheckIfTime(ToolSettings toolSettings)
     {
         if (toolSettings.SecondsBetweenUpdateChecks < 0)
         {
             return;
         }
 
-        if (IsTimeToCheck())
+        if (IsTimeToCheck(toolSettings))
         {
             UiHelper.AddSectionLeftHeader(_console.Get(), "Tool Update Check");
             if (UiHelper.YesNoPrompt(_console.Get(), "Check for tool updates? (It's been a while)"))
@@ -41,7 +39,7 @@ public class ToolUpdateChecker
             }
             else
             {
-                _console.Get().MarkupLine("[grey]Skipping update check.[/]");
+                _console.Get().MarkupLine("[grey]Skipping update check. Will remind again next period.[/]");
                 SaveCheckTime();
             }
         }
@@ -57,7 +55,7 @@ public class ToolUpdateChecker
         _persistence.PersistToFile(toolUpdateInfo, _dataPath);
     }
 
-    private bool IsTimeToCheck()
+    private bool IsTimeToCheck(ToolSettings toolSettings)
     {
         bool timeToCheck = true;
 
@@ -82,7 +80,7 @@ public class ToolUpdateChecker
         return timeToCheck;
     }
 
-    private void CheckForUpdates()
+    public void CheckForUpdates(bool pauseForKeyboardEnter = true)
     {
         NuGet.Versioning.NuGetVersion? latestStable = null;
         string? latestStableStr = null;
@@ -93,7 +91,7 @@ public class ToolUpdateChecker
             .Spinner(Spinner.Known.Dots2)
             .Start("[yellow]Checking for updates[/]", ctx =>
             {
-                ctx.Status("checking for StateSmith.Cli updates from nuget.org");
+                ctx.Status("checking for `StateSmith.Cli` updates from nuget.org");
 
                 try
                 {
@@ -126,10 +124,16 @@ public class ToolUpdateChecker
             _console.Get().MarkupLine($"[cyan]!!! Good news !!![/]");
             _console.Get().MarkupLine($"A new version of StateSmith.Cli is available: [cyan]{latestStableStr}[/]");
             _console.Get().MarkupLine($"Install with this command: [cyan]dotnet tool update -g StateSmith.Cli[/]");
-            _console.Get().MarkupLine("\n");
-            Thread.Sleep(1000);
-            _console.Get().MarkupLine("Press enter to continue...");
-            Console.ReadLine();
+            _console.Get().MarkupLine("Change log: [blue][u]https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith.Cli/CHANGELOG.md[/][/]");
+
+            if (pauseForKeyboardEnter)
+            {
+                _console.Get().MarkupLine("\n");
+
+                Thread.Sleep(1000);
+                _console.Get().MarkupLine("Press enter to continue...");
+                Console.ReadLine();
+            }
         }
         else
         {

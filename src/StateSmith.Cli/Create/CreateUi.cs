@@ -5,6 +5,7 @@ using System.Linq;
 using System.IO;
 using StateSmith.Cli.Utils;
 using StateSmith.Cli.Data;
+using System.Threading;
 
 namespace StateSmith.Cli.Create;
 
@@ -35,9 +36,7 @@ public class CreateUi
     {
         ReadSettingsFromJson();
 
-        Updates();
-
-        StateSmithVersion();
+        StateSmithLib();
 
         StateMachineName();
 
@@ -72,7 +71,7 @@ public class CreateUi
 
         new Generator(_settings).GenerateFiles();
 
-        _console.MarkupLine($"[green]Success!.[/]");
+        _console.MarkupLine($"[green]Success![/]");
     }
 
     private bool AskForOverwriteIfNeeded()
@@ -224,7 +223,8 @@ public class CreateUi
 
     private void StateSmithVersion()
     {
-        AddSectionLeftHeader("StateSmith Version");
+        //AddSectionLeftHeader("StateSmith Version");
+        _console.WriteLine("");
 
         string latestStableOption = $"latest stable available ([green]{_latestStateSmithVersion}[/])";
         string myLastUsedOption = $"my last used ([grey]{_settings.StateSmithVersion}[/])";
@@ -355,11 +355,11 @@ public class CreateUi
         _settings.smName = Ask("Enter your state machine name", "MySm");
     }
 
-    private void Updates()
+    private void StateSmithLib()
     {
-        AddSectionLeftHeader("Updates");
+        AddSectionLeftHeader("StateSmith Library");
 
-        const string title = "Check for updates?";
+        const string title = "Check for a new version of StateSmith library used for code gen?";
 
         bool checkForUpdates;
 
@@ -378,8 +378,12 @@ public class CreateUi
         }
         else
         {
-            _console.MarkupLine("[grey]Skipping updates...[/]");
+            _console.MarkupLine("[grey]Skipping check for updated lib.[/]");
         }
+
+        Thread.Sleep(500); // give user a chance to read the last message
+
+        StateSmithVersion();
     }
 
     private bool TimeToCheckForUpdates()
@@ -391,11 +395,6 @@ public class CreateUi
 
     private void CheckForUpdates()
     {
-        //void WriteLogMessage(string message)
-        //{
-        //    _console.MarkupLine($"[grey]LOG:[/] {message}[grey]...[/]");
-        //}
-
         NuGet.Versioning.NuGetVersion? latestStable = null;
         string? latestStableStr = null;
 
