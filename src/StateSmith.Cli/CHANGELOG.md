@@ -8,6 +8,13 @@ Test/interim releases are not documented here.
 
 ---
 
+## [WIP]
+### Fixed
+- fix generated vscode launch.json file
+    https://github.com/StateSmith/StateSmith/issues/263
+
+---
+
 ## [0.7.2]
 ### Fixed
 - Fix settings directory sometimes blank on WSL2

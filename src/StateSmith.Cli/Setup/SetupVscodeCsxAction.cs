@@ -56,8 +56,21 @@ public class SetupVscodeCsxAction
 
         NotifyIfDotnetScriptOld();
 
-        UiHelper.AddSectionLeftHeader(_console, "Set up "+ Description);
+        UiHelper.AddSectionLeftHeader(_console, "Set up " + Description);
 
+        CreateLaunchJsonIfNeeded();
+        RunDotnetScriptInit();
+
+        UiHelper.AddSectionLeftHeader(_console, "vscode csx setup complete", "green");
+        _console.MarkupLine("Tip! You may want to git ignore the [yellow]omnisharp.json[/] file.");
+        _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Restart OmniSharp[/]");
+        _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Select Project[/]");
+        _console.MarkupLine("Tip! [cyan]READ THIS[/] install/setup info: ");
+        _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/vscode-csx[/][/]");
+    }
+
+    private void CreateLaunchJsonIfNeeded()
+    {
         if (!File.Exists(launchJsonPath))
         {
             AddNewLaunchJson();
@@ -71,15 +84,6 @@ public class SetupVscodeCsxAction
             _console.WriteLine();
             Thread.Sleep(1000); // give time for user to read
         }
-
-        CreateOmnisharpFileIfNeeded();
-
-        UiHelper.AddSectionLeftHeader(_console, "vscode csx setup complete", "green");
-        _console.MarkupLine("Tip! You may want to git ignore the [yellow]omnisharp.json[/] file.");
-        _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Restart OmniSharp[/]");
-        _console.MarkupLine("Tip! Useful vscode command: [yellow]OmniSharp: Select Project[/]");
-        _console.MarkupLine("Tip! [cyan]READ THIS[/] install/setup info: ");
-        _console.MarkupLine("[blue][u]https://github.com/StateSmith/StateSmith/wiki/vscode-csx[/][/]");
     }
 
     private static void AutoModExistingLaunchJson()
@@ -101,7 +105,32 @@ public class SetupVscodeCsxAction
         }
     }
 
-    private void CreateOmnisharpFileIfNeeded()
+    /// <summary>
+    /// Workaround for dotnet-script init overwriting launch.json
+    /// See https://github.com/StateSmith/StateSmith/issues/263
+    /// </summary>
+    private void RunDotnetScriptInit()
+    {
+        string? oldLaunchJson = null;
+
+        if (File.Exists(launchJsonPath))
+        {
+            oldLaunchJson = File.ReadAllText(launchJsonPath);
+        }
+
+        RunDotnetScriptInitThatOverwiteLaunch();
+
+        if (oldLaunchJson != null)
+        {
+            File.WriteAllText(launchJsonPath, oldLaunchJson);
+        }
+    }
+
+    /// <summary>
+    /// Note! will overwrite existing launch.json file.
+    /// https://github.com/StateSmith/StateSmith/issues/263
+    /// </summary>
+    private void RunDotnetScriptInitThatOverwiteLaunch()
     {
         if (File.Exists("omnisharp.json"))
         {
