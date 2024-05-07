@@ -6,7 +6,7 @@ namespace StateSmith.Cli.Create;
 public class UpdateInfo
 {
     public static readonly string DefaultStateSmithLibVersion = GetDefaultStateSmithLibVersion();
-    public string LastestStateSmithLibStableVersion { get; set; } = DefaultStateSmithLibVersion;
+    public string LatestStateSmithLibStableVersion { get; set; } = DefaultStateSmithLibVersion;
     public string LastCheckDateTime { get; set; } = "2021-09-01T00:00:00Z";
 
     static string GetDefaultStateSmithLibVersion()

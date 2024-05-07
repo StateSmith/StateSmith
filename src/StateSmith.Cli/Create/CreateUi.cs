@@ -128,7 +128,7 @@ public class CreateUi
         try
         {
             _updatesInfo = _persistence.RestoreFromFile<UpdateInfo>(_updateInfoPersistencePath);
-            _latestStateSmithVersion = _updatesInfo.LastestStateSmithLibStableVersion;
+            _latestStateSmithVersion = _updatesInfo.LatestStateSmithLibStableVersion;
         }
         catch (Exception ex)
         {
@@ -428,8 +428,8 @@ public class CreateUi
             return;
         }
 
-        bool newVersionFound = _updatesInfo.LastestStateSmithLibStableVersion != latestStableStr;
-        _updatesInfo.LastestStateSmithLibStableVersion = latestStableStr;
+        bool newVersionFound = _updatesInfo.LatestStateSmithLibStableVersion != latestStableStr;
+        _updatesInfo.LatestStateSmithLibStableVersion = latestStableStr;
 
         if (!newVersionFound)
         {
