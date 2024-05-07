@@ -7,7 +7,7 @@ using StateSmithTest.Processes;
 namespace Spec.Spec2.CSharp;
 
 /// <summary>
-/// Required so that we only do the gcc compilation once to avoid concurrency conflicts.
+/// Required so that we only do the dotnet compilation once to avoid concurrency conflicts.
 /// This will only be constructed once and shared amongst any tests that need it.
 /// </summary>
 public class SharedCompilationFixture
