@@ -8,7 +8,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [WIP]
+## [0.8.0]
 ### Fixed
 - fix generated vscode launch.json file
     - https://github.com/StateSmith/StateSmith/issues/263
