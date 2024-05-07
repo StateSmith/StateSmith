@@ -11,8 +11,8 @@ public class DataPaths
 
     public string Create_SettingsPersistencePath => $"{DataPath}/create-settings.json";
     public string Create_UpdateInfoPersistencePath => $"{DataPath}/create-update-info.json";
-    public string Tool_UpdateInfoPersistencePath => $"{DataPath}/tool-update-info.json";
-    public string Tool_UpdateSettings => $"{DataPath}/tool-settings.json";
+    public string Tool_UpdateInfo => $"{DataPath}/tool-update-info.json";
+    public string Tool_Settings => $"{DataPath}/tool-settings.json";
 
     public DataPaths(IAnsiConsole console)
     {

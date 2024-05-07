@@ -1,6 +1,6 @@
 namespace StateSmith.Cli.Utils;
 
-internal class UiItem<T> : ICloneable<UiItem<T>> where T : notnull
+public class UiItem<T> : ICloneable<UiItem<T>> where T : notnull
 {
     public UiItem(T id, string display)
     {

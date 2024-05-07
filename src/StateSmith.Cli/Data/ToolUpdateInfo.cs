@@ -9,10 +9,15 @@ public class ToolUpdateInfo
 {
     public string LastCheckDateTime { get; set; } = "2021-09-01T00:00:00Z";
 
-    public double GetMsSinceLastCheck()
+    public static ToolUpdateInfo CreateForNow()
+    {
+        return new ToolUpdateInfo { LastCheckDateTime = DateTime.Now.ToString() };
+    }
+
+    public double GetSecondsSinceLastCheck()
     {
         var lastCheck = DateTime.Parse(LastCheckDateTime);
         var now = DateTime.Now;
-        return (now - lastCheck).TotalMilliseconds;
+        return (now - lastCheck).TotalSeconds;
     }
 }

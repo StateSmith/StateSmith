@@ -14,6 +14,9 @@ Test/interim releases are not documented here.
     - https://github.com/StateSmith/StateSmith/issues/263
 - fix cursor missing after CTRL+C exiting menu/wizard
     - https://github.com/StateSmith/StateSmith/issues/256
+### Added
+- Added tool settings for checking for tool updates
+    - https://github.com/StateSmith/StateSmith/issues/249
 
 ---
 

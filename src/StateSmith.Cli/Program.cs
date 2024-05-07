@@ -8,6 +8,7 @@ using Spectre.Console;
 using StateSmith.Cli.Setup;
 using System.Linq;
 using StateSmith.Cli.Data;
+using StateSmith.Cli.Utils;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
 
@@ -72,20 +73,20 @@ class Program
         parserResult.MapResult(
             (RunOptions opts) =>
             {
-                PrintVersionInfo(_console);
+                PreRunNoArgError(_console);
                 var runUi = new RunUi(opts, _console);
                 return runUi.HandleRunCommand();
             },
             (CreateOptions opts) =>
             {
-                PrintVersionInfo(_console);
+                PreRunNoArgError(_console);
                 var createUi = new CreateUi(_console, _settingsPaths);
                 createUi.Run();
                 return 0;
             },
             (SetupOptions opts) =>
             {
-                PrintVersionInfo(_console);
+                PreRunNoArgError(_console);
                 var ui = new SetupUi(opts, _console);
                 return ui.Run();
             },
@@ -94,6 +95,7 @@ class Program
                 PrintHelp(parserResult, _console);
                 if (errs.Count() == 1 && errs.First().Tag == ErrorType.NoVerbSelectedError)
                 {
+                    TryCheckForUpdates();
                     return ProvideMenu();
                 }
                 return 1;
@@ -103,6 +105,7 @@ class Program
 
     private int ProvideMenu()
     {
+        UiHelper.AddSectionLeftHeader(_console, "Main Menu");
         _console.MarkupLine("[cyan]No command verb was specified (see above).[/]");
 
         const string run = RunOptions.Description;
@@ -136,9 +139,23 @@ class Program
         return 0;
     }
 
-    private static void PrintVersionInfo(IAnsiConsole _console)
+    private void PreRunNoArgError(IAnsiConsole _console)
     {
         _console.WriteLine(HeadingInfo.Default);
+        TryCheckForUpdates();
+    }
+
+    private void TryCheckForUpdates()
+    {
+        ToolSettingsLoader loader = new(_console, _settingsPaths);
+        loader.LoadOrAskUser();
+
+        ToolUpdateChecker updateChecker = new(_console, _settingsPaths, loader.GetToolSettings());
+        updateChecker.AskToCheckIfTime();
+
+        bool printed = loader.Printed || updateChecker.Printed;
+        if (printed)
+            _console.WriteLine("\n");
     }
 
     private static void PrintHelp(ParserResult<object> parserResult, IAnsiConsole _console)

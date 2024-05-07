@@ -1,3 +1,5 @@
+using System;
+
 namespace StateSmith.Cli.Data;
 
 /// <summary>
@@ -5,6 +7,8 @@ namespace StateSmith.Cli.Data;
 /// </summary>
 public class ToolSettings
 {
-    public bool RemindForUpdates { get; set; } = true;
-    public int MilliSecondsBetweenUpdateChecks { get; set; } = 1000 * 60 * 60 * 24; // 24 hours
+    /// <summary>
+    /// Set to -1 to disable update checks.
+    /// </summary>
+    public double SecondsBetweenUpdateChecks { get; set; } = TimeSpan.FromDays(1).TotalSeconds;
 }

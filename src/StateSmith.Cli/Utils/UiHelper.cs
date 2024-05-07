@@ -56,4 +56,13 @@ public class UiHelper
         };
         console.Write(rule);
     }
+
+    public static T Prompt<T>(IAnsiConsole _console, string title, UiItem<T>[] choices) where T : notnull
+    {
+        return _console.Prompt(
+                new SelectionPrompt<UiItem<T>>()
+                    .Title(title)
+                    .UseConverter(x => x.Display)
+                    .AddChoices(choices)).Id;
+    }
 }
