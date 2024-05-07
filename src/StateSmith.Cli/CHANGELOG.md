@@ -8,6 +8,13 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.8.1]
+### Added
+- Main menu option to check for updates
+- Slight message improvements (print manifest success, etc)
+
+---
+
 ## [0.8.0]
 ### Fixed
 - fix generated vscode launch.json file
