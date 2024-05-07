@@ -1,4 +1,5 @@
 using Spectre.Console;
+using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Utils;
 using StateSmith.Common;
 using System;
@@ -47,12 +48,12 @@ public class RunHandler
 
     public void CreateBlankManifest()
     {
-        var manifest = new Manifest();
+        var manifest = new ManifestData();
         manifest.RunManifest.IncludePathGlobs.Add("**/*.csx");
         WriteManifest(manifest);
     }
 
-    private void WriteManifest(Manifest manifest)
+    private void WriteManifest(ManifestData manifest)
     {
         if (_manifestPersistance.ManifestExists() && UiHelper.AskForOverwrite(_console) == false)
         {
@@ -192,7 +193,7 @@ public class RunHandler
         _console.MarkupLine(message);
     }
 
-    public void AddFromManifest(Manifest manifest)
+    public void AddFromManifest(ManifestData manifest)
     {
         Finder.AddIncludePatterns(manifest.RunManifest.IncludePathGlobs);
         Finder.AddExcludePatterns(manifest.RunManifest.ExcludePathGlobs);
@@ -207,7 +208,7 @@ public class RunHandler
         if (throwNotImplemented)
             throw new NotImplementedException();
 
-        var manifest = new Manifest();
+        var manifest = new ManifestData();
 
         //var csxScripts = Finder.Scan(searchDirectory: manifestDirectory);
         //foreach (var csxRelativePath in csxScripts)

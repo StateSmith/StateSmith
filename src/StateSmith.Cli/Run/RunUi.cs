@@ -1,4 +1,5 @@
 using Spectre.Console;
+using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Utils;
 using System;
 using System.IO;
@@ -46,7 +47,7 @@ public class RunUi
         }
 
         var manPersistance = new ManifestPersistance(Environment.CurrentDirectory);
-        Manifest? manifest = null;
+        ManifestData? manifest = null;
 
         if (manPersistance.ManifestExists())
         {
@@ -146,7 +147,7 @@ public class RunUi
 
         _console.MarkupLine($"Found manifest in directory: {dir.FullName}");
 
-        Manifest manifest = new ManifestPersistance(dir.FullName).ReadOrThrow();
+        ManifestData manifest = new ManifestPersistance(dir.FullName).ReadOrThrow();
         runHandler = new RunHandler(_console, dir.FullName);
         SetRunHandlerFromOptions();
         runHandler.AddFromManifest(manifest);

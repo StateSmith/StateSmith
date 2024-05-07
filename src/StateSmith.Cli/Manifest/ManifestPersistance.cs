@@ -1,7 +1,8 @@
+using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Utils;
 using System.IO;
 
-namespace StateSmith.Cli;
+namespace StateSmith.Cli.Manifest;
 
 public class ManifestPersistance
 {
@@ -13,20 +14,20 @@ public class ManifestPersistance
         this.dirPath = dirPath;
     }
 
-    public Manifest ReadOrThrow()
+    public ManifestData ReadOrThrow()
     {
         string filePath = GetManifestPath();
         JsonFilePersistence jsonFilePersistence = new() { IncludeFields = true };
-        return jsonFilePersistence.RestoreFromFile<Manifest>(filePath);
+        return jsonFilePersistence.RestoreFromFile<ManifestData>(filePath);
     }
 
-    public Manifest? ReadIfExistsAndValid()
+    public ManifestData? ReadIfExistsAndValid()
     {
         string filePath = GetManifestPath();
         JsonFilePersistence jsonFilePersistence = new() { IncludeFields = true };
         try
         {
-            return jsonFilePersistence.RestoreFromFile<Manifest>(filePath);
+            return jsonFilePersistence.RestoreFromFile<ManifestData>(filePath);
         }
         catch
         {
@@ -46,7 +47,7 @@ public class ManifestPersistance
         return File.Exists(filePath);
     }
 
-    public void Write(Manifest manifest, bool overWrite = false)
+    public void Write(ManifestData manifest, bool overWrite = false)
     {
         string filePath = GetManifestPath();
 

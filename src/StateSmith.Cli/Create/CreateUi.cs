@@ -3,9 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.Reflection;
 using StateSmith.Cli.Utils;
-using CommandLine;
+using StateSmith.Cli.Data;
 
 namespace StateSmith.Cli.Create;
 
@@ -19,15 +18,13 @@ public class CreateUi
     string _latestStateSmithVersion = UpdateInfo.DefaultStateSmithLibVersion;
     IAnsiConsole _console = AnsiConsole.Console;
 
-    public CreateUi(IAnsiConsole console)
+    public CreateUi(IAnsiConsole console, DataPaths settingsPaths)
     {
         // printing in constructor because GetOrMakeConfigDirPath() prints.
         console.MarkupLine("");
         UiHelper.AddSectionLeftHeader(console, "Create");
-
-        string configFolder = new ConfigDataPath().GetOrMakeConfigDirPath(console);
-        _settingsPersistencePath = $"{configFolder}/create-settings.json";
-        _updateInfoPersistencePath = $"{configFolder}/create-update-info.json";
+        _settingsPersistencePath = settingsPaths.Create_SettingsPersistencePath;
+        _updateInfoPersistencePath = settingsPaths.Create_UpdateInfoPersistencePath;
         this._console = console;
     }
 

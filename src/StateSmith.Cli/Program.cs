@@ -7,6 +7,7 @@ using StateSmith.Cli.Run;
 using Spectre.Console;
 using StateSmith.Cli.Setup;
 using System.Linq;
+using StateSmith.Cli.Data;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
 
@@ -17,13 +18,26 @@ namespace StateSmith.Cli;
 /// </summary>
 class Program
 {
+    IAnsiConsole _console = AnsiConsole.Console;
+    DataPaths _settingsPaths;
+
+    public Program()
+    {
+        _settingsPaths = new DataPaths(_console);
+    }
+
     static void Main(string[] args)
     {
-        IAnsiConsole _console = AnsiConsole.Console;
+        var program = new Program();
+        program.Run(args);
+    }
 
+    private void Run(string[] args)
+    {
         // Fix for cursor not showing after ctrl-c exiting the program
         // https://github.com/StateSmith/StateSmith/issues/256
-        Console.CancelKeyPress += delegate {
+        Console.CancelKeyPress += delegate
+        {
             AnsiConsole.Console.Cursor.Show();
         };
 
@@ -43,7 +57,7 @@ class Program
         }
     }
 
-    private static void ParseCommandsAndRun(string[] args, IAnsiConsole _console)
+    private void ParseCommandsAndRun(string[] args, IAnsiConsole _console)
     {
         var parser = new Parser(settings =>
         {
@@ -65,7 +79,7 @@ class Program
             (CreateOptions opts) =>
             {
                 PrintVersionInfo(_console);
-                var createUi = new CreateUi(_console);
+                var createUi = new CreateUi(_console, _settingsPaths);
                 createUi.Run();
                 return 0;
             },
@@ -80,14 +94,14 @@ class Program
                 PrintHelp(parserResult, _console);
                 if (errs.Count() == 1 && errs.First().Tag == ErrorType.NoVerbSelectedError)
                 {
-                    return ProvideMenu(_console);
+                    return ProvideMenu();
                 }
                 return 1;
             }
         );
     }
 
-    private static int ProvideMenu(IAnsiConsole _console)
+    private int ProvideMenu()
     {
         _console.MarkupLine("[cyan]No command verb was specified (see above).[/]");
 
@@ -110,7 +124,7 @@ class Program
                 return runUi.HandleRunCommand();
 
             case create:
-                var createUi = new CreateUi(_console);
+                var createUi = new CreateUi(_console, _settingsPaths);
                 createUi.Run();
                 return 0;
 

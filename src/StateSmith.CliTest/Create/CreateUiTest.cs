@@ -14,7 +14,7 @@ public class CreateUiTest
     public CreateUiTest()
     {
         fakeConsole = new TestConsole();
-        cUi = new CreateUi(fakeConsole);
+        cUi = new CreateUi(fakeConsole, new(fakeConsole));
     }
 
     [Fact]
