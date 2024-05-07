@@ -21,6 +21,12 @@ class Program
     {
         IAnsiConsole _console = AnsiConsole.Console;
 
+        // Fix for cursor not showing after ctrl-c exiting the program
+        // https://github.com/StateSmith/StateSmith/issues/256
+        Console.CancelKeyPress += delegate {
+            AnsiConsole.Console.Cursor.Show();
+        };
+
         try
         {
             ParseCommandsAndRun(args, _console);

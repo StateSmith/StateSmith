@@ -11,7 +11,9 @@ Test/interim releases are not documented here.
 ## [WIP]
 ### Fixed
 - fix generated vscode launch.json file
-    https://github.com/StateSmith/StateSmith/issues/263
+    - https://github.com/StateSmith/StateSmith/issues/263
+- fix cursor missing after CTRL+C exiting menu/wizard
+    - https://github.com/StateSmith/StateSmith/issues/256
 
 ---
 
