@@ -6,7 +6,7 @@ To be perfectly honest, the StateSmith grammars are not perfect. Contributions w
 <br>
 
 # Requirements
-Please use WSL2 or linux to run the scripts in this directory.
+Please use WSL2 or linux (mac?) to run the scripts in this directory.
 
 Please let me know if any of the files have bad chmod permissions (sometimes happens when I use wsl).
 
