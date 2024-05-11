@@ -42,7 +42,8 @@ public class Spec1CTests
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            Command = "./a.out EV2 EV1 EV2 "
+            Command = "./a.out",
+            Args = "EV2 EV1 EV2 "
         };
         BashRunner.RunCommand(process);
 
