@@ -37,32 +37,32 @@ public class SimpleProcess
         };
     }
 
-    public void NestCommand(string command, string args)
-    {
-        string newArgs = $"{args} {Command} {Args}";
-        Command = command;
-        Args = newArgs;
-    }
-
     public void SetupToRunWithBash()
     {
         bool runningOnWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
         if (runningOnWindows)
         {
-            this.NestCommand("wsl.exe", $"");
+            string newArgs = $"{Command} {Args}";
+            Command = "wsl.exe";
+            Args = newArgs;
         }
         else
         {
-            this.NestCommand("/bin/bash", $"-c");
+            string newArgs = $"-c \"{Command} {Args}\"";
+            Command = "/bin/bash";
+            Args = newArgs;
         }
     }
 
     public void Run(int timeoutMs)
     {
         SetupCommandAndArgs();
-
         cmd.StartInfo.WorkingDirectory = WorkingDirectory;
+
+        // Console.WriteLine("cmd.StartInfo.FileName: " + cmd.StartInfo.FileName);
+        // Console.WriteLine("cmd.StartInfo.Arguments: " + cmd.StartInfo.Arguments);
+        // Console.WriteLine("cmd.StartInfo.WorkingDirectory: " + cmd.StartInfo.WorkingDirectory);
 
         cmd.StartInfo.RedirectStandardOutput = true;
         cmd.StartInfo.RedirectStandardError = true;
