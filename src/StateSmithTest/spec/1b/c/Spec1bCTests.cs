@@ -40,17 +40,15 @@ public class Spec1b_CTests
     {
         Spec1bFixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
 
-        SimpleProcess process;
-
-        process = new()
-        {
+        ExternalCToolRunner externalCToolRunner = new(new() { 
+            CompilerPath = "gcc",
             WorkingDirectory = OutputDirectory,
-            Command = "gcc", 
-            Args = "-Wall ../../lang-helpers/c/helper.c main.c Spec1bSm.c"
-        };
-        BashRunner.RunCommand(process);
+            SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec1bSm.c"],
+            RunWithBash = true
+        });
+        externalCToolRunner.Run();
 
-        process = new()
+        SimpleProcess process = new()
         {
             WorkingDirectory = OutputDirectory,
             Command = "./a.out"
