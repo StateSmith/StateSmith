@@ -6,11 +6,11 @@ To be perfectly honest, the StateSmith grammars are not perfect. Contributions w
 <br>
 
 # Requirements
-Please use WSL2 or linux to run the scripts in this directory.
+Please use WSL2 or linux (mac?) to run the scripts in this directory.
 
 Please let me know if any of the files have bad chmod permissions (sometimes happens when I use wsl).
 
-## WSL2 installation that allows GUI use (Windows only)
+## (Windows only step) WSL2 installation that allows GUI use
 https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview
 
 ## install java jdk for antlr4
