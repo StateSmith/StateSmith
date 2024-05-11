@@ -74,8 +74,29 @@ public class SimpleProcess
         // If modifying this code, make sure you read all of the below to avoid deadlocks.
         // https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.process.standardoutput?view=net-7.0
         cmd.Start();
-        cmd.BeginOutputReadLine();
-        cmd.BeginErrorReadLine();
+
+        // Improve error reporting for failed commands.
+        // https://github.com/StateSmith/StateSmith/issues/271
+        try
+        {
+            // NOTE! The below begin methods will throw an InvalidOperationException if the command failed.
+            cmd.BeginErrorReadLine();
+            cmd.BeginOutputReadLine();
+        }
+        catch (InvalidOperationException)
+        {
+            // checking for exit code doesn't work here as the process is still running.
+            // wait a bit.
+            if (cmd.WaitForExit(milliseconds: 1000) && cmd.ExitCode != 0)
+            {
+                // let below code handle the error.
+            }
+            else
+            {
+                // we don't know what happened, so throw.
+                throw;
+            }
+        }
 
         bool killedProcess = false;
 
