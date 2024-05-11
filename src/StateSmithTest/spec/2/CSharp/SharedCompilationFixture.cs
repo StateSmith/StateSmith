@@ -24,12 +24,11 @@ public class SharedCompilationFixture
 
         Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
 
-        SimpleProcess process;
-
-        process = new()
+        SimpleProcess process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandAndArgs = "dotnet build --verbosity quiet"
+            Command = "dotnet",
+            Args = "build --verbosity quiet"
         };
         BashRunner.RunCommand(process, timeoutMs: 16000);
     }

@@ -13,7 +13,8 @@ public class Spec2TestsC : Spec2Tests, IClassFixture<SharedCompilationFixture>
         SimpleProcess process = new()
         {
             WorkingDirectory = SharedCompilationFixture.OutputDirectory,
-            CommandAndArgs = $"./a.out {testEvents}"
+            Command = "./a.out",
+            Args = testEvents,
         };
         BashRunner.RunCommand(process);
 
