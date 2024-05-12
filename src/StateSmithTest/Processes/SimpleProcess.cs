@@ -22,6 +22,7 @@ public class SimpleProcess
     public StringBuilder StdErrorBuf = new();
 
     public bool throwOnExitCode = true;
+    public bool throwOnStdErr = true;
 
     public static SimpleProcess Build(string programPath, string args, string workingDir)
     {
@@ -52,7 +53,27 @@ public class SimpleProcess
         Args = newArgs;
     }
 
-    public void Run(int timeoutMs)
+    public void Run(int timeoutMs, int attempts = 1)
+    {
+        while (attempts > 0)
+        {
+            try
+            {
+                RunInner(timeoutMs);
+                return;
+            }
+            catch (SimpleProcessException)
+            {
+                attempts--;
+                if (attempts <= 0)
+                {
+                    throw;
+                }
+            }
+        }
+    }
+
+    private void RunInner(int timeoutMs)
     {
         SetupCommandAndArgs();
         cmd.StartInfo.WorkingDirectory = WorkingDirectory;
@@ -112,6 +133,11 @@ public class SimpleProcess
             if (killedProcess)
                 message = $"Timed out {timeoutMs}ms and killed process. " + message;
             throw new SimpleProcessException(message);
+        }
+
+        if (throwOnStdErr && StdError.Trim().Length > 0)
+        {
+            throw new SimpleProcessException(StdError);
         }
     }
 

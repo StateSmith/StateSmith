@@ -41,28 +41,16 @@ public class Spec1b_CTests
     {
         Spec1bFixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
 
-        ExternalCToolRunner externalCToolRunner = new(new() { 
-            CompilerPath = "gcc",
+        ICompilation compilation = CCompilerMux.Compile(new CCompilationRequest(){
             WorkingDirectory = OutputDirectory,
             SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec1bSm.c"],
-            RunWithBash = true
         });
-        externalCToolRunner.Run();
 
-        SimpleProcess process = new()
-        {
-            WorkingDirectory = OutputDirectory,
-            ProgramPath = Path.Combine(OutputDirectory, "a.out"),
-        };
-        BashRunner.RunCommand(process);
-
-        // uncomment below line if you want to see the whole output
-        // process.StdOutput.Should().Be("");
+        var process = compilation.Run();
 
         var expected = StringUtils.DeIndentTrim(@"
             g() a(); b(); t(); c(); d(); e();
         ");
-        // process.StdOutput.Should().Be("");
 
         Assert.Equal(expected, process.StdOutput.Trim());
     }
