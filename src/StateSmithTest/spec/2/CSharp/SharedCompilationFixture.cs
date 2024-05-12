@@ -16,6 +16,15 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
+        // Delete the output directory to ensure a clean build.
+        // This is important because we use a path based on dotnet version to run faster.
+        // If we don't delete the output directory, we could accidentally use an old build.
+        string binDebugPath = OutputDirectory + "bin/Debug";
+        if (System.IO.Directory.Exists(binDebugPath))
+        {
+            System.IO.Directory.Delete(binDebugPath, recursive: true);
+        }
+
         var action = (SmRunner runner) =>
         {
             runner.Settings.transpilerId = TranspilerId.CSharp;
