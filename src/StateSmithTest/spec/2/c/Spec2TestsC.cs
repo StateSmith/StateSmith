@@ -3,19 +3,22 @@ using StateSmithTest.spec2;
 using StateSmithTest.Processes;
 using StateSmith.Output;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Spec.Spec2.C;
 
 public class Spec2TestsC : Spec2Tests, IClassFixture<SharedCompilationFixture>
 {
+    private readonly SharedCompilationFixture _fixture;
+
+    public Spec2TestsC(SharedCompilationFixture sharedCompilationFixture)
+    {
+        _fixture = sharedCompilationFixture;
+    }
+
     public override string RunProcess(string testEvents)
     {
-        SimpleProcess process = new()
-        {
-            WorkingDirectory = SharedCompilationFixture.OutputDirectory,
-            CommandAndArgs = $"./a.out {testEvents}"
-        };
-        BashRunner.RunCommand(process);
+        SimpleProcess process = _fixture.compilation.Run(runArgs: testEvents);
 
         string output = process.StdOutput;
         output = StringUtils.RemoveEverythingBefore(output, "\nIGNORE_OUTPUT_BEFORE_THIS\n").Trim();

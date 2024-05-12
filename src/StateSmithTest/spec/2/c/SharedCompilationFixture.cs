@@ -10,19 +10,21 @@ namespace Spec.Spec2.C;
 /// </summary>
 public class SharedCompilationFixture
 {
+    public ICompilation compilation { get; private set; }
+
     public SharedCompilationFixture()
     {
         Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
 
-        SimpleProcess process;
-
-        process = new()
+        this.compilation = CCompilerMux.Compile(new CCompilationRequest()
         {
             WorkingDirectory = OutputDirectory,
-            // -Wignored-qualifiers for https://github.com/StateSmith/StateSmith/issues/150
-            CommandAndArgs = "gcc -Wall -Wignored-qualifiers -Wno-unused-function ../../lang-helpers/c/helper.c main.c Spec2Sm.c" // we disable `unused-function` warning because some states are intentionally unreachable
-        };
-        BashRunner.RunCommand(process);
+            SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec2Sm.c"],
+            Flags = [
+                // we disable `unused-function` warning because some states are intentionally unreachable
+                CCompilationRequest.FlagId.IgnoreUnusedFunctions,
+            ]
+        });
     }
 
     public static string OutputDirectory => Spec2Fixture.Spec2Directory + "c/";

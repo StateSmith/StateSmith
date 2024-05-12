@@ -1,13 +1,6 @@
-using Spec.Spec1b;
-using StateSmith.Input.Expansions;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
-using StateSmith.Runner;
-using System;
-using System.Diagnostics;
 using Xunit;
-using FluentAssertions;
-using System.Runtime.InteropServices;
 using StateSmithTest.Processes;
 
 namespace Spec.Spec1b.C;
@@ -40,29 +33,16 @@ public class Spec1b_CTests
     {
         Spec1bFixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
 
-        SimpleProcess process;
-
-        process = new()
-        {
+        ICompilation compilation = CCompilerMux.Compile(new CCompilationRequest(){
             WorkingDirectory = OutputDirectory,
-            CommandAndArgs = "gcc -Wall ../../lang-helpers/c/helper.c main.c Spec1bSm.c"
-        };
-        BashRunner.RunCommand(process);
+            SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec1bSm.c"],
+        });
 
-        process = new()
-        {
-            WorkingDirectory = OutputDirectory,
-            CommandAndArgs = "./a.out"
-        };
-        BashRunner.RunCommand(process);
-
-        // uncomment below line if you want to see the whole output
-        // process.StdOutput.Should().Be("");
+        var process = compilation.Run();
 
         var expected = StringUtils.DeIndentTrim(@"
             g() a(); b(); t(); c(); d(); e();
         ");
-        // process.StdOutput.Should().Be("");
 
         Assert.Equal(expected, process.StdOutput.Trim());
     }

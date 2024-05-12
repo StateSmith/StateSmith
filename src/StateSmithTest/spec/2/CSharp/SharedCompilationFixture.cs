@@ -16,6 +16,15 @@ public class SharedCompilationFixture
 
     public SharedCompilationFixture()
     {
+        // Delete the output directory to ensure a clean build.
+        // This is important because we use a path based on dotnet version to run faster.
+        // If we don't delete the output directory, we could accidentally use an old build.
+        string binDebugPath = OutputDirectory + "bin/Debug";
+        if (System.IO.Directory.Exists(binDebugPath))
+        {
+            System.IO.Directory.Delete(binDebugPath, recursive: true);
+        }
+
         var action = (SmRunner runner) =>
         {
             runner.Settings.transpilerId = TranspilerId.CSharp;
@@ -24,14 +33,13 @@ public class SharedCompilationFixture
 
         Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
 
-        SimpleProcess process;
-
-        process = new()
+        SimpleProcess process = new()
         {
             WorkingDirectory = OutputDirectory,
-            CommandAndArgs = "dotnet build --verbosity quiet"
+            ProgramPath = "dotnet",
+            Args = "build --verbosity quiet"
         };
-        BashRunner.RunCommand(process, timeoutMs: 16000);
+        process.Run(timeoutMs: 16000);
     }
 
     public class MyGlueFile : IRenderConfigCSharp
