@@ -12,7 +12,7 @@ public class WslGccCompilation : ICompilation
 
         SimpleProcess process = GccCompilation.SetupProcess(request);
         process.RequireLinux();
-        process.Run(timeoutMs: 8000, attempts: 2);
+        process.RunWithExtraAttemptForWsl(timeoutMs: 8000);
     }
 
     public SimpleProcess Run(string runArgs = "")

@@ -53,7 +53,27 @@ public class SimpleProcess
         Args = newArgs;
     }
 
-    public void Run(int timeoutMs, int attempts = 1)
+    public void RunWithExtraAttemptForWsl(int timeoutMs = 8000)
+    {
+        try
+        {
+            Run(timeoutMs);
+        }
+        catch (SimpleProcessException)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                // WSL2 sometimes fails the first time it is invoked, so just try and run it again
+                Run(timeoutMs);
+            }
+            else
+            {
+                throw;
+            }
+        }
+    }
+
+    public void Run(int timeoutMs = 8000, int attempts = 1)
     {
         while (attempts > 0)
         {

@@ -30,7 +30,7 @@ public class SharedCompilationFixture
             ProgramPath = "dotnet",
             Args = "build --verbosity quiet"
         };
-        BashRunner.RunCommand(process, timeoutMs: 16000);
+        process.Run(timeoutMs: 16000);
     }
 
     public class MyGlueFile : IRenderConfigCSharp

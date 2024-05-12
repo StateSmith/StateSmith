@@ -18,7 +18,7 @@ public class Spec2TestsCSharp : Spec2Tests, IClassFixture<SharedCompilationFixtu
             Args = $"bin/Debug/net6.0/Spec2Test.dll {testEvents}" // 5x faster!!! Tip from https://github.com/dotnet/sdk/issues/8697#issuecomment-327943066
             // TODO - remove version hard dependency on net6.0 above - https://github.com/StateSmith/StateSmith/issues/270
         };
-        BashRunner.RunCommand(process);
+        process.Run();
 
         string output = process.StdOutput;
         output = StringUtils.RemoveEverythingBefore(output, "\nIGNORE_OUTPUT_BEFORE_THIS\n").Trim();
