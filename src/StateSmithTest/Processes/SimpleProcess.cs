@@ -12,11 +12,7 @@ public class SimpleProcess
     Process cmd = new();
 
     public string WorkingDirectory = "";
-
-    /// <summary>
-    /// If this set to a non-empty string, it and <see cref="Args"/> will be used instead of <see cref="CommandAndArgs"/>.
-    /// </summary>
-    public string Command = "";
+    public string ProgramPath = "";
     public string Args = "";
 
     public string StdOutput => StdOutputBuf.ToString();
@@ -27,32 +23,33 @@ public class SimpleProcess
 
     public bool throwOnExitCode = true;
 
-    public static SimpleProcess Build(string specificCommand, string specificArgs, string workingDir)
+    public static SimpleProcess Build(string programPath, string args, string workingDir)
     {
         return new SimpleProcess
         {
-            Command = specificCommand,
-            Args = specificArgs,
+            ProgramPath = programPath,
+            Args = args,
             WorkingDirectory = workingDir
         };
     }
 
-    public void SetupToRunWithBash()
+    public void RequireLinux()
     {
         bool runningOnWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
         if (runningOnWindows)
         {
-            string newArgs = $"{Command} {Args}";
-            Command = "wsl.exe";
+            string newArgs = $"{ProgramPath} {Args}";
+            ProgramPath = "wsl.exe";
             Args = newArgs;
         }
-        else
-        {
-            string newArgs = $"-c \"{Command} {Args}\"";
-            Command = "/bin/bash";
-            Args = newArgs;
-        }
+    }
+
+    public void WrapCommandWithBashCOption()
+    {
+        string newArgs = $"-c \"{ProgramPath} {Args}\"";
+        ProgramPath = "/bin/bash";
+        Args = newArgs;
     }
 
     public void Run(int timeoutMs)
@@ -60,9 +57,9 @@ public class SimpleProcess
         SetupCommandAndArgs();
         cmd.StartInfo.WorkingDirectory = WorkingDirectory;
 
-        // Console.WriteLine("cmd.StartInfo.FileName: " + cmd.StartInfo.FileName);
-        // Console.WriteLine("cmd.StartInfo.Arguments: " + cmd.StartInfo.Arguments);
-        // Console.WriteLine("cmd.StartInfo.WorkingDirectory: " + cmd.StartInfo.WorkingDirectory);
+        //Console.WriteLine("cmd.StartInfo.ProgramPath: " + cmd.StartInfo.FileName);
+        //Console.WriteLine("cmd.StartInfo.Arguments: " + cmd.StartInfo.Arguments);
+        //Console.WriteLine("cmd.StartInfo.WorkingDirectory: " + cmd.StartInfo.WorkingDirectory);
 
         cmd.StartInfo.RedirectStandardOutput = true;
         cmd.StartInfo.RedirectStandardError = true;
@@ -125,7 +122,7 @@ public class SimpleProcess
 
     private void SetupCommandAndArgs()
     {
-        cmd.StartInfo.FileName = Command;
+        cmd.StartInfo.FileName = ProgramPath;
         cmd.StartInfo.Arguments = Args;
     }
 

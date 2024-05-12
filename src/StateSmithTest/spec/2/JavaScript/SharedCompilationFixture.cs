@@ -29,7 +29,7 @@ public class SharedCompilationFixture
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            Command = "node",
+            ProgramPath = "node",
             Args = " --check Spec2Sm.js"
         };
         BashRunner.RunCommand(process, timeoutMs: 10000);

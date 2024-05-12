@@ -2,6 +2,7 @@ using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using Xunit;
 using StateSmithTest.Processes;
+using System.IO;
 
 namespace Spec.Spec1.C;
 
@@ -34,7 +35,7 @@ public class Spec1CTests
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            Command = "gcc",
+            ProgramPath = "gcc",
             Args = "-Wall ../../lang-helpers/c/helper.c main.c Spec1Sm.c",
         };
         BashRunner.RunCommand(process);
@@ -42,7 +43,7 @@ public class Spec1CTests
         process = new()
         {
             WorkingDirectory = OutputDirectory,
-            Command = "./a.out",
+            ProgramPath = Path.Combine(OutputDirectory, "a.out"),
             Args = "EV2 EV1 EV2 "
         };
         BashRunner.RunCommand(process);

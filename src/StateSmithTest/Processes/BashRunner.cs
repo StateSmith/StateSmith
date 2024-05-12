@@ -7,7 +7,7 @@ public class BashRunner
 {
     public static void RunCommand(SimpleProcess simpleProcess, int timeoutMs = 8000, bool throwOnStdErr = true)
     {
-        simpleProcess.SetupToRunWithBash();
+        simpleProcess.RequireLinux();
 
         try
         {
@@ -15,7 +15,7 @@ public class BashRunner
         }
         catch (SimpleProcessException)
         {
-            // WSL2 seems to fail the first time it is invoked, so just try and run it again
+            // WSL2 sometimes fails the first time it is invoked, so just try and run it again
             simpleProcess.Run(timeoutMs);
         }
 

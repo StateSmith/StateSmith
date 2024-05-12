@@ -25,7 +25,7 @@ public class ExternalCToolRunner
 
     public void Run()
     {
-        process.Command = args.CompilerPath;
+        process.ProgramPath = args.CompilerPath;
         process.WorkingDirectory = args.WorkingDirectory;
         
         if (args.CompilerPath.EndsWith("gcc"))

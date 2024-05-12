@@ -9,6 +9,7 @@ using Xunit;
 using FluentAssertions;
 using System.Runtime.InteropServices;
 using StateSmithTest.Processes;
+using System.IO;
 
 namespace Spec.Spec1b.C;
 
@@ -51,7 +52,7 @@ public class Spec1b_CTests
         SimpleProcess process = new()
         {
             WorkingDirectory = OutputDirectory,
-            Command = "./a.out"
+            ProgramPath = Path.Combine(OutputDirectory, "a.out"),
         };
         BashRunner.RunCommand(process);
 

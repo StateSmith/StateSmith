@@ -13,7 +13,7 @@ public class Spec2TestsCSharp : Spec2Tests, IClassFixture<SharedCompilationFixtu
         SimpleProcess process = new()
         {
             WorkingDirectory = SharedCompilationFixture.OutputDirectory,
-            Command = "dotnet",
+            ProgramPath = "dotnet",
             //Args = $"run --no-build {testEvents}"   // slow compared to below
             Args = $"bin/Debug/net6.0/Spec2Test.dll {testEvents}" // 5x faster!!! Tip from https://github.com/dotnet/sdk/issues/8697#issuecomment-327943066
             // TODO - remove version hard dependency on net6.0 above - https://github.com/StateSmith/StateSmith/issues/270

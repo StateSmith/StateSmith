@@ -27,7 +27,7 @@ public class SharedCompilationFixture
         SimpleProcess process = new()
         {
             WorkingDirectory = OutputDirectory,
-            Command = "dotnet",
+            ProgramPath = "dotnet",
             Args = "build --verbosity quiet"
         };
         BashRunner.RunCommand(process, timeoutMs: 16000);

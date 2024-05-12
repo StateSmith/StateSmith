@@ -20,8 +20,8 @@ public class SharedCompilationFixture
         {
             WorkingDirectory = OutputDirectory,
             // -Wignored-qualifiers for https://github.com/StateSmith/StateSmith/issues/150
-            Command = "gcc", // we disable `unused-function` warning because some states are intentionally unreachable
-            Args = " -Wall -Wignored-qualifiers -Wno-unused-function ../../lang-helpers/c/helper.c main.c Spec2Sm.c",
+            ProgramPath = "gcc", // we disable `unused-function` warning because some states are intentionally unreachable
+            Args = "-Wall -Wignored-qualifiers -Wno-unused-function ../../lang-helpers/c/helper.c main.c Spec2Sm.c",
         };
         BashRunner.RunCommand(process);
     }
