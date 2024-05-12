@@ -56,7 +56,7 @@ public class SharedCompilationFixture
                 public byte auto_var_1;
             ";
 
-        bool IRenderConfigCSharp.UseNullable => false;
+        bool IRenderConfigCSharp.UseNullable => true;
 
         string IRenderConfigCSharp.NameSpace => "Csharp.Spec2smTests";
 

@@ -3,6 +3,8 @@
 
 // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
 // inside sm - diagram embedded FileTop
+#nullable enable
+
 using StateSmithTest.spec._2.CSharp; // to get access to MainClass
 
 namespace Csharp.Spec2smTests
@@ -284,13 +286,13 @@ namespace Csharp.Spec2smTests
         public StateId stateId;
 
         // Used internally by state machine. Don't modify.
-        private Func ancestorEventHandler;
+        private Func? ancestorEventHandler;
 
         // Used internally by state machine. Don't modify.
-        private readonly Func[] currentEventHandlers = new Func[EventIdCount];
+        private readonly Func?[] currentEventHandlers = new Func[EventIdCount];
 
         // Used internally by state machine. Don't modify.
-        private Func currentStateExitHandler;
+        private Func? currentStateExitHandler;
 
         // State machine variables. Can be used for inputs, outputs, user variables...
         public struct Vars
@@ -350,7 +352,7 @@ namespace Csharp.Spec2smTests
         // Dispatches an event to the state machine. Not thread safe.
         public void DispatchEvent(EventId eventId)
         {
-            Func behaviorFunc = this.currentEventHandlers[(int)eventId];
+            Func? behaviorFunc = this.currentEventHandlers[(int)eventId];
 
             while (behaviorFunc != null)
             {
@@ -366,7 +368,7 @@ namespace Csharp.Spec2smTests
         {
             while (this.currentStateExitHandler != desiredStateExitHandler)
             {
-                this.currentStateExitHandler(this);
+                this.currentStateExitHandler!(this);
             }
         }
 
