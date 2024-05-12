@@ -1,6 +1,8 @@
 #nullable enable
 
+using System.Collections.Generic;
 using System.IO;
+using static StateSmithTest.Processes.CCompilationRequest;
 
 namespace StateSmithTest.Processes;
 
@@ -24,8 +26,26 @@ public class GccCompilation : ICompilation
         };
 
         process.Args += "-Wall ";
+        AddArgsFromFlags(request.Flags, process);
+
         process.Args += string.Join(" ", request.SourceFiles);
         return process;
+    }
+
+    private static void AddArgsFromFlags(List<FlagId> flags, SimpleProcess process)
+    {
+        foreach (var flag in flags)
+        {
+            switch (flag)
+            {
+                case CCompilationRequest.FlagId.IgnoreUnusedFunctions:
+                    process.Args += "-Wno-unused-function ";
+                    break;
+
+                default:
+                    throw new System.Exception($"Unknown flag: {flag}");
+            }
+        }
     }
 
     public SimpleProcess Run(string runArgs = "")
