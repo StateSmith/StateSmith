@@ -8,14 +8,14 @@ public class CCompUtils
 {
     public static string GetCompilerPathOrDefault(CCompRequest request, string commandDefault)
     {
-        // trim is important because the user could have set the env var to an empty string to disable it
-        if (request.CompilerPath != null && request.CompilerPath.Trim().Length > 0)
+        // note: user could have set the env var to an empty string to disable it
+        if (string.IsNullOrWhiteSpace(request.CompilerPath))
         {
-            return request.CompilerPath;
+            return commandDefault;
         }
         else
         {
-            return commandDefault;
+            return request.CompilerPath;
         }
     }
 

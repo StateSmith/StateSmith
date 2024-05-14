@@ -7,10 +7,35 @@ namespace StateSmithTest.Processes.CComp;
 public class EnvironmentVarProvider : IEnvironmentVarProvider
 {
     // SST stands for StateSmith Test
-    // NOTE: we use User scope to avoid needing to restart Visual Studio. https://stackoverflow.com/a/41410599/7331858
-    public string? CompilerId => Environment.GetEnvironmentVariable("SST_C_COMP_ID", EnvironmentVariableTarget.User);
+    public string? CompilerId => GetVar("SST_C_COMP_ID");
 
     // SST stands for StateSmith Test
-    // NOTE: we use User scope to avoid needing to restart Visual Studio. https://stackoverflow.com/a/41410599/7331858
-    public string? CompilerPath => Environment.GetEnvironmentVariable("SST_C_COMP_PATH", EnvironmentVariableTarget.User);
+    public string? CompilerPath => GetVar("SST_C_COMP_PATH");
+
+    public static string? GetVar(string varName)
+    {
+        string? value;
+
+        var isRunningInVS = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("VisualStudioEdition"));
+
+        if (isRunningInVS)
+        {
+            // In Visual Studio, the process scope is not updated when the environment variables are changed.
+            // So, we need to read the environment variables from the registry.
+            value = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.User);
+        }
+        else
+        {
+            value = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.Process);
+
+            if (string.IsNullOrEmpty(value))
+            {
+                // It looks like EnvironmentVariableTarget.User vars are not available for Unix processes.
+                // On Windows, the user vars are only updated after the terminal is restarted.
+                value = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.User);
+            }
+        }
+
+        return value;
+    }
 }

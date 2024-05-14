@@ -33,8 +33,8 @@ public class CCompilerMux
     {
         string? compilerId = envVarProvider.CompilerId;
 
-        // trim is important because the user could have set the env var to an empty string to disable it
-        if (compilerId == null || compilerId.Trim().Length == 0)
+        // note: user could have set the env var to an empty string to disable it
+        if (string.IsNullOrWhiteSpace(compilerId))
             return GetDefaultCompilerId();
         
         // ignore the compiler path if the compiler id is not set
