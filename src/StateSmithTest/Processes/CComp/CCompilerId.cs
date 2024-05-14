@@ -6,5 +6,6 @@ public enum CCompilerId
 {
     GCC,
     WSL_GCC,
-    CLANG
+    CLANG,
+    MSVC
 }

@@ -70,6 +70,8 @@ public class CCompilerMux
                 return new WslGccCompilation(request);
             case CCompilerId.CLANG:
                 return new ClangCompilation(request);
+            case CCompilerId.MSVC:
+                return new MsvcCompilation(request);
             default:
                 throw new ArgumentException($"Compiler ID `{id}` not yet supported");
         }

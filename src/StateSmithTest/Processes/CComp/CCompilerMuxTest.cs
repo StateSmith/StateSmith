@@ -47,6 +47,16 @@ public class CCompilerMuxTest
     }
 
     [Fact]
+    public void TestEnvVarMsvc()
+    {
+        SetCompIdEnvVar("msvc");
+        TestAndExpectId(CCompilerId.MSVC);
+
+        SetCompIdEnvVar("MSVC");
+        TestAndExpectId(CCompilerId.MSVC);
+    }
+
+    [Fact]
     public void TestEnvVarUnknownCompiler()
     {
         SetCompIdEnvVar("zig");

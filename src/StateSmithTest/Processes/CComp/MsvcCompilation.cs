@@ -27,7 +27,11 @@ public class MsvcCompilation : ICompilation
     {
         process.Args += "/Wall ";
         process.Args += "/wd4820 "; // Warning C4820   padding added after data member
-        process.Args += $"/Fe {createdExecutableName} "; // output file name
+        process.Args += $"/Fe:{createdExecutableName} "; // output file name
+
+        // TODO https://github.com/StateSmith/StateSmith/issues/262
+        // TODO - need to add include path to avoid errors like: `main.c(1): fatal error C1083: Cannot open include file: 'stdio.h': No such file or directory`
+        // TODO - need to add library path to avoid errors like: `LINK : fatal error LNK1104: cannot open file 'LIBCMT.lib'`
 
         foreach (var flag in request.Flags)
         {
