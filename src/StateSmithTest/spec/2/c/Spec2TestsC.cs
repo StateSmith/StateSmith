@@ -18,7 +18,7 @@ public class Spec2TestsC : Spec2Tests, IClassFixture<SharedCompilationFixture>
 
     public override string RunProcess(string testEvents)
     {
-        SimpleProcess process = _fixture.compilation.Run(runArgs: testEvents);
+        SimpleProcess process = _fixture.compilation.RunExecutable(runArgs: testEvents);
 
         string output = process.StdOutput;
         output = StringUtils.RemoveEverythingBefore(output, "\nIGNORE_OUTPUT_BEFORE_THIS\n").Trim();

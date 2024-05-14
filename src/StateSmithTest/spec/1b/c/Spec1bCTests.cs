@@ -1,7 +1,7 @@
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using Xunit;
-using StateSmithTest.Processes;
+using StateSmithTest.Processes.CComp;
 
 namespace Spec.Spec1b.C;
 
@@ -33,12 +33,12 @@ public class Spec1b_CTests
     {
         Spec1bFixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
 
-        ICompilation compilation = CCompilerMux.Compile(new CCompilationRequest(){
+        ICompilation compilation = new CCompilerMux().Compile(new CCompRequest(){
             WorkingDirectory = OutputDirectory,
             SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec1bSm.c"],
         });
 
-        var process = compilation.Run();
+        var process = compilation.RunExecutable();
 
         var expected = StringUtils.DeIndentTrim(@"
             g() a(); b(); t(); c(); d(); e();

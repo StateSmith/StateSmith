@@ -1,6 +1,6 @@
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
-using StateSmithTest.Processes;
+using StateSmithTest.Processes.CComp;
 
 namespace Spec.Spec2.C;
 
@@ -16,13 +16,13 @@ public class SharedCompilationFixture
     {
         Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
 
-        this.compilation = CCompilerMux.Compile(new CCompilationRequest()
+        this.compilation = new CCompilerMux().Compile(new CCompRequest()
         {
             WorkingDirectory = OutputDirectory,
             SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec2Sm.c"],
             Flags = [
                 // we disable `unused-function` warning because some states are intentionally unreachable
-                CCompilationRequest.FlagId.IgnoreUnusedFunctions,
+                CCompRequest.FlagId.IgnoreUnusedFunctions,
             ]
         });
     }

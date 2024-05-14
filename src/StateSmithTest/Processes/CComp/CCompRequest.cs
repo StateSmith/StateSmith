@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 
-namespace StateSmithTest.Processes;
+namespace StateSmithTest.Processes.CComp;
 
-public class CCompilationRequest
+public class CCompRequest
 {
     public enum FlagId
     {
@@ -12,11 +12,14 @@ public class CCompilationRequest
         /// GCC: -Wno-unused-function
         /// </summary>
         IgnoreUnusedFunctions,
-
-        // -Wignored-qualifiers for https://github.com/StateSmith/StateSmith/issues/150
     }
 
     public string WorkingDirectory = "";
+
+    /// <summary>
+    /// If not null, this is the path to the compiler executable.
+    /// </summary>
+    public string? CompilerPath = null;
 
     /// <summary>
     /// This can be relative to working directory or absolute paths.
