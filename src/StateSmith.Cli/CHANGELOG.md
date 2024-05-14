@@ -9,9 +9,6 @@ Test/interim releases are not documented here.
 ---
 
 ## WIP
-### Fixed
-- lang-csharp - don't output dammit operator when nullable disabled
-    - https://github.com/StateSmith/StateSmith/issues/231
 
 ---
 

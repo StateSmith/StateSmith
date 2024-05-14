@@ -29,6 +29,13 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.9.13-alpha]
+### Fixed
+- lang-csharp - don't output dammit operator when nullable disabled
+    - https://github.com/StateSmith/StateSmith/issues/231
+
+---
+
 ## [0.9.12-alpha]
 ### Added
 - Added `LibVersionInfo` class to make it easier to get StateSmith version info.
