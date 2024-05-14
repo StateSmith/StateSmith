@@ -1,25 +1,30 @@
 #nullable enable
 
-namespace StateSmithTest.Processes;
+using System.IO;
+
+namespace StateSmithTest.Processes.CComp;
 
 public class WslGccCompilation : ICompilation
 {
-    string workingDirectory;
+    readonly string workingDirectory;
 
-    public WslGccCompilation(CCompilationRequest request)
+    /// <summary>
+    /// Compiles the source files using GCC in WSL.
+    /// </summary>
+    /// <param name="request"></param>
+    public WslGccCompilation(CCompRequest request)
     {
-        this.workingDirectory = request.WorkingDirectory;
-
-        SimpleProcess process = GccCompilation.SetupProcess(request);
+        workingDirectory = request.WorkingDirectory;
+        SimpleProcess process = CCompUtils.GccClangSetup(request, command: "gcc");
         process.RequireLinux();
         process.RunWithExtraAttemptForWsl(timeoutMs: 8000);
     }
 
-    public SimpleProcess Run(string runArgs = "")
+    public SimpleProcess RunExecutable(string runArgs = "")
     {
         SimpleProcess process = new()
         {
-            ProgramPath = "./a.out",
+            ProgramPath = "./a.out", // NOTE! This is different from the Unix version which executes a.out directly. See below for notes.
             WorkingDirectory = workingDirectory,
             Args = runArgs
         };

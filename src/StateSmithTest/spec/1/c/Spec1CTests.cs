@@ -3,6 +3,7 @@ using StateSmith.Output.UserConfig;
 using Xunit;
 using StateSmithTest.Processes;
 using System.IO;
+using StateSmithTest.Processes.CComp;
 
 namespace Spec.Spec1.C;
 
@@ -30,13 +31,13 @@ public class Spec1CTests
     {
         Spec1Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory);
 
-        ICompilation compilation = CCompilerMux.Compile(new CCompilationRequest()
+        ICompilation compilation = new CCompilerMux().Compile(new CCompRequest()
         {
             WorkingDirectory = OutputDirectory,
             SourceFiles = ["../../lang-helpers/c/helper.c", "main.c", "Spec1Sm.c"],
         });
 
-        SimpleProcess process = compilation.Run(runArgs: "EV2 EV1 EV2 ");
+        SimpleProcess process = compilation.RunExecutable(runArgs: "EV2 EV1 EV2 ");
 
         // uncomment below line if you want to see the whole output
         // process.StdOutput.Should().Be("");
