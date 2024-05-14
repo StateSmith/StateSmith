@@ -5,6 +5,7 @@ using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
+using static System.Net.WebRequestMethods;
 
 #nullable enable
 
@@ -134,6 +135,26 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
         {
             Visit(node.ElementType); // this avoids outputting the `?` for a nullable type
             sb.Append(' ');
+        }
+    }
+
+    public override void VisitPostfixUnaryExpression(PostfixUnaryExpressionSyntax node)
+    {
+        // Fix for https://github.com/StateSmith/StateSmith/issues/231
+        if (node.IsKind(SyntaxKind.SuppressNullableWarningExpression))
+        {
+            if (renderConfigCSharp.UseNullable)
+            {
+                base.VisitPostfixUnaryExpression(node);
+            }
+            else
+            {
+                Visit(node.Operand);
+            }
+        }
+        else
+        {
+            base.VisitPostfixUnaryExpression(node);
         }
     }
 

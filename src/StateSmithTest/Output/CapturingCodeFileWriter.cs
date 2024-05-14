@@ -2,6 +2,8 @@
 
 using StateSmith.Common;
 using StateSmith.Output;
+using System.Collections.Generic;
+using System.IO;
 
 namespace StateSmithTest.Output;
 
@@ -11,7 +13,7 @@ namespace StateSmithTest.Output;
 public class CapturingCodeFileWriter : ICodeFileWriter
 {
     /// <summary>
-    /// indexed by filepath (key)
+    /// indexed by ABSOLUTE filepath (key)
     /// </summary>
     public HashList<string, Capture> captures = new();
     public Capture? lastCapture = null;
@@ -24,6 +26,25 @@ public class CapturingCodeFileWriter : ICodeFileWriter
         lastCapture = capture;
         captures.Add(filePath, capture);
         captureCount++;
+    }
+
+    /// <summary>
+    /// Finds captures for a file name (not a file path!)
+    /// </summary>
+    /// <param name="fileName"></param>
+    /// <returns></returns>
+    public List<Capture> GetCapturesForFileName(string fileName)
+    {
+        List<Capture> matchedCaptures = [];
+        foreach (var absoluteFilePath in captures.GetKeys())
+        {
+            if (Path.GetFileName(absoluteFilePath) == fileName)
+            {
+                matchedCaptures.AddRange(captures.GetValues(absoluteFilePath));
+            }
+        }
+
+        return matchedCaptures;
     }
 
     public class Capture
