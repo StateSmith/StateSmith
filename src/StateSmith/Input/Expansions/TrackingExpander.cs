@@ -29,4 +29,10 @@ public class TrackingExpander : Expander
         attemptedFunctionExpansions.Add(name);
         return base.TryExpandFunctionExpansion(name, args);
     }
+
+    public override bool HasFunctionName(string name)
+    {
+        attemptedFunctionExpansions.Add(name);
+        return base.HasFunctionName(name);
+    }
 }
