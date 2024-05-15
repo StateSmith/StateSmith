@@ -18,11 +18,11 @@ public class WrappingExpander
     public const string XML_GIL_CODE_TAG = $"<{XML_GIL_CODE_TAG_NAME}>";
     public const string XML_END_CODE_TAG = "</code>";
 
-    private readonly Expander expander;
+    private readonly IExpander expander;
     private static readonly Regex codeTypeSplittingRegex = new($@"<(?<type>{XML_FINAL_CODE_TAG_NAME}|{XML_GIL_CODE_TAG_NAME})>(?<value>[\s\S]*?){XML_END_CODE_TAG}"); // MUST be lazy match to prevent skipping over multiple matches
     private readonly UserExpansionScriptBases userExpansionScriptBases;
 
-    public WrappingExpander(Expander expander, UserExpansionScriptBases userExpansionScriptBases)
+    public WrappingExpander(IExpander expander, UserExpansionScriptBases userExpansionScriptBases)
     {
         this.expander = expander;
         this.userExpansionScriptBases = userExpansionScriptBases;

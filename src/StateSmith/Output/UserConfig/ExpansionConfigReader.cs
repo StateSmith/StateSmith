@@ -14,11 +14,11 @@ public class ExpansionConfigReader
     private readonly string expansionVarsPath;
 
     // required for Dependency Injection
-    public ExpansionConfigReader(Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, UserExpansionScriptBases userExpansionScriptBases) : this(expander, expansionVarsPathProvider.ExpansionVarsPath, userExpansionScriptBases)
+    public ExpansionConfigReader(IExpander expander, IExpansionVarsPathProvider expansionVarsPathProvider, UserExpansionScriptBases userExpansionScriptBases) : this(expander, expansionVarsPathProvider.ExpansionVarsPath, userExpansionScriptBases)
     {
     }
 
-    internal ExpansionConfigReader(Expander expander, string expansionVarsPath, UserExpansionScriptBases userExpansionScriptBases)
+    internal ExpansionConfigReader(IExpander expander, string expansionVarsPath, UserExpansionScriptBases userExpansionScriptBases)
     {
         expanderFileReflection = new ExpanderFileReflection(expander, userExpansionScriptBases);
         this.expansionVarsPath = expansionVarsPath;

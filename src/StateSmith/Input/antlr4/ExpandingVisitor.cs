@@ -10,9 +10,9 @@ namespace StateSmith.Input.Antlr4;
 
 public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
 {
-    public Expander expander;
+    public IExpander expander;
 
-    public ExpandingVisitor(Expander expander)
+    public ExpandingVisitor(IExpander expander)
     {
         this.expander = expander;
     }
@@ -99,7 +99,7 @@ public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
         return aggregate + nextResult;
     }
 
-    public static string ParseAndExpandCode(Expander expander, string code)
+    public static string ParseAndExpandCode(IExpander expander, string code)
     {
         var parser = new LabelParser();
         var visitor = new ExpandingVisitor(expander);

@@ -7,12 +7,12 @@ namespace StateSmith.Input.Expansions;
 
 public class ExpanderFileReflection
 {
-    private readonly Expander expander;
+    private readonly IExpander expander;
     private readonly HashSet<MethodInfo> propertyMethods = new();
     private readonly UserExpansionScriptBases userExpansionScriptBases;
 
 
-    public ExpanderFileReflection(Expander expander, UserExpansionScriptBases userExpansionScriptBases)
+    public ExpanderFileReflection(IExpander expander, UserExpansionScriptBases userExpansionScriptBases)
     {
         this.expander = expander;
         this.userExpansionScriptBases = userExpansionScriptBases;

@@ -7,11 +7,11 @@ namespace StateSmith.Output.UserConfig;
 public class AutoExpandedVarsProcessor
 {
     private readonly RenderConfigVars renderConfig;
-    private readonly Expander expander;
+    private readonly IExpander expander;
     private readonly IExpansionVarsPathProvider expansionVarsPathProvider;
     private readonly IAutoVarsParser autoVarsParser;
 
-    public AutoExpandedVarsProcessor(RenderConfigVars renderConfig, Expander expander, IExpansionVarsPathProvider expansionVarsPathProvider, IAutoVarsParser autoVarsParser)
+    public AutoExpandedVarsProcessor(RenderConfigVars renderConfig, IExpander expander, IExpansionVarsPathProvider expansionVarsPathProvider, IAutoVarsParser autoVarsParser)
     {
         this.renderConfig = renderConfig;
         this.expander = expander;

@@ -27,7 +27,7 @@ public class EventHandlerBuilder
 
     private OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
-    public EventHandlerBuilder(Expander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases)
+    public EventHandlerBuilder(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases)
     {
         this.pseudoStateHandlerBuilder = pseudoStateHandlerBuilder;
         this.mangler = mangler;

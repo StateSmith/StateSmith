@@ -32,12 +32,17 @@ public class ExpanderTest
     public void Test1()
     {
         Expander expander = new();
+        TestExpander(expander);
+    }
+
+    private static void TestExpander(Expander expander)
+    {
         var userExpansions = new ExpansionsExample();
         ExpanderFileReflection expanderFileReflection = new(expander, new());
         userExpansions.VarsPath = "sm->vars.";
         expanderFileReflection.AddAllExpansions(userExpansions);
 
-        expander.GetVariableNames().Should().BeEquivalentTo(new string[] { 
+        expander.GetVariableNames().Should().BeEquivalentTo(new string[] {
             "time",
             "get_time",
             "hit_count",
@@ -55,5 +60,56 @@ public class ExpanderTest
         expander.TryExpandFunctionExpansion("set_mode", new string[] { "GRUNKLE" }).Should().Be("set_mode(ENUM_PREFIX_GRUNKLE)");
         expander.TryExpandFunctionExpansion("set_mode", new string[] { "STAN" }).Should().Be("set_mode(ENUM_PREFIX_STAN)");
         expander.TryExpandFunctionExpansion("func", System.Array.Empty<string>()).Should().Be("123");
+    }
+
+    [Fact]
+    public void TrackingExpanderTest1()
+    {
+        TrackingExpander expander = new();
+        TestExpander(expander);
+
+        expander.AttemptedVariableExpansions.Should().BeEquivalentTo(new string[]
+        {
+            "time",
+            "get_time",
+            "hit_count",
+            "jump_count",
+        });
+
+        expander.AttemptedFunctionExpansions.Should().BeEquivalentTo(new string[]
+        {
+            "set_mode",
+            "func",
+        });
+
+        // it should also track failed expansions
+        expander.TryExpandVariableExpansion("not_expanded_var").Should().Be("not_expanded_var");
+        expander.AttemptedVariableExpansions.Should().BeEquivalentTo(new string[]
+        {
+            "time",
+            "get_time",
+            "hit_count",
+            "jump_count",
+            "not_expanded_var",
+        });
+
+        expander.TryExpandFunctionExpansion("not_expanded_func", new string[] { "GRUNKLE" }).Should().Be("not_expanded_func");
+        expander.AttemptedFunctionExpansions.Should().BeEquivalentTo(new string[]
+        {
+            "set_mode",
+            "func",
+            "not_expanded_func",
+        });
+
+        // check failed expansions
+        expander.FailedVariableExpansions.Should().BeEquivalentTo(new string[]
+        {
+            "not_expanded_var",
+        });
+
+        expander.FailedFunctionExpansions.Should().BeEquivalentTo(new string[]
+        {
+            "not_expanded_func",
+        });
     }
 }

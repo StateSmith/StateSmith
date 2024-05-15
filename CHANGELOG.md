@@ -29,6 +29,17 @@ Test/interim releases are not documented here.
 
 ---
 
+## [WIP]
+### Added
+- Added `IExpander` interface to allow users to provide their own expander class.
+    - https://github.com/StateSmith/StateSmith/issues/275
+- Added `class TrackingExpander : Expander` which tracks attempts for expansions.
+    - This is currently an opt in feature and is not enabled by default.
+    - Can be used to inspect a diagram to see what functions and variables are accessed.
+    - https://github.com/StateSmith/StateSmith/issues/275
+
+---
+
 ## [0.9.13-alpha]
 ### Fixed
 - lang-csharp - don't output dammit operator when nullable disabled

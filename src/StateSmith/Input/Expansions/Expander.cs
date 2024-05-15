@@ -4,17 +4,17 @@ using System.Reflection;
 
 namespace StateSmith.Input.Expansions;
 
-public class Expander
+public class Expander : IExpander
 {
-    private readonly Dictionary<string, string> variableExpansions = new();
-    private readonly Dictionary<string, ExpansionFunction> functionExpansions = new();
+    protected readonly Dictionary<string, string> variableExpansions = new();
+    protected readonly Dictionary<string, ExpansionFunction> functionExpansions = new();
 
     /// <summary>This access may change in the future.</summary>
-    public IDictionary<string, string> VariableExpansions => variableExpansions;
+    public virtual IDictionary<string, string> VariableExpansions => variableExpansions;
     /// <summary>This access may change in the future.</summary>
-    public IDictionary<string, ExpansionFunction> FunctionExpansions => functionExpansions;
+    public virtual IDictionary<string, ExpansionFunction> FunctionExpansions => functionExpansions;
 
-    private void ThrowIfExpansionNameAlreadyUsed(string expansionName)
+    protected void ThrowIfExpansionNameAlreadyUsed(string expansionName)
     {
         //todo_low make custom exception
         if (variableExpansions.ContainsKey(expansionName))
@@ -28,19 +28,19 @@ public class Expander
         }
     }
 
-    public void AddVariableExpansion(string name, string code)
+    public virtual void AddVariableExpansion(string name, string code)
     {
         ThrowIfExpansionNameAlreadyUsed(name);
         variableExpansions.Add(name, code);
     }
 
-    public void AddExpansionFunction(string name, object userObject, MethodInfo method)
+    public virtual void AddExpansionFunction(string name, object userObject, MethodInfo method)
     {
         ThrowIfExpansionNameAlreadyUsed(name);
         functionExpansions.Add(name, new ExpansionFunction(name, userObject, method));
     }
 
-    public string TryExpandVariableExpansion(string name)
+    public virtual string TryExpandVariableExpansion(string name)
     {
         if (variableExpansions.ContainsKey(name) == false)
         {
@@ -50,7 +50,7 @@ public class Expander
         return variableExpansions[name];
     }
 
-    public string TryExpandFunctionExpansion(string name, string[] arguments)
+    public virtual string TryExpandFunctionExpansion(string name, string[] arguments)
     {
         if (functionExpansions.ContainsKey(name) == false)
         {
@@ -62,19 +62,19 @@ public class Expander
         return code;
     }
 
-    public string[] GetVariableNames()
+    public virtual string[] GetVariableNames()
     {
         var keys = new string[variableExpansions.Count];
         variableExpansions.Keys.CopyTo(keys, 0);
         return keys;
     }
 
-    public bool HasFunctionName(string name)
+    public virtual bool HasFunctionName(string name)
     {
         return functionExpansions.ContainsKey(name);
     }
 
-    public string[] GetFunctionNames()
+    public virtual string[] GetFunctionNames()
     {
         var keys = new string[functionExpansions.Count];
         functionExpansions.Keys.CopyTo(keys, 0);
