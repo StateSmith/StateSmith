@@ -9,6 +9,9 @@ Test/interim releases are not documented here.
 ---
 
 ## WIP
+### Fixed
+- Fix update check showing unlisted packages when it shouldn't
+    - https://github.com/StateSmith/StateSmith/issues/269
 
 ---
 
