@@ -8,7 +8,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## WIP
+## [0.8.2]
 ### Fixed
 - Fix update check showing unlisted packages when it shouldn't
     - https://github.com/StateSmith/StateSmith/issues/269
