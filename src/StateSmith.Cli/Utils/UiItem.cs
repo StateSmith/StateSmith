@@ -10,10 +10,18 @@ public class UiItem<T> : ICloneable<UiItem<T>> where T : notnull
             Display = id.ToString()!;
     }
 
-    public UiItem(T id) { Id = id; Display = id.ToString()!; }
+    public UiItem(T id) { 
+        Id = id; 
+        Display = id.ToString()!;
+    }
 
     public T Id { get; set; }
     public string Display { get; set; }
     public UiItem<T> Clone() => new(Id, Display);
+
+    public static UiItem<T> New(T id, string display)
+    {
+        return new UiItem<T>(id, display);
+    }
 }
 

@@ -72,6 +72,8 @@ public class CreateUi
         new Generator(_settings).GenerateFiles();
 
         _console.MarkupLine($"[green]Success![/]");
+
+        new GenTestScaffold.GeneratorUi(_console, _settings).AskGenForNewProject();
     }
 
     private bool AskForOverwriteIfNeeded()
@@ -254,11 +256,7 @@ public class CreateUi
 
     private string Ask(string prompt, string defaultValue)
     {
-        return _console.Prompt(
-            new TextPrompt<string>(prompt)
-                .DefaultValue(defaultValue)
-                .DefaultValueStyle("grey")
-                );
+        return UiHelper.Ask(_console, prompt, defaultValue);
     }
 
     private void DiagramTemplate()

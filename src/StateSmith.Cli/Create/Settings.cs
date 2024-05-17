@@ -48,7 +48,7 @@ public class Settings
     //------------ FILEDS ARE NOT PERSISTED ------------
 
     /// <summary>
-    /// not persisted
+    /// not persisted. State Machine Name.
     /// </summary>
     public string smName = "MySm";
 

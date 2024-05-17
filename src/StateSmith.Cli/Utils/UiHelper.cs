@@ -1,10 +1,24 @@
 using Spectre.Console;
-using System;
+using System.Collections.Generic;
 
 namespace StateSmith.Cli.Utils;
 
 public class UiHelper
 {
+    public static string Ask(IAnsiConsole console, string prompt, string defaultValue)
+    {
+        return console.Prompt(
+            new TextPrompt<string>(prompt)
+                .DefaultValue(defaultValue)
+                .DefaultValueStyle("grey")
+                );
+    }
+
+    /// <summary>
+    /// Returns true if we should overwrite. Prints messages.
+    /// </summary>
+    /// <param name="console"></param>
+    /// <returns></returns>
     public static bool AskForOverwrite(IAnsiConsole console)
     {
         bool proceed = true;
@@ -57,9 +71,9 @@ public class UiHelper
         console.Write(rule);
     }
 
-    public static T Prompt<T>(IAnsiConsole _console, string title, UiItem<T>[] choices) where T : notnull
+    public static T Prompt<T>(IAnsiConsole console, string title, IEnumerable<UiItem<T>> choices) where T : notnull
     {
-        return _console.Prompt(
+        return console.Prompt(
                 new SelectionPrompt<UiItem<T>>()
                     .Title(title)
                     .UseConverter(x => x.Display)

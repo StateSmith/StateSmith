@@ -8,6 +8,14 @@ Test/interim releases are not documented here.
 
 ---
 
+## WIP
+### Added
+- Option to auto generate test scaffold for newly created state machine.
+    - only js supported for now.
+    - https://github.com/StateSmith/StateSmith/issues/266
+
+---
+
 ## [0.8.2]
 ### Fixed
 - Fix update check showing unlisted packages when it shouldn't
