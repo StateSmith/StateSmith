@@ -45,7 +45,7 @@ statemachine_defn:
     ohs
     COLON
     ohs
-    IDENTIFIER
+    SS_IDENTIFIER
     optional_any_space
     state_behaviors
     EOF
@@ -72,7 +72,7 @@ config_node:
     ohs
     COLON
     ohs
-    IDENTIFIER
+    SS_IDENTIFIER
     ohs
     (
         LINE_ENDER
@@ -117,13 +117,13 @@ state_defn:
 // todo_low - remove.
 global_id:
     '#'
-    IDENTIFIER
+    SS_IDENTIFIER
     ;
 
 state_id:
     global_id
     |
-    IDENTIFIER;
+    SS_IDENTIFIER;
 
 ortho_order:
     number
@@ -153,9 +153,9 @@ nl_behavior:
 
 // https://github.com/StateSmith/StateSmith/issues/3
 point_label:
-    DIGIT+ IDENTIFIER?
+    DIGIT+ SS_IDENTIFIER?
     |
-    IDENTIFIER
+    SS_IDENTIFIER
     ;
 
 // https://github.com/StateSmith/StateSmith/issues/3
@@ -185,7 +185,7 @@ choice:
     EOF
     ;
 
-// NOTE! We can't a rule like below because the IDENTIFIER lexer token will match all of example
+// NOTE! We can't a rule like below because the SS_IDENTIFIER lexer token will match all of example
 // input like `$entry_first` and because it matches more than `$entry_` it wins causing this to fail.
 // There might be a way to do it, but it is much simpler instead to require `entry` to be
 // split from the identifier.
@@ -215,7 +215,7 @@ via_exit_type: EXIT;
 // https://github.com/StateSmith/StateSmith/issues/3
 transition_via:
     optional_any_space 
-    'via'
+    VIA
     some_ws
     ( via_entry_type | via_exit_type )
     some_ws
@@ -319,7 +319,7 @@ action_code:
     ;
 
 naked_action_code:
-    naked_action_code_elements+
+    naked_action_code_elements+? // we want it to be non-greedy here so that it doesn't consume via statements like `EVENT [guard] / action_code(); via entry MY_ENTRY_POINT`
     ;
 
 /*
@@ -354,7 +354,7 @@ member_access:
     optional_any_space
     (
         //no expansion checking here because this belongs to something else. `foo->bar`. `foo` should be checked for expansion though.
-        IDENTIFIER
+        permissive_identifier
         |
         member_function_call
     )
@@ -363,9 +363,13 @@ member_access:
 //checked for expansions
 expandable_identifier:
     ohs 
-    (IDENTIFIER | EXIT | ENTRY) // exit/entry lexer tokens required because of exit/entry point rules
+    permissive_identifier
     ;
 
+// allows state machine grammar keywords to be used as identifiers
+permissive_identifier:
+    (SS_IDENTIFIER | EXIT | ENTRY | VIA) // exit/entry lexer tokens required because of exit/entry point rules
+    ;
 
 group_expression: 
     ohs '(' any_code ')' 
@@ -405,14 +409,14 @@ braced_function_args:
 // `foo (123)` will not be allowed, but `foo(123)` will be.
 expandable_function_call:
     ohs 
-    IDENTIFIER
+    permissive_identifier
     braced_function_args
     ;
 
 //NON expandable
 member_function_call:
     ohs 
-    IDENTIFIER
+    permissive_identifier
     braced_function_args
     ;
 
@@ -490,12 +494,18 @@ code_symbol:
 
 LINE_ENDER: [\r\n]+;
 
-// must come before IDENTIFIER
+// StateSmith keywords
+// These should be added to permissive_identifier
+// must come before SS_IDENTIFIER
 EXIT: 'exit';
 ENTRY: 'entry';
+VIA: 'via';
+
 
 fragment IDENTIFIER_NON_DIGIT :  [$a-zA-Z_] ;
-IDENTIFIER  :  (LITTLE_E | IDENTIFIER_NON_DIGIT)   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
+
+// StateSmith identifier. Can't be other keywords like `exit`, `entry`, `via`, etc.
+SS_IDENTIFIER  :  (LITTLE_E | IDENTIFIER_NON_DIGIT)   (   IDENTIFIER_NON_DIGIT | DIGIT  )*  ;
 LITTLE_E: 'e';
 
 fragment NOT_NL_CR: ~[\n\r];

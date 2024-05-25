@@ -257,7 +257,7 @@ public class ParsingTests
 
         c1.label.Should().Be("c1");
 
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+        var behaviorMatcher = FABehaviorMatcherBuilder.Build(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
 
         initial.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
             new Behavior(){ _transitionTarget = c1 },

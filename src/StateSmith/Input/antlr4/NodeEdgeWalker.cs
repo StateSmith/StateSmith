@@ -20,7 +20,7 @@ public class NodeEdgeWalker : StateSmithLabelGrammarBaseListener
     {
         var stateMachineNode = new StateMachineNode
         {
-            name = context.IDENTIFIER().GetText()
+            name = context.SS_IDENTIFIER().GetText()
         };
         node = stateMachineNode;
     }
@@ -51,7 +51,7 @@ public class NodeEdgeWalker : StateSmithLabelGrammarBaseListener
 
     public override void EnterConfig_node([NotNull] StateSmithLabelGrammarParser.Config_nodeContext context)
     {
-        node = new ConfigNode(name: context.IDENTIFIER().GetText(), value: context.any_text()?.GetText() ?? "");
+        node = new ConfigNode(name: context.SS_IDENTIFIER().GetText(), value: context.any_text()?.GetText() ?? "");
     }
 
     public override void EnterEntry_point([NotNull] StateSmithLabelGrammarParser.Entry_pointContext context)
@@ -88,11 +88,11 @@ public class NodeEdgeWalker : StateSmithLabelGrammarBaseListener
         string stateName;
         if (context.global_id() == null)
         {
-            stateName = context.IDENTIFIER().GetText();
+            stateName = context.SS_IDENTIFIER().GetText();
         }
         else
         {
-            stateName = context.global_id().IDENTIFIER().GetText();
+            stateName = context.global_id().SS_IDENTIFIER().GetText();
             stateNode.stateNameIsGlobal = true;
         }
 

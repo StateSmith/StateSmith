@@ -266,6 +266,12 @@ public interface IStateSmithLabelGrammarVisitor<Result> : IParseTreeVisitor<Resu
 	/// <return>The visitor result.</return>
 	Result VisitExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.permissive_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPermissive_identifier([NotNull] StateSmithLabelGrammarParser.Permissive_identifierContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.group_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

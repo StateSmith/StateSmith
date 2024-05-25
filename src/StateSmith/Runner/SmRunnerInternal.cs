@@ -82,7 +82,15 @@ public class SmRunnerInternal
 
     private StateMachine SetupAndFindStateMachine()
     {
-        inputSmBuilder.ThrowIfNull().ConvertDiagramFileToSmVertices(settings.diagramFile);
+        // If the inputSmBuilder already has a state machine, then use it.
+        // Used by test code.
+        // Might also be used in future to allow compiling plantuml without a diagram file.
+        if (inputSmBuilder.HasStateMachine)
+        {
+            return inputSmBuilder.GetStateMachine();
+        }
+
+        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
 
         if (settings.stateMachineName != null)
         {

@@ -504,6 +504,18 @@ public partial class StateSmithLabelGrammarBaseListener : IStateSmithLabelGramma
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.permissive_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterPermissive_identifier([NotNull] StateSmithLabelGrammarParser.Permissive_identifierContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.permissive_identifier"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitPermissive_identifier([NotNull] StateSmithLabelGrammarParser.Permissive_identifierContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.group_expression"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

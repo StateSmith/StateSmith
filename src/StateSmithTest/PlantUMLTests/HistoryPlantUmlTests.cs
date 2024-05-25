@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Xunit;
 using StateSmith.SmGraph;
 using FluentAssertions;
@@ -29,7 +29,7 @@ public class HistoryPlantUmlTests
         State s1 = root.Child<State>("S1");
         State s2 = root.Child<State>("S2");
 
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+        var behaviorMatcher = FABehaviorMatcherBuilder.Build(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
 
         initial.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
             new Behavior(){ _transitionTarget = history },
@@ -68,7 +68,7 @@ public class HistoryPlantUmlTests
         State snacking = relaxing.Child<State>("Snacking");
         State interrupted = root.Child<State>("Interrupted");
 
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+        var behaviorMatcher = FABehaviorMatcherBuilder.Build(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
 
         interrupted.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
             new Behavior(){ _transitionTarget = history },
@@ -101,7 +101,7 @@ public class HistoryPlantUmlTests
         State s1 = root.Child<State>("S1");
         State s2 = root.Child<State>("S2");
 
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+        var behaviorMatcher = FABehaviorMatcherBuilder.Build(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
 
         initial.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
             new Behavior(){ _transitionTarget = history },
