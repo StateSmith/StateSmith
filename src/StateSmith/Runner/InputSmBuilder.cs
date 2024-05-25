@@ -71,6 +71,8 @@ public class InputSmBuilder
         stateMachineProvider = sp.GetServiceOrCreateInstance();
     }
 
+    public bool HasStateMachine => Sm != null;
+
     /// <summary>
     /// Step 1. Figures out how to parse file based on file name.
     /// </summary>

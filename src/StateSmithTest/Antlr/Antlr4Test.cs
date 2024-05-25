@@ -71,6 +71,54 @@ public class Antlr4Test : CommonTestHelper
         ShouldBeEquivalentToUml(textState.Behaviors[1], """event / { action_code(123); }""");
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/277
+    /// </summary>
+    [Fact]
+    public void ExitUsedInActionCode_277()
+    {
+        string input = @"
+                MY_STATE
+                event1 / exit();
+                event1 / exit = 2;
+                event1 / system.exit();
+                event1 / EXIT();
+                event1 / EXIT = 22;
+                event1 / system.EXIT();
+            ";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        int i = 0;
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { exit(); }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { exit = 2; }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { system.exit(); }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { EXIT(); }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { EXIT = 22; }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { system.EXIT(); }""");
+        textState.Behaviors.Count.Should().Be(i);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/277
+    /// </summary>
+    [Fact]
+    public void EntryUsedInActionCode_277()
+    {
+        string input = @"
+                MY_STATE
+                event1 / entry();
+                event1 / entry = 2;
+                event1 / system.entry();
+                event1 / ENTRY();
+            ";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        int i = 0;
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { entry(); }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { entry = 2; }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { system.entry(); }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { ENTRY(); }""");
+        textState.Behaviors.Count.Should().Be(i);
+    }
+
     [Fact]
     public void NodeMultipleBehaviors2()
     {
