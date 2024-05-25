@@ -31,7 +31,7 @@ public class SupportAlternateTriggersProcessor_Tests
         inputSmBuilder.FinishRunning();
         var myState1 = inputSmBuilder.GetStateMachine().Child<State>("MY_STATE_1");
 
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+        var behaviorMatcher = FABehaviorMatcherBuilder.Build(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
 
         myState1.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
             Behavior.NewEnterBehavior("""log("enter");"""),
@@ -73,7 +73,7 @@ public class TriggerModHelper_Tests
         inputSmBuilder.FinishRunning();
         var myState1 = inputSmBuilder.GetStateMachine().Child<State>("MY_STATE_1");
 
-        var behaviorMatcher = VertexTestHelper.BuildFluentAssertionBehaviorMatcher(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
+        var behaviorMatcher = FABehaviorMatcherBuilder.Build(actionCode: true, guardCode: true, transitionTarget: true, triggers: true);
 
         myState1.Behaviors.Should().BeEquivalentTo(new List<Behavior>() {
             Behavior.NewEnterBehavior("log(\"Entered MY_STATE_1.\");"),
