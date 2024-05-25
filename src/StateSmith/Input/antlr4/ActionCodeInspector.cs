@@ -22,13 +22,13 @@ public class ActionCodeInspector : StateSmithLabelGrammarBaseListener
 
     public override void EnterExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context)
     {
-        string identifier = context.IDENTIFIER().GetText();
+        string identifier = context.permissive_identifier().GetText();
         identifiersUsed.Add(identifier);
     }
 
     public override void EnterExpandable_function_call([NotNull] StateSmithLabelGrammarParser.Expandable_function_callContext context)
     {
-        var functionName = context.IDENTIFIER().GetText();
+        var functionName = context.permissive_identifier().GetText();
         functionsCalled.Add(functionName);
     }
 }

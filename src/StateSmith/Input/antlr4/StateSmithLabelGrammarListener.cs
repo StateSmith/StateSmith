@@ -421,6 +421,16 @@ public interface IStateSmithLabelGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.permissive_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterPermissive_identifier([NotNull] StateSmithLabelGrammarParser.Permissive_identifierContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.permissive_identifier"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitPermissive_identifier([NotNull] StateSmithLabelGrammarParser.Permissive_identifierContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.group_expression"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

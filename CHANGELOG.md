@@ -30,6 +30,10 @@ Test/interim releases are not documented here.
 ---
 
 ## [WIP]
+### Fixed
+- Fix grammar - allow `via`, `exit`, `entry` to be used in user guard and action code
+  - https://github.com/StateSmith/StateSmith/issues/277
+  - https://github.com/StateSmith/StateSmith/issues/211
 ### Added
 - Added `IExpander` interface to allow users to provide their own expander class.
     - https://github.com/StateSmith/StateSmith/issues/275

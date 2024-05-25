@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime.Tree;
+using Antlr4.Runtime.Tree;
 using StateSmith.Input.Expansions;
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace StateSmith.Input.Antlr4
         public override int VisitExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context)
         {
             Append(context.ohs()?.GetText() ?? "");
-            string identifier = context.IDENTIFIER().GetText();
+            string identifier = context.permissive_identifier().GetText();
             Append(identifier);
 
             return UNUSED;

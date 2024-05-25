@@ -29,7 +29,7 @@ public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
     public override string VisitExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context)
     {
         string result = context.ohs()?.GetText() ?? "";
-        string identifier = context.IDENTIFIER().GetText();
+        string identifier = context.permissive_identifier().GetText();
         identifier = expander.TryExpandVariableExpansion(identifier);
         result += identifier;
 
@@ -40,7 +40,7 @@ public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
     {
         var result = context.ohs()?.Accept(this) ?? "";
 
-        var functionName = context.IDENTIFIER().GetText();
+        var functionName = context.permissive_identifier().GetText();
 
         if (functionName == GilCreationHelper.GilExpansionMarkerFuncName)
         {
