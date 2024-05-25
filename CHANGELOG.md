@@ -29,7 +29,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [WIP]
+## [0.9.14-alpha]
 ### Fixed
 - Fix grammar - allow `via`, `exit`, `entry` to be used in user guard and action code
   - https://github.com/StateSmith/StateSmith/issues/277
