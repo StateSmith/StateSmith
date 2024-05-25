@@ -22,7 +22,11 @@ public class TestHelper
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.FindSingleStateMachine();
         smRunner.Settings.propagateExceptions = true;
-        smRunner.Run();
         return smRunner;
+    }
+
+    public static void RunSmRunnerForPlantUmlString(string plantUmlText)
+    {
+        BuildSmRunnerForPlantUmlString(plantUmlText).Run();
     }
 }

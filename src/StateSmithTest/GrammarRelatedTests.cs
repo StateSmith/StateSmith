@@ -27,7 +27,7 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        TestHelper.BuildSmRunnerForPlantUmlString(plantUmlText).Run();
+        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        TestHelper.BuildSmRunnerForPlantUmlString(plantUmlText).Run();
+        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
     }
 
 
@@ -70,6 +70,6 @@ public class GrammarRelatedTests
 
             """;
 
-        TestHelper.BuildSmRunnerForPlantUmlString(plantUmlText).Run();
+        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
     }
 }
