@@ -119,6 +119,32 @@ public class Antlr4Test : CommonTestHelper
         textState.Behaviors.Count.Should().Be(i);
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/211
+    /// </summary>
+    [Fact]
+    public void ViaUsedInActionCode_211()
+    {
+        string input = @"
+                MY_STATE
+                event1 / via();
+                event1 / via = 2;
+                event1 / system.via();
+                event1 / VIA();
+                event1 / VIA = 22;
+                event1 / system.VIA();
+            ";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        int i = 0;
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { via(); }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { via = 2; }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { system.via(); }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { VIA(); }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { VIA = 22; }""");
+        ShouldBeEquivalentToUml(textState.Behaviors[i++], """event1 / { system.VIA(); }""");
+        textState.Behaviors.Count.Should().Be(i);
+    }
+
     [Fact]
     public void NodeMultipleBehaviors2()
     {

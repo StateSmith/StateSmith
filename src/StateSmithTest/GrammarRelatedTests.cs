@@ -46,4 +46,30 @@ public class GrammarRelatedTests
             """;
         TestHelper.BuildSmRunnerForPlantUmlString(plantUmlText).Run();
     }
+
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/211
+    /// </summary>
+    [Fact]
+    public void AllowViaInActionCode_211()
+    {
+        var plantUmlText = """
+
+            @startuml ExampleSm
+            state c1 {
+                c1: event1 / via();
+                c1: event1 / via = 2;
+                c1: event1 / system.via();
+                c1: event1 / VIA();
+                c1: event1 / VIA = 22;
+                c1: event1 / system.VIA();
+            }
+            [*] --> c1
+            @enduml
+
+            """;
+
+        TestHelper.BuildSmRunnerForPlantUmlString(plantUmlText).Run();
+    }
 }
