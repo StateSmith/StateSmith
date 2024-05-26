@@ -100,6 +100,11 @@ public class RunnerSettings
     /// </summary>
     public NameConflictResolution nameConflictResolution = NameConflictResolution.ShortFqnAncestor;
 
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/281
+    /// </summary>
+    public SimulationSettings simulationSettings = new();
+
     public RunnerSettings(string diagramFile, string? outputDirectory = null, AlgorithmId algorithmId = default, TranspilerId transpilerId = default)
     {
         this.diagramFile = diagramFile;
