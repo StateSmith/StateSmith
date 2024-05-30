@@ -14,9 +14,9 @@ public class SimWebGenerator_IntegrationTests
     readonly string diagramDirPath = PathUtils.GetThisDir() + "/diagrams/";
 
     [Fact]
-    public void LightSm()
+    public void LightSm2()
     {
-        GenerateForDiagram(diagramName: "LightSm.drawio.svg");
+        GenerateForDiagram(diagramName: "LightSm2.drawio.svg");
     }
 
     // TODO add more simple diagrams

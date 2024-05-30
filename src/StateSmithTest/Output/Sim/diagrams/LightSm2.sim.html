@@ -4,8 +4,8 @@
   -- It also serves as an interactive console that you can use to validate the
   -- state machine's behavior.
   --
-  -- Using LightSm.js generally looks like:
-  --   var sm = new LightSm();
+  -- Using LightSm2.js generally looks like:
+  --   var sm = new LightSm2();
   --   sm.start();
   --
   -- And then using sm.dispatchEvent() to dispatch events to the state machine.
@@ -193,7 +193,7 @@ ROOT.(InitialState) --> WAITING :
 // Algorithm: Balanced1. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 // Generated state machine
-class LightSm
+class LightSm2
 {
 // Null by default.
 // May be overridden to override guard evaluation (eg. in a simulator)
@@ -246,7 +246,7 @@ evaluateGuard = null;
     #ancestorEventHandler;
     
     // Used internally by state machine. Don't modify.
-    #currentEventHandlers = Array(LightSm.EventIdCount).fill(undefined);
+    #currentEventHandlers = Array(LightSm2.EventIdCount).fill(undefined);
     
     // Used internally by state machine. Don't modify.
     #currentStateExitHandler;
@@ -284,7 +284,7 @@ evaluateGuard = null;
                 this.#WAITING_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.stateId = LightSm.StateId.WAITING;
+                this.stateId = LightSm2.StateId.WAITING;
                 // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                 return;
             } // end of behavior for ROOT.<InitialState>
@@ -338,28 +338,28 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#ORDER_MENU_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV3] = this.#ORDER_MENU_ev3;
+        this.#currentEventHandlers[LightSm2.EventId.EV3] = this.#ORDER_MENU_ev3;
         
         // ORDER_MENU behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.ORDER_MENU); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.ORDER_MENU); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.ORDER_MENU);`
-            this.tracer?.enterState(LightSm.StateId.ORDER_MENU);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.ORDER_MENU);`
+            this.tracer?.enterState(LightSm2.StateId.ORDER_MENU);
         } // end of behavior for ORDER_MENU
     }
     
     #ORDER_MENU_exit()
     {
         // ORDER_MENU behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.ORDER_MENU); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.ORDER_MENU); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.ORDER_MENU);`
-            this.tracer?.exitState(LightSm.StateId.ORDER_MENU);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.ORDER_MENU);`
+            this.tracer?.exitState(LightSm2.StateId.ORDER_MENU);
         } // end of behavior for ORDER_MENU
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#ROOT_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV3] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV3] = null;  // no ancestor listens to this event
     }
     
     #ORDER_MENU_ev3()
@@ -379,7 +379,7 @@ evaluateGuard = null;
             this.#WAITING_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.WAITING;
+            this.stateId = LightSm2.StateId.WAITING;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for ORDER_MENU
@@ -394,35 +394,35 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#BEVERAGE_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV2] = this.#BEVERAGE_ev2;
+        this.#currentEventHandlers[LightSm2.EventId.EV2] = this.#BEVERAGE_ev2;
         
         // BEVERAGE behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.BEVERAGE); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.BEVERAGE); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.BEVERAGE);`
-            this.tracer?.enterState(LightSm.StateId.BEVERAGE);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.BEVERAGE);`
+            this.tracer?.enterState(LightSm2.StateId.BEVERAGE);
         } // end of behavior for BEVERAGE
         
         // BEVERAGE behavior
         // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)"); }
         {
             // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)");`
-            this.vars.ORDER_MENU_history = LightSm.ORDER_MENU_HistoryId.BEVERAGE;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)");
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.BEVERAGE;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.BEVERAGE;)");
         } // end of behavior for BEVERAGE
     }
     
     #BEVERAGE_exit()
     {
         // BEVERAGE behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.BEVERAGE); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.BEVERAGE); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.BEVERAGE);`
-            this.tracer?.exitState(LightSm.StateId.BEVERAGE);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.BEVERAGE);`
+            this.tracer?.exitState(LightSm2.StateId.BEVERAGE);
         } // end of behavior for BEVERAGE
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#ORDER_MENU_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV2] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV2] = null;  // no ancestor listens to this event
     }
     
     #BEVERAGE_ev2()
@@ -461,7 +461,7 @@ evaluateGuard = null;
             this.#WATER_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.WATER;
+            this.stateId = LightSm2.StateId.WATER;
             this.#ancestorEventHandler = null;
             return;
         } // end of behavior for BEVERAGE.<InitialState>
@@ -476,13 +476,13 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#COFFEE_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = this.#COFFEE_ev1;
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = this.#COFFEE_ev1;
         
         // COFFEE behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.COFFEE); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.COFFEE); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.COFFEE);`
-            this.tracer?.enterState(LightSm.StateId.COFFEE);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.COFFEE);`
+            this.tracer?.enterState(LightSm2.StateId.COFFEE);
         } // end of behavior for COFFEE
         
         // COFFEE behavior
@@ -496,22 +496,22 @@ evaluateGuard = null;
         // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)"); }
         {
             // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)");`
-            this.vars.ORDER_MENU_history = LightSm.ORDER_MENU_HistoryId.COFFEE;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)");
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.COFFEE;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.COFFEE;)");
         } // end of behavior for COFFEE
     }
     
     #COFFEE_exit()
     {
         // COFFEE behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.COFFEE); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.COFFEE); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.COFFEE);`
-            this.tracer?.exitState(LightSm.StateId.COFFEE);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.COFFEE);`
+            this.tracer?.exitState(LightSm2.StateId.COFFEE);
         } // end of behavior for COFFEE
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#BEVERAGE_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = null;  // no ancestor listens to this event
     }
     
     #COFFEE_ev1()
@@ -531,7 +531,7 @@ evaluateGuard = null;
             this.#TEA_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.TEA;
+            this.stateId = LightSm2.StateId.TEA;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for COFFEE
@@ -546,37 +546,37 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#TEA_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = this.#TEA_ev1;
-        this.#currentEventHandlers[LightSm.EventId.EV2] = this.#TEA_ev2;
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = this.#TEA_ev1;
+        this.#currentEventHandlers[LightSm2.EventId.EV2] = this.#TEA_ev2;
         
         // TEA behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.TEA); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.TEA); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.TEA);`
-            this.tracer?.enterState(LightSm.StateId.TEA);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.TEA);`
+            this.tracer?.enterState(LightSm2.StateId.TEA);
         } // end of behavior for TEA
         
         // TEA behavior
         // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)"); }
         {
             // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)");`
-            this.vars.ORDER_MENU_history = LightSm.ORDER_MENU_HistoryId.TEA;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)");
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.TEA;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.TEA;)");
         } // end of behavior for TEA
     }
     
     #TEA_exit()
     {
         // TEA behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.TEA); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.TEA); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.TEA);`
-            this.tracer?.exitState(LightSm.StateId.TEA);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.TEA);`
+            this.tracer?.exitState(LightSm2.StateId.TEA);
         } // end of behavior for TEA
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#BEVERAGE_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = null;  // no ancestor listens to this event
-        this.#currentEventHandlers[LightSm.EventId.EV2] = this.#BEVERAGE_ev2;  // the next ancestor that handles this event is BEVERAGE
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV2] = this.#BEVERAGE_ev2;  // the next ancestor that handles this event is BEVERAGE
     }
     
     #TEA_ev1()
@@ -596,7 +596,7 @@ evaluateGuard = null;
             this.#COFFEE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.COFFEE;
+            this.stateId = LightSm2.StateId.COFFEE;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for TEA
@@ -634,35 +634,35 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#WATER_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = this.#WATER_ev1;
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = this.#WATER_ev1;
         
         // WATER behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.WATER); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.WATER); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.WATER);`
-            this.tracer?.enterState(LightSm.StateId.WATER);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.WATER);`
+            this.tracer?.enterState(LightSm2.StateId.WATER);
         } // end of behavior for WATER
         
         // WATER behavior
         // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.WATER;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.WATER;)"); }
         {
             // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.WATER;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.WATER;)");`
-            this.vars.ORDER_MENU_history = LightSm.ORDER_MENU_HistoryId.WATER;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.WATER;)");
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.WATER;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.WATER;)");
         } // end of behavior for WATER
     }
     
     #WATER_exit()
     {
         // WATER behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.WATER); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.WATER); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.WATER);`
-            this.tracer?.exitState(LightSm.StateId.WATER);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.WATER);`
+            this.tracer?.exitState(LightSm2.StateId.WATER);
         } // end of behavior for WATER
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#BEVERAGE_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = null;  // no ancestor listens to this event
     }
     
     #WATER_ev1()
@@ -682,7 +682,7 @@ evaluateGuard = null;
             this.#COFFEE_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.COFFEE;
+            this.stateId = LightSm2.StateId.COFFEE;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for WATER
@@ -697,37 +697,37 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#FOOD_exit;
-        this.#currentEventHandlers[LightSm.EventId.ESCAPE] = this.#FOOD_escape;
-        this.#currentEventHandlers[LightSm.EventId.EV2] = this.#FOOD_ev2;
+        this.#currentEventHandlers[LightSm2.EventId.ESCAPE] = this.#FOOD_escape;
+        this.#currentEventHandlers[LightSm2.EventId.EV2] = this.#FOOD_ev2;
         
         // FOOD behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.FOOD); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.FOOD); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.FOOD);`
-            this.tracer?.enterState(LightSm.StateId.FOOD);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.FOOD);`
+            this.tracer?.enterState(LightSm2.StateId.FOOD);
         } // end of behavior for FOOD
         
         // FOOD behavior
         // uml: enter / { $gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)"); }
         {
             // Step 1: execute action `$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)");`
-            this.vars.ORDER_MENU_history = LightSm.ORDER_MENU_HistoryId.FOOD;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)");
+            this.vars.ORDER_MENU_history = LightSm2.ORDER_MENU_HistoryId.FOOD;this.tracer.log("Executed action: " + "$gil(this.vars.ORDER_MENU_history = ORDER_MENU_HistoryId.FOOD;)");
         } // end of behavior for FOOD
     }
     
     #FOOD_exit()
     {
         // FOOD behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.FOOD); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.FOOD); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.FOOD);`
-            this.tracer?.exitState(LightSm.StateId.FOOD);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.FOOD);`
+            this.tracer?.exitState(LightSm2.StateId.FOOD);
         } // end of behavior for FOOD
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#ORDER_MENU_exit;
-        this.#currentEventHandlers[LightSm.EventId.ESCAPE] = null;  // no ancestor listens to this event
-        this.#currentEventHandlers[LightSm.EventId.EV2] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.ESCAPE] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV2] = null;  // no ancestor listens to this event
     }
     
     #FOOD_escape()
@@ -759,7 +759,7 @@ evaluateGuard = null;
                 this.#WAITING_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.stateId = LightSm.StateId.WAITING;
+                this.stateId = LightSm2.StateId.WAITING;
                 // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                 return;
             } // end of behavior for ORDER_MENU.<ExitPoint>(1)
@@ -796,7 +796,7 @@ evaluateGuard = null;
                 this.#TEA_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.stateId = LightSm.StateId.TEA;
+                this.stateId = LightSm2.StateId.TEA;
                 // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                 return;
             } // end of behavior for ORDER_MENU.<ChoicePoint>(bev_choice)
@@ -833,7 +833,7 @@ evaluateGuard = null;
             this.#JUNK_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.JUNK;
+            this.stateId = LightSm2.StateId.JUNK;
             this.#ancestorEventHandler = null;
             return;
         } // end of behavior for FOOD.<InitialState>
@@ -848,28 +848,28 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#JUNK_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = this.#JUNK_ev1;
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = this.#JUNK_ev1;
         
         // JUNK behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.JUNK); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.JUNK); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.JUNK);`
-            this.tracer?.enterState(LightSm.StateId.JUNK);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.JUNK);`
+            this.tracer?.enterState(LightSm2.StateId.JUNK);
         } // end of behavior for JUNK
     }
     
     #JUNK_exit()
     {
         // JUNK behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.JUNK); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.JUNK); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.JUNK);`
-            this.tracer?.exitState(LightSm.StateId.JUNK);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.JUNK);`
+            this.tracer?.exitState(LightSm2.StateId.JUNK);
         } // end of behavior for JUNK
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#FOOD_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = null;  // no ancestor listens to this event
     }
     
     #JUNK_ev1()
@@ -889,7 +889,7 @@ evaluateGuard = null;
             this.#POTATO_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.POTATO;
+            this.stateId = LightSm2.StateId.POTATO;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for JUNK
@@ -904,28 +904,28 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#POTATO_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = this.#POTATO_ev1;
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = this.#POTATO_ev1;
         
         // POTATO behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.POTATO); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.POTATO); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.POTATO);`
-            this.tracer?.enterState(LightSm.StateId.POTATO);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.POTATO);`
+            this.tracer?.enterState(LightSm2.StateId.POTATO);
         } // end of behavior for POTATO
     }
     
     #POTATO_exit()
     {
         // POTATO behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.POTATO); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.POTATO); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.POTATO);`
-            this.tracer?.exitState(LightSm.StateId.POTATO);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.POTATO);`
+            this.tracer?.exitState(LightSm2.StateId.POTATO);
         } // end of behavior for POTATO
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#FOOD_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = null;  // no ancestor listens to this event
     }
     
     #POTATO_ev1()
@@ -945,7 +945,7 @@ evaluateGuard = null;
             this.#SUSHI_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.SUSHI;
+            this.stateId = LightSm2.StateId.SUSHI;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for POTATO
@@ -960,28 +960,28 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#SUSHI_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = this.#SUSHI_ev1;
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = this.#SUSHI_ev1;
         
         // SUSHI behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.SUSHI); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.SUSHI); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.SUSHI);`
-            this.tracer?.enterState(LightSm.StateId.SUSHI);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.SUSHI);`
+            this.tracer?.enterState(LightSm2.StateId.SUSHI);
         } // end of behavior for SUSHI
     }
     
     #SUSHI_exit()
     {
         // SUSHI behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.SUSHI); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.SUSHI); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.SUSHI);`
-            this.tracer?.exitState(LightSm.StateId.SUSHI);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.SUSHI);`
+            this.tracer?.exitState(LightSm2.StateId.SUSHI);
         } // end of behavior for SUSHI
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#FOOD_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV1] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV1] = null;  // no ancestor listens to this event
     }
     
     #SUSHI_ev1()
@@ -1001,7 +1001,7 @@ evaluateGuard = null;
             this.#JUNK_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.JUNK;
+            this.stateId = LightSm2.StateId.JUNK;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for SUSHI
@@ -1016,28 +1016,28 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#WAITING_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV3] = this.#WAITING_ev3;
+        this.#currentEventHandlers[LightSm2.EventId.EV3] = this.#WAITING_ev3;
         
         // WAITING behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.WAITING); }
+        // uml: enter / { this.tracer?.enterState(LightSm2.StateId.WAITING); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.WAITING);`
-            this.tracer?.enterState(LightSm.StateId.WAITING);
+            // Step 1: execute action `this.tracer?.enterState(LightSm2.StateId.WAITING);`
+            this.tracer?.enterState(LightSm2.StateId.WAITING);
         } // end of behavior for WAITING
     }
     
     #WAITING_exit()
     {
         // WAITING behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.WAITING); }
+        // uml: exit / { this.tracer?.exitState(LightSm2.StateId.WAITING); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.WAITING);`
-            this.tracer?.exitState(LightSm.StateId.WAITING);
+            // Step 1: execute action `this.tracer?.exitState(LightSm2.StateId.WAITING);`
+            this.tracer?.exitState(LightSm2.StateId.WAITING);
         } // end of behavior for WAITING
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#ROOT_exit;
-        this.#currentEventHandlers[LightSm.EventId.EV3] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm2.EventId.EV3] = null;  // no ancestor listens to this event
     }
     
     #WAITING_ev3()
@@ -1070,7 +1070,7 @@ evaluateGuard = null;
                 
                 // ORDER_MENU.<History> behavior
                 // uml: [this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)") || $gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)] TransitionTo(FOOD)
-                if (this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)") || this.vars.ORDER_MENU_history == LightSm.ORDER_MENU_HistoryId.FOOD)
+                if (this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)") || this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.FOOD)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -1086,7 +1086,7 @@ evaluateGuard = null;
                 
                 // ORDER_MENU.<History> behavior
                 // uml: [this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.WATER)") || $gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.WATER)] TransitionTo(WATER)
-                if (this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.WATER)") || this.vars.ORDER_MENU_history == LightSm.ORDER_MENU_HistoryId.WATER)
+                if (this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.WATER)") || this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.WATER)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -1097,14 +1097,14 @@ evaluateGuard = null;
                     this.#WATER_enter();
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                    this.stateId = LightSm.StateId.WATER;
+                    this.stateId = LightSm2.StateId.WATER;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
                 // uml: [this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)") || $gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)] TransitionTo(COFFEE)
-                if (this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)") || this.vars.ORDER_MENU_history == LightSm.ORDER_MENU_HistoryId.COFFEE)
+                if (this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)") || this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.COFFEE)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -1115,14 +1115,14 @@ evaluateGuard = null;
                     this.#COFFEE_enter();
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                    this.stateId = LightSm.StateId.COFFEE;
+                    this.stateId = LightSm2.StateId.COFFEE;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
                 // uml: [this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)") || $gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)] TransitionTo(TEA)
-                if (this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)") || this.vars.ORDER_MENU_history == LightSm.ORDER_MENU_HistoryId.TEA)
+                if (this.tracer.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)") || this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.TEA)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -1133,7 +1133,7 @@ evaluateGuard = null;
                     this.#TEA_enter();
                     
                     // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                    this.stateId = LightSm.StateId.TEA;
+                    this.stateId = LightSm2.StateId.TEA;
                     // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
                     return;
                 } // end of behavior for ORDER_MENU.<History>
@@ -1162,17 +1162,17 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case LightSm.StateId.ROOT: return "ROOT";
-            case LightSm.StateId.ORDER_MENU: return "ORDER_MENU";
-            case LightSm.StateId.BEVERAGE: return "BEVERAGE";
-            case LightSm.StateId.COFFEE: return "COFFEE";
-            case LightSm.StateId.TEA: return "TEA";
-            case LightSm.StateId.WATER: return "WATER";
-            case LightSm.StateId.FOOD: return "FOOD";
-            case LightSm.StateId.JUNK: return "JUNK";
-            case LightSm.StateId.POTATO: return "POTATO";
-            case LightSm.StateId.SUSHI: return "SUSHI";
-            case LightSm.StateId.WAITING: return "WAITING";
+            case LightSm2.StateId.ROOT: return "ROOT";
+            case LightSm2.StateId.ORDER_MENU: return "ORDER_MENU";
+            case LightSm2.StateId.BEVERAGE: return "BEVERAGE";
+            case LightSm2.StateId.COFFEE: return "COFFEE";
+            case LightSm2.StateId.TEA: return "TEA";
+            case LightSm2.StateId.WATER: return "WATER";
+            case LightSm2.StateId.FOOD: return "FOOD";
+            case LightSm2.StateId.JUNK: return "JUNK";
+            case LightSm2.StateId.POTATO: return "POTATO";
+            case LightSm2.StateId.SUSHI: return "SUSHI";
+            case LightSm2.StateId.WAITING: return "WAITING";
             default: return "?";
         }
     }
@@ -1182,10 +1182,10 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case LightSm.EventId.ESCAPE: return "ESCAPE";
-            case LightSm.EventId.EV1: return "EV1";
-            case LightSm.EventId.EV2: return "EV2";
-            case LightSm.EventId.EV3: return "EV3";
+            case LightSm2.EventId.ESCAPE: return "ESCAPE";
+            case LightSm2.EventId.EV1: return "EV1";
+            case LightSm2.EventId.EV2: return "EV2";
+            case LightSm2.EventId.EV3: return "EV3";
             default: return "?";
         }
     }
@@ -1262,7 +1262,7 @@ evaluateGuard = null;
             document.querySelector('tbody').appendChild(row);
         }
 
-        var sm = new LightSm();
+        var sm = new LightSm2();
 
         // prompt the user to evaluate guards manually
         sm.evaluateGuard = (guard) => {
@@ -1293,16 +1293,16 @@ evaluateGuard = null;
 
         // The simulator uses a tracer callback to perform operations such as 
         // state highlighting and logging. You do not need this functionality
-        // when using LightSm.js in your own applications, although you may
+        // when using LightSm2.js in your own applications, although you may
         // choose to implement a tracer for debugging purposes.
         sm.tracer = {
             enterState: (stateId) => {
-                var name = LightSm.stateIdToString(stateId);
+                var name = LightSm2.stateIdToString(stateId);
                 document.querySelector('g[data-id=' + name + ']')?.classList.add('active');
                 sm.tracer.log("Entered " + name);
             },
             exitState: (stateId) => {
-                var name = LightSm.stateIdToString(stateId);
+                var name = LightSm2.stateIdToString(stateId);
                 document.querySelector('g[data-id=' + name + ']')?.classList.remove('active');
             },
             edgeTransition: (edgeId) => {
@@ -1314,14 +1314,14 @@ evaluateGuard = null;
         };
 
         // Wire up the buttons that dispatch events for the state machine.
-        for (const eventName in LightSm.EventId) {
+        for (const eventName in LightSm2.EventId) {
             var button = document.createElement('button');
             button.id = 'button_' + eventName;
             button.innerText = eventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
                 sm.tracer.log("Dispatched " + eventName);
-                sm.dispatchEvent(LightSm.EventId[eventName]); 
+                sm.dispatchEvent(LightSm2.EventId[eventName]); 
             });
             document.getElementById('buttons').appendChild(button);
         }
