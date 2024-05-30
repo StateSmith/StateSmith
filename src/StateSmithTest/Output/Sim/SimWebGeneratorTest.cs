@@ -16,7 +16,16 @@ public class SimWebGenerator_IntegrationTests
     [Fact]
     public void LightSm()
     {
-        SimWebGenerator generator = new(diagramPath: diagramDirPath + "LightSm.drawio.svg", outputDir: diagramDirPath);
+        GenerateForDiagram(diagramName: "LightSm.drawio.svg");
+    }
+
+    // TODO add more simple diagrams
+
+    private void GenerateForDiagram(string diagramName)
+    {
+        SimWebGenerator generator = new(diagramPath: diagramDirPath + diagramName, outputDir: diagramDirPath);
+        generator.RunnerSettings.propagateExceptions = true;
+        generator.RunnerSettings.outputStateSmithVersionInfo = false; // avoid git noise
         generator.Generate();
     }
 }

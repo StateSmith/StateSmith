@@ -1,10 +1,10 @@
-﻿using System.IO;
+using System.IO;
 using System;
 
-namespace StateSmith.Output.Sim;
+namespace StateSmith.Output;
 
 /// <summary>
-/// Allows us to capture the the code that would be written to a file.
+/// Allows us to capture the code that would be written to a file.
 /// </summary>
 public class SingleFileCapturer : ICodeFileWriter
 {

@@ -8,6 +8,8 @@ namespace StateSmith.Output.Sim;
 
 public class SimWebGenerator
 {
+    public RunnerSettings RunnerSettings => runner.Settings;
+
     string diagramPath;
     private readonly string outputDir;
     MermaidEdgeTracker mermaidEdgeTracker = new();

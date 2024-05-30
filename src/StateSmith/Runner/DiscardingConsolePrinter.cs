@@ -1,6 +1,4 @@
-﻿using StateSmith.Runner;
-
-namespace StateSmith.Output.Sim;
+﻿namespace StateSmith.Runner;
 
 // we may want to capture this info at some point
 public class DiscardingConsolePrinter : IConsolePrinter
