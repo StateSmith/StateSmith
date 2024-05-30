@@ -26,4 +26,8 @@
     <ProjectReference Include="..\StateSmith\StateSmith.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Output\Sim\diagrams\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,19 @@
+﻿using StateSmith.Runner;
+
+namespace StateSmith.Output.Sim;
+
+// we may want to capture this info at some point
+public class DiscardingConsolePrinter : IConsolePrinter
+{
+    public void WriteErrorLine(string message)
+    {
+    }
+
+    public void WriteLine()
+    {
+    }
+
+    public void WriteLine(string message)
+    {
+    }
+}
