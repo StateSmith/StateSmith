@@ -96,7 +96,7 @@ public class SimWebGenerator
         // That's why we use `State` instead of `NamedVertex`.
         if (vertex is State state)
         {
-            var id = $"{sm.Name}.StateId.{state.Name}";
+            var id = $"{sm.Name}.StateId.{state.Name.ToUpper()}";
             state.AddEnterAction($"this.tracer?.enterState({id});", index: 0);
             state.AddExitAction($"this.tracer?.exitState({id});");  // TODO - can we remove null conditional operator? It's not needed anymore?
         }
