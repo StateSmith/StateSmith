@@ -1,10 +1,10 @@
-using System.IO;
+using System.Text;
 
 namespace StateSmith.Output.Sim;
 
 public class HtmlRenderer
 {
-    public static void Render(TextWriter writer, string smName, string mocksCode, string mermaidCode, string jsCode)
+    public static void Render(StringBuilder stringBuilder, string smName, string mocksCode, string mermaidCode, string jsCode)
     {
         // Now that we are working inside the StateSmith project, we need to restrict ourselves to dotnet 6 features.
         // We can't use """raw strings""" anymore so we do manual string interpolation below string.
@@ -295,6 +295,6 @@ public class HtmlRenderer
         htmlTemplate = htmlTemplate.Replace("{{jsCode}}", jsCode);
         htmlTemplate = htmlTemplate.Replace("{{mocksCode}}", mocksCode);
         htmlTemplate = htmlTemplate.Replace("{{smName}}", smName);
-        writer.WriteLine(htmlTemplate);
+        stringBuilder.AppendLine(htmlTemplate);
     }
 }

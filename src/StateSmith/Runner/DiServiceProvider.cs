@@ -12,6 +12,7 @@ using StateSmith.Common;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.SmGraph.TriggerMap;
+using StateSmith.Output.Sim;
 
 namespace StateSmith.Runner;
 
@@ -87,6 +88,7 @@ public class DiServiceProvider : IDisposable
 
             services.AddSingleton<UserExpansionScriptBases>();
             services.AddSingleton<SmDesignDescriber>();
+            services.AddSingleton<SimWebGenerator>();
         });
     }
 

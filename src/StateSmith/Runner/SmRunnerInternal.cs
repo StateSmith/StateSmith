@@ -6,6 +6,7 @@ using StateSmith.Common;
 using StateSmith.SmGraph;
 using System.Globalization;
 using System.Threading;
+using StateSmith.Output.Sim;
 
 namespace StateSmith.Runner;
 
@@ -24,8 +25,9 @@ public class SmRunnerInternal
     readonly FilePathPrinter filePathPrinter;
     readonly SmDesignDescriber smDesignDescriber;
     readonly OutputInfo outputInfo;
+    readonly SimWebGenerator simWebGenerator;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, SimWebGenerator simWebGenerator)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
@@ -35,6 +37,7 @@ public class SmRunnerInternal
         this.filePathPrinter = filePathPrinter;
         this.smDesignDescriber = smDesignDescriber;
         this.outputInfo = outputInfo;
+        this.simWebGenerator = simWebGenerator;
     }
 
     public void Run()
@@ -56,6 +59,12 @@ public class SmRunnerInternal
             inputSmBuilder.FinishRunning();
             smDesignDescriber.DescribeAfterTransformations();
             codeGenRunner.Run();
+
+            if (settings.simulation.enableGeneration)
+            {
+                simWebGenerator.Generate(diagramPath: settings.DiagramPath, outputDir: settings.simulation.outputDirectory.ThrowIfNull());
+            }
+
             consolePrinter.OutputStageMessage("Finished normally.");
         }
         catch (System.Exception e)
@@ -153,6 +162,12 @@ public class SmRunnerInternal
 
         settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
         settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
+
+        if (settings.simulation.enableGeneration)
+        {
+            settings.simulation.outputDirectory ??= settings.outputDirectory;
+            settings.simulation.outputDirectory = ProcessDirPath(settings.simulation.outputDirectory, relativeDirectory);
+        }
     }
 
     private static string ProcessDirPath(string dirPath, string relativeDirectory)

@@ -1,5 +1,9 @@
 using StateSmith.Common;
+using StateSmith.Output;
 using StateSmith.Output.Sim;
+using StateSmith.Runner;
+using System;
+using System.IO;
 using Xunit;
 
 namespace StateSmithTest.Output.Sim;
@@ -16,26 +20,62 @@ public class SimWebGenerator_IntegrationTests
     [Fact]
     public void LightSm()
     {
-        GenerateForDiagram(diagramName: "LightSm.drawio.svg");
+        GenerateForDiagram(diagramName: "LightSm.drawio.svg", expectedOutputFileName: "LightSm.sim.html");
     }
 
     [Fact]
     public void LightSm2()
     {
-        GenerateForDiagram(diagramName: "LightSm2.drawio.svg");
+        GenerateForDiagram(diagramName: "LightSm2.drawio.svg", expectedOutputFileName: "LightSm2.sim.html");
     }
 
     [Fact]
     public void PlantEx1()
     {
-        GenerateForDiagram(diagramName: "PlantEx1.puml");
+        GenerateForDiagram(diagramName: "PlantEx1.puml", expectedOutputFileName: "PlantEx1.sim.html");
+    }
+    
+    /// <summary>
+    /// This test shows how a .csx file user can enable the simulation feature.
+    /// </summary>
+    [Fact]
+    public void SmRunner_PlantEx2()
+    {
+        string expectedOutputFilePath = diagramDirPath + "PlantEx2.sim.html";
+        DeleteIfFileExists(expectedOutputFilePath);
+
+        SmRunner smRunner = new(diagramPath: diagramDirPath + "PlantEx2.puml");
+        smRunner.Settings.simulation.enableGeneration = true;
+        smRunner.Settings.propagateExceptions = true;   // just for testing here
+        smRunner.Run();
+
+        AssertFileExists(expectedOutputFilePath);
     }
 
-    private void GenerateForDiagram(string diagramName)
+    private static void DeleteIfFileExists(string expectedOutputFile)
     {
-        SimWebGenerator generator = new(diagramPath: diagramDirPath + diagramName, outputDir: diagramDirPath);
+        if (File.Exists(expectedOutputFile))
+        {
+            File.Delete(expectedOutputFile);
+        }
+    }
+
+    private void GenerateForDiagram(string diagramName, string expectedOutputFileName)
+    {
+        string expectedOutputFilePath = diagramDirPath + expectedOutputFileName;
+        DeleteIfFileExists(expectedOutputFilePath);
+
+        CodeFileWriter codeFileWriter = new(consolePrinter: new ConsolePrinter(), pathPrinter: new FilePathPrinter(diagramDirPath));
+        SimWebGenerator generator = new(codeFileWriter);
         generator.RunnerSettings.propagateExceptions = true;
         generator.RunnerSettings.outputStateSmithVersionInfo = false; // avoid git noise
-        generator.Generate();
+        generator.Generate(diagramPath: diagramDirPath + diagramName, outputDir: diagramDirPath);
+
+        AssertFileExists(expectedOutputFilePath);
+    }
+
+    private static void AssertFileExists(string filePath)
+    {
+        Assert.True(File.Exists(filePath), $"File does not exist: {filePath}");
     }
 }
