@@ -26,7 +26,7 @@ public class SmRunnerTest
     public void Test1()
     {
         var runner = new SmRunner(diagramPath: "SomeDiagram.drawio");
-        runner.Settings.diagramFile.Should().Be(ThisDir + dirSep + "SomeDiagram.drawio");
+        runner.Settings.DiagramPath.Should().Be(ThisDir + dirSep + "SomeDiagram.drawio");
         runner.Settings.outputDirectory.Should().Be(ThisDir + dirSep);
         runner.Settings.filePathPrintBase.Should().Be(ThisDir + dirSep);
     }

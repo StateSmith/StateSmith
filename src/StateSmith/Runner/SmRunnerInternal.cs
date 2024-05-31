@@ -90,7 +90,7 @@ public class SmRunnerInternal
             return inputSmBuilder.GetStateMachine();
         }
 
-        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
+        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.DiagramPath);
 
         if (settings.stateMachineName != null)
         {
@@ -113,7 +113,7 @@ public class SmRunnerInternal
             return;
         }
 
-        var errorDetailFilePath = settings.diagramFile + ".err.txt";
+        var errorDetailFilePath = settings.DiagramPath + ".err.txt";
         errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
         exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
         consolePrinter.WriteErrorLine("Additional exception detail dumped to file: " + errorDetailFilePath);
@@ -121,7 +121,7 @@ public class SmRunnerInternal
 
     private void OutputCompilingDiagramMessage()
     {
-        string filePath = settings.diagramFile;
+        string filePath = settings.DiagramPath;
         filePath = filePathPrinter.PrintPath(filePath);
 
         consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
@@ -143,9 +143,9 @@ public class SmRunnerInternal
     public static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
     {
         var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
-        settings.diagramFile = PathUtils.EnsurePathAbsolute(settings.diagramFile, relativeDirectory);
+        settings.DiagramPath = PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
         
-        settings.outputDirectory ??= Path.GetDirectoryName(settings.diagramFile).ThrowIfNull();
+        settings.outputDirectory ??= Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
         settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
 
         settings.filePathPrintBase ??= relativeDirectory;
