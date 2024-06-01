@@ -138,7 +138,7 @@ state MENU {
         state ESC_CATCHER_1 {
                 DRINK_MENU
                 DRINK_MENU : DRINK_MENU
-                DRINK_MENU : enter / #123; MenuHeader("Coffee System Offline")#59;#92;nMenuOption("Activate self destruct?")#59; #125;
+                DRINK_MENU : enter / #123; MenuHeader("Coffee System Offline")#59;\nMenuOption("Activate self destruct?")#59; #125;
                 state FOOD_MENU {
                         EAT_BURRITO
                         EAT_BURRITO : EAT_BURRITO
@@ -159,7 +159,7 @@ state MENU {
                                 COOKING_FOOD1 : enter / #123; MenuOption("Gross...")#59; #125;
                                 COOKING_FOOD
                                 COOKING_FOOD : COOKING_FOOD
-                                COOKING_FOOD : enter / #123; t1Restart()#59;#92;nMenuHeader("Cooking Food")#59;#92;nMenuOption("...")#59; #125;
+                                COOKING_FOOD : enter / #123; t1Restart()#59;\nMenuHeader("Cooking Food")#59;\nMenuOption("...")#59; #125;
                         }
                 }
                 state SYSTEM_INFO_MENU {
@@ -172,7 +172,7 @@ state MENU {
                         DISTANCE : (UP, PG_UP) / #123; Beep()#59; #125;
                         SELF_DESTRUCT_OPTION
                         SELF_DESTRUCT_OPTION : SELF_DESTRUCT_OPTION
-                        SELF_DESTRUCT_OPTION : enter / #123; count = 0#59;#92;nMenuOption("Self Destruct?")#59; #125;
+                        SELF_DESTRUCT_OPTION : enter / #123; count = 0#59;\nMenuOption("Self Destruct?")#59; #125;
                         SELF_DESTRUCT_OPTION : 1. RIGHT / #123; count++#59; Beep()#59; #125;
                         SELF_DESTRUCT_OPTION : (DOWN, PG_DOWN) / #123; Beep()#59; #125;
                         $PARENT_ALIAS

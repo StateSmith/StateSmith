@@ -12,10 +12,21 @@ class MermaidGenerator : IVertexVisitor
     int indentLevel = 0;
     StringBuilder sb = new();
     MermaidEdgeTracker mermaidEdgeTracker;
+    BehaviorDescriber behaviorDescriber;
+
+    /// <summary>
+    /// We print this as a replacement for newlines in behavior descriptions,
+    /// then the mermaid special characters are escaped, and finally we replace
+    /// this token with a newline character in the final output.
+    /// Without this, new lines in user action code end up as `#92;n` instead of `\n` in the mermaid output.
+    /// </summary>
+    const string LINE_BREAK_TOKEN = "__LINE_BREAK__";
 
     public MermaidGenerator(MermaidEdgeTracker edgeOrderTracker)
     {
         this.mermaidEdgeTracker = edgeOrderTracker;
+        behaviorDescriber = new(singleLineFormat: true, newLine: LINE_BREAK_TOKEN);
+        behaviorDescriber.describeTransition = false; // we don't want `TransitionTo(state)` printed in mermaid labels
     }
 
     public void RenderAll(StateMachine sm)
@@ -65,9 +76,8 @@ class MermaidGenerator : IVertexVisitor
         AppendLn($"{name} : {name}");
         foreach (var b in v.Behaviors.Where(b => b.TransitionTarget == null))
         {
-            string text = b.ToString();
-            text = MermaidEscape(text);
-            AppendLn($"{name} : {text}");
+            string behaviorText = BehaviorToMermaidLabel(b);
+            AppendLn($"{name} : {behaviorText}");
         }
     }
 
@@ -127,12 +137,10 @@ class MermaidGenerator : IVertexVisitor
             {
                 if (behavior.TransitionTarget != null)
                 {
-                    var behaviorText = behavior.ToString();
-                    behaviorText = Regex.Replace(behaviorText, @"\s*TransitionTo[(].*[)]", ""); // bit of a hack to remove the `TransitionTo(SOME_STATE)` text
-                    behaviorText = MermaidEscape(behaviorText);
                     sb.Append($"{vertexDiagramId} --> {MakeVertexDiagramId(behavior.TransitionTarget)}");
-                    
+
                     // only append edge label if behavior text is not empty to avoid Mermaid parse errors
+                    string behaviorText = BehaviorToMermaidLabel(behavior);
                     if (!string.IsNullOrWhiteSpace(behaviorText))
                     {
                         sb.Append($" : {behaviorText}");
@@ -143,6 +151,14 @@ class MermaidGenerator : IVertexVisitor
                 }
             }
         });
+    }
+
+    public string BehaviorToMermaidLabel(Behavior behavior)
+    {
+        var behaviorText = behaviorDescriber.Describe(behavior);
+        behaviorText = MermaidEscape(behaviorText);
+        behaviorText = behaviorText.Replace(LINE_BREAK_TOKEN, "\\n");
+        return behaviorText;
     }
 
     public static string MakeVertexDiagramId(Vertex v)

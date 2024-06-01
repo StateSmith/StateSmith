@@ -1,19 +1,22 @@
 #nullable enable
 
 using StateSmith.Output;
-using System.Text.RegularExpressions;
 
 namespace StateSmith.SmGraph;
 
 public class BehaviorDescriber
 {
-    readonly bool _singleLineFormat;
-    readonly string indent = "";
+    public bool describeTransition = true;
 
-    public BehaviorDescriber(bool singleLineFormat = false, string indent = "")
+    readonly string _newLine;
+    readonly bool _singleLineFormat;
+    readonly string _indent = "";
+
+    public BehaviorDescriber(bool singleLineFormat = false, string indent = "", string newLine = "\\n")
     {
         _singleLineFormat = singleLineFormat;
-        this.indent = indent;
+        _indent = indent;
+        _newLine = newLine;
     }
 
     public string Describe(Behavior b)
@@ -69,14 +72,14 @@ public class BehaviorDescriber
             joiner = " ";
         }
 
-        if (b.TransitionTarget != null)
+        if (describeTransition && b.TransitionTarget != null)
         {
             result += joiner + "TransitionTo(" + Vertex.Describe(b.TransitionTarget) + ")";
         }
 
-        if (indent != "")
+        if (_indent != "")
         {
-            result = StringUtils.Indent(result, indent);
+            result = StringUtils.Indent(result, _indent);
         }
 
         return result;
@@ -86,7 +89,7 @@ public class BehaviorDescriber
     {
         if (_singleLineFormat)
         {
-            return MakeSingleLineCode(b.actionCode);
+            return MakeSingleLineCode(b.actionCode, newLine: _newLine);
         }
         else
         {
@@ -98,7 +101,7 @@ public class BehaviorDescriber
     {
         if (_singleLineFormat)
         {
-            return MakeSingleLineCode(b.guardCode);
+            return MakeSingleLineCode(b.guardCode, newLine: _newLine);
         }
         else
         {
@@ -106,9 +109,9 @@ public class BehaviorDescriber
         }
     }
 
-    public static string MakeSingleLineCode(string str)
+    public static string MakeSingleLineCode(string str, string newLine = "\\n")
     {
-        str = StringUtils.ReplaceNewLineChars(str.Trim(), @"\n");
+        str = StringUtils.ReplaceNewLineChars(str.Trim(), newLine);
         return str;
     }
 }
