@@ -157,11 +157,9 @@ public class HtmlRenderer
         z-index: 1;
       }
 
-      .dropdown-content a {
-        color: black;
+      .dropdown-content .dropdown-item {
         padding: 12px 16px;
-        text-decoration: none;
-        display: block;
+        font-weight: normal;
       }
 
       .dropdown a:hover {background-color: #ddd;}
@@ -188,7 +186,10 @@ public class HtmlRenderer
             <div class='dropdown'>
               <button id='dropbtn' class='titlebar-icon dropbtn'>settings</button>
               <div id='myDropdown' class='dropdown-content'>
-                <a href='#home'>Display timestamps</a>
+                <div class='dropdown-item'>
+                  <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
+                  <label for=timestamps'>Timestamps</label>
+                </div>
               </div>
             </div>            
             </div>
