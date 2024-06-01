@@ -27,6 +27,7 @@ public class HtmlRenderer
       body {
         display: flex;
         flex-direction: row;
+        margin: 0px;
       }
 
       .wrapper {
@@ -51,13 +52,13 @@ public class HtmlRenderer
       }
 
       .main {
-        width: 100%;
+        flex: 1;
         overflow: auto;
         padding: 10px;
       }
 
       .sidebar {
-        flex: 1;
+        width: 300px;
         position: relative;
         background-color: #f0f0f0;
         border-left: 1px solid #ccc;
@@ -94,11 +95,20 @@ public class HtmlRenderer
       .console tbody {
         display: flex;
         flex-direction: column-reverse;
+        font-family: monospace;
       }
 
       .console td {
         border-bottom: 1px solid #ccc;
         padding: 5px;
+      }
+  
+      .console td.timestamp {
+        font-size: small;
+      }
+
+      .console td.emphasis {
+        font-weight: bold;
       }
 
       .history {
@@ -126,18 +136,12 @@ public class HtmlRenderer
 
     <div class=""pane sidebar"">
         <div id=""buttons"">
-            <div class=""titlebar"">Actions</div>
+            <div class=""titlebar"">Events</div>
         </div>
 
         <div class=""history"">
-            <div class=""titlebar"">History</div>
+            <div class=""titlebar"">Log</div>
             <table class=""console"">
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Event</th>
-                </tr>
-            </thead>
             <tbody>
             </tbody>
             </table>
@@ -179,11 +183,11 @@ public class HtmlRenderer
           window.addEventListener('mousemove', mousemove);
           window.addEventListener('mouseup', mouseup);          
           let prevX = e.x;
-          const leftPanel = leftPane.getBoundingClientRect();
+          const rightPanel = rightPane.getBoundingClientRect();
                     
           function mousemove(e) {
             let newX = prevX - e.x;
-            leftPane.style.width = leftPanel.width - newX + ""px"";
+            rightPane.style.width = rightPanel.width + newX + 'px';
             window.panZoom.resize();
             window.panZoom.fit();
             window.panZoom.center();
@@ -209,12 +213,16 @@ public class HtmlRenderer
         }
 
         // Add a row to the history table.
-        function addHistoryRow(time, event) {
+        function addHistoryRow(time, event, emphasis = false) {
             var row = document.createElement('tr');
             var timeCell = document.createElement('td');
             timeCell.innerText = formatTime(time);
+            timeCell.classList.add('timestamp');
             var eventCell = document.createElement('td');
             eventCell.innerText = event;
+            if(emphasis) {
+                eventCell.classList.add('emphasis');                
+            }
             row.appendChild(timeCell);
             row.appendChild(eventCell);
             document.querySelector('tbody').appendChild(row);
@@ -266,8 +274,8 @@ public class HtmlRenderer
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
             },
-            log: (message) => {
-                addHistoryRow(new Date(), message);
+            log: (message, emphasis=false) => {
+                addHistoryRow(new Date(), message, emphasis);
             }
         };
 
@@ -278,7 +286,7 @@ public class HtmlRenderer
             button.innerText = eventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
-                sm.tracer.log(""Dispatched "" + eventName);
+                sm.tracer.log(""Dispatched "" + eventName, true);
                 sm.dispatchEvent({{smName}}.EventId[eventName]); 
             });
             document.getElementById('buttons').appendChild(button);
