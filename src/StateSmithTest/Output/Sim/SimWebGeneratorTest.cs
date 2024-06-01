@@ -53,6 +53,13 @@ public class SimWebGenerator_IntegrationTests
         AssertFileExists(expectedOutputFilePath);
     }
 
+    [Fact]
+    public void SpaceControlUiSm()
+    {
+        GenerateForDiagram(diagramName: "SpaceControlUiSm.drawio", expectedOutputFileName: "SpaceControlUiSm.sim.html");
+    }
+    
+
     private static void DeleteIfFileExists(string expectedOutputFile)
     {
         if (File.Exists(expectedOutputFile))
