@@ -46,7 +46,6 @@ public class HtmlRenderer
         font-family: 'Material Symbols Outlined', sans-serif;
         font-size: 16px;
         color: #777;
-        margin-left: auto;
         border-radius: 5px;
       }
 
@@ -157,6 +156,7 @@ public class HtmlRenderer
       .dropdown {
         position: relative;
         display: inline-block;
+        margin-left: auto;
       }
 
       .dropdown-content {
