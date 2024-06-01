@@ -93,6 +93,13 @@ public class HtmlRenderer
         width: 100%;
       }
 
+      table.console td.timestamp {
+      }
+
+      table.console.timestamps td.timestamp {
+        display: none;
+      }
+
       .console th {
         background-color: #f0f0f0;
         border-bottom: 1px solid #ccc;
@@ -193,7 +200,7 @@ public class HtmlRenderer
               </div>
             </div>            
             </div>
-            <table class=""console"">
+            <table class=""console timestamps"">
             <tbody>
             </tbody>
             </table>
@@ -254,13 +261,15 @@ public class HtmlRenderer
 
         gutter.addEventListener('mousedown', resizer);
 
+        document.getElementById('timestamps').checked = document.querySelector('table.console').classList.contains('timestamps');
         document.getElementById('timestamps').addEventListener('change', function() {
-          const showTimestamps = this.checked;
-          const timestamps = document.querySelectorAll('.timestamp');
-          for (const timestamp of timestamps) {
-            timestamp.style.display = showTimestamps ? 'table-cell' : 'none';
+          if(this.checked) {
+            document.querySelector('table.console').classList.add('timestamps');
+          } else {
+            document.querySelector('table.console').classList.remove('timestamps');
           }
         });
+
         document.getElementById('dropbtn').addEventListener('click', myFunction);
 
         /* When the user clicks on the button, 
