@@ -62,6 +62,8 @@ public class SmRunnerInternal
 
             if (settings.simulation.enableGeneration)
             {
+                simWebGenerator.RunnerSettings.propagateExceptions = settings.propagateExceptions;
+                simWebGenerator.RunnerSettings.outputStateSmithVersionInfo = settings.outputStateSmithVersionInfo;
                 simWebGenerator.Generate(diagramPath: settings.DiagramPath, outputDir: settings.simulation.outputDirectory.ThrowIfNull());
             }
 

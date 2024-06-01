@@ -47,6 +47,7 @@ public class SimWebGenerator_IntegrationTests
         SmRunner smRunner = new(diagramPath: diagramDirPath + "PlantEx2.puml");
         smRunner.Settings.simulation.enableGeneration = true;
         smRunner.Settings.propagateExceptions = true;   // just for testing here
+        smRunner.Settings.outputStateSmithVersionInfo = false; // avoid git noise
         smRunner.Run();
 
         AssertFileExists(expectedOutputFilePath);
