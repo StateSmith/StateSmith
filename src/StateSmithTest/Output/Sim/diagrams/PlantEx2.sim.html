@@ -129,15 +129,15 @@ state NotShooting {
                 }
         }
 }
-ROOT.(InitialState) --> NotShooting : 
-NotShooting.(InitialState) --> Idle : 
+ROOT.(InitialState) --> NotShooting
+NotShooting.(InitialState) --> Idle
 Idle --> Configuring : EvConfig
 Configuring --> Idle : EvConfig
-Configuring.(InitialState) --> NewValueSelection : 
+Configuring.(InitialState) --> NewValueSelection
 NewValueSelection --> NewValuePreview : EvNewValue
 NewValuePreview --> NewValueSelection : EvNewValueRejected
 NewValuePreview --> NewValueSelection : EvNewValueSaved
-NewValuePreview.(InitialState) --> State1 : 
+NewValuePreview.(InitialState) --> State1
 State1 --> State2 : Ev2
 
 

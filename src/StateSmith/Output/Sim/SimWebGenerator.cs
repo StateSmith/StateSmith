@@ -118,12 +118,12 @@ public class SimWebGenerator
             if (behavior.actionCode.Contains("$gil("))
             {
                 // keep actual code
-                behavior.actionCode += $"this.tracer.log(\"Executed action: \" + {EscapeFsmCode(behavior.actionCode)});";
+                behavior.actionCode += $"this.tracer.log(\"Executed action: \" + {FsmCodeToJsString(behavior.actionCode)});";
             }
             else
             {
                 // we don't want to execute the action, just log it.
-                behavior.actionCode = $"this.tracer.log(\"FSM would execute action: \" + {EscapeFsmCode(behavior.actionCode)});";
+                behavior.actionCode = $"this.tracer.log(\"FSM would execute action: \" + {FsmCodeToJsString(behavior.actionCode)});";
             }
         }
 
@@ -132,7 +132,7 @@ public class SimWebGenerator
             if (behavior.HasGuardCode())
             {
                 // we want the history vertex to work as is without prompting the user to evaluate those guards.
-                var logCode = $"this.tracer.log(\"History state evaluating guard: \" + {EscapeFsmCode(behavior.guardCode)})";
+                var logCode = $"this.tracer.log(\"History state evaluating guard: \" + {FsmCodeToJsString(behavior.guardCode)})";
                 var actualCode = behavior.guardCode;
                 behavior.guardCode = $"{logCode} || {actualCode}";
             }
@@ -145,16 +145,17 @@ public class SimWebGenerator
         {
             if (behavior.HasGuardCode())
             {
-                var logCode = $"this.tracer.log(\"User evaluating guard: \" + {EscapeFsmCode(behavior.guardCode)})";
-                var confirmCode = $"this.evaluateGuard({EscapeFsmCode(behavior.guardCode)})";
+                var logCode = $"this.tracer.log(\"User evaluating guard: \" + {FsmCodeToJsString(behavior.guardCode)})";
+                var confirmCode = $"this.evaluateGuard({FsmCodeToJsString(behavior.guardCode)})";
                 behavior.guardCode = $"{logCode} || {confirmCode}";
                 // NOTE! logCode doesn't return a value, so the confirm code will always be evaluated.
             }
         }
     }
 
-    string EscapeFsmCode(string code)
+    static string FsmCodeToJsString(string code)
     {
+        code = code.ReplaceLineEndings("\\n");  // need to escape newlines for fsm code that spans multiple lines
         return "\"" + code.Replace("\"", "\\\"") + "\"";
     }
 

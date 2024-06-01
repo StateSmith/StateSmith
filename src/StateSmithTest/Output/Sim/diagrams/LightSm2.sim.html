@@ -143,23 +143,23 @@ state "$initial_state" as ROOT.(InitialState)
 ORDER_MENU --> WAITING : EV3
 ORDER_MENU --> WAITING : via exit 1
 BEVERAGE --> FOOD : EV2
-BEVERAGE.(InitialState) --> WATER : 
+BEVERAGE.(InitialState) --> WATER
 WATER --> COFFEE : EV1
 COFFEE --> TEA : EV1
 TEA --> COFFEE : EV1
 TEA --> BEVERAGE.(InitialState) : EV2
 FOOD --> ORDER_MENU.(ChoicePoint)(bev_choice) : EV2
 FOOD --> ORDER_MENU.(ExitPoint)(1) : ESCAPE
-FOOD.(InitialState) --> JUNK : 
+FOOD.(InitialState) --> JUNK
 JUNK --> POTATO : EV1
 POTATO --> SUSHI : EV1
 SUSHI --> JUNK : EV1
-ORDER_MENU.(EntryPoint)(to_history) --> ORDER_MENU.(History) : 
-ORDER_MENU.(History) --> BEVERAGE : 
+ORDER_MENU.(EntryPoint)(to_history) --> ORDER_MENU.(History)
+ORDER_MENU.(History) --> BEVERAGE
 ORDER_MENU.(ChoicePoint)(bev_choice) --> TEA : [a > b]
 ORDER_MENU.(ChoicePoint)(bev_choice) --> BEVERAGE : else
 WAITING --> ORDER_MENU : EV3 via entry to_history
-ROOT.(InitialState) --> WAITING : 
+ROOT.(InitialState) --> WAITING
 
 
         </pre>

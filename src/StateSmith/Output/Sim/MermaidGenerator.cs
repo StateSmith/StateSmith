@@ -127,10 +127,18 @@ class MermaidGenerator : IVertexVisitor
             {
                 if (behavior.TransitionTarget != null)
                 {
-                    var text = behavior.ToString();
-                    text = Regex.Replace(text, @"\s*TransitionTo[(].*[)]", ""); // bit of a hack to remove the `TransitionTo(SOME_STATE)` text
-                    text = MermaidEscape(text);
-                    sb.AppendLine($"{vertexDiagramId} --> {MakeVertexDiagramId(behavior.TransitionTarget)} : {text}");
+                    var behaviorText = behavior.ToString();
+                    behaviorText = Regex.Replace(behaviorText, @"\s*TransitionTo[(].*[)]", ""); // bit of a hack to remove the `TransitionTo(SOME_STATE)` text
+                    behaviorText = MermaidEscape(behaviorText);
+                    sb.Append($"{vertexDiagramId} --> {MakeVertexDiagramId(behavior.TransitionTarget)}");
+                    
+                    // only append edge label if behavior text is not empty to avoid Mermaid parse errors
+                    if (!string.IsNullOrWhiteSpace(behaviorText))
+                    {
+                        sb.Append($" : {behaviorText}");
+                    }
+                    sb.AppendLine();
+
                     mermaidEdgeTracker.AddEdge(behavior);
                 }
             }
@@ -151,9 +159,9 @@ class MermaidGenerator : IVertexVisitor
 
     // TODO handle #
     // You can't naively add # to the list of characters because # and ; will interfere with each other
-    private string MermaidEscape(string text)
+    public static string MermaidEscape(string text)
     {
-        foreach (char c in ";\\{}".ToCharArray())
+        foreach (char c in ":;\\{}".ToCharArray())
         {
             text = text.Replace(c.ToString(), $"#{(int)c};");
         }

@@ -165,10 +165,10 @@ state MENU {
                 state SYSTEM_INFO_MENU {
                         BURRITO_COUNT
                         BURRITO_COUNT : BURRITO_COUNT
-                        BURRITO_COUNT : enter / #123; MenuOption("Burrito count: " + burritoCount)#59; #125;
+                        BURRITO_COUNT : enter / #123; MenuOption("Burrito count#58#59; " + burritoCount)#59; #125;
                         DISTANCE
                         DISTANCE : DISTANCE
-                        DISTANCE : enter / #123; MenuOption("Distance to Tau Ceti: " + distance)#59; #125;
+                        DISTANCE : enter / #123; MenuOption("Distance to Tau Ceti#58#59; " + distance)#59; #125;
                         DISTANCE : (UP, PG_UP) / #123; Beep()#59; #125;
                         SELF_DESTRUCT_OPTION
                         SELF_DESTRUCT_OPTION : SELF_DESTRUCT_OPTION
@@ -194,11 +194,11 @@ state MENU {
         }
         state "$initial_state" as MENU.(InitialState)
 }
-ROOT.(InitialState) --> SPLASH_SCREEN : 
+ROOT.(InitialState) --> SPLASH_SCREEN
 SPLASH_SCREEN --> MENU : RIGHT
 MENU --> DONE : ESC
 MAIN_MENU_INNER --> SYSTEM_INFO : PG_DOWN
-MAIN_MENU_INNER.(InitialState) --> FOOD : 
+MAIN_MENU_INNER.(InitialState) --> FOOD
 $PARENT_ALIAS --> FOOD : PG_UP
 DRINK --> SYSTEM_INFO : DOWN
 DRINK --> FOOD : UP
@@ -214,7 +214,7 @@ FOOD_MENU --> FOOD : LEFT
 FOOD_MENU --> FOOD : via exit food_selected
 EAT_BURRITO --> EAT_SLUDGE : DOWN
 EAT_BURRITO --> COOKING_FOOD : RIGHT / #123; burritoCount--#59; #125;
-FOOD_MENU.(InitialState) --> EAT_BURRITO : 
+FOOD_MENU.(InitialState) --> EAT_BURRITO
 EAT_SLUDGE --> EAT_MRE : DOWN
 EAT_SLUDGE --> EAT_BURRITO : UP
 EAT_SLUDGE --> COOKING_FOOD1 : RIGHT
@@ -231,10 +231,10 @@ SELF_DESTRUCT_OPTION --> SELF_DESTRUCT : RIGHT [count >= 5]
 $PARENT_ALIAS --> SELF_DESTRUCT_OPTION : PG_DOWN
 $PARENT_ALIAS --> DISTANCE : PG_UP
 SYSTEM_INFO_MENU.(InitialState) --> DISTANCE : / #123; MenuHeader("System Info")#59; #125;
-SYSTEM_INFO_MENU.(EntryPoint)(self_destruct) --> SELF_DESTRUCT : 
+SYSTEM_INFO_MENU.(EntryPoint)(self_destruct) --> SELF_DESTRUCT
 SD_1 --> SD_1 : [t1.Elapsed.Seconds >= 1]
-SELF_DESTRUCT.(InitialState) --> SD_1 : 
-MENU.(InitialState) --> MAIN_MENU_INNER : 
+SELF_DESTRUCT.(InitialState) --> SD_1
+MENU.(InitialState) --> MAIN_MENU_INNER
 
 
         </pre>
@@ -583,8 +583,7 @@ evaluateGuard = null;
         // uml: enter / { this.tracer.log("FSM would execute action: " + "MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");"); }
         {
             // Step 1: execute action `this.tracer.log("FSM would execute action: " + "MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");");`
-            this.tracer.log("FSM would execute action: " + "MenuHeader(\"Coffee System Offline\");
-            MenuOption(\"Activate self destruct?\");");
+            this.tracer.log("FSM would execute action: " + "MenuHeader(\"Coffee System Offline\");\nMenuOption(\"Activate self destruct?\");");
         } // end of behavior for DRINK_MENU
     }
     
@@ -1103,9 +1102,7 @@ evaluateGuard = null;
         // uml: enter / { this.tracer.log("FSM would execute action: " + "t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");"); }
         {
             // Step 1: execute action `this.tracer.log("FSM would execute action: " + "t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");");`
-            this.tracer.log("FSM would execute action: " + "t1Restart();
-            MenuHeader(\"Cooking Food\");
-            MenuOption(\"...\");");
+            this.tracer.log("FSM would execute action: " + "t1Restart();\nMenuHeader(\"Cooking Food\");\nMenuOption(\"...\");");
         } // end of behavior for COOKING_FOOD
     }
     
@@ -1722,8 +1719,7 @@ evaluateGuard = null;
         // uml: enter / { this.tracer.log("FSM would execute action: " + "count = 0;\nMenuOption(\"Self Destruct?\");"); }
         {
             // Step 1: execute action `this.tracer.log("FSM would execute action: " + "count = 0;\nMenuOption(\"Self Destruct?\");");`
-            this.tracer.log("FSM would execute action: " + "count = 0;
-            MenuOption(\"Self Destruct?\");");
+            this.tracer.log("FSM would execute action: " + "count = 0;\nMenuOption(\"Self Destruct?\");");
         } // end of behavior for SELF_DESTRUCT_OPTION
     }
     
