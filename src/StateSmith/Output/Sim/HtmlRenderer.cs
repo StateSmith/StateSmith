@@ -254,6 +254,13 @@ public class HtmlRenderer
 
         gutter.addEventListener('mousedown', resizer);
 
+        document.getElementById('timestamps').addEventListener('change', function() {
+          const showTimestamps = this.checked;
+          const timestamps = document.querySelectorAll('.timestamp');
+          for (const timestamp of timestamps) {
+            timestamp.style.display = showTimestamps ? 'table-cell' : 'none';
+          }
+        });
         document.getElementById('dropbtn').addEventListener('click', myFunction);
 
         /* When the user clicks on the button, 
