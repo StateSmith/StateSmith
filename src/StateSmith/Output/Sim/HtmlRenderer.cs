@@ -23,6 +23,7 @@ public class HtmlRenderer
   -->
 <html>
   <head>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined'>
     <style>
       body {
         display: flex;
@@ -39,6 +40,13 @@ public class HtmlRenderer
       .pane {
         padding: 1em;
         min-width: 200px;
+      }
+
+      .titlebar-icon {
+        font-family: 'Material Symbols Outlined', sans-serif;
+        font-size: 16px;
+        color: #777;
+        margin-left: auto;
       }
 
       .gutter {
@@ -76,6 +84,7 @@ public class HtmlRenderer
         border-bottom: 1px solid #ccc;
         font-weight: bold;
         padding: 5px;
+        display: flex;
       }
 
       .console {
@@ -140,7 +149,7 @@ public class HtmlRenderer
         </div>
 
         <div class=""history"">
-            <div class=""titlebar"">Log</div>
+            <div class=""titlebar"">Log <span class='titlebar-icon'>settings</span></div>
             <table class=""console"">
             <tbody>
             </tbody>
