@@ -94,10 +94,11 @@ public class HtmlRenderer
       }
 
       table.console td.timestamp {
+        display: none;
       }
 
       table.console.timestamps td.timestamp {
-        display: none;
+        display: table-cell;
       }
 
       .console th {
@@ -200,7 +201,7 @@ public class HtmlRenderer
               </div>
             </div>            
             </div>
-            <table class=""console timestamps"">
+            <table class=""console"">
             <tbody>
             </tbody>
             </table>
