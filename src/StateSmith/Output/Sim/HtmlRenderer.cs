@@ -27,6 +27,7 @@ public class HtmlRenderer
       body {
         display: flex;
         flex-direction: row;
+        margin: 0px;
       }
 
       .wrapper {
