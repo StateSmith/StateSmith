@@ -129,17 +129,13 @@
         border-bottom: none;
       }
 
-      button {
-        margin: 5px;
-      }
-
       .dropbtn {
         border: none;
         cursor: pointer;
       }
 
       .dropbtn:hover, .dropbtn:focus {
-        background-color: #2980B9;
+        background-color: #f1f1f1;
       }
 
       .dropdown {
@@ -161,8 +157,6 @@
         padding: 12px 16px;
         font-weight: normal;
       }
-
-      .dropdown a:hover {background-color: #ddd;}
 
       .show {display: block;}
     </style>
@@ -311,7 +305,7 @@ MENU.(InitialState) --> MAIN_MENU_INNER
         <div class="history">
             <div class="titlebar">Log
             <div class='dropdown'>
-              <button id='dropbtn' class='titlebar-icon dropbtn'>settings</button>
+              <span id='dropbtn' class='titlebar-icon dropbtn'>settings</span>
               <div id='myDropdown' class='dropdown-content'>
                 <div class='dropdown-item'>
                   <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>

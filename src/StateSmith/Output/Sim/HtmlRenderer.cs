@@ -150,7 +150,7 @@ public class HtmlRenderer
       }
 
       .dropbtn:hover, .dropbtn:focus {
-        background-color: #2980B9;
+        background-color: #f1f1f1;
       }
 
       .dropdown {
@@ -173,8 +173,6 @@ public class HtmlRenderer
         font-weight: normal;
       }
 
-      .dropdown a:hover {background-color: #ddd;}
-
       .show {display: block;}
     </style>
   </head>
@@ -195,7 +193,7 @@ public class HtmlRenderer
         <div class=""history"">
             <div class=""titlebar"">Log
             <div class='dropdown'>
-              <button id='dropbtn' class='titlebar-icon dropbtn'>settings</button>
+              <span id='dropbtn' class='titlebar-icon dropbtn'>settings</span>
               <div id='myDropdown' class='dropdown-content'>
                 <div class='dropdown-item'>
                   <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
