@@ -29,9 +29,11 @@ Test/interim releases are not documented here.
 
 ---
 
-## WIP
+## [0.10.0-alpha]
 ### Added
-- Added simulation generation support that can be enabled. See https://github.com/StateSmith/StateSmith/issues/281
+- Added ability to generate web based simulator.
+  - https://github.com/StateSmith/StateSmith/issues/292
+  - Simulator is very new and experimental. Feedback welcome.
 
 ### Changed (minor)
 - deprecate `RunnerSettings.diagramFile` and add `RunnerSettings.DiagramPath` as alternative.
