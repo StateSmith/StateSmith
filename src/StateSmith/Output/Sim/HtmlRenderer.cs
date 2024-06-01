@@ -47,6 +47,7 @@ public class HtmlRenderer
         font-size: 16px;
         color: #777;
         margin-left: auto;
+        border-radius: 5px;
       }
 
       .gutter {
