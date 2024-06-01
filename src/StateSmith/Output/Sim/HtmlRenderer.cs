@@ -115,8 +115,11 @@ public class HtmlRenderer
         font-family: monospace;
       }
 
-      .console td {
+      .console tr {
         border-bottom: 1px solid #ccc;
+      }
+
+      .console td {
         padding: 5px;
       }
   
