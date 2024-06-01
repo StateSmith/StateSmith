@@ -94,11 +94,20 @@ public class HtmlRenderer
       .console tbody {
         display: flex;
         flex-direction: column-reverse;
+        font-family: monospace;
       }
 
       .console td {
         border-bottom: 1px solid #ccc;
         padding: 5px;
+      }
+  
+      .console td.timestamp {
+        font-size: small;
+      }
+
+      .console td.emphasis {
+        font-weight: bold;
       }
 
       .history {
@@ -126,18 +135,12 @@ public class HtmlRenderer
 
     <div class=""pane sidebar"">
         <div id=""buttons"">
-            <div class=""titlebar"">Actions</div>
+            <div class=""titlebar"">Events</div>
         </div>
 
         <div class=""history"">
-            <div class=""titlebar"">History</div>
+            <div class=""titlebar"">Log</div>
             <table class=""console"">
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Event</th>
-                </tr>
-            </thead>
             <tbody>
             </tbody>
             </table>
@@ -209,12 +212,16 @@ public class HtmlRenderer
         }
 
         // Add a row to the history table.
-        function addHistoryRow(time, event) {
+        function addHistoryRow(time, event, emphasis = false) {
             var row = document.createElement('tr');
             var timeCell = document.createElement('td');
             timeCell.innerText = formatTime(time);
+            timeCell.classList.add('timestamp');
             var eventCell = document.createElement('td');
             eventCell.innerText = event;
+            if(emphasis) {
+                eventCell.classList.add('emphasis');                
+            }
             row.appendChild(timeCell);
             row.appendChild(eventCell);
             document.querySelector('tbody').appendChild(row);
@@ -266,8 +273,8 @@ public class HtmlRenderer
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
             },
-            log: (message) => {
-                addHistoryRow(new Date(), message);
+            log: (message, emphasis=false) => {
+                addHistoryRow(new Date(), message, emphasis);
             }
         };
 
@@ -278,7 +285,7 @@ public class HtmlRenderer
             button.innerText = eventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
-                sm.tracer.log(""Dispatched "" + eventName);
+                sm.tracer.log(""Dispatched "" + eventName, true);
                 sm.dispatchEvent({{smName}}.EventId[eventName]); 
             });
             document.getElementById('buttons').appendChild(button);
