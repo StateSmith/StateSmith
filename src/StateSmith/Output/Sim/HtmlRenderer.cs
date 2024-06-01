@@ -162,6 +162,7 @@ public class HtmlRenderer
       .dropdown-content {
         display: none;
         position: absolute;
+        right: 0;
         background-color: #f1f1f1;
         min-width: 160px;
         overflow: auto;
