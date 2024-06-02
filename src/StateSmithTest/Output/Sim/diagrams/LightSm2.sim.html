@@ -230,25 +230,24 @@ ROOT.(InitialState) --> WAITING
 
     <div class="pane sidebar">
         <div id="buttons">
-            <div class="titlebar">Events</div>
+            <div class="titlebar">Events            
+              <div class='dropdown'>
+                <span id='dropbtn' class='titlebar-icon dropbtn'>settings</span>
+                <div id='myDropdown' class='dropdown-content'>
+                  <div class='dropdown-item'>
+                    <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
+                    <label for=timestamps'>Timestamps</label>
+                  </div>
+                </div>
+              </div>            
+          </div>
         </div>
 
         <div class="history">
-            <div class="titlebar">Log
-            <div class='dropdown'>
-              <span id='dropbtn' class='titlebar-icon dropbtn'>settings</span>
-              <div id='myDropdown' class='dropdown-content'>
-                <div class='dropdown-item'>
-                  <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
-                  <label for=timestamps'>Timestamps</label>
-                </div>
-              </div>
-            </div>            
-            </div>
-            <table class="console">
-              <tbody>
-              </tbody>
-            </table>
+          <table class="console">
+            <tbody>
+            </tbody>
+          </table>
         </div>
 
         <div class="gutter"></div>
