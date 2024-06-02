@@ -132,7 +132,7 @@ public class HtmlRenderer
       .history {
         margin-top: 30px;       
         display: flex;
-        overflow: scroll;    
+        overflow: auto;    
         flex-direction: column-reverse;
       }
 
