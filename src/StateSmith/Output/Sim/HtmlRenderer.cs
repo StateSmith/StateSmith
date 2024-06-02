@@ -23,6 +23,7 @@ public class HtmlRenderer
   -->
 <html>
   <head>
+    <link rel='icon' type='image/png' href='https://statesmith.github.io/favicon.png'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined'>
     <style>
       body {
