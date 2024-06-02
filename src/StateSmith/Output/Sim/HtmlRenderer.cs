@@ -110,8 +110,6 @@ public class HtmlRenderer
       }
 
       .console tbody {
-        display: flex;
-        flex-direction: column-reverse;
         font-family: monospace;
       }
 
@@ -132,8 +130,10 @@ public class HtmlRenderer
       }
 
       .history {
-        margin-top: 30px;
+        margin-top: 30px;       
+        display: flex;
         overflow: scroll;    
+        flex-direction: column-reverse;
       }
 
       .console tr:last-child td {
@@ -205,8 +205,8 @@ public class HtmlRenderer
             </div>            
             </div>
             <table class=""console"">
-            <tbody>
-            </tbody>
+              <tbody>
+              </tbody>
             </table>
         </div>
 

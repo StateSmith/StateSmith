@@ -99,8 +99,6 @@
       }
 
       .console tbody {
-        display: flex;
-        flex-direction: column-reverse;
         font-family: monospace;
       }
 
@@ -121,8 +119,10 @@
       }
 
       .history {
-        margin-top: 30px;
+        margin-top: 30px;       
+        display: flex;
         overflow: scroll;    
+        flex-direction: column-reverse;
       }
 
       .console tr:last-child td {
@@ -321,8 +321,8 @@ MENU.(InitialState) --> MAIN_MENU_INNER
             </div>            
             </div>
             <table class="console">
-            <tbody>
-            </tbody>
+              <tbody>
+              </tbody>
             </table>
         </div>
 
