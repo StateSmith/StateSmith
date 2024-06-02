@@ -67,6 +67,7 @@ public class HtmlRenderer
 
       .sidebar {
         width: 300px;
+        padding-top: 0px;
         position: relative;
         background-color: #f0f0f0;
         border-left: 1px solid #ccc;
