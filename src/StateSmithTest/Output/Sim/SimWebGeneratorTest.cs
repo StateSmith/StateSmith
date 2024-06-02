@@ -58,6 +58,12 @@ public class SimWebGenerator_IntegrationTests
         GenerateForDiagram(diagramName: "SpaceControlUiSm.drawio", expectedOutputFileName: "SpaceControlUiSm.sim.html");
     }
     
+    [Fact]
+    public void BeadSorterSim()
+    {
+        GenerateForDiagram(diagramName: "BeadSorter.drawio.svg", expectedOutputFileName: "BeadSorter.sim.html");
+    }
+    
 
     private static void DeleteIfFileExists(string expectedOutputFile)
     {
