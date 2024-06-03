@@ -41,8 +41,8 @@ public class SimWebGenerator
 
         // Note! For `MermaidEdgeTracker` to function correctly, both below transformations must occur in the same `SmRunner`.
         // This allows us to easily map an SS behavior to its corresponding mermaid edge ID.
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_RemoveNotesVertices, new TransformationStep(id: "some string id", GenerateMermaidCode));
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, new TransformationStep(id: "my custom step blah", V1LoggingTransformationStep));
+        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_RemoveNotesVertices, GenerateMermaidCode);
+        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
         stateMachineProvider = simDiServiceProvider.GetInstanceOf<StateMachineProvider>();
     }
 
