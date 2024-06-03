@@ -196,7 +196,7 @@ public class HtmlRenderer
                 <div id='myDropdown' class='dropdown-content'>
                   <div class='dropdown-item'>
                     <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
-                    <label for=timestamps'>Timestamps</label>
+                    <label for='timestamps'>Timestamps</label>
                   </div>
                 </div>
               </div>            
