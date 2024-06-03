@@ -68,6 +68,11 @@ public class SmTransformer
         transformationPipeline.Insert(index, step);
     }
 
+    public int GetMatchIndex(Enum id)
+    {
+        return GetMatchIndex(id.ToString());
+    }
+
     public int GetMatchIndex(string id)
     {
         int index = transformationPipeline.FindIndex(s => s.Id == id);

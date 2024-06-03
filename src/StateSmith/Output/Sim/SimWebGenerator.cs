@@ -4,6 +4,7 @@ using StateSmith.Input.Expansions;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using System;
 using System.IO;
 using System.Text;
 
@@ -39,11 +40,27 @@ public class SimWebGenerator
         simDiServiceProvider.AddSingletonT<ICodeFileWriter>(fileCapturer);
         simDiServiceProvider.AddSingletonT<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded
 
+        AdjustTransformationPipeline();
+        stateMachineProvider = simDiServiceProvider.GetInstanceOf<StateMachineProvider>();
+    }
+
+    private void AdjustTransformationPipeline()
+    {
         // Note! For `MermaidEdgeTracker` to function correctly, both below transformations must occur in the same `SmRunner`.
         // This allows us to easily map an SS behavior to its corresponding mermaid edge ID.
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, GenerateMermaidCode);
+
+        const string GenMermaidCodeStepId = "gen-mermaid-code";
+        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
-        stateMachineProvider = simDiServiceProvider.GetInstanceOf<StateMachineProvider>();
+
+        // We to generate mermaid  history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
+        // See https://github.com/StateSmith/StateSmith/issues/302
+        // Validate that this is true.
+        int historyIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_SupportHistory);
+        int nameConflictIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_NameConflictResolution);
+        int mermaidIndex = runner.SmTransformer.GetMatchIndex(GenMermaidCodeStepId);
+        if (mermaidIndex <= nameConflictIndex || mermaidIndex >= historyIndex)
+            throw new Exception("Mermaid generation must occur after name conflict resolution and before history support.");
     }
 
     public void Generate(string diagramPath, string outputDir)
