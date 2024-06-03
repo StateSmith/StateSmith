@@ -2,7 +2,6 @@ using StateSmith.Common;
 using StateSmith.Output;
 using StateSmith.Output.Sim;
 using StateSmith.Runner;
-using System;
 using System.IO;
 using Xunit;
 
