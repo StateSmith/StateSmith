@@ -2,15 +2,22 @@
 
 using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
+using System;
 
 namespace StateSmith.Runner;
 
 public class RunnerSettings
 {
     /// <summary>
-    /// todo_low rename to diagramPath to better reflect its purpose.
+    /// This is actually the path to the diagram file. This field will be removed in a future release.
+    /// See <see cref="DiagramPath"/> instead.
     /// </summary>
+    /// TODO_LOW remove field https://github.com/StateSmith/StateSmith/issues/296
+    [Obsolete($"Use {nameof(DiagramPath)} instead. This field will be removed in a future release.")]
     public string diagramFile;
+    #pragma warning disable CS0618 // Type or member is obsolete
+    public string DiagramPath { get => diagramFile; set => diagramFile = value;}
+    #pragma warning restore CS0618 // Type or member is obsolete
 
     public string? outputDirectory;
 
@@ -100,9 +107,17 @@ public class RunnerSettings
     /// </summary>
     public NameConflictResolution nameConflictResolution = NameConflictResolution.ShortFqnAncestor;
 
+    /// <summary>
+    /// See https://github.com/StateSmith/StateSmith/issues/281
+    /// </summary>
+    public SimulationSettings simulation = new();
+
     public RunnerSettings(string diagramFile, string? outputDirectory = null, AlgorithmId algorithmId = default, TranspilerId transpilerId = default)
     {
+        #pragma warning disable CS0618 // Type or member is obsolete
         this.diagramFile = diagramFile;
+        #pragma warning restore CS0618 // Type or member is obsolete
+
         this.outputDirectory = outputDirectory;
         this.algorithmId = algorithmId;
         this.transpilerId = transpilerId;

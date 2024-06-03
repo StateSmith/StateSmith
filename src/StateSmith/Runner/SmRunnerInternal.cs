@@ -6,6 +6,7 @@ using StateSmith.Common;
 using StateSmith.SmGraph;
 using System.Globalization;
 using System.Threading;
+using StateSmith.Output.Sim;
 
 namespace StateSmith.Runner;
 
@@ -24,8 +25,9 @@ public class SmRunnerInternal
     readonly FilePathPrinter filePathPrinter;
     readonly SmDesignDescriber smDesignDescriber;
     readonly OutputInfo outputInfo;
+    readonly SimWebGenerator simWebGenerator;
 
-    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo)
+    public SmRunnerInternal(InputSmBuilder inputSmBuilder, RunnerSettings settings, ICodeGenRunner codeGenRunner, ExceptionPrinter exceptionPrinter, IConsolePrinter consolePrinter, FilePathPrinter filePathPrinter, SmDesignDescriber smDesignDescriber, OutputInfo outputInfo, SimWebGenerator simWebGenerator)
     {
         this.inputSmBuilder = inputSmBuilder;
         this.settings = settings;
@@ -35,6 +37,7 @@ public class SmRunnerInternal
         this.filePathPrinter = filePathPrinter;
         this.smDesignDescriber = smDesignDescriber;
         this.outputInfo = outputInfo;
+        this.simWebGenerator = simWebGenerator;
     }
 
     public void Run()
@@ -56,6 +59,14 @@ public class SmRunnerInternal
             inputSmBuilder.FinishRunning();
             smDesignDescriber.DescribeAfterTransformations();
             codeGenRunner.Run();
+
+            if (settings.simulation.enableGeneration)
+            {
+                simWebGenerator.RunnerSettings.propagateExceptions = settings.propagateExceptions;
+                simWebGenerator.RunnerSettings.outputStateSmithVersionInfo = settings.outputStateSmithVersionInfo;
+                simWebGenerator.Generate(diagramPath: settings.DiagramPath, outputDir: settings.simulation.outputDirectory.ThrowIfNull());
+            }
+
             consolePrinter.OutputStageMessage("Finished normally.");
         }
         catch (System.Exception e)
@@ -90,7 +101,7 @@ public class SmRunnerInternal
             return inputSmBuilder.GetStateMachine();
         }
 
-        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.diagramFile);
+        inputSmBuilder.ConvertDiagramFileToSmVertices(settings.DiagramPath);
 
         if (settings.stateMachineName != null)
         {
@@ -113,7 +124,7 @@ public class SmRunnerInternal
             return;
         }
 
-        var errorDetailFilePath = settings.diagramFile + ".err.txt";
+        var errorDetailFilePath = settings.DiagramPath + ".err.txt";
         errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
         exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
         consolePrinter.WriteErrorLine("Additional exception detail dumped to file: " + errorDetailFilePath);
@@ -121,7 +132,7 @@ public class SmRunnerInternal
 
     private void OutputCompilingDiagramMessage()
     {
-        string filePath = settings.diagramFile;
+        string filePath = settings.DiagramPath;
         filePath = filePathPrinter.PrintPath(filePath);
 
         consolePrinter.OutputStageMessage($"Compiling file: `{filePath}` "
@@ -143,9 +154,9 @@ public class SmRunnerInternal
     public static void ResolveFilePaths(RunnerSettings settings, string? callingFilePath)
     {
         var relativeDirectory = Path.GetDirectoryName(callingFilePath).ThrowIfNull();
-        settings.diagramFile = PathUtils.EnsurePathAbsolute(settings.diagramFile, relativeDirectory);
+        settings.DiagramPath = PathUtils.EnsurePathAbsolute(settings.DiagramPath, relativeDirectory);
         
-        settings.outputDirectory ??= Path.GetDirectoryName(settings.diagramFile).ThrowIfNull();
+        settings.outputDirectory ??= Path.GetDirectoryName(settings.DiagramPath).ThrowIfNull();
         settings.outputDirectory = ProcessDirPath(settings.outputDirectory, relativeDirectory);
 
         settings.filePathPrintBase ??= relativeDirectory;
@@ -153,6 +164,12 @@ public class SmRunnerInternal
 
         settings.smDesignDescriber.outputDirectory ??= settings.outputDirectory;
         settings.smDesignDescriber.outputDirectory = ProcessDirPath(settings.smDesignDescriber.outputDirectory, relativeDirectory);
+
+        if (settings.simulation.enableGeneration)
+        {
+            settings.simulation.outputDirectory ??= settings.outputDirectory;
+            settings.simulation.outputDirectory = ProcessDirPath(settings.simulation.outputDirectory, relativeDirectory);
+        }
     }
 
     private static string ProcessDirPath(string dirPath, string relativeDirectory)

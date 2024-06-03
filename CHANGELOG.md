@@ -29,6 +29,17 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.10.0-alpha]
+### Added
+- Added ability to generate web based simulator.
+  - https://github.com/StateSmith/StateSmith/issues/292
+  - Simulator is very new and experimental. Feedback welcome.
+
+### Changed (minor)
+- deprecate `RunnerSettings.diagramFile` and add `RunnerSettings.DiagramPath` as alternative.
+
+---
+
 ## [0.9.14-alpha]
 ### Fixed
 - Fix grammar - allow `via`, `exit`, `entry` to be used in user guard and action code

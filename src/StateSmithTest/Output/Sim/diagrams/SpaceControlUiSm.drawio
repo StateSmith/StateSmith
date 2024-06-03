@@ -1,0 +1,354 @@
+<mxfile host="65bd71144e">
+    <diagram id="W3NqQyA0DYsyPUMlNqVw" name="Page-1">
+        <mxGraphModel dx="1012" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="$STATEMACHINE : SpaceControlUiSm" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#647687;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#314354;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="40" width="590" height="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value=" " style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="2" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=0;rotatable=0;noLabel=1;editable=0;" parent="2" vertex="1">
+                    <mxGeometry x="147.5" y="50" width="25" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="RIGHT" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="2" source="5" target="11" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" value="SPLASH_SCREEN" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=#0A0A0A;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;labelBackgroundColor=none;labelBorderColor=none;" parent="2" vertex="1">
+                    <mxGeometry x="40" y="100" width="240" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;font color=&quot;#569cd6&quot;&gt;enter&lt;/font&gt;&lt;font color=&quot;#1ba1e2&quot;&gt; &lt;/font&gt;&lt;font color=&quot;#ffd700&quot;&gt;/ {&lt;br&gt;&amp;nbsp; &lt;/font&gt;&lt;font color=&quot;#dcdcaa&quot;&gt;ShowSplashScreen();&lt;br&gt;&lt;/font&gt;&lt;font color=&quot;#ffd700&quot;&gt;}&lt;/font&gt;" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;html=1;" parent="5" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" style="entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="2" source="4" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="ESC" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="2" source="11" target="14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="DONE" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=#0A0A0A;rounded=1;arcSize=15;absoluteArcSize=1;" parent="2" vertex="1">
+                    <mxGeometry x="40" y="340" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="&lt;font color=&quot;#569cd6&quot;&gt;enter &lt;/font&gt;&lt;font color=&quot;#ffd700&quot;&gt;/&amp;nbsp;&lt;/font&gt;&lt;font color=&quot;#dcdcaa&quot;&gt;ShowDoneScreen();&lt;/font&gt;" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;html=1;" parent="14" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="210" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="MENU" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=#0A0A0A;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="2" vertex="1" collapsed="1">
+                    <mxGeometry x="40" y="240" width="240" height="60" as="geometry">
+                        <mxRectangle x="20" y="290" width="240" height="90" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="enter / display.SetMenuMode(true);" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="11" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="RIGHT" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="11" source="18" target="39" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="RIGHT" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="11" source="23" target="43" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="LEFT" style="edgeStyle=none;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="11" source="39" target="18" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="LEFT" style="edgeStyle=none;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="11" source="43" target="23" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="MAIN_MENU_INNER" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;" parent="11" vertex="1">
+                    <mxGeometry x="30" y="145" width="360" height="690" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="enter / MenuHeader(&quot;Main Menu&quot;); " style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="49" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="260" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=0;rotatable=0;noLabel=1;editable=0;" parent="49" vertex="1">
+                    <mxGeometry x="88" y="105" width="25" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="&lt;b&gt;$PARENT_ALIAS&lt;/b&gt;" style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=#BD7000;fillColor=#f0a30a;fontColor=#000000;" parent="49" vertex="1">
+                    <mxGeometry x="200" y="100" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="DOWN" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="49" source="35" target="23" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="DRINK" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="49" vertex="1">
+                    <mxGeometry x="20" y="323" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="enter / MenuOption(&quot;Select Drink&quot;); &#10;" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="35" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="280" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" value="DOWN" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="49" source="18" target="35" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="FOOD" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#008a00;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#005700;" parent="49" vertex="1">
+                    <mxGeometry x="20" y="170" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="enter / MenuOption(&quot;Select Food&quot;); &#10;(UP, PG_UP) / Beep();" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="18" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="270" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="49" source="17" target="18" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="PG_UP" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="49" source="30" target="18" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="UP" style="edgeStyle=none;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;startArrow=none;" parent="49" source="35" target="18" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="UP" style="edgeStyle=none;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="49" source="23" target="35" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="SYSTEM_INFO" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#76608a;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#432D57;" parent="49" vertex="1">
+                    <mxGeometry x="20" y="470" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="enter / MenuOption(&quot;System Info&quot;);&#10;(DOWN, PG_DOWN) / Beep();" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="23" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="270" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="PG_DOWN" style="edgeStyle=none;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="49" source="49" target="23" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="138" value="&lt;b&gt;$NOTES&lt;/b&gt;&lt;br&gt;PARENT_ALIAS here aliases MAIN_MENU_INNER. Parent aliases can help with drawing." style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=default;fillColor=#fff2cc;fontColor=#000000;gradientColor=#ffd966;" parent="49" vertex="1">
+                    <mxGeometry x="20" y="580" width="210" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="via exit food_selected" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="11" source="39" target="18" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="LEFT" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;curved=1;" parent="11" source="47" target="35" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" value="RIGHT" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="11" source="35" target="47" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="112" value="ESC" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;labelBackgroundColor=none;entryX=1.001;entryY=0.032;entryDx=0;entryDy=0;entryPerimeter=0;" parent="11" source="110" target="49" edge="1">
+                    <mxGeometry x="-0.8954" y="20" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="645" y="165"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                        <mxPoint x="390" y="166" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="110" value="ESC_CATCHER_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;" parent="11" vertex="1">
+                    <mxGeometry x="470" y="265" width="350" height="570" as="geometry"/>
+                </mxCell>
+                <mxCell id="111" value=" " style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="110" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="RIGHT via entry self_destruct" style="html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="110" source="47" target="43" edge="1">
+                    <mxGeometry x="0.2304" y="72" relative="1" as="geometry">
+                        <mxPoint x="110" y="440" as="targetPoint"/>
+                        <mxPoint x="-2" y="-15" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="47" value="DRINK_MENU" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="110" vertex="1">
+                    <mxGeometry x="20" y="200" width="300" height="100" as="geometry">
+                        <mxRectangle x="480" y="380" width="190" height="90" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="48" value="enter / {&#10;  MenuHeader(&quot;Coffee System Offline&quot;);&#10;  MenuOption(&quot;Activate self destruct?&quot;);&#10;}" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="47" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="310" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="FOOD_MENU" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#008a00;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#005700;" parent="110" vertex="1" collapsed="1">
+                    <mxGeometry x="70" y="50" width="190" height="90" as="geometry">
+                        <mxRectangle x="490" y="175" width="320" height="90" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="40" value="enter / MenuHeader(&quot;Food Menu&quot;);" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="39" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="260" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="109" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;" parent="39" source="108" target="106" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="123" value="DOWN" style="edgeStyle=none;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;" parent="39" source="106" target="117" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="132" value="RIGHT / burritoCount--;" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=default;" parent="39" source="106" target="121" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="EAT_BURRITO" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="39" vertex="1">
+                    <mxGeometry x="40" y="150" width="300" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" value="enter / MenuOption(&quot;Big Fat Burrito&quot;);" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="106" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="108" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=0;rotatable=0;noLabel=1;editable=0;" parent="39" vertex="1">
+                    <mxGeometry x="177.5" y="90" width="25" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="124" value="DOWN" style="edgeStyle=none;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;" parent="39" source="117" target="119" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="126" value="UP" style="edgeStyle=none;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;labelBackgroundColor=none;" parent="39" source="117" target="106" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="127" value="RIGHT" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=default;" parent="39" source="117" target="128" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="117" value="EAT_SLUDGE" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="39" vertex="1">
+                    <mxGeometry x="40" y="300" width="300" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="118" value="enter / MenuOption(&quot;Nutrient Mush&quot;);" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="117" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="290" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="125" value="UP" style="edgeStyle=none;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;labelBackgroundColor=none;" parent="39" source="119" target="117" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="133" value="RIGHT" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;labelBackgroundColor=default;" parent="39" source="119" target="121" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="119" value="EAT_MRE" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="39" vertex="1">
+                    <mxGeometry x="40" y="440" width="300" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="120" value="enter / MenuOption(&quot;MRE&quot;);" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="119" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="210" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="134" value="&lt;span style=&quot;&quot;&gt;[ t1After( 3.5 s ) ]&lt;/span&gt;" style="html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=default;" parent="39" source="121" target="113" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="113" value="exit : food_selected" style="fontFamily=Lucida Console;align=center;verticalAlign=middle;shape=ellipse;aspect=fixed;resizable=0;rotatable=0;labelPosition=center;verticalLabelPosition=top;strokeColor=#b11f1f;strokeWidth=4;fillColor=#FFFFFF;gradientColor=#d4d4d4cc;" parent="39" vertex="1">
+                    <mxGeometry x="1245" y="320" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="135" value="EVENT_EATER_2" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#647687;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#314354;" parent="39" vertex="1">
+                    <mxGeometry x="420" y="80" width="710" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="136" value="(LEFT, ESC) / { }" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="135" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="128" value="COOKING_FOOD1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="135" vertex="1">
+                    <mxGeometry x="20" y="210" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="129" value="enter / t1Restart();&#10;enter / MenuHeader(&quot;Mush...&quot;);&#10;enter / MenuOption(&quot;Gross...&quot;);" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="128" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="250" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="121" value="COOKING_FOOD" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="135" vertex="1">
+                    <mxGeometry x="370" y="195" width="300" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="122" value="enter / {&#10;  t1Restart();&#10;  MenuHeader(&quot;Cooking Food&quot;);&#10;  MenuOption(&quot;...&quot;);&#10;}" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="121" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="240" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="130" value="[ t1After( 1s ) ]" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=none;" parent="135" source="128" target="121" edge="1">
+                    <mxGeometry y="15" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="139" value="&lt;b&gt;$NOTES&lt;/b&gt;&lt;br&gt;This parent state simply eats the LEFT and ESC events so that they have no effect." style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=default;fillColor=#fff2cc;fontColor=#000000;gradientColor=#ffd966;" parent="135" vertex="1">
+                    <mxGeometry x="490" y="50" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="SYSTEM_INFO_MENU" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#76608a;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#432D57;" parent="110" vertex="1" collapsed="1">
+                    <mxGeometry x="15" y="350" width="190" height="90" as="geometry">
+                        <mxRectangle x="480" y="565" width="320" height="90" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="44" value="" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="43" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="43" vertex="1" connectable="0">
+                    <mxGeometry x="10" y="40" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="67" value="DOWN" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="43" source="68" target="77" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="BURRITO_COUNT" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="43" vertex="1">
+                    <mxGeometry x="60" y="390" width="430" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="69" value="enter / MenuOption(&quot;Burrito count: &quot; + burritoCount); &#10;" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="68" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="410" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="DOWN" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="43" source="71" target="68" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="DISTANCE" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#006EAF;" parent="43" vertex="1">
+                    <mxGeometry x="60" y="180" width="430" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="72" value="enter / MenuOption(&quot;Distance to Tau Ceti: &quot; + distance); &#10;(UP, PG_UP) / Beep();" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="71" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="430" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="73" value="&lt;span style=&quot;font-family: &amp;quot;Lucida Console&amp;quot;; font-size: 12px; text-align: left;&quot;&gt;/ MenuHeader(&quot;System Info&quot;);&lt;/span&gt;" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=default;" parent="43" source="65" target="71" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" value="PG_UP" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="43" source="66" target="71" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" value="UP" style="edgeStyle=none;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;startArrow=none;" parent="43" source="68" target="71" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="76" value="UP" style="edgeStyle=none;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="43" source="77" target="68" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="95" value="RIGHT [count &amp;gt;= 5]" style="edgeStyle=none;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="43" source="77" target="91" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" value="SELF_DESTRUCT_OPTION" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#a20025;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#6F0000;" parent="43" vertex="1">
+                    <mxGeometry x="60" y="570" width="430" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" value="enter / {&#10;  count = 0;&#10;  MenuOption(&quot;Self Destruct?&quot;);&#10;}&#10;1. RIGHT / count++; Beep();&#10;(DOWN, PG_DOWN) / Beep();" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="77" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="250" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="PG_DOWN" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="43" source="90" target="77" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="280" y="695" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="94" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" parent="43" source="93" target="91" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" value="&lt;b&gt;$PARENT_ALIAS&lt;/b&gt;" style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=#BD7000;fillColor=#f0a30a;fontColor=#000000;" parent="43" vertex="1">
+                    <mxGeometry x="322" y="760" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="66" value="&lt;b&gt;$PARENT_ALIAS&lt;/b&gt;" style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=#BD7000;fillColor=#f0a30a;fontColor=#000000;" parent="43" vertex="1">
+                    <mxGeometry x="323" y="100" width="120" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=0;rotatable=0;noLabel=1;editable=0;" parent="43" vertex="1">
+                    <mxGeometry x="155" y="75" width="25" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="93" value="entry : self_destruct" style="fontFamily=Lucida Console;align=center;verticalAlign=middle;shape=ellipse;aspect=fixed;resizable=0;rotatable=0;labelPosition=center;verticalLabelPosition=top;strokeColor=#27ae27;strokeWidth=4;fillColor=#FFFFFF;gradientColor=#d4d4d4cc;" parent="43" vertex="1">
+                    <mxGeometry x="680" y="520" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="91" value="SELF_DESTRUCT" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#a20025;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#6F0000;" parent="43" vertex="1" collapsed="1">
+                    <mxGeometry x="640" y="580" width="220" height="90" as="geometry">
+                        <mxRectangle x="520" y="580" width="320" height="90" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="92" value="enter / StartSelfDestructTimer();&#10;LEFT / Beep();" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="91" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="260" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" value="&lt;span style=&quot;font-family: &amp;quot;Lucida Console&amp;quot;; font-size: 12px; text-align: left;&quot;&gt;[ t1.Elapsed.Seconds &amp;gt;= 1 ]&lt;/span&gt;" style="edgeStyle=none;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;labelBackgroundColor=none;" parent="91" source="97" target="97" edge="1">
+                    <mxGeometry x="0.0714" y="-10" relative="1" as="geometry">
+                        <mxPoint x="290" y="280" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="180" y="290"/>
+                            <mxPoint x="320" y="290"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="97" value="SD_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#a20025;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#6F0000;" parent="91" vertex="1">
+                    <mxGeometry x="40" y="130" width="560" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="98" value="enter / Beep();&#10;enter / t1.Restart();&#10;enter / MenuHeader($&quot;SELF DESTRUCT IN &quot; + SelfDestructSeconds);&#10;DO [SelfDestructSeconds &lt;= 0] / SelfDestruct();&#10;&#10; " style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="97" vertex="1" connectable="0">
+                    <mxGeometry y="30" width="480" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="91" source="99" target="97" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="99" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=0;rotatable=0;noLabel=1;editable=0;" parent="91" vertex="1">
+                    <mxGeometry x="307.5" y="80" width="25" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="137" value="&lt;b&gt;$NOTES&lt;/b&gt;&lt;br&gt;This group provides a simple way to handle&lt;br&gt;the ESC key to go back to the main menu." style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=default;fillColor=#fff2cc;fontColor=#000000;gradientColor=#ffd966;" parent="110" vertex="1">
+                    <mxGeometry x="15" y="460" width="250" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="116" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=none;" parent="11" source="115" target="49" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="115" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=0;rotatable=0;noLabel=1;editable=0;" parent="11" vertex="1">
+                    <mxGeometry x="197.5" y="80" width="25" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="140" value="&lt;b&gt;$NOTES&lt;/b&gt;&lt;br&gt;Syntax highlighting here is manual, but maybe someone can &lt;a href=&quot;https://github.com/StateSmith/StateSmith-drawio-plugin/issues/26&quot;&gt;help make it automatic!&lt;/a&gt;" style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=default;fillColor=#fff2cc;fontColor=#000000;gradientColor=#ffd966;labelBackgroundColor=none;labelBorderColor=none;" parent="2" vertex="1">
+                    <mxGeometry x="40" y="430" width="240" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="141" value="&lt;b&gt;$NOTES&lt;/b&gt;&lt;br&gt;MENU is a collapsed group state.&lt;br&gt;Enter the group to see more." style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=default;fillColor=#fff2cc;fontColor=#000000;gradientColor=#ffd966;labelBackgroundColor=none;labelBorderColor=none;" parent="2" vertex="1">
+                    <mxGeometry x="310" y="240" width="240" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
