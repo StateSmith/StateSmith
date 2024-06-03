@@ -29,6 +29,12 @@ Test/interim releases are not documented here.
 
 ---
 
+## WIP
+### Added
+- Added convenience helpers for `SmTransformer`.
+
+---
+
 ## [0.10.0-alpha]
 ### Added
 - Added ability to generate web based simulator.
