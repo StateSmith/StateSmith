@@ -175,35 +175,65 @@
     <div class="pane main">
         <pre class="mermaid">
 stateDiagram
+
 classDef active fill:yellow,stroke-width:2px;
+
 state "$initial_state" as ROOT.(InitialState)
+
 state NotShooting {
+
         state "$initial_state" as NotShooting.(InitialState)
+
         Idle
+
         Idle : Idle
+
         state Configuring {
+
                 state "$initial_state" as Configuring.(InitialState)
+
                 NewValueSelection
+
                 NewValueSelection : NewValueSelection
+
                 state NewValuePreview {
+
                         state "$initial_state" as NewValuePreview.(InitialState)
+
                         State1
+
                         State1 : State1
+
                         State2
+
                         State2 : State2
+
                 }
+
         }
+
 }
+
 ROOT.(InitialState) --> NotShooting
+
 NotShooting.(InitialState) --> Idle
+
 Idle --> Configuring : EvConfig
+
 Configuring --> Idle : EvConfig
+
 Configuring.(InitialState) --> NewValueSelection
+
 NewValueSelection --> NewValuePreview : EvNewValue
+
 NewValuePreview --> NewValueSelection : EvNewValueRejected
+
 NewValuePreview --> NewValueSelection : EvNewValueSaved
+
 NewValuePreview.(InitialState) --> State1
+
 State1 --> State2 : Ev2
+
 
 
         </pre>

@@ -42,8 +42,8 @@ class MermaidGenerator : IVertexVisitor
 
     public void Visit(StateMachine v)
     {
-        AppendLn("stateDiagram");
-        AppendLn("classDef active fill:yellow,stroke-width:2px;");
+        AppendIndentedLine("stateDiagram");
+        AppendIndentedLine("classDef active fill:yellow,stroke-width:2px;");
         indentLevel--; // don't indent the state machine contents
         VisitChildren(v);
     }
@@ -62,22 +62,22 @@ class MermaidGenerator : IVertexVisitor
 
     private void VisitCompoundState(State v)
     {
-        AppendLn($"state {v.Name} {{");
+        AppendIndentedLine($"state {v.Name} {{");
         // FIXME - add behavior code here when supported by mermaid
         // https://github.com/StateSmith/StateSmith/issues/268#issuecomment-2111432194
         VisitChildren(v);
-        AppendLn("}");
+        AppendIndentedLine("}");
     }
 
     private void VisitLeafState(State v)
     {
         string name = v.Name;
-        AppendLn(name);
-        AppendLn($"{name} : {name}");
+        AppendIndentedLine(name);
+        AppendIndentedLine($"{name} : {name}");
         foreach (var b in v.Behaviors.Where(b => b.TransitionTarget == null))
         {
             string behaviorText = BehaviorToMermaidLabel(b);
-            AppendLn($"{name} : {behaviorText}");
+            AppendIndentedLine($"{name} : {behaviorText}");
         }
     }
 
@@ -94,36 +94,36 @@ class MermaidGenerator : IVertexVisitor
             // Mermaid and PlantUML don't have a syntax that allows transitions to an initial state.
             // If you do `someState --> [*]`, it means transition to a final state.
             // StateSmith, however, does allow transitions to initial states so we add a dummy state to represent the initial state.
-            AppendLn($"[*] --> {initialStateId}");
+            AppendIndentedLine($"[*] --> {initialStateId}");
             mermaidEdgeTracker.AdvanceId();  // we skip this "work around" edge for now. We can improve this later.
         }
 
-        AppendLn($"state \"$initial_state\" as {initialStateId}");
+        AppendIndentedLine($"state \"$initial_state\" as {initialStateId}");
     }
 
     public void Visit(ChoicePoint v)
     {
-        AppendLn($"state {MakeVertexDiagramId(v)} <<choice>>");
+        AppendIndentedLine($"state {MakeVertexDiagramId(v)} <<choice>>");
     }
 
     public void Visit(EntryPoint v)
     {
-        AppendLn($"state \"$entry_pt.{v.label}\" as {MakeVertexDiagramId(v)}");
+        AppendIndentedLine($"state \"$entry_pt.{v.label}\" as {MakeVertexDiagramId(v)}");
     }
 
     public void Visit(ExitPoint v)
     {
-        AppendLn($"state \"$exit_pt.{v.label}\" as {MakeVertexDiagramId(v)}");
+        AppendIndentedLine($"state \"$exit_pt.{v.label}\" as {MakeVertexDiagramId(v)}");
     }
 
     public void Visit(HistoryVertex v)
     {
-        AppendLn($"state \"$H\" as {MakeVertexDiagramId(v)}");
+        AppendIndentedLine($"state \"$H\" as {MakeVertexDiagramId(v)}");
     }
 
     public void Visit(HistoryContinueVertex v)
     {
-        AppendLn($"state \"$HC\" as {MakeVertexDiagramId(v)}");
+        AppendIndentedLine($"state \"$HC\" as {MakeVertexDiagramId(v)}");
     }
 
 
@@ -137,15 +137,15 @@ class MermaidGenerator : IVertexVisitor
             {
                 if (behavior.TransitionTarget != null)
                 {
-                    sb.Append($"{vertexDiagramId} --> {MakeVertexDiagramId(behavior.TransitionTarget)}");
+                    Append($"{vertexDiagramId} --> {MakeVertexDiagramId(behavior.TransitionTarget)}");
 
                     // only append edge label if behavior text is not empty to avoid Mermaid parse errors
                     string behaviorText = BehaviorToMermaidLabel(behavior);
                     if (!string.IsNullOrWhiteSpace(behaviorText))
                     {
-                        sb.Append($" : {behaviorText}");
+                        Append($" : {behaviorText}");
                     }
-                    sb.AppendLine();
+                    AppendLine();
 
                     mermaidEdgeTracker.AddEdge(behavior);
                 }
@@ -184,12 +184,25 @@ class MermaidGenerator : IVertexVisitor
         return text;
     }
 
-    private void AppendLn(string message)
+    private void Append(string message)
+    {
+        sb.Append(message);
+    }
+
+    private void AppendLine(string message = "")
+    {
+        sb.AppendLine(message);
+
+        // add an extra blank line so that git diffs work on individual lines instead of giant text blocks
+        sb.AppendLine();
+    }
+
+    private void AppendIndentedLine(string message)
     {
         for (int i = 0; i < indentLevel; i++)
             sb.Append("        ");
 
-        sb.AppendLine(message);
+        AppendLine(message);
     }
 
     private void VisitChildren(Vertex v)

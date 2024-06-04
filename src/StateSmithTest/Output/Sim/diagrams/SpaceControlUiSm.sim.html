@@ -175,125 +175,245 @@
     <div class="pane main">
         <pre class="mermaid">
 stateDiagram
+
 classDef active fill:yellow,stroke-width:2px;
+
 state "$initial_state" as ROOT.(InitialState)
+
 SPLASH_SCREEN
+
 SPLASH_SCREEN : SPLASH_SCREEN
+
 SPLASH_SCREEN : enter / #123; ShowSplashScreen()#59; #125;
+
 DONE
+
 DONE : DONE
+
 DONE : enter / #123; ShowDoneScreen()#59; #125;
+
 state MENU {
+
         state MAIN_MENU_INNER {
+
                 state "$initial_state" as MAIN_MENU_INNER.(InitialState)
+
                 DRINK
+
                 DRINK : DRINK
+
                 DRINK : enter / #123; MenuOption("Select Drink")#59; #125;
+
                 FOOD
+
                 FOOD : FOOD
+
                 FOOD : enter / #123; MenuOption("Select Food")#59; #125;
+
                 FOOD : (UP, PG_UP) / #123; Beep()#59; #125;
+
                 SYSTEM_INFO
+
                 SYSTEM_INFO : SYSTEM_INFO
+
                 SYSTEM_INFO : enter / #123; MenuOption("System Info")#59; #125;
+
                 SYSTEM_INFO : (DOWN, PG_DOWN) / #123; Beep()#59; #125;
+
         }
+
         state ESC_CATCHER_1 {
+
                 DRINK_MENU
+
                 DRINK_MENU : DRINK_MENU
+
                 DRINK_MENU : enter / #123; MenuHeader("Coffee System Offline")#59;\nMenuOption("Activate self destruct?")#59; #125;
+
                 state FOOD_MENU {
+
                         EAT_BURRITO
+
                         EAT_BURRITO : EAT_BURRITO
+
                         EAT_BURRITO : enter / #123; MenuOption("Big Fat Burrito")#59; #125;
+
                         state "$initial_state" as FOOD_MENU.(InitialState)
+
                         EAT_SLUDGE
+
                         EAT_SLUDGE : EAT_SLUDGE
+
                         EAT_SLUDGE : enter / #123; MenuOption("Nutrient Mush")#59; #125;
+
                         EAT_MRE
+
                         EAT_MRE : EAT_MRE
+
                         EAT_MRE : enter / #123; MenuOption("MRE")#59; #125;
+
                         state "$exit_pt.food_selected" as FOOD_MENU.(ExitPoint)(food_selected)
+
                         state EVENT_EATER_2 {
+
                                 COOKING_FOOD1
+
                                 COOKING_FOOD1 : COOKING_FOOD1
+
                                 COOKING_FOOD1 : enter / #123; t1Restart()#59; #125;
+
                                 COOKING_FOOD1 : enter / #123; MenuHeader("Mush...")#59; #125;
+
                                 COOKING_FOOD1 : enter / #123; MenuOption("Gross...")#59; #125;
+
                                 COOKING_FOOD
+
                                 COOKING_FOOD : COOKING_FOOD
+
                                 COOKING_FOOD : enter / #123; t1Restart()#59;\nMenuHeader("Cooking Food")#59;\nMenuOption("...")#59; #125;
+
                         }
+
                 }
+
                 state SYSTEM_INFO_MENU {
+
                         BURRITO_COUNT
+
                         BURRITO_COUNT : BURRITO_COUNT
+
                         BURRITO_COUNT : enter / #123; MenuOption("Burrito count#58#59; " + burritoCount)#59; #125;
+
                         DISTANCE
+
                         DISTANCE : DISTANCE
+
                         DISTANCE : enter / #123; MenuOption("Distance to Tau Ceti#58#59; " + distance)#59; #125;
+
                         DISTANCE : (UP, PG_UP) / #123; Beep()#59; #125;
+
                         SELF_DESTRUCT_OPTION
+
                         SELF_DESTRUCT_OPTION : SELF_DESTRUCT_OPTION
+
                         SELF_DESTRUCT_OPTION : enter / #123; count = 0#59;\nMenuOption("Self Destruct?")#59; #125;
+
                         SELF_DESTRUCT_OPTION : 1. RIGHT / #123; count++#59; Beep()#59; #125;
+
                         SELF_DESTRUCT_OPTION : (DOWN, PG_DOWN) / #123; Beep()#59; #125;
+
                         state "$initial_state" as SYSTEM_INFO_MENU.(InitialState)
+
                         state "$entry_pt.self_destruct" as SYSTEM_INFO_MENU.(EntryPoint)(self_destruct)
+
                         state SELF_DESTRUCT {
+
                                 SD_1
+
                                 SD_1 : SD_1
+
                                 SD_1 : enter / #123; Beep()#59; #125;
+
                                 SD_1 : enter / #123; t1.Restart()#59; #125;
+
                                 SD_1 : enter / #123; MenuHeader($"SELF DESTRUCT IN " + SelfDestructSeconds)#59; #125;
+
                                 SD_1 : DO [SelfDestructSeconds <= 0] / #123; SelfDestruct()#59; #125;
+
                                 state "$initial_state" as SELF_DESTRUCT.(InitialState)
+
                         }
+
                 }
+
         }
+
         state "$initial_state" as MENU.(InitialState)
+
 }
+
 ROOT.(InitialState) --> SPLASH_SCREEN
+
 SPLASH_SCREEN --> MENU : RIGHT
+
 MENU --> DONE : ESC
+
 MAIN_MENU_INNER --> SYSTEM_INFO : PG_DOWN
+
 MAIN_MENU_INNER --> FOOD : PG_UP
+
 MAIN_MENU_INNER.(InitialState) --> FOOD
+
 DRINK --> SYSTEM_INFO : DOWN
+
 DRINK --> FOOD : UP
+
 DRINK --> DRINK_MENU : RIGHT
+
 FOOD --> FOOD_MENU : RIGHT
+
 FOOD --> DRINK : DOWN
+
 SYSTEM_INFO --> SYSTEM_INFO_MENU : RIGHT
+
 SYSTEM_INFO --> DRINK : UP
+
 ESC_CATCHER_1 --> MAIN_MENU_INNER : ESC
+
 DRINK_MENU --> DRINK : LEFT
+
 DRINK_MENU --> SYSTEM_INFO_MENU.(EntryPoint)(self_destruct) : RIGHT
+
 FOOD_MENU --> FOOD : LEFT
+
 EAT_BURRITO --> EAT_SLUDGE : DOWN
+
 EAT_BURRITO --> COOKING_FOOD : RIGHT / #123; burritoCount--#59; #125;
+
 FOOD_MENU.(InitialState) --> EAT_BURRITO
+
 EAT_SLUDGE --> EAT_MRE : DOWN
+
 EAT_SLUDGE --> EAT_BURRITO : UP
+
 EAT_SLUDGE --> COOKING_FOOD1 : RIGHT
+
 EAT_MRE --> EAT_SLUDGE : UP
+
 EAT_MRE --> COOKING_FOOD : RIGHT
+
 FOOD_MENU.(ExitPoint)(food_selected) --> FOOD
+
 COOKING_FOOD1 --> COOKING_FOOD : [t1After( 1s )]
+
 COOKING_FOOD --> FOOD_MENU.(ExitPoint)(food_selected) : [t1After( 3.5 s )]
+
 SYSTEM_INFO_MENU --> SYSTEM_INFO : LEFT
+
 SYSTEM_INFO_MENU --> SELF_DESTRUCT_OPTION : PG_DOWN
+
 SYSTEM_INFO_MENU --> DISTANCE : PG_UP
+
 BURRITO_COUNT --> SELF_DESTRUCT_OPTION : DOWN
+
 BURRITO_COUNT --> DISTANCE : UP
+
 DISTANCE --> BURRITO_COUNT : DOWN
+
 SELF_DESTRUCT_OPTION --> BURRITO_COUNT : UP
+
 SELF_DESTRUCT_OPTION --> SELF_DESTRUCT : RIGHT [count >= 5]
+
 SYSTEM_INFO_MENU.(InitialState) --> DISTANCE : / #123; MenuHeader("System Info")#59; #125;
+
 SYSTEM_INFO_MENU.(EntryPoint)(self_destruct) --> SELF_DESTRUCT
+
 SD_1 --> SD_1 : [t1.Elapsed.Seconds >= 1]
+
 SELF_DESTRUCT.(InitialState) --> SD_1
+
 MENU.(InitialState) --> MAIN_MENU_INNER
+
 
 
         </pre>

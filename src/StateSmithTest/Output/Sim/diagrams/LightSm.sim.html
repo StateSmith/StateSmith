@@ -175,32 +175,59 @@
     <div class="pane main">
         <pre class="mermaid">
 stateDiagram
+
 classDef active fill:yellow,stroke-width:2px;
+
 state ON_GROUP {
+
         ON1
+
         ON1 : ON1
+
         ON1 : enter / #123; light_blue()#59; #125;
+
         ON_HOT
+
         ON_HOT : ON_HOT
+
         ON_HOT : enter / #123; light_red()#59; #125;
+
         ON2
+
         ON2 : ON2
+
         ON2 : enter / #123; light_yellow()#59; #125;
+
         ON2 : enter / #123; count = 0#59; #125;
+
         ON2 : 1. INCREASE / #123; count++#59; #125;
+
 }
+
 state "$initial_state" as ROOT.(InitialState)
+
 OFF
+
 OFF : OFF
+
 OFF : enter / #123; console.log( "OFF#92;n")#59; #125;
+
 ON_GROUP --> OFF : OFF
+
 ON1 --> ON2 : INCREASE
+
 ON1 --> OFF : DIM
+
 ON_HOT --> ON2 : DIM
+
 ON2 --> ON1 : DIM
+
 ON2 --> ON_HOT : 2. INCREASE [count >= 3]
+
 ROOT.(InitialState) --> OFF
+
 OFF --> ON1 : INCREASE
+
 
 
         </pre>

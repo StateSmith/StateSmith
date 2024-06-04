@@ -175,56 +175,107 @@
     <div class="pane main">
         <pre class="mermaid">
 stateDiagram
+
 classDef active fill:yellow,stroke-width:2px;
+
 state ORDER_MENU {
+
         state BEVERAGE {
+
                 state "$initial_state" as BEVERAGE.(InitialState)
+
                 BEVERAGE__FIRST
+
                 BEVERAGE__FIRST : BEVERAGE__FIRST
+
                 COFFEE
+
                 COFFEE : COFFEE
+
                 COFFEE : enter / #123; do_x()#59; #125;
+
                 TEA
+
                 TEA : TEA
+
                 state "$HC" as BEVERAGE.(HistoryContinue)
+
         }
+
         state FOOD {
+
                 state "$initial_state" as FOOD.(InitialState)
+
                 FOOD__FIRST
+
                 FOOD__FIRST : FOOD__FIRST
+
                 POTATO
+
                 POTATO : POTATO
+
                 SUSHI
+
                 SUSHI : SUSHI
+
         }
+
         state "$entry_pt.to_history" as ORDER_MENU.(EntryPoint)(to_history)
+
         state "$exit_pt.1" as ORDER_MENU.(ExitPoint)(1)
+
         state "$H" as ORDER_MENU.(History)
+
         state ORDER_MENU.(ChoicePoint)(bev_choice) <<choice>>
+
 }
+
 WAITING
+
 WAITING : WAITING
+
 state "$initial_state" as ROOT.(InitialState)
+
 ORDER_MENU --> WAITING : EV3
+
 BEVERAGE --> FOOD : EV2
+
 BEVERAGE.(InitialState) --> BEVERAGE__FIRST
+
 BEVERAGE__FIRST --> COFFEE : EV1
+
 COFFEE --> TEA : EV1
+
 TEA --> COFFEE : EV1
+
 TEA --> BEVERAGE.(InitialState) : EV2
+
 FOOD --> ORDER_MENU.(ChoicePoint)(bev_choice) : EV2
+
 FOOD --> ORDER_MENU.(ExitPoint)(1) : ESCAPE
+
 FOOD.(InitialState) --> FOOD__FIRST
+
 FOOD__FIRST --> POTATO : EV1
+
 POTATO --> SUSHI : EV1
+
 SUSHI --> FOOD__FIRST : EV1
+
 ORDER_MENU.(EntryPoint)(to_history) --> ORDER_MENU.(History)
+
 ORDER_MENU.(ExitPoint)(1) --> WAITING
+
 ORDER_MENU.(History) --> BEVERAGE
+
 ORDER_MENU.(ChoicePoint)(bev_choice) --> TEA : [a > b]
+
 ORDER_MENU.(ChoicePoint)(bev_choice) --> BEVERAGE : else
+
 WAITING --> ORDER_MENU.(EntryPoint)(to_history) : EV3
+
 ROOT.(InitialState) --> WAITING
+
 
 
         </pre>
