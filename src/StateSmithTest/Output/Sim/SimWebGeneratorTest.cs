@@ -40,6 +40,12 @@ public class SimWebGenerator_IntegrationTests
         GenerateForDiagram(diagramName: "BeadSorter.drawio.svg", expectedOutputFileName: "BeadSorter.sim.html");
     }
 
+    [Fact]
+    public void TriggerMap()
+    {
+        GenerateForDiagram(diagramName: "TriggerMap.drawio.svg", expectedOutputFileName: "TriggerMap.sim.html");
+    }
+
     /// <summary>
     /// This test shows how a .csx file user can enable the simulation feature.
     /// </summary>
