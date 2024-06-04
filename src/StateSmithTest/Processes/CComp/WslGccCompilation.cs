@@ -34,7 +34,7 @@ public class WslGccCompilation : ICompilation
         process.WrapCommandWithBashCOption();
         process.RequireLinux(); // required for bash
 
-        process.Run(timeoutMs: 8000);
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
         return process;
     }
 }

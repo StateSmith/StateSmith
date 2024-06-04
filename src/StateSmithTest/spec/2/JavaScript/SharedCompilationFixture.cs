@@ -32,7 +32,7 @@ public class SharedCompilationFixture
             ProgramPath = "node",
             Args = " --check Spec2Sm.js"
         };
-        process.Run(timeoutMs: 10000);
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }
 
     public class MyGlueFile : IRenderConfigJavaScript

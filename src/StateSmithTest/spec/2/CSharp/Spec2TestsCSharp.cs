@@ -17,7 +17,7 @@ public class Spec2TestsCSharp : Spec2Tests, IClassFixture<SharedCompilationFixtu
             //Args = $"run --no-build {testEvents}"   // slow compared to below
             Args = $"bin/Debug/net8.0/Spec2Test.dll {testEvents}" // 5x faster!!! Tip from https://github.com/dotnet/sdk/issues/8697#issuecomment-327943066
         };
-        process.Run();
+        process.Run(SimpleProcess.DefaultLongTimeoutMs);
 
         string output = process.StdOutput;
         output = StringUtils.RemoveEverythingBefore(output, "\nIGNORE_OUTPUT_BEFORE_THIS\n").Trim();

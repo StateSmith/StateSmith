@@ -46,7 +46,7 @@ public class CCompUtils
     public static SimpleProcess RunDefaultUnixExecutable(string runArgs, string workingDirectory)
     {
         SimpleProcess process = SetupRunDefaultUnixExecutable(runArgs, workingDirectory);
-        process.Run(timeoutMs: 8000);
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
         return process;
     }
 
@@ -79,7 +79,7 @@ public class CCompUtils
     public static void GccClangCompile(CCompRequest request, string command)
     {
         SimpleProcess process = GccClangSetup(request, command);
-        process.Run(timeoutMs: 8000);
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }
 
     public static SimpleProcess GccClangSetup(CCompRequest request, string command)
