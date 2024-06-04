@@ -596,10 +596,10 @@ evaluateGuard = null;
         this.#currentStateExitHandler = this.#DONE_exit;
         
         // DONE behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.DONE); }
+        // uml: enter / { this.tracer?.enterState('DONE'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.DONE);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.DONE);
+            // Step 1: execute action `this.tracer?.enterState('DONE');`
+            this.tracer?.enterState('DONE');
         } // end of behavior for DONE
         
         // DONE behavior
@@ -613,10 +613,10 @@ evaluateGuard = null;
     #DONE_exit()
     {
         // DONE behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.DONE); }
+        // uml: exit / { this.tracer?.exitState('DONE'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.DONE);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.DONE);
+            // Step 1: execute action `this.tracer?.exitState('DONE');`
+            this.tracer?.exitState('DONE');
         } // end of behavior for DONE
         
         // adjust function pointers for this state's exit
@@ -635,10 +635,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.ESC] = this.#MENU_esc;
         
         // MENU behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.MENU); }
+        // uml: enter / { this.tracer?.enterState('MENU'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.MENU);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.MENU);
+            // Step 1: execute action `this.tracer?.enterState('MENU');`
+            this.tracer?.enterState('MENU');
         } // end of behavior for MENU
         
         // MENU behavior
@@ -652,10 +652,10 @@ evaluateGuard = null;
     #MENU_exit()
     {
         // MENU behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.MENU); }
+        // uml: exit / { this.tracer?.exitState('MENU'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.MENU);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.MENU);
+            // Step 1: execute action `this.tracer?.exitState('MENU');`
+            this.tracer?.exitState('MENU');
         } // end of behavior for MENU
         
         // adjust function pointers for this state's exit
@@ -698,20 +698,20 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.ESC] = this.#ESC_CATCHER_1_esc;
         
         // ESC_CATCHER_1 behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.ESC_CATCHER_1); }
+        // uml: enter / { this.tracer?.enterState('ESC_CATCHER_1'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.ESC_CATCHER_1);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.ESC_CATCHER_1);
+            // Step 1: execute action `this.tracer?.enterState('ESC_CATCHER_1');`
+            this.tracer?.enterState('ESC_CATCHER_1');
         } // end of behavior for ESC_CATCHER_1
     }
     
     #ESC_CATCHER_1_exit()
     {
         // ESC_CATCHER_1 behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.ESC_CATCHER_1); }
+        // uml: exit / { this.tracer?.exitState('ESC_CATCHER_1'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.ESC_CATCHER_1);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.ESC_CATCHER_1);
+            // Step 1: execute action `this.tracer?.exitState('ESC_CATCHER_1');`
+            this.tracer?.exitState('ESC_CATCHER_1');
         } // end of behavior for ESC_CATCHER_1
         
         // adjust function pointers for this state's exit
@@ -755,10 +755,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.RIGHT] = this.#DRINK_MENU_right;
         
         // DRINK_MENU behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.DRINK_MENU); }
+        // uml: enter / { this.tracer?.enterState('DRINK_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.DRINK_MENU);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.DRINK_MENU);
+            // Step 1: execute action `this.tracer?.enterState('DRINK_MENU');`
+            this.tracer?.enterState('DRINK_MENU');
         } // end of behavior for DRINK_MENU
         
         // DRINK_MENU behavior
@@ -772,10 +772,10 @@ evaluateGuard = null;
     #DRINK_MENU_exit()
     {
         // DRINK_MENU behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.DRINK_MENU); }
+        // uml: exit / { this.tracer?.exitState('DRINK_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.DRINK_MENU);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.DRINK_MENU);
+            // Step 1: execute action `this.tracer?.exitState('DRINK_MENU');`
+            this.tracer?.exitState('DRINK_MENU');
         } // end of behavior for DRINK_MENU
         
         // adjust function pointers for this state's exit
@@ -855,10 +855,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.LEFT] = this.#FOOD_MENU_left;
         
         // FOOD_MENU behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.FOOD_MENU); }
+        // uml: enter / { this.tracer?.enterState('FOOD_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.FOOD_MENU);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.FOOD_MENU);
+            // Step 1: execute action `this.tracer?.enterState('FOOD_MENU');`
+            this.tracer?.enterState('FOOD_MENU');
         } // end of behavior for FOOD_MENU
         
         // FOOD_MENU behavior
@@ -872,10 +872,10 @@ evaluateGuard = null;
     #FOOD_MENU_exit()
     {
         // FOOD_MENU behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.FOOD_MENU); }
+        // uml: exit / { this.tracer?.exitState('FOOD_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.FOOD_MENU);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.FOOD_MENU);
+            // Step 1: execute action `this.tracer?.exitState('FOOD_MENU');`
+            this.tracer?.exitState('FOOD_MENU');
         } // end of behavior for FOOD_MENU
         
         // adjust function pointers for this state's exit
@@ -920,10 +920,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.RIGHT] = this.#EAT_BURRITO_right;
         
         // EAT_BURRITO behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_BURRITO); }
+        // uml: enter / { this.tracer?.enterState('EAT_BURRITO'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_BURRITO);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_BURRITO);
+            // Step 1: execute action `this.tracer?.enterState('EAT_BURRITO');`
+            this.tracer?.enterState('EAT_BURRITO');
         } // end of behavior for EAT_BURRITO
         
         // EAT_BURRITO behavior
@@ -937,10 +937,10 @@ evaluateGuard = null;
     #EAT_BURRITO_exit()
     {
         // EAT_BURRITO behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_BURRITO); }
+        // uml: exit / { this.tracer?.exitState('EAT_BURRITO'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_BURRITO);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_BURRITO);
+            // Step 1: execute action `this.tracer?.exitState('EAT_BURRITO');`
+            this.tracer?.exitState('EAT_BURRITO');
         } // end of behavior for EAT_BURRITO
         
         // adjust function pointers for this state's exit
@@ -1009,10 +1009,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.UP] = this.#EAT_MRE_up;
         
         // EAT_MRE behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_MRE); }
+        // uml: enter / { this.tracer?.enterState('EAT_MRE'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_MRE);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_MRE);
+            // Step 1: execute action `this.tracer?.enterState('EAT_MRE');`
+            this.tracer?.enterState('EAT_MRE');
         } // end of behavior for EAT_MRE
         
         // EAT_MRE behavior
@@ -1026,10 +1026,10 @@ evaluateGuard = null;
     #EAT_MRE_exit()
     {
         // EAT_MRE behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_MRE); }
+        // uml: exit / { this.tracer?.exitState('EAT_MRE'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_MRE);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_MRE);
+            // Step 1: execute action `this.tracer?.exitState('EAT_MRE');`
+            this.tracer?.exitState('EAT_MRE');
         } // end of behavior for EAT_MRE
         
         // adjust function pointers for this state's exit
@@ -1099,10 +1099,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.UP] = this.#EAT_SLUDGE_up;
         
         // EAT_SLUDGE behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_SLUDGE); }
+        // uml: enter / { this.tracer?.enterState('EAT_SLUDGE'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_SLUDGE);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.EAT_SLUDGE);
+            // Step 1: execute action `this.tracer?.enterState('EAT_SLUDGE');`
+            this.tracer?.enterState('EAT_SLUDGE');
         } // end of behavior for EAT_SLUDGE
         
         // EAT_SLUDGE behavior
@@ -1116,10 +1116,10 @@ evaluateGuard = null;
     #EAT_SLUDGE_exit()
     {
         // EAT_SLUDGE behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_SLUDGE); }
+        // uml: exit / { this.tracer?.exitState('EAT_SLUDGE'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_SLUDGE);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.EAT_SLUDGE);
+            // Step 1: execute action `this.tracer?.exitState('EAT_SLUDGE');`
+            this.tracer?.exitState('EAT_SLUDGE');
         } // end of behavior for EAT_SLUDGE
         
         // adjust function pointers for this state's exit
@@ -1212,20 +1212,20 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.LEFT] = this.#EVENT_EATER_2_left;
         
         // EVENT_EATER_2 behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.EVENT_EATER_2); }
+        // uml: enter / { this.tracer?.enterState('EVENT_EATER_2'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.EVENT_EATER_2);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.EVENT_EATER_2);
+            // Step 1: execute action `this.tracer?.enterState('EVENT_EATER_2');`
+            this.tracer?.enterState('EVENT_EATER_2');
         } // end of behavior for EVENT_EATER_2
     }
     
     #EVENT_EATER_2_exit()
     {
         // EVENT_EATER_2 behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.EVENT_EATER_2); }
+        // uml: exit / { this.tracer?.exitState('EVENT_EATER_2'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.EVENT_EATER_2);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.EVENT_EATER_2);
+            // Step 1: execute action `this.tracer?.exitState('EVENT_EATER_2');`
+            this.tracer?.exitState('EVENT_EATER_2');
         } // end of behavior for EVENT_EATER_2
         
         // adjust function pointers for this state's exit
@@ -1274,10 +1274,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.DO] = this.#COOKING_FOOD_do;
         
         // COOKING_FOOD behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.COOKING_FOOD); }
+        // uml: enter / { this.tracer?.enterState('COOKING_FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.COOKING_FOOD);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.COOKING_FOOD);
+            // Step 1: execute action `this.tracer?.enterState('COOKING_FOOD');`
+            this.tracer?.enterState('COOKING_FOOD');
         } // end of behavior for COOKING_FOOD
         
         // COOKING_FOOD behavior
@@ -1291,10 +1291,10 @@ evaluateGuard = null;
     #COOKING_FOOD_exit()
     {
         // COOKING_FOOD behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.COOKING_FOOD); }
+        // uml: exit / { this.tracer?.exitState('COOKING_FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.COOKING_FOOD);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.COOKING_FOOD);
+            // Step 1: execute action `this.tracer?.exitState('COOKING_FOOD');`
+            this.tracer?.exitState('COOKING_FOOD');
         } // end of behavior for COOKING_FOOD
         
         // adjust function pointers for this state's exit
@@ -1352,10 +1352,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.DO] = this.#COOKING_FOOD1_do;
         
         // COOKING_FOOD1 behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.COOKING_FOOD1); }
+        // uml: enter / { this.tracer?.enterState('COOKING_FOOD1'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.COOKING_FOOD1);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.COOKING_FOOD1);
+            // Step 1: execute action `this.tracer?.enterState('COOKING_FOOD1');`
+            this.tracer?.enterState('COOKING_FOOD1');
         } // end of behavior for COOKING_FOOD1
         
         // COOKING_FOOD1 behavior
@@ -1383,10 +1383,10 @@ evaluateGuard = null;
     #COOKING_FOOD1_exit()
     {
         // COOKING_FOOD1 behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.COOKING_FOOD1); }
+        // uml: exit / { this.tracer?.exitState('COOKING_FOOD1'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.COOKING_FOOD1);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.COOKING_FOOD1);
+            // Step 1: execute action `this.tracer?.exitState('COOKING_FOOD1');`
+            this.tracer?.exitState('COOKING_FOOD1');
         } // end of behavior for COOKING_FOOD1
         
         // adjust function pointers for this state's exit
@@ -1432,20 +1432,20 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.PG_UP] = this.#SYSTEM_INFO_MENU_pg_up;
         
         // SYSTEM_INFO_MENU behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.SYSTEM_INFO_MENU); }
+        // uml: enter / { this.tracer?.enterState('SYSTEM_INFO_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.SYSTEM_INFO_MENU);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.SYSTEM_INFO_MENU);
+            // Step 1: execute action `this.tracer?.enterState('SYSTEM_INFO_MENU');`
+            this.tracer?.enterState('SYSTEM_INFO_MENU');
         } // end of behavior for SYSTEM_INFO_MENU
     }
     
     #SYSTEM_INFO_MENU_exit()
     {
         // SYSTEM_INFO_MENU behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.SYSTEM_INFO_MENU); }
+        // uml: exit / { this.tracer?.exitState('SYSTEM_INFO_MENU'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.SYSTEM_INFO_MENU);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.SYSTEM_INFO_MENU);
+            // Step 1: execute action `this.tracer?.exitState('SYSTEM_INFO_MENU');`
+            this.tracer?.exitState('SYSTEM_INFO_MENU');
         } // end of behavior for SYSTEM_INFO_MENU
         
         // adjust function pointers for this state's exit
@@ -1538,10 +1538,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.UP] = this.#BURRITO_COUNT_up;
         
         // BURRITO_COUNT behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.BURRITO_COUNT); }
+        // uml: enter / { this.tracer?.enterState('BURRITO_COUNT'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.BURRITO_COUNT);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.BURRITO_COUNT);
+            // Step 1: execute action `this.tracer?.enterState('BURRITO_COUNT');`
+            this.tracer?.enterState('BURRITO_COUNT');
         } // end of behavior for BURRITO_COUNT
         
         // BURRITO_COUNT behavior
@@ -1555,10 +1555,10 @@ evaluateGuard = null;
     #BURRITO_COUNT_exit()
     {
         // BURRITO_COUNT behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.BURRITO_COUNT); }
+        // uml: exit / { this.tracer?.exitState('BURRITO_COUNT'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.BURRITO_COUNT);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.BURRITO_COUNT);
+            // Step 1: execute action `this.tracer?.exitState('BURRITO_COUNT');`
+            this.tracer?.exitState('BURRITO_COUNT');
         } // end of behavior for BURRITO_COUNT
         
         // adjust function pointers for this state's exit
@@ -1627,10 +1627,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.UP] = this.#DISTANCE_up;
         
         // DISTANCE behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.DISTANCE); }
+        // uml: enter / { this.tracer?.enterState('DISTANCE'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.DISTANCE);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.DISTANCE);
+            // Step 1: execute action `this.tracer?.enterState('DISTANCE');`
+            this.tracer?.enterState('DISTANCE');
         } // end of behavior for DISTANCE
         
         // DISTANCE behavior
@@ -1644,10 +1644,10 @@ evaluateGuard = null;
     #DISTANCE_exit()
     {
         // DISTANCE behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.DISTANCE); }
+        // uml: exit / { this.tracer?.exitState('DISTANCE'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.DISTANCE);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.DISTANCE);
+            // Step 1: execute action `this.tracer?.exitState('DISTANCE');`
+            this.tracer?.exitState('DISTANCE');
         } // end of behavior for DISTANCE
         
         // adjust function pointers for this state's exit
@@ -1723,10 +1723,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.LEFT] = this.#SELF_DESTRUCT_left;
         
         // SELF_DESTRUCT behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.SELF_DESTRUCT); }
+        // uml: enter / { this.tracer?.enterState('SELF_DESTRUCT'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.SELF_DESTRUCT);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.SELF_DESTRUCT);
+            // Step 1: execute action `this.tracer?.enterState('SELF_DESTRUCT');`
+            this.tracer?.enterState('SELF_DESTRUCT');
         } // end of behavior for SELF_DESTRUCT
         
         // SELF_DESTRUCT behavior
@@ -1740,10 +1740,10 @@ evaluateGuard = null;
     #SELF_DESTRUCT_exit()
     {
         // SELF_DESTRUCT behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.SELF_DESTRUCT); }
+        // uml: exit / { this.tracer?.exitState('SELF_DESTRUCT'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.SELF_DESTRUCT);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.SELF_DESTRUCT);
+            // Step 1: execute action `this.tracer?.exitState('SELF_DESTRUCT');`
+            this.tracer?.exitState('SELF_DESTRUCT');
         } // end of behavior for SELF_DESTRUCT
         
         // adjust function pointers for this state's exit
@@ -1799,10 +1799,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.DO] = this.#SD_1_do;
         
         // SD_1 behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.SD_1); }
+        // uml: enter / { this.tracer?.enterState('SD_1'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.SD_1);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.SD_1);
+            // Step 1: execute action `this.tracer?.enterState('SD_1');`
+            this.tracer?.enterState('SD_1');
         } // end of behavior for SD_1
         
         // SD_1 behavior
@@ -1830,10 +1830,10 @@ evaluateGuard = null;
     #SD_1_exit()
     {
         // SD_1 behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.SD_1); }
+        // uml: exit / { this.tracer?.exitState('SD_1'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.SD_1);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.SD_1);
+            // Step 1: execute action `this.tracer?.exitState('SD_1');`
+            this.tracer?.exitState('SD_1');
         } // end of behavior for SD_1
         
         // adjust function pointers for this state's exit
@@ -1891,10 +1891,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.UP] = this.#SELF_DESTRUCT_OPTION_up;
         
         // SELF_DESTRUCT_OPTION behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.SELF_DESTRUCT_OPTION); }
+        // uml: enter / { this.tracer?.enterState('SELF_DESTRUCT_OPTION'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.SELF_DESTRUCT_OPTION);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.SELF_DESTRUCT_OPTION);
+            // Step 1: execute action `this.tracer?.enterState('SELF_DESTRUCT_OPTION');`
+            this.tracer?.enterState('SELF_DESTRUCT_OPTION');
         } // end of behavior for SELF_DESTRUCT_OPTION
         
         // SELF_DESTRUCT_OPTION behavior
@@ -1908,10 +1908,10 @@ evaluateGuard = null;
     #SELF_DESTRUCT_OPTION_exit()
     {
         // SELF_DESTRUCT_OPTION behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.SELF_DESTRUCT_OPTION); }
+        // uml: exit / { this.tracer?.exitState('SELF_DESTRUCT_OPTION'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.SELF_DESTRUCT_OPTION);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.SELF_DESTRUCT_OPTION);
+            // Step 1: execute action `this.tracer?.exitState('SELF_DESTRUCT_OPTION');`
+            this.tracer?.exitState('SELF_DESTRUCT_OPTION');
         } // end of behavior for SELF_DESTRUCT_OPTION
         
         // adjust function pointers for this state's exit
@@ -2022,10 +2022,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.PG_UP] = this.#MAIN_MENU_INNER_pg_up;
         
         // MAIN_MENU_INNER behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.MAIN_MENU_INNER); }
+        // uml: enter / { this.tracer?.enterState('MAIN_MENU_INNER'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.MAIN_MENU_INNER);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.MAIN_MENU_INNER);
+            // Step 1: execute action `this.tracer?.enterState('MAIN_MENU_INNER');`
+            this.tracer?.enterState('MAIN_MENU_INNER');
         } // end of behavior for MAIN_MENU_INNER
         
         // MAIN_MENU_INNER behavior
@@ -2039,10 +2039,10 @@ evaluateGuard = null;
     #MAIN_MENU_INNER_exit()
     {
         // MAIN_MENU_INNER behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.MAIN_MENU_INNER); }
+        // uml: exit / { this.tracer?.exitState('MAIN_MENU_INNER'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.MAIN_MENU_INNER);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.MAIN_MENU_INNER);
+            // Step 1: execute action `this.tracer?.exitState('MAIN_MENU_INNER');`
+            this.tracer?.exitState('MAIN_MENU_INNER');
         } // end of behavior for MAIN_MENU_INNER
         
         // adjust function pointers for this state's exit
@@ -2131,10 +2131,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.UP] = this.#DRINK_up;
         
         // DRINK behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.DRINK); }
+        // uml: enter / { this.tracer?.enterState('DRINK'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.DRINK);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.DRINK);
+            // Step 1: execute action `this.tracer?.enterState('DRINK');`
+            this.tracer?.enterState('DRINK');
         } // end of behavior for DRINK
         
         // DRINK behavior
@@ -2148,10 +2148,10 @@ evaluateGuard = null;
     #DRINK_exit()
     {
         // DRINK behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.DRINK); }
+        // uml: exit / { this.tracer?.exitState('DRINK'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.DRINK);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.DRINK);
+            // Step 1: execute action `this.tracer?.exitState('DRINK');`
+            this.tracer?.exitState('DRINK');
         } // end of behavior for DRINK
         
         // adjust function pointers for this state's exit
@@ -2246,10 +2246,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.UP] = this.#FOOD_up;
         
         // FOOD behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.FOOD); }
+        // uml: enter / { this.tracer?.enterState('FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.FOOD);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.FOOD);
+            // Step 1: execute action `this.tracer?.enterState('FOOD');`
+            this.tracer?.enterState('FOOD');
         } // end of behavior for FOOD
         
         // FOOD behavior
@@ -2263,10 +2263,10 @@ evaluateGuard = null;
     #FOOD_exit()
     {
         // FOOD behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.FOOD); }
+        // uml: exit / { this.tracer?.exitState('FOOD'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.FOOD);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.FOOD);
+            // Step 1: execute action `this.tracer?.exitState('FOOD');`
+            this.tracer?.exitState('FOOD');
         } // end of behavior for FOOD
         
         // adjust function pointers for this state's exit
@@ -2382,10 +2382,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.UP] = this.#SYSTEM_INFO_up;
         
         // SYSTEM_INFO behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.SYSTEM_INFO); }
+        // uml: enter / { this.tracer?.enterState('SYSTEM_INFO'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.SYSTEM_INFO);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.SYSTEM_INFO);
+            // Step 1: execute action `this.tracer?.enterState('SYSTEM_INFO');`
+            this.tracer?.enterState('SYSTEM_INFO');
         } // end of behavior for SYSTEM_INFO
         
         // SYSTEM_INFO behavior
@@ -2399,10 +2399,10 @@ evaluateGuard = null;
     #SYSTEM_INFO_exit()
     {
         // SYSTEM_INFO behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.SYSTEM_INFO); }
+        // uml: exit / { this.tracer?.exitState('SYSTEM_INFO'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.SYSTEM_INFO);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.SYSTEM_INFO);
+            // Step 1: execute action `this.tracer?.exitState('SYSTEM_INFO');`
+            this.tracer?.exitState('SYSTEM_INFO');
         } // end of behavior for SYSTEM_INFO
         
         // adjust function pointers for this state's exit
@@ -2515,10 +2515,10 @@ evaluateGuard = null;
         this.#currentEventHandlers[SpaceControlUiSm.EventId.RIGHT] = this.#SPLASH_SCREEN_right;
         
         // SPLASH_SCREEN behavior
-        // uml: enter / { this.tracer?.enterState(SpaceControlUiSm.StateId.SPLASH_SCREEN); }
+        // uml: enter / { this.tracer?.enterState('SPLASH_SCREEN'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(SpaceControlUiSm.StateId.SPLASH_SCREEN);`
-            this.tracer?.enterState(SpaceControlUiSm.StateId.SPLASH_SCREEN);
+            // Step 1: execute action `this.tracer?.enterState('SPLASH_SCREEN');`
+            this.tracer?.enterState('SPLASH_SCREEN');
         } // end of behavior for SPLASH_SCREEN
         
         // SPLASH_SCREEN behavior
@@ -2532,10 +2532,10 @@ evaluateGuard = null;
     #SPLASH_SCREEN_exit()
     {
         // SPLASH_SCREEN behavior
-        // uml: exit / { this.tracer?.exitState(SpaceControlUiSm.StateId.SPLASH_SCREEN); }
+        // uml: exit / { this.tracer?.exitState('SPLASH_SCREEN'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(SpaceControlUiSm.StateId.SPLASH_SCREEN);`
-            this.tracer?.exitState(SpaceControlUiSm.StateId.SPLASH_SCREEN);
+            // Step 1: execute action `this.tracer?.exitState('SPLASH_SCREEN');`
+            this.tracer?.exitState('SPLASH_SCREEN');
         } // end of behavior for SPLASH_SCREEN
         
         // adjust function pointers for this state's exit
@@ -2648,6 +2648,7 @@ evaluateGuard = null;
             center: true
         });
 
+        const diagramEventNamesArray = ['RIGHT', 'ESC', 'PG_DOWN', 'PG_UP', 'DOWN', 'UP', 'LEFT', 'do', ];
 
         const leftPane = document.querySelector(".main");
         const rightPane = document.querySelector(".sidebar");
@@ -2768,14 +2769,12 @@ evaluateGuard = null;
         // when using SpaceControlUiSm.js in your own applications, although you may
         // choose to implement a tracer for debugging purposes.
         sm.tracer = {
-            enterState: (stateId) => {
-                var name = SpaceControlUiSm.stateIdToString(stateId);
-                document.querySelector('g[data-id=' + name + ']')?.classList.add('active');
-                sm.tracer.log("Entered " + name);
+            enterState: (mermaidName) => {
+                document.querySelector('g[data-id=' + mermaidName + ']')?.classList.add('active');
+                sm.tracer.log("Entered " + mermaidName);
             },
-            exitState: (stateId) => {
-                var name = SpaceControlUiSm.stateIdToString(stateId);
-                document.querySelector('g[data-id=' + name + ']')?.classList.remove('active');
+            exitState: (mermaidName) => {
+                document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
@@ -2786,17 +2785,18 @@ evaluateGuard = null;
         };
 
         // Wire up the buttons that dispatch events for the state machine.
-        for (const eventName in SpaceControlUiSm.EventId) {
+        diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
-            button.id = 'button_' + eventName;
-            button.innerText = eventName;
+            button.id = 'button_' + diagramEventName;
+            button.innerText = diagramEventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
-                sm.tracer.log("Dispatched " + eventName, true);
-                sm.dispatchEvent(SpaceControlUiSm.EventId[eventName]); 
+                sm.tracer.log("Dispatched " + diagramEventName, true);
+                const fsmEventName = diagramEventName.toUpperCase();
+                sm.dispatchEvent(SpaceControlUiSm.EventId[fsmEventName]); 
             });
             document.getElementById('buttons').appendChild(button);
-        }
+        });
 
         sm.start();
     </script>
