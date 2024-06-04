@@ -163,7 +163,7 @@ public class SimWebGenerator
         {
             var mermaidName = state.Name;
             state.AddEnterAction($"this.tracer?.enterState('{mermaidName}');", index: 0);
-            state.AddExitAction($"this.tracer?.exitState('{mermaidName}');");  // TODO - can we remove null conditional operator? It's not needed anymore?
+            state.AddExitAction($"this.tracer?.exitState('{mermaidName}');");
         }
     }
 

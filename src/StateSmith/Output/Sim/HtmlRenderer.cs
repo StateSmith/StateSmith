@@ -381,7 +381,7 @@ public class HtmlRenderer
             button.innerText = diagramEventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
-                sm.tracer.log(""Dispatched "" + diagramEventName, true);
+                sm.tracer?.log(""Dispatched "" + diagramEventName, true);
                 const fsmEventName = diagramEventName.toUpperCase();
                 sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
             });
