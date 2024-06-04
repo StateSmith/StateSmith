@@ -32,6 +32,11 @@ public class HtmlRenderer
         margin: 0px;
       }
 
+      /* Fix for mermaid content requiring scroll bars https://github.com/StateSmith/StateSmith/issues/288 */
+      pre.mermaid {
+        margin: 0px;
+      }
+
       .wrapper {
         height: 100vh;
         width: 100vw;
