@@ -39,6 +39,11 @@ public class SmTransformer
         InsertAfterFirstMatch(id.ToString(), new TransformationStep(action));
     }
 
+    public void InsertAfterFirstMatch(string id, Action<StateMachine> action)
+    {
+        InsertAfterFirstMatch(id, new TransformationStep(action));
+    }
+
     public void InsertAfterFirstMatch(Enum id, TransformationStep step)
     {
         InsertAfterFirstMatch(id.ToString(), step);
@@ -55,6 +60,11 @@ public class SmTransformer
     public void InsertBeforeFirstMatch(Enum id, Action<StateMachine> action)
     {
         InsertBeforeFirstMatch(id.ToString(), new TransformationStep(action));
+    }
+
+    public void InsertBeforeFirstMatch(string id, Action<StateMachine> action)
+    {
+        InsertBeforeFirstMatch(id, new TransformationStep(action));
     }
 
     public void InsertBeforeFirstMatch(Enum id, TransformationStep step)
