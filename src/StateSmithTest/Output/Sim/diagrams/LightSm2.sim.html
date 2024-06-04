@@ -1193,12 +1193,13 @@ evaluateGuard = null;
                 // ORDER_MENU.<History> is a pseudo state and cannot have an `enter` trigger.
                 
                 // ORDER_MENU.<History> behavior
-                // uml: [this.tracer?.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)") || $gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)] TransitionTo(FOOD)
-                if (this.tracer?.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)") || this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.FOOD)
+                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.FOOD)] / { this.tracer?.log("History state transitioning to FOOD."); } TransitionTo(FOOD)
+                if (this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.FOOD)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: ``.
+                    // Step 2: Transition action: `this.tracer?.log("History state transitioning to FOOD.");`.
+                    this.tracer?.log("History state transitioning to FOOD.");
                     
                     // Step 3: Enter/move towards transition target `FOOD`.
                     this.#FOOD_enter();
@@ -1209,12 +1210,13 @@ evaluateGuard = null;
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
-                // uml: [this.tracer?.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.BEVERAGE__FIRST)") || $gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.BEVERAGE__FIRST)] TransitionTo(BEVERAGE__FIRST)
-                if (this.tracer?.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.BEVERAGE__FIRST)") || this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.BEVERAGE__FIRST)
+                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.BEVERAGE__FIRST)] / { this.tracer?.log("History state transitioning to BEVERAGE__FIRST."); } TransitionTo(BEVERAGE__FIRST)
+                if (this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.BEVERAGE__FIRST)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: ``.
+                    // Step 2: Transition action: `this.tracer?.log("History state transitioning to BEVERAGE__FIRST.");`.
+                    this.tracer?.log("History state transitioning to BEVERAGE__FIRST.");
                     
                     // Step 3: Enter/move towards transition target `BEVERAGE__FIRST`.
                     this.#BEVERAGE_enter();
@@ -1227,12 +1229,13 @@ evaluateGuard = null;
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
-                // uml: [this.tracer?.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)") || $gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)] TransitionTo(COFFEE)
-                if (this.tracer?.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)") || this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.COFFEE)
+                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.COFFEE)] / { this.tracer?.log("History state transitioning to COFFEE."); } TransitionTo(COFFEE)
+                if (this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.COFFEE)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: ``.
+                    // Step 2: Transition action: `this.tracer?.log("History state transitioning to COFFEE.");`.
+                    this.tracer?.log("History state transitioning to COFFEE.");
                     
                     // Step 3: Enter/move towards transition target `COFFEE`.
                     this.#BEVERAGE_enter();
@@ -1245,12 +1248,13 @@ evaluateGuard = null;
                 } // end of behavior for ORDER_MENU.<History>
                 
                 // ORDER_MENU.<History> behavior
-                // uml: [this.tracer?.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)") || $gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)] TransitionTo(TEA)
-                if (this.tracer?.log("History state evaluating guard: " + "$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)") || this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.TEA)
+                // uml: [$gil(this.vars.ORDER_MENU_history == ORDER_MENU_HistoryId.TEA)] / { this.tracer?.log("History state transitioning to TEA."); } TransitionTo(TEA)
+                if (this.vars.ORDER_MENU_history == LightSm2.ORDER_MENU_HistoryId.TEA)
                 {
                     // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: ``.
+                    // Step 2: Transition action: `this.tracer?.log("History state transitioning to TEA.");`.
+                    this.tracer?.log("History state transitioning to TEA.");
                     
                     // Step 3: Enter/move towards transition target `TEA`.
                     this.#BEVERAGE_enter();

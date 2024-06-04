@@ -189,9 +189,7 @@ public class SimWebGenerator
             if (behavior.HasGuardCode())
             {
                 // we want the history vertex to work as is without prompting the user to evaluate those guards.
-                var logCode = $"this.tracer?.log(\"History state evaluating guard: \" + {FsmCodeToJsString(behavior.guardCode)})";
-                var actualCode = behavior.guardCode;
-                behavior.guardCode = $"{logCode} || {actualCode}";
+                behavior.actionCode += $"this.tracer?.log(\"History state transitioning to {Vertex.Describe(behavior.TransitionTarget)}.\");";
             }
             else
             {
