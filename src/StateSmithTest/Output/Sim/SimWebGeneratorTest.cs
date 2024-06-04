@@ -33,7 +33,13 @@ public class SimWebGenerator_IntegrationTests
     {
         GenerateForDiagram(diagramName: "PlantEx1.puml", expectedOutputFileName: "PlantEx1.sim.html");
     }
-    
+
+    [Fact]
+    public void BeadSorter()
+    {
+        GenerateForDiagram(diagramName: "BeadSorter.drawio.svg", expectedOutputFileName: "BeadSorter.sim.html");
+    }
+
     /// <summary>
     /// This test shows how a .csx file user can enable the simulation feature.
     /// </summary>
