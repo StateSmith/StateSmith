@@ -134,6 +134,8 @@ public class HtmlRenderer
 
       .console td.emphasis {
         font-weight: bold;
+        background-color: black;
+        color: white;
       }
 
       .history {
@@ -366,7 +368,7 @@ public class HtmlRenderer
         sm.tracer = {
             enterState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.add('active');
-                sm.tracer.log(""Entered "" + mermaidName);
+                sm.tracer.log(""➡️ Entered "" + mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -393,6 +395,7 @@ public class HtmlRenderer
             document.getElementById('buttons').appendChild(button);
         });
 
+        sm.tracer?.log('Start', true);
         sm.start();
     </script>
 

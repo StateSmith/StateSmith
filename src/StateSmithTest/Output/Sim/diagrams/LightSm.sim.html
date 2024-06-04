@@ -123,6 +123,8 @@
 
       .console td.emphasis {
         font-weight: bold;
+        background-color: black;
+        color: white;
       }
 
       .history {
@@ -401,10 +403,10 @@ evaluateGuard = null;
         } // end of behavior for Off
         
         // Off behavior
-        // uml: enter / { this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");"); }
+        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "console.log( \"OFF\n\");"); }
         {
-            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");");`
-            this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");");
+            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "console.log( \"OFF\n\");");`
+            this.tracer?.log("⚡ FSM would execute action: " + "console.log( \"OFF\n\");");
         } // end of behavior for Off
     }
     
@@ -522,10 +524,10 @@ evaluateGuard = null;
         } // end of behavior for ON1
         
         // ON1 behavior
-        // uml: enter / { this.tracer?.log("FSM would execute action: " + "light_blue();"); }
+        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "light_blue();"); }
         {
-            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "light_blue();");`
-            this.tracer?.log("FSM would execute action: " + "light_blue();");
+            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "light_blue();");`
+            this.tracer?.log("⚡ FSM would execute action: " + "light_blue();");
         } // end of behavior for ON1
     }
     
@@ -610,17 +612,17 @@ evaluateGuard = null;
         } // end of behavior for ON2
         
         // ON2 behavior
-        // uml: enter / { this.tracer?.log("FSM would execute action: " + "light_yellow();"); }
+        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "light_yellow();"); }
         {
-            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "light_yellow();");`
-            this.tracer?.log("FSM would execute action: " + "light_yellow();");
+            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "light_yellow();");`
+            this.tracer?.log("⚡ FSM would execute action: " + "light_yellow();");
         } // end of behavior for ON2
         
         // ON2 behavior
-        // uml: enter / { this.tracer?.log("FSM would execute action: " + "count = 0;"); }
+        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "count = 0;"); }
         {
-            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "count = 0;");`
-            this.tracer?.log("FSM would execute action: " + "count = 0;");
+            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "count = 0;");`
+            this.tracer?.log("⚡ FSM would execute action: " + "count = 0;");
         } // end of behavior for ON2
     }
     
@@ -667,18 +669,18 @@ evaluateGuard = null;
         // No ancestor state handles `increase` event.
         
         // ON2 behavior
-        // uml: 1. INCREASE / { this.tracer?.log("FSM would execute action: " + "count++;"); }
+        // uml: 1. INCREASE / { this.tracer?.log("⚡ FSM would execute action: " + "count++;"); }
         {
-            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "count++;");`
-            this.tracer?.log("FSM would execute action: " + "count++;");
+            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "count++;");`
+            this.tracer?.log("⚡ FSM would execute action: " + "count++;");
             
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
         } // end of behavior for ON2
         
         // ON2 behavior
-        // uml: 2. INCREASE [this.tracer?.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3")] / { this.tracer?.edgeTransition("edge5"); } TransitionTo(OnHot)
-        if (this.tracer?.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3"))
+        // uml: 2. INCREASE [this.tracer?.log("🛡️ User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3")] / { this.tracer?.edgeTransition("edge5"); } TransitionTo(OnHot)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3"))
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this.#ON2_exit();
@@ -715,10 +717,10 @@ evaluateGuard = null;
         } // end of behavior for OnHot
         
         // OnHot behavior
-        // uml: enter / { this.tracer?.log("FSM would execute action: " + "light_red();"); }
+        // uml: enter / { this.tracer?.log("⚡ FSM would execute action: " + "light_red();"); }
         {
-            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "light_red();");`
-            this.tracer?.log("FSM would execute action: " + "light_red();");
+            // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "light_red();");`
+            this.tracer?.log("⚡ FSM would execute action: " + "light_red();");
         } // end of behavior for OnHot
     }
     
@@ -931,7 +933,7 @@ evaluateGuard = null;
         sm.tracer = {
             enterState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.add('active');
-                sm.tracer.log("Entered " + mermaidName);
+                sm.tracer.log("➡️ Entered " + mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -958,6 +960,7 @@ evaluateGuard = null;
             document.getElementById('buttons').appendChild(button);
         });
 
+        sm.tracer?.log('Start', true);
         sm.start();
     </script>
 

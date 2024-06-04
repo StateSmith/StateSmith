@@ -107,8 +107,10 @@ public class NameMangler
     //--------------------------------------------------------
     //--------------------------------------------------------
 
-    public virtual string HistoryVarName(HistoryVertex historyVertex) => $"{historyVertex.ParentState!.Name}_history";
-    public virtual string HistoryVarEnumType(HistoryVertex historyVertex) => $"{historyVertex.ParentState!.Name}_HistoryId";
+    public virtual string HistoryVarNamePostfix => "_history";
+    public virtual string HistoryVarName(HistoryVertex historyVertex) => $"{historyVertex.ParentState!.Name}{HistoryVarNamePostfix}";
+    public virtual string HistoryVarEnumTypePostfix => "_HistoryId";
+    public virtual string HistoryVarEnumType(HistoryVertex historyVertex) => $"{historyVertex.ParentState!.Name}{HistoryVarEnumTypePostfix}";
     public virtual string HistoryVarEnumValue(HistoryVertex historyVertex, Vertex transitionTarget)
     {
         var description = Vertex.Describe(transitionTarget);

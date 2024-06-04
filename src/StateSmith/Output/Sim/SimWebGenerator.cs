@@ -3,13 +3,16 @@
 using StateSmith.Common;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.Algos.Balanced1;
+using StateSmith.Output.Gil;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace StateSmith.Output.Sim;
 
@@ -24,6 +27,9 @@ public class SimWebGenerator
     TextWriter mocksWriter = new StringWriter();
     SingleFileCapturer fileCapturer = new();
     StateMachineProvider stateMachineProvider;
+    NameMangler nameMangler;
+    Regex historyGilRegex;
+
 
     /// <summary>
     /// We want to show the user their original event names in the simulator.
@@ -52,6 +58,38 @@ public class SimWebGenerator
 
         AdjustTransformationPipeline();
         stateMachineProvider = simDiServiceProvider.GetInstanceOf<StateMachineProvider>();
+
+        nameMangler = simDiServiceProvider.GetInstanceOf<NameMangler>();
+
+        SetupGilHistoryRegex();
+    }
+
+    /// <summary>
+    /// GIL is Generic Intermediary Language. It is used by history vertices and other special cases.
+    /// </summary>
+    /// <exception cref="InvalidOperationException"></exception>
+    [MemberNotNull(nameof(historyGilRegex))]
+    private void SetupGilHistoryRegex()
+    {
+        if (nameMangler.HistoryVarEnumTypePostfix != "_HistoryId")
+            throw new InvalidOperationException("Expected HistoryVarEnumTypePostfix to be '_HistoryId' for regex below");
+
+        if (nameMangler.HistoryVarNamePostfix != "_history")
+            throw new InvalidOperationException("Expected HistoryVarNamePostfix to be '_history' for regex below");
+
+        if (GilCreationHelper.GilExpansionMarkerFuncName != "$gil")
+            throw new InvalidOperationException("Expected GilExpansionMarkerFuncName to be '$gil' for regex below");
+
+        // want to match: `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)`
+        historyGilRegex = new(@"(?x)
+        \$gil\(
+            \s*
+            this\.vars\.
+            (?<varName>\w+)_history         # e.g. Running_history
+            \s* = \s*
+            \w+ [.] (?<storedStateName>\w+);   # e.g. Running_HistoryId.SETUPCHECK__START
+        \)
+    ");
     }
 
     private void AdjustTransformationPipeline()
@@ -171,16 +209,19 @@ public class SimWebGenerator
     {
         if (behavior.HasActionCode())
         {
-            // GIL is Generic Intermediary Language. It is used by history vertices and other special cases.
-            if (behavior.actionCode.Contains("$gil("))
+            var historyGilMatch = historyGilRegex.Match(behavior.actionCode);
+            
+            if (historyGilMatch.Success)
             {
-                // keep actual code
-                behavior.actionCode += $"this.tracer?.log(\"Executed action: \" + {FsmCodeToJsString(behavior.actionCode)});";
+                // show history var updating
+                var historyVarName = historyGilMatch.Groups["varName"].Value;
+                var storedStateName = historyGilMatch.Groups["storedStateName"].Value;
+                behavior.actionCode += $"this.tracer?.log('📝 History({historyVarName}) = {storedStateName}');";
             }
             else
             {
                 // we don't want to execute the action, just log it.
-                behavior.actionCode = $"this.tracer?.log(\"FSM would execute action: \" + {FsmCodeToJsString(behavior.actionCode)});";
+                behavior.actionCode = $"this.tracer?.log(\"⚡ FSM would execute action: \" + {FsmCodeToJsString(behavior.actionCode)});";
             }
         }
 
@@ -189,18 +230,18 @@ public class SimWebGenerator
             if (behavior.HasGuardCode())
             {
                 // we want the history vertex to work as is without prompting the user to evaluate those guards.
-                behavior.actionCode += $"this.tracer?.log(\"History state transitioning to {Vertex.Describe(behavior.TransitionTarget)}.\");";
+                behavior.actionCode += $"this.tracer?.log(\"🕑 History: transitioning to {Vertex.Describe(behavior.TransitionTarget)}.\");";
             }
             else
             {
-                behavior.actionCode += $"this.tracer?.log(\"History state taking default transition.\");";
+                behavior.actionCode += $"this.tracer?.log(\"🕑 History: default transition.\");";
             }
         }
         else
         {
             if (behavior.HasGuardCode())
             {
-                var logCode = $"this.tracer?.log(\"User evaluating guard: \" + {FsmCodeToJsString(behavior.guardCode)})";
+                var logCode = $"this.tracer?.log(\"🛡️ User evaluating guard: \" + {FsmCodeToJsString(behavior.guardCode)})";
                 var confirmCode = $"this.evaluateGuard({FsmCodeToJsString(behavior.guardCode)})";
                 behavior.guardCode = $"{logCode} || {confirmCode}";
                 // NOTE! logCode doesn't return a value, so the confirm code will always be evaluated.

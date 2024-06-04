@@ -123,6 +123,8 @@
 
       .console td.emphasis {
         font-weight: bold;
+        background-color: black;
+        color: white;
       }
 
       .history {
@@ -971,7 +973,7 @@ evaluateGuard = null;
         sm.tracer = {
             enterState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.add('active');
-                sm.tracer.log("Entered " + mermaidName);
+                sm.tracer.log("➡️ Entered " + mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -998,6 +1000,7 @@ evaluateGuard = null;
             document.getElementById('buttons').appendChild(button);
         });
 
+        sm.tracer?.log('Start', true);
         sm.start();
     </script>
 
