@@ -9,6 +9,7 @@ namespace StateSmithTest.Processes;
 // TODO this is a MODIFIED copy of the class in StateSmith.Cli. It should be moved to a shared project. https://github.com/StateSmith/StateSmith/issues/252
 public class SimpleProcess
 {
+    public const int DefaultLongTimeoutMs = 20000;
     Process cmd = new();
 
     public string WorkingDirectory = "";
@@ -53,7 +54,7 @@ public class SimpleProcess
         Args = newArgs;
     }
 
-    public void RunWithExtraAttemptForWsl(int timeoutMs = 8000)
+    public void RunWithExtraAttemptForWsl(int timeoutMs = DefaultLongTimeoutMs)
     {
         try
         {
@@ -73,7 +74,7 @@ public class SimpleProcess
         }
     }
 
-    public void Run(int timeoutMs = 8000, int attempts = 1)
+    public void Run(int timeoutMs = DefaultLongTimeoutMs, int attempts = 1)
     {
         while (attempts > 0)
         {
@@ -121,7 +122,7 @@ public class SimpleProcess
             cmd.BeginErrorReadLine();
             cmd.BeginOutputReadLine();
         }
-        catch (InvalidOperationException)
+        catch (InvalidOperationException e)
         {
             // checking for exit code doesn't work here as the process is still running.
             // wait a bit.
@@ -132,7 +133,7 @@ public class SimpleProcess
             else
             {
                 // we don't know what happened, so throw.
-                throw;
+                throw new InvalidOperationException("Process failure. stdout: " + StdOutput + " stderr: " + StdError, e);
             }
         }
 

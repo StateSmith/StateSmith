@@ -4,7 +4,7 @@ namespace StateSmith.Output.Sim;
 
 public class HtmlRenderer
 {
-    public static void Render(StringBuilder stringBuilder, string smName, string mocksCode, string mermaidCode, string jsCode)
+    public static void Render(StringBuilder stringBuilder, string smName, string mocksCode, string mermaidCode, string jsCode, string diagramEventNamesArray)
     {
         // Now that we are working inside the StateSmith project, we need to restrict ourselves to dotnet 6 features.
         // We can't use """raw strings""" anymore so we do manual string interpolation below string.
@@ -238,6 +238,7 @@ public class HtmlRenderer
             center: true
         });
 
+        const diagramEventNamesArray = {{diagramEventNamesArray}};
 
         const leftPane = document.querySelector("".main"");
         const rightPane = document.querySelector("".sidebar"");
@@ -358,14 +359,12 @@ public class HtmlRenderer
         // when using {{smName}}.js in your own applications, although you may
         // choose to implement a tracer for debugging purposes.
         sm.tracer = {
-            enterState: (stateId) => {
-                var name = {{smName}}.stateIdToString(stateId);
-                document.querySelector('g[data-id=' + name + ']')?.classList.add('active');
-                sm.tracer.log(""Entered "" + name);
+            enterState: (mermaidName) => {
+                document.querySelector('g[data-id=' + mermaidName + ']')?.classList.add('active');
+                sm.tracer.log(""Entered "" + mermaidName);
             },
-            exitState: (stateId) => {
-                var name = {{smName}}.stateIdToString(stateId);
-                document.querySelector('g[data-id=' + name + ']')?.classList.remove('active');
+            exitState: (mermaidName) => {
+                document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
@@ -376,17 +375,18 @@ public class HtmlRenderer
         };
 
         // Wire up the buttons that dispatch events for the state machine.
-        for (const eventName in {{smName}}.EventId) {
+        diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
-            button.id = 'button_' + eventName;
-            button.innerText = eventName;
+            button.id = 'button_' + diagramEventName;
+            button.innerText = diagramEventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
-                sm.tracer.log(""Dispatched "" + eventName, true);
-                sm.dispatchEvent({{smName}}.EventId[eventName]); 
+                sm.tracer?.log(""Dispatched "" + diagramEventName, true);
+                const fsmEventName = diagramEventName.toUpperCase();
+                sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
             });
             document.getElementById('buttons').appendChild(button);
-        }
+        });
 
         sm.start();
     </script>
@@ -399,6 +399,7 @@ public class HtmlRenderer
         htmlTemplate = htmlTemplate.Replace("{{jsCode}}", jsCode);
         htmlTemplate = htmlTemplate.Replace("{{mocksCode}}", mocksCode);
         htmlTemplate = htmlTemplate.Replace("{{smName}}", smName);
+        htmlTemplate = htmlTemplate.Replace("{{diagramEventNamesArray}}", diagramEventNamesArray);
         stringBuilder.AppendLine(htmlTemplate);
     }
 }

@@ -20,7 +20,7 @@ public class MsvcCompilation : ICompilation
 
         AddArgs(process, request);
         CCompUtils.AddSourceFilesArgs(process, request);
-        process.Run(timeoutMs: 8000);
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
     }
 
     private static void AddArgs(SimpleProcess process, CCompRequest request)
@@ -56,7 +56,7 @@ public class MsvcCompilation : ICompilation
             Args = runArgs
         };
 
-        process.Run(timeoutMs: 8000);
+        process.Run(timeoutMs: SimpleProcess.DefaultLongTimeoutMs);
         return process;
     }
 }

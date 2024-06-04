@@ -1,10 +1,13 @@
 #nullable enable
 
+using StateSmith.Common;
 using StateSmith.Input.Expansions;
+using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -21,6 +24,13 @@ public class SimWebGenerator
     TextWriter mocksWriter = new StringWriter();
     SingleFileCapturer fileCapturer = new();
     StateMachineProvider stateMachineProvider;
+
+    /// <summary>
+    /// We want to show the user their original event names in the simulator.
+    /// Not the sanitized names.
+    /// </summary>
+    HashSet<string> diagramEventNames = new(StringComparer.OrdinalIgnoreCase);
+
     SmRunner runner;
 
     public SimWebGenerator(ICodeFileWriter codeFileWriter)
@@ -52,6 +62,9 @@ public class SimWebGenerator
         const string GenMermaidCodeStepId = "gen-mermaid-code";
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_SupportHistory, new TransformationStep(id: GenMermaidCodeStepId, GenerateMermaidCode));
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, V1LoggingTransformationStep);
+        
+        // collect diagram names after trigger mapping completes
+        runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
 
         // We to generate mermaid  history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
         // See https://github.com/StateSmith/StateSmith/issues/302
@@ -61,6 +74,21 @@ public class SimWebGenerator
         int mermaidIndex = runner.SmTransformer.GetMatchIndex(GenMermaidCodeStepId);
         if (mermaidIndex <= nameConflictIndex || mermaidIndex >= historyIndex)
             throw new Exception("Mermaid generation must occur after name conflict resolution and before history support.");
+    }
+
+    private void CollectDiagramNames(StateMachine sm)
+    {
+        sm.VisitRecursively((Vertex vertex) =>
+        {
+            foreach (var behavior in vertex.Behaviors)
+            {
+                foreach (var trigger in behavior.Triggers)
+                {
+                    if (TriggerHelper.IsEvent(trigger))
+                        diagramEventNames.Add(trigger);
+                }
+            }
+        });
     }
 
     public void Generate(string diagramPath, string outputDir)
@@ -74,8 +102,20 @@ public class SimWebGenerator
 
         string path = Path.Combine(outputDir, $"{smName}.sim.html");
 
+        var diagramEventNamesArray = "[";
+        foreach (var name in diagramEventNames)
+        {
+            diagramEventNamesArray += $"'{name}', ";
+        }
+        diagramEventNamesArray += "]";
+
         var sb = new StringBuilder();
-        HtmlRenderer.Render(sb, smName: smName, mocksCode: mocksWriter.ToString(), mermaidCode: mermaidCodeWriter.ToString(), jsCode: fileCapturer.CapturedCode);
+        HtmlRenderer.Render(sb, 
+            smName: smName, 
+            mocksCode: mocksWriter.ToString(), 
+            mermaidCode: mermaidCodeWriter.ToString(), 
+            jsCode: fileCapturer.CapturedCode, 
+            diagramEventNamesArray: diagramEventNamesArray);
         codeFileWriter.WriteFile(path, code: sb.ToString());
     }
 
@@ -115,15 +155,15 @@ public class SimWebGenerator
         }
     }
 
-    static void V1AddEntryExitTracing(StateMachine sm, Vertex vertex)
+    void V1AddEntryExitTracing(StateMachine sm, Vertex vertex)
     {
         // we purposely don't want to trace the entry/exit of the state machine itself.
         // That's why we use `State` instead of `NamedVertex`.
         if (vertex is State state)
         {
-            var id = $"{sm.Name}.StateId.{state.Name.ToUpper()}";
-            state.AddEnterAction($"this.tracer?.enterState({id});", index: 0);
-            state.AddExitAction($"this.tracer?.exitState({id});");  // TODO - can we remove null conditional operator? It's not needed anymore?
+            var mermaidName = state.Name;
+            state.AddEnterAction($"this.tracer?.enterState('{mermaidName}');", index: 0);
+            state.AddExitAction($"this.tracer?.exitState('{mermaidName}');");
         }
     }
 

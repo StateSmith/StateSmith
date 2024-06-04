@@ -186,11 +186,11 @@ state ON_GROUP {
 
         ON1 : enter / #123; light_blue()#59; #125;
 
-        ON_HOT
+        OnHot
 
-        ON_HOT : ON_HOT
+        OnHot : OnHot
 
-        ON_HOT : enter / #123; light_red()#59; #125;
+        OnHot : enter / #123; light_red()#59; #125;
 
         ON2
 
@@ -206,27 +206,27 @@ state ON_GROUP {
 
 state "$initial_state" as ROOT.(InitialState)
 
-OFF
+Off
 
-OFF : OFF
+Off : Off
 
-OFF : enter / #123; console.log( "OFF#92;n")#59; #125;
+Off : enter / #123; console.log( "OFF#92;n")#59; #125;
 
-ON_GROUP --> OFF : OFF
+ON_GROUP --> Off : off
 
 ON1 --> ON2 : INCREASE
 
-ON1 --> OFF : DIM
+ON1 --> Off : DimLight
 
-ON_HOT --> ON2 : DIM
+OnHot --> ON2 : DimLight
 
-ON2 --> ON1 : DIM
+ON2 --> ON1 : DimLight
 
-ON2 --> ON_HOT : 2. INCREASE [count >= 3]
+ON2 --> OnHot : 2. INCREASE [count >= 3]
 
-ROOT.(InitialState) --> OFF
+ROOT.(InitialState) --> Off
 
-OFF --> ON1 : INCREASE
+Off --> ON1 : INCREASE
 
 
 
@@ -271,7 +271,7 @@ class LightSm
 evaluateGuard = null;
     static EventId = 
     {
-        DIM : 0,
+        DIMLIGHT : 0,
         INCREASE : 1,
         OFF : 2,
     }
@@ -285,9 +285,9 @@ evaluateGuard = null;
         ROOT : 0,
         OFF : 1,
         ON_GROUP : 2,
-        ON_HOT : 3,
-        ON1 : 4,
-        ON2 : 5,
+        ON1 : 3,
+        ON2 : 4,
+        ONHOT : 5,
     }
     static { Object.freeze(this.StateId); }
     
@@ -321,14 +321,14 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer?.edgeTransition("edge6"); } TransitionTo(OFF)
+            // uml: / { this.tracer?.edgeTransition("edge6"); } TransitionTo(Off)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: `this.tracer?.edgeTransition("edge6");`.
                 this.tracer?.edgeTransition("edge6");
                 
-                // Step 3: Enter/move towards transition target `OFF`.
+                // Step 3: Enter/move towards transition target `Off`.
                 this.#OFF_enter();
                 
                 // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
@@ -388,29 +388,29 @@ evaluateGuard = null;
         this.#currentStateExitHandler = this.#OFF_exit;
         this.#currentEventHandlers[LightSm.EventId.INCREASE] = this.#OFF_increase;
         
-        // OFF behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.OFF); }
+        // Off behavior
+        // uml: enter / { this.tracer?.enterState('Off'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.OFF);`
-            this.tracer?.enterState(LightSm.StateId.OFF);
-        } // end of behavior for OFF
+            // Step 1: execute action `this.tracer?.enterState('Off');`
+            this.tracer?.enterState('Off');
+        } // end of behavior for Off
         
-        // OFF behavior
+        // Off behavior
         // uml: enter / { this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");"); }
         {
             // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");");`
             this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");");
-        } // end of behavior for OFF
+        } // end of behavior for Off
     }
     
     #OFF_exit()
     {
-        // OFF behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.OFF); }
+        // Off behavior
+        // uml: exit / { this.tracer?.exitState('Off'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.OFF);`
-            this.tracer?.exitState(LightSm.StateId.OFF);
-        } // end of behavior for OFF
+            // Step 1: execute action `this.tracer?.exitState('Off');`
+            this.tracer?.exitState('Off');
+        } // end of behavior for Off
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#ROOT_exit;
@@ -421,7 +421,7 @@ evaluateGuard = null;
     {
         // No ancestor state handles `increase` event.
         
-        // OFF behavior
+        // Off behavior
         // uml: INCREASE / { this.tracer?.edgeTransition("edge7"); } TransitionTo(ON1)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
@@ -438,7 +438,7 @@ evaluateGuard = null;
             this.stateId = LightSm.StateId.ON1;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
-        } // end of behavior for OFF
+        } // end of behavior for Off
     }
     
     
@@ -453,20 +453,20 @@ evaluateGuard = null;
         this.#currentEventHandlers[LightSm.EventId.OFF] = this.#ON_GROUP_off;
         
         // ON_GROUP behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.ON_GROUP); }
+        // uml: enter / { this.tracer?.enterState('ON_GROUP'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.ON_GROUP);`
-            this.tracer?.enterState(LightSm.StateId.ON_GROUP);
+            // Step 1: execute action `this.tracer?.enterState('ON_GROUP');`
+            this.tracer?.enterState('ON_GROUP');
         } // end of behavior for ON_GROUP
     }
     
     #ON_GROUP_exit()
     {
         // ON_GROUP behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.ON_GROUP); }
+        // uml: exit / { this.tracer?.exitState('ON_GROUP'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.ON_GROUP);`
-            this.tracer?.exitState(LightSm.StateId.ON_GROUP);
+            // Step 1: execute action `this.tracer?.exitState('ON_GROUP');`
+            this.tracer?.exitState('ON_GROUP');
         } // end of behavior for ON_GROUP
         
         // adjust function pointers for this state's exit
@@ -479,7 +479,7 @@ evaluateGuard = null;
         // No ancestor state handles `off` event.
         
         // ON_GROUP behavior
-        // uml: OFF / { this.tracer?.edgeTransition("edge0"); } TransitionTo(OFF)
+        // uml: off / { this.tracer?.edgeTransition("edge0"); } TransitionTo(Off)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#ROOT_exit);
@@ -487,7 +487,7 @@ evaluateGuard = null;
             // Step 2: Transition action: `this.tracer?.edgeTransition("edge0");`.
             this.tracer?.edgeTransition("edge0");
             
-            // Step 3: Enter/move towards transition target `OFF`.
+            // Step 3: Enter/move towards transition target `Off`.
             this.#OFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
@@ -499,69 +499,6 @@ evaluateGuard = null;
     
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state ON_HOT
-    ////////////////////////////////////////////////////////////////////////////////
-    
-    #ON_HOT_enter()
-    {
-        // setup trigger/event handlers
-        this.#currentStateExitHandler = this.#ON_HOT_exit;
-        this.#currentEventHandlers[LightSm.EventId.DIM] = this.#ON_HOT_dim;
-        
-        // ON_HOT behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.ON_HOT); }
-        {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.ON_HOT);`
-            this.tracer?.enterState(LightSm.StateId.ON_HOT);
-        } // end of behavior for ON_HOT
-        
-        // ON_HOT behavior
-        // uml: enter / { this.tracer?.log("FSM would execute action: " + "light_red();"); }
-        {
-            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "light_red();");`
-            this.tracer?.log("FSM would execute action: " + "light_red();");
-        } // end of behavior for ON_HOT
-    }
-    
-    #ON_HOT_exit()
-    {
-        // ON_HOT behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.ON_HOT); }
-        {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.ON_HOT);`
-            this.tracer?.exitState(LightSm.StateId.ON_HOT);
-        } // end of behavior for ON_HOT
-        
-        // adjust function pointers for this state's exit
-        this.#currentStateExitHandler = this.#ON_GROUP_exit;
-        this.#currentEventHandlers[LightSm.EventId.DIM] = null;  // no ancestor listens to this event
-    }
-    
-    #ON_HOT_dim()
-    {
-        // No ancestor state handles `dim` event.
-        
-        // ON_HOT behavior
-        // uml: DIM / { this.tracer?.edgeTransition("edge3"); } TransitionTo(ON2)
-        {
-            // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
-            this.#ON_HOT_exit();
-            
-            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
-            this.tracer?.edgeTransition("edge3");
-            
-            // Step 3: Enter/move towards transition target `ON2`.
-            this.#ON2_enter();
-            
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.ON2;
-            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
-            return;
-        } // end of behavior for ON_HOT
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state ON1
     ////////////////////////////////////////////////////////////////////////////////
     
@@ -569,14 +506,14 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#ON1_exit;
-        this.#currentEventHandlers[LightSm.EventId.DIM] = this.#ON1_dim;
+        this.#currentEventHandlers[LightSm.EventId.DIMLIGHT] = this.#ON1_dimlight;
         this.#currentEventHandlers[LightSm.EventId.INCREASE] = this.#ON1_increase;
         
         // ON1 behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.ON1); }
+        // uml: enter / { this.tracer?.enterState('ON1'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.ON1);`
-            this.tracer?.enterState(LightSm.StateId.ON1);
+            // Step 1: execute action `this.tracer?.enterState('ON1');`
+            this.tracer?.enterState('ON1');
         } // end of behavior for ON1
         
         // ON1 behavior
@@ -590,24 +527,24 @@ evaluateGuard = null;
     #ON1_exit()
     {
         // ON1 behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.ON1); }
+        // uml: exit / { this.tracer?.exitState('ON1'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.ON1);`
-            this.tracer?.exitState(LightSm.StateId.ON1);
+            // Step 1: execute action `this.tracer?.exitState('ON1');`
+            this.tracer?.exitState('ON1');
         } // end of behavior for ON1
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#ON_GROUP_exit;
-        this.#currentEventHandlers[LightSm.EventId.DIM] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm.EventId.DIMLIGHT] = null;  // no ancestor listens to this event
         this.#currentEventHandlers[LightSm.EventId.INCREASE] = null;  // no ancestor listens to this event
     }
     
-    #ON1_dim()
+    #ON1_dimlight()
     {
-        // No ancestor state handles `dim` event.
+        // No ancestor state handles `dimlight` event.
         
         // ON1 behavior
-        // uml: DIM / { this.tracer?.edgeTransition("edge2"); } TransitionTo(OFF)
+        // uml: DimLight / { this.tracer?.edgeTransition("edge2"); } TransitionTo(Off)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#ROOT_exit);
@@ -615,7 +552,7 @@ evaluateGuard = null;
             // Step 2: Transition action: `this.tracer?.edgeTransition("edge2");`.
             this.tracer?.edgeTransition("edge2");
             
-            // Step 3: Enter/move towards transition target `OFF`.
+            // Step 3: Enter/move towards transition target `Off`.
             this.#OFF_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
@@ -657,14 +594,14 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#ON2_exit;
-        this.#currentEventHandlers[LightSm.EventId.DIM] = this.#ON2_dim;
+        this.#currentEventHandlers[LightSm.EventId.DIMLIGHT] = this.#ON2_dimlight;
         this.#currentEventHandlers[LightSm.EventId.INCREASE] = this.#ON2_increase;
         
         // ON2 behavior
-        // uml: enter / { this.tracer?.enterState(LightSm.StateId.ON2); }
+        // uml: enter / { this.tracer?.enterState('ON2'); }
         {
-            // Step 1: execute action `this.tracer?.enterState(LightSm.StateId.ON2);`
-            this.tracer?.enterState(LightSm.StateId.ON2);
+            // Step 1: execute action `this.tracer?.enterState('ON2');`
+            this.tracer?.enterState('ON2');
         } // end of behavior for ON2
         
         // ON2 behavior
@@ -685,24 +622,24 @@ evaluateGuard = null;
     #ON2_exit()
     {
         // ON2 behavior
-        // uml: exit / { this.tracer?.exitState(LightSm.StateId.ON2); }
+        // uml: exit / { this.tracer?.exitState('ON2'); }
         {
-            // Step 1: execute action `this.tracer?.exitState(LightSm.StateId.ON2);`
-            this.tracer?.exitState(LightSm.StateId.ON2);
+            // Step 1: execute action `this.tracer?.exitState('ON2');`
+            this.tracer?.exitState('ON2');
         } // end of behavior for ON2
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#ON_GROUP_exit;
-        this.#currentEventHandlers[LightSm.EventId.DIM] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[LightSm.EventId.DIMLIGHT] = null;  // no ancestor listens to this event
         this.#currentEventHandlers[LightSm.EventId.INCREASE] = null;  // no ancestor listens to this event
     }
     
-    #ON2_dim()
+    #ON2_dimlight()
     {
-        // No ancestor state handles `dim` event.
+        // No ancestor state handles `dimlight` event.
         
         // ON2 behavior
-        // uml: DIM / { this.tracer?.edgeTransition("edge4"); } TransitionTo(ON1)
+        // uml: DimLight / { this.tracer?.edgeTransition("edge4"); } TransitionTo(ON1)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this.#ON2_exit();
@@ -735,7 +672,7 @@ evaluateGuard = null;
         } // end of behavior for ON2
         
         // ON2 behavior
-        // uml: 2. INCREASE [this.tracer?.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3")] / { this.tracer?.edgeTransition("edge5"); } TransitionTo(ON_HOT)
+        // uml: 2. INCREASE [this.tracer?.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3")] / { this.tracer?.edgeTransition("edge5"); } TransitionTo(OnHot)
         if (this.tracer?.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3"))
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
@@ -744,14 +681,77 @@ evaluateGuard = null;
             // Step 2: Transition action: `this.tracer?.edgeTransition("edge5");`.
             this.tracer?.edgeTransition("edge5");
             
-            // Step 3: Enter/move towards transition target `ON_HOT`.
-            this.#ON_HOT_enter();
+            // Step 3: Enter/move towards transition target `OnHot`.
+            this.#ONHOT_enter();
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            this.stateId = LightSm.StateId.ON_HOT;
+            this.stateId = LightSm.StateId.ONHOT;
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
             return;
         } // end of behavior for ON2
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state ONHOT
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    #ONHOT_enter()
+    {
+        // setup trigger/event handlers
+        this.#currentStateExitHandler = this.#ONHOT_exit;
+        this.#currentEventHandlers[LightSm.EventId.DIMLIGHT] = this.#ONHOT_dimlight;
+        
+        // OnHot behavior
+        // uml: enter / { this.tracer?.enterState('OnHot'); }
+        {
+            // Step 1: execute action `this.tracer?.enterState('OnHot');`
+            this.tracer?.enterState('OnHot');
+        } // end of behavior for OnHot
+        
+        // OnHot behavior
+        // uml: enter / { this.tracer?.log("FSM would execute action: " + "light_red();"); }
+        {
+            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "light_red();");`
+            this.tracer?.log("FSM would execute action: " + "light_red();");
+        } // end of behavior for OnHot
+    }
+    
+    #ONHOT_exit()
+    {
+        // OnHot behavior
+        // uml: exit / { this.tracer?.exitState('OnHot'); }
+        {
+            // Step 1: execute action `this.tracer?.exitState('OnHot');`
+            this.tracer?.exitState('OnHot');
+        } // end of behavior for OnHot
+        
+        // adjust function pointers for this state's exit
+        this.#currentStateExitHandler = this.#ON_GROUP_exit;
+        this.#currentEventHandlers[LightSm.EventId.DIMLIGHT] = null;  // no ancestor listens to this event
+    }
+    
+    #ONHOT_dimlight()
+    {
+        // No ancestor state handles `dimlight` event.
+        
+        // OnHot behavior
+        // uml: DimLight / { this.tracer?.edgeTransition("edge3"); } TransitionTo(ON2)
+        {
+            // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
+            this.#ONHOT_exit();
+            
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
+            this.tracer?.edgeTransition("edge3");
+            
+            // Step 3: Enter/move towards transition target `ON2`.
+            this.#ON2_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            this.stateId = LightSm.StateId.ON2;
+            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+            return;
+        } // end of behavior for OnHot
     }
     
     // Thread safe.
@@ -762,9 +762,9 @@ evaluateGuard = null;
             case LightSm.StateId.ROOT: return "ROOT";
             case LightSm.StateId.OFF: return "OFF";
             case LightSm.StateId.ON_GROUP: return "ON_GROUP";
-            case LightSm.StateId.ON_HOT: return "ON_HOT";
             case LightSm.StateId.ON1: return "ON1";
             case LightSm.StateId.ON2: return "ON2";
+            case LightSm.StateId.ONHOT: return "ONHOT";
             default: return "?";
         }
     }
@@ -774,7 +774,7 @@ evaluateGuard = null;
     {
         switch (id)
         {
-            case LightSm.EventId.DIM: return "DIM";
+            case LightSm.EventId.DIMLIGHT: return "DIMLIGHT";
             case LightSm.EventId.INCREASE: return "INCREASE";
             case LightSm.EventId.OFF: return "OFF";
             default: return "?";
@@ -803,6 +803,7 @@ evaluateGuard = null;
             center: true
         });
 
+        const diagramEventNamesArray = ['off', 'INCREASE', 'DimLight', ];
 
         const leftPane = document.querySelector(".main");
         const rightPane = document.querySelector(".sidebar");
@@ -923,14 +924,12 @@ evaluateGuard = null;
         // when using LightSm.js in your own applications, although you may
         // choose to implement a tracer for debugging purposes.
         sm.tracer = {
-            enterState: (stateId) => {
-                var name = LightSm.stateIdToString(stateId);
-                document.querySelector('g[data-id=' + name + ']')?.classList.add('active');
-                sm.tracer.log("Entered " + name);
+            enterState: (mermaidName) => {
+                document.querySelector('g[data-id=' + mermaidName + ']')?.classList.add('active');
+                sm.tracer.log("Entered " + mermaidName);
             },
-            exitState: (stateId) => {
-                var name = LightSm.stateIdToString(stateId);
-                document.querySelector('g[data-id=' + name + ']')?.classList.remove('active');
+            exitState: (mermaidName) => {
+                document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
             },
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
@@ -941,17 +940,18 @@ evaluateGuard = null;
         };
 
         // Wire up the buttons that dispatch events for the state machine.
-        for (const eventName in LightSm.EventId) {
+        diagramEventNamesArray.forEach(diagramEventName => {
             var button = document.createElement('button');
-            button.id = 'button_' + eventName;
-            button.innerText = eventName;
+            button.id = 'button_' + diagramEventName;
+            button.innerText = diagramEventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
-                sm.tracer.log("Dispatched " + eventName, true);
-                sm.dispatchEvent(LightSm.EventId[eventName]); 
+                sm.tracer?.log("Dispatched " + diagramEventName, true);
+                const fsmEventName = diagramEventName.toUpperCase();
+                sm.dispatchEvent(LightSm.EventId[fsmEventName]); 
             });
             document.getElementById('buttons').appendChild(button);
-        }
+        });
 
         sm.start();
     </script>

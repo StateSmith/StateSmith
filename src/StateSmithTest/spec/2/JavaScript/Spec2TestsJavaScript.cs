@@ -16,7 +16,7 @@ public class Spec2TestsJavaScript : Spec2Tests, IClassFixture<SharedCompilationF
             ProgramPath = "node",
             Args = $"index.js {testEvents}"
         };
-        process.Run();
+        process.Run(SimpleProcess.DefaultLongTimeoutMs);
 
         string output = process.StdOutput;
         output = StringUtils.RemoveEverythingBefore(output, "\nIGNORE_OUTPUT_BEFORE_THIS\n").Trim();
