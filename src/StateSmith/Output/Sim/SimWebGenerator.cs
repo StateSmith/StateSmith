@@ -104,7 +104,7 @@ public class SimWebGenerator
         // collect diagram names after trigger mapping completes
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_TriggerMapping, CollectDiagramNames);
 
-        // We to generate mermaid  history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
+        // We to generate mermaid diagram before history support (to avoid a ton of transitions being shown), but AFTER name conflict resolution.
         // See https://github.com/StateSmith/StateSmith/issues/302
         // Validate that this is true.
         int historyIndex = runner.SmTransformer.GetMatchIndex(StandardSmTransformer.TransformationId.Standard_SupportHistory);
