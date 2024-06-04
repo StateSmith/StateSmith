@@ -321,12 +321,12 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer.edgeTransition("edge6"); } TransitionTo(OFF)
+            // uml: / { this.tracer?.edgeTransition("edge6"); } TransitionTo(OFF)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer.edgeTransition("edge6");`.
-                this.tracer.edgeTransition("edge6");
+                // Step 2: Transition action: `this.tracer?.edgeTransition("edge6");`.
+                this.tracer?.edgeTransition("edge6");
                 
                 // Step 3: Enter/move towards transition target `OFF`.
                 this.#OFF_enter();
@@ -396,10 +396,10 @@ evaluateGuard = null;
         } // end of behavior for OFF
         
         // OFF behavior
-        // uml: enter / { this.tracer.log("FSM would execute action: " + "console.log( \"OFF\n\");"); }
+        // uml: enter / { this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");"); }
         {
-            // Step 1: execute action `this.tracer.log("FSM would execute action: " + "console.log( \"OFF\n\");");`
-            this.tracer.log("FSM would execute action: " + "console.log( \"OFF\n\");");
+            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");");`
+            this.tracer?.log("FSM would execute action: " + "console.log( \"OFF\n\");");
         } // end of behavior for OFF
     }
     
@@ -422,13 +422,13 @@ evaluateGuard = null;
         // No ancestor state handles `increase` event.
         
         // OFF behavior
-        // uml: INCREASE / { this.tracer.edgeTransition("edge7"); } TransitionTo(ON1)
+        // uml: INCREASE / { this.tracer?.edgeTransition("edge7"); } TransitionTo(ON1)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#OFF_exit();
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge7");`.
-            this.tracer.edgeTransition("edge7");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge7");`.
+            this.tracer?.edgeTransition("edge7");
             
             // Step 3: Enter/move towards transition target `ON1`.
             this.#ON_GROUP_enter();
@@ -479,13 +479,13 @@ evaluateGuard = null;
         // No ancestor state handles `off` event.
         
         // ON_GROUP behavior
-        // uml: OFF / { this.tracer.edgeTransition("edge0"); } TransitionTo(OFF)
+        // uml: OFF / { this.tracer?.edgeTransition("edge0"); } TransitionTo(OFF)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#ROOT_exit);
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge0");`.
-            this.tracer.edgeTransition("edge0");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge0");`.
+            this.tracer?.edgeTransition("edge0");
             
             // Step 3: Enter/move towards transition target `OFF`.
             this.#OFF_enter();
@@ -516,10 +516,10 @@ evaluateGuard = null;
         } // end of behavior for ON_HOT
         
         // ON_HOT behavior
-        // uml: enter / { this.tracer.log("FSM would execute action: " + "light_red();"); }
+        // uml: enter / { this.tracer?.log("FSM would execute action: " + "light_red();"); }
         {
-            // Step 1: execute action `this.tracer.log("FSM would execute action: " + "light_red();");`
-            this.tracer.log("FSM would execute action: " + "light_red();");
+            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "light_red();");`
+            this.tracer?.log("FSM would execute action: " + "light_red();");
         } // end of behavior for ON_HOT
     }
     
@@ -542,13 +542,13 @@ evaluateGuard = null;
         // No ancestor state handles `dim` event.
         
         // ON_HOT behavior
-        // uml: DIM / { this.tracer.edgeTransition("edge3"); } TransitionTo(ON2)
+        // uml: DIM / { this.tracer?.edgeTransition("edge3"); } TransitionTo(ON2)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this.#ON_HOT_exit();
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge3");`.
-            this.tracer.edgeTransition("edge3");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
+            this.tracer?.edgeTransition("edge3");
             
             // Step 3: Enter/move towards transition target `ON2`.
             this.#ON2_enter();
@@ -580,10 +580,10 @@ evaluateGuard = null;
         } // end of behavior for ON1
         
         // ON1 behavior
-        // uml: enter / { this.tracer.log("FSM would execute action: " + "light_blue();"); }
+        // uml: enter / { this.tracer?.log("FSM would execute action: " + "light_blue();"); }
         {
-            // Step 1: execute action `this.tracer.log("FSM would execute action: " + "light_blue();");`
-            this.tracer.log("FSM would execute action: " + "light_blue();");
+            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "light_blue();");`
+            this.tracer?.log("FSM would execute action: " + "light_blue();");
         } // end of behavior for ON1
     }
     
@@ -607,13 +607,13 @@ evaluateGuard = null;
         // No ancestor state handles `dim` event.
         
         // ON1 behavior
-        // uml: DIM / { this.tracer.edgeTransition("edge2"); } TransitionTo(OFF)
+        // uml: DIM / { this.tracer?.edgeTransition("edge2"); } TransitionTo(OFF)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#ROOT_exit);
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge2");`.
-            this.tracer.edgeTransition("edge2");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge2");`.
+            this.tracer?.edgeTransition("edge2");
             
             // Step 3: Enter/move towards transition target `OFF`.
             this.#OFF_enter();
@@ -630,13 +630,13 @@ evaluateGuard = null;
         // No ancestor state handles `increase` event.
         
         // ON1 behavior
-        // uml: INCREASE / { this.tracer.edgeTransition("edge1"); } TransitionTo(ON2)
+        // uml: INCREASE / { this.tracer?.edgeTransition("edge1"); } TransitionTo(ON2)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this.#ON1_exit();
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge1");`.
-            this.tracer.edgeTransition("edge1");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge1");`.
+            this.tracer?.edgeTransition("edge1");
             
             // Step 3: Enter/move towards transition target `ON2`.
             this.#ON2_enter();
@@ -668,17 +668,17 @@ evaluateGuard = null;
         } // end of behavior for ON2
         
         // ON2 behavior
-        // uml: enter / { this.tracer.log("FSM would execute action: " + "light_yellow();"); }
+        // uml: enter / { this.tracer?.log("FSM would execute action: " + "light_yellow();"); }
         {
-            // Step 1: execute action `this.tracer.log("FSM would execute action: " + "light_yellow();");`
-            this.tracer.log("FSM would execute action: " + "light_yellow();");
+            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "light_yellow();");`
+            this.tracer?.log("FSM would execute action: " + "light_yellow();");
         } // end of behavior for ON2
         
         // ON2 behavior
-        // uml: enter / { this.tracer.log("FSM would execute action: " + "count = 0;"); }
+        // uml: enter / { this.tracer?.log("FSM would execute action: " + "count = 0;"); }
         {
-            // Step 1: execute action `this.tracer.log("FSM would execute action: " + "count = 0;");`
-            this.tracer.log("FSM would execute action: " + "count = 0;");
+            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "count = 0;");`
+            this.tracer?.log("FSM would execute action: " + "count = 0;");
         } // end of behavior for ON2
     }
     
@@ -702,13 +702,13 @@ evaluateGuard = null;
         // No ancestor state handles `dim` event.
         
         // ON2 behavior
-        // uml: DIM / { this.tracer.edgeTransition("edge4"); } TransitionTo(ON1)
+        // uml: DIM / { this.tracer?.edgeTransition("edge4"); } TransitionTo(ON1)
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this.#ON2_exit();
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge4");`.
-            this.tracer.edgeTransition("edge4");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge4");`.
+            this.tracer?.edgeTransition("edge4");
             
             // Step 3: Enter/move towards transition target `ON1`.
             this.#ON1_enter();
@@ -725,24 +725,24 @@ evaluateGuard = null;
         // No ancestor state handles `increase` event.
         
         // ON2 behavior
-        // uml: 1. INCREASE / { this.tracer.log("FSM would execute action: " + "count++;"); }
+        // uml: 1. INCREASE / { this.tracer?.log("FSM would execute action: " + "count++;"); }
         {
-            // Step 1: execute action `this.tracer.log("FSM would execute action: " + "count++;");`
-            this.tracer.log("FSM would execute action: " + "count++;");
+            // Step 1: execute action `this.tracer?.log("FSM would execute action: " + "count++;");`
+            this.tracer?.log("FSM would execute action: " + "count++;");
             
             // Step 2: determine if ancestor gets to handle event next.
             // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
         } // end of behavior for ON2
         
         // ON2 behavior
-        // uml: 2. INCREASE [this.tracer.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3")] / { this.tracer.edgeTransition("edge5"); } TransitionTo(ON_HOT)
-        if (this.tracer.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3"))
+        // uml: 2. INCREASE [this.tracer?.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3")] / { this.tracer?.edgeTransition("edge5"); } TransitionTo(ON_HOT)
+        if (this.tracer?.log("User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3"))
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this.#ON2_exit();
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge5");`.
-            this.tracer.edgeTransition("edge5");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge5");`.
+            this.tracer?.edgeTransition("edge5");
             
             // Step 3: Enter/move towards transition target `ON_HOT`.
             this.#ON_HOT_enter();
