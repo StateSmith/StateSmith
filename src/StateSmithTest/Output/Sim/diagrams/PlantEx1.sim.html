@@ -331,23 +331,23 @@ evaluateGuard = null;
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: / { this.tracer.edgeTransition("edge0"); } TransitionTo(NotShooting)
+            // uml: / { this.tracer?.edgeTransition("edge0"); } TransitionTo(NotShooting)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer.edgeTransition("edge0");`.
-                this.tracer.edgeTransition("edge0");
+                // Step 2: Transition action: `this.tracer?.edgeTransition("edge0");`.
+                this.tracer?.edgeTransition("edge0");
                 
                 // Step 3: Enter/move towards transition target `NotShooting`.
                 this.#NOTSHOOTING_enter();
                 
                 // NotShooting.<InitialState> behavior
-                // uml: / { this.tracer.edgeTransition("edge1"); } TransitionTo(Idle)
+                // uml: / { this.tracer?.edgeTransition("edge1"); } TransitionTo(Idle)
                 {
                     // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
-                    // Step 2: Transition action: `this.tracer.edgeTransition("edge1");`.
-                    this.tracer.edgeTransition("edge1");
+                    // Step 2: Transition action: `this.tracer?.edgeTransition("edge1");`.
+                    this.tracer?.edgeTransition("edge1");
                     
                     // Step 3: Enter/move towards transition target `Idle`.
                     this.#IDLE_enter();
@@ -468,13 +468,13 @@ evaluateGuard = null;
         // No ancestor state handles `evconfig` event.
         
         // Configuring behavior
-        // uml: EvConfig / { this.tracer.edgeTransition("edge3"); } TransitionTo(Idle)
+        // uml: EvConfig / { this.tracer?.edgeTransition("edge3"); } TransitionTo(Idle)
         {
             // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#NOTSHOOTING_exit);
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge3");`.
-            this.tracer.edgeTransition("edge3");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge3");`.
+            this.tracer?.edgeTransition("edge3");
             
             // Step 3: Enter/move towards transition target `Idle`.
             this.#IDLE_enter();
@@ -526,13 +526,13 @@ evaluateGuard = null;
         // No ancestor state handles `evnewvaluerejected` event.
         
         // NewValuePreview behavior
-        // uml: EvNewValueRejected / { this.tracer.edgeTransition("edge6"); } TransitionTo(NewValueSelection)
+        // uml: EvNewValueRejected / { this.tracer?.edgeTransition("edge6"); } TransitionTo(NewValueSelection)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#CONFIGURING_exit);
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge6");`.
-            this.tracer.edgeTransition("edge6");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge6");`.
+            this.tracer?.edgeTransition("edge6");
             
             // Step 3: Enter/move towards transition target `NewValueSelection`.
             this.#NEWVALUESELECTION_enter();
@@ -549,13 +549,13 @@ evaluateGuard = null;
         // No ancestor state handles `evnewvaluesaved` event.
         
         // NewValuePreview behavior
-        // uml: EvNewValueSaved / { this.tracer.edgeTransition("edge7"); } TransitionTo(NewValueSelection)
+        // uml: EvNewValueSaved / { this.tracer?.edgeTransition("edge7"); } TransitionTo(NewValueSelection)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#CONFIGURING_exit);
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge7");`.
-            this.tracer.edgeTransition("edge7");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge7");`.
+            this.tracer?.edgeTransition("edge7");
             
             // Step 3: Enter/move towards transition target `NewValueSelection`.
             this.#NEWVALUESELECTION_enter();
@@ -605,13 +605,13 @@ evaluateGuard = null;
         // No ancestor state handles `ev2` event.
         
         // State1 behavior
-        // uml: Ev2 / { this.tracer.edgeTransition("edge9"); } TransitionTo(State2)
+        // uml: Ev2 / { this.tracer?.edgeTransition("edge9"); } TransitionTo(State2)
         {
             // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition).
             this.#STATE1_exit();
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge9");`.
-            this.tracer.edgeTransition("edge9");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge9");`.
+            this.tracer?.edgeTransition("edge9");
             
             // Step 3: Enter/move towards transition target `State2`.
             this.#STATE2_enter();
@@ -692,24 +692,24 @@ evaluateGuard = null;
         // No ancestor state handles `evnewvalue` event.
         
         // NewValueSelection behavior
-        // uml: EvNewValue / { this.tracer.edgeTransition("edge5"); } TransitionTo(NewValuePreview)
+        // uml: EvNewValue / { this.tracer?.edgeTransition("edge5"); } TransitionTo(NewValuePreview)
         {
             // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition).
             this.#NEWVALUESELECTION_exit();
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge5");`.
-            this.tracer.edgeTransition("edge5");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge5");`.
+            this.tracer?.edgeTransition("edge5");
             
             // Step 3: Enter/move towards transition target `NewValuePreview`.
             this.#NEWVALUEPREVIEW_enter();
             
             // NewValuePreview.<InitialState> behavior
-            // uml: / { this.tracer.edgeTransition("edge8"); } TransitionTo(State1)
+            // uml: / { this.tracer?.edgeTransition("edge8"); } TransitionTo(State1)
             {
                 // Step 1: Exit states until we reach `NewValuePreview` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer.edgeTransition("edge8");`.
-                this.tracer.edgeTransition("edge8");
+                // Step 2: Transition action: `this.tracer?.edgeTransition("edge8");`.
+                this.tracer?.edgeTransition("edge8");
                 
                 // Step 3: Enter/move towards transition target `State1`.
                 this.#STATE1_enter();
@@ -760,24 +760,24 @@ evaluateGuard = null;
         // No ancestor state handles `evconfig` event.
         
         // Idle behavior
-        // uml: EvConfig / { this.tracer.edgeTransition("edge2"); } TransitionTo(Configuring)
+        // uml: EvConfig / { this.tracer?.edgeTransition("edge2"); } TransitionTo(Configuring)
         {
             // Step 1: Exit states until we reach `NotShooting` state (Least Common Ancestor for transition).
             this.#IDLE_exit();
             
-            // Step 2: Transition action: `this.tracer.edgeTransition("edge2");`.
-            this.tracer.edgeTransition("edge2");
+            // Step 2: Transition action: `this.tracer?.edgeTransition("edge2");`.
+            this.tracer?.edgeTransition("edge2");
             
             // Step 3: Enter/move towards transition target `Configuring`.
             this.#CONFIGURING_enter();
             
             // Configuring.<InitialState> behavior
-            // uml: / { this.tracer.edgeTransition("edge4"); } TransitionTo(NewValueSelection)
+            // uml: / { this.tracer?.edgeTransition("edge4"); } TransitionTo(NewValueSelection)
             {
                 // Step 1: Exit states until we reach `Configuring` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
-                // Step 2: Transition action: `this.tracer.edgeTransition("edge4");`.
-                this.tracer.edgeTransition("edge4");
+                // Step 2: Transition action: `this.tracer?.edgeTransition("edge4");`.
+                this.tracer?.edgeTransition("edge4");
                 
                 // Step 3: Enter/move towards transition target `NewValueSelection`.
                 this.#NEWVALUESELECTION_enter();
