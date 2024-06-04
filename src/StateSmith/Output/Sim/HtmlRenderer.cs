@@ -24,6 +24,7 @@ public class HtmlRenderer
 <html>
   <head>
     <link rel='icon' type='image/png' href='https://statesmith.github.io/favicon.png'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined'>
     <style>
       body {
         display: flex;
@@ -40,6 +41,13 @@ public class HtmlRenderer
       .pane {
         padding: 1em;
         min-width: 200px;
+      }
+
+      .titlebar-icon {
+        font-family: 'Material Symbols Outlined', sans-serif;
+        font-size: 16px;
+        color: #777;
+        border-radius: 5px;
       }
 
       .gutter {
@@ -60,6 +68,7 @@ public class HtmlRenderer
 
       .sidebar {
         width: 300px;
+        padding-top: 0px;
         position: relative;
         background-color: #f0f0f0;
         border-left: 1px solid #ccc;
@@ -77,12 +86,21 @@ public class HtmlRenderer
         border-bottom: 1px solid #ccc;
         font-weight: bold;
         padding: 5px;
+        display: flex;
       }
 
       .console {
         border-collapse: collapse;
         margin-top: 10px;
         width: 100%;
+      }
+
+      table.console td.timestamp {
+        display: none;
+      }
+
+      table.console.timestamps td.timestamp {
+        display: table-cell;
       }
 
       .console th {
@@ -94,13 +112,14 @@ public class HtmlRenderer
       }
 
       .console tbody {
-        display: flex;
-        flex-direction: column-reverse;
         font-family: monospace;
       }
 
-      .console td {
+      .console tr {
         border-bottom: 1px solid #ccc;
+      }
+
+      .console td {
         padding: 5px;
       }
   
@@ -113,8 +132,10 @@ public class HtmlRenderer
       }
 
       .history {
-        margin-top: 30px;
-        overflow: scroll;    
+        margin-top: 30px;       
+        display: flex;
+        overflow: auto;    
+        flex-direction: column-reverse;
       }
 
       .console tr:last-child td {
@@ -124,6 +145,39 @@ public class HtmlRenderer
       button {
         margin: 5px;
       }
+
+      .dropbtn {
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropbtn:hover, .dropbtn:focus {
+        background-color: #f1f1f1;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+        margin-left: auto;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content .dropdown-item {
+        padding: 12px 16px;
+        font-weight: normal;
+      }
+
+      .show {display: block;}
     </style>
   </head>
 
@@ -137,15 +191,24 @@ public class HtmlRenderer
 
     <div class=""pane sidebar"">
         <div id=""buttons"">
-            <div class=""titlebar"">Events</div>
+            <div class=""titlebar"">Events            
+              <div class='dropdown'>
+                <span id='dropbtn' class='titlebar-icon dropbtn'>settings</span>
+                <div id='myDropdown' class='dropdown-content'>
+                  <div class='dropdown-item'>
+                    <input type='checkbox' id='timestamps' name='timestamps' value='Timestamps'>
+                    <label for='timestamps'>Timestamps</label>
+                  </div>
+                </div>
+              </div>            
+          </div>
         </div>
 
         <div class=""history"">
-            <div class=""titlebar"">Log</div>
-            <table class=""console"">
+          <table class=""console"">
             <tbody>
             </tbody>
-            </table>
+          </table>
         </div>
 
         <div class=""gutter""></div>
@@ -202,6 +265,38 @@ public class HtmlRenderer
         }
 
         gutter.addEventListener('mousedown', resizer);
+
+        document.getElementById('timestamps').checked = document.querySelector('table.console').classList.contains('timestamps');
+        document.getElementById('timestamps').addEventListener('change', function() {
+          if(this.checked) {
+            document.querySelector('table.console').classList.add('timestamps');
+          } else {
+            document.querySelector('table.console').classList.remove('timestamps');
+          }
+        });
+
+        document.getElementById('dropbtn').addEventListener('click', myFunction);
+
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+          document.getElementById('myDropdown').classList.toggle('show');
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName('dropdown-content');
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+
 
 {{mocksCode}}
 
