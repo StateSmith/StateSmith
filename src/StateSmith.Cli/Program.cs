@@ -2,7 +2,6 @@ using CommandLine;
 using System;
 using StateSmith.Cli.Create;
 using CommandLine.Text;
-using System.Diagnostics;
 using StateSmith.Cli.Run;
 using Spectre.Console;
 using StateSmith.Cli.Setup;
@@ -20,6 +19,7 @@ namespace StateSmith.Cli;
 class Program
 {
     IAnsiConsole _console = AnsiConsole.Console;
+    CliArgsParser _cliArgsParser = new();
     DataPaths _settingsPaths;
 
     public Program()
@@ -60,15 +60,7 @@ class Program
 
     private void ParseCommandsAndRun(string[] args, IAnsiConsole _console)
     {
-        var parser = new Parser(settings =>
-        {
-            settings.HelpWriter = null;
-            settings.IgnoreUnknownArguments = false;
-            settings.AutoVersion = false;
-            settings.AutoHelp = false;
-        });
-
-        var parserResult = parser.ParseArguments<RunOptions, CreateOptions, SetupOptions>(args);
+        var parserResult = _cliArgsParser.Parse(args);
 
         parserResult.MapResult(
             (RunOptions opts) =>
