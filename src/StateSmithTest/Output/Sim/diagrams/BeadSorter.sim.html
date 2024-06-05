@@ -3159,7 +3159,14 @@ evaluateGuard = null;
         // choose to implement a tracer for debugging purposes.
         sm.tracer = {
             enterState: (mermaidName) => {
-                document.querySelector('g[data-id=' + mermaidName + ']')?.classList.add('active');
+                var e = document.querySelector('g[data-id=' + mermaidName + ']');
+                e?.classList.add('active');
+                var bounds = e?.getBoundingClientRect();
+                if(bounds?.x<0 || bounds?.y<0) {
+                    var x = Math.max(0, -bounds.x + 20);
+                    var y = Math.max(0, -bounds.y + 20);
+                    window.panZoom.panBy({x: x, y: y});
+                }
                 sm.tracer.log("➡️ Entered " + mermaidName);
             },
             exitState: (mermaidName) => {
