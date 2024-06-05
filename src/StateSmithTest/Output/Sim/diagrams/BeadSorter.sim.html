@@ -3173,7 +3173,7 @@ evaluateGuard = null;
                     var y = Math.min(0, panebounds.height-bounds.y-bounds.height-20);
                     window.panZoom.panBy({x: x, y: y});
                 }
-                sm.tracer.log("➡️ Entered " + mermaidName);
+                sm.tracer.log('➡️ Entered ' + mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
