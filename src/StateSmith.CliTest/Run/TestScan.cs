@@ -9,7 +9,7 @@ public class TestScan
     [Fact]
     public void RegexTest()
     {
-        SsCsxFileFinder.IsTargetScriptContent("""
+        SsCsxFilter.IsTargetScriptContent("""
             #!/usr/bin/env dotnet-script
             #r "nuget: StateSmith, 0.9.7-alpha"
             SmRunner runner = new(diagramPath: "MySm.plantuml", new MyRenderConfig(), transpilerId: TranspilerId.C99);
@@ -17,7 +17,7 @@ public class TestScan
             
             """).Should().BeTrue();
 
-        SsCsxFileFinder.IsTargetScriptContent("""
+        SsCsxFilter.IsTargetScriptContent("""
             #!/usr/bin/env dotnet-script
             #r "nuget: StateSmith, 0.9.7-alpha"
             //<statesmith.cli-ignore-this-file>
@@ -30,7 +30,7 @@ public class TestScan
     [Fact]
     public void IntegrationTest()
     {
-        SsCsxFileFinder finder = new();
+        SsCsxDiagramFileFinder finder = new();
         finder.AddDefaultIncludePatternIfNone();
 
         finder.AddExcludePattern("a/a3");
@@ -44,7 +44,7 @@ public class TestScan
     [Fact]
     public void IntegrationTestRecursive()
     {
-        SsCsxFileFinder finder = new();
+        SsCsxDiagramFileFinder finder = new();
 
         finder.AddExcludePattern("a/a3");
         finder.SetAsRecursive();

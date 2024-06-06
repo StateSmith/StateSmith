@@ -4,7 +4,6 @@ using Spectre.Console;
 using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Run;
 using StateSmith.Common;
-using System;
 using System.Diagnostics;
 using Xunit;
 
@@ -25,17 +24,6 @@ public class RunTest
         runHandler.Finder.SetAsRecursive();
     }
 
-    /// <summary>
-    /// This is a helper method to get around NSubstitute matcher limitations.
-    /// Can't use a generic lambda in the Arg.Is method. Must be an expression.
-    /// See https://github.com/nsubstitute/NSubstitute/issues/637
-    /// </summary>
-    public bool Capture<T>(T input, out T output)
-    {
-        output = input;
-        return true;
-    }
-
     [Fact]
     public void CreateBlankManifest()
     {
@@ -53,8 +41,19 @@ public class RunTest
                 "**/*.dio",
                 "**/*.plantuml",
                 "**/*.puml",
-                "**/*.pu"
+                "**/*.pu",
+                "**/*.graphml",
             ]);
     }
 
+    /// <summary>
+    /// This is a helper method to get around NSubstitute matcher limitations.
+    /// Can't use a generic lambda in the Arg.Is method. Must be an expression.
+    /// See https://github.com/nsubstitute/NSubstitute/issues/637
+    /// </summary>
+    public static bool Capture<T>(T input, out T output)
+    {
+        output = input;
+        return true;
+    }
 }

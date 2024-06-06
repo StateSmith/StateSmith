@@ -1,3 +1,6 @@
+using StateSmith.Runner;
+using System.Collections.Generic;
+
 namespace StateSmith.Cli.Run;
 
 public class StandardFiles
@@ -5,14 +8,10 @@ public class StandardFiles
     /// <summary>
     /// Example: ".csx", ".drawio.svg", ...
     /// </summary>
-    public static readonly string[] standardFileExtensions = new string[]
+    public static List<string> GetStandardFileExtensions()
     {
-        ".csx",
-        ".drawio.svg",
-        ".drawio",
-        ".dio",
-        ".plantuml",
-        ".puml",
-        ".pu",
-    };
+        List<string> list = DiagramFileAssociator.GetAllDiagramExtensions();
+        list.Insert(index: 0, ".csx");
+        return list;
+    }
 }

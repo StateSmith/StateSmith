@@ -3,22 +3,26 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.FileSystemGlobbing;
 using Microsoft.Extensions.FileSystemGlobbing.Abstractions;
+using Spectre.Console;
 
 namespace StateSmith.Cli.Run;
 
-public class SsCsxFileFinder
+/// <summary>
+/// Finds StateSmith .csx files, and also StateSmith diagrams.
+/// </summary>
+public class SsCsxDiagramFileFinder
 {
     Matcher matcher;
     private bool hasIncludePatterns;
 
-    public SsCsxFileFinder()
+    public SsCsxDiagramFileFinder()
     {
         matcher = new();
     }
 
     public void SetAsRecursive()
     {
-        foreach (var ext in StandardFiles.standardFileExtensions)
+        foreach (var ext in StandardFiles.GetStandardFileExtensions())
         {
             matcher.AddInclude($"./**/*{ext}");
         }
@@ -33,7 +37,7 @@ public class SsCsxFileFinder
     {
         if (!hasIncludePatterns)
         {
-            foreach (var ext in StandardFiles.standardFileExtensions)
+            foreach (var ext in StandardFiles.GetStandardFileExtensions())
             {
                 matcher.AddInclude($"./*{ext}");
             }
@@ -73,48 +77,46 @@ public class SsCsxFileFinder
         }
     }
 
-    public List<string> Scan(string searchDirectory)
+    public ScanResults Scan(string searchDirectory)
     {
         List<string> targetCsxFiles = new();
+        List<string> targetDiagramFiles = new();
 
-        PatternMatchingResult result = matcher.Execute(
-            new DirectoryInfoWrapper(
-                new DirectoryInfo(searchDirectory)));
+        PatternMatchingResult result = matcher.Execute(new DirectoryInfoWrapper(new DirectoryInfo(searchDirectory)));
+
+        SsDiagramFilter diagramFilter = new(new());   // todolow - get diagram filter from constructor
+        SsCsxFilter ssCsxFilter = new();
 
         foreach (var file in result.Files)
         {
-            if (IsTargetScriptFile(searchDirectory + "/" + file.Path))
+            string fullPath = searchDirectory + "/" + file.Path;
+
+            // we need to inspect file contents for rest of checks
+            var fileText = File.ReadAllText(fullPath);
+
+            if (ssCsxFilter.IsTargetScriptFile(fullPath, fileText: fileText))
             {
                 targetCsxFiles.Add(file.Path);
             }
+            else if (diagramFilter.IsTargetDiagramFile(fullPath, fileText: fileText))
+            {
+                targetDiagramFiles.Add(file.Path);
+            }
         }
 
-        return targetCsxFiles;
+        return new ScanResults(targetCsxFiles, diagramFiles: targetDiagramFiles);
     }
 
-    internal bool IsTargetScriptFile(string path)
+    public class ScanResults
     {
-        if (Path.GetExtension(path) != ".csx")
-            return false;
+        public List<string> targetCsxFiles;
+        public List<string> diagramFiles;
 
-        var text = File.ReadAllText(path);
-        return IsTargetScriptContent(text);
-    }
-
-    internal static bool IsTargetScriptContent(string scriptCodeText)
-    {
-        if (scriptCodeText.Contains("//<statesmith.cli-ignore-this-file>"))
+        public ScanResults(List<string> targetCsxFiles, List<string> diagramFiles)
         {
-            return false;
+            this.targetCsxFiles = targetCsxFiles;
+            this.diagramFiles = diagramFiles;
         }
-
-        if (Regex.IsMatch(scriptCodeText, @"(?xim)
-            ^ \s*
-            [#]r \s* ""nuget \s*  : \s* StateSmith \s* ,"))
-        {
-            return true;
-        }
-
-        return false;
     }
 }
+

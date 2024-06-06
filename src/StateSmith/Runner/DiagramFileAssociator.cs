@@ -3,11 +3,20 @@ using System.Collections.Generic;
 
 namespace StateSmith.Runner;
 
-public class FileAssociator
+public class DiagramFileAssociator
 {
-    protected HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
-    protected HashSet<string> YedFileExtensions = new() { ".graphml" };
-    protected HashSet<string> DrawIoFileEndings = new() { ".drawio.svg", ".drawio", ".dio" };
+    protected static readonly HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
+    protected static readonly HashSet<string> YedFileExtensions = new() { ".graphml" };
+    protected static readonly HashSet<string> DrawIoFileEndings = new() { ".drawio.svg", ".drawio", ".dio" };
+
+    public static List<string> GetAllDiagramExtensions()
+    {
+        var allExtensions = new List<string>();
+        allExtensions.AddRange(DrawIoFileEndings);
+        allExtensions.AddRange(PlantUmlFileExtensions);
+        allExtensions.AddRange(YedFileExtensions);
+        return allExtensions;
+    }
 
     public bool IsPlantUmlExtension(string lowerCaseFileExtension)
     {

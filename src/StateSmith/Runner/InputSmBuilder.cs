@@ -79,7 +79,7 @@ public class InputSmBuilder
     public void ConvertDiagramFileToSmVertices(string diagramFile)
     {
         var fileExtension = Path.GetExtension(diagramFile).ToLower();
-        FileAssociator fileAssociator = new();
+        DiagramFileAssociator fileAssociator = new();
 
         if (fileAssociator.IsYedExtension(fileExtension))
         {

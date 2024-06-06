@@ -10,7 +10,7 @@ namespace StateSmith.Cli.Run;
 
 public class RunHandler
 {
-    public SsCsxFileFinder Finder;
+    public SsCsxDiagramFileFinder Finder;
 
     private CsxOutputParser _parser;
     private IManifestPersistance _manifestPersistance;
@@ -37,7 +37,7 @@ public class RunHandler
         _runInfo = new RunInfo(dirOrManifestPath);
         _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath, console);
         _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory);
-        Finder = new SsCsxFileFinder();
+        Finder = new SsCsxDiagramFileFinder();
         _manifestPersistance = manifestPersistance ?? new ManifestPersistance(manifestDirectory);
     }
 
@@ -50,7 +50,7 @@ public class RunHandler
     {
         var manifest = new ManifestData();
 
-        foreach (var ext in StandardFiles.standardFileExtensions)
+        foreach (var ext in StandardFiles.GetStandardFileExtensions())
         {
             manifest.RunManifest.IncludePathGlobs.Add($"**/*{ext}");
         }
@@ -84,11 +84,10 @@ public class RunHandler
 
     private void RunInner()
     {
-        //_console.MarkupLine($"[cyan]This feature Still a work in progress...[/]");
-
         ReadPastRunInfoDatabase();
-        var csxScripts = Finder.Scan(searchDirectory: manifestDirectory);
-        RunScriptsIfNeeded(csxScripts);
+        var scanResults = Finder.Scan(searchDirectory: manifestDirectory);
+        RunScriptsIfNeeded(scanResults.targetCsxFiles);
+        // FIXME - RunDiagramIfNeeded(scanResults.targetDiagramFiles);
     }
 
     public void RunScriptsIfNeeded(List<string> csxScripts)
