@@ -3206,8 +3206,8 @@ evaluateGuard = null;
           }
           var panebounds = document.querySelector('svg').getBoundingClientRect();
           if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
-              var x = Math.min(0, panebounds.width-bounds.x-bounds.width-20);
-              var y = Math.min(0, panebounds.height-bounds.y-bounds.height-20);
+              var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
+              var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
               window.panZoom.panBy({x: x, y: y});
           }
         }
