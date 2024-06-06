@@ -13,7 +13,7 @@ public class RunHandler
     public SsCsxFileFinder Finder;
 
     private CsxOutputParser _parser;
-    private ManifestPersistance _manifestPersistance;
+    private IManifestPersistance _manifestPersistance;
     private string manifestDirectory;
 
     RunInfo _runInfo;
@@ -22,7 +22,7 @@ public class RunHandler
     bool _forceRebuild = false;
     IAnsiConsole _console;
 
-    public RunHandler(IAnsiConsole console, string dirOrManifestPath)
+    public RunHandler(IAnsiConsole console, string dirOrManifestPath, IManifestPersistance? manifestPersistance = null)
     {
         _console = console;
         dirOrManifestPath = Path.GetFullPath(dirOrManifestPath);
@@ -38,7 +38,7 @@ public class RunHandler
         _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath, console);
         _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory);
         Finder = new SsCsxFileFinder();
-        _manifestPersistance = new ManifestPersistance(manifestDirectory);
+        _manifestPersistance = manifestPersistance ?? new ManifestPersistance(manifestDirectory);
     }
 
     public void SetForceRebuild(bool forceRebuild)
@@ -49,7 +49,12 @@ public class RunHandler
     public void CreateBlankManifest()
     {
         var manifest = new ManifestData();
-        manifest.RunManifest.IncludePathGlobs.Add("**/*.csx");
+
+        foreach (var ext in StandardFiles.standardFileExtensions)
+        {
+            manifest.RunManifest.IncludePathGlobs.Add($"**/*{ext}");
+        }
+
         WriteManifest(manifest);
     }
 

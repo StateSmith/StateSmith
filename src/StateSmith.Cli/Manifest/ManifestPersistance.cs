@@ -4,7 +4,7 @@ using System.IO;
 
 namespace StateSmith.Cli.Manifest;
 
-public class ManifestPersistance
+public class ManifestPersistance : IManifestPersistance
 {
     public const string ManifestFileName = "statesmith.cli.json";
     string dirPath;
@@ -41,6 +41,7 @@ public class ManifestPersistance
         return File.Exists(filePath);
     }
 
+    // todolow - use interface instead of static method
     public static bool ManifestExists(string dirPath)
     {
         string filePath = Path.Combine(dirPath, ManifestFileName);

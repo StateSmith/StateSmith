@@ -18,7 +18,10 @@ public class SsCsxFileFinder
 
     public void SetAsRecursive()
     {
-        matcher.AddInclude("./**/*.csx");
+        foreach (var ext in StandardFiles.standardFileExtensions)
+        {
+            matcher.AddInclude($"./**/*{ext}");
+        }
     }
 
     public void ClearIncludePatterns()
@@ -30,7 +33,10 @@ public class SsCsxFileFinder
     {
         if (!hasIncludePatterns)
         {
-            matcher.AddInclude("./*.csx");
+            foreach (var ext in StandardFiles.standardFileExtensions)
+            {
+                matcher.AddInclude($"./*{ext}");
+            }
         }
     }
 
@@ -60,7 +66,7 @@ public class SsCsxFileFinder
     {
         if (pathPatterns == null)
             return;
-        
+
         foreach (var pattern in pathPatterns)
         {
             AddExcludePattern(pattern);
@@ -88,18 +94,21 @@ public class SsCsxFileFinder
 
     internal bool IsTargetScriptFile(string path)
     {
+        if (Path.GetExtension(path) != ".csx")
+            return false;
+
         var text = File.ReadAllText(path);
         return IsTargetScriptContent(text);
     }
 
-    internal static bool IsTargetScriptContent(string text)
+    internal static bool IsTargetScriptContent(string scriptCodeText)
     {
-        if (text.Contains("//<statesmith.cli-ignore-this-file>"))
+        if (scriptCodeText.Contains("//<statesmith.cli-ignore-this-file>"))
         {
             return false;
         }
 
-        if (Regex.IsMatch(text, @"(?xim)
+        if (Regex.IsMatch(scriptCodeText, @"(?xim)
             ^ \s*
             [#]r \s* ""nuget \s*  : \s* StateSmith \s* ,"))
         {
