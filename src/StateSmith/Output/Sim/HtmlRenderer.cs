@@ -368,18 +368,9 @@ public class HtmlRenderer
         sm.tracer = {
             enterState: (mermaidName) => {
                 var e = document.querySelector('g[data-id=' + mermaidName + ']');
-                e?.classList.add('active');
-                var bounds = e?.getBoundingClientRect();
-                if(bounds?.x<0 || bounds?.y<0) {
-                    var x = Math.max(0, -bounds.x + 20);
-                    var y = Math.max(0, -bounds.y + 20);
-                    window.panZoom.panBy({x: x, y: y});
-                }
-                var panebounds = document.querySelector('svg').getBoundingClientRect();
-                if(bounds?.x>panebounds.width || bounds?.y>panebounds.height) {
-                    var x = Math.min(0, panebounds.width-bounds.x-bounds.width-20);
-                    var y = Math.min(0, panebounds.height-bounds.y-bounds.height-20);
-                    window.panZoom.panBy({x: x, y: y});
+                if(e) {
+                  e.classList.add('active');
+                  panOnScreen(e);
                 }
                 sm.tracer.log('➡️ Entered ' + mermaidName);
             },
@@ -410,6 +401,24 @@ public class HtmlRenderer
 
         sm.tracer?.log('Start', true);
         sm.start();
+
+
+        function panOnScreen(element) {
+          if(!element) return;
+
+          var bounds = element.getBoundingClientRect();
+          if(bounds.x<0 || bounds.y<0) {
+              var x = Math.max(0, -bounds.x + 20);
+              var y = Math.max(0, -bounds.y + 20);
+              window.panZoom.panBy({x: x, y: y});
+          }
+          var panebounds = document.querySelector('svg').getBoundingClientRect();
+          if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
+              var x = Math.min(0, panebounds.width-bounds.x-bounds.width-20);
+              var y = Math.min(0, panebounds.height-bounds.y-bounds.height-20);
+              window.panZoom.panBy({x: x, y: y});
+          }
+        }
     </script>
 
 
