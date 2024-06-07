@@ -350,6 +350,7 @@ public class HtmlRenderer
             if (edge) {
                 edge.style.stroke = 'yellow';
                 edge.style.strokeWidth = '5px';
+                edge.style.filter = 'drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7))';
                 highlightedEdges.add(edge);
             }
         }
