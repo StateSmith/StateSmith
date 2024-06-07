@@ -356,13 +356,14 @@ public class HtmlRenderer
 
         function clearHighlightedEdges() {
             for (const edge of highlightedEdges) {
-                const showOldTraversal = true;
+                const showOldTraversal = false;
                 if (showOldTraversal) {
                     // shows that the edge was traversed. Optional, but kinda nice.
                     edge.style.stroke = 'green';
                 } else {
                     edge.style.stroke = '';
                 }
+                edge.style.strokeWidth = '1px';
             }
             highlightedEdges.clear();
         }
