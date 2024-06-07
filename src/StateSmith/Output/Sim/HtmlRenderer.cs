@@ -343,7 +343,8 @@ public class HtmlRenderer
         function highlightEdge(edgeId) {
             var edge = document.getElementById(edgeId);
             if (edge) {
-                edge.style.stroke = 'red';
+                edge.style.stroke = 'yellow';
+                edge.style.strokeWidth = '5px';
                 highlightedEdges.add(edge);
             }
         }
