@@ -843,6 +843,11 @@ evaluateGuard = null;
         document.querySelector('svg').setAttribute('height', '100%');
         document.querySelector('svg').style["max-width"] = '';
 
+        // don't scale the arrow when we scale the transition edge
+        document.querySelectorAll('g defs marker[id$=barbEnd]').forEach(marker => {
+            marker.setAttribute('markerUnits', 'userSpaceOnUse');
+        });
+
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
             controlIconsEnabled: true,
