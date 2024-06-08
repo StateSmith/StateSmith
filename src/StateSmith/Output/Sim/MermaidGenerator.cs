@@ -43,7 +43,6 @@ class MermaidGenerator : IVertexVisitor
     public void Visit(StateMachine v)
     {
         AppendIndentedLine("stateDiagram");
-        AppendIndentedLine("classDef active fill:yellow,stroke-width:2px;");
         indentLevel--; // don't indent the state machine contents
         VisitChildren(v);
     }

@@ -185,6 +185,18 @@ public class HtmlRenderer
       }
 
       .show {display: block;}
+
+      .transition.active {
+        stroke: #fff5ad !important;
+        stroke-width: 5px !important;
+        filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+      }
+
+      .statediagram-state.active > * {
+        fill: #fff5ad !important;
+        stroke-width: 2px !important;
+      }
+
     </style>
   </head>
 
@@ -237,6 +249,11 @@ public class HtmlRenderer
         document.querySelector('svg').setAttribute('width', '100%');
         document.querySelector('svg').setAttribute('height', '100%');
         document.querySelector('svg').style[""max-width""] = '';
+
+        // don't scale the arrow when we scale the transition edge
+        document.querySelectorAll('g defs marker[id$=barbEnd]').forEach(marker => {
+            marker.setAttribute('markerUnits', 'userSpaceOnUse');
+        });
 
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
@@ -343,20 +360,19 @@ public class HtmlRenderer
         function highlightEdge(edgeId) {
             var edge = document.getElementById(edgeId);
             if (edge) {
-                edge.style.stroke = 'red';
-                highlightedEdges.add(edge);
+              edge.classList.add('active');
+              highlightedEdges.add(edge);
             }
         }
 
         function clearHighlightedEdges() {
             for (const edge of highlightedEdges) {
-                const showOldTraversal = true;
-                if (showOldTraversal) {
-                    // shows that the edge was traversed. Optional, but kinda nice.
-                    edge.style.stroke = 'green';
-                } else {
-                    edge.style.stroke = '';
-                }
+              edge.classList.remove('active');
+              const showOldTraversal = false;
+              if (showOldTraversal) {
+                  // shows that the edge was traversed. Optional, but kinda nice.
+                  edge.style.stroke = 'green';
+              }
             }
             highlightedEdges.clear();
         }
