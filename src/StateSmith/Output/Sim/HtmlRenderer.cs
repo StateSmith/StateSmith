@@ -187,7 +187,7 @@ public class HtmlRenderer
       .show {display: block;}
 
       .transition.active {
-        stroke: yellow !important;
+        stroke: #fff5ad !important;
         stroke-width: 5px !important;
         filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
       }
