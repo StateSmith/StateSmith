@@ -132,12 +132,6 @@ public class HtmlRenderer
         font-size: small;
       }
 
-      .console td.emphasis {
-        font-weight: bold;
-        background-color: black;
-        color: white;
-      }
-
       .history {
         margin-top: 30px;       
         display: flex;
@@ -147,6 +141,16 @@ public class HtmlRenderer
 
       .console tr:last-child td {
         border-bottom: none;
+      }
+
+      .dispatched {
+        font-weight: bold;
+      }
+
+      .dispatched > .trigger {
+        border: 1px solid #000;
+        border-radius: 4px;
+        padding: 2px 10px 2px 10px;
       }
 
       button {
@@ -317,16 +321,19 @@ public class HtmlRenderer
         }
 
         // Add a row to the history table.
-        function addHistoryRow(time, event, emphasis = false) {
+        function addHistoryRow(time, event, html = false) {
             var row = document.createElement('tr');
             var timeCell = document.createElement('td');
             timeCell.innerText = formatTime(time);
             timeCell.classList.add('timestamp');
             var eventCell = document.createElement('td');
-            eventCell.innerText = event;
-            if(emphasis) {
-                eventCell.classList.add('emphasis');                
+
+            if(html) {
+              eventCell.innerHTML = event;
+            } else {
+              eventCell.innerText = event;
             }
+
             row.appendChild(timeCell);
             row.appendChild(eventCell);
             document.querySelector('tbody').appendChild(row);
@@ -380,8 +387,8 @@ public class HtmlRenderer
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
             },
-            log: (message, emphasis=false) => {
-                addHistoryRow(new Date(), message, emphasis);
+            log: (message, html=false) => {
+                addHistoryRow(new Date(), message, html);
             }
         };
 
@@ -392,7 +399,7 @@ public class HtmlRenderer
             button.innerText = diagramEventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
-                sm.tracer?.log(""Dispatched "" + diagramEventName, true);
+                sm.tracer?.log('<span class=""dispatched""><span class=""trigger"">' + diagramEventName + '</span> DISPATCHED</span>', true);
                 const fsmEventName = diagramEventName.toUpperCase();
                 sm.dispatchEvent({{smName}}.EventId[fsmEventName]); 
             });
