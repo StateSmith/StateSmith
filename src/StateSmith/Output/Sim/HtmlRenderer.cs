@@ -192,6 +192,11 @@ public class HtmlRenderer
         filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
       }
 
+      .statediagram-state.active > * {
+        fill: #fff5ad !important;
+        stroke-width: 2px !important;
+      }
+
     </style>
   </head>
 
