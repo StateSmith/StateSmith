@@ -122,7 +122,7 @@ public class HtmlRenderer
       }
 
       table.console tr:has(+tr td .dispatched) td {
-          padding-bottom: 50px;
+          padding-bottom: 25px;
       }
 
       .console th {
