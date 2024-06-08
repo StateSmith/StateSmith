@@ -185,6 +185,13 @@ public class HtmlRenderer
       }
 
       .show {display: block;}
+
+      .transition.active {
+        stroke: yellow !important;
+        stroke-width: 5px !important;
+        filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+      }
+
     </style>
   </head>
 
@@ -348,23 +355,19 @@ public class HtmlRenderer
         function highlightEdge(edgeId) {
             var edge = document.getElementById(edgeId);
             if (edge) {
-                edge.style.stroke = 'yellow';
-                edge.style.strokeWidth = '5px';
-                edge.style.filter = 'drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7))';
-                highlightedEdges.add(edge);
+              edge.classList.add('active');
+              highlightedEdges.add(edge);
             }
         }
 
         function clearHighlightedEdges() {
             for (const edge of highlightedEdges) {
-                const showOldTraversal = false;
-                if (showOldTraversal) {
-                    // shows that the edge was traversed. Optional, but kinda nice.
-                    edge.style.stroke = 'green';
-                } else {
-                    edge.style.stroke = '';
-                }
-                edge.style.strokeWidth = '1px';
+              edge.classList.remove('active');
+              const showOldTraversal = false;
+              if (showOldTraversal) {
+                  // shows that the edge was traversed. Optional, but kinda nice.
+                  edge.style.stroke = 'green';
+              }
             }
             highlightedEdges.clear();
         }
