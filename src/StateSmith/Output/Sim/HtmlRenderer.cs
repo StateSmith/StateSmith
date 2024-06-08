@@ -108,6 +108,15 @@ public class HtmlRenderer
         display: table-cell;
       }
 
+      table.console td {
+          color: rgba(0, 0, 0, 0.7);
+      }
+
+      table.console td .dispatched {
+          font-weight: bold;
+          color: rgba(0, 0, 0, 1);
+      }
+      
       .console th {
         background-color: #f0f0f0;
         border-bottom: 1px solid #ccc;
@@ -406,7 +415,7 @@ public class HtmlRenderer
             document.getElementById('buttons').appendChild(button);
         });
 
-        sm.tracer?.log('Start', true);
+        sm.tracer?.log('<span class=""dispatched"">START</span>', true);
         sm.start();
 
 
