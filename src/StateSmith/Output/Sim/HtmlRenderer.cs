@@ -116,7 +116,15 @@ public class HtmlRenderer
           font-weight: bold;
           color: rgba(0, 0, 0, 1);
       }
-      
+
+      table.console tr:has(+tr td .dispatched) {
+          border-bottom: 0px;
+      }
+
+      table.console tr:has(+tr td .dispatched) td {
+          padding-bottom: 50px;
+      }
+
       .console th {
         background-color: #f0f0f0;
         border-bottom: 1px solid #ccc;
