@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using Microsoft.Extensions.FileSystemGlobbing;
 using Microsoft.Extensions.FileSystemGlobbing.Abstractions;
-using Spectre.Console;
 
 namespace StateSmith.Cli.Run;
 
@@ -12,6 +10,8 @@ namespace StateSmith.Cli.Run;
 /// </summary>
 public class SsCsxDiagramFileFinder
 {
+    const string InlineIgnoreThisFileToken = "statesmith.cli-ignore-this-file";
+
     Matcher matcher;
     private bool hasIncludePatterns;
 
@@ -93,6 +93,11 @@ public class SsCsxDiagramFileFinder
 
             // we need to inspect file contents for rest of checks
             var fileText = File.ReadAllText(fullPath);
+
+            if (fileText.Contains(SsCsxDiagramFileFinder.InlineIgnoreThisFileToken))
+            {
+                continue;
+            }
 
             if (ssCsxFilter.IsTargetScriptFile(fullPath, fileText: fileText))
             {

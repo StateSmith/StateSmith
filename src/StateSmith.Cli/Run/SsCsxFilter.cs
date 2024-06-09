@@ -25,11 +25,6 @@ public class SsCsxFilter
 
     public static bool IsTargetScriptContent(string scriptCodeText)
     {
-        if (scriptCodeText.Contains("//<statesmith.cli-ignore-this-file>"))
-        {
-            return false;
-        }
-
         if (Regex.IsMatch(scriptCodeText, @"(?xim)
             ^ \s*
             [#]r \s* ""nuget \s*  : \s* StateSmith \s* ,"))
