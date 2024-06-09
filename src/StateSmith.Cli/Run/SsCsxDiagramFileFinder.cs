@@ -114,13 +114,20 @@ public class SsCsxDiagramFileFinder
 
     public class ScanResults
     {
+        /// <summary>
+        /// relative to searchDirectory
+        /// </summary>
         public List<string> targetCsxFiles;
-        public List<string> diagramFiles;
+
+        /// <summary>
+        /// relative to searchDirectory
+        /// </summary>
+        public List<string> targetDiagramFiles;
 
         public ScanResults(List<string> targetCsxFiles, List<string> diagramFiles)
         {
             this.targetCsxFiles = targetCsxFiles;
-            this.diagramFiles = diagramFiles;
+            this.targetDiagramFiles = diagramFiles;
         }
     }
 }

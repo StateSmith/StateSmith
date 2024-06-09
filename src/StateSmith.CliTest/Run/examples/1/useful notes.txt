@@ -1,3 +1,5 @@
 ..\..\..\..\StateSmith.Cli\bin\Debug\net6.0\StateSmith.Cli.exe run
 
 ..\..\..\..\StateSmith.Cli\bin\Debug\net6.0\StateSmith.Cli.exe run -r -x **/a3
+
+..\..\..\..\StateSmith.Cli\bin\Debug\net6.0\StateSmith.Cli.exe run -r -x **/a3 --lang C99

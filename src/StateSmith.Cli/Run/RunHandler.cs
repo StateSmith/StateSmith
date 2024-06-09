@@ -21,10 +21,13 @@ public class RunHandler
     internal RunInfoDataBase _runInfoDataBase;
     bool _forceRebuild = false;
     IAnsiConsole _console;
+    private readonly DiagramOptions _diagramOptions;
+    RunConsole _runConsole;
 
-    public RunHandler(IAnsiConsole console, string dirOrManifestPath, IManifestPersistance? manifestPersistance = null)
+    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, IManifestPersistance? manifestPersistance = null)
     {
         _console = console;
+        this._diagramOptions = diagramOptions;
         dirOrManifestPath = Path.GetFullPath(dirOrManifestPath);
 
         FileAttributes attr = File.GetAttributes(dirOrManifestPath);
@@ -39,6 +42,7 @@ public class RunHandler
         _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory);
         Finder = new SsCsxDiagramFileFinder();
         _manifestPersistance = manifestPersistance ?? new ManifestPersistance(manifestDirectory);
+        _runConsole = new RunConsole(_console);
     }
 
     public void SetForceRebuild(bool forceRebuild)
@@ -84,10 +88,14 @@ public class RunHandler
 
     private void RunInner()
     {
+        string searchDirectory = manifestDirectory;
+
         ReadPastRunInfoDatabase();
-        var scanResults = Finder.Scan(searchDirectory: manifestDirectory);
+        var scanResults = Finder.Scan(searchDirectory: searchDirectory);
         RunScriptsIfNeeded(scanResults.targetCsxFiles);
-        // FIXME - RunDiagramIfNeeded(scanResults.targetDiagramFiles);
+
+        var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, _forceRebuild, searchDirectory: searchDirectory);
+        diagramRunner.Run(scanResults.targetDiagramFiles);
     }
 
     public void RunScriptsIfNeeded(List<string> csxScripts)
@@ -102,7 +110,7 @@ public class RunHandler
 
         foreach (var csxShortPath in csxScripts)
         {
-            anyScriptsRan |= RunScriptIfNeeded(manifestDirectory, csxShortPath);
+            anyScriptsRan |= RunScriptIfNeeded(searchDirectory: manifestDirectory, csxShortPath);
             //_console.WriteLine(); // already lots of newlines in RunScriptIfNeeded
         }
 
@@ -123,7 +131,7 @@ public class RunHandler
         string csxLongerPath = $"{searchDirectory}/{csxShortPath}";
         string csxAbsolutePath = Path.GetFullPath(csxLongerPath);
 
-        AddMildHeader($"Checking script and diagram dependencies for: `{csxShortPath}`");
+        _runConsole.AddMildHeader($"Checking script and diagram dependencies for: `{csxShortPath}`");
         IncrementalRunChecker.Result runCheck = _incrementalRunChecker.TestFilePath(csxAbsolutePath);
         if (runCheck != IncrementalRunChecker.Result.OkToSkip)
         {
@@ -134,11 +142,11 @@ public class RunHandler
         {
             if (_forceRebuild)
             {
-                ConsoleMarkupLine("Would normally skip (file dates look good), but [yellow]rebuild[/] option set.");
+                _runConsole.MarkupLine("Would normally skip (file dates look good), but [yellow]rebuild[/] option set.");
             }
             else
             {
-                QuietMarkupLine($"Script and its diagram dependencies haven't changed. Skipping.");
+                _runConsole.QuietMarkupLine($"Script and its diagram dependencies haven't changed. Skipping.");
                 return scriptRan; //!!!!!!!!!!! NOTE the return here.
             }
         }
@@ -175,27 +183,6 @@ public class RunHandler
         {
             _runInfo = readRunInfo.DeepCopy();
         }
-    }
-
-    private void AddMildHeader(string header)
-    {
-        _console.MarkupLine("");
-
-        var rule = new Rule($"[blue]{header}[/]")
-        {
-            Justification = Justify.Left
-        };
-        _console.Write(rule);
-    }
-
-    private void QuietMarkupLine(string message)
-    {
-        ConsoleMarkupLine($"[grey]{message}[/]");
-    }
-
-    private void ConsoleMarkupLine(string message)
-    {
-        _console.MarkupLine(message);
     }
 
     public void AddFromManifest(ManifestData manifest)

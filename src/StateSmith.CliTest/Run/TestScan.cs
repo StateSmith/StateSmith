@@ -40,7 +40,7 @@ public class TestScan
             "yes.csx"
         );
 
-        scanResults.diagramFiles.Should().BeEquivalentTo(
+        scanResults.targetDiagramFiles.Should().BeEquivalentTo(
             "yes1.plantuml",
             "yes2.plantuml",
             "DiagOnlySm.plantuml"
@@ -61,7 +61,7 @@ public class TestScan
             "yes.csx"
         );
 
-        scanResults.diagramFiles.Should().BeEquivalentTo(
+        scanResults.targetDiagramFiles.Should().BeEquivalentTo(
             "yes1.plantuml",
             "yes2.plantuml",
             "DiagOnlySm.plantuml",

@@ -13,19 +13,17 @@ static void ROOT_enter(a1b* sm);
 
 static void ROOT_exit(a1b* sm);
 
-static void STATE_1_enter(a1b* sm);
+static void OFF_enter(a1b* sm);
 
-static void STATE_1_exit(a1b* sm);
+static void OFF_exit(a1b* sm);
 
-static void STATE_1_do(a1b* sm);
+static void OFF_increase(a1b* sm);
 
-static void STATE_1_my_event_1(a1b* sm);
+static void ON1_enter(a1b* sm);
 
-static void STATE_2_enter(a1b* sm);
+static void ON1_exit(a1b* sm);
 
-static void STATE_2_exit(a1b* sm);
-
-static void STATE_2_my_event_2(a1b* sm);
+static void ON1_dim(a1b* sm);
 
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
@@ -49,17 +47,17 @@ void a1b_start(a1b* sm)
         // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
         
         // ROOT.<InitialState> behavior
-        // uml: TransitionTo(STATE_1)
+        // uml: TransitionTo(OFF)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: ``.
             
-            // Step 3: Enter/move towards transition target `STATE_1`.
-            STATE_1_enter(sm);
+            // Step 3: Enter/move towards transition target `OFF`.
+            OFF_enter(sm);
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            sm->state_id = a1b_StateId_STATE_1;
+            sm->state_id = a1b_StateId_OFF;
             // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
             return;
         } // end of behavior for ROOT.<InitialState>
@@ -108,129 +106,98 @@ static void ROOT_exit(a1b* sm)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state STATE_1
+// event handlers for state OFF
 ////////////////////////////////////////////////////////////////////////////////
 
-static void STATE_1_enter(a1b* sm)
+static void OFF_enter(a1b* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = STATE_1_exit;
-    sm->current_event_handlers[a1b_EventId_DO] = STATE_1_do;
-    sm->current_event_handlers[a1b_EventId_MY_EVENT_1] = STATE_1_my_event_1;
+    sm->current_state_exit_handler = OFF_exit;
+    sm->current_event_handlers[a1b_EventId_INCREASE] = OFF_increase;
     
-    // STATE_1 behavior
-    // uml: enter / { print("S1 enter"); }
+    // OFF behavior
+    // uml: enter / { window.alert("Light is OFF"); }
     {
-        // Step 1: execute action `print("S1 enter");`
-        print("S1 enter");
-    } // end of behavior for STATE_1
+        // Step 1: execute action `window.alert("Light is OFF");`
+        window.alert("Light is OFF");
+    } // end of behavior for OFF
 }
 
-static void STATE_1_exit(a1b* sm)
+static void OFF_exit(a1b* sm)
 {
-    // STATE_1 behavior
-    // uml: exit / { print("S1 exit"); }
-    {
-        // Step 1: execute action `print("S1 exit");`
-        print("S1 exit");
-    } // end of behavior for STATE_1
-    
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = ROOT_exit;
-    sm->current_event_handlers[a1b_EventId_DO] = NULL;  // no ancestor listens to this event
-    sm->current_event_handlers[a1b_EventId_MY_EVENT_1] = NULL;  // no ancestor listens to this event
+    sm->current_event_handlers[a1b_EventId_INCREASE] = NULL;  // no ancestor listens to this event
 }
 
-static void STATE_1_do(a1b* sm)
+static void OFF_increase(a1b* sm)
 {
-    // No ancestor state handles `do` event.
+    // No ancestor state handles `increase` event.
     
-    // STATE_1 behavior
-    // uml: do / { print("S1 do"); }
-    {
-        // Step 1: execute action `print("S1 do");`
-        print("S1 do");
-        
-        // Step 2: determine if ancestor gets to handle event next.
-        // Don't consume special `do` event.
-    } // end of behavior for STATE_1
-}
-
-static void STATE_1_my_event_1(a1b* sm)
-{
-    // No ancestor state handles `my_event_1` event.
-    
-    // STATE_1 behavior
-    // uml: MY_EVENT_1 TransitionTo(STATE_2)
+    // OFF behavior
+    // uml: INCREASE TransitionTo(ON1)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-        STATE_1_exit(sm);
+        OFF_exit(sm);
         
         // Step 2: Transition action: ``.
         
-        // Step 3: Enter/move towards transition target `STATE_2`.
-        STATE_2_enter(sm);
+        // Step 3: Enter/move towards transition target `ON1`.
+        ON1_enter(sm);
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-        sm->state_id = a1b_StateId_STATE_2;
+        sm->state_id = a1b_StateId_ON1;
         // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
         return;
-    } // end of behavior for STATE_1
+    } // end of behavior for OFF
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state STATE_2
+// event handlers for state ON1
 ////////////////////////////////////////////////////////////////////////////////
 
-static void STATE_2_enter(a1b* sm)
+static void ON1_enter(a1b* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = STATE_2_exit;
-    sm->current_event_handlers[a1b_EventId_MY_EVENT_2] = STATE_2_my_event_2;
+    sm->current_state_exit_handler = ON1_exit;
+    sm->current_event_handlers[a1b_EventId_DIM] = ON1_dim;
     
-    // STATE_2 behavior
-    // uml: enter / { print("S2 enter"); }
+    // ON1 behavior
+    // uml: enter / { window.alert("Light is ON"); }
     {
-        // Step 1: execute action `print("S2 enter");`
-        print("S2 enter");
-    } // end of behavior for STATE_2
+        // Step 1: execute action `window.alert("Light is ON");`
+        window.alert("Light is ON");
+    } // end of behavior for ON1
 }
 
-static void STATE_2_exit(a1b* sm)
+static void ON1_exit(a1b* sm)
 {
-    // STATE_2 behavior
-    // uml: exit / { print("S2 exit"); }
-    {
-        // Step 1: execute action `print("S2 exit");`
-        print("S2 exit");
-    } // end of behavior for STATE_2
-    
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = ROOT_exit;
-    sm->current_event_handlers[a1b_EventId_MY_EVENT_2] = NULL;  // no ancestor listens to this event
+    sm->current_event_handlers[a1b_EventId_DIM] = NULL;  // no ancestor listens to this event
 }
 
-static void STATE_2_my_event_2(a1b* sm)
+static void ON1_dim(a1b* sm)
 {
-    // No ancestor state handles `my_event_2` event.
+    // No ancestor state handles `dim` event.
     
-    // STATE_2 behavior
-    // uml: MY_EVENT_2 TransitionTo(STATE_1)
+    // ON1 behavior
+    // uml: DIM TransitionTo(OFF)
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
-        STATE_2_exit(sm);
+        ON1_exit(sm);
         
         // Step 2: Transition action: ``.
         
-        // Step 3: Enter/move towards transition target `STATE_1`.
-        STATE_1_enter(sm);
+        // Step 3: Enter/move towards transition target `OFF`.
+        OFF_enter(sm);
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-        sm->state_id = a1b_StateId_STATE_1;
+        sm->state_id = a1b_StateId_OFF;
         // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
         return;
-    } // end of behavior for STATE_2
+    } // end of behavior for ON1
 }
 
 // Thread safe.
@@ -239,8 +206,8 @@ char const * a1b_state_id_to_string(a1b_StateId id)
     switch (id)
     {
         case a1b_StateId_ROOT: return "ROOT";
-        case a1b_StateId_STATE_1: return "STATE_1";
-        case a1b_StateId_STATE_2: return "STATE_2";
+        case a1b_StateId_OFF: return "OFF";
+        case a1b_StateId_ON1: return "ON1";
         default: return "?";
     }
 }
@@ -250,9 +217,8 @@ char const * a1b_event_id_to_string(a1b_EventId id)
 {
     switch (id)
     {
-        case a1b_EventId_DO: return "DO";
-        case a1b_EventId_MY_EVENT_1: return "MY_EVENT_1";
-        case a1b_EventId_MY_EVENT_2: return "MY_EVENT_2";
+        case a1b_EventId_DIM: return "DIM";
+        case a1b_EventId_INCREASE: return "INCREASE";
         default: return "?";
     }
 }

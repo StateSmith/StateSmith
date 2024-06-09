@@ -6,21 +6,20 @@
 
 typedef enum a1b_EventId
 {
-    a1b_EventId_DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
-    a1b_EventId_MY_EVENT_1 = 1,
-    a1b_EventId_MY_EVENT_2 = 2,
+    a1b_EventId_DIM = 0,
+    a1b_EventId_INCREASE = 1,
 } a1b_EventId;
 
 enum
 {
-    a1b_EventIdCount = 3
+    a1b_EventIdCount = 2
 };
 
 typedef enum a1b_StateId
 {
     a1b_StateId_ROOT = 0,
-    a1b_StateId_STATE_1 = 1,
-    a1b_StateId_STATE_2 = 2,
+    a1b_StateId_OFF = 1,
+    a1b_StateId_ON1 = 2,
 } a1b_StateId;
 
 enum
