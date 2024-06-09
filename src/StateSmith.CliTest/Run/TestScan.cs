@@ -66,7 +66,8 @@ public class TestScan
             "yes2.plantuml",
             "DiagOnlySm.plantuml",
             "a/a1/a1a.plantuml",
-            "a/a1/a1b.drawio.svg"
+            "a/a1/a1b.drawio.svg",
+            "a/a1/a1c.plantuml"
         );
     }
 }
