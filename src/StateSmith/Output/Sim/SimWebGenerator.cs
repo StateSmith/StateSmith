@@ -144,21 +144,51 @@ public class SimWebGenerator
 
         string path = Path.Combine(outputDir, $"{smName}.sim.html");
 
+        string diagramEventNamesArray = OrganizeEventNamesIntoJsArray(diagramEventNames);
+
+        var sb = new StringBuilder();
+        HtmlRenderer.Render(sb,
+            smName: smName,
+            mocksCode: mocksWriter.ToString(),
+            mermaidCode: mermaidCodeWriter.ToString(),
+            jsCode: fileCapturer.CapturedCode,
+            diagramEventNamesArray: diagramEventNamesArray);
+        codeFileWriter.WriteFile(path, code: sb.ToString());
+    }
+
+    private static string OrganizeEventNamesIntoJsArray(HashSet<string> unOrderedEventNames)
+    {
+        string? doEvent = null;
+        List<string> eventNames = new();
+
+        foreach (var name in unOrderedEventNames)
+        {
+            if (TriggerHelper.IsDoEvent(name))
+            {
+                doEvent = name;
+            }
+            else
+            {
+                eventNames.Add(name);
+            }
+        }
+
+        // sort non-do events
+        eventNames.Sort(StringComparer.OrdinalIgnoreCase);  // case-insensitive sort
+
+        // put do event first
+        if (doEvent != null)
+        {
+            eventNames.Insert(0, doEvent);
+        }
+
         var diagramEventNamesArray = "[";
-        foreach (var name in diagramEventNames)
+        foreach (var name in eventNames)
         {
             diagramEventNamesArray += $"'{name}', ";
         }
         diagramEventNamesArray += "]";
-
-        var sb = new StringBuilder();
-        HtmlRenderer.Render(sb, 
-            smName: smName, 
-            mocksCode: mocksWriter.ToString(), 
-            mermaidCode: mermaidCodeWriter.ToString(), 
-            jsCode: fileCapturer.CapturedCode, 
-            diagramEventNamesArray: diagramEventNamesArray);
-        codeFileWriter.WriteFile(path, code: sb.ToString());
+        return diagramEventNamesArray;
     }
 
     void GenerateMermaidCode(StateMachine sm)
