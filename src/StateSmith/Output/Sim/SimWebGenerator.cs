@@ -247,10 +247,11 @@ public class SimWebGenerator
             
             if (historyGilMatch.Success)
             {
+                // TODO https://github.com/StateSmith/StateSmith/issues/323
                 // show history var updating
-                var historyVarName = historyGilMatch.Groups["varName"].Value;
-                var storedStateName = historyGilMatch.Groups["storedStateName"].Value;
-                behavior.actionCode += $"this.tracer?.log('📝 History({historyVarName}) = {storedStateName}');";
+                // var historyVarName = historyGilMatch.Groups["varName"].Value;
+                // var storedStateName = historyGilMatch.Groups["storedStateName"].Value;
+                // behavior.actionCode += $"this.tracer?.log('📝 History({historyVarName}) = {storedStateName}');";
             }
             else
             {
