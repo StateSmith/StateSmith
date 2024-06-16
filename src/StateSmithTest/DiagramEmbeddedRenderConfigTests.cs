@@ -51,7 +51,7 @@ public class DiagramEmbeddedRenderConfigTests
         runner.FinishRunning();
 
         {
-            RenderConfigVars renderConfig = runner.sp.GetServiceOrCreateInstance();
+            RenderConfigBaseVars renderConfig = runner.sp.GetServiceOrCreateInstance();
 
             renderConfig.VariableDeclarations.ShouldBeShowDiff("""
             int top_level; // top level - VariableDeclarations
@@ -77,7 +77,7 @@ public class DiagramEmbeddedRenderConfigTests
                 """);
 
             const int expectedOptionCount = 5;
-            GetTypeFields<RenderConfigVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            GetTypeFields<RenderConfigBaseVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
             GetTypeProperties<IRenderConfig>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
         }
 

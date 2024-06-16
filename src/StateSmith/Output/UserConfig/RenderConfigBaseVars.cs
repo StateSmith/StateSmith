@@ -1,6 +1,6 @@
 namespace StateSmith.Output.UserConfig;
 
-public class RenderConfigVars
+public class RenderConfigBaseVars
 {
     public string FileTop = "";
 
@@ -17,6 +17,11 @@ public class RenderConfigVars
     public string VariableDeclarations = "";
 
     public string TriggerMap = "";
+
+    public RenderConfigBaseVars()
+    {
+        
+    }
 
     public void SetFrom(IRenderConfig config, bool autoDeIndentAndTrim)
     {
@@ -39,7 +44,7 @@ public class RenderConfigVars
         TriggerMap = Process(config.TriggerMap);
     }
 
-    public void CopyFrom(RenderConfigVars otherConfig)
+    public void CopyFrom(RenderConfigBaseVars otherConfig)
     {
         otherConfig.IgnorePureCommentVarDecls();
 

@@ -15,7 +15,7 @@ public class GilToC99Tests
     {
         string programText = AlgoBalanced1Tests.BuildExampleGilFile(skipIndentation:true, out var sm).ToString();
 
-        RenderConfigVars renderConfig = new();
+        RenderConfigBaseVars renderConfig = new();
         RenderConfigCVars renderConfigC = new();
 
         OutputInfo outputInfo = new()

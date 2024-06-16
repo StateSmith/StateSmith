@@ -103,26 +103,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     private void SetupDependencyInjectionAndRenderConfigs()
     {
-        var renderConfigVars = new RenderConfigVars();
-        renderConfigVars.SetFrom(iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
+        var renderConfigAllVars = new RenderConfigAllVars();
 
-        var renderConfigCVars = new RenderConfigCVars();
-        if (iRenderConfig is IRenderConfigC ircc)
-        {
-            renderConfigCVars.SetFrom(ircc, settings.autoDeIndentAndTrimRenderConfigItems);
-        }
-
-        var renderConfigCSharpVars = new RenderConfigCSharpVars();
-        if (iRenderConfig is IRenderConfigCSharp irccs)
-        {
-            renderConfigCSharpVars.SetFrom(irccs, settings.autoDeIndentAndTrimRenderConfigItems);
-        }
-
-        var renderConfigJavaScriptVars = new RenderConfigJavaScriptVars();
-        if (iRenderConfig is IRenderConfigJavaScript rcjs)
-        {
-            renderConfigJavaScriptVars.SetFrom(rcjs, settings.autoDeIndentAndTrimRenderConfigItems);
-        }
+        ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
         diServiceProvider.AddConfiguration((services) =>
         {
@@ -131,10 +114,11 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(settings.style);
             services.AddSingleton<OutputInfo>();
             services.AddSingleton<IOutputInfo>((s) => s.GetService<OutputInfo>().ThrowIfNull());
-            services.AddSingleton(renderConfigVars);
-            services.AddSingleton(renderConfigCVars);
-            services.AddSingleton(renderConfigCSharpVars);
-            services.AddSingleton(renderConfigJavaScriptVars);
+            services.AddSingleton(renderConfigAllVars);
+            services.AddSingleton(renderConfigAllVars.BaseVars);
+            services.AddSingleton(renderConfigAllVars.CVars);
+            services.AddSingleton(renderConfigAllVars.CSharpVars);
+            services.AddSingleton(renderConfigAllVars.JavaScriptVars);
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<ExpansionsPrep>();
@@ -143,6 +127,20 @@ public class SmRunner : SmRunner.IExperimentalAccess
         });
 
         AlgoOrTranspilerUpdated();
+    }
+
+    internal static void ReadRenderConfigObjectToVars(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig, bool autoDeIndentAndTrimRenderConfigItems)
+    {
+        renderConfigAllVars.BaseVars.SetFrom(iRenderConfig, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigC ircc)
+            renderConfigAllVars.CVars.SetFrom(ircc, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigCSharp irccs)
+            renderConfigAllVars.CSharpVars.SetFrom(irccs, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigJavaScript rcjs)
+            renderConfigAllVars.JavaScriptVars.SetFrom(rcjs, autoDeIndentAndTrimRenderConfigItems);
     }
 
     /// <summary>

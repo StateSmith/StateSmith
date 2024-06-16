@@ -148,12 +148,14 @@ public class DiServiceProvider : IDisposable
 
     private static void AddDefaultsForTesting(IServiceCollection services)
     {
+        var renderConfigAllVars = new RenderConfigAllVars();
         services.AddSingleton(new DrawIoSettings());
         services.AddSingleton(new CodeStyleSettings());
-        services.AddSingleton<RenderConfigVars>();
-        services.AddSingleton<RenderConfigCVars>();
-        services.AddSingleton<RenderConfigCSharpVars>();
-        services.AddSingleton<RenderConfigJavaScriptVars>();
+        services.AddSingleton(renderConfigAllVars);
+        services.AddSingleton(renderConfigAllVars.BaseVars);
+        services.AddSingleton(renderConfigAllVars.CVars);
+        services.AddSingleton(renderConfigAllVars.CSharpVars);
+        services.AddSingleton(renderConfigAllVars.JavaScriptVars);
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
         services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));
@@ -179,7 +181,7 @@ public class DiServiceProvider : IDisposable
         public static implicit operator DiagramToSmConverter(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DiagramToSmConverter>(me.host.Services);
         public static implicit operator DrawIoSettings(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<DrawIoSettings>(me.host.Services);
         public static implicit operator SmTransformer(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<SmTransformer>(me.host.Services);
-        public static implicit operator RenderConfigVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigVars>(me.host.Services);
+        public static implicit operator RenderConfigBaseVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigBaseVars>(me.host.Services);
         public static implicit operator RenderConfigCVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCVars>(me.host.Services);
         public static implicit operator RenderConfigCSharpVars(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<RenderConfigCSharpVars>(me.host.Services);
         public static implicit operator InputSmBuilder(ConvertableType me) => ActivatorUtilities.GetServiceOrCreateInstance<InputSmBuilder>(me.host.Services);

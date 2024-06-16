@@ -12,13 +12,13 @@ public class GilToC99 : IGilTranspiler
     public readonly StringBuilder hFileSb = new();
     public readonly StringBuilder cFileSb = new();
     public readonly RenderConfigCVars renderConfigC;
-    public readonly RenderConfigVars renderConfig;
+    public readonly RenderConfigBaseVars renderConfig;
 
     private readonly ICodeFileWriter codeFileWriter;
     private readonly IOutputInfo outputInfo;
     private readonly IGilToC99Customizer cCustomizer;
 
-    public GilToC99(IOutputInfo outputInfo, IGilToC99Customizer cCustomizer, ICodeFileWriter codeFileWriter, RenderConfigVars renderConfig, RenderConfigCVars renderConfigC)
+    public GilToC99(IOutputInfo outputInfo, IGilToC99Customizer cCustomizer, ICodeFileWriter codeFileWriter, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC)
     {
         this.renderConfigC = renderConfigC;
         this.outputInfo = outputInfo;
