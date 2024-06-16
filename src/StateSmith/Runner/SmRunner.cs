@@ -115,10 +115,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton<OutputInfo>();
             services.AddSingleton<IOutputInfo>((s) => s.GetService<OutputInfo>().ThrowIfNull());
             services.AddSingleton(renderConfigAllVars);
-            services.AddSingleton(renderConfigAllVars.BaseVars);
-            services.AddSingleton(renderConfigAllVars.CVars);
-            services.AddSingleton(renderConfigAllVars.CSharpVars);
-            services.AddSingleton(renderConfigAllVars.JavaScriptVars);
+            services.AddSingleton(renderConfigAllVars.Base);
+            services.AddSingleton(renderConfigAllVars.C);
+            services.AddSingleton(renderConfigAllVars.CSharp);
+            services.AddSingleton(renderConfigAllVars.JavaScript);
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<ExpansionsPrep>();
@@ -131,16 +131,16 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
     internal static void ReadRenderConfigObjectToVars(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig, bool autoDeIndentAndTrimRenderConfigItems)
     {
-        renderConfigAllVars.BaseVars.SetFrom(iRenderConfig, autoDeIndentAndTrimRenderConfigItems);
+        renderConfigAllVars.Base.SetFrom(iRenderConfig, autoDeIndentAndTrimRenderConfigItems);
 
         if (iRenderConfig is IRenderConfigC ircc)
-            renderConfigAllVars.CVars.SetFrom(ircc, autoDeIndentAndTrimRenderConfigItems);
+            renderConfigAllVars.C.SetFrom(ircc, autoDeIndentAndTrimRenderConfigItems);
 
         if (iRenderConfig is IRenderConfigCSharp irccs)
-            renderConfigAllVars.CSharpVars.SetFrom(irccs, autoDeIndentAndTrimRenderConfigItems);
+            renderConfigAllVars.CSharp.SetFrom(irccs, autoDeIndentAndTrimRenderConfigItems);
 
         if (iRenderConfig is IRenderConfigJavaScript rcjs)
-            renderConfigAllVars.JavaScriptVars.SetFrom(rcjs, autoDeIndentAndTrimRenderConfigItems);
+            renderConfigAllVars.JavaScript.SetFrom(rcjs, autoDeIndentAndTrimRenderConfigItems);
     }
 
     /// <summary>

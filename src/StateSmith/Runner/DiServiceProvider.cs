@@ -152,10 +152,10 @@ public class DiServiceProvider : IDisposable
         services.AddSingleton(new DrawIoSettings());
         services.AddSingleton(new CodeStyleSettings());
         services.AddSingleton(renderConfigAllVars);
-        services.AddSingleton(renderConfigAllVars.BaseVars);
-        services.AddSingleton(renderConfigAllVars.CVars);
-        services.AddSingleton(renderConfigAllVars.CSharpVars);
-        services.AddSingleton(renderConfigAllVars.JavaScriptVars);
+        services.AddSingleton(renderConfigAllVars.Base);
+        services.AddSingleton(renderConfigAllVars.C);
+        services.AddSingleton(renderConfigAllVars.CSharp);
+        services.AddSingleton(renderConfigAllVars.JavaScript);
         services.AddSingleton<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
         services.AddSingleton<RunnerSettings>(new RunnerSettings(""));
         services.AddSingleton<FilePathPrinter>(new FilePathPrinter(""));

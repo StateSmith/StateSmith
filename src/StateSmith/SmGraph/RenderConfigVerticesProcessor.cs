@@ -57,7 +57,7 @@ public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
         }
 
         // done like this so they can be processed intelligently
-        allVars.BaseVars.CopyFrom(tempRenderConfigBaseVars);
+        allVars.Base.CopyFrom(tempRenderConfigBaseVars);
     }
 
     public override void Visit(StateMachine v)
@@ -105,26 +105,26 @@ public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
             case nameof(IRenderConfig.TriggerMap): AppendOption(ref tempRenderConfigBaseVars.TriggerMap, v); break;
             case nameof(IRenderConfig.FileTop): AppendOption(ref tempRenderConfigBaseVars.FileTop, v); break;
 
-            case nameof(IRenderConfigC.HFileTop): AppendOption(ref allVars.CVars.HFileTop, v); break;
-            case nameof(IRenderConfigC.HFileIncludes): AppendOption(ref allVars.CVars.HFileIncludes, v); break;
-            case nameof(IRenderConfigC.CFileTop): AppendOption(ref allVars.CVars.CFileTop, v); break;
-            case nameof(IRenderConfigC.CFileIncludes): AppendOption(ref allVars.CVars.CFileIncludes, v); break;
+            case nameof(IRenderConfigC.HFileTop): AppendOption(ref allVars.C.HFileTop, v); break;
+            case nameof(IRenderConfigC.HFileIncludes): AppendOption(ref allVars.C.HFileIncludes, v); break;
+            case nameof(IRenderConfigC.CFileTop): AppendOption(ref allVars.C.CFileTop, v); break;
+            case nameof(IRenderConfigC.CFileIncludes): AppendOption(ref allVars.C.CFileIncludes, v); break;
             //
-            case nameof(IRenderConfigC.HFileExtension): SetOption(ref allVars.CVars.HFileExtension, v); break;
-            case nameof(IRenderConfigC.CFileExtension): SetOption(ref allVars.CVars.CFileExtension, v); break;
-            case nameof(IRenderConfigC.CEnumDeclarer): SetOption(ref allVars.CVars.CEnumDeclarer, v); break;
+            case nameof(IRenderConfigC.HFileExtension): SetOption(ref allVars.C.HFileExtension, v); break;
+            case nameof(IRenderConfigC.CFileExtension): SetOption(ref allVars.C.CFileExtension, v); break;
+            case nameof(IRenderConfigC.CEnumDeclarer): SetOption(ref allVars.C.CEnumDeclarer, v); break;
 
-            case "CSharp" + nameof(IRenderConfigCSharp.NameSpace): AppendOption(ref allVars.CSharpVars.NameSpace, v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref allVars.CSharpVars.Usings, v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.ClassCode): AppendOption(ref allVars.CSharpVars.ClassCode, v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.BaseList): AppendOption(ref allVars.CSharpVars.BaseList, v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.UseNullable): allVars.CSharpVars.UseNullable = ParseBoolValue(v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.UsePartialClass): allVars.CSharpVars.UsePartialClass = ParseBoolValue(v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.NameSpace): AppendOption(ref allVars.CSharp.NameSpace, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref allVars.CSharp.Usings, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.ClassCode): AppendOption(ref allVars.CSharp.ClassCode, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.BaseList): AppendOption(ref allVars.CSharp.BaseList, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.UseNullable): allVars.CSharp.UseNullable = ParseBoolValue(v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.UsePartialClass): allVars.CSharp.UsePartialClass = ParseBoolValue(v); break;
 
-            case "JavaScript" + nameof(IRenderConfigJavaScript.ClassCode): AppendOption(ref allVars.JavaScriptVars.ClassCode, v); break;
-            case "JavaScript" + nameof(IRenderConfigJavaScript.ExtendsSuperClass): AppendOption(ref allVars.JavaScriptVars.ExtendsSuperClass, v); break;
-            case "JavaScript" + nameof(IRenderConfigJavaScript.PrivatePrefix): SetOption(ref allVars.JavaScriptVars.PrivatePrefix, v); break;
-            case "JavaScript" + nameof(IRenderConfigJavaScript.UseExportOnClass): allVars.JavaScriptVars.UseExportOnClass = ParseBoolValue(v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.ClassCode): AppendOption(ref allVars.JavaScript.ClassCode, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.ExtendsSuperClass): AppendOption(ref allVars.JavaScript.ExtendsSuperClass, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.PrivatePrefix): SetOption(ref allVars.JavaScript.PrivatePrefix, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.UseExportOnClass): allVars.JavaScript.UseExportOnClass = ParseBoolValue(v); break;
 
             default:
                 throw new VertexValidationException(v, $"Unknown Render Config option `{v.name}`");
