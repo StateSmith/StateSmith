@@ -12,6 +12,9 @@ public class PlantUMLWalker : PlantUMLBaseListener
 {
     public List<DiagramEdge> edges = new();
     public DiagramNode root = new();
+    public Dictionary<DiagramNode, string> nodeStereoTypeLookup = new();
+    public Dictionary<string, DiagramNode> nodeMap = new();
+    public List<KeptComment> keptCommentBlocks = new();
 
     private DiagramNode currentNode;
 
@@ -20,10 +23,6 @@ public class PlantUMLWalker : PlantUMLBaseListener
 
     // used to check if a state already contains a history state
     private Dictionary<DiagramNode, DiagramNode> nodeHistoryStateMap = new();
-    
-    public Dictionary<DiagramNode, string> nodeStereoTypeLookup = new();
-    public Dictionary<string, DiagramNode> nodeMap = new();
-
 
     public PlantUMLWalker()
     {
@@ -225,5 +224,19 @@ public class PlantUMLWalker : PlantUMLBaseListener
         }
 
         nodeStereoTypeLookup.Add(node, newStereotype);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/335
+    /// </summary>
+    public override void EnterKept_block_comment([NotNull] PlantUMLParser.Kept_block_commentContext context)
+    {
+        const int startCharsToSkip = 3; // skip at start: /'!
+        const int endCharsToSkip = 2;   // skip at end  : '/
+
+        string commentContents = context.KEPT_BLOCK_COMMENT().GetText();
+        commentContents = commentContents.Substring(startCharsToSkip, commentContents.Length - (startCharsToSkip + endCharsToSkip));
+        KeptComment keptCommentBlock = new(diagramId: MakeId(context), comment: commentContents);
+        keptCommentBlocks.Add(keptCommentBlock);
     }
 }

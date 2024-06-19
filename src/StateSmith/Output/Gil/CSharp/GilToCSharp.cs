@@ -13,10 +13,10 @@ public class GilToCSharp : IGilTranspiler
 
     private readonly ICodeFileWriter codeFileWriter;
     private readonly RenderConfigCSharpVars renderConfigCSharp;
-    private readonly RenderConfigVars renderConfig;
+    private readonly RenderConfigBaseVars renderConfig;
     private readonly IOutputInfo outputInfo;
 
-    public GilToCSharp(IOutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig, ICodeFileWriter codeFileWriter)
+    public GilToCSharp(IOutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter)
     {
         this.outputInfo = outputInfo;
         this.renderConfigCSharp = renderConfigCSharp;

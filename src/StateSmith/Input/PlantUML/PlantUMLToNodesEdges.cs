@@ -4,6 +4,7 @@ using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using StateSmith.Common;
 using StateSmith.Input.Antlr4;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -34,6 +35,19 @@ public class PlantUMLToNodesEdges
         ParseTreeWalker.Default.Walk(walker, tree);
         PostProcessForEntryExit();
         PostProcessForChoicePoint();
+        PostProcessForKeptComments();
+    }
+
+    private void PostProcessForKeptComments()
+    {
+        foreach (var keptComment in walker.keptCommentBlocks)
+        {
+            DiagramNode? diagramNode = KeptCommentConverter.Convert(keptComment);
+            if (diagramNode != null)
+            {
+                walker.root.children.Add(diagramNode);
+            }
+        }
     }
 
     private bool IsNodeEntryPoint(DiagramNode node)

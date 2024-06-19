@@ -39,7 +39,7 @@ The idea is to make it super easy to run the code generation tool. It will be as
 ## Updating
 Issue the command
 ```
-dotnet tool update StateSmith.Cli --global
+dotnet tool update --global StateSmith.Cli
 ```
 
 ![](./md-img/image.png)
@@ -48,5 +48,11 @@ dotnet tool update StateSmith.Cli --global
 ## Uninstall
 Issue the command
 ```
-dotnet tool uninstall StateSmith.Cli --global
+dotnet tool uninstall --global StateSmith.Cli
+```
+
+## Install Specific Version or Test Release
+Test releases are usually unlisted on nuget website. They also aren't detected by ss.cli update checks.
+```
+dotnet tool install --global StateSmith.Cli --version 0.8.2-diag-only-1
 ```

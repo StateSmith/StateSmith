@@ -1,3 +1,5 @@
+#nullable enable
+
 namespace StateSmith.Output.UserConfig;
 
 public class RenderConfigCVars

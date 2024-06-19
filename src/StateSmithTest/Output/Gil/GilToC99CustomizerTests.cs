@@ -18,7 +18,6 @@ public class GilToC99CustomizerTests
 {
     private readonly RenderConfigCVars renderConfigC = new();
     private readonly GilToC99Customizer customizer;
-    private readonly CapturingCodeFileWriter capturingWriter = new();
 
     public GilToC99CustomizerTests()
     {
@@ -49,10 +48,7 @@ public class GilToC99CustomizerTests
     [Fact]
     public void GccIntegrationTest()
     {
-        SmRunner runner = new(diagramPath: "ExGil1.drawio", transpilerId: TranspilerId.C99);
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(capturingWriter);
-        runner.Settings.propagateExceptions = true;
-        runner.Run();
+        var (smRunner, capturingWriter) = TestHelper.CaptureSmRun("ExGil1.drawio", transpilerId: TranspilerId.C99);
 
         // Note that draw.io file already contains the equivalent of the below
         //class ExampleRenderConfig : IRenderConfigC
@@ -62,8 +58,8 @@ public class GilToC99CustomizerTests
         //    string IRenderConfigC.HFileExtension => ".hpp";
         //}
 
-        var cppFile = capturingWriter.captures.GetValues(runner.Settings.outputDirectory + "ExGil1.cpp").Single();
-        var hppFile = capturingWriter.captures.GetValues(runner.Settings.outputDirectory + "ExGil1.hpp").Single();
+        var cppFile = capturingWriter.captures.GetValues(smRunner.Settings.outputDirectory + "ExGil1.cpp").Single();
+        var hppFile = capturingWriter.captures.GetValues(smRunner.Settings.outputDirectory + "ExGil1.hpp").Single();
 
         hppFile.code.Should().Contain("typedef enum __attribute__((packed)) ExGil1_StateId");
         hppFile.code.Should().Contain("typedef enum __attribute__((packed)) ExGil1_EventId");

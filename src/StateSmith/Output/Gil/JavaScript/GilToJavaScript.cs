@@ -12,11 +12,11 @@ public class GilToJavaScript : IGilTranspiler
     private readonly StringBuilder fileSb = new();
 
     private readonly ICodeFileWriter codeFileWriter;
-    private readonly RenderConfigVars renderConfig;
+    private readonly RenderConfigBaseVars renderConfig;
     private readonly RenderConfigJavaScriptVars renderConfigJavaScript;
     private readonly IOutputInfo outputInfo;
 
-    public GilToJavaScript(IOutputInfo outputInfo, RenderConfigVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript, ICodeFileWriter codeFileWriter)
+    public GilToJavaScript(IOutputInfo outputInfo, RenderConfigBaseVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript, ICodeFileWriter codeFileWriter)
     {
         this.outputInfo = outputInfo;
         this.renderConfig = renderConfig;

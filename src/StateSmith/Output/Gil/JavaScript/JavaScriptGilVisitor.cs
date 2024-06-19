@@ -13,14 +13,14 @@ namespace StateSmith.Output.Gil.JavaScript;
 public class JavaScriptGilVisitor : CSharpSyntaxWalker
 {
     private readonly StringBuilder sb;
-    private readonly RenderConfigVars renderConfig;
+    private readonly RenderConfigBaseVars renderConfig;
     private readonly RenderConfigJavaScriptVars renderConfigJavaScript;
 
     private readonly SemanticModel model;
     private readonly GilTranspilerHelper transpilerHelper;
     private SyntaxToken? tokenToSkip;
 
-    public JavaScriptGilVisitor(string gilCode, StringBuilder fileSb, RenderConfigVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public JavaScriptGilVisitor(string gilCode, StringBuilder fileSb, RenderConfigBaseVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = fileSb;
         this.renderConfig = renderConfig;

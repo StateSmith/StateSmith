@@ -105,12 +105,7 @@ public class MxCellsToSmDiagramConverterTests
     [Fact]
     public void Notes_IntegrationTest()
     {
-        CapturingCodeFileWriter capturedFile = new();
-
-        SmRunner runner = new(diagramPath: "NotesTest.drawio");
-        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(capturedFile); // for unit testing
-        runner.Settings.propagateExceptions = true; // for unit testing
-        runner.Run();
+        TestHelper.CaptureSmRunnerFiles(diagramPath: "NotesTest.drawio");
     }
 
     /// <summary>

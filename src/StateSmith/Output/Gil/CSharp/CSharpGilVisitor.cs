@@ -16,7 +16,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     public readonly StringBuilder sb;
     private readonly RenderConfigCSharpVars renderConfigCSharp;
     private readonly GilTranspilerHelper transpilerHelper;
-    private readonly RenderConfigVars renderConfig;
+    private readonly RenderConfigBaseVars renderConfig;
 
     private SemanticModel model;
     
@@ -29,7 +29,7 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
 
-    public CSharpGilVisitor(string gilCode, StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public CSharpGilVisitor(string gilCode, StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = sb;
         this.renderConfig = renderConfig;

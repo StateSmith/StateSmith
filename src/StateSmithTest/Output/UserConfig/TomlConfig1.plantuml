@@ -1,0 +1,21 @@
+@startuml TomlConfigEx
+[*] --> first
+
+/' a normal ignored comment block '/
+
+/'! $CONFIG : toml
+[RenderConfig]
+FileTop = "// TEST-FILE-TOP"
+
+[RenderConfig.C]
+HFileExtension = ".hh"
+CFileExtension = ".inc"
+CFileTop = "// TEST-C-FILE-TOP"
+HFileTop = "// TEST-H-FILE-TOP"
+
+[SmRunnerSettings]
+outputStateSmithVersionInfo = false
+
+'/
+
+@enduml

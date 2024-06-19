@@ -97,6 +97,23 @@
         display: table-cell;
       }
 
+      table.console td {
+          color: rgba(0, 0, 0, 0.7);
+      }
+
+      table.console td .dispatched {
+          font-weight: bold;
+          color: rgba(0, 0, 0, 1);
+      }
+
+      table.console tr:has(+tr td .dispatched) {
+          border-bottom: 0px;
+      }
+
+      table.console tr:has(+tr td .dispatched) td {
+          padding-bottom: 25px;
+      }
+
       .console th {
         background-color: #f0f0f0;
         border-bottom: 1px solid #ccc;
@@ -121,12 +138,6 @@
         font-size: small;
       }
 
-      .console td.emphasis {
-        font-weight: bold;
-        background-color: black;
-        color: white;
-      }
-
       .history {
         margin-top: 30px;       
         display: flex;
@@ -136,6 +147,16 @@
 
       .console tr:last-child td {
         border-bottom: none;
+      }
+
+      .dispatched {
+        font-weight: bold;
+      }
+
+      .dispatched > .trigger {
+        border: 1px solid #000;
+        border-radius: 4px;
+        padding: 2px 10px 2px 10px;
       }
 
       button {
@@ -174,6 +195,18 @@
       }
 
       .show {display: block;}
+
+      .transition.active {
+        stroke: #fff5ad !important;
+        stroke-width: 5px !important;
+        filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+      }
+
+      .statediagram-state.active > * {
+        fill: #fff5ad !important;
+        stroke-width: 2px !important;
+      }
+
     </style>
   </head>
 
@@ -182,8 +215,6 @@
     <div class="pane main">
         <pre class="mermaid">
 stateDiagram
-
-classDef active fill:yellow,stroke-width:2px;
 
 state Running {
 
@@ -1210,10 +1241,10 @@ evaluateGuard = null;
         } // end of behavior for SetupCheck
         
         // SetupCheck behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK;)this.tracer?.log('📝 History(Running) = SETUPCHECK'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK;)this.tracer?.log('📝 History(Running) = SETUPCHECK');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SETUPCHECK;this.tracer?.log('📝 History(Running) = SETUPCHECK');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SETUPCHECK;
         } // end of behavior for SetupCheck
     }
     
@@ -1249,10 +1280,10 @@ evaluateGuard = null;
         } // end of behavior for AdjustServoOffsets
         
         // AdjustServoOffsets behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.ADJUSTSERVOOFFSETS;)this.tracer?.log('📝 History(Running) = ADJUSTSERVOOFFSETS'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.ADJUSTSERVOOFFSETS;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.ADJUSTSERVOOFFSETS;)this.tracer?.log('📝 History(Running) = ADJUSTSERVOOFFSETS');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.ADJUSTSERVOOFFSETS;this.tracer?.log('📝 History(Running) = ADJUSTSERVOOFFSETS');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.ADJUSTSERVOOFFSETS;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.ADJUSTSERVOOFFSETS;
         } // end of behavior for AdjustServoOffsets
     }
     
@@ -1555,10 +1586,10 @@ evaluateGuard = null;
         } // end of behavior for SetupCheck__Start
         
         // SetupCheck__Start behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)this.tracer?.log('📝 History(Running) = SETUPCHECK__START'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)this.tracer?.log('📝 History(Running) = SETUPCHECK__START');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SETUPCHECK__START;this.tracer?.log('📝 History(Running) = SETUPCHECK__START');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SETUPCHECK__START;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SETUPCHECK__START;
         } // end of behavior for SetupCheck__Start
     }
     
@@ -1649,10 +1680,10 @@ evaluateGuard = null;
         } // end of behavior for Tour
         
         // Tour behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TOUR;)this.tracer?.log('📝 History(Running) = TOUR'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TOUR;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TOUR;)this.tracer?.log('📝 History(Running) = TOUR');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.TOUR;this.tracer?.log('📝 History(Running) = TOUR');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TOUR;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.TOUR;
         } // end of behavior for Tour
     }
     
@@ -1730,10 +1761,10 @@ evaluateGuard = null;
         } // end of behavior for SortingMode
         
         // SortingMode behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE;)this.tracer?.log('📝 History(Running) = SORTINGMODE'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE;)this.tracer?.log('📝 History(Running) = SORTINGMODE');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE;this.tracer?.log('📝 History(Running) = SORTINGMODE');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE;
         } // end of behavior for SortingMode
     }
     
@@ -1796,10 +1827,10 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Dropoff
         
         // SortingMode__Dropoff behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__DROPOFF;)this.tracer?.log('📝 History(Running) = SORTINGMODE__DROPOFF'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__DROPOFF;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__DROPOFF;)this.tracer?.log('📝 History(Running) = SORTINGMODE__DROPOFF');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__DROPOFF;this.tracer?.log('📝 History(Running) = SORTINGMODE__DROPOFF');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__DROPOFF;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__DROPOFF;
         } // end of behavior for SortingMode__Dropoff
     }
     
@@ -1866,10 +1897,10 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Pickup
         
         // SortingMode__Pickup behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__PICKUP;)this.tracer?.log('📝 History(Running) = SORTINGMODE__PICKUP'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__PICKUP;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__PICKUP;)this.tracer?.log('📝 History(Running) = SORTINGMODE__PICKUP');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__PICKUP;this.tracer?.log('📝 History(Running) = SORTINGMODE__PICKUP');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__PICKUP;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__PICKUP;
         } // end of behavior for SortingMode__Pickup
     }
     
@@ -1936,10 +1967,10 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Sensor
         
         // SortingMode__Sensor behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__SENSOR;)this.tracer?.log('📝 History(Running) = SORTINGMODE__SENSOR'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__SENSOR;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__SENSOR;)this.tracer?.log('📝 History(Running) = SORTINGMODE__SENSOR');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__SENSOR;this.tracer?.log('📝 History(Running) = SORTINGMODE__SENSOR');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__SENSOR;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__SENSOR;
         } // end of behavior for SortingMode__Sensor
     }
     
@@ -2006,10 +2037,10 @@ evaluateGuard = null;
         } // end of behavior for SortingMode__Start
         
         // SortingMode__Start behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__START;)this.tracer?.log('📝 History(Running) = SORTINGMODE__START'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__START;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__START;)this.tracer?.log('📝 History(Running) = SORTINGMODE__START');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__START;this.tracer?.log('📝 History(Running) = SORTINGMODE__START');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.SORTINGMODE__START;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.SORTINGMODE__START;
         } // end of behavior for SortingMode__Start
     }
     
@@ -2068,10 +2099,10 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode
         
         // TrainingMode behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE;)this.tracer?.log('📝 History(Running) = TRAININGMODE'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE;)this.tracer?.log('📝 History(Running) = TRAININGMODE');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE;this.tracer?.log('📝 History(Running) = TRAININGMODE');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE;
         } // end of behavior for TrainingMode
     }
     
@@ -2126,10 +2157,10 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot
         
         // ReadEmptySlot behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT;)this.tracer?.log('📝 History(Running) = READEMPTYSLOT'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT;)this.tracer?.log('📝 History(Running) = READEMPTYSLOT');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT;this.tracer?.log('📝 History(Running) = READEMPTYSLOT');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT;
         } // end of behavior for ReadEmptySlot
     }
     
@@ -2192,10 +2223,10 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot__Dropoff
         
         // ReadEmptySlot__Dropoff behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__DROPOFF;)this.tracer?.log('📝 History(Running) = READEMPTYSLOT__DROPOFF'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__DROPOFF;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__DROPOFF;)this.tracer?.log('📝 History(Running) = READEMPTYSLOT__DROPOFF');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT__DROPOFF;this.tracer?.log('📝 History(Running) = READEMPTYSLOT__DROPOFF');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__DROPOFF;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT__DROPOFF;
         } // end of behavior for ReadEmptySlot__Dropoff
     }
     
@@ -2262,10 +2293,10 @@ evaluateGuard = null;
         } // end of behavior for ReadEmptySlot__Sensor
         
         // ReadEmptySlot__Sensor behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__SENSOR;)this.tracer?.log('📝 History(Running) = READEMPTYSLOT__SENSOR'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__SENSOR;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__SENSOR;)this.tracer?.log('📝 History(Running) = READEMPTYSLOT__SENSOR');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT__SENSOR;this.tracer?.log('📝 History(Running) = READEMPTYSLOT__SENSOR');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READEMPTYSLOT__SENSOR;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READEMPTYSLOT__SENSOR;
         } // end of behavior for ReadEmptySlot__Sensor
     }
     
@@ -2342,10 +2373,10 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot
         
         // ReadJammedSlot behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT;)this.tracer?.log('📝 History(Running) = READJAMMEDSLOT'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT;)this.tracer?.log('📝 History(Running) = READJAMMEDSLOT');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT;this.tracer?.log('📝 History(Running) = READJAMMEDSLOT');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT;
         } // end of behavior for ReadJammedSlot
     }
     
@@ -2408,10 +2439,10 @@ evaluateGuard = null;
         } // end of behavior for Jammed
         
         // Jammed behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.JAMMED;)this.tracer?.log('📝 History(Running) = JAMMED'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.JAMMED;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.JAMMED;)this.tracer?.log('📝 History(Running) = JAMMED');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.JAMMED;this.tracer?.log('📝 History(Running) = JAMMED');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.JAMMED;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.JAMMED;
         } // end of behavior for Jammed
     }
     
@@ -2478,10 +2509,10 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot__Dropoff
         
         // ReadJammedSlot__Dropoff behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__DROPOFF;)this.tracer?.log('📝 History(Running) = READJAMMEDSLOT__DROPOFF'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__DROPOFF;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__DROPOFF;)this.tracer?.log('📝 History(Running) = READJAMMEDSLOT__DROPOFF');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT__DROPOFF;this.tracer?.log('📝 History(Running) = READJAMMEDSLOT__DROPOFF');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__DROPOFF;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT__DROPOFF;
         } // end of behavior for ReadJammedSlot__Dropoff
     }
     
@@ -2566,10 +2597,10 @@ evaluateGuard = null;
         } // end of behavior for ReadJammedSlot__Sensor
         
         // ReadJammedSlot__Sensor behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__SENSOR;)this.tracer?.log('📝 History(Running) = READJAMMEDSLOT__SENSOR'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__SENSOR;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__SENSOR;)this.tracer?.log('📝 History(Running) = READJAMMEDSLOT__SENSOR');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT__SENSOR;this.tracer?.log('📝 History(Running) = READJAMMEDSLOT__SENSOR');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READJAMMEDSLOT__SENSOR;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READJAMMEDSLOT__SENSOR;
         } // end of behavior for ReadJammedSlot__Sensor
     }
     
@@ -2628,10 +2659,10 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot
         
         // ReadSlot behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT;)this.tracer?.log('📝 History(Running) = READSLOT'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT;)this.tracer?.log('📝 History(Running) = READSLOT');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT;this.tracer?.log('📝 History(Running) = READSLOT');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT;
         } // end of behavior for ReadSlot
     }
     
@@ -2694,10 +2725,10 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot__Dropoff
         
         // ReadSlot__Dropoff behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT__DROPOFF;)this.tracer?.log('📝 History(Running) = READSLOT__DROPOFF'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT__DROPOFF;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT__DROPOFF;)this.tracer?.log('📝 History(Running) = READSLOT__DROPOFF');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT__DROPOFF;this.tracer?.log('📝 History(Running) = READSLOT__DROPOFF');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT__DROPOFF;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT__DROPOFF;
         } // end of behavior for ReadSlot__Dropoff
     }
     
@@ -2782,10 +2813,10 @@ evaluateGuard = null;
         } // end of behavior for ReadSlot__Sensor
         
         // ReadSlot__Sensor behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT__SENSOR;)this.tracer?.log('📝 History(Running) = READSLOT__SENSOR'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.READSLOT__SENSOR;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT__SENSOR;)this.tracer?.log('📝 History(Running) = READSLOT__SENSOR');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT__SENSOR;this.tracer?.log('📝 History(Running) = READSLOT__SENSOR');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.READSLOT__SENSOR;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.READSLOT__SENSOR;
         } // end of behavior for ReadSlot__Sensor
     }
     
@@ -2852,10 +2883,10 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode__Pickup
         
         // TrainingMode__Pickup behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__PICKUP;)this.tracer?.log('📝 History(Running) = TRAININGMODE__PICKUP'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__PICKUP;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__PICKUP;)this.tracer?.log('📝 History(Running) = TRAININGMODE__PICKUP');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE__PICKUP;this.tracer?.log('📝 History(Running) = TRAININGMODE__PICKUP');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__PICKUP;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE__PICKUP;
         } // end of behavior for TrainingMode__Pickup
     }
     
@@ -2922,10 +2953,10 @@ evaluateGuard = null;
         } // end of behavior for TrainingMode__Start
         
         // TrainingMode__Start behavior
-        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__START;)this.tracer?.log('📝 History(Running) = TRAININGMODE__START'); }
+        // uml: enter / { $gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__START;) }
         {
-            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__START;)this.tracer?.log('📝 History(Running) = TRAININGMODE__START');`
-            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE__START;this.tracer?.log('📝 History(Running) = TRAININGMODE__START');
+            // Step 1: execute action `$gil(this.vars.Running_history = Running_HistoryId.TRAININGMODE__START;)`
+            this.vars.Running_history = BeadSorter.Running_HistoryId.TRAININGMODE__START;
         } // end of behavior for TrainingMode__Start
     }
     
@@ -3030,6 +3061,11 @@ evaluateGuard = null;
         document.querySelector('svg').setAttribute('height', '100%');
         document.querySelector('svg').style["max-width"] = '';
 
+        // don't scale the arrow when we scale the transition edge
+        document.querySelectorAll('g defs marker[id$=barbEnd]').forEach(marker => {
+            marker.setAttribute('markerUnits', 'userSpaceOnUse');
+        });
+
         var panZoom = window.panZoom = svgPanZoom(document.querySelector('svg'), {
             zoomEnabled: true,
             controlIconsEnabled: true,
@@ -3037,7 +3073,7 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['BUTTON0', 'do', 'BUTTON2', 'BUTTON1', ];
+        const diagramEventNamesArray = ['do', 'BUTTON0', 'BUTTON1', 'BUTTON2', ];
 
         const leftPane = document.querySelector(".main");
         const rightPane = document.querySelector(".sidebar");
@@ -3109,16 +3145,19 @@ evaluateGuard = null;
         }
 
         // Add a row to the history table.
-        function addHistoryRow(time, event, emphasis = false) {
+        function addHistoryRow(time, event, html = false) {
             var row = document.createElement('tr');
             var timeCell = document.createElement('td');
             timeCell.innerText = formatTime(time);
             timeCell.classList.add('timestamp');
             var eventCell = document.createElement('td');
-            eventCell.innerText = event;
-            if(emphasis) {
-                eventCell.classList.add('emphasis');                
+
+            if(html) {
+              eventCell.innerHTML = event;
+            } else {
+              eventCell.innerText = event;
             }
+
             row.appendChild(timeCell);
             row.appendChild(eventCell);
             document.querySelector('tbody').appendChild(row);
@@ -3135,20 +3174,19 @@ evaluateGuard = null;
         function highlightEdge(edgeId) {
             var edge = document.getElementById(edgeId);
             if (edge) {
-                edge.style.stroke = 'red';
-                highlightedEdges.add(edge);
+              edge.classList.add('active');
+              highlightedEdges.add(edge);
             }
         }
 
         function clearHighlightedEdges() {
             for (const edge of highlightedEdges) {
-                const showOldTraversal = true;
-                if (showOldTraversal) {
-                    // shows that the edge was traversed. Optional, but kinda nice.
-                    edge.style.stroke = 'green';
-                } else {
-                    edge.style.stroke = '';
-                }
+              edge.classList.remove('active');
+              const showOldTraversal = false;
+              if (showOldTraversal) {
+                  // shows that the edge was traversed. Optional, but kinda nice.
+                  edge.style.stroke = 'green';
+              }
             }
             highlightedEdges.clear();
         }
@@ -3159,8 +3197,12 @@ evaluateGuard = null;
         // choose to implement a tracer for debugging purposes.
         sm.tracer = {
             enterState: (mermaidName) => {
-                document.querySelector('g[data-id=' + mermaidName + ']')?.classList.add('active');
-                sm.tracer.log("➡️ Entered " + mermaidName);
+                var e = document.querySelector('g[data-id=' + mermaidName + ']');
+                if(e) {
+                  e.classList.add('active');
+                  panOnScreen(e);
+                }
+                sm.tracer.log('➡️ Entered ' + mermaidName);
             },
             exitState: (mermaidName) => {
                 document.querySelector('g[data-id=' + mermaidName + ']')?.classList.remove('active');
@@ -3168,8 +3210,8 @@ evaluateGuard = null;
             edgeTransition: (edgeId) => {
                 highlightEdge(edgeId);
             },
-            log: (message, emphasis=false) => {
-                addHistoryRow(new Date(), message, emphasis);
+            log: (message, html=false) => {
+                addHistoryRow(new Date(), message, html);
             }
         };
 
@@ -3180,15 +3222,33 @@ evaluateGuard = null;
             button.innerText = diagramEventName;
             button.addEventListener('click', () => {
                 clearHighlightedEdges();
-                sm.tracer?.log("Dispatched " + diagramEventName, true);
+                sm.tracer?.log('<span class="dispatched"><span class="trigger">' + diagramEventName + '</span> DISPATCHED</span>', true);
                 const fsmEventName = diagramEventName.toUpperCase();
                 sm.dispatchEvent(BeadSorter.EventId[fsmEventName]); 
             });
             document.getElementById('buttons').appendChild(button);
         });
 
-        sm.tracer?.log('Start', true);
+        sm.tracer?.log('<span class="dispatched">START</span>', true);
         sm.start();
+
+
+        function panOnScreen(element) {
+          if(!element) return;
+
+          var bounds = element.getBoundingClientRect();
+          if(bounds.x<0 || bounds.y<0) {
+              var x = Math.max(0, -bounds.x + 20);
+              var y = Math.max(0, -bounds.y + 20);
+              window.panZoom.panBy({x: x, y: y});
+          }
+          var panebounds = document.querySelector('svg').getBoundingClientRect();
+          if(bounds.x>panebounds.width || bounds.y>panebounds.height) {
+              var x = Math.min(0, panebounds.width - bounds.x - bounds.width - 20);
+              var y = Math.min(0, panebounds.height - bounds.y - bounds.height - 20);
+              window.panZoom.panBy({x: x, y: y});
+          }
+        }
     </script>
 
 

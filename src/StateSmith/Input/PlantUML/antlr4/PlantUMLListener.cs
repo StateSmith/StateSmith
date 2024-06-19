@@ -211,6 +211,16 @@ public interface IPlantUMLListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNote_short([NotNull] PlantUMLParser.Note_shortContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantUMLParser.kept_block_comment"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterKept_block_comment([NotNull] PlantUMLParser.Kept_block_commentContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantUMLParser.kept_block_comment"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitKept_block_comment([NotNull] PlantUMLParser.Kept_block_commentContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents_line"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -17,7 +17,7 @@ public class CLikeAutoVarsParser : IAutoVarsParser
 
         if (code.Contains('{') || code.Contains('}'))
         {
-            throw new ArgumentException($"Detected '{{' or '}}' in {nameof(RenderConfigVars.AutoExpandedVars)} section. That section parsing is currently too dumb to handle anonymous structures." +
+            throw new ArgumentException($"Detected '{{' or '}}' in {nameof(RenderConfigBaseVars.AutoExpandedVars)} section. That section parsing is currently too dumb to handle anonymous structures." +
                 "You'll have to use the regular variables and expansions fields of the render config. https://github.com/StateSmith/StateSmith/issues/91 .");
         }
 
