@@ -63,6 +63,7 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<IGilToC99Customizer>((s) => s.GetService<GilToC99Customizer>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
 
             services.AddTransient<AutoExpandedVarsProcessor>();
+            services.AddTransient<TomlConfigVerticesProcessor>();
             services.AddTransient<RenderConfigVerticesProcessor>();
             services.AddTransient<MxCellsToSmDiagramConverter>();
             services.AddTransient<DrawIoToSmDiagramConverter>();

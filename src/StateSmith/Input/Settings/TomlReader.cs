@@ -5,13 +5,15 @@ using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using System;
-using System.Linq;
 using System.Reflection;
 using Tomlyn;
 using Tomlyn.Model;
 
 namespace StateSmith.Input.Settings;
 
+/// <summary>
+/// https://github.com/StateSmith/StateSmith/issues/335
+/// </summary>
 public class TomlReader
 {
     RenderConfigAllVars renderConfigAllVars;

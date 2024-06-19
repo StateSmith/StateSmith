@@ -30,8 +30,10 @@ Test/interim releases are not documented here.
 ---
 
 ## WIP
-### Added
-- Added convenience helpers for `SmTransformer`.
+### Add
+- Add convenience helpers for `SmTransformer`.
+- Add diagram based toml config for `RenderConfig` and *some* `SmRunner.Settings`
+  - https://github.com/StateSmith/StateSmith/issues/335
 
 ---
 
