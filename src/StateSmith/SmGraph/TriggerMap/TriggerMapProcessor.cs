@@ -15,13 +15,13 @@ public class TriggerMapProcessor
 {
     readonly TriggerMapper triggerMapper = new();
 
-    readonly RenderConfigVars configVars;
+    readonly RenderConfigBaseVars configVars;
 
     /// <summary>
     /// Constructor
     /// </summary>
     /// <param name="configVars"></param>
-    public TriggerMapProcessor(RenderConfigVars configVars)
+    public TriggerMapProcessor(RenderConfigBaseVars configVars)
     {
         this.configVars = configVars;
     }

@@ -147,7 +147,7 @@ public class AlgoBalanced1Tests
 
         void SetupAction(DiServiceProvider sp)
         {
-            sp.AddSingletonT(new RenderConfigVars()
+            sp.AddSingletonT(new RenderConfigBaseVars()
             {
                 VariableDeclarations = "//This is super cool!\nx: 0,"
             });

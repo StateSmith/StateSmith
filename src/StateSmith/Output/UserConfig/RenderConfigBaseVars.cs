@@ -1,6 +1,7 @@
+#nullable enable
 namespace StateSmith.Output.UserConfig;
 
-public class RenderConfigVars
+public class RenderConfigBaseVars
 {
     public string FileTop = "";
 
@@ -18,11 +19,16 @@ public class RenderConfigVars
 
     public string TriggerMap = "";
 
+    public RenderConfigBaseVars()
+    {
+        
+    }
+
     public void SetFrom(IRenderConfig config, bool autoDeIndentAndTrim)
     {
         string Process(string str)
         {
-            if (str.Trim().Length == 0)
+            if (string.IsNullOrWhiteSpace(str))
                 return "";
 
             if (autoDeIndentAndTrim)
@@ -39,9 +45,9 @@ public class RenderConfigVars
         TriggerMap = Process(config.TriggerMap);
     }
 
-    public void CopyFrom(RenderConfigVars otherConfig)
+    public void CopyFrom(RenderConfigBaseVars otherConfig)
     {
-        otherConfig.IgnorePureCommentVarDecls();
+        otherConfig.ErasePureCommentVarDecls();
 
         var SmartAppend = StringUtils.AppendInPlaceWithNewlineIfNeeded;
 
@@ -51,10 +57,10 @@ public class RenderConfigVars
         SmartAppend(ref EventCommaList, otherConfig.EventCommaList);
         SmartAppend(ref TriggerMap, otherConfig.TriggerMap);
 
-        IgnorePureCommentVarDecls();
+        ErasePureCommentVarDecls();
     }
 
-    protected void IgnorePureCommentVarDecls()
+    protected void ErasePureCommentVarDecls()
     {
         if (StringUtils.RemoveCCodeComments(VariableDeclarations).Trim().Length == 0)
         {

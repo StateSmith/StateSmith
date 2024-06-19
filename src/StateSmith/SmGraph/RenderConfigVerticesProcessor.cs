@@ -12,12 +12,9 @@ namespace StateSmith.SmGraph;
 
 public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
 {
-    readonly RenderConfigVars tempRenderConfigVars = new();
+    readonly RenderConfigBaseVars tempRenderConfigBaseVars = new();
 
-    private readonly RenderConfigVars renderConfigVars;
-    private readonly RenderConfigCVars renderConfigCVars;
-    private readonly RenderConfigCSharpVars renderConfigCSharpVars;
-    private readonly RenderConfigJavaScriptVars renderConfigJavaScriptVars;
+    private readonly RenderConfigAllVars allVars;
     private readonly IStateMachineProvider targetStateMachineProvider;
     private readonly IDiagramVerticesProvider diagramVerticesProvider;
 
@@ -26,12 +23,9 @@ public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
     /// </summary>
     StateMachine? currentStateMachine = null;
 
-    public RenderConfigVerticesProcessor(RenderConfigVars renderConfig, RenderConfigCVars renderConfigC, IStateMachineProvider targetStateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider, RenderConfigCSharpVars renderConfigCSharpVars, RenderConfigJavaScriptVars renderConfigJavaScriptVars)
+    public RenderConfigVerticesProcessor(RenderConfigAllVars allVars, IStateMachineProvider targetStateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider)
     {
-        this.renderConfigVars = renderConfig;
-        this.renderConfigCVars = renderConfigC;
-        this.renderConfigCSharpVars = renderConfigCSharpVars;
-        this.renderConfigJavaScriptVars = renderConfigJavaScriptVars;
+        this.allVars = allVars;
 
         this.targetStateMachineProvider = targetStateMachineProvider;
         this.diagramVerticesProvider = diagramVerticesProvider;
@@ -63,7 +57,7 @@ public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
         }
 
         // done like this so they can be processed intelligently
-        renderConfigVars.CopyFrom(tempRenderConfigVars);
+        allVars.Base.CopyFrom(tempRenderConfigBaseVars);
     }
 
     public override void Visit(StateMachine v)
@@ -105,32 +99,32 @@ public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
     {
         switch (v.name)
         {
-            case nameof(IRenderConfig.VariableDeclarations): AppendOption(ref tempRenderConfigVars.VariableDeclarations, v); break;
-            case nameof(IRenderConfig.AutoExpandedVars): AppendOption(ref tempRenderConfigVars.AutoExpandedVars, v); break;
-            case nameof(IRenderConfig.EventCommaList): AppendOption(ref tempRenderConfigVars.EventCommaList, v); break;
-            case nameof(IRenderConfig.TriggerMap): AppendOption(ref tempRenderConfigVars.TriggerMap, v); break;
-            case nameof(IRenderConfig.FileTop): AppendOption(ref tempRenderConfigVars.FileTop, v); break;
+            case nameof(IRenderConfig.VariableDeclarations): AppendOption(ref tempRenderConfigBaseVars.VariableDeclarations, v); break;
+            case nameof(IRenderConfig.AutoExpandedVars): AppendOption(ref tempRenderConfigBaseVars.AutoExpandedVars, v); break;
+            case nameof(IRenderConfig.EventCommaList): AppendOption(ref tempRenderConfigBaseVars.EventCommaList, v); break;
+            case nameof(IRenderConfig.TriggerMap): AppendOption(ref tempRenderConfigBaseVars.TriggerMap, v); break;
+            case nameof(IRenderConfig.FileTop): AppendOption(ref tempRenderConfigBaseVars.FileTop, v); break;
 
-            case nameof(IRenderConfigC.HFileTop): AppendOption(ref renderConfigCVars.HFileTop, v); break;
-            case nameof(IRenderConfigC.HFileIncludes): AppendOption(ref renderConfigCVars.HFileIncludes, v); break;
-            case nameof(IRenderConfigC.CFileTop): AppendOption(ref renderConfigCVars.CFileTop, v); break;
-            case nameof(IRenderConfigC.CFileIncludes): AppendOption(ref renderConfigCVars.CFileIncludes, v); break;
+            case nameof(IRenderConfigC.HFileTop): AppendOption(ref allVars.C.HFileTop, v); break;
+            case nameof(IRenderConfigC.HFileIncludes): AppendOption(ref allVars.C.HFileIncludes, v); break;
+            case nameof(IRenderConfigC.CFileTop): AppendOption(ref allVars.C.CFileTop, v); break;
+            case nameof(IRenderConfigC.CFileIncludes): AppendOption(ref allVars.C.CFileIncludes, v); break;
             //
-            case nameof(IRenderConfigC.HFileExtension): SetOption(ref renderConfigCVars.HFileExtension, v); break;
-            case nameof(IRenderConfigC.CFileExtension): SetOption(ref renderConfigCVars.CFileExtension, v); break;
-            case nameof(IRenderConfigC.CEnumDeclarer): SetOption(ref renderConfigCVars.CEnumDeclarer, v); break;
+            case nameof(IRenderConfigC.HFileExtension): SetOption(ref allVars.C.HFileExtension, v); break;
+            case nameof(IRenderConfigC.CFileExtension): SetOption(ref allVars.C.CFileExtension, v); break;
+            case nameof(IRenderConfigC.CEnumDeclarer): SetOption(ref allVars.C.CEnumDeclarer, v); break;
 
-            case "CSharp" + nameof(IRenderConfigCSharp.NameSpace): AppendOption(ref renderConfigCSharpVars.NameSpace, v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref renderConfigCSharpVars.Usings, v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.ClassCode): AppendOption(ref renderConfigCSharpVars.ClassCode, v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.BaseList): AppendOption(ref renderConfigCSharpVars.BaseList, v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.UseNullable): renderConfigCSharpVars.UseNullable = ParseBoolValue(v); break;
-            case "CSharp" + nameof(IRenderConfigCSharp.UsePartialClass): renderConfigCSharpVars.UsePartialClass = ParseBoolValue(v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.NameSpace): AppendOption(ref allVars.CSharp.NameSpace, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref allVars.CSharp.Usings, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.ClassCode): AppendOption(ref allVars.CSharp.ClassCode, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.BaseList): AppendOption(ref allVars.CSharp.BaseList, v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.UseNullable): allVars.CSharp.UseNullable = ParseBoolValue(v); break;
+            case "CSharp" + nameof(IRenderConfigCSharp.UsePartialClass): allVars.CSharp.UsePartialClass = ParseBoolValue(v); break;
 
-            case "JavaScript" + nameof(IRenderConfigJavaScript.ClassCode): AppendOption(ref renderConfigJavaScriptVars.ClassCode, v); break;
-            case "JavaScript" + nameof(IRenderConfigJavaScript.ExtendsSuperClass): AppendOption(ref renderConfigJavaScriptVars.ExtendsSuperClass, v); break;
-            case "JavaScript" + nameof(IRenderConfigJavaScript.PrivatePrefix): SetOption(ref renderConfigJavaScriptVars.PrivatePrefix, v); break;
-            case "JavaScript" + nameof(IRenderConfigJavaScript.UseExportOnClass): renderConfigJavaScriptVars.UseExportOnClass = ParseBoolValue(v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.ClassCode): AppendOption(ref allVars.JavaScript.ClassCode, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.ExtendsSuperClass): AppendOption(ref allVars.JavaScript.ExtendsSuperClass, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.PrivatePrefix): SetOption(ref allVars.JavaScript.PrivatePrefix, v); break;
+            case "JavaScript" + nameof(IRenderConfigJavaScript.UseExportOnClass): allVars.JavaScript.UseExportOnClass = ParseBoolValue(v); break;
 
             default:
                 throw new VertexValidationException(v, $"Unknown Render Config option `{v.name}`");
