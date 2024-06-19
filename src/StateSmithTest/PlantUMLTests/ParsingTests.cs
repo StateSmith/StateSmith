@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -6,7 +8,6 @@ using StateSmith.SmGraph;
 using StateSmith.Input;
 using FluentAssertions;
 using StateSmith.Runner;
-using System.Linq;
 
 namespace StateSmithTest.PlantUMLTests;
 
@@ -707,6 +708,42 @@ public class ParsingTests
 
     //###############################################################################################
     // End of tests for https://github.com/StateSmith/StateSmith/issues/215
+    //###############################################################################################
+
+
+
+    //###############################################################################################
+    // Start of tests for https://github.com/StateSmith/StateSmith/issues/334
+    //###############################################################################################
+
+    [Fact]
+    public void TomlConfig_334()
+    {
+        ParseAssertNoError("""
+            @startuml SomeName
+            [*] --> first
+
+            /' a normal ignored comment block '/
+            /'! $CONFIG : toml
+            [RenderConfig]
+            FileTop = "// Copyright blah blah"
+            
+            '/
+
+            @enduml
+            """);
+
+        translator.Root.children.Should().HaveCount(3);
+        var tomlConfigNode = translator.Root.children[2];
+        tomlConfigNode.label.ShouldBeShowDiff("""
+            $CONFIG : toml
+            [RenderConfig]
+            FileTop = "// Copyright blah blah"
+            """);
+    }
+
+    //###############################################################################################
+    // End of tests for https://github.com/StateSmith/StateSmith/issues/334
     //###############################################################################################
 
 

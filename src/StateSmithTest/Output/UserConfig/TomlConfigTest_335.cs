@@ -14,7 +14,7 @@ namespace StateSmithTest.Output.UserConfig;
 /// <summary>
 /// https://github.com/StateSmith/StateSmith/issues/335
 /// </summary>
-public class TomlConfigTest
+public class TomlConfigTest_335
 {
     /// <summary>
     /// Test out Tomlyn parsing.
@@ -92,7 +92,6 @@ public class TomlConfigTest
         RunnerSettings smRunnerSettings = new("");
         var reader = new TomlReader(renderConfigAllVars, smRunnerSettings);
 
-        // $CONFIG: toml
         var toml = """"
             [RenderConfig]
             FileTop = "// My file top!"
@@ -133,6 +132,25 @@ public class TomlConfigTest
     public void DrawioIntegrationTest()
     {
         var (smRunner, files) = TestHelper.CaptureSmRun(diagramPath: "TomlConfig1.drawio");
+        smRunner.Settings.outputStateSmithVersionInfo.Should().BeFalse();
+
+        var hhFile = files.GetCapturesForFileName("TomlConfigEx.hh").Single();
+        var incFile = files.GetCapturesForFileName("TomlConfigEx.inc").Single();
+
+        hhFile.code.Should().Contain("// TEST-FILE-TOP");
+        incFile.code.Should().Contain("// TEST-FILE-TOP");
+
+        hhFile.code.Should().Contain("// TEST-H-FILE-TOP");
+        incFile.code.Should().Contain("// TEST-C-FILE-TOP");
+
+        incFile.code.Should().NotContain("// TEST-H-FILE-TOP");
+        hhFile.code.Should().NotContain("// TEST-C-FILE-TOP");
+    }
+
+    [Fact]
+    public void PlantumlIntegrationTest()
+    {
+        var (smRunner, files) = TestHelper.CaptureSmRun(diagramPath: "TomlConfig1.plantuml");
         smRunner.Settings.outputStateSmithVersionInfo.Should().BeFalse();
 
         var hhFile = files.GetCapturesForFileName("TomlConfigEx.hh").Single();

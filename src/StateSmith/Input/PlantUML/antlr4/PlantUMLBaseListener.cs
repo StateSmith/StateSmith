@@ -252,6 +252,18 @@ public partial class PlantUMLBaseListener : IPlantUMLListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNote_short([NotNull] PlantUMLParser.Note_shortContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantUMLParser.kept_block_comment"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterKept_block_comment([NotNull] PlantUMLParser.Kept_block_commentContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantUMLParser.kept_block_comment"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitKept_block_comment([NotNull] PlantUMLParser.Kept_block_commentContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.note_multiline_contents_line"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

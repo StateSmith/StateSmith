@@ -171,6 +171,8 @@ diagram_element:
         note
         |
         ignore
+        |
+        kept_block_comment
     )
     ;
 
@@ -186,6 +188,10 @@ note_short:
     ohs
     rest_of_line
     ;
+
+// Kept comment blocks are used for comments that need to be kept for further processing for things like
+// https://github.com/StateSmith/StateSmith/issues/335
+kept_block_comment : KEPT_BLOCK_COMMENT;
 
 // starts with line ender
 note_multiline_contents_line:
@@ -270,6 +276,18 @@ identifier
     ;
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   ( IDENTIFIER_NON_DIGIT | DIGIT )*  ;
 DIGIT :   [0-9]  ;
+
+// Kept comment blocks are used for comments that need to be kept for further processing for things like
+// https://github.com/StateSmith/StateSmith/issues/335
+// We use a separate lexter rule that comes BEFORE the BLOCK_COMMENT rule so that it is matched first and
+// isn't skipped. This is much easier than not skipping the BLOCK_COMMENT rule as comments can appear
+// almost anywhere in plantuml syntax and our parsing rules would become a real mess.
+KEPT_BLOCK_COMMENT :
+    BLOCK_COMMENT_START
+    '!'
+    .*?
+    BLOCK_COMMENT_END
+    ;
 
 fragment BLOCK_COMMENT_START : '/' SINGLE_QUOTE;
 fragment BLOCK_COMMENT_END : SINGLE_QUOTE '/';
