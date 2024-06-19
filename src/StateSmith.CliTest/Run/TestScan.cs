@@ -6,10 +6,12 @@ namespace StateSmith.CliTest.Run;
 
 public class TestScan
 {
+    readonly string examples1Dir = ExamplesHelper.GetExamplesDir() + "/1";
+
     [Fact]
     public void RegexTest()
     {
-        SsCsxFileFinder.IsTargetScriptContent("""
+        SsCsxFilter.IsTargetScriptContent("""
             #!/usr/bin/env dotnet-script
             #r "nuget: StateSmith, 0.9.7-alpha"
             SmRunner runner = new(diagramPath: "MySm.plantuml", new MyRenderConfig(), transpilerId: TranspilerId.C99);
@@ -17,10 +19,9 @@ public class TestScan
             
             """).Should().BeTrue();
 
-        SsCsxFileFinder.IsTargetScriptContent("""
+        SsCsxFilter.IsTargetScriptContent("""
             #!/usr/bin/env dotnet-script
-            #r "nuget: StateSmith, 0.9.7-alpha"
-            //<statesmith.cli-ignore-this-file>
+            #r "nuget: StateSmith.Cli, 0.9.7-alpha"
             SmRunner runner = new(diagramPath: "MySm.plantuml", new MyRenderConfig(), transpilerId: TranspilerId.C99);
             runner.Run();
             
@@ -30,30 +31,43 @@ public class TestScan
     [Fact]
     public void IntegrationTest()
     {
-        SsCsxFileFinder finder = new();
+        SsCsxDiagramFileFinder finder = new();
         finder.AddDefaultIncludePatternIfNone();
-
         finder.AddExcludePattern("a/a3");
 
-        var found = finder.Scan(ExamplesHelper.GetExamplesDir() + "/1");
-        found.Should().BeEquivalentTo(
+        var scanResults = finder.Scan(examples1Dir);
+        scanResults.targetCsxFiles.Should().BeEquivalentTo(
             "yes.csx"
+        );
+
+        scanResults.targetDiagramFiles.Should().BeEquivalentTo(
+            "yes1.plantuml",
+            "yes2.plantuml",
+            "DiagOnlySm.plantuml"
         );
     }
 
     [Fact]
     public void IntegrationTestRecursive()
     {
-        SsCsxFileFinder finder = new();
-
+        SsCsxDiagramFileFinder finder = new();
         finder.AddExcludePattern("a/a3");
         finder.SetAsRecursive();
 
-        var found = finder.Scan(ExamplesHelper.GetExamplesDir() + "/1");
-        found.Should().BeEquivalentTo(
+        var scanResults = finder.Scan(examples1Dir);
+        scanResults.targetCsxFiles.Should().BeEquivalentTo(
             "a/a1/yes-a1a.csx",
             "a/a1/yes-a1b.csx",
             "yes.csx"
+        );
+
+        scanResults.targetDiagramFiles.Should().BeEquivalentTo(
+            "yes1.plantuml",
+            "yes2.plantuml",
+            "DiagOnlySm.plantuml",
+            "a/a1/a1a.plantuml",
+            "a/a1/a1b.drawio.svg",
+            "a/a1/a1c.plantuml"
         );
     }
 }

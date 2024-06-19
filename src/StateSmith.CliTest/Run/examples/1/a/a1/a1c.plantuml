@@ -1,0 +1,18 @@
+@startuml a1c
+
+state STATE_1 {
+  STATE_1 : enter / print("S1 enter");
+  STATE_1 : do    / print("S1 do");
+  STATE_1 : exit  / print("S1 exit");
+}
+
+state STATE_2 {
+  STATE_2 : enter / print("S2 enter");
+  STATE_2 : exit  / print("S2 exit");
+}
+
+[*] -> STATE_1
+STATE_1 --> STATE_2 : MY_EVENT_1
+STATE_2 --> STATE_1 : MY_EVENT_2
+
+@enduml

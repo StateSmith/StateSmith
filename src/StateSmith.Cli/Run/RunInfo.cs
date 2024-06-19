@@ -9,11 +9,28 @@ namespace StateSmith.Cli.Run;
 public class RunInfo : Versionable
 {
     public string dirOrManifestPath;
+
+    /// <summary>
+    /// Key is csx absolute path
+    /// </summary>
     public Dictionary<string, CsxRunInfo> csxRuns = new();
 
     public RunInfo(string dirOrManifestPath)
     {
         this.dirOrManifestPath = dirOrManifestPath;
+    }
+
+    public string? FindCsxWithDiagram(string diagramAbsolutePath)
+    {
+        foreach (var csxRun in csxRuns.Values)
+        {
+            if (csxRun.diagramAbsolutePaths.Contains(diagramAbsolutePath))
+            {
+                return csxRun.csxAbsolutePath;
+            }
+        }
+
+        return null;
     }
 
     /// <summary>

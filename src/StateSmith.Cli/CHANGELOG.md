@@ -8,6 +8,15 @@ Test/interim releases are not documented here.
 
 ---
 
+## WIP
+### Added
+- `run` command now supports running diagrams with `--lang` option.
+    - https://github.com/StateSmith/StateSmith/issues/285
+    - Supports diagram based toml settings
+        - https://github.com/StateSmith/StateSmith/issues/335
+
+---
+
 ## [0.8.2]
 ### Fixed
 - Fix update check showing unlisted packages when it shouldn't
