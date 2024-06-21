@@ -19,6 +19,14 @@ state Configuring {
     [*] -> State1
     State1 -> State2 : Ev2
   }
-
 }
+
+' The below is meant to test https://github.com/StateSmith/StateSmith/issues/337
+/'! $CONFIG : toml
+[RenderConfig.JavaScript]
+ClassCode = "blah blah"
+ExtendsSuperClass = "SomeUserClass"
+UseExportOnClass = true
+'/
+
 @enduml
