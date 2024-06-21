@@ -396,61 +396,61 @@ Running --> Paused : BUTTON0
 
 ReadEmptySlot.(InitialState) --> ReadEmptySlot__Dropoff
 
-ReadEmptySlot__Dropoff --> ReadEmptySlot__Sensor
+ReadEmptySlot__Dropoff --> ReadEmptySlot__Sensor : do
 
-ReadEmptySlot__Sensor --> ReadEmptySlot__Dropoff
+ReadEmptySlot__Sensor --> ReadEmptySlot__Dropoff : do
 
-ReadEmptySlot__Sensor --> ReadJammedSlot : 1. [empties>=NUM_EMPTY_READS]
+ReadEmptySlot__Sensor --> ReadJammedSlot : 1. do [empties>=NUM_EMPTY_READS]
 
 ReadJammedSlot.(InitialState) --> Jammed
 
-ReadJammedSlot__Dropoff --> Jammed
+ReadJammedSlot__Dropoff --> Jammed : do
 
-ReadJammedSlot__Dropoff --> ReadSlot : 1. [jammies>=NUM_JAMMED_READS]
+ReadJammedSlot__Dropoff --> ReadSlot : 1. do [jammies>=NUM_JAMMED_READS]
 
-Jammed --> ReadJammedSlot__Sensor
+Jammed --> ReadJammedSlot__Sensor : do
 
-ReadJammedSlot__Sensor --> ReadJammedSlot__Dropoff
+ReadJammedSlot__Sensor --> ReadJammedSlot__Dropoff : do
 
 ReadSlot.(InitialState) --> TrainingMode__Pickup
 
-ReadSlot__Dropoff --> TrainingMode__Pickup
+ReadSlot__Dropoff --> TrainingMode__Pickup : do
 
-ReadSlot__Dropoff --> SortingMode : 1. [sorter.isTrainingDone()]
+ReadSlot__Dropoff --> SortingMode : 1. do [sorter.isTrainingDone()]
 
-TrainingMode__Pickup --> ReadSlot__Sensor
+TrainingMode__Pickup --> ReadSlot__Sensor : do
 
-ReadSlot__Sensor --> ReadSlot__Dropoff
+ReadSlot__Sensor --> ReadSlot__Dropoff : do
 
-TrainingMode__Start --> ReadEmptySlot
+TrainingMode__Start --> ReadEmptySlot : do
 
 TrainingMode.(InitialState) --> TrainingMode__Start
 
-SortingMode__Dropoff --> SortingMode__Pickup
+SortingMode__Dropoff --> SortingMode__Pickup : do
 
-SortingMode__Pickup --> SortingMode__Sensor
+SortingMode__Pickup --> SortingMode__Sensor : do
 
 SortingMode.(InitialState) --> SortingMode__Start
 
-SortingMode__Start --> SortingMode__Pickup
+SortingMode__Start --> SortingMode__Pickup : do
 
-SortingMode__Sensor --> SortingMode__Dropoff
+SortingMode__Sensor --> SortingMode__Dropoff : do
 
 SetupCheck.(InitialState) --> SetupCheck__Start
 
-Tour --> TrainingMode : 1. [tourBin>=DEFAULT_BIN]
+Tour --> TrainingMode : 1. do [tourBin>=DEFAULT_BIN]
 
-Tour --> Tour : [true]
+Tour --> Tour : do [true]
 
-SetupCheck__Start --> Tour : [t1After(3s)]
+SetupCheck__Start --> Tour : do [t1After(3s)]
 
 SetupCheck__Start --> AdjustServoOffsets : BUTTON2
 
 AdjustServoOffsets --> SetupCheck__Start : BUTTON2
 
-DECREASE --> Wait
+DECREASE --> Wait : do
 
-INCREASE --> Wait
+INCREASE --> Wait : do
 
 Wait --> DECREASE : BUTTON1
 

@@ -140,8 +140,7 @@ public class SimWebGenerator
             throw new Exception("Mermaid generation must occur after name conflict resolution and before history support.");
 
         // show default 'do' events in mermaid diagram
-        // Uncomment below to enable. https://github.com/StateSmith/StateSmith/issues/316
-        // runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
+         runner.SmTransformer.InsertBeforeFirstMatch(GenMermaidCodeStepId, (StateMachine sm) => { DefaultToDoEventVisitor.Process(sm); });
     }
 
     private void CollectDiagramNames(StateMachine sm)

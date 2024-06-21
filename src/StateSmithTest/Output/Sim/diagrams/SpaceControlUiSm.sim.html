@@ -422,9 +422,9 @@ EAT_MRE --> COOKING_FOOD : RIGHT
 
 FOOD_MENU.(ExitPoint)(food_selected) --> FOOD
 
-COOKING_FOOD1 --> COOKING_FOOD : [t1After( 1s )]
+COOKING_FOOD1 --> COOKING_FOOD : do [t1After( 1s )]
 
-COOKING_FOOD --> FOOD_MENU.(ExitPoint)(food_selected) : [t1After( 3.5 s )]
+COOKING_FOOD --> FOOD_MENU.(ExitPoint)(food_selected) : do [t1After( 3.5 s )]
 
 SYSTEM_INFO_MENU --> SYSTEM_INFO : LEFT
 
@@ -446,7 +446,7 @@ SYSTEM_INFO_MENU.(InitialState) --> DISTANCE : / #123; MenuHeader("System Info")
 
 SYSTEM_INFO_MENU.(EntryPoint)(self_destruct) --> SELF_DESTRUCT
 
-SD_1 --> SD_1 : [t1.Elapsed.Seconds >= 1]
+SD_1 --> SD_1 : do [t1.Elapsed.Seconds >= 1]
 
 SELF_DESTRUCT.(InitialState) --> SD_1
 
