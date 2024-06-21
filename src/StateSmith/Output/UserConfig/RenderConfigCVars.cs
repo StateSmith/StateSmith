@@ -2,6 +2,9 @@
 
 namespace StateSmith.Output.UserConfig;
 
+/// <summary>
+/// NOTE! Field name used with reflection for toml parsing.
+/// </summary>
 public class RenderConfigCVars
 {
     /// <summary>

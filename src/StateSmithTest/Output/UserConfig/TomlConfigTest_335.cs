@@ -128,6 +128,59 @@ public class TomlConfigTest_335
         smRunnerSettings.simulation.enableGeneration.Should().BeTrue();
     }
 
+    /// <summary>
+    /// Important because reflection is used for mapping data to the RenderConfigAllVars class.
+    /// We don't want an accidental change to the RenderConfigAllVars class to break the TomlReader.
+    /// </summary>
+    [Fact]
+    public void TestReflectionMapping()
+    {
+        RenderConfigAllVars renderConfigAllVars = new();
+        RunnerSettings smRunnerSettings = new("");
+        var reader = new TomlReader(renderConfigAllVars, smRunnerSettings);
+
+        var toml = """"
+            [RenderConfig]
+            FileTop = "// My file top!"
+            AutoExpandedVars = "int count1;"
+            # EventCommaList = "event1, event2, event3"   # ignored for now as not used
+            VariableDeclarations = "int count2;"
+            TriggerMap = ""
+
+            [RenderConfig.C]
+            HFileTop = ""
+            HFileIncludes = ""
+            CFileTop = ""
+            CFileIncludes = ""
+            CFileExtension = ".c"
+            HFileExtension = ".h"
+
+            [RenderConfig.CSharp]
+            NameSpace = ""
+            Usings = ""
+            ClassCode = ""
+            BaseList = ""
+            UseNullable = true
+            UsePartialClass = true
+            
+            [RenderConfig.JavaScript]
+            ExtendsSuperClass = ""
+            ClassCode = ""
+            UseExportOnClass = false
+            PrivatePrefix = "#"
+            
+            # TODO - consider which of below are important
+            [SmRunnerSettings]
+            outputStateSmithVersionInfo = false
+            transpilerId = "C99"
+            algorithmId = "Balanced1"
+            simulation = { enableGeneration = true }    # an inline table
+            """";
+
+        reader.Read(toml);
+        // ignore checking values. we just want to make sure no exceptions are thrown.
+    }
+
     [Fact]
     public void DrawioIntegrationTest()
     {

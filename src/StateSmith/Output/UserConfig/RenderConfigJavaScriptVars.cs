@@ -2,6 +2,9 @@ using StateSmith.Common;
 
 namespace StateSmith.Output.UserConfig;
 
+/// <summary>
+/// NOTE! Field name used with reflection for toml parsing.
+/// </summary>
 public class RenderConfigJavaScriptVars
 {
     public string ExtendsSuperClass = "";
