@@ -26,9 +26,16 @@ public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
     public RenderConfigVerticesProcessor(RenderConfigAllVars allVars, IStateMachineProvider targetStateMachineProvider, IDiagramVerticesProvider diagramVerticesProvider)
     {
         this.allVars = allVars;
-
         this.targetStateMachineProvider = targetStateMachineProvider;
         this.diagramVerticesProvider = diagramVerticesProvider;
+    }
+
+    // added to support simulator
+    internal RenderConfigVerticesProcessor(RenderConfigAllVars allVars, StateMachine sm)
+    {
+        this.allVars = allVars;
+        this.targetStateMachineProvider = new StateMachineProvider(sm);
+        this.diagramVerticesProvider = new DiagramVerticesProviderBasic(sm);
     }
 
     /// <summary>

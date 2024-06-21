@@ -55,13 +55,39 @@ public class SimWebGenerator
         simDiServiceProvider.AddSingletonT<IExpander>(trackingExpander);
         simDiServiceProvider.AddSingletonT<ICodeFileWriter>(fileCapturer);
         simDiServiceProvider.AddSingletonT<IConsolePrinter>(new DiscardingConsolePrinter());   // we want regular SmRunner console output to be discarded
-
         AdjustTransformationPipeline();
+        PreventCertainDiagramSpecifiedSettings(simDiServiceProvider.GetInstanceOf<RenderConfigBaseVars>());
+
         stateMachineProvider = simDiServiceProvider.GetInstanceOf<StateMachineProvider>();
 
         nameMangler = simDiServiceProvider.GetInstanceOf<NameMangler>();
 
         SetupGilHistoryRegex();
+    }
+
+    /// <summary>
+    /// Prevent user diagram settings that could mess up the generated simulation.
+    /// https://github.com/StateSmith/StateSmith/issues/337
+    /// </summary>
+    private void PreventCertainDiagramSpecifiedSettings(RenderConfigBaseVars renderConfigBaseVars)
+    {
+        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_TomlConfig, (sm) =>
+        {
+            // create temp settings/config objects that may get modified by special diagram nodes
+            RenderConfigAllVars tempRenderConfigAllVars = new();
+            RunnerSettings tempSmRunnerSettings = new();
+            var tomlConfigVerticesProcessor = new TomlConfigVerticesProcessor(tempRenderConfigAllVars, tempSmRunnerSettings);
+            tomlConfigVerticesProcessor.Process(sm);
+            var renderConfigVerticesProcessor = new RenderConfigVerticesProcessor(tempRenderConfigAllVars, sm);
+            renderConfigVerticesProcessor.Process();
+
+            // copy only the settings that are safe to copy for the simulation
+            renderConfigBaseVars.TriggerMap = tempRenderConfigAllVars.Base.TriggerMap;
+        });
+
+        // these transformations are no longer needed for the simulation
+        runner.SmTransformer.Remove(StandardSmTransformer.TransformationId.Standard_TomlConfig);
+        runner.SmTransformer.Remove(StandardSmTransformer.TransformationId.Standard_SupportRenderConfigVerticesAndRemove);
     }
 
     /// <summary>

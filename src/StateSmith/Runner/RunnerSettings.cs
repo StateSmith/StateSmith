@@ -123,6 +123,10 @@ public class RunnerSettings
         this.transpilerId = transpilerId;
     }
 
+    internal RunnerSettings() : this(diagramFile: "")
+    {
+    }
+
     /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/138
     /// </summary>

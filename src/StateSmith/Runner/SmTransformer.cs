@@ -89,4 +89,15 @@ public class SmTransformer
         if (index == -1) throw new ArgumentOutOfRangeException($"{nameof(TransformationStep)} with id `{id}` was not found");
         return index;
     }
+
+    public void Remove(Enum id)
+    {
+        Remove(id.ToString());
+    }
+
+    public void Remove(string id)
+    {
+        int index = GetMatchIndex(id);
+        transformationPipeline.RemoveAt(index);
+    }
 }
