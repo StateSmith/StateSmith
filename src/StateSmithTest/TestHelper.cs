@@ -17,10 +17,10 @@ public class TestHelper
         return Path.GetDirectoryName(callerFilePath) + "/";
     }
 
-    public static SmRunner BuildSmRunnerForPlantUmlString(string plantUmlText)
+    public static SmRunner BuildSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig, ICodeFileWriter? codeFileWriter = null)
     {
-        SmRunner smRunner = new(diagramPath: "no-actual-file.plantuml");
-        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(new DiscardingCodeFileWriter());
+        SmRunner smRunner = new(diagramPath: "no-actual-file.plantuml", renderConfig: renderConfig);
+        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
         InputSmBuilder inputSmBuilder = smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.FindSingleStateMachine();
@@ -45,9 +45,9 @@ public class TestHelper
         return fakeFileSystem;
     }
 
-    public static void RunSmRunnerForPlantUmlString(string plantUmlText)
+    public static void RunSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null)
     {
-        BuildSmRunnerForPlantUmlString(plantUmlText).Run();
+        BuildSmRunnerForPlantUmlString(plantUmlText, renderConfig, codeFileWriter).Run();
     }
 
     public static FieldInfo[] GetTypeFields<T>()

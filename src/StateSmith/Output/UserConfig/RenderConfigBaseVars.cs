@@ -1,4 +1,5 @@
 #nullable enable
+
 namespace StateSmith.Output.UserConfig;
 
 public class RenderConfigBaseVars
@@ -56,9 +57,12 @@ public class RenderConfigBaseVars
         }
 
         FileTop = Process(config.FileTop);
-        VariableDeclarations = Process(config.VariableDeclarations);
-
         AutoExpandedVars = Process(config.AutoExpandedVars);
+        DefaultVarExpTemplate = Process(config.DefaultVarExpTemplate);
+        DefaultFuncExpTemplate = Process(config.DefaultFuncExpTemplate);
+        DefaultAnyExpTemplate = Process(config.DefaultAnyExpTemplate);
+
+        VariableDeclarations = Process(config.VariableDeclarations);
         EventCommaList = Process(config.EventCommaList);
         TriggerMap = Process(config.TriggerMap);
     }

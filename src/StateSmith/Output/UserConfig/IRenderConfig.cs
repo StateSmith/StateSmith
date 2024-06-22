@@ -14,7 +14,7 @@ public interface IRenderConfig
     string AutoExpandedVars => "";
 
     /// <summary>
-    /// Deafult variable expansion template.
+    /// Default variable expansion template.
     /// https://github.com/StateSmith/StateSmith/issues/284
     /// </summary>
     string DefaultVarExpTemplate => "";

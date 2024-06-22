@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -8,6 +10,9 @@ public class Expander : IExpander
 {
     protected readonly Dictionary<string, string> variableExpansions = new();
     protected readonly Dictionary<string, ExpansionFunction> functionExpansions = new();
+
+    protected DefaultExpander? defaultVarExpander = null;
+    protected DefaultExpander? defaultFunctionExpander = null;
 
     /// <summary>This access may change in the future.</summary>
     public virtual IDictionary<string, string> VariableExpansions => variableExpansions;
@@ -28,6 +33,16 @@ public class Expander : IExpander
         }
     }
 
+    public virtual void SetDefaultVarExpander(DefaultExpander defaultVarExpander)
+    {
+        this.defaultVarExpander = defaultVarExpander;
+    }
+
+    public virtual void SetDefaultFuncExpander(DefaultExpander defaultFunctionExpander)
+    {
+        this.defaultFunctionExpander = defaultFunctionExpander;
+    }
+
     public virtual void AddVariableExpansion(string name, string code)
     {
         ThrowIfExpansionNameAlreadyUsed(name);
@@ -44,16 +59,26 @@ public class Expander : IExpander
     {
         if (variableExpansions.ContainsKey(name) == false)
         {
+            if (defaultVarExpander != null)
+            {
+                return defaultVarExpander.Process(name);
+            }
+
             return name;
         }
 
         return variableExpansions[name];
     }
 
-    public virtual string TryExpandFunctionExpansion(string name, string[] arguments)
+    public virtual string TryExpandFunctionExpansion(string name, string[] arguments, string rawBracedFuncArgs = "")
     {
         if (functionExpansions.ContainsKey(name) == false)
         {
+            if (defaultFunctionExpander != null)
+            {
+                return defaultFunctionExpander.Process(name) + rawBracedFuncArgs;
+            }
+
             return name;
         }
 
@@ -71,7 +96,7 @@ public class Expander : IExpander
 
     public virtual bool HasFunctionName(string name)
     {
-        return functionExpansions.ContainsKey(name);
+        return functionExpansions.ContainsKey(name) || (defaultFunctionExpander != null);
     }
 
     public virtual string[] GetFunctionNames()
