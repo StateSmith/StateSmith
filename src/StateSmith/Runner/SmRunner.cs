@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
+using StateSmith.SmGraph;
 
 namespace StateSmith.Runner;
 
@@ -22,6 +23,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     readonly RunnerSettings settings;
 
     private readonly IRenderConfig iRenderConfig;
+    private readonly bool enablePreDiagramBasedSettings;
 
     /// <summary>
     /// The path to the file that called a <see cref="SmRunner"/> constructor. Allows for convenient relative path
@@ -35,12 +37,14 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
     /// <param name="callerFilePath">Don't provide this argument. C# will automatically populate it.</param>
-    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    /// <param name="enablePDBS">User code should leave unspecified for now.</param>
+    public SmRunner(RunnerSettings settings, IRenderConfig? renderConfig, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null, bool enablePDBS = true)
     {
         SmRunnerInternal.AppUseDecimalPeriod();
 
         this.settings = settings;
         this.iRenderConfig = renderConfig ?? new DummyIRenderConfig();
+        this.enablePreDiagramBasedSettings = enablePDBS;
         this.callerFilePath = callerFilePath.ThrowIfNull();
         SmRunnerInternal.ResolveFilePaths(settings, callerFilePath);
 
@@ -57,13 +61,14 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <param name="algorithmId">Optional. Will allow you to choose which algorithm to use when multiple are supported. Ignored if custom code generator used.</param>
     /// <param name="transpilerId">Optional. Defaults to C99. Allows you to specify which programming language to generate for. Ignored if custom code generator used.</param>
     /// <param name="callingFilePath">Should normally be left unspecified so that C# can determine it automatically.</param>
+    /// <param name="enablePDBS">User could should leave unspecified for now.</param>
     public SmRunner(string diagramPath,
         IRenderConfig? renderConfig = null,
         string? outputDirectory = null,
         AlgorithmId algorithmId = AlgorithmId.Default,
         TranspilerId transpilerId = TranspilerId.Default,
-        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null)
-    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callingFilePath)
+        [System.Runtime.CompilerServices.CallerFilePath] string? callingFilePath = null, bool enablePDBS = true)
+    : this(new RunnerSettings(diagramFile: diagramPath, outputDirectory: outputDirectory, algorithmId: algorithmId, transpilerId: transpilerId), renderConfig, callerFilePath: callingFilePath, enablePDBS: enablePDBS)
     {
     }
 
@@ -83,7 +88,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         PrepareBeforeRun();
         SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-        
+        smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
+
         // Wrap in try finally so that we can ensure that the service provider is disposed which will
         // dispose of objects that it created.
         try
@@ -107,7 +113,21 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         ReadRenderConfigObjectToVars(renderConfigAllVars, iRenderConfig, settings.autoDeIndentAndTrimRenderConfigItems);
 
-        diServiceProvider.AddConfiguration((services) =>
+        SetupDiProvider(diServiceProvider, renderConfigAllVars, settings, iRenderConfig);
+
+        // we disable early diagram settings reading for the simulator and some tests
+        if (enablePreDiagramBasedSettings)
+        {
+            PreDiagramSettingsReader preDiagramSettingsReader = new(renderConfigAllVars, settings, iRenderConfig);
+            preDiagramSettingsReader.Process();
+        }
+
+        AlgoOrTranspilerUpdated();
+    }
+
+    internal static void SetupDiProvider(DiServiceProvider di, RenderConfigAllVars renderConfigAllVars, RunnerSettings settings, IRenderConfig iRenderConfig)
+    {
+        di.AddConfiguration((services) =>
         {
             services.AddSingleton(settings.drawIoSettings);
             services.AddSingleton(settings.smDesignDescriber);
@@ -125,8 +145,6 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton<FilePathPrinter>(new FilePathPrinter(settings.filePathPrintBase.ThrowIfNull()));
             services.AddSingleton(settings.algoBalanced1);
         });
-
-        AlgoOrTranspilerUpdated();
     }
 
     internal static void ReadRenderConfigObjectToVars(RenderConfigAllVars renderConfigAllVars, IRenderConfig iRenderConfig, bool autoDeIndentAndTrimRenderConfigItems)

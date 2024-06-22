@@ -92,10 +92,10 @@ public class DefaultExpansionsTest_284
     {
         var plantUmlText = """
             @startuml ExampleSm
-            [*] --> s1: / log("init to s1")
+            [*] --> s1: / log("init to s1");
             s1: enter / myLogger.log("s1 enter");
 
-            /'! CONFIG : toml
+            /'! $CONFIG : toml
                 [RenderConfig]
                 DefaultVarExpTemplate = "{VarsPath}my_inputs.{AutoNameCopy()}"
                 DefaultFuncExpTemplate = "{VarsPath}my_funcs.{AutoNameCopy()}"

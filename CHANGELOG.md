@@ -31,7 +31,7 @@ Test/interim releases are not documented here.
 
 ## WIP
 ### Add
-- Add diagram based toml config for `RenderConfig` and *some* `SmRunner.Settings`
+- Add diagram based toml config for `RenderConfig` and `SmRunner.Settings`
   - Useful for plantuml as well which previously never had diagram based render config support.
   - https://github.com/StateSmith/StateSmith/issues/335
 - simulator - show implicit `do` edge trigger explicitly

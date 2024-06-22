@@ -3,6 +3,7 @@ using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmithTest.Output;
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -17,15 +18,17 @@ public class TestHelper
         return Path.GetDirectoryName(callerFilePath) + "/";
     }
 
-    public static SmRunner BuildSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig, ICodeFileWriter? codeFileWriter = null)
+    public static (SmRunner, string) BuildSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig, ICodeFileWriter? codeFileWriter = null)
     {
-        SmRunner smRunner = new(diagramPath: "no-actual-file.plantuml", renderConfig: renderConfig);
+        var tempFilePath = Path.GetTempPath() + "statesmith.test" + Guid.NewGuid() + ".plantuml";
+        File.WriteAllText(tempFilePath, plantUmlText);
+        SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig);
         smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
         InputSmBuilder inputSmBuilder = smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<InputSmBuilder>();
         inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
         inputSmBuilder.FindSingleStateMachine();
         smRunner.Settings.propagateExceptions = true;
-        return smRunner;
+        return (smRunner, tempFilePath);
     }
 
     public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
@@ -47,7 +50,9 @@ public class TestHelper
 
     public static void RunSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null)
     {
-        BuildSmRunnerForPlantUmlString(plantUmlText, renderConfig, codeFileWriter).Run();
+        var (runner, tempFilePath) = BuildSmRunnerForPlantUmlString(plantUmlText, renderConfig, codeFileWriter);
+        runner.Run();
+        File.Delete(tempFilePath); // don't worry about deleting the file if exception is thrown. It is in temp folder.
     }
 
     public static FieldInfo[] GetTypeFields<T>()

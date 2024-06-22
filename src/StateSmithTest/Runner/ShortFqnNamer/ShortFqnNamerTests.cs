@@ -8,13 +8,20 @@ using System;
 using System.IO;
 using System.Linq;
 using Xunit;
-using Xunit.Sdk;
 
 namespace StateSmithTest.Runner.ShortFqnNamer;
 
+/// <summary>
+/// NOTE! this class uses diagrams that aren't state machines, but are used to test the ShortFqnNamer.
+/// </summary>
 public class ShortFqnNamerTests
 {
     bool resolveWithHighestState = true;
+
+    /// <summary>
+    /// We need to disable the pre diagram based settings parsing because these files are not state machines.
+    /// </summary>
+    const bool enablePDBS = false;
 
     [Fact]
     public void SimpleTest()
@@ -127,7 +134,7 @@ public class ShortFqnNamerTests
 
     private static void RunWithSettings(Action<StateMachine> testMethod, RunnerSettings.NameConflictResolution resolutionSetting, string DiagramPath)
     {
-        SmRunner runner = new(diagramPath: DiagramPath);
+        SmRunner runner = new(diagramPath: DiagramPath, enablePDBS: enablePDBS);
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_NameConflictResolution, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)testMethod);
 
@@ -145,7 +152,7 @@ public class ShortFqnNamerTests
 
     private void Run(string diagramPath, Action<StateMachine>? testMethod = null)
     {
-        SmRunner runner = new(diagramPath: diagramPath);
+        SmRunner runner = new(diagramPath: diagramPath, enablePDBS: enablePDBS);
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)Rename);
 
@@ -161,7 +168,7 @@ public class ShortFqnNamerTests
     [Fact]
     public void TestGraphConverter()
     {
-        SmRunner runner = new(diagramPath: "HierachicalGraphConverterEx1.drawio");
+        SmRunner runner = new(diagramPath: "HierachicalGraphConverterEx1.drawio", enablePDBS: enablePDBS);
         runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1, (TransformationStep)HierachicalGraphToSmConverter.Convert);
         runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_FinalValidation, (TransformationStep)Test);
         runner.Settings.propagateExceptions = true; // for unit testing
