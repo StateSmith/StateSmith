@@ -14,6 +14,24 @@ public interface IRenderConfig
     string AutoExpandedVars => "";
 
     /// <summary>
+    /// Deafult variable expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    string DefaultVarExpTemplate => "";
+
+    /// <summary>
+    /// Default function expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    string DefaultFuncExpTemplate => "";
+
+    /// <summary>
+    /// Default variable and function expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    string DefaultAnyExpTemplate => "";
+
+    /// <summary>
     /// Not used yet. A comma separated list of allowed event names. TODO case sensitive?
     /// </summary>
     string EventCommaList => "";

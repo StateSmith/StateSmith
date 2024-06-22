@@ -1,8 +1,10 @@
+using FluentAssertions;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmithTest.Output;
 using System.IO;
+using System.Reflection;
 
 #nullable enable
 
@@ -46,5 +48,25 @@ public class TestHelper
     public static void RunSmRunnerForPlantUmlString(string plantUmlText)
     {
         BuildSmRunnerForPlantUmlString(plantUmlText).Run();
+    }
+
+    public static FieldInfo[] GetTypeFields<T>()
+    {
+        return typeof(T).GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+    }
+
+    public static MethodInfo[] GetTypeProperties<T>()
+    {
+        return typeof(T).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.Public);
+    }
+
+    public static void ExpectPropertyCount<T>(int expectedCount, string because = "")
+    {
+        GetTypeProperties<T>().Length.Should().Be(expectedCount, because: because);
+    }
+
+    public static void ExpectFieldCount<T>(int expectedCount, string because = "")
+    {
+        GetTypeFields<T>().Length.Should().Be(expectedCount, because: because);
     }
 }

@@ -11,6 +11,24 @@ public class RenderConfigBaseVars
     public string AutoExpandedVars = "";
 
     /// <summary>
+    /// Deafult variable expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    public string DefaultVarExpTemplate = "";
+
+    /// <summary>
+    /// Default function expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    public string DefaultFuncExpTemplate = "";
+
+    /// <summary>
+    /// Default variable and function expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    public string DefaultAnyExpTemplate = "";
+
+    /// <summary>
     /// Not used yet. A comma separated list of allowed event names. TODO case sensitive?
     /// </summary>
     public string EventCommaList = "";
@@ -54,6 +72,9 @@ public class RenderConfigBaseVars
         SmartAppend(ref FileTop, otherConfig.FileTop);
         SmartAppend(ref VariableDeclarations, otherConfig.VariableDeclarations);
         SmartAppend(ref AutoExpandedVars, otherConfig.AutoExpandedVars);
+        SmartAppend(ref DefaultVarExpTemplate, otherConfig.DefaultVarExpTemplate);
+        SmartAppend(ref DefaultFuncExpTemplate, otherConfig.DefaultFuncExpTemplate);
+        SmartAppend(ref DefaultAnyExpTemplate, otherConfig.DefaultAnyExpTemplate);
         SmartAppend(ref EventCommaList, otherConfig.EventCommaList);
         SmartAppend(ref TriggerMap, otherConfig.TriggerMap);
 

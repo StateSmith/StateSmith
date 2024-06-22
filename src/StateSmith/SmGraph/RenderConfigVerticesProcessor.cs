@@ -108,6 +108,9 @@ public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
         {
             case nameof(IRenderConfig.VariableDeclarations): AppendOption(ref tempRenderConfigBaseVars.VariableDeclarations, v); break;
             case nameof(IRenderConfig.AutoExpandedVars): AppendOption(ref tempRenderConfigBaseVars.AutoExpandedVars, v); break;
+            case nameof(IRenderConfig.DefaultVarExpTemplate): AppendOption(ref tempRenderConfigBaseVars.DefaultVarExpTemplate, v); break;
+            case nameof(IRenderConfig.DefaultFuncExpTemplate): AppendOption(ref tempRenderConfigBaseVars.DefaultFuncExpTemplate, v); break;
+            case nameof(IRenderConfig.DefaultAnyExpTemplate): AppendOption(ref tempRenderConfigBaseVars.DefaultAnyExpTemplate, v); break;
             case nameof(IRenderConfig.EventCommaList): AppendOption(ref tempRenderConfigBaseVars.EventCommaList, v); break;
             case nameof(IRenderConfig.TriggerMap): AppendOption(ref tempRenderConfigBaseVars.TriggerMap, v); break;
             case nameof(IRenderConfig.FileTop): AppendOption(ref tempRenderConfigBaseVars.FileTop, v); break;
