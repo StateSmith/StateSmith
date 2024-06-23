@@ -54,5 +54,5 @@ dotnet tool uninstall --global StateSmith.Cli
 ## Install Specific Version or Test Release
 Test releases are usually unlisted on nuget website. They also aren't detected by ss.cli update checks.
 ```
-dotnet tool install --global StateSmith.Cli --version 0.8.2-diag-only-1
+dotnet tool install --global StateSmith.Cli --allow-downgrade --version 0.8.2-diag-only-1
 ```
