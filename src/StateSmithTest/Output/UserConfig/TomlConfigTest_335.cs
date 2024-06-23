@@ -25,6 +25,8 @@ public class TomlConfigTest_335
         var toml = """"
             [RenderConfig]
             CFileExtension = ".inc"
+
+            # blah blah
             HFileTop = """
             // comment at top 1
             // comment at top 2
