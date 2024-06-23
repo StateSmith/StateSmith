@@ -29,7 +29,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## WIP
+## [0.11.0-alpha]
 ### Add
 - Add diagram based toml config for `RenderConfig` and `SmRunner.Settings`
   - Useful for plantuml as well which previously never had diagram based render config support.
