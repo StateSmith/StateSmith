@@ -1,4 +1,4 @@
-﻿using Spectre.Console;
+using Spectre.Console;
 
 namespace StateSmith.Cli.Run;
 
@@ -25,6 +25,11 @@ public class RunConsole
     public void QuietMarkupLine(string message)
     {
         MarkupLine($"[grey]{message}[/]");
+    }
+
+    public void WarnMarkupLine(string message)
+    {
+        MarkupLine($"[yellow]{message}[/]");
     }
 
     public void WriteLine(string message)

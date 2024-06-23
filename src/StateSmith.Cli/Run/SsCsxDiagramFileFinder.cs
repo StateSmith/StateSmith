@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.FileSystemGlobbing;
 using Microsoft.Extensions.FileSystemGlobbing.Abstractions;
+using StateSmith.Runner;
 
 namespace StateSmith.Cli.Run;
 
@@ -79,8 +80,7 @@ public class SsCsxDiagramFileFinder
 
     public ScanResults Scan(string searchDirectory)
     {
-        List<string> targetCsxFiles = new();
-        List<string> targetDiagramFiles = new();
+        ScanResults scanResults = new();
 
         PatternMatchingResult result = matcher.Execute(new DirectoryInfoWrapper(new DirectoryInfo(searchDirectory)));
 
@@ -96,20 +96,64 @@ public class SsCsxDiagramFileFinder
 
             if (fileText.Contains(SsCsxDiagramFileFinder.InlineIgnoreThisFileToken))
             {
+                scanResults.ignoredFiles.Add(file.Path);
                 continue;
             }
 
             if (ssCsxFilter.IsTargetScriptFile(fullPath, fileText: fileText))
             {
-                targetCsxFiles.Add(file.Path);
+                scanResults.targetCsxFiles.Add(file.Path);
             }
-            else if (diagramFilter.IsTargetDiagramFile(fullPath, fileText: fileText))
+            else
             {
-                targetDiagramFiles.Add(file.Path);
+                // check for broken svg files
+                if (IsBrokenDrawioSvgFile(fullPath: fullPath, fileText: fileText))
+                {
+                    scanResults.brokenDrawioSvgFiles.Add(file.Path);
+                }
+                else if (diagramFilter.IsTargetDiagramFile(fullPath, fileText: fileText))
+                {
+                    scanResults.targetDiagramFiles.Add(file.Path);
+                }
+                else
+                {
+                    scanResults.nonMatchingFiles.Add(file.Path);
+                }
             }
         }
 
-        return new ScanResults(targetCsxFiles, diagramFiles: targetDiagramFiles);
+        return scanResults;
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/341
+    /// </summary>
+    /// <param name="fullPath"></param>
+    /// <param name="fileText"></param>
+    /// <returns></returns>
+    public static bool IsBrokenDrawioSvgFile(string fullPath, string fileText)
+    {
+        if (!DiagramFileAssociator.IsDrawIoSvgFile(fullPath))
+        {
+            return false;
+        }
+
+        // See https://github.com/StateSmith/StateSmith/issues/341 for detection strategy
+
+        bool containsGOpeningTag = fileText.Contains("<g>"); // normal files have this
+        bool containsGEmptyTag = fileText.Contains("<g/>");  // broken files have this
+
+        if (containsGOpeningTag && !containsGEmptyTag)
+        {
+            // normal file detected
+            return false;
+        }
+
+        // This is either an empty file or a broken file
+        // Empty files have width and height of 1px
+        bool isEmptyFile = fileText.Contains("width=\"1px\"") && fileText.Contains("height=\"1px\"");
+
+        return !isEmptyFile;
     }
 
     public class ScanResults
@@ -117,18 +161,28 @@ public class SsCsxDiagramFileFinder
         /// <summary>
         /// relative to searchDirectory
         /// </summary>
-        public List<string> targetCsxFiles;
+        public List<string> targetCsxFiles = new();
 
         /// <summary>
         /// relative to searchDirectory
         /// </summary>
-        public List<string> targetDiagramFiles;
+        public List<string> ignoredFiles = new();
 
-        public ScanResults(List<string> targetCsxFiles, List<string> diagramFiles)
-        {
-            this.targetCsxFiles = targetCsxFiles;
-            this.targetDiagramFiles = diagramFiles;
-        }
+        /// <summary>
+        /// relative to searchDirectory
+        /// </summary>
+        public List<string> targetDiagramFiles = new();
+
+        /// <summary>
+        /// relative to searchDirectory
+        /// </summary>
+        public List<string> nonMatchingFiles = new();
+
+        /// <summary>
+        /// relative to searchDirectory
+        /// https://github.com/StateSmith/StateSmith/issues/341
+        /// </summary>
+        public List<string> brokenDrawioSvgFiles = new();
     }
 }
 

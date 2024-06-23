@@ -23,8 +23,9 @@ public class RunHandler
     IAnsiConsole _console;
     private readonly DiagramOptions _diagramOptions;
     RunConsole _runConsole;
+    bool verbose;
 
-    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, IManifestPersistance? manifestPersistance = null)
+    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, bool verbose, IManifestPersistance? manifestPersistance = null)
     {
         _console = console;
         this._diagramOptions = diagramOptions;
@@ -39,9 +40,10 @@ public class RunHandler
         _parser = new CsxOutputParser();
         _runInfo = new RunInfo(dirOrManifestPath);
         _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath, console);
-        _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory);
+        _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory, verbose);
         Finder = new SsCsxDiagramFileFinder();
         _manifestPersistance = manifestPersistance ?? new ManifestPersistance(manifestDirectory);
+        this.verbose = verbose;
         _runConsole = new RunConsole(_console);
     }
 
@@ -94,8 +96,52 @@ public class RunHandler
         var scanResults = Finder.Scan(searchDirectory: searchDirectory);
         RunScriptsIfNeeded(scanResults.targetCsxFiles);
 
-        var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, _forceRebuild, searchDirectory: searchDirectory);
+        var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, _forceRebuild, searchDirectory: searchDirectory, verbose: verbose);
         diagramRunner.Run(scanResults.targetDiagramFiles);
+
+        PrintScanInfo(scanResults);
+    }
+
+    private void PrintScanInfo(SsCsxDiagramFileFinder.ScanResults scanResults)
+    {
+        bool spacerPrinted = false;
+
+        void PrintSpacerIfNeeded()
+        {
+            if (!spacerPrinted)
+            {
+                _runConsole.MarkupLine("");
+                spacerPrinted = true;
+            }
+        }
+
+        // print ignored files
+        if (verbose && scanResults.ignoredFiles.Count > 0)
+        {
+            PrintSpacerIfNeeded();
+            _runConsole.QuietMarkupLine("Ignored files: " + string.Join(", ", scanResults.ignoredFiles));
+        }
+
+        // print non-matching files
+        if (verbose && scanResults.nonMatchingFiles.Count > 0)
+        {
+            PrintSpacerIfNeeded();
+            _runConsole.QuietMarkupLine("Non-matching files: " + string.Join(", ", scanResults.nonMatchingFiles));
+        }
+
+        // print broken svg files always (ignore verbose)
+        if (scanResults.brokenDrawioSvgFiles.Count > 0)
+        {
+            _runConsole.WriteLine(""); // always add a spacer
+            _runConsole.WarnMarkupLine("!!! Broken drawio.svg files found !!!");
+
+            foreach (var item in scanResults.brokenDrawioSvgFiles)
+            {
+                _runConsole.MarkupLine($"  - {item}");
+            }
+
+            _runConsole.MarkupLine("  - see [blue][u]https://github.com/StateSmith/StateSmith/issues/341[/][/]");
+        }
     }
 
     public void RunScriptsIfNeeded(List<string> csxScripts)

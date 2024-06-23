@@ -28,6 +28,22 @@ public class TestScan
             """).Should().BeFalse();
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/341
+    /// </summary>
+    [Fact]
+    public void IntegrationTest_BrokenSvg_341()
+    {
+        SsCsxDiagramFileFinder finder = new();
+        finder.AddDefaultIncludePatternIfNone();
+        finder.SetAsRecursive();
+
+        var scanResults = finder.Scan(examples1Dir);
+        scanResults.brokenDrawioSvgFiles.Should().BeEquivalentTo(
+            "broken-svg.drawio.svg"
+        );
+    }
+
     [Fact]
     public void IntegrationTest()
     {
@@ -44,6 +60,12 @@ public class TestScan
             "yes1.plantuml",
             "yes2.plantuml",
             "DiagOnlySm.plantuml"
+        );
+
+        scanResults.ignoredFiles.Should().BeEquivalentTo(
+        );
+
+        scanResults.nonMatchingFiles.Should().BeEquivalentTo(
         );
     }
 
@@ -68,6 +90,18 @@ public class TestScan
             "a/a1/a1a.plantuml",
             "a/a1/a1b.drawio.svg",
             "a/a1/a1c.plantuml"
+        );
+
+        scanResults.ignoredFiles.Should().BeEquivalentTo(
+            "a/a2/has-inline-ignore.plantuml",
+            "a/a2/has-inline-ignore.drawio.svg",
+            "a/a2/ignored-a2a.csx"
+        );
+
+        scanResults.nonMatchingFiles.Should().BeEquivalentTo(
+            "a/a2/missing-sm-name.plantuml",
+            "a/a2/no-ss-match.drawio.svg",
+            "b/b-non-ss.csx"
         );
     }
 }

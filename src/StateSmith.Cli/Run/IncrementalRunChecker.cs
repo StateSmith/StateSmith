@@ -10,11 +10,13 @@ public class IncrementalRunChecker
     private IAnsiConsole _console;
     private string relativePath;
     public bool FoundMissingFile { get; private set; } = false;
+    bool verbose;
 
-    public IncrementalRunChecker(IAnsiConsole console, string relativePath)
+    public IncrementalRunChecker(IAnsiConsole console, string relativePath, bool verbose)
     {
         _console = console;
         this.relativePath = relativePath;
+        this.verbose = verbose;
     }
 
     public void SetReadRunInfo(RunInfo? readRunInfo)
@@ -78,10 +80,14 @@ public class IncrementalRunChecker
             return Result.NeedsRunOutdated;
         }
 
-        QuietMarkupLine($"File `{GetRelativePath(filePath)}` hasn't changed since last code gen.");
+        if (verbose)
+        {
+            QuietMarkupLine($"File `{GetRelativePath(filePath)}` hasn't changed since last code gen.");
+        }
         return Result.OkToSkip;
     }
 
+    // TODOLOW use run console that does this already
     private void QuietMarkupLine(string message)
     {
         ConsoleMarkupLine($"[grey]{message}[/]");

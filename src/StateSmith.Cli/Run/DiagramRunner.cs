@@ -13,14 +13,16 @@ public class DiagramRunner
     RunInfo _runInfo;
     bool _forceRebuild = false;
     string _searchDirectory;
+    bool verbose;
 
-    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions, RunInfo runInfo, bool forceRebuild, string searchDirectory)
+    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions, RunInfo runInfo, bool forceRebuild, string searchDirectory, bool verbose)
     {
         _runConsole = runConsole;
         this._diagramOptions = diagramOptions;
         _runInfo = runInfo;
         _forceRebuild = forceRebuild;
         _searchDirectory = searchDirectory;
+        this.verbose = verbose;
     }
 
     public void Run(List<string> targetDiagramFiles)
@@ -50,8 +52,10 @@ public class DiagramRunner
         if (csxAbsPath != null)
         {
             var csxRelativePath = Path.GetRelativePath(_searchDirectory, csxAbsPath);
-            // TODO: only print if verbose
-            _runConsole.QuietMarkupLine($"...Skipping diagram `{diagramShortPath}` already run by csx file `{csxRelativePath}`.");
+            if (verbose)
+            {
+                _runConsole.QuietMarkupLine($"...Skipping diagram `{diagramShortPath}` already run by csx file `{csxRelativePath}`.");
+            }
             diagramRan = false;
             return diagramRan;
         }

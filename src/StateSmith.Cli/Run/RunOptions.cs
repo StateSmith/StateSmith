@@ -38,6 +38,9 @@ public class RunOptions
     [Option("no-sim-gen", HelpText = "Disables simulation .html file generation. Ignored for csx files.")]
     public bool NoSimGen { get; set; } = false;
 
+    [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
+    public bool Verbose { get; set; } = false;
+
     public DiagramOptions GetDiagramOptions()
     {
         return new DiagramOptions(Lang, NoSimGen);

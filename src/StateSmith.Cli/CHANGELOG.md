@@ -14,6 +14,11 @@ Test/interim releases are not documented here.
     - https://github.com/StateSmith/StateSmith/issues/285
     - Supports diagram based toml settings
         - https://github.com/StateSmith/StateSmith/issues/335
+- `run` command detects broken drawio.svg files
+    - https://github.com/StateSmith/StateSmith/issues/341
+- `run` command supports `-v` verbose mode.
+    - most grey text moved to verbose mode.
+    - now also prints non-matching and intentionally ignored .csx/diagram files.
 
 ---
 

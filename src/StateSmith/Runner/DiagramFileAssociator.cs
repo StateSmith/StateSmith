@@ -5,9 +5,10 @@ namespace StateSmith.Runner;
 
 public class DiagramFileAssociator
 {
+    private const string DrawioSvgExtension = ".drawio.svg";
     protected static readonly HashSet<string> PlantUmlFileExtensions = new() { ".pu", ".puml", ".plantuml" };
     protected static readonly HashSet<string> YedFileExtensions = new() { ".graphml" };
-    protected static readonly HashSet<string> DrawIoFileEndings = new() { ".drawio.svg", ".drawio", ".dio" };
+    protected static readonly HashSet<string> DrawIoFileEndings = new() { DrawioSvgExtension, ".drawio", ".dio" };
 
     public static List<string> GetAllDiagramExtensions()
     {
@@ -26,6 +27,11 @@ public class DiagramFileAssociator
     public bool IsYedExtension(string lowerCaseFileExtension)
     {
         return YedFileExtensions.Contains(lowerCaseFileExtension);
+    }
+
+    public static bool IsDrawIoSvgFile(string filePath)
+    {
+        return filePath.EndsWith(DrawioSvgExtension, StringComparison.OrdinalIgnoreCase);
     }
 
     public bool IsDrawIoFile(string filePath)

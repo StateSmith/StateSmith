@@ -19,7 +19,7 @@ public class RunTest
         if (!Debugger.IsAttached)
             return;
 
-        RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new());
+        RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new(), verbose: true);
         runHandler.Finder.AddExcludePattern("a/a3");
         runHandler.Finder.SetAsRecursive();
     }
@@ -28,7 +28,7 @@ public class RunTest
     public void CreateBlankManifest()
     {
         var manifestPersistence = Substitute.For<IManifestPersistance>();
-        RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new(), manifestPersistence);
+        RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new(), verbose: true, manifestPersistence);
         runHandler.CreateBlankManifest();
 
         ManifestData? data = null;
