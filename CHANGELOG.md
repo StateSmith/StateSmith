@@ -40,7 +40,7 @@ Test/interim releases are not documented here.
     - https://github.com/StateSmith/StateSmith/issues/284
 - Add convenience helpers for `SmTransformer`.
 
-# Fix
+### Fix
 - simulator - prevent user diagram settings that could mess up generated simulation.
     - https://github.com/StateSmith/StateSmith/issues/337
 
