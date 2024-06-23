@@ -47,7 +47,8 @@ public class SimWebGenerator
         this.codeFileWriter = codeFileWriter;
         DiServiceProvider simDiServiceProvider;
 
-        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript);
+        var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
+        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, enablePDBS: enablePreDiagramBasedSettings);
         runner.Settings.propagateExceptions = true;
 
         // Registering DI services must be done before accessing `runner.SmTransformer`.
@@ -71,23 +72,11 @@ public class SimWebGenerator
     /// </summary>
     private void PreventCertainDiagramSpecifiedSettings(RenderConfigBaseVars renderConfigBaseVars)
     {
-        runner.SmTransformer.InsertBeforeFirstMatch(StandardSmTransformer.TransformationId.Standard_TomlConfig, (sm) =>
+        DiagramBasedSettingsPreventer.Process(runner.SmTransformer, action: (readRenderConfigAllVars, _) =>
         {
-            // create temp settings/config objects that may get modified by special diagram nodes
-            RenderConfigAllVars tempRenderConfigAllVars = new();
-            RunnerSettings tempSmRunnerSettings = new();
-            var tomlConfigVerticesProcessor = new TomlConfigVerticesProcessor(tempRenderConfigAllVars, tempSmRunnerSettings);
-            tomlConfigVerticesProcessor.Process(sm);
-            var renderConfigVerticesProcessor = new RenderConfigVerticesProcessor(tempRenderConfigAllVars, sm);
-            renderConfigVerticesProcessor.Process();
-
             // copy only the settings that are safe to copy for the simulation
-            renderConfigBaseVars.TriggerMap = tempRenderConfigAllVars.Base.TriggerMap;
+            renderConfigBaseVars.TriggerMap = readRenderConfigAllVars.Base.TriggerMap;
         });
-
-        // these transformations are no longer needed for the simulation
-        runner.SmTransformer.Remove(StandardSmTransformer.TransformationId.Standard_TomlConfig);
-        runner.SmTransformer.Remove(StandardSmTransformer.TransformationId.Standard_SupportRenderConfigVerticesAndRemove);
     }
 
     /// <summary>

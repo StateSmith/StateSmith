@@ -1,4 +1,5 @@
 #nullable enable
+
 namespace StateSmith.Output.UserConfig;
 
 public class RenderConfigBaseVars
@@ -9,6 +10,24 @@ public class RenderConfigBaseVars
     /// https://github.com/StateSmith/StateSmith/issues/91
     /// </summary>
     public string AutoExpandedVars = "";
+
+    /// <summary>
+    /// Deafult variable expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    public string DefaultVarExpTemplate = "";
+
+    /// <summary>
+    /// Default function expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    public string DefaultFuncExpTemplate = "";
+
+    /// <summary>
+    /// Default variable and function expansion template.
+    /// https://github.com/StateSmith/StateSmith/issues/284
+    /// </summary>
+    public string DefaultAnyExpTemplate = "";
 
     /// <summary>
     /// Not used yet. A comma separated list of allowed event names. TODO case sensitive?
@@ -38,9 +57,12 @@ public class RenderConfigBaseVars
         }
 
         FileTop = Process(config.FileTop);
-        VariableDeclarations = Process(config.VariableDeclarations);
-
         AutoExpandedVars = Process(config.AutoExpandedVars);
+        DefaultVarExpTemplate = Process(config.DefaultVarExpTemplate);
+        DefaultFuncExpTemplate = Process(config.DefaultFuncExpTemplate);
+        DefaultAnyExpTemplate = Process(config.DefaultAnyExpTemplate);
+
+        VariableDeclarations = Process(config.VariableDeclarations);
         EventCommaList = Process(config.EventCommaList);
         TriggerMap = Process(config.TriggerMap);
     }
@@ -54,6 +76,9 @@ public class RenderConfigBaseVars
         SmartAppend(ref FileTop, otherConfig.FileTop);
         SmartAppend(ref VariableDeclarations, otherConfig.VariableDeclarations);
         SmartAppend(ref AutoExpandedVars, otherConfig.AutoExpandedVars);
+        SmartAppend(ref DefaultVarExpTemplate, otherConfig.DefaultVarExpTemplate);
+        SmartAppend(ref DefaultFuncExpTemplate, otherConfig.DefaultFuncExpTemplate);
+        SmartAppend(ref DefaultAnyExpTemplate, otherConfig.DefaultAnyExpTemplate);
         SmartAppend(ref EventCommaList, otherConfig.EventCommaList);
         SmartAppend(ref TriggerMap, otherConfig.TriggerMap);
 

@@ -139,6 +139,11 @@ public class TomlConfigTest_335
         RunnerSettings smRunnerSettings = new("");
         var reader = new TomlReader(renderConfigAllVars, smRunnerSettings);
 
+        TestHelper.ExpectPropertyCount<IRenderConfig>(8, because: "test need updating");
+        TestHelper.ExpectPropertyCount<IRenderConfigC>(7, because: "test need updating");
+        TestHelper.ExpectPropertyCount<IRenderConfigCSharp>(6, because: "test need updating");
+        TestHelper.ExpectPropertyCount<IRenderConfigJavaScript>(4, because: "test need updating");
+
         var toml = """"
             [RenderConfig]
             FileTop = "// My file top!"
@@ -146,6 +151,9 @@ public class TomlConfigTest_335
             # EventCommaList = "event1, event2, event3"   # ignored for now as not used
             VariableDeclarations = "int count2;"
             TriggerMap = ""
+            DefaultVarExpTemplate = ""
+            DefaultFuncExpTemplate = ""
+            DefaultAnyExpTemplate = ""
 
             [RenderConfig.C]
             HFileTop = ""
@@ -154,6 +162,7 @@ public class TomlConfigTest_335
             CFileIncludes = ""
             CFileExtension = ".c"
             HFileExtension = ".h"
+            CEnumDeclarer  = "typedef enum __attribute__((packed)) {enumName}"
 
             [RenderConfig.CSharp]
             NameSpace = ""

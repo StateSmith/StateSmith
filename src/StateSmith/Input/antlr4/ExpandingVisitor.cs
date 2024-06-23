@@ -65,6 +65,7 @@ public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
         //We can't just visit the `function_args` rule because it includes commas and additional white space.
 
         var codeElements = context.braced_function_args().function_args()?.code_element();
+        string rawBracedFuncArgs = context.braced_function_args().GetText(); // example: "(a, b, c)"
         List<string> stringArgs = new();
 
         if (codeElements != null)
@@ -89,7 +90,7 @@ public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
             stringArgs[i] = stringArgs[i].Trim();
         }
 
-        var expandedCode = expander.TryExpandFunctionExpansion(functionName, stringArgs.ToArray());
+        var expandedCode = expander.TryExpandFunctionExpansion(functionName, stringArgs.ToArray(), rawBracedFuncArgs);
         result += expandedCode;
         return result;
     }

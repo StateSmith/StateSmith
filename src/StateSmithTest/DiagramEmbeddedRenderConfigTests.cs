@@ -68,6 +68,18 @@ public class DiagramEmbeddedRenderConfigTests
             // sm level - AutoExpandedVars
             """);
 
+            renderConfig.DefaultVarExpTemplate.ShouldBeShowDiff("""
+            this.myVars.{AutoNameCopy()}
+            """);
+
+            renderConfig.DefaultFuncExpTemplate.ShouldBeShowDiff("""
+            this.myFuncs.{AutoNameCopy()}
+            """);
+
+            renderConfig.DefaultAnyExpTemplate.ShouldBeShowDiff("""
+            this.{AutoNameCopy()}
+            """);
+
             renderConfig.EventCommaList.ShouldBeShowDiff("""
 
             """);
@@ -76,9 +88,9 @@ public class DiagramEmbeddedRenderConfigTests
                 // some trigger mapping...
                 """);
 
-            const int expectedOptionCount = 5;
-            GetTypeFields<RenderConfigBaseVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
-            GetTypeProperties<IRenderConfig>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            const int expectedOptionCount = 8;
+            TestHelper.ExpectFieldCount<RenderConfigBaseVars>(expectedOptionCount, because: "above tests need updating");
+            TestHelper.ExpectPropertyCount<IRenderConfig>(expectedOptionCount, because: "above tests need updating");
         }
 
         {
@@ -117,8 +129,8 @@ public class DiagramEmbeddedRenderConfigTests
             """);
 
             const int expectedOptionCount = 7;
-            GetTypeFields<RenderConfigCVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
-            GetTypeProperties<IRenderConfigC>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            TestHelper.ExpectFieldCount<RenderConfigCVars>(expectedOptionCount, because: "above tests need updating");
+            TestHelper.ExpectPropertyCount<IRenderConfigC>(expectedOptionCount, because: "above tests need updating");
         }
 
         {
@@ -149,8 +161,8 @@ public class DiagramEmbeddedRenderConfigTests
             defaultConfig.UsePartialClass.Should().BeTrue();
 
             const int expectedOptionCount = 6;
-            GetTypeFields<RenderConfigCSharpVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
-            GetTypeProperties<IRenderConfigCSharp>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            TestHelper.ExpectFieldCount<RenderConfigCSharpVars>(expectedOptionCount, because: "above tests need updating");
+            TestHelper.ExpectPropertyCount<IRenderConfigCSharp>(expectedOptionCount, because: "above tests need updating");
         }
 
         {
@@ -173,19 +185,9 @@ public class DiagramEmbeddedRenderConfigTests
                 """);
 
             const int expectedOptionCount = 4;
-            GetTypeFields<RenderConfigJavaScriptVars>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
-            GetTypeProperties<IRenderConfigJavaScript>().Length.Should().Be(expectedOptionCount, because: "above tests need updating");
+            TestHelper.ExpectFieldCount<RenderConfigJavaScriptVars>(expectedOptionCount, because: "above tests need updating");
+            TestHelper.ExpectPropertyCount<IRenderConfigJavaScript>(expectedOptionCount, because: "above tests need updating");
         }
-    }
-
-    private static FieldInfo[] GetTypeFields<T>()
-    {
-        return typeof(T).GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
-    }
-
-    private static MethodInfo[] GetTypeProperties<T>()
-    {
-        return typeof(T).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.Public);
     }
 
     private static ConfigOptionVertex GetOptionVertex(RenderConfigVertex renderConfig, string name)

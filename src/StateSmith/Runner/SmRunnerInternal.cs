@@ -16,7 +16,7 @@ namespace StateSmith.Runner;
 public class SmRunnerInternal
 {
     public System.Exception? exception;
-
+    internal bool preDiagramBasedSettingsAlreadyApplied;
     readonly InputSmBuilder inputSmBuilder;
     readonly RunnerSettings settings;
     readonly ICodeGenRunner codeGenRunner;
@@ -46,10 +46,16 @@ public class SmRunnerInternal
 
         try
         {
+            if (preDiagramBasedSettingsAlreadyApplied)
+            {
+                // we need to prevent diagram settings from being applied twice
+                DiagramBasedSettingsPreventer.Process(inputSmBuilder.transformer);
+            }
+
             consolePrinter.WriteLine();
             OutputCompilingDiagramMessage();
 
-            var sm = SetupAndFindStateMachine();
+            var sm = SetupAndFindStateMachine(inputSmBuilder, settings);
             outputInfo.baseFileName = sm.Name;
 
             consolePrinter.OutputStageMessage($"State machine `{sm.Name}` selected.");
@@ -91,7 +97,7 @@ public class SmRunnerInternal
         consolePrinter.OutputStageMessage("Finished with failure.");
     }
 
-    private StateMachine SetupAndFindStateMachine()
+    internal static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
     {
         // If the inputSmBuilder already has a state machine, then use it.
         // Used by test code.

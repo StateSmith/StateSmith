@@ -16,6 +16,8 @@ public interface IExpander
     string[] GetFunctionNames();
     string[] GetVariableNames();
     bool HasFunctionName(string name);
-    string TryExpandFunctionExpansion(string name, string[] arguments);
+    void SetDefaultFuncExpander(DefaultExpander defaultFunctionExpander);
+    void SetDefaultVarExpander(DefaultExpander defaultVarExpander);
+    string TryExpandFunctionExpansion(string name, string[] arguments, string rawBracedFuncArgs);
     string TryExpandVariableExpansion(string name);
 }

@@ -24,10 +24,10 @@ public class TrackingExpander : Expander
         return base.TryExpandVariableExpansion(name);
     }
 
-    public override string TryExpandFunctionExpansion(string name, string[] args)
+    public override string TryExpandFunctionExpansion(string name, string[] args, string rawBracedFuncArgs = "")
     {
         attemptedFunctionExpansions.Add(name);
-        return base.TryExpandFunctionExpansion(name, args);
+        return base.TryExpandFunctionExpansion(name, args, rawBracedFuncArgs);
     }
 
     public override bool HasFunctionName(string name)
