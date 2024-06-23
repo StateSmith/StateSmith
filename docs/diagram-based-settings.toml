@@ -2,59 +2,65 @@
 
 [RenderConfig]
 FileTop = """
-    // Whatever you put in this `FileTop` section
-    // will end up being printed at the top of every file
+    // Whatever you put in this `FileTop` section will end up 
+    // being printed at the top of every generated code file.
     """
-AutoExpandedVars = "<string-none>"
-VariableDeclarations = "<string-none>"
-DefaultVarExpTemplate = "<string-none>"
-DefaultFuncExpTemplate = "<string-none>"
-DefaultAnyExpTemplate = "<string-none>"
-TriggerMap = "<string-none>"
+# AutoExpandedVars = ""
+# VariableDeclarations = ""
+# DefaultVarExpTemplate = ""
+# DefaultFuncExpTemplate = ""
+# DefaultAnyExpTemplate = ""
+# TriggerMap = ""
 
 [RenderConfig.C]
-HFileTop = "<string-none>"
-HFileIncludes = "<string-none>"
-CFileIncludes = "<string-none>"
-CFileTop = "<string-none>"
-CFileExtension = "<string-none>"
-HFileExtension = "<string-none>"
-CEnumDeclarer = "<string-none>"
+# HFileTop = ""
+# HFileIncludes = "#include <stdio.h>"
+# CFileIncludes = "#include <stdlib.h>"
+# CFileTop = ""
+# CFileExtension = ".inc"
+# HFileExtension = ".hpp"
+# CEnumDeclarer = ""
 
 [RenderConfig.CSharp]
-NameSpace = "<string-none>"
-Usings = "<string-none>"
-ClassCode = "<string-none>"
-BaseList = "<string-none>"
-UseNullable = "<bool-none>"
-UsePartialClass = "<bool-none>"
+# NameSpace = ""
+# Usings = ""
+# ClassCode = ""
+# BaseList = "MyUserBaseClass, IMyOtherUserInterface"
+# UseNullable = false
+# UsePartialClass = false
 
+[RenderConfig.JavaScript]
+# ClassCode = ""
+# ExtendsSuperClass = "MyUserBaseClass"
+# UseExportOnClass = true
+# PrivatePrefix = "_"
 
 ############# SmRunner.Settings ###############
 
 [SmRunnerSettings]
-outputDirectory = "<string-none>"
-outputCodeGenTimestamp = "<bool-none>"
-outputStateSmithVersionInfo = "<bool-none>"
-propagateExceptions = "<bool-none>"
-dumpErrorsToFile = "<bool-none>"
+# outputDirectory = "./gen"
+# outputCodeGenTimestamp = true
+# outputStateSmithVersionInfo = false
+# propagateExceptions = true
+# dumpErrorsToFile = true
 
 [SmRunnerSettings.smDesignDescriber]
-enabled = "<bool-none>"
-outputDirectory = "<string-none>"
-outputAncestorHandlers = "<bool-none>"
+# enabled = true
+# outputDirectory = ".."
+# outputAncestorHandlers = true
 
 [SmRunnerSettings.smDesignDescriber.outputSections]
-beforeTransformations = "<bool-none>"
-afterTransformations  = "<bool-none>"
+# beforeTransformations = false
+# afterTransformations  = true
 
 [SmRunnerSettings.algoBalanced1]
-outputEventIdToStringFunction = "<bool-none>"
-outputStateIdToStringFunction = "<bool-none>"
+# outputEventIdToStringFunction = false
+# outputStateIdToStringFunction = false
 
 [SmRunnerSettings.simulation]
-enableGeneration = "<bool-none>"
-outputDirectory = "<string-none>"
-outputFileNamePostfix = "<string-none>"
+enableGeneration = true
+# outputDirectory = ".."
+# outputFileNamePostfix = ".sim.html"
 
 # There are more SmRunnerSettings. See C# classes on github project.
+# TODO link: 
