@@ -1,5 +1,4 @@
 using FluentAssertions;
-using StateSmith.Runner;
 using StateSmith.Cli.Create;
 using StateSmithTest;
 using Xunit;
@@ -8,14 +7,14 @@ namespace StateSmithCliTest.Create;
 
 public class TemplateRenderTest
 {
-    private CsxTemplateRenderer MakeRenderer(TargetLanguageId targetLanguageId)
+    private TemplateRenderer MakeRenderer(TargetLanguageId targetLanguageId)
     {
-        return new CsxTemplateRenderer(targetLanguageId: targetLanguageId, stateSmithVersion: "0.8.1-alpha", diagramPath: "../../MySm.drawio", smName: "MySm");
+        return new TemplateRenderer(targetLanguageId: targetLanguageId, stateSmithVersion: "0.8.1-alpha", diagramPath: "../../MySm.drawio", smName: "MySm");
     }
 
-    private CsxTemplateRenderer MakeRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath)
+    private TemplateRenderer MakeRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath)
     {
-        return new CsxTemplateRenderer(targetLanguageId: targetLanguageId, stateSmithVersion: stateSmithVersion, diagramPath: diagramPath, smName: "MySm");
+        return new TemplateRenderer(targetLanguageId: targetLanguageId, stateSmithVersion: stateSmithVersion, diagramPath: diagramPath, smName: "MySm");
     }
 
     [Fact]
@@ -201,10 +200,77 @@ public class TemplateRenderTest
     }
 
     [Fact]
+    public void IntegrationTestTomlC()
+    {
+        // TODO do for more languages
+
+        var tomlConfigTemplate = TemplateLoader.LoadTomlConfig();
+        var r = new TemplateRenderer(TargetLanguageId.C, stateSmithVersion: "", diagramPath: "", smName: "RocketSm", template: tomlConfigTemplate);
+        var result = r.Render();
+
+        result.ShouldBeShowDiff(""""
+            ############# Render Config Settings ##############
+
+            [RenderConfig]
+            FileTop = """
+                // Whatever you put in this `FileTop` section will end up 
+                // being printed at the top of every generated code file.
+                """
+            # AutoExpandedVars = ""
+            # VariableDeclarations = ""
+            # DefaultVarExpTemplate = ""
+            # DefaultFuncExpTemplate = ""
+            # DefaultAnyExpTemplate = ""
+            # TriggerMap = ""
+
+            [RenderConfig.C]
+            # CFileExtension = ".inc"
+            # HFileExtension = ".h"
+            # HFileTop = ""
+            # HFileIncludes = "#include <stdlib.h>"
+            # CFileIncludes = """#include "some_header.h" """
+            # CFileTop = ""
+            # CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}"
+
+            ############# SmRunner.Settings ###############
+
+            [SmRunnerSettings]
+            # transpilerId = "C99"
+            # outputDirectory = "./gen"
+            # outputCodeGenTimestamp = true
+            # outputStateSmithVersionInfo = false
+            # propagateExceptions = true
+            # dumpErrorsToFile = true
+
+            [SmRunnerSettings.smDesignDescriber]
+            # enabled = true
+            # outputDirectory = ".."
+            # outputAncestorHandlers = true
+
+            [SmRunnerSettings.smDesignDescriber.outputSections]
+            # beforeTransformations = false
+            # afterTransformations  = true
+
+            [SmRunnerSettings.algoBalanced1]
+            # outputEventIdToStringFunction = false
+            # outputStateIdToStringFunction = false
+
+            [SmRunnerSettings.simulation]
+            # enableGeneration = false
+            # outputDirectory = ".."
+            # outputFileNamePostfix = ".sim.html"
+
+            # There are more SmRunnerSettings. See C# classes on github project.
+            # See https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs
+            
+            """");
+    }
+
+    [Fact]
     public void IntegrationTestC()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.C, "0.9.9-alpha", "../../RocketSm.drawio", smName: "RocketSm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.C, "0.9.9-alpha", "../../RocketSm.drawio", smName: "RocketSm", template: csxTemplate);
         var result = r.Render();
 
         result.ShouldBeShowDiff(""""
@@ -271,7 +337,7 @@ public class TemplateRenderTest
     public void IntegrationTestCpp()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.9.9-alpha", "../../RocketSm.drawio", smName: "RocketSm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.9.9-alpha", "../../RocketSm.drawio", smName: "RocketSm", template: csxTemplate);
         var result = r.Render();
 
         result.ShouldBeShowDiff(""""
@@ -344,7 +410,7 @@ public class TemplateRenderTest
     public void IntegrationTestCSharp()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.CSharp, "0.9.9-alpha", "../../RocketSm.drawio", smName: "RocketSm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.CSharp, "0.9.9-alpha", "../../RocketSm.drawio", smName: "RocketSm", template: csxTemplate);
         var result = r.Render();
 
         result.ShouldBeShowDiff(""""
@@ -400,7 +466,7 @@ public class TemplateRenderTest
     public void IntegrationTestJavaScript()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.JavaScript, "0.9.9-alpha", "../../RocketSm.drawio", smName: "RocketSm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.JavaScript, "0.9.9-alpha", "../../RocketSm.drawio", smName: "RocketSm", template: csxTemplate);
         var result = r.Render();
 
         result.ShouldBeShowDiff(""""
@@ -454,7 +520,7 @@ public class TemplateRenderTest
     public void RenderConfigTestC()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.C, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.C, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
         var result = r.Render();
 
         result.Should().Contain("""
@@ -467,7 +533,7 @@ public class TemplateRenderTest
     public void RenderConfigTestCpp()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
         var result = r.Render();
 
         result.Should().Contain("""
@@ -480,7 +546,7 @@ public class TemplateRenderTest
     public void RenderConfigTestCSharp()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.CSharp, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.CSharp, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
         var result = r.Render();
 
         result.Should().Contain("""
@@ -493,7 +559,7 @@ public class TemplateRenderTest
     public void RenderConfigTestJavaScript()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.JavaScript, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.JavaScript, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
         var result = r.Render();
 
         result.Should().Contain("""
@@ -506,7 +572,7 @@ public class TemplateRenderTest
     public void TestCppFilter()
     {
         var csxTemplate = TemplateLoader.LoadDefaultCsx();
-        var r = new CsxTemplateRenderer(TargetLanguageId.CppC, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
+        var r = new TemplateRenderer(TargetLanguageId.CppC, "0.9.9-alpha", "../../MySm.drawio", smName: "MySm", template: csxTemplate);
         var result = r.Render();
 
         result.Should().Contain("""string IRenderConfigC.CFileExtension => ".cpp";""");

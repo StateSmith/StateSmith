@@ -8,6 +8,13 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.9.1]
+### Change (minor)
+- Ask if .csx file is desired. Defaults to "no" based on latest diagram-only work.
+- PlantUML is now the default diagram type for new users.
+
+---
+
 ## [0.9.0]
 ### Add
 - `run` command now supports running diagrams with `--lang` option.

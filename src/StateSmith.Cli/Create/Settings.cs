@@ -19,15 +19,20 @@ public class Settings
     //------------ PROPERTIES ARE PERSISTED ------------
 
     /// <summary>
+    /// Persisted. Default is false (want diagram only to be default).
+    /// </summary>
+    public bool UseCsxWorkflow { get; set; } = false;
+
+    /// <summary>
     /// Persisted
     /// </summary>
     public string StateSmithVersion { get; set; } = UpdateInfo.DefaultStateSmithLibVersion;
 
     /// <summary>
     /// Persisted
-    /// This should maybe be changed to an enum.
+    /// TODO - This should maybe be changed to an enum.
     /// </summary>
-    public string FileExtension { get; set; } = ".drawio";
+    public string FileExtension { get; set; } = ".plantuml";
 
     /// <summary>
     /// Persisted

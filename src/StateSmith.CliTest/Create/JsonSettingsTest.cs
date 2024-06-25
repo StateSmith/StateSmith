@@ -37,6 +37,7 @@ public class JsonSettingsTest
     {
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             StateSmithVersion = "0.9.9-alpha",
             FileExtension = ".drawio",
             TargetLanguageId = TargetLanguageId.CppC,
@@ -47,6 +48,7 @@ public class JsonSettingsTest
         var json = _persistence.PersistToString(settings).ConvertLineEndingsToN();
         json.ShouldBeShowDiff("""
             {
+              "UseCsxWorkflow": true,
               "StateSmithVersion": "0.9.9-alpha",
               "FileExtension": ".drawio",
               "TargetLanguageId": "CppC",

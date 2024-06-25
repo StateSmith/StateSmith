@@ -147,45 +147,70 @@ public class TomlConfigTest_335
         TestHelper.ExpectPropertyCount<IRenderConfigJavaScript>(4, because: "test need updating");
 
         var toml = """"
+            ############Render Config Settings ##############
+
             [RenderConfig]
-            FileTop = "// My file top!"
-            AutoExpandedVars = "int count1;"
-            # EventCommaList = "event1, event2, event3"   # ignored for now as not used
-            VariableDeclarations = "int count2;"
-            TriggerMap = ""
+            FileTop = """
+                // Whatever you put in this `FileTop` section will end up 
+                // being printed at the top of every generated code file.
+                """
+            AutoExpandedVars = ""
+            VariableDeclarations = ""
             DefaultVarExpTemplate = ""
             DefaultFuncExpTemplate = ""
             DefaultAnyExpTemplate = ""
+            TriggerMap = ""
+            EventCommaList = "" # not used yet
 
             [RenderConfig.C]
             HFileTop = ""
-            HFileIncludes = ""
+            HFileIncludes = "#include <stdlib.h>"
+            CFileIncludes = """#include "some_header.h" """
             CFileTop = ""
-            CFileIncludes = ""
-            CFileExtension = ".c"
-            HFileExtension = ".h"
-            CEnumDeclarer  = "typedef enum __attribute__((packed)) {enumName}"
+            CFileExtension = ".inc"
+            HFileExtension = ".hpp"
+            CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}"
 
             [RenderConfig.CSharp]
             NameSpace = ""
             Usings = ""
             ClassCode = ""
-            BaseList = ""
-            UseNullable = true
-            UsePartialClass = true
-            
+            BaseList = "MyUserBaseClass, IMyOtherUserInterface"
+            UseNullable = false
+            UsePartialClass = false
+
             [RenderConfig.JavaScript]
-            ExtendsSuperClass = ""
             ClassCode = ""
-            UseExportOnClass = false
-            PrivatePrefix = "#"
-            
-            # TODO - consider which of below are important
+            ExtendsSuperClass = "MyUserBaseClass"
+            UseExportOnClass = true
+            PrivatePrefix = "_"
+
+            ############SmRunner.Settings ###############
+
             [SmRunnerSettings]
+            outputDirectory = "./gen"
+            outputCodeGenTimestamp = true
             outputStateSmithVersionInfo = false
-            transpilerId = "C99"
-            algorithmId = "Balanced1"
-            simulation = { enableGeneration = true }    # an inline table
+            propagateExceptions = true
+            dumpErrorsToFile = true
+
+            [SmRunnerSettings.smDesignDescriber]
+            enabled = true
+            outputDirectory = ".."
+            outputAncestorHandlers = true
+
+            [SmRunnerSettings.smDesignDescriber.outputSections]
+            beforeTransformations = false
+            afterTransformations  = true
+
+            [SmRunnerSettings.algoBalanced1]
+            outputEventIdToStringFunction = false
+            outputStateIdToStringFunction = false
+
+            [SmRunnerSettings.simulation]
+            enableGeneration = true
+            outputDirectory = ".."
+            outputFileNamePostfix = ".sim.html"
             """";
 
         reader.Read(toml);

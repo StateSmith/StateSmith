@@ -15,6 +15,7 @@ public class CreateUiTest
     {
         fakeConsole = new TestConsole();
         cUi = new CreateUi(fakeConsole, new(fakeConsole));
+        //fakeConsole.Input.PushTextWithEnter(""); // get past the first prompt
     }
 
     [Fact]
@@ -46,6 +47,7 @@ public class CreateUiTest
     [Fact]
     public void DiagramFileNameDoubleDollarSign()
     {
+        cUi._settings.FileExtension = ".drawio";
         cUi._settings.smName = "LazyCatSm";
 
         fakeConsole.Input.PushTextWithEnter("../$$");

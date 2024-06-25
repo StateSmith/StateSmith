@@ -13,7 +13,13 @@ public class TemplateLoader
 
     public static string LoadDefaultCsx()
     {
-        var result = LoadFileResource(TemplateIds._scripts, fileName: "default.csx");
+        var result = LoadFileResource(TemplateIds._common, fileName: "default.csx");
+        return result;
+    }
+
+    public static string LoadTomlConfig()
+    {
+        var result = LoadFileResource(TemplateIds._common, fileName: "config.toml");
         return result;
     }
 

@@ -18,6 +18,7 @@ public class GeneratorTest
 
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             diagramFileName = DiagramPath,
             scriptFileName = CsxFilePath,
             TargetLanguageId = TargetLanguageId.C,
@@ -64,6 +65,7 @@ public class GeneratorTest
 
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             diagramFileName = DiagramPath,
             scriptFileName = CsxFilePath,
             TargetLanguageId = TargetLanguageId.C,
@@ -108,6 +110,7 @@ public class GeneratorTest
 
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             diagramFileName = DiagramPath,
             scriptFileName = CsxFilePath,
             TargetLanguageId = TargetLanguageId.JavaScript,
@@ -154,6 +157,7 @@ public class GeneratorTest
         const string DiagramPath = "./diagrams/RocketSm.drawio";
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             diagramFileName = DiagramPath,
             scriptFileName = CsxPath,
             TargetLanguageId = TargetLanguageId.JavaScript,

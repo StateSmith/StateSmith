@@ -24,7 +24,11 @@ public class Generator
     public void GenerateFiles()
     {
         var templateName = settings.IsDrawIoSelected() ? settings.DrawIoDiagramTemplateId : settings.PlantUmlDiagramTemplateId;
-        GenerateCsx(templateName, settings.smName);
+
+        if (settings.UseCsxWorkflow)
+        {
+            GenerateCsx(templateName, settings.smName);
+        }
         GenerateDiagramFile(templateName);
     }
 
@@ -34,7 +38,7 @@ public class Generator
 
         string diagramFilePathRelative = GetDiagramPathRelativeToCsx();
 
-        var r = new CsxTemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: diagramFilePathRelative, smName: smName, template: templateStr);
+        var r = new TemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: diagramFilePathRelative, smName: smName, template: templateStr);
         var result = r.Render();
         fileWriter.Write(settings.scriptFileName, result);
     }

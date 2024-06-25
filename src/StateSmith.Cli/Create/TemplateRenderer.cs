@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace StateSmith.Cli.Create;
 
-public class CsxTemplateRenderer
+public class TemplateRenderer
 {
     protected TargetLanguageId targetLanguageId;
     protected string smName;
@@ -12,7 +12,7 @@ public class CsxTemplateRenderer
     protected string diagramPath;
     protected string template;
 
-    public CsxTemplateRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath, string smName, string template = "")
+    public TemplateRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath, string smName, string template = "")
     {
         this.targetLanguageId = targetLanguageId;
         this.stateSmithVersion = stateSmithVersion;
