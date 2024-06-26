@@ -84,7 +84,7 @@ public class TemplateRenderer
             )
             >
             (?<content>
-                (?:.|\n)
+                (?:.|\r\n|\r|\n)
             *?)
             (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
             //!!<\/filter>
@@ -106,7 +106,7 @@ public class TemplateRenderer
             )
             >[*]/
             (?<content>
-                (?:.|\n)
+                (?:.|\r\n|\r|\n)
             *?)
             (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
             /[*]!!<\/filter>[*]/

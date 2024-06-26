@@ -12,6 +12,7 @@ FileTop = """
 # DefaultAnyExpTemplate = ""
 # TriggerMap = ""
 
+
 //!!<filter:C,CppC>
 
 [RenderConfig.C]
@@ -23,7 +24,9 @@ FileTop = """
 # CFileIncludes = """#include "some_header.h" """
 # CFileTop = ""
 # CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}"
+
 //!!</filter>
+
 
 //!!<filter:CSharp>
 
@@ -34,7 +37,9 @@ FileTop = """
 # BaseList = "MyUserBaseClass, IMyOtherUserInterface"
 # UseNullable = false
 # UsePartialClass = false
+
 //!!</filter>
+
 
 //!!<filter:JavaScript>
 
@@ -43,7 +48,10 @@ FileTop = """
 # ExtendsSuperClass = "MyUserBaseClass"
 # UseExportOnClass = true
 # PrivatePrefix = "_"
+
 //!!</filter>
+
+
 
 ############# SmRunner.Settings ###############
 

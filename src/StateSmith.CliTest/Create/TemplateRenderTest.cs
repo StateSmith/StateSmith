@@ -263,7 +263,7 @@ public class TemplateRenderTest
             # There are more SmRunnerSettings. See C# classes on github project.
             # See https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs
             
-            """");
+            """", outputCleanActual: true);
     }
 
     [Fact]
@@ -330,7 +330,7 @@ public class TemplateRenderTest
                 }
             }
             
-            """");
+            """", outputCleanActual: true);
     }
 
     [Fact]
