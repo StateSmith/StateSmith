@@ -38,7 +38,7 @@ public class Generator
 
         string diagramFilePathRelative = GetDiagramPathRelativeToCsx();
 
-        var r = new TemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: diagramFilePathRelative, smName: smName, template: templateStr);
+        var r = new CsxTemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: diagramFilePathRelative, smName: smName, template: templateStr);
         var result = r.Render();
         fileWriter.Write(settings.scriptFileName, result);
     }
