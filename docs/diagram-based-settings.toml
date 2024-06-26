@@ -63,4 +63,4 @@ enableGeneration = true
 # outputFileNamePostfix = ".sim.html"
 
 # There are more SmRunnerSettings. See C# classes on github project.
-# TODO link: 
+# See https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs
