@@ -76,4 +76,9 @@ public class Settings
     {
         return FileExtension.Contains(".drawio.svg");
     }
+
+    public string GetTemplateId()
+    {
+        return IsDrawIoSelected() ? DrawIoDiagramTemplateId : PlantUmlDiagramTemplateId;
+    }
 }

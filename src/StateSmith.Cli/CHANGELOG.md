@@ -8,6 +8,13 @@ Test/interim releases are not documented here.
 
 ---
 
+## WIP
+### Change (minor)
+- PlantUML and drawio templates now include toml config that is updated based on target language
+
+
+---
+
 ## [0.9.1]
 ### Change (minor)
 - Ask if .csx file is desired. Defaults to "no" based on latest diagram-only work.

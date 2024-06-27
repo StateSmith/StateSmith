@@ -5,7 +5,7 @@ namespace StateSmith.Cli.Create;
 
 /// <summary>
 /// This class allows for filtering of templates based on tags like `C` or `CppC`, etc.
-/// See <see cref="ProcessAllFilters"/> unit tests for examples.
+/// See unit tests for examples.
 /// </summary>
 public class TemplateFilterEngine
 {

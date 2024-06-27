@@ -180,4 +180,40 @@ public class GeneratorTest
         mockFileWriter.Received().Write(CsxPath, Arg.Any<string>());
         mockFileWriter.Received().Write(DiagramPath, Arg.Any<string>());
     }
+
+    [Fact]
+    public void TestPlantUmlTomlTemplate()
+    {
+        var settings = new Settings
+        {
+            TargetLanguageId = TargetLanguageId.JavaScript,
+            FileExtension = ".plantuml",
+            PlantUmlDiagramTemplateId = TemplateIds.PlantUmlSimple1,
+            smName = "LedSm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        text.Should().Contain("@startuml LedSm");
+        text.Should().Contain("[RenderConfig.JavaScript]");
+    }
+
+    [Fact]
+    public void TestDrawioTomlTemplate()
+    {
+        var settings = new Settings
+        {
+            TargetLanguageId = TargetLanguageId.C,
+            FileExtension = ".drawio",
+            PlantUmlDiagramTemplateId = TemplateIds.DrawIoSimple1,
+            smName = "LedSm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        text.Should().Contain("[RenderConfig]&#10;"); // for new lines
+        text.Should().Contain("[RenderConfig.C]");
+    }
 }

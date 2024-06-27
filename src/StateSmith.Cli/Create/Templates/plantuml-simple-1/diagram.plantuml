@@ -25,4 +25,12 @@ state STATE_2 {
 STATE_1 --> STATE_2 : MY_EVENT_1
 STATE_2 --> STATE_1 : MY_EVENT_2
 
+'######################## StateSmith config ########################
+' The below special comment block sets the StateSmith configuration.
+' More info: https://github.com/StateSmith/StateSmith/issues/335
+
+/'! $CONFIG : toml
+{{configToml}}
+'/
+
 @enduml

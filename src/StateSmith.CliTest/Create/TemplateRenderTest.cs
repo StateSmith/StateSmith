@@ -58,12 +58,9 @@ public class TemplateRenderTest
     public void IntegrationTestTomlC()
     {
         // TODO do for more languages
+        var tomlConfig = Generator.GetTomlConfig(TargetLanguageId.C);
 
-        var tomlConfigTemplate = TemplateLoader.LoadTomlConfig();
-        var filterEngine = new TemplateFilterEngine();
-        var result = filterEngine.ProcessAllFilters(tomlConfigTemplate, filterTag: TargetLanguageId.C.ToString());
-
-        result.ShouldBeShowDiff(""""
+        tomlConfig.ShouldBeShowDiff(""""
             ############# Render Config Settings ##############
 
             [RenderConfig]
