@@ -10,8 +10,8 @@ Test/interim releases are not documented here.
 
 ## WIP
 ### Change (minor)
-- PlantUML and drawio templates now include toml config that is updated based on target language
-
+- `run` command now checks if diagrams specify `SmRunnerSettings.transpilerId` using toml if `--lang` is not specified.
+- PlantUML and drawio templates now include toml config that is updated based on target language.
 
 ---
 

@@ -73,6 +73,13 @@ public class Generator
 
         var tomlConfig = GetTomlConfig(settings.TargetLanguageId);
 
+        if (settings.UseCsxWorkflow == false)
+        {
+            // simpler workflow (no csx) so the toml should specify the transpilerId.
+            // modify toml so transpilerId line is uncommented.
+            tomlConfig = tomlConfig.Replace("# transpilerId = ", "transpilerId = ");
+        }
+
         if (settings.IsDrawIoSelected())
         {
             tomlConfig = HttpUtility.HtmlEncode(tomlConfig);

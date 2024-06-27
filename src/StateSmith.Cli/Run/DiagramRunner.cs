@@ -27,12 +27,6 @@ public class DiagramRunner
 
     public void Run(List<string> targetDiagramFiles)
     {
-        if (_diagramOptions.Lang == TranspilerId.Default)
-        {
-            _runConsole.QuietMarkupLine("Not generating code for diagrams without csx files because no 'lang' specified.");
-            return;
-        }
-
         foreach (var diagramFile in targetDiagramFiles)
         {
             RunDiagramFile(diagramFile);
@@ -85,10 +79,17 @@ public class DiagramRunner
             }
         }
 
+        SmRunner smRunner = new(diagramPath: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
+        if (smRunner.Settings.transpilerId == TranspilerId.NotYetSet)
+        {
+            _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
+            diagramRan = false;
+            return diagramRan; //!!!!!!!!!!! NOTE the return here.
+        }
+
         _runConsole.WriteLine($"Running diagram: `{diagramShortPath}`");
         diagramRan = true;
 
-        SmRunner smRunner = new(diagramPath: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
         smRunner.Settings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
         smRunner.Run();
 

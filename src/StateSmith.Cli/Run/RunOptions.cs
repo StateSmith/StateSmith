@@ -33,7 +33,7 @@ public class RunOptions
     public bool Menu { get; set; } = false;
 
     [Option(HelpText = "Specifies programming language for transpiler. Ignored for csx files.")]
-    public TranspilerId Lang { get; set; } = TranspilerId.Default;
+    public TranspilerId Lang { get; set; } = TranspilerId.NotYetSet;
 
     [Option("no-sim-gen", HelpText = "Disables simulation .html file generation. Ignored for csx files.")]
     public bool NoSimGen { get; set; } = false;

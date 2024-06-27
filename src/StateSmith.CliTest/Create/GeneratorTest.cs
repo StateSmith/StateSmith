@@ -3,6 +3,7 @@ using NSubstitute;
 using Spectre.Console;
 using StateSmith.Cli.Create;
 using StateSmith.Cli.Utils;
+using StateSmith.Output;
 using StateSmithTest;
 using Xunit;
 
@@ -215,5 +216,50 @@ public class GeneratorTest
 
         text.Should().Contain("[RenderConfig]&#10;"); // for new lines
         text.Should().Contain("[RenderConfig.C]");
+    }
+
+    /// <summary>
+    /// In this simplified workflow, the toml file specifies the transpiler id.
+    /// It should not be commented out.
+    /// </summary>
+    [Fact]
+    public void TomlSpecifiesTranspilerId_NoCsx()
+    {
+        var settings = new Settings
+        {
+            UseCsxWorkflow = false,
+            TargetLanguageId = TargetLanguageId.C,
+            FileExtension = ".plantuml", // use plantuml so that line endings aren't replaced for drawio
+            PlantUmlDiagramTemplateId = TemplateIds.PlantUmlSimple1,
+            smName = "LedSm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        text = StringUtils.ConvertToSlashNLines(text); // for below assertions
+        text.Should().Contain("\ntranspilerId = \"C99\"");
+    }
+
+    /// <summary>
+    /// When CSX file is used, the transpiler id should be commented out.
+    /// </summary>
+    [Fact]
+    public void TomlSpecifiesTranspilerId_Csx()
+    {
+        var settings = new Settings
+        {
+            UseCsxWorkflow = true,
+            TargetLanguageId = TargetLanguageId.C,
+            FileExtension = ".plantuml", // use plantuml so that line endings aren't replaced for drawio
+            PlantUmlDiagramTemplateId = TemplateIds.PlantUmlSimple1,
+            smName = "LedSm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        text = StringUtils.ConvertToSlashNLines(text); // for below assertions
+        text.Should().Contain("# transpilerId = \"C99\"");
     }
 }

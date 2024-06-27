@@ -5,6 +5,7 @@ using StateSmith.Output;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using StateSmith.SmGraph;
+using System;
 
 namespace StateSmith.Runner;
 
@@ -84,6 +85,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public void Run()
     {
+        if (settings.transpilerId == TranspilerId.NotYetSet)
+            throw new ArgumentException("TranspilerId must be set before running code generation");
+
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
         PrepareBeforeRun();
