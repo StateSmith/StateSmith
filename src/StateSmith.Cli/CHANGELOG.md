@@ -8,17 +8,17 @@ Test/interim releases are not documented here.
 
 ---
 
-## WIP
-### Change (minor)
-- `run` command now checks if diagrams specify `SmRunnerSettings.transpilerId` using toml if `--lang` is not specified.
-- PlantUML and drawio templates now include toml config that is updated based on target language.
-
----
-
 ## [0.9.1]
 ### Change (minor)
-- Ask if .csx file is desired. Defaults to "no" based on latest diagram-only work.
+- `create` command now asks if .csx file is desired. Defaults to "no" based on latest diagram-only work.
+- `run` command now checks if diagrams specify `SmRunnerSettings.transpilerId` using toml if `--lang` is not specified.
 - PlantUML is now the default diagram type for new users.
+- PlantUML and drawio templates now include toml config that is updated based on target language.
+
+### Upgrade StateSmith library version to 0.11.1
+#### Add
+- Add plantuml support for `note on link`
+  - https://github.com/StateSmith/StateSmith/issues/343
 
 ---
 
