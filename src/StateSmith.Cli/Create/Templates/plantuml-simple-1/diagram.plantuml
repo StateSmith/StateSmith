@@ -1,33 +1,58 @@
 @startuml {{smName}}
 
-/' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML '/
-
 /'
-  The below events and handlers are just a sample to show what the syntax can look like.
-  You should replace them with your own.
+  This diagram is just a sample to show what the syntax can look like.
   
   We don't yet generate fully working examples for every supported language.
   This starting template is language agnostic.
 '/
 
-state STATE_1 {
-  STATE_1 : enter / print("S1 enter");
-  STATE_1 : do    / print("S1 do");
-  STATE_1 : exit  / print("S1 exit");
+
+'//////////////////// STATE ORGANIZATION ////////////////////
+' Note: StateSmith treats state names and events as case insensitive.
+' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML
+
+[*] -> OFF
+
+state ON_GROUP {
+    [*] -> ON1
+    state ON1
+    state ON2
+    state ON3
 }
 
-state STATE_2 {
-  STATE_2 : enter / print("S2 enter");
-  STATE_2 : exit  / print("S2 exit");
-}
 
-[*] -> STATE_1
-STATE_1 --> STATE_2 : MY_EVENT_1
-STATE_2 --> STATE_1 : MY_EVENT_2
+'//////////////////// STATE HANDLERS ////////////////////
+
+'OFF
+OFF: enter / print("---");
+OFF --> ON1 : inc
+OFF --> ON_GROUP: toggle
+
+'ON_GROUP
+ON_GROUP --> OFF: toggle
+
+'ON1
+ON1: enter / print("$--");
+ON1 --> ON2 : inc
+ON1 --> OFF : dim
+
+'ON2
+ON2: enter / print("$$-");
+ON2 --> ON3 : inc
+ON2 --> ON1 : dim
+
+'ON3
+ON3: enter / print("$$$");
+ON3: enter / count++;
+ON3 --> ON2 : dim
+
+
 
 '######################## StateSmith config ########################
 ' The below special comment block sets the StateSmith configuration.
 ' More info: https://github.com/StateSmith/StateSmith/issues/335
+' Feel free to remove or modify it as needed.
 
 /'! $CONFIG : toml
 {{configToml}}
