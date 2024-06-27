@@ -8,6 +8,7 @@ using StateSmith.SmGraph;
 using StateSmith.Input;
 using FluentAssertions;
 using StateSmith.Runner;
+using System.Linq;
 
 namespace StateSmithTest.PlantUMLTests;
 
@@ -380,6 +381,12 @@ public class ParsingTests
 
             state BetweenNotes7
 
+            BetweenNotes1 --> BetweenNotes2
+            note on link
+              This is a note on a link.
+              See https://github.com/StateSmith/StateSmith/issues/343
+            end note
+
             @enduml
             """);
 
@@ -393,6 +400,31 @@ public class ParsingTests
         a.Should().Throw<Exception>();
         a = () => GetVertexById("DontFindMe2");
         a.Should().Throw<Exception>();
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/343
+    /// </summary>
+    [Fact]
+    public void NoteOnLinkKeywords_343()
+    {
+        // introduced lexer keywords 'on' and 'link'.
+        // Need to ensure that they can be used as regular identifiers.
+
+        var plantUmlText = """
+            @startuml ExampleSm
+            [*] --> on
+            on --> link : link / stuff(on)
+            link: on / link stuff 2
+            @enduml
+            """;
+        InputSmBuilder inputSmBuilder = new();
+        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
+        inputSmBuilder.FinishRunning();
+
+        var sm = inputSmBuilder.GetStateMachine();
+        sm.ChildWithDiagramId("link").Behaviors.Single().DescribeAsUml().Should().Be("on / { link stuff 2 }");
+        sm.ChildWithDiagramId("on").Behaviors.Single().DescribeAsUml().Should().Be("link / { stuff(on) } TransitionTo(link)");
     }
 
     [Fact]

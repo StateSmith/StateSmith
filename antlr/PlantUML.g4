@@ -216,6 +216,25 @@ note_multiline:
     ENDNOTE
     ;
 
+// See https://github.com/StateSmith/StateSmith/issues/343
+//    @startuml
+//    [*] -> State1
+//    State1 --> State2
+//    note on link 
+//      this is a state-transition note 
+//    end note
+//    @enduml
+note_on_link:
+    'note'
+    HWS+
+    'on'
+    HWS+
+    'link'
+    ohs
+    (note_multiline_contents_line)*
+    ENDNOTE
+    ;
+
 // note left of Active : this is a short\nnote
 note_floating:
     'note'
@@ -226,6 +245,8 @@ note_floating:
 
 note:
     note_short
+    |
+    note_on_link // must come before note_multiline
     |
     note_multiline
     |
@@ -273,6 +294,8 @@ identifier
     | 'mainframe'
     | 'title'
     | 'skinparam'
+    | 'on'
+    | 'link'
     ;
 IDENTIFIER  :   IDENTIFIER_NON_DIGIT   ( IDENTIFIER_NON_DIGIT | DIGIT )*  ;
 DIGIT :   [0-9]  ;

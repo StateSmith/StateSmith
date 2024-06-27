@@ -27,6 +27,11 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+[wip]
+### Add
+- Add plantuml support for `note on link`
+  - https://github.com/StateSmith/StateSmith/issues/343
+
 ---
 
 ## [0.11.0-alpha]
