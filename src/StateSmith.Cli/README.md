@@ -28,9 +28,10 @@ This will bring up a wizard that guides you through quickly creating a new State
 ![](./md-img/create.gif)
 
 ### Run StateSmith code generation
-Still a work in progress. For now, it will print a message saying it's not ready yet.
-
-The idea is to make it super easy to run the code generation tool. It will be as simple as running the command `ss.cli run`. It will code generate for all StateSmith projects in a manifest file, or the current directory (recursive option). It also automatically skips a project if its generated code is already up to date.
+TODO: needs updated documentation.
+```
+ss.cli run
+```
 
 
 
