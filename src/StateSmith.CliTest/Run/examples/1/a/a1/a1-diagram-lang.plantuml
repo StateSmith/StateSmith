@@ -1,4 +1,4 @@
-@startuml MySm
+@startuml a1_diagram_lang
 
 /' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML '/
 
@@ -28,7 +28,10 @@ STATE_2 --> STATE_1 : MY_EVENT_2
 /'! $CONFIG : toml
 
 [SmRunnerSettings]
-transpilerId = "CSharp"  # important part of this file
+transpilerId = "JavaScript"  # important part of this test file
+
+[SmRunnerSettings.simulation]
+enableGeneration = false
 
 '/
 
