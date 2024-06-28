@@ -6,7 +6,7 @@ This tool is brand new (2024-05-06) and ready for early access. We've already fi
 **Video Walkthough**: https://www.youtube.com/watch?v=2y1tLmNpz78
 
 ## Install
-Ensure that you have a [dotnet sdk (version 6, 7 or 8)](https://dotnet.microsoft.com/en-us/download/dotnet/sdk-for-vs-code) installed. It's used for StateSmith as well.
+Follow the main [install instructions for StateSmith](https://github.com/StateSmith/StateSmith/wiki/StateSmith-install-requirements).
 
 Then install the CLI tool with the following command:
 ```
@@ -15,7 +15,15 @@ dotnet tool install --global StateSmith.Cli
 
 `--global` will put the tool in a location that is in your PATH. This will allow you to run the tool with the `ss.cli` command from any directory.
 
-![](./md-img/install.gif)
+<!--  ![](./md-img/install.gif) -->
+
+## Updating
+Issue the command:
+```
+dotnet tool update --global StateSmith.Cli
+```
+
+![](./md-img/image.png)
 
 ## Usage
 ### Create a new project
@@ -35,15 +43,7 @@ ss.cli run
 
 
 
-<br>
 
-## Updating
-Issue the command
-```
-dotnet tool update --global StateSmith.Cli
-```
-
-![](./md-img/image.png)
 
 
 ## Uninstall
