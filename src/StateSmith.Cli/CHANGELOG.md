@@ -8,6 +8,16 @@ Test/interim releases are not documented here.
 
 ---
 
+## wip
+### Change (minor)
+- `run` command for "diagram-only" projects now prints the proper path for created files.
+    - https://github.com/StateSmith/StateSmith/issues/345
+
+### Add
+- Add ability for toml config to disable simulator file generation.
+
+---
+
 ## [0.9.1]
 ### Change (minor)
 - `create` command now asks if .csx file is desired. Defaults to "no" based on latest diagram-only work.

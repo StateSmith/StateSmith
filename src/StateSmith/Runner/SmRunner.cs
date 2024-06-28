@@ -33,7 +33,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     readonly string callerFilePath;
 
     /// <summary>
-    /// Constructor.
+    /// Constructor. Will attempt to read settings from the diagram file.
     /// </summary>
     /// <param name="settings"></param>
     /// <param name="renderConfig"></param>
@@ -54,7 +54,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     }
 
     /// <summary>
-    /// A convenience constructor.
+    /// A convenience constructor. Will attempt to read settings from the diagram file.
     /// </summary>
     /// <param name="diagramPath">Relative to directory of script file that calls this constructor.</param>
     /// <param name="renderConfig"></param>

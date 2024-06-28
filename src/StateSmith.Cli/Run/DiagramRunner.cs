@@ -1,5 +1,6 @@
 using Spectre.Console;
 using StateSmith.Runner;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -79,8 +80,14 @@ public class DiagramRunner
             }
         }
 
-        SmRunner smRunner = new(diagramPath: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
-        if (smRunner.Settings.transpilerId == TranspilerId.NotYetSet)
+        string callerFilePath = Environment.CurrentDirectory;  // Fix for https://github.com/StateSmith/StateSmith/issues/345
+
+        RunnerSettings runnerSettings = new(diagramFile: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
+        runnerSettings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
+
+        // the constructor will attempt to read diagram settings from the diagram file
+        SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
+        if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
         {
             _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
             diagramRan = false;
@@ -88,10 +95,8 @@ public class DiagramRunner
         }
 
         _runConsole.WriteLine($"Running diagram: `{diagramShortPath}`");
-        diagramRan = true;
-
-        smRunner.Settings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
         smRunner.Run();
+        diagramRan = true;
 
         return diagramRan;
     }
