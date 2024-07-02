@@ -1,11 +1,10 @@
 using StateSmith.Output.UserConfig;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace StateSmith.Cli.Create;
 
 public class CsxTemplateRenderer
 {
+    protected TemplateFilterEngine templateFilterEngine = new();
     protected TargetLanguageId targetLanguageId;
     protected string smName;
     protected string stateSmithVersion;
@@ -67,90 +66,8 @@ public class CsxTemplateRenderer
             _ => throw new System.NotImplementedException(),
         };
 
-        str = ReplaceMultiLineFilters(str, langKeyFilterKey);
-        str = ReplaceInlineFilters(str, langKeyFilterKey);
-        str = ReplaceLineFilters(str, langKeyFilterKey);
+        str = templateFilterEngine.ProcessAllFilters(str, langKeyFilterKey);
 
-        return str;
-    }
-
-    private static string ReplaceMultiLineFilters(string str, string langKey)
-    {
-        Regex multilineFilter = new(@"(?xm)
-            (?: [ \t]* (?:\r\n|\r|\n) *)*   # leading whitespace
-            //!!<filter:
-            (?<tags>
-                [^>]+
-            )
-            >
-            (?<content>
-                (?:.|\n)
-            *?)
-            (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
-            //!!<\/filter>
-            [ \t]*
-            (?: (?:\r\n|\r|\n) [ \t]* $)*   # blank lines
-        ");
-
-        str = ReplaceContentForTags(str, langKey, multilineFilter);
-        return str;
-    }
-
-    private static string ReplaceInlineFilters(string str, string langKey)
-    {
-        Regex inlineFilter = new(@"(?x)
-            (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
-            /[*]!!<filter:
-            (?<tags>
-                [^>]+
-            )
-            >[*]/
-            (?<content>
-                (?:.|\n)
-            *?)
-            (?:\r\n|\r|\n|^)?  [ \t]*  # leading whitespace
-            /[*]!!<\/filter>[*]/
-            [ \t]*
-        ");
-
-        str = ReplaceContentForTags(str, langKey, inlineFilter);
-        return str;
-    }
-
-    private static string ReplaceLineFilters(string str, string langKey)
-    {
-        Regex lineRegex = new(@"(?x)
-            (?<content>
-                (?:\r\n|\r|\n|^)    # line break or start of string
-                .+?                 # line content before filter
-            )
-            [ \t]*
-            //!!<line-filter:
-            (?<tags>
-                [^>]+
-            )
-            >
-        .*");
-
-        str = ReplaceContentForTags(str, langKey, lineRegex);
-        return str;
-    }
-
-
-    private static string ReplaceContentForTags(string str, string langKey, Regex regex)
-    {
-        str = regex.Replace(str, (match) =>
-        {
-            var tags = match.Groups["tags"].Value.Split(',');
-            var content = match.Groups["content"].Value;
-
-            if (tags.Contains(langKey))
-            {
-                return content;
-            }
-
-            return "";
-        });
         return str;
     }
 }

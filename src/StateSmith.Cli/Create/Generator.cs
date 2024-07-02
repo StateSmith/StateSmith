@@ -1,5 +1,6 @@
 using StateSmith.Cli.Utils;
 using StateSmith.Common;
+using StateSmith.Output;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -23,18 +24,20 @@ public class Generator
 
     public void GenerateFiles()
     {
-        var templateName = settings.IsDrawIoSelected() ? settings.DrawIoDiagramTemplateId : settings.PlantUmlDiagramTemplateId;
-        GenerateCsx(templateName, settings.smName);
-        GenerateDiagramFile(templateName);
+        if (settings.UseCsxWorkflow)
+        {
+            GenerateCsx();
+        }
+        GenerateDiagramFile();
     }
 
-    public void GenerateCsx(string templateName, string smName)
+    public void GenerateCsx()
     {
-        var templateStr = TemplateLoader.LoadCsxOrDefault(templateName);
+        var templateStr = TemplateLoader.LoadCsxOrDefault(settings.GetTemplateId());
 
         string diagramFilePathRelative = GetDiagramPathRelativeToCsx();
 
-        var r = new CsxTemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: diagramFilePathRelative, smName: smName, template: templateStr);
+        var r = new CsxTemplateRenderer(settings.TargetLanguageId, stateSmithVersion: settings.StateSmithVersion, diagramPath: diagramFilePathRelative, smName: settings.smName, template: templateStr);
         var result = r.Render();
         fileWriter.Write(settings.scriptFileName, result);
     }
@@ -48,17 +51,49 @@ public class Generator
         return diagramFilePathRelative;
     }
 
-    public void GenerateDiagramFile(string templateName)
+    internal static string GetTomlConfig(TargetLanguageId targetLanguageId)
     {
-        var templateStr = TemplateLoader.LoadDiagram(templateName, isDrawIoSelected: settings.IsDrawIoSelected());
-        var result = templateStr.Replace("{{smName}}", settings.smName);
+        var tomlConfigTemplate = TemplateLoader.LoadTomlConfig();
+        var filterEngine = new TemplateFilterEngine();
+        var result = filterEngine.ProcessAllFilters(tomlConfigTemplate, filterTag: targetLanguageId.ToString());
+        
+        return result;
+    }
+
+    public void GenerateDiagramFile()
+    {
+        string diagramTemplateStr = GenerateDiagramFileText();
+        fileWriter.Write(settings.diagramFileName, diagramTemplateStr);
+    }
+
+    public string GenerateDiagramFileText()
+    {
+        var diagramTemplateStr = TemplateLoader.LoadDiagram(settings.GetTemplateId(), isDrawIoSelected: settings.IsDrawIoSelected());
+        diagramTemplateStr = diagramTemplateStr.Replace("{{smName}}", settings.smName);
+
+        var tomlConfig = GetTomlConfig(settings.TargetLanguageId);
+
+        if (settings.UseCsxWorkflow == false)
+        {
+            // simpler workflow (no csx) so the toml should specify the transpilerId.
+            // modify toml so transpilerId line is uncommented.
+            tomlConfig = tomlConfig.Replace("# transpilerId = ", "transpilerId = ");
+        }
+
+        if (settings.IsDrawIoSelected())
+        {
+            tomlConfig = HttpUtility.HtmlEncode(tomlConfig);
+            tomlConfig = StringUtils.ReplaceNewLineChars(tomlConfig, "&#10;");
+        }
+
+        diagramTemplateStr = diagramTemplateStr.Replace("{{configToml}}", tomlConfig);
 
         if (settings.IsDrawIoSvgSelected())
         {
-            result = WrapDrawioXmlForSvg(result);
+            diagramTemplateStr = WrapDrawioXmlForSvg(diagramTemplateStr);
         }
 
-        fileWriter.Write(settings.diagramFileName, result);
+        return diagramTemplateStr;
     }
 
     public static string WrapDrawioXmlForSvg(string drawioXml)

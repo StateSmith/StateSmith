@@ -1,0 +1,87 @@
+############# Render Config Settings ##############
+
+[RenderConfig]
+FileTop = """
+    // Whatever you put in this `FileTop` section will end up 
+    // being printed at the top of every generated code file.
+    """
+# AutoExpandedVars = ""
+# VariableDeclarations = ""
+# DefaultVarExpTemplate = ""
+# DefaultFuncExpTemplate = ""
+# DefaultAnyExpTemplate = ""
+# TriggerMap = ""
+
+
+//!!<filter:C,CppC>
+
+[RenderConfig.C]
+# CFileExtension = ".inc"
+# HFileExtension = ".h"   //!!<line-filter:C>
+# HFileExtension = ".hpp" //!!<line-filter:CppC>
+# HFileTop = ""
+# HFileIncludes = "#include <stdlib.h>"
+# CFileIncludes = """#include "some_header.h" """
+# CFileTop = ""
+# CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}"
+
+//!!</filter>
+
+
+//!!<filter:CSharp>
+
+[RenderConfig.CSharp]
+# NameSpace = ""
+# Usings = ""
+# ClassCode = ""
+# BaseList = "MyUserBaseClass, IMyOtherUserInterface"
+# UseNullable = false
+# UsePartialClass = false
+
+//!!</filter>
+
+
+//!!<filter:JavaScript>
+
+[RenderConfig.JavaScript]
+# ClassCode = ""
+# ExtendsSuperClass = "MyUserBaseClass"
+# UseExportOnClass = true
+# PrivatePrefix = "_"
+
+//!!</filter>
+
+
+
+############# SmRunner.Settings ###############
+
+[SmRunnerSettings]
+# transpilerId = "C99"  //!!<line-filter:C,CppC>
+# transpilerId = "CSharp"  //!!<line-filter:CSharp>
+# transpilerId = "JavaScript"  //!!<line-filter:JavaScript>
+# outputDirectory = "./gen"
+# outputCodeGenTimestamp = true
+# outputStateSmithVersionInfo = false
+# propagateExceptions = true
+# dumpErrorsToFile = true
+
+[SmRunnerSettings.smDesignDescriber]
+# enabled = true
+# outputDirectory = ".."
+# outputAncestorHandlers = true
+
+[SmRunnerSettings.smDesignDescriber.outputSections]
+# beforeTransformations = false
+# afterTransformations  = true
+
+[SmRunnerSettings.algoBalanced1]
+# outputEventIdToStringFunction = false
+# outputStateIdToStringFunction = false
+
+[SmRunnerSettings.simulation]
+# enableGeneration = false
+# outputDirectory = ".."
+# outputFileNamePostfix = ".sim.html"
+
+# There are more SmRunnerSettings. See C# classes on github project.
+# See https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs

@@ -3,6 +3,7 @@ using NSubstitute;
 using Spectre.Console;
 using StateSmith.Cli.Create;
 using StateSmith.Cli.Utils;
+using StateSmith.Output;
 using StateSmithTest;
 using Xunit;
 
@@ -18,6 +19,7 @@ public class GeneratorTest
 
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             diagramFileName = DiagramPath,
             scriptFileName = CsxFilePath,
             TargetLanguageId = TargetLanguageId.C,
@@ -64,6 +66,7 @@ public class GeneratorTest
 
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             diagramFileName = DiagramPath,
             scriptFileName = CsxFilePath,
             TargetLanguageId = TargetLanguageId.C,
@@ -108,6 +111,7 @@ public class GeneratorTest
 
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             diagramFileName = DiagramPath,
             scriptFileName = CsxFilePath,
             TargetLanguageId = TargetLanguageId.JavaScript,
@@ -154,6 +158,7 @@ public class GeneratorTest
         const string DiagramPath = "./diagrams/RocketSm.drawio";
         var settings = new Settings
         {
+            UseCsxWorkflow = true,
             diagramFileName = DiagramPath,
             scriptFileName = CsxPath,
             TargetLanguageId = TargetLanguageId.JavaScript,
@@ -175,5 +180,86 @@ public class GeneratorTest
         // make sure the calls were made
         mockFileWriter.Received().Write(CsxPath, Arg.Any<string>());
         mockFileWriter.Received().Write(DiagramPath, Arg.Any<string>());
+    }
+
+    [Fact]
+    public void TestPlantUmlTomlTemplate()
+    {
+        var settings = new Settings
+        {
+            TargetLanguageId = TargetLanguageId.JavaScript,
+            FileExtension = ".plantuml",
+            PlantUmlDiagramTemplateId = TemplateIds.PlantUmlSimple1,
+            smName = "LedSm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        text.Should().Contain("@startuml LedSm");
+        text.Should().Contain("[RenderConfig.JavaScript]");
+    }
+
+    [Fact]
+    public void TestDrawioTomlTemplate()
+    {
+        var settings = new Settings
+        {
+            TargetLanguageId = TargetLanguageId.C,
+            FileExtension = ".drawio",
+            PlantUmlDiagramTemplateId = TemplateIds.DrawIoSimple1,
+            smName = "LedSm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        text.Should().Contain("[RenderConfig]&#10;"); // for new lines
+        text.Should().Contain("[RenderConfig.C]");
+    }
+
+    /// <summary>
+    /// In this simplified workflow, the toml file specifies the transpiler id.
+    /// It should not be commented out.
+    /// </summary>
+    [Fact]
+    public void TomlSpecifiesTranspilerId_NoCsx()
+    {
+        var settings = new Settings
+        {
+            UseCsxWorkflow = false,
+            TargetLanguageId = TargetLanguageId.C,
+            FileExtension = ".plantuml", // use plantuml so that line endings aren't replaced for drawio
+            PlantUmlDiagramTemplateId = TemplateIds.PlantUmlSimple1,
+            smName = "LedSm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        text = StringUtils.ConvertToSlashNLines(text); // for below assertions
+        text.Should().Contain("\ntranspilerId = \"C99\"");
+    }
+
+    /// <summary>
+    /// When CSX file is used, the transpiler id should be commented out.
+    /// </summary>
+    [Fact]
+    public void TomlSpecifiesTranspilerId_Csx()
+    {
+        var settings = new Settings
+        {
+            UseCsxWorkflow = true,
+            TargetLanguageId = TargetLanguageId.C,
+            FileExtension = ".plantuml", // use plantuml so that line endings aren't replaced for drawio
+            PlantUmlDiagramTemplateId = TemplateIds.PlantUmlSimple1,
+            smName = "LedSm"
+        };
+
+        var generator = new Generator(settings);
+        var text = generator.GenerateDiagramFileText();
+
+        text = StringUtils.ConvertToSlashNLines(text); // for below assertions
+        text.Should().Contain("# transpilerId = \"C99\"");
     }
 }

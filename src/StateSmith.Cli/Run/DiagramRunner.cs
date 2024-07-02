@@ -1,5 +1,6 @@
 using Spectre.Console;
 using StateSmith.Runner;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -27,12 +28,6 @@ public class DiagramRunner
 
     public void Run(List<string> targetDiagramFiles)
     {
-        if (_diagramOptions.Lang == TranspilerId.Default)
-        {
-            _runConsole.QuietMarkupLine("Not generating code for diagrams without csx files because no 'lang' specified.");
-            return;
-        }
-
         foreach (var diagramFile in targetDiagramFiles)
         {
             RunDiagramFile(diagramFile);
@@ -85,12 +80,23 @@ public class DiagramRunner
             }
         }
 
-        _runConsole.WriteLine($"Running diagram: `{diagramShortPath}`");
-        diagramRan = true;
+        string callerFilePath = Environment.CurrentDirectory;  // Fix for https://github.com/StateSmith/StateSmith/issues/345
 
-        SmRunner smRunner = new(diagramPath: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
-        smRunner.Settings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
+        RunnerSettings runnerSettings = new(diagramFile: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
+        runnerSettings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
+
+        // the constructor will attempt to read diagram settings from the diagram file
+        SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
+        if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
+        {
+            _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");
+            diagramRan = false;
+            return diagramRan; //!!!!!!!!!!! NOTE the return here.
+        }
+
+        _runConsole.WriteLine($"Running diagram: `{diagramShortPath}`");
         smRunner.Run();
+        diagramRan = true;
 
         return diagramRan;
     }

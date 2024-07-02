@@ -158,6 +158,12 @@ public interface IPlantUMLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNote_multiline([NotNull] PlantUMLParser.Note_multilineContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_on_link"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNote_on_link([NotNull] PlantUMLParser.Note_on_linkContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantUMLParser.note_floating"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

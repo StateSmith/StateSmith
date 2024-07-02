@@ -36,7 +36,12 @@ public class CreateUi
     {
         ReadSettingsFromJson();
 
-        StateSmithLib();
+        SelectWorkflow();
+
+        if (IsCsxWorkflow())
+        {
+            StateSmithLib();
+        }
 
         StateMachineName();
 
@@ -46,7 +51,10 @@ public class CreateUi
 
         DiagramFileName();
 
-        ScriptFileName();
+        if (IsCsxWorkflow())
+        {
+            ScriptFileName();
+        }
 
         DiagramTemplate();
 
@@ -79,12 +87,27 @@ public class CreateUi
         bool proceed = true;
 
         // if files exist, ask if should overwrite
-        if (File.Exists(_settings.diagramFileName) || File.Exists(_settings.scriptFileName))
+        if (File.Exists(_settings.diagramFileName) || WouldOverwiteScriptFile())
         {
             proceed = UiHelper.AskForOverwrite(_console);
         }
 
         return proceed;
+    }
+
+    private bool WouldOverwiteScriptFile()
+    {
+        if (!IsCsxWorkflow())
+        {
+            return false;
+        }
+
+        return File.Exists(_settings.scriptFileName);
+    }
+
+    private bool IsCsxWorkflow()
+    {
+        return _settings.UseCsxWorkflow;
     }
 
     private void ReadSettingsFromJson()
@@ -140,14 +163,27 @@ public class CreateUi
         AddSectionLeftHeader("Confirmation");
         _console.MarkupLine($"State Machine Name: [blue]{_settings.smName}[/]");
         _console.MarkupLine($"Target Language: [blue]{_settings.TargetLanguageId}[/]");
-        _console.MarkupLine($"StateSmith Version: [blue]{_settings.StateSmithVersion}[/]");
+        
+        if (IsCsxWorkflow())
+        {
+            _console.MarkupLine($"StateSmith Version: [blue]{_settings.StateSmithVersion}[/]");
+        }
+
         _console.MarkupLine($"Diagram file: [blue]{_settings.diagramFileName}[/]");
-        _console.MarkupLine($"Script file: [blue]{_settings.scriptFileName}[/]");
+
+        if (IsCsxWorkflow())
+        {
+            _console.MarkupLine($"Script file: [blue]{_settings.scriptFileName}[/]");
+        }
 
         if (_settings.IsDrawIoSelected())
+        {
             _console.MarkupLine($"Template: [blue]{_settings.DrawIoDiagramTemplateId}[/]");
+        }
         else
+        {
             _console.MarkupLine($"Template: [blue]{_settings.PlantUmlDiagramTemplateId}[/]");
+        }
 
         _console.MarkupLine("");
 
@@ -219,6 +255,31 @@ public class CreateUi
         }
 
         return found;
+    }
+
+    private void SelectWorkflow()
+    {
+        AddSectionLeftHeader("Workflow");
+        _console.WriteLine("Please select your ideal workflow. We recommend starting with \"User Friendly\".");
+        _console.WriteLine("You can manually add a .csx file later if you need more advanced features.");
+
+        bool idForUseCsxWorkflow = true;
+        bool idForUserFriendly = !idForUseCsxWorkflow;
+        var choices = new List<UiItem<bool>>()
+        {
+            new UiItem<bool>(id: idForUserFriendly,    display: "User Friendly - generally recommended. Faster & simpler." ),
+            new UiItem<bool>(id: idForUseCsxWorkflow,  display: "Advanced - adds a .csx file to support advanced features." ),
+        };
+        AddRememberedToChoices(choices, id: IsCsxWorkflow());
+
+        _settings.UseCsxWorkflow = _console.Prompt(
+                new SelectionPrompt<UiItem<bool>>()
+                    .Title("")
+                    .UseConverter(x => x.Display)
+                    .AddChoices(choices)).Id;
+
+        string selectedMessage = IsCsxWorkflow() ? "Advanced Features" : "User Friendly";
+        _console.MarkupLine($"Selected [blue]{selectedMessage}[/]");
     }
 
     private void StateSmithVersion()

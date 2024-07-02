@@ -22,7 +22,7 @@ public class CliArgsParserTest
         runOptions.ExcludePatterns.Should().BeEmpty();
         runOptions.IncludePatterns.Should().BeEmpty();
         runOptions.Menu.Should().BeFalse();
-        runOptions.Lang.Should().Be(TranspilerId.Default);
+        runOptions.Lang.Should().Be(TranspilerId.NotYetSet);
         runOptions.NoSimGen.Should().BeFalse();
     }
 

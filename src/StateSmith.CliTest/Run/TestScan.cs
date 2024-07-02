@@ -89,7 +89,8 @@ public class TestScan
             "DiagOnlySm.plantuml",
             "a/a1/a1a.plantuml",
             "a/a1/a1b.drawio.svg",
-            "a/a1/a1c.plantuml"
+            "a/a1/a1c.plantuml",
+            "a/a1/a1-diagram-lang.plantuml"
         );
 
         scanResults.ignoredFiles.Should().BeEquivalentTo(

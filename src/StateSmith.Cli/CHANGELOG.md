@@ -8,8 +8,32 @@ Test/interim releases are not documented here.
 
 ---
 
-## WIP
-### Added
+## [0.9.2]
+### Change (minor)
+- `run` command for "diagram-only" projects now prints the proper path for created files.
+    - https://github.com/StateSmith/StateSmith/issues/345
+
+### Add
+- Add ability for toml config to disable simulator file generation.
+
+---
+
+## [0.9.1]
+### Change (minor)
+- `create` command now asks if .csx file is desired. Defaults to "no" based on latest diagram-only work.
+- `run` command now checks if diagrams specify `SmRunnerSettings.transpilerId` using toml if `--lang` is not specified.
+- PlantUML is now the default diagram type for new users.
+- PlantUML and drawio templates now include toml config that is updated based on target language.
+
+### Upgrade StateSmith library version to 0.11.1
+#### Add
+- Add plantuml support for `note on link`
+  - https://github.com/StateSmith/StateSmith/issues/343
+
+---
+
+## [0.9.0]
+### Add
 - `run` command now supports running diagrams with `--lang` option.
     - https://github.com/StateSmith/StateSmith/issues/285
     - Supports diagram based toml settings
@@ -19,6 +43,21 @@ Test/interim releases are not documented here.
 - `run` command supports `-v` verbose mode.
     - most grey text moved to verbose mode.
     - now also prints non-matching and intentionally ignored .csx/diagram files.
+
+### Upgrade StateSmith library version to 0.11.0
+#### Add
+- Add diagram based toml config for `RenderConfig` and `SmRunner.Settings`
+    - Useful for plantuml as well which previously never had diagram based render config support.
+    - https://github.com/StateSmith/StateSmith/issues/335
+- simulator - show implicit `do` edge trigger explicitly
+    - https://github.com/StateSmith/StateSmith/issues/316
+- Add default expansions for variables and functions.
+    - https://github.com/StateSmith/StateSmith/issues/284
+- Add convenience helpers for `SmTransformer`.
+
+#### Fix
+- simulator - prevent user diagram settings that could mess up generated simulation.
+    - https://github.com/StateSmith/StateSmith/issues/337
 
 ---
 

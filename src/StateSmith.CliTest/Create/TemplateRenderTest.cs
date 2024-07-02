@@ -1,5 +1,4 @@
 using FluentAssertions;
-using StateSmith.Runner;
 using StateSmith.Cli.Create;
 using StateSmithTest;
 using Xunit;
@@ -8,158 +7,9 @@ namespace StateSmithCliTest.Create;
 
 public class TemplateRenderTest
 {
-    private CsxTemplateRenderer MakeRenderer(TargetLanguageId targetLanguageId)
-    {
-        return new CsxTemplateRenderer(targetLanguageId: targetLanguageId, stateSmithVersion: "0.8.1-alpha", diagramPath: "../../MySm.drawio", smName: "MySm");
-    }
-
     private CsxTemplateRenderer MakeRenderer(TargetLanguageId targetLanguageId, string stateSmithVersion, string diagramPath)
     {
         return new CsxTemplateRenderer(targetLanguageId: targetLanguageId, stateSmithVersion: stateSmithVersion, diagramPath: diagramPath, smName: "MySm");
-    }
-
-    [Fact]
-    public void LineFilterSingle()
-    {
-        var r = MakeRenderer(TargetLanguageId.C);
-
-        const string Template = """
-            Header stuff
-            C stuff     //!!<line-filter:C>
-            C++ stuff   //!!<line-filter:CppC>
-            C# stuff    //!!<line-filter:CSharp>
-            js stuff    //!!<line-filter:JavaScript>
-            Footer stuff
-            """;
-        r.SetTemplate(Template);
-
-        r.Render().ShouldBeShowDiff("""
-            Header stuff
-            C stuff
-            Footer stuff
-            """);
-    }
-
-    [Fact]
-    public void LineFilterMulti()
-    {
-        var r = MakeRenderer(TargetLanguageId.CppC);
-
-        const string Template = """
-            Header 
-            C stuff     //!!<line-filter:C>
-            C/C++ stuff //!!<line-filter:C,CppC>
-            C++ stuff   //!!<line-filter:CppC>
-            C# stuff    //!!<line-filter:CSharp>
-            js stuff    //!!<line-filter:JavaScript>
-            Footer stuff
-            """;
-        r.SetTemplate(Template);
-
-        r.Render().ShouldBeShowDiff("""
-            Header 
-            C/C++ stuff
-            C++ stuff
-            Footer stuff
-            """);
-    }
-
-    [Fact]
-    public void MultiLineFilter()
-    {
-        var r = MakeRenderer(TargetLanguageId.CppC);
-
-        const string Template = """
-            Header 
-            //!!<filter:CppC>
-            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
-            // See https://github.com/StateSmith/StateSmith/issues/126
-            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
-            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
-            //!!</filter>
-            Footer stuff
-            """;
-        r.SetTemplate(Template);
-
-        r.Render().ShouldBeShowDiff("""
-            Header
-            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
-            // See https://github.com/StateSmith/StateSmith/issues/126
-            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
-            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
-            Footer stuff
-            """);
-    }
-
-    [Fact]
-    public void MultiLineFilter_MultiTag()
-    {
-        var r = MakeRenderer(TargetLanguageId.CppC);
-
-        const string Template = """
-            Header 
-            //!!<filter:JavaScript,CppC>
-            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
-            // See https://github.com/StateSmith/StateSmith/issues/126
-            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
-            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
-            //!!</filter>
-            Footer stuff
-            """;
-        r.SetTemplate(Template);
-
-        r.Render().ShouldBeShowDiff("""
-            Header
-            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
-            // See https://github.com/StateSmith/StateSmith/issues/126
-            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
-            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
-            Footer stuff
-            """);
-    }
-
-    [Fact]
-    public void MultiLineFilter_Negative()
-    {
-        var r = MakeRenderer(TargetLanguageId.C);
-
-        const string Template = """
-            Header 
-            //!!<filter:CppC>
-            // NOTE!!! Idiomatic C++ code generation is coming. This will improve.
-            // See https://github.com/StateSmith/StateSmith/issues/126
-            string IRenderConfigC.CFileExtension => "".cpp""; // the generated StateSmith C code is also valid C++ code
-            string IRenderConfigC.HFileExtension => "".h"";   // could also be .hh, .hpp or whatever you like
-            //!!</filter>
-            Footer stuff
-            """;
-        r.SetTemplate(Template);
-
-        r.Render().ShouldBeShowDiff("""
-            Header
-            Footer stuff
-            """);
-    }
-
-    [Fact]
-    public void InlineFilter()
-    {
-        var r = MakeRenderer(TargetLanguageId.CppC);
-        const string Template = """
-            public class MyRenderConfig : IRenderConfig /*!!<filter:CppC>*/, IRenderConfigC/*!!</filter>*/
-            """;
-        r.SetTemplate(Template);
-
-        r.Render().ShouldBeShowDiff("""
-            public class MyRenderConfig : IRenderConfig, IRenderConfigC
-            """);
-
-        // test negative now
-        r = MakeRenderer(TargetLanguageId.C);
-        r.SetTemplate(Template);
-        r.Render().ShouldBeShowDiff("""
-            public class MyRenderConfig : IRenderConfig
-            """);
     }
 
     [Fact]
@@ -198,6 +48,74 @@ public class TemplateRenderTest
             SmRunner runner = new(diagramPath: "../../MySm.drawio", new MyRenderConfig(), transpilerId: C99);
             runner.Run();
             """);
+    }
+
+
+    // todolow - consider reorganizing integration tests. Should they test Generator instead?
+
+
+    [Fact]
+    public void IntegrationTestTomlC()
+    {
+        // TODO do for more languages
+        var tomlConfig = Generator.GetTomlConfig(TargetLanguageId.C);
+
+        tomlConfig.ShouldBeShowDiff(""""
+            ############# Render Config Settings ##############
+
+            [RenderConfig]
+            FileTop = """
+                // Whatever you put in this `FileTop` section will end up 
+                // being printed at the top of every generated code file.
+                """
+            # AutoExpandedVars = ""
+            # VariableDeclarations = ""
+            # DefaultVarExpTemplate = ""
+            # DefaultFuncExpTemplate = ""
+            # DefaultAnyExpTemplate = ""
+            # TriggerMap = ""
+
+            [RenderConfig.C]
+            # CFileExtension = ".inc"
+            # HFileExtension = ".h"
+            # HFileTop = ""
+            # HFileIncludes = "#include <stdlib.h>"
+            # CFileIncludes = """#include "some_header.h" """
+            # CFileTop = ""
+            # CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}"
+
+            ############# SmRunner.Settings ###############
+
+            [SmRunnerSettings]
+            # transpilerId = "C99"
+            # outputDirectory = "./gen"
+            # outputCodeGenTimestamp = true
+            # outputStateSmithVersionInfo = false
+            # propagateExceptions = true
+            # dumpErrorsToFile = true
+
+            [SmRunnerSettings.smDesignDescriber]
+            # enabled = true
+            # outputDirectory = ".."
+            # outputAncestorHandlers = true
+
+            [SmRunnerSettings.smDesignDescriber.outputSections]
+            # beforeTransformations = false
+            # afterTransformations  = true
+
+            [SmRunnerSettings.algoBalanced1]
+            # outputEventIdToStringFunction = false
+            # outputStateIdToStringFunction = false
+
+            [SmRunnerSettings.simulation]
+            # enableGeneration = false
+            # outputDirectory = ".."
+            # outputFileNamePostfix = ".sim.html"
+
+            # There are more SmRunnerSettings. See C# classes on github project.
+            # See https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs
+            
+            """", outputCleanActual: true);
     }
 
     [Fact]
@@ -264,7 +182,7 @@ public class TemplateRenderTest
                 }
             }
             
-            """");
+            """", outputCleanActual: true);
     }
 
     [Fact]
