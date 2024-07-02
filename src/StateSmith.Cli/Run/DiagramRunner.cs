@@ -80,7 +80,7 @@ public class DiagramRunner
             }
         }
 
-        string callerFilePath = Environment.CurrentDirectory;  // Fix for https://github.com/StateSmith/StateSmith/issues/345
+        string callerFilePath = Environment.CurrentDirectory + "/";  // Slash needed for fix of https://github.com/StateSmith/StateSmith/issues/345
 
         RunnerSettings runnerSettings = new(diagramFile: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
         runnerSettings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
