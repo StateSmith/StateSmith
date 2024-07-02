@@ -8,6 +8,7 @@ Test/interim releases are not documented here.
 
 ---
 
+## [0.9.3]
 ### Fix (minor)
 - `run` command for "diagram-only" projects now prints the proper path for created files.
   - https://github.com/StateSmith/StateSmith/issues/345
