@@ -27,18 +27,20 @@ abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 
-def RunWindowsBinaryCommand(command):
-    print(f"Running command: {command}")
-    subprocess.run(f"ss.cli-win-x64.exe {command}", shell=True, check=True)
-
 # remove existing files in build directory
 for f in glob.glob(f"*"):
     if not f.endswith(".plantuml") and not f.endswith(".py"):
         os.remove(f)
 
-# execute publish command for each RID
-for rid in rids:
-    cmd = f"""dotnet publish -c Release -r {rid} -p:PublishSingleFile=true --self-contained --framework {framework} /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" """
+
+# todo - make it work on all platforms
+def run_windows_binary_command(command):
+    print(f"Running command: {command}")
+    subprocess.run(f"ss.cli-win-x64.exe {command}", shell=True, check=True)
+
+def publish_for_rid(framework, rid, is_compressed):
+    compressed_str = "-p:EnableCompressionInSingleFile=true" if is_compressed else ""
+    cmd = f"""dotnet publish -c Release -r {rid} -p:PublishSingleFile=true --self-contained --framework {framework} {compressed_str} /p:DefineConstants="SS_SINGLE_FILE_APPLICATION" """
     print()
     print(cmd)
     subprocess.run(cmd, cwd="..", shell=True, check=True)
@@ -52,20 +54,27 @@ for rid in rids:
     dotnetBinDirectory =f"../bin/Release/{framework}/{rid}"
 
     # move file
+    if is_compressed:
+        extension = "-compressed" + extension
     shutil.move(f"{dotnetBinDirectory}/publish/{filename}", f"ss.cli-{rid}{extension}")
 
     # remove publish directory to disk save space
     shutil.rmtree(f"{dotnetBinDirectory}")
 
 
+# execute publish command for each RID
+for rid in rids:
+    publish_for_rid(framework, rid, is_compressed=False)
+    publish_for_rid(framework, rid, is_compressed=True)
+
 # if on windows, try running the windows binary. Throw exception if it fails.
 if os.name == 'nt':
     print()
     print("Testing built binary...")
 
-    RunWindowsBinaryCommand("--version")
-    RunWindowsBinaryCommand("version")
-    RunWindowsBinaryCommand("run --here")
+    run_windows_binary_command("--version")
+    run_windows_binary_command("version")
+    run_windows_binary_command("run --here")
 
     input("Press Enter to continue...")
     print("cleaning up...")
