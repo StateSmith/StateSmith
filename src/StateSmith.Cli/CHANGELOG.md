@@ -8,6 +8,13 @@ Test/interim releases are not documented here.
 
 ---
 
+## wip
+### Change (minor)
+- `run` message "No .csx scripts found to run." now white instead of red.
+    - no longer considered an error as we have diagram only projects.
+
+---
+
 ## [0.9.3]
 ### Fix (minor)
 - `run` command for "diagram-only" projects now prints the proper path for created files.

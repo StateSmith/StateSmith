@@ -148,7 +148,7 @@ public class RunHandler
     {
         if (csxScripts.Count == 0)
         {
-            _console.MarkupLine("[red]No scripts found to run.[/]");
+            _console.MarkupLine("No .csx scripts found to run.");
             return;
         }
 
