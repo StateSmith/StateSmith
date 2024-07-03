@@ -2,6 +2,7 @@
 
 import os
 import shutil
+import glob
 
 buildBinariesDir = "build-binaries-temp"
 framework = "net8.0"
@@ -9,23 +10,24 @@ framework = "net8.0"
 # https://learn.microsoft.com/en-us/dotnet/core/rid-catalog
 rids = [
     "win-x64",
+    "linux-x64",
+    "osx-x64", # minimum macOS version is 10.12 Sierra
+
     "win-x86",
     "win-arm64",
-    "osx-x64", # minimum macOS version is 10.12 Sierra
     "osx-arm64",
-    "linux-x64",
     "linux-musl-x64",
     "linux-musl-arm64",
     "linux-arm",
     "linux-arm64",
 ]
 
-# remove existing build directory
-if os.path.exists(buildBinariesDir):
-    shutil.rmtree(buildBinariesDir)
+# ensure build directory exists
+os.makedirs(buildBinariesDir, exist_ok=True)
 
-# make build directory
-os.makedirs(buildBinariesDir)
+# remove existing files in build directory
+for f in glob.glob(f"{buildBinariesDir}/*"):
+    os.remove(f)
 
 # execute publish command for each RID
 for rid in rids:

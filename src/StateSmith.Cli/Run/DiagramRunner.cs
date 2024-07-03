@@ -88,7 +88,6 @@ public class DiagramRunner
 
         // the constructor will attempt to read diagram settings from the diagram file
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
-        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
 
         if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
         {

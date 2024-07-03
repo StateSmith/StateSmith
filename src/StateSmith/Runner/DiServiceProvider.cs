@@ -78,9 +78,11 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
             services.AddSingleton<IGilAlgo, AlgoBalanced1>();
             services.AddSingleton<IGilTranspiler, GilToC99>();
-            #if !SS_SINGLE_FILE_APPLICATION
+#if SS_SINGLE_FILE_APPLICATION
+            services.AddSingleton<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
+#else
             services.AddSingleton<IRoslynMetadataProvider, FileMetadataProvider>();
-            #endif
+#endif
             services.AddSingleton<RoslynCompiler>();
             services.AddSingleton<NameMangler>();
             services.AddSingleton<PseudoStateHandlerBuilder>();

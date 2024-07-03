@@ -1,9 +1,12 @@
-﻿using Basic.Reference.Assemblies;
+#if SS_SINGLE_FILE_APPLICATION
+
+#nullable enable
+using Basic.Reference.Assemblies;
 using Microsoft.CodeAnalysis;
 using StateSmith.Output.Gil;
 using System.Collections.Generic;
 
-namespace StateSmith.Cli.Run;
+namespace StateSmith.Output.Gil;
 
 /// <summary>
 /// This allows the StateSmith.Cli to be compiled into a single executable.
@@ -17,3 +20,5 @@ public class InMemoryMetaDataProvider : IRoslynMetadataProvider
         return ReferenceAssemblies.Net80;
     }
 }
+
+#endif
