@@ -84,12 +84,31 @@ class Program
             },
             errs =>
             {
-                PrintHelp(parserResult, _console);
+                if (errs.Count() == 1 && errs.IsVersion())
+                {
+                    _console.WriteLine(HeadingInfo.Default);
+                    return 0;
+                }
+
+                //if (errs.Count() == 1 && errs.IsHelp())   // this breaks `ss.cli run --help`
+                if (args.Length == 1 && args[0] == "--help")
+                {
+                    _console.WriteLine(HeadingInfo.Default);
+                    _console.WriteLine();
+                    _console.WriteLine(_cliArgsParser.GetUsage());
+                    return 0;
+                }
+
                 if (errs.Count() == 1 && errs.First().Tag == ErrorType.NoVerbSelectedError)
                 {
+                    _console.WriteLine(HeadingInfo.Default);
+                    _console.WriteLine();
+                    _console.WriteLine(_cliArgsParser.GetUsage());
                     TryCheckForUpdates();
                     return ProvideMenu();
                 }
+
+                _console.WriteLine(_cliArgsParser.GetErrorHelp(parserResult, errs));
                 return 1;
             }
         );
@@ -155,18 +174,5 @@ class Program
         bool printed = loader.Printed || updateChecker.Printed;
         if (printed)
             _console.WriteLine("\n");
-    }
-
-    private static void PrintHelp(ParserResult<object> parserResult, IAnsiConsole _console)
-    {
-        var helpText = HelpText.AutoBuild(parserResult, h =>
-        {
-            h.AutoHelp = false;
-            h.AutoVersion = false;
-            h.Copyright = "";
-            return HelpText.DefaultParsingErrorsHandler(parserResult, h);
-        }, e => e);
-
-        _console.WriteLine(helpText);
     }
 }
