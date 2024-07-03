@@ -1,4 +1,5 @@
 using Spectre.Console;
+using StateSmith.Output.Gil;
 using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
@@ -87,6 +88,8 @@ public class DiagramRunner
 
         // the constructor will attempt to read diagram settings from the diagram file
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
+        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
+
         if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
         {
             _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");

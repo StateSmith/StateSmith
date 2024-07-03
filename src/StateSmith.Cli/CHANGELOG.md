@@ -9,14 +9,21 @@ Test/interim releases are not documented here.
 ---
 
 ## wip
-### Change (minor)
-- `run` message "No .csx scripts found to run." now white instead of red.
-    - no longer considered an error as we have diagram only projects.
-
 ### Add
+- Add prebuilt binaries for Windows, Linux, and Mac. No need to install dotnet anything unless you want .csx support.
+  File sizes are around 145 MB, but may be reduced to around 90 MB in the future with IL trimming.
+    - win-x64, win-x86, win-arm64
+    - osx-x64 (minimum macOS version is 10.12 Sierra)
+    - osx-arm64
+    - linux-x64, linux-arm, linux-arm64
+    - linux-musl-x64, linux-musl-arm64
 - Add ability to run diagrams even if `dotnet-script` is not installed.
 - Add `run` CLI option `--no-csx` to skip running .csx scripts.
     - Useful for diagram only projects.
+
+### Change (minor)
+- `run` message "No .csx scripts found to run." now white instead of red.
+    - no longer considered an error as we have diagram only projects.
 
 ---
 

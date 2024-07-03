@@ -23,9 +23,9 @@ public class GilTranspilerHelper
         this.root = root ?? model.SyntaxTree.GetCompilationUnitRoot();
     }
 
-    public static GilTranspilerHelper Create(CSharpSyntaxWalker transpilerWalker, string gilCode)
+    public static GilTranspilerHelper Create(CSharpSyntaxWalker transpilerWalker, string gilCode, RoslynCompiler roslynCompiler)
     {
-        Compile(gilCode, out var root, out var model);
+        roslynCompiler.Compile(gilCode, out var root, out var model);
         return new GilTranspilerHelper(transpilerWalker, model, root);
     }
 
@@ -47,38 +47,6 @@ public class GilTranspilerHelper
     public bool IsGilNoEmit(MethodDeclarationSyntax node)
     {
         return IsGilNoEmit(node.Identifier.ValueText);
-    }
-
-    public static void Compile(string gilCode, out CompilationUnitSyntax root, out SemanticModel model)
-    {
-        SyntaxTree tree = CSharpSyntaxTree.ParseText(gilCode);
-        root = tree.GetCompilationUnitRoot();
-        ThrowOnError(tree.GetDiagnostics(), gilCode);
-
-        var compilation = CSharpCompilation.Create("GilCompilation")
-            .AddReferences(MetadataReference.CreateFromFile(
-                typeof(string).Assembly.Location))
-            .AddSyntaxTrees(tree);
-
-        model = compilation.GetSemanticModel(tree);
-        ThrowOnError(model.GetDiagnostics(), gilCode);
-
-        static void ThrowOnError(IEnumerable<Diagnostic> enumerable, string programText)
-        {
-            var errors = enumerable.Where(d => d.Severity == DiagnosticSeverity.Error);
-
-            var message = "";
-
-            foreach (var error in errors)
-            {
-                message += error.ToString() + "\n";
-            }
-
-            if (message.Length > 0)
-            {
-                throw new TranspilerException(message, programText);
-            }
-        }
     }
 
     public bool HandleSpecialGilEmitClasses(ClassDeclarationSyntax classDeclarationSyntax)

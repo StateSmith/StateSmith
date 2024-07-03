@@ -17,14 +17,16 @@ public class GilToC99 : IGilTranspiler
     private readonly ICodeFileWriter codeFileWriter;
     private readonly IOutputInfo outputInfo;
     private readonly IGilToC99Customizer cCustomizer;
+    private readonly RoslynCompiler roslynCompiler;
 
-    public GilToC99(IOutputInfo outputInfo, IGilToC99Customizer cCustomizer, ICodeFileWriter codeFileWriter, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC)
+    public GilToC99(IOutputInfo outputInfo, IGilToC99Customizer cCustomizer, ICodeFileWriter codeFileWriter, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC, RoslynCompiler roslynCompiler)
     {
         this.renderConfigC = renderConfigC;
         this.outputInfo = outputInfo;
         this.cCustomizer = cCustomizer;
         this.codeFileWriter = codeFileWriter;
         this.renderConfig = renderConfig;
+        this.roslynCompiler = roslynCompiler;
     }
 
     public void TranspileAndOutputCode(string programText)
@@ -33,7 +35,7 @@ public class GilToC99 : IGilTranspiler
 
         //File.WriteAllText($"{outputInfo.outputDirectory}{cNameMangler.SmName}.gil.cs", programText);
 
-        GilTranspilerHelper.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
+        roslynCompiler.Compile(programText, out CompilationUnitSyntax root, out SemanticModel model);
 
         C99GenVisitor visitor = new(model, hFileSb, cFileSb, renderConfig, renderConfigC, cCustomizer);
 
