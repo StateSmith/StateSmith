@@ -42,27 +42,31 @@ class Program
             AnsiConsole.Console.Cursor.Show();
         };
 
+        int resultCode;
+
         try
         {
-            ParseCommandsAndRun(args, _console);
+            resultCode = ParseCommandsAndRun(args, _console);
         }
         catch (Exception ex)
         {
             _console.WriteException(ex);
-            Environment.ExitCode = 1;
+            resultCode = 1;
         }
         finally
         {
             _console.WriteLine("");
             _console.WriteLine("");
         }
+
+        Environment.ExitCode = resultCode;
     }
 
-    private void ParseCommandsAndRun(string[] args, IAnsiConsole _console)
+    private int ParseCommandsAndRun(string[] args, IAnsiConsole _console)
     {
         var parserResult = _cliArgsParser.Parse(args);
 
-        parserResult.MapResult(
+        int resultCode = parserResult.MapResult(
             (RunOptions opts) =>
             {
                 PreRunNoArgError(_console);
@@ -112,6 +116,8 @@ class Program
                 return 1;
             }
         );
+
+        return resultCode;
     }
 
     private int ProvideMenu()

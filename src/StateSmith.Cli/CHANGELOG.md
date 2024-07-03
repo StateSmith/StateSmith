@@ -30,6 +30,10 @@ Test/interim releases are not documented here.
 - Print `run` message `No .csx scripts found to run.` in default color.
     - no longer considered an error as we have diagram only projects.
 
+### Fix (minor)
+- CLI now sets process return code properly for CLI argument errors.
+    - Also set if `run --help` or the like is used (cli lib side effect).
+
 ---
 
 ## [0.9.3]
