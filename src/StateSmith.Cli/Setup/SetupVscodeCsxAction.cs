@@ -10,35 +10,45 @@ public class SetupVscodeCsxAction
 {
     public const string Description = "vscode for C# script debugging and intellisense.";
 
+    private bool _verbose;
     private IAnsiConsole _console;
     private const string vscodeWorkspaceSettingsPath = ".vscode";
     private const string launchJsonPath = vscodeWorkspaceSettingsPath + "/launch.json";
 
-    public SetupVscodeCsxAction(IAnsiConsole console)
+    public SetupVscodeCsxAction(IAnsiConsole console, bool verbose)
     {
         _console = console;
+        _verbose = verbose;
     }
 
-    public void NotifyIfDotnetScriptOld()
+    public void NotifyIfDotnetScriptOld(out bool dotnetScriptDetected)
     {
-        UiHelper.AddSectionLeftHeader(_console, "Checking if `dotnet-script` is up to date");
+        UiHelper.AddSectionLeftHeader(_console, $"Checking if `{DotnetScriptProgram.Name}` is up to date");
 
-        SimpleProcess process = new()
+        (string? versionStr, Exception? e) = DotnetScriptProgram.TryGetVersionString();
+        if (versionStr == null)
         {
-            SpecificCommand = "dotnet-script",
-            SpecificArgs = "--version",
-            throwOnExitCode = true
-        };
-        process.Run(timeoutMs: 30000);
+            _console.MarkupLine($"[red]Could not determine `{DotnetScriptProgram.Name}` version.[/]");
+            _console.MarkupLine($"Try running `{DotnetScriptProgram.Name} --version` in your terminal.");
 
-        // parse version into major, minor, patch
-        string versionStr = process.StdOutputBuf.ToString().Trim();
+            if (_verbose)
+            {
+                _console.WriteLine();
+                _console.WriteException(e!);
+                _console.WriteLine();
+            }
+
+            dotnetScriptDetected = false;
+            return;
+        }
+
         var version = new Version(versionStr);
 
-        if (version.Major <= 1 && version.Minor <= 4) {
-            _console.MarkupLine($"[cyan]Your `dotnet-script` version '{versionStr}' is old (1.5.0 exists).[/]");
+        if (version.Major <= 1 && version.Minor <= 4)
+        {
+            _console.MarkupLine($"[cyan]Your `{DotnetScriptProgram.Name}` version '{versionStr}' is old (1.5.0 exists).[/]");
             _console.Markup("You can update it by running: ");
-            _console.MarkupLine("[cyan]dotnet tool update -g dotnet-script[/]");
+            _console.MarkupLine($"[cyan]dotnet tool update -g {DotnetScriptProgram.Name}[/]");
 
             Thread.Sleep(1000); // give time for user to read
         }
@@ -48,13 +58,19 @@ public class SetupVscodeCsxAction
         }
 
         _console.WriteLine();
+        dotnetScriptDetected = true;
     }
 
     public void Run()
     {
         Directory.CreateDirectory(vscodeWorkspaceSettingsPath); // ensure .vscode folder exists
 
-        NotifyIfDotnetScriptOld();
+        NotifyIfDotnetScriptOld(out bool dotnetScriptDetected);
+        if (!dotnetScriptDetected)
+        {
+            _console.MarkupLine($"[red]Aborting vscode setup for .csx files.[/] Requires program `{DotnetScriptProgram.Name}`.");
+            return;
+        }
 
         UiHelper.AddSectionLeftHeader(_console, "Set up " + Description);
 
@@ -140,12 +156,12 @@ public class SetupVscodeCsxAction
 
         const string dummyCsxName = "delete_me_dummy_file.csx";
 
-        _console.MarkupLine($"Running command [yellow]dotnet-script init {dummyCsxName}[/]:");
+        _console.MarkupLine($"Running command [yellow]{DotnetScriptProgram.Name} init {dummyCsxName}[/]:");
 
         SimpleProcess process = new()
         {
             WorkingDirectory = Environment.CurrentDirectory,
-            SpecificCommand = "dotnet-script",
+            SpecificCommand = DotnetScriptProgram.Name,
             SpecificArgs = $"init {dummyCsxName}",
             throwOnExitCode = true
         };

@@ -13,6 +13,11 @@ Test/interim releases are not documented here.
 - `run` message "No .csx scripts found to run." now white instead of red.
     - no longer considered an error as we have diagram only projects.
 
+### Add
+- Add ability to run diagrams even if `dotnet-script` is not installed.
+- Add `run` CLI option `--no-csx` to skip running .csx scripts.
+    - Useful for diagram only projects.
+
 ---
 
 ## [0.9.3]

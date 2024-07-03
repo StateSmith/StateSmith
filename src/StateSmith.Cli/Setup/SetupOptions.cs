@@ -16,4 +16,7 @@ public class SetupOptions
 
     [Option("vscode-csx", HelpText = "Set up " + SetupVscodeCsxAction.Description)]
     public bool VscodeCsx { get; set; }
+
+    [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
+    public bool Verbose { get; set; } = false;
 }

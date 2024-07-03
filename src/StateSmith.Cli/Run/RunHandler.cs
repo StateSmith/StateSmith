@@ -1,5 +1,6 @@
 using Spectre.Console;
 using StateSmith.Cli.Manifest;
+using StateSmith.Cli.Setup;
 using StateSmith.Cli.Utils;
 using StateSmith.Common;
 using System;
@@ -23,9 +24,10 @@ public class RunHandler
     IAnsiConsole _console;
     private readonly DiagramOptions _diagramOptions;
     RunConsole _runConsole;
-    bool verbose;
+    bool _verbose;
+    bool _noCsx;
 
-    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, bool verbose, IManifestPersistance? manifestPersistance = null)
+    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, bool verbose, bool noCsx, IManifestPersistance? manifestPersistance = null)
     {
         _console = console;
         this._diagramOptions = diagramOptions;
@@ -43,8 +45,9 @@ public class RunHandler
         _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory, verbose);
         Finder = new SsCsxDiagramFileFinder();
         _manifestPersistance = manifestPersistance ?? new ManifestPersistance(manifestDirectory);
-        this.verbose = verbose;
+        this._verbose = verbose;
         _runConsole = new RunConsole(_console);
+        _noCsx = noCsx;
     }
 
     public void SetForceRebuild(bool forceRebuild)
@@ -96,7 +99,7 @@ public class RunHandler
         var scanResults = Finder.Scan(searchDirectory: searchDirectory);
         RunScriptsIfNeeded(scanResults.targetCsxFiles);
 
-        var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, _forceRebuild, searchDirectory: searchDirectory, verbose: verbose);
+        var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, _forceRebuild, searchDirectory: searchDirectory, verbose: _verbose);
         diagramRunner.Run(scanResults.targetDiagramFiles);
 
         PrintScanInfo(scanResults);
@@ -116,14 +119,14 @@ public class RunHandler
         }
 
         // print ignored files
-        if (verbose && scanResults.ignoredFiles.Count > 0)
+        if (_verbose && scanResults.ignoredFiles.Count > 0)
         {
             PrintSpacerIfNeeded();
             _runConsole.QuietMarkupLine("Ignored files: " + string.Join(", ", scanResults.ignoredFiles));
         }
 
         // print non-matching files
-        if (verbose && scanResults.nonMatchingFiles.Count > 0)
+        if (_verbose && scanResults.nonMatchingFiles.Count > 0)
         {
             PrintSpacerIfNeeded();
             _runConsole.QuietMarkupLine("Non-matching files: " + string.Join(", ", scanResults.nonMatchingFiles));
@@ -146,10 +149,47 @@ public class RunHandler
 
     public void RunScriptsIfNeeded(List<string> csxScripts)
     {
+        if (_noCsx)
+        {
+            if (_verbose)
+            {
+                _runConsole.QuietMarkupLine("Ignoring all .csx scripts for --no-csx.");
+            }
+            return;
+        }
+
         if (csxScripts.Count == 0)
         {
             _console.MarkupLine("No .csx scripts found to run.");
             return;
+        }
+
+        (string? versionString, Exception? exception) = DotnetScriptProgram.TryGetVersionString();
+        if (versionString == null)
+        {
+            _runConsole.ErrorMarkupLine($"Did not detect `{DotnetScriptProgram.Name}` program.");
+            _runConsole.WarnMarkupLine($"Not attempting to run StateSmith .csx scripts:");
+            foreach (var path in csxScripts)
+            {
+                _runConsole.WarnMarkupLine("    " + path);
+            }
+            _runConsole.WriteLine("");
+
+            if (_verbose)
+            {
+                _runConsole.WriteLine("Attempted command to detect version:");
+                _runConsole.WriteException(exception!);
+                _runConsole.WriteLine("");
+
+                _runConsole.MarkupLine("You can ignore .csx files with the [green]--no-csx[/] CLI option.");
+            }
+
+            return;
+        }
+
+        if (_verbose)
+        {
+            _runConsole.QuietMarkupLine($"Running StateSmith .csx scripts with `{DotnetScriptProgram.Name}` version: " + versionString);
         }
 
         bool anyScriptsRan = false;
@@ -203,7 +243,7 @@ public class RunHandler
         SimpleProcess process = new()
         {
             WorkingDirectory = searchDirectory,
-            SpecificCommand = "dotnet-script",
+            SpecificCommand = DotnetScriptProgram.Name,
             SpecificArgs = csxAbsolutePath,
             throwOnExitCode = true
         };
