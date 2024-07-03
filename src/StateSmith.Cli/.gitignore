@@ -1,0 +1,4 @@
+build-binaries/*
+!build-binaries/*.plantuml
+!build-binaries/*.py
+
