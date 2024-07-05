@@ -38,6 +38,8 @@ Test/interim releases are not documented here.
 - Modified PreDiagramSettingsReader to not run validations on diagram when reading settings.
   - https://github.com/StateSmith/StateSmith/issues/349
 - Slight change to error reporting for better user experience.
+- Reword exception detail message to be non-csx specific.
+  - https://github.com/StateSmith/StateSmith/issues/348
 
 ---
 

@@ -129,18 +129,15 @@ public class SmRunnerInternal
     // https://github.com/StateSmith/StateSmith/issues/82
     private void MaybeDumpErrorDetailsToFile(System.Exception e)
     {
-        consolePrinter.WriteErrorLine($"You can enable additional exception info in console by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.propagateExceptions)}` to true.");
+        consolePrinter.WriteErrorLine($"Get exception detail with 'propagate exceptions' or 'dump errors to file' settings.");
 
-        if (!settings.dumpErrorsToFile)
+        if (settings.dumpErrorsToFile)
         {
-            consolePrinter.WriteErrorLine($"You can enable additional exception detail dumping to file by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpErrorsToFile)}` to true.");
-            return;
+            var errorDetailFilePath = settings.DiagramPath + ".err.txt";
+            errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
+            exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
+            consolePrinter.WriteErrorLine("Exception details dumped to file: " + errorDetailFilePath);
         }
-
-        var errorDetailFilePath = settings.DiagramPath + ".err.txt";
-        errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
-        exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
-        consolePrinter.WriteErrorLine("Additional exception detail dumped to file: " + errorDetailFilePath);
     }
 
     private void OutputCompilingDiagramMessage()
