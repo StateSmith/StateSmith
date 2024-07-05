@@ -1,6 +1,10 @@
+using Antlr4.Runtime.Misc;
 using FluentAssertions;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using NSubstitute;
 using Spectre.Console;
+using Spectre.Console.Testing;
+using StateSmith.Cli;
 using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Run;
 using StateSmith.Common;
@@ -19,16 +23,30 @@ public class RunTest
         if (!Debugger.IsAttached)
             return;
 
-        RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new(), verbose: true, noCsx: false);
+        RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new(), new(currentDirectory: dirOrManifestPath));
         runHandler.Finder.AddExcludePattern("a/a3");
         runHandler.Finder.SetAsRecursive();
+    }
+
+    [Fact]
+    public void DebuggerTest2()
+    {
+        if (!Debugger.IsAttached)
+            return;
+
+        //var args = "run -hr --no-csx --propagate-exceptions".Split(' ');
+        var args = "run -hr --no-csx".Split(' ');
+
+        var program = new Cli.Program(currentDirectory: dirOrManifestPath);
+        TestConsole fakeConsole = new();
+        program.ParseCommandsAndRun(args, fakeConsole);
     }
 
     [Fact]
     public void CreateBlankManifest()
     {
         var manifestPersistence = Substitute.For<IManifestPersistance>();
-        RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new(), verbose: true, noCsx: false, manifestPersistence);
+        RunHandler runHandler = new(AnsiConsole.Console, dirOrManifestPath, new(), new(currentDirectory: dirOrManifestPath), manifestPersistence);
         runHandler.CreateBlankManifest();
 
         ManifestData? data = null;

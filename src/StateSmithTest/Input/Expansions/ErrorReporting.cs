@@ -102,7 +102,7 @@ public class ErrorReporting
     {
         StringBufferConsolePrinter fakeConsole = new();
         Action a = () => TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, propagateExceptions: false, consoleCapturer: fakeConsole);
-        a.Should().Throw<Exception>().WithMessage("Finished with failure");
+        a.Should().Throw<FinishedWithFailureException>();
         string consoleOutput = fakeConsole.sb.ToString();
         consoleOutput.Should().Contain("StateSmith Runner - Finished with failure.");
         return consoleOutput;
@@ -125,7 +125,7 @@ public class ErrorReporting
         // This test is more involved because it requires code injection
         StringBufferConsolePrinter fakeConsole = new();
         Action a = () => TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole);
-        a.Should().Throw<Exception>().WithMessage("Finished with failure");
+        a.Should().Throw<FinishedWithFailureException>();
 
         string consoleOutput = fakeConsole.sb.ToString();
         consoleOutput.Should().Contain("Failed parsing: `printf(; via`");

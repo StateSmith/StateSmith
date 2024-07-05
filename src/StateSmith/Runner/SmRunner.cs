@@ -6,6 +6,7 @@ using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using StateSmith.SmGraph;
 using System;
+using System.Runtime.ExceptionServices;
 
 namespace StateSmith.Runner;
 
@@ -15,8 +16,6 @@ namespace StateSmith.Runner;
 public class SmRunner : SmRunner.IExperimentalAccess
 {
     public RunnerSettings Settings => settings;
-
-    private const string FinishedWithFailureMessage = "Finished with failure";
 
     /// <summary>
     /// Dependency Injection Service Provider
@@ -34,7 +33,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     readonly string callerFilePath;
 
-    private Exception? preDiagramBasedSettingsException = null;
+    private ExceptionDispatchInfo? preDiagramBasedSettingsException = null;
 
     /// <summary>
     /// Constructor. Will attempt to read settings from the diagram file.
@@ -86,7 +85,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// <summary>
     /// This API is experimental and may change in the future.
     /// </summary>
-    public Exception? PreDiagramBasedSettingsException => preDiagramBasedSettingsException;
+    public ExceptionDispatchInfo? PreDiagramBasedSettingsException => preDiagramBasedSettingsException;
 
     /// <summary>
     /// Runs StateSmith. Will cause the Dependency Injection settings to be finalized.
@@ -116,7 +115,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
 
         if (smRunnerInternal.exception != null)
-            throw new Exception(FinishedWithFailureMessage);
+            throw new FinishedWithFailureException();
     }
 
     /// <summary>
@@ -128,12 +127,12 @@ public class SmRunner : SmRunner.IExperimentalAccess
         {
             // We use SmRunnerInternal to print the exception so that it is consistent with the rest of the code.
             SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-            smRunnerInternal.PrintException(PreDiagramBasedSettingsException);
+            smRunnerInternal.PrintException(PreDiagramBasedSettingsException.SourceException);
             if (settings.propagateExceptions)
             {
-                throw PreDiagramBasedSettingsException;
+                PreDiagramBasedSettingsException.Throw();
             }
-            throw new Exception(FinishedWithFailureMessage);
+            throw new FinishedWithFailureException();
         }
     }
 
@@ -159,7 +158,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             catch (Exception e)
             {
                 // NOTE! we can't print or log this exception here because dependency injection is not yet set up
-                preDiagramBasedSettingsException = e;
+                preDiagramBasedSettingsException = ExceptionDispatchInfo.Capture(e);
             }
         }
 

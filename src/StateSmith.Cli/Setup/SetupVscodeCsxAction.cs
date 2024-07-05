@@ -12,13 +12,15 @@ public class SetupVscodeCsxAction
 
     private bool _verbose;
     private IAnsiConsole _console;
+    private readonly string _currentDirectory;
     private const string vscodeWorkspaceSettingsPath = ".vscode";
     private const string launchJsonPath = vscodeWorkspaceSettingsPath + "/launch.json";
 
-    public SetupVscodeCsxAction(IAnsiConsole console, bool verbose)
+    public SetupVscodeCsxAction(IAnsiConsole console, bool verbose, string currentDirectory)
     {
         _console = console;
         _verbose = verbose;
+        _currentDirectory = currentDirectory;
     }
 
     public void NotifyIfDotnetScriptOld(out bool dotnetScriptDetected)
@@ -160,7 +162,7 @@ public class SetupVscodeCsxAction
 
         SimpleProcess process = new()
         {
-            WorkingDirectory = Environment.CurrentDirectory,
+            WorkingDirectory = _currentDirectory,
             SpecificCommand = DotnetScriptProgram.Name,
             SpecificArgs = $"init {dummyCsxName}",
             throwOnExitCode = true

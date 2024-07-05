@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Spectre.Console;
 using Spectre.Console.Testing;
 using StateSmith.Cli.Create;
 using Xunit;

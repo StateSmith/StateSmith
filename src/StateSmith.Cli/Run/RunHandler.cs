@@ -3,6 +3,7 @@ using StateSmith.Cli.Manifest;
 using StateSmith.Cli.Setup;
 using StateSmith.Cli.Utils;
 using StateSmith.Common;
+using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,16 +21,15 @@ public class RunHandler
     RunInfo _runInfo;
     internal IncrementalRunChecker _incrementalRunChecker;
     internal RunInfoDataBase _runInfoDataBase;
-    bool _forceRebuild = false;
     IAnsiConsole _console;
     private readonly DiagramOptions _diagramOptions;
     RunConsole _runConsole;
-    bool _verbose;
-    bool _noCsx;
+    RunHandlerOptions _runHandlerOptions;
 
-    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, bool verbose, bool noCsx, IManifestPersistance? manifestPersistance = null)
+    public RunHandler(IAnsiConsole console, string dirOrManifestPath, DiagramOptions diagramOptions, RunHandlerOptions runHandlerOptions, IManifestPersistance? manifestPersistance = null)
     {
         _console = console;
+        _runHandlerOptions = runHandlerOptions;
         this._diagramOptions = diagramOptions;
         dirOrManifestPath = Path.GetFullPath(dirOrManifestPath);
 
@@ -42,18 +42,15 @@ public class RunHandler
         _parser = new CsxOutputParser();
         _runInfo = new RunInfo(dirOrManifestPath);
         _runInfoDataBase = new RunInfoDataBase(dirOrManifestPath, console);
-        _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory, verbose);
+        _incrementalRunChecker = new IncrementalRunChecker(_console, manifestDirectory, IsVerbose);
         Finder = new SsCsxDiagramFileFinder();
         _manifestPersistance = manifestPersistance ?? new ManifestPersistance(manifestDirectory);
-        this._verbose = verbose;
         _runConsole = new RunConsole(_console);
-        _noCsx = noCsx;
     }
 
-    public void SetForceRebuild(bool forceRebuild)
-    {
-        _forceRebuild = forceRebuild;
-    }
+    private bool IsVerbose => _runHandlerOptions.Verbose;
+    private bool IsNoCsx => _runHandlerOptions.NoCsx;
+    private bool IsRebuild => _runHandlerOptions.Rebuild;
 
     public void CreateBlankManifest()
     {
@@ -86,8 +83,12 @@ public class RunHandler
         }
         catch (Exception ex)
         {
-            _console.WriteException(ex);
-            //throw;
+            if (ex is not FinishedWithFailureException)
+            {
+                _console.WriteException(ex);
+            }
+
+            Environment.ExitCode = 1;   // TODO - fix. this is not ideal. Might mess up unit tests.
         }
     }
 
@@ -99,7 +100,7 @@ public class RunHandler
         var scanResults = Finder.Scan(searchDirectory: searchDirectory);
         RunScriptsIfNeeded(scanResults.targetCsxFiles);
 
-        var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, _forceRebuild, searchDirectory: searchDirectory, verbose: _verbose);
+        var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, searchDirectory: searchDirectory, _runHandlerOptions);
         diagramRunner.Run(scanResults.targetDiagramFiles);
 
         PrintScanInfo(scanResults);
@@ -119,14 +120,14 @@ public class RunHandler
         }
 
         // print ignored files
-        if (_verbose && scanResults.ignoredFiles.Count > 0)
+        if (IsVerbose && scanResults.ignoredFiles.Count > 0)
         {
             PrintSpacerIfNeeded();
             _runConsole.QuietMarkupLine("Ignored files: " + string.Join(", ", scanResults.ignoredFiles));
         }
 
         // print non-matching files
-        if (_verbose && scanResults.nonMatchingFiles.Count > 0)
+        if (IsVerbose && scanResults.nonMatchingFiles.Count > 0)
         {
             PrintSpacerIfNeeded();
             _runConsole.QuietMarkupLine("Non-matching files: " + string.Join(", ", scanResults.nonMatchingFiles));
@@ -149,9 +150,9 @@ public class RunHandler
 
     public void RunScriptsIfNeeded(List<string> csxScripts)
     {
-        if (_noCsx)
+        if (IsNoCsx)
         {
-            if (_verbose)
+            if (IsVerbose)
             {
                 _runConsole.QuietMarkupLine("Ignoring all .csx scripts for --no-csx.");
             }
@@ -175,7 +176,7 @@ public class RunHandler
             }
             _runConsole.WriteLine("");
 
-            if (_verbose)
+            if (IsVerbose)
             {
                 _runConsole.WriteLine("Attempted command to detect version:");
                 _runConsole.WriteException(exception!);
@@ -187,7 +188,7 @@ public class RunHandler
             return;
         }
 
-        if (_verbose)
+        if (IsVerbose)
         {
             _runConsole.QuietMarkupLine($"Running StateSmith .csx scripts with `{DotnetScriptProgram.Name}` version: " + versionString);
         }
@@ -226,7 +227,7 @@ public class RunHandler
         }
         else
         {
-            if (_forceRebuild)
+            if (IsRebuild)
             {
                 _runConsole.MarkupLine("Would normally skip (file dates look good), but [yellow]rebuild[/] option set.");
             }
@@ -245,7 +246,7 @@ public class RunHandler
             WorkingDirectory = searchDirectory,
             SpecificCommand = DotnetScriptProgram.Name,
             SpecificArgs = csxAbsolutePath,
-            throwOnExitCode = true
+            throwOnExitCode = false
         };
         process.EnableEchoToTerminal(_console);
 
@@ -254,6 +255,11 @@ public class RunHandler
         var info = new CsxRunInfo(csxAbsolutePath: csxAbsolutePath);
         process.Run(timeoutMs: 60000);
         info.lastCodeGenEndDateTime = DateTime.Now;
+
+        if (process.GetExitCode() != 0)
+        {
+            throw new FinishedWithFailureException();
+        }
 
         _parser.ParseAndResolveFilePaths(process.StdOutput, info);
         _runInfo.csxRuns[csxAbsolutePath] = info; // will overwrite if already exists

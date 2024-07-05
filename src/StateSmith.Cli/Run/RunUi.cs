@@ -11,11 +11,13 @@ public class RunUi
     IAnsiConsole _console;
     RunOptions opts;
     RunHandler runHandler;
+    readonly string currentDirectory;
 
-    public RunUi(RunOptions opts, IAnsiConsole _console)
+    public RunUi(RunOptions opts, IAnsiConsole _console, string currentDirectory)
     {
         this.opts = opts;
-        runHandler = new(_console, Environment.CurrentDirectory, opts.GetDiagramOptions(), verbose: opts.Verbose, noCsx: opts.NoCsx);
+        this.currentDirectory = currentDirectory;
+        runHandler = new(_console, currentDirectory, opts.GetDiagramOptions(), opts.GetRunHandlerOptions(currentDirectory: currentDirectory));
         this._console = _console;
     }
 
@@ -46,7 +48,7 @@ public class RunUi
             return 0;
         }
 
-        var manPersistance = new ManifestPersistance(Environment.CurrentDirectory);
+        var manPersistance = new ManifestPersistance(currentDirectory);
         ManifestData? manifest = null;
 
         if (manPersistance.ManifestExists())
@@ -83,8 +85,6 @@ public class RunUi
         // add patterns from command line
         runHandler.Finder.AddIncludePatterns(opts.IncludePatterns);
         runHandler.Finder.AddExcludePatterns(opts.ExcludePatterns);
-
-        runHandler.SetForceRebuild(opts.Rebuild);
 
         if (opts.Recursive)
             runHandler.Finder.SetAsRecursive();
@@ -133,7 +133,7 @@ public class RunUi
 
     internal void SearchUpForManifestAndRun()
     {
-        DirectoryInfo? dir = new(Environment.CurrentDirectory);
+        DirectoryInfo? dir = new(currentDirectory);
 
         while (dir != null && !ManifestPersistance.ManifestExists(dir.FullName))
         {
@@ -148,7 +148,7 @@ public class RunUi
         _console.MarkupLine($"Found manifest in directory: {dir.FullName}");
 
         ManifestData manifest = new ManifestPersistance(dir.FullName).ReadOrThrow();
-        runHandler = new RunHandler(_console, dir.FullName, opts.GetDiagramOptions(), verbose: opts.Verbose, noCsx: opts.NoCsx);
+        runHandler = new RunHandler(_console, dir.FullName, opts.GetDiagramOptions(), opts.GetRunHandlerOptions(currentDirectory: currentDirectory));
         SetRunHandlerFromOptions();
         runHandler.AddFromManifest(manifest);
         runHandler.Run();

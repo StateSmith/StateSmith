@@ -32,6 +32,8 @@ Test/interim releases are not documented here.
 - Fix error reporting for user injected code (via .csx) that has errors in it.
   - https://github.com/StateSmith/StateSmith/issues/283
 - Fix error reporting when pre-parsing diagram for settings.
+- Fix stack traces when pre-parsing diagram for settings.
+
 
 ### Changed (minor)
 - Slight change to error reporting for better user experience.
