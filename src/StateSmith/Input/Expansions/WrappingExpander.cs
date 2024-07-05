@@ -6,6 +6,7 @@ using StateSmith.Input.Antlr4;
 using StateSmith.Output.Gil;
 using System.Text.RegularExpressions;
 using StateSmith.Output.UserConfig;
+using StateSmith.SmGraph.Validation;
 
 namespace StateSmith.Input.Expansions;
 
@@ -41,24 +42,24 @@ public class WrappingExpander
     public string ExpandWrapGuardCode(Behavior b)
     {
         UpdateForBehavior(b);
-        return ExpandWrapCode(b.guardCode, isGuard: true);
+        return ExpandWrapCode(b.guardCode, isGuard: true, b);
     }
 
     public string ExpandWrapActionCode(Behavior b)
     {
         UpdateForBehavior(b);
-        return ExpandWrapCode(b.actionCode, isGuard: false);
+        return ExpandWrapCode(b.actionCode, isGuard: false, b);
     }
 
     public string ExpandActionCode(Behavior behavior)
     {
         UpdateForBehavior(behavior);
-        return ExpandCode(behavior.actionCode);
+        return ExpandCode(behavior.actionCode, behavior);
     }
 
-    protected string ExpandWrapCode(string code, bool isGuard)
+    protected string ExpandWrapCode(string code, bool isGuard, Behavior behavior)
     {
-        string expanded = ExpandCode(code);
+        string expanded = ExpandCode(code, behavior);
 
         expanded = $"{XML_FINAL_CODE_TAG}{expanded}{XML_END_CODE_TAG}";
 
@@ -122,9 +123,16 @@ public class WrappingExpander
         return result;
     }
 
-    protected string ExpandCode(string code)
+    protected string ExpandCode(string code, Behavior behavior)
     {
-        return ExpandingVisitor.ParseAndExpandCode(expander, code);
+        try
+        {
+            return ExpandingVisitor.ParseAndExpandCode(expander, code);
+        }
+        catch (Exception e)
+        {
+            throw new BehaviorValidationException(behavior, e.Message);
+        }
     }
 
     private void UpdateForBehavior(Behavior b)

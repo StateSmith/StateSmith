@@ -27,6 +27,17 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+### WIP
+### Fixed
+- Fix error reporting for user injected code (via .csx) that has errors in it.
+  - https://github.com/StateSmith/StateSmith/issues/283
+- Fix error reporting when pre-parsing diagram for settings.
+
+### Changed (minor)
+- Slight change to error reporting for better user experience.
+
+---
+
 [0.11.1-alpha]
 ### Add
 - Add plantuml support for `note on link`

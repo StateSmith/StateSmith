@@ -7,6 +7,7 @@ using StateSmith.SmGraph;
 using System.Globalization;
 using System.Threading;
 using StateSmith.Output.Sim;
+using System;
 
 namespace StateSmith.Runner;
 
@@ -91,7 +92,11 @@ public class SmRunnerInternal
     private void HandleException(System.Exception e)
     {
         exception = e;
+        PrintException(e);
+    }
 
+    public void PrintException(Exception e)
+    {
         exceptionPrinter.PrintException(e);
         MaybeDumpErrorDetailsToFile(e);
         consolePrinter.OutputStageMessage("Finished with failure.");
@@ -124,9 +129,11 @@ public class SmRunnerInternal
     // https://github.com/StateSmith/StateSmith/issues/82
     private void MaybeDumpErrorDetailsToFile(System.Exception e)
     {
+        consolePrinter.WriteErrorLine($"You can enable additional exception info in console by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.propagateExceptions)}` to true.");
+
         if (!settings.dumpErrorsToFile)
         {
-            consolePrinter.WriteErrorLine($"You can enable exception detail dumping by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpErrorsToFile)}` to true.");
+            consolePrinter.WriteErrorLine($"You can enable additional exception detail dumping to file by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpErrorsToFile)}` to true.");
             return;
         }
 

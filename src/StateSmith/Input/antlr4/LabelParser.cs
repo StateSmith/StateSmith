@@ -1,5 +1,7 @@
 using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
+using StateSmith.Runner;
+using System;
 using System.Collections.Generic;
 
 namespace StateSmith.Input.Antlr4;
@@ -22,6 +24,20 @@ public class LabelParser
         }
 
         return walker.node;
+    }
+
+    public void ThrowIfError(string badInput)
+    {
+        if (HasError())
+        {
+            var message = $"Failed parsing: `{badInput}`.\n" + ExceptionPrinter.BuildReasonsString(BuildErrorMessage(separator: "\n"));
+            throw new FormatException(message);
+        }
+    }
+
+    public string BuildErrorMessage(string separator)
+    {
+        return AntlrError.ErrorsToReasonStrings(GetErrors(), separator: separator);
     }
 
     public bool HasError()

@@ -89,6 +89,13 @@ public class DiagramRunner
         // the constructor will attempt to read diagram settings from the diagram file
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
 
+        if (smRunner.PreDiagramBasedSettingsException != null)
+        {
+            _runConsole.ErrorMarkupLine("\nFailed while trying to read diagram for settings.\n");
+            smRunner.ThrowIfPreDiagramSettingsException();   // need to do this before we check the transpiler ID
+            throw new Exception("Should not get here.");
+        }
+
         if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
         {
             _runConsole.MarkupLine($"Ignoring diagram as no language specified `--lang` and no transpiler ID found in diagram.");

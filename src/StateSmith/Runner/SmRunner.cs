@@ -16,6 +16,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
 {
     public RunnerSettings Settings => settings;
 
+    private const string FinishedWithFailureMessage = "Finished with failure";
+
     /// <summary>
     /// Dependency Injection Service Provider
     /// </summary>
@@ -31,6 +33,8 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// figuring for regular C# projects and C# scripts (.csx).
     /// </summary>
     readonly string callerFilePath;
+
+    private Exception? preDiagramBasedSettingsException = null;
 
     /// <summary>
     /// Constructor. Will attempt to read settings from the diagram file.
@@ -79,18 +83,19 @@ public class SmRunner : SmRunner.IExperimentalAccess
     /// </summary>
     public SmTransformer SmTransformer => diServiceProvider.GetServiceOrCreateInstance();
 
+    /// <summary>
+    /// This API is experimental and may change in the future.
+    /// </summary>
+    public Exception? PreDiagramBasedSettingsException => preDiagramBasedSettingsException;
 
     /// <summary>
     /// Runs StateSmith. Will cause the Dependency Injection settings to be finalized.
     /// </summary>
     public void Run()
     {
-        if (settings.transpilerId == TranspilerId.NotYetSet)
-            throw new ArgumentException("TranspilerId must be set before running code generation");
-
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to be cautious for the future
 
-        PrepareBeforeRun();
+        PrepareBeforeRun(); // finalizes dependency injection
         SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
         smRunnerInternal.preDiagramBasedSettingsAlreadyApplied = enablePreDiagramBasedSettings;
 
@@ -98,6 +103,11 @@ public class SmRunner : SmRunner.IExperimentalAccess
         // dispose of objects that it created.
         try
         {
+            ThrowIfPreDiagramSettingsException();
+
+            if (settings.transpilerId == TranspilerId.NotYetSet)
+                throw new ArgumentException("TranspilerId must be set before running code generation");
+
             smRunnerInternal.Run();
         }
         finally
@@ -106,7 +116,25 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
 
         if (smRunnerInternal.exception != null)
-            throw new System.Exception("Finished with failure");
+            throw new Exception(FinishedWithFailureMessage);
+    }
+
+    /// <summary>
+    /// Experimental API. May change in the future.
+    /// </summary>
+    public void ThrowIfPreDiagramSettingsException()
+    {
+        if (PreDiagramBasedSettingsException != null)
+        {
+            // We use SmRunnerInternal to print the exception so that it is consistent with the rest of the code.
+            SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
+            smRunnerInternal.PrintException(PreDiagramBasedSettingsException);
+            if (settings.propagateExceptions)
+            {
+                throw PreDiagramBasedSettingsException;
+            }
+            throw new Exception(FinishedWithFailureMessage);
+        }
     }
 
     // ------------ private methods ----------------
@@ -122,8 +150,17 @@ public class SmRunner : SmRunner.IExperimentalAccess
         // we disable early diagram settings reading for the simulator and some tests
         if (enablePreDiagramBasedSettings)
         {
-            PreDiagramSettingsReader preDiagramSettingsReader = new(renderConfigAllVars, settings, iRenderConfig);
-            preDiagramSettingsReader.Process();
+            try
+            {
+                // Note that this may throw if diagram is invalid
+                PreDiagramSettingsReader preDiagramSettingsReader = new(renderConfigAllVars, settings, iRenderConfig);
+                preDiagramSettingsReader.Process();
+            }
+            catch (Exception e)
+            {
+                // NOTE! we can't print or log this exception here because dependency injection is not yet set up
+                preDiagramBasedSettingsException = e;
+            }
         }
 
         AlgoOrTranspilerUpdated();
@@ -174,7 +211,10 @@ public class SmRunner : SmRunner.IExperimentalAccess
         new AlgoTranspilerCustomizer().Customize(diServiceProvider, settings.algorithmId, settings.transpilerId, settings.algoBalanced1);
     }
 
-    // exists just for testing. can be removed in the future.
+    /// <summary>
+    /// Finalizes dependency injection settings.
+    /// exists just for testing. can be removed in the future.
+    /// </summary>
     internal void PrepareBeforeRun()
     {
         diServiceProvider.BuildIfNeeded();

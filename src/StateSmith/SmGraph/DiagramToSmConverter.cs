@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using StateSmith.Input;
 using StateSmith.SmGraph.Visitors;
 using StateSmith.Common;
+using StateSmith.Runner;
 
 #nullable enable
 
@@ -109,11 +110,11 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
         }
     }
 
-    private static void PrintAndThrowIfEdgeParseFail(Input.DiagramEdge edge, Vertex sourceVertex, Vertex targetVertex, LabelParser labelParser)
+    internal static void PrintAndThrowIfEdgeParseFail(Input.DiagramEdge edge, Vertex sourceVertex, Vertex targetVertex, LabelParser labelParser)
     {
         if (labelParser.HasError())
         {
-            throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, AntlrError.ErrorsToReasonStrings(labelParser.GetErrors(), "\n"));
+            throw new DiagramEdgeParseException(edge, sourceVertex, targetVertex, labelParser.BuildErrorMessage(separator: "\n"));
         }
     }
 
@@ -250,20 +251,21 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
         return thisVertex;
     }
 
-    private static void PrintAndThrowIfNodeParseFail(Input.DiagramNode diagramNode, Vertex? parentVertex, LabelParser labelParser)
+    internal static void PrintAndThrowIfNodeParseFail(Input.DiagramNode diagramNode, Vertex? parentVertex, LabelParser labelParser)
     {
         if (labelParser.HasError())
         {
-            string reasons = AntlrError.ErrorsToReasonStrings(labelParser.GetErrors(), separator: "\n           ");
+            string reasons = labelParser.BuildErrorMessage(separator: "\n");
+            reasons = ExceptionPrinter.BuildReasonsString(reasons);
 
             string parentPath = VertexPathDescriber.Describe(parentVertex);
             string fullMessage = $@"Failed parsing node label
 Parent path: `{parentPath}`
 Label: `{diagramNode.label}`
 Diagram id: `{diagramNode.id}`
-Reason(s): {reasons}
+{reasons}
 ";
-            throw new ArgumentException(fullMessage);
+            throw new FormatException(fullMessage);
         }
     }
 

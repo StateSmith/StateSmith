@@ -33,6 +33,13 @@ Test/interim releases are not documented here.
 ### Fix (minor)
 - CLI now sets process return code properly for CLI argument errors.
     - Also set if `run --help` or the like is used (cli lib side effect).
+- Fix some printed error messages that ran across screen for Windows.
+    - terminal lib (when in Windows) needed \r to return to start of line.
+- Will stop running after first diagram-only (no-csx) failure instead of continuing.
+    - This is consistent with .csx script running behavior and sets return code properly.
+
+### Upgrade StateSmith library version to 0.???
+TODO: Update this when StateSmith library is updated.
 
 ---
 
