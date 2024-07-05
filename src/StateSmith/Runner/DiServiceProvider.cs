@@ -13,6 +13,7 @@ using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.SmGraph.TriggerMap;
 using StateSmith.Output.Sim;
+using StateSmith.Output.Gil;
 
 namespace StateSmith.Runner;
 
@@ -77,6 +78,12 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<ICodeGenRunner, GilAlgoCodeGen>();
             services.AddSingleton<IGilAlgo, AlgoBalanced1>();
             services.AddSingleton<IGilTranspiler, GilToC99>();
+#if SS_SINGLE_FILE_APPLICATION
+            services.AddSingleton<IRoslynMetadataProvider, InMemoryMetaDataProvider>();
+#else
+            services.AddSingleton<IRoslynMetadataProvider, FileMetadataProvider>();
+#endif
+            services.AddSingleton<RoslynCompiler>();
             services.AddSingleton<NameMangler>();
             services.AddSingleton<PseudoStateHandlerBuilder>();
             services.AddSingleton<EnumBuilder>();

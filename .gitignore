@@ -9,3 +9,4 @@ example-output/render2
 *.dtmp
 
 src/StateSmith.CliTest/Run/examples/1/statesmith.runinfo.json
+

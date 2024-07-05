@@ -62,7 +62,7 @@ public class SetupUi
 
     private void SetupVscodeCsx()
     {
-        new SetupVscodeCsxAction(_console).Run();
+        new SetupVscodeCsxAction(_console, verbose: opts.Verbose).Run();
     }
 
     private void AskWhatToDo(string? title = null)

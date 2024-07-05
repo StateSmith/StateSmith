@@ -1,4 +1,5 @@
 using CommandLine;
+using StateSmith.Cli.Utils;
 using StateSmith.Runner;
 using System.Collections.Generic;
 
@@ -37,6 +38,9 @@ public class RunOptions
 
     [Option("no-sim-gen", HelpText = "Disables simulation .html file generation. Ignored for csx files.")]
     public bool NoSimGen { get; set; } = false;
+
+    [Option("no-csx", HelpText = $"Disables running csx files (useful if {DotnetScriptProgram.Name} is not installed).")]
+    public bool NoCsx { get; set; } = false;
 
     [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
     public bool Verbose { get; set; } = false;

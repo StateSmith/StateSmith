@@ -1,4 +1,5 @@
 using Spectre.Console;
+using System;
 
 namespace StateSmith.Cli.Run;
 
@@ -32,9 +33,19 @@ public class RunConsole
         MarkupLine($"[yellow]{message}[/]");
     }
 
+    public void ErrorMarkupLine(string message)
+    {
+        MarkupLine($"[red]{message}[/]");
+    }
+
     public void WriteLine(string message)
     {
         _console.WriteLine(message);
+    }
+
+    public void WriteException(Exception exception)
+    {         
+        _console.WriteException(exception);
     }
 
     public void MarkupLine(string message)

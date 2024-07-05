@@ -123,7 +123,9 @@ public class ToolUpdateChecker
         {
             _console.Get().MarkupLine($"[cyan]!!! Good news !!![/]");
             _console.Get().MarkupLine($"A new version of StateSmith.Cli is available: [cyan]{latestStableStr}[/]");
-            _console.Get().MarkupLine($"Install with this command: [cyan]dotnet tool update -g StateSmith.Cli[/]");
+            _console.Get().MarkupLine($"If using as a dotnet tool, update with this command: [cyan]dotnet tool update -g StateSmith.Cli[/]");
+            _console.Get().MarkupLine($"If using as a standalone application, check [blue][u]https://github.com/StateSmith/StateSmith/releases[/][/].");
+            _console.Get().MarkupLine($"[grey]Standalone applications may lag `dotnet tool` releases by a bit. Ping us on discord if you need.[/]");
             _console.Get().MarkupLine("Change log: [blue][u]https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith.Cli/CHANGELOG.md[/][/]");
 
             if (pauseForKeyboardEnter)

@@ -20,12 +20,12 @@ public class JavaScriptGilVisitor : CSharpSyntaxWalker
     private readonly GilTranspilerHelper transpilerHelper;
     private SyntaxToken? tokenToSkip;
 
-    public JavaScriptGilVisitor(string gilCode, StringBuilder fileSb, RenderConfigBaseVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public JavaScriptGilVisitor(string gilCode, StringBuilder fileSb, RenderConfigBaseVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = fileSb;
         this.renderConfig = renderConfig;
         this.renderConfigJavaScript = renderConfigJavaScript;
-        transpilerHelper = GilTranspilerHelper.Create(this, gilCode);
+        transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
         model = transpilerHelper.model;
     }
 

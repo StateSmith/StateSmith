@@ -15,18 +15,20 @@ public class GilToJavaScript : IGilTranspiler
     private readonly RenderConfigBaseVars renderConfig;
     private readonly RenderConfigJavaScriptVars renderConfigJavaScript;
     private readonly IOutputInfo outputInfo;
+    private readonly RoslynCompiler roslynCompiler;
 
-    public GilToJavaScript(IOutputInfo outputInfo, RenderConfigBaseVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript, ICodeFileWriter codeFileWriter)
+    public GilToJavaScript(IOutputInfo outputInfo, RenderConfigBaseVars renderConfig, RenderConfigJavaScriptVars renderConfigJavaScript, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler)
     {
         this.outputInfo = outputInfo;
         this.renderConfig = renderConfig;
         this.codeFileWriter = codeFileWriter;
         this.renderConfigJavaScript = renderConfigJavaScript;
+        this.roslynCompiler = roslynCompiler;
     }
 
     public void TranspileAndOutputCode(string gilCode)
     {
-        JavaScriptGilVisitor visitor = new(gilCode, fileSb, renderConfig, renderConfigJavaScript);
+        JavaScriptGilVisitor visitor = new(gilCode, fileSb, renderConfig, renderConfigJavaScript, roslynCompiler);
         visitor.Process();
 
         PostProcessor.PostProcess(fileSb);

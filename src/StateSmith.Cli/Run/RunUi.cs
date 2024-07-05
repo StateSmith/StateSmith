@@ -15,7 +15,7 @@ public class RunUi
     public RunUi(RunOptions opts, IAnsiConsole _console)
     {
         this.opts = opts;
-        runHandler = new(_console, Environment.CurrentDirectory, opts.GetDiagramOptions(), verbose: opts.Verbose);
+        runHandler = new(_console, Environment.CurrentDirectory, opts.GetDiagramOptions(), verbose: opts.Verbose, noCsx: opts.NoCsx);
         this._console = _console;
     }
 
@@ -148,7 +148,7 @@ public class RunUi
         _console.MarkupLine($"Found manifest in directory: {dir.FullName}");
 
         ManifestData manifest = new ManifestPersistance(dir.FullName).ReadOrThrow();
-        runHandler = new RunHandler(_console, dir.FullName, opts.GetDiagramOptions(), verbose: opts.Verbose);
+        runHandler = new RunHandler(_console, dir.FullName, opts.GetDiagramOptions(), verbose: opts.Verbose, noCsx: opts.NoCsx);
         SetRunHandlerFromOptions();
         runHandler.AddFromManifest(manifest);
         runHandler.Run();

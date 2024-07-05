@@ -8,6 +8,34 @@ Test/interim releases are not documented here.
 
 ---
 
+## wip
+### Add
+- Add prebuilt binaries for Windows, Linux, and Mac. No need to install dotnet anything unless you want .csx support.
+  File sizes are around 145 MB, but may be reduced to around 90 MB in the future with IL trimming.
+    - `win-x64`, `win-x86`, `win-arm64`
+    - `osx-x64` (minimum macOS version is 10.12 Sierra)
+    - `osx-arm64`
+    - `linux-x64`, `linux-arm`, `linux-arm64`
+    - `linux-musl-x64`, `linux-musl-arm64`
+- Add ability to run diagrams even if `dotnet-script` is not installed.
+- Add `run` CLI option `--no-csx` to skip running .csx scripts.
+    - Useful if `dotnet-script` is not installed.
+- Various CLI improvements.
+    - Add top level `--help`.
+    - Add `--version` to show version of CLI tool.
+    - Parse enumeration values as case insensitive.
+    - List allowed enumeration values.
+
+### Change (minor)
+- Print `run` message `No .csx scripts found to run.` in default color.
+    - no longer considered an error as we have diagram only projects.
+
+### Fix (minor)
+- CLI now sets process return code properly for CLI argument errors.
+    - Also set if `run --help` or the like is used (cli lib side effect).
+
+---
+
 ## [0.9.3]
 ### Fix (minor)
 - `run` command for "diagram-only" projects now prints the proper path for created files.

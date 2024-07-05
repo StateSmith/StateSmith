@@ -15,20 +15,22 @@ public class GilToCSharp : IGilTranspiler
     private readonly RenderConfigCSharpVars renderConfigCSharp;
     private readonly RenderConfigBaseVars renderConfig;
     private readonly IOutputInfo outputInfo;
+    private readonly RoslynCompiler roslynCompiler;
 
-    public GilToCSharp(IOutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter)
+    public GilToCSharp(IOutputInfo outputInfo, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler)
     {
         this.outputInfo = outputInfo;
         this.renderConfigCSharp = renderConfigCSharp;
         this.renderConfig = renderConfig;
         this.codeFileWriter = codeFileWriter;
+        this.roslynCompiler = roslynCompiler;
     }
 
     public void TranspileAndOutputCode(string gilCode)
     {
         //File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.SmName}.gil.cs", programText);
 
-        CSharpGilVisitor cSharpGilVisitor = new(gilCode, fileSb, renderConfigCSharp, renderConfig);
+        CSharpGilVisitor cSharpGilVisitor = new(gilCode, fileSb, renderConfigCSharp, renderConfig, roslynCompiler);
         cSharpGilVisitor.Process();
 
         PostProcessor.PostProcess(fileSb);

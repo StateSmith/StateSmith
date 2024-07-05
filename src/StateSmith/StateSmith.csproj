@@ -25,6 +25,11 @@
     <PackageReference Include="Tomlyn" Version="0.17.0" />
   </ItemGroup>
 
+  <!-- The following package is only needed for single file applications. It is not needed for normal applications. -->
+  <ItemGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch($(DefineConstants), '^(.*;)*SS_SINGLE_FILE_APPLICATION(;.*)*$'))">
+    <PackageReference Include="Basic.Reference.Assemblies" Version="1.6.0" />
+  </ItemGroup>
+
   <!-- generate user intellisense documentation for StateSmith nuget package -->
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

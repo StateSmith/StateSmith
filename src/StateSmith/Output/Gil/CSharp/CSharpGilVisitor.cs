@@ -5,7 +5,6 @@ using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
 using Microsoft.CodeAnalysis.Formatting;
-using static System.Net.WebRequestMethods;
 
 #nullable enable
 
@@ -29,12 +28,12 @@ public class CSharpGilVisitor : CSharpSyntaxWalker
     /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
     private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
 
-    public CSharpGilVisitor(string gilCode, StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public CSharpGilVisitor(string gilCode, StringBuilder sb, RenderConfigCSharpVars renderConfigCSharp, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = sb;
         this.renderConfig = renderConfig;
         this.renderConfigCSharp = renderConfigCSharp;
-        transpilerHelper = GilTranspilerHelper.Create(this, gilCode);
+        transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
         model = transpilerHelper.model;
     }
 

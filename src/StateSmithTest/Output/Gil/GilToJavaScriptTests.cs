@@ -6,6 +6,7 @@ using StateSmith.Output.UserConfig;
 using StateSmith.Output;
 using StateSmith.Output.Gil.JavaScript;
 using FluentAssertions;
+using StateSmith.Output.Gil;
 
 namespace StateSmithTest.Output.Gil;
 
@@ -30,7 +31,7 @@ public class GilToJavaScriptTests
         //File.WriteAllText($"{outputInfo.outputDirectory}temp.gil.cs", gilCode);
 
         CapturingCodeFileWriter capturingWriter = new();
-        GilToJavaScript transpiler = new(outputInfo, new(), renderConfig, capturingWriter);
+        GilToJavaScript transpiler = new(outputInfo, new(), renderConfig, capturingWriter, new());
 
         transpiler.TranspileAndOutputCode(gilCode);
 

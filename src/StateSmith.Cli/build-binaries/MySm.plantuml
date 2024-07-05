@@ -1,0 +1,54 @@
+@startuml MySm
+
+/'
+  This diagram is just a sample to show what the syntax can look like.
+  
+  We don't yet generate fully working examples for every supported language.
+  This starting template is language agnostic.
+'/
+
+
+'//////////////////// STATE ORGANIZATION ////////////////////
+' Note: StateSmith treats state names and events as case insensitive.
+' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML
+
+[*] -> OFF
+
+state ON_GROUP {
+    [*] -> ON1
+    state ON1
+    state ON2
+    state ON3
+}
+
+
+'//////////////////// STATE HANDLERS ////////////////////
+
+'OFF
+OFF: enter / print("---");
+OFF --> ON1 : inc
+OFF --> ON_GROUP: toggle
+
+'ON_GROUP
+ON_GROUP --> OFF: toggle
+
+'ON1
+ON1: enter / print("$--");
+ON1 --> ON2 : inc
+ON1 --> OFF : dim
+
+'ON2
+ON2: enter / print("$$-");
+ON2 --> ON3 : inc
+ON2 --> ON1 : dim
+
+'ON3
+ON3: enter / print("$$$");
+ON3: enter / count++;
+ON3 --> ON2 : dim
+
+/'! $CONFIG : toml
+[SmRunnerSettings]
+transpilerId = "C99"
+'/
+@enduml
