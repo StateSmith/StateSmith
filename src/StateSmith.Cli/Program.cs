@@ -16,24 +16,26 @@ namespace StateSmith.Cli;
 /// <summary>
 /// StateSmithUI create
 /// </summary>
-class Program
+public class Program
 {
     IAnsiConsole _console = AnsiConsole.Console;
     CliArgsParser _cliArgsParser = new();
     DataPaths _settingsPaths;
+    string _currentDirectory;
 
-    public Program()
+    public Program(string currentDirectory)
     {
         _settingsPaths = new DataPaths(_console);
+        this._currentDirectory = currentDirectory;
     }
 
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        var program = new Program();
+        var program = new Program(currentDirectory: Environment.CurrentDirectory);
         program.Run(args);
     }
 
-    private void Run(string[] args)
+    public void Run(string[] args)
     {
         // Fix for cursor not showing after ctrl-c exiting the program
         // https://github.com/StateSmith/StateSmith/issues/256
@@ -62,7 +64,7 @@ class Program
         Environment.ExitCode = resultCode;
     }
 
-    private int ParseCommandsAndRun(string[] args, IAnsiConsole _console)
+    internal int ParseCommandsAndRun(string[] args, IAnsiConsole _console)
     {
         var parserResult = _cliArgsParser.Parse(args);
 
@@ -70,7 +72,7 @@ class Program
             (RunOptions opts) =>
             {
                 PreRunNoArgError(_console);
-                var runUi = new RunUi(opts, _console);
+                var runUi = new RunUi(opts, _console, currentDirectory: _currentDirectory);
                 return runUi.HandleRunCommand();
             },
             (CreateOptions opts) =>
@@ -83,7 +85,7 @@ class Program
             (SetupOptions opts) =>
             {
                 PreRunNoArgError(_console);
-                var ui = new SetupUi(opts, _console);
+                var ui = new SetupUi(opts, _console, currentDirectory: _currentDirectory);
                 return ui.Run();
             },
             errs =>
@@ -142,7 +144,7 @@ class Program
         switch (choice)
         {
             case run:
-                var runUi = new RunUi(new(), _console);
+                var runUi = new RunUi(new(), _console, currentDirectory: _currentDirectory);
                 return runUi.HandleRunCommand();
 
             case create:
@@ -151,7 +153,7 @@ class Program
                 return 0;
 
             case setup:
-                var setupUi = new SetupUi(new(), _console);
+                var setupUi = new SetupUi(new(), _console, currentDirectory: _currentDirectory);
                 return setupUi.Run();
 
             case checkForToolUpdate:

@@ -42,8 +42,34 @@ public class RunOptions
     [Option("no-csx", HelpText = $"Disables running csx files (useful if {DotnetScriptProgram.Name} is not installed).")]
     public bool NoCsx { get; set; } = false;
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/348
+    /// </summary>
+    [Option("propagate-exceptions", HelpText = "Useful for troubleshooting. Exceptions will propagate out of SmRunner with original stack trace " +
+        "instead of being summarized and printed. Ignored for .csx files.")]
+    public bool PropagateExceptions { get; set; } = false;
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/348
+    /// </summary>
+    [Option("dump-errors-to-file", HelpText = "Useful for troubleshooting. Exception stack traces will be written to file. " +
+        "Ignored if 'propagate-exceptions' is set. Ignored for .csx files.")]
+    public bool DumpErrorsToFile { get; set; } = false;
+
     [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
     public bool Verbose { get; set; } = false;
+
+    public RunHandlerOptions GetRunHandlerOptions(string currentDirectory)
+    {
+        return new RunHandlerOptions(currentDirectory: currentDirectory)
+        {
+            Verbose = Verbose,
+            NoCsx = NoCsx,
+            PropagateExceptions = PropagateExceptions,
+            DumpErrorsToFile = DumpErrorsToFile,
+            Rebuild = Rebuild,
+        };
+    }
 
     public DiagramOptions GetDiagramOptions()
     {

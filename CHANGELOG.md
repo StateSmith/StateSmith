@@ -27,6 +27,26 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+### WIP
+### Fixed
+- Fix error reporting for user injected code (via .csx) that has errors in it.
+  - https://github.com/StateSmith/StateSmith/issues/283
+- Fix error reporting when pre-parsing diagram for settings.
+- Fix stack traces when pre-parsing diagram for settings.
+
+### Changed (minor)
+- Modified PreDiagramSettingsReader to not run validations on diagram when reading settings.
+  - https://github.com/StateSmith/StateSmith/issues/349
+- Slight change to error reporting for better user experience.
+- Reword exception detail message to be non-csx specific.
+  - https://github.com/StateSmith/StateSmith/issues/348
+
+### Added
+- Add help URL for user StateSmith grammar mistakes.
+  - https://github.com/StateSmith/StateSmith/issues/174
+
+---
+
 [0.11.1-alpha]
 ### Add
 - Add plantuml support for `note on link`

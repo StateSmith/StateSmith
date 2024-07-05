@@ -13,11 +13,7 @@ public class ActionCodeInspector : StateSmithLabelGrammarBaseListener
     {
         var parser = new LabelParser();
         parser.ParseAndWalkAnyCode(this, code);
-        if (parser.HasError())
-        {
-            //todolow improve error handling messages
-            throw parser.GetErrors()[0].exception;
-        }
+        parser.ThrowIfError(code);
     }
 
     public override void EnterExpandable_identifier([NotNull] StateSmithLabelGrammarParser.Expandable_identifierContext context)

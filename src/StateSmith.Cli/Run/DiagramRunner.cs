@@ -13,18 +13,17 @@ public class DiagramRunner
     RunConsole _runConsole;
     DiagramOptions _diagramOptions;
     RunInfo _runInfo;
-    bool _forceRebuild = false;
-    string _searchDirectory;
-    bool verbose;
+    readonly string _searchDirectory;
+    private readonly RunHandlerOptions _runHandlerOptions;
+    private string CurrentDirectory => _runHandlerOptions.CurrentDirectory;
 
-    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions, RunInfo runInfo, bool forceRebuild, string searchDirectory, bool verbose)
+    public DiagramRunner(RunConsole runConsole, DiagramOptions diagramOptions, RunInfo runInfo, string searchDirectory, RunHandlerOptions runHandlerOptions)
     {
         _runConsole = runConsole;
         this._diagramOptions = diagramOptions;
         _runInfo = runInfo;
-        _forceRebuild = forceRebuild;
         _searchDirectory = searchDirectory;
-        this.verbose = verbose;
+        this._runHandlerOptions = runHandlerOptions;
     }
 
     public void Run(List<string> targetDiagramFiles)
@@ -37,6 +36,9 @@ public class DiagramRunner
         _runConsole.WriteLine("\nFinished running diagrams.");
     }
 
+    private bool IsVerbose => _runHandlerOptions.Verbose;
+    private bool IsRebuild => _runHandlerOptions.Rebuild;
+
     private bool RunDiagramFile(string diagramShortPath)
     {
         bool diagramRan;
@@ -48,7 +50,7 @@ public class DiagramRunner
         if (csxAbsPath != null)
         {
             var csxRelativePath = Path.GetRelativePath(_searchDirectory, csxAbsPath);
-            if (verbose)
+            if (IsVerbose)
             {
                 _runConsole.QuietMarkupLine($"...Skipping diagram `{diagramShortPath}` already run by csx file `{csxRelativePath}`.");
             }
@@ -69,7 +71,7 @@ public class DiagramRunner
         }
         else
         {
-            if (_forceRebuild)
+            if (IsRebuild)
             {
                 _runConsole.MarkupLine("Would normally skip (file dates look good), but [yellow]rebuild[/] option set.");
             }
@@ -81,13 +83,22 @@ public class DiagramRunner
             }
         }
 
-        string callerFilePath = Environment.CurrentDirectory + "/";  // Slash needed for fix of https://github.com/StateSmith/StateSmith/issues/345
+        string callerFilePath = CurrentDirectory + "/";  // Slash needed for fix of https://github.com/StateSmith/StateSmith/issues/345
 
         RunnerSettings runnerSettings = new(diagramFile: diagramAbsolutePath, transpilerId: _diagramOptions.Lang);
         runnerSettings.simulation.enableGeneration = !_diagramOptions.NoSimGen; // enabled by default
+        runnerSettings.propagateExceptions = _runHandlerOptions.PropagateExceptions;
+        runnerSettings.dumpErrorsToFile = _runHandlerOptions.DumpErrorsToFile;
 
         // the constructor will attempt to read diagram settings from the diagram file
         SmRunner smRunner = new(settings: runnerSettings, renderConfig: null, callerFilePath: callerFilePath);
+
+        if (smRunner.PreDiagramBasedSettingsException != null)
+        {
+            _runConsole.ErrorMarkupLine("\nFailed while trying to read diagram for settings.\n");
+            smRunner.ThrowIfPreDiagramSettingsException();   // need to do this before we check the transpiler ID
+            throw new Exception("Should not get here.");
+        }
 
         if (runnerSettings.transpilerId == TranspilerId.NotYetSet)
         {

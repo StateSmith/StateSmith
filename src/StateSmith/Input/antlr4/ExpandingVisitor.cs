@@ -4,6 +4,7 @@ using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using StateSmith.Input.Expansions;
 using StateSmith.Output.Gil;
+using System;
 using System.Collections.Generic;
 
 namespace StateSmith.Input.Antlr4;
@@ -105,11 +106,7 @@ public class ExpandingVisitor : StateSmithLabelGrammarBaseVisitor<string>
         var parser = new LabelParser();
         var visitor = new ExpandingVisitor(expander);
         var result = parser.ParseAndVisitAnyCode(visitor, code);
-        if (parser.HasError())
-        {
-            //todolow improve error handling messages
-            throw parser.GetErrors()[0].exception;
-        }
+        parser.ThrowIfError(code);
         return result;
     }
 }

@@ -25,6 +25,8 @@ Test/interim releases are not documented here.
     - Add `--version` to show version of CLI tool.
     - Parse enumeration values as case insensitive.
     - List allowed enumeration values.
+- Add `run` CLI options for propagating and dumping exceptions to file.
+    - https://github.com/StateSmith/StateSmith/issues/348
 
 ### Change (minor)
 - Print `run` message `No .csx scripts found to run.` in default color.
@@ -33,6 +35,14 @@ Test/interim releases are not documented here.
 ### Fix (minor)
 - CLI now sets process return code properly for CLI argument errors.
     - Also set if `run --help` or the like is used (cli lib side effect).
+- Fix some printed error messages that ran across screen for Windows.
+    - terminal lib (when in Windows) needed \r to return to start of line.
+- Will stop running after first diagram-only (no-csx) failure instead of continuing.
+    - This is consistent with .csx script running behavior and sets return code properly.
+- Fix stack traces when diagram failed to parse.
+
+### Upgrade StateSmith library version to 0.???
+TODO: Update this when StateSmith library is updated.
 
 ---
 

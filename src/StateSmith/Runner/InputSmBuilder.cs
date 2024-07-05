@@ -137,8 +137,9 @@ public class InputSmBuilder
 
         if (translator.HasError())
         {
-            string reasons = Input.Antlr4.AntlrError.ErrorsToReasonStrings(translator.GetErrors(), separator: "\n  - ");
-            throw new FormatException("PlantUML input failed parsing. Reason(s):\n  - " + reasons);
+            string reasons = Input.Antlr4.AntlrError.ErrorsToReasonStrings(translator.GetErrors(), separator: "\n");
+            reasons = ExceptionPrinter.BuildReasonsString(reasons);
+            throw new FormatException($"PlantUML input failed parsing.\n{reasons}");
         }
 
         ConvertNodesToVertices(new List<DiagramNode> { translator.Root }, translator.Edges);

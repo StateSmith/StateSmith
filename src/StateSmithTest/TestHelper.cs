@@ -6,6 +6,7 @@ using StateSmithTest.Output;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
 
 #nullable enable
 
@@ -16,19 +17,6 @@ public class TestHelper
     public static string GetThisDir([System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         return Path.GetDirectoryName(callerFilePath) + "/";
-    }
-
-    public static (SmRunner, string) BuildSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig, ICodeFileWriter? codeFileWriter = null)
-    {
-        var tempFilePath = Path.GetTempPath() + "statesmith.test" + Guid.NewGuid() + ".plantuml";
-        File.WriteAllText(tempFilePath, plantUmlText);
-        SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig);
-        smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
-        InputSmBuilder inputSmBuilder = smRunner.GetExperimentalAccess().DiServiceProvider.GetInstanceOf<InputSmBuilder>();
-        inputSmBuilder.ConvertPlantUmlTextNodesToVertices(plantUmlText);
-        inputSmBuilder.FindSingleStateMachine();
-        smRunner.Settings.propagateExceptions = true;
-        return (smRunner, tempFilePath);
     }
 
     public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
@@ -48,11 +36,25 @@ public class TestHelper
         return fakeFileSystem;
     }
 
-    public static void RunSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null)
+    public static void RunSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, IConsolePrinter? consoleCapturer = null)
     {
-        var (runner, tempFilePath) = BuildSmRunnerForPlantUmlString(plantUmlText, renderConfig, codeFileWriter);
-        runner.Run();
-        File.Delete(tempFilePath); // don't worry about deleting the file if exception is thrown. It is in temp folder.
+        var tempFilePath = Path.GetTempPath() + "statesmith.test" + Guid.NewGuid() + ".plantuml";
+        File.WriteAllText(tempFilePath, plantUmlText);
+
+        try
+        {
+            SmRunner smRunner = new(diagramPath: tempFilePath, renderConfig: renderConfig);
+            postConstruct?.Invoke(smRunner);
+            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(codeFileWriter ?? new DiscardingCodeFileWriter());
+            smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
+            smRunner.Settings.propagateExceptions = propagateExceptions;
+            preRun?.Invoke(smRunner);
+            smRunner.Run();
+        }
+        finally
+        {
+            File.Delete(tempFilePath);
+        }
     }
 
     public static FieldInfo[] GetTypeFields<T>()

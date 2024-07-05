@@ -7,6 +7,7 @@ using StateSmith.SmGraph;
 using System.Globalization;
 using System.Threading;
 using StateSmith.Output.Sim;
+using System;
 
 namespace StateSmith.Runner;
 
@@ -91,7 +92,11 @@ public class SmRunnerInternal
     private void HandleException(System.Exception e)
     {
         exception = e;
+        PrintException(e);
+    }
 
+    public void PrintException(Exception e)
+    {
         exceptionPrinter.PrintException(e);
         MaybeDumpErrorDetailsToFile(e);
         consolePrinter.OutputStageMessage("Finished with failure.");
@@ -124,16 +129,15 @@ public class SmRunnerInternal
     // https://github.com/StateSmith/StateSmith/issues/82
     private void MaybeDumpErrorDetailsToFile(System.Exception e)
     {
-        if (!settings.dumpErrorsToFile)
-        {
-            consolePrinter.WriteErrorLine($"You can enable exception detail dumping by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpErrorsToFile)}` to true.");
-            return;
-        }
+        consolePrinter.WriteErrorLine($"Get exception detail with 'propagate exceptions' or 'dump errors to file' settings.");
 
-        var errorDetailFilePath = settings.DiagramPath + ".err.txt";
-        errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
-        exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
-        consolePrinter.WriteErrorLine("Additional exception detail dumped to file: " + errorDetailFilePath);
+        if (settings.dumpErrorsToFile)
+        {
+            var errorDetailFilePath = settings.DiagramPath + ".err.txt";
+            errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
+            exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
+            consolePrinter.WriteErrorLine("Exception details dumped to file: " + errorDetailFilePath);
+        }
     }
 
     private void OutputCompilingDiagramMessage()

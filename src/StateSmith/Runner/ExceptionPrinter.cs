@@ -12,6 +12,7 @@ namespace StateSmith.Runner;
 public class ExceptionPrinter
 {
     readonly IConsolePrinter consolePrinter;
+    const string SsGrammarRelatedHelpMsg = ">>>> RELATED HELP <<<<\nhttps://github.com/StateSmith/StateSmith/issues/174";
 
     public ExceptionPrinter(IConsolePrinter consolePrinter)
     {
@@ -77,6 +78,12 @@ public class ExceptionPrinter
         return sb.ToString();
     }
 
+    public static string BuildReasonsString(string reasons)
+    {
+        string str = "Reason(s): " + reasons.ReplaceLineEndings("\n           ");
+        return str;
+    }
+
     public string? TryBuildingCustomExceptionDetails(System.Exception ex)
     {
         switch (ex)
@@ -84,15 +91,18 @@ public class ExceptionPrinter
             case DiagramEdgeParseException parseException:
                 {
                     DiagramEdge edge = parseException.edge;
+                    string reasons = ex.Message;
+                    reasons = BuildReasonsString(reasons);
                     string fromString = VertexPathDescriber.Describe(parseException.sourceVertex);
                     string toString = VertexPathDescriber.Describe(parseException.targetVertex);
-                    string reasons = ex.Message.ReplaceLineEndings("\n           ");
                     string message = $@"Failed parsing diagram edge
 from: {fromString}
 to:   {toString}
 Edge label: `{edge.label}`
-Reason(s): {reasons}
+{reasons}
 Edge diagram id: {edge.id}
+
+{SsGrammarRelatedHelpMsg}
 ";
                     return message;
                 }
@@ -108,6 +118,12 @@ Edge diagram id: {edge.id}
                 {
                     string message = diagramNodeException.Message;
                     message += "\n" + DiagramNode.FullyDescribe(diagramNodeException.Node);
+
+                    if (diagramNodeException is DiagramNodeParseException)
+                    {
+                        message += $"\n{SsGrammarRelatedHelpMsg}";
+                    }
+
                     return message;
                 }
 
@@ -119,7 +135,7 @@ Edge diagram id: {edge.id}
                 string fromString = VertexPathDescriber.Describe(vertex);
 
 message += $@"
-    Vertex
+Vertex:
     Path: {fromString}
     Diagram Id: {vertex.DiagramId}
     Children count: {vertex.Children.Count}
@@ -139,7 +155,7 @@ message += $@"
                     string toString = VertexPathDescriber.Describe(behavior.TransitionTarget);
 
                     message += $@"
-    Behavior
+Behavior:
     Owning vertex: {fromString}
     Target vertex: {toString}
     Order: {behavior.GetOrderString()}
