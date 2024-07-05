@@ -22,14 +22,23 @@ public class ErrorReporting
         string consoleOutput = RunExpectGenericFailure(plantUmlText);
 
         consoleOutput.Should().Contain("""
-            Exception FormatException : Failed parsing node label
-            Parent path: `ROOT`
-            Label: `MY_STATE
-            enter / printf("Hello";
-            exit / log("Hello";`
-            Diagram id: `MY_STATE`
+            Failed parsing node label.
             Reason(s): mismatched input '/' expecting ')' at line 3 column 5. Offending symbol: `/`.
                        missing ')' at '<EOF>' at line 3 column 19. Offending symbol: `<EOF>`.
+            DiagramNode:
+                id: MY_STATE
+                label: `MY_STATE
+                        enter / printf("Hello";
+                        exit / log("Hello";`
+                parent.id: ExampleSm (parent follows below)
+
+            DiagramNode:
+                id: ExampleSm
+                label: `$STATEMACHINE : ExampleSm`
+                parent.id: null
+
+            >>>> RELATED HELP <<<<
+            https://github.com/StateSmith/StateSmith/issues/174
             """);
     }
 
@@ -70,6 +79,9 @@ public class ErrorReporting
             Reason(s): no viable alternative at input ' print(' at line 1 column 16. Offending symbol: `<EOF>`.
                        missing ')' at '<EOF>' at line 1 column 16. Offending symbol: `<EOF>`.
             Edge diagram id: line_2_column_0
+
+            >>>> RELATED HELP <<<<
+            https://github.com/StateSmith/StateSmith/issues/174
             """);
     }
 

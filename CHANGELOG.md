@@ -41,6 +41,10 @@ Test/interim releases are not documented here.
 - Reword exception detail message to be non-csx specific.
   - https://github.com/StateSmith/StateSmith/issues/348
 
+### Added
+- Add help URL for user StateSmith grammar mistakes.
+  - https://github.com/StateSmith/StateSmith/issues/174
+
 ---
 
 [0.11.1-alpha]

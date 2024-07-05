@@ -46,12 +46,13 @@ public class DiagramNode
     /// <param name="stringBuilder"></param>
     internal void Describe(StringBuilder stringBuilder)
     {
-        string indentedLabel = StringUtils.ReplaceNewLineChars(label.Trim(), "\n\t       ");
+        const string tab = "    ";
+        string indentedLabel = StringUtils.ReplaceNewLineChars(label.Trim(), $"\n{tab}        ");
         string message =
-                $"{nameof(DiagramNode)}\n" +
-                $"\tid: {id}\n" +
-                $"\tlabel: `{indentedLabel}`\n" +
-                $"\tparent.id: {parent?.id ?? "null"}" +
+                $"{nameof(DiagramNode)}:\n" +
+                $"{tab}id: {id}\n" +
+                $"{tab}label: `{indentedLabel}`\n" +
+                $"{tab}parent.id: {parent?.id ?? "null"}" +
                 "";
         stringBuilder.Append(message);
     }

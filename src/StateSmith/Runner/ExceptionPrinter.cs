@@ -12,6 +12,7 @@ namespace StateSmith.Runner;
 public class ExceptionPrinter
 {
     readonly IConsolePrinter consolePrinter;
+    const string SsGrammarRelatedHelpMsg = ">>>> RELATED HELP <<<<\nhttps://github.com/StateSmith/StateSmith/issues/174";
 
     public ExceptionPrinter(IConsolePrinter consolePrinter)
     {
@@ -100,6 +101,8 @@ to:   {toString}
 Edge label: `{edge.label}`
 {reasons}
 Edge diagram id: {edge.id}
+
+{SsGrammarRelatedHelpMsg}
 ";
                     return message;
                 }
@@ -115,6 +118,12 @@ Edge diagram id: {edge.id}
                 {
                     string message = diagramNodeException.Message;
                     message += "\n" + DiagramNode.FullyDescribe(diagramNodeException.Node);
+
+                    if (diagramNodeException is DiagramNodeParseException)
+                    {
+                        message += $"\n{SsGrammarRelatedHelpMsg}";
+                    }
+
                     return message;
                 }
 

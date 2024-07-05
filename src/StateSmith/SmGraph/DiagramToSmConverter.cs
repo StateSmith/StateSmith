@@ -257,15 +257,7 @@ public class DiagramToSmConverter : IDiagramVerticesProvider
         {
             string reasons = labelParser.BuildErrorMessage(separator: "\n");
             reasons = ExceptionPrinter.BuildReasonsString(reasons);
-
-            string parentPath = VertexPathDescriber.Describe(parentVertex);
-            string fullMessage = $@"Failed parsing node label
-Parent path: `{parentPath}`
-Label: `{diagramNode.label}`
-Diagram id: `{diagramNode.id}`
-{reasons}
-";
-            throw new FormatException(fullMessage);
+            throw new DiagramNodeParseException(diagramNode, $"Failed parsing node label.\n{reasons}");
         }
     }
 
