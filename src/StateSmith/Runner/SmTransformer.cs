@@ -85,9 +85,24 @@ public class SmTransformer
 
     public int GetMatchIndex(string id)
     {
-        int index = transformationPipeline.FindIndex(s => s.Id == id);
+        int index = FindIndex(id);
         if (index == -1) throw new ArgumentOutOfRangeException($"{nameof(TransformationStep)} with id `{id}` was not found");
         return index;
+    }
+
+    public bool HasMatch(Enum id)
+    {
+        return FindIndex(id) != -1;
+    }
+
+    public int FindIndex(Enum id)
+    {
+        return FindIndex(id.ToString());
+    }
+
+    public int FindIndex(string id)
+    {
+        return transformationPipeline.FindIndex(s => s.Id == id);
     }
 
     public void Remove(Enum id)
@@ -99,5 +114,11 @@ public class SmTransformer
     {
         int index = GetMatchIndex(id);
         transformationPipeline.RemoveAt(index);
+    }
+
+    public void RemoveAfterFirstMatch(Enum id)
+    {
+        int index = GetMatchIndex(id);
+        transformationPipeline.RemoveRange(index + 1, transformationPipeline.Count - index - 1);
     }
 }

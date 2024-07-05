@@ -34,8 +34,9 @@ Test/interim releases are not documented here.
 - Fix error reporting when pre-parsing diagram for settings.
 - Fix stack traces when pre-parsing diagram for settings.
 
-
 ### Changed (minor)
+- Modified PreDiagramSettingsReader to not run validations on diagram when reading settings.
+  - https://github.com/StateSmith/StateSmith/issues/349
 - Slight change to error reporting for better user experience.
 
 ---

@@ -149,9 +149,14 @@ public class SmRunner : SmRunner.IExperimentalAccess
         // we disable early diagram settings reading for the simulator and some tests
         if (enablePreDiagramBasedSettings)
         {
+            // Why do we do this before DiServiceProvider is set up? It is a pain to not have DI set up.
+            // A number of reasons. We need to read the settings before we can set up the DI provider.
+            // Also (less importantly), we want to read settings from the diagram so that the user can
+            // override them in a .csx file (if they choose) before running the code generator.
+            // https://github.com/StateSmith/StateSmith/issues/349
             try
             {
-                // Note that this may throw if diagram is invalid
+                // Note that this may throw if the diagram is invalid.
                 PreDiagramSettingsReader preDiagramSettingsReader = new(renderConfigAllVars, settings, iRenderConfig);
                 preDiagramSettingsReader.Process();
             }
