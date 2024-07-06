@@ -1,6 +1,6 @@
-﻿namespace StateSmith.Cli.Run;
+namespace StateSmith.Cli.Run;
 
 public class Versionable
 {
-    public SemVersion version = new(0, 1, 0);
+    public StorableSemVersion version = new(0, 1, 0);
 }

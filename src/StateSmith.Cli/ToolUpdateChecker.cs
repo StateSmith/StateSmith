@@ -1,7 +1,9 @@
 
+using NuGet.Versioning;
 using Spectre.Console;
 using StateSmith.Cli.Data;
 using StateSmith.Cli.Utils;
+using StateSmith.Cli.VersionUtils;
 using System;
 using System.IO;
 using System.Linq;
@@ -14,13 +16,15 @@ public class ToolUpdateChecker
     readonly TrackingConsole _console;
     readonly string _dataPath;
     readonly JsonFilePersistence _persistence = new() { IncludeFields = false };
+    private readonly ISemVerProvider thisSemVerProvider;
 
     public bool Printed => _console.Accessed;
 
-    public ToolUpdateChecker(IAnsiConsole console, DataPaths settingsPaths)
+    public ToolUpdateChecker(IAnsiConsole console, DataPaths settingsPaths, ISemVerProvider thisSemVerProvider)
     {
         _console = new TrackingConsole(console);
         _dataPath = settingsPaths.Tool_UpdateInfo;
+        this.thisSemVerProvider = thisSemVerProvider;
     }
 
     public void AskToCheckIfTime(ToolSettings toolSettings)
@@ -115,11 +119,10 @@ public class ToolUpdateChecker
 
         SaveCheckTime();
 
-        // get this tool's version
-        var thisVersion = typeof(ToolUpdateChecker).Assembly.GetName().Version;
+        SemanticVersion thisVersion = thisSemVerProvider.GetVersion();
 
         // compare versions
-        if (thisVersion < latestStable.Version)
+        if (MyVersionComparer.IsOtherVersionGreater(currentVersion: thisVersion, otherVersion: latestStable))
         {
             _console.Get().MarkupLine($"[cyan]!!! Good news !!![/]");
             _console.Get().MarkupLine($"A new version of StateSmith.Cli is available: [cyan]{latestStableStr}[/]");

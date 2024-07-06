@@ -14,6 +14,16 @@ public class LibVersionInfo
     public static string GetVersionInfoString(bool removeBuildInfo = false)
     {
         Assembly assembly = Assembly.GetExecutingAssembly();
+        return GetVersionInfoString(assembly, removeBuildInfo);
+    }
+
+    /// <summary>
+    /// Returns semantic version info for assembly. Something like "0.9.10-alpha+12345".
+    /// The build information isn't always present.
+    /// </summary>
+    /// <returns></returns>
+    public static string GetVersionInfoString(Assembly assembly, bool removeBuildInfo = false)
+    {
         AssemblyInformationalVersionAttribute? attr = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
 
         string versionInfo;

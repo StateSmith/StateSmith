@@ -8,6 +8,8 @@ using StateSmith.Cli.Setup;
 using System.Linq;
 using StateSmith.Cli.Data;
 using StateSmith.Cli.Utils;
+using StateSmith.Cli.VersionUtils;
+using StateSmith.Output;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("StateSmith.CliTest")]
 
@@ -33,6 +35,11 @@ public class Program
     {
         var program = new Program(currentDirectory: Environment.CurrentDirectory);
         program.Run(args);
+    }
+
+    public static string GetSemVersionString()
+    {
+        return LibVersionInfo.GetVersionInfoString(typeof(Program).Assembly);
     }
 
     public void Run(string[] args)
@@ -157,7 +164,7 @@ public class Program
                 return setupUi.Run();
 
             case checkForToolUpdate:
-                ToolUpdateChecker updateChecker = new(_console, _settingsPaths);
+                ToolUpdateChecker updateChecker = new(_console, _settingsPaths, new ThisAssemblySemVerProvider());
                 updateChecker.CheckForUpdates(pauseForKeyboardEnter: false);
                 return 0;
         }
@@ -176,7 +183,7 @@ public class Program
         ToolSettingsLoader loader = new(_console, _settingsPaths);
         loader.LoadOrAskUser();
 
-        ToolUpdateChecker updateChecker = new(_console, _settingsPaths);
+        ToolUpdateChecker updateChecker = new(_console, _settingsPaths, new ThisAssemblySemVerProvider());
         updateChecker.AskToCheckIfTime(loader.GetToolSettings());
 
         bool printed = loader.Printed || updateChecker.Printed;
