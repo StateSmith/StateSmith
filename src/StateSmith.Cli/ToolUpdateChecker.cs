@@ -86,7 +86,7 @@ public class ToolUpdateChecker
 
     public void CheckForUpdates(bool pauseForKeyboardEnter = true)
     {
-        NuGet.Versioning.NuGetVersion? latestStable = null;
+        NuGetVersion? latestStable = null;
         string? latestStableStr = null;
 
         // spinners in action: https://jsfiddle.net/sindresorhus/2eLtsbey/embedded/result/
@@ -120,9 +120,12 @@ public class ToolUpdateChecker
         SaveCheckTime();
 
         SemanticVersion thisVersion = thisSemVerProvider.GetVersion();
+        HandleVersionComparison(pauseForKeyboardEnter, latestStable, latestStableStr, thisVersion);
+    }
 
-        // compare versions
-        if (MyVersionComparer.IsOtherVersionGreater(currentVersion: thisVersion, otherVersion: latestStable))
+    public void HandleVersionComparison(bool pauseForKeyboardEnter, NuGetVersion latestStable, string? latestStableStr, SemanticVersion thisVersion)
+    {
+        if (IsOtherGreater(thisVersion, other: latestStable))
         {
             _console.Get().MarkupLine($"[cyan]!!! Good news !!![/]");
             _console.Get().MarkupLine($"A new version of StateSmith.Cli is available: [cyan]{latestStableStr}[/]");
@@ -145,5 +148,13 @@ public class ToolUpdateChecker
             _console.Get().MarkupLine("You are using the latest version of StateSmith.Cli");
             Thread.Sleep(1000);
         }
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/351
+    /// </summary>
+    public static bool IsOtherGreater(SemanticVersion thisVersion, SemanticVersion other)
+    {
+        return other > thisVersion;
     }
 }

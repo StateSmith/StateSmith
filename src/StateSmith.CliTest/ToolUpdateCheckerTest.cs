@@ -27,6 +27,9 @@ public class ToolUpdateCheckerTest
         new ThisAssemblySemVerProvider().GetVersion(); // should not throw
     }
 
+    /// <summary>
+    /// Integration test
+    /// </summary>
     [Fact]
     public void CheckForUpdates_NewVersion()
     {
@@ -35,6 +38,9 @@ public class ToolUpdateCheckerTest
         console.Output.Should().Contain(StringForNewVersion);
     }
 
+    /// <summary>
+    /// Integration test
+    /// </summary>
     [Fact]
     public void CheckForUpdates_NoNewVersion()
     {
@@ -49,13 +55,22 @@ public class ToolUpdateCheckerTest
     [Fact]
     public void CompareVersions_351()
     {
-        SemanticVersion currentVersion = SemanticVersion.Parse("0.1.0");
-        SemanticVersion otherVersion = SemanticVersion.Parse("0.1.1");
-        MyVersionComparer.IsOtherVersionGreater(currentVersion, otherVersion: otherVersion).Should().BeTrue();
-        
+        SemanticVersion currentVersion;
+        SemanticVersion otherVersion;
+
         // pre-release versions should not be considered greater
         currentVersion = SemanticVersion.Parse("0.10.0");
-        otherVersion = SemanticVersion.Parse("0.10.0-alpha-1");
-        MyVersionComparer.IsOtherVersionGreater(currentVersion, otherVersion: otherVersion).Should().BeFalse();
+        otherVersion   = SemanticVersion.Parse("0.10.0-alpha-1");
+        ToolUpdateChecker.IsOtherGreater(currentVersion, other: otherVersion).Should().BeFalse();
+
+        // simple comparison
+        currentVersion = SemanticVersion.Parse("0.1.0");
+        otherVersion   = SemanticVersion.Parse("0.1.1");
+        ToolUpdateChecker.IsOtherGreater(currentVersion, other: otherVersion).Should().BeTrue();
+
+        // same
+        currentVersion = SemanticVersion.Parse("0.1.0");
+        otherVersion   = SemanticVersion.Parse("0.1.0");
+        ToolUpdateChecker.IsOtherGreater(currentVersion, other: otherVersion).Should().BeFalse();
     }
 }

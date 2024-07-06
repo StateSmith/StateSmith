@@ -6,6 +6,11 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+## wip
+### Fixed (minor)
+- Fix tool update check to consider alpha builds in comparison.
+    - https://github.com/StateSmith/StateSmith/issues/351
+
 ---
 
 ## [0.10.0]
