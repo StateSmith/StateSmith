@@ -8,7 +8,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## wip
+## [0.10.0]
 ### Add
 - Add prebuilt binaries for Windows, Linux, and Mac. No need to install dotnet anything unless you want .csx support.
   File sizes are around 145 MB, but may be reduced to around 90 MB in the future with IL trimming.
@@ -41,10 +41,29 @@ Test/interim releases are not documented here.
     - This is consistent with .csx script running behavior and sets return code properly.
 - Fix stack traces when diagram failed to parse.
 
-### Upgrade StateSmith library version to 0.???
-TODO: Update this when StateSmith library is updated.
+### Upgrade StateSmith library version to 0.11.2-alpha
+#### Fixed
+- Fix error reporting for user injected code (via .csx) that has errors in it.
+  - https://github.com/StateSmith/StateSmith/issues/283
+- Fix error reporting when pre-parsing diagram for settings.
+- Fix stack traces when pre-parsing diagram for settings.
+
+#### Changed (minor)
+- Modified PreDiagramSettingsReader to not run validations on diagram when reading settings.
+  - https://github.com/StateSmith/StateSmith/issues/349
+- Slight change to error reporting for better user experience.
+- Reword exception detail message to be non-csx specific.
+  - https://github.com/StateSmith/StateSmith/issues/348
+
+#### Added
+- Add help URL for user StateSmith grammar mistakes.
+  - https://github.com/StateSmith/StateSmith/issues/174
+
+
 
 ---
+
+
 
 ## [0.9.3]
 ### Fix (minor)
