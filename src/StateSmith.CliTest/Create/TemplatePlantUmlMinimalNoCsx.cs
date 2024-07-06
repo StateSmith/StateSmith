@@ -74,7 +74,7 @@ public class TemplatePlantUmlMinimalNoCsx
                 """
 
             [RenderConfig.C]
-            # CFileExtension = ".inc" # useful if you want to include this file in another
+            # CFileExtension = ".inc" # if you want to include sm in another file
             HFileIncludes = """
                 #include <stdint.h> // required for count var
                 """
@@ -117,7 +117,7 @@ public class TemplatePlantUmlMinimalNoCsx
                 """
 
             [RenderConfig.C]
-            # CFileExtension = ".inc" # useful if you want to include this file in another
+            # CFileExtension = ".inc" # if you want to include sm in another file
             CFileExtension = ".cpp"
             HFileExtension = ".hpp"
             HFileIncludes = """

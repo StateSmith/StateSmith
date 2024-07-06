@@ -41,7 +41,7 @@ AutoExpandedVars = """
     """
 
 [RenderConfig.C]
-# CFileExtension = ".inc" # useful if you want to include this file in another
+# CFileExtension = ".inc" # if you want to include sm in another file
 CFileExtension = ".cpp" //!!<line-filter:CppC>
 HFileExtension = ".hpp" //!!<line-filter:CppC>
 HFileIncludes = """
