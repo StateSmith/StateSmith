@@ -9,7 +9,7 @@ public class StorableSemVersion
     public int Major { get; set; }
     public int Minor { get; set; }
     public int Patch { get; set; }
-    public string tag { get; set; } = "";
+    public string Tag { get; set; } = "";
 
     public StorableSemVersion(int major, int minor, int patch)
     {
