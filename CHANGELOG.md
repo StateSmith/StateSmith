@@ -27,7 +27,7 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-### WIP
+### [0.11.2-alpha]
 ### Fixed
 - Fix error reporting for user injected code (via .csx) that has errors in it.
   - https://github.com/StateSmith/StateSmith/issues/283
