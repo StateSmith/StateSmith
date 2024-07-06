@@ -7,18 +7,28 @@
   This starting template is language agnostic.
 '/
 
+' ///////////////////////////// STYLES /////////////////////////////
+' Define some colors for the states. Totally optional.
+skinparam state {
+    ' red style:
+    BackgroundColor<<red>> a20025
+    FontColor<<red>> white
+    ' dark style:
+    BackgroundColor<<dark>> 545454
+    FontColor<<dark>> white
+}
 
 ' //////////////////////// STATE ORGANIZATION ///////////////////////
 ' Note: StateSmith treats state names and events as case insensitive.
 ' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML
 
-[*] -> OFF
+[*] -> OFF <<dark>>
 
 state ON_GROUP {
     [*] -> ON1
     state ON1
     state ON2
-    state ON3
+    state ON3 <<red>>
 }
 
 
