@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace StateSmith.Runner;
 
@@ -22,6 +23,11 @@ public class DiagramFileAssociator
     public bool IsPlantUmlExtension(string lowerCaseFileExtension)
     {
         return PlantUmlFileExtensions.Contains(lowerCaseFileExtension);
+    }
+
+    public bool IsPlantUmlFile(string filePath)
+    {
+        return IsPlantUmlExtension(Path.GetExtension(filePath));
     }
 
     public bool IsYedExtension(string lowerCaseFileExtension)

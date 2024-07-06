@@ -351,7 +351,8 @@ public class CreateUi
     {
         var choices = new List<UiItem<string>>()
         {
-            new UiItem<string>(id: TemplateIds.PlantUmlSimple1,    display: "" ),
+            new UiItem<string>(id: TemplateIds.PlantUmlMinimal1, display: "Minimal 1 - working example with `count` var." ),
+            new UiItem<string>(id: TemplateIds.PlantUmlSimple1,  display: "Simple  1 - composite state and function calls." ),
         };
         var templateTypeName = "PlantUML";
         _settings.PlantUmlDiagramTemplateId = AskTemplate(choices, templateTypeName, _settings.PlantUmlDiagramTemplateId);

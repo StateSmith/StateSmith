@@ -1,14 +1,12 @@
-using System.Text.Json.Serialization;
+using StateSmith.Runner;
 
 namespace StateSmith.Cli.Create;
 
-[JsonConverter(typeof(JsonStringEnumConverter))]
-public enum TargetLanguageId
+public static class FileExtensionId
 {
-    C,
-    CppC,
-    CSharp,
-    JavaScript,
+    public const string PlantUml = ".plantuml";
+    public const string DrawIo = ".drawio";
+    public const string DrawIoSvg = ".drawio.svg";
 }
 
 /// <summary>
@@ -32,7 +30,7 @@ public class Settings
     /// Persisted
     /// TODO - This should maybe be changed to an enum.
     /// </summary>
-    public string FileExtension { get; set; } = ".plantuml";
+    public string FileExtension { get; set; } = FileExtensionId.PlantUml;
 
     /// <summary>
     /// Persisted
@@ -60,21 +58,26 @@ public class Settings
     /// <summary>
     /// not persisted
     /// </summary>
-    public string diagramFileName = ".drawio";
+    public string diagramFileName = "";
 
     /// <summary>
     /// not persisted
     /// </summary>
-    public string scriptFileName = "MySm.csx";
+    public string scriptFileName = "";
 
     public bool IsDrawIoSelected()
     {
-        return FileExtension.Contains(".drawio");
+        return FileExtension == FileExtensionId.DrawIo || FileExtension == FileExtensionId.DrawIoSvg;
     }
 
     public bool IsDrawIoSvgSelected()
     {
-        return FileExtension.Contains(".drawio.svg");
+        return FileExtension == FileExtensionId.DrawIoSvg;
+    }
+
+    public bool IsPlantUmlSelected()
+    {
+        return FileExtension == FileExtensionId.PlantUml;
     }
 
     public string GetTemplateId()

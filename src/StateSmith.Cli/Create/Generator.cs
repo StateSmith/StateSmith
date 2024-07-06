@@ -70,7 +70,25 @@ public class Generator
     {
         var diagramTemplateStr = TemplateLoader.LoadDiagram(settings.GetTemplateId(), isDrawIoSelected: settings.IsDrawIoSelected());
         diagramTemplateStr = diagramTemplateStr.Replace("{{smName}}", settings.smName);
+        diagramTemplateStr = SupportDefaultTomlConfig(diagramTemplateStr);
 
+        // allow plantuml diagrams to be customized by selected language
+        if (settings.IsPlantUmlSelected())
+        {
+            var filterEngine = new TemplateFilterEngine();
+            diagramTemplateStr = filterEngine.ProcessAllFilters(diagramTemplateStr, filterTag: settings.TargetLanguageId.ToString());
+        }
+
+        if (settings.IsDrawIoSvgSelected())
+        {
+            diagramTemplateStr = WrapDrawioXmlForSvg(diagramTemplateStr);
+        }
+
+        return diagramTemplateStr;
+    }
+
+    private string SupportDefaultTomlConfig(string diagramTemplateStr)
+    {
         var tomlConfig = GetTomlConfig(settings.TargetLanguageId);
 
         if (settings.UseCsxWorkflow == false)
@@ -87,12 +105,6 @@ public class Generator
         }
 
         diagramTemplateStr = diagramTemplateStr.Replace("{{configToml}}", tomlConfig);
-
-        if (settings.IsDrawIoSvgSelected())
-        {
-            diagramTemplateStr = WrapDrawioXmlForSvg(diagramTemplateStr);
-        }
-
         return diagramTemplateStr;
     }
 

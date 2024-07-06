@@ -8,7 +8,7 @@
 '/
 
 
-'//////////////////// STATE ORGANIZATION ////////////////////
+' //////////////////////// STATE ORGANIZATION ///////////////////////
 ' Note: StateSmith treats state names and events as case insensitive.
 ' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML
 
@@ -22,7 +22,8 @@ state ON_GROUP {
 }
 
 
-'//////////////////// STATE HANDLERS ////////////////////
+' ///////////////////////// STATE HANDLERS /////////////////////////
+' Syntax https://github.com/StateSmith/StateSmith/wiki/Behaviors
 
 'OFF
 OFF: enter / print("---");
@@ -49,7 +50,7 @@ ON3 --> ON2 : dim
 
 
 
-'######################## StateSmith config ########################
+' //////////////////////// StateSmith config ////////////////////////
 ' The below special comment block sets the StateSmith configuration.
 ' More info: https://github.com/StateSmith/StateSmith/issues/335
 ' Feel free to remove or modify it as needed.

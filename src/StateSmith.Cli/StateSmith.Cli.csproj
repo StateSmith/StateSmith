@@ -22,6 +22,7 @@
   <ItemGroup>
     <None Remove="Create\Templates\drawio-simple-1\csx.txt" />
     <None Remove="Create\Templates\drawio-simple-1\diagram.drawio" />
+    <None Remove="Create\Templates\plantuml-minimal-1\diagram.plantuml" />
     <None Remove="Create\Templates\plantuml-simple-1\diagram.plantuml" />
     <None Remove="Create\Templates\_common\config.toml" />
     <None Remove="Create\Templates\_global-svg\svg-wrapper.drawio.svg" />
@@ -34,6 +35,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Create\Templates\drawio-simple-1\diagram.drawio" />
+    <EmbeddedResource Include="Create\Templates\plantuml-minimal-1\diagram.plantuml" />
     <EmbeddedResource Include="Create\Templates\plantuml-simple-1\diagram.plantuml" />
     <EmbeddedResource Include="Create\Templates\_common\config.toml" />
     <EmbeddedResource Include="Create\Templates\_global-svg\svg-wrapper.drawio.svg" />
