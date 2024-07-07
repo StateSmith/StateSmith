@@ -28,6 +28,48 @@ public class ParsingTests
     }
 
     [Fact]
+    public void DiagramNameIndented()
+    {
+        ParseAssertNoError("""
+                @startuml MyPumlSm1
+
+                @enduml
+            """);
+        translator.Root.id.Should().Be("MyPumlSm1");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/352
+    /// </summary>
+    [Fact]
+    public void LineCommentsBeforeDiagramName_352()
+    {
+        ParseAssertNoError("""
+            ' Single line comments (like this) start with a single quote.
+            ' The line below specifies the name of the state machine.
+            @startuml MyPumlSm1
+
+            @enduml
+            """);
+        translator.Root.id.Should().Be("MyPumlSm1");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/352
+    /// </summary>
+    [Fact]
+    public void BlockCommentsBeforeDiagramName_352()
+    {
+        ParseAssertNoError("""
+            /' The line below specifies the name of the state machine. '/
+            @startuml MyPumlSm1
+
+            @enduml
+            """);
+        translator.Root.id.Should().Be("MyPumlSm1");
+    }
+
+    [Fact]
     public void InvalidInput()
     {
         ParseAssertHasAtLeastOneError("""
