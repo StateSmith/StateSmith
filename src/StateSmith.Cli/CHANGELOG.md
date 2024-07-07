@@ -11,6 +11,9 @@ Test/interim releases are not documented here.
 - Fix tool update check to consider alpha builds in comparison.
     - https://github.com/StateSmith/StateSmith/issues/351
 
+### Change (minor)
+- PlantUML - `create` templates modified to move initial transition below state definitions.
+    - this will help new users in a few situations.
 
 ### Upgrade StateSmith library version to 
 TODO copy in changes from StateSmith library.

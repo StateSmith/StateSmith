@@ -22,7 +22,7 @@ skinparam state {
 ' Note: StateSmith treats state names and events as case insensitive.
 ' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML
 
-[*] -> OFF <<dark>>
+state OFF <<dark>>
 
 state ON_GROUP {
     [*] -> ON1
@@ -31,9 +31,10 @@ state ON_GROUP {
     state ON3 <<red>>
 }
 
-
 ' ///////////////////////// STATE HANDLERS /////////////////////////
 ' Syntax https://github.com/StateSmith/StateSmith/wiki/Behaviors
+
+[*] -> OFF
 
 'OFF
 OFF: enter / print("---");

@@ -26,13 +26,14 @@ public class TemplatePlantUmlMinimalNoCsx
         ' Note: StateSmith treats state names and events as case insensitive.
         ' More info: https://github.com/StateSmith/StateSmith/wiki/PlantUML
         
-        [*] -> State1
         state State1
         state State2
 
 
         ' ///////////////////////// STATE HANDLERS /////////////////////////
         ' Syntax: https://github.com/StateSmith/StateSmith/wiki/Behaviors
+
+        [*] -> State1
 
         ' State1
         State1: enter / count++;
