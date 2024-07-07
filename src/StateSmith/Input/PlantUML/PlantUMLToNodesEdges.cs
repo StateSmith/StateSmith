@@ -140,6 +140,11 @@ public class PlantUMLToNodesEdges
 
     private PlantUMLParser BuildParserForString(string inputString)
     {
+        // Slight hack to work around ANTL4 limitation
+        // https://github.com/StateSmith/StateSmith/issues/352
+        const char START_OF_FILE = '\u0001';
+        inputString = START_OF_FILE + inputString;
+
         ICharStream stream = CharStreams.fromString(inputString);
         var lexer = new PlantUMLLexer(stream);
         lexer.RemoveErrorListeners(); // prevent antlr4 error output to console

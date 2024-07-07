@@ -27,7 +27,14 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-### [0.11.2-alpha]
+## WIP
+### Fixed (minor)
+- plantuml - allow line comments before `@startuml`
+  - https://github.com/StateSmith/StateSmith/issues/352
+
+---
+
+## [0.11.2-alpha]
 ### Fixed
 - Fix error reporting for user injected code (via .csx) that has errors in it.
   - https://github.com/StateSmith/StateSmith/issues/283
@@ -47,7 +54,7 @@ Test/interim releases are not documented here.
 
 ---
 
-[0.11.1-alpha]
+## [0.11.1-alpha]
 ### Add
 - Add plantuml support for `note on link`
   - https://github.com/StateSmith/StateSmith/issues/343

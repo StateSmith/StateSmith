@@ -11,6 +11,11 @@ Test/interim releases are not documented here.
 - Fix tool update check to consider alpha builds in comparison.
     - https://github.com/StateSmith/StateSmith/issues/351
 
+
+### Upgrade StateSmith library version to 
+TODO copy in changes from StateSmith library.
+
+
 ---
 
 ## [0.10.0]

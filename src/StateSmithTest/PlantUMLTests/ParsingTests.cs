@@ -88,8 +88,9 @@ public class ParsingTests
             @enduml
             """);
 
+        // note that column is 1 because of slight hack for https://github.com/StateSmith/StateSmith/issues/352
         action.Should().Throw<Exception>()
-            .WithMessage("PlantUML diagrams need a name and should start like `@startuml MySmName`. Location Details { line: 1, column: 0, text: `@startuml`. }");
+            .WithMessage("PlantUML diagrams need a name and should start like `@startuml MySmName`. Location Details { line: 1, column: 1, text: `@startuml`. }");
     }
 
     [Fact]

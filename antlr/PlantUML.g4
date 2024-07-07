@@ -321,11 +321,18 @@ BLOCK_COMMENT :
     -> skip
     ;
 
-// 'Line comments use a single apostrophe
+// 'Line comments use a single apostrophe.
+// They can't be used anywhere. They must be at the start of a line.
 LINE_COMMENT:
-    LINE_ENDER HWS* SINGLE_QUOTE ~[\r\n]*
+    (START_OF_INPUT | LINE_ENDER)
+    HWS*
+    SINGLE_QUOTE ~[\r\n]*
     -> skip
     ;
+
+// This token MUST occur AFTER the LINE_COMMENT token as it is a subset of the LINE_COMMENT token.
+// See https://github.com/StateSmith/StateSmith/issues/352
+START_OF_INPUT : '\u0001' -> skip;
 
 SYMBOLS: 
     [-~`!@#$%^&*()_+=\\|{};:",<.>/?] | '[' | ']';
