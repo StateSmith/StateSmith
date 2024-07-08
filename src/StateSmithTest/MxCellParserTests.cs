@@ -3,6 +3,7 @@ using Xunit;
 using StateSmith.Input.DrawIo;
 using FluentAssertions;
 using System.Collections.Generic;
+using System;
 
 namespace StateSmithTest.DrawIo;
 
@@ -105,7 +106,32 @@ public class MxCellParserTests
         //could test all vertices and edges...
     }
 
-
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/353
+    /// </summary>
+    [Fact]
+    public void TestInvalidAttributeId_353()
+    {
+        string small1Xml = """
+            <mxfile host="65bd71144e">
+                <diagram id="X5z84YncFC1j1vogRgUh" name="Page-1">
+                    <mxGraphModel dx="901" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+                        <root>
+                            <mxCell id="0"/>
+                            <mxCell>
+                        </root>
+                    </mxGraphModel>
+                </diagram>
+            </mxfile>
+            """;
+        MxCellParser mxCellParser = new(new StringReader(small1Xml));
+        Action a = () => mxCellParser.Parse();
+        a.Should().Throw<Exception>()
+            .WithMessage("*failed getting attribute `id`*")
+            .WithMessage("*name: `mxCell`*")
+            .WithMessage("*line 6,*")
+            .WithMessage("*column 18.*");
+    }
 
     private const string Small1Xml = """
             <mxfile host="65bd71144e">

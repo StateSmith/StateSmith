@@ -157,7 +157,9 @@ public class MxCellParser
         string? attr = MaybeGetAttribute(attributeName);
         if (attr == null)
         {
-            throw new DrawIoException($"failed getting attribute {attributeName} from xml element.");
+            throw new DrawIoException($"failed getting attribute `{attributeName}` from xml element.\n" +
+                $"Element name: `{reader.Name}`. Location in file: line {reader.LineNumber}, column {reader.LinePosition}.\n" +
+                $"HELP INFO: https://github.com/StateSmith/StateSmith/issues/354");
         }
         return attr;
     }

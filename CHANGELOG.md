@@ -32,6 +32,11 @@ Test/interim releases are not documented here.
 - plantuml - allow line comments before `@startuml`
   - https://github.com/StateSmith/StateSmith/issues/352
 
+### Added
+- Add draw.io parse error location in exception message with help link.
+  - https://github.com/StateSmith/StateSmith/issues/353
+  - https://github.com/StateSmith/StateSmith/issues/354
+
 ---
 
 ## [0.11.2-alpha]
