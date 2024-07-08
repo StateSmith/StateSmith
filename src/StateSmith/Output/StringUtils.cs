@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -188,5 +189,37 @@ public class StringUtils
         var newName = regex.Replace(snakeCaseName, (Match m) => m.Groups["letterToUpperCase"].Value.ToUpper());
 
         return newName;
+    }
+
+    public static string ReadLineXFromString(int lineNumber, string input)
+    {
+        using var tempReader = new StringReader(input);
+
+        for (int i = 0; i < lineNumber - 1; i++)
+        {
+            tempReader.ReadLine();
+        }
+
+        var lineContents = tempReader.ReadLine() ?? $"<failed reading line {lineNumber} from string>";
+        return lineContents;
+    }
+
+    /// <summary>
+    /// Line numbers are 1-based. Trimmed message subject to change.
+    /// </summary>
+    /// <returns></returns>
+    public static string BackTickQuoteLimitedString(string str, int maxLineLength = 100)
+    {
+        if (str.Length > maxLineLength)
+        {
+            str = str[..maxLineLength];
+            str = $"`{str}` (trimmed to {maxLineLength} chars)";
+        }
+        else
+        {
+            str = $"`{str}`";
+        }
+
+        return str;
     }
 }

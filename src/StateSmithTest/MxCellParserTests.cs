@@ -4,6 +4,8 @@ using StateSmith.Input.DrawIo;
 using FluentAssertions;
 using System.Collections.Generic;
 using System;
+using System.Threading;
+using StateSmith.Runner;
 
 namespace StateSmithTest.DrawIo;
 
@@ -68,7 +70,7 @@ public class MxCellParserTests
     public void Test()
     {
         string small1Xml = Small1Xml;
-        MxCellParser mxCellParser = new(new StringReader(small1Xml));
+        MxCellParser mxCellParser = new(small1Xml);
         mxCellParser.Parse();
 
         var smRoot = mxCellParser.GetCellById("5hg7lKXR2ijf20l0Po2r-1");
@@ -112,25 +114,63 @@ public class MxCellParserTests
     [Fact]
     public void TestInvalidAttributeId_353()
     {
-        string small1Xml = """
+        const string small1Xml = """
             <mxfile host="65bd71144e">
                 <diagram id="X5z84YncFC1j1vogRgUh" name="Page-1">
                     <mxGraphModel dx="901" dy="593" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
                         <root>
                             <mxCell id="0"/>
-                            <mxCell>
+                            <mxCell />
                         </root>
                     </mxGraphModel>
                 </diagram>
             </mxfile>
             """;
-        MxCellParser mxCellParser = new(new StringReader(small1Xml));
+        MxCellParser mxCellParser = new(small1Xml);
         Action a = () => mxCellParser.Parse();
         a.Should().Throw<Exception>()
             .WithMessage("*failed getting attribute `id`*")
-            .WithMessage("*name: `mxCell`*")
+            .WithMessage("*xml element `mxCell`*")
             .WithMessage("*line 6,*")
             .WithMessage("*column 18.*");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/353
+    /// </summary>
+    [Fact]
+    public void TestInvalidAttributeId_Large_353()
+    {
+        MxCellParser mxCellParser = new(XmlWithMissingIdAttribute);
+        Action a = () => mxCellParser.Parse();
+        a.Should().Throw<Exception>()
+            .WithMessage("*failed getting attribute `id`*")
+            .WithMessage("*xml element `mxCell`*")
+            .WithMessage("*line 7,*")
+            .WithMessage("*column 10.*");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/353
+    /// </summary>
+    [Fact]
+    public void TestInvalidAttributeId_IntegrationTest_353()
+    {
+        var tempFileName = Path.GetTempFileName() + ".drawio";
+        File.WriteAllText(tempFileName, XmlWithMissingIdAttribute);
+
+        SmRunner smRunner = new(diagramPath: tempFileName);
+        smRunner.Settings.propagateExceptions = true;
+        Action a = () => smRunner.Run();
+
+        a.Should().Throw<Exception>()
+            .WithMessage("*failed getting attribute `id`*")
+            .WithMessage("*xml element `mxCell`*")
+            .WithMessage("*line 5,*")
+            .WithMessage("*relative to parent <mxGraphModel>*")
+            .WithMessage("*column 10.*");
+
+        File.Delete(tempFileName);
     }
 
     private const string Small1Xml = """
@@ -186,6 +226,25 @@ public class MxCellParserTests
                 </diagram>
             </mxfile>
             """;
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/353
+    /// </summary>
+    private const string XmlWithMissingIdAttribute = """
+        <mxfile host="Electron" modified="2023-04-24T17:11:48.107Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="CukFah_wq8AoD-fPX12M" version="21.1.2" type="device">
+          <diagram name="Page-1" id="etVsyBEr5ORxP3lcf0-8">
+            <mxGraphModel dx="1434" dy="844" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+              <root>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
+                <mxCell value="$STATEMACHINE : MarioSm" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=#18141d;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+                  <mxGeometry x="10" y="70" width="940" height="710" as="geometry" />
+                </mxCell>
+              </root>
+            </mxGraphModel>
+          </diagram>
+        </mxfile>
+        """;
 
     private static void TestWithMxCell(string input, string expected)
     {

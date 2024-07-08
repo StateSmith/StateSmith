@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 
 namespace StateSmith.Input.DrawIo;
@@ -17,7 +17,7 @@ public class DrawIoToSmDiagramConverter
 
     public void ProcessFile(string filePath)
     {
-        StreamReader fileReader = File.OpenText(filePath);
+        using StreamReader fileReader = File.OpenText(filePath);
 
         if (filePath.EndsWith(".svg", System.StringComparison.OrdinalIgnoreCase))
         {
@@ -32,18 +32,18 @@ public class DrawIoToSmDiagramConverter
     public void ProcessSvg(TextReader svgFileReader)
     {
         var diagramXml = DrawIoDecoder.DecodeSvgToOriginalDiagram(svgFileReader);
-        ProcessDiagramContents(new StringReader(diagramXml));
+        ProcessDiagramContents(diagramXml);
     }
 
     public void ProcessRegularFile(TextReader fileReader)
     {
         var diagramXml = DrawIoDecoder.GetMxFileDiagramContents(fileReader.ReadToEnd());
-        ProcessDiagramContents(new StringReader(diagramXml));
+        ProcessDiagramContents(diagramXml);
     }
 
-    public void ProcessDiagramContents(TextReader diagramXmlReader)
+    public void ProcessDiagramContents(string diagramXml)
     {
-        MxCellParser mxCellParser = new(diagramXmlReader);
+        MxCellParser mxCellParser = new(diagramXml);
         mxCellParser.Parse();
 
         converter.Process(mxCellParser.mxCells);

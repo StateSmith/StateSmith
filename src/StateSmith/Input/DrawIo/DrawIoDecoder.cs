@@ -87,10 +87,13 @@ public class DrawIoDecoder
     public static string GetDiagramContentsRaw(string mxfileXmlContents)
     {
         using XmlTextReader reader = new(new StringReader(mxfileXmlContents));
-        reader.WhitespaceHandling = WhitespaceHandling.None;
+        
+        // keep whitespace so that ReadInnerXml contains whitespaces (required for error line numbers)
+        reader.WhitespaceHandling = WhitespaceHandling.All;
 
         ReadAndExpectOpeningXmlTag(reader, "mxfile");
         ReadAndExpectOpeningXmlTag(reader, "diagram");
+        SkipWhiteSpaceToNextElement(reader);   // skip whitespace to improve error messages
         var contents = reader.ReadInnerXml();  // advances past diagram closing tag
         MaybeThrowHelpfulMultipleDiagramMessage(reader);
         ExpectClosingXmlTag(reader, "mxfile"); // todo_low - support multiple diagrams per mxfile. https://github.com/StateSmith/StateSmith/issues/78
@@ -100,6 +103,8 @@ public class DrawIoDecoder
 
     private static void MaybeThrowHelpfulMultipleDiagramMessage(XmlTextReader reader)
     {
+        SkipWhiteSpaceToNextElement(reader);
+
         if (reader.LocalName == "diagram")
         {
             throw new DrawIoException($"draw.io files can only contain a single diagram/page for now. See https://github.com/StateSmith/StateSmith/issues/78 .");
@@ -117,13 +122,37 @@ public class DrawIoDecoder
 
     private static void ExpectClosingXmlTag(XmlTextReader reader, string tag)
     {
+        SkipWhiteSpaceToNextElement(reader, errorMessage: $"Expected closing xml tag `{tag}`");
+
         if (reader.NodeType != XmlNodeType.EndElement)
         {
             throw new DrawIoException($"Invalid draw.io file. Expected closing xml tag `{tag}`, but found `{reader.LocalName}`");
         }
     }
 
+    private static void SkipWhiteSpaceToNextElement(XmlTextReader reader, string? errorMessage = null)
+    {
+        if (reader.NodeType == XmlNodeType.Whitespace)
+        {
+            ReadOrThrow(reader, errorMessage ?? "Expected non-whitespace element");
+        }
+    }
+
     private static void ReadOrThrow(XmlTextReader reader, string expectedMessage)
+    {
+        while (true)
+        {
+            ReadOrThrowRaw(reader, expectedMessage);
+
+            // skip whitespace
+            if (reader.NodeType != XmlNodeType.Whitespace)
+            {
+                break;
+            }
+        }
+    }
+
+    private static void ReadOrThrowRaw(XmlTextReader reader, string expectedMessage)
     {
         if (!reader.Read())
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Xunit;
 using StateSmith.Input.DrawIo;
@@ -67,7 +67,7 @@ public class DrawIoSvgDecodingTests
         Action action = () => DrawIoDecoder.GetDiagramContentsRaw("""
             <mxfile>
                 <diagram id="123" name="Page-1">blah123</diagram>
-                <diagram id="123" name="Page-1">blah123</diagram>
+                <diagram id="123" name="Page-2">blah123</diagram>
             </mxfile>
             """);
         action.Should().Throw<DrawIoException>().WithMessage("draw.io files can only contain a single diagram/page for now. See https://github.com/StateSmith/StateSmith/issues/78 .");

@@ -3,32 +3,38 @@ using System.IO;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.Linq;
+using Microsoft.CodeAnalysis;
+using StateSmith.Output;
 
 #nullable enable
 
 namespace StateSmith.Input.DrawIo;
 
+/// <summary>
+/// Parses XML from mxGraphModel element.
+/// </summary>
 public class MxCellParser
 {
     protected readonly XmlTextReader reader;
-
+    private readonly string xmlContents;
     public Dictionary<string, MxCell> mxCells = new();
 
     MxCell? lastVertexCell;
-
-    public MxCellParser(string filepath)
-    {
-        reader = new XmlTextReader(filepath);
-    }
 
     public MxCell GetCellById(string id)
     {
         return mxCells[id];
     }
 
-    public MxCellParser(TextReader textReader)
+    public MxCellParser(string xmlContents)
     {
-        reader = new XmlTextReader(textReader);
+        reader = new XmlTextReader(new StringReader(xmlContents));
+        this.xmlContents = xmlContents;
+    }
+
+    public void Close()
+    {
+        reader.Close();
     }
 
     public void Parse()
@@ -157,11 +163,21 @@ public class MxCellParser
         string? attr = MaybeGetAttribute(attributeName);
         if (attr == null)
         {
-            throw new DrawIoException($"failed getting attribute `{attributeName}` from xml element.\n" +
-                $"Element name: `{reader.Name}`. Location in file: line {reader.LineNumber}, column {reader.LinePosition}.\n" +
+            string lineContents = GetStringLine(reader.LineNumber);
+
+            throw new DrawIoException($"failed getting attribute `{attributeName}` from xml element `{reader.Name}`.\n" +
+                $"Line contents: {lineContents}\n" +
+                $"Location (usually relative to parent <mxGraphModel>): line {reader.LineNumber}, column {reader.LinePosition}.\n" +
                 $"HELP INFO: https://github.com/StateSmith/StateSmith/issues/354");
         }
         return attr;
+    }
+
+    private string GetStringLine(int lineNumber)
+    {
+        string lineContents = StringUtils.ReadLineXFromString(lineNumber, xmlContents);
+        lineContents = StringUtils.BackTickQuoteLimitedString(lineContents, 100);
+        return lineContents;
     }
 
     private bool HasAttribute(string attributeName)

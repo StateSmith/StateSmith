@@ -37,6 +37,10 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/353
   - https://github.com/StateSmith/StateSmith/issues/354
 
+### Changed (minor)
+- Slight change to draw.io xml parsing to allow for error location information.
+  - https://github.com/StateSmith/StateSmith/issues/353
+  
 ---
 
 ## [0.11.2-alpha]
