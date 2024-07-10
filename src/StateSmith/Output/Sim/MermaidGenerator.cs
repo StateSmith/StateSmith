@@ -73,9 +73,10 @@ class MermaidGenerator : IVertexVisitor
         string name = v.Name;
         AppendIndentedLine(name);
         AppendIndentedLine($"{name} : {name}");
-        foreach (var b in v.Behaviors.Where(b => b.TransitionTarget == null))
+        foreach (var b in v.NonTransitionBehaviors())
         {
-            string behaviorText = BehaviorToMermaidLabel(b);
+            // always show action code for https://github.com/StateSmith/StateSmith/issues/355
+            string behaviorText = BehaviorToMermaidLabel(b, alwaysShowActionCode: true);
             AppendIndentedLine($"{name} : {behaviorText}");
         }
     }
@@ -134,6 +135,7 @@ class MermaidGenerator : IVertexVisitor
 
             foreach (var behavior in v.Behaviors)
             {
+                // transition behaviors
                 if (behavior.TransitionTarget != null)
                 {
                     Append($"{vertexDiagramId} --> {MakeVertexDiagramId(behavior.TransitionTarget)}");
@@ -152,9 +154,9 @@ class MermaidGenerator : IVertexVisitor
         });
     }
 
-    public string BehaviorToMermaidLabel(Behavior behavior)
+    public string BehaviorToMermaidLabel(Behavior behavior, bool alwaysShowActionCode = false)
     {
-        var behaviorText = behaviorDescriber.Describe(behavior);
+        var behaviorText = behaviorDescriber.Describe(behavior, alwaysShowActionCode: alwaysShowActionCode);
         behaviorText = MermaidEscape(behaviorText);
         behaviorText = behaviorText.Replace(LINE_BREAK_TOKEN, "\\n");
         return behaviorText;

@@ -21,6 +21,9 @@ state Configuring {
   }
 }
 
+' Test below event consume for https://github.com/StateSmith/StateSmith/issues/355
+Idle: Ev4 /
+
 ' The below is meant to test https://github.com/StateSmith/StateSmith/issues/337
 /'! $CONFIG : toml
 [RenderConfig.JavaScript]

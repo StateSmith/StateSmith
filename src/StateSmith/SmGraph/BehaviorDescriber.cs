@@ -19,7 +19,7 @@ public class BehaviorDescriber
         _newLine = newLine;
     }
 
-    public string Describe(Behavior b)
+    public string Describe(Behavior b, bool alwaysShowActionCode = false)
     {
         string result = "";
         string joiner = "";
@@ -54,7 +54,7 @@ public class BehaviorDescriber
             joiner = " ";
         }
 
-        if (b.HasActionCode())
+        if (alwaysShowActionCode || b.HasActionCode())
         {
             result += joiner + "/ { " + GetActionCode(b) + " }";
             joiner = " ";

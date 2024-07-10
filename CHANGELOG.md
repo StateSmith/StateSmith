@@ -36,6 +36,8 @@ Test/interim releases are not documented here.
 - Add draw.io parse error location in exception message with help link.
   - https://github.com/StateSmith/StateSmith/issues/353
   - https://github.com/StateSmith/StateSmith/issues/354
+- simulator - always show action code (even if blank) for non-transition behaviors.
+  - https://github.com/StateSmith/StateSmith/issues/355
 
 ### Changed (minor)
 - Slight change to draw.io xml parsing to allow for error location information.

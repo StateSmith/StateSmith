@@ -1,3 +1,5 @@
+#nullable enable
+
 using StateSmith.Output.Sim;
 using StateSmith.SmGraph;
 using Xunit;
@@ -49,9 +51,24 @@ public class MermaidGenerator_BehaviorLabelTest
         Test(guardCode: "a > 10 &&\nb > 20", expected: $"""[a > 10 &&\nb > 20]""");
     }
 
-    private void Test(string guardCode = "", string actionCode = "", string expected = "")
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/355
+    /// </summary>
+    [Fact]
+    public void AlwaysShowActionCode_355()
+    {
+        Test(trigger: "BLUE", expected: $"""BLUE {ACTION_START} {OPEN_BRACE}  {CLOSE_BRACE}""", alwaysShowActionCode: true);
+    }
+
+    private void Test(string? trigger = null, string guardCode = "", string actionCode = "", string expected = "", bool alwaysShowActionCode = false)
     {
         var b = new Behavior(guardCode: guardCode, actionCode: actionCode);
-        gen.BehaviorToMermaidLabel(b).ShouldBeShowDiff(expected);
+
+        if (trigger != null)
+        {
+            b.AddTrigger(trigger);
+        }
+
+        gen.BehaviorToMermaidLabel(b, alwaysShowActionCode: alwaysShowActionCode).ShouldBeShowDiff(expected);
     }
 }

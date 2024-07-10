@@ -169,6 +169,12 @@ public static class VertexLinqExtensionMethods
         return vertex.Behaviors.Where(b => b.HasTransition());
     }
 
+
+    public static IEnumerable<Behavior> NonTransitionBehaviors(this Vertex vertex)
+    {
+        return vertex.Behaviors.Where(b => !b.HasTransition());
+    }
+
     public static string UmlDescription(this IEnumerable<Behavior> behaviors)
     {
         string str = "";

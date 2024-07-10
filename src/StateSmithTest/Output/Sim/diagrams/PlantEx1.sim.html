@@ -226,6 +226,8 @@ state NotShooting {
 
         Idle : Idle
 
+        Idle : Ev4 / #123;  #125;
+
         state Configuring {
 
                 state "$initial_state" as Configuring.(InitialState)
@@ -316,14 +318,15 @@ evaluateGuard = null;
     static EventId = 
     {
         EV2 : 0,
-        EVCONFIG : 1,
-        EVNEWVALUE : 2,
-        EVNEWVALUEREJECTED : 3,
-        EVNEWVALUESAVED : 4,
+        EV4 : 1,
+        EVCONFIG : 2,
+        EVNEWVALUE : 3,
+        EVNEWVALUEREJECTED : 4,
+        EVNEWVALUESAVED : 5,
     }
     static { Object.freeze(this.EventId); }
     
-    static EventIdCount = 5;
+    static EventIdCount = 6;
     static { Object.freeze(this.EventIdCount); }
     
     static StateId = 
@@ -769,6 +772,7 @@ evaluateGuard = null;
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#IDLE_exit;
+        this.#currentEventHandlers[PlantEx1.EventId.EV4] = this.#IDLE_ev4;
         this.#currentEventHandlers[PlantEx1.EventId.EVCONFIG] = this.#IDLE_evconfig;
         
         // Idle behavior
@@ -790,7 +794,21 @@ evaluateGuard = null;
         
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#NOTSHOOTING_exit;
+        this.#currentEventHandlers[PlantEx1.EventId.EV4] = null;  // no ancestor listens to this event
         this.#currentEventHandlers[PlantEx1.EventId.EVCONFIG] = null;  // no ancestor listens to this event
+    }
+    
+    #IDLE_ev4()
+    {
+        // No ancestor state handles `ev4` event.
+        
+        // Idle behavior
+        // uml: Ev4
+        {
+            // Step 1: execute action ``
+            // Step 2: determine if ancestor gets to handle event next.
+            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+        } // end of behavior for Idle
     }
     
     #IDLE_evconfig()
@@ -851,6 +869,7 @@ evaluateGuard = null;
         switch (id)
         {
             case PlantEx1.EventId.EV2: return "EV2";
+            case PlantEx1.EventId.EV4: return "EV4";
             case PlantEx1.EventId.EVCONFIG: return "EVCONFIG";
             case PlantEx1.EventId.EVNEWVALUE: return "EVNEWVALUE";
             case PlantEx1.EventId.EVNEWVALUEREJECTED: return "EVNEWVALUEREJECTED";
@@ -886,7 +905,7 @@ evaluateGuard = null;
             center: true
         });
 
-        const diagramEventNamesArray = ['Ev2', 'EvConfig', 'EvNewValue', 'EvNewValueRejected', 'EvNewValueSaved', ];
+        const diagramEventNamesArray = ['Ev2', 'Ev4', 'EvConfig', 'EvNewValue', 'EvNewValueRejected', 'EvNewValueSaved', ];
 
         const leftPane = document.querySelector(".main");
         const rightPane = document.querySelector(".sidebar");
