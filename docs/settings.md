@@ -241,10 +241,21 @@ Default any expansions template. This expansion template is used when a variable
 
 See `DefaultVarExpTemplate` and `DefaultFuncExpTemplate` for more information.
 
+### JavaScript Inheritance Example
+If your state machine extends a base class with functionality that you want to access naturally in your diagram action code, you can use the below template.
 ```toml
 [RenderConfig]
-DefaultAnyExpTemplate = "{VarsPath}my_interface.{AutoNameCopy()}"
+DefaultAnyExpTemplate = "this.{AutoNameCopy()}"
 ```
+Then instead of writing `this.timer.set(1)`, you can write `timer.set(1)`.
+
+### JavaScript Interface/Composition Example
+If your state machine has a variable with a reference to an interface class that provides functionality, you can use the below template to access the interface functions naturally in your diagram action code.
+```toml
+[RenderConfig]
+DefaultAnyExpTemplate = "{VarsPath}myInterface.{AutoNameCopy()}"
+```
+Then instead of writing `this.vars.myInterface.doStuff(1)`, you can write `doStuff(1)`.
 
 ## RenderConfig.TriggerMap
 Type: `string`
