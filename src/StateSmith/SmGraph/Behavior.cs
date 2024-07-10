@@ -140,8 +140,7 @@ public class Behavior
 
     private static bool IsCodePresent(string? code)
     {
-        // todolow - replace below with String.IsNullOrWhiteSpace
-        return code != null && code.Trim().Length > 0;  //trim not ideal for performance, but fine for now
+        return !string.IsNullOrWhiteSpace(code);
     }
 
     public void AddTrigger(string trigger)
