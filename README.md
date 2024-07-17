@@ -20,7 +20,12 @@ The [fundamentals-1](https://statesmith.github.io/fundamentals-1/) webpage has s
 
 # Quick Start (all supported languages) 🚀
 Want to jump right in and just try it!?
-[Tutorial-2](https://github.com/StateSmith/tutorial-2) will get you up and running as quick as possible.
+
+🔥 [Tutorial-3](https://github.com/StateSmith/tutorial-3) uses new StateSmith features that are easier to use. It is a good starting point for most people. That said, it is brand new and not as battle tested.<br>
+Uses **PlantUML**.
+
+[Tutorial-2](https://github.com/StateSmith/tutorial-2) uses the older style .csx method (still actively supported). It is a bit more verbose, but has been around longer and is more stable. It also allows for more advanced features for those who need them.<br>
+Uses **draw.io** which is a bit trickier to learn compared to PlantUML.
 
 
 
@@ -31,7 +36,7 @@ Want to jump right in and just try it!?
 # Stay in the Know 📰
 Our announcements [discord](https://discord.com/invite/rNxNGQXWsU) channel is updated when new tutorials and features are added.
 
-
+YouTube channel: https://www.youtube.com/@statesmith
 
 
 <br>
@@ -79,7 +84,7 @@ Thanks!
 # Is StateSmith ready for use? 🧪
 > We use StateSmith in a fair number of production projects at my work. It's been super helpful.
 
-StateSmith is generating working code, and has good test (420+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
+StateSmith is generating working code, and has good test (598+) and behavior specification coverage. There are 45+ specification integration tests that read a diagram file, generate executable state machine code, then compile and execute that code in another process and ensure that the state machine behavior is exactly what was expected. This strong test base gives me confidence. It also allows us to refactor and optimize StateSmith without fear of accidentally breaking specified behavior.
 
 ![picture 1](images/test-coverage-2022-12.png)  
 
