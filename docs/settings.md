@@ -667,9 +667,10 @@ If you are using a .csx file, you need to explicitly enable this feature.
 [SmRunnerSettings.simulation]
 enableGeneration = false
 outputDirectory = ".."
-outputFileNamePostfix = ".sim.html"
+outputFileNamePostfix = ".sim.html" # NOT YET SUPPORTED!
 ```
 
+Note: `outputFileNamePostfix` is [not yet supported](https://github.com/StateSmith/StateSmith/issues/360).
 
 # ...more
 There are more SmRunnerSettings available that are less commonly used and not yet documented here.
