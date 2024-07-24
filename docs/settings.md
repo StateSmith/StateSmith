@@ -7,6 +7,25 @@ Both are valid and supported, but we will documenting the settings here in TOML 
 
 A few settings can also be specified on the command line when using the CLI.
 
+## Quick TOML Note
+The [full spec](https://toml.io/en/v1.0.0) is a quick read, but I'll just make a quick note as you'll encounter it often.
+
+The below two TOML configs are equivalent. Use which ever style works best for you.
+
+### [TOML Dotted Keys](https://toml.io/en/v1.0.0#keys)
+```toml
+RenderConfig.FileTop = "stuff..."
+RenderConfig.AutoExpandedVars  = "stuff..."
+```
+
+### [TOML Table](https://toml.io/en/v1.0.0#table)
+
+```toml
+[RenderConfig]
+FileTop = "stuff..."
+AutoExpandedVars  = "stuff..."
+```
+
 <br>
 
 # Table of Contents
