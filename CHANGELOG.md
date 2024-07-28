@@ -31,6 +31,8 @@ Test/interim releases are not documented here.
 ### Fixed (minor)
 - plantuml - allow line comments before `@startuml`
   - https://github.com/StateSmith/StateSmith/issues/352
+- simulator - style $initial_state nodes as a black circle
+  - https://github.com/StateSmith/StateSmith/issues/294
 
 ### Added
 - Add draw.io parse error location in exception message with help link.
