@@ -98,12 +98,44 @@ public class RunHandler
 
         ReadPastRunInfoDatabase();
         var scanResults = Finder.Scan(searchDirectory: searchDirectory);
+
+        // TODO csxfiles
+        // TODO if w flag specified
+        var watchers = new List<FileSystemWatcher>();
+        foreach (var diagramFile in scanResults.targetDiagramFiles)
+        {
+            var watcher = new FileSystemWatcher();
+            watchers.Add(watcher); // don't let watchers go out of scope yet
+            var path = Path.GetDirectoryName(diagramFile);
+            watcher.Path = path!=null && path.Length>0 ? path : "."; 
+            watcher.Filter = Path.GetFileName(diagramFile);
+            Console.WriteLine($"Watching {diagramFile}");
+            Console.WriteLine($"Path: {watcher.Path}");
+            Console.WriteLine($"Filter: {watcher.Filter}");
+            watcher.Changed += (sender, e) => 
+            {
+                Console.WriteLine($"File {diagramFile} has changed.");
+                // TODO only process the changed file
+                RunInnerInner(searchDirectory, scanResults);
+            };
+            watcher.EnableRaisingEvents = true;            
+        }
+
+        RunInnerInner(searchDirectory, scanResults);
+
+        Console.WriteLine("Watching for changes. Press enter to exit.");
+        Console.ReadLine();
+    }
+
+    private void RunInnerInner(string searchDirectory, SsCsxDiagramFileFinder.ScanResults scanResults) 
+    {
         RunScriptsIfNeeded(scanResults.targetCsxFiles);
 
         var diagramRunner = new DiagramRunner(_runConsole, _diagramOptions, _runInfo, searchDirectory: searchDirectory, _runHandlerOptions);
         diagramRunner.Run(scanResults.targetDiagramFiles);
 
         PrintScanInfo(scanResults);
+
     }
 
     private void PrintScanInfo(SsCsxDiagramFileFinder.ScanResults scanResults)

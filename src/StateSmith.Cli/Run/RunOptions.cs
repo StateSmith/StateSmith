@@ -42,6 +42,10 @@ public class RunOptions
     [Option("no-csx", HelpText = $"Disables running csx files (useful if {DotnetScriptProgram.Name} is not installed).")]
     public bool NoCsx { get; set; } = false;
 
+    [Option('w', "watch", HelpText = "Watch for changes.")]
+    public bool Watch { get; set; } = false;
+
+
     /// <summary>
     /// https://github.com/StateSmith/StateSmith/issues/348
     /// </summary>
