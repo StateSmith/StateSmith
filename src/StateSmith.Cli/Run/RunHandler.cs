@@ -115,7 +115,7 @@ public class RunHandler
             watcher.Changed += (sender, e) => 
             {
                 _runConsole.WriteLine($"File {diagramFile} has changed.");
-                // TODO only process the changed file
+                // TODO only process the changed file. Not sure how to break up ScanResults to do this
                 RunInnerInner(searchDirectory, scanResults);
             };
             watcher.EnableRaisingEvents = true;            
