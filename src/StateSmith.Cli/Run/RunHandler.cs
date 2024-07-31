@@ -100,31 +100,32 @@ public class RunHandler
         ReadPastRunInfoDatabase();
         var scanResults = Finder.Scan(searchDirectory: searchDirectory);
 
-        // TODO if w flag specified
-        var watchers = new List<FileSystemWatcher>();
-        foreach (var diagramFile in scanResults.targetDiagramFiles.Union( scanResults.targetCsxFiles ))
-        {
-            var watcher = new FileSystemWatcher();
-            watchers.Add(watcher); // don't let watchers go out of scope yet
-            var path = Path.GetDirectoryName(diagramFile);
-            watcher.Path = path!=null && path.Length>0 ? path : "."; 
-            watcher.Filter = Path.GetFileName(diagramFile);
-            _runConsole.WriteLine($"Watching {diagramFile}");
-            _runConsole.WriteLine($"Path: {watcher.Path}");
-            _runConsole.WriteLine($"Filter: {watcher.Filter}");
-            watcher.Changed += (sender, e) => 
-            {
-                _runConsole.WriteLine($"File {diagramFile} has changed.");
-                // TODO only process the changed file. Not sure how to break up ScanResults to do this
-                RunInnerInner(searchDirectory, scanResults);
-            };
-            watcher.EnableRaisingEvents = true;            
-        }
-
         RunInnerInner(searchDirectory, scanResults);
 
-        Console.WriteLine("Watching for changes. Press enter to exit.");
-        Console.ReadLine();
+        if( _runHandlerOptions.Watch) {
+            var watchers = new List<FileSystemWatcher>();
+            foreach (var diagramFile in scanResults.targetDiagramFiles.Union( scanResults.targetCsxFiles ))
+            {
+                var watcher = new FileSystemWatcher();
+                watchers.Add(watcher); // don't let watchers go out of scope yet
+                var path = Path.GetDirectoryName(diagramFile);
+                watcher.Path = path!=null && path.Length>0 ? path : "."; 
+                watcher.Filter = Path.GetFileName(diagramFile);
+                _runConsole.WriteLine($"Watching {diagramFile}");
+                _runConsole.WriteLine($"Path: {watcher.Path}");
+                _runConsole.WriteLine($"Filter: {watcher.Filter}");
+                watcher.Changed += (sender, e) => 
+                {
+                    _runConsole.WriteLine($"File {diagramFile} has changed.");
+                    // TODO only process the changed file. Not sure how to break up ScanResults to do this
+                    RunInnerInner(searchDirectory, scanResults);
+                };
+                watcher.EnableRaisingEvents = true;            
+            }
+
+            Console.WriteLine("Watching for changes. Press enter to exit.");
+            Console.ReadLine();
+        }
     }
 
     private void RunInnerInner(string searchDirectory, SsCsxDiagramFileFinder.ScanResults scanResults) 

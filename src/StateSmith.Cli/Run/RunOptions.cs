@@ -72,6 +72,7 @@ public class RunOptions
             PropagateExceptions = PropagateExceptions,
             DumpErrorsToFile = DumpErrorsToFile,
             Rebuild = Rebuild,
+            Watch = Watch,
         };
     }
 
