@@ -109,12 +109,12 @@ public class RunHandler
             var path = Path.GetDirectoryName(diagramFile);
             watcher.Path = path!=null && path.Length>0 ? path : "."; 
             watcher.Filter = Path.GetFileName(diagramFile);
-            Console.WriteLine($"Watching {diagramFile}");
-            Console.WriteLine($"Path: {watcher.Path}");
-            Console.WriteLine($"Filter: {watcher.Filter}");
+            _runConsole.WriteLine($"Watching {diagramFile}");
+            _runConsole.WriteLine($"Path: {watcher.Path}");
+            _runConsole.WriteLine($"Filter: {watcher.Filter}");
             watcher.Changed += (sender, e) => 
             {
-                Console.WriteLine($"File {diagramFile} has changed.");
+                _runConsole.WriteLine($"File {diagramFile} has changed.");
                 // TODO only process the changed file
                 RunInnerInner(searchDirectory, scanResults);
             };
