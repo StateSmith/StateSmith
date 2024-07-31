@@ -136,7 +136,6 @@ public class RunHandler
         diagramRunner.Run(scanResults.targetDiagramFiles);
 
         PrintScanInfo(scanResults);
-
     }
 
     private void PrintScanInfo(SsCsxDiagramFileFinder.ScanResults scanResults)
