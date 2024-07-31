@@ -7,6 +7,7 @@ using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace StateSmith.Cli.Run;
 
@@ -99,10 +100,9 @@ public class RunHandler
         ReadPastRunInfoDatabase();
         var scanResults = Finder.Scan(searchDirectory: searchDirectory);
 
-        // TODO csxfiles
         // TODO if w flag specified
         var watchers = new List<FileSystemWatcher>();
-        foreach (var diagramFile in scanResults.targetDiagramFiles)
+        foreach (var diagramFile in scanResults.targetDiagramFiles.Union( scanResults.targetCsxFiles ))
         {
             var watcher = new FileSystemWatcher();
             watchers.Add(watcher); // don't let watchers go out of scope yet
