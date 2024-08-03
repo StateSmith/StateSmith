@@ -20,7 +20,6 @@ public class RunLiteOptions
     [Option("files", HelpText = "Files to process. Can be .csx or diagram files.")]
     public IEnumerable<string> Files {get;set;} //sequence
 
-
     [Option("no-sim-gen", HelpText = "Disables simulation .html file generation. Ignored for csx files.")]
     public bool NoSimGen { get; set; } = false;
 
@@ -29,19 +28,6 @@ public class RunLiteOptions
 
     [Option('v', "verbose", HelpText = "Enables verbose info printing.")]
     public bool Verbose { get; set; } = false;
-
-    // public RunHandlerOptions GetRunHandlerOptions(string currentDirectory)
-    // {
-    //     return new RunHandlerOptions(currentDirectory: currentDirectory)
-    //     {
-    //         Verbose = Verbose,
-    //         NoCsx = NoCsx,
-    //         PropagateExceptions = PropagateExceptions,
-    //         DumpErrorsToFile = DumpErrorsToFile,
-    //         Rebuild = Rebuild,
-    //         Watch = Watch,
-    //     };
-    // }
 
     public DiagramOptions GetDiagramOptions()
     {
