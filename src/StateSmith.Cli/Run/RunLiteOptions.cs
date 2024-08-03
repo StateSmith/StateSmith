@@ -1,5 +1,4 @@
 using CommandLine;
-using StateSmith.Cli.Utils;
 using StateSmith.Runner;
 using System.Collections.Generic;
 
@@ -16,9 +15,9 @@ public class RunLiteOptions
     [Option(HelpText = "Specifies programming language for transpiler. Ignored for csx files.")]
     public TranspilerId Lang { get; set; } = TranspilerId.NotYetSet;
 
-    // TODO remove the need to specify --files, just assume any unprocessed args are files
-    [Option("files", HelpText = "Files to process. Can be .csx or diagram files.")]
-    public IEnumerable<string> Files {get;set;} //sequence
+    [Value(0)]
+    public IList<string> Files { get; set; } = new List<string>();
+
 
     [Option("no-sim-gen", HelpText = "Disables simulation .html file generation. Ignored for csx files.")]
     public bool NoSimGen { get; set; } = false;
