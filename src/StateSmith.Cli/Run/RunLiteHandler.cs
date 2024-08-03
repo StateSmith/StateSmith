@@ -127,7 +127,7 @@ public class RunLiteHandler
             _runConsole,
             _diagramOptions,
             null,
-            searchDirectory: Path.GetDirectoryName(file).ThrowIfNull(),
+            searchDirectory: ".",
             new RunHandlerOptions(Path.GetDirectoryName(file).ThrowIfNull())
             {
                 Verbose = IsVerbose,
