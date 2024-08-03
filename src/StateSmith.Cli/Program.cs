@@ -95,6 +95,12 @@ public class Program
                 var ui = new SetupUi(opts, _console, currentDirectory: _currentDirectory);
                 return ui.Run();
             },
+            (RunLiteOptions opts) =>
+            {
+                PreRunNoArgError(_console);
+                var runLiteUi = new RunLiteUi(opts, _console);
+                return runLiteUi.Run();
+            },
             errs =>
             {
                 if (errs.Count() == 1 && errs.IsVersion())

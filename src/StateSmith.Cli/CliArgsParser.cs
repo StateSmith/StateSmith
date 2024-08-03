@@ -29,7 +29,7 @@ public class CliArgsParser
             settings.CaseInsensitiveEnumValues = true;
         });
 
-        var parserResult = parser.ParseArguments<RunOptions, CreateOptions, SetupOptions>(args);
+        var parserResult = parser.ParseArguments<RunOptions, RunLiteOptions, CreateOptions, SetupOptions>(args);
         return parserResult;
     }
 
