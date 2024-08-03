@@ -11,7 +11,7 @@
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/src/StateSmith.Cli/bin/Debug/net8.0/StateSmith.Cli.dll",
-            "args": [],
+            "args": ["run-lite", "--lang=JavaScript", "--files", "../StateSmithTest/Output/Sim/diagrams/BeadSorter.drawio.svg", "../StateSmithTest/Output/Sim/diagrams/LightSm.drawio.svg"],
             "cwd": "${workspaceFolder}/src/StateSmith.Cli",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
