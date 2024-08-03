@@ -29,23 +29,6 @@ public class RunLiteHandler
 
     public void Run()
     {
-        try
-        {
-            RunInner();
-        }
-        catch (Exception ex)
-        {
-            if (ex is not FinishedWithFailureException)
-            {
-                _console.WriteException(ex);
-            }
-
-            Environment.ExitCode = 1;   // TODO - fix. this is not ideal. Might mess up unit tests.
-        }
-    }
-
-    private void RunInner()
-    {
         RunFiles(_runLiteOptions.Files);
 
         if( _runLiteOptions.Watch) {
