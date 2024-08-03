@@ -14,7 +14,6 @@ public class RunLiteHandler
     private readonly DiagramOptions _diagramOptions;
     RunConsole _runConsole;
     RunLiteOptions _runLiteOptions;
-    private bool IsVerbose => _runLiteOptions.Verbose;
 
     public RunLiteHandler(IAnsiConsole console, DiagramOptions diagramOptions, RunLiteOptions runLiteOptions)
     {
@@ -108,7 +107,7 @@ public class RunLiteHandler
             searchDirectory: ".",
             new RunHandlerOptions(".")
             {
-                Verbose = IsVerbose,
+                Verbose = _runLiteOptions.Verbose,
                 NoCsx = false,
                 Rebuild = false
             }
