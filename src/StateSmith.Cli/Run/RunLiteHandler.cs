@@ -128,7 +128,7 @@ public class RunLiteHandler
             _diagramOptions,
             null,
             searchDirectory: ".",
-            new RunHandlerOptions(Path.GetDirectoryName(file).ThrowIfNull())
+            new RunHandlerOptions(".")
             {
                 Verbose = IsVerbose,
                 NoCsx = false,
