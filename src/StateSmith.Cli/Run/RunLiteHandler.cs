@@ -108,7 +108,7 @@ public class RunLiteHandler
 
         SimpleProcess process = new()
         {
-            WorkingDirectory = Path.GetDirectoryName(file).ThrowIfNull(),
+            WorkingDirectory = ".",
             SpecificCommand = DotnetScriptProgram.Name,
             SpecificArgs = csxAbsolutePath,
             throwOnExitCode = false
