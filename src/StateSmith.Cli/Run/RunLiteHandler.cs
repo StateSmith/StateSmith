@@ -86,10 +86,15 @@ public class RunLiteHandler
     private void RunFile(String file) 
     {
 
+        foreach( var extension in DiagramFileAssociator.GetAllDiagramExtensions() ) {
+            if( file.ToLower().EndsWith(extension.ToLower())) {
+                RunDiagramFile(file);
+                return;
+            }
+        }
+
         if(SsCsxFilter.IsScriptFile(file)) {
             RunCsxFile(file);
-        } else if( DiagramFileAssociator.GetAllDiagramExtensions().Contains(Path.GetExtension(file))) {
-            RunDiagramFile(file);
         } else {
             _runConsole.ErrorMarkupLine($"Unknown file type: {file}");
         }
