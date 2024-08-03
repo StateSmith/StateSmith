@@ -1,6 +1,5 @@
 using Spectre.Console;
 using StateSmith.Cli.Utils;
-using StateSmith.Common;
 using StateSmith.Runner;
 using System;
 using System.Collections.Generic;
@@ -11,9 +10,6 @@ namespace StateSmith.Cli.Run;
 
 public class RunLiteHandler
 {
-
-    private CsxOutputParser _parser;
-
     IAnsiConsole _console;
     private readonly DiagramOptions _diagramOptions;
     RunConsole _runConsole;
@@ -26,7 +22,6 @@ public class RunLiteHandler
         _runLiteOptions = runLiteOptions;
         this._diagramOptions = diagramOptions;
 
-        _parser = new CsxOutputParser();
         _runConsole = new RunConsole(_console);
     }
 
