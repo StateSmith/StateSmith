@@ -6,8 +6,9 @@ namespace StateSmith.Cli.Run;
 // RunLite is an alternative to RunUi that is more lightweight.
 // - It outsources file and directory scanning to the shell. Users pass in the files
 //   they want to run rather than having the CLI scan for them.
-// - It is stateless. It does not save state to runinfo dbs or manifest files. 
-//   This significantly reduces complexity.
+// - It is stateless. It does not save state to runinfo dbs or manifest files.
+//   This significantly reduces complexity, but it still provides the ability to
+//   watch for changes and re-run changed files.
 // 
 // Usage examples:
 //   Transform all specified files (diagrams or csx) in the current directory and subdirectories
