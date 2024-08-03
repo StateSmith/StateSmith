@@ -14,7 +14,8 @@ namespace StateSmith.Cli.Run;
 //   Transform all specified files (diagrams or csx) in the current directory and subdirectories
 //       zsh> StateSmith.Cli --lang=JavaScript **/*.drawio.svg
 //       bash> StateSmith.Cli --lang=JavaScript **/*.csx  # assumes shopt -s globstar
-//       PowerShell> Get-ChildItem -Path .\*.drawio.svg -Recurse | StateSmith.Cli --lang=JavaScript # TODO verify and avoid foreach
+//       cmd.exe> StateSmith.Cli --lang=JavaScript *.drawio.svg   # current directory only # TODO verify
+//       PowerShell> Get-ChildItem -Path .\*.drawio.svg -Recurse | ForEach StateSmith.Cli --lang=JavaScript # TODO verify and avoid foreach
 
 
 public class RunLiteUi
