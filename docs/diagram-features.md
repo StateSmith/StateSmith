@@ -221,7 +221,9 @@ https://github.com/StateSmith/StateSmith/issues/2
 
 ---
 
-## Special diagram labels (reserved keywords)
+## Special reserved keywords
+
+### Vertex/State Labels
 - `$STATEMACHINE` - defines a state machine. Must be root node in a diagram.
 - `$initial_state` - detailed above.
 - `$NOTES` - allows you to write notes. Can enclose other states if you want to ignore them. Kinda like an `#ifdef 0` on a bunch of code.
@@ -230,10 +232,11 @@ https://github.com/StateSmith/StateSmith/issues/2
 - `$H` - [history vertex](./history-vertex.md).
 - `$HC` - [history continue vertex](./history-vertex.md).
 
----
-
-## Special "event/trigger" labels (reserved keywords)
+### event/triggers
 - `else` see https://github.com/StateSmith/StateSmith/issues/59
+
+### variables in action code
+- `consume_event` - this is for advanced usage. This "keyword" will also likely [change in the future](https://github.com/StateSmith/StateSmith/issues/175).
 
 ---
 
