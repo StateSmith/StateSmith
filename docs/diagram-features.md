@@ -221,7 +221,7 @@ https://github.com/StateSmith/StateSmith/issues/2
 
 ---
 
-## Special diagram labels
+## Special diagram labels (reserved keywords)
 - `$STATEMACHINE` - defines a state machine. Must be root node in a diagram.
 - `$initial_state` - detailed above.
 - `$NOTES` - allows you to write notes. Can enclose other states if you want to ignore them. Kinda like an `#ifdef 0` on a bunch of code.
@@ -229,6 +229,11 @@ https://github.com/StateSmith/StateSmith/issues/2
 - `$ortho_state` - orthogonal state. Not supported yet.
 - `$H` - [history vertex](./history-vertex.md).
 - `$HC` - [history continue vertex](./history-vertex.md).
+
+---
+
+## Special "event/trigger" labels (reserved keywords)
+- `else` see https://github.com/StateSmith/StateSmith/issues/59
 
 ---
 
