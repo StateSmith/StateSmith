@@ -15,6 +15,7 @@ public class RunHandlerOptions
     /// </summary>
     public bool DumpErrorsToFile;
     public bool Rebuild;
+    public bool Watch;
 
     public readonly string CurrentDirectory;
 
