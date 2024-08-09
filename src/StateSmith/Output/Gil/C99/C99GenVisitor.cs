@@ -26,6 +26,8 @@ public class C99GenVisitor : CSharpSyntaxWalker
     public StringBuilder sb;
     protected readonly SemanticModel model;
     protected bool renderingPrototypes = false;
+    protected readonly RenderConfigBaseVars renderConfig;
+    protected readonly RenderConfigCVars renderConfigC;
     protected readonly IGilToC99Customizer customizer;
     protected readonly GilTranspilerHelper transpilerHelper;
 
@@ -34,15 +36,23 @@ public class C99GenVisitor : CSharpSyntaxWalker
         this.model = model;
         this.hFileSb = hFileSb;
         this.cFileSb = cFileSb;
+        this.renderConfig = renderConfig;
+        this.renderConfigC = renderConfigC;
         this.customizer = customizer;
 
         transpilerHelper = new(this, model);
 
         sb = hFileSb;
+    }
+
+    public override void VisitCompilationUnit(CompilationUnitSyntax node)
+    {
+        sb = hFileSb;
         transpilerHelper.PreProcess();
         hFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileTop);
-        hFileSb.AppendLine("#pragma once");
+        hFileSb.AppendLine($"#ifndef {customizer.MakeHGuard()}");
+        hFileSb.AppendLine($"#define {customizer.MakeHGuard()}");
         hFileSb.AppendLine("#include <stdint.h>\n");
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
 
@@ -54,6 +64,10 @@ public class C99GenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
         cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
         cFileSb.AppendLine("#include <string.h> // for memset\n");
+
+        this.DefaultVisit(node);
+
+        hFileSb.AppendLine($"#endif // {customizer.MakeHGuard()}");
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
