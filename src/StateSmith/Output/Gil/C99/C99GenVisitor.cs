@@ -21,6 +21,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder hFileSb;
     public readonly StringBuilder cFileSb;
+
     public StringBuilder privateSb = new();
     public StringBuilder publicSb = new();
     public StringBuilder sb;
@@ -62,7 +63,10 @@ public class C99GenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileTop);
         cFileSb.AppendLine($"#include \"{customizer.MakeHFileName()}\"");
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
-        cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
+        if (renderConfigC.UseStdBool)
+        {
+            cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
+        }
         cFileSb.AppendLine("#include <string.h> // for memset\n");
 
         this.DefaultVisit(node);
@@ -544,7 +548,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
         switch (result)
         {
-            case "Boolean": result = "bool"; break;
+            case "Boolean": result = renderConfigC.UseStdBool ? "bool": "int"; break;
             case "SByte": result = "int8_t"; break;
             case "Byte": result = "uint8_t"; break;
             case "Int16": result = "int16_t"; break;
@@ -574,7 +578,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         string result = node.Keyword.Text switch
         {
             "void" => "void",
-            "bool" => "bool",
+            "bool" => renderConfigC.UseStdBool ? "bool" : "int",
             "sbyte" => "int8_t",
             "byte" => "uint8_t",
             "short" => "int16_t",
