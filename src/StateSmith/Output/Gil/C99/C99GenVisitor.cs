@@ -704,8 +704,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
         sb.AppendTokenAndTrivia(node.Identifier, overrideTokenText: customizer.MakeEnumDeclaration(name));
         sb.AppendTokenAndTrivia(node.OpenBraceToken);
 
-        foreach (var kid in node.ChildNodesAndTokens().SkipWhile(n => n.IsToken))
+        var elements = node.ChildNodesAndTokens().SkipWhile(n => n.IsToken).ToList();
+        for (int i = 0; i < elements.Count; i++)
         {
+            var kid = elements[i];
+            var next = i <= elements.Count - 1 ? elements[i+ 1] : null;
             if (kid.IsNode)
             {
                 Visit(kid.AsNode());
@@ -714,6 +717,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
             {
                 if (kid == node.CloseBraceToken)
                     break;
+                if (next == node.CloseBraceToken && kid.IsKind(SyntaxKind.CommaToken))
+                {
+                    VisitTrailingTrivia(kid.AsToken());
+                    break;
+                }
                 VisitToken(kid.AsToken());
             }
         }

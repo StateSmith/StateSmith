@@ -11,7 +11,7 @@ typedef enum PlantEx2_EventId
     PlantEx2_EventId_EVCONFIG = 1,
     PlantEx2_EventId_EVNEWVALUE = 2,
     PlantEx2_EventId_EVNEWVALUEREJECTED = 3,
-    PlantEx2_EventId_EVNEWVALUESAVED = 4,
+    PlantEx2_EventId_EVNEWVALUESAVED = 4
 } PlantEx2_EventId;
 
 enum
@@ -28,7 +28,7 @@ typedef enum PlantEx2_StateId
     PlantEx2_StateId_STATE1 = 4,
     PlantEx2_StateId_STATE2 = 5,
     PlantEx2_StateId_NEWVALUESELECTION = 6,
-    PlantEx2_StateId_IDLE = 7,
+    PlantEx2_StateId_IDLE = 7
 } PlantEx2_StateId;
 
 enum

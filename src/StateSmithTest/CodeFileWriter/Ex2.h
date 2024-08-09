@@ -9,7 +9,7 @@ typedef enum Ex2_EventId
 {
     Ex2_EventId_DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
     Ex2_EventId_EV2 = 1,
-    Ex2_EventId_MYEV1 = 2,
+    Ex2_EventId_MYEV1 = 2
 } Ex2_EventId;
 
 enum
@@ -21,7 +21,7 @@ typedef enum Ex2_StateId
 {
     Ex2_StateId_ROOT = 0,
     Ex2_StateId_STATE_1 = 1,
-    Ex2_StateId_STATE_2 = 2,
+    Ex2_StateId_STATE_2 = 2
 } Ex2_StateId;
 
 enum

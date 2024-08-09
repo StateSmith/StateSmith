@@ -9,7 +9,7 @@
 typedef enum Spec1Sm_EventId
 {
     Spec1Sm_EventId_EV1 = 0,
-    Spec1Sm_EventId_EV2 = 1,
+    Spec1Sm_EventId_EV2 = 1
 } Spec1Sm_EventId;
 
 enum
@@ -25,7 +25,7 @@ typedef enum Spec1Sm_StateId
     Spec1Sm_StateId_S11 = 3,
     Spec1Sm_StateId_T1 = 4,
     Spec1Sm_StateId_T11 = 5,
-    Spec1Sm_StateId_T111 = 6,
+    Spec1Sm_StateId_T111 = 6
 } Spec1Sm_StateId;
 
 enum

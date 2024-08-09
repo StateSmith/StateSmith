@@ -8,7 +8,7 @@
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
 typedef enum Spec1bSm_EventId
 {
-    Spec1bSm_EventId_T1 = 0,
+    Spec1bSm_EventId_T1 = 0
 } Spec1bSm_EventId;
 
 enum
@@ -23,7 +23,7 @@ typedef enum Spec1bSm_StateId
     Spec1bSm_StateId_S1 = 2,
     Spec1bSm_StateId_S1_1 = 3,
     Spec1bSm_StateId_S2 = 4,
-    Spec1bSm_StateId_S2_1 = 5,
+    Spec1bSm_StateId_S2_1 = 5
 } Spec1bSm_StateId;
 
 enum
