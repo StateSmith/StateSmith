@@ -50,6 +50,7 @@ AutoExpandedVars  = "stuff..."
    * [RenderConfig.C.CFileExtension](#renderconfigccfileextension)
    * [RenderConfig.C.HFileExtension](#renderconfigchfileextension)
    * [RenderConfig.C.CEnumDeclarer](#renderconfigccenumdeclarer)
+   * [RenderConfig.C.UseStdBool](#renderconfigcusestdbool)
 - [RenderConfig.CSharp](#renderconfigcsharp)
    * [RenderConfig.CSharp.NameSpace](#renderconfigcsharpnamespace)
    * [RenderConfig.CSharp.Usings](#renderconfigcsharpusings)
@@ -400,6 +401,18 @@ You can use `{enumName}` in this string and it will be replaced with the name of
 CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}" # for gcc
 ```
 
+## RenderConfig.C.UseStdBool
+Type: `string`
+Info: https://github.com/StateSmith/StateSmith/pull/376
+
+Allows you to disable the use of `bool` from `<stdbool.h>` and instead use integer.
+
+Usefull if your toolchain doesn't have `<stdbool.h>`.
+
+```toml
+[RenderConfig.C]
+UseStdBool = false
+```
 
 <br>
 <br>

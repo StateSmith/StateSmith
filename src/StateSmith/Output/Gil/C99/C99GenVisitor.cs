@@ -21,11 +21,14 @@ public class C99GenVisitor : CSharpSyntaxWalker
 {
     public readonly StringBuilder hFileSb;
     public readonly StringBuilder cFileSb;
+
     public StringBuilder privateSb = new();
     public StringBuilder publicSb = new();
     public StringBuilder sb;
     protected readonly SemanticModel model;
     protected bool renderingPrototypes = false;
+    protected readonly RenderConfigBaseVars renderConfig;
+    protected readonly RenderConfigCVars renderConfigC;
     protected readonly IGilToC99Customizer customizer;
     protected readonly GilTranspilerHelper transpilerHelper;
 
@@ -34,15 +37,23 @@ public class C99GenVisitor : CSharpSyntaxWalker
         this.model = model;
         this.hFileSb = hFileSb;
         this.cFileSb = cFileSb;
+        this.renderConfig = renderConfig;
+        this.renderConfigC = renderConfigC;
         this.customizer = customizer;
 
         transpilerHelper = new(this, model);
 
         sb = hFileSb;
+    }
+
+    public override void VisitCompilationUnit(CompilationUnitSyntax node)
+    {
+        sb = hFileSb;
         transpilerHelper.PreProcess();
         hFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileTop);
-        hFileSb.AppendLine("#pragma once");
+        hFileSb.AppendLine($"#ifndef {customizer.MakeHGuard()}");
+        hFileSb.AppendLine($"#define {customizer.MakeHGuard()}");
         hFileSb.AppendLine("#include <stdint.h>\n");
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
 
@@ -52,8 +63,15 @@ public class C99GenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileTop);
         cFileSb.AppendLine($"#include \"{customizer.MakeHFileName()}\"");
         cFileSb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
-        cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
+        if (renderConfigC.UseStdBool)
+        {
+            cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
+        }
         cFileSb.AppendLine("#include <string.h> // for memset\n");
+
+        this.DefaultVisit(node);
+
+        hFileSb.AppendLine($"#endif // {customizer.MakeHGuard()}");
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
@@ -530,7 +548,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
         switch (result)
         {
-            case "Boolean": result = "bool"; break;
+            case "Boolean": result = renderConfigC.UseStdBool ? "bool": "int"; break;
             case "SByte": result = "int8_t"; break;
             case "Byte": result = "uint8_t"; break;
             case "Int16": result = "int16_t"; break;
@@ -560,7 +578,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         string result = node.Keyword.Text switch
         {
             "void" => "void",
-            "bool" => "bool",
+            "bool" => renderConfigC.UseStdBool ? "bool" : "int",
             "sbyte" => "int8_t",
             "byte" => "uint8_t",
             "short" => "int16_t",
@@ -686,8 +704,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
         sb.AppendTokenAndTrivia(node.Identifier, overrideTokenText: customizer.MakeEnumDeclaration(name));
         sb.AppendTokenAndTrivia(node.OpenBraceToken);
 
-        foreach (var kid in node.ChildNodesAndTokens().SkipWhile(n => n.IsToken))
+        var elements = node.ChildNodesAndTokens().SkipWhile(n => n.IsToken).ToList();
+        for (int i = 0; i < elements.Count; i++)
         {
+            var kid = elements[i];
+            var next = i <= elements.Count - 1 ? elements[i+ 1] : null;
             if (kid.IsNode)
             {
                 Visit(kid.AsNode());
@@ -696,6 +717,11 @@ public class C99GenVisitor : CSharpSyntaxWalker
             {
                 if (kid == node.CloseBraceToken)
                     break;
+                if (next == node.CloseBraceToken && kid.IsKind(SyntaxKind.CommaToken))
+                {
+                    VisitTrailingTrivia(kid.AsToken());
+                    break;
+                }
                 VisitToken(kid.AsToken());
             }
         }

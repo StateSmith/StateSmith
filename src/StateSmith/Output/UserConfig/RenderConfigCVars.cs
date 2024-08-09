@@ -40,6 +40,11 @@ public class RenderConfigCVars
     /// </summary>
     public string CEnumDeclarer = "";
 
+    /// <summary>
+    /// Will use &lt;stdbool.h&gt; and bool type instead of int for boolean
+    /// </summary>
+    public bool UseStdBool = true;
+
     public void SetFrom(IRenderConfigC config, bool autoDeIndentAndTrim)
     {
         string Process(string str)
@@ -63,5 +68,7 @@ public class RenderConfigCVars
         HFileExtension = Process(config.HFileExtension);
 
         CEnumDeclarer = Process(config.CEnumDeclarer);
+
+        UseStdBool = config.UseStdBool;
     }
 }

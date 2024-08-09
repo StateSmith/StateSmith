@@ -123,6 +123,7 @@ public class RenderConfigVerticesProcessor : RecursiveVertexVisitor
             case nameof(IRenderConfigC.HFileExtension): SetOption(ref allVars.C.HFileExtension, v); break;
             case nameof(IRenderConfigC.CFileExtension): SetOption(ref allVars.C.CFileExtension, v); break;
             case nameof(IRenderConfigC.CEnumDeclarer): SetOption(ref allVars.C.CEnumDeclarer, v); break;
+            case nameof(IRenderConfigC.UseStdBool): allVars.C.UseStdBool = ParseBoolValue(v); break;
 
             case "CSharp" + nameof(IRenderConfigCSharp.NameSpace): AppendOption(ref allVars.CSharp.NameSpace, v); break;
             case "CSharp" + nameof(IRenderConfigCSharp.Usings): AppendOption(ref allVars.CSharp.Usings, v); break;

@@ -21,12 +21,14 @@ public class GilToC99Customizer : IGilToC99Customizer
 
     public Func<string> HFileNameBuilder = () => throw new InvalidOperationException("IGilToC99Customizer.Setup() needs to be called");
     public Func<string> CFileNameBuilder = () => throw new InvalidOperationException("IGilToC99Customizer.Setup() needs to be called");
+    public Func<string> HGuardBuilder = () => throw new InvalidOperationException("IGilToC99Customizer.Setup() needs to be called");
     public Func<string, string> EnumDeclarationBuilder = (string enumName) => $"typedef enum {enumName}";
 
     public void Setup()
     {
         HFileNameBuilder = () => $"{outputInfo.BaseFileName}{renderConfigCVars.HFileExtension}";
         CFileNameBuilder = () => $"{outputInfo.BaseFileName}{renderConfigCVars.CFileExtension}";
+        HGuardBuilder = () => $"{outputInfo.BaseFileName.ToUpper()}_H";
 
         SupportEnumDeclarer();
     }
@@ -50,5 +52,6 @@ public class GilToC99Customizer : IGilToC99Customizer
 
     string IGilToC99Customizer.MakeHFileName() => HFileNameBuilder();
     string IGilToC99Customizer.MakeCFileName() => CFileNameBuilder();
+    string IGilToC99Customizer.MakeHGuard() => HGuardBuilder();
     string IGilToC99Customizer.MakeEnumDeclaration(string enumName) => EnumDeclarationBuilder(enumName);
 }
