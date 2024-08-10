@@ -154,6 +154,7 @@ public class InputSmBuilder
     public void ConvertNodesToVertices(List<DiagramNode> rootNodes, List<DiagramEdge> edges)
     {
         diagramToSmConverter.CompileDiagramNodesEdges(rootNodes, edges);
+        diagramToSmConverter.rootVertices = FlatSmRootSupport.SupportFlatSmRoot(diagramToSmConverter.rootVertices);
     }
 
     /// <summary>

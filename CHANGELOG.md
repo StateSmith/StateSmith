@@ -1,10 +1,12 @@
 # Changelog
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# Breaking Changes 🌱
-We will occasionally make changes to StateSmith that may affect your projects. Help us get to `v1.0` faster!
+# Breaking Changes Are Rare 🌱
+We do our best to avoid and minimize breaking changes.
 
-You can easily find changes by searching for `"### Changed"` in the [changelog markdown file](https://github.com/StateSmith/StateSmith/blob/main/CHANGELOG.md?plain=1). I do my best to detail any required migration steps. Ask if you need help.
+That said, we will may occasionally have to make changes to StateSmith that may affect your projects. Help us get to `v1.0` faster!
+
+You can easily find changes by searching for `"### Changed"` or `BREAKING-CHANGES` in the [changelog markdown file](https://github.com/StateSmith/StateSmith/blob/main/CHANGELOG.md?plain=1). I do my best to detail any required migration steps. Ask if you need help.
 
 # Stability 🌉
 The above might sound a bit scary, but the situation isn't that bad. I just want to be fully transparent.
@@ -35,7 +37,9 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/294
 
 ### Added
-- Add draw.io parse error location in exception message with help link.
+- draw.io - allow declaring state machine without nesting.
+  - https://github.com/StateSmith/StateSmith/issues/359
+- draw.io - add parse error location in exception message with help link.
   - https://github.com/StateSmith/StateSmith/issues/353
   - https://github.com/StateSmith/StateSmith/issues/354
 - simulator - always show action code (even if blank) for non-transition behaviors.
