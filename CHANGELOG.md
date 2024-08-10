@@ -37,6 +37,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/294
 
 ### Added
+- draw.io - allow multiple pages. Only 1st page is checked for state machines however.
+  - https://github.com/StateSmith/StateSmith/issues/78
 - draw.io - allow declaring state machine without nesting.
   - https://github.com/StateSmith/StateSmith/issues/359
 - draw.io - add parse error location in exception message with help link.

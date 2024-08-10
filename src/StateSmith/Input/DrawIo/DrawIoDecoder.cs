@@ -95,19 +95,24 @@ public class DrawIoDecoder
         ReadAndExpectOpeningXmlTag(reader, "diagram");
         SkipWhiteSpaceToNextElement(reader);   // skip whitespace to improve error messages
         var contents = reader.ReadInnerXml();  // advances past diagram closing tag
-        MaybeThrowHelpfulMultipleDiagramMessage(reader);
-        ExpectClosingXmlTag(reader, "mxfile"); // todo_low - support multiple diagrams per mxfile. https://github.com/StateSmith/StateSmith/issues/78
+        SkipOverAnyAdditionalPages(reader);
+        ExpectCurrentTagToBeClosingXmlTag(reader, "mxfile");
 
         return contents.Trim();
     }
 
-    private static void MaybeThrowHelpfulMultipleDiagramMessage(XmlTextReader reader)
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/78
+    /// </summary>
+    /// <param name="reader"></param>
+    private static void SkipOverAnyAdditionalPages(XmlTextReader reader)
     {
         SkipWhiteSpaceToNextElement(reader);
 
-        if (reader.LocalName == "diagram")
+        while (reader.LocalName == "diagram")
         {
-            throw new DrawIoException($"draw.io files can only contain a single diagram/page for now. See https://github.com/StateSmith/StateSmith/issues/78 .");
+            reader.Skip();
+            SkipWhiteSpaceToNextElement(reader);
         }
     }
 
@@ -120,10 +125,8 @@ public class DrawIoDecoder
         }
     }
 
-    private static void ExpectClosingXmlTag(XmlTextReader reader, string tag)
+    private static void ExpectCurrentTagToBeClosingXmlTag(XmlTextReader reader, string tag)
     {
-        SkipWhiteSpaceToNextElement(reader, errorMessage: $"Expected closing xml tag `{tag}`");
-
         if (reader.NodeType != XmlNodeType.EndElement)
         {
             throw new DrawIoException($"Invalid draw.io file. Expected closing xml tag `{tag}`, but found `{reader.LocalName}`");
