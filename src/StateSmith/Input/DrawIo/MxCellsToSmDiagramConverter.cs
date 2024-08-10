@@ -1,7 +1,6 @@
 #nullable enable
 
 using StateSmith.SmGraph;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,19 +8,21 @@ namespace StateSmith.Input.DrawIo;
 
 public class MxCellsToSmDiagramConverter
 {
-    public Dictionary<string, DiagramNode> nodeMap = new();
+    public Dictionary<string, DiagramNode> nodeMap = new();  
     public List<DiagramEdge> edges = new();
     public List<DiagramNode> roots = new();
     private readonly VisualGroupingValidator visualGroupingValidator;
+    private Dictionary<string, MxCell> mxCellMap = new();
 
     public MxCellsToSmDiagramConverter(VisualGroupingValidator visualGroupingValidator)
     {
         this.visualGroupingValidator = visualGroupingValidator;
     }
 
-    public void Process(Dictionary<string, MxCell> mxCells)
+    public void Process(Dictionary<string, MxCell> mxCellsMap)
     {
-        IEnumerable<MxCell> verticeCells = GetVerticeCells(mxCells);
+        mxCellMap = mxCellsMap;
+        IEnumerable<MxCell> verticeCells = GetVerticeCells(mxCellsMap);
 
         foreach (var cell in verticeCells)
         {
@@ -33,12 +34,12 @@ public class MxCellsToSmDiagramConverter
             LinkVertexForCell(cell);
         }
 
-        foreach (var cell in mxCells.Values.Where(c => c.type == MxCell.Type.Edge))
+        foreach (var cell in mxCellsMap.Values.Where(c => c.type == MxCell.Type.Edge))
         {
             ProcessEdge(cell);
         }
 
-        visualGroupingValidator.Process(mxCells, roots);
+        visualGroupingValidator.Process(mxCellsMap, roots);
     }
 
     private static List<MxCell> GetVerticeCells(Dictionary<string, MxCell> mxCells)
@@ -149,9 +150,10 @@ public class MxCellsToSmDiagramConverter
     // special draw.io root like cells have no type
     // <mxCell id="0" />
     // <mxCell id="1" parent="0" />
-    private static bool IsDrawIoRootCell(string id)
+    private bool IsDrawIoRootCell(string id)
     {
-        return id == "0" || id == "1";
+        // Note! we can't always rely on `id == "0" || id == "1"`. It is sometimes different (especially for additional pages).
+        return mxCellMap[id].isSpecialInvisbleRootTypeNode;
     }
 
     private void CreateAndAddVertex(MxCell cell)

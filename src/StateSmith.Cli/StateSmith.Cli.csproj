@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Create\Templates\drawio-minimal-1\diagram.drawio" />
     <None Remove="Create\Templates\drawio-simple-1\csx.txt" />
     <None Remove="Create\Templates\drawio-simple-1\diagram.drawio" />
     <None Remove="Create\Templates\plantuml-minimal-1\diagram.plantuml" />
@@ -34,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Create\Templates\drawio-minimal-1\diagram.drawio" />
     <EmbeddedResource Include="Create\Templates\drawio-simple-1\diagram.drawio" />
     <EmbeddedResource Include="Create\Templates\plantuml-minimal-1\diagram.plantuml" />
     <EmbeddedResource Include="Create\Templates\plantuml-simple-1\diagram.plantuml" />

@@ -20,6 +20,7 @@ public class MxCellParser
     public Dictionary<string, MxCell> mxCells = new();
 
     MxCell? lastVertexCell;
+    int cellCount = 0; // useful as first 2 mxCell nodes are "root" like invisible special nodes.
 
     public MxCell GetCellById(string id)
     {
@@ -73,6 +74,8 @@ public class MxCellParser
     {
         lastVertexCell = null;
         var mxCell = new MxCell(GetAttributeOrThrow("id"));
+        mxCell.isSpecialInvisbleRootTypeNode = cellCount < 2;
+        cellCount++;
 
         if (HasAttribute("vertex"))
         {

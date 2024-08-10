@@ -1,3 +1,4 @@
+using StateSmith.Runner;
 using System.Collections.Generic;
 using System.IO;
 
@@ -5,14 +6,14 @@ namespace StateSmith.Input.DrawIo;
 
 public class DrawIoToSmDiagramConverter
 {
-    private readonly MxCellsToSmDiagramConverter converter;
+    public List<DiagramEdge> Edges = new();
+    public List<DiagramNode> Roots = new();
 
-    public List<DiagramEdge> Edges => converter.edges;
-    public List<DiagramNode> Roots => converter.roots;
+    public DiServiceProvider DiServiceProvider { get; }
 
-    public DrawIoToSmDiagramConverter(MxCellsToSmDiagramConverter converter)
+    public DrawIoToSmDiagramConverter(DiServiceProvider diServiceProvider)
     {
-        this.converter = converter;
+        DiServiceProvider = diServiceProvider;
     }
 
     public void ProcessFile(string filePath)
@@ -31,14 +32,30 @@ public class DrawIoToSmDiagramConverter
 
     public void ProcessSvg(TextReader svgFileReader)
     {
-        var diagramXml = DrawIoDecoder.DecodeSvgToOriginalDiagram(svgFileReader);
-        ProcessDiagramContents(diagramXml);
+        var diagrams = DrawIoDecoder.DecodeSvgToOriginalDiagrams(svgFileReader);
+        ProcessDiagrams(diagrams);
+    }
+
+    private void ProcessDiagrams(List<DrawIoDiagramNode> diagrams)
+    {
+        foreach (var d in diagrams)
+        {
+            if (!IsNotesPage(d))
+            {
+                ProcessDiagramContents(d.xml);
+            }
+        }
+    }
+
+    private static bool IsNotesPage(DrawIoDiagramNode d)
+    {
+        return d.name.Trim().StartsWith("$notes", System.StringComparison.OrdinalIgnoreCase);
     }
 
     public void ProcessRegularFile(TextReader fileReader)
     {
-        var diagramXml = DrawIoDecoder.GetMxFileDiagramContents(fileReader.ReadToEnd());
-        ProcessDiagramContents(diagramXml);
+        var diagrams = DrawIoDecoder.GetMxFileDiagramContents(fileReader.ReadToEnd());
+        ProcessDiagrams(diagrams);
     }
 
     public void ProcessDiagramContents(string diagramXml)
@@ -46,6 +63,11 @@ public class DrawIoToSmDiagramConverter
         MxCellParser mxCellParser = new(diagramXml);
         mxCellParser.Parse();
 
+        // we need a new converter for each diagram
+        var converter = DiServiceProvider.GetInstanceOf<MxCellsToSmDiagramConverter>();
         converter.Process(mxCellParser.mxCells);
+
+        Edges.AddRange(converter.edges);
+        Roots.AddRange(converter.roots);
     }
 }

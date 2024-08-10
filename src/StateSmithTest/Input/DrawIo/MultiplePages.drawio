@@ -1,5 +1,5 @@
-<mxfile host="Electron" modified="2024-08-07T15:09:51.527Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="d0KHmHYZCjSWOTMfcdRP" version="24.6.4" type="device" pages="2">
-  <diagram name="Page-1" id="51UBkito5awnTQ_jN5C1">
+<mxfile host="Electron" modified="2024-08-07T20:50:59.806Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="GkCGHkUqirs0ayd5sA3m" version="24.6.4" type="device" pages="3">
+  <diagram name="page1" id="51UBkito5awnTQ_jN5C1">
     <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -37,7 +37,29 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="b_zLE_53EtxpCoNrl-Dq" name="template stuff">
+  <diagram name="page2" id="jP0XsZYPSts-ke4v4z8_">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="8-8oFy19M2xyFrtWDsz8-0" />
+        <mxCell id="8-8oFy19M2xyFrtWDsz8-1" parent="8-8oFy19M2xyFrtWDsz8-0" />
+        <mxCell id="vniitUlIALal8oddrsry-2" value="$CONFIG : toml" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;html=1;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" vertex="1" parent="8-8oFy19M2xyFrtWDsz8-1">
+          <mxGeometry x="40" y="40" width="340" height="135" as="geometry">
+            <mxRectangle x="40" y="40" width="170" height="70" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vniitUlIALal8oddrsry-3" value="" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" vertex="1" connectable="0" parent="vniitUlIALal8oddrsry-2">
+          <mxGeometry y="30" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e0XTj30T7ofdt_kGj74l-0" value="STATE_3" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;comic=0;STATESMITH_NOTES_VERTEX" vertex="1" parent="8-8oFy19M2xyFrtWDsz8-1">
+          <mxGeometry x="40" y="200" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="e0XTj30T7ofdt_kGj74l-1" value="EV1 / print(&quot;I&#39;m on page2!&quot;);&#xa;" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;comic=0;" vertex="1" connectable="0" parent="e0XTj30T7ofdt_kGj74l-0">
+          <mxGeometry y="30" width="240" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="b_zLE_53EtxpCoNrl-Dq" name="$notes template stuff">
     <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0" />
