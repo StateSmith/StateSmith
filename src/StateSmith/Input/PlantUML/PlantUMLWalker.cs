@@ -122,7 +122,7 @@ public class PlantUMLWalker : PlantUMLBaseListener
 
     public override void EnterDiagram([NotNull] PlantUMLParser.DiagramContext context)
     {
-        root.id = context.startuml().identifier()?.GetText() ?? "";
+        root.id = context.startuml().statemachine_name()?.GetText() ?? "";
 
         if (root.id == "")
         {

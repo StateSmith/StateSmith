@@ -46,6 +46,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/354
 - simulator - always show action code (even if blank) for non-transition behaviors.
   - https://github.com/StateSmith/StateSmith/issues/355
+- allow declaring state machine name from `{fileName}`.
+  - https://github.com/StateSmith/StateSmith/issues/330
 
 ### Changed (minor)
 - Slight change to draw.io xml parsing to allow for error location information.

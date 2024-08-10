@@ -1,3 +1,5 @@
+#nullable enable
+
 using FluentAssertions;
 using StateSmith.Output;
 using StateSmith.Output.UserConfig;
@@ -6,9 +8,6 @@ using StateSmithTest.Output;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Text;
-
-#nullable enable
 
 namespace StateSmithTest;
 

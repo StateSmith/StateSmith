@@ -253,13 +253,21 @@ note:
     note_floating
     ;
 
+statemachine_name:
+    identifier
+    |
+    // {fileName}_1
+    // https://github.com/StateSmith/StateSmith/issues/330
+    '{' identifier '}' identifier?
+    ;
+
 
 // @startuml some_name_here
 startuml:
     START_UML
     (
         HWS+
-        identifier
+        statemachine_name
     )?
     ;
 

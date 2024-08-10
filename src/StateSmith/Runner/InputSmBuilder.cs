@@ -41,8 +41,9 @@ public class InputSmBuilder
     readonly NameMangler mangler;
     readonly DrawIoToSmDiagramConverter drawIoConverter;
     readonly StateMachineProvider stateMachineProvider;
+    readonly DiagramFilePathProvider diagramFilePathProvider;
 
-    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, NameMangler mangler, DrawIoToSmDiagramConverter converter, DiServiceProvider sp, StateMachineProvider stateMachineProvider)
+    public InputSmBuilder(SmTransformer transformer, DiagramToSmConverter diagramToSmConverter, NameMangler mangler, DrawIoToSmDiagramConverter converter, DiServiceProvider sp, StateMachineProvider stateMachineProvider, DiagramFilePathProvider diagramFilePathProvider)
     {
         SmRunnerInternal.AppUseDecimalPeriod(); // done here as well to help with unit tests
 
@@ -52,6 +53,7 @@ public class InputSmBuilder
         this.drawIoConverter = converter;
         this.sp = sp;
         this.stateMachineProvider = stateMachineProvider;
+        this.diagramFilePathProvider = diagramFilePathProvider;
     }
 
     // todo_low - replace with unit testing factory helper.
@@ -69,6 +71,7 @@ public class InputSmBuilder
         mangler = sp.GetInstanceOf<NameMangler>();
         drawIoConverter = sp.GetServiceOrCreateInstance();
         stateMachineProvider = sp.GetServiceOrCreateInstance();
+        diagramFilePathProvider = sp.GetInstanceOf<DiagramFilePathProvider>();
     }
 
     public bool HasStateMachine => Sm != null;
@@ -78,7 +81,10 @@ public class InputSmBuilder
     /// </summary>
     public void ConvertDiagramFileToSmVertices(string diagramFile)
     {
+        diagramFilePathProvider.SetDiagramFilePath(diagramFile);
+
         var fileExtension = Path.GetExtension(diagramFile).ToLower();
+
         DiagramFileAssociator fileAssociator = new();
 
         if (fileAssociator.IsYedExtension(fileExtension))

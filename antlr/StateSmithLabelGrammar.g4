@@ -39,13 +39,21 @@ node:
     statemachine_defn
     ;
 
+statemachine_name:
+    SS_IDENTIFIER
+    |
+    // {fileName}_1
+    // https://github.com/StateSmith/StateSmith/issues/330
+    '{' SS_IDENTIFIER '}' SS_IDENTIFIER?
+    ;
+
 statemachine_defn:
     optional_any_space
     '$STATEMACHINE'
     ohs
     COLON
     ohs
-    SS_IDENTIFIER
+    statemachine_name
     optional_any_space
     state_behaviors
     EOF

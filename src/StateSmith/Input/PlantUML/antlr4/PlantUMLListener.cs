@@ -271,6 +271,16 @@ public interface IPlantUMLListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNote([NotNull] PlantUMLParser.NoteContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="PlantUMLParser.statemachine_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStatemachine_name([NotNull] PlantUMLParser.Statemachine_nameContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PlantUMLParser.statemachine_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStatemachine_name([NotNull] PlantUMLParser.Statemachine_nameContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="PlantUMLParser.startuml"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

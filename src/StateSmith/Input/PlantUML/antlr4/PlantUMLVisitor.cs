@@ -176,6 +176,12 @@ public interface IPlantUMLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitNote([NotNull] PlantUMLParser.NoteContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="PlantUMLParser.statemachine_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStatemachine_name([NotNull] PlantUMLParser.Statemachine_nameContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="PlantUMLParser.startuml"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

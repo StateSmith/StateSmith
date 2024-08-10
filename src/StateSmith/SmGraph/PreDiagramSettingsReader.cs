@@ -54,9 +54,9 @@ public class PreDiagramSettingsReader
             throw new System.InvalidOperationException("Programming error. Standard_TomlConfig must be present.");
         }
 
-        if (inputSmBuilder.transformer.transformationPipeline.Count != 3)
+        if (inputSmBuilder.transformer.transformationPipeline.Count != 4)
         {
-            throw new System.InvalidOperationException("Programming error. Expected only 3 steps in the pipeline.");
+            throw new System.InvalidOperationException("Programming error. Expected only 4 steps in the pipeline.");
         }
     }
 }

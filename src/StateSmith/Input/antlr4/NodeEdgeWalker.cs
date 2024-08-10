@@ -20,7 +20,7 @@ public class NodeEdgeWalker : StateSmithLabelGrammarBaseListener
     {
         var stateMachineNode = new StateMachineNode
         {
-            name = context.SS_IDENTIFIER().GetText()
+            name = context.statemachine_name().GetText()
         };
         node = stateMachineNode;
     }
