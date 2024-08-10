@@ -40,7 +40,7 @@ public class Settings
     /// <summary>
     /// Persisted
     /// </summary>
-    public string DrawIoDiagramTemplateId { get; set; } = TemplateIds.DrawIoSimple1; // string to accommodate user templates someday
+    public string DrawIoDiagramTemplateId { get; set; } = TemplateIds.DrawIoPages1; // string to accommodate user templates someday
 
     /// <summary>
     /// Persisted

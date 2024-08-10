@@ -6,14 +6,25 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+---
+
 ## wip
+### Add
+- Add new `draw.io` template with many new features.
+    - allow declaring state machine without nesting children
+    - https://github.com/StateSmith/StateSmith/issues/359
+
 ### Fixed (minor)
 - Fix tool update check to consider alpha builds in comparison.
     - https://github.com/StateSmith/StateSmith/issues/351
 
+
 ### Change (minor)
 - PlantUML - `create` templates modified to move initial transition below state definitions.
     - this will help new users in a few situations.
+- PlantUML StateSmith file detection regex changed from `startuml\s+\w+` to `@startuml[ \t]+\S+`
+    - this supports https://github.com/StateSmith/StateSmith/issues/330 and is more precise.
+- `create` - use toml templates with minimal settings instead of nearly full settings.
 
 ### Upgrade StateSmith library version to 
 TODO copy in changes from StateSmith library.

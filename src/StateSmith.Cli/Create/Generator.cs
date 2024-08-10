@@ -11,6 +11,7 @@ public class Generator
 {
     private Settings settings;
     private IFileWriter fileWriter = new FileWriter();
+    internal TemplateLoader.TomlConfigType tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
 
     public Generator(Settings settings)
     {
@@ -51,9 +52,9 @@ public class Generator
         return diagramFilePathRelative;
     }
 
-    internal static string GetTomlConfig(TargetLanguageId targetLanguageId)
+    internal static string GetTomlConfig(TargetLanguageId targetLanguageId, TemplateLoader.TomlConfigType tomlConfigType)
     {
-        var tomlConfigTemplate = TemplateLoader.LoadTomlConfig();
+        var tomlConfigTemplate = TemplateLoader.LoadTomlConfig(tomlConfigType);
         var filterEngine = new TemplateFilterEngine();
         var result = filterEngine.ProcessAllFilters(tomlConfigTemplate, filterTag: targetLanguageId.ToString());
         
@@ -72,12 +73,8 @@ public class Generator
         diagramTemplateStr = diagramTemplateStr.Replace("{{smName}}", settings.smName);
         diagramTemplateStr = SupportDefaultTomlConfig(diagramTemplateStr);
 
-        // allow plantuml diagrams to be customized by selected language
-        if (settings.IsPlantUmlSelected())
-        {
-            var filterEngine = new TemplateFilterEngine();
-            diagramTemplateStr = filterEngine.ProcessAllFilters(diagramTemplateStr, filterTag: settings.TargetLanguageId.ToString());
-        }
+        var filterEngine = new TemplateFilterEngine();
+        diagramTemplateStr = filterEngine.ProcessAllFilters(diagramTemplateStr, filterTag: settings.TargetLanguageId.ToString());
 
         if (settings.IsDrawIoSvgSelected())
         {
@@ -89,7 +86,7 @@ public class Generator
 
     private string SupportDefaultTomlConfig(string diagramTemplateStr)
     {
-        var tomlConfig = GetTomlConfig(settings.TargetLanguageId);
+        var tomlConfig = GetTomlConfig(settings.TargetLanguageId, tomlConfigType);
 
         if (settings.UseCsxWorkflow == false)
         {
@@ -97,9 +94,20 @@ public class Generator
             // modify toml so transpilerId line is uncommented.
             tomlConfig = tomlConfig.Replace("# transpilerId = ", "transpilerId = ");
         }
+        else
+        {
+            // csx workflow, so the toml should generally specify the transpilerId.
+            tomlConfig = tomlConfig.Replace("transpilerId = ", "# transpilerId = ");
+        }
 
         if (settings.IsDrawIoSelected())
         {
+            // keep indentation. regular leading spaces are ignored by drawio.
+            tomlConfig = new Regex(@"(?m)^([ ]+)").Replace(tomlConfig, x =>
+            {
+                const int nonBreakingSpace = 160;
+                return x.Value.Replace(' ', (char)nonBreakingSpace);
+            });
             tomlConfig = HttpUtility.HtmlEncode(tomlConfig);
             tomlConfig = StringUtils.ReplaceNewLineChars(tomlConfig, "&#10;");
         }
@@ -112,7 +120,14 @@ public class Generator
     {
         string wrapper = TemplateLoader.LoadFileResource("_global-svg", "svg-wrapper.drawio.svg");
         drawioXml = HttpUtility.HtmlEncode(drawioXml);
-        wrapper = Regex.Replace(wrapper, "content\\s*=\\s*\"[^\"]+\"", $"content=\"{drawioXml}\"");
+
+        // todo low - we would ideally use a proper xml library to do this. Regex is OK because we control the template file, but still...
+        // NOTE! We can't use the drawioXml as-is for the regex replacement because it sometimes contains special text
+        // that is interpreted as a replacement pattern like `$&` (include entire match). So we use a placeholder string instead.
+        // https://learn.microsoft.com/en-us/dotnet/standard/base-types/substitutions-in-regular-expressions
+        const string SafePlaceHolderToReplaceWithXml = "SafePlaceHolderToReplaceWithXml";
+        wrapper = Regex.Replace(wrapper, "content\\s*=\\s*\"[^\"]+\"", $"content=\"{SafePlaceHolderToReplaceWithXml}\"");
+        wrapper = wrapper.Replace(SafePlaceHolderToReplaceWithXml, drawioXml);
         return wrapper;
     }
 }

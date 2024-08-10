@@ -1,0 +1,309 @@
+<mxfile host="Electron" scale="1.2" border="0" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.183 Electron/31.3.0 Safari/537.36" version="24.7.5" pages="3">
+  <diagram name="design" id="ahwWs56YI2XBYRBzwlqw">
+    <mxGraphModel dx="795" dy="1103" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="gXIQXWJeLBFqDzgiwE1A-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="ZIOTUwtG6jgaDJF-H-SD-59" target="gXIQXWJeLBFqDzgiwE1A-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZIOTUwtG6jgaDJF-H-SD-59" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=0;rotatable=0;noLabel=1;" parent="1" vertex="1">
+          <mxGeometry x="612.5" y="110" width="25" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="FBXMdjX66-gi6ui8OnAz-82" value="&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;This example&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;requires StateSmith lib version 0.12.0+&lt;/b&gt;&lt;br&gt;&lt;/div&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;align=left;spacingLeft=6;" parent="1" vertex="1">
+          <mxGeometry x="520" y="-80" width="490" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="-p4weJbnKmdRn2q7vWyb-80" value="&lt;div&gt;&lt;b&gt;Big change!&lt;/b&gt; You can now have multiple pages in your draw.io files.&lt;/div&gt;&lt;div&gt;Note that the config is on its own page. All pages that don&#39;t start with $notes will be combined together.&lt;/div&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#2B2B00;align=left;spacingLeft=6;" parent="1" vertex="1">
+          <mxGeometry x="520" y="-30" width="490" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="M-Fagf6uGdx-s0bU8Apu-3" value="event1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.19;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.19;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="gXIQXWJeLBFqDzgiwE1A-1" target="M-Fagf6uGdx-s0bU8Apu-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gXIQXWJeLBFqDzgiwE1A-1" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;points=[[0,0,0,0,0],[0,0.06,0,0,0],[0,0.13,0,0,0],[0,0.19,0,0,0],[0,0.25,0,0,0],[0,0.31,0,0,0],[0,0.38,0,0,0],[0,0.44,0,0,0],[0,0.5,0,0,0],[0,0.56,0,0,0],[0,0.63,0,0,0],[0,0.69,0,0,0],[0,0.75,0,0,0],[0,0.81,0,0,0],[0,0.88,0,0,0],[0,0.94,0,0,0],[0,1,0,0,0],[0.06,0,0,0,0],[0.06,1,0,0,0],[0.13,0,0,0,0],[0.13,1,0,0,0],[0.19,0,0,0,0],[0.19,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.31,0,0,0,0],[0.31,1,0,0,0],[0.38,0,0,0,0],[0.38,1,0,0,0],[0.44,0,0,0,0],[0.44,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.56,0,0,0,0],[0.56,1,0,0,0],[0.63,0,0,0,0],[0.63,1,0,0,0],[0.69,0,0,0,0],[0.69,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[0.81,0,0,0,0],[0.81,1,0,0,0],[0.88,0,0,0,0],[0.88,1,0,0,0],[0.94,0,0,0,0],[0.94,1,0,0,0],[1,0,0,0,0],[1,0.06,0,0,0],[1,0.13,0,0,0],[1,0.19,0,0,0],[1,0.25,0,0,0],[1,0.31,0,0,0],[1,0.38,0,0,0],[1,0.44,0,0,0],[1,0.5,0,0,0],[1,0.56,0,0,0],[1,0.63,0,0,0],[1,0.69,0,0,0],[1,0.75,0,0,0],[1,0.81,0,0,0],[1,0.88,0,0,0],[1,0.94,0,0,0],[1,1,0,0,0]];strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="540" y="170" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="gXIQXWJeLBFqDzgiwE1A-2" value="enter / count++;&#xa;exit  / " style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="gXIQXWJeLBFqDzgiwE1A-1" vertex="1" connectable="0">
+          <mxGeometry y="30" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M-Fagf6uGdx-s0bU8Apu-1" value="STATE_2" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;points=[[0,0,0,0,0],[0,0.06,0,0,0],[0,0.13,0,0,0],[0,0.19,0,0,0],[0,0.25,0,0,0],[0,0.31,0,0,0],[0,0.38,0,0,0],[0,0.44,0,0,0],[0,0.5,0,0,0],[0,0.56,0,0,0],[0,0.63,0,0,0],[0,0.69,0,0,0],[0,0.75,0,0,0],[0,0.81,0,0,0],[0,0.88,0,0,0],[0,0.94,0,0,0],[0,1,0,0,0],[0.06,0,0,0,0],[0.06,1,0,0,0],[0.13,0,0,0,0],[0.13,1,0,0,0],[0.19,0,0,0,0],[0.19,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.31,0,0,0,0],[0.31,1,0,0,0],[0.38,0,0,0,0],[0.38,1,0,0,0],[0.44,0,0,0,0],[0.44,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.56,0,0,0,0],[0.56,1,0,0,0],[0.63,0,0,0,0],[0.63,1,0,0,0],[0.69,0,0,0,0],[0.69,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[0.81,0,0,0,0],[0.81,1,0,0,0],[0.88,0,0,0,0],[0.88,1,0,0,0],[0.94,0,0,0,0],[0.94,1,0,0,0],[1,0,0,0,0],[1,0.06,0,0,0],[1,0.13,0,0,0],[1,0.19,0,0,0],[1,0.25,0,0,0],[1,0.31,0,0,0],[1,0.38,0,0,0],[1,0.44,0,0,0],[1,0.5,0,0,0],[1,0.56,0,0,0],[1,0.63,0,0,0],[1,0.69,0,0,0],[1,0.75,0,0,0],[1,0.81,0,0,0],[1,0.88,0,0,0],[1,0.94,0,0,0],[1,1,0,0,0]];strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="540" y="350" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="M-Fagf6uGdx-s0bU8Apu-2" value="enter / count += 10;&#xa;exit  /" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="M-Fagf6uGdx-s0bU8Apu-1" vertex="1" connectable="0">
+          <mxGeometry y="30" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="M-Fagf6uGdx-s0bU8Apu-4" value="event2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.81;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.81;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="M-Fagf6uGdx-s0bU8Apu-1" target="gXIQXWJeLBFqDzgiwE1A-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="5WbJzgnFZzQuHIaXEJV7-1" value="&lt;span style=&quot;color: rgb(250, 250, 250); font-family: &amp;quot;Lucida Console&amp;quot;; font-size: 14px; font-weight: 700; text-wrap: nowrap;&quot;&gt;$STATEMACHINE : {{smName}}&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;connectable=0;allowArrows=0;" parent="1" vertex="1">
+          <mxGeometry x="520" y="40" width="470" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="5WbJzgnFZzQuHIaXEJV7-2" value="New in 0.12.0, you can use `{fileName}` will be expanded to the name of this file." style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#2B2B00;align=left;spacingLeft=6;" parent="1" vertex="1">
+          <mxGeometry x="1040" y="40" width="490" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="e6KzhQqeHZ0kGev2914D" name="config">
+    <mxGraphModel dx="1434" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="AQYHgrLb52N4u3SG62Hm-1" value="$CONFIG : toml" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="40" y="125" width="760" height="675" as="geometry">
+            <mxRectangle x="40" y="40" width="170" height="70" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="AQYHgrLb52N4u3SG62Hm-2" value="{{configToml}}" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="AQYHgrLb52N4u3SG62Hm-1" vertex="1" connectable="0">
+          <mxGeometry y="30" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Rtzr6oL3nyDmr5cCv5HC-1" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;Feel free to delete the `$CONFIG : toml` node if you don&#39;t want it.&lt;/span&gt;&lt;br style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;Details here:&amp;nbsp;&lt;/span&gt;&lt;a style=&quot;font-size: 12px;&quot; href=&quot;https://github.com/StateSmith/StateSmith/issues/335&quot;&gt;https://github.com/StateSmith/StateSmith/issues/335&lt;/a&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#2B2B00;align=left;spacingLeft=6;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="490" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="lSXSN223U8W1Hh3X7HAb" name="$notes shapes &amp; tips">
+    <mxGraphModel dx="1434" dy="1644" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-1" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=1;rotatable=1;noLabel=1;editable=1;movable=1;deletable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="760" width="25" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-2" value="exit : 1" style="fontFamily=Lucida Console;align=center;verticalAlign=middle;shape=ellipse;aspect=fixed;resizable=0;rotatable=0;labelPosition=center;verticalLabelPosition=top;strokeColor=#b11f1f;strokeWidth=4;fillColor=#FFFFFF;gradientColor=#d4d4d4cc;" parent="1" vertex="1">
+          <mxGeometry x="297.5" y="785" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-3" value="entry : 1" style="fontFamily=Lucida Console;align=center;verticalAlign=middle;shape=ellipse;aspect=fixed;resizable=0;rotatable=0;labelPosition=center;verticalLabelPosition=top;strokeColor=#27ae27;strokeWidth=4;fillColor=#FFFFFF;gradientColor=#d4d4d4cc;" parent="1" vertex="1">
+          <mxGeometry x="222.5" y="785" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-4" value="$choice" style="fontFamily=Lucida Console;align=center;verticalAlign=middle;shape=rhombus;rotatable=0;labelPosition=center;verticalLabelPosition=top;strokeWidth=1;fillColor=#FFFFFF;gradientColor=#d4d4d4cc;noLabel=1;points=[[0,0.5,0,0,0],[0.25,0.25,0,0,0],[0.25,0.78,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.75,0.78,0,0,0],[0.8,0.25,0,0,0],[1,0.5,0,0,0]];" parent="1" vertex="1">
+          <mxGeometry x="465" y="775" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-6" value="&lt;font color=&quot;#bd890f&quot;&gt;$&lt;/font&gt;H" style="fontFamily=Helvetica;align=center;verticalAlign=middle;shape=ellipse;aspect=fixed;resizable=1;rotatable=1;editable=1;labelPosition=center;verticalLabelPosition=middle;strokeColor=#d79b00;strokeWidth=1;fillColor=#ffcd28;gradientColor=#ffa500;gradientDirection=north;html=1;fontColor=#000000;fontStyle=1;movable=1;deletable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="785" y="760" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-7" value="&lt;font color=&quot;#bd890f&quot;&gt;$&lt;/font&gt;HC" style="fontFamily=Helvetica;align=center;verticalAlign=middle;shape=ellipse;aspect=fixed;resizable=1;rotatable=1;editable=1;labelPosition=center;verticalLabelPosition=middle;strokeColor=#d79b00;strokeWidth=1;fillColor=#ffcd28;gradientColor=#ffa500;gradientDirection=north;html=1;fontColor=#000000;fontStyle=1;movable=1;deletable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="970" y="760" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-8" value="pseudo states" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=27;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="10" y="630" width="190" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-9" value="above shape has&lt;br&gt;a hidden label" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontStyle=2;fontColor=#858585;" parent="1" vertex="1">
+          <mxGeometry x="430" y="820" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-10" value="above shape has&lt;br&gt;a hidden label" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontStyle=2;fontColor=#858585;" parent="1" vertex="1">
+          <mxGeometry x="10" y="790" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-11" value="initial state" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="10" y="705" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-12" value="entry exit points" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="200" y="705" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-13" value="choice points" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="430" y="705" width="130" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-14" value="you can give a choice&lt;div&gt;point a label&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontFamily=Helvetica;fontStyle=2;fontColor=#858585;" parent="1" vertex="1">
+          <mxGeometry x="560" y="820" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-15" value="history" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="760" y="705" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-16" value="history continue" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="910" y="705" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-17" value="&lt;b&gt;$NOTES&lt;/b&gt;&lt;br&gt;Original style notes" style="shape=rectangle;rounded=1;arcSize=15;absoluteArcSize=1;align=left;verticalAlign=top;whiteSpace=wrap;html=1;spacingLeft=4;strokeWidth=1;strokeColor=default;fillColor=#fff2cc;fontColor=#000000;gradientColor=#ffd966;" parent="1" vertex="1">
+          <mxGeometry x="490" y="1275" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-18" value="notes" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=27;fontStyle=1;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="22.5" y="1195" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-19" value="$NOTES" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Helvetica;startSize=30;fontSize=14;fontStyle=1;fontColor=#000000;fillColor=#f0a30a;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;strokeColor=#BD7000;" parent="1" vertex="1">
+          <mxGeometry x="840" y="1255" width="530" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-20" value="You can put text in here, but you can also put state machine vertices &#xa;in here as a quick way to &quot;comment them out&quot;.&#xa;&#xa;This notes group can be collapsed to hide its contents." style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="KJdLhRzIpItSepWCNUQ3-19" vertex="1" connectable="0">
+          <mxGeometry y="30" width="530" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="KJdLhRzIpItSepWCNUQ3-19" source="KJdLhRzIpItSepWCNUQ3-24" target="KJdLhRzIpItSepWCNUQ3-28" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-24" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;comic=0;STATESMITH_NOTES_VERTEX" parent="KJdLhRzIpItSepWCNUQ3-19" vertex="1">
+          <mxGeometry x="30" y="110" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-25" value="" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;comic=0;" parent="KJdLhRzIpItSepWCNUQ3-24" vertex="1" connectable="0">
+          <mxGeometry y="30" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="KJdLhRzIpItSepWCNUQ3-19" source="KJdLhRzIpItSepWCNUQ3-28" target="KJdLhRzIpItSepWCNUQ3-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-28" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;comic=0;STATESMITH_NOTES_VERTEX" parent="KJdLhRzIpItSepWCNUQ3-19" vertex="1">
+          <mxGeometry x="300" y="110" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-29" value="" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;comic=0;" parent="KJdLhRzIpItSepWCNUQ3-28" vertex="1" connectable="0">
+          <mxGeometry y="30" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-21" value="a big sticky note" style="strokeWidth=1;shadow=0;dashed=0;align=left;html=1;shape=mxgraph.mockup.text.stickyNote2;fontColor=#666666;mainText=;fontSize=17;whiteSpace=wrap;fillColor=#ffffcc;strokeColor=#F62E00;spacingLeft=9;" parent="1" vertex="1">
+          <mxGeometry x="285" y="1265" width="165" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-22" value="some notes and stuff..." style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#303000;align=left;spacingLeft=5;" parent="1" vertex="1">
+          <mxGeometry x="22.5" y="1275" width="217.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-26" value="another note style" style="shape=note2;boundedLbl=1;whiteSpace=wrap;html=1;size=25;verticalAlign=top;align=center;" parent="1" vertex="1">
+          <mxGeometry x="22.5" y="1345" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-27" value="you can style however you want" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#a20025;strokeColor=#6F0000;fontColor=#ffffff;align=left;spacingLeft=5;" parent="1" vertex="1">
+          <mxGeometry x="22.5" y="1445" width="257.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-32" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="1245" as="sourcePoint" />
+            <mxPoint x="1440" y="1245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-33" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="680" as="sourcePoint" />
+            <mxPoint x="1440" y="680" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-34" value="This page name is important. It starts with $notes so that it will be totally&amp;nbsp;&lt;div&gt;ignored by code generation&lt;/div&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;align=left;spacingLeft=5;" parent="1" vertex="1">
+          <mxGeometry x="5" y="-550" width="500" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-35" value="$CONFIG : toml" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;swimlaneFillColor=default;html=1;rounded=1;arcSize=15;absoluteArcSize=1;fillColor=#76608a;strokeColor=#432D57;fontColor=#ffffff;" parent="1" vertex="1" collapsed="1">
+          <mxGeometry x="20" y="1020" width="170" height="70" as="geometry">
+            <mxRectangle width="840" height="650" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-36" value="{{configToml}}" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="KJdLhRzIpItSepWCNUQ3-35" vertex="1" connectable="0">
+          <mxGeometry y="30" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4-2zxK3wcSJ80wd-ZBZ5-2" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;Feel free to delete the `$CONFIG : toml` node. It isn&#39;t required.&lt;/span&gt;&lt;br style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;&lt;br style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-size: 12px;&quot;&gt;Details here:&amp;nbsp;&lt;/span&gt;&lt;a style=&quot;font-size: 12px;&quot; href=&quot;https://github.com/StateSmith/StateSmith/issues/335&quot;&gt;https://github.com/StateSmith/StateSmith/issues/335&lt;/a&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#303000;align=left;spacingLeft=5;" parent="KJdLhRzIpItSepWCNUQ3-35" vertex="1">
+          <mxGeometry x="10" y="-60" width="380" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-38" value="config" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=27;fontStyle=1;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="22.5" y="945" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-39" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="1000" as="sourcePoint" />
+            <mxPoint x="1440" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-40" value="$STATEMACHINE : MySm" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;" parent="1" vertex="1">
+          <mxGeometry x="690" y="-20" width="360" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-41" value=" " style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="KJdLhRzIpItSepWCNUQ3-40" vertex="1" connectable="0">
+          <mxGeometry y="30" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-42" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=1;rotatable=1;noLabel=1;editable=1;movable=1;deletable=1;locked=0;connectable=1;" parent="KJdLhRzIpItSepWCNUQ3-40" vertex="1">
+          <mxGeometry x="67.5" y="50" width="25" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-43" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;" parent="KJdLhRzIpItSepWCNUQ3-40" vertex="1">
+          <mxGeometry x="20" y="110" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-44" value="enter / {  }&#xa;do / {  }&#xa;exit / {  }" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="KJdLhRzIpItSepWCNUQ3-43" vertex="1" connectable="0">
+          <mxGeometry y="30" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-45" value="STATE_2" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;" parent="KJdLhRzIpItSepWCNUQ3-40" vertex="1">
+          <mxGeometry x="220" y="110" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-46" value="enter / {  }&#xa;do / {  }&#xa;exit / {  }" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="KJdLhRzIpItSepWCNUQ3-45" vertex="1" connectable="0">
+          <mxGeometry y="30" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-47" style="rounded=0;" parent="KJdLhRzIpItSepWCNUQ3-40" source="KJdLhRzIpItSepWCNUQ3-42" target="KJdLhRzIpItSepWCNUQ3-43" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-48" style="rounded=0;" parent="KJdLhRzIpItSepWCNUQ3-40" source="KJdLhRzIpItSepWCNUQ3-43" target="KJdLhRzIpItSepWCNUQ3-45" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-49" value="Old style state machine that has all children nested.&lt;div&gt;Useful if you want to declare multiple state machines in a single diagram (only supported by .csx files currently).&lt;/div&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#303000;align=left;spacingLeft=5;" parent="1" vertex="1">
+          <mxGeometry x="692.5" y="-90" width="387.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KJdLhRzIpItSepWCNUQ3-51" value="&lt;div&gt;New &quot;not nested&quot; state machine declaration. You can only&amp;nbsp; have a single one of these in a draw.io file&lt;/div&gt;https://github.com/StateSmith/StateSmith/issues/359" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#303000;align=left;spacingLeft=5;verticalAlign=middle;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="5" y="-90" width="475" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-2" value="state machine declarations" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=27;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="10" y="-160" width="340" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-3" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="-110" as="sourcePoint" />
+            <mxPoint x="1440" y="-110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-4" value="states" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=27;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="10" y="250" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-5" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="300" as="sourcePoint" />
+            <mxPoint x="1440" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-7" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="420" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-8" value="enter / {  }&#xa;do / {  }&#xa;exit / {  }" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="THOiIpDGZ02Zs2kVVUPI-7" vertex="1" connectable="0">
+          <mxGeometry y="30" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-9" value="STATE_1&lt;div&gt;enter / { }&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;exit / { }&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;do / { }&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=2;arcSize=9;" parent="1" vertex="1">
+          <mxGeometry x="5" y="420" width="145" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-10" value="Plain text based state.&lt;div&gt;&lt;/div&gt;&lt;div&gt;Equivalent to other STATE_1&lt;/div&gt;&lt;div&gt;except that this shape can&#39;t have sub states.&lt;/div&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=12;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#303000;align=left;spacingLeft=5;verticalAlign=middle;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="5" y="330" width="205" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-12" value="State &quot;group&quot; shape that can easily have sub states added to it." style="shape=note;strokeWidth=2;fontSize=14;size=12;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#303000;align=left;spacingLeft=5;verticalAlign=middle;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="240" y="330" width="245" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-13" value="These shapes have more connection points.&amp;nbsp;&lt;div&gt;You can add/edit connection points on any shape. See &lt;a href=&quot;https://github.com/StateSmith/StateSmith-drawio-plugin/wiki/How-to-Use#add-shape-connection-points&quot;&gt;here&lt;/a&gt;.&lt;/div&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=12;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#303000;align=left;spacingLeft=5;verticalAlign=middle;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="510" y="330" width="550" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-14" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;points=[[0,0,0,0,0],[0,0.06,0,0,0],[0,0.13,0,0,0],[0,0.19,0,0,0],[0,0.25,0,0,0],[0,0.31,0,0,0],[0,0.38,0,0,0],[0,0.44,0,0,0],[0,0.5,0,0,0],[0,0.56,0,0,0],[0,0.63,0,0,0],[0,0.69,0,0,0],[0,0.75,0,0,0],[0,0.81,0,0,0],[0,0.88,0,0,0],[0,0.94,0,0,0],[0,1,0,0,0],[0.06,0,0,0,0],[0.06,1,0,0,0],[0.13,0,0,0,0],[0.13,1,0,0,0],[0.19,0,0,0,0],[0.19,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.31,0,0,0,0],[0.31,1,0,0,0],[0.38,0,0,0,0],[0.38,1,0,0,0],[0.44,0,0,0,0],[0.44,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.56,0,0,0,0],[0.56,1,0,0,0],[0.63,0,0,0,0],[0.63,1,0,0,0],[0.69,0,0,0,0],[0.69,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[0.81,0,0,0,0],[0.81,1,0,0,0],[0.88,0,0,0,0],[0.88,1,0,0,0],[0.94,0,0,0,0],[0.94,1,0,0,0],[1,0,0,0,0],[1,0.06,0,0,0],[1,0.13,0,0,0],[1,0.19,0,0,0],[1,0.25,0,0,0],[1,0.31,0,0,0],[1,0.38,0,0,0],[1,0.44,0,0,0],[1,0.5,0,0,0],[1,0.56,0,0,0],[1,0.63,0,0,0],[1,0.69,0,0,0],[1,0.75,0,0,0],[1,0.81,0,0,0],[1,0.88,0,0,0],[1,0.94,0,0,0],[1,1,0,0,0]];strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="810" y="420" width="250" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-15" value="enter / {  }&#xa;do / {  }&#xa;exit / {  }" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="THOiIpDGZ02Zs2kVVUPI-14" vertex="1" connectable="0">
+          <mxGeometry y="30" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="THOiIpDGZ02Zs2kVVUPI-16" value="$choice : my_label" style="fontFamily=Lucida Console;align=center;verticalAlign=middle;shape=rhombus;rotatable=0;labelPosition=center;verticalLabelPosition=top;strokeWidth=1;fillColor=#FFFFFF;gradientColor=#d4d4d4cc;noLabel=0;points=[[0,0.5,0,0,0],[0.25,0.25,0,0,0],[0.25,0.78,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.75,0.78,0,0,0],[0.8,0.25,0,0,0],[1,0.5,0,0,0]];" parent="1" vertex="1">
+          <mxGeometry x="590" y="775" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KCnc1RyC07B4IOUb-hCN-11" value="Tips" style="text;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=27;fontStyle=1;fontFamily=Helvetica;fontColor=default;" parent="1" vertex="1">
+          <mxGeometry x="10" y="-480" width="70" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KCnc1RyC07B4IOUb-hCN-12" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="5" y="-425" as="sourcePoint" />
+            <mxPoint x="1445" y="-425" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KCnc1RyC07B4IOUb-hCN-13" value="&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;b&gt;Main wiki page for draw.io&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;&quot;&gt;&lt;a href=&quot;https://github.com/StateSmith/StateSmith/wiki/draw.io&quot;&gt;https://github.com/StateSmith/StateSmith/wiki/draw.io&lt;/a&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;draw.io usage tips&lt;/b&gt;&lt;/div&gt;&lt;div&gt;A few are specific to the StateSmith plugin&lt;/div&gt;&lt;div&gt;&lt;a href=&quot;https://github.com/StateSmith/StateSmith-drawio-plugin/wiki/How-to-Use&quot;&gt;https://github.com/StateSmith/StateSmith-drawio-plugin/wiki/How-to-Use&lt;/a&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Troubleshooting&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;a href=&quot;https://github.com/StateSmith/StateSmith-drawio-plugin/wiki/Troubleshooting&quot;&gt;https://github.com/StateSmith/StateSmith-drawio-plugin/wiki/Troubleshooting&lt;/a&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="11.25" y="-402" width="442.5" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="JidS1JY-WBmU68CCgZlU-3" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;points=[[0,0,0,0,0],[0,0.1,0,0,0],[0,0.2,0,0,0],[0,0.3,0,0,0],[0,0.4,0,0,0],[0,0.5,0,0,0],[0,0.6,0,0,0],[0,0.7,0,0,0],[0,0.8,0,0,0],[0,0.9,0,0,0],[0,1,0,0,0],[0.1,0,0,0,0],[0.1,1,0,0,0],[0.2,0,0,0,0],[0.2,1,0,0,0],[0.3,0,0,0,0],[0.3,1,0,0,0],[0.4,0,0,0,0],[0.4,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.6,0,0,0,0],[0.6,1,0,0,0],[0.7,0,0,0,0],[0.7,1,0,0,0],[0.8,0,0,0,0],[0.8,1,0,0,0],[0.9,0,0,0,0],[0.9,1,0,0,0],[1,0,0,0,0],[1,0.1,0,0,0],[1,0.2,0,0,0],[1,0.3,0,0,0],[1,0.4,0,0,0],[1,0.5,0,0,0],[1,0.6,0,0,0],[1,0.7,0,0,0],[1,0.8,0,0,0],[1,0.9,0,0,0],[1,1,0,0,0]];strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="670" y="420" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="JidS1JY-WBmU68CCgZlU-4" value="enter / {  }&#xa;do / {  }&#xa;exit / {  }" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="JidS1JY-WBmU68CCgZlU-3" vertex="1" connectable="0">
+          <mxGeometry y="30" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="JidS1JY-WBmU68CCgZlU-5" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#ffffff;fillColor=#1ba1e2;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;points=[[0,0,0,0,0],[0,0.13,0,0,0],[0,0.25,0,0,0],[0,0.38,0,0,0],[0,0.5,0,0,0],[0,0.63,0,0,0],[0,0.75,0,0,0],[0,0.88,0,0,0],[0,1,0,0,0],[0.13,0,0,0,0],[0.13,1,0,0,0],[0.25,0,0,0,0],[0.25,1,0,0,0],[0.38,0,0,0,0],[0.38,1,0,0,0],[0.5,0,0,0,0],[0.5,1,0,0,0],[0.63,0,0,0,0],[0.63,1,0,0,0],[0.75,0,0,0,0],[0.75,1,0,0,0],[0.88,0,0,0,0],[0.88,1,0,0,0],[1,0,0,0,0],[1,0.13,0,0,0],[1,0.25,0,0,0],[1,0.38,0,0,0],[1,0.5,0,0,0],[1,0.63,0,0,0],[1,0.75,0,0,0],[1,0.88,0,0,0],[1,1,0,0,0]];strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="510" y="420" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="JidS1JY-WBmU68CCgZlU-6" value="enter / {  }&#xa;do / {  }&#xa;exit / {  }" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;" parent="JidS1JY-WBmU68CCgZlU-5" vertex="1" connectable="0">
+          <mxGeometry y="30" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="OrgVsQ4qPEvQc6joGMdC-1" value="&lt;div&gt;&lt;span style=&quot;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Helpful shortcuts&lt;/font&gt;&lt;/b&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;go up a pages:&amp;nbsp;&lt;font style=&quot;font-size: 12px;&quot; face=&quot;Lucida Console&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot; color=&quot;#0066cc&quot;&gt;CTRL+SHIFT+PG_UP&lt;/font&gt;&amp;nbsp;&lt;/font&gt;&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font style=&quot;font-size: 12px;&quot; face=&quot;Lucida Console&quot;&gt;&lt;span style=&quot;font-family: Helvetica;&quot;&gt;go down a page:&lt;/span&gt;&amp;nbsp;&lt;font style=&quot;font-size: 12px;&quot; color=&quot;#0066cc&quot;&gt;CTRL+SHIFT+PG_DOWN&lt;/font&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;enter a group:&lt;code style=&quot;box-sizing: border-box; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot; color=&quot;#0066cc&quot; face=&quot;Lucida Console&quot;&gt;CTRL+SHIFT+END&lt;/font&gt;&lt;/code&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; margin-top: 0.25em;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;exit a group:&lt;code style=&quot;box-sizing: border-box; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot; color=&quot;#0066cc&quot; face=&quot;Lucida Console&quot;&gt;CTRL+SHIFT+HOME&lt;/font&gt;&lt;/code&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; margin-top: 0.25em;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;exit to root:&amp;nbsp;&lt;code style=&quot;box-sizing: border-box; padding: 0.2em 0.4em; margin: 0px; white-space-collapse: break-spaces; background-color: var(--bgColor-neutral-muted, var(--color-neutral-muted)); border-radius: 6px;&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot; color=&quot;#0066cc&quot; face=&quot;Lucida Console&quot;&gt;SHIFT+HOME&lt;/font&gt;&lt;/code&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="470" y="-402" width="530" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="inE1e8qNggDrZwxTO7KQ-1" value="&lt;span style=&quot;color: rgb(250, 250, 250); font-family: &amp;quot;Lucida Console&amp;quot;; font-size: 14px; font-weight: 700; text-wrap: nowrap;&quot;&gt;$STATEMACHINE : {fileName}&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;connectable=0;allowArrows=0;" parent="1" vertex="1">
+          <mxGeometry x="5" y="120" width="395" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="SZ6MZoNXvt2rsGTTfR6_-1" value="Below (available in 0.12.0+) uses the file name for the state machine name.&amp;nbsp;https://github.com/StateSmith/StateSmith/issues/330&lt;div&gt;&lt;/div&gt;" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#303000;align=left;spacingLeft=5;verticalAlign=middle;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="5" y="50" width="475" height="56.25" as="geometry" />
+        </mxCell>
+        <mxCell id="yyhhArBecVeN2Ec1ix6R-1" value="&lt;span style=&quot;color: rgb(250, 250, 250); font-family: &amp;quot;Lucida Console&amp;quot;; font-size: 14px; font-weight: 700; text-wrap: nowrap;&quot;&gt;$STATEMACHINE : {{smName}}&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;connectable=0;allowArrows=0;" parent="1" vertex="1">
+          <mxGeometry x="2.5" y="-20" width="477.5" height="35" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -11,15 +11,22 @@ public class TemplateLoader
     public const string PlantUmlFileName = DiagramFileNamePrefix + ".plantuml";
     public const string CsxFileName = "script.csx";
 
+    public enum TomlConfigType
+    {
+        Most,
+        Minimal
+    }
+
     public static string LoadDefaultCsx()
     {
         var result = LoadFileResource(TemplateIds._common, fileName: "default.csx");
         return result;
     }
 
-    public static string LoadTomlConfig()
+    public static string LoadTomlConfig(TomlConfigType tomlConfigType)
     {
-        var result = LoadFileResource(TemplateIds._common, fileName: "config.toml");
+
+        var result = LoadFileResource(TemplateIds._common, fileName: $"config-{tomlConfigType.ToString().ToLower()}.toml");
         return result;
     }
 

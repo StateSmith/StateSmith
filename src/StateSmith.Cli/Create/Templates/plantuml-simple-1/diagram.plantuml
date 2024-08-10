@@ -69,5 +69,4 @@ ON3 --> ON2 : dim
 /'! $CONFIG : toml
 {{configToml}}
 '/
-
 @enduml

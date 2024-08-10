@@ -58,7 +58,7 @@ public class TemplateRenderTest
     public void IntegrationTestTomlC()
     {
         // TODO do for more languages
-        var tomlConfig = Generator.GetTomlConfig(TargetLanguageId.C);
+        var tomlConfig = Generator.GetTomlConfig(TargetLanguageId.C, TemplateLoader.TomlConfigType.Most);
 
         tomlConfig.ShouldBeShowDiff(""""
             ############# Render Config Settings ##############
@@ -114,7 +114,6 @@ public class TemplateRenderTest
 
             # There are more SmRunnerSettings. See C# classes on github project.
             # See https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs
-            
             """", outputCleanActual: true);
     }
 

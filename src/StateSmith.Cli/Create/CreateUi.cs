@@ -341,7 +341,8 @@ public class CreateUi
     {
         var choices = new List<UiItem<string>>()
             {
-                new UiItem<string>(id: TemplateIds.DrawIoSimple1,    display: "" ),
+                new UiItem<string>(id: TemplateIds.DrawIoPages1,  display: "Multiple pages - new features. REQUIRES lib version 0.12.0+."),
+                new UiItem<string>(id: TemplateIds.DrawIoSimple1, display: "Traditional - single page."),
             };
         var templateTypeName = "draw.io";
         _settings.DrawIoDiagramTemplateId = AskTemplate(choices, templateTypeName, _settings.DrawIoDiagramTemplateId);

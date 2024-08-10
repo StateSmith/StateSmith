@@ -58,6 +58,7 @@ public class TemplatePlantUmlMinimalNoCsx
     {
         settings.TargetLanguageId = TargetLanguageId.C;
         Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
         generator.SetFileWriter(mockFileWriter);
 
         // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
@@ -101,6 +102,7 @@ public class TemplatePlantUmlMinimalNoCsx
     {
         settings.TargetLanguageId = TargetLanguageId.CppC;
         Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
         generator.SetFileWriter(mockFileWriter);
 
         // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
@@ -146,6 +148,7 @@ public class TemplatePlantUmlMinimalNoCsx
     {
         settings.TargetLanguageId = TargetLanguageId.CSharp;
         Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
         generator.SetFileWriter(mockFileWriter);
 
         // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
@@ -187,6 +190,7 @@ public class TemplatePlantUmlMinimalNoCsx
     {
         settings.TargetLanguageId = TargetLanguageId.JavaScript;
         Generator generator = new(settings);
+        generator.tomlConfigType = TemplateLoader.TomlConfigType.Minimal;
         generator.SetFileWriter(mockFileWriter);
 
         // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
