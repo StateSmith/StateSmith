@@ -1,7 +1,7 @@
+#nullable enable
+
 using StateSmith.Common;
 using System.IO;
-
-#nullable enable
 
 namespace StateSmith.Runner;
 
@@ -22,5 +22,12 @@ public class DiagramFilePathProvider
     public string GetDiagramFileName()
     {
         return Path.GetFileName(GetDiagramFilePath());
+    }
+
+    public string GetDiagramBaseName()
+    {
+        // we don't just use Path.GetFileNameWithoutExtension because
+        // files like MySm.drawio.svg would be returned as MySm.drawio
+        return GetDiagramFileName().Split(".")[0];
     }
 }

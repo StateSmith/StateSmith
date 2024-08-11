@@ -161,6 +161,9 @@ public class InputSmBuilder
     {
         diagramToSmConverter.CompileDiagramNodesEdges(rootNodes, edges);
         diagramToSmConverter.rootVertices = FlatSmRootSupport.SupportFlatSmRoot(diagramToSmConverter.rootVertices);
+
+        // don't need to worry about a state machine inside a notes node, because we are only looking a root nodes.
+        new SmFileNameProcessor(diagramFilePathProvider).ProcessRoots(diagramToSmConverter.rootVertices);
     }
 
     /// <summary>

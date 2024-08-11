@@ -12,7 +12,6 @@ public class StandardSmTransformer : SmTransformer
     public enum TransformationId
     {
         Standard_RemoveNotesVertices,
-        Standard_SupportSmFileName,
         /// <summary>
         /// https://github.com/StateSmith/StateSmith/issues/335
         /// </summary>
@@ -46,10 +45,9 @@ public class StandardSmTransformer : SmTransformer
     };
 
     // this ctor used for Dependency Injection
-    public StandardSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor, SmFileNameProcessor smFileNameProcessor)
+    public StandardSmTransformer(TomlConfigVerticesProcessor tomlConfigVerticesProcessor, RenderConfigVerticesProcessor renderConfigVerticesProcessor, HistoryProcessor historyProcessor, StateNameConflictResolver nameConflictResolver, TriggerMapProcessor triggerMapProcessor)
     {
         AddStep(TransformationId.Standard_RemoveNotesVertices, (sm) => NotesProcessor.Process(sm));
-        AddStep(TransformationId.Standard_SupportSmFileName, (sm) => smFileNameProcessor.Process(sm));
         AddStep(TransformationId.Standard_TomlConfig, (sm) => tomlConfigVerticesProcessor.Process(sm));
         AddStep(TransformationId.Standard_SupportRenderConfigVerticesAndRemove, (sm) => renderConfigVerticesProcessor.Process());
         AddStep(TransformationId.Standard_SupportParentAlias, (sm) => ParentAliasStateProcessor.Process(sm));
