@@ -7,6 +7,7 @@ using StateSmith.Common;
 using StateSmith.SmGraph;
 using System;
 using System.Runtime.ExceptionServices;
+using System.Threading;
 
 namespace StateSmith.Runner;
 
@@ -102,7 +103,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
         // dispose of objects that it created.
         try
         {
-            ThrowIfPreDiagramSettingsException();
+            PrintAndThrowIfPreDiagramSettingsException();
 
             if (settings.transpilerId == TranspilerId.NotYetSet)
                 throw new ArgumentException("TranspilerId must be set before running code generation");
@@ -115,23 +116,26 @@ public class SmRunner : SmRunner.IExperimentalAccess
         }
 
         if (smRunnerInternal.exception != null)
+        {
             throw new FinishedWithFailureException();
+        }
     }
 
     /// <summary>
     /// Experimental API. May change in the future.
     /// </summary>
-    public void ThrowIfPreDiagramSettingsException()
+    public void PrintAndThrowIfPreDiagramSettingsException()
     {
         if (PreDiagramBasedSettingsException != null)
         {
             // We use SmRunnerInternal to print the exception so that it is consistent with the rest of the code.
             SmRunnerInternal smRunnerInternal = diServiceProvider.GetServiceOrCreateInstance();
-            smRunnerInternal.PrintException(PreDiagramBasedSettingsException.SourceException);
+            smRunnerInternal.OutputExceptionDetail(PreDiagramBasedSettingsException.SourceException);
             if (settings.propagateExceptions)
             {
                 PreDiagramBasedSettingsException.Throw();
             }
+
             throw new FinishedWithFailureException();
         }
     }

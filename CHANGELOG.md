@@ -35,7 +35,9 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/352
 - simulator - style $initial_state nodes as a black circle
   - https://github.com/StateSmith/StateSmith/issues/294
-
+- improve exception printing & wording around propagate exceptions. closes #375
+  - https://github.com/StateSmith/StateSmith/issues/375
+  
 ### Added
 - draw.io - allow multiple pages.
   - https://github.com/StateSmith/StateSmith/issues/78
