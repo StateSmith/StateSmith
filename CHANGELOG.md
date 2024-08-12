@@ -37,7 +37,9 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/294
 - improve exception printing & wording around propagate exceptions. closes #375
   - https://github.com/StateSmith/StateSmith/issues/375
-  
+- plantuml - support character escape sequences properly
+  - https://github.com/StateSmith/StateSmith/issues/369
+
 ### Added
 - draw.io - allow multiple pages.
   - https://github.com/StateSmith/StateSmith/issues/78
@@ -52,6 +54,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/330
 - improve draw.io disconnected edge error info
   - https://github.com/StateSmith/StateSmith/issues/378
+- plantuml - support text align escape sequences
+  - https://github.com/StateSmith/StateSmith/issues/362
 
 ### Changed (minor)
 - Slight change to draw.io xml parsing to allow for error location information.

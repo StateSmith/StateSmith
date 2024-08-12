@@ -5,6 +5,7 @@ using Antlr4.Runtime.Misc;
 using StateSmith.Common;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace StateSmith.Input.PlantUML;
 
@@ -161,14 +162,64 @@ public class PlantUMLWalker : PlantUMLBaseListener
         state.label += "\n" + Decode(context.rest_of_line().GetText());
     }
 
-    private string Decode(string? escapedString)
+    /// <summary>
+    /// plantuml has a number of special escape sequences. See also unit tests.
+    /// https://github.com/StateSmith/StateSmith/issues/369
+    /// </summary>
+    internal static string Decode(string? escapedString)
     {
         if (escapedString == null)
         {
             return "";
         }
 
-        return escapedString.Trim().Replace(@"\n", "\n");
+        escapedString = escapedString.Trim();
+        StringBuilder sb = new();
+
+        bool escapeStarted = false;
+        for (int i = 0; i < escapedString.Length; i++)
+        {
+            char c = escapedString[i];
+
+            if (escapeStarted)
+            {
+                switch (c)
+                {
+                    case 'n': sb.Append('\n');  break;
+                    case 't': sb.Append('\t');  break;
+                    case '\\': sb.Append('\\'); break;
+
+                    // left/right alignment codes appear as new lines in plantuml
+                    // https://github.com/StateSmith/StateSmith/issues/362
+                    case 'l':                        
+                    case 'r':
+                        //sb.Append('\n'); // I don't think we actually want new lines here. Might cause StateSmith grammar to fail. Would need some testing.
+                        break;
+
+                    default:
+                        sb.Append('\\');
+                        sb.Append(c);
+                        break;
+                }
+                escapeStarted = false;
+            }
+            else
+            {
+                if (c == '\\')
+                {
+                    escapeStarted = true;
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+        }
+
+        // Note! if last character is a backslash, it isn't shown in the diagram. It is actually a line continuation character, but our grammar doesn't support that yet.
+        // For now, we just ignore it. https://github.com/StateSmith/StateSmith/issues/379
+
+        return sb.ToString();
     }
 
     private static void ThrowValidationFailure(string message, global::Antlr4.Runtime.ParserRuleContext context)
