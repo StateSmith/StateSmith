@@ -1,0 +1,50 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.5 Chrome/126.0.6478.183 Electron/31.3.0 Safari/537.36" version="24.7.5">
+  <diagram name="Page-1" id="51UBkito5awnTQ_jN5C1">
+    <mxGraphModel dx="1674" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dyKfC978DSqIkyhEUavx-2" value="tests bad edge" style="shape=note;strokeWidth=2;fontSize=14;size=20;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#666600;align=left;spacingLeft=6;" parent="1" vertex="1">
+          <mxGeometry x="30" y="20" width="380" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3d-xzousiEgNGckSdFBJ-8" value="$initial_state" style="shape=ellipse;aspect=fixed;fillColor=#000000;resizable=1;rotatable=1;noLabel=1;editable=1;comic=0;movable=1;deletable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="112.5" y="140" width="25" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="ClSxLSJ55C_C8lVC4yGv-1" value="&lt;span style=&quot;color: rgb(250, 250, 250); font-family: &amp;quot;Lucida Console&amp;quot;; font-size: 14px; font-weight: 700; text-wrap: nowrap;&quot;&gt;$STATEMACHINE : MySm&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+          <mxGeometry x="30" y="80" width="210" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="e6pu2JGvavjpF1QPYwEw-1" value="GROUP" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;comic=0;STATESMITH_NOTES_VERTEX" vertex="1" parent="1">
+          <mxGeometry x="20" y="210" width="452.5" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="e6pu2JGvavjpF1QPYwEw-2" value="" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;comic=0;" vertex="1" connectable="0" parent="e6pu2JGvavjpF1QPYwEw-1">
+          <mxGeometry y="30" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ClSxLSJ55C_C8lVC4yGv-4" value="EV1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="e6pu2JGvavjpF1QPYwEw-1" edge="1">
+          <mxGeometry x="-0.0045" relative="1" as="geometry">
+            <mxPoint x="281.25" y="95" as="targetPoint" />
+            <mxPoint x="210" y="95" as="sourcePoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3d-xzousiEgNGckSdFBJ-9" value="STATE_1" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;comic=0;STATESMITH_NOTES_VERTEX" parent="e6pu2JGvavjpF1QPYwEw-1" vertex="1">
+          <mxGeometry x="21.25" y="50" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3d-xzousiEgNGckSdFBJ-10" value="enter / print(&quot;S1&quot;);" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;comic=0;" parent="3d-xzousiEgNGckSdFBJ-9" vertex="1" connectable="0">
+          <mxGeometry y="30" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ClSxLSJ55C_C8lVC4yGv-7" value="EV2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="e6pu2JGvavjpF1QPYwEw-1" source="ClSxLSJ55C_C8lVC4yGv-2" target="3d-xzousiEgNGckSdFBJ-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ClSxLSJ55C_C8lVC4yGv-2" value="STATE_2" style="shape=swimlane;rotatable=0;align=center;verticalAlign=top;fontFamily=Lucida Console;startSize=30;fontSize=14;fontStyle=1;fontColor=#FAFAFA;fillColor=#545454;swimlaneFillColor=default;rounded=1;arcSize=15;absoluteArcSize=1;comic=0;STATESMITH_NOTES_VERTEX" parent="e6pu2JGvavjpF1QPYwEw-1" vertex="1">
+          <mxGeometry x="311.25" y="50" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ClSxLSJ55C_C8lVC4yGv-3" value="" style="fontFamily=Lucida Console;align=left;verticalAlign=top;fillColor=none;gradientColor=none;strokeColor=none;rounded=0;spacingLeft=4;resizable=0;movable=0;deletable=0;rotatable=0;autosize=1;comic=0;" parent="ClSxLSJ55C_C8lVC4yGv-2" vertex="1" connectable="0">
+          <mxGeometry y="30" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3d-xzousiEgNGckSdFBJ-13" parent="1" source="3d-xzousiEgNGckSdFBJ-8" target="3d-xzousiEgNGckSdFBJ-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

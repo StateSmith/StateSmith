@@ -1,9 +1,8 @@
 using FluentAssertions;
 using StateSmith.Input.DrawIo;
-using StateSmith.Output;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
-using StateSmithTest.Output;
+using System;
 using Xunit;
 
 namespace StateSmithTest.Input.DrawIo;
@@ -121,5 +120,100 @@ public class MxCellsToSmDiagramConverterTests
         var sm = builder.GetStateMachine();
 
         sm.DescendantsOfType<NotesVertex>().Count.Should().Be(6);
+    }
+
+    [Fact]
+    public void UnterminatedEdgeSource()
+    {
+        StringBufferConsolePrinter console = new();
+
+        try
+        {
+            TestHelper.CaptureSmRun("UnterminatedEdgeSource.drawio", iConsolePrinter: console);
+            throw new Exception("Should have thrown");
+        }
+        catch (DrawIoException)
+        {
+            var str = console.sb.ToString();
+            str.ReplaceLineEndings().Should().Contain("""
+                BAD EDGE INFO
+                diagram id: `ClSxLSJ55C_C8lVC4yGv-4`
+                label:`EV1`
+                ============================
+                EDGE SOURCE NODE
+                null (you need to connect this)
+                ==========================
+                EDGE TARGET NODE
+                DiagramNode:
+                    id: ClSxLSJ55C_C8lVC4yGv-2
+                    label: `STATE_22
+                            enter / print("S2");`
+                    parent.id: null
+                """.ReplaceLineEndings());
+        }
+    }
+
+    [Fact]
+    public void UnterminatedEdgeTarget()
+    {
+        StringBufferConsolePrinter console = new();
+
+        try
+        {
+            TestHelper.CaptureSmRun("UnterminatedEdgeTarget.drawio", iConsolePrinter: console);
+            throw new Exception("Should have thrown");
+        }
+        catch (DrawIoException)
+        {
+            var str = console.sb.ToString();
+            str.ReplaceLineEndings().Should().Contain("""
+                BAD EDGE INFO
+                diagram id: `ClSxLSJ55C_C8lVC4yGv-4`
+                label:`EV1`
+                ============================
+                EDGE SOURCE NODE
+                DiagramNode:
+                    id: 3d-xzousiEgNGckSdFBJ-9
+                    label: `STATE_1
+                            enter / print("S1");`
+                    parent.id: null
+                ==========================
+                EDGE TARGET NODE
+                null (you need to connect this)
+                """.ReplaceLineEndings());
+        }
+    }
+
+    [Fact]
+    public void UnterminatedEdgeTargetNested()
+    {
+        StringBufferConsolePrinter console = new();
+
+        try
+        {
+            TestHelper.CaptureSmRun("UnterminatedEdgeTargetNested.drawio", iConsolePrinter: console);
+            throw new Exception("Should have thrown");
+        }
+        catch (DrawIoException)
+        {
+            var str = console.sb.ToString();
+            str.ReplaceLineEndings().Should().Contain("""
+                BAD EDGE INFO
+                diagram id: `ClSxLSJ55C_C8lVC4yGv-4`
+                label:`EV1`
+                ============================
+                EDGE SOURCE NODE
+                null (you need to connect this)
+                ==========================
+                EDGE TARGET NODE
+                null (you need to connect this)
+                ============================
+                PARENT NODE
+                DiagramNode:
+                    id: e6pu2JGvavjpF1QPYwEw-1
+                    label: `GROUP`
+                    parent.id: null
+                """.ReplaceLineEndings());
+        }
     }
 }

@@ -18,12 +18,13 @@ public class TestHelper
         return Path.GetDirectoryName(callerFilePath) + "/";
     }
 
-    public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
+    public static (SmRunner, CapturingCodeFileWriter) CaptureSmRun(string diagramPath, IRenderConfig? renderConfig = null, TranspilerId transpilerId = TranspilerId.Default, IConsolePrinter? iConsolePrinter = null, [System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         SmRunner runner = new(diagramPath: diagramPath, renderConfig: renderConfig, transpilerId: transpilerId, callingFilePath: callerFilePath);
         runner.GetExperimentalAccess().Settings.propagateExceptions = true;
         var fakeFileSystem = new CapturingCodeFileWriter();
         runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<ICodeFileWriter>(fakeFileSystem);
+        runner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(iConsolePrinter ?? new DiscardingConsolePrinter());
         runner.Run();
 
         return (runner, fakeFileSystem);

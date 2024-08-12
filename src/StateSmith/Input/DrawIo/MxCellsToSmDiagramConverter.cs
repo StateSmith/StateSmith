@@ -2,7 +2,10 @@
 
 using StateSmith.SmGraph;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
 
 namespace StateSmith.Input.DrawIo;
 
@@ -229,12 +232,14 @@ public class MxCellsToSmDiagramConverter
     {
         if (cell.target == null)
         {
-            throw new DrawIoException($"Unterminated edge (no target). Edge diagram id:`{cell.id}`, label:`{cell.label}`");
+            var msg = $"Unterminated edge/arrow (no target connection).";
+            ThrowBadEdgeException(cell, msg);
         }
 
         if (cell.source == null)
         {
-            throw new DrawIoException($"Edge without source. Edge diagram id:`{cell.id}`, label:`{cell.label}`");
+            var msg = $"Edge/arrow not connected at source.";
+            ThrowBadEdgeException(cell, msg);
         }
 
         var edge = new DiagramEdge
@@ -245,5 +250,60 @@ public class MxCellsToSmDiagramConverter
             source: nodeMap[cell.source]
         );
         edges.Add(edge);
+    }
+
+    [DoesNotReturn]
+    private void ThrowBadEdgeException(MxCell cell, string msg)
+    {
+        var msg2 = msg + "\nMake sure transition edge/arrow is properly connected to shapes (not left dangling).\n";
+        msg2 += GetEdgeDebugDetails(cell);
+        throw new DrawIoException(msg2);
+    }
+
+    public string GetEdgeDebugDetails(MxCell cell)
+    {
+        StringBuilder sb = new();
+        sb.Append("\nBAD EDGE INFO\n");
+        sb.Append($"diagram id: `{cell.id}`\nlabel:`{cell.label}`\n");
+
+        sb.Append("============================\n");
+        sb.Append("EDGE SOURCE NODE\n");
+        NewMethod(sb, cell.source);
+
+        sb.Append("==========================\n");
+        sb.Append("EDGE TARGET NODE\n");
+        NewMethod(sb, cell.target);
+
+        // cell parent is often null or root so we handle it separately
+        if (cell.parent != null && nodeMap.ContainsKey(cell.parent))
+        {
+            sb.Append("============================\n");
+            sb.Append("PARENT NODE\n");
+            nodeMap[cell.parent].Describe(sb);
+            sb.Append('\n');
+        }
+
+        return sb.ToString();
+    }
+
+    private void NewMethod(StringBuilder sb, string? id)
+    {
+        if (id == null)
+        {
+            sb.Append("null (you need to connect this)\n");
+        }
+        else
+        {
+            // just in case the node is missing
+            try
+            {
+                nodeMap[id].Describe(sb);
+                sb.Append('\n');
+            }
+            catch
+            {
+                sb.Append($"Failed looking up id: `{id}`\n");
+            }
+        }
     }
 }
