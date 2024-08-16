@@ -56,6 +56,8 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/378
 - plantuml - support text align escape sequences
   - https://github.com/StateSmith/StateSmith/issues/362
+- grammar - allow division operator `/` in guard and action code
+  - https://github.com/StateSmith/StateSmith/issues/230
 
 ### Changed (minor)
 - Slight change to draw.io xml parsing to allow for error location information.

@@ -23,8 +23,8 @@ public class ErrorReporting
 
         consoleOutput.Should().Contain("""
             Failed parsing node label.
-            Reason(s): mismatched input '/' expecting ')' at line 3 column 5. Offending symbol: `/`.
-                       missing ')' at '<EOF>' at line 3 column 19. Offending symbol: `<EOF>`.
+            Reason(s): no viable alternative at input ' log("Hello";' at line 3 column 19. Offending symbol: `<EOF>`.
+                       mismatched input '<EOF>' expecting ')' at line 3 column 19. Offending symbol: `<EOF>`.
             DiagramNode:
                 id: MY_STATE
                 label: `MY_STATE
