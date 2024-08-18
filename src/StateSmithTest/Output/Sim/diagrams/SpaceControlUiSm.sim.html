@@ -1345,8 +1345,8 @@ evaluateGuard = null;
         // No ancestor state handles `do` event.
         
         // COOKING_FOOD behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 3.5 s )") || this.evaluateGuard("t1After( 3.5 s )")] / { this.tracer?.edgeTransition("edge27"); } TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 3.5 s )") || this.evaluateGuard("t1After( 3.5 s )"))
+        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 3.5 s )") || this.evaluateGuard("COOKING_FOOD","do [t1After( 3.5 s )] TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))")] / { this.tracer?.edgeTransition("edge27"); } TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 3.5 s )") || this.evaluateGuard("COOKING_FOOD","do [t1After( 3.5 s )] TransitionTo(FOOD_MENU.<ExitPoint>(food_selected))"))
         {
             // Step 1: Exit states until we reach `FOOD_MENU` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#FOOD_MENU_exit);
@@ -1437,8 +1437,8 @@ evaluateGuard = null;
         // No ancestor state handles `do` event.
         
         // COOKING_FOOD1 behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 1s )") || this.evaluateGuard("t1After( 1s )")] / { this.tracer?.edgeTransition("edge26"); } TransitionTo(COOKING_FOOD)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 1s )") || this.evaluateGuard("t1After( 1s )"))
+        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 1s )") || this.evaluateGuard("COOKING_FOOD1","do [t1After( 1s )] TransitionTo(COOKING_FOOD)")] / { this.tracer?.edgeTransition("edge26"); } TransitionTo(COOKING_FOOD)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After( 1s )") || this.evaluateGuard("COOKING_FOOD1","do [t1After( 1s )] TransitionTo(COOKING_FOOD)"))
         {
             // Step 1: Exit states until we reach `EVENT_EATER_2` state (Least Common Ancestor for transition).
             this.#COOKING_FOOD1_exit();
@@ -1884,8 +1884,8 @@ evaluateGuard = null;
         // No ancestor state handles `do` event.
         
         // SD_1 behavior
-        // uml: DO [this.tracer?.log("🛡️ User evaluating guard: " + "SelfDestructSeconds <= 0") || this.evaluateGuard("SelfDestructSeconds <= 0")] / { this.tracer?.log("⚡ FSM would execute action: " + "SelfDestruct();"); }
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "SelfDestructSeconds <= 0") || this.evaluateGuard("SelfDestructSeconds <= 0"))
+        // uml: DO [this.tracer?.log("🛡️ User evaluating guard: " + "SelfDestructSeconds <= 0") || this.evaluateGuard("SD_1","DO [SelfDestructSeconds <= 0] / { SelfDestruct(); }")] / { this.tracer?.log("⚡ FSM would execute action: " + "SelfDestruct();"); }
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "SelfDestructSeconds <= 0") || this.evaluateGuard("SD_1","DO [SelfDestructSeconds <= 0] / { SelfDestruct(); }"))
         {
             // Step 1: execute action `this.tracer?.log("⚡ FSM would execute action: " + "SelfDestruct();");`
             this.tracer?.log("⚡ FSM would execute action: " + "SelfDestruct();");
@@ -1895,8 +1895,8 @@ evaluateGuard = null;
         } // end of behavior for SD_1
         
         // SD_1 behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1.Elapsed.Seconds >= 1") || this.evaluateGuard("t1.Elapsed.Seconds >= 1")] / { this.tracer?.edgeTransition("edge38"); } TransitionTo(SD_1)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1.Elapsed.Seconds >= 1") || this.evaluateGuard("t1.Elapsed.Seconds >= 1"))
+        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1.Elapsed.Seconds >= 1") || this.evaluateGuard("SD_1","do [t1.Elapsed.Seconds >= 1] TransitionTo(SD_1)")] / { this.tracer?.edgeTransition("edge38"); } TransitionTo(SD_1)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1.Elapsed.Seconds >= 1") || this.evaluateGuard("SD_1","do [t1.Elapsed.Seconds >= 1] TransitionTo(SD_1)"))
         {
             // Step 1: Exit states until we reach `SELF_DESTRUCT` state (Least Common Ancestor for transition).
             this.#SD_1_exit();
@@ -2006,8 +2006,8 @@ evaluateGuard = null;
         } // end of behavior for SELF_DESTRUCT_OPTION
         
         // SELF_DESTRUCT_OPTION behavior
-        // uml: RIGHT [this.tracer?.log("🛡️ User evaluating guard: " + "count >= 5") || this.evaluateGuard("count >= 5")] / { this.tracer?.edgeTransition("edge35"); } TransitionTo(SELF_DESTRUCT)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "count >= 5") || this.evaluateGuard("count >= 5"))
+        // uml: RIGHT [this.tracer?.log("🛡️ User evaluating guard: " + "count >= 5") || this.evaluateGuard("SELF_DESTRUCT_OPTION","RIGHT [count >= 5] TransitionTo(SELF_DESTRUCT)")] / { this.tracer?.edgeTransition("edge35"); } TransitionTo(SELF_DESTRUCT)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "count >= 5") || this.evaluateGuard("SELF_DESTRUCT_OPTION","RIGHT [count >= 5] TransitionTo(SELF_DESTRUCT)"))
         {
             // Step 1: Exit states until we reach `SYSTEM_INFO_MENU` state (Least Common Ancestor for transition).
             this.#SELF_DESTRUCT_OPTION_exit();
@@ -2790,8 +2790,8 @@ evaluateGuard = null;
         var sm = new SpaceControlUiSm();
 
         // prompt the user to evaluate guards manually
-        sm.evaluateGuard = (guard) => {
-            return confirm('Evaluate guard: ' + guard);
+        sm.evaluateGuard = (vertexName, behaviorUml) => {
+            return confirm(`Evaluate guard for\n${vertexName} behavior:\n${behaviorUml}.\n\nPress 'OK' to evaluate guard as true and 'Cancel' to evaluate it as false.`);
         }; 
 
         const highlightedEdges = new Set();

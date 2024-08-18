@@ -710,8 +710,8 @@ evaluateGuard = null;
         } // end of behavior for ON2
         
         // ON2 behavior
-        // uml: 2. INCREASE [this.tracer?.log("🛡️ User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3")] / { this.tracer?.edgeTransition("edge5"); } TransitionTo(OnHot)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "count >= 3") || this.evaluateGuard("count >= 3"))
+        // uml: 2. INCREASE [this.tracer?.log("🛡️ User evaluating guard: " + "count >= 3") || this.evaluateGuard("ON2","2. INCREASE [count >= 3] TransitionTo(OnHot)")] / { this.tracer?.edgeTransition("edge5"); } TransitionTo(OnHot)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "count >= 3") || this.evaluateGuard("ON2","2. INCREASE [count >= 3] TransitionTo(OnHot)"))
         {
             // Step 1: Exit states until we reach `ON_GROUP` state (Least Common Ancestor for transition).
             this.#ON2_exit();
@@ -945,8 +945,8 @@ evaluateGuard = null;
         var sm = new LightSm();
 
         // prompt the user to evaluate guards manually
-        sm.evaluateGuard = (guard) => {
-            return confirm('Evaluate guard: ' + guard);
+        sm.evaluateGuard = (vertexName, behaviorUml) => {
+            return confirm(`Evaluate guard for\n${vertexName} behavior:\n${behaviorUml}.\n\nPress 'OK' to evaluate guard as true and 'Cancel' to evaluate it as false.`);
         }; 
 
         const highlightedEdges = new Set();

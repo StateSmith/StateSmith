@@ -938,8 +938,8 @@ evaluateGuard = null;
             // ORDER_MENU.<ChoicePoint>(bev_choice) is a pseudo state and cannot have an `enter` trigger.
             
             // ORDER_MENU.<ChoicePoint>(bev_choice) behavior
-            // uml: [this.tracer?.log("🛡️ User evaluating guard: " + "a > b") || this.evaluateGuard("a > b")] / { this.tracer?.edgeTransition("edge16"); } TransitionTo(TEA)
-            if (this.tracer?.log("🛡️ User evaluating guard: " + "a > b") || this.evaluateGuard("a > b"))
+            // uml: [this.tracer?.log("🛡️ User evaluating guard: " + "a > b") || this.evaluateGuard("ORDER_MENU.<ChoicePoint>(bev_choice)","[a > b] TransitionTo(TEA)")] / { this.tracer?.edgeTransition("edge16"); } TransitionTo(TEA)
+            if (this.tracer?.log("🛡️ User evaluating guard: " + "a > b") || this.evaluateGuard("ORDER_MENU.<ChoicePoint>(bev_choice)","[a > b] TransitionTo(TEA)"))
             {
                 // Step 1: Exit states until we reach `ORDER_MENU` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -1475,8 +1475,8 @@ evaluateGuard = null;
         var sm = new LightSm2();
 
         // prompt the user to evaluate guards manually
-        sm.evaluateGuard = (guard) => {
-            return confirm('Evaluate guard: ' + guard);
+        sm.evaluateGuard = (vertexName, behaviorUml) => {
+            return confirm(`Evaluate guard for\n${vertexName} behavior:\n${behaviorUml}.\n\nPress 'OK' to evaluate guard as true and 'Cancel' to evaluate it as false.`);
         }; 
 
         const highlightedEdges = new Set();

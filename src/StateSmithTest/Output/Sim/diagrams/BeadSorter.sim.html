@@ -1635,8 +1635,8 @@ evaluateGuard = null;
         // No ancestor state handles `do` event.
         
         // SetupCheck__Start behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After(3s)") || this.evaluateGuard("t1After(3s)")] / { this.tracer?.edgeTransition("edge25"); } TransitionTo(Tour)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After(3s)") || this.evaluateGuard("t1After(3s)"))
+        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "t1After(3s)") || this.evaluateGuard("SetupCheck__Start","do [t1After(3s)] TransitionTo(Tour)")] / { this.tracer?.edgeTransition("edge25"); } TransitionTo(Tour)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "t1After(3s)") || this.evaluateGuard("SetupCheck__Start","do [t1After(3s)] TransitionTo(Tour)"))
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
             this.#SETUPCHECK__START_exit();
@@ -1706,8 +1706,8 @@ evaluateGuard = null;
         // No ancestor state handles `do` event.
         
         // Tour behavior
-        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "tourBin>=DEFAULT_BIN") || this.evaluateGuard("tourBin>=DEFAULT_BIN")] / { this.tracer?.edgeTransition("edge23"); } TransitionTo(TrainingMode)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "tourBin>=DEFAULT_BIN") || this.evaluateGuard("tourBin>=DEFAULT_BIN"))
+        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "tourBin>=DEFAULT_BIN") || this.evaluateGuard("Tour","1. do [tourBin>=DEFAULT_BIN] TransitionTo(TrainingMode)")] / { this.tracer?.edgeTransition("edge23"); } TransitionTo(TrainingMode)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "tourBin>=DEFAULT_BIN") || this.evaluateGuard("Tour","1. do [tourBin>=DEFAULT_BIN] TransitionTo(TrainingMode)"))
         {
             // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#RUNNING_exit);
@@ -1724,8 +1724,8 @@ evaluateGuard = null;
         } // end of behavior for Tour
         
         // Tour behavior
-        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "true") || this.evaluateGuard("true")] / { this.tracer?.edgeTransition("edge24"); } TransitionTo(Tour)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "true") || this.evaluateGuard("true"))
+        // uml: do [this.tracer?.log("🛡️ User evaluating guard: " + "true") || this.evaluateGuard("Tour","do [true] TransitionTo(Tour)")] / { this.tracer?.edgeTransition("edge24"); } TransitionTo(Tour)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "true") || this.evaluateGuard("Tour","do [true] TransitionTo(Tour)"))
         {
             // Step 1: Exit states until we reach `SetupCheck` state (Least Common Ancestor for transition).
             this.#TOUR_exit();
@@ -2319,8 +2319,8 @@ evaluateGuard = null;
         // No ancestor state handles `do` event.
         
         // ReadEmptySlot__Sensor behavior
-        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "empties>=NUM_EMPTY_READS") || this.evaluateGuard("empties>=NUM_EMPTY_READS")] / { this.tracer?.edgeTransition("edge4"); } TransitionTo(ReadJammedSlot)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "empties>=NUM_EMPTY_READS") || this.evaluateGuard("empties>=NUM_EMPTY_READS"))
+        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "empties>=NUM_EMPTY_READS") || this.evaluateGuard("ReadEmptySlot__Sensor","1. do [empties>=NUM_EMPTY_READS] TransitionTo(ReadJammedSlot)")] / { this.tracer?.edgeTransition("edge4"); } TransitionTo(ReadJammedSlot)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "empties>=NUM_EMPTY_READS") || this.evaluateGuard("ReadEmptySlot__Sensor","1. do [empties>=NUM_EMPTY_READS] TransitionTo(ReadJammedSlot)"))
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#TRAININGMODE_exit);
@@ -2535,8 +2535,8 @@ evaluateGuard = null;
         // No ancestor state handles `do` event.
         
         // ReadJammedSlot__Dropoff behavior
-        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "jammies>=NUM_JAMMED_READS") || this.evaluateGuard("jammies>=NUM_JAMMED_READS")] / { this.tracer?.edgeTransition("edge7"); } TransitionTo(ReadSlot)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "jammies>=NUM_JAMMED_READS") || this.evaluateGuard("jammies>=NUM_JAMMED_READS"))
+        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "jammies>=NUM_JAMMED_READS") || this.evaluateGuard("ReadJammedSlot__Dropoff","1. do [jammies>=NUM_JAMMED_READS] TransitionTo(ReadSlot)")] / { this.tracer?.edgeTransition("edge7"); } TransitionTo(ReadSlot)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "jammies>=NUM_JAMMED_READS") || this.evaluateGuard("ReadJammedSlot__Dropoff","1. do [jammies>=NUM_JAMMED_READS] TransitionTo(ReadSlot)"))
         {
             // Step 1: Exit states until we reach `TrainingMode` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#TRAININGMODE_exit);
@@ -2751,8 +2751,8 @@ evaluateGuard = null;
         // No ancestor state handles `do` event.
         
         // ReadSlot__Dropoff behavior
-        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "sorter.isTrainingDone()") || this.evaluateGuard("sorter.isTrainingDone()")] / { this.tracer?.edgeTransition("edge12"); } TransitionTo(SortingMode)
-        if (this.tracer?.log("🛡️ User evaluating guard: " + "sorter.isTrainingDone()") || this.evaluateGuard("sorter.isTrainingDone()"))
+        // uml: 1. do [this.tracer?.log("🛡️ User evaluating guard: " + "sorter.isTrainingDone()") || this.evaluateGuard("ReadSlot__Dropoff","1. do [sorter.isTrainingDone()] TransitionTo(SortingMode)")] / { this.tracer?.edgeTransition("edge12"); } TransitionTo(SortingMode)
+        if (this.tracer?.log("🛡️ User evaluating guard: " + "sorter.isTrainingDone()") || this.evaluateGuard("ReadSlot__Dropoff","1. do [sorter.isTrainingDone()] TransitionTo(SortingMode)"))
         {
             // Step 1: Exit states until we reach `Running` state (Least Common Ancestor for transition).
             this.#exitUpToStateHandler(this.#RUNNING_exit);
@@ -3172,8 +3172,8 @@ evaluateGuard = null;
         var sm = new BeadSorter();
 
         // prompt the user to evaluate guards manually
-        sm.evaluateGuard = (guard) => {
-            return confirm('Evaluate guard: ' + guard);
+        sm.evaluateGuard = (vertexName, behaviorUml) => {
+            return confirm(`Evaluate guard for\n${vertexName} behavior:\n${behaviorUml}.\n\nPress 'OK' to evaluate guard as true and 'Cancel' to evaluate it as false.`);
         }; 
 
         const highlightedEdges = new Set();
