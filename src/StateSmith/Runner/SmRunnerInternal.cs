@@ -76,30 +76,43 @@ public class SmRunnerInternal
 
             consolePrinter.OutputStageMessage("Finished normally.");
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
+            exception = e;
+
+            // print error detail before rethrowing https://github.com/StateSmith/StateSmith/issues/375
+            OutputExceptionDetail(e);
+
             if (settings.propagateExceptions)
             {
                 throw;
             }
-
-            HandleException(e);
         }
 
         consolePrinter.WriteLine();
     }
 
-    private void HandleException(System.Exception e)
-    {
-        exception = e;
-        PrintException(e);
-    }
-
-    public void PrintException(Exception e)
+    public void OutputExceptionDetail(Exception e)
     {
         exceptionPrinter.PrintException(e);
-        MaybeDumpErrorDetailsToFile(e);
+
+        consolePrinter.WriteErrorLine($"Related error info/debug settings: 'dumpErrorsToFile', 'propagateExceptions'. See https://github.com/StateSmith/StateSmith/blob/main/docs/settings.md .");
+
+        // https://github.com/StateSmith/StateSmith/issues/82
+        if (settings.dumpErrorsToFile)
+        {
+            var errorDetailFilePath = settings.DiagramPath + ".err.txt";
+            errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
+            exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
+            consolePrinter.WriteErrorLine("Exception details dumped to file: " + errorDetailFilePath);
+        }
+
         consolePrinter.OutputStageMessage("Finished with failure.");
+
+        // Give stdout a chance to print the exception before exception is thrown.
+        // We sometimes would see our printed detail message info cut off by dotnet exception handling.
+        // See https://github.com/StateSmith/StateSmith/issues/375
+        Thread.Sleep(100);
     }
 
     internal static StateMachine SetupAndFindStateMachine(InputSmBuilder inputSmBuilder, RunnerSettings settings)
@@ -124,20 +137,6 @@ public class SmRunnerInternal
         }
 
         return inputSmBuilder.GetStateMachine();
-    }
-
-    // https://github.com/StateSmith/StateSmith/issues/82
-    private void MaybeDumpErrorDetailsToFile(System.Exception e)
-    {
-        consolePrinter.WriteErrorLine($"Get exception detail with 'propagate exceptions' or 'dump errors to file' settings.");
-
-        if (settings.dumpErrorsToFile)
-        {
-            var errorDetailFilePath = settings.DiagramPath + ".err.txt";
-            errorDetailFilePath = Path.GetRelativePath(Directory.GetCurrentDirectory(), errorDetailFilePath);
-            exceptionPrinter.DumpExceptionDetails(e, errorDetailFilePath);
-            consolePrinter.WriteErrorLine("Exception details dumped to file: " + errorDetailFilePath);
-        }
     }
 
     private void OutputCompilingDiagramMessage()

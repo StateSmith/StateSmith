@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using FluentAssertions;
 using System.Linq;
 using StateSmith.Input.PlantUML;
@@ -54,7 +54,7 @@ public class CompilerLabelParseFailTests
     {
         ParseAssertNoError(@"
             @startuml SomeSmName
-            [*] --> State1 : \
+            [*] --> State1 : *invalid_here
             @enduml
         ");
 

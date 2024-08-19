@@ -71,6 +71,16 @@ public interface IStateSmithLabelGrammarListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitNode([NotNull] StateSmithLabelGrammarParser.NodeContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.statemachine_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterStatemachine_name([NotNull] StateSmithLabelGrammarParser.Statemachine_nameContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.statemachine_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitStatemachine_name([NotNull] StateSmithLabelGrammarParser.Statemachine_nameContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.statemachine_defn"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

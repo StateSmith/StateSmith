@@ -142,6 +142,51 @@ public class ParsingTests
         translator.Edges[1].label.Should().Be("EVENT2 [guard2] / tx_action();");
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/369
+    /// </summary>
+    [Fact]
+    public void NewLinesInDiagram_369()
+    {
+        ParseAssertNoError("""
+            @startuml SomeSmName
+            [*] --> State1: / printf("Count: %i\\n", count);
+            @enduml
+            """);
+        translator.Edges.Count.Should().Be(1);
+        translator.Edges[0].label.Should().Be("""/ printf("Count: %i\n", count);""");
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/369
+    /// https://github.com/StateSmith/StateSmith/issues/362
+    /// </summary>
+    [Fact]
+    public void PlantUmlDecode_369_362()
+    {
+        // trailing 'a' is there to avoid having a line continuation sequence
+        PlantUMLWalker.Decode("""\n a""").Should().Be("\n a");
+        PlantUMLWalker.Decode("""\t a""").Should().Be("\t a");
+        PlantUMLWalker.Decode("""\\n a""").Should().Be("""\n a""");
+        PlantUMLWalker.Decode("""\\t a""").Should().Be("""\t a""");
+        PlantUMLWalker.Decode("""\ a""").Should().Be("""\ a""");
+        PlantUMLWalker.Decode("""\\ a""").Should().Be("""\ a""");
+        PlantUMLWalker.Decode("""\\\ a""").Should().Be("""\\ a""");
+        PlantUMLWalker.Decode("""\\\\ a""").Should().Be("""\\ a""");
+
+        // non escape characters are just passed through
+        PlantUMLWalker.Decode("""\a""").Should().Be("""\a""");
+
+        // left/right alignment chars are removed
+        // https://github.com/StateSmith/StateSmith/issues/362
+        PlantUMLWalker.Decode("""\lblah(\l);\l""").Should().Be("""blah();""");
+        PlantUMLWalker.Decode("""\rblah(\r);\r""").Should().Be("""blah();""");
+
+        // if ends with \ then it is a line continuation which we don't support yet so we just ignore it
+        // https://github.com/StateSmith/StateSmith/issues/379
+        PlantUMLWalker.Decode("""\""").Should().Be("");
+    }
+
     private void AssertNodeHasNoKids(DiagramNode node)
     {
         node.children.Should().BeEquivalentTo(new List<DiagramNode> {  });

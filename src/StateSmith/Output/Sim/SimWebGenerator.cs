@@ -30,12 +30,13 @@ public class SimWebGenerator
     NameMangler nameMangler;
     Regex historyGilRegex;
 
-
     /// <summary>
     /// We want to show the user their original event names in the simulator.
     /// Not the sanitized names.
     /// </summary>
     HashSet<string> diagramEventNames = new(StringComparer.OrdinalIgnoreCase);
+
+    BehaviorTracker behaviorTracker = new();
 
     SmRunner runner;
 
@@ -219,6 +220,7 @@ public class SimWebGenerator
         {
             foreach (var behavior in vertex.Behaviors)
             {
+                behaviorTracker.RecordOriginalBehavior(behavior);
                 V1ModBehaviorsForSimulation(vertex, behavior);
             }
 
@@ -291,7 +293,8 @@ public class SimWebGenerator
             if (behavior.HasGuardCode())
             {
                 var logCode = $"this.tracer?.log(\"🛡️ User evaluating guard: \" + {FsmCodeToJsString(behavior.guardCode)})";
-                var confirmCode = $"this.evaluateGuard({FsmCodeToJsString(behavior.guardCode)})";
+                var originalBehaviorUml = behaviorTracker.GetOriginalUmlOrCurrent(behavior);
+                var confirmCode = $"this.evaluateGuard(\"{Vertex.Describe(behavior.OwningVertex)}\",{FsmCodeToJsString(originalBehaviorUml)})";
                 behavior.guardCode = $"{logCode} || {confirmCode}";
                 // NOTE! logCode doesn't return a value, so the confirm code will always be evaluated.
             }

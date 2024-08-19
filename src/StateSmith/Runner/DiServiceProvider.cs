@@ -54,6 +54,8 @@ public class DiServiceProvider : IDisposable
 
             services.AddSingleton<StateMachineProvider>();
             services.AddSingleton<IStateMachineProvider>((s) => s.GetService<StateMachineProvider>()!); // need to use lambda or else another object will be created
+            services.AddSingleton(new DiagramFilePathProvider());
+            services.AddSingleton<SmFileNameProcessor>();
 
             services.AddSingleton<DiagramToSmConverter>();
             services.AddSingleton<IDiagramVerticesProvider>((s) => s.GetService<DiagramToSmConverter>()!); // need to use lambda or else another `DiagramToSmConverter` is created.

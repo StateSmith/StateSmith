@@ -84,6 +84,18 @@ public partial class StateSmithLabelGrammarBaseListener : IStateSmithLabelGramma
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitNode([NotNull] StateSmithLabelGrammarParser.NodeContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.statemachine_name"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterStatemachine_name([NotNull] StateSmithLabelGrammarParser.Statemachine_nameContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="StateSmithLabelGrammarParser.statemachine_name"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitStatemachine_name([NotNull] StateSmithLabelGrammarParser.Statemachine_nameContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="StateSmithLabelGrammarParser.statemachine_defn"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

@@ -96,7 +96,7 @@ public class DiagramRunner
         if (smRunner.PreDiagramBasedSettingsException != null)
         {
             _runConsole.ErrorMarkupLine("\nFailed while trying to read diagram for settings.\n");
-            smRunner.ThrowIfPreDiagramSettingsException();   // need to do this before we check the transpiler ID
+            smRunner.PrintAndThrowIfPreDiagramSettingsException();   // need to do this before we check the transpiler ID
             throw new Exception("Should not get here.");
         }
 

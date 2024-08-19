@@ -382,8 +382,8 @@ public class HtmlRenderer
         var sm = new {{smName}}();
 
         // prompt the user to evaluate guards manually
-        sm.evaluateGuard = (guard) => {
-            return confirm('Evaluate guard: ' + guard);
+        sm.evaluateGuard = (vertexName, behaviorUml) => {
+            return confirm(`Evaluate guard for\n${vertexName} behavior:\n${behaviorUml}.\n\nPress 'OK' to evaluate guard as true and 'Cancel' to evaluate it as false.`);
         }; 
 
         const highlightedEdges = new Set();

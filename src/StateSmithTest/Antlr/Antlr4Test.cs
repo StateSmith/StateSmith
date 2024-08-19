@@ -46,6 +46,39 @@ public class Antlr4Test : CommonTestHelper
         ShouldBeEquivalentToUml(textState.Behaviors[0], """11. MY_EVENT [some_guard( "my }str with spaces" ) && blah] / { my_action(); }""");
     }
 
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/230
+    /// </summary>
+    [Fact]
+    public void AllowSlashInGuardOrActionCode_230()
+    {
+        string input = @"
+                SOME_SM_STATE_NAME
+                [a > c / 4] / do_stuff(a/4);
+            ";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        textState.stateName.Should().Be("SOME_SM_STATE_NAME");
+        textState.Behaviors.Count.Should().Be(1);
+        textState.Behaviors[0].order.Should().Be(null);
+        textState.Behaviors[0].triggers.Should().BeEquivalentTo([]);
+        textState.Behaviors[0].guardCode.Should().Be(@"a > c / 4");
+        textState.Behaviors[0].actionCode.Should().Be("do_stuff(a/4);");
+
+        ShouldBeEquivalentToUml(textState.Behaviors[0], """[a > c / 4] / { do_stuff(a/4); }""");
+    }
+
+    [Fact]
+    public void AllowSquareBracesInGuardOrActionCode()
+    {
+        string input = @"
+                SOME_SM_STATE_NAME
+                [arr[33] > 2] / do_stuff(arr[22]);
+            ";
+        var textState = (StateNode)ParseNodeWithNoErrors(input);
+        textState.stateName.Should().Be("SOME_SM_STATE_NAME");
+        textState.Behaviors.Count.Should().Be(1);
+        ShouldBeEquivalentToUml(textState.Behaviors[0], """[arr[33] > 2] / { do_stuff(arr[22]); }""");
+    }
 
     [Fact]
     public void NodeMultipleBehaviors()

@@ -47,6 +47,17 @@ public class CapturingCodeFileWriter : ICodeFileWriter
         return matchedCaptures;
     }
 
+    public Capture GetSoleCaptureWithName(string fileName)
+    {
+        var captures = GetCapturesForFileName(fileName);
+        if (captures.Count != 1)
+        {
+            throw new System.Exception($"Expected 1 capture for {fileName}, but found {captures.Count}");
+        }
+
+        return captures[0];
+    }
+
     public class Capture
     {
         public string fileName;

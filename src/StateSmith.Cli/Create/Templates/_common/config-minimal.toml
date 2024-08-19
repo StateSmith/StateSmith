@@ -1,0 +1,55 @@
+[RenderConfig]
+FileTop = """
+    // Whatever you put in this `FileTop` section will end up 
+    // being printed at the top of every generated code file.
+    """
+
+//!!<filter:C,CppC>
+AutoExpandedVars = """
+    uint16_t count; // this var can be referenced in diagram
+    """
+
+[RenderConfig.C]
+# CFileExtension = ".inc" # if you want to include sm in another file
+CFileExtension = ".cpp" //!!<line-filter:CppC>
+HFileExtension = ".hpp" //!!<line-filter:CppC>
+HFileIncludes = """
+    #include <stdint.h> // required for count var
+    """
+CFileIncludes = """
+    // #include "your_header_here.h"
+    """
+
+//!!</filter>
+
+
+//!!<filter:CSharp>
+AutoExpandedVars = """
+    int count; // this var can be referenced in diagram
+    """
+
+[RenderConfig.CSharp]
+# NameSpace = ""
+# Usings = ""
+# BaseList = "MyUserBaseClass, IMyOtherUserInterface"
+# UseNullable = false
+# UsePartialClass = false
+
+//!!</filter>
+
+
+//!!<filter:JavaScript>
+AutoExpandedVars = """
+    count: 0, // this var can be referenced in diagram
+    """
+
+[RenderConfig.JavaScript]
+# ExtendsSuperClass = "MyUserBaseClass"
+# UseExportOnClass = true
+
+//!!</filter>
+
+[SmRunnerSettings]
+transpilerId = "C99"  //!!<line-filter:C,CppC>
+transpilerId = "CSharp"  //!!<line-filter:CSharp>
+transpilerId = "JavaScript"  //!!<line-filter:JavaScript>

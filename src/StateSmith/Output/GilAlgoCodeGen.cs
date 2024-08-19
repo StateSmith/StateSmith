@@ -62,7 +62,7 @@ public class GilAlgoCodeGen : ICodeGenRunner
             }
             else
             {
-                consolePrinter.WriteErrorLine($"You can enable exception detail dumping by setting `{nameof(RunnerSettings)}.{nameof(RunnerSettings.dumpGilCodeOnError)}` to true.");
+                consolePrinter.WriteErrorLine($"You can enable exception detail dumping by setting `{nameof(RunnerSettings.dumpGilCodeOnError)}` to true.");
             }
 
             throw new TranspilerException($"Failed transpiling Generic Intermediate Language (GIL) code with transpiler: {transpiler.GetType()}", e);

@@ -56,6 +56,12 @@ public interface IStateSmithLabelGrammarVisitor<Result> : IParseTreeVisitor<Resu
 	/// <return>The visitor result.</return>
 	Result VisitNode([NotNull] StateSmithLabelGrammarParser.NodeContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.statemachine_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStatemachine_name([NotNull] StateSmithLabelGrammarParser.Statemachine_nameContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="StateSmithLabelGrammarParser.statemachine_defn"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

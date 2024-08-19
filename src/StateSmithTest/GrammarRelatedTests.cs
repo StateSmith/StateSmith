@@ -1,8 +1,3 @@
-using FluentAssertions;
-using StateSmith.Output;
-using StateSmith.Runner;
-using StateSmith.SmGraph.Validation;
-using StateSmithTest.Output;
 using System;
 using Xunit;
 
@@ -82,5 +77,47 @@ public class GrammarRelatedTests
             """;
 
         TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/330
+    /// </summary>
+    [Fact]
+    public void BracesFileNameAllowed_330()
+    {
+        var plantUmlText = """
+            @startuml {fileName}
+            [*] --> c1
+            @enduml
+            """;
+        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
+
+        plantUmlText = """
+            @startuml {fileName}_2
+            [*] --> c1
+            @enduml
+            """;
+        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
+    }
+
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/330
+    /// </summary>
+    [Fact]
+    public void BadBracesThrows_330()
+    {
+        var plantUmlText = """
+            @startuml {{fileName}
+            [*] --> c1
+            @enduml
+            """;
+        Assert.Throws<FormatException>(() => TestHelper.RunSmRunnerForPlantUmlString(plantUmlText));
+
+        plantUmlText = """
+            @startuml {fileName}}
+            [*] --> c1
+            @enduml
+            """;
+        Assert.Throws<FormatException>(() => TestHelper.RunSmRunnerForPlantUmlString(plantUmlText));
     }
 }

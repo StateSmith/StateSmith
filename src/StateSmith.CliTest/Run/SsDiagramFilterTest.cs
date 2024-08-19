@@ -14,6 +14,12 @@ public class SsDiagramFilterTest
             @enduml
             """;
 
+    private const string PlantUmlMatchFileName = """
+            @startuml {fileName}
+            [*] --> State1
+            @enduml
+            """;
+
     /// <summary>
     /// Missing diagram name.
     /// </summary>
@@ -52,6 +58,7 @@ public class SsDiagramFilterTest
     public void IsSsPlantUmlFileContents()
     {
         diagramFilter.IsSsPlantUmlFileContents(PlantUmlMatch).Should().BeTrue();
+        diagramFilter.IsSsPlantUmlFileContents(PlantUmlMatchFileName).Should().BeTrue();
         diagramFilter.IsSsPlantUmlFileContents(PlantUmlNoMatch).Should().BeFalse();
     }
 }

@@ -1,10 +1,12 @@
 # Changelog
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# Breaking Changes 🌱
-We will occasionally make changes to StateSmith that may affect your projects. Help us get to `v1.0` faster!
+# Breaking Changes Are Rare 🌱
+We do our best to avoid and minimize breaking changes.
 
-You can easily find changes by searching for `"### Changed"` in the [changelog markdown file](https://github.com/StateSmith/StateSmith/blob/main/CHANGELOG.md?plain=1). I do my best to detail any required migration steps. Ask if you need help.
+That said, we will may occasionally have to make changes to StateSmith that may affect your projects. Help us get to `v1.0` faster!
+
+You can easily find changes by searching for `"### Changed"` or `BREAKING-CHANGES` in the [changelog markdown file](https://github.com/StateSmith/StateSmith/blob/main/CHANGELOG.md?plain=1). I do my best to detail any required migration steps. Ask if you need help.
 
 # Stability 🌉
 The above might sound a bit scary, but the situation isn't that bad. I just want to be fully transparent.
@@ -33,13 +35,31 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/352
 - simulator - style $initial_state nodes as a black circle
   - https://github.com/StateSmith/StateSmith/issues/294
+- improve exception printing & wording around propagate exceptions. closes #375
+  - https://github.com/StateSmith/StateSmith/issues/375
+- plantuml - support character escape sequences properly
+  - https://github.com/StateSmith/StateSmith/issues/369
 
 ### Added
-- Add draw.io parse error location in exception message with help link.
+- draw.io - allow multiple pages.
+  - https://github.com/StateSmith/StateSmith/issues/78
+- draw.io - allow declaring state machine without nesting.
+  - https://github.com/StateSmith/StateSmith/issues/359
+- draw.io - add parse error location in exception message with help link.
   - https://github.com/StateSmith/StateSmith/issues/353
   - https://github.com/StateSmith/StateSmith/issues/354
 - simulator - always show action code (even if blank) for non-transition behaviors.
   - https://github.com/StateSmith/StateSmith/issues/355
+- allow declaring state machine name from `{fileName}`.
+  - https://github.com/StateSmith/StateSmith/issues/330
+- improve draw.io disconnected edge error info
+  - https://github.com/StateSmith/StateSmith/issues/378
+- plantuml - support text align escape sequences
+  - https://github.com/StateSmith/StateSmith/issues/362
+- grammar - allow division operator `/` in guard and action code
+  - https://github.com/StateSmith/StateSmith/issues/230
+- simulator - improve guard evaluation dialog
+  - https://github.com/StateSmith/StateSmith/issues/381
 
 ### Changed (minor)
 - Slight change to draw.io xml parsing to allow for error location information.

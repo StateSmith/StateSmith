@@ -1,27 +1,31 @@
 #nullable enable
 
 using StateSmith.SmGraph;
-using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
 
 namespace StateSmith.Input.DrawIo;
 
 public class MxCellsToSmDiagramConverter
 {
-    public Dictionary<string, DiagramNode> nodeMap = new();
+    public Dictionary<string, DiagramNode> nodeMap = new();  
     public List<DiagramEdge> edges = new();
     public List<DiagramNode> roots = new();
     private readonly VisualGroupingValidator visualGroupingValidator;
+    private Dictionary<string, MxCell> mxCellMap = new();
 
     public MxCellsToSmDiagramConverter(VisualGroupingValidator visualGroupingValidator)
     {
         this.visualGroupingValidator = visualGroupingValidator;
     }
 
-    public void Process(Dictionary<string, MxCell> mxCells)
+    public void Process(Dictionary<string, MxCell> mxCellsMap)
     {
-        IEnumerable<MxCell> verticeCells = GetVerticeCells(mxCells);
+        mxCellMap = mxCellsMap;
+        IEnumerable<MxCell> verticeCells = GetVerticeCells(mxCellsMap);
 
         foreach (var cell in verticeCells)
         {
@@ -33,12 +37,12 @@ public class MxCellsToSmDiagramConverter
             LinkVertexForCell(cell);
         }
 
-        foreach (var cell in mxCells.Values.Where(c => c.type == MxCell.Type.Edge))
+        foreach (var cell in mxCellsMap.Values.Where(c => c.type == MxCell.Type.Edge))
         {
             ProcessEdge(cell);
         }
 
-        visualGroupingValidator.Process(mxCells, roots);
+        visualGroupingValidator.Process(mxCellsMap, roots);
     }
 
     private static List<MxCell> GetVerticeCells(Dictionary<string, MxCell> mxCells)
@@ -149,9 +153,10 @@ public class MxCellsToSmDiagramConverter
     // special draw.io root like cells have no type
     // <mxCell id="0" />
     // <mxCell id="1" parent="0" />
-    private static bool IsDrawIoRootCell(string id)
+    private bool IsDrawIoRootCell(string id)
     {
-        return id == "0" || id == "1";
+        // Note! we can't always rely on `id == "0" || id == "1"`. It is sometimes different (especially for additional pages).
+        return mxCellMap[id].isSpecialInvisbleRootTypeNode;
     }
 
     private void CreateAndAddVertex(MxCell cell)
@@ -227,12 +232,14 @@ public class MxCellsToSmDiagramConverter
     {
         if (cell.target == null)
         {
-            throw new DrawIoException($"Unterminated edge (no target). Edge diagram id:`{cell.id}`, label:`{cell.label}`");
+            var msg = $"Unterminated edge/arrow (no target connection).";
+            ThrowBadEdgeException(cell, msg);
         }
 
         if (cell.source == null)
         {
-            throw new DrawIoException($"Edge without source. Edge diagram id:`{cell.id}`, label:`{cell.label}`");
+            var msg = $"Edge/arrow not connected at source.";
+            ThrowBadEdgeException(cell, msg);
         }
 
         var edge = new DiagramEdge
@@ -243,5 +250,60 @@ public class MxCellsToSmDiagramConverter
             source: nodeMap[cell.source]
         );
         edges.Add(edge);
+    }
+
+    [DoesNotReturn]
+    private void ThrowBadEdgeException(MxCell cell, string msg)
+    {
+        var msg2 = msg + "\nMake sure transition edge/arrow is properly connected to shapes (not left dangling).\n";
+        msg2 += GetEdgeDebugDetails(cell);
+        throw new DrawIoException(msg2);
+    }
+
+    public string GetEdgeDebugDetails(MxCell cell)
+    {
+        StringBuilder sb = new();
+        sb.Append("\nBAD EDGE INFO\n");
+        sb.Append($"diagram id: `{cell.id}`\nlabel:`{cell.label}`\n");
+
+        sb.Append("============================\n");
+        sb.Append("EDGE SOURCE NODE\n");
+        NewMethod(sb, cell.source);
+
+        sb.Append("==========================\n");
+        sb.Append("EDGE TARGET NODE\n");
+        NewMethod(sb, cell.target);
+
+        // cell parent is often null or root so we handle it separately
+        if (cell.parent != null && nodeMap.ContainsKey(cell.parent))
+        {
+            sb.Append("============================\n");
+            sb.Append("PARENT NODE\n");
+            nodeMap[cell.parent].Describe(sb);
+            sb.Append('\n');
+        }
+
+        return sb.ToString();
+    }
+
+    private void NewMethod(StringBuilder sb, string? id)
+    {
+        if (id == null)
+        {
+            sb.Append("null (you need to connect this)\n");
+        }
+        else
+        {
+            // just in case the node is missing
+            try
+            {
+                nodeMap[id].Describe(sb);
+                sb.Append('\n');
+            }
+            catch
+            {
+                sb.Append($"Failed looking up id: `{id}`\n");
+            }
+        }
     }
 }

@@ -39,13 +39,21 @@ node:
     statemachine_defn
     ;
 
+statemachine_name:
+    SS_IDENTIFIER
+    |
+    // {fileName}_1
+    // https://github.com/StateSmith/StateSmith/issues/330
+    '{' SS_IDENTIFIER '}' SS_IDENTIFIER?
+    ;
+
 statemachine_defn:
     optional_any_space
     '$STATEMACHINE'
     ohs
     COLON
     ohs
-    SS_IDENTIFIER
+    statemachine_name
     optional_any_space
     state_behaviors
     EOF
@@ -300,7 +308,7 @@ guard_code:
 
 action:
     ohs
-    '/'
+    FORWARD_SLASH
     ohs
     action_code? // optional to support consuming events with `SOME_EVENT /` https://github.com/StateSmith/StateSmith/issues/43
     ;
@@ -487,7 +495,8 @@ code_symbol:
     COLON |
     GT |
     LT |
-    OTHER_SYMBOLS
+    OTHER_SYMBOLS |
+    FORWARD_SLASH
     ;
 
 /////////////////////////////////// LEXER RULES - ORDER MATTERS! ///////////////////////////////////
@@ -536,7 +545,8 @@ DASH : '-' ;
 COLON : ':';
 GT : '>' ;
 LT : '<' ;
+FORWARD_SLASH: '/' ; // fix for https://github.com/StateSmith/StateSmith/issues/230
 OTHER_SYMBOLS: 
-    [~!%^&*=:;/?|\\@#$];  //don't include braces/parenthesis as those need to be grouped
+    [~!%^&*=:;?|\\@#$];  //don't include braces/parenthesis as those need to be grouped
 
 HWS : [ \t]+ ;

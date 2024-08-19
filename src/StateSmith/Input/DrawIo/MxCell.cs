@@ -1,10 +1,6 @@
 #nullable enable
 
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Reflection.Emit;
 
 namespace StateSmith.Input.DrawIo;
 
@@ -12,6 +8,10 @@ public class MxCell
 {
     public enum Type { None, Edge, Vertex, VertexImage }
 
+    /// <summary>
+    /// First two draw.io cells are special invisible root type nodes. They are not part of the diagram.
+    /// </summary>
+    public bool isSpecialInvisbleRootTypeNode;
     public string id;
     public string? parent;
     public string? label;
