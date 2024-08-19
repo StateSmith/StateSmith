@@ -29,13 +29,17 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-## WIP
+## [0.12.0-alpha]
+### Contributors
+- @emmby
+    - https://github.com/StateSmith/StateSmith/pull/370
+
 ### Fixed (minor)
 - plantuml - allow line comments before `@startuml`
   - https://github.com/StateSmith/StateSmith/issues/352
-- simulator - style $initial_state nodes as a black circle
+- simulator - style $initial_state nodes as a black circle (@emmby)
   - https://github.com/StateSmith/StateSmith/issues/294
-- improve exception printing & wording around propagate exceptions. closes #375
+- improve exception printing & wording around propagate exceptions
   - https://github.com/StateSmith/StateSmith/issues/375
 - plantuml - support character escape sequences properly
   - https://github.com/StateSmith/StateSmith/issues/369
@@ -45,13 +49,13 @@ Test/interim releases are not documented here.
   - https://github.com/StateSmith/StateSmith/issues/78
 - draw.io - allow declaring state machine without nesting.
   - https://github.com/StateSmith/StateSmith/issues/359
+- allow declaring state machine name from `{fileName}`.
+  - https://github.com/StateSmith/StateSmith/issues/330
 - draw.io - add parse error location in exception message with help link.
   - https://github.com/StateSmith/StateSmith/issues/353
   - https://github.com/StateSmith/StateSmith/issues/354
 - simulator - always show action code (even if blank) for non-transition behaviors.
   - https://github.com/StateSmith/StateSmith/issues/355
-- allow declaring state machine name from `{fileName}`.
-  - https://github.com/StateSmith/StateSmith/issues/330
 - improve draw.io disconnected edge error info
   - https://github.com/StateSmith/StateSmith/issues/378
 - plantuml - support text align escape sequences
