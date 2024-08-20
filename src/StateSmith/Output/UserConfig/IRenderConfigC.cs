@@ -33,4 +33,9 @@ public interface IRenderConfigC : IRenderConfig
     /// https://github.com/StateSmith/StateSmith/issues/185
     /// </summary>
     string CEnumDeclarer => "";
+
+    /// <summary>
+    /// Will use &lt;stdbool.h&gt; and bool type instead of int for boolean
+    /// </summary>
+    bool UseStdBool => true;
 }
