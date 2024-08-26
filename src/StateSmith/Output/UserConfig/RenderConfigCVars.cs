@@ -45,6 +45,14 @@ public class RenderConfigCVars
     /// </summary>
     public bool UseStdBool = true;
 
+    /// <summary>
+    /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
+    /// https://github.com/StateSmith/StateSmith/issues/112
+    /// </summary>
+    public string IncludeGuardLabel = "";
+
+    public bool HasIncludeGuardLabel => !string.IsNullOrEmpty(IncludeGuardLabel);
+
     public void SetFrom(IRenderConfigC config, bool autoDeIndentAndTrim)
     {
         string Process(string str)
@@ -70,5 +78,6 @@ public class RenderConfigCVars
         CEnumDeclarer = Process(config.CEnumDeclarer);
 
         UseStdBool = config.UseStdBool;
+        IncludeGuardLabel = config.IncludeGuardLabel.Trim();
     }
 }

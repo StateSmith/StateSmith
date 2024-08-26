@@ -52,8 +52,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
         transpilerHelper.PreProcess();
         hFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileTop);
-        hFileSb.AppendLine($"#ifndef {customizer.MakeHGuard()}");
-        hFileSb.AppendLine($"#define {customizer.MakeHGuard()}");
+
+        OutputIncludeGuardTop();
+
         hFileSb.AppendLine("#include <stdint.h>\n");
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
 
@@ -70,8 +71,30 @@ public class C99GenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLine("#include <string.h> // for memset\n");
 
         this.DefaultVisit(node);
+        OutputIncludeGuardBottom();
+    }
 
-        hFileSb.AppendLine($"#endif // {customizer.MakeHGuard()}");
+    private void OutputIncludeGuardTop()
+    {
+        // https://github.com/StateSmith/StateSmith/issues/112
+        if (renderConfigC.HasIncludeGuardLabel)
+        {
+            hFileSb.AppendLine($"#ifndef {renderConfigC.IncludeGuardLabel}");
+            hFileSb.AppendLine($"#define {renderConfigC.IncludeGuardLabel}");
+        }
+        else
+        {
+            hFileSb.AppendLine("#pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/issues/112");
+        }
+    }
+
+    private void OutputIncludeGuardBottom()
+    {
+        // https://github.com/StateSmith/StateSmith/issues/112
+        if (renderConfigC.HasIncludeGuardLabel)
+        {
+            hFileSb.AppendLine($"#endif //  {renderConfigC.IncludeGuardLabel}");
+        }
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)

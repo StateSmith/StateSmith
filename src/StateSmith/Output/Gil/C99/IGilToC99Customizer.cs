@@ -6,7 +6,6 @@ public interface IGilToC99Customizer
 {
     void Setup();
     string MakeHFileName();
-    string MakeHGuard();
     string MakeCFileName();
     string MakeEnumDeclaration(string enumName);
 }

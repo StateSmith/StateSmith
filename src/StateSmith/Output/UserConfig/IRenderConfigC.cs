@@ -1,3 +1,5 @@
+#nullable enable
+
 namespace StateSmith.Output.UserConfig;
 
 public interface IRenderConfigC : IRenderConfig
@@ -38,4 +40,10 @@ public interface IRenderConfigC : IRenderConfig
     /// Will use &lt;stdbool.h&gt; and bool type instead of int for boolean
     /// </summary>
     bool UseStdBool => true;
+
+    /// <summary>
+    /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
+    /// https://github.com/StateSmith/StateSmith/issues/112
+    /// </summary>
+    string IncludeGuardLabel => "";
 }

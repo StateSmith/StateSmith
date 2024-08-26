@@ -4,8 +4,7 @@
 // inside sm - diagram embedded FileTop
 // diagram embedded HFileTop
 // inside sm - diagram embedded HFileTop
-#ifndef SPEC2SM_H
-#define SPEC2SM_H
+#pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/issues/112
 #include <stdint.h>
 
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
@@ -339,4 +338,3 @@ struct Spec2Sm
     Spec2Sm_Vars vars;
 };
 
-#endif // SPEC2SM_H
