@@ -29,7 +29,7 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-## WIP
+## [0.12.1-alpha-1]
 ### Contributors
 - @diorcety
   - https://github.com/StateSmith/StateSmith/pull/376/
