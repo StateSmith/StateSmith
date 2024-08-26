@@ -4,7 +4,7 @@
 // inside sm - diagram embedded FileTop
 // diagram embedded HFileTop
 // inside sm - diagram embedded HFileTop
-#ifdef SPEC2SM_H
+#ifndef SPEC2SM_H
 #define SPEC2SM_H
 #include <stdint.h>
 
