@@ -1,3 +1,5 @@
+#nullable enable
+
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
@@ -7,9 +9,6 @@ using System.Text;
 using StateSmith.Common;
 using System.Linq;
 using StateSmith.Output.UserConfig;
-using System.Reflection;
-
-#nullable enable
 
 // spell-checker: ignore customizer
 
@@ -31,8 +30,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
     protected readonly RenderConfigCVars renderConfigC;
     protected readonly IGilToC99Customizer customizer;
     protected readonly GilTranspilerHelper transpilerHelper;
+    protected readonly IncludeGuardProvider includeGuardProvider;
 
-    public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public C99GenVisitor(SemanticModel model, StringBuilder hFileSb, StringBuilder cFileSb, RenderConfigBaseVars renderConfig, RenderConfigCVars renderConfigC, IGilToC99Customizer customizer, IncludeGuardProvider includeGuardProvider) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.model = model;
         this.hFileSb = hFileSb;
@@ -40,6 +40,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         this.renderConfig = renderConfig;
         this.renderConfigC = renderConfigC;
         this.customizer = customizer;
+        this.includeGuardProvider = includeGuardProvider;
 
         transpilerHelper = new(this, model);
 
@@ -53,7 +54,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         hFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileTop);
 
-        OutputIncludeGuardTop();
+        includeGuardProvider.OutputIncludeGuardTop(hFileSb);
 
         hFileSb.AppendLine("#include <stdint.h>\n");
         hFileSb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
@@ -71,30 +72,7 @@ public class C99GenVisitor : CSharpSyntaxWalker
         cFileSb.AppendLine("#include <string.h> // for memset\n");
 
         this.DefaultVisit(node);
-        OutputIncludeGuardBottom();
-    }
-
-    private void OutputIncludeGuardTop()
-    {
-        // https://github.com/StateSmith/StateSmith/issues/112
-        if (renderConfigC.HasIncludeGuardLabel)
-        {
-            hFileSb.AppendLine($"#ifndef {renderConfigC.IncludeGuardLabel}");
-            hFileSb.AppendLine($"#define {renderConfigC.IncludeGuardLabel}");
-        }
-        else
-        {
-            hFileSb.AppendLine("#pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/issues/112");
-        }
-    }
-
-    private void OutputIncludeGuardBottom()
-    {
-        // https://github.com/StateSmith/StateSmith/issues/112
-        if (renderConfigC.HasIncludeGuardLabel)
-        {
-            hFileSb.AppendLine($"#endif //  {renderConfigC.IncludeGuardLabel}");
-        }
+        includeGuardProvider.OutputIncludeGuardBottom(hFileSb);
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)

@@ -47,11 +47,10 @@ public class RenderConfigCVars
 
     /// <summary>
     /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
+    /// Supports `{FILENAME}` and `{fileName}`.<br/>
     /// https://github.com/StateSmith/StateSmith/issues/112
     /// </summary>
     public string IncludeGuardLabel = "";
-
-    public bool HasIncludeGuardLabel => !string.IsNullOrEmpty(IncludeGuardLabel);
 
     public void SetFrom(IRenderConfigC config, bool autoDeIndentAndTrim)
     {

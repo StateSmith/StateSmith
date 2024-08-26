@@ -64,6 +64,7 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<IAlgoEventIdToString, AlgoEventIdToString>();
             services.AddSingleton<GilToC99Customizer>();
             services.AddSingleton<IGilToC99Customizer>((s) => s.GetService<GilToC99Customizer>()!); // need to use lambda or else another `DiagramToSmConverter` is created.
+            services.AddSingleton<IncludeGuardProvider>();
 
             services.AddTransient<AutoExpandedVarsProcessor>();
             services.AddTransient<DefaultExpansionsProcessor>();

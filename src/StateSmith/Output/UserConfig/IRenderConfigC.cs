@@ -43,6 +43,7 @@ public interface IRenderConfigC : IRenderConfig
 
     /// <summary>
     /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
+    /// Supports `{FILENAME}` and `{fileName}`.<br/>
     /// https://github.com/StateSmith/StateSmith/issues/112
     /// </summary>
     string IncludeGuardLabel => "";

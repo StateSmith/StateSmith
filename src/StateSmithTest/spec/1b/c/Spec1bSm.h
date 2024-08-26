@@ -80,4 +80,4 @@ struct Spec1bSm
     Spec1bSm_Vars vars;
 };
 
-#endif //  SPEC1B_CUSTOM_INCLUDE_GUARD_H
+#endif // SPEC1B_CUSTOM_INCLUDE_GUARD_H

@@ -29,6 +29,21 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## WIP
+### Contributors
+- @diorcety
+  - https://github.com/StateSmith/StateSmith/pull/376/
+
+### Added
+- C/C++ - Add support for standard `#ifdef` include guards (@diorcety)
+  - https://github.com/StateSmith/StateSmith/issues/112
+- C/C++ - Add support for old/odd compilers (@diorcety)
+  - allow using `int` instead of `bool` for `bool` type.
+  - remove extra trailing comma in enum declarations.
+  - https://github.com/StateSmith/StateSmith/pull/376/
+
+---
+
 ## [0.12.0-alpha]
 ### Contributors
 - @emmby

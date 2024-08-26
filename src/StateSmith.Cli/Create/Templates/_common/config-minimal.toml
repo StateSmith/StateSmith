@@ -19,6 +19,7 @@ HFileIncludes = """
 CFileIncludes = """
     // #include "your_header_here.h"
     """
+# IncludeGuardLabel = "{FILENAME}_H"
 
 //!!</filter>
 
