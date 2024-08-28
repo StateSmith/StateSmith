@@ -8,7 +8,6 @@ namespace StateSmithTest.Output.UserConfig;
 
 public class RenderConfigBaseVarsTest
 {
-
     [Fact]
     public void SetFromRenderConfig()
     {

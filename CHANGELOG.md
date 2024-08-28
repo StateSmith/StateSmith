@@ -29,6 +29,21 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [0.12.2-alpha-1]
+### Added
+- C/C++ - Add more render config settings
+  - `RenderConfig.C.HFileTopPostIncludeGuard`
+  - `RenderConfig.C.HFileBottomPreIncludeGuard`
+  - `RenderConfig.C.HFileBottom`
+  - `RenderConfig.C.CFileBottom`
+  - https://github.com/StateSmith/StateSmith/issues/385
+
+### Changed (minor)
+- C/C++ - moved user includes to after StateSmith includes.
+  - slight tidy to top of generated files
+
+---
+
 ## [0.12.1-alpha-1]
 ### Contributors
 - @diorcety

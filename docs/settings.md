@@ -44,14 +44,18 @@ AutoExpandedVars  = "stuff..."
    * [RenderConfig.TriggerMap](#renderconfigtriggermap)
 - [RenderConfig.C](#renderconfigc)
    * [RenderConfig.C.HFileTop](#renderconfigchfiletop)
+   * [RenderConfig.C.IncludeGuardLabel](#renderconfigcincludeguardlabel)
+   * [RenderConfig.C.HFileTopPostIncludeGuard](#renderconfigchfiletoppostincludeguard)
    * [RenderConfig.C.HFileIncludes](#renderconfigchfileincludes)
+   * [RenderConfig.C.HFileBottomPreIncludeGuard](#renderconfigchfilebottompreincludeguard)
+   * [RenderConfig.C.HFileBottom](#renderconfigchfilebottom)
    * [RenderConfig.C.CFileTop](#renderconfigccfiletop)
    * [RenderConfig.C.CFileIncludes](#renderconfigccfileincludes)
+   * [RenderConfig.C.CFileBottom](#renderconfigccfilebottom)
    * [RenderConfig.C.CFileExtension](#renderconfigccfileextension)
    * [RenderConfig.C.HFileExtension](#renderconfigchfileextension)
    * [RenderConfig.C.CEnumDeclarer](#renderconfigccenumdeclarer)
    * [RenderConfig.C.UseStdBool](#renderconfigcusestdbool)
-   * [RenderConfig.C.IncludeGuardLabel](#renderconfigcincludeguardlabel)
 - [RenderConfig.CSharp](#renderconfigcsharp)
    * [RenderConfig.CSharp.NameSpace](#renderconfigcsharpnamespace)
    * [RenderConfig.CSharp.Usings](#renderconfigcsharpusings)
@@ -324,6 +328,57 @@ HFileTop = """
     """
 ```
 
+## RenderConfig.C.IncludeGuardLabel
+Type: `string`
+Info: https://github.com/StateSmith/StateSmith/issues/112
+<br>Added in lib version: `0.12.1`
+
+If blank (the default), `#pragma once` is used as the include guard. If you want to use standard `#ifdef` include guards, you can specify a label here.
+
+```toml
+[RenderConfig.C]
+IncludeGuardLabel = "MY_HEADER_H"
+```
+
+Generates:
+```c
+#ifndef MY_HEADER_H
+#define MY_HEADER_H
+//...
+#endif // MY_HEADER_H
+```
+
+
+### Supports `{FILENAME}` and `{fileName}` replacements
+
+```toml
+[RenderConfig.C]
+IncludeGuardLabel = "{FILENAME}_H"
+```
+
+Assuming generated file name is `RocketSm.h`, generates:
+```c
+#ifndef ROCKETSM_H
+#define ROCKETSM_H
+//...
+#endif // ROCKETSM_H
+```
+
+
+## RenderConfig.C.HFileTopPostIncludeGuard
+Type: `string`
+<br>Added in lib version: `0.12.2`
+
+Copied to top of generated header file after include guard. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.C]
+HFileTopPostIncludeGuard = """
+    // Use this state machine to ...
+    """
+```
+
+
 ## RenderConfig.C.HFileIncludes
 Type: `string`
 
@@ -336,6 +391,33 @@ HFileIncludes = """
     #include "some_header.h"
     """
 ```
+
+## RenderConfig.C.HFileBottomPreIncludeGuard
+Type: `string`
+<br>Added in lib version: `0.12.2`
+
+Copied to bottom of generated header file just before include guard area. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.C]
+HFileBottomPreIncludeGuard = """
+    // Use this state machine to ...
+    """
+```
+
+## RenderConfig.C.HFileBottom
+Type: `string`
+<br>Added in lib version: `0.12.2`
+
+Copied to bottom of generated header file after include guard area. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.C]
+HFileBottom = """
+    // Use this state machine to ...
+    """
+```
+
 
 ## RenderConfig.C.CFileTop
 Type: `string`
@@ -360,6 +442,20 @@ CFileIncludes = """
     #include "some_header.c"
     """
 ```
+
+## RenderConfig.C.CFileBottom
+Type: `string`
+<br>Added in lib version: `0.12.2`
+
+Copied to bottom of generated source file. Can be code or comments. Can span multiple lines.
+
+```toml
+[RenderConfig.C]
+CFileBottom = """
+    // Use this state machine to ...
+    """
+```
+
 
 ## RenderConfig.C.CFileExtension
 Type: `string`
@@ -405,7 +501,7 @@ CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}" # for gcc
 ## RenderConfig.C.UseStdBool
 Type: `string`
 Info: https://github.com/StateSmith/StateSmith/pull/376
-<br>Added in lib version: `0.12.1+`
+<br>Added in lib version: `0.12.1`
 
 Allows you to disable the use of `bool` from `<stdbool.h>` and instead use integer.
 
@@ -416,41 +512,6 @@ Usefull if your toolchain doesn't have `<stdbool.h>`.
 UseStdBool = false
 ```
 
-## RenderConfig.C.IncludeGuardLabel
-Type: `string`
-Info: https://github.com/StateSmith/StateSmith/issues/112
-<br>Added in lib version: `0.12.1+`
-
-If blank (the default), `#pragma once` is used as the include guard. If you want to use standard `#ifdef` include guards, you can specify a label here.
-
-```toml
-[RenderConfig.C]
-IncludeGuardLabel = "MY_HEADER_H"
-```
-
-Generates:
-```c
-#ifndef MY_HEADER_H
-#define MY_HEADER_H
-//...
-#endif // MY_HEADER_H
-```
-
-
-### Supports `{FILENAME}` and `{fileName}` replacements
-
-```toml
-[RenderConfig.C]
-IncludeGuardLabel = "{FILENAME}_H"
-```
-
-Assuming generated file name is `RocketSm.h`, generates:
-```c
-#ifndef ROCKETSM_H
-#define ROCKETSM_H
-//...
-#endif // ROCKETSM_H
-```
 
 
 <br>

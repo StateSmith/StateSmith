@@ -3,8 +3,8 @@
 
 #pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/issues/112
 #include <stdint.h>
-
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
+
 typedef enum Spec1Sm_EventId
 {
     Spec1Sm_EventId_EV1 = 0,

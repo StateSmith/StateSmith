@@ -9,13 +9,29 @@ public interface IRenderConfigC : IRenderConfig
     /// </summary>
     string HFileTop => "";
 
+    /// <summary>
+    /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
+    /// Supports `{FILENAME}` and `{fileName}`.<br/>
+    /// https://github.com/StateSmith/StateSmith/issues/112
+    /// </summary>
+    string IncludeGuardLabel => "";
+
+    string HFileTopPostIncludeGuard => "";
+
     string HFileIncludes => "";
-    string CFileIncludes => "";
+
+    string HFileBottomPreIncludeGuard => "";
+
+    string HFileBottom => "";
 
     /// <summary>
     /// Whatever this property returns will be placed at the top of the rendered .c file.
     /// </summary>
     string CFileTop => "";
+
+    string CFileIncludes => "";
+
+    string CFileBottom => "";
 
     /// <summary>
     /// Can be changed to ".cpp" (or whatever) to support C++ until idiomatic C++ support is added.
@@ -40,11 +56,4 @@ public interface IRenderConfigC : IRenderConfig
     /// Will use &lt;stdbool.h&gt; and bool type instead of int for boolean
     /// </summary>
     bool UseStdBool => true;
-
-    /// <summary>
-    /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
-    /// Supports `{FILENAME}` and `{fileName}`.<br/>
-    /// https://github.com/StateSmith/StateSmith/issues/112
-    /// </summary>
-    string IncludeGuardLabel => "";
 }

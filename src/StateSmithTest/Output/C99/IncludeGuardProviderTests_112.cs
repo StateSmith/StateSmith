@@ -6,7 +6,7 @@ using System.Text;
 using FluentAssertions;
 using System.Linq;
 
-namespace StateSmithTest.Output.Gil;
+namespace StateSmithTest.Output.C99;
 
 /// <summary>
 /// https://github.com/StateSmith/StateSmith/issues/112

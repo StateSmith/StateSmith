@@ -2,10 +2,10 @@
 // Algorithm: Balanced1. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 #include "Spec1bSm.h"
-#include "../../lang-helpers/c/helper.h"
-#include "printer.h"
 #include <stdbool.h> // required for `consume_event` flag
 #include <string.h> // for memset
+#include "../../lang-helpers/c/helper.h"
+#include "printer.h"
 
 // This function is used when StateSmith doesn't know what the active leaf state is at
 // compile time due to sub states or when multiple states need to be exited.
