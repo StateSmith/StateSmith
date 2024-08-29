@@ -25,6 +25,11 @@ public class Spec1b_CTests
         string IRenderConfig.VariableDeclarations => StringUtils.DeIndentTrim(@"
                 uint8_t count;
             ");
+
+        /// <summary>
+        /// https://github.com/StateSmith/StateSmith/issues/112
+        /// </summary>
+        string IRenderConfigC.IncludeGuardLabel => "SPEC1B_CUSTOM_INCLUDE_GUARD_H";
     }
 
     // see from https://en.wikipedia.org/wiki/UML_state_machine#Transition_execution_sequence

@@ -25,7 +25,6 @@ public class TemplateLoader
 
     public static string LoadTomlConfig(TomlConfigType tomlConfigType)
     {
-
         var result = LoadFileResource(TemplateIds._common, fileName: $"config-{tomlConfigType.ToString().ToLower()}.toml");
         return result;
     }

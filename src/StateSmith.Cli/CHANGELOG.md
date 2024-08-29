@@ -6,6 +6,24 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+## [0.11.1-test-1]
+### Add
+- Create - toml template adds `RenderConfig.C.IncludeGuardLabel` setting.
+    - https://github.com/StateSmith/StateSmith/issues/112
+
+### Upgrade StateSmith library version to 0.12.1-alpha-1
+#### Contributors
+- @diorcety
+  - https://github.com/StateSmith/StateSmith/pull/376/
+
+#### Added
+- C/C++ - Add support for standard `#ifdef` include guards (@diorcety)
+  - https://github.com/StateSmith/StateSmith/issues/112
+- C/C++ - Add support for old/odd compilers (@diorcety)
+  - allow using `int` instead of `bool` for `bool` type.
+  - remove extra trailing comma in enum declarations.
+  - https://github.com/StateSmith/StateSmith/pull/376/
+
 ---
 
 ## [0.11.0]

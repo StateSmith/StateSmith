@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <PackageId>StateSmith</PackageId>
-    <Version>0.12.0-alpha</Version>
+    <Version>0.12.1-alpha-1</Version>
     <Authors>Adam Fraser-Kruck</Authors>
     <Copyright>Adam Fraser-Kruck</Copyright>
     <PackageProjectUrl>https://github.com/StateSmith/StateSmith</PackageProjectUrl>

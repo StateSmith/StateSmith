@@ -63,8 +63,8 @@ public class TemplatePlantUmlMinimalNoCsx
 
         // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
         mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
-            x.ArgAt<string>(1).ShouldBeShowDiff($""""
-            {Top}
+            x.ArgAt<string>(1).ShouldBeShowDiff($$""""
+            {{Top}}
 
             [RenderConfig]
             FileTop = """
@@ -83,6 +83,7 @@ public class TemplatePlantUmlMinimalNoCsx
             CFileIncludes = """
                 // #include "your_header_here.h"
                 """
+            # IncludeGuardLabel = "{FILENAME}_H"
 
             [SmRunnerSettings]
             transpilerId = "C99"
@@ -107,8 +108,8 @@ public class TemplatePlantUmlMinimalNoCsx
 
         // NSubsitute doesn't diff large strings very well, so we use ShouldBeShowDiff to show the differences
         mockFileWriter.When(x => x.Write("RocketSm.plantuml", Arg.Any<string>())).Do(x => {
-            x.ArgAt<string>(1).ShouldBeShowDiff($""""
-            {Top}
+            x.ArgAt<string>(1).ShouldBeShowDiff($$""""
+            {{Top}}
 
             [RenderConfig]
             FileTop = """
@@ -129,6 +130,7 @@ public class TemplatePlantUmlMinimalNoCsx
             CFileIncludes = """
                 // #include "your_header_here.h"
                 """
+            # IncludeGuardLabel = "{FILENAME}_H"
 
             [SmRunnerSettings]
             transpilerId = "C99"

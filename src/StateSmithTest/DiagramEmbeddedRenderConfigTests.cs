@@ -129,10 +129,15 @@ public class DiagramEmbeddedRenderConfigTests
             typedef enum __attribute__((packed)) {enumName}
             """);
 
+            renderConfig.IncludeGuardLabel.ShouldBeShowDiff("""
+            ROCKETSM_H
+            """);
+            defaultConfig.IncludeGuardLabel.Should().Be("");
+
             renderConfig.UseStdBool.Should().BeFalse();
             defaultConfig.UseStdBool.Should().BeTrue();
 
-            const int expectedOptionCount = 8;
+            const int expectedOptionCount = 9;
             TestHelper.ExpectFieldCount<RenderConfigCVars>(expectedOptionCount, because: "above tests need updating");
             TestHelper.ExpectPropertyCount<IRenderConfigC>(expectedOptionCount, because: "above tests need updating");
         }

@@ -142,7 +142,7 @@ public class TomlConfigTest_335
         var reader = new TomlReader(renderConfigAllVars, smRunnerSettings);
 
         TestHelper.ExpectPropertyCount<IRenderConfig>(8, because: "test need updating");
-        TestHelper.ExpectPropertyCount<IRenderConfigC>(8, because: "test need updating");
+        TestHelper.ExpectPropertyCount<IRenderConfigC>(9, because: "test need updating");
         TestHelper.ExpectPropertyCount<IRenderConfigCSharp>(6, because: "test need updating");
         TestHelper.ExpectPropertyCount<IRenderConfigJavaScript>(4, because: "test need updating");
 
@@ -171,6 +171,7 @@ public class TomlConfigTest_335
             HFileExtension = ".hpp"
             CEnumDeclarer = "typedef enum __attribute__((packed)) {enumName}"
             UseStdBool = false
+            IncludeGuardLabel = "MY_HEADER_H"
 
             [RenderConfig.CSharp]
             NameSpace = ""
