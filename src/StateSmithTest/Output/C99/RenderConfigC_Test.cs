@@ -8,33 +8,34 @@ namespace StateSmithTest.Output.C99;
 public class RenderConfigC_Test
 {
     /// <summary>
+    /// Tests that .c and .h sections are rendered in the correct order.
     /// https://github.com/StateSmith/StateSmith/issues/385
     /// </summary>
     [Fact]
-    public void IntegrationTest_IncludeGuard_385()
+    public void SectionsOrder_IncludeGuard_385()
     {
         var plantUmlText = """"
             @startuml ExampleSm
             [*] --> s1
 
             /'! $CONFIG: toml
-            SmRunnerSettings.transpilerId = "C99"
+                SmRunnerSettings.transpilerId = "C99"
 
-            [RenderConfig]
-            FileTop = "// FileTop"
+                [RenderConfig]
+                FileTop = "// FileTop"
 
-            [RenderConfig.C]
-            HFileTop = "// HFileTop"
-            IncludeGuardLabel = "MY_INCLUDE_GUARD_H"
-            HFileTopPostIncludeGuard = "// HFileTopPostIncludeGuard"
-            HFileIncludes = "// HFileIncludes"
-            HFileBottomPreIncludeGuard = "// HFileBottomPreIncludeGuard"
-            HFileBottom = "// HFileBottom"
-            CFileTop = "// CFileTop"
-            CFileIncludes = "// CFileIncludes"
-            CFileBottom = "// CFileBottom"
-            CFileExtension = ".cpp"
-            HFileExtension = ".hpp"
+                [RenderConfig.C]
+                HFileTop = "// HFileTop"
+                IncludeGuardLabel = "MY_INCLUDE_GUARD_H"
+                HFileTopPostIncludeGuard = "// HFileTopPostIncludeGuard"
+                HFileIncludes = "// HFileIncludes"
+                HFileBottomPreIncludeGuard = "// HFileBottomPreIncludeGuard"
+                HFileBottom = "// HFileBottom"
+                CFileTop = "// CFileTop"
+                CFileIncludes = "// CFileIncludes"
+                CFileBottom = "// CFileBottom"
+                CFileExtension = ".cpp"
+                HFileExtension = ".hpp"
             '/
             @enduml
             """";
@@ -84,32 +85,33 @@ public class RenderConfigC_Test
     }
 
     /// <summary>
+    /// Tests that .c and .h sections are rendered in the correct order.
     /// https://github.com/StateSmith/StateSmith/issues/385
     /// </summary>
     [Fact]
-    public void IntegrationTest_PragmaOnce_385()
+    public void SectionsOrder_PragmaOnce_385()
     {
         var plantUmlText = """"
             @startuml ExampleSm
             [*] --> s1
 
             /'! $CONFIG: toml
-            SmRunnerSettings.transpilerId = "C99"
+                SmRunnerSettings.transpilerId = "C99"
 
-            [RenderConfig]
-            FileTop = "// FileTop"
+                [RenderConfig]
+                FileTop = "// FileTop"
 
-            [RenderConfig.C]
-            HFileTop = "// HFileTop"
-            HFileTopPostIncludeGuard = "// HFileTopPostIncludeGuard"
-            HFileIncludes = "// HFileIncludes"
-            HFileBottomPreIncludeGuard = "// HFileBottomPreIncludeGuard"
-            HFileBottom = "// HFileBottom"
-            CFileTop = "// CFileTop"
-            CFileIncludes = "// CFileIncludes"
-            CFileBottom = "// CFileBottom"
-            CFileExtension = ".cpp"
-            HFileExtension = ".hpp"
+                [RenderConfig.C]
+                HFileTop = "// HFileTop"
+                HFileTopPostIncludeGuard = "// HFileTopPostIncludeGuard"
+                HFileIncludes = "// HFileIncludes"
+                HFileBottomPreIncludeGuard = "// HFileBottomPreIncludeGuard"
+                HFileBottom = "// HFileBottom"
+                CFileTop = "// CFileTop"
+                CFileIncludes = "// CFileIncludes"
+                CFileBottom = "// CFileBottom"
+                CFileExtension = ".cpp"
+                HFileExtension = ".hpp"
             '/
             @enduml
             """";
@@ -142,5 +144,33 @@ public class RenderConfigC_Test
         }
 
         // c file isn't affected by pragma once so we don't need to test it here (see other test)
+    }
+
+    /// <summary>
+    /// RenderConfig.C.UseStdBool
+    /// https://github.com/StateSmith/StateSmith/pull/376
+    /// </summary>
+    [Fact]
+    public void Disable_UseStdBool_376()
+    {
+        var plantUmlText = """"
+            @startuml ExampleSm
+            [*] --> s1
+            s1 : EV1 / consume_event = false; /' to ensure `consume_event` generated '/
+
+            /'! $CONFIG: toml
+                SmRunnerSettings.transpilerId = "C99"
+                RenderConfig.C.UseStdBool = false
+            '/
+            @enduml
+            """";
+
+        var fakeFs = new CapturingCodeFileWriter();
+        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+
+        var cCode = fakeFs.GetCapturesForFileName("ExampleSm.c").Single().code.ConvertLineEndingsToN();
+        cCode.Should().NotContain("#include <stdbool.h>");
+        cCode.Should().NotContain("bool consume_event = ");
+        cCode.Should().Contain("int consume_event = ");
     }
 }
