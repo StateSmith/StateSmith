@@ -54,6 +54,7 @@ public class SmRunnerInternal
             }
 
             consolePrinter.WriteLine();
+            consolePrinter.WriteLine("StateSmith lib ver - " + LibVersionInfo.GetVersionInfoString());
             OutputCompilingDiagramMessage();
 
             var sm = SetupAndFindStateMachine(inputSmBuilder, settings);

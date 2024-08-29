@@ -5,11 +5,11 @@
 // diagram embedded CFileTop
 // inside sm - diagram embedded CFileTop
 #include "Spec2Sm.h"
+#include <stdbool.h> // required for `consume_event` flag
+#include <string.h> // for memset
 #include "../../lang-helpers/c/helper.h"
 // diagram embedded CFileIncludes
 // inside sm - diagram embedded CFileIncludes
-#include <stdbool.h> // required for `consume_event` flag
-#include <string.h> // for memset
 
 // This function is used when StateSmith doesn't know what the active leaf state is at
 // compile time due to sub states or when multiple states need to be exited.

@@ -12,7 +12,20 @@ public class RenderConfigCVars
     /// </summary>
     public string HFileTop = "";
 
+    /// <summary>
+    /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
+    /// Supports `{FILENAME}` and `{fileName}`.<br/>
+    /// https://github.com/StateSmith/StateSmith/issues/112
+    /// </summary>
+    public string IncludeGuardLabel = "";
+
+    public string HFileTopPostIncludeGuard = "";
+
     public string HFileIncludes = "";
+
+    public string HFileBottomPreIncludeGuard = "";
+
+    public string HFileBottom = "";
 
     /// <summary>
     /// Whatever this property returns will be placed at the top of the rendered .c file.
@@ -20,6 +33,8 @@ public class RenderConfigCVars
     public string CFileTop = "";
 
     public string CFileIncludes = "";
+
+    public string CFileBottom = "";
 
     /// <summary>
     /// Can be changed to ".cpp" (or whatever) to support C++ until idiomatic C++ support is added.
@@ -45,13 +60,6 @@ public class RenderConfigCVars
     /// </summary>
     public bool UseStdBool = true;
 
-    /// <summary>
-    /// If blank (default), `#pragma once` will be used. Otherwise, this will be used as the include guard.<br/>
-    /// Supports `{FILENAME}` and `{fileName}`.<br/>
-    /// https://github.com/StateSmith/StateSmith/issues/112
-    /// </summary>
-    public string IncludeGuardLabel = "";
-
     public void SetFrom(IRenderConfigC config, bool autoDeIndentAndTrim)
     {
         string Process(string str)
@@ -66,10 +74,14 @@ public class RenderConfigCVars
         }
 
         HFileTop = Process(config.HFileTop);
+        HFileTopPostIncludeGuard = Process(config.HFileTopPostIncludeGuard);
         HFileIncludes = Process(config.HFileIncludes);
+        HFileBottomPreIncludeGuard = Process(config.HFileBottomPreIncludeGuard);
+        HFileBottom = Process(config.HFileBottom);
 
         CFileTop = Process(config.CFileTop);
         CFileIncludes = Process(config.CFileIncludes);
+        CFileBottom = Process(config.CFileBottom);
 
         CFileExtension = Process(config.CFileExtension);
         HFileExtension = Process(config.HFileExtension);

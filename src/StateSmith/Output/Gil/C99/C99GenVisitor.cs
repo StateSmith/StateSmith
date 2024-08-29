@@ -49,30 +49,53 @@ public class C99GenVisitor : CSharpSyntaxWalker
 
     public override void VisitCompilationUnit(CompilationUnitSyntax node)
     {
-        sb = hFileSb;
-        transpilerHelper.PreProcess();
-        hFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
-        hFileSb.AppendLineIfNotBlank(renderConfigC.HFileTop);
-
-        includeGuardProvider.OutputIncludeGuardTop(hFileSb);
-
-        hFileSb.AppendLine("#include <stdint.h>\n");
-        hFileSb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
+        OutputHFileTopSections();
+        OutputCFileTopSections();
 
         sb = cFileSb;
+        this.DefaultVisit(node);
+
+        OutputFileBottomSections();
+    }
+
+    private void OutputHFileTopSections()
+    {
+        sb = hFileSb;
         transpilerHelper.PreProcess();
-        cFileSb.AppendLineIfNotBlank(renderConfig.FileTop);
-        cFileSb.AppendLineIfNotBlank(renderConfigC.CFileTop);
-        cFileSb.AppendLine($"#include \"{customizer.MakeHFileName()}\"");
-        cFileSb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
+        sb.AppendLineIfNotBlank(renderConfig.FileTop);
+        sb.AppendLineIfNotBlank(renderConfigC.HFileTop);
+
+        includeGuardProvider.OutputIncludeGuardTop(sb);
+        sb.AppendLineIfNotBlank(renderConfigC.HFileTopPostIncludeGuard);
+
+        sb.AppendLine("#include <stdint.h>");
+        sb.AppendLineIfNotBlank(renderConfigC.HFileIncludes);
+        sb.AppendLine();
+    }
+
+    private void OutputCFileTopSections()
+    {
+        sb = cFileSb;
+        transpilerHelper.PreProcess();
+        sb.AppendLineIfNotBlank(renderConfig.FileTop);
+        sb.AppendLineIfNotBlank(renderConfigC.CFileTop);
+        sb.AppendLine($"#include \"{customizer.MakeHFileName()}\"");
         if (renderConfigC.UseStdBool)
         {
-            cFileSb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
+            sb.AppendLine("#include <stdbool.h> // required for `consume_event` flag");
         }
-        cFileSb.AppendLine("#include <string.h> // for memset\n");
+        sb.AppendLine("#include <string.h> // for memset");
+        sb.AppendLineIfNotBlank(renderConfigC.CFileIncludes);
+        sb.AppendLine();
+    }
 
-        this.DefaultVisit(node);
+    private void OutputFileBottomSections()
+    {
+        hFileSb.AppendLineIfNotBlank(renderConfigC.HFileBottomPreIncludeGuard);
         includeGuardProvider.OutputIncludeGuardBottom(hFileSb);
+        hFileSb.AppendLineIfNotBlank(renderConfigC.HFileBottom);
+
+        cFileSb.AppendLineIfNotBlank(renderConfigC.CFileBottom);
     }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)

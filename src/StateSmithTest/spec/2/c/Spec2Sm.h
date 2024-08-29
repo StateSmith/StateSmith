@@ -6,10 +6,10 @@
 // inside sm - diagram embedded HFileTop
 #pragma once  // You can also specify normal include guard. See https://github.com/StateSmith/StateSmith/issues/112
 #include <stdint.h>
-
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
 // diagram embedded HFileIncludes
 // inside sm - diagram embedded HFileIncludes
+
 typedef enum Spec2Sm_EventId
 {
     Spec2Sm_EventId_DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.

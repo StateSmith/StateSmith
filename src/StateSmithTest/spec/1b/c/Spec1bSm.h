@@ -4,8 +4,8 @@
 #ifndef SPEC1B_CUSTOM_INCLUDE_GUARD_H
 #define SPEC1B_CUSTOM_INCLUDE_GUARD_H
 #include <stdint.h>
-
 // any text you put in IRenderConfigC.HFileIncludes (like this comment) will be written to the generated .h file
+
 typedef enum Spec1bSm_EventId
 {
     Spec1bSm_EventId_T1 = 0
