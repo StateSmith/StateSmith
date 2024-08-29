@@ -29,7 +29,7 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-## [0.12.2-alpha-1]
+## [0.12.2-alpha]
 ### Added
 - C/C++ - Add more render config settings
   - `RenderConfig.C.HFileTopPostIncludeGuard`
