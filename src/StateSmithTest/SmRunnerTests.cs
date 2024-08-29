@@ -21,10 +21,12 @@ public class SmRunnerTests
         // have to modify output so that test doesn't rely on temp path because that will vary
         string output = fakeConsole.sb.ToString();
         output = new Regex(@"(StateSmith Runner - Writing to file `).*(/[\w+.]+`)").Replace(output, "$1<snip>$2");
+        output = RemoveLibVersionInfo(output);
 
         //output.Should().Be("");
         output.ConvertLineEndingsToN().ShouldBeShowDiff("""
-
+            
+            StateSmith lib ver - <snip>
             StateSmith Runner - Compiling file: `test-input/drawio/Design1Sm.drawio.svg` (no state machine name specified).
             StateSmith Runner - State machine `Design1Sm_svg` selected.
             StateSmith Runner - Writing to file `<snip>/Design1Sm_svg.h`
@@ -33,6 +35,13 @@ public class SmRunnerTests
 
 
             """);
+    }
+
+    private static string RemoveLibVersionInfo(string output)
+    {
+        // remove version info: StateSmith lib version: 0.12.2-alpha-1+72cb279852751ea363f5990c364c451026847f2e
+        output = new Regex(@"(StateSmith lib ver - ).*").Replace(output, "$1<snip>");
+        return output;
     }
 
     [Fact]
@@ -49,9 +58,11 @@ public class SmRunnerTests
         // have to modify output so that test doesn't rely on temp path because that will vary
         string output = fakeConsole.sb.ToString();
         output = new Regex(@"(StateSmith Runner - Compiling file: `).*(/[\w+.]+`)").Replace(output, "$1<snip>$2");
+        output = RemoveLibVersionInfo(output);
 
         output.ConvertLineEndingsToN().ShouldBeShowDiff("""
 
+            StateSmith lib ver - <snip>
             StateSmith Runner - Compiling file: `<snip>/Design1Sm.drawio.svg` (no state machine name specified).
             StateSmith Runner - State machine `Design1Sm_svg` selected.
             StateSmith Runner - Writing to file `Design1Sm_svg.h`

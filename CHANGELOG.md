@@ -37,6 +37,8 @@ Test/interim releases are not documented here.
   - `RenderConfig.C.HFileBottom`
   - `RenderConfig.C.CFileBottom`
   - https://github.com/StateSmith/StateSmith/issues/385
+- Console print StateSmith lib version when running: `StateSmith lib ver - X.Y.Z-tag+build`
+  - https://github.com/StateSmith/StateSmith/issues/186
 
 ### Changed (minor)
 - C/C++ - moved user includes to after StateSmith includes.
