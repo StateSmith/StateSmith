@@ -6,12 +6,12 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
-## [0.11.1-test-1]
+## [0.11.1]
 ### Add
-- Create - toml template adds `RenderConfig.C.IncludeGuardLabel` setting.
+- `create` command - toml template adds `RenderConfig.C.IncludeGuardLabel` setting.
     - https://github.com/StateSmith/StateSmith/issues/112
 
-### Upgrade StateSmith library version to 0.12.1-alpha-1
+### Upgrade StateSmith library version to 0.12.1-alpha
 #### Contributors
 - @diorcety
   - https://github.com/StateSmith/StateSmith/pull/376/

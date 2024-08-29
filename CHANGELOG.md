@@ -46,7 +46,7 @@ Test/interim releases are not documented here.
 
 ---
 
-## [0.12.1-alpha-1]
+## [0.12.1-alpha]
 ### Contributors
 - @diorcety
   - https://github.com/StateSmith/StateSmith/pull/376/
@@ -55,7 +55,7 @@ Test/interim releases are not documented here.
 - C/C++ - Add support for standard `#ifdef` include guards (@diorcety)
   - https://github.com/StateSmith/StateSmith/issues/112
 - C/C++ - Add support for old/odd compilers (@diorcety)
-  - allow using `int` instead of `bool` for `bool` type.
+  - allow using `int` instead of `bool` for `bool` type. See `RenderConfig.C.UseStdBool` setting.
   - remove extra trailing comma in enum declarations.
   - https://github.com/StateSmith/StateSmith/pull/376/
 

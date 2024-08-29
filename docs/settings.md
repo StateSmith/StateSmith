@@ -505,7 +505,7 @@ Info: https://github.com/StateSmith/StateSmith/pull/376
 
 Allows you to disable the use of `bool` from `<stdbool.h>` and instead use integer.
 
-Usefull if your toolchain doesn't have `<stdbool.h>`.
+Useful if your toolchain doesn't have `<stdbool.h>`.
 
 ```toml
 [RenderConfig.C]
