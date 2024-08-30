@@ -7,7 +7,7 @@ They have different version numbers.
 Test/interim releases are not documented here.
 
 ## [0.12.0]
-### Upgrade StateSmith library version to 0.13.0-alpha
+### Upgrade StateSmith library version to 0.13.0
 #### Added
 - NEW ALGORITHM: `Balanced2` - a variant of `Balanced1`. Instead of dynamically updating function pointers, `Balanced2` uses a more traditional switch/case mapping.
   - `Balanced2` is the new default algorithm.
