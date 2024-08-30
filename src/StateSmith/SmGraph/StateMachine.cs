@@ -32,6 +32,11 @@ public class StateMachine : NamedVertex
         return list;
     }
 
+    public IReadOnlySet<string> GetEventSet()
+    {
+        return _events;
+    }
+
     /// <summary>
     /// Includes self
     /// </summary>

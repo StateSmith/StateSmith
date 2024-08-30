@@ -40,8 +40,11 @@ public class SimWebGenerator
 
     SmRunner runner;
 
-    public SimWebGenerator(ICodeFileWriter codeFileWriter)
+    public SimWebGenerator(ICodeFileWriter codeFileWriter, RunnerSettings mainRunnerSettings)
     {
+        // NOTE! we need mainRunnerSettings so that we can use the same algorithm as the main runner.
+        // This needs to happen during construction because of dependency injection.
+
         // Internally, the `SimWebGenerator` uses a `SmRunner` to transform the input diagram into a simulation web page.
         // To customize the transformation/code generation process, we register custom DI services with the `SmRunner`.
 
@@ -49,7 +52,7 @@ public class SimWebGenerator
         DiServiceProvider simDiServiceProvider;
 
         var enablePreDiagramBasedSettings = false;  // need to stop it from trying to read diagram early as fake diagram path is used
-        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, enablePDBS: enablePreDiagramBasedSettings);
+        runner = new(diagramPath: "placeholder-updated-in-generate-method.txt", renderConfig: new SimRenderConfig(), transpilerId: TranspilerId.JavaScript, algorithmId: mainRunnerSettings.algorithmId, enablePDBS: enablePreDiagramBasedSettings);
         runner.Settings.propagateExceptions = true;
 
         // Registering DI services must be done before accessing `runner.SmTransformer`.

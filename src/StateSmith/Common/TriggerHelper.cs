@@ -137,6 +137,19 @@ public static class TriggerHelper
     }
 
     /// <summary>
+    /// These do NOT include entry and exit triggers
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
+    public static HashSet<string> GetEvents(NamedVertex state)
+    {
+        var triggerNames = GetSanitizedTriggersSet(state);
+        triggerNames.Remove(TRIGGER_ENTER);
+        triggerNames.Remove(TRIGGER_EXIT);
+        return triggerNames;
+    }
+
+    /// <summary>
     /// Sanitizes triggers.
     /// </summary>
     /// <param name="vertex"></param>

@@ -85,7 +85,7 @@ public class SimWebGenerator_IntegrationTests
         DeleteIfFileExists(expectedOutputFilePath);
 
         CodeFileWriter codeFileWriter = new(consolePrinter: new ConsolePrinter(), pathPrinter: new FilePathPrinter(diagramDirPath));
-        SimWebGenerator generator = new(codeFileWriter);
+        SimWebGenerator generator = new(codeFileWriter, new());
         generator.RunnerSettings.propagateExceptions = true;
         generator.RunnerSettings.outputStateSmithVersionInfo = false; // avoid git noise
         generator.Generate(diagramPath: diagramDirPath + diagramName, outputDir: diagramDirPath);

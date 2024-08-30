@@ -1,7 +1,6 @@
 #nullable enable
 
 using Xunit;
-using StateSmithTest.Output.BalancedCoder1;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
 using StateSmith.Output.Gil.JavaScript;
@@ -15,7 +14,7 @@ public class GilToJavaScriptTests
     [Fact]
     public void Test()
     {
-        string gilCode = AlgoBalanced1Tests.BuildExampleGilFile(skipIndentation: false, out var sm).ToString();
+        string gilCode = AlgoTests.BuildExampleGilFile(skipIndentation: false, out var sm).ToString();
 
         RenderConfigJavaScriptVars renderConfig = new()
         {

@@ -14,6 +14,7 @@ using StateSmith.Output.Algos.Balanced1;
 using StateSmith.SmGraph.TriggerMap;
 using StateSmith.Output.Sim;
 using StateSmith.Output.Gil;
+using StateSmith.Output.Algos.Balanced2;
 
 namespace StateSmith.Runner;
 
@@ -91,6 +92,7 @@ public class DiServiceProvider : IDisposable
             services.AddSingleton<PseudoStateHandlerBuilder>();
             services.AddSingleton<EnumBuilder>();
             services.AddSingleton<EventHandlerBuilder>();
+            services.AddSingleton<EventHandlerBuilder2>();
 
             services.AddSingleton<StateNameConflictResolver>();
             services.AddSingleton<StandardFileHeaderPrinter>();

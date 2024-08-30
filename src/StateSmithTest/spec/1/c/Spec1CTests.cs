@@ -4,6 +4,7 @@ using Xunit;
 using StateSmithTest.Processes;
 using System.IO;
 using StateSmithTest.Processes.CComp;
+using StateSmithTest;
 
 namespace Spec.Spec1.C;
 
@@ -24,6 +25,10 @@ public class Spec1CTests
         string IRenderConfig.VariableDeclarations => StringUtils.DeIndentTrim(@"
                 uint8_t count;
             ");
+
+        // string IRenderConfigC.CFileTop => """
+        //     #pragma GCC diagnostic ignored "-Wswitch"
+        //     """;
     }
 
     [Fact]
@@ -80,7 +85,8 @@ public class Spec1CTests
             Enter S11.
         ");
 
-        Assert.Equal(expected, process.StdOutput.Trim());
+        //Assert.Equal(expected, process.StdOutput.Trim());
+        process.StdOutput.Trim().ShouldBeShowDiff(expected);
     }
 }
 

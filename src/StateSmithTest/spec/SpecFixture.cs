@@ -21,6 +21,15 @@ public class SpecFixture
     {
         RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
         settings.outputStateSmithVersionInfo = false; // too much noise in repo
+
+        settings.algorithmId = Environment.GetEnvironmentVariable("STATESMITH_TEST_ALGORITHM_ID") switch
+        {
+            nameof(AlgorithmId.Balanced1) => AlgorithmId.Balanced1,
+            nameof(AlgorithmId.Balanced2) => AlgorithmId.Balanced2,
+            _ => AlgorithmId.Default,
+        };
+
+        //settings.outputGilCodeAlways = true;
         SmRunner runner = new(settings, renderConfig);
 
         smRunnerAction?.Invoke(runner);

@@ -68,6 +68,12 @@ public class NameMangler
         return stateName.ToUpper();
     }
 
+    public virtual string SmQualifiedStateEnumValue(NamedVertex namedVertex)
+    {
+        string stateName = SmStateName(namedVertex);
+        return $"{SmStateEnumType}.{stateName.ToUpper()}";
+    }
+
     public virtual string SmStateName(NamedVertex namedVertex)
     {
         return namedVertex.Parent == null ? "ROOT" : namedVertex.Name.ToUpper();

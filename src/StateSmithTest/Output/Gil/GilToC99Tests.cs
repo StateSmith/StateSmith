@@ -1,5 +1,4 @@
 using Xunit;
-using StateSmithTest.Output.BalancedCoder1;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
 using StateSmith.Output;
@@ -13,7 +12,7 @@ public class GilToC99Tests
     [Fact]
     public void Test()
     {
-        string programText = AlgoBalanced1Tests.BuildExampleGilFile(skipIndentation:true, out var sm).ToString();
+        string programText = AlgoTests.BuildExampleGilFile(skipIndentation:true, out var sm).ToString();
 
         RenderConfigBaseVars renderConfig = new();
         RenderConfigCVars renderConfigC = new();

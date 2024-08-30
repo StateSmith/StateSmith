@@ -26,9 +26,11 @@ public class AlgoBalanced1 : IGilAlgo
     protected readonly StandardFileHeaderPrinter standardFileHeaderPrinter;
 
     protected StateMachine? _sm;
+    protected const string AlgoWikiLink = "https://github.com/StateSmith/StateSmith/wiki/Algorithms";
+
     protected StateMachine Sm => _sm.ThrowIfNull("Must be set before use");
 
-    static string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
+    protected static string ConstMarker => ""; // todo_low - put in an attribute like [ro] that will end up as `const` for languages that support that
 
     public AlgoBalanced1(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter)
     {
@@ -50,8 +52,7 @@ public class AlgoBalanced1 : IGilAlgo
         mangler.SetStateMachine(sm);
         eventHandlerBuilder.SetFile(this.file);
 
-        GilCreationHelper.AddFileTopComment(file, standardFileHeaderPrinter.GetFileGilHeader() +
-            $"// Algorithm: {nameof(AlgorithmId.Balanced1)}. See https://github.com/StateSmith/StateSmith/wiki/Algorithms\n");
+        OutputFileTopAlgoComment();
 
         file.AppendLine($"// Generated state machine");
         file.Append($"public class {mangler.SmTypeName}");
@@ -63,6 +64,17 @@ public class AlgoBalanced1 : IGilAlgo
 
         EndClassBlock();
         return file.ToString();
+    }
+
+    private void OutputFileTopAlgoComment()
+    {
+        GilCreationHelper.AddFileTopComment(file, standardFileHeaderPrinter.GetFileGilHeader() +
+            $"// Algorithm: {GetAlgoName()}. See {AlgoWikiLink}\n");
+    }
+
+    virtual protected string GetAlgoName()
+    {
+        return nameof(AlgorithmId.Balanced1);
     }
 
     private void EndClassBlock()
@@ -146,17 +158,7 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine($"// Used internally by state machine. Feel free to inspect, but don't modify.");
         file.AppendLine($"public {mangler.SmStateEnumType} {mangler.SmStateIdVarName};");
 
-        file.AppendLine();
-        file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private {mangler.SmHandlerFuncType}? {mangler.SmAncestorEventHandlerVarName};");
-
-        file.AppendLine();
-        file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private readonly {mangler.SmHandlerFuncType}?[] {mangler.SmCurrentEventHandlersVarName} = new {mangler.SmHandlerFuncType}[{mangler.SmEventEnumCount}];");
-
-        file.AppendLine();
-        file.AppendLine($"// Used internally by state machine. Don't modify.");
-        file.AppendLine($"private {mangler.SmHandlerFuncType}? {mangler.SmCurrentStateExitHandlerVarName};");
+        OutputAlgoBalanced1StructPointers();
 
         if (IsVarsStructNeeded())
         {
@@ -184,6 +186,21 @@ public class AlgoBalanced1 : IGilAlgo
             file.AppendLine("// Variables. Can be used for inputs, outputs, user variables...");
             file.AppendLine("public Vars vars = new Vars();");
         }
+    }
+
+    virtual protected void OutputAlgoBalanced1StructPointers()
+    {
+        file.AppendLine();
+        file.AppendLine($"// Used internally by state machine. Don't modify.");
+        file.AppendLine($"private {mangler.SmHandlerFuncType}? {mangler.SmAncestorEventHandlerVarName};");
+
+        file.AppendLine();
+        file.AppendLine($"// Used internally by state machine. Don't modify.");
+        file.AppendLine($"private readonly {mangler.SmHandlerFuncType}?[] {mangler.SmCurrentEventHandlersVarName} = new {mangler.SmHandlerFuncType}[{mangler.SmEventEnumCount}];");
+
+        file.AppendLine();
+        file.AppendLine($"// Used internally by state machine. Don't modify.");
+        file.AppendLine($"private {mangler.SmHandlerFuncType}? {mangler.SmCurrentStateExitHandlerVarName};");
     }
 
     internal bool IsVarsStructNeeded()
@@ -234,7 +251,7 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine();
     }
 
-    internal void OutputExitUpToFunction()
+    virtual protected void OutputExitUpToFunction()
     {
         file.AppendLine("// This function is used when StateSmith doesn't know what the active leaf state is at");
         file.AppendLine("// compile time due to sub states or when multiple states need to be exited.");
@@ -255,13 +272,12 @@ public class AlgoBalanced1 : IGilAlgo
         file.AppendLine();
     }
 
-    internal void OutputFuncDispatchEvent()
+    virtual protected void OutputFuncDispatchEvent()
     {
         file.AppendLine("// Dispatches an event to the state machine. Not thread safe.");
         string event_id = mangler.MangleVarName("event_id");
         string behavior_func = mangler.MangleVarName("behavior_func");
 
-        // FIXME me update here
         file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {event_id})");
         file.StartCodeBlock();
         file.AppendLine($"{mangler.SmHandlerFuncType}? {behavior_func} = this.{mangler.SmCurrentEventHandlersVarName}[(int){event_id}];");
