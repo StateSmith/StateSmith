@@ -3,7 +3,6 @@ using StateSmithTest.spec2;
 using StateSmithTest.Processes;
 using StateSmith.Output;
 using System.Text.RegularExpressions;
-using System.IO;
 
 namespace Spec.Spec2.C;
 

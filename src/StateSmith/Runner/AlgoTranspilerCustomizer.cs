@@ -1,5 +1,6 @@
 using StateSmith.Output;
 using StateSmith.Output.Algos.Balanced1;
+using StateSmith.Output.Algos.Balanced2;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.Gil.JavaScript;
@@ -16,17 +17,23 @@ public class AlgoTranspilerCustomizer
 {
     public void Customize(DiServiceProvider sp, AlgorithmId algorithmId, TranspilerId transpilerId, AlgoBalanced1Settings algoBalanced1Settings)
     {
-        if (algorithmId == AlgorithmId.Default)
-            algorithmId = AlgorithmId.Balanced1;
+        switch (algorithmId)
+        {
+            case AlgorithmId.Balanced1:
+                break;
 
-        if (algorithmId != AlgorithmId.Balanced1)
-            throw new System.ArgumentException("Only Balanced1 algorithm is supported right now.");
+            case AlgorithmId.Default:
+            case AlgorithmId.Balanced2:
+                sp.AddSingletonT<EventHandlerBuilder, EventHandlerBuilder2>();
+                sp.AddSingletonT<IGilAlgo, AlgoBalanced2>();
+                break;
 
-        if (transpilerId == TranspilerId.Default)
-            transpilerId = TranspilerId.C99;
+            default: throw new System.ArgumentException("Unknown algorithmId: " + algorithmId);
+        }
 
         switch (transpilerId)
         {
+            case TranspilerId.Default:
             case TranspilerId.C99:
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToC99>();

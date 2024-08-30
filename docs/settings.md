@@ -682,6 +682,8 @@ Maps to the [RunnerSettings](https://github.com/StateSmith/StateSmith/blob/main/
 
 ```toml
 [SmRunnerSettings]
+transpilerId = "CSharp"
+algorithmId = "Balanced2"
 outputDirectory = ""
 outputCodeGenTimestamp = false
 outputStateSmithVersionInfo = true
@@ -697,6 +699,43 @@ SmRunner smRunner = new(diagramPath: "MyDiagram.plantuml", new MyRenderConfig())
 smRunner.Settings.outputDirectory = "./gen";
 smRunner.Run();
 ```
+
+## SmRunnerSettings.transpilerId
+Type: `string`
+
+The transpiler to use. Default is `C99`.
+
+```toml
+[SmRunnerSettings]
+transpilerId = "CSharp"
+```
+
+Options:
+- `Default` --> `C99`
+- `C99`
+- `CSharp`
+- `JavaScript`
+
+> csx note: you can also specify the `transpilerId` via the `SmRunner` constructor.
+
+## SmRunnerSettings.algorithmId
+Type: `string`
+Info: https://github.com/StateSmith/StateSmith/wiki/Algorithms
+
+The algorithm to use. The default value will likely change in the future. If you want to lock in the current algorithm, specify it.
+
+```toml
+[SmRunnerSettings]
+algorithmId = "Balanced1"
+```
+
+Options:
+- `Default` --> `Balanced2`
+- `Balanced1` (old default)
+- `Balanced2` (new default) - added in lib version `0.13.0`
+
+> csx note: you can also specify the `algorithmId` via the `SmRunner` constructor.
+
 
 ## SmRunnerSettings.outputDirectory
 Type: `string`

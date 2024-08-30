@@ -50,7 +50,7 @@ public class GilToCSharpTests
 
     private static CapturingCodeFileWriter.Capture RenderAndCaptureOutput(IRenderConfig renderConfig)
     {
-        var fakeFileSystem = TestHelper.CaptureSmRunnerFiles(diagramPath: "CSharpNoNameSpaceExampleSm.drawio.svg", renderConfig, TranspilerId.CSharp);
+        var fakeFileSystem = TestHelper.CaptureSmRunnerFiles(diagramPath: "CSharpNoNameSpaceExampleSm.drawio.svg", renderConfig, TranspilerId.CSharp, AlgorithmId.Balanced1);
         var file = fakeFileSystem.GetCapturesForFileName("CSharpNoNameSpaceExampleSm.cs").Single();
         return file;
     }

@@ -24,7 +24,7 @@ public class AlgoStateIdToString : IAlgoStateIdToString
             {
                 foreach (var state in sm.GetNamedVerticesCopy())
                 {
-                    file.AppendLine($"case {mangler.SmStateEnumType}.{mangler.SmStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
+                    file.AppendLine($"case {mangler.SmQualifiedStateEnumValue(state)}: return \"{mangler.SmStateToString(state)}\";");
                 }
                 file.AppendLine("default: return \"?\";");
             }

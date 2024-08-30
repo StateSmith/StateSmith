@@ -18,14 +18,14 @@ public class EventHandlerBuilder
     public string smAccess = "this";
 
     public const string consumeEventVarName = "consume_event";
-    private readonly NameMangler mangler;
-    private readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
-    private readonly WrappingExpander wrappingExpander;
-    private readonly UserExpansionScriptBases userExpansionScriptBases;
+    protected readonly NameMangler mangler;
+    protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
+    protected readonly WrappingExpander wrappingExpander;
+    protected readonly UserExpansionScriptBases userExpansionScriptBases;
 
-    private OutputFile? _file;
+    protected OutputFile? _file;
 
-    private OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
+    protected OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
     public EventHandlerBuilder(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases)
     {
@@ -54,7 +54,9 @@ public class EventHandlerBuilder
 
         if (TriggerHelper.IsEvent(triggerName))
         {
-            noAncestorHandlesEvent = OutputNextAncestorHandler(namedVertex, triggerName);
+            NamedVertex? nextAncestorHandlingState = namedVertex.FirstAncestorThatHandlesEvent(triggerName);
+            noAncestorHandlesEvent = nextAncestorHandlingState == null;
+            OutputNextAncestorHandler(nextAncestorHandlingState, triggerName);
         }
 
         var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(namedVertex, triggerName);
@@ -153,17 +155,27 @@ public class EventHandlerBuilder
             {
                 // no initial state, this is the final state.
                 File.AppendLine("// Step 4: complete transition. Ends event dispatch. No other behaviors are checked.");
-                File.AppendLine($"{smAccess}.{mangler.SmStateIdVarName} = {mangler.SmStateEnumType}.{mangler.SmStateEnumValue(namedVertexTarget)};");
-                if (noAncestorHandlesEvent)
-                {
-                    File.AppendLine($"// No ancestor handles event. Can skip nulling `{mangler.SmAncestorEventHandlerVarName}`.");
-                }
-                else
-                {
-                    File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;");
-                }
-                File.AppendLine($"return;");
+                OutputCompleteTransition(noAncestorHandlesEvent, namedVertexTarget);
             }
+        }
+    }
+
+    virtual protected void OutputCompleteTransition(bool noAncestorHandlesEvent, NamedVertex namedVertexTarget)
+    {
+        File.AppendLine($"{smAccess}.{mangler.SmStateIdVarName} = {mangler.SmQualifiedStateEnumValue(namedVertexTarget)};");
+        NullAncestorEventHandlerVar(noAncestorHandlesEvent);
+        File.AppendLine($"return;");
+    }
+
+    private void NullAncestorEventHandlerVar(bool noAncestorHandlesEvent)
+    {
+        if (noAncestorHandlesEvent)
+        {
+            File.AppendLine($"// No ancestor handles event. Can skip nulling `{mangler.SmAncestorEventHandlerVarName}`.");
+        }
+        else
+        {
+            File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;");
         }
     }
 
@@ -201,7 +213,7 @@ public class EventHandlerBuilder
         OutputGuardStart(behavior);
     }
 
-    private bool RequiresConsumeEventVar(Behavior behavior)
+    protected bool ActionCodeUsesConsumeEventVar(Behavior behavior)
     {
         if (behavior.HasActionCode())
         {
@@ -209,6 +221,19 @@ public class EventHandlerBuilder
             var inspector = new ActionCodeInspector();
             inspector.Parse(expandedAction);
             if (inspector.identifiersUsed.Contains(consumeEventVarName))
+                return true;
+        }
+
+        return false;
+    }
+
+    protected bool ActionCodeUsesConsumeEventVar(NamedVertex namedVertex, string eventName)
+    {
+        var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(namedVertex, eventName);
+
+        foreach (var behavior in behaviorsWithTrigger)
+        {
+            if (ActionCodeUsesConsumeEventVar(behavior))
                 return true;
         }
 
@@ -305,10 +330,14 @@ public class EventHandlerBuilder
         else
         {
             NamedVertex leastCommonAncestor = (NamedVertex)transitionPath.leastCommonAncestor.ThrowIfNull();
-
-            string ancestorExitHandler = mangler.SmTriggerHandlerFuncName(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
-            File.AppendLine($"this.{mangler.SmExitUpToFuncName}(this.{ancestorExitHandler});");
+            OutputExitUpToCall(leastCommonAncestor);
         }
+    }
+
+    virtual protected void OutputExitUpToCall(NamedVertex leastCommonAncestor)
+    {
+        string ancestorExitHandler = mangler.SmTriggerHandlerFuncName(leastCommonAncestor, TriggerHelper.TRIGGER_EXIT);
+        File.AppendLine($"this.{mangler.SmExitUpToFuncName}(this.{ancestorExitHandler});");
     }
 
     private static bool CanUseSingleDirectExit(ref Vertex source, TransitionPath transitionPath)
@@ -341,40 +370,35 @@ public class EventHandlerBuilder
         return canUseDirectExit;
     }
 
-    private bool OutputNextAncestorHandler(NamedVertex state, string triggerName)
+    virtual protected void OutputNextAncestorHandler(NamedVertex? nextAncestorHandlingState, string triggerName)
     {
-        bool noAncestorHandlesEvent;
-        NamedVertex? nextHandlingState = state.FirstAncestorThatHandlesEvent(triggerName);
-        noAncestorHandlesEvent = nextHandlingState == null;
-
-        if (nextHandlingState == null)
+        if (nextAncestorHandlingState == null)
         {
             File.AppendLine($"// No ancestor state handles `{triggerName}` event.");
         }
         else
         {
             File.AppendLine($"// Setup handler for next ancestor that listens to `{triggerName}` event.");
-            File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = this.{mangler.SmTriggerHandlerFuncName(nextHandlingState, triggerName)};");
+            File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = this.{mangler.SmTriggerHandlerFuncName(nextAncestorHandlingState, triggerName)};");
         }
 
         File.RequestNewLineBeforeMoreCode();
-        return noAncestorHandlesEvent;
     }
 
     private void OutputNonTransitionCode(Behavior b, in string triggerName, bool noAncestorHandlesEvent)
     {
-        bool isConsumable = TriggerHelper.IsEvent(triggerName);
-        bool hasConsumeEventVar = isConsumable && b.HasActionCode() && RequiresConsumeEventVar(b);
+        bool isEvent = TriggerHelper.IsEvent(triggerName);
+        bool hasConsumeEventVar = isEvent && ActionCodeUsesConsumeEventVar(b);
 
         OutputStartOfBehaviorCode(b);
         File.StartCodeBlock();
         {
-            MaybeOutputConsumeEventVariable(b, triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
+            PreActionCode(b, triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
 
             File.AppendLine($"// Step 1: execute action `{b.GetSingleLineActionCode()}`");
             OutputAnyActionCode(b, isForTransition: false);
 
-            MaybeOutputConsumeEventCode(noAncestorHandlesEvent: noAncestorHandlesEvent, isConsumable: isConsumable, hasConsumeEventVar: hasConsumeEventVar, triggerName: triggerName);
+            PostActionCode(b, triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
         }
         OutputEndOfBehaviorCode(b);
     }
@@ -384,9 +408,10 @@ public class EventHandlerBuilder
         File.FinishCodeBlock($" // end of behavior for {Vertex.Describe(b.OwningVertex)}");
     }
 
-    private void MaybeOutputConsumeEventCode(bool noAncestorHandlesEvent, bool isConsumable, bool hasConsumeEventVar, string triggerName)
+
+    private void MaybeOutputConsumeTriggerCode(bool noAncestorHandlesEvent, bool isEvent, bool hasConsumeEventVar, string triggerName)
     {
-        if (!isConsumable)
+        if (!isEvent)
         {
             return;
         }
@@ -397,11 +422,11 @@ public class EventHandlerBuilder
         {
             if (noAncestorHandlesEvent)
             {
-                File.AppendLine("// No ancestor handles event. Ignore `consume_event` flag.");
+                File.AppendLine($"// No ancestor handles event. Ignore `{consumeEventVarName}` flag.");
             }
             else
             {
-                File.Append("if (consume_event)");
+                File.Append($"if ({consumeEventVarName})");
                 File.StartCodeBlock();
                 {
                     File.AppendLine($"{smAccess}.{mangler.SmAncestorEventHandlerVarName} = null;  // consume event");
@@ -411,6 +436,7 @@ public class EventHandlerBuilder
         }
         else
         {
+            // user hasn't explicitly controlled the consume_event variable, so we may need to null the ancestor event handler.
 
             if (TriggerHelper.IsDoEvent(triggerName))
             {
@@ -430,7 +456,17 @@ public class EventHandlerBuilder
         }
     }
 
-    private void MaybeOutputConsumeEventVariable(Behavior behavior, string triggerName, bool noAncestorHandlesEvent, bool hasConsumeEventVar)
+    virtual protected void PreActionCode(Behavior behavior, string triggerName, bool noAncestorHandlesEvent, bool hasConsumeEventVar)
+    {
+        MaybeOutputBehaviorConsumeEventVariable(behavior, triggerName, noAncestorHandlesEvent, hasConsumeEventVar);
+    }
+
+    virtual protected void PostActionCode(Behavior behavior, string triggerName, bool noAncestorHandlesEvent, bool hasConsumeEventVar)
+    {
+        MaybeOutputConsumeTriggerCode(noAncestorHandlesEvent: noAncestorHandlesEvent, isEvent: TriggerHelper.IsEvent(triggerName), hasConsumeEventVar: hasConsumeEventVar, triggerName: triggerName);
+    }
+
+    private void MaybeOutputBehaviorConsumeEventVariable(Behavior behavior, string triggerName, bool noAncestorHandlesEvent, bool hasConsumeEventVar)
     {
         if (!behavior.HasActionCode())
         {
@@ -442,12 +478,17 @@ public class EventHandlerBuilder
             return;
         }
 
+        OutputConsumeEventVar(triggerName, noAncestorHandlesEvent);
+    }
+
+    protected void OutputConsumeEventVar(string triggerName, bool noAncestorHandlesEvent)
+    {
         if (noAncestorHandlesEvent)
         {
-            File.AppendLine("// note: no ancestor consumes this event, but we output `bool consume_event` anyway because a user's design might rely on it.");
+            File.AppendLine($"// note: no ancestor consumes this event, but we output `bool {consumeEventVarName}` anyway because a user's design might rely on it.");
         }
 
-        File.Append("bool consume_event = ");
+        File.Append($"bool {consumeEventVarName} = ");
         if (TriggerHelper.IsDoEvent(triggerName))
         {
             File.FinishLine("false; // the `do` event is special in that it normally is not consumed.");
@@ -473,20 +514,42 @@ public class EventHandlerBuilder
         string[] eventNames = GetEvents(state).ToArray();
         Array.Sort(eventNames);
 
+
         foreach (var eventName in eventNames)
         {
-            OutputTriggerHandlerSignature(state, eventName);
-            File.StartCodeBlock();
-            {
-                OutputStateBehaviorsForTrigger(state, eventName);
-            }
-            FinishAddressableFunction(forceNewLine: false);
-            File.RequestNewLineBeforeMoreCode();
+            OutputStateEventHandler(state, eventName);
         }
 
         userExpansionScriptBases.UpdateNamedVertex(state);
         pseudoStateHandlerBuilder.OutputFunctionsForParent(state, RenderPseudoStateTransitionFunctionInner);
         userExpansionScriptBases.UpdateNamedVertex(null);
+    }
+
+    private void OutputStateEventHandler(NamedVertex state, string eventName)
+    {
+        OutputTriggerHandlerSignature(state, eventName);
+        File.StartCodeBlock();
+        {
+            userExpansionScriptBases.UpdateNamedVertex(state);
+            {
+                OutputStateEventHandlerFunctionTop(state, eventName);
+                OutputStateBehaviorsForTrigger(state, eventName);
+                OutputStateEventHandlerFunctionBottom(state, eventName);
+            }
+            userExpansionScriptBases.UpdateNamedVertex(null);
+        }
+        FinishAddressableFunction(forceNewLine: false);
+        File.RequestNewLineBeforeMoreCode();
+    }
+
+    virtual protected void OutputStateEventHandlerFunctionTop(NamedVertex state, string eventName)
+    {
+        // do nothing
+    }
+
+    virtual protected void OutputStateEventHandlerFunctionBottom(NamedVertex state, string eventName)
+    {
+        // do nothing
     }
 
     public void OutputFuncStateEnter(NamedVertex state)
@@ -495,25 +558,35 @@ public class EventHandlerBuilder
 
         File.StartCodeBlock();
         {
-            File.AppendLine($"// setup trigger/event handlers");
-            string stateExitHandlerName = mangler.SmTriggerHandlerFuncName(state, TriggerHelper.TRIGGER_EXIT);
-            File.AppendLine($"{smAccess}.{mangler.SmCurrentStateExitHandlerVarName} = this.{stateExitHandlerName};");
-
-            string[] eventNames = GetEvents(state).ToArray();
-            Array.Sort(eventNames);
-
-            foreach (var eventName in eventNames)
-            {
-                string handlerName = mangler.SmTriggerHandlerFuncName(state, eventName);
-                string eventEnumValueName = mangler.SmEventEnumValue(eventName);
-                File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[(int){mangler.SmEventEnumType}.{eventEnumValueName}] = this.{handlerName};");
-            }
-
-            File.RequestNewLineBeforeMoreCode();
+            OutputFuncStateEnter_PreBehaviors(state);
             OutputStateBehaviorsForTrigger(state, TriggerHelper.TRIGGER_ENTER);
         }
         File.FinishCodeBlock(forceNewLine: true);
         File.AppendLine();
+    }
+
+    virtual protected void OutputFuncStateEnter_PreBehaviors(NamedVertex state)
+    {
+        OutputStateEnterFunctionPointerAdjustments(state);
+    }
+
+    private void OutputStateEnterFunctionPointerAdjustments(NamedVertex state)
+    {
+        File.AppendLine($"// setup trigger/event handlers");
+        string stateExitHandlerName = mangler.SmTriggerHandlerFuncName(state, TriggerHelper.TRIGGER_EXIT);
+        File.AppendLine($"{smAccess}.{mangler.SmCurrentStateExitHandlerVarName} = this.{stateExitHandlerName};");
+
+        string[] eventNames = GetEvents(state).ToArray();
+        Array.Sort(eventNames);
+
+        foreach (var eventName in eventNames)
+        {
+            string handlerName = mangler.SmTriggerHandlerFuncName(state, eventName);
+            string eventEnumValueName = mangler.SmEventEnumValue(eventName);
+            File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[(int){mangler.SmEventEnumType}.{eventEnumValueName}] = this.{handlerName};");
+        }
+
+        File.RequestNewLineBeforeMoreCode();
     }
 
     public void OutputFuncStateExit(NamedVertex state)
@@ -531,32 +604,44 @@ public class EventHandlerBuilder
             }
             else
             {
-                File.AppendLine($"// adjust function pointers for this state's exit");
-                string parentExitHandler = mangler.SmTriggerHandlerFuncName((NamedVertex)state.Parent, TriggerHelper.TRIGGER_EXIT);
-                File.AppendLine($"{smAccess}.{mangler.SmCurrentStateExitHandlerVarName} = this.{parentExitHandler};");
-
-                string[] eventNames = GetEvents(state).ToArray();
-                Array.Sort(eventNames);
-
-                foreach (var eventName in eventNames)
-                {
-                    string eventEnumValueIndex = $"(int){mangler.SmEventEnumType}.{mangler.SmEventEnumValue(eventName)}";
-                    var ancestor = state.FirstAncestorThatHandlesEvent(eventName);
-                    if (ancestor != null)
-                    {
-                        string handlerName = mangler.SmTriggerHandlerFuncName(ancestor, eventName);
-                        File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[{eventEnumValueIndex}] = this.{handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
-                    }
-                    else
-                    {
-                        File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[{eventEnumValueIndex}] = null;  // no ancestor listens to this event");
-                    }
-                }
+                OutputStateExitFunctionPointerAdjustments(state, parentState: (NamedVertex)state.Parent);
             }
+
+            OutputExitFunctionEndCode(state);
         }
 
         FinishAddressableFunction(forceNewLine: true);
         File.AppendLine();
+    }
+
+    virtual protected void OutputExitFunctionEndCode(NamedVertex state)
+    {
+        // do nothing. override in derived class.
+    }
+
+    virtual protected void OutputStateExitFunctionPointerAdjustments(NamedVertex state, NamedVertex parentState)
+    {
+        File.AppendLine($"// adjust function pointers for this state's exit");
+        string parentExitHandler = mangler.SmTriggerHandlerFuncName(parentState, TriggerHelper.TRIGGER_EXIT);
+        File.AppendLine($"{smAccess}.{mangler.SmCurrentStateExitHandlerVarName} = this.{parentExitHandler};");
+
+        string[] eventNames = GetEvents(state).ToArray();
+        Array.Sort(eventNames);
+
+        foreach (var eventName in eventNames)
+        {
+            string eventEnumValueIndex = $"(int){mangler.SmEventEnumType}.{mangler.SmEventEnumValue(eventName)}";
+            var ancestor = state.FirstAncestorThatHandlesEvent(eventName);
+            if (ancestor != null)
+            {
+                string handlerName = mangler.SmTriggerHandlerFuncName(ancestor, eventName);
+                File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[{eventEnumValueIndex}] = this.{handlerName};  // the next ancestor that handles this event is {mangler.SmStateName(ancestor)}");
+            }
+            else
+            {
+                File.AppendLine($"{smAccess}.{mangler.SmCurrentEventHandlersVarName}[{eventEnumValueIndex}] = null;  // no ancestor listens to this event");
+            }
+        }
     }
 
     private void FinishAddressableFunction(bool forceNewLine)
@@ -578,11 +663,8 @@ public class EventHandlerBuilder
     /// </summary>
     /// <param name="state"></param>
     /// <returns></returns>
-    private static HashSet<string> GetEvents(NamedVertex state)
+    public static HashSet<string> GetEvents(NamedVertex state)
     {
-        var triggerNames = TriggerHelper.GetSanitizedTriggersSet(state);
-        triggerNames.Remove(TriggerHelper.TRIGGER_ENTER);
-        triggerNames.Remove(TriggerHelper.TRIGGER_EXIT);
-        return triggerNames;
+        return TriggerHelper.GetEvents(state);
     }
 }
