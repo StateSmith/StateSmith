@@ -36,9 +36,8 @@ This will bring up a wizard that guides you through quickly creating a new State
 ![](./md-img/create.gif)
 
 ### Run StateSmith code generation
-TODO: needs updated documentation.
 ```
-ss.cli run
+ss.cli run --here
 ```
 
 
