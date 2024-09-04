@@ -1,3 +1,5 @@
+#nullable enable
+
 using Xunit;
 using StateSmith.Output.Gil.C99;
 using StateSmith.Output.UserConfig;
@@ -12,7 +14,7 @@ public class GilToC99Tests
     [Fact]
     public void Test()
     {
-        string programText = AlgoTests.BuildExampleGilFile(skipIndentation:true, out var sm).ToString();
+        string programText = GilFileTestHelper.BuildExampleGilFile(skipIndentation:true, out var sm).ToString();
 
         RenderConfigBaseVars renderConfig = new();
         RenderConfigCVars renderConfigC = new();

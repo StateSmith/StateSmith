@@ -41,7 +41,7 @@ public class RenderConfigC_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         // helper function
         static int ExpectNext(string haystack, int startIndex, string expected)
@@ -117,7 +117,7 @@ public class RenderConfigC_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         // helper function
         static int ExpectNext(string haystack, int startIndex, string expected)
@@ -166,7 +166,7 @@ public class RenderConfigC_Test
             """";
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
 
         var cCode = fakeFs.GetCapturesForFileName("ExampleSm.c").Single().code.ConvertLineEndingsToN();
         cCode.Should().NotContain("#include <stdbool.h>");

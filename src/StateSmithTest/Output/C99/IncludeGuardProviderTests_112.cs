@@ -110,7 +110,7 @@ public class IncludeGuardProviderTests_112
             """;
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
         var code = fakeFs.GetCapturesForFileName("ExampleSm.h").Single().code;
 
         code.Should().Contain("""#pragma once""");
@@ -132,7 +132,7 @@ public class IncludeGuardProviderTests_112
             """;
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
         var code = fakeFs.GetCapturesForFileName("ExampleSm.h").Single().code;
 
         code.Should().Contain("""#ifndef EXAMPLESM_H""");
@@ -155,7 +155,7 @@ public class IncludeGuardProviderTests_112
             """;
 
         var fakeFs = new CapturingCodeFileWriter();
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs);
         var code = fakeFs.GetCapturesForFileName("ExampleSm.h").Single().code;
 
         code.Should().Contain("""#ifndef MyCustomIncludeGuardLabel_h""");

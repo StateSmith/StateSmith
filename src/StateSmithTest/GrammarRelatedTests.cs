@@ -28,7 +28,7 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
     }
 
 
@@ -76,7 +76,7 @@ public class GrammarRelatedTests
 
             """;
 
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
     }
 
     /// <summary>
@@ -90,14 +90,14 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
 
         plantUmlText = """
             @startuml {fileName}_2
             [*] --> c1
             @enduml
             """;
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText);
     }
 
     /// <summary>
@@ -111,13 +111,13 @@ public class GrammarRelatedTests
             [*] --> c1
             @enduml
             """;
-        Assert.Throws<FormatException>(() => TestHelper.RunSmRunnerForPlantUmlString(plantUmlText));
+        Assert.Throws<FormatException>(() => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText));
 
         plantUmlText = """
             @startuml {fileName}}
             [*] --> c1
             @enduml
             """;
-        Assert.Throws<FormatException>(() => TestHelper.RunSmRunnerForPlantUmlString(plantUmlText));
+        Assert.Throws<FormatException>(() => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText));
     }
 }
