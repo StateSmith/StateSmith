@@ -30,6 +30,13 @@ Release Template
 Test/interim releases are not documented here.
 
 
+## [0.13.?]
+### Added
+- `Balanced2` - add optimization for single event state machines
+  - https://github.com/StateSmith/StateSmith/issues/388
+
+---
+
 ## [0.13.0]
 ### Added
 - NEW ALGORITHM: `Balanced2` - a variant of `Balanced1`. Instead of dynamically updating function pointers, `Balanced2` uses a more traditional switch/case mapping.

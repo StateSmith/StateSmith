@@ -105,9 +105,9 @@ public class C99GenVisitor : CSharpSyntaxWalker
         done |= transpilerHelper.HandleGilSpecialInvocations(node, sb);
         done |= transpilerHelper.HandleGilUnusedVarSpecialInvocation(node, argument =>
         {
-            var argName = "sm"; // we only ignore `sm` in ROOT_exit right now so we can cheat here. If that changes, we can visit `argument` instead.
             sb.Append(node.GetLeadingTrivia().ToFullString());
-            sb.Append($"(void){argName}");   // trailing semi-colon is already part of parent ExpressionStatement
+            sb.Append($"(void)");   // trailing semi-colon is already part of parent ExpressionStatement
+            Visit(argument); // may be "this" or "event_id". Stuff like that.
         });
 
         if (!done)

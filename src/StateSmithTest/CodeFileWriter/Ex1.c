@@ -63,32 +63,25 @@ void Ex1_start(Ex1* sm)
 // Dispatches an event to the state machine. Not thread safe.
 void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id)
 {
+    // This state machine design only has a single event type so we can safely assume
+    // that the dispatched event is `do` without checking the `event_id` parameter.
+    (void)event_id; // This line prevents an 'unused variable' compiler warning
+    
     switch (sm->state_id)
     {
         // STATE: Ex1
         case Ex1_StateId_ROOT:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Ex1_EventId_DO: break;
-            }
+            // state and ancestors have no handler for `do` event.
             break;
         
         // STATE: STATE_1
         case Ex1_StateId_STATE_1:
-            switch (event_id)
-            {
-                case Ex1_EventId_DO: STATE_1_do(sm); break;
-            }
+            STATE_1_do(sm); 
             break;
         
         // STATE: STATE_2
         case Ex1_StateId_STATE_2:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Ex1_EventId_DO: break;
-            }
+            // state and ancestors have no handler for `do` event.
             break;
     }
     
