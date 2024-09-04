@@ -6,8 +6,18 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+## [0.12.1]
+### Upgrade StateSmith library version to `0.13.1`
+#### Added
+- `Balanced2` - add optimization for single event state machines
+  - Add note assuming `event_id` parameter is valid for dispatch event function.
+  - https://github.com/StateSmith/StateSmith/issues/388
+- `Balanced2` - smarter code gen (remove unused func type)
+
+---
+
 ## [0.12.0]
-### Upgrade StateSmith library version to 0.13.0
+### Upgrade StateSmith library version to `0.13.0`
 #### Added
 - NEW ALGORITHM: `Balanced2` - a variant of `Balanced1`. Instead of dynamically updating function pointers, `Balanced2` uses a more traditional switch/case mapping.
   - `Balanced2` is the new default algorithm.
@@ -20,7 +30,7 @@ Test/interim releases are not documented here.
 ---
 
 ## [0.11.2]
-### Upgrade StateSmith library version to 0.12.2-alpha
+### Upgrade StateSmith library version to `0.12.2-alpha`
 #### Added
 - C/C++ - Add more render config settings
   - `RenderConfig.C.HFileTopPostIncludeGuard`
