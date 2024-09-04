@@ -13,9 +13,21 @@ static void ROOT_enter(RocketSm* sm);
 
 static void ROOT_exit(RocketSm* sm);
 
-static void C1_enter(RocketSm* sm);
+static void GROUP_enter(RocketSm* sm);
 
-static void C1_exit(RocketSm* sm);
+static void GROUP_exit(RocketSm* sm);
+
+static void G1_enter(RocketSm* sm);
+
+static void G1_exit(RocketSm* sm);
+
+static void G1_do(RocketSm* sm);
+
+static void G2_enter(RocketSm* sm);
+
+static void G2_exit(RocketSm* sm);
+
+static void G2_do(RocketSm* sm);
 
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
@@ -39,19 +51,30 @@ void RocketSm_start(RocketSm* sm)
         // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
         
         // ROOT.<InitialState> behavior
-        // uml: TransitionTo(c1)
+        // uml: TransitionTo(group)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: ``.
             
-            // Step 3: Enter/move towards transition target `c1`.
-            C1_enter(sm);
+            // Step 3: Enter/move towards transition target `group`.
+            GROUP_enter(sm);
             
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            sm->state_id = RocketSm_StateId_C1;
-            // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
-            return;
+            // group.<InitialState> behavior
+            // uml: TransitionTo(g1)
+            {
+                // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: ``.
+                
+                // Step 3: Enter/move towards transition target `g1`.
+                G1_enter(sm);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                sm->state_id = RocketSm_StateId_G1;
+                // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
+                return;
+            } // end of behavior for group.<InitialState>
         } // end of behavior for ROOT.<InitialState>
     } // end of behavior for ROOT
 }
@@ -99,19 +122,102 @@ static void ROOT_exit(RocketSm* sm)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state C1
+// event handlers for state GROUP
 ////////////////////////////////////////////////////////////////////////////////
 
-static void C1_enter(RocketSm* sm)
+static void GROUP_enter(RocketSm* sm)
 {
     // setup trigger/event handlers
-    sm->current_state_exit_handler = C1_exit;
+    sm->current_state_exit_handler = GROUP_exit;
 }
 
-static void C1_exit(RocketSm* sm)
+static void GROUP_exit(RocketSm* sm)
 {
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = ROOT_exit;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state G1
+////////////////////////////////////////////////////////////////////////////////
+
+static void G1_enter(RocketSm* sm)
+{
+    // setup trigger/event handlers
+    sm->current_state_exit_handler = G1_exit;
+    sm->current_event_handlers[RocketSm_EventId_DO] = G1_do;
+}
+
+static void G1_exit(RocketSm* sm)
+{
+    // adjust function pointers for this state's exit
+    sm->current_state_exit_handler = GROUP_exit;
+    sm->current_event_handlers[RocketSm_EventId_DO] = NULL;  // no ancestor listens to this event
+}
+
+static void G1_do(RocketSm* sm)
+{
+    // No ancestor state handles `do` event.
+    
+    // g1 behavior
+    // uml: do TransitionTo(g2)
+    {
+        // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+        G1_exit(sm);
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `g2`.
+        G2_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        sm->state_id = RocketSm_StateId_G2;
+        // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
+        return;
+    } // end of behavior for g1
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state G2
+////////////////////////////////////////////////////////////////////////////////
+
+static void G2_enter(RocketSm* sm)
+{
+    // setup trigger/event handlers
+    sm->current_state_exit_handler = G2_exit;
+    sm->current_event_handlers[RocketSm_EventId_DO] = G2_do;
+}
+
+static void G2_exit(RocketSm* sm)
+{
+    // adjust function pointers for this state's exit
+    sm->current_state_exit_handler = GROUP_exit;
+    sm->current_event_handlers[RocketSm_EventId_DO] = NULL;  // no ancestor listens to this event
+}
+
+static void G2_do(RocketSm* sm)
+{
+    // No ancestor state handles `do` event.
+    
+    // g2 behavior
+    // uml: do [x > 50] TransitionTo(g1)
+    if (x > 50)
+    {
+        // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+        G2_exit(sm);
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `g1`.
+        G1_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        sm->state_id = RocketSm_StateId_G1;
+        // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
+        return;
+    } // end of behavior for g2
 }
 
 // Thread safe.
@@ -120,7 +226,9 @@ char const * RocketSm_state_id_to_string(RocketSm_StateId id)
     switch (id)
     {
         case RocketSm_StateId_ROOT: return "ROOT";
-        case RocketSm_StateId_C1: return "C1";
+        case RocketSm_StateId_GROUP: return "GROUP";
+        case RocketSm_StateId_G1: return "G1";
+        case RocketSm_StateId_G2: return "G2";
         default: return "?";
     }
 }

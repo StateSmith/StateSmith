@@ -440,7 +440,7 @@ evaluateGuard = null;
                     case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break;
                     case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break;
                     // Events not handled by this state:
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break;
+                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EVNEWVALUE: break;
                     case PlantEx2.EventId.EV2: break;
                 }
@@ -452,10 +452,10 @@ evaluateGuard = null;
                 {
                     case PlantEx2.EventId.EV2: this.#STATE1_ev2(); break;
                     // Events not handled by this state:
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break;
+                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EVNEWVALUE: break;
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break;
-                    case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break;
+                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -464,10 +464,10 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break;
+                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EVNEWVALUE: break;
-                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break;
-                    case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break;
+                    case PlantEx2.EventId.EVNEWVALUEREJECTED: this.#NEWVALUEPREVIEW_evnewvaluerejected(); break; // First ancestor handler for this event
+                    case PlantEx2.EventId.EVNEWVALUESAVED: this.#NEWVALUEPREVIEW_evnewvaluesaved(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EV2: break;
                 }
                 break;
@@ -478,7 +478,7 @@ evaluateGuard = null;
                 {
                     case PlantEx2.EventId.EVNEWVALUE: this.#NEWVALUESELECTION_evnewvalue(); break;
                     // Events not handled by this state:
-                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break;
+                    case PlantEx2.EventId.EVCONFIG: this.#CONFIGURING_evconfig(); break; // First ancestor handler for this event
                     case PlantEx2.EventId.EVNEWVALUEREJECTED: break;
                     case PlantEx2.EventId.EVNEWVALUESAVED: break;
                     case PlantEx2.EventId.EV2: break;
@@ -509,8 +509,6 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case PlantEx2.StateId.ROOT: this.#ROOT_exit(); break;
-                
                 case PlantEx2.StateId.NOTSHOOTING: this.#NOTSHOOTING_exit(); break;
                 
                 case PlantEx2.StateId.CONFIGURING: this.#CONFIGURING_exit(); break;
@@ -524,6 +522,8 @@ evaluateGuard = null;
                 case PlantEx2.StateId.NEWVALUESELECTION: this.#NEWVALUESELECTION_exit(); break;
                 
                 case PlantEx2.StateId.IDLE: this.#IDLE_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -536,10 +536,6 @@ evaluateGuard = null;
     #ROOT_enter()
     {
         this.stateId = PlantEx2.StateId.ROOT;
-    }
-    
-    #ROOT_exit()
-    {
     }
     
     

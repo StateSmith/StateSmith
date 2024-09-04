@@ -13,8 +13,6 @@ static void exit_up_to_state_handler(Spec1bSm* sm, Spec1bSm_StateId desired_stat
 
 static void ROOT_enter(Spec1bSm* sm);
 
-static void ROOT_exit(Spec1bSm* sm);
-
 static void S_enter(Spec1bSm* sm);
 
 static void S_exit(Spec1bSm* sm);
@@ -123,7 +121,8 @@ void Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id)
         
         // STATE: S1_1
         case Spec1bSm_StateId_S1_1:
-            S1_t1(sm); 
+            S1_t1(sm);  // First ancestor handler for this event
+
             break;
         
         // STATE: S2
@@ -147,8 +146,6 @@ static void exit_up_to_state_handler(Spec1bSm* sm, Spec1bSm_StateId desired_stat
     {
         switch (sm->state_id)
         {
-            case Spec1bSm_StateId_ROOT: ROOT_exit(sm); break;
-            
             case Spec1bSm_StateId_S: S_exit(sm); break;
             
             case Spec1bSm_StateId_S1: S1_exit(sm); break;
@@ -158,6 +155,8 @@ static void exit_up_to_state_handler(Spec1bSm* sm, Spec1bSm_StateId desired_stat
             case Spec1bSm_StateId_S2: S2_exit(sm); break;
             
             case Spec1bSm_StateId_S2_1: S2_1_exit(sm); break;
+            
+            default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
         }
     }
 }
@@ -170,12 +169,6 @@ static void exit_up_to_state_handler(Spec1bSm* sm, Spec1bSm_StateId desired_stat
 static void ROOT_enter(Spec1bSm* sm)
 {
     sm->state_id = Spec1bSm_StateId_ROOT;
-}
-
-static void ROOT_exit(Spec1bSm* sm)
-{
-    // State machine root is a special case. It cannot be exited. Mark as unused.
-    (void)sm;
 }
 
 

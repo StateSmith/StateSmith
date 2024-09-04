@@ -412,7 +412,7 @@ evaluateGuard = null;
                     case LightSm.EventId.INCREASE: this.#ON1_increase(); break;
                     case LightSm.EventId.DIMLIGHT: this.#ON1_dimlight(); break;
                     // Events not handled by this state:
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break;
+                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -423,7 +423,7 @@ evaluateGuard = null;
                     case LightSm.EventId.INCREASE: this.#ON2_increase(); break;
                     case LightSm.EventId.DIMLIGHT: this.#ON2_dimlight(); break;
                     // Events not handled by this state:
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break;
+                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -433,7 +433,7 @@ evaluateGuard = null;
                 {
                     case LightSm.EventId.DIMLIGHT: this.#ONHOT_dimlight(); break;
                     // Events not handled by this state:
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break;
+                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
                     case LightSm.EventId.INCREASE: break;
                 }
                 break;
@@ -449,8 +449,6 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case LightSm.StateId.ROOT: this.#ROOT_exit(); break;
-                
                 case LightSm.StateId.OFF: this.#OFF_exit(); break;
                 
                 case LightSm.StateId.ON_GROUP: this.#ON_GROUP_exit(); break;
@@ -460,6 +458,8 @@ evaluateGuard = null;
                 case LightSm.StateId.ON2: this.#ON2_exit(); break;
                 
                 case LightSm.StateId.ONHOT: this.#ONHOT_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -472,10 +472,6 @@ evaluateGuard = null;
     #ROOT_enter()
     {
         this.stateId = LightSm.StateId.ROOT;
-    }
-    
-    #ROOT_exit()
-    {
     }
     
     

@@ -63,7 +63,13 @@ public class AlgoBalanced1 : IGilAlgo
         GilCreationHelper.AppendGilHelpersFuncs(file);
 
         EndClassBlock();
+        FinalCheck();
         return file.ToString();
+    }
+
+    virtual protected void FinalCheck()
+    {
+
     }
 
     private void OutputFileTopAlgoComment()

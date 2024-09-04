@@ -6,6 +6,16 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+## [0.12.2]
+### Upgrade StateSmith library version to `0.13.2`
+#### Added
+- `Balanced2` - remove un-necessary root state exit handler.
+- `Balanced2` - add protection against infinite loop in the event of memory corruption.
+  - https://github.com/StateSmith/StateSmith/issues/391
+- `Balanced2` - add `"First ancestor handler for this event"` comment.
+
+---
+
 ## [0.12.1]
 ### Upgrade StateSmith library version to `0.13.1`
 #### Added

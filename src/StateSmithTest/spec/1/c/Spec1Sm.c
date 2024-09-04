@@ -12,8 +12,6 @@ static void exit_up_to_state_handler(Spec1Sm* sm, Spec1Sm_StateId desired_state)
 
 static void ROOT_enter(Spec1Sm* sm);
 
-static void ROOT_exit(Spec1Sm* sm);
-
 static void S_enter(Spec1Sm* sm);
 
 static void S_exit(Spec1Sm* sm);
@@ -167,7 +165,7 @@ void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id)
             {
                 // Events not handled by this state:
                 case Spec1Sm_EventId_EV1: break;
-                case Spec1Sm_EventId_EV2: T11_ev2(sm); break;
+                case Spec1Sm_EventId_EV2: T11_ev2(sm); break; // First ancestor handler for this event
             }
             break;
     }
@@ -182,8 +180,6 @@ static void exit_up_to_state_handler(Spec1Sm* sm, Spec1Sm_StateId desired_state)
     {
         switch (sm->state_id)
         {
-            case Spec1Sm_StateId_ROOT: ROOT_exit(sm); break;
-            
             case Spec1Sm_StateId_S: S_exit(sm); break;
             
             case Spec1Sm_StateId_S1: S1_exit(sm); break;
@@ -195,6 +191,8 @@ static void exit_up_to_state_handler(Spec1Sm* sm, Spec1Sm_StateId desired_state)
             case Spec1Sm_StateId_T11: T11_exit(sm); break;
             
             case Spec1Sm_StateId_T111: T111_exit(sm); break;
+            
+            default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
         }
     }
 }
@@ -214,19 +212,6 @@ static void ROOT_enter(Spec1Sm* sm)
         // Step 1: execute action `trace("Enter Spec1Sm.");`
         trace("Enter Spec1Sm.");
     } // end of behavior for ROOT
-}
-
-static void ROOT_exit(Spec1Sm* sm)
-{
-    // ROOT behavior
-    // uml: exit / { trace("Exit Spec1Sm."); }
-    {
-        // Step 1: execute action `trace("Exit Spec1Sm.");`
-        trace("Exit Spec1Sm.");
-    } // end of behavior for ROOT
-    
-    // State machine root is a special case. It cannot be exited. Mark as unused.
-    (void)sm;
 }
 
 

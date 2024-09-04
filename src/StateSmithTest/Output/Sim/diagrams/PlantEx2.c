@@ -11,8 +11,6 @@ static void exit_up_to_state_handler(PlantEx2* sm, PlantEx2_StateId desired_stat
 
 static void ROOT_enter(PlantEx2* sm);
 
-static void ROOT_exit(PlantEx2* sm);
-
 static void NOTSHOOTING_enter(PlantEx2* sm);
 
 static void NOTSHOOTING_exit(PlantEx2* sm);
@@ -153,7 +151,7 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
                 case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break;
                 case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break;
                 // Events not handled by this state:
-                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break;
+                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUE: break;
                 case PlantEx2_EventId_EV2: break;
             }
@@ -165,10 +163,10 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
             {
                 case PlantEx2_EventId_EV2: STATE1_ev2(sm); break;
                 // Events not handled by this state:
-                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break;
+                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUE: break;
-                case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break;
-                case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break;
+                case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break; // First ancestor handler for this event
+                case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break; // First ancestor handler for this event
             }
             break;
         
@@ -177,10 +175,10 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break;
+                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUE: break;
-                case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break;
-                case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break;
+                case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break; // First ancestor handler for this event
+                case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EV2: break;
             }
             break;
@@ -191,7 +189,7 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
             {
                 case PlantEx2_EventId_EVNEWVALUE: NEWVALUESELECTION_evnewvalue(sm); break;
                 // Events not handled by this state:
-                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break;
+                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUEREJECTED: break;
                 case PlantEx2_EventId_EVNEWVALUESAVED: break;
                 case PlantEx2_EventId_EV2: break;
@@ -222,8 +220,6 @@ static void exit_up_to_state_handler(PlantEx2* sm, PlantEx2_StateId desired_stat
     {
         switch (sm->state_id)
         {
-            case PlantEx2_StateId_ROOT: ROOT_exit(sm); break;
-            
             case PlantEx2_StateId_NOTSHOOTING: NOTSHOOTING_exit(sm); break;
             
             case PlantEx2_StateId_CONFIGURING: CONFIGURING_exit(sm); break;
@@ -237,6 +233,8 @@ static void exit_up_to_state_handler(PlantEx2* sm, PlantEx2_StateId desired_stat
             case PlantEx2_StateId_NEWVALUESELECTION: NEWVALUESELECTION_exit(sm); break;
             
             case PlantEx2_StateId_IDLE: IDLE_exit(sm); break;
+            
+            default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
         }
     }
 }
@@ -249,12 +247,6 @@ static void exit_up_to_state_handler(PlantEx2* sm, PlantEx2_StateId desired_stat
 static void ROOT_enter(PlantEx2* sm)
 {
     sm->state_id = PlantEx2_StateId_ROOT;
-}
-
-static void ROOT_exit(PlantEx2* sm)
-{
-    // State machine root is a special case. It cannot be exited. Mark as unused.
-    (void)sm;
 }
 
 

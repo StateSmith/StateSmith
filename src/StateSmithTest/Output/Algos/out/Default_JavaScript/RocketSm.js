@@ -16,11 +16,13 @@ class RocketSm
     static StateId = 
     {
         ROOT : 0,
-        C1 : 1,
+        GROUP : 1,
+        G1 : 2,
+        G2 : 3,
     }
     static { Object.freeze(this.StateId); }
     
-    static StateIdCount = 2;
+    static StateIdCount = 4;
     static { Object.freeze(this.StateIdCount); }
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
@@ -41,17 +43,28 @@ class RocketSm
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
             
             // ROOT.<InitialState> behavior
-            // uml: TransitionTo(c1)
+            // uml: TransitionTo(group)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 // Step 2: Transition action: ``.
                 
-                // Step 3: Enter/move towards transition target `c1`.
-                this.#C1_enter();
+                // Step 3: Enter/move towards transition target `group`.
+                this.#GROUP_enter();
                 
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                return;
+                // group.<InitialState> behavior
+                // uml: TransitionTo(g1)
+                {
+                    // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                    
+                    // Step 2: Transition action: ``.
+                    
+                    // Step 3: Enter/move towards transition target `g1`.
+                    this.#G1_enter();
+                    
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                    return;
+                } // end of behavior for group.<InitialState>
             } // end of behavior for ROOT.<InitialState>
         } // end of behavior for ROOT
     }
@@ -68,9 +81,19 @@ class RocketSm
                 // state and ancestors have no handler for `do` event.
                 break;
             
-            // STATE: c1
-            case RocketSm.StateId.C1:
+            // STATE: group
+            case RocketSm.StateId.GROUP:
                 // state and ancestors have no handler for `do` event.
+                break;
+            
+            // STATE: g1
+            case RocketSm.StateId.G1:
+                this.#G1_do(); 
+                break;
+            
+            // STATE: g2
+            case RocketSm.StateId.G2:
+                this.#G2_do(); 
                 break;
         }
         
@@ -84,9 +107,13 @@ class RocketSm
         {
             switch (this.stateId)
             {
-                case RocketSm.StateId.ROOT: this.#ROOT_exit(); break;
+                case RocketSm.StateId.GROUP: this.#GROUP_exit(); break;
                 
-                case RocketSm.StateId.C1: this.#C1_exit(); break;
+                case RocketSm.StateId.G1: this.#G1_exit(); break;
+                
+                case RocketSm.StateId.G2: this.#G2_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -101,23 +128,90 @@ class RocketSm
         this.stateId = RocketSm.StateId.ROOT;
     }
     
-    #ROOT_exit()
-    {
-    }
-    
     
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state C1
+    // event handlers for state GROUP
     ////////////////////////////////////////////////////////////////////////////////
     
-    #C1_enter()
+    #GROUP_enter()
     {
-        this.stateId = RocketSm.StateId.C1;
+        this.stateId = RocketSm.StateId.GROUP;
     }
     
-    #C1_exit()
+    #GROUP_exit()
     {
         this.stateId = RocketSm.StateId.ROOT;
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state G1
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    #G1_enter()
+    {
+        this.stateId = RocketSm.StateId.G1;
+    }
+    
+    #G1_exit()
+    {
+        this.stateId = RocketSm.StateId.GROUP;
+    }
+    
+    #G1_do()
+    {
+        // g1 behavior
+        // uml: do TransitionTo(g2)
+        {
+            // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+            this.#G1_exit();
+            
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `g2`.
+            this.#G2_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for g1
+        
+        // No ancestor handles this event.
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state G2
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    #G2_enter()
+    {
+        this.stateId = RocketSm.StateId.G2;
+    }
+    
+    #G2_exit()
+    {
+        this.stateId = RocketSm.StateId.GROUP;
+    }
+    
+    #G2_do()
+    {
+        // g2 behavior
+        // uml: do [x > 50] TransitionTo(g1)
+        if (x > 50)
+        {
+            // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+            this.#G2_exit();
+            
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `g1`.
+            this.#G1_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for g2
+        
+        // No ancestor handles this event.
     }
     
     // Thread safe.
@@ -126,7 +220,9 @@ class RocketSm
         switch (id)
         {
             case RocketSm.StateId.ROOT: return "ROOT";
-            case RocketSm.StateId.C1: return "C1";
+            case RocketSm.StateId.GROUP: return "GROUP";
+            case RocketSm.StateId.G1: return "G1";
+            case RocketSm.StateId.G2: return "G2";
             default: return "?";
         }
     }

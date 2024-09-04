@@ -589,7 +589,7 @@ public class EventHandlerBuilder
         File.RequestNewLineBeforeMoreCode();
     }
 
-    public void OutputFuncStateExit(NamedVertex state)
+    public virtual void OutputFuncStateExit(NamedVertex state)
     {
         OutputTriggerHandlerSignature(state, TriggerHelper.TRIGGER_EXIT);
 

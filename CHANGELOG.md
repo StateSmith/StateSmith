@@ -29,13 +29,21 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [0.13.2]
+### Added
+- `Balanced2` - remove un-necessary root state exit handler.
+- `Balanced2` - add protection against infinite loop in the event of memory corruption.
+  - https://github.com/StateSmith/StateSmith/issues/391
+- `Balanced2` - add `"First ancestor handler for this event"` comment.
+
+---
 
 ## [0.13.1]
 ### Added
-- `Balanced2` - add optimization for single event state machines
+- `Balanced2` - add optimization for single event state machines.
   - Add note assuming `event_id` parameter is valid for dispatch event function.
   - https://github.com/StateSmith/StateSmith/issues/388
-- `Balanced2` - smarter code gen (remove unused func type)
+- `Balanced2` - smarter code gen (remove unused func type).
 
 ---
 

@@ -16,10 +16,12 @@ public partial class RocketSm
     public enum StateId
     {
         ROOT = 0,
-        C1 = 1,
+        GROUP = 1,
+        G1 = 2,
+        G2 = 3,
     }
 
-    public const int StateIdCount = 2;
+    public const int StateIdCount = 4;
 
     // event handler type
     private delegate void Func(RocketSm sm);
@@ -56,19 +58,30 @@ public partial class RocketSm
             // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
 
             // ROOT.<InitialState> behavior
-            // uml: TransitionTo(c1)
+            // uml: TransitionTo(group)
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
 
                 // Step 2: Transition action: ``.
 
-                // Step 3: Enter/move towards transition target `c1`.
-                C1_enter();
+                // Step 3: Enter/move towards transition target `group`.
+                GROUP_enter();
 
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                this.stateId = StateId.C1;
-                // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
-                return;
+                // group.<InitialState> behavior
+                // uml: TransitionTo(g1)
+                {
+                    // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+
+                    // Step 2: Transition action: ``.
+
+                    // Step 3: Enter/move towards transition target `g1`.
+                    G1_enter();
+
+                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                    this.stateId = StateId.G1;
+                    // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+                    return;
+                } // end of behavior for group.<InitialState>
             } // end of behavior for ROOT.<InitialState>
         } // end of behavior for ROOT
     }
@@ -116,21 +129,112 @@ public partial class RocketSm
 
 
     ////////////////////////////////////////////////////////////////////////////////
-    // event handlers for state C1
+    // event handlers for state GROUP
     ////////////////////////////////////////////////////////////////////////////////
 
-    private void C1_enter()
+    private void GROUP_enter()
     {
         // setup trigger/event handlers
-        this.currentStateExitHandler = ptr_C1_exit;
+        this.currentStateExitHandler = ptr_GROUP_exit;
     }
 
     // static delegate to avoid implicit conversion and garbage collection
-    private static readonly Func ptr_C1_exit = (RocketSm sm) => sm.C1_exit();
-    private void C1_exit()
+    private static readonly Func ptr_GROUP_exit = (RocketSm sm) => sm.GROUP_exit();
+    private void GROUP_exit()
     {
         // adjust function pointers for this state's exit
         this.currentStateExitHandler = ptr_ROOT_exit;
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state G1
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private void G1_enter()
+    {
+        // setup trigger/event handlers
+        this.currentStateExitHandler = ptr_G1_exit;
+        this.currentEventHandlers[(int)EventId.DO] = ptr_G1_do;
+    }
+
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_G1_exit = (RocketSm sm) => sm.G1_exit();
+    private void G1_exit()
+    {
+        // adjust function pointers for this state's exit
+        this.currentStateExitHandler = ptr_GROUP_exit;
+        this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
+    }
+
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_G1_do = (RocketSm sm) => sm.G1_do();
+    private void G1_do()
+    {
+        // No ancestor state handles `do` event.
+
+        // g1 behavior
+        // uml: do TransitionTo(g2)
+        {
+            // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+            G1_exit();
+
+            // Step 2: Transition action: ``.
+
+            // Step 3: Enter/move towards transition target `g2`.
+            G2_enter();
+
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            this.stateId = StateId.G2;
+            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+            return;
+        } // end of behavior for g1
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state G2
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private void G2_enter()
+    {
+        // setup trigger/event handlers
+        this.currentStateExitHandler = ptr_G2_exit;
+        this.currentEventHandlers[(int)EventId.DO] = ptr_G2_do;
+    }
+
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_G2_exit = (RocketSm sm) => sm.G2_exit();
+    private void G2_exit()
+    {
+        // adjust function pointers for this state's exit
+        this.currentStateExitHandler = ptr_GROUP_exit;
+        this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
+    }
+
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_G2_do = (RocketSm sm) => sm.G2_do();
+    private void G2_do()
+    {
+        // No ancestor state handles `do` event.
+
+        // g2 behavior
+        // uml: do [x > 50] TransitionTo(g1)
+        if (x > 50)
+        {
+            // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+            G2_exit();
+
+            // Step 2: Transition action: ``.
+
+            // Step 3: Enter/move towards transition target `g1`.
+            G1_enter();
+
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            this.stateId = StateId.G1;
+            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+            return;
+        } // end of behavior for g2
     }
 
     // Thread safe.
@@ -139,7 +243,9 @@ public partial class RocketSm
         switch (id)
         {
             case StateId.ROOT: return "ROOT";
-            case StateId.C1: return "C1";
+            case StateId.GROUP: return "GROUP";
+            case StateId.G1: return "G1";
+            case StateId.G2: return "G2";
             default: return "?";
         }
     }
