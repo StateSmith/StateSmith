@@ -8,10 +8,11 @@ public partial class RocketSm
 {
     public enum EventId
     {
-        DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
+        EV1 = 0,
+        EV2 = 1,
     }
 
-    public const int EventIdCount = 1;
+    public const int EventIdCount = 2;
 
     public enum StateId
     {
@@ -19,9 +20,10 @@ public partial class RocketSm
         GROUP = 1,
         G1 = 2,
         G2 = 3,
+        S1 = 4,
     }
 
-    public const int StateIdCount = 4;
+    public const int StateIdCount = 5;
 
     // Used internally by state machine. Feel free to inspect, but don't modify.
     public StateId stateId;
@@ -76,27 +78,56 @@ public partial class RocketSm
     // Note! This function assumes that the `eventId` parameter is valid.
     public void DispatchEvent(EventId eventId)
     {
-
         switch (this.stateId)
         {
             // STATE: RocketSm
             case StateId.ROOT:
-                // state and ancestors have no handler for `do` event.
+                switch (eventId)
+                {
+                    // Events not handled by this state:
+                    case EventId.EV1: break;
+                    case EventId.EV2: break;
+                }
                 break;
 
             // STATE: group
             case StateId.GROUP:
-                // state and ancestors have no handler for `do` event.
+                switch (eventId)
+                {
+                    case EventId.EV1: GROUP_ev1(); break;
+                    // Events not handled by this state:
+                    case EventId.EV2: break;
+                }
                 break;
 
             // STATE: g1
             case StateId.G1:
-                G1_do();
+                switch (eventId)
+                {
+                    case EventId.EV1: G1_ev1(); break;
+                    // Events not handled by this state:
+                    case EventId.EV2: break;
+                }
                 break;
 
             // STATE: g2
             case StateId.G2:
-                G2_do();
+                switch (eventId)
+                {
+                    case EventId.EV2: G2_ev2(); break;
+                    // Events not handled by this state:
+                    case EventId.EV1: GROUP_ev1(); break;
+                }
+                break;
+
+            // STATE: s1
+            case StateId.S1:
+                switch (eventId)
+                {
+                    // Events not handled by this state:
+                    case EventId.EV1: break;
+                    case EventId.EV2: break;
+                }
                 break;
         }
 
@@ -117,6 +148,8 @@ public partial class RocketSm
                 case StateId.G1: G1_exit(); break;
 
                 case StateId.G2: G2_exit(); break;
+
+                case StateId.S1: S1_exit(); break;
             }
         }
     }
@@ -150,6 +183,26 @@ public partial class RocketSm
         this.stateId = StateId.ROOT;
     }
 
+    private void GROUP_ev1()
+    {
+        // group behavior
+        // uml: EV1 TransitionTo(s1)
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            ExitUpToStateHandler(StateId.ROOT);
+
+            // Step 2: Transition action: ``.
+
+            // Step 3: Enter/move towards transition target `s1`.
+            S1_enter();
+
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for group
+
+        // No ancestor handles this event.
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////////
     // event handlers for state G1
@@ -165,10 +218,13 @@ public partial class RocketSm
         this.stateId = StateId.GROUP;
     }
 
-    private void G1_do()
+    private void G1_ev1()
     {
+        bool consume_event = false;
+
         // g1 behavior
-        // uml: do TransitionTo(g2)
+        // uml: EV1 [a > 20] TransitionTo(g2)
+        if (a > 20)
         {
             // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
             G1_exit();
@@ -182,7 +238,11 @@ public partial class RocketSm
             return;
         } // end of behavior for g1
 
-        // No ancestor handles this event.
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            GROUP_ev1();
+        }
     }
 
 
@@ -200,11 +260,10 @@ public partial class RocketSm
         this.stateId = StateId.GROUP;
     }
 
-    private void G2_do()
+    private void G2_ev2()
     {
         // g2 behavior
-        // uml: do [x > 50] TransitionTo(g1)
-        if (x > 50)
+        // uml: EV2 TransitionTo(g1)
         {
             // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
             G2_exit();
@@ -221,6 +280,21 @@ public partial class RocketSm
         // No ancestor handles this event.
     }
 
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state S1
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private void S1_enter()
+    {
+        this.stateId = StateId.S1;
+    }
+
+    private void S1_exit()
+    {
+        this.stateId = StateId.ROOT;
+    }
+
     // Thread safe.
     public static string StateIdToString(StateId id)
     {
@@ -230,6 +304,7 @@ public partial class RocketSm
             case StateId.GROUP: return "GROUP";
             case StateId.G1: return "G1";
             case StateId.G2: return "G2";
+            case StateId.S1: return "S1";
             default: return "?";
         }
     }
@@ -239,7 +314,8 @@ public partial class RocketSm
     {
         switch (id)
         {
-            case EventId.DO: return "DO";
+            case EventId.EV1: return "EV1";
+            case EventId.EV2: return "EV2";
             default: return "?";
         }
     }

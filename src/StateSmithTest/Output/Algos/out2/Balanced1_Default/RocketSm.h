@@ -6,12 +6,13 @@
 
 typedef enum RocketSm_EventId
 {
-    RocketSm_EventId_DO = 0 // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
+    RocketSm_EventId_EV1 = 0,
+    RocketSm_EventId_EV2 = 1
 } RocketSm_EventId;
 
 enum
 {
-    RocketSm_EventIdCount = 1
+    RocketSm_EventIdCount = 2
 };
 
 typedef enum RocketSm_StateId
@@ -19,12 +20,13 @@ typedef enum RocketSm_StateId
     RocketSm_StateId_ROOT = 0,
     RocketSm_StateId_GROUP = 1,
     RocketSm_StateId_G1 = 2,
-    RocketSm_StateId_G2 = 3
+    RocketSm_StateId_G2 = 3,
+    RocketSm_StateId_S1 = 4
 } RocketSm_StateId;
 
 enum
 {
-    RocketSm_StateIdCount = 4
+    RocketSm_StateIdCount = 5
 };
 
 

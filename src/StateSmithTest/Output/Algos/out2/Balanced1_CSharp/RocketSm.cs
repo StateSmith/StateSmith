@@ -8,10 +8,11 @@ public partial class RocketSm
 {
     public enum EventId
     {
-        DO = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
+        EV1 = 0,
+        EV2 = 1,
     }
 
-    public const int EventIdCount = 1;
+    public const int EventIdCount = 2;
 
     public enum StateId
     {
@@ -19,9 +20,10 @@ public partial class RocketSm
         GROUP = 1,
         G1 = 2,
         G2 = 3,
+        S1 = 4,
     }
 
-    public const int StateIdCount = 4;
+    public const int StateIdCount = 5;
 
     // event handler type
     private delegate void Func(RocketSm sm);
@@ -136,6 +138,7 @@ public partial class RocketSm
     {
         // setup trigger/event handlers
         this.currentStateExitHandler = ptr_GROUP_exit;
+        this.currentEventHandlers[(int)EventId.EV1] = ptr_GROUP_ev1;
     }
 
     // static delegate to avoid implicit conversion and garbage collection
@@ -144,6 +147,31 @@ public partial class RocketSm
     {
         // adjust function pointers for this state's exit
         this.currentStateExitHandler = ptr_ROOT_exit;
+        this.currentEventHandlers[(int)EventId.EV1] = null;  // no ancestor listens to this event
+    }
+
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_GROUP_ev1 = (RocketSm sm) => sm.GROUP_ev1();
+    private void GROUP_ev1()
+    {
+        // No ancestor state handles `ev1` event.
+
+        // group behavior
+        // uml: EV1 TransitionTo(s1)
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            ExitUpToStateHandler(ptr_ROOT_exit);
+
+            // Step 2: Transition action: ``.
+
+            // Step 3: Enter/move towards transition target `s1`.
+            S1_enter();
+
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            this.stateId = StateId.S1;
+            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+            return;
+        } // end of behavior for group
     }
 
 
@@ -155,7 +183,7 @@ public partial class RocketSm
     {
         // setup trigger/event handlers
         this.currentStateExitHandler = ptr_G1_exit;
-        this.currentEventHandlers[(int)EventId.DO] = ptr_G1_do;
+        this.currentEventHandlers[(int)EventId.EV1] = ptr_G1_ev1;
     }
 
     // static delegate to avoid implicit conversion and garbage collection
@@ -164,17 +192,19 @@ public partial class RocketSm
     {
         // adjust function pointers for this state's exit
         this.currentStateExitHandler = ptr_GROUP_exit;
-        this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
+        this.currentEventHandlers[(int)EventId.EV1] = ptr_GROUP_ev1;  // the next ancestor that handles this event is GROUP
     }
 
     // static delegate to avoid implicit conversion and garbage collection
-    private static readonly Func ptr_G1_do = (RocketSm sm) => sm.G1_do();
-    private void G1_do()
+    private static readonly Func ptr_G1_ev1 = (RocketSm sm) => sm.G1_ev1();
+    private void G1_ev1()
     {
-        // No ancestor state handles `do` event.
+        // Setup handler for next ancestor that listens to `ev1` event.
+        this.ancestorEventHandler = ptr_GROUP_ev1;
 
         // g1 behavior
-        // uml: do TransitionTo(g2)
+        // uml: EV1 [a > 20] TransitionTo(g2)
+        if (a > 20)
         {
             // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
             G1_exit();
@@ -186,7 +216,7 @@ public partial class RocketSm
 
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             this.stateId = StateId.G2;
-            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+            this.ancestorEventHandler = null;
             return;
         } // end of behavior for g1
     }
@@ -200,7 +230,7 @@ public partial class RocketSm
     {
         // setup trigger/event handlers
         this.currentStateExitHandler = ptr_G2_exit;
-        this.currentEventHandlers[(int)EventId.DO] = ptr_G2_do;
+        this.currentEventHandlers[(int)EventId.EV2] = ptr_G2_ev2;
     }
 
     // static delegate to avoid implicit conversion and garbage collection
@@ -209,18 +239,17 @@ public partial class RocketSm
     {
         // adjust function pointers for this state's exit
         this.currentStateExitHandler = ptr_GROUP_exit;
-        this.currentEventHandlers[(int)EventId.DO] = null;  // no ancestor listens to this event
+        this.currentEventHandlers[(int)EventId.EV2] = null;  // no ancestor listens to this event
     }
 
     // static delegate to avoid implicit conversion and garbage collection
-    private static readonly Func ptr_G2_do = (RocketSm sm) => sm.G2_do();
-    private void G2_do()
+    private static readonly Func ptr_G2_ev2 = (RocketSm sm) => sm.G2_ev2();
+    private void G2_ev2()
     {
-        // No ancestor state handles `do` event.
+        // No ancestor state handles `ev2` event.
 
         // g2 behavior
-        // uml: do [x > 50] TransitionTo(g1)
-        if (x > 50)
+        // uml: EV2 TransitionTo(g1)
         {
             // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
             G2_exit();
@@ -237,6 +266,25 @@ public partial class RocketSm
         } // end of behavior for g2
     }
 
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state S1
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private void S1_enter()
+    {
+        // setup trigger/event handlers
+        this.currentStateExitHandler = ptr_S1_exit;
+    }
+
+    // static delegate to avoid implicit conversion and garbage collection
+    private static readonly Func ptr_S1_exit = (RocketSm sm) => sm.S1_exit();
+    private void S1_exit()
+    {
+        // adjust function pointers for this state's exit
+        this.currentStateExitHandler = ptr_ROOT_exit;
+    }
+
     // Thread safe.
     public static string StateIdToString(StateId id)
     {
@@ -246,6 +294,7 @@ public partial class RocketSm
             case StateId.GROUP: return "GROUP";
             case StateId.G1: return "G1";
             case StateId.G2: return "G2";
+            case StateId.S1: return "S1";
             default: return "?";
         }
     }
@@ -255,7 +304,8 @@ public partial class RocketSm
     {
         switch (id)
         {
-            case EventId.DO: return "DO";
+            case EventId.EV1: return "EV1";
+            case EventId.EV2: return "EV2";
             default: return "?";
         }
     }

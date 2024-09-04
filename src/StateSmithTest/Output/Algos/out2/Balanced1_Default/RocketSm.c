@@ -17,17 +17,23 @@ static void GROUP_enter(RocketSm* sm);
 
 static void GROUP_exit(RocketSm* sm);
 
+static void GROUP_ev1(RocketSm* sm);
+
 static void G1_enter(RocketSm* sm);
 
 static void G1_exit(RocketSm* sm);
 
-static void G1_do(RocketSm* sm);
+static void G1_ev1(RocketSm* sm);
 
 static void G2_enter(RocketSm* sm);
 
 static void G2_exit(RocketSm* sm);
 
-static void G2_do(RocketSm* sm);
+static void G2_ev2(RocketSm* sm);
+
+static void S1_enter(RocketSm* sm);
+
+static void S1_exit(RocketSm* sm);
 
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
@@ -129,12 +135,36 @@ static void GROUP_enter(RocketSm* sm)
 {
     // setup trigger/event handlers
     sm->current_state_exit_handler = GROUP_exit;
+    sm->current_event_handlers[RocketSm_EventId_EV1] = GROUP_ev1;
 }
 
 static void GROUP_exit(RocketSm* sm)
 {
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = ROOT_exit;
+    sm->current_event_handlers[RocketSm_EventId_EV1] = NULL;  // no ancestor listens to this event
+}
+
+static void GROUP_ev1(RocketSm* sm)
+{
+    // No ancestor state handles `ev1` event.
+    
+    // group behavior
+    // uml: EV1 TransitionTo(s1)
+    {
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        exit_up_to_state_handler(sm, ROOT_exit);
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `s1`.
+        S1_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        sm->state_id = RocketSm_StateId_S1;
+        // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
+        return;
+    } // end of behavior for group
 }
 
 
@@ -146,22 +176,24 @@ static void G1_enter(RocketSm* sm)
 {
     // setup trigger/event handlers
     sm->current_state_exit_handler = G1_exit;
-    sm->current_event_handlers[RocketSm_EventId_DO] = G1_do;
+    sm->current_event_handlers[RocketSm_EventId_EV1] = G1_ev1;
 }
 
 static void G1_exit(RocketSm* sm)
 {
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = GROUP_exit;
-    sm->current_event_handlers[RocketSm_EventId_DO] = NULL;  // no ancestor listens to this event
+    sm->current_event_handlers[RocketSm_EventId_EV1] = GROUP_ev1;  // the next ancestor that handles this event is GROUP
 }
 
-static void G1_do(RocketSm* sm)
+static void G1_ev1(RocketSm* sm)
 {
-    // No ancestor state handles `do` event.
+    // Setup handler for next ancestor that listens to `ev1` event.
+    sm->ancestor_event_handler = GROUP_ev1;
     
     // g1 behavior
-    // uml: do TransitionTo(g2)
+    // uml: EV1 [a > 20] TransitionTo(g2)
+    if (a > 20)
     {
         // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
         G1_exit(sm);
@@ -173,7 +205,7 @@ static void G1_do(RocketSm* sm)
         
         // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
         sm->state_id = RocketSm_StateId_G2;
-        // No ancestor handles event. Can skip nulling `ancestor_event_handler`.
+        sm->ancestor_event_handler = NULL;
         return;
     } // end of behavior for g1
 }
@@ -187,23 +219,22 @@ static void G2_enter(RocketSm* sm)
 {
     // setup trigger/event handlers
     sm->current_state_exit_handler = G2_exit;
-    sm->current_event_handlers[RocketSm_EventId_DO] = G2_do;
+    sm->current_event_handlers[RocketSm_EventId_EV2] = G2_ev2;
 }
 
 static void G2_exit(RocketSm* sm)
 {
     // adjust function pointers for this state's exit
     sm->current_state_exit_handler = GROUP_exit;
-    sm->current_event_handlers[RocketSm_EventId_DO] = NULL;  // no ancestor listens to this event
+    sm->current_event_handlers[RocketSm_EventId_EV2] = NULL;  // no ancestor listens to this event
 }
 
-static void G2_do(RocketSm* sm)
+static void G2_ev2(RocketSm* sm)
 {
-    // No ancestor state handles `do` event.
+    // No ancestor state handles `ev2` event.
     
     // g2 behavior
-    // uml: do [x > 50] TransitionTo(g1)
-    if (x > 50)
+    // uml: EV2 TransitionTo(g1)
     {
         // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
         G2_exit(sm);
@@ -220,6 +251,23 @@ static void G2_do(RocketSm* sm)
     } // end of behavior for g2
 }
 
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state S1
+////////////////////////////////////////////////////////////////////////////////
+
+static void S1_enter(RocketSm* sm)
+{
+    // setup trigger/event handlers
+    sm->current_state_exit_handler = S1_exit;
+}
+
+static void S1_exit(RocketSm* sm)
+{
+    // adjust function pointers for this state's exit
+    sm->current_state_exit_handler = ROOT_exit;
+}
+
 // Thread safe.
 char const * RocketSm_state_id_to_string(RocketSm_StateId id)
 {
@@ -229,6 +277,7 @@ char const * RocketSm_state_id_to_string(RocketSm_StateId id)
         case RocketSm_StateId_GROUP: return "GROUP";
         case RocketSm_StateId_G1: return "G1";
         case RocketSm_StateId_G2: return "G2";
+        case RocketSm_StateId_S1: return "S1";
         default: return "?";
     }
 }
@@ -238,7 +287,8 @@ char const * RocketSm_event_id_to_string(RocketSm_EventId id)
 {
     switch (id)
     {
-        case RocketSm_EventId_DO: return "DO";
+        case RocketSm_EventId_EV1: return "EV1";
+        case RocketSm_EventId_EV2: return "EV2";
         default: return "?";
     }
 }

@@ -6,11 +6,12 @@ class RocketSm
 {
     static EventId = 
     {
-        DO : 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.
+        EV1 : 0,
+        EV2 : 1,
     }
     static { Object.freeze(this.EventId); }
     
-    static EventIdCount = 1;
+    static EventIdCount = 2;
     static { Object.freeze(this.EventIdCount); }
     
     static StateId = 
@@ -19,10 +20,11 @@ class RocketSm
         GROUP : 1,
         G1 : 2,
         G2 : 3,
+        S1 : 4,
     }
     static { Object.freeze(this.StateId); }
     
-    static StateIdCount = 4;
+    static StateIdCount = 5;
     static { Object.freeze(this.StateIdCount); }
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
@@ -128,12 +130,36 @@ class RocketSm
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#GROUP_exit;
+        this.#currentEventHandlers[RocketSm.EventId.EV1] = this.#GROUP_ev1;
     }
     
     #GROUP_exit()
     {
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#ROOT_exit;
+        this.#currentEventHandlers[RocketSm.EventId.EV1] = null;  // no ancestor listens to this event
+    }
+    
+    #GROUP_ev1()
+    {
+        // No ancestor state handles `ev1` event.
+        
+        // group behavior
+        // uml: EV1 TransitionTo(s1)
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            this.#exitUpToStateHandler(this.#ROOT_exit);
+            
+            // Step 2: Transition action: ``.
+            
+            // Step 3: Enter/move towards transition target `s1`.
+            this.#S1_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            this.stateId = RocketSm.StateId.S1;
+            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+            return;
+        } // end of behavior for group
     }
     
     
@@ -145,22 +171,24 @@ class RocketSm
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#G1_exit;
-        this.#currentEventHandlers[RocketSm.EventId.DO] = this.#G1_do;
+        this.#currentEventHandlers[RocketSm.EventId.EV1] = this.#G1_ev1;
     }
     
     #G1_exit()
     {
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#GROUP_exit;
-        this.#currentEventHandlers[RocketSm.EventId.DO] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[RocketSm.EventId.EV1] = this.#GROUP_ev1;  // the next ancestor that handles this event is GROUP
     }
     
-    #G1_do()
+    #G1_ev1()
     {
-        // No ancestor state handles `do` event.
+        // Setup handler for next ancestor that listens to `ev1` event.
+        this.#ancestorEventHandler = this.#GROUP_ev1;
         
         // g1 behavior
-        // uml: do TransitionTo(g2)
+        // uml: EV1 [a > 20] TransitionTo(g2)
+        if (a > 20)
         {
             // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
             this.#G1_exit();
@@ -172,7 +200,7 @@ class RocketSm
             
             // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             this.stateId = RocketSm.StateId.G2;
-            // No ancestor handles event. Can skip nulling `ancestorEventHandler`.
+            this.#ancestorEventHandler = null;
             return;
         } // end of behavior for g1
     }
@@ -186,23 +214,22 @@ class RocketSm
     {
         // setup trigger/event handlers
         this.#currentStateExitHandler = this.#G2_exit;
-        this.#currentEventHandlers[RocketSm.EventId.DO] = this.#G2_do;
+        this.#currentEventHandlers[RocketSm.EventId.EV2] = this.#G2_ev2;
     }
     
     #G2_exit()
     {
         // adjust function pointers for this state's exit
         this.#currentStateExitHandler = this.#GROUP_exit;
-        this.#currentEventHandlers[RocketSm.EventId.DO] = null;  // no ancestor listens to this event
+        this.#currentEventHandlers[RocketSm.EventId.EV2] = null;  // no ancestor listens to this event
     }
     
-    #G2_do()
+    #G2_ev2()
     {
-        // No ancestor state handles `do` event.
+        // No ancestor state handles `ev2` event.
         
         // g2 behavior
-        // uml: do [x > 50] TransitionTo(g1)
-        if (x > 50)
+        // uml: EV2 TransitionTo(g1)
         {
             // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
             this.#G2_exit();
@@ -219,6 +246,23 @@ class RocketSm
         } // end of behavior for g2
     }
     
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state S1
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    #S1_enter()
+    {
+        // setup trigger/event handlers
+        this.#currentStateExitHandler = this.#S1_exit;
+    }
+    
+    #S1_exit()
+    {
+        // adjust function pointers for this state's exit
+        this.#currentStateExitHandler = this.#ROOT_exit;
+    }
+    
     // Thread safe.
     static stateIdToString(id)
     {
@@ -228,6 +272,7 @@ class RocketSm
             case RocketSm.StateId.GROUP: return "GROUP";
             case RocketSm.StateId.G1: return "G1";
             case RocketSm.StateId.G2: return "G2";
+            case RocketSm.StateId.S1: return "S1";
             default: return "?";
         }
     }
@@ -237,7 +282,8 @@ class RocketSm
     {
         switch (id)
         {
-            case RocketSm.EventId.DO: return "DO";
+            case RocketSm.EventId.EV1: return "EV1";
+            case RocketSm.EventId.EV2: return "EV2";
             default: return "?";
         }
     }

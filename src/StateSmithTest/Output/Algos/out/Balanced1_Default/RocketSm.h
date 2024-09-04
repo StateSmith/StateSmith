@@ -17,12 +17,14 @@ enum
 typedef enum RocketSm_StateId
 {
     RocketSm_StateId_ROOT = 0,
-    RocketSm_StateId_C1 = 1
+    RocketSm_StateId_GROUP = 1,
+    RocketSm_StateId_G1 = 2,
+    RocketSm_StateId_G2 = 3
 } RocketSm_StateId;
 
 enum
 {
-    RocketSm_StateIdCount = 2
+    RocketSm_StateIdCount = 4
 };
 
 

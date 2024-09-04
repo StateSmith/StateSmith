@@ -27,9 +27,49 @@ public class AlgoTests
     }
 
     [Fact]
-    public void IntegrationTests()
+    public void IntegrationTests_SingleEvent()
     {
-        var outDir = TestHelper.GetThisDir() + "/out";
+        const string basicSingleEventPlantUml = """
+            @startuml RocketSm
+            [*] --> group
+            state group {
+                [*] --> g1
+                g1 --> g2
+                g2 --> g1: [x > 50]
+            }
+            @enduml
+            """;
+
+        RunIntegrationTestMatrix(basicSingleEventPlantUml, "out");
+    }
+
+    [Fact]
+    public void IntegrationTests_MultipleEvent()
+    {
+        const string basicSingleEventPlantUml = """
+            @startuml RocketSm
+            [*] --> group
+            state s1
+            
+            state group {
+                state g1
+                state g2
+                [*] --> g1
+            }
+
+            g1 --> g2: EV1 [a > 20]
+            g2 --> g1: EV2
+            group --> s1: EV1
+            
+            @enduml
+            """;
+
+        RunIntegrationTestMatrix(basicSingleEventPlantUml, "out2");
+    }
+
+    private static void RunIntegrationTestMatrix(string MinimalPlantUmlFsm, string outDirName)
+    {
+        var outDir = TestHelper.GetThisDir() + "/" + outDirName;
         Directory.Delete(outDir, recursive: true);
 
         foreach (var algoId in GetValues<AlgorithmId>())
@@ -41,18 +81,10 @@ public class AlgoTests
 
                 var dirName = $"{outDir}/{algoId}_{transpilerId}";
                 Directory.CreateDirectory(dirName);
-                TestHelper.RunSmRunnerForPlantUmlString(outputDir: dirName, algorithmId: algoId, transpilerId: transpilerId);
+                TestHelper.RunSmRunnerForPlantUmlString(plantUmlText: MinimalPlantUmlFsm, outputDir: dirName, algorithmId: algoId, transpilerId: transpilerId);
             }
         }
-
-        // https://stackoverflow.com/a/972323
-        static IEnumerable<T> GetValues<T>()
-        {
-            return Enum.GetValues(typeof(T)).Cast<T>();
-        }
-
     }
-
 
     private static string GenerateCForAlgo(AlgorithmId algo)
     {
@@ -62,6 +94,12 @@ public class AlgoTests
         TestHelper.CaptureRunSmRunnerForPlantUmlString(codeFileWriter: fakeFs, consoleCapturer: console, algorithmId: algo);
         var cCode = fakeFs.GetSoleCaptureWithName("RocketSm.c").code;
         return cCode;
+    }
+
+    // https://stackoverflow.com/a/972323
+    static IEnumerable<T> GetValues<T>()
+    {
+        return Enum.GetValues(typeof(T)).Cast<T>();
     }
 }
 

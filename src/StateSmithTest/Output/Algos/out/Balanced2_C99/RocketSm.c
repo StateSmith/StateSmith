@@ -13,9 +13,21 @@ static void ROOT_enter(RocketSm* sm);
 
 static void ROOT_exit(RocketSm* sm);
 
-static void C1_enter(RocketSm* sm);
+static void GROUP_enter(RocketSm* sm);
 
-static void C1_exit(RocketSm* sm);
+static void GROUP_exit(RocketSm* sm);
+
+static void G1_enter(RocketSm* sm);
+
+static void G1_exit(RocketSm* sm);
+
+static void G1_do(RocketSm* sm);
+
+static void G2_enter(RocketSm* sm);
+
+static void G2_exit(RocketSm* sm);
+
+static void G2_do(RocketSm* sm);
 
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
@@ -39,17 +51,28 @@ void RocketSm_start(RocketSm* sm)
         // ROOT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
         
         // ROOT.<InitialState> behavior
-        // uml: TransitionTo(c1)
+        // uml: TransitionTo(group)
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             // Step 2: Transition action: ``.
             
-            // Step 3: Enter/move towards transition target `c1`.
-            C1_enter(sm);
+            // Step 3: Enter/move towards transition target `group`.
+            GROUP_enter(sm);
             
-            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-            return;
+            // group.<InitialState> behavior
+            // uml: TransitionTo(g1)
+            {
+                // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
+                
+                // Step 2: Transition action: ``.
+                
+                // Step 3: Enter/move towards transition target `g1`.
+                G1_enter(sm);
+                
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                return;
+            } // end of behavior for group.<InitialState>
         } // end of behavior for ROOT.<InitialState>
     } // end of behavior for ROOT
 }
@@ -69,9 +92,19 @@ void RocketSm_dispatch_event(RocketSm* sm, RocketSm_EventId event_id)
             // state and ancestors have no handler for `do` event.
             break;
         
-        // STATE: c1
-        case RocketSm_StateId_C1:
+        // STATE: group
+        case RocketSm_StateId_GROUP:
             // state and ancestors have no handler for `do` event.
+            break;
+        
+        // STATE: g1
+        case RocketSm_StateId_G1:
+            G1_do(sm); 
+            break;
+        
+        // STATE: g2
+        case RocketSm_StateId_G2:
+            G2_do(sm); 
             break;
     }
     
@@ -87,7 +120,11 @@ static void exit_up_to_state_handler(RocketSm* sm, RocketSm_StateId desired_stat
         {
             case RocketSm_StateId_ROOT: ROOT_exit(sm); break;
             
-            case RocketSm_StateId_C1: C1_exit(sm); break;
+            case RocketSm_StateId_GROUP: GROUP_exit(sm); break;
+            
+            case RocketSm_StateId_G1: G1_exit(sm); break;
+            
+            case RocketSm_StateId_G2: G2_exit(sm); break;
         }
     }
 }
@@ -110,17 +147,88 @@ static void ROOT_exit(RocketSm* sm)
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// event handlers for state C1
+// event handlers for state GROUP
 ////////////////////////////////////////////////////////////////////////////////
 
-static void C1_enter(RocketSm* sm)
+static void GROUP_enter(RocketSm* sm)
 {
-    sm->state_id = RocketSm_StateId_C1;
+    sm->state_id = RocketSm_StateId_GROUP;
 }
 
-static void C1_exit(RocketSm* sm)
+static void GROUP_exit(RocketSm* sm)
 {
     sm->state_id = RocketSm_StateId_ROOT;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state G1
+////////////////////////////////////////////////////////////////////////////////
+
+static void G1_enter(RocketSm* sm)
+{
+    sm->state_id = RocketSm_StateId_G1;
+}
+
+static void G1_exit(RocketSm* sm)
+{
+    sm->state_id = RocketSm_StateId_GROUP;
+}
+
+static void G1_do(RocketSm* sm)
+{
+    // g1 behavior
+    // uml: do TransitionTo(g2)
+    {
+        // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+        G1_exit(sm);
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `g2`.
+        G2_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        return;
+    } // end of behavior for g1
+    
+    // No ancestor handles this event.
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state G2
+////////////////////////////////////////////////////////////////////////////////
+
+static void G2_enter(RocketSm* sm)
+{
+    sm->state_id = RocketSm_StateId_G2;
+}
+
+static void G2_exit(RocketSm* sm)
+{
+    sm->state_id = RocketSm_StateId_GROUP;
+}
+
+static void G2_do(RocketSm* sm)
+{
+    // g2 behavior
+    // uml: do [x > 50] TransitionTo(g1)
+    if (x > 50)
+    {
+        // Step 1: Exit states until we reach `group` state (Least Common Ancestor for transition).
+        G2_exit(sm);
+        
+        // Step 2: Transition action: ``.
+        
+        // Step 3: Enter/move towards transition target `g1`.
+        G1_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        return;
+    } // end of behavior for g2
+    
+    // No ancestor handles this event.
 }
 
 // Thread safe.
@@ -129,7 +237,9 @@ char const * RocketSm_state_id_to_string(RocketSm_StateId id)
     switch (id)
     {
         case RocketSm_StateId_ROOT: return "ROOT";
-        case RocketSm_StateId_C1: return "C1";
+        case RocketSm_StateId_GROUP: return "GROUP";
+        case RocketSm_StateId_G1: return "G1";
+        case RocketSm_StateId_G2: return "G2";
         default: return "?";
     }
 }
