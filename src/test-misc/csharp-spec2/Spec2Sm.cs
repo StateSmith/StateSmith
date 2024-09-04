@@ -339,6 +339,7 @@ namespace Csharp.Spec2smTests
         }
 
         // Dispatches an event to the state machine. Not thread safe.
+        // Note! This function assumes that the `eventId` parameter is valid.
         public void DispatchEvent(EventId eventId)
         {
             switch (this.stateId)

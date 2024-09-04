@@ -33,6 +33,7 @@ Test/interim releases are not documented here.
 ## [0.13.?]
 ### Added
 - `Balanced2` - add optimization for single event state machines
+  - Add note assuming `event_id` parameter is valid for dispatch event function.
   - https://github.com/StateSmith/StateSmith/issues/388
 
 ---

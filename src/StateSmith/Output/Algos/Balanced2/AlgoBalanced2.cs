@@ -73,10 +73,8 @@ public class AlgoBalanced2 : AlgoBalanced1
 
     override protected void OutputFuncDispatchEvent()
     {
-        file.AppendLine("// Dispatches an event to the state machine. Not thread safe.");
-        string eventIdParameterName = mangler.MangleVarName("event_id");
+        OutputFuncDispatchEventStart(out string eventIdParameterName);
 
-        file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {eventIdParameterName})");
         file.StartCodeBlock();
         {
             // optimization for single event
@@ -85,7 +83,7 @@ public class AlgoBalanced2 : AlgoBalanced1
             {
                 file.AppendLine("// This state machine design only has a single event type so we can safely assume");
                 file.AppendLine($"// that the dispatched event is `{Sm.GetEventSet().Single()}` without checking the `{eventIdParameterName}` parameter.");
-                file.AppendLine(GilCreationHelper.MarkVarAsUnused(eventIdParameterName) + " // This line prevents an 'unused variable' compiler warning");
+                file.AppendLine(GilCreationHelper.MarkVarAsUnused(eventIdParameterName) + " // This line prevents an 'unused variable' compiler warning"); // Note! transpilers that don't need this will skip this line and trailing comments/trivia.
                 file.AppendLine();
             }
 

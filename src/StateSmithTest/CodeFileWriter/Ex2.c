@@ -65,6 +65,7 @@ void Ex2_start(Ex2* sm)
 }
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id)
 {
     switch (sm->state_id)

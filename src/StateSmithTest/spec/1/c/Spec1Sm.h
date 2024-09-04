@@ -54,6 +54,7 @@ void Spec1Sm_ctor(Spec1Sm* sm);
 void Spec1Sm_start(Spec1Sm* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id);
 
 // Thread safe.

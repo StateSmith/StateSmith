@@ -1054,6 +1054,7 @@ void Spec2Sm_start(Spec2Sm* sm)
 }
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
 {
     switch (sm->state_id)

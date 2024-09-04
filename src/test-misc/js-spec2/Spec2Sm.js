@@ -333,6 +333,7 @@ export class Spec2Sm
     }
     
     // Dispatches an event to the state machine. Not thread safe.
+    // Note! This function assumes that the `eventId` parameter is valid.
     dispatchEvent(eventId)
     {
         switch (this.stateId)

@@ -50,6 +50,7 @@ void PlantEx2_ctor(PlantEx2* sm);
 void PlantEx2_start(PlantEx2* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id);
 
 // Thread safe.

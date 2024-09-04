@@ -97,6 +97,7 @@ void Spec1bSm_start(Spec1bSm* sm)
 }
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id)
 {
     // This state machine design only has a single event type so we can safely assume

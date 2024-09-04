@@ -41,6 +41,7 @@ void Ex1_ctor(Ex1* sm);
 void Ex1_start(Ex1* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void Ex1_dispatch_event(Ex1* sm, Ex1_EventId event_id);
 
 
