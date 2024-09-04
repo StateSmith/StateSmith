@@ -113,7 +113,7 @@ class RocketSm
                 {
                     case RocketSm.EventId.EV2: this.#G2_ev2(); break;
                     // Events not handled by this state:
-                    case RocketSm.EventId.EV1: this.#GROUP_ev1(); break;
+                    case RocketSm.EventId.EV1: this.#GROUP_ev1(); break; // First ancestor handler for this event
                 }
                 break;
             

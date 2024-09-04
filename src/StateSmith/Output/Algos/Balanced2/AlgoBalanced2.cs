@@ -9,11 +9,14 @@ using StateSmith.SmGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace StateSmith.Output.Algos.Balanced2;
 
 public class AlgoBalanced2 : AlgoBalanced1
 {
+    private const string FirstAncestorHandlerComment = "First ancestor handler for this event";
+
     public AlgoBalanced2(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder2 eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter) :
         base(mangler, pseudoStateHandlerBuilder, enumBuilder, renderConfig, eventHandlerBuilder, styler, settings, algoEventIdToString, algoStateIdToString, standardFileHeaderPrinter)
     {
@@ -134,7 +137,7 @@ public class AlgoBalanced2 : AlgoBalanced1
             {
                 foreach (string evt in stateEvents)
                 {
-                    OutputEventHandler(namedVertex, evt);
+                    MaybeOutputEventHandler(namedVertex, evt);
                 }
 
                 var otherEvents = allEvents.Except(stateEvents);
@@ -145,8 +148,9 @@ public class AlgoBalanced2 : AlgoBalanced1
 
                     foreach (string evt in otherEvents)
                     {
-                        var ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
-                        OutputEventHandler(ancestor, evt);
+                        NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
+                        var comment = (ancestor == null) ? string.Empty : FirstAncestorHandlerComment;
+                        MaybeOutputEventHandler(ancestor, evt, comment: comment);
                     }
                 }
             }
@@ -171,12 +175,18 @@ public class AlgoBalanced2 : AlgoBalanced1
         bool outputHandler = false;
         if (stateEvents.Any())
         {
-            outputHandler |= MaybeOutputEventHandlerCall(namedVertex, onlyEvent);
+            outputHandler = true;
+            OutputEventHandlerCall(namedVertex, onlyEvent);
         }
         else
         {
             var ancestor = namedVertex.FirstAncestorThatHandlesEvent(onlyEvent);
-            outputHandler |= MaybeOutputEventHandlerCall(ancestor, onlyEvent);
+            if (ancestor != null)
+            {
+                outputHandler = true;
+                OutputEventHandlerCall(ancestor, onlyEvent);
+                AddFirstAncestorHandlerComment();
+            }
         }
 
         if (!outputHandler)
@@ -187,29 +197,41 @@ public class AlgoBalanced2 : AlgoBalanced1
         file.AppendWithoutIndent("\n");
     }
 
-    private void OutputEventHandler(NamedVertex? namedVertex, string evt)
+    private void MaybeOutputEventHandler(NamedVertex? namedVertex, string evt, string comment = "")
     {
         file.Append($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(evt)}: ");
         //file.IncreaseIndentLevel();
 
         if (namedVertex != null)
         {
-            MaybeOutputEventHandlerCall(namedVertex, evt);
+            OutputEventHandlerCall(namedVertex, evt);
         }
 
-        file.AppendWithoutIndent("break;\n");
+        file.AppendWithoutIndent("break;");
+
+        AddCommentLine(comment);
+
         //file.DecreaseIndentLevel();
     }
 
-    private bool MaybeOutputEventHandlerCall(NamedVertex? namedVertex, string evt)
+    private void AddFirstAncestorHandlerComment()
     {
-        if (namedVertex != null)
+        AddCommentLine(FirstAncestorHandlerComment);
+    }
+
+    private void AddCommentLine(string comment)
+    {
+        if (comment.Length > 0)
         {
-            string eventHandlerFuncName = mangler.SmTriggerHandlerFuncName(namedVertex, evt);
-            file.AppendWithoutIndent($"this.{eventHandlerFuncName}(); ");
-            return true;
+            file.AppendWithoutIndent(" // " + comment);
         }
-        return false;
+        file.AppendWithoutIndent("\n");
+    }
+
+    private void OutputEventHandlerCall(NamedVertex namedVertex, string evt)
+    {
+        string eventHandlerFuncName = mangler.SmTriggerHandlerFuncName(namedVertex, evt);
+        file.AppendWithoutIndent($"this.{eventHandlerFuncName}(); ");
     }
 
     protected override void OutputEventHandlerDelegate()

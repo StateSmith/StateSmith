@@ -670,7 +670,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.DO: break;
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
@@ -683,7 +683,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.BUTTON2: this.#ADJUSTSERVOOFFSETS_button2(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.DO: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -695,8 +695,8 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#DECREASE_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
-                    case BeadSorter.EventId.BUTTON2: this.#ADJUSTSERVOOFFSETS_button2(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON2: this.#ADJUSTSERVOOFFSETS_button2(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON1: break;
                 }
                 break;
@@ -707,8 +707,8 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#INCREASE_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
-                    case BeadSorter.EventId.BUTTON2: this.#ADJUSTSERVOOFFSETS_button2(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
+                    case BeadSorter.EventId.BUTTON2: this.#ADJUSTSERVOOFFSETS_button2(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON1: break;
                 }
                 break;
@@ -720,7 +720,7 @@ evaluateGuard = null;
                     case BeadSorter.EventId.BUTTON1: this.#WAIT_button1(); break;
                     case BeadSorter.EventId.BUTTON2: this.#WAIT_button2(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.DO: break;
                 }
                 break;
@@ -732,7 +732,7 @@ evaluateGuard = null;
                     case BeadSorter.EventId.DO: this.#SETUPCHECK__START_do(); break;
                     case BeadSorter.EventId.BUTTON2: this.#SETUPCHECK__START_button2(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON1: break;
                 }
                 break;
@@ -743,7 +743,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#TOUR_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -754,7 +754,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.DO: break;
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
@@ -767,7 +767,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#SORTINGMODE__DROPOFF_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -779,7 +779,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#SORTINGMODE__PICKUP_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -791,7 +791,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#SORTINGMODE__SENSOR_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -803,7 +803,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#SORTINGMODE__START_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -814,7 +814,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.DO: break;
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
@@ -826,7 +826,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.DO: break;
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
@@ -839,7 +839,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#READEMPTYSLOT__DROPOFF_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -851,7 +851,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#READEMPTYSLOT__SENSOR_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -862,7 +862,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.DO: break;
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
@@ -875,7 +875,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#JAMMED_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -887,7 +887,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#READJAMMEDSLOT__DROPOFF_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -899,7 +899,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#READJAMMEDSLOT__SENSOR_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -910,7 +910,7 @@ evaluateGuard = null;
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.DO: break;
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
@@ -923,7 +923,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#READSLOT__DROPOFF_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -935,7 +935,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#READSLOT__SENSOR_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -947,7 +947,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#TRAININGMODE__PICKUP_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }
@@ -959,7 +959,7 @@ evaluateGuard = null;
                 {
                     case BeadSorter.EventId.DO: this.#TRAININGMODE__START_do(); break;
                     // Events not handled by this state:
-                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break;
+                    case BeadSorter.EventId.BUTTON0: this.#RUNNING_button0(); break; // First ancestor handler for this event
                     case BeadSorter.EventId.BUTTON2: break;
                     case BeadSorter.EventId.BUTTON1: break;
                 }

@@ -1087,7 +1087,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1110,7 +1110,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1134,7 +1134,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -1157,8 +1157,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__OM__BEV__NONE_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1179,9 +1179,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1203,8 +1203,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__OM__BEV__WATER_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: PREFIXING__OM__BEVERAGE_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1226,7 +1226,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -1249,8 +1249,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__OM__VEG__NONE_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1272,8 +1272,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__OM__VEG__POTATO_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1294,9 +1294,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: PREFIXING__OM__VEG_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1317,7 +1317,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1340,7 +1340,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1364,7 +1364,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -1387,8 +1387,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1409,9 +1409,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1433,8 +1433,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1456,7 +1456,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -1479,8 +1479,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1502,8 +1502,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1524,9 +1524,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -1557,7 +1557,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV9: SPEC2SM__DECIDE_ev9(sm); break;
                 case Spec2Sm_EventId_EV10: SPEC2SM__DECIDE_ev10(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVOPEN: break;
                 case Spec2Sm_EventId_EVSTEP: break;
                 case Spec2Sm_EventId_EVBACK: break;
@@ -1570,7 +1570,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1616,7 +1616,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: TEST1_ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: TEST1_ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1685,7 +1685,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1708,7 +1708,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1731,7 +1731,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1755,7 +1755,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1777,12 +1777,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -1800,12 +1800,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -1823,12 +1823,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -1846,12 +1846,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -1869,12 +1869,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -1896,9 +1896,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: TEST10_S1_ev1(sm); break;
                 case Spec2Sm_EventId_EV10: TEST10_S1_ev10(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -1915,12 +1915,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST10_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -1938,7 +1938,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -1984,9 +1984,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: TEST2_ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST2_ROOT_ev1(sm); break;
-                case Spec2Sm_EventId_EV2: TEST2_ROOT_ev2(sm); break;
+                case Spec2Sm_EventId_DO: TEST2_ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST2_ROOT_ev1(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: TEST2_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2009,7 +2009,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: TEST2_S1_1_ev1(sm); break;
                 case Spec2Sm_EventId_DO: TEST2_S1_1_do(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_EV2: TEST2_ROOT_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: TEST2_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2032,7 +2032,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: TEST2_S2_ev1(sm); break;
                 case Spec2Sm_EventId_EV2: TEST2_S2_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: TEST2_ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: TEST2_ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2053,7 +2053,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2077,7 +2077,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST3_ROOT_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2100,7 +2100,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST3_S1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2123,7 +2123,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST3_S2_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2145,8 +2145,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST3_ROOT_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST3_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2168,7 +2168,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2191,7 +2191,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2214,7 +2214,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2238,7 +2238,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4B_G_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2261,8 +2261,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST4B_G_1_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST4B_G_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST4B_G_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2283,7 +2283,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2307,7 +2307,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4C_G_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2330,8 +2330,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST4C_G_1_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST4C_G_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST4C_G_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2352,7 +2352,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2376,7 +2376,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4D_G_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2399,8 +2399,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST4D_G_1_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST4D_G_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST4D_G_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2425,7 +2425,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV3: TEST4_DECIDE_ev3(sm); break;
                 case Spec2Sm_EventId_EV4: TEST4_DECIDE_ev4(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
@@ -2447,7 +2447,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
                 case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
@@ -2468,10 +2468,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4_S1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
-                case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
@@ -2491,10 +2491,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV4: TEST4_S10_ev4(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
+                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
@@ -2513,11 +2513,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
-                case Spec2Sm_EventId_EV4: TEST4_S10_ev4(sm); break;
+                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV4: TEST4_S10_ev4(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
@@ -2537,10 +2537,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4_S2_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
-                case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
@@ -2560,10 +2560,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV4: TEST4_S20_ev4(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
+                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
@@ -2582,11 +2582,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
-                case Spec2Sm_EventId_EV4: TEST4_S20_ev4(sm); break;
+                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV4: TEST4_S20_ev4(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
@@ -2606,10 +2606,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST4_S3_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break;
-                case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: TEST4_ROOT_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST4_ROOT_ev3(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV4: TEST4_ROOT_ev4(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
@@ -2628,7 +2628,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2652,7 +2652,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2675,8 +2675,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST5_S1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2698,8 +2698,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST5_S2_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2721,8 +2721,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST5_S3_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: TEST5_ROOT_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2743,7 +2743,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2766,7 +2766,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2789,7 +2789,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2813,7 +2813,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: AUTO_VAR_TEST__S1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2835,7 +2835,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2858,7 +2858,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2882,7 +2882,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: META_EXPANSIONS__S1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2906,7 +2906,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: META_EXPANSIONS__S2_ev1(sm); break;
                 case Spec2Sm_EventId_EV2: META_EXPANSIONS__S2_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -2928,7 +2928,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: S3_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -2950,7 +2950,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2973,7 +2973,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -2996,7 +2996,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3020,7 +3020,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: NORMAL__S1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -3042,7 +3042,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3068,7 +3068,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV2: TEST6_VARS_EXPANSIONS__DECIDE_ev2(sm); break;
                 case Spec2Sm_EventId_EV3: TEST6_VARS_EXPANSIONS__DECIDE_ev3(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
@@ -3088,7 +3088,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3111,7 +3111,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3134,7 +3134,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3157,7 +3157,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3181,7 +3181,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3203,7 +3203,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3211,7 +3211,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3226,7 +3226,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3234,7 +3234,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3250,14 +3250,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__CALL_BATMAN_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3273,14 +3273,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__CALL_THOR_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3295,7 +3295,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3303,7 +3303,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3319,14 +3319,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__BUDDY_ELF_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3341,7 +3341,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3349,7 +3349,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3365,14 +3365,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__GIVE_COOKIES_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3388,14 +3388,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__SNOWBALL_FIGHT_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
-                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break;
+                case Spec2Sm_EventId_EV8: T7__DH1__ALIENS_DETECTED_ev8(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
                 case Spec2Sm_EventId_EVOPEN: break;
@@ -3412,7 +3412,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
                 case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3434,13 +3434,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: T7__DH1__TOOL_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3456,14 +3456,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: T7__DH1__TOOL_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: T7__DH1__TOOL_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3480,13 +3480,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__IMPACT_DRILL_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV2: T7__DH1__TOOL_ev2(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV2: T7__DH1__TOOL_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3503,13 +3503,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__TOY_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3526,13 +3526,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__GLOW_WORM_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3549,13 +3549,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__RACE_CAR_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3571,14 +3571,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: T7__DH1__TOY_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: T7__DH1__TOY_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3595,13 +3595,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__BATTLEBOT_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3617,14 +3617,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: T7__DH1__TOY_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: T7__DH1__TOY_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3641,13 +3641,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__DH1__TEDDY_BEAR_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break;
-                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break;
+                case Spec2Sm_EventId_EV6: T7__DH1__BUILD_ev6(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV7: T7__DH1__BUILD_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -3663,7 +3663,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3687,7 +3687,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3710,7 +3710,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVSTEP: T7__DEEP_HISTORY2__T7__STATE_1_evstep(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3721,7 +3721,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break;
+                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVBACK: break;
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
@@ -3733,7 +3733,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3744,7 +3744,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break;
+                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVSTEP: break;
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
@@ -3756,7 +3756,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVSTEP: T7__DEEP_HISTORY2__T7__STATE_6_evstep(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3767,8 +3767,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break;
-                case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(sm); break;
+                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
             break;
@@ -3778,7 +3778,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3789,9 +3789,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break;
+                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(sm); break;
+                case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
             break;
@@ -3802,7 +3802,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVCLOSE: T7__DEEP_HISTORY2__T7__STATE_3_evclose(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3824,7 +3824,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3848,7 +3848,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3871,7 +3871,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVSTEP: T7__DEEP_HISTORY3__T7__STATE_1_evstep(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3882,7 +3882,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break;
+                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVBACK: break;
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
@@ -3894,7 +3894,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3905,7 +3905,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break;
+                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVSTEP: break;
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
@@ -3917,7 +3917,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVSTEP: T7__DEEP_HISTORY3__T7__STATE_6_evstep(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3928,8 +3928,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break;
-                case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(sm); break;
+                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
             break;
@@ -3939,7 +3939,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3950,9 +3950,9 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
-                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break;
+                case Spec2Sm_EventId_EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVSTEP: break;
-                case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(sm); break;
+                case Spec2Sm_EventId_EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
             break;
@@ -3963,7 +3963,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EVCLOSE: T7__DEEP_HISTORY3__T7__STATE_3_evclose(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -3985,7 +3985,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4011,7 +4011,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break;
                 case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV5: break;
@@ -4032,13 +4032,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__OFF1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break;
-                case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break;
+                case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break;
+                case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -4055,13 +4055,13 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__OFF2_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break;
-                case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break;
+                case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break;
+                case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -4077,14 +4077,14 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
-                case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break;
-                case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break;
+                case Spec2Sm_EventId_EV3: T7__H1__OFF_ev3(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV4: T7__H1__OFF_ev4(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
-                case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break;
+                case Spec2Sm_EventId_EV7: T7__H1__OFF_ev7(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
                 case Spec2Sm_EventId_EV10: break;
@@ -4101,7 +4101,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4124,12 +4124,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__ON1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break;
+                case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
@@ -4147,12 +4147,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__ON2_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break;
+                case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
@@ -4170,12 +4170,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: T7__H1__ON3_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
-                case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break;
+                case Spec2Sm_EventId_EV6: T7__H1__ON_ev6(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
@@ -4192,7 +4192,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4216,7 +4216,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4239,11 +4239,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4261,12 +4261,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4284,12 +4284,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4307,12 +4307,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break;
+                case Spec2Sm_EventId_EV2: T7__INITIAL1__G_ev2(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4332,10 +4332,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV1: T7__INITIAL1__S1_ev1(sm); break;
                 case Spec2Sm_EventId_EV3: T7__INITIAL1__S1_ev3(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: T7__INITIAL1__PARENT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4358,7 +4358,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV4: TEST7_DECIDE_ev4(sm); break;
                 case Spec2Sm_EventId_EV5: TEST7_DECIDE_ev5(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4376,7 +4376,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4401,7 +4401,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break;
                 case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4423,11 +4423,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break;
+                case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4445,12 +4445,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break;
+                case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4468,12 +4468,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break;
+                case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4491,12 +4491,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
-                case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break;
-                case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break;
+                case Spec2Sm_EventId_EV2: TEST8_G_ev2(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV3: TEST8_ROOT_ev3(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4517,10 +4517,10 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV3: TEST8_S1_ev3(sm); break;
                 case Spec2Sm_EventId_EV6: TEST8_S1_ev6(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST8_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
                 case Spec2Sm_EventId_EV9: break;
@@ -4537,7 +4537,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4563,7 +4563,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV2: TEST9_DECIDE_ev2(sm); break;
                 case Spec2Sm_EventId_EV3: TEST9_DECIDE_ev3(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV4: break;
                 case Spec2Sm_EventId_EV5: break;
                 case Spec2Sm_EventId_EV6: break;
@@ -4584,7 +4584,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4606,12 +4606,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4629,12 +4629,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4652,12 +4652,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4675,12 +4675,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4698,12 +4698,12 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4722,11 +4722,11 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST9_S1_1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
-                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break;
+                case Spec2Sm_EventId_EV5: TEST9_ROOT_ev5(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV6: break;
                 case Spec2Sm_EventId_EV7: break;
                 case Spec2Sm_EventId_EV8: break;
@@ -4744,7 +4744,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4767,7 +4767,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV1: break;
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
@@ -4791,7 +4791,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST9A_S1_1_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4814,7 +4814,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4836,8 +4836,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4859,8 +4859,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4882,8 +4882,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4906,7 +4906,7 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             {
                 case Spec2Sm_EventId_EV1: TEST9B_ROOT__A4_ev1(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4928,8 +4928,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4951,8 +4951,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4974,8 +4974,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;
@@ -4997,8 +4997,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break;
-                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break;
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: TEST9B_ROOT_ev1(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EV2: break;
                 case Spec2Sm_EventId_EV3: break;
                 case Spec2Sm_EventId_EV4: break;

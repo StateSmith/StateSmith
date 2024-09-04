@@ -167,7 +167,7 @@ void Spec1Sm_dispatch_event(Spec1Sm* sm, Spec1Sm_EventId event_id)
             {
                 // Events not handled by this state:
                 case Spec1Sm_EventId_EV1: break;
-                case Spec1Sm_EventId_EV2: T11_ev2(sm); break;
+                case Spec1Sm_EventId_EV2: T11_ev2(sm); break; // First ancestor handler for this event
             }
             break;
     }

@@ -116,7 +116,7 @@ public partial class RocketSm
                 {
                     case EventId.EV2: G2_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.EV1: GROUP_ev1(); break;
+                    case EventId.EV1: GROUP_ev1(); break; // First ancestor handler for this event
                 }
                 break;
 

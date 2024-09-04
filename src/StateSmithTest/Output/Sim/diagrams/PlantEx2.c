@@ -153,7 +153,7 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
                 case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break;
                 case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break;
                 // Events not handled by this state:
-                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break;
+                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUE: break;
                 case PlantEx2_EventId_EV2: break;
             }
@@ -165,10 +165,10 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
             {
                 case PlantEx2_EventId_EV2: STATE1_ev2(sm); break;
                 // Events not handled by this state:
-                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break;
+                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUE: break;
-                case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break;
-                case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break;
+                case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break; // First ancestor handler for this event
+                case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break; // First ancestor handler for this event
             }
             break;
         
@@ -177,10 +177,10 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
             switch (event_id)
             {
                 // Events not handled by this state:
-                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break;
+                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUE: break;
-                case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break;
-                case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break;
+                case PlantEx2_EventId_EVNEWVALUEREJECTED: NEWVALUEPREVIEW_evnewvaluerejected(sm); break; // First ancestor handler for this event
+                case PlantEx2_EventId_EVNEWVALUESAVED: NEWVALUEPREVIEW_evnewvaluesaved(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EV2: break;
             }
             break;
@@ -191,7 +191,7 @@ void PlantEx2_dispatch_event(PlantEx2* sm, PlantEx2_EventId event_id)
             {
                 case PlantEx2_EventId_EVNEWVALUE: NEWVALUESELECTION_evnewvalue(sm); break;
                 // Events not handled by this state:
-                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break;
+                case PlantEx2_EventId_EVCONFIG: CONFIGURING_evconfig(sm); break; // First ancestor handler for this event
                 case PlantEx2_EventId_EVNEWVALUEREJECTED: break;
                 case PlantEx2_EventId_EVNEWVALUESAVED: break;
                 case PlantEx2_EventId_EV2: break;

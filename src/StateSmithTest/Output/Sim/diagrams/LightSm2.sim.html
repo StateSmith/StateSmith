@@ -472,7 +472,7 @@ evaluateGuard = null;
                 {
                     case LightSm2.EventId.EV2: this.#BEVERAGE_ev2(); break;
                     // Events not handled by this state:
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
+                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
                     case LightSm2.EventId.EV1: break;
                     case LightSm2.EventId.ESCAPE: break;
                 }
@@ -484,8 +484,8 @@ evaluateGuard = null;
                 {
                     case LightSm2.EventId.EV1: this.#BEVERAGE__FIRST_ev1(); break;
                     // Events not handled by this state:
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
-                    case LightSm2.EventId.EV2: this.#BEVERAGE_ev2(); break;
+                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this.#BEVERAGE_ev2(); break; // First ancestor handler for this event
                     case LightSm2.EventId.ESCAPE: break;
                 }
                 break;
@@ -496,8 +496,8 @@ evaluateGuard = null;
                 {
                     case LightSm2.EventId.EV1: this.#COFFEE_ev1(); break;
                     // Events not handled by this state:
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
-                    case LightSm2.EventId.EV2: this.#BEVERAGE_ev2(); break;
+                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this.#BEVERAGE_ev2(); break; // First ancestor handler for this event
                     case LightSm2.EventId.ESCAPE: break;
                 }
                 break;
@@ -509,7 +509,7 @@ evaluateGuard = null;
                     case LightSm2.EventId.EV1: this.#TEA_ev1(); break;
                     case LightSm2.EventId.EV2: this.#TEA_ev2(); break;
                     // Events not handled by this state:
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
+                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
                     case LightSm2.EventId.ESCAPE: break;
                 }
                 break;
@@ -521,7 +521,7 @@ evaluateGuard = null;
                     case LightSm2.EventId.EV2: this.#FOOD_ev2(); break;
                     case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break;
                     // Events not handled by this state:
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
+                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
                     case LightSm2.EventId.EV1: break;
                 }
                 break;
@@ -532,9 +532,9 @@ evaluateGuard = null;
                 {
                     case LightSm2.EventId.EV1: this.#FOOD__FIRST_ev1(); break;
                     // Events not handled by this state:
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
-                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break;
-                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break;
+                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -544,9 +544,9 @@ evaluateGuard = null;
                 {
                     case LightSm2.EventId.EV1: this.#POTATO_ev1(); break;
                     // Events not handled by this state:
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
-                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break;
-                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break;
+                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -556,9 +556,9 @@ evaluateGuard = null;
                 {
                     case LightSm2.EventId.EV1: this.#SUSHI_ev1(); break;
                     // Events not handled by this state:
-                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break;
-                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break;
-                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break;
+                    case LightSm2.EventId.EV3: this.#ORDER_MENU_ev3(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.EV2: this.#FOOD_ev2(); break; // First ancestor handler for this event
+                    case LightSm2.EventId.ESCAPE: this.#FOOD_escape(); break; // First ancestor handler for this event
                 }
                 break;
             

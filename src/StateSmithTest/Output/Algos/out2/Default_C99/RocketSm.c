@@ -125,7 +125,7 @@ void RocketSm_dispatch_event(RocketSm* sm, RocketSm_EventId event_id)
             {
                 case RocketSm_EventId_EV2: G2_ev2(sm); break;
                 // Events not handled by this state:
-                case RocketSm_EventId_EV1: GROUP_ev1(sm); break;
+                case RocketSm_EventId_EV1: GROUP_ev1(sm); break; // First ancestor handler for this event
             }
             break;
         

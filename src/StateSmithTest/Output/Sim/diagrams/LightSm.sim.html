@@ -412,7 +412,7 @@ evaluateGuard = null;
                     case LightSm.EventId.INCREASE: this.#ON1_increase(); break;
                     case LightSm.EventId.DIMLIGHT: this.#ON1_dimlight(); break;
                     // Events not handled by this state:
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break;
+                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -423,7 +423,7 @@ evaluateGuard = null;
                     case LightSm.EventId.INCREASE: this.#ON2_increase(); break;
                     case LightSm.EventId.DIMLIGHT: this.#ON2_dimlight(); break;
                     // Events not handled by this state:
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break;
+                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
                 }
                 break;
             
@@ -433,7 +433,7 @@ evaluateGuard = null;
                 {
                     case LightSm.EventId.DIMLIGHT: this.#ONHOT_dimlight(); break;
                     // Events not handled by this state:
-                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break;
+                    case LightSm.EventId.OFF: this.#ON_GROUP_off(); break; // First ancestor handler for this event
                     case LightSm.EventId.INCREASE: break;
                 }
                 break;

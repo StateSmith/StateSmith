@@ -123,7 +123,8 @@ void Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id)
         
         // STATE: S1_1
         case Spec1bSm_StateId_S1_1:
-            S1_t1(sm); 
+            S1_t1(sm);  // First ancestor handler for this event
+
             break;
         
         // STATE: S2

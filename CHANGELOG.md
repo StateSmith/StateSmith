@@ -29,6 +29,11 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [0.13.2]
+### Added
+- `Balanced2` - add `"First ancestor handler for this event"` comment
+
+---
 
 ## [0.13.1]
 ### Added
