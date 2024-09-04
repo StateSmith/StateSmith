@@ -11,8 +11,6 @@ static void exit_up_to_state_handler(Ex2* sm, Ex2_StateId desired_state);
 
 static void ROOT_enter(Ex2* sm);
 
-static void ROOT_exit(Ex2* sm);
-
 static void STATE_1_enter(Ex2* sm);
 
 static void STATE_1_exit(Ex2* sm);
@@ -114,11 +112,11 @@ static void exit_up_to_state_handler(Ex2* sm, Ex2_StateId desired_state)
     {
         switch (sm->state_id)
         {
-            case Ex2_StateId_ROOT: ROOT_exit(sm); break;
-            
             case Ex2_StateId_STATE_1: STATE_1_exit(sm); break;
             
             case Ex2_StateId_STATE_2: STATE_2_exit(sm); break;
+            
+            default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
         }
     }
 }
@@ -131,12 +129,6 @@ static void exit_up_to_state_handler(Ex2* sm, Ex2_StateId desired_state)
 static void ROOT_enter(Ex2* sm)
 {
     sm->state_id = Ex2_StateId_ROOT;
-}
-
-static void ROOT_exit(Ex2* sm)
-{
-    // State machine root is a special case. It cannot be exited. Mark as unused.
-    (void)sm;
 }
 
 

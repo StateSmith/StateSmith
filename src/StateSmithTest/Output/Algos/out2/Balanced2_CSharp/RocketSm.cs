@@ -141,8 +141,6 @@ public partial class RocketSm
         {
             switch (this.stateId)
             {
-                case StateId.ROOT: ROOT_exit(); break;
-
                 case StateId.GROUP: GROUP_exit(); break;
 
                 case StateId.G1: G1_exit(); break;
@@ -150,6 +148,8 @@ public partial class RocketSm
                 case StateId.G2: G2_exit(); break;
 
                 case StateId.S1: S1_exit(); break;
+
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -162,10 +162,6 @@ public partial class RocketSm
     private void ROOT_enter()
     {
         this.stateId = StateId.ROOT;
-    }
-
-    private void ROOT_exit()
-    {
     }
 
 

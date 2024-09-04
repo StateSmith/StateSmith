@@ -6,10 +6,10 @@ using StateSmith.Output.Gil;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
+using StateSmith.SmGraph.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace StateSmith.Output.Algos.Balanced2;
 
@@ -17,10 +17,29 @@ public class AlgoBalanced2 : AlgoBalanced1
 {
     private const string FirstAncestorHandlerComment = "First ancestor handler for this event";
 
-    public AlgoBalanced2(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder2 eventHandlerBuilder, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter) :
-        base(mangler, pseudoStateHandlerBuilder, enumBuilder, renderConfig, eventHandlerBuilder, styler, settings, algoEventIdToString, algoStateIdToString, standardFileHeaderPrinter)
-    {
+    /// <summary>
+    /// Just to be extra safe. Related to ensuring no infinite loop in "exit up to" function.
+    /// https://github.com/StateSmith/StateSmith/issues/391
+    /// </summary>
+    public HashSet<NamedVertex> verticesThatNeedExitStateIdAdjustment = new();
 
+    EventHandlerBuilder2 eventHandlerBuilder2;
+
+    public AlgoBalanced2(NameMangler mangler, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, EnumBuilder enumBuilder, RenderConfigBaseVars renderConfig, EventHandlerBuilder2 eventHandlerBuilder2, CodeStyleSettings styler, AlgoBalanced1Settings settings, IAlgoEventIdToString algoEventIdToString, IAlgoStateIdToString algoStateIdToString, StandardFileHeaderPrinter standardFileHeaderPrinter) :
+        base(mangler, pseudoStateHandlerBuilder, enumBuilder, renderConfig, eventHandlerBuilder2, styler, settings, algoEventIdToString, algoStateIdToString, standardFileHeaderPrinter)
+    {
+        this.eventHandlerBuilder2 = eventHandlerBuilder2;
+    }
+
+    override protected void FinalCheck()
+    {
+        // https://github.com/StateSmith/StateSmith/issues/391
+        var unhandledVertices = verticesThatNeedExitStateIdAdjustment.Except(eventHandlerBuilder2.verticesWithExitStateIdAdjustment);
+
+        if (unhandledVertices.Any())
+        {
+            throw new VertexValidationException(unhandledVertices.First(), "Found vertex what wasn't handled properly for exiting.");
+        }
     }
 
     override protected string GetAlgoName()
@@ -49,22 +68,25 @@ public class AlgoBalanced2 : AlgoBalanced1
             file.Append($"switch (this.{mangler.SmStateIdVarName})");
             file.StartCodeBlock();
             {
-                bool needsLineSpacer = false;
                 foreach (var namedVertex in Sm.GetNamedVerticesCopy())
                 {
-                    if (needsLineSpacer)
-                    {
-                        file.AppendLine();
-                    }
-                    needsLineSpacer = true;
-                    file.Append($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}: ");
-                    string exitFunctionName = mangler.SmTriggerHandlerFuncName(namedVertex, TriggerHelper.TRIGGER_EXIT);
 
-                    //file.IncreaseIndentLevel();
-                    file.AppendWithoutIndent($"this.{exitFunctionName}(); ");
-                    file.AppendWithoutIndent("break;\n");
-                    //file.DecreaseIndentLevel();
+                    if (namedVertex is StateMachine)
+                    {
+                        // do nothing. let default case handle this.
+                    }
+                    else
+                    {
+                        file.Append($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}: ");
+                        string exitFunctionName = mangler.SmTriggerHandlerFuncName(namedVertex, TriggerHelper.TRIGGER_EXIT);
+                        file.AppendWithoutIndent($"this.{exitFunctionName}(); ");
+                        file.AppendWithoutIndent("break;\n");
+                        file.AppendLine();
+                        verticesThatNeedExitStateIdAdjustment.Add(namedVertex);
+                    }
                 }
+
+                file.AppendLine($"default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.");
             }
             file.FinishCodeBlock(forceNewLine: true);
         }

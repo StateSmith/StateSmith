@@ -585,8 +585,6 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case LightSm2.StateId.ROOT: this.#ROOT_exit(); break;
-                
                 case LightSm2.StateId.ORDER_MENU: this.#ORDER_MENU_exit(); break;
                 
                 case LightSm2.StateId.BEVERAGE: this.#BEVERAGE_exit(); break;
@@ -606,6 +604,8 @@ evaluateGuard = null;
                 case LightSm2.StateId.SUSHI: this.#SUSHI_exit(); break;
                 
                 case LightSm2.StateId.WAITING: this.#WAITING_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -618,10 +618,6 @@ evaluateGuard = null;
     #ROOT_enter()
     {
         this.stateId = LightSm2.StateId.ROOT;
-    }
-    
-    #ROOT_exit()
-    {
     }
     
     

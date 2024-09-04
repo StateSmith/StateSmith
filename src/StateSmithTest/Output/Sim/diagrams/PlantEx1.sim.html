@@ -520,8 +520,6 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case PlantEx1.StateId.ROOT: this.#ROOT_exit(); break;
-                
                 case PlantEx1.StateId.NOTSHOOTING: this.#NOTSHOOTING_exit(); break;
                 
                 case PlantEx1.StateId.CONFIGURING: this.#CONFIGURING_exit(); break;
@@ -535,6 +533,8 @@ evaluateGuard = null;
                 case PlantEx1.StateId.NEWVALUESELECTION: this.#NEWVALUESELECTION_exit(); break;
                 
                 case PlantEx1.StateId.IDLE: this.#IDLE_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -547,10 +547,6 @@ evaluateGuard = null;
     #ROOT_enter()
     {
         this.stateId = PlantEx1.StateId.ROOT;
-    }
-    
-    #ROOT_exit()
-    {
     }
     
     

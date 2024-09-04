@@ -4306,8 +4306,6 @@ export class Spec2Sm
         {
             switch (this.stateId)
             {
-                case Spec2Sm.StateId.ROOT: this._ROOT_exit(); break;
-                
                 case Spec2Sm.StateId.PREFIXING: this._PREFIXING_exit(); break;
                 
                 case Spec2Sm.StateId.PREFIXING__ORDER_MENU: this._PREFIXING__ORDER_MENU_exit(); break;
@@ -4649,6 +4647,8 @@ export class Spec2Sm
                 case Spec2Sm.StateId.TEST9B_ROOT__B3: this._TEST9B_ROOT__B3_exit(); break;
                 
                 case Spec2Sm.StateId.TEST9B_ROOT__B4: this._TEST9B_ROOT__B4_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -4667,16 +4667,6 @@ export class Spec2Sm
         {
             // Step 1: execute action `trace("Enter Spec2Sm.");`
             console.log("Enter Spec2Sm.");
-        } // end of behavior for ROOT
-    }
-    
-    _ROOT_exit()
-    {
-        // ROOT behavior
-        // uml: exit / { trace("Exit Spec2Sm."); }
-        {
-            // Step 1: execute action `trace("Exit Spec2Sm.");`
-            console.log("Exit Spec2Sm.");
         } // end of behavior for ROOT
     }
     

@@ -4308,8 +4308,6 @@ namespace Csharp.Spec2smTests
             {
                 switch (this.stateId)
                 {
-                    case StateId.ROOT: ROOT_exit(); break;
-
                     case StateId.PREFIXING: PREFIXING_exit(); break;
 
                     case StateId.PREFIXING__ORDER_MENU: PREFIXING__ORDER_MENU_exit(); break;
@@ -4651,6 +4649,8 @@ namespace Csharp.Spec2smTests
                     case StateId.TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(); break;
 
                     case StateId.TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(); break;
+
+                    default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
                 }
             }
         }
@@ -4669,16 +4669,6 @@ namespace Csharp.Spec2smTests
             {
                 // Step 1: execute action `trace("Enter Spec2Sm.");`
                 MainClass.Trace("Enter Spec2Sm.");
-            } // end of behavior for ROOT
-        }
-
-        private void ROOT_exit()
-        {
-            // ROOT behavior
-            // uml: exit / { trace("Exit Spec2Sm."); }
-            {
-                // Step 1: execute action `trace("Exit Spec2Sm.");`
-                MainClass.Trace("Exit Spec2Sm.");
             } // end of behavior for ROOT
         }
 

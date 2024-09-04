@@ -11,8 +11,6 @@ static void exit_up_to_state_handler(RocketSm* sm, RocketSm_StateId desired_stat
 
 static void ROOT_enter(RocketSm* sm);
 
-static void ROOT_exit(RocketSm* sm);
-
 static void GROUP_enter(RocketSm* sm);
 
 static void GROUP_exit(RocketSm* sm);
@@ -118,13 +116,13 @@ static void exit_up_to_state_handler(RocketSm* sm, RocketSm_StateId desired_stat
     {
         switch (sm->state_id)
         {
-            case RocketSm_StateId_ROOT: ROOT_exit(sm); break;
-            
             case RocketSm_StateId_GROUP: GROUP_exit(sm); break;
             
             case RocketSm_StateId_G1: G1_exit(sm); break;
             
             case RocketSm_StateId_G2: G2_exit(sm); break;
+            
+            default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
         }
     }
 }
@@ -137,12 +135,6 @@ static void exit_up_to_state_handler(RocketSm* sm, RocketSm_StateId desired_stat
 static void ROOT_enter(RocketSm* sm)
 {
     sm->state_id = RocketSm_StateId_ROOT;
-}
-
-static void ROOT_exit(RocketSm* sm)
-{
-    // State machine root is a special case. It cannot be exited. Mark as unused.
-    (void)sm;
 }
 
 

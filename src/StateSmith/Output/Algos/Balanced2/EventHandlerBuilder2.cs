@@ -5,11 +5,18 @@ using StateSmith.Input.Expansions;
 using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.UserConfig;
 using StateSmith.SmGraph;
+using System.Collections.Generic;
 
 namespace StateSmith.Output.Algos.Balanced2;
 
 public class EventHandlerBuilder2 : EventHandlerBuilder
 {
+    /// <summary>
+    /// Just to be extra safe. Related to ensuring no infinite loop in "exit up to" function.
+    /// https://github.com/StateSmith/StateSmith/issues/391
+    /// </summary>
+    public HashSet<NamedVertex> verticesWithExitStateIdAdjustment = new();
+
     public EventHandlerBuilder2(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases) : base(expander, pseudoStateHandlerBuilder, mangler, userExpansionScriptBases)
     {
     }
@@ -25,6 +32,18 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
         // do nothing
     }
 
+    override public void OutputFuncStateExit(NamedVertex state)
+    {
+        if (state is StateMachine)
+        {
+            // state machine roots don't need an exit function for Balanced2
+        }
+        else
+        {
+            base.OutputFuncStateExit(state);
+        }
+    }
+
     override protected void OutputExitFunctionEndCode(NamedVertex state)
     {
         // ex: sm->state_id = LightSm_StateId_ROOT;
@@ -33,6 +52,7 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
         if (parent != null)
         {
             File.AppendLine($"this.{mangler.SmStateIdVarName} = {mangler.SmQualifiedStateEnumValue(parent)};");
+            verticesWithExitStateIdAdjustment.Add(state);
         }
     }
 

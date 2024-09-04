@@ -107,13 +107,13 @@ class RocketSm
         {
             switch (this.stateId)
             {
-                case RocketSm.StateId.ROOT: this.#ROOT_exit(); break;
-                
                 case RocketSm.StateId.GROUP: this.#GROUP_exit(); break;
                 
                 case RocketSm.StateId.G1: this.#G1_exit(); break;
                 
                 case RocketSm.StateId.G2: this.#G2_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -126,10 +126,6 @@ class RocketSm
     #ROOT_enter()
     {
         this.stateId = RocketSm.StateId.ROOT;
-    }
-    
-    #ROOT_exit()
-    {
     }
     
     

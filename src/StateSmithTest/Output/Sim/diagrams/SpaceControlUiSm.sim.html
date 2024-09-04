@@ -959,8 +959,6 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case SpaceControlUiSm.StateId.ROOT: this.#ROOT_exit(); break;
-                
                 case SpaceControlUiSm.StateId.DONE: this.#DONE_exit(); break;
                 
                 case SpaceControlUiSm.StateId.MENU: this.#MENU_exit(); break;
@@ -1004,6 +1002,8 @@ evaluateGuard = null;
                 case SpaceControlUiSm.StateId.SYSTEM_INFO: this.#SYSTEM_INFO_exit(); break;
                 
                 case SpaceControlUiSm.StateId.SPLASH_SCREEN: this.#SPLASH_SCREEN_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -1016,10 +1016,6 @@ evaluateGuard = null;
     #ROOT_enter()
     {
         this.stateId = SpaceControlUiSm.StateId.ROOT;
-    }
-    
-    #ROOT_exit()
-    {
     }
     
     

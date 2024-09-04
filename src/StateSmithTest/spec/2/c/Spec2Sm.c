@@ -17,8 +17,6 @@ static void exit_up_to_state_handler(Spec2Sm* sm, Spec2Sm_StateId desired_state)
 
 static void ROOT_enter(Spec2Sm* sm);
 
-static void ROOT_exit(Spec2Sm* sm);
-
 static void ROOT_do(Spec2Sm* sm);
 
 static void PREFIXING_enter(Spec2Sm* sm);
@@ -5026,8 +5024,6 @@ static void exit_up_to_state_handler(Spec2Sm* sm, Spec2Sm_StateId desired_state)
     {
         switch (sm->state_id)
         {
-            case Spec2Sm_StateId_ROOT: ROOT_exit(sm); break;
-            
             case Spec2Sm_StateId_PREFIXING: PREFIXING_exit(sm); break;
             
             case Spec2Sm_StateId_PREFIXING__ORDER_MENU: PREFIXING__ORDER_MENU_exit(sm); break;
@@ -5369,6 +5365,8 @@ static void exit_up_to_state_handler(Spec2Sm* sm, Spec2Sm_StateId desired_state)
             case Spec2Sm_StateId_TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(sm); break;
             
             case Spec2Sm_StateId_TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(sm); break;
+            
+            default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
         }
     }
 }
@@ -5388,19 +5386,6 @@ static void ROOT_enter(Spec2Sm* sm)
         // Step 1: execute action `trace("Enter Spec2Sm.");`
         trace("Enter Spec2Sm.");
     } // end of behavior for ROOT
-}
-
-static void ROOT_exit(Spec2Sm* sm)
-{
-    // ROOT behavior
-    // uml: exit / { trace("Exit Spec2Sm."); }
-    {
-        // Step 1: execute action `trace("Exit Spec2Sm.");`
-        trace("Exit Spec2Sm.");
-    } // end of behavior for ROOT
-    
-    // State machine root is a special case. It cannot be exited. Mark as unused.
-    (void)sm;
 }
 
 static void ROOT_do(Spec2Sm* sm)

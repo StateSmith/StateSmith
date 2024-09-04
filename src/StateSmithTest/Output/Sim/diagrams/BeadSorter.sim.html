@@ -976,8 +976,6 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case BeadSorter.StateId.ROOT: this.#ROOT_exit(); break;
-                
                 case BeadSorter.StateId.PAUSED: this.#PAUSED_exit(); break;
                 
                 case BeadSorter.StateId.RUNNING: this.#RUNNING_exit(); break;
@@ -1031,6 +1029,8 @@ evaluateGuard = null;
                 case BeadSorter.StateId.TRAININGMODE__PICKUP: this.#TRAININGMODE__PICKUP_exit(); break;
                 
                 case BeadSorter.StateId.TRAININGMODE__START: this.#TRAININGMODE__START_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -1043,10 +1043,6 @@ evaluateGuard = null;
     #ROOT_enter()
     {
         this.stateId = BeadSorter.StateId.ROOT;
-    }
-    
-    #ROOT_exit()
-    {
     }
     
     

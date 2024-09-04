@@ -474,8 +474,6 @@ evaluateGuard = null;
         {
             switch (this.stateId)
             {
-                case TriggerMap.StateId.ROOT: this.#ROOT_exit(); break;
-                
                 case TriggerMap.StateId.NORMAL: this.#NORMAL_exit(); break;
                 
                 case TriggerMap.StateId.BLUE: this.#BLUE_exit(); break;
@@ -485,6 +483,8 @@ evaluateGuard = null;
                 case TriggerMap.StateId.YELLOW: this.#YELLOW_exit(); break;
                 
                 case TriggerMap.StateId.RED: this.#RED_exit(); break;
+                
+                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
         }
     }
@@ -497,10 +497,6 @@ evaluateGuard = null;
     #ROOT_enter()
     {
         this.stateId = TriggerMap.StateId.ROOT;
-    }
-    
-    #ROOT_exit()
-    {
     }
     
     #ROOT_dim1()
