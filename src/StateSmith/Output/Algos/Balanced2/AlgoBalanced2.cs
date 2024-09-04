@@ -2,6 +2,7 @@
 
 using StateSmith.Common;
 using StateSmith.Output.Algos.Balanced1;
+using StateSmith.Output.Gil;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
@@ -72,12 +73,20 @@ public class AlgoBalanced2 : AlgoBalanced1
 
     override protected void OutputFuncDispatchEvent()
     {
-        file.AppendLine("// Dispatches an event to the state machine. Not thread safe.");
-        string eventIdParameterName = mangler.MangleVarName("event_id");
+        OutputFuncDispatchEventStart(out string eventIdParameterName);
 
-        file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {eventIdParameterName})");
         file.StartCodeBlock();
         {
+            // optimization for single event
+            // https://github.com/StateSmith/StateSmith/issues/388
+            if (Sm.GetEventSet().Count == 1)
+            {
+                file.AppendLine("// This state machine design only has a single event type so we can safely assume");
+                file.AppendLine($"// that the dispatched event is `{Sm.GetEventSet().Single()}` without checking the `{eventIdParameterName}` parameter.");
+                file.AppendLine(GilCreationHelper.MarkVarAsUnused(eventIdParameterName) + " // This line prevents an 'unused variable' compiler warning"); // Note! transpilers that don't need this will skip this line and trailing comments/trivia.
+                file.AppendLine();
+            }
+
             file.Append($"switch (this.{mangler.SmStateIdVarName})");
             file.StartCodeBlock();
             {
@@ -94,7 +103,7 @@ public class AlgoBalanced2 : AlgoBalanced1
                     file.AppendLine($"case {mangler.SmQualifiedStateEnumValue(namedVertex)}:");
 
                     file.IncreaseIndentLevel();
-                    OutputStateEventHandlerSwitch(namedVertex, eventIdParameterName);
+                    OutputStateEventHandlerCode(namedVertex, eventIdParameterName);
                     file.AppendLine("break;");
                     file.DecreaseIndentLevel();
                 }
@@ -106,35 +115,76 @@ public class AlgoBalanced2 : AlgoBalanced1
         file.AppendLine();
     }
 
-    private void OutputStateEventHandlerSwitch(NamedVertex namedVertex, string eventIdParameterName)
+    private void OutputStateEventHandlerCode(NamedVertex namedVertex, string eventIdParameterName)
     {
         var allEvents = Sm.GetEventSet();
 
         // get list of all events that are handled by this state
-        HashSet<string> events = TriggerHelper.GetEvents(namedVertex);
+        HashSet<string> stateEvents = TriggerHelper.GetEvents(namedVertex);
 
-        file.Append($"switch ({eventIdParameterName})");
-        file.StartCodeBlock();
+        // optimization for when a switch is not required (single event)
+        if (allEvents.Count == 1)
         {
-            foreach (string evt in events)
+            OutputStateSingleEventHandlerCode(namedVertex, allEvents, stateEvents);
+        }
+        else
+        {
+            file.Append($"switch ({eventIdParameterName})");
+            file.StartCodeBlock();
             {
-                OutputEventHandler(namedVertex, evt);
-            }
-
-            var otherEvents = allEvents.Except(events);
-
-            if (otherEvents.Any())
-            {
-                file.AppendLine($"// Events not handled by this state:");
-
-                foreach (string evt in otherEvents)
+                foreach (string evt in stateEvents)
                 {
-                    var ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
-                    OutputEventHandler(ancestor, evt);
+                    OutputEventHandler(namedVertex, evt);
+                }
+
+                var otherEvents = allEvents.Except(stateEvents);
+
+                if (otherEvents.Any())
+                {
+                    file.AppendLine($"// Events not handled by this state:");
+
+                    foreach (string evt in otherEvents)
+                    {
+                        var ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
+                        OutputEventHandler(ancestor, evt);
+                    }
                 }
             }
+            file.FinishCodeBlock(forceNewLine: true);
         }
-        file.FinishCodeBlock(forceNewLine: true);
+    }
+
+    /// <summary>
+    /// optimization for when a switch is not required (single event in entire state machine).
+    /// https://github.com/StateSmith/StateSmith/issues/388
+    /// </summary>
+    /// <exception cref="Exception"></exception>
+    private void OutputStateSingleEventHandlerCode(NamedVertex namedVertex, IReadOnlySet<string> allEvents, HashSet<string> stateEvents)
+    {
+        string onlyEvent = allEvents.Single();
+        if (stateEvents.Count > 1)
+        {
+            throw new Exception($"Unexpected number of events: {stateEvents.Count}. Only expected: `{onlyEvent}`.");
+        }
+
+        file.Append();
+        bool outputHandler = false;
+        if (stateEvents.Any())
+        {
+            outputHandler |= MaybeOutputEventHandlerCall(namedVertex, onlyEvent);
+        }
+        else
+        {
+            var ancestor = namedVertex.FirstAncestorThatHandlesEvent(onlyEvent);
+            outputHandler |= MaybeOutputEventHandlerCall(ancestor, onlyEvent);
+        }
+
+        if (!outputHandler)
+        {
+            file.AppendWithoutIndent($"// state and ancestors have no handler for `{onlyEvent}` event.");
+        }
+
+        file.AppendWithoutIndent("\n");
     }
 
     private void OutputEventHandler(NamedVertex? namedVertex, string evt)
@@ -144,11 +194,26 @@ public class AlgoBalanced2 : AlgoBalanced1
 
         if (namedVertex != null)
         {
-            string eventHandlerFuncName = mangler.SmTriggerHandlerFuncName(namedVertex, evt);
-            file.AppendWithoutIndent($"this.{eventHandlerFuncName}(); ");
+            MaybeOutputEventHandlerCall(namedVertex, evt);
         }
 
         file.AppendWithoutIndent("break;\n");
         //file.DecreaseIndentLevel();
+    }
+
+    private bool MaybeOutputEventHandlerCall(NamedVertex? namedVertex, string evt)
+    {
+        if (namedVertex != null)
+        {
+            string eventHandlerFuncName = mangler.SmTriggerHandlerFuncName(namedVertex, evt);
+            file.AppendWithoutIndent($"this.{eventHandlerFuncName}(); ");
+            return true;
+        }
+        return false;
+    }
+
+    protected override void OutputEventHandlerDelegate()
+    {
+        // do nothing
     }
 }

@@ -1,46 +1,12 @@
-using FluentAssertions;
-using StateSmith.Output.Algos.Balanced1;
+﻿using StateSmith.Output.Algos.Balanced1;
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmith.SmGraph;
-using Xunit;
 
 namespace StateSmithTest.Output.Gil;
 
-public class AlgoTests
+public class GilFileTestHelper
 {
-    [Fact]
-    public void Balanced1()
-    {
-        string cCode = GenerateCForAlgo(AlgorithmId.Balanced1);
-        cCode.Should().Contain("current_state_exit_handler = ROOT_exit;");
-        cCode.Should().NotContain("switch (sm->state_id)");
-    }
-
-    [Fact]
-    public void Balanced2()
-    {
-        string cCode = GenerateCForAlgo(AlgorithmId.Balanced2);
-        cCode.Should().NotContain("current_state_exit_handler");
-        cCode.Should().Contain("switch (sm->state_id)");
-    }
-
-    private static string GenerateCForAlgo(AlgorithmId algo)
-    {
-        var plantUmlText = """
-            @startuml RocketSm
-            [*] --> c1
-            @enduml
-            """;
-
-        var fakeFs = new CapturingCodeFileWriter();
-        var console = new StringBufferConsolePrinter();
-
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter: fakeFs, consoleCapturer: console, algorithmId: algo);
-        var cCode = fakeFs.GetSoleCaptureWithName("RocketSm.c").code;
-        return cCode;
-    }
-
     // Used by other tests
     public static string BuildExampleGilFile(bool skipIndentation, out StateMachine sm)
     {

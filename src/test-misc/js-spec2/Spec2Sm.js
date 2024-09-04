@@ -284,6 +284,7 @@ export class Spec2Sm
         T7__DEEP_HISTORY3__T7__STATE_2 : 1,
     }
     static { Object.freeze(this.T7__DEEP_HISTORY3__T7__state_0_HistoryId); }
+
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
@@ -333,6 +334,7 @@ export class Spec2Sm
     }
     
     // Dispatches an event to the state machine. Not thread safe.
+    // Note! This function assumes that the `eventId` parameter is valid.
     dispatchEvent(eventId)
     {
         switch (this.stateId)

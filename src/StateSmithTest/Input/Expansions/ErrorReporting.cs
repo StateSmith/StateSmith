@@ -113,7 +113,7 @@ public class ErrorReporting
     private static string RunExpectGenericFailure(string plantUmlText)
     {
         StringBufferConsolePrinter fakeConsole = new();
-        Action a = () => TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, propagateExceptions: false, consoleCapturer: fakeConsole);
+        Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, propagateExceptions: false, consoleCapturer: fakeConsole);
         a.Should().Throw<FinishedWithFailureException>();
         string consoleOutput = fakeConsole.sb.ToString();
         consoleOutput.Should().Contain("StateSmith Runner - Finished with failure.");
@@ -136,7 +136,7 @@ public class ErrorReporting
 
         // This test is more involved because it requires code injection
         StringBufferConsolePrinter fakeConsole = new();
-        Action a = () => TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole);
+        Action a = () => TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, preRun: AddBadCode, propagateExceptions: false, consoleCapturer: fakeConsole);
         a.Should().Throw<FinishedWithFailureException>();
 
         string consoleOutput = fakeConsole.sb.ToString();

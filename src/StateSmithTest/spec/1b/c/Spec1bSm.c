@@ -97,61 +97,43 @@ void Spec1bSm_start(Spec1bSm* sm)
 }
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void Spec1bSm_dispatch_event(Spec1bSm* sm, Spec1bSm_EventId event_id)
 {
+    // This state machine design only has a single event type so we can safely assume
+    // that the dispatched event is `t1` without checking the `event_id` parameter.
+    (void)event_id; // This line prevents an 'unused variable' compiler warning
+    
     switch (sm->state_id)
     {
         // STATE: Spec1bSm
         case Spec1bSm_StateId_ROOT:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1bSm_EventId_T1: break;
-            }
+            // state and ancestors have no handler for `t1` event.
             break;
         
         // STATE: S
         case Spec1bSm_StateId_S:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1bSm_EventId_T1: break;
-            }
+            // state and ancestors have no handler for `t1` event.
             break;
         
         // STATE: S1
         case Spec1bSm_StateId_S1:
-            switch (event_id)
-            {
-                case Spec1bSm_EventId_T1: S1_t1(sm); break;
-            }
+            S1_t1(sm); 
             break;
         
         // STATE: S1_1
         case Spec1bSm_StateId_S1_1:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1bSm_EventId_T1: S1_t1(sm); break;
-            }
+            S1_t1(sm); 
             break;
         
         // STATE: S2
         case Spec1bSm_StateId_S2:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1bSm_EventId_T1: break;
-            }
+            // state and ancestors have no handler for `t1` event.
             break;
         
         // STATE: S2_1
         case Spec1bSm_StateId_S2_1:
-            switch (event_id)
-            {
-                // Events not handled by this state:
-                case Spec1bSm_EventId_T1: break;
-            }
+            // state and ancestors have no handler for `t1` event.
             break;
     }
     

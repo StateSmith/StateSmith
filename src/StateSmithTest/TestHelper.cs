@@ -13,6 +13,12 @@ namespace StateSmithTest;
 
 public class TestHelper
 {
+    public const string MinimalPlantUmlFsm = """
+            @startuml RocketSm
+            [*] --> c1
+            @enduml
+            """;
+
     public static string GetThisDir([System.Runtime.CompilerServices.CallerFilePath] string? callerFilePath = null)
     {
         return Path.GetDirectoryName(callerFilePath) + "/";
@@ -36,11 +42,9 @@ public class TestHelper
         return fakeFileSystem;
     }
 
-    public static void RunSmRunnerForPlantUmlString(string plantUmlText, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default)
+    public static void CaptureRunSmRunnerForPlantUmlString(string? plantUmlText = null, IRenderConfig? renderConfig = null, ICodeFileWriter? codeFileWriter = null, Action<SmRunner>? postConstruct = null, Action<SmRunner>? preRun = null, bool propagateExceptions = true, string? fileName = null, IConsolePrinter? consoleCapturer = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default)
     {
-        var tempFilePath = Path.GetTempPath();
-        tempFilePath += fileName ?? "statesmith_test" + Guid.NewGuid() + ".plantuml";
-        File.WriteAllText(tempFilePath, plantUmlText);
+        string tempFilePath = WritePlantUmlTempFile(plantUmlText, fileName);
 
         try
         {
@@ -50,6 +54,31 @@ public class TestHelper
             smRunner.GetExperimentalAccess().DiServiceProvider.AddSingletonT<IConsolePrinter>(consoleCapturer ?? new DiscardingConsolePrinter());
             smRunner.Settings.propagateExceptions = propagateExceptions;
             preRun?.Invoke(smRunner);
+            smRunner.Run();
+        }
+        finally
+        {
+            File.Delete(tempFilePath);
+        }
+    }
+
+    private static string WritePlantUmlTempFile(string? plantUmlText = null, string? fileName = null)
+    {
+        var tempFilePath = Path.GetTempPath();
+        tempFilePath += fileName ?? "statesmith_test" + Guid.NewGuid() + ".plantuml";
+        File.WriteAllText(tempFilePath, plantUmlText ?? MinimalPlantUmlFsm);
+        return tempFilePath;
+    }
+
+    public static void RunSmRunnerForPlantUmlString(string? plantUmlText = null, string? outputDir = null, TranspilerId transpilerId = TranspilerId.Default, AlgorithmId algorithmId = AlgorithmId.Default)
+    {
+        string tempFilePath = WritePlantUmlTempFile(plantUmlText);
+
+        try
+        {
+            SmRunner smRunner = new(outputDirectory: outputDir, diagramPath: tempFilePath, transpilerId: transpilerId, algorithmId: algorithmId);
+            smRunner.Settings.outputStateSmithVersionInfo = false; // too much git noise
+            smRunner.Settings.propagateExceptions = true;
             smRunner.Run();
         }
         finally

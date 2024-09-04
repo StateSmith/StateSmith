@@ -27,7 +27,7 @@ public class SmFileNameTests_330
         var fileBaseName = "RocketSm" + Guid.NewGuid().ToString().Replace('-', '_');
         var fileName = fileBaseName + ".plantuml";
 
-        TestHelper.RunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, consoleCapturer: console, fileName: fileName, transpilerId:TranspilerId.JavaScript);
+        TestHelper.CaptureRunSmRunnerForPlantUmlString(plantUmlText, codeFileWriter:fakeFs, consoleCapturer: console, fileName: fileName, transpilerId:TranspilerId.JavaScript);
 
         var printedConsole = console.sb.ToString();
         Assert.Contains("RocketSm", printedConsole);

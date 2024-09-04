@@ -279,9 +279,6 @@ namespace Csharp.Spec2smTests
         }
 
 
-        // event handler type
-        private delegate void Func(Spec2Sm sm);
-
         // Used internally by state machine. Feel free to inspect, but don't modify.
         public StateId stateId;
 
@@ -339,6 +336,7 @@ namespace Csharp.Spec2smTests
         }
 
         // Dispatches an event to the state machine. Not thread safe.
+        // Note! This function assumes that the `eventId` parameter is valid.
         public void DispatchEvent(EventId eventId)
         {
             switch (this.stateId)

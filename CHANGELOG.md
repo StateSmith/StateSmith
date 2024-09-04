@@ -30,6 +30,15 @@ Release Template
 Test/interim releases are not documented here.
 
 
+## [0.13.1]
+### Added
+- `Balanced2` - add optimization for single event state machines
+  - Add note assuming `event_id` parameter is valid for dispatch event function.
+  - https://github.com/StateSmith/StateSmith/issues/388
+- `Balanced2` - smarter code gen (remove unused func type)
+
+---
+
 ## [0.13.0]
 ### Added
 - NEW ALGORITHM: `Balanced2` - a variant of `Balanced1`. Instead of dynamically updating function pointers, `Balanced2` uses a more traditional switch/case mapping.

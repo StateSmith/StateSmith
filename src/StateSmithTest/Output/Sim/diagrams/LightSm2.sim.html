@@ -395,6 +395,7 @@ evaluateGuard = null;
         TEA : 4,
     }
     static { Object.freeze(this.ORDER_MENU_HistoryId); }
+
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;
@@ -436,6 +437,7 @@ evaluateGuard = null;
     }
     
     // Dispatches an event to the state machine. Not thread safe.
+    // Note! This function assumes that the `eventId` parameter is valid.
     dispatchEvent(eventId)
     {
         switch (this.stateId)

@@ -114,9 +114,7 @@ public class AlgoBalanced1 : IGilAlgo
                 file.AppendLine();
             }
 
-            file.AppendLine($"// event handler type");
-            file.AppendLine($"private delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
-            file.AppendLine();
+            OutputEventHandlerDelegate();
         });
 
         pseudoStateHandlerBuilder.output = file;
@@ -138,6 +136,13 @@ public class AlgoBalanced1 : IGilAlgo
             OutputTriggerHandlers();
             MaybeOutputToStringFunctions();
         });
+    }
+
+    protected virtual void OutputEventHandlerDelegate()
+    {
+        file.AppendLine($"// event handler type");
+        file.AppendLine($"private delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
+        file.AppendLine();
     }
 
     private void MaybeOutputToStringFunctions()
@@ -274,24 +279,35 @@ public class AlgoBalanced1 : IGilAlgo
 
     virtual protected void OutputFuncDispatchEvent()
     {
-        file.AppendLine("// Dispatches an event to the state machine. Not thread safe.");
-        string event_id = mangler.MangleVarName("event_id");
-        string behavior_func = mangler.MangleVarName("behavior_func");
+        OutputFuncDispatchEventStart(out string eventIdParameterName);
 
-        file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {event_id})");
         file.StartCodeBlock();
-        file.AppendLine($"{mangler.SmHandlerFuncType}? {behavior_func} = this.{mangler.SmCurrentEventHandlersVarName}[(int){event_id}];");
-        file.AppendLine();
-        file.Append($"while ({behavior_func} != null)");
         {
-            file.StartCodeBlock();
-            file.AppendLine($"this.{mangler.SmAncestorEventHandlerVarName} = null;");
-            file.AppendLine($"{behavior_func}();");
-            file.AppendLine($"{behavior_func} = this.{mangler.SmAncestorEventHandlerVarName};");
-            file.FinishCodeBlock(forceNewLine: true);
+            string behavior_func = mangler.MangleVarName("behavior_func");
+            file.AppendLine($"{mangler.SmHandlerFuncType}? {behavior_func} = this.{mangler.SmCurrentEventHandlersVarName}[(int){eventIdParameterName}];");
+            file.AppendLine();
+            file.Append($"while ({behavior_func} != null)");
+            {
+                file.StartCodeBlock();
+                file.AppendLine($"this.{mangler.SmAncestorEventHandlerVarName} = null;");
+                file.AppendLine($"{behavior_func}();");
+                file.AppendLine($"{behavior_func} = this.{mangler.SmAncestorEventHandlerVarName};");
+                file.FinishCodeBlock(forceNewLine: true);
+            }
         }
         file.FinishCodeBlock(forceNewLine: true);
         file.AppendLine();
+    }
+
+    protected string OutputFuncDispatchEventStart(out string eventIdParameterName)
+    {
+        eventIdParameterName = mangler.MangleVarName("event_id");
+
+        file.AppendLine("// Dispatches an event to the state machine. Not thread safe.");
+        file.AppendLine($"// Note! This function assumes that the `{eventIdParameterName}` parameter is valid.");
+
+        file.Append($"public void {mangler.SmDispatchEventFuncName}({mangler.SmEventEnumType} {eventIdParameterName})");
+        return eventIdParameterName;
     }
 
     internal void OutputTriggerHandlers()

@@ -300,10 +300,6 @@ typedef struct Spec2Sm_Vars
 } Spec2Sm_Vars;
 
 
-
-// event handler type
-typedef void (*Spec2Sm_Func)(Spec2Sm* sm);
-
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Spec2Sm_ctor(Spec2Sm* sm);
 
@@ -311,6 +307,7 @@ void Spec2Sm_ctor(Spec2Sm* sm);
 void Spec2Sm_start(Spec2Sm* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id);
 
 // Thread safe.

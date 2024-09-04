@@ -33,9 +33,6 @@ enum
 // forward declaration
 typedef struct Ex2 Ex2;
 
-// event handler type
-typedef void (*Ex2_Func)(Ex2* sm);
-
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Ex2_ctor(Ex2* sm);
 
@@ -43,6 +40,7 @@ void Ex2_ctor(Ex2* sm);
 void Ex2_start(Ex2* sm);
 
 // Dispatches an event to the state machine. Not thread safe.
+// Note! This function assumes that the `event_id` parameter is valid.
 void Ex2_dispatch_event(Ex2* sm, Ex2_EventId event_id);
 
 // Thread safe.
