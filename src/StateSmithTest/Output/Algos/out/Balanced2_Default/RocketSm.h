@@ -30,9 +30,6 @@ enum
 // forward declaration
 typedef struct RocketSm RocketSm;
 
-// event handler type
-typedef void (*RocketSm_Func)(RocketSm* sm);
-
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void RocketSm_ctor(RocketSm* sm);
 

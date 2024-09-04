@@ -21,9 +21,6 @@ public partial class RocketSm
 
     public const int StateIdCount = 2;
 
-    // event handler type
-    private delegate void Func(RocketSm sm);
-
     // Used internally by state machine. Feel free to inspect, but don't modify.
     public StateId stateId;
 

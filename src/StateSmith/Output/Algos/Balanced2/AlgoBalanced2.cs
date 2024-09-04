@@ -212,4 +212,8 @@ public class AlgoBalanced2 : AlgoBalanced1
         return false;
     }
 
+    protected override void OutputEventHandlerDelegate()
+    {
+        // do nothing
+    }
 }

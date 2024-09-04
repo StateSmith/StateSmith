@@ -43,9 +43,6 @@ typedef struct Spec1bSm_Vars
 } Spec1bSm_Vars;
 
 
-// event handler type
-typedef void (*Spec1bSm_Func)(Spec1bSm* sm);
-
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Spec1bSm_ctor(Spec1bSm* sm);
 

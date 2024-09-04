@@ -40,9 +40,6 @@ enum
 // forward declaration
 typedef struct PlantEx2 PlantEx2;
 
-// event handler type
-typedef void (*PlantEx2_Func)(PlantEx2* sm);
-
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void PlantEx2_ctor(PlantEx2* sm);
 

@@ -284,6 +284,7 @@ export class Spec2Sm
         T7__DEEP_HISTORY3__T7__STATE_2 : 1,
     }
     static { Object.freeze(this.T7__DEEP_HISTORY3__T7__state_0_HistoryId); }
+
     
     // Used internally by state machine. Feel free to inspect, but don't modify.
     stateId;

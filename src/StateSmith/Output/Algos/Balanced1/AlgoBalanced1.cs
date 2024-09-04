@@ -114,9 +114,7 @@ public class AlgoBalanced1 : IGilAlgo
                 file.AppendLine();
             }
 
-            file.AppendLine($"// event handler type");
-            file.AppendLine($"private delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
-            file.AppendLine();
+            OutputEventHandlerDelegate();
         });
 
         pseudoStateHandlerBuilder.output = file;
@@ -138,6 +136,13 @@ public class AlgoBalanced1 : IGilAlgo
             OutputTriggerHandlers();
             MaybeOutputToStringFunctions();
         });
+    }
+
+    protected virtual void OutputEventHandlerDelegate()
+    {
+        file.AppendLine($"// event handler type");
+        file.AppendLine($"private delegate void {mangler.SmHandlerFuncType}();");   // todo: use attribute or something to mark delegate as having implicit {mangler.SmTypeName} sm argument?
+        file.AppendLine();
     }
 
     private void MaybeOutputToStringFunctions()

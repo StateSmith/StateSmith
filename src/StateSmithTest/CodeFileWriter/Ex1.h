@@ -31,9 +31,6 @@ enum
 // forward declaration
 typedef struct Ex1 Ex1;
 
-// event handler type
-typedef void (*Ex1_Func)(Ex1* sm);
-
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Ex1_ctor(Ex1* sm);
 
