@@ -13,6 +13,7 @@ public enum TranspilerId
     C99,
     CSharp,
     JavaScript,
+    Java,
 }
 
 

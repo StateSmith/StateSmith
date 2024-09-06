@@ -1,8 +1,8 @@
+#nullable enable
+
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
 using StateSmithTest.Processes;
-
-#nullable enable
 
 namespace Spec.Spec2.CSharp;
 

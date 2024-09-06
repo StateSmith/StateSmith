@@ -28,6 +28,12 @@ Release Template
 
 # Releases
 Test/interim releases are not documented here.
+
+## [0.14.?]
+### Added
+- Add `Java` transpiler (only supports algorithm `Balanced2` right now)
+  - !!!!!!!!!!!!!!!!!!!!!! FIXME - document Java settings
+  - https://github.com/StateSmith/StateSmith/issues/393
 - Add optimization to comment out unreachable behaviors in generated code
   - https://github.com/StateSmith/StateSmith/issues/394
 
