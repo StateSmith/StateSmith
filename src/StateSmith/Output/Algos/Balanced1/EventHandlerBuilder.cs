@@ -60,27 +60,46 @@ public class EventHandlerBuilder
         }
 
         var behaviorsWithTrigger = TriggerHelper.GetBehaviorsWithTrigger(namedVertex, triggerName);
-        foreach (var b in behaviorsWithTrigger)
-        {
-            if (b.HasTransition())
-            {
-                OutputTransitionCode(b, noAncestorHandlesEvent);
-            }
-            else
-            {
-                OutputNonTransitionCode(b, triggerName, noAncestorHandlesEvent);
-            }
 
-            File.RequestNewLineBeforeMoreCode();
-        }
+        OutputReachableStateBehaviors(triggerName, noAncestorHandlesEvent, behaviorsWithTrigger);
 
         userExpansionScriptBases.UpdateNamedVertex(null);
         userExpansionScriptBases.UpdateCurrentTrigger(null);
     }
 
-    public void OutputTransitionCode(Behavior behavior, bool noAncestorHandlesEvent, bool checkForExiting = true)
+    /// <summary>
+    /// https://github.com/StateSmith/StateSmith/issues/394
+    /// </summary>
+    /// <param name="triggerName">If null, only transitions are checked</param>
+    /// <param name="noAncestorHandlesEvent"></param>
+    /// <param name="behaviorsWithTrigger"></param>
+    private void OutputReachableStateBehaviors(string? triggerName, bool noAncestorHandlesEvent, IEnumerable<Behavior> behaviorsWithTrigger)
     {
-        OutputTransitionCodeInner(behavior, noAncestorHandlesEvent, checkForExiting);
+        List<Behavior>? unreachableBehaviors = null;
+        foreach (var b in behaviorsWithTrigger)
+        {
+            if (unreachableBehaviors != null)
+            {
+                File.AppendLine($"// unreachable behavior: `{b.DescribeAsUml(singleLineFormat: true)}` due to unconditional transition above");
+            }
+            else
+            {
+                if (b.HasTransition())
+                {
+                    OutputTransitionCode(b, noAncestorHandlesEvent);
+                    if (!b.HasGuardCode())
+                    {
+                        unreachableBehaviors = new();
+                    }
+                }
+                else if (triggerName != null)
+                {
+                    OutputNonTransitionCode(b, triggerName, noAncestorHandlesEvent);
+                }
+            }
+
+            File.RequestNewLineBeforeMoreCode();
+        }
     }
 
     private void OutputGuardStart(Behavior b)
@@ -98,7 +117,7 @@ public class EventHandlerBuilder
         File.AppendLine($"// uml: {uml}");
     }
 
-    private void OutputTransitionCodeInner(Behavior behavior, bool noAncestorHandlesEvent, bool checkForExiting = true)
+    public void OutputTransitionCode(Behavior behavior, bool noAncestorHandlesEvent, bool checkForExiting = true)
     {
         if (behavior.TransitionTarget == null)
         {
@@ -284,14 +303,8 @@ public class EventHandlerBuilder
 
     private void RenderPseudoStateTransitionsInner(PseudoStateVertex pseudoState, bool noAncestorHandlesEvent)
     {
-        foreach (Behavior pseudoStateBehavior in pseudoState.Behaviors)
-        {
-            if (pseudoStateBehavior.HasTransition())
-            {
-                OutputTransitionCodeInner(pseudoStateBehavior, noAncestorHandlesEvent);
-                File.RequestNewLineBeforeMoreCode();
-            }
-        }
+        string? noTriggerName = null;  // means that only transitions are checked
+        OutputReachableStateBehaviors(triggerName: noTriggerName, noAncestorHandlesEvent, pseudoState.Behaviors);
     }
 
     private static bool IsExitingRequired(Vertex source, Vertex target, TransitionPath transitionPath)

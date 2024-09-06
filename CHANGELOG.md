@@ -28,6 +28,10 @@ Release Template
 
 # Releases
 Test/interim releases are not documented here.
+- Add optimization to comment out unreachable behaviors in generated code
+  - https://github.com/StateSmith/StateSmith/issues/394
+
+---
 
 ## [0.13.2]
 ### Added
