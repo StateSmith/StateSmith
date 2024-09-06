@@ -78,22 +78,22 @@ public class RocketSm
         switch (this.stateId)
         {
             // STATE: RocketSm
-            case StateId.ROOT:
+            case ROOT:
                 // state and ancestors have no handler for `do` event.
                 break;
             
             // STATE: group
-            case StateId.GROUP:
+            case GROUP:
                 // state and ancestors have no handler for `do` event.
                 break;
             
             // STATE: g1
-            case StateId.G1:
+            case G1:
                 G1_do(); 
                 break;
             
             // STATE: g2
-            case StateId.G2:
+            case G2:
                 G2_do(); 
                 break;
         }
@@ -108,11 +108,11 @@ public class RocketSm
         {
             switch (this.stateId)
             {
-                case StateId.GROUP: GROUP_exit(); break;
+                case GROUP: GROUP_exit(); break;
                 
-                case StateId.G1: G1_exit(); break;
+                case G1: G1_exit(); break;
                 
-                case StateId.G2: G2_exit(); break;
+                case G2: G2_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -220,10 +220,10 @@ public class RocketSm
     {
         switch (id)
         {
-            case StateId.ROOT: return "ROOT";
-            case StateId.GROUP: return "GROUP";
-            case StateId.G1: return "G1";
-            case StateId.G2: return "G2";
+            case ROOT: return "ROOT";
+            case GROUP: return "GROUP";
+            case G1: return "G1";
+            case G2: return "G2";
             default: return "?";
         }
     }
@@ -233,7 +233,7 @@ public class RocketSm
     {
         switch (id)
         {
-            case EventId.DO: return "DO";
+            case DO: return "DO";
             default: return "?";
         }
     }

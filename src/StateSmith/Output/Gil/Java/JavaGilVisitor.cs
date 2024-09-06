@@ -70,6 +70,16 @@ public class JavaGilVisitor : CSharpSyntaxWalker
         this.Visit(transpilerHelper.root);
     }
 
+    public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
+    {
+        // older versions of Java don't like `case StateId.ROOT:` they want `case ROOT:`.
+        // I got errors like: `error: constant expression required` and `error: case expressions must be constant expressions`
+        VisitToken(node.Keyword);
+        MemberAccessExpressionSyntax memberAccessExpressionSyntax = (MemberAccessExpressionSyntax)node.Value; // we know it's a member access expression
+        Visit(memberAccessExpressionSyntax.Name);
+        VisitToken(node.ColonToken);
+    }
+
     public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
     {
         // we don't want to output identifier trailing space so we do this manually

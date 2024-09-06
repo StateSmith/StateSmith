@@ -79,52 +79,52 @@ public class RocketSm
         switch (this.stateId)
         {
             // STATE: RocketSm
-            case StateId.ROOT:
+            case ROOT:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
+                    case EV1: break;
+                    case EV2: break;
                 }
                 break;
             
             // STATE: group
-            case StateId.GROUP:
+            case GROUP:
                 switch (eventId)
                 {
-                    case EventId.EV1: GROUP_ev1(); break;
+                    case EV1: GROUP_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.EV2: break;
+                    case EV2: break;
                 }
                 break;
             
             // STATE: g1
-            case StateId.G1:
+            case G1:
                 switch (eventId)
                 {
-                    case EventId.EV1: G1_ev1(); break;
+                    case EV1: G1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.EV2: break;
+                    case EV2: break;
                 }
                 break;
             
             // STATE: g2
-            case StateId.G2:
+            case G2:
                 switch (eventId)
                 {
-                    case EventId.EV2: G2_ev2(); break;
+                    case EV2: G2_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.EV1: GROUP_ev1(); break; // First ancestor handler for this event
+                    case EV1: GROUP_ev1(); break; // First ancestor handler for this event
                 }
                 break;
             
             // STATE: s1
-            case StateId.S1:
+            case S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
+                    case EV1: break;
+                    case EV2: break;
                 }
                 break;
         }
@@ -139,13 +139,13 @@ public class RocketSm
         {
             switch (this.stateId)
             {
-                case StateId.GROUP: GROUP_exit(); break;
+                case GROUP: GROUP_exit(); break;
                 
-                case StateId.G1: G1_exit(); break;
+                case G1: G1_exit(); break;
                 
-                case StateId.G2: G2_exit(); break;
+                case G2: G2_exit(); break;
                 
-                case StateId.S1: S1_exit(); break;
+                case S1: S1_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -294,11 +294,11 @@ public class RocketSm
     {
         switch (id)
         {
-            case StateId.ROOT: return "ROOT";
-            case StateId.GROUP: return "GROUP";
-            case StateId.G1: return "G1";
-            case StateId.G2: return "G2";
-            case StateId.S1: return "S1";
+            case ROOT: return "ROOT";
+            case GROUP: return "GROUP";
+            case G1: return "G1";
+            case G2: return "G2";
+            case S1: return "S1";
             default: return "?";
         }
     }
@@ -308,8 +308,8 @@ public class RocketSm
     {
         switch (id)
         {
-            case EventId.EV1: return "EV1";
-            case EventId.EV2: return "EV2";
+            case EV1: return "EV1";
+            case EV2: return "EV2";
             default: return "?";
         }
     }

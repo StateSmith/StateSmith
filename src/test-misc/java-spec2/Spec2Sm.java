@@ -334,3958 +334,3958 @@ public class Spec2Sm extends Spec2SmBase
         switch (this.stateId)
         {
             // STATE: Spec2Sm
-            case StateId.ROOT:
+            case ROOT:
                 switch (eventId)
                 {
-                    case EventId.DO: ROOT_do(); break;
+                    case DO: ROOT_do(); break;
                     // Events not handled by this state:
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING
-            case StateId.PREFIXING:
+            case PREFIXING:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__ORDER_MENU
-            case StateId.PREFIXING__ORDER_MENU:
+            case PREFIXING__ORDER_MENU:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__OM__BEVERAGE
-            case StateId.PREFIXING__OM__BEVERAGE:
+            case PREFIXING__OM__BEVERAGE:
                 switch (eventId)
                 {
-                    case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break;
+                    case EV2: PREFIXING__OM__BEVERAGE_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__OM__BEV__NONE
-            case StateId.PREFIXING__OM__BEV__NONE:
+            case PREFIXING__OM__BEV__NONE:
                 switch (eventId)
                 {
-                    case EventId.EV1: PREFIXING__OM__BEV__NONE_ev1(); break;
+                    case EV1: PREFIXING__OM__BEV__NONE_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__OM__BEV__TEA
-            case StateId.PREFIXING__OM__BEV__TEA:
+            case PREFIXING__OM__BEV__TEA:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__OM__BEV__WATER
-            case StateId.PREFIXING__OM__BEV__WATER:
+            case PREFIXING__OM__BEV__WATER:
                 switch (eventId)
                 {
-                    case EventId.EV1: PREFIXING__OM__BEV__WATER_ev1(); break;
+                    case EV1: PREFIXING__OM__BEV__WATER_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: PREFIXING__OM__BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__OM__VEG
-            case StateId.PREFIXING__OM__VEG:
+            case PREFIXING__OM__VEG:
                 switch (eventId)
                 {
-                    case EventId.EV2: PREFIXING__OM__VEG_ev2(); break;
+                    case EV2: PREFIXING__OM__VEG_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__OM__VEG__NONE
-            case StateId.PREFIXING__OM__VEG__NONE:
+            case PREFIXING__OM__VEG__NONE:
                 switch (eventId)
                 {
-                    case EventId.EV1: PREFIXING__OM__VEG__NONE_ev1(); break;
+                    case EV1: PREFIXING__OM__VEG__NONE_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__OM__VEG__POTATO
-            case StateId.PREFIXING__OM__VEG__POTATO:
+            case PREFIXING__OM__VEG__POTATO:
                 switch (eventId)
                 {
-                    case EventId.EV1: PREFIXING__OM__VEG__POTATO_ev1(); break;
+                    case EV1: PREFIXING__OM__VEG__POTATO_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__OM__VEG__YAM
-            case StateId.PREFIXING__OM__VEG__YAM:
+            case PREFIXING__OM__VEG__YAM:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: PREFIXING__OM__VEG_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
+            case PREFIXING__SHOWS_MANUAL_PREFIX:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
                 switch (eventId)
                 {
-                    case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break;
+                    case EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
                 switch (eventId)
                 {
-                    case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(); break;
+                    case EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
                 switch (eventId)
                 {
-                    case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(); break;
+                    case EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
                 switch (eventId)
                 {
-                    case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break;
+                    case EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
                 switch (eventId)
                 {
-                    case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(); break;
+                    case EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
                 switch (eventId)
                 {
-                    case EventId.EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(); break;
+                    case EV1: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: Spec2Sm__DECIDE
-            case StateId.SPEC2SM__DECIDE:
+            case SPEC2SM__DECIDE:
                 switch (eventId)
                 {
-                    case EventId.EV1: SPEC2SM__DECIDE_ev1(); break;
-                    case EventId.EV2: SPEC2SM__DECIDE_ev2(); break;
-                    case EventId.EV3: SPEC2SM__DECIDE_ev3(); break;
-                    case EventId.EV4: SPEC2SM__DECIDE_ev4(); break;
-                    case EventId.EV5: SPEC2SM__DECIDE_ev5(); break;
-                    case EventId.EV6: SPEC2SM__DECIDE_ev6(); break;
-                    case EventId.EV7: SPEC2SM__DECIDE_ev7(); break;
-                    case EventId.EV8: SPEC2SM__DECIDE_ev8(); break;
-                    case EventId.EV9: SPEC2SM__DECIDE_ev9(); break;
-                    case EventId.EV10: SPEC2SM__DECIDE_ev10(); break;
+                    case EV1: SPEC2SM__DECIDE_ev1(); break;
+                    case EV2: SPEC2SM__DECIDE_ev2(); break;
+                    case EV3: SPEC2SM__DECIDE_ev3(); break;
+                    case EV4: SPEC2SM__DECIDE_ev4(); break;
+                    case EV5: SPEC2SM__DECIDE_ev5(); break;
+                    case EV6: SPEC2SM__DECIDE_ev6(); break;
+                    case EV7: SPEC2SM__DECIDE_ev7(); break;
+                    case EV8: SPEC2SM__DECIDE_ev8(); break;
+                    case EV9: SPEC2SM__DECIDE_ev9(); break;
+                    case EV10: SPEC2SM__DECIDE_ev10(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST1_DO_EVENT_TESTING
-            case StateId.TEST1_DO_EVENT_TESTING:
+            case TEST1_DO_EVENT_TESTING:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST1_ROOT
-            case StateId.TEST1_ROOT:
+            case TEST1_ROOT:
                 switch (eventId)
                 {
-                    case EventId.DO: TEST1_ROOT_do(); break;
+                    case DO: TEST1_ROOT_do(); break;
                     // Events not handled by this state:
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST1_S1
-            case StateId.TEST1_S1:
+            case TEST1_S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: TEST1_ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: TEST1_ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST1_S1_1
-            case StateId.TEST1_S1_1:
+            case TEST1_S1_1:
                 switch (eventId)
                 {
-                    case EventId.DO: TEST1_S1_1_do(); break;
-                    case EventId.EV1: TEST1_S1_1_ev1(); break;
+                    case DO: TEST1_S1_1_do(); break;
+                    case EV1: TEST1_S1_1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST1_S2
-            case StateId.TEST1_S2:
+            case TEST1_S2:
                 switch (eventId)
                 {
-                    case EventId.DO: TEST1_S2_do(); break;
+                    case DO: TEST1_S2_do(); break;
                     // Events not handled by this state:
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_CHOICE_POINT
-            case StateId.TEST10_CHOICE_POINT:
+            case TEST10_CHOICE_POINT:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_A
-            case StateId.TEST10_A:
+            case TEST10_A:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_A_1
-            case StateId.TEST10_A_1:
+            case TEST10_A_1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_ROOT
-            case StateId.TEST10_ROOT:
+            case TEST10_ROOT:
                 switch (eventId)
                 {
-                    case EventId.EV5: TEST10_ROOT_ev5(); break;
+                    case EV5: TEST10_ROOT_ev5(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_G
-            case StateId.TEST10_G:
+            case TEST10_G:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_G_S0
-            case StateId.TEST10_G_S0:
+            case TEST10_G_S0:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_G_S1
-            case StateId.TEST10_G_S1:
+            case TEST10_G_S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_G_S2
-            case StateId.TEST10_G_S2:
+            case TEST10_G_S2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_G_S3
-            case StateId.TEST10_G_S3:
+            case TEST10_G_S3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_S1
-            case StateId.TEST10_S1:
+            case TEST10_S1:
                 switch (eventId)
                 {
-                    case EventId.EV2: TEST10_S1_ev2(); break;
-                    case EventId.EV3: TEST10_S1_ev3(); break;
-                    case EventId.EV1: TEST10_S1_ev1(); break;
-                    case EventId.EV10: TEST10_S1_ev10(); break;
+                    case EV2: TEST10_S1_ev2(); break;
+                    case EV3: TEST10_S1_ev3(); break;
+                    case EV1: TEST10_S1_ev1(); break;
+                    case EV10: TEST10_S1_ev10(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV4: break;
+                    case EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST10_S4
-            case StateId.TEST10_S4:
+            case TEST10_S4:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST10_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST2_REGULAR_EVENT_TESTING
-            case StateId.TEST2_REGULAR_EVENT_TESTING:
+            case TEST2_REGULAR_EVENT_TESTING:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST2_ROOT
-            case StateId.TEST2_ROOT:
+            case TEST2_ROOT:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST2_ROOT_ev1(); break;
-                    case EventId.EV2: TEST2_ROOT_ev2(); break;
-                    case EventId.DO: TEST2_ROOT_do(); break;
+                    case EV1: TEST2_ROOT_ev1(); break;
+                    case EV2: TEST2_ROOT_ev2(); break;
+                    case DO: TEST2_ROOT_do(); break;
                     // Events not handled by this state:
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST2_S1
-            case StateId.TEST2_S1:
+            case TEST2_S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST2_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST2_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST2_S1_1
-            case StateId.TEST2_S1_1:
+            case TEST2_S1_1:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST2_S1_1_ev1(); break;
-                    case EventId.DO: TEST2_S1_1_do(); break;
+                    case EV1: TEST2_S1_1_ev1(); break;
+                    case DO: TEST2_S1_1_do(); break;
                     // Events not handled by this state:
-                    case EventId.EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case EV2: TEST2_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST2_S2
-            case StateId.TEST2_S2:
+            case TEST2_S2:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST2_S2_ev1(); break;
-                    case EventId.EV2: TEST2_S2_ev2(); break;
+                    case EV1: TEST2_S2_ev1(); break;
+                    case EV2: TEST2_S2_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: TEST2_ROOT_do(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST3_BEHAVIOR_ORDERING
-            case StateId.TEST3_BEHAVIOR_ORDERING:
+            case TEST3_BEHAVIOR_ORDERING:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST3_ROOT
-            case StateId.TEST3_ROOT:
+            case TEST3_ROOT:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST3_ROOT_ev1(); break;
+                    case EV1: TEST3_ROOT_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST3_S1
-            case StateId.TEST3_S1:
+            case TEST3_S1:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST3_S1_ev1(); break;
+                    case EV1: TEST3_S1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST3_S2
-            case StateId.TEST3_S2:
+            case TEST3_S2:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST3_S2_ev1(); break;
+                    case EV1: TEST3_S2_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST3_S3
-            case StateId.TEST3_S3:
+            case TEST3_S3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST3_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST3_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_PARENT_CHILD_TRANSITIONS
-            case StateId.TEST4_PARENT_CHILD_TRANSITIONS:
+            case TEST4_PARENT_CHILD_TRANSITIONS:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_B_AND_OTHERS
-            case StateId.TEST4_B_AND_OTHERS:
+            case TEST4_B_AND_OTHERS:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4B_LOCAL
-            case StateId.TEST4B_LOCAL:
+            case TEST4B_LOCAL:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4B_G
-            case StateId.TEST4B_G:
+            case TEST4B_G:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST4B_G_ev1(); break;
+                    case EV1: TEST4B_G_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4B_G_1
-            case StateId.TEST4B_G_1:
+            case TEST4B_G_1:
                 switch (eventId)
                 {
-                    case EventId.EV2: TEST4B_G_1_ev2(); break;
+                    case EV2: TEST4B_G_1_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST4B_G_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST4B_G_ev1(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4C_LOCAL_TO_ALIAS
-            case StateId.TEST4C_LOCAL_TO_ALIAS:
+            case TEST4C_LOCAL_TO_ALIAS:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4C_G
-            case StateId.TEST4C_G:
+            case TEST4C_G:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST4C_G_ev1(); break;
+                    case EV1: TEST4C_G_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4C_G_1
-            case StateId.TEST4C_G_1:
+            case TEST4C_G_1:
                 switch (eventId)
                 {
-                    case EventId.EV2: TEST4C_G_1_ev2(); break;
+                    case EV2: TEST4C_G_1_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST4C_G_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST4C_G_ev1(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4D_EXTERNAL
-            case StateId.TEST4D_EXTERNAL:
+            case TEST4D_EXTERNAL:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4D_G
-            case StateId.TEST4D_G:
+            case TEST4D_G:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST4D_G_ev1(); break;
+                    case EV1: TEST4D_G_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4D_G_1
-            case StateId.TEST4D_G_1:
+            case TEST4D_G_1:
                 switch (eventId)
                 {
-                    case EventId.EV2: TEST4D_G_1_ev2(); break;
+                    case EV2: TEST4D_G_1_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST4D_G_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST4D_G_ev1(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_DECIDE
-            case StateId.TEST4_DECIDE:
+            case TEST4_DECIDE:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST4_DECIDE_ev1(); break;
-                    case EventId.EV2: TEST4_DECIDE_ev2(); break;
-                    case EventId.EV3: TEST4_DECIDE_ev3(); break;
-                    case EventId.EV4: TEST4_DECIDE_ev4(); break;
+                    case EV1: TEST4_DECIDE_ev1(); break;
+                    case EV2: TEST4_DECIDE_ev2(); break;
+                    case EV3: TEST4_DECIDE_ev3(); break;
+                    case EV4: TEST4_DECIDE_ev4(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_ROOT
-            case StateId.TEST4_ROOT:
+            case TEST4_ROOT:
                 switch (eventId)
                 {
-                    case EventId.EV2: TEST4_ROOT_ev2(); break;
-                    case EventId.EV3: TEST4_ROOT_ev3(); break;
-                    case EventId.EV4: TEST4_ROOT_ev4(); break;
+                    case EV2: TEST4_ROOT_ev2(); break;
+                    case EV3: TEST4_ROOT_ev3(); break;
+                    case EV4: TEST4_ROOT_ev4(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_S1
-            case StateId.TEST4_S1:
+            case TEST4_S1:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST4_S1_ev1(); break;
+                    case EV1: TEST4_S1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_S10
-            case StateId.TEST4_S10:
+            case TEST4_S10:
                 switch (eventId)
                 {
-                    case EventId.EV4: TEST4_S10_ev4(); break;
+                    case EV4: TEST4_S10_ev4(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_S10_1
-            case StateId.TEST4_S10_1:
+            case TEST4_S10_1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: TEST4_S10_ev4(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: TEST4_S10_ev4(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_S2
-            case StateId.TEST4_S2:
+            case TEST4_S2:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST4_S2_ev1(); break;
+                    case EV1: TEST4_S2_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_S20
-            case StateId.TEST4_S20:
+            case TEST4_S20:
                 switch (eventId)
                 {
-                    case EventId.EV4: TEST4_S20_ev4(); break;
+                    case EV4: TEST4_S20_ev4(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_S20_1
-            case StateId.TEST4_S20_1:
+            case TEST4_S20_1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: TEST4_S20_ev4(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: TEST4_S20_ev4(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST4_S3
-            case StateId.TEST4_S3:
+            case TEST4_S3:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST4_S3_ev1(); break;
+                    case EV1: TEST4_S3_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: TEST4_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST4_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: TEST4_ROOT_ev4(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
-            case StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
+            case TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST5_ROOT
-            case StateId.TEST5_ROOT:
+            case TEST5_ROOT:
                 switch (eventId)
                 {
-                    case EventId.EV2: TEST5_ROOT_ev2(); break;
+                    case EV2: TEST5_ROOT_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST5_S1
-            case StateId.TEST5_S1:
+            case TEST5_S1:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST5_S1_ev1(); break;
+                    case EV1: TEST5_S1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST5_S2
-            case StateId.TEST5_S2:
+            case TEST5_S2:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST5_S2_ev1(); break;
+                    case EV1: TEST5_S2_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST5_S3
-            case StateId.TEST5_S3:
+            case TEST5_S3:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST5_S3_ev1(); break;
+                    case EV1: TEST5_S3_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: TEST5_ROOT_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST6_VARS_EXPANSIONS
-            case StateId.TEST6_VARS_EXPANSIONS:
+            case TEST6_VARS_EXPANSIONS:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST6_ROOT
-            case StateId.TEST6_ROOT:
+            case TEST6_ROOT:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: AUTO_VAR_TEST
-            case StateId.AUTO_VAR_TEST:
+            case AUTO_VAR_TEST:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: AUTO_VAR_TEST__S1
-            case StateId.AUTO_VAR_TEST__S1:
+            case AUTO_VAR_TEST__S1:
                 switch (eventId)
                 {
-                    case EventId.EV1: AUTO_VAR_TEST__S1_ev1(); break;
+                    case EV1: AUTO_VAR_TEST__S1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: AUTO_VAR_TEST__S2
-            case StateId.AUTO_VAR_TEST__S2:
+            case AUTO_VAR_TEST__S2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: META_EXPANSIONS
-            case StateId.META_EXPANSIONS:
+            case META_EXPANSIONS:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: META_EXPANSIONS__S1
-            case StateId.META_EXPANSIONS__S1:
+            case META_EXPANSIONS__S1:
                 switch (eventId)
                 {
-                    case EventId.EV1: META_EXPANSIONS__S1_ev1(); break;
+                    case EV1: META_EXPANSIONS__S1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: META_EXPANSIONS__S2
-            case StateId.META_EXPANSIONS__S2:
+            case META_EXPANSIONS__S2:
                 switch (eventId)
                 {
-                    case EventId.EV1: META_EXPANSIONS__S2_ev1(); break;
-                    case EventId.EV2: META_EXPANSIONS__S2_ev2(); break;
+                    case EV1: META_EXPANSIONS__S2_ev1(); break;
+                    case EV2: META_EXPANSIONS__S2_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: S3
-            case StateId.S3:
+            case S3:
                 switch (eventId)
                 {
-                    case EventId.EV1: S3_ev1(); break;
+                    case EV1: S3_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: S4
-            case StateId.S4:
+            case S4:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: S5
-            case StateId.S5:
+            case S5:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: NORMAL
-            case StateId.NORMAL:
+            case NORMAL:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: NORMAL__S1
-            case StateId.NORMAL__S1:
+            case NORMAL__S1:
                 switch (eventId)
                 {
-                    case EventId.EV1: NORMAL__S1_ev1(); break;
+                    case EV1: NORMAL__S1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: NORMAL__S2
-            case StateId.NORMAL__S2:
+            case NORMAL__S2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST6_VARS_EXPANSIONS__DECIDE
-            case StateId.TEST6_VARS_EXPANSIONS__DECIDE:
+            case TEST6_VARS_EXPANSIONS__DECIDE:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST6_VARS_EXPANSIONS__DECIDE_ev1(); break;
-                    case EventId.EV2: TEST6_VARS_EXPANSIONS__DECIDE_ev2(); break;
-                    case EventId.EV3: TEST6_VARS_EXPANSIONS__DECIDE_ev3(); break;
+                    case EV1: TEST6_VARS_EXPANSIONS__DECIDE_ev1(); break;
+                    case EV2: TEST6_VARS_EXPANSIONS__DECIDE_ev2(); break;
+                    case EV3: TEST6_VARS_EXPANSIONS__DECIDE_ev3(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST7_INITIAL_OR_HISTORY
-            case StateId.TEST7_INITIAL_OR_HISTORY:
+            case TEST7_INITIAL_OR_HISTORY:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST7
-            case StateId.TEST7:
+            case TEST7:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY1
-            case StateId.T7__DEEP_HISTORY1:
+            case T7__DEEP_HISTORY1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__SANTAS_WORKSHOP
-            case StateId.T7__DH1__SANTAS_WORKSHOP:
+            case T7__DH1__SANTAS_WORKSHOP:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__ALIENS_DETECTED
-            case StateId.T7__DH1__ALIENS_DETECTED:
+            case T7__DH1__ALIENS_DETECTED:
                 switch (eventId)
                 {
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__GET_BACKUP
-            case StateId.T7__DH1__GET_BACKUP:
+            case T7__DH1__GET_BACKUP:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__HERO
-            case StateId.T7__DH1__HERO:
+            case T7__DH1__HERO:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__CALL_BATMAN
-            case StateId.T7__DH1__CALL_BATMAN:
+            case T7__DH1__CALL_BATMAN:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__CALL_BATMAN_ev1(); break;
+                    case EV1: T7__DH1__CALL_BATMAN_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__CALL_THOR
-            case StateId.T7__DH1__CALL_THOR:
+            case T7__DH1__CALL_THOR:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__CALL_THOR_ev1(); break;
+                    case EV1: T7__DH1__CALL_THOR_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__LOCAL_HELP
-            case StateId.T7__DH1__LOCAL_HELP:
+            case T7__DH1__LOCAL_HELP:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__BUDDY_ELF
-            case StateId.T7__DH1__BUDDY_ELF:
+            case T7__DH1__BUDDY_ELF:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__BUDDY_ELF_ev1(); break;
+                    case EV1: T7__DH1__BUDDY_ELF_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__POLAR_BEARS
-            case StateId.T7__DH1__POLAR_BEARS:
+            case T7__DH1__POLAR_BEARS:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__GIVE_COOKIES
-            case StateId.T7__DH1__GIVE_COOKIES:
+            case T7__DH1__GIVE_COOKIES:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__GIVE_COOKIES_ev1(); break;
+                    case EV1: T7__DH1__GIVE_COOKIES_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__SNOWBALL_FIGHT
-            case StateId.T7__DH1__SNOWBALL_FIGHT:
+            case T7__DH1__SNOWBALL_FIGHT:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__SNOWBALL_FIGHT_ev1(); break;
+                    case EV1: T7__DH1__SNOWBALL_FIGHT_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: T7__DH1__ALIENS_DETECTED_ev8(); break; // First ancestor handler for this event
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__BUILD
-            case StateId.T7__DH1__BUILD:
+            case T7__DH1__BUILD:
                 switch (eventId)
                 {
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break;
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break;
+                    case EV6: T7__DH1__BUILD_ev6(); break;
+                    case EV7: T7__DH1__BUILD_ev7(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__TOOL
-            case StateId.T7__DH1__TOOL:
+            case T7__DH1__TOOL:
                 switch (eventId)
                 {
-                    case EventId.EV2: T7__DH1__TOOL_ev2(); break;
+                    case EV2: T7__DH1__TOOL_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__CIRCULAR_SAW
-            case StateId.T7__DH1__CIRCULAR_SAW:
+            case T7__DH1__CIRCULAR_SAW:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__IMPACT_DRILL
-            case StateId.T7__DH1__IMPACT_DRILL:
+            case T7__DH1__IMPACT_DRILL:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__IMPACT_DRILL_ev1(); break;
+                    case EV1: T7__DH1__IMPACT_DRILL_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: T7__DH1__TOOL_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__TOY
-            case StateId.T7__DH1__TOY:
+            case T7__DH1__TOY:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__TOY_ev1(); break;
+                    case EV1: T7__DH1__TOY_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__GLOW_WORM
-            case StateId.T7__DH1__GLOW_WORM:
+            case T7__DH1__GLOW_WORM:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__GLOW_WORM_ev1(); break;
+                    case EV1: T7__DH1__GLOW_WORM_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__RACE_CAR
-            case StateId.T7__DH1__RACE_CAR:
+            case T7__DH1__RACE_CAR:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__RACE_CAR_ev1(); break;
+                    case EV1: T7__DH1__RACE_CAR_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__ROBOT
-            case StateId.T7__DH1__ROBOT:
+            case T7__DH1__ROBOT:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__BATTLEBOT
-            case StateId.T7__DH1__BATTLEBOT:
+            case T7__DH1__BATTLEBOT:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__BATTLEBOT_ev1(); break;
+                    case EV1: T7__DH1__BATTLEBOT_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__WALL_E
-            case StateId.T7__DH1__WALL_E:
+            case T7__DH1__WALL_E:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: T7__DH1__TOY_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DH1__TEDDY_BEAR
-            case StateId.T7__DH1__TEDDY_BEAR:
+            case T7__DH1__TEDDY_BEAR:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__DH1__TEDDY_BEAR_ev1(); break;
+                    case EV1: T7__DH1__TEDDY_BEAR_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__DH1__BUILD_ev6(); break; // First ancestor handler for this event
+                    case EV7: T7__DH1__BUILD_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY2
-            case StateId.T7__DEEP_HISTORY2:
+            case T7__DEEP_HISTORY2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY2__T7__state_0
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_0:
+            case T7__DEEP_HISTORY2__T7__STATE_0:
                 switch (eventId)
                 {
-                    case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break;
+                    case EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY2__T7__state_1
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_1:
+            case T7__DEEP_HISTORY2__T7__STATE_1:
                 switch (eventId)
                 {
-                    case EventId.EVSTEP: T7__DEEP_HISTORY2__T7__STATE_1_evstep(); break;
+                    case EVSTEP: T7__DEEP_HISTORY2__T7__STATE_1_evstep(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY2__T7__state_2
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_2:
+            case T7__DEEP_HISTORY2__T7__STATE_2:
                 switch (eventId)
                 {
-                    case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break;
+                    case EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case EventId.EVSTEP: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    case EVSTEP: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY2__T7__state_6
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_6:
+            case T7__DEEP_HISTORY2__T7__STATE_6:
                 switch (eventId)
                 {
-                    case EventId.EVSTEP: T7__DEEP_HISTORY2__T7__STATE_6_evstep(); break;
+                    case EVSTEP: T7__DEEP_HISTORY2__T7__STATE_6_evstep(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    case EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY2__T7__state_9
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_9:
+            case T7__DEEP_HISTORY2__T7__STATE_9:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: T7__DEEP_HISTORY2__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    case EVSTEP: break;
+                    case EVBACK: T7__DEEP_HISTORY2__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY2__T7__state_3
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_3:
+            case T7__DEEP_HISTORY2__T7__STATE_3:
                 switch (eventId)
                 {
-                    case EventId.EVCLOSE: T7__DEEP_HISTORY2__T7__STATE_3_evclose(); break;
+                    case EVCLOSE: T7__DEEP_HISTORY2__T7__STATE_3_evclose(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY3
-            case StateId.T7__DEEP_HISTORY3:
+            case T7__DEEP_HISTORY3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY3__T7__state_0
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_0:
+            case T7__DEEP_HISTORY3__T7__STATE_0:
                 switch (eventId)
                 {
-                    case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break;
+                    case EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY3__T7__state_1
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_1:
+            case T7__DEEP_HISTORY3__T7__STATE_1:
                 switch (eventId)
                 {
-                    case EventId.EVSTEP: T7__DEEP_HISTORY3__T7__STATE_1_evstep(); break;
+                    case EVSTEP: T7__DEEP_HISTORY3__T7__STATE_1_evstep(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY3__T7__state_2
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_2:
+            case T7__DEEP_HISTORY3__T7__STATE_2:
                 switch (eventId)
                 {
-                    case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break;
+                    case EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case EventId.EVSTEP: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    case EVSTEP: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY3__T7__state_6
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_6:
+            case T7__DEEP_HISTORY3__T7__STATE_6:
                 switch (eventId)
                 {
-                    case EventId.EVSTEP: T7__DEEP_HISTORY3__T7__STATE_6_evstep(); break;
+                    case EVSTEP: T7__DEEP_HISTORY3__T7__STATE_6_evstep(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    case EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY3__T7__state_9
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_9:
+            case T7__DEEP_HISTORY3__T7__STATE_9:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: T7__DEEP_HISTORY3__T7__STATE_0_evopen(); break; // First ancestor handler for this event
+                    case EVSTEP: break;
+                    case EVBACK: T7__DEEP_HISTORY3__T7__STATE_2_evback(); break; // First ancestor handler for this event
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__DEEP_HISTORY3__T7__state_3
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_3:
+            case T7__DEEP_HISTORY3__T7__STATE_3:
                 switch (eventId)
                 {
-                    case EventId.EVCLOSE: T7__DEEP_HISTORY3__T7__STATE_3_evclose(); break;
+                    case EVCLOSE: T7__DEEP_HISTORY3__T7__STATE_3_evclose(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
                 }
                 break;
             
             // STATE: T7__HISTORY1
-            case StateId.T7__HISTORY1:
+            case T7__HISTORY1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__H1__OFF
-            case StateId.T7__H1__OFF:
+            case T7__H1__OFF:
                 switch (eventId)
                 {
-                    case EventId.EV3: T7__H1__OFF_ev3(); break;
-                    case EventId.EV4: T7__H1__OFF_ev4(); break;
-                    case EventId.EV7: T7__H1__OFF_ev7(); break;
+                    case EV3: T7__H1__OFF_ev3(); break;
+                    case EV4: T7__H1__OFF_ev4(); break;
+                    case EV7: T7__H1__OFF_ev7(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__H1__OFF1
-            case StateId.T7__H1__OFF1:
+            case T7__H1__OFF1:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__H1__OFF1_ev1(); break;
+                    case EV1: T7__H1__OFF1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
+                    case EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__H1__OFF2
-            case StateId.T7__H1__OFF2:
+            case T7__H1__OFF2:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__H1__OFF2_ev1(); break;
+                    case EV1: T7__H1__OFF2_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
+                    case EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__H1__OFF3
-            case StateId.T7__H1__OFF3:
+            case T7__H1__OFF3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: T7__H1__OFF_ev3(); break; // First ancestor handler for this event
+                    case EV4: T7__H1__OFF_ev4(); break; // First ancestor handler for this event
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: T7__H1__OFF_ev7(); break; // First ancestor handler for this event
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__H1__ON
-            case StateId.T7__H1__ON:
+            case T7__H1__ON:
                 switch (eventId)
                 {
-                    case EventId.EV6: T7__H1__ON_ev6(); break;
+                    case EV6: T7__H1__ON_ev6(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__H1__ON1
-            case StateId.T7__H1__ON1:
+            case T7__H1__ON1:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__H1__ON1_ev1(); break;
+                    case EV1: T7__H1__ON1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__H1__ON2
-            case StateId.T7__H1__ON2:
+            case T7__H1__ON2:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__H1__ON2_ev1(); break;
+                    case EV1: T7__H1__ON2_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__H1__ON3
-            case StateId.T7__H1__ON3:
+            case T7__H1__ON3:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__H1__ON3_ev1(); break;
+                    case EV1: T7__H1__ON3_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: T7__H1__ON_ev6(); break; // First ancestor handler for this event
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__INITIAL1
-            case StateId.T7__INITIAL1:
+            case T7__INITIAL1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__INITIAL1__PARENT
-            case StateId.T7__INITIAL1__PARENT:
+            case T7__INITIAL1__PARENT:
                 switch (eventId)
                 {
-                    case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break;
+                    case EV5: T7__INITIAL1__PARENT_ev5(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__INITIAL1__G
-            case StateId.T7__INITIAL1__G:
+            case T7__INITIAL1__G:
                 switch (eventId)
                 {
-                    case EventId.EV2: T7__INITIAL1__G_ev2(); break;
+                    case EV2: T7__INITIAL1__G_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__INITIAL1__G_S1
-            case StateId.T7__INITIAL1__G_S1:
+            case T7__INITIAL1__G_S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__INITIAL1__G_S2
-            case StateId.T7__INITIAL1__G_S2:
+            case T7__INITIAL1__G_S2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__INITIAL1__G_S3
-            case StateId.T7__INITIAL1__G_S3:
+            case T7__INITIAL1__G_S3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: T7__INITIAL1__G_ev2(); break; // First ancestor handler for this event
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: T7__INITIAL1__S1
-            case StateId.T7__INITIAL1__S1:
+            case T7__INITIAL1__S1:
                 switch (eventId)
                 {
-                    case EventId.EV1: T7__INITIAL1__S1_ev1(); break;
-                    case EventId.EV3: T7__INITIAL1__S1_ev3(); break;
+                    case EV1: T7__INITIAL1__S1_ev1(); break;
+                    case EV3: T7__INITIAL1__S1_ev3(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV4: break;
+                    case EV5: T7__INITIAL1__PARENT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST7_DECIDE
-            case StateId.TEST7_DECIDE:
+            case TEST7_DECIDE:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST7_DECIDE_ev1(); break;
-                    case EventId.EV2: TEST7_DECIDE_ev2(); break;
-                    case EventId.EV3: TEST7_DECIDE_ev3(); break;
-                    case EventId.EV4: TEST7_DECIDE_ev4(); break;
-                    case EventId.EV5: TEST7_DECIDE_ev5(); break;
+                    case EV1: TEST7_DECIDE_ev1(); break;
+                    case EV2: TEST7_DECIDE_ev2(); break;
+                    case EV3: TEST7_DECIDE_ev3(); break;
+                    case EV4: TEST7_DECIDE_ev4(); break;
+                    case EV5: TEST7_DECIDE_ev5(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST8_ENTRY_CHOICE
-            case StateId.TEST8_ENTRY_CHOICE:
+            case TEST8_ENTRY_CHOICE:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST8_ROOT
-            case StateId.TEST8_ROOT:
+            case TEST8_ROOT:
                 switch (eventId)
                 {
-                    case EventId.EV5: TEST8_ROOT_ev5(); break;
-                    case EventId.EV3: TEST8_ROOT_ev3(); break;
+                    case EV5: TEST8_ROOT_ev5(); break;
+                    case EV3: TEST8_ROOT_ev3(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV4: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV4: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST8_G
-            case StateId.TEST8_G:
+            case TEST8_G:
                 switch (eventId)
                 {
-                    case EventId.EV2: TEST8_G_ev2(); break;
+                    case EV2: TEST8_G_ev2(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: break;
+                    case EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST8_G_S1
-            case StateId.TEST8_G_S1:
+            case TEST8_G_S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: break;
+                    case EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST8_G_S2
-            case StateId.TEST8_G_S2:
+            case TEST8_G_S2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: break;
+                    case EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST8_G_S3
-            case StateId.TEST8_G_S3:
+            case TEST8_G_S3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
-                    case EventId.EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: TEST8_G_ev2(); break; // First ancestor handler for this event
+                    case EV3: TEST8_ROOT_ev3(); break; // First ancestor handler for this event
+                    case EV4: break;
+                    case EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST8_S1
-            case StateId.TEST8_S1:
+            case TEST8_S1:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST8_S1_ev1(); break;
-                    case EventId.EV3: TEST8_S1_ev3(); break;
-                    case EventId.EV6: TEST8_S1_ev6(); break;
+                    case EV1: TEST8_S1_ev1(); break;
+                    case EV3: TEST8_S1_ev3(); break;
+                    case EV6: TEST8_S1_ev6(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV4: break;
+                    case EV5: TEST8_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_EXIT_CHOICE
-            case StateId.TEST9_EXIT_CHOICE:
+            case TEST9_EXIT_CHOICE:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_DECIDE
-            case StateId.TEST9_DECIDE:
+            case TEST9_DECIDE:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST9_DECIDE_ev1(); break;
-                    case EventId.EV2: TEST9_DECIDE_ev2(); break;
-                    case EventId.EV3: TEST9_DECIDE_ev3(); break;
+                    case EV1: TEST9_DECIDE_ev1(); break;
+                    case EV2: TEST9_DECIDE_ev2(); break;
+                    case EV3: TEST9_DECIDE_ev3(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_ROOT
-            case StateId.TEST9_ROOT:
+            case TEST9_ROOT:
                 switch (eventId)
                 {
-                    case EventId.EV5: TEST9_ROOT_ev5(); break;
+                    case EV5: TEST9_ROOT_ev5(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_G_S1
-            case StateId.TEST9_G_S1:
+            case TEST9_G_S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_G_S2
-            case StateId.TEST9_G_S2:
+            case TEST9_G_S2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_G_S3
-            case StateId.TEST9_G_S3:
+            case TEST9_G_S3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_G_S4
-            case StateId.TEST9_G_S4:
+            case TEST9_G_S4:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_S1
-            case StateId.TEST9_S1:
+            case TEST9_S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9_S1_1
-            case StateId.TEST9_S1_1:
+            case TEST9_S1_1:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST9_S1_1_ev1(); break;
+                    case EV1: TEST9_S1_1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: TEST9_ROOT_ev5(); break; // First ancestor handler for this event
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9A_ROOT
-            case StateId.TEST9A_ROOT:
+            case TEST9A_ROOT:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9A_S1
-            case StateId.TEST9A_S1:
+            case TEST9A_S1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: break;
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9A_S1_1
-            case StateId.TEST9A_S1_1:
+            case TEST9A_S1_1:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST9A_S1_1_ev1(); break;
+                    case EV1: TEST9A_S1_1_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT
-            case StateId.TEST9B_ROOT:
+            case TEST9B_ROOT:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST9B_ROOT_ev1(); break;
+                    case EV1: TEST9B_ROOT_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT__A1
-            case StateId.TEST9B_ROOT__A1:
+            case TEST9B_ROOT__A1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT__A2
-            case StateId.TEST9B_ROOT__A2:
+            case TEST9B_ROOT__A2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT__A3
-            case StateId.TEST9B_ROOT__A3:
+            case TEST9B_ROOT__A3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT__A4
-            case StateId.TEST9B_ROOT__A4:
+            case TEST9B_ROOT__A4:
                 switch (eventId)
                 {
-                    case EventId.EV1: TEST9B_ROOT__A4_ev1(); break;
+                    case EV1: TEST9B_ROOT__A4_ev1(); break;
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT__B1
-            case StateId.TEST9B_ROOT__B1:
+            case TEST9B_ROOT__B1:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT__B2
-            case StateId.TEST9B_ROOT__B2:
+            case TEST9B_ROOT__B2:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT__B3
-            case StateId.TEST9B_ROOT__B3:
+            case TEST9B_ROOT__B3:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
             
             // STATE: TEST9B_ROOT__B4
-            case StateId.TEST9B_ROOT__B4:
+            case TEST9B_ROOT__B4:
                 switch (eventId)
                 {
                     // Events not handled by this state:
-                    case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
-                    case EventId.EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
-                    case EventId.EV2: break;
-                    case EventId.EV3: break;
-                    case EventId.EV4: break;
-                    case EventId.EV5: break;
-                    case EventId.EV6: break;
-                    case EventId.EV7: break;
-                    case EventId.EV8: break;
-                    case EventId.EV9: break;
-                    case EventId.EV10: break;
-                    case EventId.EVOPEN: break;
-                    case EventId.EVSTEP: break;
-                    case EventId.EVBACK: break;
-                    case EventId.EVCLOSE: break;
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: TEST9B_ROOT_ev1(); break; // First ancestor handler for this event
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
                 }
                 break;
         }
@@ -4300,347 +4300,347 @@ public class Spec2Sm extends Spec2SmBase
         {
             switch (this.stateId)
             {
-                case StateId.PREFIXING: PREFIXING_exit(); break;
+                case PREFIXING: PREFIXING_exit(); break;
                 
-                case StateId.PREFIXING__ORDER_MENU: PREFIXING__ORDER_MENU_exit(); break;
+                case PREFIXING__ORDER_MENU: PREFIXING__ORDER_MENU_exit(); break;
                 
-                case StateId.PREFIXING__OM__BEVERAGE: PREFIXING__OM__BEVERAGE_exit(); break;
+                case PREFIXING__OM__BEVERAGE: PREFIXING__OM__BEVERAGE_exit(); break;
                 
-                case StateId.PREFIXING__OM__BEV__NONE: PREFIXING__OM__BEV__NONE_exit(); break;
+                case PREFIXING__OM__BEV__NONE: PREFIXING__OM__BEV__NONE_exit(); break;
                 
-                case StateId.PREFIXING__OM__BEV__TEA: PREFIXING__OM__BEV__TEA_exit(); break;
+                case PREFIXING__OM__BEV__TEA: PREFIXING__OM__BEV__TEA_exit(); break;
                 
-                case StateId.PREFIXING__OM__BEV__WATER: PREFIXING__OM__BEV__WATER_exit(); break;
+                case PREFIXING__OM__BEV__WATER: PREFIXING__OM__BEV__WATER_exit(); break;
                 
-                case StateId.PREFIXING__OM__VEG: PREFIXING__OM__VEG_exit(); break;
+                case PREFIXING__OM__VEG: PREFIXING__OM__VEG_exit(); break;
                 
-                case StateId.PREFIXING__OM__VEG__NONE: PREFIXING__OM__VEG__NONE_exit(); break;
+                case PREFIXING__OM__VEG__NONE: PREFIXING__OM__VEG__NONE_exit(); break;
                 
-                case StateId.PREFIXING__OM__VEG__POTATO: PREFIXING__OM__VEG__POTATO_exit(); break;
+                case PREFIXING__OM__VEG__POTATO: PREFIXING__OM__VEG__POTATO_exit(); break;
                 
-                case StateId.PREFIXING__OM__VEG__YAM: PREFIXING__OM__VEG__YAM_exit(); break;
+                case PREFIXING__OM__VEG__YAM: PREFIXING__OM__VEG__YAM_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX: PREFIXING__SHOWS_MANUAL_PREFIX_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX: PREFIXING__SHOWS_MANUAL_PREFIX_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(); break;
                 
-                case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(); break;
+                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(); break;
                 
-                case StateId.SPEC2SM__DECIDE: SPEC2SM__DECIDE_exit(); break;
+                case SPEC2SM__DECIDE: SPEC2SM__DECIDE_exit(); break;
                 
-                case StateId.TEST1_DO_EVENT_TESTING: TEST1_DO_EVENT_TESTING_exit(); break;
+                case TEST1_DO_EVENT_TESTING: TEST1_DO_EVENT_TESTING_exit(); break;
                 
-                case StateId.TEST1_ROOT: TEST1_ROOT_exit(); break;
+                case TEST1_ROOT: TEST1_ROOT_exit(); break;
                 
-                case StateId.TEST1_S1: TEST1_S1_exit(); break;
+                case TEST1_S1: TEST1_S1_exit(); break;
                 
-                case StateId.TEST1_S1_1: TEST1_S1_1_exit(); break;
+                case TEST1_S1_1: TEST1_S1_1_exit(); break;
                 
-                case StateId.TEST1_S2: TEST1_S2_exit(); break;
+                case TEST1_S2: TEST1_S2_exit(); break;
                 
-                case StateId.TEST10_CHOICE_POINT: TEST10_CHOICE_POINT_exit(); break;
+                case TEST10_CHOICE_POINT: TEST10_CHOICE_POINT_exit(); break;
                 
-                case StateId.TEST10_A: TEST10_A_exit(); break;
+                case TEST10_A: TEST10_A_exit(); break;
                 
-                case StateId.TEST10_A_1: TEST10_A_1_exit(); break;
+                case TEST10_A_1: TEST10_A_1_exit(); break;
                 
-                case StateId.TEST10_ROOT: TEST10_ROOT_exit(); break;
+                case TEST10_ROOT: TEST10_ROOT_exit(); break;
                 
-                case StateId.TEST10_G: TEST10_G_exit(); break;
+                case TEST10_G: TEST10_G_exit(); break;
                 
-                case StateId.TEST10_G_S0: TEST10_G_S0_exit(); break;
+                case TEST10_G_S0: TEST10_G_S0_exit(); break;
                 
-                case StateId.TEST10_G_S1: TEST10_G_S1_exit(); break;
+                case TEST10_G_S1: TEST10_G_S1_exit(); break;
                 
-                case StateId.TEST10_G_S2: TEST10_G_S2_exit(); break;
+                case TEST10_G_S2: TEST10_G_S2_exit(); break;
                 
-                case StateId.TEST10_G_S3: TEST10_G_S3_exit(); break;
+                case TEST10_G_S3: TEST10_G_S3_exit(); break;
                 
-                case StateId.TEST10_S1: TEST10_S1_exit(); break;
+                case TEST10_S1: TEST10_S1_exit(); break;
                 
-                case StateId.TEST10_S4: TEST10_S4_exit(); break;
+                case TEST10_S4: TEST10_S4_exit(); break;
                 
-                case StateId.TEST2_REGULAR_EVENT_TESTING: TEST2_REGULAR_EVENT_TESTING_exit(); break;
+                case TEST2_REGULAR_EVENT_TESTING: TEST2_REGULAR_EVENT_TESTING_exit(); break;
                 
-                case StateId.TEST2_ROOT: TEST2_ROOT_exit(); break;
+                case TEST2_ROOT: TEST2_ROOT_exit(); break;
                 
-                case StateId.TEST2_S1: TEST2_S1_exit(); break;
+                case TEST2_S1: TEST2_S1_exit(); break;
                 
-                case StateId.TEST2_S1_1: TEST2_S1_1_exit(); break;
+                case TEST2_S1_1: TEST2_S1_1_exit(); break;
                 
-                case StateId.TEST2_S2: TEST2_S2_exit(); break;
+                case TEST2_S2: TEST2_S2_exit(); break;
                 
-                case StateId.TEST3_BEHAVIOR_ORDERING: TEST3_BEHAVIOR_ORDERING_exit(); break;
+                case TEST3_BEHAVIOR_ORDERING: TEST3_BEHAVIOR_ORDERING_exit(); break;
                 
-                case StateId.TEST3_ROOT: TEST3_ROOT_exit(); break;
+                case TEST3_ROOT: TEST3_ROOT_exit(); break;
                 
-                case StateId.TEST3_S1: TEST3_S1_exit(); break;
+                case TEST3_S1: TEST3_S1_exit(); break;
                 
-                case StateId.TEST3_S2: TEST3_S2_exit(); break;
+                case TEST3_S2: TEST3_S2_exit(); break;
                 
-                case StateId.TEST3_S3: TEST3_S3_exit(); break;
+                case TEST3_S3: TEST3_S3_exit(); break;
                 
-                case StateId.TEST4_PARENT_CHILD_TRANSITIONS: TEST4_PARENT_CHILD_TRANSITIONS_exit(); break;
+                case TEST4_PARENT_CHILD_TRANSITIONS: TEST4_PARENT_CHILD_TRANSITIONS_exit(); break;
                 
-                case StateId.TEST4_B_AND_OTHERS: TEST4_B_AND_OTHERS_exit(); break;
+                case TEST4_B_AND_OTHERS: TEST4_B_AND_OTHERS_exit(); break;
                 
-                case StateId.TEST4B_LOCAL: TEST4B_LOCAL_exit(); break;
+                case TEST4B_LOCAL: TEST4B_LOCAL_exit(); break;
                 
-                case StateId.TEST4B_G: TEST4B_G_exit(); break;
+                case TEST4B_G: TEST4B_G_exit(); break;
                 
-                case StateId.TEST4B_G_1: TEST4B_G_1_exit(); break;
+                case TEST4B_G_1: TEST4B_G_1_exit(); break;
                 
-                case StateId.TEST4C_LOCAL_TO_ALIAS: TEST4C_LOCAL_TO_ALIAS_exit(); break;
+                case TEST4C_LOCAL_TO_ALIAS: TEST4C_LOCAL_TO_ALIAS_exit(); break;
                 
-                case StateId.TEST4C_G: TEST4C_G_exit(); break;
+                case TEST4C_G: TEST4C_G_exit(); break;
                 
-                case StateId.TEST4C_G_1: TEST4C_G_1_exit(); break;
+                case TEST4C_G_1: TEST4C_G_1_exit(); break;
                 
-                case StateId.TEST4D_EXTERNAL: TEST4D_EXTERNAL_exit(); break;
+                case TEST4D_EXTERNAL: TEST4D_EXTERNAL_exit(); break;
                 
-                case StateId.TEST4D_G: TEST4D_G_exit(); break;
+                case TEST4D_G: TEST4D_G_exit(); break;
                 
-                case StateId.TEST4D_G_1: TEST4D_G_1_exit(); break;
+                case TEST4D_G_1: TEST4D_G_1_exit(); break;
                 
-                case StateId.TEST4_DECIDE: TEST4_DECIDE_exit(); break;
+                case TEST4_DECIDE: TEST4_DECIDE_exit(); break;
                 
-                case StateId.TEST4_ROOT: TEST4_ROOT_exit(); break;
+                case TEST4_ROOT: TEST4_ROOT_exit(); break;
                 
-                case StateId.TEST4_S1: TEST4_S1_exit(); break;
+                case TEST4_S1: TEST4_S1_exit(); break;
                 
-                case StateId.TEST4_S10: TEST4_S10_exit(); break;
+                case TEST4_S10: TEST4_S10_exit(); break;
                 
-                case StateId.TEST4_S10_1: TEST4_S10_1_exit(); break;
+                case TEST4_S10_1: TEST4_S10_1_exit(); break;
                 
-                case StateId.TEST4_S2: TEST4_S2_exit(); break;
+                case TEST4_S2: TEST4_S2_exit(); break;
                 
-                case StateId.TEST4_S20: TEST4_S20_exit(); break;
+                case TEST4_S20: TEST4_S20_exit(); break;
                 
-                case StateId.TEST4_S20_1: TEST4_S20_1_exit(); break;
+                case TEST4_S20_1: TEST4_S20_1_exit(); break;
                 
-                case StateId.TEST4_S3: TEST4_S3_exit(); break;
+                case TEST4_S3: TEST4_S3_exit(); break;
                 
-                case StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(); break;
+                case TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(); break;
                 
-                case StateId.TEST5_ROOT: TEST5_ROOT_exit(); break;
+                case TEST5_ROOT: TEST5_ROOT_exit(); break;
                 
-                case StateId.TEST5_S1: TEST5_S1_exit(); break;
+                case TEST5_S1: TEST5_S1_exit(); break;
                 
-                case StateId.TEST5_S2: TEST5_S2_exit(); break;
+                case TEST5_S2: TEST5_S2_exit(); break;
                 
-                case StateId.TEST5_S3: TEST5_S3_exit(); break;
+                case TEST5_S3: TEST5_S3_exit(); break;
                 
-                case StateId.TEST6_VARS_EXPANSIONS: TEST6_VARS_EXPANSIONS_exit(); break;
+                case TEST6_VARS_EXPANSIONS: TEST6_VARS_EXPANSIONS_exit(); break;
                 
-                case StateId.TEST6_ROOT: TEST6_ROOT_exit(); break;
+                case TEST6_ROOT: TEST6_ROOT_exit(); break;
                 
-                case StateId.AUTO_VAR_TEST: AUTO_VAR_TEST_exit(); break;
+                case AUTO_VAR_TEST: AUTO_VAR_TEST_exit(); break;
                 
-                case StateId.AUTO_VAR_TEST__S1: AUTO_VAR_TEST__S1_exit(); break;
+                case AUTO_VAR_TEST__S1: AUTO_VAR_TEST__S1_exit(); break;
                 
-                case StateId.AUTO_VAR_TEST__S2: AUTO_VAR_TEST__S2_exit(); break;
+                case AUTO_VAR_TEST__S2: AUTO_VAR_TEST__S2_exit(); break;
                 
-                case StateId.META_EXPANSIONS: META_EXPANSIONS_exit(); break;
+                case META_EXPANSIONS: META_EXPANSIONS_exit(); break;
                 
-                case StateId.META_EXPANSIONS__S1: META_EXPANSIONS__S1_exit(); break;
+                case META_EXPANSIONS__S1: META_EXPANSIONS__S1_exit(); break;
                 
-                case StateId.META_EXPANSIONS__S2: META_EXPANSIONS__S2_exit(); break;
+                case META_EXPANSIONS__S2: META_EXPANSIONS__S2_exit(); break;
                 
-                case StateId.S3: S3_exit(); break;
+                case S3: S3_exit(); break;
                 
-                case StateId.S4: S4_exit(); break;
+                case S4: S4_exit(); break;
                 
-                case StateId.S5: S5_exit(); break;
+                case S5: S5_exit(); break;
                 
-                case StateId.NORMAL: NORMAL_exit(); break;
+                case NORMAL: NORMAL_exit(); break;
                 
-                case StateId.NORMAL__S1: NORMAL__S1_exit(); break;
+                case NORMAL__S1: NORMAL__S1_exit(); break;
                 
-                case StateId.NORMAL__S2: NORMAL__S2_exit(); break;
+                case NORMAL__S2: NORMAL__S2_exit(); break;
                 
-                case StateId.TEST6_VARS_EXPANSIONS__DECIDE: TEST6_VARS_EXPANSIONS__DECIDE_exit(); break;
+                case TEST6_VARS_EXPANSIONS__DECIDE: TEST6_VARS_EXPANSIONS__DECIDE_exit(); break;
                 
-                case StateId.TEST7_INITIAL_OR_HISTORY: TEST7_INITIAL_OR_HISTORY_exit(); break;
+                case TEST7_INITIAL_OR_HISTORY: TEST7_INITIAL_OR_HISTORY_exit(); break;
                 
-                case StateId.TEST7: TEST7_exit(); break;
+                case TEST7: TEST7_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY1: T7__DEEP_HISTORY1_exit(); break;
+                case T7__DEEP_HISTORY1: T7__DEEP_HISTORY1_exit(); break;
                 
-                case StateId.T7__DH1__SANTAS_WORKSHOP: T7__DH1__SANTAS_WORKSHOP_exit(); break;
+                case T7__DH1__SANTAS_WORKSHOP: T7__DH1__SANTAS_WORKSHOP_exit(); break;
                 
-                case StateId.T7__DH1__ALIENS_DETECTED: T7__DH1__ALIENS_DETECTED_exit(); break;
+                case T7__DH1__ALIENS_DETECTED: T7__DH1__ALIENS_DETECTED_exit(); break;
                 
-                case StateId.T7__DH1__GET_BACKUP: T7__DH1__GET_BACKUP_exit(); break;
+                case T7__DH1__GET_BACKUP: T7__DH1__GET_BACKUP_exit(); break;
                 
-                case StateId.T7__DH1__HERO: T7__DH1__HERO_exit(); break;
+                case T7__DH1__HERO: T7__DH1__HERO_exit(); break;
                 
-                case StateId.T7__DH1__CALL_BATMAN: T7__DH1__CALL_BATMAN_exit(); break;
+                case T7__DH1__CALL_BATMAN: T7__DH1__CALL_BATMAN_exit(); break;
                 
-                case StateId.T7__DH1__CALL_THOR: T7__DH1__CALL_THOR_exit(); break;
+                case T7__DH1__CALL_THOR: T7__DH1__CALL_THOR_exit(); break;
                 
-                case StateId.T7__DH1__LOCAL_HELP: T7__DH1__LOCAL_HELP_exit(); break;
+                case T7__DH1__LOCAL_HELP: T7__DH1__LOCAL_HELP_exit(); break;
                 
-                case StateId.T7__DH1__BUDDY_ELF: T7__DH1__BUDDY_ELF_exit(); break;
+                case T7__DH1__BUDDY_ELF: T7__DH1__BUDDY_ELF_exit(); break;
                 
-                case StateId.T7__DH1__POLAR_BEARS: T7__DH1__POLAR_BEARS_exit(); break;
+                case T7__DH1__POLAR_BEARS: T7__DH1__POLAR_BEARS_exit(); break;
                 
-                case StateId.T7__DH1__GIVE_COOKIES: T7__DH1__GIVE_COOKIES_exit(); break;
+                case T7__DH1__GIVE_COOKIES: T7__DH1__GIVE_COOKIES_exit(); break;
                 
-                case StateId.T7__DH1__SNOWBALL_FIGHT: T7__DH1__SNOWBALL_FIGHT_exit(); break;
+                case T7__DH1__SNOWBALL_FIGHT: T7__DH1__SNOWBALL_FIGHT_exit(); break;
                 
-                case StateId.T7__DH1__BUILD: T7__DH1__BUILD_exit(); break;
+                case T7__DH1__BUILD: T7__DH1__BUILD_exit(); break;
                 
-                case StateId.T7__DH1__TOOL: T7__DH1__TOOL_exit(); break;
+                case T7__DH1__TOOL: T7__DH1__TOOL_exit(); break;
                 
-                case StateId.T7__DH1__CIRCULAR_SAW: T7__DH1__CIRCULAR_SAW_exit(); break;
+                case T7__DH1__CIRCULAR_SAW: T7__DH1__CIRCULAR_SAW_exit(); break;
                 
-                case StateId.T7__DH1__IMPACT_DRILL: T7__DH1__IMPACT_DRILL_exit(); break;
+                case T7__DH1__IMPACT_DRILL: T7__DH1__IMPACT_DRILL_exit(); break;
                 
-                case StateId.T7__DH1__TOY: T7__DH1__TOY_exit(); break;
+                case T7__DH1__TOY: T7__DH1__TOY_exit(); break;
                 
-                case StateId.T7__DH1__GLOW_WORM: T7__DH1__GLOW_WORM_exit(); break;
+                case T7__DH1__GLOW_WORM: T7__DH1__GLOW_WORM_exit(); break;
                 
-                case StateId.T7__DH1__RACE_CAR: T7__DH1__RACE_CAR_exit(); break;
+                case T7__DH1__RACE_CAR: T7__DH1__RACE_CAR_exit(); break;
                 
-                case StateId.T7__DH1__ROBOT: T7__DH1__ROBOT_exit(); break;
+                case T7__DH1__ROBOT: T7__DH1__ROBOT_exit(); break;
                 
-                case StateId.T7__DH1__BATTLEBOT: T7__DH1__BATTLEBOT_exit(); break;
+                case T7__DH1__BATTLEBOT: T7__DH1__BATTLEBOT_exit(); break;
                 
-                case StateId.T7__DH1__WALL_E: T7__DH1__WALL_E_exit(); break;
+                case T7__DH1__WALL_E: T7__DH1__WALL_E_exit(); break;
                 
-                case StateId.T7__DH1__TEDDY_BEAR: T7__DH1__TEDDY_BEAR_exit(); break;
+                case T7__DH1__TEDDY_BEAR: T7__DH1__TEDDY_BEAR_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY2: T7__DEEP_HISTORY2_exit(); break;
+                case T7__DEEP_HISTORY2: T7__DEEP_HISTORY2_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY2__T7__STATE_0: T7__DEEP_HISTORY2__T7__STATE_0_exit(); break;
+                case T7__DEEP_HISTORY2__T7__STATE_0: T7__DEEP_HISTORY2__T7__STATE_0_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY2__T7__STATE_1: T7__DEEP_HISTORY2__T7__STATE_1_exit(); break;
+                case T7__DEEP_HISTORY2__T7__STATE_1: T7__DEEP_HISTORY2__T7__STATE_1_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY2__T7__STATE_2: T7__DEEP_HISTORY2__T7__STATE_2_exit(); break;
+                case T7__DEEP_HISTORY2__T7__STATE_2: T7__DEEP_HISTORY2__T7__STATE_2_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY2__T7__STATE_6: T7__DEEP_HISTORY2__T7__STATE_6_exit(); break;
+                case T7__DEEP_HISTORY2__T7__STATE_6: T7__DEEP_HISTORY2__T7__STATE_6_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY2__T7__STATE_9: T7__DEEP_HISTORY2__T7__STATE_9_exit(); break;
+                case T7__DEEP_HISTORY2__T7__STATE_9: T7__DEEP_HISTORY2__T7__STATE_9_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY2__T7__STATE_3: T7__DEEP_HISTORY2__T7__STATE_3_exit(); break;
+                case T7__DEEP_HISTORY2__T7__STATE_3: T7__DEEP_HISTORY2__T7__STATE_3_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY3: T7__DEEP_HISTORY3_exit(); break;
+                case T7__DEEP_HISTORY3: T7__DEEP_HISTORY3_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY3__T7__STATE_0: T7__DEEP_HISTORY3__T7__STATE_0_exit(); break;
+                case T7__DEEP_HISTORY3__T7__STATE_0: T7__DEEP_HISTORY3__T7__STATE_0_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY3__T7__STATE_1: T7__DEEP_HISTORY3__T7__STATE_1_exit(); break;
+                case T7__DEEP_HISTORY3__T7__STATE_1: T7__DEEP_HISTORY3__T7__STATE_1_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY3__T7__STATE_2: T7__DEEP_HISTORY3__T7__STATE_2_exit(); break;
+                case T7__DEEP_HISTORY3__T7__STATE_2: T7__DEEP_HISTORY3__T7__STATE_2_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY3__T7__STATE_6: T7__DEEP_HISTORY3__T7__STATE_6_exit(); break;
+                case T7__DEEP_HISTORY3__T7__STATE_6: T7__DEEP_HISTORY3__T7__STATE_6_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY3__T7__STATE_9: T7__DEEP_HISTORY3__T7__STATE_9_exit(); break;
+                case T7__DEEP_HISTORY3__T7__STATE_9: T7__DEEP_HISTORY3__T7__STATE_9_exit(); break;
                 
-                case StateId.T7__DEEP_HISTORY3__T7__STATE_3: T7__DEEP_HISTORY3__T7__STATE_3_exit(); break;
+                case T7__DEEP_HISTORY3__T7__STATE_3: T7__DEEP_HISTORY3__T7__STATE_3_exit(); break;
                 
-                case StateId.T7__HISTORY1: T7__HISTORY1_exit(); break;
+                case T7__HISTORY1: T7__HISTORY1_exit(); break;
                 
-                case StateId.T7__H1__OFF: T7__H1__OFF_exit(); break;
+                case T7__H1__OFF: T7__H1__OFF_exit(); break;
                 
-                case StateId.T7__H1__OFF1: T7__H1__OFF1_exit(); break;
+                case T7__H1__OFF1: T7__H1__OFF1_exit(); break;
                 
-                case StateId.T7__H1__OFF2: T7__H1__OFF2_exit(); break;
+                case T7__H1__OFF2: T7__H1__OFF2_exit(); break;
                 
-                case StateId.T7__H1__OFF3: T7__H1__OFF3_exit(); break;
+                case T7__H1__OFF3: T7__H1__OFF3_exit(); break;
                 
-                case StateId.T7__H1__ON: T7__H1__ON_exit(); break;
+                case T7__H1__ON: T7__H1__ON_exit(); break;
                 
-                case StateId.T7__H1__ON1: T7__H1__ON1_exit(); break;
+                case T7__H1__ON1: T7__H1__ON1_exit(); break;
                 
-                case StateId.T7__H1__ON2: T7__H1__ON2_exit(); break;
+                case T7__H1__ON2: T7__H1__ON2_exit(); break;
                 
-                case StateId.T7__H1__ON3: T7__H1__ON3_exit(); break;
+                case T7__H1__ON3: T7__H1__ON3_exit(); break;
                 
-                case StateId.T7__INITIAL1: T7__INITIAL1_exit(); break;
+                case T7__INITIAL1: T7__INITIAL1_exit(); break;
                 
-                case StateId.T7__INITIAL1__PARENT: T7__INITIAL1__PARENT_exit(); break;
+                case T7__INITIAL1__PARENT: T7__INITIAL1__PARENT_exit(); break;
                 
-                case StateId.T7__INITIAL1__G: T7__INITIAL1__G_exit(); break;
+                case T7__INITIAL1__G: T7__INITIAL1__G_exit(); break;
                 
-                case StateId.T7__INITIAL1__G_S1: T7__INITIAL1__G_S1_exit(); break;
+                case T7__INITIAL1__G_S1: T7__INITIAL1__G_S1_exit(); break;
                 
-                case StateId.T7__INITIAL1__G_S2: T7__INITIAL1__G_S2_exit(); break;
+                case T7__INITIAL1__G_S2: T7__INITIAL1__G_S2_exit(); break;
                 
-                case StateId.T7__INITIAL1__G_S3: T7__INITIAL1__G_S3_exit(); break;
+                case T7__INITIAL1__G_S3: T7__INITIAL1__G_S3_exit(); break;
                 
-                case StateId.T7__INITIAL1__S1: T7__INITIAL1__S1_exit(); break;
+                case T7__INITIAL1__S1: T7__INITIAL1__S1_exit(); break;
                 
-                case StateId.TEST7_DECIDE: TEST7_DECIDE_exit(); break;
+                case TEST7_DECIDE: TEST7_DECIDE_exit(); break;
                 
-                case StateId.TEST8_ENTRY_CHOICE: TEST8_ENTRY_CHOICE_exit(); break;
+                case TEST8_ENTRY_CHOICE: TEST8_ENTRY_CHOICE_exit(); break;
                 
-                case StateId.TEST8_ROOT: TEST8_ROOT_exit(); break;
+                case TEST8_ROOT: TEST8_ROOT_exit(); break;
                 
-                case StateId.TEST8_G: TEST8_G_exit(); break;
+                case TEST8_G: TEST8_G_exit(); break;
                 
-                case StateId.TEST8_G_S1: TEST8_G_S1_exit(); break;
+                case TEST8_G_S1: TEST8_G_S1_exit(); break;
                 
-                case StateId.TEST8_G_S2: TEST8_G_S2_exit(); break;
+                case TEST8_G_S2: TEST8_G_S2_exit(); break;
                 
-                case StateId.TEST8_G_S3: TEST8_G_S3_exit(); break;
+                case TEST8_G_S3: TEST8_G_S3_exit(); break;
                 
-                case StateId.TEST8_S1: TEST8_S1_exit(); break;
+                case TEST8_S1: TEST8_S1_exit(); break;
                 
-                case StateId.TEST9_EXIT_CHOICE: TEST9_EXIT_CHOICE_exit(); break;
+                case TEST9_EXIT_CHOICE: TEST9_EXIT_CHOICE_exit(); break;
                 
-                case StateId.TEST9_DECIDE: TEST9_DECIDE_exit(); break;
+                case TEST9_DECIDE: TEST9_DECIDE_exit(); break;
                 
-                case StateId.TEST9_ROOT: TEST9_ROOT_exit(); break;
+                case TEST9_ROOT: TEST9_ROOT_exit(); break;
                 
-                case StateId.TEST9_G_S1: TEST9_G_S1_exit(); break;
+                case TEST9_G_S1: TEST9_G_S1_exit(); break;
                 
-                case StateId.TEST9_G_S2: TEST9_G_S2_exit(); break;
+                case TEST9_G_S2: TEST9_G_S2_exit(); break;
                 
-                case StateId.TEST9_G_S3: TEST9_G_S3_exit(); break;
+                case TEST9_G_S3: TEST9_G_S3_exit(); break;
                 
-                case StateId.TEST9_G_S4: TEST9_G_S4_exit(); break;
+                case TEST9_G_S4: TEST9_G_S4_exit(); break;
                 
-                case StateId.TEST9_S1: TEST9_S1_exit(); break;
+                case TEST9_S1: TEST9_S1_exit(); break;
                 
-                case StateId.TEST9_S1_1: TEST9_S1_1_exit(); break;
+                case TEST9_S1_1: TEST9_S1_1_exit(); break;
                 
-                case StateId.TEST9A_ROOT: TEST9A_ROOT_exit(); break;
+                case TEST9A_ROOT: TEST9A_ROOT_exit(); break;
                 
-                case StateId.TEST9A_S1: TEST9A_S1_exit(); break;
+                case TEST9A_S1: TEST9A_S1_exit(); break;
                 
-                case StateId.TEST9A_S1_1: TEST9A_S1_1_exit(); break;
+                case TEST9A_S1_1: TEST9A_S1_1_exit(); break;
                 
-                case StateId.TEST9B_ROOT: TEST9B_ROOT_exit(); break;
+                case TEST9B_ROOT: TEST9B_ROOT_exit(); break;
                 
-                case StateId.TEST9B_ROOT__A1: TEST9B_ROOT__A1_exit(); break;
+                case TEST9B_ROOT__A1: TEST9B_ROOT__A1_exit(); break;
                 
-                case StateId.TEST9B_ROOT__A2: TEST9B_ROOT__A2_exit(); break;
+                case TEST9B_ROOT__A2: TEST9B_ROOT__A2_exit(); break;
                 
-                case StateId.TEST9B_ROOT__A3: TEST9B_ROOT__A3_exit(); break;
+                case TEST9B_ROOT__A3: TEST9B_ROOT__A3_exit(); break;
                 
-                case StateId.TEST9B_ROOT__A4: TEST9B_ROOT__A4_exit(); break;
+                case TEST9B_ROOT__A4: TEST9B_ROOT__A4_exit(); break;
                 
-                case StateId.TEST9B_ROOT__B1: TEST9B_ROOT__B1_exit(); break;
+                case TEST9B_ROOT__B1: TEST9B_ROOT__B1_exit(); break;
                 
-                case StateId.TEST9B_ROOT__B2: TEST9B_ROOT__B2_exit(); break;
+                case TEST9B_ROOT__B2: TEST9B_ROOT__B2_exit(); break;
                 
-                case StateId.TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(); break;
+                case TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(); break;
                 
-                case StateId.TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(); break;
+                case TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -14746,178 +14746,178 @@ public class Spec2Sm extends Spec2SmBase
     {
         switch (id)
         {
-            case StateId.ROOT: return "ROOT";
-            case StateId.PREFIXING: return "PREFIXING";
-            case StateId.PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU";
-            case StateId.PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE";
-            case StateId.PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE";
-            case StateId.PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA";
-            case StateId.PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER";
-            case StateId.PREFIXING__OM__VEG: return "PREFIXING__OM__VEG";
-            case StateId.PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE";
-            case StateId.PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO";
-            case StateId.PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO";
-            case StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM";
-            case StateId.SPEC2SM__DECIDE: return "SPEC2SM__DECIDE";
-            case StateId.TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING";
-            case StateId.TEST1_ROOT: return "TEST1_ROOT";
-            case StateId.TEST1_S1: return "TEST1_S1";
-            case StateId.TEST1_S1_1: return "TEST1_S1_1";
-            case StateId.TEST1_S2: return "TEST1_S2";
-            case StateId.TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT";
-            case StateId.TEST10_A: return "TEST10_A";
-            case StateId.TEST10_A_1: return "TEST10_A_1";
-            case StateId.TEST10_ROOT: return "TEST10_ROOT";
-            case StateId.TEST10_G: return "TEST10_G";
-            case StateId.TEST10_G_S0: return "TEST10_G_S0";
-            case StateId.TEST10_G_S1: return "TEST10_G_S1";
-            case StateId.TEST10_G_S2: return "TEST10_G_S2";
-            case StateId.TEST10_G_S3: return "TEST10_G_S3";
-            case StateId.TEST10_S1: return "TEST10_S1";
-            case StateId.TEST10_S4: return "TEST10_S4";
-            case StateId.TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING";
-            case StateId.TEST2_ROOT: return "TEST2_ROOT";
-            case StateId.TEST2_S1: return "TEST2_S1";
-            case StateId.TEST2_S1_1: return "TEST2_S1_1";
-            case StateId.TEST2_S2: return "TEST2_S2";
-            case StateId.TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING";
-            case StateId.TEST3_ROOT: return "TEST3_ROOT";
-            case StateId.TEST3_S1: return "TEST3_S1";
-            case StateId.TEST3_S2: return "TEST3_S2";
-            case StateId.TEST3_S3: return "TEST3_S3";
-            case StateId.TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS";
-            case StateId.TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS";
-            case StateId.TEST4B_LOCAL: return "TEST4B_LOCAL";
-            case StateId.TEST4B_G: return "TEST4B_G";
-            case StateId.TEST4B_G_1: return "TEST4B_G_1";
-            case StateId.TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS";
-            case StateId.TEST4C_G: return "TEST4C_G";
-            case StateId.TEST4C_G_1: return "TEST4C_G_1";
-            case StateId.TEST4D_EXTERNAL: return "TEST4D_EXTERNAL";
-            case StateId.TEST4D_G: return "TEST4D_G";
-            case StateId.TEST4D_G_1: return "TEST4D_G_1";
-            case StateId.TEST4_DECIDE: return "TEST4_DECIDE";
-            case StateId.TEST4_ROOT: return "TEST4_ROOT";
-            case StateId.TEST4_S1: return "TEST4_S1";
-            case StateId.TEST4_S10: return "TEST4_S10";
-            case StateId.TEST4_S10_1: return "TEST4_S10_1";
-            case StateId.TEST4_S2: return "TEST4_S2";
-            case StateId.TEST4_S20: return "TEST4_S20";
-            case StateId.TEST4_S20_1: return "TEST4_S20_1";
-            case StateId.TEST4_S3: return "TEST4_S3";
-            case StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS";
-            case StateId.TEST5_ROOT: return "TEST5_ROOT";
-            case StateId.TEST5_S1: return "TEST5_S1";
-            case StateId.TEST5_S2: return "TEST5_S2";
-            case StateId.TEST5_S3: return "TEST5_S3";
-            case StateId.TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS";
-            case StateId.TEST6_ROOT: return "TEST6_ROOT";
-            case StateId.AUTO_VAR_TEST: return "AUTO_VAR_TEST";
-            case StateId.AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1";
-            case StateId.AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2";
-            case StateId.META_EXPANSIONS: return "META_EXPANSIONS";
-            case StateId.META_EXPANSIONS__S1: return "META_EXPANSIONS__S1";
-            case StateId.META_EXPANSIONS__S2: return "META_EXPANSIONS__S2";
-            case StateId.S3: return "S3";
-            case StateId.S4: return "S4";
-            case StateId.S5: return "S5";
-            case StateId.NORMAL: return "NORMAL";
-            case StateId.NORMAL__S1: return "NORMAL__S1";
-            case StateId.NORMAL__S2: return "NORMAL__S2";
-            case StateId.TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE";
-            case StateId.TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY";
-            case StateId.TEST7: return "TEST7";
-            case StateId.T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1";
-            case StateId.T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP";
-            case StateId.T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED";
-            case StateId.T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP";
-            case StateId.T7__DH1__HERO: return "T7__DH1__HERO";
-            case StateId.T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN";
-            case StateId.T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR";
-            case StateId.T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP";
-            case StateId.T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF";
-            case StateId.T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS";
-            case StateId.T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES";
-            case StateId.T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT";
-            case StateId.T7__DH1__BUILD: return "T7__DH1__BUILD";
-            case StateId.T7__DH1__TOOL: return "T7__DH1__TOOL";
-            case StateId.T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW";
-            case StateId.T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL";
-            case StateId.T7__DH1__TOY: return "T7__DH1__TOY";
-            case StateId.T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM";
-            case StateId.T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR";
-            case StateId.T7__DH1__ROBOT: return "T7__DH1__ROBOT";
-            case StateId.T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT";
-            case StateId.T7__DH1__WALL_E: return "T7__DH1__WALL_E";
-            case StateId.T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR";
-            case StateId.T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2";
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0";
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1";
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2";
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6";
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9";
-            case StateId.T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3";
-            case StateId.T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3";
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0";
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1";
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2";
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6";
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9";
-            case StateId.T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3";
-            case StateId.T7__HISTORY1: return "T7__HISTORY1";
-            case StateId.T7__H1__OFF: return "T7__H1__OFF";
-            case StateId.T7__H1__OFF1: return "T7__H1__OFF1";
-            case StateId.T7__H1__OFF2: return "T7__H1__OFF2";
-            case StateId.T7__H1__OFF3: return "T7__H1__OFF3";
-            case StateId.T7__H1__ON: return "T7__H1__ON";
-            case StateId.T7__H1__ON1: return "T7__H1__ON1";
-            case StateId.T7__H1__ON2: return "T7__H1__ON2";
-            case StateId.T7__H1__ON3: return "T7__H1__ON3";
-            case StateId.T7__INITIAL1: return "T7__INITIAL1";
-            case StateId.T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT";
-            case StateId.T7__INITIAL1__G: return "T7__INITIAL1__G";
-            case StateId.T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1";
-            case StateId.T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2";
-            case StateId.T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3";
-            case StateId.T7__INITIAL1__S1: return "T7__INITIAL1__S1";
-            case StateId.TEST7_DECIDE: return "TEST7_DECIDE";
-            case StateId.TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE";
-            case StateId.TEST8_ROOT: return "TEST8_ROOT";
-            case StateId.TEST8_G: return "TEST8_G";
-            case StateId.TEST8_G_S1: return "TEST8_G_S1";
-            case StateId.TEST8_G_S2: return "TEST8_G_S2";
-            case StateId.TEST8_G_S3: return "TEST8_G_S3";
-            case StateId.TEST8_S1: return "TEST8_S1";
-            case StateId.TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE";
-            case StateId.TEST9_DECIDE: return "TEST9_DECIDE";
-            case StateId.TEST9_ROOT: return "TEST9_ROOT";
-            case StateId.TEST9_G_S1: return "TEST9_G_S1";
-            case StateId.TEST9_G_S2: return "TEST9_G_S2";
-            case StateId.TEST9_G_S3: return "TEST9_G_S3";
-            case StateId.TEST9_G_S4: return "TEST9_G_S4";
-            case StateId.TEST9_S1: return "TEST9_S1";
-            case StateId.TEST9_S1_1: return "TEST9_S1_1";
-            case StateId.TEST9A_ROOT: return "TEST9A_ROOT";
-            case StateId.TEST9A_S1: return "TEST9A_S1";
-            case StateId.TEST9A_S1_1: return "TEST9A_S1_1";
-            case StateId.TEST9B_ROOT: return "TEST9B_ROOT";
-            case StateId.TEST9B_ROOT__A1: return "TEST9B_ROOT__A1";
-            case StateId.TEST9B_ROOT__A2: return "TEST9B_ROOT__A2";
-            case StateId.TEST9B_ROOT__A3: return "TEST9B_ROOT__A3";
-            case StateId.TEST9B_ROOT__A4: return "TEST9B_ROOT__A4";
-            case StateId.TEST9B_ROOT__B1: return "TEST9B_ROOT__B1";
-            case StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
-            case StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
-            case StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
+            case ROOT: return "ROOT";
+            case PREFIXING: return "PREFIXING";
+            case PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU";
+            case PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE";
+            case PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE";
+            case PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA";
+            case PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER";
+            case PREFIXING__OM__VEG: return "PREFIXING__OM__VEG";
+            case PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE";
+            case PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO";
+            case PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM";
+            case PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO";
+            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM";
+            case SPEC2SM__DECIDE: return "SPEC2SM__DECIDE";
+            case TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING";
+            case TEST1_ROOT: return "TEST1_ROOT";
+            case TEST1_S1: return "TEST1_S1";
+            case TEST1_S1_1: return "TEST1_S1_1";
+            case TEST1_S2: return "TEST1_S2";
+            case TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT";
+            case TEST10_A: return "TEST10_A";
+            case TEST10_A_1: return "TEST10_A_1";
+            case TEST10_ROOT: return "TEST10_ROOT";
+            case TEST10_G: return "TEST10_G";
+            case TEST10_G_S0: return "TEST10_G_S0";
+            case TEST10_G_S1: return "TEST10_G_S1";
+            case TEST10_G_S2: return "TEST10_G_S2";
+            case TEST10_G_S3: return "TEST10_G_S3";
+            case TEST10_S1: return "TEST10_S1";
+            case TEST10_S4: return "TEST10_S4";
+            case TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING";
+            case TEST2_ROOT: return "TEST2_ROOT";
+            case TEST2_S1: return "TEST2_S1";
+            case TEST2_S1_1: return "TEST2_S1_1";
+            case TEST2_S2: return "TEST2_S2";
+            case TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING";
+            case TEST3_ROOT: return "TEST3_ROOT";
+            case TEST3_S1: return "TEST3_S1";
+            case TEST3_S2: return "TEST3_S2";
+            case TEST3_S3: return "TEST3_S3";
+            case TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS";
+            case TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS";
+            case TEST4B_LOCAL: return "TEST4B_LOCAL";
+            case TEST4B_G: return "TEST4B_G";
+            case TEST4B_G_1: return "TEST4B_G_1";
+            case TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS";
+            case TEST4C_G: return "TEST4C_G";
+            case TEST4C_G_1: return "TEST4C_G_1";
+            case TEST4D_EXTERNAL: return "TEST4D_EXTERNAL";
+            case TEST4D_G: return "TEST4D_G";
+            case TEST4D_G_1: return "TEST4D_G_1";
+            case TEST4_DECIDE: return "TEST4_DECIDE";
+            case TEST4_ROOT: return "TEST4_ROOT";
+            case TEST4_S1: return "TEST4_S1";
+            case TEST4_S10: return "TEST4_S10";
+            case TEST4_S10_1: return "TEST4_S10_1";
+            case TEST4_S2: return "TEST4_S2";
+            case TEST4_S20: return "TEST4_S20";
+            case TEST4_S20_1: return "TEST4_S20_1";
+            case TEST4_S3: return "TEST4_S3";
+            case TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS";
+            case TEST5_ROOT: return "TEST5_ROOT";
+            case TEST5_S1: return "TEST5_S1";
+            case TEST5_S2: return "TEST5_S2";
+            case TEST5_S3: return "TEST5_S3";
+            case TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS";
+            case TEST6_ROOT: return "TEST6_ROOT";
+            case AUTO_VAR_TEST: return "AUTO_VAR_TEST";
+            case AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1";
+            case AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2";
+            case META_EXPANSIONS: return "META_EXPANSIONS";
+            case META_EXPANSIONS__S1: return "META_EXPANSIONS__S1";
+            case META_EXPANSIONS__S2: return "META_EXPANSIONS__S2";
+            case S3: return "S3";
+            case S4: return "S4";
+            case S5: return "S5";
+            case NORMAL: return "NORMAL";
+            case NORMAL__S1: return "NORMAL__S1";
+            case NORMAL__S2: return "NORMAL__S2";
+            case TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE";
+            case TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY";
+            case TEST7: return "TEST7";
+            case T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1";
+            case T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP";
+            case T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED";
+            case T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP";
+            case T7__DH1__HERO: return "T7__DH1__HERO";
+            case T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN";
+            case T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR";
+            case T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP";
+            case T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF";
+            case T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS";
+            case T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES";
+            case T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT";
+            case T7__DH1__BUILD: return "T7__DH1__BUILD";
+            case T7__DH1__TOOL: return "T7__DH1__TOOL";
+            case T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW";
+            case T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL";
+            case T7__DH1__TOY: return "T7__DH1__TOY";
+            case T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM";
+            case T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR";
+            case T7__DH1__ROBOT: return "T7__DH1__ROBOT";
+            case T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT";
+            case T7__DH1__WALL_E: return "T7__DH1__WALL_E";
+            case T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR";
+            case T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2";
+            case T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0";
+            case T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1";
+            case T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2";
+            case T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6";
+            case T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9";
+            case T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3";
+            case T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3";
+            case T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0";
+            case T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1";
+            case T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2";
+            case T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6";
+            case T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9";
+            case T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3";
+            case T7__HISTORY1: return "T7__HISTORY1";
+            case T7__H1__OFF: return "T7__H1__OFF";
+            case T7__H1__OFF1: return "T7__H1__OFF1";
+            case T7__H1__OFF2: return "T7__H1__OFF2";
+            case T7__H1__OFF3: return "T7__H1__OFF3";
+            case T7__H1__ON: return "T7__H1__ON";
+            case T7__H1__ON1: return "T7__H1__ON1";
+            case T7__H1__ON2: return "T7__H1__ON2";
+            case T7__H1__ON3: return "T7__H1__ON3";
+            case T7__INITIAL1: return "T7__INITIAL1";
+            case T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT";
+            case T7__INITIAL1__G: return "T7__INITIAL1__G";
+            case T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1";
+            case T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2";
+            case T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3";
+            case T7__INITIAL1__S1: return "T7__INITIAL1__S1";
+            case TEST7_DECIDE: return "TEST7_DECIDE";
+            case TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE";
+            case TEST8_ROOT: return "TEST8_ROOT";
+            case TEST8_G: return "TEST8_G";
+            case TEST8_G_S1: return "TEST8_G_S1";
+            case TEST8_G_S2: return "TEST8_G_S2";
+            case TEST8_G_S3: return "TEST8_G_S3";
+            case TEST8_S1: return "TEST8_S1";
+            case TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE";
+            case TEST9_DECIDE: return "TEST9_DECIDE";
+            case TEST9_ROOT: return "TEST9_ROOT";
+            case TEST9_G_S1: return "TEST9_G_S1";
+            case TEST9_G_S2: return "TEST9_G_S2";
+            case TEST9_G_S3: return "TEST9_G_S3";
+            case TEST9_G_S4: return "TEST9_G_S4";
+            case TEST9_S1: return "TEST9_S1";
+            case TEST9_S1_1: return "TEST9_S1_1";
+            case TEST9A_ROOT: return "TEST9A_ROOT";
+            case TEST9A_S1: return "TEST9A_S1";
+            case TEST9A_S1_1: return "TEST9A_S1_1";
+            case TEST9B_ROOT: return "TEST9B_ROOT";
+            case TEST9B_ROOT__A1: return "TEST9B_ROOT__A1";
+            case TEST9B_ROOT__A2: return "TEST9B_ROOT__A2";
+            case TEST9B_ROOT__A3: return "TEST9B_ROOT__A3";
+            case TEST9B_ROOT__A4: return "TEST9B_ROOT__A4";
+            case TEST9B_ROOT__B1: return "TEST9B_ROOT__B1";
+            case TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
+            case TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
+            case TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
             default: return "?";
         }
     }
@@ -14927,21 +14927,21 @@ public class Spec2Sm extends Spec2SmBase
     {
         switch (id)
         {
-            case EventId.DO: return "DO";
-            case EventId.EV1: return "EV1";
-            case EventId.EV10: return "EV10";
-            case EventId.EV2: return "EV2";
-            case EventId.EV3: return "EV3";
-            case EventId.EV4: return "EV4";
-            case EventId.EV5: return "EV5";
-            case EventId.EV6: return "EV6";
-            case EventId.EV7: return "EV7";
-            case EventId.EV8: return "EV8";
-            case EventId.EV9: return "EV9";
-            case EventId.EVBACK: return "EVBACK";
-            case EventId.EVCLOSE: return "EVCLOSE";
-            case EventId.EVOPEN: return "EVOPEN";
-            case EventId.EVSTEP: return "EVSTEP";
+            case DO: return "DO";
+            case EV1: return "EV1";
+            case EV10: return "EV10";
+            case EV2: return "EV2";
+            case EV3: return "EV3";
+            case EV4: return "EV4";
+            case EV5: return "EV5";
+            case EV6: return "EV6";
+            case EV7: return "EV7";
+            case EV8: return "EV8";
+            case EV9: return "EV9";
+            case EVBACK: return "EVBACK";
+            case EVCLOSE: return "EVCLOSE";
+            case EVOPEN: return "EVOPEN";
+            case EVSTEP: return "EVSTEP";
             default: return "?";
         }
     }
