@@ -29,7 +29,7 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
-## [0.14.?]
+## [0.14.0]
 ### Added
 - Add `Java` transpiler (only supports algorithm `Balanced2` right now)
   - https://github.com/StateSmith/StateSmith/issues/393
