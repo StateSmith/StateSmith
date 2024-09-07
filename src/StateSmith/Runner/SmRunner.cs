@@ -189,6 +189,7 @@ public class SmRunner : SmRunner.IExperimentalAccess
             services.AddSingleton(renderConfigAllVars.CSharp);
             services.AddSingleton(renderConfigAllVars.JavaScript);
             services.AddSingleton(renderConfigAllVars.Java);
+            services.AddSingleton(renderConfigAllVars.Python);
             services.AddSingleton(new ExpansionConfigReaderObjectProvider(iRenderConfig));
             services.AddSingleton(settings); // todo_low - split settings up more
             services.AddSingleton<ExpansionsPrep>();
@@ -212,6 +213,9 @@ public class SmRunner : SmRunner.IExperimentalAccess
 
         if (iRenderConfig is IRenderConfigJava rcj)
             renderConfigAllVars.Java.SetFrom(rcj, autoDeIndentAndTrimRenderConfigItems);
+
+        if (iRenderConfig is IRenderConfigPython rcp)
+            renderConfigAllVars.Python.SetFrom(rcp, autoDeIndentAndTrimRenderConfigItems);
     }
 
     /// <summary>

@@ -5,6 +5,7 @@ using StateSmith.Output.Gil.C99;
 using StateSmith.Output.Gil.CSharp;
 using StateSmith.Output.Gil.Java;
 using StateSmith.Output.Gil.JavaScript;
+using StateSmith.Output.Gil.Python;
 using StateSmith.Output.UserConfig;
 using System;
 
@@ -77,6 +78,21 @@ public class AlgoTranspilerCustomizer
                     if (algorithmId != AlgorithmId.Balanced2)
                     {
                         throw new Exception("Java transpiler currently only supports `AlgorithmId.Balanced2`. Please reply to https://github.com/StateSmith/StateSmith/issues/395 .");
+                    }
+                }
+                break;
+
+            case TranspilerId.Python:
+                {
+                    sp.AddSingletonT<IGilTranspiler, GilToPython>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
+                    algoBalanced1Settings.skipClassIndentation = false;
+
+                    // https://github.com/StateSmith/StateSmith/issues/395
+                    if (algorithmId != AlgorithmId.Balanced2)
+                    {
+                        throw new Exception("Python transpiler currently only supports `AlgorithmId.Balanced2`. Please reply to https://github.com/StateSmith/StateSmith/issues/398 .");
                     }
                 }
                 break;

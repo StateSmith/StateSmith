@@ -1,11 +1,9 @@
-namespace StateSmith.Output.UserConfig;
+﻿namespace StateSmith.Output.UserConfig;
 
-public interface IRenderConfigJava : IRenderConfig
+public interface IRenderConfigPython : IRenderConfig
 {
-    string Package => "";
     string Imports => "";
     string Extends => "";
-    string Implements => "";
 
     /// <summary>
     /// Use to add custom code to generated state machine class.
