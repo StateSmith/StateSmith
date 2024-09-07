@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace StateSmith.Cli.Create;
 
@@ -9,4 +9,5 @@ public enum TargetLanguageId
     CppC,
     CSharp,
     JavaScript,
+    Java,
 }

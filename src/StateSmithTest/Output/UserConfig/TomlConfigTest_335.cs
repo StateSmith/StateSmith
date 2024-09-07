@@ -191,6 +191,13 @@ public class TomlConfigTest_335
             UseExportOnClass = true
             PrivatePrefix = "_"
 
+            [RenderConfig.Java]
+            Package = ""
+            Imports = ""
+            Extends = ""
+            Implements = ""
+            ClassCode = ""
+
             ############SmRunner.Settings ###############
 
             [SmRunnerSettings]

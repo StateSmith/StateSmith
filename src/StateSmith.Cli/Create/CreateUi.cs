@@ -385,10 +385,11 @@ public class CreateUi
 
         var choices = new List<UiItem<TargetLanguageId>>()
         {
-            new UiItem<TargetLanguageId>(id: TargetLanguageId.C,           display: "C99" ),
-            new UiItem<TargetLanguageId>(id: TargetLanguageId.CppC,        display: "C++ [grey](c style, improvements coming)[/]" ),
-            new UiItem<TargetLanguageId>(id: TargetLanguageId.CSharp,      display: "C#" ),
-            new UiItem<TargetLanguageId>(id: TargetLanguageId.JavaScript,  display: "JavaScript" ),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.C,           display: "C99"),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.CppC,        display: "C++ [grey](c style, improvements coming)[/]"),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.CSharp,      display: "C#"),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.JavaScript,  display: "JavaScript"),
+            new UiItem<TargetLanguageId>(id: TargetLanguageId.Java,        display: "Java"),
         };
 
         AddRememberedToChoices(choices, id: _settings.TargetLanguageId);
