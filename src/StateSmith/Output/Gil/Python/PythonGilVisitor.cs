@@ -26,6 +26,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     private readonly RenderConfigBaseVars renderConfig;
     private readonly CodeStyleSettings codeStyleSettings;
     private Stack<string> classIndentStack = new();
+    private bool prependSelf = false;
 
     private SemanticModel model;
     private string Indent => codeStyleSettings.Indent1;
@@ -193,14 +194,62 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
     public override void VisitIdentifierName(IdentifierNameSyntax node)
     {
-        if (useStaticDelegates && MethodPtrFinder.identifiers.Contains(node))
+        var result = node.Identifier.Text;
+
+        switch (result)
         {
-            sb.Append("ptr_" + node.Identifier.Text);
+            default:
+                {
+                    SymbolInfo symbol = model.GetSymbolInfo(node);
+                    result = GetPythonName(symbol.Symbol.ThrowIfNull());
+                    break;
+                }
         }
-        else
+
+        node.VisitLeadingTriviaWith(this);
+        sb.Append(result);
+        node.VisitTrailingTriviaWith(this);
+    }
+
+    private string GetPythonName(ISymbol symbol)
+    {
+        if (symbol is IFieldSymbol fieldSymbol)
         {
-            base.VisitIdentifierName(node);
+            if (!fieldSymbol.IsStatic && !fieldSymbol.IsConst)
+            {
+                var result = "";
+                if (fieldSymbol.DeclaredAccessibility != Accessibility.Public)
+                    result = "_";
+
+                result += fieldSymbol.Name;
+                return result;
+            }
+
+            if (fieldSymbol.IsEnumMember())
+            {
+                return fieldSymbol.Name;
+            }
         }
+
+        if (symbol.Kind == SymbolKind.Parameter || symbol.Kind == SymbolKind.Local)
+        {
+            return symbol.Name;
+        }
+
+        if (symbol is IMethodSymbol methodSymbol)
+        {
+            var result = "";
+            if (methodSymbol.DeclaredAccessibility != Accessibility.Public)
+                result = "_";
+
+            result += methodSymbol.Name;
+            return result;
+        }
+
+        //var fqn = transpilerHelper.GetFQN(symbol);
+        //return fqn;
+
+        return symbol.Name;
     }
 
     public override void VisitNullableType(NullableTypeSyntax node)
@@ -222,25 +271,70 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         }
     }
 
-    public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
-    {
-        bool done = false;
+    //public override void VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
+    //{
+    //    bool done = false;
 
-        if (transpilerHelper.HandleThisMethodAccess(node))
-            done = true;
+    //    if (transpilerHelper.HandleThisMethodAccess(node))
+    //        done = true;
 
-        if (!done)
-            base.VisitMemberAccessExpression(node);
-    }
+    //    if (!done)
+    //        base.VisitMemberAccessExpression(node);
+    //}
 
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
         if (transpilerHelper.IsGilNoEmit(node))
             return;
 
-        MaybeOutputStaticDelegate(node);
+        bool isStatic = node.Modifiers.Any(SyntaxKind.StaticKeyword);
 
-        base.VisitMethodDeclaration(node);
+        if (isStatic)
+        {
+            sb.Append("@staticmethod");
+            sb.AppendLine();
+        }
+
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append("def ");
+
+        //if private, add a leading underscore
+        if (node.Modifiers.Any(SyntaxKind.PrivateKeyword))
+        {
+            sb.Append("_");
+        }
+
+        sb.Append(node.Identifier.Text);
+
+        if (!isStatic)
+        {
+            prependSelf = true;
+        }
+
+        VisitParameterList(node.ParameterList);
+        sb.Append(':');
+
+        VisitBlock(node.Body!);
+    }
+
+    public override void VisitParameterList(ParameterListSyntax node)
+    {
+        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+        list.VisitUpTo(node.OpenParenToken, including: true);
+
+        if (prependSelf)
+        {
+            sb.Append("self");
+            prependSelf = false;
+        }
+
+        if (node.Parameters.Count > 0)
+        {
+            sb.Append(", ");
+        }
+
+        list.VisitUpTo(node.CloseParenToken); // we don't want whitepace after the close paren
+        sb.Append(node.CloseParenToken.Text);
     }
 
     // to ignore GIL attributes
@@ -254,29 +348,29 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         sb.Append(node.ToFullString()); // otherwise we need to update how `VisitArgumentList()` works
     }
 
-    public override void VisitArgumentList(ArgumentListSyntax node)
-    {
-        var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
-        var iMethodSymbol = (IMethodSymbol)model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
+    //public override void VisitArgumentList(ArgumentListSyntax node)
+    //{
+    //    var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
+    //    var iMethodSymbol = (IMethodSymbol)model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
 
-        if (useStaticDelegates && !iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.DelegateInvoke)
-        {
-            var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-            list.VisitUpTo(node.OpenParenToken, including: true);
+    //    if (useStaticDelegates && !iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.DelegateInvoke)
+    //    {
+    //        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
+    //        list.VisitUpTo(node.OpenParenToken, including: true);
 
-            sb.Append("this");
-            if (node.Arguments.Count > 0)
-            {
-                sb.Append(", ");
-            }
+    //        sb.Append("this");
+    //        if (node.Arguments.Count > 0)
+    //        {
+    //            sb.Append(", ");
+    //        }
 
-            list.VisitRest();
-        }
-        else
-        {
-            base.VisitArgumentList(node);
-        }
-    }
+    //        list.VisitRest();
+    //    }
+    //    else
+    //    {
+    //        base.VisitArgumentList(node);
+    //    }
+    //}
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
@@ -324,11 +418,14 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         switch ((SyntaxKind)token.RawKind)
         {
+            case SyntaxKind.ConstKeyword:
+            case SyntaxKind.OpenBraceToken:
+            case SyntaxKind.CloseBraceToken:
+            case SyntaxKind.SemicolonToken:
             case SyntaxKind.ClassKeyword: tokenText = ""; break;
-            case SyntaxKind.StructKeyword: tokenText = "class"; break;
-            case SyntaxKind.ConstKeyword: tokenText = ""; break;
-            case SyntaxKind.StringKeyword: tokenText = "String"; break;
-            case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
+            case SyntaxKind.ThisKeyword: tokenText = "self"; break;
+            //case SyntaxKind.StringKeyword: tokenText = "String"; break;
+            //case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
         }
 
         if (token.IsKind(SyntaxKind.ExclamationToken) && token.Parent.IsKind(SyntaxKind.SuppressNullableWarningExpression))
@@ -351,11 +448,13 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         {
             str = str.Replace("//", "#");
         }
-        else if (trivia.IsKind(SyntaxKind.MultiLineCommentTrivia))
-        {
-            str = str.Replace("/*", "\"\"\"");
-            str = str.Replace("*/", "\"\"\"");
-        }
+
+        // this interferes with `/*<<<<<rm2<<<<<MainClass.trace...` special comments
+        //else if (trivia.IsKind(SyntaxKind.MultiLineCommentTrivia))
+        //{
+        //    str = str.Replace("/*", "\"\"\"");
+        //    str = str.Replace("*/", "\"\"\"");
+        //}
 
         sb.Append(str);
 

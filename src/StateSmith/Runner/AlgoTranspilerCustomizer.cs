@@ -85,11 +85,12 @@ public class AlgoTranspilerCustomizer
             case TranspilerId.Python:
                 {
                     sp.AddSingletonT<IGilTranspiler, GilToPython>();
-                    sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
+                    sp.AddSingletonT<IExpansionVarsPathProvider, PythonExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
                     algoBalanced1Settings.outputEnumMemberCount = false;
                     algoBalanced1Settings.varsStructAsClass = true;
+                    algoBalanced1Settings.useIfTrueIfNoGuard = true;
 
                     // https://github.com/StateSmith/StateSmith/issues/395
                     if (algorithmId != AlgorithmId.Balanced2)

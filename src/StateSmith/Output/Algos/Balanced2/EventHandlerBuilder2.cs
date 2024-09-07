@@ -17,7 +17,7 @@ public class EventHandlerBuilder2 : EventHandlerBuilder
     /// </summary>
     public HashSet<NamedVertex> verticesWithExitStateIdAdjustment = new();
 
-    public EventHandlerBuilder2(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases) : base(expander, pseudoStateHandlerBuilder, mangler, userExpansionScriptBases)
+    public EventHandlerBuilder2(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases, AlgoBalanced1Settings algoBalanced1Settings) : base(expander, pseudoStateHandlerBuilder, mangler, userExpansionScriptBases, algoBalanced1Settings)
     {
     }
 

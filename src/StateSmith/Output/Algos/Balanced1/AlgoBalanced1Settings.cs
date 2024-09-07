@@ -24,6 +24,11 @@ public class AlgoBalanced1Settings
     internal bool outputEnumMemberCount = true;
 
     /// <summary>
+    /// Required for python
+    /// </summary>
+    internal bool useIfTrueIfNoGuard = false;
+
+    /// <summary>
     /// set to true for python
     /// </summary>
     internal bool varsStructAsClass = false;

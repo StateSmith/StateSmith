@@ -22,17 +22,19 @@ public class EventHandlerBuilder
     protected readonly PseudoStateHandlerBuilder pseudoStateHandlerBuilder;
     protected readonly WrappingExpander wrappingExpander;
     protected readonly UserExpansionScriptBases userExpansionScriptBases;
+    protected readonly AlgoBalanced1Settings settings;
 
     protected OutputFile? _file;
 
     protected OutputFile File => _file.ThrowIfNull("You forgot to set file before using.");
 
-    public EventHandlerBuilder(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases)
+    public EventHandlerBuilder(IExpander expander, PseudoStateHandlerBuilder pseudoStateHandlerBuilder, NameMangler mangler, UserExpansionScriptBases userExpansionScriptBases, AlgoBalanced1Settings settings)
     {
         this.pseudoStateHandlerBuilder = pseudoStateHandlerBuilder;
         this.mangler = mangler;
         this.wrappingExpander = new(expander, userExpansionScriptBases);
         this.userExpansionScriptBases = userExpansionScriptBases;
+        this.settings = settings;
     }
 
     public void SetFile(OutputFile file)
@@ -108,6 +110,10 @@ public class EventHandlerBuilder
         {
             string expandedGuardCode = wrappingExpander.ExpandWrapGuardCode(b);
             File.AppendLines($"if ({expandedGuardCode})");
+        }
+        else if (settings.useIfTrueIfNoGuard)
+        {
+            File.Append("if (true)");
         }
     }
 

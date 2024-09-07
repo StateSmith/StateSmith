@@ -17,7 +17,7 @@ public class SpecFixture
 {
     public static string SpecInputDirectoryPath = AppDomain.CurrentDomain.BaseDirectory + "../../../spec/";
 
-    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null)
+    public static void CompileAndRun(IRenderConfig renderConfig, string diagramFile, string srcDirectory, bool useTracingModder = true, Action<SmRunner>? smRunnerAction = null, string semiColon = ";")
     {
         RunnerSettings settings = new(diagramFile: diagramFile, outputDirectory: srcDirectory);
         settings.outputStateSmithVersionInfo = false; // too much noise in repo
@@ -40,7 +40,7 @@ public class SpecFixture
         if (useTracingModder)
         {
             runner.SmTransformer.InsertAfterFirstMatch(StandardSmTransformer.TransformationId.Standard_Validation1,
-                new TransformationStep(id: nameof(TracingModder), action: (sm) => new TracingModder().AddTracingBehaviors(sm)));
+                new TransformationStep(id: nameof(TracingModder), action: (sm) => new TracingModder(semiColon).AddTracingBehaviors(sm)));
         }
         runner.Run();
     }
@@ -51,9 +51,10 @@ public class SpecGenericVarExpansions : UserExpansionScriptBase
 #pragma warning disable IDE1006 // Naming Styles
     public virtual string trace(string message) => $"trace({message})";
     public virtual string trace_guard(string message, string guardCode) => $"trace_guard({message}, {guardCode})";
+    virtual public string SemiColon => ";";
 
-    public string clear_output() => $"{trace("\"IGNORE_OUTPUT_BEFORE_THIS\"")};";
-    public string clear_dispatch_output() => $"{trace("\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\"")};"; // TODO - remove extra comma
+    public string clear_output() => $"{trace("\"IGNORE_OUTPUT_BEFORE_THIS\"")}{SemiColon}";
+    public string clear_dispatch_output() => $"{trace("\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\"")}"; // TODO - remove extra comma
 #pragma warning restore IDE1006 // Naming Styles
 }
 

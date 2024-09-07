@@ -1,3 +1,5 @@
+#nullable enable
+
 using StateSmith.Common;
 using StateSmith.SmGraph.Visitors;
 using StateSmith.SmGraph;
@@ -8,6 +10,13 @@ namespace StateSmith.Runner;
 
 public class TracingModder : NamedVisitor
 {
+    protected string semiColon;
+
+    public TracingModder(string semiColon = ";")
+    {
+        this.semiColon = semiColon;
+    }
+
     public void AddTracingBehaviors(StateMachine stateMachine)
     {
         Visit(stateMachine);
@@ -19,7 +28,7 @@ public class TracingModder : NamedVisitor
 
         foreach (var t in transitions)
         {
-            var tracingCode = $"trace(\"Transition action `{StringUtils.EscapeCharsForString(t.actionCode)}` for {Vertex.Describe(v)} to {Vertex.Describe(t.TransitionTarget)}.\");";
+            var tracingCode = $"trace(\"Transition action `{StringUtils.EscapeCharsForString(t.actionCode)}` for {Vertex.Describe(v)} to {Vertex.Describe(t.TransitionTarget)}.\"){semiColon}";
 
             if (t.HasActionCode())
             {
@@ -55,8 +64,8 @@ public class TracingModder : NamedVisitor
         }
 
         Visit((Vertex)v);
-        v.AddBehavior(index: 0, behavior: new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, guardCode: null, actionCode: $"trace(\"Enter {v.Name}.\");"));
-        v.AddBehavior(index: 0, behavior: new Behavior(trigger: TriggerHelper.TRIGGER_EXIT, guardCode: null, actionCode: $"trace(\"Exit {v.Name}.\");"));
+        v.AddBehavior(index: 0, behavior: new Behavior(trigger: TriggerHelper.TRIGGER_ENTER, guardCode: "", actionCode: $"trace(\"Enter {v.Name}.\"){semiColon}"));
+        v.AddBehavior(index: 0, behavior: new Behavior(trigger: TriggerHelper.TRIGGER_EXIT, guardCode: "", actionCode: $"trace(\"Exit {v.Name}.\"){semiColon}"));
     }
 
     public override void Visit(NotesVertex v)

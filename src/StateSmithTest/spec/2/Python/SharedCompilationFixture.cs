@@ -2,6 +2,7 @@
 
 using StateSmith.Output.UserConfig;
 using StateSmith.Runner;
+using StateSmith.SmGraph;
 using StateSmithTest.Processes;
 
 namespace Spec.Spec2.Python;
@@ -21,9 +22,21 @@ public class SharedCompilationFixture
             runner.Settings.transpilerId = TranspilerId.Python;
             runner.AlgoOrTranspilerUpdated();
             runner.Settings.outputGilCodeAlways = true;
+
+            runner.SmTransformer.transformationPipeline.Insert(0, new TransformationStep(action: (sm) => {
+                // remove semi-colons from diagram actions
+                sm.VisitRecursively((node) =>
+                {
+                    foreach (var behavior in node.Behaviors)
+                    {
+                        behavior.actionCode = behavior.actionCode.Replace(";", "");
+                        behavior.actionCode = behavior.actionCode.Replace("++", " += 1");
+                    }
+                });
+            }));
         };
 
-        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
+        Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action, semiColon: "");
 
         SimpleProcess process;
 
@@ -58,6 +71,7 @@ public class SharedCompilationFixture
 
         public class Expansions : Spec2GenericVarExpansions
         {
+            public override string SemiColon => "";
             public override string trace(string message) => $"MainClass.trace({message})"; // this isn't actually needed, but helps ensure expansions are working
         }
     }
