@@ -57,7 +57,7 @@ AutoExpandedVars = """
     """
 
 [RenderConfig.Java]
-# Package = ""
+# Package = "my.package.for.statemachine"
 Imports = """
     // whatever you need to import here
     """

@@ -68,6 +68,11 @@ AutoExpandedVars  = "stuff..."
    * [RenderConfig.JavaScript.ExtendsSuperClass](#renderconfigjavascriptextendssuperclass)
    * [RenderConfig.JavaScript.UseExportOnClass](#renderconfigjavascriptuseexportonclass)
    * [RenderConfig.JavaScript.PrivatePrefix](#renderconfigjavascriptprivateprefix)
+- [RenderConfig.Java](#renderconfigjava)
+   * [RenderConfig.Java.Package](#renderconfigjavapackage)
+    * [RenderConfig.Java.Imports](#renderconfigjavaimports)
+    * [RenderConfig.Java.Extends](#renderconfigjavaextends)
+    * [RenderConfig.Java.Implements](#renderconfigjavaimplements)
 - [SmRunnerSettings](#smrunnersettings)
    * [SmRunnerSettings.outputDirectory](#smrunnersettingsoutputdirectory)
    * [SmRunnerSettings.outputCodeGenTimestamp](#smrunnersettingsoutputcodegentimestamp)
@@ -83,7 +88,7 @@ AutoExpandedVars  = "stuff..."
 
 
 # RenderConfig
-These settings map to the [IRenderConfig](https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Output/UserConfig/IRenderConfig.cs) interface you could use in a .csx file.
+These settings map to the [IRenderConfig](../src/StateSmith/Output/UserConfig/IRenderConfig.cs) interface you could use in a .csx file.
 ```toml
 [RenderConfig]
 FileTop = ""
@@ -304,7 +309,7 @@ TriggerMap = """
 <br>
 
 # RenderConfig.C
-Maps to [IRenderConfigC](https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Output/UserConfig/IRenderConfigC.cs) interface.
+Maps to [IRenderConfigC](../src/StateSmith/Output/UserConfig/IRenderConfigC.cs) interface.
 
 ```toml
 HFileTop = ""
@@ -518,7 +523,7 @@ UseStdBool = false
 <br>
 
 # RenderConfig.CSharp
-Maps to the [IRenderConfigCSharp](https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Output/UserConfig/IRenderConfigCSharp.cs) interface.
+Maps to the [IRenderConfigCSharp](../src/StateSmith/Output/UserConfig/IRenderConfigCSharp.cs) interface.
 
 ```toml
 NameSpace = ""
@@ -598,11 +603,14 @@ UsePartialClass = false
 ```
 
 
+
+
+
 <br>
 <br>
 
 # RenderConfig.JavaScript
-Maps to the [IRenderConfigJavaScript](https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Output/UserConfig/IRenderConfigJavaScript.cs) interface.
+Maps to the [IRenderConfigJavaScript](../src/StateSmith/Output/UserConfig/IRenderConfigJavaScript.cs) interface.
 
 ```toml
 ClassCode = ""
@@ -658,6 +666,81 @@ PrivatePrefix = "_"
 ```
 
 
+<br>
+<br>
+
+# RenderConfig.Java
+Maps to the [IRenderConfigJava](../src/StateSmith/Output/UserConfig/IRenderConfigJava.cs) interface.
+
+```toml
+Package = "my.package.for.statemachine"
+Imports = """
+    import java.util.*; // or whatever you need
+    """
+Extends = "MyUserBaseClass"
+Implements = "SomeUserInterface"
+ClassCode = """
+    // Add custom code here to inject into the generated class.
+    // Inheritance or composition might be a better choice.
+    """
+```
+
+## RenderConfig.Java.Package
+Type: `string`
+
+Use to specify the package for the generated class. If empty, no package is generated.
+
+```toml
+[RenderConfig.Java]
+Package = "my.package.for.statemachine"
+```
+
+## RenderConfig.Java.Imports
+Type: `string`
+
+Use to add import statements to the generated class. Can span multiple lines.
+
+```toml
+[RenderConfig.Java]
+Imports = """
+    import java.util.*; // or whatever you need
+    """
+```
+
+## RenderConfig.Java.Extends
+Type: `string`
+
+Use to have generated state machine class extend a user defined base class.
+
+```toml
+[RenderConfig.Java]
+Extends = "MyUserBaseClass"
+```
+
+## RenderConfig.Java.Implements
+Type: `string`
+
+Use to have generated state machine class implement a user defined interface.
+
+```toml
+[RenderConfig.Java]
+Implements = "SomeUserInterface"
+```
+
+## RenderConfig.Java.ClassCode
+Type: `string`
+
+Use to add custom code to generated state machine class. Inheritance or composition is often a better choice.
+
+```toml
+[RenderConfig.JavaScript]
+ClassCode = """
+    // Add custom code here...
+    """
+```
+
+<br>
+<br>
 
 
 
@@ -671,14 +754,11 @@ PrivatePrefix = "_"
 
 
 
-
-
-
 <br>
 <br>
 
 # SmRunnerSettings
-Maps to the [RunnerSettings](https://github.com/StateSmith/StateSmith/blob/main/src/StateSmith/Runner/RunnerSettings.cs) class.
+Maps to the [RunnerSettings](../src/StateSmith/Runner/RunnerSettings.cs) class.
 
 ```toml
 [SmRunnerSettings]
