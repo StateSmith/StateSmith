@@ -6,9 +6,17 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
-#### Added
+## [0.13.0]
+### Added
 - `create` command - add support for `java` language
   - https://github.com/StateSmith/StateSmith/issues/393
+
+### Upgrade StateSmith library version to [0.14.0]
+#### Added
+- Add `Java` transpiler (only supports algorithm `Balanced2` right now)
+  - https://github.com/StateSmith/StateSmith/issues/393
+- Add optimization to comment out unreachable behaviors in generated code
+  - https://github.com/StateSmith/StateSmith/issues/394
 
 ---
 

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
-    <Version>0.12.2</Version>
+    <Version>0.13.0</Version>
     <Company>Adam Fraser-Kruck</Company>
     <Product>StateSmith</Product>
     <Authors>Adam Fraser-Kruck</Authors>
