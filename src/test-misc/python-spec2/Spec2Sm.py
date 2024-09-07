@@ -14639,7 +14639,7 @@ class Spec2Sm(Spec2SmBase):
 @staticmethod
     
     # Thread safe.
-    def stateIdToString(, id):    
+    def stateIdToString(id):    
         switch (id)
         
             case ROOT: return "ROOT"
@@ -14820,7 +14820,7 @@ class Spec2Sm(Spec2SmBase):
 @staticmethod
     
     # Thread safe.
-    def eventIdToString(, id):    
+    def eventIdToString(id):    
         switch (id)
         
             case DO: return "DO"

@@ -301,8 +301,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         if (isStatic)
         {
-            sb.Append("@staticmethod");
-            sb.AppendLine();
+            sb.AppendLine("@staticmethod");
         }
 
         VisitLeadingTrivia(node.GetFirstToken());
@@ -336,11 +335,11 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         {
             sb.Append("self");
             prependSelf = false;
-        }
 
-        if (node.Parameters.Count > 0)
-        {
-            sb.Append(", ");
+            if (node.Parameters.Count > 0)
+            {
+                sb.Append(", ");
+            }
         }
 
         list.VisitUpTo(node.CloseParenToken); // we don't want whitepace after the close paren
