@@ -308,3964 +308,2335 @@ class Spec2Sm(Spec2SmBase):
     # Dispatches an event to the state machine. Not thread safe.
     # Note! This function assumes that the `eventId` parameter is valid.
     def dispatchEvent(self, eventId):    
-        switch (self.stateId)
-        
+        match self.stateId:
             # STATE: Spec2Sm
-            case ROOT:
-                switch (eventId)
-                
-                    case DO: self._ROOT_do() break
-                    # Events not handled by this state:
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+            case self.StateId.ROOT:
+                match eventId:
+                    case self.EventId.DO: 
+                        self._ROOT_do() 
+                        break
                 break
             
             # STATE: PREFIXING
-            case PREFIXING:
-                switch (eventId)
-                
+            case self.StateId.PREFIXING:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__ORDER_MENU
-            case PREFIXING__ORDER_MENU:
-                switch (eventId)
-                
+            case self.StateId.PREFIXING__ORDER_MENU:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__OM__BEVERAGE
-            case PREFIXING__OM__BEVERAGE:
-                switch (eventId)
-                
-                    case EV2: self._PREFIXING__OM__BEVERAGE_ev2() break
+            case self.StateId.PREFIXING__OM__BEVERAGE:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._PREFIXING__OM__BEVERAGE_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__OM__BEV__NONE
-            case PREFIXING__OM__BEV__NONE:
-                switch (eventId)
-                
-                    case EV1: self._PREFIXING__OM__BEV__NONE_ev1() break
+            case self.StateId.PREFIXING__OM__BEV__NONE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._PREFIXING__OM__BEV__NONE_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._PREFIXING__OM__BEVERAGE_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__OM__BEVERAGE_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__OM__BEV__TEA
-            case PREFIXING__OM__BEV__TEA:
-                switch (eventId)
-                
+            case self.StateId.PREFIXING__OM__BEV__TEA:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._PREFIXING__OM__BEVERAGE_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__OM__BEVERAGE_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__OM__BEV__WATER
-            case PREFIXING__OM__BEV__WATER:
-                switch (eventId)
-                
-                    case EV1: self._PREFIXING__OM__BEV__WATER_ev1() break
+            case self.StateId.PREFIXING__OM__BEV__WATER:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._PREFIXING__OM__BEV__WATER_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._PREFIXING__OM__BEVERAGE_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__OM__BEVERAGE_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__OM__VEG
-            case PREFIXING__OM__VEG:
-                switch (eventId)
-                
-                    case EV2: self._PREFIXING__OM__VEG_ev2() break
+            case self.StateId.PREFIXING__OM__VEG:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._PREFIXING__OM__VEG_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__OM__VEG__NONE
-            case PREFIXING__OM__VEG__NONE:
-                switch (eventId)
-                
-                    case EV1: self._PREFIXING__OM__VEG__NONE_ev1() break
+            case self.StateId.PREFIXING__OM__VEG__NONE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._PREFIXING__OM__VEG__NONE_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._PREFIXING__OM__VEG_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__OM__VEG_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__OM__VEG__POTATO
-            case PREFIXING__OM__VEG__POTATO:
-                switch (eventId)
-                
-                    case EV1: self._PREFIXING__OM__VEG__POTATO_ev1() break
+            case self.StateId.PREFIXING__OM__VEG__POTATO:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._PREFIXING__OM__VEG__POTATO_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._PREFIXING__OM__VEG_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__OM__VEG_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__OM__VEG__YAM
-            case PREFIXING__OM__VEG__YAM:
-                switch (eventId)
-                
+            case self.StateId.PREFIXING__OM__VEG__YAM:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._PREFIXING__OM__VEG_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__OM__VEG_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX
-            case PREFIXING__SHOWS_MANUAL_PREFIX:
-                switch (eventId)
-                
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
-            case PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
-                switch (eventId)
-                
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
-                switch (eventId)
-                
-                    case EV2: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2() break
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
-                switch (eventId)
-                
-                    case EV1: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1() break
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
-                switch (eventId)
-                
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
-                switch (eventId)
-                
-                    case EV1: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1() break
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
-                switch (eventId)
-                
-                    case EV2: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2() break
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
-                switch (eventId)
-                
-                    case EV1: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1() break
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
-                switch (eventId)
-                
-                    case EV1: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1() break
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
-                switch (eventId)
-                
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: Spec2Sm__DECIDE
-            case SPEC2SM__DECIDE:
-                switch (eventId)
-                
-                    case EV1: self._SPEC2SM__DECIDE_ev1() break
-                    case EV2: self._SPEC2SM__DECIDE_ev2() break
-                    case EV3: self._SPEC2SM__DECIDE_ev3() break
-                    case EV4: self._SPEC2SM__DECIDE_ev4() break
-                    case EV5: self._SPEC2SM__DECIDE_ev5() break
-                    case EV6: self._SPEC2SM__DECIDE_ev6() break
-                    case EV7: self._SPEC2SM__DECIDE_ev7() break
-                    case EV8: self._SPEC2SM__DECIDE_ev8() break
-                    case EV9: self._SPEC2SM__DECIDE_ev9() break
-                    case EV10: self._SPEC2SM__DECIDE_ev10() break
+            case self.StateId.SPEC2SM__DECIDE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._SPEC2SM__DECIDE_ev1() 
+                        break
+                    case self.EventId.EV2: 
+                        self._SPEC2SM__DECIDE_ev2() 
+                        break
+                    case self.EventId.EV3: 
+                        self._SPEC2SM__DECIDE_ev3() 
+                        break
+                    case self.EventId.EV4: 
+                        self._SPEC2SM__DECIDE_ev4() 
+                        break
+                    case self.EventId.EV5: 
+                        self._SPEC2SM__DECIDE_ev5() 
+                        break
+                    case self.EventId.EV6: 
+                        self._SPEC2SM__DECIDE_ev6() 
+                        break
+                    case self.EventId.EV7: 
+                        self._SPEC2SM__DECIDE_ev7() 
+                        break
+                    case self.EventId.EV8: 
+                        self._SPEC2SM__DECIDE_ev8() 
+                        break
+                    case self.EventId.EV9: 
+                        self._SPEC2SM__DECIDE_ev9() 
+                        break
+                    case self.EventId.EV10: 
+                        self._SPEC2SM__DECIDE_ev10() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST1_DO_EVENT_TESTING
-            case TEST1_DO_EVENT_TESTING:
-                switch (eventId)
-                
+            case self.StateId.TEST1_DO_EVENT_TESTING:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST1_ROOT
-            case TEST1_ROOT:
-                switch (eventId)
-                
-                    case DO: self._TEST1_ROOT_do() break
-                    # Events not handled by this state:
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+            case self.StateId.TEST1_ROOT:
+                match eventId:
+                    case self.EventId.DO: 
+                        self._TEST1_ROOT_do() 
+                        break
                 break
             
             # STATE: TEST1_S1
-            case TEST1_S1:
-                switch (eventId)
-                
+            case self.StateId.TEST1_S1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._TEST1_ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._TEST1_ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST1_S1_1
-            case TEST1_S1_1:
-                switch (eventId)
-                
-                    case DO: self._TEST1_S1_1_do() break
-                    case EV1: self._TEST1_S1_1_ev1() break
-                    # Events not handled by this state:
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+            case self.StateId.TEST1_S1_1:
+                match eventId:
+                    case self.EventId.DO: 
+                        self._TEST1_S1_1_do() 
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST1_S1_1_ev1() 
+                        break
                 break
             
             # STATE: TEST1_S2
-            case TEST1_S2:
-                switch (eventId)
-                
-                    case DO: self._TEST1_S2_do() break
-                    # Events not handled by this state:
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+            case self.StateId.TEST1_S2:
+                match eventId:
+                    case self.EventId.DO: 
+                        self._TEST1_S2_do() 
+                        break
                 break
             
             # STATE: TEST10_CHOICE_POINT
-            case TEST10_CHOICE_POINT:
-                switch (eventId)
-                
+            case self.StateId.TEST10_CHOICE_POINT:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_A
-            case TEST10_A:
-                switch (eventId)
-                
+            case self.StateId.TEST10_A:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_A_1
-            case TEST10_A_1:
-                switch (eventId)
-                
+            case self.StateId.TEST10_A_1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_ROOT
-            case TEST10_ROOT:
-                switch (eventId)
-                
-                    case EV5: self._TEST10_ROOT_ev5() break
+            case self.StateId.TEST10_ROOT:
+                match eventId:
+                    case self.EventId.EV5: 
+                        self._TEST10_ROOT_ev5() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_G
-            case TEST10_G:
-                switch (eventId)
-                
+            case self.StateId.TEST10_G:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST10_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST10_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_G_S0
-            case TEST10_G_S0:
-                switch (eventId)
-                
+            case self.StateId.TEST10_G_S0:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST10_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST10_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_G_S1
-            case TEST10_G_S1:
-                switch (eventId)
-                
+            case self.StateId.TEST10_G_S1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST10_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST10_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_G_S2
-            case TEST10_G_S2:
-                switch (eventId)
-                
+            case self.StateId.TEST10_G_S2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST10_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST10_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_G_S3
-            case TEST10_G_S3:
-                switch (eventId)
-                
+            case self.StateId.TEST10_G_S3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST10_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST10_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_S1
-            case TEST10_S1:
-                switch (eventId)
-                
-                    case EV2: self._TEST10_S1_ev2() break
-                    case EV3: self._TEST10_S1_ev3() break
-                    case EV1: self._TEST10_S1_ev1() break
-                    case EV10: self._TEST10_S1_ev10() break
+            case self.StateId.TEST10_S1:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._TEST10_S1_ev2() 
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST10_S1_ev3() 
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST10_S1_ev1() 
+                        break
+                    case self.EventId.EV10: 
+                        self._TEST10_S1_ev10() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV4: break
-                    case EV5: self._TEST10_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST10_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST10_S4
-            case TEST10_S4:
-                switch (eventId)
-                
+            case self.StateId.TEST10_S4:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST10_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST10_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST2_REGULAR_EVENT_TESTING
-            case TEST2_REGULAR_EVENT_TESTING:
-                switch (eventId)
-                
+            case self.StateId.TEST2_REGULAR_EVENT_TESTING:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST2_ROOT
-            case TEST2_ROOT:
-                switch (eventId)
-                
-                    case EV1: self._TEST2_ROOT_ev1() break
-                    case EV2: self._TEST2_ROOT_ev2() break
-                    case DO: self._TEST2_ROOT_do() break
-                    # Events not handled by this state:
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+            case self.StateId.TEST2_ROOT:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST2_ROOT_ev1() 
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST2_ROOT_ev2() 
+                        break
+                    case self.EventId.DO: 
+                        self._TEST2_ROOT_do() 
+                        break
                 break
             
             # STATE: TEST2_S1
-            case TEST2_S1:
-                switch (eventId)
-                
+            case self.StateId.TEST2_S1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._TEST2_ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST2_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: self._TEST2_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._TEST2_ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST2_ROOT_ev1()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST2_ROOT_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST2_S1_1
-            case TEST2_S1_1:
-                switch (eventId)
-                
-                    case EV1: self._TEST2_S1_1_ev1() break
-                    case DO: self._TEST2_S1_1_do() break
+            case self.StateId.TEST2_S1_1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST2_S1_1_ev1() 
+                        break
+                    case self.EventId.DO: 
+                        self._TEST2_S1_1_do() 
+                        break
                     # Events not handled by this state:
-                    case EV2: self._TEST2_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.EV2: 
+                        self._TEST2_ROOT_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST2_S2
-            case TEST2_S2:
-                switch (eventId)
-                
-                    case EV1: self._TEST2_S2_ev1() break
-                    case EV2: self._TEST2_S2_ev2() break
+            case self.StateId.TEST2_S2:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST2_S2_ev1() 
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST2_S2_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._TEST2_ROOT_do() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._TEST2_ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST3_BEHAVIOR_ORDERING
-            case TEST3_BEHAVIOR_ORDERING:
-                switch (eventId)
-                
+            case self.StateId.TEST3_BEHAVIOR_ORDERING:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST3_ROOT
-            case TEST3_ROOT:
-                switch (eventId)
-                
-                    case EV1: self._TEST3_ROOT_ev1() break
+            case self.StateId.TEST3_ROOT:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST3_ROOT_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST3_S1
-            case TEST3_S1:
-                switch (eventId)
-                
-                    case EV1: self._TEST3_S1_ev1() break
+            case self.StateId.TEST3_S1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST3_S1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST3_S2
-            case TEST3_S2:
-                switch (eventId)
-                
-                    case EV1: self._TEST3_S2_ev1() break
+            case self.StateId.TEST3_S2:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST3_S2_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST3_S3
-            case TEST3_S3:
-                switch (eventId)
-                
+            case self.StateId.TEST3_S3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST3_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST3_ROOT_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_PARENT_CHILD_TRANSITIONS
-            case TEST4_PARENT_CHILD_TRANSITIONS:
-                switch (eventId)
-                
+            case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_B_AND_OTHERS
-            case TEST4_B_AND_OTHERS:
-                switch (eventId)
-                
+            case self.StateId.TEST4_B_AND_OTHERS:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4B_LOCAL
-            case TEST4B_LOCAL:
-                switch (eventId)
-                
+            case self.StateId.TEST4B_LOCAL:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4B_G
-            case TEST4B_G:
-                switch (eventId)
-                
-                    case EV1: self._TEST4B_G_ev1() break
+            case self.StateId.TEST4B_G:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST4B_G_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4B_G_1
-            case TEST4B_G_1:
-                switch (eventId)
-                
-                    case EV2: self._TEST4B_G_1_ev2() break
+            case self.StateId.TEST4B_G_1:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._TEST4B_G_1_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST4B_G_ev1() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST4B_G_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4C_LOCAL_TO_ALIAS
-            case TEST4C_LOCAL_TO_ALIAS:
-                switch (eventId)
-                
+            case self.StateId.TEST4C_LOCAL_TO_ALIAS:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4C_G
-            case TEST4C_G:
-                switch (eventId)
-                
-                    case EV1: self._TEST4C_G_ev1() break
+            case self.StateId.TEST4C_G:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST4C_G_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4C_G_1
-            case TEST4C_G_1:
-                switch (eventId)
-                
-                    case EV2: self._TEST4C_G_1_ev2() break
+            case self.StateId.TEST4C_G_1:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._TEST4C_G_1_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST4C_G_ev1() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST4C_G_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4D_EXTERNAL
-            case TEST4D_EXTERNAL:
-                switch (eventId)
-                
+            case self.StateId.TEST4D_EXTERNAL:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4D_G
-            case TEST4D_G:
-                switch (eventId)
-                
-                    case EV1: self._TEST4D_G_ev1() break
+            case self.StateId.TEST4D_G:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST4D_G_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4D_G_1
-            case TEST4D_G_1:
-                switch (eventId)
-                
-                    case EV2: self._TEST4D_G_1_ev2() break
+            case self.StateId.TEST4D_G_1:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._TEST4D_G_1_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST4D_G_ev1() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST4D_G_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_DECIDE
-            case TEST4_DECIDE:
-                switch (eventId)
-                
-                    case EV1: self._TEST4_DECIDE_ev1() break
-                    case EV2: self._TEST4_DECIDE_ev2() break
-                    case EV3: self._TEST4_DECIDE_ev3() break
-                    case EV4: self._TEST4_DECIDE_ev4() break
+            case self.StateId.TEST4_DECIDE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST4_DECIDE_ev1() 
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST4_DECIDE_ev2() 
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_DECIDE_ev3() 
+                        break
+                    case self.EventId.EV4: 
+                        self._TEST4_DECIDE_ev4() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_ROOT
-            case TEST4_ROOT:
-                switch (eventId)
-                
-                    case EV2: self._TEST4_ROOT_ev2() break
-                    case EV3: self._TEST4_ROOT_ev3() break
-                    case EV4: self._TEST4_ROOT_ev4() break
+            case self.StateId.TEST4_ROOT:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._TEST4_ROOT_ev2() 
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_ROOT_ev3() 
+                        break
+                    case self.EventId.EV4: 
+                        self._TEST4_ROOT_ev4() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_S1
-            case TEST4_S1:
-                switch (eventId)
-                
-                    case EV1: self._TEST4_S1_ev1() break
+            case self.StateId.TEST4_S1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST4_S1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._TEST4_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST4_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: self._TEST4_ROOT_ev4() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST4_ROOT_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV4: 
+                        self._TEST4_ROOT_ev4()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_S10
-            case TEST4_S10:
-                switch (eventId)
-                
-                    case EV4: self._TEST4_S10_ev4() break
+            case self.StateId.TEST4_S10:
+                match eventId:
+                    case self.EventId.EV4: 
+                        self._TEST4_S10_ev4() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._TEST4_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST4_ROOT_ev3() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST4_ROOT_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_ROOT_ev3()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_S10_1
-            case TEST4_S10_1:
-                switch (eventId)
-                
+            case self.StateId.TEST4_S10_1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._TEST4_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST4_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: self._TEST4_S10_ev4() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST4_ROOT_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV4: 
+                        self._TEST4_S10_ev4()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_S2
-            case TEST4_S2:
-                switch (eventId)
-                
-                    case EV1: self._TEST4_S2_ev1() break
+            case self.StateId.TEST4_S2:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST4_S2_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._TEST4_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST4_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: self._TEST4_ROOT_ev4() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST4_ROOT_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV4: 
+                        self._TEST4_ROOT_ev4()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_S20
-            case TEST4_S20:
-                switch (eventId)
-                
-                    case EV4: self._TEST4_S20_ev4() break
+            case self.StateId.TEST4_S20:
+                match eventId:
+                    case self.EventId.EV4: 
+                        self._TEST4_S20_ev4() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._TEST4_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST4_ROOT_ev3() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST4_ROOT_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_ROOT_ev3()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_S20_1
-            case TEST4_S20_1:
-                switch (eventId)
-                
+            case self.StateId.TEST4_S20_1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._TEST4_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST4_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: self._TEST4_S20_ev4() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST4_ROOT_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV4: 
+                        self._TEST4_S20_ev4()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST4_S3
-            case TEST4_S3:
-                switch (eventId)
-                
-                    case EV1: self._TEST4_S3_ev1() break
+            case self.StateId.TEST4_S3:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST4_S3_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._TEST4_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST4_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: self._TEST4_ROOT_ev4() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST4_ROOT_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST4_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV4: 
+                        self._TEST4_ROOT_ev4()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
-            case TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
-                switch (eventId)
-                
+            case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST5_ROOT
-            case TEST5_ROOT:
-                switch (eventId)
-                
-                    case EV2: self._TEST5_ROOT_ev2() break
+            case self.StateId.TEST5_ROOT:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._TEST5_ROOT_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST5_S1
-            case TEST5_S1:
-                switch (eventId)
-                
-                    case EV1: self._TEST5_S1_ev1() break
+            case self.StateId.TEST5_S1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST5_S1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._TEST5_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST5_ROOT_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST5_S2
-            case TEST5_S2:
-                switch (eventId)
-                
-                    case EV1: self._TEST5_S2_ev1() break
+            case self.StateId.TEST5_S2:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST5_S2_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._TEST5_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST5_ROOT_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST5_S3
-            case TEST5_S3:
-                switch (eventId)
-                
-                    case EV1: self._TEST5_S3_ev1() break
+            case self.StateId.TEST5_S3:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST5_S3_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._TEST5_ROOT_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST5_ROOT_ev2()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST6_VARS_EXPANSIONS
-            case TEST6_VARS_EXPANSIONS:
-                switch (eventId)
-                
+            case self.StateId.TEST6_VARS_EXPANSIONS:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST6_ROOT
-            case TEST6_ROOT:
-                switch (eventId)
-                
+            case self.StateId.TEST6_ROOT:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: AUTO_VAR_TEST
-            case AUTO_VAR_TEST:
-                switch (eventId)
-                
+            case self.StateId.AUTO_VAR_TEST:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: AUTO_VAR_TEST__S1
-            case AUTO_VAR_TEST__S1:
-                switch (eventId)
-                
-                    case EV1: self._AUTO_VAR_TEST__S1_ev1() break
+            case self.StateId.AUTO_VAR_TEST__S1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._AUTO_VAR_TEST__S1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: AUTO_VAR_TEST__S2
-            case AUTO_VAR_TEST__S2:
-                switch (eventId)
-                
+            case self.StateId.AUTO_VAR_TEST__S2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: META_EXPANSIONS
-            case META_EXPANSIONS:
-                switch (eventId)
-                
+            case self.StateId.META_EXPANSIONS:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: META_EXPANSIONS__S1
-            case META_EXPANSIONS__S1:
-                switch (eventId)
-                
-                    case EV1: self._META_EXPANSIONS__S1_ev1() break
+            case self.StateId.META_EXPANSIONS__S1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._META_EXPANSIONS__S1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: META_EXPANSIONS__S2
-            case META_EXPANSIONS__S2:
-                switch (eventId)
-                
-                    case EV1: self._META_EXPANSIONS__S2_ev1() break
-                    case EV2: self._META_EXPANSIONS__S2_ev2() break
+            case self.StateId.META_EXPANSIONS__S2:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._META_EXPANSIONS__S2_ev1() 
+                        break
+                    case self.EventId.EV2: 
+                        self._META_EXPANSIONS__S2_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: S3
-            case S3:
-                switch (eventId)
-                
-                    case EV1: self._S3_ev1() break
+            case self.StateId.S3:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._S3_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: S4
-            case S4:
-                switch (eventId)
-                
+            case self.StateId.S4:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: S5
-            case S5:
-                switch (eventId)
-                
+            case self.StateId.S5:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: NORMAL
-            case NORMAL:
-                switch (eventId)
-                
+            case self.StateId.NORMAL:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: NORMAL__S1
-            case NORMAL__S1:
-                switch (eventId)
-                
-                    case EV1: self._NORMAL__S1_ev1() break
+            case self.StateId.NORMAL__S1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._NORMAL__S1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: NORMAL__S2
-            case NORMAL__S2:
-                switch (eventId)
-                
+            case self.StateId.NORMAL__S2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST6_VARS_EXPANSIONS__DECIDE
-            case TEST6_VARS_EXPANSIONS__DECIDE:
-                switch (eventId)
-                
-                    case EV1: self._TEST6_VARS_EXPANSIONS__DECIDE_ev1() break
-                    case EV2: self._TEST6_VARS_EXPANSIONS__DECIDE_ev2() break
-                    case EV3: self._TEST6_VARS_EXPANSIONS__DECIDE_ev3() break
+            case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST6_VARS_EXPANSIONS__DECIDE_ev1() 
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST6_VARS_EXPANSIONS__DECIDE_ev2() 
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST6_VARS_EXPANSIONS__DECIDE_ev3() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST7_INITIAL_OR_HISTORY
-            case TEST7_INITIAL_OR_HISTORY:
-                switch (eventId)
-                
+            case self.StateId.TEST7_INITIAL_OR_HISTORY:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST7
-            case TEST7:
-                switch (eventId)
-                
+            case self.StateId.TEST7:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY1
-            case T7__DEEP_HISTORY1:
-                switch (eventId)
-                
+            case self.StateId.T7__DEEP_HISTORY1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__SANTAS_WORKSHOP
-            case T7__DH1__SANTAS_WORKSHOP:
-                switch (eventId)
-                
+            case self.StateId.T7__DH1__SANTAS_WORKSHOP:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__ALIENS_DETECTED
-            case T7__DH1__ALIENS_DETECTED:
-                switch (eventId)
-                
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break
+            case self.StateId.T7__DH1__ALIENS_DETECTED:
+                match eventId:
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__GET_BACKUP
-            case T7__DH1__GET_BACKUP:
-                switch (eventId)
-                
+            case self.StateId.T7__DH1__GET_BACKUP:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__HERO
-            case T7__DH1__HERO:
-                switch (eventId)
-                
+            case self.StateId.T7__DH1__HERO:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__CALL_BATMAN
-            case T7__DH1__CALL_BATMAN:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__CALL_BATMAN_ev1() break
+            case self.StateId.T7__DH1__CALL_BATMAN:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__CALL_BATMAN_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__CALL_THOR
-            case T7__DH1__CALL_THOR:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__CALL_THOR_ev1() break
+            case self.StateId.T7__DH1__CALL_THOR:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__CALL_THOR_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__LOCAL_HELP
-            case T7__DH1__LOCAL_HELP:
-                switch (eventId)
-                
+            case self.StateId.T7__DH1__LOCAL_HELP:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__BUDDY_ELF
-            case T7__DH1__BUDDY_ELF:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__BUDDY_ELF_ev1() break
+            case self.StateId.T7__DH1__BUDDY_ELF:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__BUDDY_ELF_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__POLAR_BEARS
-            case T7__DH1__POLAR_BEARS:
-                switch (eventId)
-                
+            case self.StateId.T7__DH1__POLAR_BEARS:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__GIVE_COOKIES
-            case T7__DH1__GIVE_COOKIES:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__GIVE_COOKIES_ev1() break
+            case self.StateId.T7__DH1__GIVE_COOKIES:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__GIVE_COOKIES_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__SNOWBALL_FIGHT
-            case T7__DH1__SNOWBALL_FIGHT:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__SNOWBALL_FIGHT_ev1() break
+            case self.StateId.T7__DH1__SNOWBALL_FIGHT:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__SNOWBALL_FIGHT_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: self._T7__DH1__ALIENS_DETECTED_ev8() break # First ancestor handler for this event
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV8: 
+                        self._T7__DH1__ALIENS_DETECTED_ev8()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__BUILD
-            case T7__DH1__BUILD:
-                switch (eventId)
-                
-                    case EV6: self._T7__DH1__BUILD_ev6() break
-                    case EV7: self._T7__DH1__BUILD_ev7() break
+            case self.StateId.T7__DH1__BUILD:
+                match eventId:
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6() 
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__TOOL
-            case T7__DH1__TOOL:
-                switch (eventId)
-                
-                    case EV2: self._T7__DH1__TOOL_ev2() break
+            case self.StateId.T7__DH1__TOOL:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._T7__DH1__TOOL_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__CIRCULAR_SAW
-            case T7__DH1__CIRCULAR_SAW:
-                switch (eventId)
-                
+            case self.StateId.T7__DH1__CIRCULAR_SAW:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._T7__DH1__TOOL_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._T7__DH1__TOOL_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__IMPACT_DRILL
-            case T7__DH1__IMPACT_DRILL:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__IMPACT_DRILL_ev1() break
+            case self.StateId.T7__DH1__IMPACT_DRILL:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__IMPACT_DRILL_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: self._T7__DH1__TOOL_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._T7__DH1__TOOL_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__TOY
-            case T7__DH1__TOY:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__TOY_ev1() break
+            case self.StateId.T7__DH1__TOY:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__TOY_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__GLOW_WORM
-            case T7__DH1__GLOW_WORM:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__GLOW_WORM_ev1() break
+            case self.StateId.T7__DH1__GLOW_WORM:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__GLOW_WORM_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__RACE_CAR
-            case T7__DH1__RACE_CAR:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__RACE_CAR_ev1() break
+            case self.StateId.T7__DH1__RACE_CAR:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__RACE_CAR_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__ROBOT
-            case T7__DH1__ROBOT:
-                switch (eventId)
-                
+            case self.StateId.T7__DH1__ROBOT:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._T7__DH1__TOY_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._T7__DH1__TOY_ev1()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__BATTLEBOT
-            case T7__DH1__BATTLEBOT:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__BATTLEBOT_ev1() break
+            case self.StateId.T7__DH1__BATTLEBOT:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__BATTLEBOT_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__WALL_E
-            case T7__DH1__WALL_E:
-                switch (eventId)
-                
+            case self.StateId.T7__DH1__WALL_E:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._T7__DH1__TOY_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._T7__DH1__TOY_ev1()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DH1__TEDDY_BEAR
-            case T7__DH1__TEDDY_BEAR:
-                switch (eventId)
-                
-                    case EV1: self._T7__DH1__TEDDY_BEAR_ev1() break
+            case self.StateId.T7__DH1__TEDDY_BEAR:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__DH1__TEDDY_BEAR_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__DH1__BUILD_ev6() break # First ancestor handler for this event
-                    case EV7: self._T7__DH1__BUILD_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__DH1__BUILD_ev6()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__DH1__BUILD_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY2
-            case T7__DEEP_HISTORY2:
-                switch (eventId)
-                
+            case self.StateId.T7__DEEP_HISTORY2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_0
-            case T7__DEEP_HISTORY2__T7__STATE_0:
-                switch (eventId)
-                
-                    case EVOPEN: self._T7__DEEP_HISTORY2__T7__STATE_0_evopen() break
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0:
+                match eventId:
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_0_evopen() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_1
-            case T7__DEEP_HISTORY2__T7__STATE_1:
-                switch (eventId)
-                
-                    case EVSTEP: self._T7__DEEP_HISTORY2__T7__STATE_1_evstep() break
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1:
+                match eventId:
+                    case self.EventId.EVSTEP: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_1_evstep() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: self._T7__DEEP_HISTORY2__T7__STATE_0_evopen() break # First ancestor handler for this event
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_2
-            case T7__DEEP_HISTORY2__T7__STATE_2:
-                switch (eventId)
-                
-                    case EVBACK: self._T7__DEEP_HISTORY2__T7__STATE_2_evback() break
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2:
+                match eventId:
+                    case self.EventId.EVBACK: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_2_evback() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: self._T7__DEEP_HISTORY2__T7__STATE_0_evopen() break # First ancestor handler for this event
-                    case EVSTEP: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_6
-            case T7__DEEP_HISTORY2__T7__STATE_6:
-                switch (eventId)
-                
-                    case EVSTEP: self._T7__DEEP_HISTORY2__T7__STATE_6_evstep() break
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6:
+                match eventId:
+                    case self.EventId.EVSTEP: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_6_evstep() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: self._T7__DEEP_HISTORY2__T7__STATE_0_evopen() break # First ancestor handler for this event
-                    case EVBACK: self._T7__DEEP_HISTORY2__T7__STATE_2_evback() break # First ancestor handler for this event
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVBACK: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_2_evback()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_9
-            case T7__DEEP_HISTORY2__T7__STATE_9:
-                switch (eventId)
-                
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: self._T7__DEEP_HISTORY2__T7__STATE_0_evopen() break # First ancestor handler for this event
-                    case EVSTEP: break
-                    case EVBACK: self._T7__DEEP_HISTORY2__T7__STATE_2_evback() break # First ancestor handler for this event
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVBACK: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_2_evback()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY2__T7__state_3
-            case T7__DEEP_HISTORY2__T7__STATE_3:
-                switch (eventId)
-                
-                    case EVCLOSE: self._T7__DEEP_HISTORY2__T7__STATE_3_evclose() break
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3:
+                match eventId:
+                    case self.EventId.EVCLOSE: 
+                        self._T7__DEEP_HISTORY2__T7__STATE_3_evclose() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY3
-            case T7__DEEP_HISTORY3:
-                switch (eventId)
-                
+            case self.StateId.T7__DEEP_HISTORY3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_0
-            case T7__DEEP_HISTORY3__T7__STATE_0:
-                switch (eventId)
-                
-                    case EVOPEN: self._T7__DEEP_HISTORY3__T7__STATE_0_evopen() break
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0:
+                match eventId:
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_0_evopen() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_1
-            case T7__DEEP_HISTORY3__T7__STATE_1:
-                switch (eventId)
-                
-                    case EVSTEP: self._T7__DEEP_HISTORY3__T7__STATE_1_evstep() break
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1:
+                match eventId:
+                    case self.EventId.EVSTEP: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_1_evstep() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: self._T7__DEEP_HISTORY3__T7__STATE_0_evopen() break # First ancestor handler for this event
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_2
-            case T7__DEEP_HISTORY3__T7__STATE_2:
-                switch (eventId)
-                
-                    case EVBACK: self._T7__DEEP_HISTORY3__T7__STATE_2_evback() break
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2:
+                match eventId:
+                    case self.EventId.EVBACK: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_2_evback() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: self._T7__DEEP_HISTORY3__T7__STATE_0_evopen() break # First ancestor handler for this event
-                    case EVSTEP: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_6
-            case T7__DEEP_HISTORY3__T7__STATE_6:
-                switch (eventId)
-                
-                    case EVSTEP: self._T7__DEEP_HISTORY3__T7__STATE_6_evstep() break
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6:
+                match eventId:
+                    case self.EventId.EVSTEP: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_6_evstep() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: self._T7__DEEP_HISTORY3__T7__STATE_0_evopen() break # First ancestor handler for this event
-                    case EVBACK: self._T7__DEEP_HISTORY3__T7__STATE_2_evback() break # First ancestor handler for this event
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVBACK: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_2_evback()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_9
-            case T7__DEEP_HISTORY3__T7__STATE_9:
-                switch (eventId)
-                
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: self._T7__DEEP_HISTORY3__T7__STATE_0_evopen() break # First ancestor handler for this event
-                    case EVSTEP: break
-                    case EVBACK: self._T7__DEEP_HISTORY3__T7__STATE_2_evback() break # First ancestor handler for this event
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVOPEN: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EVBACK: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_2_evback()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__DEEP_HISTORY3__T7__state_3
-            case T7__DEEP_HISTORY3__T7__STATE_3:
-                switch (eventId)
-                
-                    case EVCLOSE: self._T7__DEEP_HISTORY3__T7__STATE_3_evclose() break
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3:
+                match eventId:
+                    case self.EventId.EVCLOSE: 
+                        self._T7__DEEP_HISTORY3__T7__STATE_3_evclose() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__HISTORY1
-            case T7__HISTORY1:
-                switch (eventId)
-                
+            case self.StateId.T7__HISTORY1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__H1__OFF
-            case T7__H1__OFF:
-                switch (eventId)
-                
-                    case EV3: self._T7__H1__OFF_ev3() break
-                    case EV4: self._T7__H1__OFF_ev4() break
-                    case EV7: self._T7__H1__OFF_ev7() break
+            case self.StateId.T7__H1__OFF:
+                match eventId:
+                    case self.EventId.EV3: 
+                        self._T7__H1__OFF_ev3() 
+                        break
+                    case self.EventId.EV4: 
+                        self._T7__H1__OFF_ev4() 
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__H1__OFF_ev7() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV5: break
-                    case EV6: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__H1__OFF1
-            case T7__H1__OFF1:
-                switch (eventId)
-                
-                    case EV1: self._T7__H1__OFF1_ev1() break
+            case self.StateId.T7__H1__OFF1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__H1__OFF1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: self._T7__H1__OFF_ev3() break # First ancestor handler for this event
-                    case EV4: self._T7__H1__OFF_ev4() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: self._T7__H1__OFF_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._T7__H1__OFF_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV4: 
+                        self._T7__H1__OFF_ev4()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__H1__OFF_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__H1__OFF2
-            case T7__H1__OFF2:
-                switch (eventId)
-                
-                    case EV1: self._T7__H1__OFF2_ev1() break
+            case self.StateId.T7__H1__OFF2:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__H1__OFF2_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: self._T7__H1__OFF_ev3() break # First ancestor handler for this event
-                    case EV4: self._T7__H1__OFF_ev4() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: self._T7__H1__OFF_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._T7__H1__OFF_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV4: 
+                        self._T7__H1__OFF_ev4()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__H1__OFF_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__H1__OFF3
-            case T7__H1__OFF3:
-                switch (eventId)
-                
+            case self.StateId.T7__H1__OFF3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: self._T7__H1__OFF_ev3() break # First ancestor handler for this event
-                    case EV4: self._T7__H1__OFF_ev4() break # First ancestor handler for this event
-                    case EV5: break
-                    case EV6: break
-                    case EV7: self._T7__H1__OFF_ev7() break # First ancestor handler for this event
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._T7__H1__OFF_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV4: 
+                        self._T7__H1__OFF_ev4()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV7: 
+                        self._T7__H1__OFF_ev7()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__H1__ON
-            case T7__H1__ON:
-                switch (eventId)
-                
-                    case EV6: self._T7__H1__ON_ev6() break
+            case self.StateId.T7__H1__ON:
+                match eventId:
+                    case self.EventId.EV6: 
+                        self._T7__H1__ON_ev6() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__H1__ON1
-            case T7__H1__ON1:
-                switch (eventId)
-                
-                    case EV1: self._T7__H1__ON1_ev1() break
+            case self.StateId.T7__H1__ON1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__H1__ON1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__H1__ON_ev6() break # First ancestor handler for this event
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__H1__ON_ev6()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__H1__ON2
-            case T7__H1__ON2:
-                switch (eventId)
-                
-                    case EV1: self._T7__H1__ON2_ev1() break
+            case self.StateId.T7__H1__ON2:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__H1__ON2_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__H1__ON_ev6() break # First ancestor handler for this event
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__H1__ON_ev6()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__H1__ON3
-            case T7__H1__ON3:
-                switch (eventId)
-                
-                    case EV1: self._T7__H1__ON3_ev1() break
+            case self.StateId.T7__H1__ON3:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__H1__ON3_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: self._T7__H1__ON_ev6() break # First ancestor handler for this event
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV6: 
+                        self._T7__H1__ON_ev6()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__INITIAL1
-            case T7__INITIAL1:
-                switch (eventId)
-                
+            case self.StateId.T7__INITIAL1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__INITIAL1__PARENT
-            case T7__INITIAL1__PARENT:
-                switch (eventId)
-                
-                    case EV5: self._T7__INITIAL1__PARENT_ev5() break
+            case self.StateId.T7__INITIAL1__PARENT:
+                match eventId:
+                    case self.EventId.EV5: 
+                        self._T7__INITIAL1__PARENT_ev5() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__INITIAL1__G
-            case T7__INITIAL1__G:
-                switch (eventId)
-                
-                    case EV2: self._T7__INITIAL1__G_ev2() break
+            case self.StateId.T7__INITIAL1__G:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._T7__INITIAL1__G_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._T7__INITIAL1__PARENT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__INITIAL1__G_S1
-            case T7__INITIAL1__G_S1:
-                switch (eventId)
-                
+            case self.StateId.T7__INITIAL1__G_S1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._T7__INITIAL1__G_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._T7__INITIAL1__PARENT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._T7__INITIAL1__G_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__INITIAL1__G_S2
-            case T7__INITIAL1__G_S2:
-                switch (eventId)
-                
+            case self.StateId.T7__INITIAL1__G_S2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._T7__INITIAL1__G_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._T7__INITIAL1__PARENT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._T7__INITIAL1__G_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__INITIAL1__G_S3
-            case T7__INITIAL1__G_S3:
-                switch (eventId)
-                
+            case self.StateId.T7__INITIAL1__G_S3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._T7__INITIAL1__G_ev2() break # First ancestor handler for this event
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._T7__INITIAL1__PARENT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._T7__INITIAL1__G_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: T7__INITIAL1__S1
-            case T7__INITIAL1__S1:
-                switch (eventId)
-                
-                    case EV1: self._T7__INITIAL1__S1_ev1() break
-                    case EV3: self._T7__INITIAL1__S1_ev3() break
+            case self.StateId.T7__INITIAL1__S1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._T7__INITIAL1__S1_ev1() 
+                        break
+                    case self.EventId.EV3: 
+                        self._T7__INITIAL1__S1_ev3() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV4: break
-                    case EV5: self._T7__INITIAL1__PARENT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._T7__INITIAL1__PARENT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST7_DECIDE
-            case TEST7_DECIDE:
-                switch (eventId)
-                
-                    case EV1: self._TEST7_DECIDE_ev1() break
-                    case EV2: self._TEST7_DECIDE_ev2() break
-                    case EV3: self._TEST7_DECIDE_ev3() break
-                    case EV4: self._TEST7_DECIDE_ev4() break
-                    case EV5: self._TEST7_DECIDE_ev5() break
+            case self.StateId.TEST7_DECIDE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST7_DECIDE_ev1() 
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST7_DECIDE_ev2() 
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST7_DECIDE_ev3() 
+                        break
+                    case self.EventId.EV4: 
+                        self._TEST7_DECIDE_ev4() 
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST7_DECIDE_ev5() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST8_ENTRY_CHOICE
-            case TEST8_ENTRY_CHOICE:
-                switch (eventId)
-                
+            case self.StateId.TEST8_ENTRY_CHOICE:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST8_ROOT
-            case TEST8_ROOT:
-                switch (eventId)
-                
-                    case EV5: self._TEST8_ROOT_ev5() break
-                    case EV3: self._TEST8_ROOT_ev3() break
+            case self.StateId.TEST8_ROOT:
+                match eventId:
+                    case self.EventId.EV5: 
+                        self._TEST8_ROOT_ev5() 
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST8_ROOT_ev3() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV4: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST8_G
-            case TEST8_G:
-                switch (eventId)
-                
-                    case EV2: self._TEST8_G_ev2() break
+            case self.StateId.TEST8_G:
+                match eventId:
+                    case self.EventId.EV2: 
+                        self._TEST8_G_ev2() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV3: self._TEST8_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: break
-                    case EV5: self._TEST8_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST8_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST8_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST8_G_S1
-            case TEST8_G_S1:
-                switch (eventId)
-                
+            case self.StateId.TEST8_G_S1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._TEST8_G_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST8_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: break
-                    case EV5: self._TEST8_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST8_G_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST8_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST8_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST8_G_S2
-            case TEST8_G_S2:
-                switch (eventId)
-                
+            case self.StateId.TEST8_G_S2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._TEST8_G_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST8_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: break
-                    case EV5: self._TEST8_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST8_G_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST8_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST8_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST8_G_S3
-            case TEST8_G_S3:
-                switch (eventId)
-                
+            case self.StateId.TEST8_G_S3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: self._TEST8_G_ev2() break # First ancestor handler for this event
-                    case EV3: self._TEST8_ROOT_ev3() break # First ancestor handler for this event
-                    case EV4: break
-                    case EV5: self._TEST8_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST8_G_ev2()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST8_ROOT_ev3()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST8_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST8_S1
-            case TEST8_S1:
-                switch (eventId)
-                
-                    case EV1: self._TEST8_S1_ev1() break
-                    case EV3: self._TEST8_S1_ev3() break
-                    case EV6: self._TEST8_S1_ev6() break
+            case self.StateId.TEST8_S1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST8_S1_ev1() 
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST8_S1_ev3() 
+                        break
+                    case self.EventId.EV6: 
+                        self._TEST8_S1_ev6() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV4: break
-                    case EV5: self._TEST8_ROOT_ev5() break # First ancestor handler for this event
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST8_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_EXIT_CHOICE
-            case TEST9_EXIT_CHOICE:
-                switch (eventId)
-                
+            case self.StateId.TEST9_EXIT_CHOICE:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_DECIDE
-            case TEST9_DECIDE:
-                switch (eventId)
-                
-                    case EV1: self._TEST9_DECIDE_ev1() break
-                    case EV2: self._TEST9_DECIDE_ev2() break
-                    case EV3: self._TEST9_DECIDE_ev3() break
+            case self.StateId.TEST9_DECIDE:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST9_DECIDE_ev1() 
+                        break
+                    case self.EventId.EV2: 
+                        self._TEST9_DECIDE_ev2() 
+                        break
+                    case self.EventId.EV3: 
+                        self._TEST9_DECIDE_ev3() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_ROOT
-            case TEST9_ROOT:
-                switch (eventId)
-                
-                    case EV5: self._TEST9_ROOT_ev5() break
+            case self.StateId.TEST9_ROOT:
+                match eventId:
+                    case self.EventId.EV5: 
+                        self._TEST9_ROOT_ev5() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_G_S1
-            case TEST9_G_S1:
-                switch (eventId)
-                
+            case self.StateId.TEST9_G_S1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST9_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST9_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_G_S2
-            case TEST9_G_S2:
-                switch (eventId)
-                
+            case self.StateId.TEST9_G_S2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST9_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST9_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_G_S3
-            case TEST9_G_S3:
-                switch (eventId)
-                
+            case self.StateId.TEST9_G_S3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST9_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST9_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_G_S4
-            case TEST9_G_S4:
-                switch (eventId)
-                
+            case self.StateId.TEST9_G_S4:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST9_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST9_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_S1
-            case TEST9_S1:
-                switch (eventId)
-                
+            case self.StateId.TEST9_S1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST9_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST9_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9_S1_1
-            case TEST9_S1_1:
-                switch (eventId)
-                
-                    case EV1: self._TEST9_S1_1_ev1() break
+            case self.StateId.TEST9_S1_1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST9_S1_1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: self._TEST9_ROOT_ev5() break # First ancestor handler for this event
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV5: 
+                        self._TEST9_ROOT_ev5()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9A_ROOT
-            case TEST9A_ROOT:
-                switch (eventId)
-                
+            case self.StateId.TEST9A_ROOT:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9A_S1
-            case TEST9A_S1:
-                switch (eventId)
-                
+            case self.StateId.TEST9A_S1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: break
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9A_S1_1
-            case TEST9A_S1_1:
-                switch (eventId)
-                
-                    case EV1: self._TEST9A_S1_1_ev1() break
+            case self.StateId.TEST9A_S1_1:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST9A_S1_1_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT
-            case TEST9B_ROOT:
-                switch (eventId)
-                
-                    case EV1: self._TEST9B_ROOT_ev1() break
+            case self.StateId.TEST9B_ROOT:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT__A1
-            case TEST9B_ROOT__A1:
-                switch (eventId)
-                
+            case self.StateId.TEST9B_ROOT__A1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST9B_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT__A2
-            case TEST9B_ROOT__A2:
-                switch (eventId)
-                
+            case self.StateId.TEST9B_ROOT__A2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST9B_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT__A3
-            case TEST9B_ROOT__A3:
-                switch (eventId)
-                
+            case self.StateId.TEST9B_ROOT__A3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST9B_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT__A4
-            case TEST9B_ROOT__A4:
-                switch (eventId)
-                
-                    case EV1: self._TEST9B_ROOT__A4_ev1() break
+            case self.StateId.TEST9B_ROOT__A4:
+                match eventId:
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT__A4_ev1() 
+                        break
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT__B1
-            case TEST9B_ROOT__B1:
-                switch (eventId)
-                
+            case self.StateId.TEST9B_ROOT__B1:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST9B_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT__B2
-            case TEST9B_ROOT__B2:
-                switch (eventId)
-                
+            case self.StateId.TEST9B_ROOT__B2:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST9B_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT__B3
-            case TEST9B_ROOT__B3:
-                switch (eventId)
-                
+            case self.StateId.TEST9B_ROOT__B3:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST9B_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
+                        break
                 break
             
             # STATE: TEST9B_ROOT__B4
-            case TEST9B_ROOT__B4:
-                switch (eventId)
-                
+            case self.StateId.TEST9B_ROOT__B4:
+                match eventId:
                     # Events not handled by this state:
-                    case DO: self._ROOT_do() break # First ancestor handler for this event
-                    case EV1: self._TEST9B_ROOT_ev1() break # First ancestor handler for this event
-                    case EV2: break
-                    case EV3: break
-                    case EV4: break
-                    case EV5: break
-                    case EV6: break
-                    case EV7: break
-                    case EV8: break
-                    case EV9: break
-                    case EV10: break
-                    case EVOPEN: break
-                    case EVSTEP: break
-                    case EVBACK: break
-                    case EVCLOSE: break
-                
+                    case self.EventId.DO: 
+                        self._ROOT_do()  # First ancestor handler for this event
+                        break
+                    case self.EventId.EV1: 
+                        self._TEST9B_ROOT_ev1()  # First ancestor handler for this event
+                        break
                 break
-        
         
     
     
@@ -4274,352 +2645,350 @@ class Spec2Sm(Spec2SmBase):
     def _exitUpToStateHandler(self, desiredState):    
         while (self.stateId != desiredState)
         
-            switch (self.stateId)
-            
-                case PREFIXING: self._PREFIXING_exit() break
+            match self.stateId:
+                case self.StateId.PREFIXING: self._PREFIXING_exit() break
                 
-                case PREFIXING__ORDER_MENU: self._PREFIXING__ORDER_MENU_exit() break
+                case self.StateId.PREFIXING__ORDER_MENU: self._PREFIXING__ORDER_MENU_exit() break
                 
-                case PREFIXING__OM__BEVERAGE: self._PREFIXING__OM__BEVERAGE_exit() break
+                case self.StateId.PREFIXING__OM__BEVERAGE: self._PREFIXING__OM__BEVERAGE_exit() break
                 
-                case PREFIXING__OM__BEV__NONE: self._PREFIXING__OM__BEV__NONE_exit() break
+                case self.StateId.PREFIXING__OM__BEV__NONE: self._PREFIXING__OM__BEV__NONE_exit() break
                 
-                case PREFIXING__OM__BEV__TEA: self._PREFIXING__OM__BEV__TEA_exit() break
+                case self.StateId.PREFIXING__OM__BEV__TEA: self._PREFIXING__OM__BEV__TEA_exit() break
                 
-                case PREFIXING__OM__BEV__WATER: self._PREFIXING__OM__BEV__WATER_exit() break
+                case self.StateId.PREFIXING__OM__BEV__WATER: self._PREFIXING__OM__BEV__WATER_exit() break
                 
-                case PREFIXING__OM__VEG: self._PREFIXING__OM__VEG_exit() break
+                case self.StateId.PREFIXING__OM__VEG: self._PREFIXING__OM__VEG_exit() break
                 
-                case PREFIXING__OM__VEG__NONE: self._PREFIXING__OM__VEG__NONE_exit() break
+                case self.StateId.PREFIXING__OM__VEG__NONE: self._PREFIXING__OM__VEG__NONE_exit() break
                 
-                case PREFIXING__OM__VEG__POTATO: self._PREFIXING__OM__VEG__POTATO_exit() break
+                case self.StateId.PREFIXING__OM__VEG__POTATO: self._PREFIXING__OM__VEG__POTATO_exit() break
                 
-                case PREFIXING__OM__VEG__YAM: self._PREFIXING__OM__VEG__YAM_exit() break
+                case self.StateId.PREFIXING__OM__VEG__YAM: self._PREFIXING__OM__VEG__YAM_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX: self._PREFIXING__SHOWS_MANUAL_PREFIX_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX: self._PREFIXING__SHOWS_MANUAL_PREFIX_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: self._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: self._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit() break
                 
-                case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit() break
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit() break
                 
-                case SPEC2SM__DECIDE: self._SPEC2SM__DECIDE_exit() break
+                case self.StateId.SPEC2SM__DECIDE: self._SPEC2SM__DECIDE_exit() break
                 
-                case TEST1_DO_EVENT_TESTING: self._TEST1_DO_EVENT_TESTING_exit() break
+                case self.StateId.TEST1_DO_EVENT_TESTING: self._TEST1_DO_EVENT_TESTING_exit() break
                 
-                case TEST1_ROOT: self._TEST1_ROOT_exit() break
+                case self.StateId.TEST1_ROOT: self._TEST1_ROOT_exit() break
                 
-                case TEST1_S1: self._TEST1_S1_exit() break
+                case self.StateId.TEST1_S1: self._TEST1_S1_exit() break
                 
-                case TEST1_S1_1: self._TEST1_S1_1_exit() break
+                case self.StateId.TEST1_S1_1: self._TEST1_S1_1_exit() break
                 
-                case TEST1_S2: self._TEST1_S2_exit() break
+                case self.StateId.TEST1_S2: self._TEST1_S2_exit() break
                 
-                case TEST10_CHOICE_POINT: self._TEST10_CHOICE_POINT_exit() break
+                case self.StateId.TEST10_CHOICE_POINT: self._TEST10_CHOICE_POINT_exit() break
                 
-                case TEST10_A: self._TEST10_A_exit() break
+                case self.StateId.TEST10_A: self._TEST10_A_exit() break
                 
-                case TEST10_A_1: self._TEST10_A_1_exit() break
+                case self.StateId.TEST10_A_1: self._TEST10_A_1_exit() break
                 
-                case TEST10_ROOT: self._TEST10_ROOT_exit() break
+                case self.StateId.TEST10_ROOT: self._TEST10_ROOT_exit() break
                 
-                case TEST10_G: self._TEST10_G_exit() break
+                case self.StateId.TEST10_G: self._TEST10_G_exit() break
                 
-                case TEST10_G_S0: self._TEST10_G_S0_exit() break
+                case self.StateId.TEST10_G_S0: self._TEST10_G_S0_exit() break
                 
-                case TEST10_G_S1: self._TEST10_G_S1_exit() break
+                case self.StateId.TEST10_G_S1: self._TEST10_G_S1_exit() break
                 
-                case TEST10_G_S2: self._TEST10_G_S2_exit() break
+                case self.StateId.TEST10_G_S2: self._TEST10_G_S2_exit() break
                 
-                case TEST10_G_S3: self._TEST10_G_S3_exit() break
+                case self.StateId.TEST10_G_S3: self._TEST10_G_S3_exit() break
                 
-                case TEST10_S1: self._TEST10_S1_exit() break
+                case self.StateId.TEST10_S1: self._TEST10_S1_exit() break
                 
-                case TEST10_S4: self._TEST10_S4_exit() break
+                case self.StateId.TEST10_S4: self._TEST10_S4_exit() break
                 
-                case TEST2_REGULAR_EVENT_TESTING: self._TEST2_REGULAR_EVENT_TESTING_exit() break
+                case self.StateId.TEST2_REGULAR_EVENT_TESTING: self._TEST2_REGULAR_EVENT_TESTING_exit() break
                 
-                case TEST2_ROOT: self._TEST2_ROOT_exit() break
+                case self.StateId.TEST2_ROOT: self._TEST2_ROOT_exit() break
                 
-                case TEST2_S1: self._TEST2_S1_exit() break
+                case self.StateId.TEST2_S1: self._TEST2_S1_exit() break
                 
-                case TEST2_S1_1: self._TEST2_S1_1_exit() break
+                case self.StateId.TEST2_S1_1: self._TEST2_S1_1_exit() break
                 
-                case TEST2_S2: self._TEST2_S2_exit() break
+                case self.StateId.TEST2_S2: self._TEST2_S2_exit() break
                 
-                case TEST3_BEHAVIOR_ORDERING: self._TEST3_BEHAVIOR_ORDERING_exit() break
+                case self.StateId.TEST3_BEHAVIOR_ORDERING: self._TEST3_BEHAVIOR_ORDERING_exit() break
                 
-                case TEST3_ROOT: self._TEST3_ROOT_exit() break
+                case self.StateId.TEST3_ROOT: self._TEST3_ROOT_exit() break
                 
-                case TEST3_S1: self._TEST3_S1_exit() break
+                case self.StateId.TEST3_S1: self._TEST3_S1_exit() break
                 
-                case TEST3_S2: self._TEST3_S2_exit() break
+                case self.StateId.TEST3_S2: self._TEST3_S2_exit() break
                 
-                case TEST3_S3: self._TEST3_S3_exit() break
+                case self.StateId.TEST3_S3: self._TEST3_S3_exit() break
                 
-                case TEST4_PARENT_CHILD_TRANSITIONS: self._TEST4_PARENT_CHILD_TRANSITIONS_exit() break
+                case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS: self._TEST4_PARENT_CHILD_TRANSITIONS_exit() break
                 
-                case TEST4_B_AND_OTHERS: self._TEST4_B_AND_OTHERS_exit() break
+                case self.StateId.TEST4_B_AND_OTHERS: self._TEST4_B_AND_OTHERS_exit() break
                 
-                case TEST4B_LOCAL: self._TEST4B_LOCAL_exit() break
+                case self.StateId.TEST4B_LOCAL: self._TEST4B_LOCAL_exit() break
                 
-                case TEST4B_G: self._TEST4B_G_exit() break
+                case self.StateId.TEST4B_G: self._TEST4B_G_exit() break
                 
-                case TEST4B_G_1: self._TEST4B_G_1_exit() break
+                case self.StateId.TEST4B_G_1: self._TEST4B_G_1_exit() break
                 
-                case TEST4C_LOCAL_TO_ALIAS: self._TEST4C_LOCAL_TO_ALIAS_exit() break
+                case self.StateId.TEST4C_LOCAL_TO_ALIAS: self._TEST4C_LOCAL_TO_ALIAS_exit() break
                 
-                case TEST4C_G: self._TEST4C_G_exit() break
+                case self.StateId.TEST4C_G: self._TEST4C_G_exit() break
                 
-                case TEST4C_G_1: self._TEST4C_G_1_exit() break
+                case self.StateId.TEST4C_G_1: self._TEST4C_G_1_exit() break
                 
-                case TEST4D_EXTERNAL: self._TEST4D_EXTERNAL_exit() break
+                case self.StateId.TEST4D_EXTERNAL: self._TEST4D_EXTERNAL_exit() break
                 
-                case TEST4D_G: self._TEST4D_G_exit() break
+                case self.StateId.TEST4D_G: self._TEST4D_G_exit() break
                 
-                case TEST4D_G_1: self._TEST4D_G_1_exit() break
+                case self.StateId.TEST4D_G_1: self._TEST4D_G_1_exit() break
                 
-                case TEST4_DECIDE: self._TEST4_DECIDE_exit() break
+                case self.StateId.TEST4_DECIDE: self._TEST4_DECIDE_exit() break
                 
-                case TEST4_ROOT: self._TEST4_ROOT_exit() break
+                case self.StateId.TEST4_ROOT: self._TEST4_ROOT_exit() break
                 
-                case TEST4_S1: self._TEST4_S1_exit() break
+                case self.StateId.TEST4_S1: self._TEST4_S1_exit() break
                 
-                case TEST4_S10: self._TEST4_S10_exit() break
+                case self.StateId.TEST4_S10: self._TEST4_S10_exit() break
                 
-                case TEST4_S10_1: self._TEST4_S10_1_exit() break
+                case self.StateId.TEST4_S10_1: self._TEST4_S10_1_exit() break
                 
-                case TEST4_S2: self._TEST4_S2_exit() break
+                case self.StateId.TEST4_S2: self._TEST4_S2_exit() break
                 
-                case TEST4_S20: self._TEST4_S20_exit() break
+                case self.StateId.TEST4_S20: self._TEST4_S20_exit() break
                 
-                case TEST4_S20_1: self._TEST4_S20_1_exit() break
+                case self.StateId.TEST4_S20_1: self._TEST4_S20_1_exit() break
                 
-                case TEST4_S3: self._TEST4_S3_exit() break
+                case self.StateId.TEST4_S3: self._TEST4_S3_exit() break
                 
-                case TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: self._TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit() break
+                case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: self._TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit() break
                 
-                case TEST5_ROOT: self._TEST5_ROOT_exit() break
+                case self.StateId.TEST5_ROOT: self._TEST5_ROOT_exit() break
                 
-                case TEST5_S1: self._TEST5_S1_exit() break
+                case self.StateId.TEST5_S1: self._TEST5_S1_exit() break
                 
-                case TEST5_S2: self._TEST5_S2_exit() break
+                case self.StateId.TEST5_S2: self._TEST5_S2_exit() break
                 
-                case TEST5_S3: self._TEST5_S3_exit() break
+                case self.StateId.TEST5_S3: self._TEST5_S3_exit() break
                 
-                case TEST6_VARS_EXPANSIONS: self._TEST6_VARS_EXPANSIONS_exit() break
+                case self.StateId.TEST6_VARS_EXPANSIONS: self._TEST6_VARS_EXPANSIONS_exit() break
                 
-                case TEST6_ROOT: self._TEST6_ROOT_exit() break
+                case self.StateId.TEST6_ROOT: self._TEST6_ROOT_exit() break
                 
-                case AUTO_VAR_TEST: self._AUTO_VAR_TEST_exit() break
+                case self.StateId.AUTO_VAR_TEST: self._AUTO_VAR_TEST_exit() break
                 
-                case AUTO_VAR_TEST__S1: self._AUTO_VAR_TEST__S1_exit() break
+                case self.StateId.AUTO_VAR_TEST__S1: self._AUTO_VAR_TEST__S1_exit() break
                 
-                case AUTO_VAR_TEST__S2: self._AUTO_VAR_TEST__S2_exit() break
+                case self.StateId.AUTO_VAR_TEST__S2: self._AUTO_VAR_TEST__S2_exit() break
                 
-                case META_EXPANSIONS: self._META_EXPANSIONS_exit() break
+                case self.StateId.META_EXPANSIONS: self._META_EXPANSIONS_exit() break
                 
-                case META_EXPANSIONS__S1: self._META_EXPANSIONS__S1_exit() break
+                case self.StateId.META_EXPANSIONS__S1: self._META_EXPANSIONS__S1_exit() break
                 
-                case META_EXPANSIONS__S2: self._META_EXPANSIONS__S2_exit() break
+                case self.StateId.META_EXPANSIONS__S2: self._META_EXPANSIONS__S2_exit() break
                 
-                case S3: self._S3_exit() break
+                case self.StateId.S3: self._S3_exit() break
                 
-                case S4: self._S4_exit() break
+                case self.StateId.S4: self._S4_exit() break
                 
-                case S5: self._S5_exit() break
+                case self.StateId.S5: self._S5_exit() break
                 
-                case NORMAL: self._NORMAL_exit() break
+                case self.StateId.NORMAL: self._NORMAL_exit() break
                 
-                case NORMAL__S1: self._NORMAL__S1_exit() break
+                case self.StateId.NORMAL__S1: self._NORMAL__S1_exit() break
                 
-                case NORMAL__S2: self._NORMAL__S2_exit() break
+                case self.StateId.NORMAL__S2: self._NORMAL__S2_exit() break
                 
-                case TEST6_VARS_EXPANSIONS__DECIDE: self._TEST6_VARS_EXPANSIONS__DECIDE_exit() break
+                case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE: self._TEST6_VARS_EXPANSIONS__DECIDE_exit() break
                 
-                case TEST7_INITIAL_OR_HISTORY: self._TEST7_INITIAL_OR_HISTORY_exit() break
+                case self.StateId.TEST7_INITIAL_OR_HISTORY: self._TEST7_INITIAL_OR_HISTORY_exit() break
                 
-                case TEST7: self._TEST7_exit() break
+                case self.StateId.TEST7: self._TEST7_exit() break
                 
-                case T7__DEEP_HISTORY1: self._T7__DEEP_HISTORY1_exit() break
+                case self.StateId.T7__DEEP_HISTORY1: self._T7__DEEP_HISTORY1_exit() break
                 
-                case T7__DH1__SANTAS_WORKSHOP: self._T7__DH1__SANTAS_WORKSHOP_exit() break
+                case self.StateId.T7__DH1__SANTAS_WORKSHOP: self._T7__DH1__SANTAS_WORKSHOP_exit() break
                 
-                case T7__DH1__ALIENS_DETECTED: self._T7__DH1__ALIENS_DETECTED_exit() break
+                case self.StateId.T7__DH1__ALIENS_DETECTED: self._T7__DH1__ALIENS_DETECTED_exit() break
                 
-                case T7__DH1__GET_BACKUP: self._T7__DH1__GET_BACKUP_exit() break
+                case self.StateId.T7__DH1__GET_BACKUP: self._T7__DH1__GET_BACKUP_exit() break
                 
-                case T7__DH1__HERO: self._T7__DH1__HERO_exit() break
+                case self.StateId.T7__DH1__HERO: self._T7__DH1__HERO_exit() break
                 
-                case T7__DH1__CALL_BATMAN: self._T7__DH1__CALL_BATMAN_exit() break
+                case self.StateId.T7__DH1__CALL_BATMAN: self._T7__DH1__CALL_BATMAN_exit() break
                 
-                case T7__DH1__CALL_THOR: self._T7__DH1__CALL_THOR_exit() break
+                case self.StateId.T7__DH1__CALL_THOR: self._T7__DH1__CALL_THOR_exit() break
                 
-                case T7__DH1__LOCAL_HELP: self._T7__DH1__LOCAL_HELP_exit() break
+                case self.StateId.T7__DH1__LOCAL_HELP: self._T7__DH1__LOCAL_HELP_exit() break
                 
-                case T7__DH1__BUDDY_ELF: self._T7__DH1__BUDDY_ELF_exit() break
+                case self.StateId.T7__DH1__BUDDY_ELF: self._T7__DH1__BUDDY_ELF_exit() break
                 
-                case T7__DH1__POLAR_BEARS: self._T7__DH1__POLAR_BEARS_exit() break
+                case self.StateId.T7__DH1__POLAR_BEARS: self._T7__DH1__POLAR_BEARS_exit() break
                 
-                case T7__DH1__GIVE_COOKIES: self._T7__DH1__GIVE_COOKIES_exit() break
+                case self.StateId.T7__DH1__GIVE_COOKIES: self._T7__DH1__GIVE_COOKIES_exit() break
                 
-                case T7__DH1__SNOWBALL_FIGHT: self._T7__DH1__SNOWBALL_FIGHT_exit() break
+                case self.StateId.T7__DH1__SNOWBALL_FIGHT: self._T7__DH1__SNOWBALL_FIGHT_exit() break
                 
-                case T7__DH1__BUILD: self._T7__DH1__BUILD_exit() break
+                case self.StateId.T7__DH1__BUILD: self._T7__DH1__BUILD_exit() break
                 
-                case T7__DH1__TOOL: self._T7__DH1__TOOL_exit() break
+                case self.StateId.T7__DH1__TOOL: self._T7__DH1__TOOL_exit() break
                 
-                case T7__DH1__CIRCULAR_SAW: self._T7__DH1__CIRCULAR_SAW_exit() break
+                case self.StateId.T7__DH1__CIRCULAR_SAW: self._T7__DH1__CIRCULAR_SAW_exit() break
                 
-                case T7__DH1__IMPACT_DRILL: self._T7__DH1__IMPACT_DRILL_exit() break
+                case self.StateId.T7__DH1__IMPACT_DRILL: self._T7__DH1__IMPACT_DRILL_exit() break
                 
-                case T7__DH1__TOY: self._T7__DH1__TOY_exit() break
+                case self.StateId.T7__DH1__TOY: self._T7__DH1__TOY_exit() break
                 
-                case T7__DH1__GLOW_WORM: self._T7__DH1__GLOW_WORM_exit() break
+                case self.StateId.T7__DH1__GLOW_WORM: self._T7__DH1__GLOW_WORM_exit() break
                 
-                case T7__DH1__RACE_CAR: self._T7__DH1__RACE_CAR_exit() break
+                case self.StateId.T7__DH1__RACE_CAR: self._T7__DH1__RACE_CAR_exit() break
                 
-                case T7__DH1__ROBOT: self._T7__DH1__ROBOT_exit() break
+                case self.StateId.T7__DH1__ROBOT: self._T7__DH1__ROBOT_exit() break
                 
-                case T7__DH1__BATTLEBOT: self._T7__DH1__BATTLEBOT_exit() break
+                case self.StateId.T7__DH1__BATTLEBOT: self._T7__DH1__BATTLEBOT_exit() break
                 
-                case T7__DH1__WALL_E: self._T7__DH1__WALL_E_exit() break
+                case self.StateId.T7__DH1__WALL_E: self._T7__DH1__WALL_E_exit() break
                 
-                case T7__DH1__TEDDY_BEAR: self._T7__DH1__TEDDY_BEAR_exit() break
+                case self.StateId.T7__DH1__TEDDY_BEAR: self._T7__DH1__TEDDY_BEAR_exit() break
                 
-                case T7__DEEP_HISTORY2: self._T7__DEEP_HISTORY2_exit() break
+                case self.StateId.T7__DEEP_HISTORY2: self._T7__DEEP_HISTORY2_exit() break
                 
-                case T7__DEEP_HISTORY2__T7__STATE_0: self._T7__DEEP_HISTORY2__T7__STATE_0_exit() break
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0: self._T7__DEEP_HISTORY2__T7__STATE_0_exit() break
                 
-                case T7__DEEP_HISTORY2__T7__STATE_1: self._T7__DEEP_HISTORY2__T7__STATE_1_exit() break
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1: self._T7__DEEP_HISTORY2__T7__STATE_1_exit() break
                 
-                case T7__DEEP_HISTORY2__T7__STATE_2: self._T7__DEEP_HISTORY2__T7__STATE_2_exit() break
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2: self._T7__DEEP_HISTORY2__T7__STATE_2_exit() break
                 
-                case T7__DEEP_HISTORY2__T7__STATE_6: self._T7__DEEP_HISTORY2__T7__STATE_6_exit() break
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6: self._T7__DEEP_HISTORY2__T7__STATE_6_exit() break
                 
-                case T7__DEEP_HISTORY2__T7__STATE_9: self._T7__DEEP_HISTORY2__T7__STATE_9_exit() break
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9: self._T7__DEEP_HISTORY2__T7__STATE_9_exit() break
                 
-                case T7__DEEP_HISTORY2__T7__STATE_3: self._T7__DEEP_HISTORY2__T7__STATE_3_exit() break
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3: self._T7__DEEP_HISTORY2__T7__STATE_3_exit() break
                 
-                case T7__DEEP_HISTORY3: self._T7__DEEP_HISTORY3_exit() break
+                case self.StateId.T7__DEEP_HISTORY3: self._T7__DEEP_HISTORY3_exit() break
                 
-                case T7__DEEP_HISTORY3__T7__STATE_0: self._T7__DEEP_HISTORY3__T7__STATE_0_exit() break
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0: self._T7__DEEP_HISTORY3__T7__STATE_0_exit() break
                 
-                case T7__DEEP_HISTORY3__T7__STATE_1: self._T7__DEEP_HISTORY3__T7__STATE_1_exit() break
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1: self._T7__DEEP_HISTORY3__T7__STATE_1_exit() break
                 
-                case T7__DEEP_HISTORY3__T7__STATE_2: self._T7__DEEP_HISTORY3__T7__STATE_2_exit() break
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2: self._T7__DEEP_HISTORY3__T7__STATE_2_exit() break
                 
-                case T7__DEEP_HISTORY3__T7__STATE_6: self._T7__DEEP_HISTORY3__T7__STATE_6_exit() break
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6: self._T7__DEEP_HISTORY3__T7__STATE_6_exit() break
                 
-                case T7__DEEP_HISTORY3__T7__STATE_9: self._T7__DEEP_HISTORY3__T7__STATE_9_exit() break
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9: self._T7__DEEP_HISTORY3__T7__STATE_9_exit() break
                 
-                case T7__DEEP_HISTORY3__T7__STATE_3: self._T7__DEEP_HISTORY3__T7__STATE_3_exit() break
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3: self._T7__DEEP_HISTORY3__T7__STATE_3_exit() break
                 
-                case T7__HISTORY1: self._T7__HISTORY1_exit() break
+                case self.StateId.T7__HISTORY1: self._T7__HISTORY1_exit() break
                 
-                case T7__H1__OFF: self._T7__H1__OFF_exit() break
+                case self.StateId.T7__H1__OFF: self._T7__H1__OFF_exit() break
                 
-                case T7__H1__OFF1: self._T7__H1__OFF1_exit() break
+                case self.StateId.T7__H1__OFF1: self._T7__H1__OFF1_exit() break
                 
-                case T7__H1__OFF2: self._T7__H1__OFF2_exit() break
+                case self.StateId.T7__H1__OFF2: self._T7__H1__OFF2_exit() break
                 
-                case T7__H1__OFF3: self._T7__H1__OFF3_exit() break
+                case self.StateId.T7__H1__OFF3: self._T7__H1__OFF3_exit() break
                 
-                case T7__H1__ON: self._T7__H1__ON_exit() break
+                case self.StateId.T7__H1__ON: self._T7__H1__ON_exit() break
                 
-                case T7__H1__ON1: self._T7__H1__ON1_exit() break
+                case self.StateId.T7__H1__ON1: self._T7__H1__ON1_exit() break
                 
-                case T7__H1__ON2: self._T7__H1__ON2_exit() break
+                case self.StateId.T7__H1__ON2: self._T7__H1__ON2_exit() break
                 
-                case T7__H1__ON3: self._T7__H1__ON3_exit() break
+                case self.StateId.T7__H1__ON3: self._T7__H1__ON3_exit() break
                 
-                case T7__INITIAL1: self._T7__INITIAL1_exit() break
+                case self.StateId.T7__INITIAL1: self._T7__INITIAL1_exit() break
                 
-                case T7__INITIAL1__PARENT: self._T7__INITIAL1__PARENT_exit() break
+                case self.StateId.T7__INITIAL1__PARENT: self._T7__INITIAL1__PARENT_exit() break
                 
-                case T7__INITIAL1__G: self._T7__INITIAL1__G_exit() break
+                case self.StateId.T7__INITIAL1__G: self._T7__INITIAL1__G_exit() break
                 
-                case T7__INITIAL1__G_S1: self._T7__INITIAL1__G_S1_exit() break
+                case self.StateId.T7__INITIAL1__G_S1: self._T7__INITIAL1__G_S1_exit() break
                 
-                case T7__INITIAL1__G_S2: self._T7__INITIAL1__G_S2_exit() break
+                case self.StateId.T7__INITIAL1__G_S2: self._T7__INITIAL1__G_S2_exit() break
                 
-                case T7__INITIAL1__G_S3: self._T7__INITIAL1__G_S3_exit() break
+                case self.StateId.T7__INITIAL1__G_S3: self._T7__INITIAL1__G_S3_exit() break
                 
-                case T7__INITIAL1__S1: self._T7__INITIAL1__S1_exit() break
+                case self.StateId.T7__INITIAL1__S1: self._T7__INITIAL1__S1_exit() break
                 
-                case TEST7_DECIDE: self._TEST7_DECIDE_exit() break
+                case self.StateId.TEST7_DECIDE: self._TEST7_DECIDE_exit() break
                 
-                case TEST8_ENTRY_CHOICE: self._TEST8_ENTRY_CHOICE_exit() break
+                case self.StateId.TEST8_ENTRY_CHOICE: self._TEST8_ENTRY_CHOICE_exit() break
                 
-                case TEST8_ROOT: self._TEST8_ROOT_exit() break
+                case self.StateId.TEST8_ROOT: self._TEST8_ROOT_exit() break
                 
-                case TEST8_G: self._TEST8_G_exit() break
+                case self.StateId.TEST8_G: self._TEST8_G_exit() break
                 
-                case TEST8_G_S1: self._TEST8_G_S1_exit() break
+                case self.StateId.TEST8_G_S1: self._TEST8_G_S1_exit() break
                 
-                case TEST8_G_S2: self._TEST8_G_S2_exit() break
+                case self.StateId.TEST8_G_S2: self._TEST8_G_S2_exit() break
                 
-                case TEST8_G_S3: self._TEST8_G_S3_exit() break
+                case self.StateId.TEST8_G_S3: self._TEST8_G_S3_exit() break
                 
-                case TEST8_S1: self._TEST8_S1_exit() break
+                case self.StateId.TEST8_S1: self._TEST8_S1_exit() break
                 
-                case TEST9_EXIT_CHOICE: self._TEST9_EXIT_CHOICE_exit() break
+                case self.StateId.TEST9_EXIT_CHOICE: self._TEST9_EXIT_CHOICE_exit() break
                 
-                case TEST9_DECIDE: self._TEST9_DECIDE_exit() break
+                case self.StateId.TEST9_DECIDE: self._TEST9_DECIDE_exit() break
                 
-                case TEST9_ROOT: self._TEST9_ROOT_exit() break
+                case self.StateId.TEST9_ROOT: self._TEST9_ROOT_exit() break
                 
-                case TEST9_G_S1: self._TEST9_G_S1_exit() break
+                case self.StateId.TEST9_G_S1: self._TEST9_G_S1_exit() break
                 
-                case TEST9_G_S2: self._TEST9_G_S2_exit() break
+                case self.StateId.TEST9_G_S2: self._TEST9_G_S2_exit() break
                 
-                case TEST9_G_S3: self._TEST9_G_S3_exit() break
+                case self.StateId.TEST9_G_S3: self._TEST9_G_S3_exit() break
                 
-                case TEST9_G_S4: self._TEST9_G_S4_exit() break
+                case self.StateId.TEST9_G_S4: self._TEST9_G_S4_exit() break
                 
-                case TEST9_S1: self._TEST9_S1_exit() break
+                case self.StateId.TEST9_S1: self._TEST9_S1_exit() break
                 
-                case TEST9_S1_1: self._TEST9_S1_1_exit() break
+                case self.StateId.TEST9_S1_1: self._TEST9_S1_1_exit() break
                 
-                case TEST9A_ROOT: self._TEST9A_ROOT_exit() break
+                case self.StateId.TEST9A_ROOT: self._TEST9A_ROOT_exit() break
                 
-                case TEST9A_S1: self._TEST9A_S1_exit() break
+                case self.StateId.TEST9A_S1: self._TEST9A_S1_exit() break
                 
-                case TEST9A_S1_1: self._TEST9A_S1_1_exit() break
+                case self.StateId.TEST9A_S1_1: self._TEST9A_S1_1_exit() break
                 
-                case TEST9B_ROOT: self._TEST9B_ROOT_exit() break
+                case self.StateId.TEST9B_ROOT: self._TEST9B_ROOT_exit() break
                 
-                case TEST9B_ROOT__A1: self._TEST9B_ROOT__A1_exit() break
+                case self.StateId.TEST9B_ROOT__A1: self._TEST9B_ROOT__A1_exit() break
                 
-                case TEST9B_ROOT__A2: self._TEST9B_ROOT__A2_exit() break
+                case self.StateId.TEST9B_ROOT__A2: self._TEST9B_ROOT__A2_exit() break
                 
-                case TEST9B_ROOT__A3: self._TEST9B_ROOT__A3_exit() break
+                case self.StateId.TEST9B_ROOT__A3: self._TEST9B_ROOT__A3_exit() break
                 
-                case TEST9B_ROOT__A4: self._TEST9B_ROOT__A4_exit() break
+                case self.StateId.TEST9B_ROOT__A4: self._TEST9B_ROOT__A4_exit() break
                 
-                case TEST9B_ROOT__B1: self._TEST9B_ROOT__B1_exit() break
+                case self.StateId.TEST9B_ROOT__B1: self._TEST9B_ROOT__B1_exit() break
                 
-                case TEST9B_ROOT__B2: self._TEST9B_ROOT__B2_exit() break
+                case self.StateId.TEST9B_ROOT__B2: self._TEST9B_ROOT__B2_exit() break
                 
-                case TEST9B_ROOT__B3: self._TEST9B_ROOT__B3_exit() break
+                case self.StateId.TEST9B_ROOT__B3: self._TEST9B_ROOT__B3_exit() break
                 
-                case TEST9B_ROOT__B4: self._TEST9B_ROOT__B4_exit() break
+                case self.StateId.TEST9B_ROOT__B4: self._TEST9B_ROOT__B4_exit() break
                 
                 default: return  # Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
-            
         
     
     
@@ -14640,204 +13009,200 @@ class Spec2Sm(Spec2SmBase):
     
     # Thread safe.
     def stateIdToString(id):    
-        switch (id)
-        
-            case ROOT: return "ROOT"
-            case PREFIXING: return "PREFIXING"
-            case PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU"
-            case PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE"
-            case PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE"
-            case PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA"
-            case PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER"
-            case PREFIXING__OM__VEG: return "PREFIXING__OM__VEG"
-            case PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE"
-            case PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO"
-            case PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM"
-            case PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO"
-            case PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM"
-            case SPEC2SM__DECIDE: return "SPEC2SM__DECIDE"
-            case TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING"
-            case TEST1_ROOT: return "TEST1_ROOT"
-            case TEST1_S1: return "TEST1_S1"
-            case TEST1_S1_1: return "TEST1_S1_1"
-            case TEST1_S2: return "TEST1_S2"
-            case TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT"
-            case TEST10_A: return "TEST10_A"
-            case TEST10_A_1: return "TEST10_A_1"
-            case TEST10_ROOT: return "TEST10_ROOT"
-            case TEST10_G: return "TEST10_G"
-            case TEST10_G_S0: return "TEST10_G_S0"
-            case TEST10_G_S1: return "TEST10_G_S1"
-            case TEST10_G_S2: return "TEST10_G_S2"
-            case TEST10_G_S3: return "TEST10_G_S3"
-            case TEST10_S1: return "TEST10_S1"
-            case TEST10_S4: return "TEST10_S4"
-            case TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING"
-            case TEST2_ROOT: return "TEST2_ROOT"
-            case TEST2_S1: return "TEST2_S1"
-            case TEST2_S1_1: return "TEST2_S1_1"
-            case TEST2_S2: return "TEST2_S2"
-            case TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING"
-            case TEST3_ROOT: return "TEST3_ROOT"
-            case TEST3_S1: return "TEST3_S1"
-            case TEST3_S2: return "TEST3_S2"
-            case TEST3_S3: return "TEST3_S3"
-            case TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS"
-            case TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS"
-            case TEST4B_LOCAL: return "TEST4B_LOCAL"
-            case TEST4B_G: return "TEST4B_G"
-            case TEST4B_G_1: return "TEST4B_G_1"
-            case TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS"
-            case TEST4C_G: return "TEST4C_G"
-            case TEST4C_G_1: return "TEST4C_G_1"
-            case TEST4D_EXTERNAL: return "TEST4D_EXTERNAL"
-            case TEST4D_G: return "TEST4D_G"
-            case TEST4D_G_1: return "TEST4D_G_1"
-            case TEST4_DECIDE: return "TEST4_DECIDE"
-            case TEST4_ROOT: return "TEST4_ROOT"
-            case TEST4_S1: return "TEST4_S1"
-            case TEST4_S10: return "TEST4_S10"
-            case TEST4_S10_1: return "TEST4_S10_1"
-            case TEST4_S2: return "TEST4_S2"
-            case TEST4_S20: return "TEST4_S20"
-            case TEST4_S20_1: return "TEST4_S20_1"
-            case TEST4_S3: return "TEST4_S3"
-            case TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS"
-            case TEST5_ROOT: return "TEST5_ROOT"
-            case TEST5_S1: return "TEST5_S1"
-            case TEST5_S2: return "TEST5_S2"
-            case TEST5_S3: return "TEST5_S3"
-            case TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS"
-            case TEST6_ROOT: return "TEST6_ROOT"
-            case AUTO_VAR_TEST: return "AUTO_VAR_TEST"
-            case AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1"
-            case AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2"
-            case META_EXPANSIONS: return "META_EXPANSIONS"
-            case META_EXPANSIONS__S1: return "META_EXPANSIONS__S1"
-            case META_EXPANSIONS__S2: return "META_EXPANSIONS__S2"
-            case S3: return "S3"
-            case S4: return "S4"
-            case S5: return "S5"
-            case NORMAL: return "NORMAL"
-            case NORMAL__S1: return "NORMAL__S1"
-            case NORMAL__S2: return "NORMAL__S2"
-            case TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE"
-            case TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY"
-            case TEST7: return "TEST7"
-            case T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1"
-            case T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP"
-            case T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED"
-            case T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP"
-            case T7__DH1__HERO: return "T7__DH1__HERO"
-            case T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN"
-            case T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR"
-            case T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP"
-            case T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF"
-            case T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS"
-            case T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES"
-            case T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT"
-            case T7__DH1__BUILD: return "T7__DH1__BUILD"
-            case T7__DH1__TOOL: return "T7__DH1__TOOL"
-            case T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW"
-            case T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL"
-            case T7__DH1__TOY: return "T7__DH1__TOY"
-            case T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM"
-            case T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR"
-            case T7__DH1__ROBOT: return "T7__DH1__ROBOT"
-            case T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT"
-            case T7__DH1__WALL_E: return "T7__DH1__WALL_E"
-            case T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR"
-            case T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2"
-            case T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0"
-            case T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1"
-            case T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2"
-            case T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6"
-            case T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9"
-            case T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3"
-            case T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3"
-            case T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0"
-            case T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1"
-            case T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2"
-            case T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6"
-            case T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9"
-            case T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3"
-            case T7__HISTORY1: return "T7__HISTORY1"
-            case T7__H1__OFF: return "T7__H1__OFF"
-            case T7__H1__OFF1: return "T7__H1__OFF1"
-            case T7__H1__OFF2: return "T7__H1__OFF2"
-            case T7__H1__OFF3: return "T7__H1__OFF3"
-            case T7__H1__ON: return "T7__H1__ON"
-            case T7__H1__ON1: return "T7__H1__ON1"
-            case T7__H1__ON2: return "T7__H1__ON2"
-            case T7__H1__ON3: return "T7__H1__ON3"
-            case T7__INITIAL1: return "T7__INITIAL1"
-            case T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT"
-            case T7__INITIAL1__G: return "T7__INITIAL1__G"
-            case T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1"
-            case T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2"
-            case T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3"
-            case T7__INITIAL1__S1: return "T7__INITIAL1__S1"
-            case TEST7_DECIDE: return "TEST7_DECIDE"
-            case TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE"
-            case TEST8_ROOT: return "TEST8_ROOT"
-            case TEST8_G: return "TEST8_G"
-            case TEST8_G_S1: return "TEST8_G_S1"
-            case TEST8_G_S2: return "TEST8_G_S2"
-            case TEST8_G_S3: return "TEST8_G_S3"
-            case TEST8_S1: return "TEST8_S1"
-            case TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE"
-            case TEST9_DECIDE: return "TEST9_DECIDE"
-            case TEST9_ROOT: return "TEST9_ROOT"
-            case TEST9_G_S1: return "TEST9_G_S1"
-            case TEST9_G_S2: return "TEST9_G_S2"
-            case TEST9_G_S3: return "TEST9_G_S3"
-            case TEST9_G_S4: return "TEST9_G_S4"
-            case TEST9_S1: return "TEST9_S1"
-            case TEST9_S1_1: return "TEST9_S1_1"
-            case TEST9A_ROOT: return "TEST9A_ROOT"
-            case TEST9A_S1: return "TEST9A_S1"
-            case TEST9A_S1_1: return "TEST9A_S1_1"
-            case TEST9B_ROOT: return "TEST9B_ROOT"
-            case TEST9B_ROOT__A1: return "TEST9B_ROOT__A1"
-            case TEST9B_ROOT__A2: return "TEST9B_ROOT__A2"
-            case TEST9B_ROOT__A3: return "TEST9B_ROOT__A3"
-            case TEST9B_ROOT__A4: return "TEST9B_ROOT__A4"
-            case TEST9B_ROOT__B1: return "TEST9B_ROOT__B1"
-            case TEST9B_ROOT__B2: return "TEST9B_ROOT__B2"
-            case TEST9B_ROOT__B3: return "TEST9B_ROOT__B3"
-            case TEST9B_ROOT__B4: return "TEST9B_ROOT__B4"
+        match id:
+            case self.StateId.ROOT: return "ROOT"
+            case self.StateId.PREFIXING: return "PREFIXING"
+            case self.StateId.PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU"
+            case self.StateId.PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE"
+            case self.StateId.PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE"
+            case self.StateId.PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA"
+            case self.StateId.PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER"
+            case self.StateId.PREFIXING__OM__VEG: return "PREFIXING__OM__VEG"
+            case self.StateId.PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE"
+            case self.StateId.PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO"
+            case self.StateId.PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO"
+            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM"
+            case self.StateId.SPEC2SM__DECIDE: return "SPEC2SM__DECIDE"
+            case self.StateId.TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING"
+            case self.StateId.TEST1_ROOT: return "TEST1_ROOT"
+            case self.StateId.TEST1_S1: return "TEST1_S1"
+            case self.StateId.TEST1_S1_1: return "TEST1_S1_1"
+            case self.StateId.TEST1_S2: return "TEST1_S2"
+            case self.StateId.TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT"
+            case self.StateId.TEST10_A: return "TEST10_A"
+            case self.StateId.TEST10_A_1: return "TEST10_A_1"
+            case self.StateId.TEST10_ROOT: return "TEST10_ROOT"
+            case self.StateId.TEST10_G: return "TEST10_G"
+            case self.StateId.TEST10_G_S0: return "TEST10_G_S0"
+            case self.StateId.TEST10_G_S1: return "TEST10_G_S1"
+            case self.StateId.TEST10_G_S2: return "TEST10_G_S2"
+            case self.StateId.TEST10_G_S3: return "TEST10_G_S3"
+            case self.StateId.TEST10_S1: return "TEST10_S1"
+            case self.StateId.TEST10_S4: return "TEST10_S4"
+            case self.StateId.TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING"
+            case self.StateId.TEST2_ROOT: return "TEST2_ROOT"
+            case self.StateId.TEST2_S1: return "TEST2_S1"
+            case self.StateId.TEST2_S1_1: return "TEST2_S1_1"
+            case self.StateId.TEST2_S2: return "TEST2_S2"
+            case self.StateId.TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING"
+            case self.StateId.TEST3_ROOT: return "TEST3_ROOT"
+            case self.StateId.TEST3_S1: return "TEST3_S1"
+            case self.StateId.TEST3_S2: return "TEST3_S2"
+            case self.StateId.TEST3_S3: return "TEST3_S3"
+            case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS"
+            case self.StateId.TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS"
+            case self.StateId.TEST4B_LOCAL: return "TEST4B_LOCAL"
+            case self.StateId.TEST4B_G: return "TEST4B_G"
+            case self.StateId.TEST4B_G_1: return "TEST4B_G_1"
+            case self.StateId.TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS"
+            case self.StateId.TEST4C_G: return "TEST4C_G"
+            case self.StateId.TEST4C_G_1: return "TEST4C_G_1"
+            case self.StateId.TEST4D_EXTERNAL: return "TEST4D_EXTERNAL"
+            case self.StateId.TEST4D_G: return "TEST4D_G"
+            case self.StateId.TEST4D_G_1: return "TEST4D_G_1"
+            case self.StateId.TEST4_DECIDE: return "TEST4_DECIDE"
+            case self.StateId.TEST4_ROOT: return "TEST4_ROOT"
+            case self.StateId.TEST4_S1: return "TEST4_S1"
+            case self.StateId.TEST4_S10: return "TEST4_S10"
+            case self.StateId.TEST4_S10_1: return "TEST4_S10_1"
+            case self.StateId.TEST4_S2: return "TEST4_S2"
+            case self.StateId.TEST4_S20: return "TEST4_S20"
+            case self.StateId.TEST4_S20_1: return "TEST4_S20_1"
+            case self.StateId.TEST4_S3: return "TEST4_S3"
+            case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS"
+            case self.StateId.TEST5_ROOT: return "TEST5_ROOT"
+            case self.StateId.TEST5_S1: return "TEST5_S1"
+            case self.StateId.TEST5_S2: return "TEST5_S2"
+            case self.StateId.TEST5_S3: return "TEST5_S3"
+            case self.StateId.TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS"
+            case self.StateId.TEST6_ROOT: return "TEST6_ROOT"
+            case self.StateId.AUTO_VAR_TEST: return "AUTO_VAR_TEST"
+            case self.StateId.AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1"
+            case self.StateId.AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2"
+            case self.StateId.META_EXPANSIONS: return "META_EXPANSIONS"
+            case self.StateId.META_EXPANSIONS__S1: return "META_EXPANSIONS__S1"
+            case self.StateId.META_EXPANSIONS__S2: return "META_EXPANSIONS__S2"
+            case self.StateId.S3: return "S3"
+            case self.StateId.S4: return "S4"
+            case self.StateId.S5: return "S5"
+            case self.StateId.NORMAL: return "NORMAL"
+            case self.StateId.NORMAL__S1: return "NORMAL__S1"
+            case self.StateId.NORMAL__S2: return "NORMAL__S2"
+            case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE"
+            case self.StateId.TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY"
+            case self.StateId.TEST7: return "TEST7"
+            case self.StateId.T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1"
+            case self.StateId.T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP"
+            case self.StateId.T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED"
+            case self.StateId.T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP"
+            case self.StateId.T7__DH1__HERO: return "T7__DH1__HERO"
+            case self.StateId.T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN"
+            case self.StateId.T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR"
+            case self.StateId.T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP"
+            case self.StateId.T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF"
+            case self.StateId.T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS"
+            case self.StateId.T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES"
+            case self.StateId.T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT"
+            case self.StateId.T7__DH1__BUILD: return "T7__DH1__BUILD"
+            case self.StateId.T7__DH1__TOOL: return "T7__DH1__TOOL"
+            case self.StateId.T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW"
+            case self.StateId.T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL"
+            case self.StateId.T7__DH1__TOY: return "T7__DH1__TOY"
+            case self.StateId.T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM"
+            case self.StateId.T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR"
+            case self.StateId.T7__DH1__ROBOT: return "T7__DH1__ROBOT"
+            case self.StateId.T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT"
+            case self.StateId.T7__DH1__WALL_E: return "T7__DH1__WALL_E"
+            case self.StateId.T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR"
+            case self.StateId.T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2"
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0"
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1"
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2"
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6"
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9"
+            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3"
+            case self.StateId.T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3"
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0"
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1"
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2"
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6"
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9"
+            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3"
+            case self.StateId.T7__HISTORY1: return "T7__HISTORY1"
+            case self.StateId.T7__H1__OFF: return "T7__H1__OFF"
+            case self.StateId.T7__H1__OFF1: return "T7__H1__OFF1"
+            case self.StateId.T7__H1__OFF2: return "T7__H1__OFF2"
+            case self.StateId.T7__H1__OFF3: return "T7__H1__OFF3"
+            case self.StateId.T7__H1__ON: return "T7__H1__ON"
+            case self.StateId.T7__H1__ON1: return "T7__H1__ON1"
+            case self.StateId.T7__H1__ON2: return "T7__H1__ON2"
+            case self.StateId.T7__H1__ON3: return "T7__H1__ON3"
+            case self.StateId.T7__INITIAL1: return "T7__INITIAL1"
+            case self.StateId.T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT"
+            case self.StateId.T7__INITIAL1__G: return "T7__INITIAL1__G"
+            case self.StateId.T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1"
+            case self.StateId.T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2"
+            case self.StateId.T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3"
+            case self.StateId.T7__INITIAL1__S1: return "T7__INITIAL1__S1"
+            case self.StateId.TEST7_DECIDE: return "TEST7_DECIDE"
+            case self.StateId.TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE"
+            case self.StateId.TEST8_ROOT: return "TEST8_ROOT"
+            case self.StateId.TEST8_G: return "TEST8_G"
+            case self.StateId.TEST8_G_S1: return "TEST8_G_S1"
+            case self.StateId.TEST8_G_S2: return "TEST8_G_S2"
+            case self.StateId.TEST8_G_S3: return "TEST8_G_S3"
+            case self.StateId.TEST8_S1: return "TEST8_S1"
+            case self.StateId.TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE"
+            case self.StateId.TEST9_DECIDE: return "TEST9_DECIDE"
+            case self.StateId.TEST9_ROOT: return "TEST9_ROOT"
+            case self.StateId.TEST9_G_S1: return "TEST9_G_S1"
+            case self.StateId.TEST9_G_S2: return "TEST9_G_S2"
+            case self.StateId.TEST9_G_S3: return "TEST9_G_S3"
+            case self.StateId.TEST9_G_S4: return "TEST9_G_S4"
+            case self.StateId.TEST9_S1: return "TEST9_S1"
+            case self.StateId.TEST9_S1_1: return "TEST9_S1_1"
+            case self.StateId.TEST9A_ROOT: return "TEST9A_ROOT"
+            case self.StateId.TEST9A_S1: return "TEST9A_S1"
+            case self.StateId.TEST9A_S1_1: return "TEST9A_S1_1"
+            case self.StateId.TEST9B_ROOT: return "TEST9B_ROOT"
+            case self.StateId.TEST9B_ROOT__A1: return "TEST9B_ROOT__A1"
+            case self.StateId.TEST9B_ROOT__A2: return "TEST9B_ROOT__A2"
+            case self.StateId.TEST9B_ROOT__A3: return "TEST9B_ROOT__A3"
+            case self.StateId.TEST9B_ROOT__A4: return "TEST9B_ROOT__A4"
+            case self.StateId.TEST9B_ROOT__B1: return "TEST9B_ROOT__B1"
+            case self.StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2"
+            case self.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3"
+            case self.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4"
             default: return "?"
-        
     
 @staticmethod
     
     # Thread safe.
     def eventIdToString(id):    
-        switch (id)
-        
-            case DO: return "DO"
-            case EV1: return "EV1"
-            case EV10: return "EV10"
-            case EV2: return "EV2"
-            case EV3: return "EV3"
-            case EV4: return "EV4"
-            case EV5: return "EV5"
-            case EV6: return "EV6"
-            case EV7: return "EV7"
-            case EV8: return "EV8"
-            case EV9: return "EV9"
-            case EVBACK: return "EVBACK"
-            case EVCLOSE: return "EVCLOSE"
-            case EVOPEN: return "EVOPEN"
-            case EVSTEP: return "EVSTEP"
+        match id:
+            case self.EventId.DO: return "DO"
+            case self.EventId.EV1: return "EV1"
+            case self.EventId.EV10: return "EV10"
+            case self.EventId.EV2: return "EV2"
+            case self.EventId.EV3: return "EV3"
+            case self.EventId.EV4: return "EV4"
+            case self.EventId.EV5: return "EV5"
+            case self.EventId.EV6: return "EV6"
+            case self.EventId.EV7: return "EV7"
+            case self.EventId.EV8: return "EV8"
+            case self.EventId.EV9: return "EV9"
+            case self.EventId.EVBACK: return "EVBACK"
+            case self.EventId.EVCLOSE: return "EVCLOSE"
+            case self.EventId.EVOPEN: return "EVOPEN"
+            case self.EventId.EVSTEP: return "EVSTEP"
             default: return "?"
-        
     

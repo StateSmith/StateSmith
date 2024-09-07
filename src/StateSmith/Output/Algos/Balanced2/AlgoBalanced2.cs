@@ -172,7 +172,15 @@ public class AlgoBalanced2 : AlgoBalanced1
                     {
                         NamedVertex? ancestor = namedVertex.FirstAncestorThatHandlesEvent(evt);
                         var comment = (ancestor == null) ? string.Empty : FirstAncestorHandlerComment;
-                        MaybeOutputEventHandler(ancestor, evt, comment: comment);
+
+                        if (settings.omitBlankEventCase && string.IsNullOrWhiteSpace(comment))
+                        {
+                            // do nothing
+                        }
+                        else
+                        {
+                            MaybeOutputEventHandler(ancestor, evt, comment: comment);
+                        }
                     }
                 }
             }
@@ -222,18 +230,36 @@ public class AlgoBalanced2 : AlgoBalanced1
     private void MaybeOutputEventHandler(NamedVertex? namedVertex, string evt, string comment = "")
     {
         file.Append($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(evt)}: ");
-        //file.IncreaseIndentLevel();
+        if (!settings.singleLineEventCase)
+        {
+            file.FinishLine();
+            file.IncreaseIndentLevel();
+            file.Append(""); // triggers indent
+        }
 
         if (namedVertex != null)
         {
             OutputEventHandlerCall(namedVertex, evt);
         }
 
+        if (!settings.singleLineEventCase)
+        {
+            AddCommentLine(comment);
+            file.Append(""); // triggers indent
+        }
+
         file.AppendWithoutIndent("break;");
 
-        AddCommentLine(comment);
+        if (settings.singleLineEventCase)
+        {
+            AddCommentLine(comment);
+        }
 
-        //file.DecreaseIndentLevel();
+        if (!settings.singleLineEventCase)
+        {
+            file.FinishLine();
+            file.DecreaseIndentLevel();
+        }
     }
 
     private void AddFirstAncestorHandlerComment()
@@ -247,7 +273,7 @@ public class AlgoBalanced2 : AlgoBalanced1
         {
             file.AppendWithoutIndent(" // " + comment);
         }
-        file.AppendWithoutIndent("\n");
+        file.FinishLine();
     }
 
     private void OutputEventHandlerCall(NamedVertex namedVertex, string evt)

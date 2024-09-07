@@ -91,6 +91,8 @@ public class AlgoTranspilerCustomizer
                     algoBalanced1Settings.outputEnumMemberCount = false;
                     algoBalanced1Settings.varsStructAsClass = true;
                     algoBalanced1Settings.useIfTrueIfNoGuard = true;
+                    algoBalanced1Settings.singleLineEventCase = false;
+                    algoBalanced1Settings.omitBlankEventCase = true;
 
                     // https://github.com/StateSmith/StateSmith/issues/395
                     if (algorithmId != AlgorithmId.Balanced2)

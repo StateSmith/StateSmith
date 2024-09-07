@@ -34,6 +34,16 @@ public class AlgoBalanced1Settings
     internal bool varsStructAsClass = false;
 
     /// <summary>
+    /// set to false for python
+    /// </summary>
+    internal bool singleLineEventCase = true;
+
+    /// <summary>
+    /// set to false for python
+    /// </summary>
+    internal bool omitBlankEventCase = false;
+
+    /// <summary>
     /// Set to false if don't want the event ID to string function to be generated and output.
     /// https://github.com/StateSmith/StateSmith/issues/181
     /// </summary>

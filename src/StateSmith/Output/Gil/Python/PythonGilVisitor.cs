@@ -31,19 +31,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     private SemanticModel model;
     private string Indent => codeStyleSettings.Indent1;
 
-
-    // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/398
-    #region Not Yet Supported
-    private bool useStaticDelegates = true;    // could make this a user accessible setting
-
-    /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
-    private MethodPtrFinder? _methodPtrFinder;
-
-    /// <summary>Only valid if <see cref="useStaticDelegates"/> true.</summary>
-    private MethodPtrFinder MethodPtrFinder => _methodPtrFinder.ThrowIfNull();
-    #endregion Not Yet Supported
-
-
     private SyntaxToken? tokenToSkip;
 
     public PythonGilVisitor(string gilCode, StringBuilder sb, RenderConfigPythonVars renderConfigPython, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler, CodeStyleSettings codeStyleSettings) : base(SyntaxWalkerDepth.StructuredTrivia)
@@ -58,12 +45,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
     public void Process()
     {
-        if (useStaticDelegates)
-        {
-            _methodPtrFinder = new(transpilerHelper.root, transpilerHelper.model);
-            MethodPtrFinder.Find();
-        }
-
         transpilerHelper.PreProcess();
 
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
@@ -197,8 +178,8 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
     {
         VisitToken(node.Keyword);
-        MemberAccessExpressionSyntax memberAccessExpressionSyntax = (MemberAccessExpressionSyntax)node.Value; // we know it's a member access expression
-        Visit(memberAccessExpressionSyntax.Name);
+        sb.Append("self.");
+        Visit(node.Value);
         VisitToken(node.ColonToken);
     }
 
@@ -362,29 +343,31 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         sb.Append(node.ToFullString()); // otherwise we need to update how `VisitArgumentList()` works
     }
 
-    //public override void VisitArgumentList(ArgumentListSyntax node)
-    //{
-    //    var invocation = (InvocationExpressionSyntax)node.Parent.ThrowIfNull();
-    //    var iMethodSymbol = (IMethodSymbol)model.GetSymbolInfo(invocation).ThrowIfNull().Symbol.ThrowIfNull();
+    public override void VisitSwitchStatement(SwitchStatementSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append("match ");
+        Visit(node.Expression);
+        sb.AppendLine(":");
 
-    //    if (useStaticDelegates && !iMethodSymbol.IsStatic && iMethodSymbol.MethodKind == MethodKind.DelegateInvoke)
-    //    {
-    //        var list = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-    //        list.VisitUpTo(node.OpenParenToken, including: true);
+        foreach (var arm in node.Sections)
+        {
+            Visit(arm);
+        }
+    }
 
-    //        sb.Append("this");
-    //        if (node.Arguments.Count > 0)
-    //        {
-    //            sb.Append(", ");
-    //        }
+    // a section is like: `case EventId.DO: ROOT_do(); break;`
+    public override void VisitSwitchSection(SwitchSectionSyntax node)
+    {
+        SwitchLabelSyntax label = node.Labels.Single(); // must be a single label for now
 
-    //        list.VisitRest();
-    //    }
-    //    else
-    //    {
-    //        base.VisitArgumentList(node);
-    //    }
-    //}
+        Visit(label);
+
+        foreach (var statement in node.Statements)
+        {
+            Visit(statement);
+        }
+    }
 
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
@@ -397,19 +380,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
             ExpressionStatementSyntax expressionParent = (ExpressionStatementSyntax)node.Parent!;
             tokenToSkip = expressionParent.SemicolonToken;
         });
-
-        // TODO - support in Python.
-        //if (!done)
-        //{
-        //    var symbol = Model.GetSymbolInfo(node).Symbol;
-        //    if (symbol is INamedTypeSymbol namedTypeSymbol)
-        //    {
-        //        if (namedTypeSymbol.DelegateInvokeMethod != null)
-        //        {
-        //            done = true;
-        //        }
-        //    }
-        //}
 
         if (!done)
         {
@@ -440,8 +410,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
             case SyntaxKind.TrueKeyword: tokenText = "True"; break;
             case SyntaxKind.FalseKeyword: tokenText = "False"; break;
             case SyntaxKind.ThisKeyword: tokenText = "self"; break;
-            //case SyntaxKind.StringKeyword: tokenText = "String"; break;
-            //case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
         }
 
         if (token.IsKind(SyntaxKind.ExclamationToken) && token.Parent.IsKind(SyntaxKind.SuppressNullableWarningExpression))
@@ -482,42 +450,4 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     }
 
 
-    //--------------------------------------------------------------------------------
-    // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/395
-    //--------------------------------------------------------------------------------
-    #region Not Yet Supported
-
-    /// <summary>
-    /// Why do this? See https://github.com/StateSmith/StateSmith/wiki/GIL----Generic-Intermediate-Language
-    /// </summary>
-    private void MaybeOutputStaticDelegate(MethodDeclarationSyntax node)
-    {
-        if (!useStaticDelegates || !MethodPtrFinder.methods.Contains(node))
-            return;
-
-        var symbol = MethodPtrFinder.delegateSymbol.ThrowIfNull();
-        sb.AppendLine();
-        sb.AppendLine("// static delegate to avoid implicit conversion and garbage collection");
-        sb.Append($"private static readonly {symbol.Name} ptr_{node.Identifier} = ({symbol.ContainingType.Name} sm) => sm.{node.Identifier}();");
-    }
-
-    // delegates are assumed to be method pointers
-    public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
-    {
-        if (!useStaticDelegates)
-        {
-            base.VisitDelegateDeclaration(node);
-            return;
-        }
-
-        var symbol = model.GetDeclaredSymbol(node).ThrowIfNull();
-
-        WalkableChildSyntaxList walkableChildSyntaxList = new(this, node.ChildNodesAndTokens());
-        walkableChildSyntaxList.VisitUpTo(node.ParameterList);
-
-        sb.Append("(" + symbol.ContainingType.Name + " sm)");
-        VisitToken(node.SemicolonToken);
-    }
-
-    #endregion Not Yet Supported
 }
