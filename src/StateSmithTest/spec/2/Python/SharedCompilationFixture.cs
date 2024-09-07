@@ -20,7 +20,7 @@ public class SharedCompilationFixture
         {
             runner.Settings.transpilerId = TranspilerId.Python;
             runner.AlgoOrTranspilerUpdated();
-            //runner.Settings.outputGilCodeAlways = true;
+            runner.Settings.outputGilCodeAlways = true;
         };
 
         Spec2Fixture.CompileAndRun(new MyGlueFile(), OutputDirectory, action: action);
@@ -39,15 +39,15 @@ public class SharedCompilationFixture
     public class MyGlueFile : IRenderConfigPython
     {
         string IRenderConfig.FileTop => @"
-            // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
+            # any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated file
             ";
 
         string IRenderConfig.VariableDeclarations => @"
-            self.count = 0;
+            self.count = 0
             ";
 
         string IRenderConfig.AutoExpandedVars => @"
-            self.auto_var_1 = 0;
+            self.auto_var_1 = 0
             ";
 
         string IRenderConfigPython.Extends => "Spec2SmBase";

@@ -177,7 +177,9 @@ public class AlgoBalanced1 : IGilAlgo
             {
                 file.AppendLine();
                 file.AppendLine("// State machine variables. Can be used for inputs, outputs, user variables...");
-                file.Append("public struct Vars");
+                var type = settings.varsStructAsClass ? "class" : "struct";
+
+                file.Append($"public {type} Vars");
                 file.StartCodeBlock();
                 {
                     foreach (var line in StringUtils.SplitIntoLinesOrEmpty(Sm.variables.Trim()))

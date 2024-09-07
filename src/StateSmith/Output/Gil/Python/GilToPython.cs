@@ -14,21 +14,23 @@ public class GilToPython : IGilTranspiler
     private readonly RenderConfigBaseVars renderConfig;
     private readonly IOutputInfo outputInfo;
     private readonly RoslynCompiler roslynCompiler;
+    private readonly CodeStyleSettings codeStyleSettings;
 
-    public GilToPython(IOutputInfo outputInfo, RenderConfigPythonVars renderConfigPython, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler)
+    public GilToPython(IOutputInfo outputInfo, RenderConfigPythonVars renderConfigPython, RenderConfigBaseVars renderConfig, ICodeFileWriter codeFileWriter, RoslynCompiler roslynCompiler, CodeStyleSettings settings)
     {
         this.outputInfo = outputInfo;
         this.renderConfigPython = renderConfigPython;
         this.renderConfig = renderConfig;
         this.codeFileWriter = codeFileWriter;
         this.roslynCompiler = roslynCompiler;
+        this.codeStyleSettings = settings;
     }
 
     public void TranspileAndOutputCode(string gilCode)
     {
         //File.WriteAllText($"{outputInfo.outputDirectory}{nameMangler.SmName}.gil.cs", programText);
 
-        PythonGilVisitor gilVisitor = new(gilCode, fileSb, renderConfigPython, renderConfig, roslynCompiler);
+        PythonGilVisitor gilVisitor = new(gilCode, fileSb, renderConfigPython, renderConfig, roslynCompiler, codeStyleSettings);
         gilVisitor.Process();
 
         PostProcessor.PostProcess(fileSb);

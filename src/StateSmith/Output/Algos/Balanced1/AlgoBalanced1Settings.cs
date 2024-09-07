@@ -19,6 +19,16 @@ public class AlgoBalanced1Settings
     internal bool skipClassIndentation = true;
 
     /// <summary>
+    /// Disable for python
+    /// </summary>
+    internal bool outputEnumMemberCount = true;
+
+    /// <summary>
+    /// set to true for python
+    /// </summary>
+    internal bool varsStructAsClass = false;
+
+    /// <summary>
     /// Set to false if don't want the event ID to string function to be generated and output.
     /// https://github.com/StateSmith/StateSmith/issues/181
     /// </summary>

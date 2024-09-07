@@ -10,13 +10,15 @@ namespace StateSmith.Output.Algos.Balanced1;
 
 public class EnumBuilder
 {
-    readonly NameMangler mangler;
-    readonly IStateMachineProvider stateMachineProvider;
+    private readonly NameMangler mangler;
+    private readonly IStateMachineProvider stateMachineProvider;
+    private readonly AlgoBalanced1Settings settings;
 
-    public EnumBuilder(NameMangler mangler, IStateMachineProvider stateMachineProvider)
+    public EnumBuilder(NameMangler mangler, IStateMachineProvider stateMachineProvider, AlgoBalanced1Settings settings)
     {
         this.mangler = mangler;
         this.stateMachineProvider = stateMachineProvider;
+        this.settings = settings;
     }
 
     public void OutputEventIdCode(OutputFile file)
@@ -42,7 +44,10 @@ public class EnumBuilder
         file.FinishCodeBlock("");
         file.AppendLine();
 
-        OutputEventIdCount(file, nonDoEvents.Count + enumOffset);
+        if (settings.outputEnumMemberCount)
+        {
+            OutputEventIdCount(file, nonDoEvents.Count + enumOffset);
+        }
     }
 
     StateMachine GetSm()
@@ -85,6 +90,9 @@ public class EnumBuilder
 
     protected void OutputStateIdCount(OutputFile file, string smName, int count)
     {
+        if (!settings.outputEnumMemberCount)
+            return;
+
         var enumValueName = mangler.SmStateEnumCount;
         OutputEnumCount(file, enumValueName, count);
     }

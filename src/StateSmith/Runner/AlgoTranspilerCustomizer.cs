@@ -88,6 +88,8 @@ public class AlgoTranspilerCustomizer
                     sp.AddSingletonT<IExpansionVarsPathProvider, CSharpExpansionVarsPathProvider>();
                     sp.AddSingletonT<NameMangler, CamelCaseNameMangler>();
                     algoBalanced1Settings.skipClassIndentation = false;
+                    algoBalanced1Settings.outputEnumMemberCount = false;
+                    algoBalanced1Settings.varsStructAsClass = true;
 
                     // https://github.com/StateSmith/StateSmith/issues/395
                     if (algorithmId != AlgorithmId.Balanced2)

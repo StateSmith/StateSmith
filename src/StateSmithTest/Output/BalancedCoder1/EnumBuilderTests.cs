@@ -19,7 +19,7 @@ public class EnumBuilderTests
         sm._events.Add("EV2");
 
         OutputFile file = new(new CodeStyleSettings(), new());
-        EnumBuilder enumBuilder = new(new NameMangler(sm), new StateMachineProvider(sm));
+        EnumBuilder enumBuilder = new(new NameMangler(sm), new StateMachineProvider(sm), new());
 
         enumBuilder.OutputEventIdCode(file);
         file.AppendLine();

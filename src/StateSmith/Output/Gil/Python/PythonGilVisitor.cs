@@ -6,6 +6,11 @@ using Microsoft.CodeAnalysis.CSharp;
 using System.Text;
 using StateSmith.Output.UserConfig;
 using StateSmith.Common;
+using System.Linq;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace StateSmith.Output.Gil.Python;
 
@@ -19,8 +24,11 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     private readonly RenderConfigPythonVars renderConfigPython;
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
+    private readonly CodeStyleSettings codeStyleSettings;
+    private Stack<string> classIndentStack = new();
 
     private SemanticModel model;
+    private string Indent => codeStyleSettings.Indent1;
 
 
     // Balanced1 stuff that is not yet supported https://github.com/StateSmith/StateSmith/issues/398
@@ -37,11 +45,12 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
     private SyntaxToken? tokenToSkip;
 
-    public PythonGilVisitor(string gilCode, StringBuilder sb, RenderConfigPythonVars renderConfigPython, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler) : base(SyntaxWalkerDepth.StructuredTrivia)
+    public PythonGilVisitor(string gilCode, StringBuilder sb, RenderConfigPythonVars renderConfigPython, RenderConfigBaseVars renderConfig, RoslynCompiler roslynCompiler, CodeStyleSettings codeStyleSettings) : base(SyntaxWalkerDepth.StructuredTrivia)
     {
         this.sb = sb;
         this.renderConfig = renderConfig;
         this.renderConfigPython = renderConfigPython;
+        this.codeStyleSettings = codeStyleSettings;
         transpilerHelper = GilTranspilerHelper.Create(this, gilCode, roslynCompiler);
         model = transpilerHelper.model;
     }
@@ -58,16 +67,120 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         sb.AppendLineIfNotBlank(renderConfig.FileTop);
 
-        var package = renderConfigPython.Package.Trim();
-        if (package.Length > 0)
-        {
-            sb.AppendLine("package " + renderConfigPython.Package + ";");
-            sb.AppendLine();
-        }
+        sb.AppendLine("import enum");
 
         sb.AppendLineIfNotBlank(renderConfigPython.Imports, optionalTrailer: "\n");
 
         this.Visit(transpilerHelper.root);
+    }
+
+    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
+    {
+        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
+        PushClassIndent(node);
+
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append("class ");
+        sb.Append(node.Identifier.Text);
+
+        sb.Append($"({renderConfigPython.Extends.Trim()}):");
+        VisitTrailingTrivia(node.Identifier);
+
+        sb.AppendLineIfNotBlank(renderConfigPython.ClassCode);
+
+        // if class doesn't have a constructor, add a default one
+        if (!node.ChildNodes().OfType<ConstructorDeclarationSyntax>().Any())
+        {
+            AddIndent(1);
+            sb.AppendLine("def __init__(self):");
+
+            foreach (var member in node.Members)
+            {
+                if (member is FieldDeclarationSyntax)
+                {
+                    Visit(member);
+                }
+            }
+
+            AddIndent(2);
+            sb.AppendLine("pass"); // TODO - remove this when we have a better way to handle empty constructors
+        }
+
+        foreach (var member in node.Members)
+        {
+            if (member is not FieldDeclarationSyntax)
+            {
+                Visit(member);
+            }
+        }
+
+        classIndentStack.Pop();
+    }
+
+    private void PushClassIndent(ClassDeclarationSyntax node)
+    {
+        string code = node.GetFirstToken().LeadingTrivia.ToFullString();
+
+        var regex = new Regex(@"(?m)^([ \t]+)\z"); // \z is end of string
+
+        var indent = regex.Match(code).Groups[1].Value.ThrowIfNull();
+        classIndentStack.Push(indent);
+    }
+
+    public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append("class ");
+        sb.Append(node.Identifier.Text);
+        sb.AppendLine("(enum.Enum):");
+
+        foreach (var member in node.Members)
+        {
+            Visit(member);
+            sb.AppendLine();
+        }
+    }
+
+    public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append(Indent);
+        sb.Append("self.");
+        sb.Append(node.Declaration.Variables.First().Identifier.Text);
+        sb.AppendLine(" = None");
+    }
+
+    private void AddIndent(int amount)
+    {
+        sb.Append(classIndentStack.Peek());
+        for (int j = 0; j < amount; j++)
+            sb.Append(Indent);
+    }
+
+    public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+
+        if (node.ParameterList.ChildNodes().Any())
+        {
+            throw new NotImplementedException("Constructors with parameters are not yet supported.");
+        }
+
+        //AddIndent(1);
+        sb.AppendLine("def __init__(self):");
+
+        // get class fields
+        var fields = node.Ancestors().OfType<ClassDeclarationSyntax>().First().ChildNodes().OfType<FieldDeclarationSyntax>();
+
+        foreach (var field in fields)
+        {
+            Visit(field);
+        }
+
+        foreach (var statement in node.Body!.Statements)
+        {
+            Visit(statement);
+        }
     }
 
     public override void VisitCaseSwitchLabel(CaseSwitchLabelSyntax node)
@@ -76,14 +189,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         MemberAccessExpressionSyntax memberAccessExpressionSyntax = (MemberAccessExpressionSyntax)node.Value; // we know it's a member access expression
         Visit(memberAccessExpressionSyntax.Name);
         VisitToken(node.ColonToken);
-    }
-
-    public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
-    {
-        // we don't want to output identifier trailing space so we do this manually
-        // we want to output `ROOT,` instead of `ROOT ,`. The comma is handled by the parent node.
-        VisitLeadingTrivia(node.Identifier);
-        sb.Append(node.Identifier.Text);
     }
 
     public override void VisitIdentifierName(IdentifierNameSyntax node)
@@ -136,43 +241,6 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         MaybeOutputStaticDelegate(node);
 
         base.VisitMethodDeclaration(node);
-    }
-
-    public override void VisitClassDeclaration(ClassDeclarationSyntax node)
-    {
-        if (transpilerHelper.HandleSpecialGilEmitClasses(node)) return;
-
-        var iterableChildSyntaxList = new WalkableChildSyntaxList(this, node.ChildNodesAndTokens());
-
-        iterableChildSyntaxList.VisitUpTo(SyntaxKind.ClassKeyword);
-
-        iterableChildSyntaxList.VisitUpTo(node.Identifier);
-
-        // handle identifier specially so that it doesn't put base list on newline
-        iterableChildSyntaxList.Remove(node.Identifier);
-        sb.Append(node.Identifier.Text);
-        MaybeOutputBaseList();
-        VisitTrailingTrivia(node.Identifier);
-
-        iterableChildSyntaxList.VisitUpTo(node.OpenBraceToken, including: true);
-        sb.AppendLineIfNotBlank(renderConfigPython.ClassCode);  // append class code after open brace token
-
-        iterableChildSyntaxList.VisitRest();
-    }
-
-    private void MaybeOutputBaseList()
-    {
-        var extends = renderConfigPython.Extends.Trim();
-        if (extends.Length > 0)
-        {
-            sb.Append(" extends " + extends);
-        }
-
-        var implements = renderConfigPython.Implements.Trim();
-        if (implements.Length > 0)
-        {
-            sb.Append(" implements " + implements);
-        }
     }
 
     // to ignore GIL attributes
@@ -256,8 +324,9 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         switch ((SyntaxKind)token.RawKind)
         {
+            case SyntaxKind.ClassKeyword: tokenText = ""; break;
             case SyntaxKind.StructKeyword: tokenText = "class"; break;
-            case SyntaxKind.ConstKeyword: tokenText = "final"; break;
+            case SyntaxKind.ConstKeyword: tokenText = ""; break;
             case SyntaxKind.StringKeyword: tokenText = "String"; break;
             case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
         }
@@ -276,7 +345,19 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
     public override void VisitTrivia(SyntaxTrivia trivia)
     {
-        sb.Append(trivia.ToString());
+        string str = trivia.ToString();
+
+        if (trivia.IsKind(SyntaxKind.SingleLineCommentTrivia))
+        {
+            str = str.Replace("//", "#");
+        }
+        else if (trivia.IsKind(SyntaxKind.MultiLineCommentTrivia))
+        {
+            str = str.Replace("/*", "\"\"\"");
+            str = str.Replace("*/", "\"\"\"");
+        }
+
+        sb.Append(str);
 
         // useful for nullable directives or maybe structured comments
         //if (trivia.HasStructure)
