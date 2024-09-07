@@ -347,6 +347,11 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         sb.Append(node.CloseParenToken.Text);
     }
 
+    public override void VisitParameter(ParameterSyntax node)
+    {
+        sb.Append(node.Identifier.Text);
+    }
+
     // to ignore GIL attributes
     public override void VisitAttributeList(AttributeListSyntax node)
     {

@@ -307,7 +307,7 @@ class Spec2Sm(Spec2SmBase):
     
     # Dispatches an event to the state machine. Not thread safe.
     # Note! This function assumes that the `eventId` parameter is valid.
-    def dispatchEvent(self, EventId eventId):    
+    def dispatchEvent(self, eventId):    
         switch (self.stateId)
         
             # STATE: Spec2Sm
@@ -4271,7 +4271,7 @@ class Spec2Sm(Spec2SmBase):
     
     # This function is used when StateSmith doesn't know what the active leaf state is at
     # compile time due to sub states or when multiple states need to be exited.
-    def _exitUpToStateHandler(self, StateId desiredState):    
+    def _exitUpToStateHandler(self, desiredState):    
         while (self.stateId != desiredState)
         
             switch (self.stateId)
@@ -14639,7 +14639,7 @@ class Spec2Sm(Spec2SmBase):
 @staticmethod
     
     # Thread safe.
-    def stateIdToString(, StateId id):    
+    def stateIdToString(, id):    
         switch (id)
         
             case ROOT: return "ROOT"
@@ -14820,7 +14820,7 @@ class Spec2Sm(Spec2SmBase):
 @staticmethod
     
     # Thread safe.
-    def eventIdToString(, EventId id):    
+    def eventIdToString(, id):    
         switch (id)
         
             case DO: return "DO"
