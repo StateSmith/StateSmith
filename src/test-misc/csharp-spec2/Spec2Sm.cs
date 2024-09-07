@@ -9103,21 +9103,7 @@ namespace Csharp.Spec2smTests
                 return;
             } // end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
 
-            // META_EXPANSIONS.<ChoicePoint>(2) behavior
-            // uml: else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S4.");\ntrace_meta(); } TransitionTo(S4)
-            {
-                // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-
-                // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S4.");\ntrace_meta();`.
-                MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S4.");
-                MainClass.Trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.<ChoicePoint>(2)");
-
-                // Step 3: Enter/move towards transition target `S4`.
-                S4_enter();
-
-                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                return;
-            } // end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
+            // unreachable behavior: `else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(2) to S4.");\ntrace_meta(); } TransitionTo(S4)` due to unconditional transition above
         }
 
 
@@ -9249,21 +9235,7 @@ namespace Csharp.Spec2smTests
                     return;
                 } // end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
 
-                // META_EXPANSIONS.<ChoicePoint>(1) behavior
-                // uml: else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S4.");\ntrace_meta(); } TransitionTo(S4)
-                {
-                    // Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
-
-                    // Step 2: Transition action: `trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S4.");\ntrace_meta();`.
-                    MainClass.Trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S4.");
-                    MainClass.Trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.<ChoicePoint>(1)");
-
-                    // Step 3: Enter/move towards transition target `S4`.
-                    S4_enter();
-
-                    // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
-                    return;
-                } // end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
+                // unreachable behavior: `else / { trace("Transition action `trace_meta();` for META_EXPANSIONS.<ChoicePoint>(1) to S4.");\ntrace_meta(); } TransitionTo(S4)` due to unconditional transition above
             } // end of behavior for META_EXPANSIONS__S2
 
             // No ancestor handles this event.

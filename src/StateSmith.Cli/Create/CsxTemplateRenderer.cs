@@ -1,4 +1,5 @@
 using StateSmith.Output.UserConfig;
+using StateSmith.Runner;
 
 namespace StateSmith.Cli.Create;
 
@@ -37,15 +38,16 @@ public class CsxTemplateRenderer
         str = str.Replace("{{diagramPath}}", diagramPath);
         str = str.Replace("{{smName}}", smName);
 
-        var transpilerId = targetLanguageId switch
+        TranspilerId transpilerId = targetLanguageId switch
         {
-            TargetLanguageId.C => "C99",
-            TargetLanguageId.CppC => "C99",
-            TargetLanguageId.CSharp => "CSharp",
-            TargetLanguageId.JavaScript => "JavaScript",
+            TargetLanguageId.C => TranspilerId.C99,
+            TargetLanguageId.CppC => TranspilerId.C99,
+            TargetLanguageId.CSharp => TranspilerId.CSharp,
+            TargetLanguageId.JavaScript => TranspilerId.JavaScript,
+            TargetLanguageId.Java => TranspilerId.Java,
             _ => throw new System.NotImplementedException(),
         };
-        str = str.Replace("{{transpilerId}}", transpilerId);
+        str = str.Replace("{{transpilerId}}", transpilerId.ToString());
 
         var renderConfigBase = targetLanguageId switch
         {
@@ -53,6 +55,7 @@ public class CsxTemplateRenderer
             TargetLanguageId.CppC => nameof(IRenderConfigC),
             TargetLanguageId.CSharp => nameof(IRenderConfigCSharp),
             TargetLanguageId.JavaScript => nameof(IRenderConfigJavaScript),
+            TargetLanguageId.Java => nameof(IRenderConfigJava),
             _ => throw new System.NotImplementedException(),
         };
         str = str.Replace("{{renderConfigBase}}", renderConfigBase);
@@ -63,6 +66,7 @@ public class CsxTemplateRenderer
             TargetLanguageId.CppC => "CppC",
             TargetLanguageId.CSharp => "CSharp",
             TargetLanguageId.JavaScript => "JavaScript",
+            TargetLanguageId.Java => "Java",
             _ => throw new System.NotImplementedException(),
         };
 

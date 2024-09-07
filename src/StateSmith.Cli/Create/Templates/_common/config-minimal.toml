@@ -50,7 +50,25 @@ AutoExpandedVars = """
 
 //!!</filter>
 
+
+//!!<filter:Java>
+AutoExpandedVars = """
+    int count = 0; // this var can be referenced in diagram
+    """
+
+[RenderConfig.Java]
+# Package = "my.package.for.statemachine"
+Imports = """
+    // whatever you need to import here
+    """
+# Extends = "MyUserBaseClass"
+# Implements = "SomeUserInterface"
+
+//!!</filter>
+
+
 [SmRunnerSettings]
 transpilerId = "C99"  //!!<line-filter:C,CppC>
 transpilerId = "CSharp"  //!!<line-filter:CSharp>
 transpilerId = "JavaScript"  //!!<line-filter:JavaScript>
+transpilerId = "Java"  //!!<line-filter:Java>

@@ -6,6 +6,12 @@ They have different version numbers.
 # Releases
 Test/interim releases are not documented here.
 
+#### Added
+- `create` command - add support for `java` language
+  - https://github.com/StateSmith/StateSmith/issues/393
+
+---
+
 ## [0.12.2]
 ### Upgrade StateSmith library version to `0.13.2`
 #### Added

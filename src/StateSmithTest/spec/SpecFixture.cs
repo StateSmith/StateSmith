@@ -53,7 +53,7 @@ public class SpecGenericVarExpansions : UserExpansionScriptBase
     public virtual string trace_guard(string message, string guardCode) => $"trace_guard({message}, {guardCode})";
 
     public string clear_output() => $"{trace("\"IGNORE_OUTPUT_BEFORE_THIS\"")};";
-    public string clear_dispatch_output() => $"{trace("\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\"")};";
+    public string clear_dispatch_output() => $"{trace("\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\"")};"; // TODO - remove extra comma
 #pragma warning restore IDE1006 // Naming Styles
 }
 

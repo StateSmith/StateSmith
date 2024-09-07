@@ -29,6 +29,15 @@ Release Template
 # Releases
 Test/interim releases are not documented here.
 
+## [0.14.?]
+### Added
+- Add `Java` transpiler (only supports algorithm `Balanced2` right now)
+  - https://github.com/StateSmith/StateSmith/issues/393
+- Add optimization to comment out unreachable behaviors in generated code
+  - https://github.com/StateSmith/StateSmith/issues/394
+
+---
+
 ## [0.13.2]
 ### Added
 - `Balanced2` - remove un-necessary root state exit handler.

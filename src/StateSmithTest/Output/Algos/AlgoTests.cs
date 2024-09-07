@@ -79,6 +79,10 @@ public class AlgoTests
                 if (transpilerId == TranspilerId.NotYetSet)
                     continue;
 
+                // Java only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/395
+                if (transpilerId == TranspilerId.Java && algoId != AlgorithmId.Balanced2)
+                    continue;
+
                 var dirName = $"{outDir}/{algoId}_{transpilerId}";
                 Directory.CreateDirectory(dirName);
                 TestHelper.RunSmRunnerForPlantUmlString(plantUmlText: MinimalPlantUmlFsm, outputDir: dirName, algorithmId: algoId, transpilerId: transpilerId);
