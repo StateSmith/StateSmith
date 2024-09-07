@@ -142,6 +142,16 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         }
     }
 
+    public override void VisitIfStatement(IfStatementSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        // no open brace
+        sb.Append("if ");
+        Visit(node.Condition);
+        sb.AppendLine(":");
+        Visit(node.Statement);
+    }
+
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
         VisitLeadingTrivia(node.GetFirstToken());
@@ -423,6 +433,8 @@ public class PythonGilVisitor : CSharpSyntaxWalker
             case SyntaxKind.CloseBraceToken:
             case SyntaxKind.SemicolonToken:
             case SyntaxKind.ClassKeyword: tokenText = ""; break;
+            case SyntaxKind.TrueKeyword: tokenText = "True"; break;
+            case SyntaxKind.FalseKeyword: tokenText = "False"; break;
             case SyntaxKind.ThisKeyword: tokenText = "self"; break;
             //case SyntaxKind.StringKeyword: tokenText = "String"; break;
             //case SyntaxKind.BoolKeyword: tokenText = "boolean"; break;
