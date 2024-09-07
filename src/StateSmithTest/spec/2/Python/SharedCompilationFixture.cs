@@ -31,6 +31,7 @@ public class SharedCompilationFixture
                     {
                         behavior.actionCode = behavior.actionCode.Replace(";", "");
                         behavior.actionCode = behavior.actionCode.Replace("++", " += 1");
+                        behavior.actionCode = behavior.actionCode.Replace("/*", "#");
                     }
                 });
             }));

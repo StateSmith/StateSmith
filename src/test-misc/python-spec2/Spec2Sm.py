@@ -13610,11 +13610,11 @@ class Spec2Sm(Spec2SmBase):
          # end of behavior for TEST8_S1
         
         # TEST8_S1 behavior
-        # uml: 2. EV1 [trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 /* shouldn't run */ }`.", true)] / { count += 1 /* shouldn't run */ }
-        if trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 /* shouldn't run */ }`.", true):
+        # uml: 2. EV1 [trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", true)] / { count += 1 # shouldn't run */ }
+        if trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", true):
         
-            # Step 1: execute action `count += 1 /* shouldn't run */`
-            self.vars.count += 1 /* shouldn't run */
+            # Step 1: execute action `count += 1 # shouldn't run */`
+            self.vars.count += 1 
          # end of behavior for TEST8_S1
         
         # No ancestor handles this event.
