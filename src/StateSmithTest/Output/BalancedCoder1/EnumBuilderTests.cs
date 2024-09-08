@@ -22,7 +22,7 @@ public class EnumBuilderTests
         EnumBuilder enumBuilder = new(new NameMangler(sm), new StateMachineProvider(sm), new());
 
         enumBuilder.OutputEventIdCode(file);
-        file.AppendLine();
+        file.AppendIndentedLine();
         enumBuilder.OutputStateIdCode(file);
 
         file.ToString().ShouldBeShowDiff("""

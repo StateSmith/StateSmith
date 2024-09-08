@@ -2035,519 +2035,519 @@ class Spec2Sm(Spec2SmBase):
         while (self.stateId != desiredState):
 
             match self.stateId:
-                case self.StateId.PREFIXING: 
-                    self._PREFIXING_exit() 
-                    
-                case self.StateId.PREFIXING__ORDER_MENU: 
-                    self._PREFIXING__ORDER_MENU_exit() 
-                    
-                case self.StateId.PREFIXING__OM__BEVERAGE: 
-                    self._PREFIXING__OM__BEVERAGE_exit() 
-                    
-                case self.StateId.PREFIXING__OM__BEV__NONE: 
-                    self._PREFIXING__OM__BEV__NONE_exit() 
-                    
-                case self.StateId.PREFIXING__OM__BEV__TEA: 
-                    self._PREFIXING__OM__BEV__TEA_exit() 
-                    
-                case self.StateId.PREFIXING__OM__BEV__WATER: 
-                    self._PREFIXING__OM__BEV__WATER_exit() 
-                    
-                case self.StateId.PREFIXING__OM__VEG: 
-                    self._PREFIXING__OM__VEG_exit() 
-                    
-                case self.StateId.PREFIXING__OM__VEG__NONE: 
-                    self._PREFIXING__OM__VEG__NONE_exit() 
-                    
-                case self.StateId.PREFIXING__OM__VEG__POTATO: 
-                    self._PREFIXING__OM__VEG__POTATO_exit() 
-                    
-                case self.StateId.PREFIXING__OM__VEG__YAM: 
-                    self._PREFIXING__OM__VEG__YAM_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit() 
-                    
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: 
-                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit() 
-                    
-                case self.StateId.SPEC2SM__DECIDE: 
-                    self._SPEC2SM__DECIDE_exit() 
-                    
-                case self.StateId.TEST1_DO_EVENT_TESTING: 
-                    self._TEST1_DO_EVENT_TESTING_exit() 
-                    
-                case self.StateId.TEST1_ROOT: 
-                    self._TEST1_ROOT_exit() 
-                    
-                case self.StateId.TEST1_S1: 
-                    self._TEST1_S1_exit() 
-                    
-                case self.StateId.TEST1_S1_1: 
-                    self._TEST1_S1_1_exit() 
-                    
-                case self.StateId.TEST1_S2: 
-                    self._TEST1_S2_exit() 
-                    
-                case self.StateId.TEST10_CHOICE_POINT: 
-                    self._TEST10_CHOICE_POINT_exit() 
-                    
-                case self.StateId.TEST10_A: 
-                    self._TEST10_A_exit() 
-                    
-                case self.StateId.TEST10_A_1: 
-                    self._TEST10_A_1_exit() 
-                    
-                case self.StateId.TEST10_ROOT: 
-                    self._TEST10_ROOT_exit() 
-                    
-                case self.StateId.TEST10_G: 
-                    self._TEST10_G_exit() 
-                    
-                case self.StateId.TEST10_G_S0: 
-                    self._TEST10_G_S0_exit() 
-                    
-                case self.StateId.TEST10_G_S1: 
-                    self._TEST10_G_S1_exit() 
-                    
-                case self.StateId.TEST10_G_S2: 
-                    self._TEST10_G_S2_exit() 
-                    
-                case self.StateId.TEST10_G_S3: 
-                    self._TEST10_G_S3_exit() 
-                    
-                case self.StateId.TEST10_S1: 
-                    self._TEST10_S1_exit() 
-                    
-                case self.StateId.TEST10_S4: 
-                    self._TEST10_S4_exit() 
-                    
-                case self.StateId.TEST2_REGULAR_EVENT_TESTING: 
-                    self._TEST2_REGULAR_EVENT_TESTING_exit() 
-                    
-                case self.StateId.TEST2_ROOT: 
-                    self._TEST2_ROOT_exit() 
-                    
-                case self.StateId.TEST2_S1: 
-                    self._TEST2_S1_exit() 
-                    
-                case self.StateId.TEST2_S1_1: 
-                    self._TEST2_S1_1_exit() 
-                    
-                case self.StateId.TEST2_S2: 
-                    self._TEST2_S2_exit() 
-                    
-                case self.StateId.TEST3_BEHAVIOR_ORDERING: 
-                    self._TEST3_BEHAVIOR_ORDERING_exit() 
-                    
-                case self.StateId.TEST3_ROOT: 
-                    self._TEST3_ROOT_exit() 
-                    
-                case self.StateId.TEST3_S1: 
-                    self._TEST3_S1_exit() 
-                    
-                case self.StateId.TEST3_S2: 
-                    self._TEST3_S2_exit() 
-                    
-                case self.StateId.TEST3_S3: 
-                    self._TEST3_S3_exit() 
-                    
-                case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS: 
-                    self._TEST4_PARENT_CHILD_TRANSITIONS_exit() 
-                    
-                case self.StateId.TEST4_B_AND_OTHERS: 
-                    self._TEST4_B_AND_OTHERS_exit() 
-                    
-                case self.StateId.TEST4B_LOCAL: 
-                    self._TEST4B_LOCAL_exit() 
-                    
-                case self.StateId.TEST4B_G: 
-                    self._TEST4B_G_exit() 
-                    
-                case self.StateId.TEST4B_G_1: 
-                    self._TEST4B_G_1_exit() 
-                    
-                case self.StateId.TEST4C_LOCAL_TO_ALIAS: 
-                    self._TEST4C_LOCAL_TO_ALIAS_exit() 
-                    
-                case self.StateId.TEST4C_G: 
-                    self._TEST4C_G_exit() 
-                    
-                case self.StateId.TEST4C_G_1: 
-                    self._TEST4C_G_1_exit() 
-                    
-                case self.StateId.TEST4D_EXTERNAL: 
-                    self._TEST4D_EXTERNAL_exit() 
-                    
-                case self.StateId.TEST4D_G: 
-                    self._TEST4D_G_exit() 
-                    
-                case self.StateId.TEST4D_G_1: 
-                    self._TEST4D_G_1_exit() 
-                    
-                case self.StateId.TEST4_DECIDE: 
-                    self._TEST4_DECIDE_exit() 
-                    
-                case self.StateId.TEST4_ROOT: 
-                    self._TEST4_ROOT_exit() 
-                    
-                case self.StateId.TEST4_S1: 
-                    self._TEST4_S1_exit() 
-                    
-                case self.StateId.TEST4_S10: 
-                    self._TEST4_S10_exit() 
-                    
-                case self.StateId.TEST4_S10_1: 
-                    self._TEST4_S10_1_exit() 
-                    
-                case self.StateId.TEST4_S2: 
-                    self._TEST4_S2_exit() 
-                    
-                case self.StateId.TEST4_S20: 
-                    self._TEST4_S20_exit() 
-                    
-                case self.StateId.TEST4_S20_1: 
-                    self._TEST4_S20_1_exit() 
-                    
-                case self.StateId.TEST4_S3: 
-                    self._TEST4_S3_exit() 
-                    
-                case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: 
-                    self._TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit() 
-                    
-                case self.StateId.TEST5_ROOT: 
-                    self._TEST5_ROOT_exit() 
-                    
-                case self.StateId.TEST5_S1: 
-                    self._TEST5_S1_exit() 
-                    
-                case self.StateId.TEST5_S2: 
-                    self._TEST5_S2_exit() 
-                    
-                case self.StateId.TEST5_S3: 
-                    self._TEST5_S3_exit() 
-                    
-                case self.StateId.TEST6_VARS_EXPANSIONS: 
-                    self._TEST6_VARS_EXPANSIONS_exit() 
-                    
-                case self.StateId.TEST6_ROOT: 
-                    self._TEST6_ROOT_exit() 
-                    
-                case self.StateId.AUTO_VAR_TEST: 
-                    self._AUTO_VAR_TEST_exit() 
-                    
-                case self.StateId.AUTO_VAR_TEST__S1: 
-                    self._AUTO_VAR_TEST__S1_exit() 
-                    
-                case self.StateId.AUTO_VAR_TEST__S2: 
-                    self._AUTO_VAR_TEST__S2_exit() 
-                    
-                case self.StateId.META_EXPANSIONS: 
-                    self._META_EXPANSIONS_exit() 
-                    
-                case self.StateId.META_EXPANSIONS__S1: 
-                    self._META_EXPANSIONS__S1_exit() 
-                    
-                case self.StateId.META_EXPANSIONS__S2: 
-                    self._META_EXPANSIONS__S2_exit() 
-                    
-                case self.StateId.S3: 
-                    self._S3_exit() 
-                    
-                case self.StateId.S4: 
-                    self._S4_exit() 
-                    
-                case self.StateId.S5: 
-                    self._S5_exit() 
-                    
-                case self.StateId.NORMAL: 
-                    self._NORMAL_exit() 
-                    
-                case self.StateId.NORMAL__S1: 
-                    self._NORMAL__S1_exit() 
-                    
-                case self.StateId.NORMAL__S2: 
-                    self._NORMAL__S2_exit() 
-                    
-                case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE: 
-                    self._TEST6_VARS_EXPANSIONS__DECIDE_exit() 
-                    
-                case self.StateId.TEST7_INITIAL_OR_HISTORY: 
-                    self._TEST7_INITIAL_OR_HISTORY_exit() 
-                    
-                case self.StateId.TEST7: 
-                    self._TEST7_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY1: 
-                    self._T7__DEEP_HISTORY1_exit() 
-                    
-                case self.StateId.T7__DH1__SANTAS_WORKSHOP: 
-                    self._T7__DH1__SANTAS_WORKSHOP_exit() 
-                    
-                case self.StateId.T7__DH1__ALIENS_DETECTED: 
-                    self._T7__DH1__ALIENS_DETECTED_exit() 
-                    
-                case self.StateId.T7__DH1__GET_BACKUP: 
-                    self._T7__DH1__GET_BACKUP_exit() 
-                    
-                case self.StateId.T7__DH1__HERO: 
-                    self._T7__DH1__HERO_exit() 
-                    
-                case self.StateId.T7__DH1__CALL_BATMAN: 
-                    self._T7__DH1__CALL_BATMAN_exit() 
-                    
-                case self.StateId.T7__DH1__CALL_THOR: 
-                    self._T7__DH1__CALL_THOR_exit() 
-                    
-                case self.StateId.T7__DH1__LOCAL_HELP: 
-                    self._T7__DH1__LOCAL_HELP_exit() 
-                    
-                case self.StateId.T7__DH1__BUDDY_ELF: 
-                    self._T7__DH1__BUDDY_ELF_exit() 
-                    
-                case self.StateId.T7__DH1__POLAR_BEARS: 
-                    self._T7__DH1__POLAR_BEARS_exit() 
-                    
-                case self.StateId.T7__DH1__GIVE_COOKIES: 
-                    self._T7__DH1__GIVE_COOKIES_exit() 
-                    
-                case self.StateId.T7__DH1__SNOWBALL_FIGHT: 
-                    self._T7__DH1__SNOWBALL_FIGHT_exit() 
-                    
-                case self.StateId.T7__DH1__BUILD: 
-                    self._T7__DH1__BUILD_exit() 
-                    
-                case self.StateId.T7__DH1__TOOL: 
-                    self._T7__DH1__TOOL_exit() 
-                    
-                case self.StateId.T7__DH1__CIRCULAR_SAW: 
-                    self._T7__DH1__CIRCULAR_SAW_exit() 
-                    
-                case self.StateId.T7__DH1__IMPACT_DRILL: 
-                    self._T7__DH1__IMPACT_DRILL_exit() 
-                    
-                case self.StateId.T7__DH1__TOY: 
-                    self._T7__DH1__TOY_exit() 
-                    
-                case self.StateId.T7__DH1__GLOW_WORM: 
-                    self._T7__DH1__GLOW_WORM_exit() 
-                    
-                case self.StateId.T7__DH1__RACE_CAR: 
-                    self._T7__DH1__RACE_CAR_exit() 
-                    
-                case self.StateId.T7__DH1__ROBOT: 
-                    self._T7__DH1__ROBOT_exit() 
-                    
-                case self.StateId.T7__DH1__BATTLEBOT: 
-                    self._T7__DH1__BATTLEBOT_exit() 
-                    
-                case self.StateId.T7__DH1__WALL_E: 
-                    self._T7__DH1__WALL_E_exit() 
-                    
-                case self.StateId.T7__DH1__TEDDY_BEAR: 
-                    self._T7__DH1__TEDDY_BEAR_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY2: 
-                    self._T7__DEEP_HISTORY2_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0: 
-                    self._T7__DEEP_HISTORY2__T7__STATE_0_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1: 
-                    self._T7__DEEP_HISTORY2__T7__STATE_1_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2: 
-                    self._T7__DEEP_HISTORY2__T7__STATE_2_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6: 
-                    self._T7__DEEP_HISTORY2__T7__STATE_6_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9: 
-                    self._T7__DEEP_HISTORY2__T7__STATE_9_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3: 
-                    self._T7__DEEP_HISTORY2__T7__STATE_3_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY3: 
-                    self._T7__DEEP_HISTORY3_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0: 
-                    self._T7__DEEP_HISTORY3__T7__STATE_0_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1: 
-                    self._T7__DEEP_HISTORY3__T7__STATE_1_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2: 
-                    self._T7__DEEP_HISTORY3__T7__STATE_2_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6: 
-                    self._T7__DEEP_HISTORY3__T7__STATE_6_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9: 
-                    self._T7__DEEP_HISTORY3__T7__STATE_9_exit() 
-                    
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3: 
-                    self._T7__DEEP_HISTORY3__T7__STATE_3_exit() 
-                    
-                case self.StateId.T7__HISTORY1: 
-                    self._T7__HISTORY1_exit() 
-                    
-                case self.StateId.T7__H1__OFF: 
-                    self._T7__H1__OFF_exit() 
-                    
-                case self.StateId.T7__H1__OFF1: 
-                    self._T7__H1__OFF1_exit() 
-                    
-                case self.StateId.T7__H1__OFF2: 
-                    self._T7__H1__OFF2_exit() 
-                    
-                case self.StateId.T7__H1__OFF3: 
-                    self._T7__H1__OFF3_exit() 
-                    
-                case self.StateId.T7__H1__ON: 
-                    self._T7__H1__ON_exit() 
-                    
-                case self.StateId.T7__H1__ON1: 
-                    self._T7__H1__ON1_exit() 
-                    
-                case self.StateId.T7__H1__ON2: 
-                    self._T7__H1__ON2_exit() 
-                    
-                case self.StateId.T7__H1__ON3: 
-                    self._T7__H1__ON3_exit() 
-                    
-                case self.StateId.T7__INITIAL1: 
-                    self._T7__INITIAL1_exit() 
-                    
-                case self.StateId.T7__INITIAL1__PARENT: 
-                    self._T7__INITIAL1__PARENT_exit() 
-                    
-                case self.StateId.T7__INITIAL1__G: 
-                    self._T7__INITIAL1__G_exit() 
-                    
-                case self.StateId.T7__INITIAL1__G_S1: 
-                    self._T7__INITIAL1__G_S1_exit() 
-                    
-                case self.StateId.T7__INITIAL1__G_S2: 
-                    self._T7__INITIAL1__G_S2_exit() 
-                    
-                case self.StateId.T7__INITIAL1__G_S3: 
-                    self._T7__INITIAL1__G_S3_exit() 
-                    
-                case self.StateId.T7__INITIAL1__S1: 
-                    self._T7__INITIAL1__S1_exit() 
-                    
-                case self.StateId.TEST7_DECIDE: 
-                    self._TEST7_DECIDE_exit() 
-                    
-                case self.StateId.TEST8_ENTRY_CHOICE: 
-                    self._TEST8_ENTRY_CHOICE_exit() 
-                    
-                case self.StateId.TEST8_ROOT: 
-                    self._TEST8_ROOT_exit() 
-                    
-                case self.StateId.TEST8_G: 
-                    self._TEST8_G_exit() 
-                    
-                case self.StateId.TEST8_G_S1: 
-                    self._TEST8_G_S1_exit() 
-                    
-                case self.StateId.TEST8_G_S2: 
-                    self._TEST8_G_S2_exit() 
-                    
-                case self.StateId.TEST8_G_S3: 
-                    self._TEST8_G_S3_exit() 
-                    
-                case self.StateId.TEST8_S1: 
-                    self._TEST8_S1_exit() 
-                    
-                case self.StateId.TEST9_EXIT_CHOICE: 
-                    self._TEST9_EXIT_CHOICE_exit() 
-                    
-                case self.StateId.TEST9_DECIDE: 
-                    self._TEST9_DECIDE_exit() 
-                    
-                case self.StateId.TEST9_ROOT: 
-                    self._TEST9_ROOT_exit() 
-                    
-                case self.StateId.TEST9_G_S1: 
-                    self._TEST9_G_S1_exit() 
-                    
-                case self.StateId.TEST9_G_S2: 
-                    self._TEST9_G_S2_exit() 
-                    
-                case self.StateId.TEST9_G_S3: 
-                    self._TEST9_G_S3_exit() 
-                    
-                case self.StateId.TEST9_G_S4: 
-                    self._TEST9_G_S4_exit() 
-                    
-                case self.StateId.TEST9_S1: 
-                    self._TEST9_S1_exit() 
-                    
-                case self.StateId.TEST9_S1_1: 
-                    self._TEST9_S1_1_exit() 
-                    
-                case self.StateId.TEST9A_ROOT: 
-                    self._TEST9A_ROOT_exit() 
-                    
-                case self.StateId.TEST9A_S1: 
-                    self._TEST9A_S1_exit() 
-                    
-                case self.StateId.TEST9A_S1_1: 
-                    self._TEST9A_S1_1_exit() 
-                    
-                case self.StateId.TEST9B_ROOT: 
-                    self._TEST9B_ROOT_exit() 
-                    
-                case self.StateId.TEST9B_ROOT__A1: 
-                    self._TEST9B_ROOT__A1_exit() 
-                    
-                case self.StateId.TEST9B_ROOT__A2: 
-                    self._TEST9B_ROOT__A2_exit() 
-                    
-                case self.StateId.TEST9B_ROOT__A3: 
-                    self._TEST9B_ROOT__A3_exit() 
-                    
-                case self.StateId.TEST9B_ROOT__A4: 
-                    self._TEST9B_ROOT__A4_exit() 
-                    
-                case self.StateId.TEST9B_ROOT__B1: 
-                    self._TEST9B_ROOT__B1_exit() 
-                    
-                case self.StateId.TEST9B_ROOT__B2: 
-                    self._TEST9B_ROOT__B2_exit() 
-                    
-                case self.StateId.TEST9B_ROOT__B3: 
-                    self._TEST9B_ROOT__B3_exit() 
-                    
-                case self.StateId.TEST9B_ROOT__B4: 
-                    self._TEST9B_ROOT__B4_exit() 
-                    
+                case self.StateId.PREFIXING:
+                    self._PREFIXING_exit()
+                
+                case self.StateId.PREFIXING__ORDER_MENU:
+                    self._PREFIXING__ORDER_MENU_exit()
+                
+                case self.StateId.PREFIXING__OM__BEVERAGE:
+                    self._PREFIXING__OM__BEVERAGE_exit()
+                
+                case self.StateId.PREFIXING__OM__BEV__NONE:
+                    self._PREFIXING__OM__BEV__NONE_exit()
+                
+                case self.StateId.PREFIXING__OM__BEV__TEA:
+                    self._PREFIXING__OM__BEV__TEA_exit()
+                
+                case self.StateId.PREFIXING__OM__BEV__WATER:
+                    self._PREFIXING__OM__BEV__WATER_exit()
+                
+                case self.StateId.PREFIXING__OM__VEG:
+                    self._PREFIXING__OM__VEG_exit()
+                
+                case self.StateId.PREFIXING__OM__VEG__NONE:
+                    self._PREFIXING__OM__VEG__NONE_exit()
+                
+                case self.StateId.PREFIXING__OM__VEG__POTATO:
+                    self._PREFIXING__OM__VEG__POTATO_exit()
+                
+                case self.StateId.PREFIXING__OM__VEG__YAM:
+                    self._PREFIXING__OM__VEG__YAM_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
+                
+                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
+                    self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
+                
+                case self.StateId.SPEC2SM__DECIDE:
+                    self._SPEC2SM__DECIDE_exit()
+                
+                case self.StateId.TEST1_DO_EVENT_TESTING:
+                    self._TEST1_DO_EVENT_TESTING_exit()
+                
+                case self.StateId.TEST1_ROOT:
+                    self._TEST1_ROOT_exit()
+                
+                case self.StateId.TEST1_S1:
+                    self._TEST1_S1_exit()
+                
+                case self.StateId.TEST1_S1_1:
+                    self._TEST1_S1_1_exit()
+                
+                case self.StateId.TEST1_S2:
+                    self._TEST1_S2_exit()
+                
+                case self.StateId.TEST10_CHOICE_POINT:
+                    self._TEST10_CHOICE_POINT_exit()
+                
+                case self.StateId.TEST10_A:
+                    self._TEST10_A_exit()
+                
+                case self.StateId.TEST10_A_1:
+                    self._TEST10_A_1_exit()
+                
+                case self.StateId.TEST10_ROOT:
+                    self._TEST10_ROOT_exit()
+                
+                case self.StateId.TEST10_G:
+                    self._TEST10_G_exit()
+                
+                case self.StateId.TEST10_G_S0:
+                    self._TEST10_G_S0_exit()
+                
+                case self.StateId.TEST10_G_S1:
+                    self._TEST10_G_S1_exit()
+                
+                case self.StateId.TEST10_G_S2:
+                    self._TEST10_G_S2_exit()
+                
+                case self.StateId.TEST10_G_S3:
+                    self._TEST10_G_S3_exit()
+                
+                case self.StateId.TEST10_S1:
+                    self._TEST10_S1_exit()
+                
+                case self.StateId.TEST10_S4:
+                    self._TEST10_S4_exit()
+                
+                case self.StateId.TEST2_REGULAR_EVENT_TESTING:
+                    self._TEST2_REGULAR_EVENT_TESTING_exit()
+                
+                case self.StateId.TEST2_ROOT:
+                    self._TEST2_ROOT_exit()
+                
+                case self.StateId.TEST2_S1:
+                    self._TEST2_S1_exit()
+                
+                case self.StateId.TEST2_S1_1:
+                    self._TEST2_S1_1_exit()
+                
+                case self.StateId.TEST2_S2:
+                    self._TEST2_S2_exit()
+                
+                case self.StateId.TEST3_BEHAVIOR_ORDERING:
+                    self._TEST3_BEHAVIOR_ORDERING_exit()
+                
+                case self.StateId.TEST3_ROOT:
+                    self._TEST3_ROOT_exit()
+                
+                case self.StateId.TEST3_S1:
+                    self._TEST3_S1_exit()
+                
+                case self.StateId.TEST3_S2:
+                    self._TEST3_S2_exit()
+                
+                case self.StateId.TEST3_S3:
+                    self._TEST3_S3_exit()
+                
+                case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
+                    self._TEST4_PARENT_CHILD_TRANSITIONS_exit()
+                
+                case self.StateId.TEST4_B_AND_OTHERS:
+                    self._TEST4_B_AND_OTHERS_exit()
+                
+                case self.StateId.TEST4B_LOCAL:
+                    self._TEST4B_LOCAL_exit()
+                
+                case self.StateId.TEST4B_G:
+                    self._TEST4B_G_exit()
+                
+                case self.StateId.TEST4B_G_1:
+                    self._TEST4B_G_1_exit()
+                
+                case self.StateId.TEST4C_LOCAL_TO_ALIAS:
+                    self._TEST4C_LOCAL_TO_ALIAS_exit()
+                
+                case self.StateId.TEST4C_G:
+                    self._TEST4C_G_exit()
+                
+                case self.StateId.TEST4C_G_1:
+                    self._TEST4C_G_1_exit()
+                
+                case self.StateId.TEST4D_EXTERNAL:
+                    self._TEST4D_EXTERNAL_exit()
+                
+                case self.StateId.TEST4D_G:
+                    self._TEST4D_G_exit()
+                
+                case self.StateId.TEST4D_G_1:
+                    self._TEST4D_G_1_exit()
+                
+                case self.StateId.TEST4_DECIDE:
+                    self._TEST4_DECIDE_exit()
+                
+                case self.StateId.TEST4_ROOT:
+                    self._TEST4_ROOT_exit()
+                
+                case self.StateId.TEST4_S1:
+                    self._TEST4_S1_exit()
+                
+                case self.StateId.TEST4_S10:
+                    self._TEST4_S10_exit()
+                
+                case self.StateId.TEST4_S10_1:
+                    self._TEST4_S10_1_exit()
+                
+                case self.StateId.TEST4_S2:
+                    self._TEST4_S2_exit()
+                
+                case self.StateId.TEST4_S20:
+                    self._TEST4_S20_exit()
+                
+                case self.StateId.TEST4_S20_1:
+                    self._TEST4_S20_1_exit()
+                
+                case self.StateId.TEST4_S3:
+                    self._TEST4_S3_exit()
+                
+                case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
+                    self._TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
+                
+                case self.StateId.TEST5_ROOT:
+                    self._TEST5_ROOT_exit()
+                
+                case self.StateId.TEST5_S1:
+                    self._TEST5_S1_exit()
+                
+                case self.StateId.TEST5_S2:
+                    self._TEST5_S2_exit()
+                
+                case self.StateId.TEST5_S3:
+                    self._TEST5_S3_exit()
+                
+                case self.StateId.TEST6_VARS_EXPANSIONS:
+                    self._TEST6_VARS_EXPANSIONS_exit()
+                
+                case self.StateId.TEST6_ROOT:
+                    self._TEST6_ROOT_exit()
+                
+                case self.StateId.AUTO_VAR_TEST:
+                    self._AUTO_VAR_TEST_exit()
+                
+                case self.StateId.AUTO_VAR_TEST__S1:
+                    self._AUTO_VAR_TEST__S1_exit()
+                
+                case self.StateId.AUTO_VAR_TEST__S2:
+                    self._AUTO_VAR_TEST__S2_exit()
+                
+                case self.StateId.META_EXPANSIONS:
+                    self._META_EXPANSIONS_exit()
+                
+                case self.StateId.META_EXPANSIONS__S1:
+                    self._META_EXPANSIONS__S1_exit()
+                
+                case self.StateId.META_EXPANSIONS__S2:
+                    self._META_EXPANSIONS__S2_exit()
+                
+                case self.StateId.S3:
+                    self._S3_exit()
+                
+                case self.StateId.S4:
+                    self._S4_exit()
+                
+                case self.StateId.S5:
+                    self._S5_exit()
+                
+                case self.StateId.NORMAL:
+                    self._NORMAL_exit()
+                
+                case self.StateId.NORMAL__S1:
+                    self._NORMAL__S1_exit()
+                
+                case self.StateId.NORMAL__S2:
+                    self._NORMAL__S2_exit()
+                
+                case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE:
+                    self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
+                
+                case self.StateId.TEST7_INITIAL_OR_HISTORY:
+                    self._TEST7_INITIAL_OR_HISTORY_exit()
+                
+                case self.StateId.TEST7:
+                    self._TEST7_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY1:
+                    self._T7__DEEP_HISTORY1_exit()
+                
+                case self.StateId.T7__DH1__SANTAS_WORKSHOP:
+                    self._T7__DH1__SANTAS_WORKSHOP_exit()
+                
+                case self.StateId.T7__DH1__ALIENS_DETECTED:
+                    self._T7__DH1__ALIENS_DETECTED_exit()
+                
+                case self.StateId.T7__DH1__GET_BACKUP:
+                    self._T7__DH1__GET_BACKUP_exit()
+                
+                case self.StateId.T7__DH1__HERO:
+                    self._T7__DH1__HERO_exit()
+                
+                case self.StateId.T7__DH1__CALL_BATMAN:
+                    self._T7__DH1__CALL_BATMAN_exit()
+                
+                case self.StateId.T7__DH1__CALL_THOR:
+                    self._T7__DH1__CALL_THOR_exit()
+                
+                case self.StateId.T7__DH1__LOCAL_HELP:
+                    self._T7__DH1__LOCAL_HELP_exit()
+                
+                case self.StateId.T7__DH1__BUDDY_ELF:
+                    self._T7__DH1__BUDDY_ELF_exit()
+                
+                case self.StateId.T7__DH1__POLAR_BEARS:
+                    self._T7__DH1__POLAR_BEARS_exit()
+                
+                case self.StateId.T7__DH1__GIVE_COOKIES:
+                    self._T7__DH1__GIVE_COOKIES_exit()
+                
+                case self.StateId.T7__DH1__SNOWBALL_FIGHT:
+                    self._T7__DH1__SNOWBALL_FIGHT_exit()
+                
+                case self.StateId.T7__DH1__BUILD:
+                    self._T7__DH1__BUILD_exit()
+                
+                case self.StateId.T7__DH1__TOOL:
+                    self._T7__DH1__TOOL_exit()
+                
+                case self.StateId.T7__DH1__CIRCULAR_SAW:
+                    self._T7__DH1__CIRCULAR_SAW_exit()
+                
+                case self.StateId.T7__DH1__IMPACT_DRILL:
+                    self._T7__DH1__IMPACT_DRILL_exit()
+                
+                case self.StateId.T7__DH1__TOY:
+                    self._T7__DH1__TOY_exit()
+                
+                case self.StateId.T7__DH1__GLOW_WORM:
+                    self._T7__DH1__GLOW_WORM_exit()
+                
+                case self.StateId.T7__DH1__RACE_CAR:
+                    self._T7__DH1__RACE_CAR_exit()
+                
+                case self.StateId.T7__DH1__ROBOT:
+                    self._T7__DH1__ROBOT_exit()
+                
+                case self.StateId.T7__DH1__BATTLEBOT:
+                    self._T7__DH1__BATTLEBOT_exit()
+                
+                case self.StateId.T7__DH1__WALL_E:
+                    self._T7__DH1__WALL_E_exit()
+                
+                case self.StateId.T7__DH1__TEDDY_BEAR:
+                    self._T7__DH1__TEDDY_BEAR_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY2:
+                    self._T7__DEEP_HISTORY2_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0:
+                    self._T7__DEEP_HISTORY2__T7__STATE_0_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1:
+                    self._T7__DEEP_HISTORY2__T7__STATE_1_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2:
+                    self._T7__DEEP_HISTORY2__T7__STATE_2_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6:
+                    self._T7__DEEP_HISTORY2__T7__STATE_6_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
+                    self._T7__DEEP_HISTORY2__T7__STATE_9_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3:
+                    self._T7__DEEP_HISTORY2__T7__STATE_3_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY3:
+                    self._T7__DEEP_HISTORY3_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0:
+                    self._T7__DEEP_HISTORY3__T7__STATE_0_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1:
+                    self._T7__DEEP_HISTORY3__T7__STATE_1_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2:
+                    self._T7__DEEP_HISTORY3__T7__STATE_2_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6:
+                    self._T7__DEEP_HISTORY3__T7__STATE_6_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
+                    self._T7__DEEP_HISTORY3__T7__STATE_9_exit()
+                
+                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3:
+                    self._T7__DEEP_HISTORY3__T7__STATE_3_exit()
+                
+                case self.StateId.T7__HISTORY1:
+                    self._T7__HISTORY1_exit()
+                
+                case self.StateId.T7__H1__OFF:
+                    self._T7__H1__OFF_exit()
+                
+                case self.StateId.T7__H1__OFF1:
+                    self._T7__H1__OFF1_exit()
+                
+                case self.StateId.T7__H1__OFF2:
+                    self._T7__H1__OFF2_exit()
+                
+                case self.StateId.T7__H1__OFF3:
+                    self._T7__H1__OFF3_exit()
+                
+                case self.StateId.T7__H1__ON:
+                    self._T7__H1__ON_exit()
+                
+                case self.StateId.T7__H1__ON1:
+                    self._T7__H1__ON1_exit()
+                
+                case self.StateId.T7__H1__ON2:
+                    self._T7__H1__ON2_exit()
+                
+                case self.StateId.T7__H1__ON3:
+                    self._T7__H1__ON3_exit()
+                
+                case self.StateId.T7__INITIAL1:
+                    self._T7__INITIAL1_exit()
+                
+                case self.StateId.T7__INITIAL1__PARENT:
+                    self._T7__INITIAL1__PARENT_exit()
+                
+                case self.StateId.T7__INITIAL1__G:
+                    self._T7__INITIAL1__G_exit()
+                
+                case self.StateId.T7__INITIAL1__G_S1:
+                    self._T7__INITIAL1__G_S1_exit()
+                
+                case self.StateId.T7__INITIAL1__G_S2:
+                    self._T7__INITIAL1__G_S2_exit()
+                
+                case self.StateId.T7__INITIAL1__G_S3:
+                    self._T7__INITIAL1__G_S3_exit()
+                
+                case self.StateId.T7__INITIAL1__S1:
+                    self._T7__INITIAL1__S1_exit()
+                
+                case self.StateId.TEST7_DECIDE:
+                    self._TEST7_DECIDE_exit()
+                
+                case self.StateId.TEST8_ENTRY_CHOICE:
+                    self._TEST8_ENTRY_CHOICE_exit()
+                
+                case self.StateId.TEST8_ROOT:
+                    self._TEST8_ROOT_exit()
+                
+                case self.StateId.TEST8_G:
+                    self._TEST8_G_exit()
+                
+                case self.StateId.TEST8_G_S1:
+                    self._TEST8_G_S1_exit()
+                
+                case self.StateId.TEST8_G_S2:
+                    self._TEST8_G_S2_exit()
+                
+                case self.StateId.TEST8_G_S3:
+                    self._TEST8_G_S3_exit()
+                
+                case self.StateId.TEST8_S1:
+                    self._TEST8_S1_exit()
+                
+                case self.StateId.TEST9_EXIT_CHOICE:
+                    self._TEST9_EXIT_CHOICE_exit()
+                
+                case self.StateId.TEST9_DECIDE:
+                    self._TEST9_DECIDE_exit()
+                
+                case self.StateId.TEST9_ROOT:
+                    self._TEST9_ROOT_exit()
+                
+                case self.StateId.TEST9_G_S1:
+                    self._TEST9_G_S1_exit()
+                
+                case self.StateId.TEST9_G_S2:
+                    self._TEST9_G_S2_exit()
+                
+                case self.StateId.TEST9_G_S3:
+                    self._TEST9_G_S3_exit()
+                
+                case self.StateId.TEST9_G_S4:
+                    self._TEST9_G_S4_exit()
+                
+                case self.StateId.TEST9_S1:
+                    self._TEST9_S1_exit()
+                
+                case self.StateId.TEST9_S1_1:
+                    self._TEST9_S1_1_exit()
+                
+                case self.StateId.TEST9A_ROOT:
+                    self._TEST9A_ROOT_exit()
+                
+                case self.StateId.TEST9A_S1:
+                    self._TEST9A_S1_exit()
+                
+                case self.StateId.TEST9A_S1_1:
+                    self._TEST9A_S1_1_exit()
+                
+                case self.StateId.TEST9B_ROOT:
+                    self._TEST9B_ROOT_exit()
+                
+                case self.StateId.TEST9B_ROOT__A1:
+                    self._TEST9B_ROOT__A1_exit()
+                
+                case self.StateId.TEST9B_ROOT__A2:
+                    self._TEST9B_ROOT__A2_exit()
+                
+                case self.StateId.TEST9B_ROOT__A3:
+                    self._TEST9B_ROOT__A3_exit()
+                
+                case self.StateId.TEST9B_ROOT__A4:
+                    self._TEST9B_ROOT__A4_exit()
+                
+                case self.StateId.TEST9B_ROOT__B1:
+                    self._TEST9B_ROOT__B1_exit()
+                
+                case self.StateId.TEST9B_ROOT__B2:
+                    self._TEST9B_ROOT__B2_exit()
+                
+                case self.StateId.TEST9B_ROOT__B3:
+                    self._TEST9B_ROOT__B3_exit()
+                
+                case self.StateId.TEST9B_ROOT__B4:
+                    self._TEST9B_ROOT__B4_exit()
+                
                 case _:
                     return  # Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
     

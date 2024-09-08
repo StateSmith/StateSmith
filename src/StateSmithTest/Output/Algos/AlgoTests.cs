@@ -83,6 +83,14 @@ public class AlgoTests
                 if (transpilerId == TranspilerId.Java && algoId != AlgorithmId.Balanced2)
                     continue;
 
+                // Python only supports Balanced2 right now. See https://github.com/StateSmith/StateSmith/issues/398
+                if (transpilerId == TranspilerId.Python && algoId != AlgorithmId.Balanced2)
+                    continue;
+
+                if (transpilerId == TranspilerId.Python)
+                    continue; // FIXME - remove this line when Python transpiler is ready
+
+
                 var dirName = $"{outDir}/{algoId}_{transpilerId}";
                 Directory.CreateDirectory(dirName);
                 TestHelper.RunSmRunnerForPlantUmlString(plantUmlText: MinimalPlantUmlFsm, outputDir: dirName, algorithmId: algoId, transpilerId: transpilerId);

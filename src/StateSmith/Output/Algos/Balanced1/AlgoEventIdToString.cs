@@ -15,22 +15,22 @@ public class AlgoEventIdToString : IAlgoEventIdToString
 
     public void CreateEventIdToStringFunction(OutputFile file, StateMachine sm)
     {
-        file.AppendLine("// Thread safe.");
-        file.Append($"public static string {mangler.SmEventIdToStringFuncName}({mangler.SmEventEnumType} id)");
+        file.AppendIndentedLine("// Thread safe.");
+        file.AppendIndented($"public static string {mangler.SmEventIdToStringFuncName}({mangler.SmEventEnumType} id)");
         file.StartCodeBlock();
         {
-            file.Append("switch (id)");
+            file.AppendIndented("switch (id)");
             file.StartCodeBlock();
             {
                 foreach (var eventId in sm.GetEventListCopy())
                 {
-                    file.AppendLine($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(eventId)}: return \"{mangler.SmEventIdToString(eventId)}\";");
+                    file.AppendIndentedLine($"case {mangler.SmEventEnumType}.{mangler.SmEventEnumValue(eventId)}: return \"{mangler.SmEventIdToString(eventId)}\";");
                 }
-                file.AppendLine("default: return \"?\";");
+                file.AppendIndentedLine("default: return \"?\";");
             }
             file.FinishCodeBlock(forceNewLine: true);
         }
         file.FinishCodeBlock(forceNewLine: true);
-        file.AppendLine();
+        file.AppendIndentedLine();
     }
 }

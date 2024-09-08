@@ -2,7 +2,6 @@
 // Algorithm: Balanced2. See https://github.com/StateSmith/StateSmith/wiki/Algorithms
 
 // any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated .h file
-// inside sm - diagram embedded FileTop
 #nullable enable
 
 using StateSmithTest.spec._2.CSharp; // to get access to MainClass
@@ -7597,7 +7596,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true))
             {
                 // Step 1: execute action `clear_dispatch_output();`
-                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
             } // end of behavior for TEST4_B_AND_OTHERS
         }
 
@@ -9681,7 +9680,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output(); }`.", true))
             {
                 // Step 1: execute action `clear_dispatch_output();`
-                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
             } // end of behavior for TEST7
         }
 
@@ -13161,7 +13160,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output(); }`.", true))
             {
                 // Step 1: execute action `clear_dispatch_output();`
-                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
             } // end of behavior for TEST7_DECIDE
 
             this.stateId = StateId.TEST7_INITIAL_OR_HISTORY;
@@ -13398,7 +13397,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true))
             {
                 // Step 1: execute action `clear_dispatch_output();`
-                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+                MainClass.Trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
             } // end of behavior for TEST8_ROOT
         }
 

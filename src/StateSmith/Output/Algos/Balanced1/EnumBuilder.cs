@@ -23,7 +23,7 @@ public class EnumBuilder
 
     public void OutputEventIdCode(OutputFile file)
     {
-        file.Append($"public enum {mangler.SmEventEnumType}");
+        file.AppendIndented($"public enum {mangler.SmEventEnumType}");
         file.StartCodeBlock();
         List<string> nonDoEvents = GetNonDoEvents(out var hadDoEvent);
 
@@ -32,17 +32,17 @@ public class EnumBuilder
         if (hadDoEvent)
         {
             enumOffset = 1;
-            file.AppendLine($"{mangler.SmEventEnumValue(TriggerHelper.TRIGGER_DO)} = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
+            file.AppendIndentedLine($"{mangler.SmEventEnumValue(TriggerHelper.TRIGGER_DO)} = 0, // The `do` event is special. State event handlers do not consume this event (ancestors all get it too) unless a transition occurs.");
         }
 
         for (int i = 0; i < nonDoEvents.Count; i++)
         {
             string evt = nonDoEvents[i];
-            file.AppendLine($"{mangler.SmEventEnumValue(evt)} = {i + enumOffset},");
+            file.AppendIndentedLine($"{mangler.SmEventEnumValue(evt)} = {i + enumOffset},");
         }
 
         file.FinishCodeBlock("");
-        file.AppendLine();
+        file.AppendIndentedLine();
 
         if (settings.outputEnumMemberCount)
         {
@@ -72,18 +72,18 @@ public class EnumBuilder
     {
         string smName = GetSm().Name;
 
-        file.Append($"public enum {mangler.SmStateEnumType}");
+        file.AppendIndented($"public enum {mangler.SmStateEnumType}");
         file.StartCodeBlock();
 
         var namedVertices = GetSm().GetNamedVerticesCopy();
         for (int i = 0; i < namedVertices.Count; i++)
         {
             NamedVertex namedVertex = namedVertices[i];
-            file.AppendLine($"{mangler.SmStateEnumValue(namedVertex)} = {i},");
+            file.AppendIndentedLine($"{mangler.SmStateEnumValue(namedVertex)} = {i},");
         }
 
         file.FinishCodeBlock("");
-        file.AppendLine();
+        file.AppendIndentedLine();
 
         OutputStateIdCount(file, smName, namedVertices.Count);
     }
@@ -99,17 +99,17 @@ public class EnumBuilder
 
     public void OutputHistoryIdCode(OutputFile file, HistoryVertex historyVertex)
     {
-        file.Append($"public enum {mangler.HistoryVarEnumType(historyVertex)}");
+        file.AppendIndented($"public enum {mangler.HistoryVarEnumType(historyVertex)}");
         file.StartCodeBlock();
 
         // default behavior is the last one
         Behavior defaultBehavior = historyVertex.Behaviors.Last();
-        file.AppendLine($"{mangler.HistoryVarEnumValue(historyVertex, defaultBehavior.TransitionTarget.ThrowIfNull())} = 0, // default transition");
+        file.AppendIndentedLine($"{mangler.HistoryVarEnumValue(historyVertex, defaultBehavior.TransitionTarget.ThrowIfNull())} = 0, // default transition");
 
         for (int i = 0; i < historyVertex.Behaviors.Count - 1; i++)
         {
             var b = historyVertex.Behaviors[i];
-            file.AppendLine($"{mangler.HistoryVarEnumValue(historyVertex, b.TransitionTarget.ThrowIfNull())} = {i + 1},");
+            file.AppendIndentedLine($"{mangler.HistoryVarEnumValue(historyVertex, b.TransitionTarget.ThrowIfNull())} = {i + 1},");
         }
 
         file.FinishCodeBlock("");
@@ -118,6 +118,6 @@ public class EnumBuilder
 
     private static void OutputEnumCount(OutputFile file, string enumValueName, int count)
     {
-        file.AppendLine($"public const int {enumValueName} = {count};");
+        file.AppendIndentedLine($"public const int {enumValueName} = {count};");
     }
 }

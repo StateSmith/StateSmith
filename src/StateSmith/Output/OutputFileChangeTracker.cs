@@ -36,7 +36,7 @@ public class OutputFileChangeTracker
     {
         if (PopChanged())
         {
-            outputFile.AppendLine();
+            outputFile.AppendIndentedLine();
         }
     }
 }

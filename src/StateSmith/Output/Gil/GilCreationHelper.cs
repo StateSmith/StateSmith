@@ -41,9 +41,9 @@ public class GilCreationHelper
 
     public static void AppendGilHelpersFuncs(OutputFile file)
     {
-        file.AppendLine($"public static bool {GilEchoStringBoolReturnFuncName}(string toEcho) {{ return true; }}");
-        file.AppendLine($"public static bool {GilVisitVarArgsBoolReturnFuncName}(params object[] args) {{ return true; }}");
-        file.AppendLine($"public static void {GilUnusedVarFuncName}(object unusedVar) {{ }}");
+        file.AppendIndentedLine($"public static bool {GilEchoStringBoolReturnFuncName}(string toEcho) {{ return true; }}");
+        file.AppendIndentedLine($"public static bool {GilVisitVarArgsBoolReturnFuncName}(params object[] args) {{ return true; }}");
+        file.AppendIndentedLine($"public static void {GilUnusedVarFuncName}(object unusedVar) {{ }}");
     }
 
     public static string MarkVarAsUnused(string varName)
@@ -56,8 +56,8 @@ public class GilCreationHelper
     /// </summary>
     public static void AddFileTopComment(OutputFile file, string gilCommentCode)
     {
-        file.AppendLine(gilCommentCode);
-        file.AppendLine($"public class {GilFileTopClassName} {{ }}");
+        file.AppendIndentedLine(gilCommentCode);
+        file.AppendIndentedLine($"public class {GilFileTopClassName} {{ }}");
     }
 
     /// <summary>

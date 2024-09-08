@@ -42,19 +42,19 @@ public class UserAddEventIdToString
             var sb = new StringBuilder();
             var output = new OutputFile(codeStyle, sb);
 
-            output.Append(CreateFuncSignature());
+            output.AppendIndented(CreateFuncSignature());
             output.StartCodeBlock();
             {
-                output.Append("switch (id)");
+                output.AppendIndented("switch (id)");
                 output.StartCodeBlock();
                 {
                     foreach (var eventName in sm.GetEventListCopy())
                     {
-                        output.AppendLine($"case {mangler.SmEventEnumValue(eventName)}: return \"{eventName}\";");
+                        output.AppendIndentedLine($"case {mangler.SmEventEnumValue(eventName)}: return \"{eventName}\";");
                     }
                 }
                 output.FinishCodeBlock();
-                output.AppendLine("return \"?\";");
+                output.AppendIndentedLine("return \"?\";");
             }
             output.FinishCodeBlock();
             return output.ToString();

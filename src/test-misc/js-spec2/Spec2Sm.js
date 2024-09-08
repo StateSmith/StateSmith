@@ -7594,7 +7594,7 @@ export class Spec2Sm
         if (trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output(); }`.", true))
         {
             // Step 1: execute action `clear_dispatch_output();`
-            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST4_B_AND_OTHERS
     }
     
@@ -9678,7 +9678,7 @@ export class Spec2Sm
         if (trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output(); }`.", true))
         {
             // Step 1: execute action `clear_dispatch_output();`
-            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST7
     }
     
@@ -13158,7 +13158,7 @@ export class Spec2Sm
         if (trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output(); }`.", true))
         {
             // Step 1: execute action `clear_dispatch_output();`
-            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST7_DECIDE
         
         this.stateId = Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY;
@@ -13395,7 +13395,7 @@ export class Spec2Sm
         if (trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output(); }`.", true))
         {
             // Step 1: execute action `clear_dispatch_output();`
-            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");;
+            console.log("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH");
         } // end of behavior for TEST8_ROOT
     }
     
