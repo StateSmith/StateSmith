@@ -234,7 +234,8 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         if (symbol is INamedTypeSymbol namedTypeSymbol && namedTypeSymbol.TypeKind == TypeKind.Enum)
         {
-            return $"self.{symbol.Name}";
+            return transpilerHelper.GetFQN(symbol);
+            //return $"self.{symbol.Name}"; // doesn't work for static methods
         }
 
         if (symbol is IFieldSymbol fieldSymbol)

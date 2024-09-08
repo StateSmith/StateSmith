@@ -308,1726 +308,1726 @@ class Spec2Sm(Spec2SmBase):
     def dispatchEvent(self, eventId):
         match self.stateId:
             # STATE: Spec2Sm
-            case self.StateId.ROOT:
+            case Spec2Sm.StateId.ROOT:
                 match eventId:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING
-            case self.StateId.PREFIXING:
+            case Spec2Sm.StateId.PREFIXING:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__ORDER_MENU
-            case self.StateId.PREFIXING__ORDER_MENU:
+            case Spec2Sm.StateId.PREFIXING__ORDER_MENU:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__OM__BEVERAGE
-            case self.StateId.PREFIXING__OM__BEVERAGE:
+            case Spec2Sm.StateId.PREFIXING__OM__BEVERAGE:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__BEVERAGE_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__OM__BEV__NONE
-            case self.StateId.PREFIXING__OM__BEV__NONE:
+            case Spec2Sm.StateId.PREFIXING__OM__BEV__NONE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._PREFIXING__OM__BEV__NONE_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__BEVERAGE_ev2()
             
             # STATE: PREFIXING__OM__BEV__TEA
-            case self.StateId.PREFIXING__OM__BEV__TEA:
+            case Spec2Sm.StateId.PREFIXING__OM__BEV__TEA:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__BEVERAGE_ev2()
             
             # STATE: PREFIXING__OM__BEV__WATER
-            case self.StateId.PREFIXING__OM__BEV__WATER:
+            case Spec2Sm.StateId.PREFIXING__OM__BEV__WATER:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._PREFIXING__OM__BEV__WATER_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__BEVERAGE_ev2()
             
             # STATE: PREFIXING__OM__VEG
-            case self.StateId.PREFIXING__OM__VEG:
+            case Spec2Sm.StateId.PREFIXING__OM__VEG:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__VEG_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__OM__VEG__NONE
-            case self.StateId.PREFIXING__OM__VEG__NONE:
+            case Spec2Sm.StateId.PREFIXING__OM__VEG__NONE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._PREFIXING__OM__VEG__NONE_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__VEG_ev2()
             
             # STATE: PREFIXING__OM__VEG__POTATO
-            case self.StateId.PREFIXING__OM__VEG__POTATO:
+            case Spec2Sm.StateId.PREFIXING__OM__VEG__POTATO:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._PREFIXING__OM__VEG__POTATO_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__VEG_ev2()
             
             # STATE: PREFIXING__OM__VEG__YAM
-            case self.StateId.PREFIXING__OM__VEG__YAM:
+            case Spec2Sm.StateId.PREFIXING__OM__VEG__YAM:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__OM__VEG_ev2()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
             
             # STATE: PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2()
             
             # STATE: Spec2Sm__DECIDE
-            case self.StateId.SPEC2SM__DECIDE:
+            case Spec2Sm.StateId.SPEC2SM__DECIDE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._SPEC2SM__DECIDE_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._SPEC2SM__DECIDE_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._SPEC2SM__DECIDE_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._SPEC2SM__DECIDE_ev4()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._SPEC2SM__DECIDE_ev5()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._SPEC2SM__DECIDE_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._SPEC2SM__DECIDE_ev7()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._SPEC2SM__DECIDE_ev8()
-                    case self.EventId.EV9:
+                    case Spec2Sm.EventId.EV9:
                         self._SPEC2SM__DECIDE_ev9()
-                    case self.EventId.EV10:
+                    case Spec2Sm.EventId.EV10:
                         self._SPEC2SM__DECIDE_ev10()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST1_DO_EVENT_TESTING
-            case self.StateId.TEST1_DO_EVENT_TESTING:
+            case Spec2Sm.StateId.TEST1_DO_EVENT_TESTING:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST1_ROOT
-            case self.StateId.TEST1_ROOT:
+            case Spec2Sm.StateId.TEST1_ROOT:
                 match eventId:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._TEST1_ROOT_do()
             
             # STATE: TEST1_S1
-            case self.StateId.TEST1_S1:
+            case Spec2Sm.StateId.TEST1_S1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._TEST1_ROOT_do()
             
             # STATE: TEST1_S1_1
-            case self.StateId.TEST1_S1_1:
+            case Spec2Sm.StateId.TEST1_S1_1:
                 match eventId:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._TEST1_S1_1_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST1_S1_1_ev1()
             
             # STATE: TEST1_S2
-            case self.StateId.TEST1_S2:
+            case Spec2Sm.StateId.TEST1_S2:
                 match eventId:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._TEST1_S2_do()
             
             # STATE: TEST10_CHOICE_POINT
-            case self.StateId.TEST10_CHOICE_POINT:
+            case Spec2Sm.StateId.TEST10_CHOICE_POINT:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST10_A
-            case self.StateId.TEST10_A:
+            case Spec2Sm.StateId.TEST10_A:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST10_A_1
-            case self.StateId.TEST10_A_1:
+            case Spec2Sm.StateId.TEST10_A_1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST10_ROOT
-            case self.StateId.TEST10_ROOT:
+            case Spec2Sm.StateId.TEST10_ROOT:
                 match eventId:
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST10_G
-            case self.StateId.TEST10_G:
+            case Spec2Sm.StateId.TEST10_G:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
             
             # STATE: TEST10_G_S0
-            case self.StateId.TEST10_G_S0:
+            case Spec2Sm.StateId.TEST10_G_S0:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
             
             # STATE: TEST10_G_S1
-            case self.StateId.TEST10_G_S1:
+            case Spec2Sm.StateId.TEST10_G_S1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
             
             # STATE: TEST10_G_S2
-            case self.StateId.TEST10_G_S2:
+            case Spec2Sm.StateId.TEST10_G_S2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
             
             # STATE: TEST10_G_S3
-            case self.StateId.TEST10_G_S3:
+            case Spec2Sm.StateId.TEST10_G_S3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
             
             # STATE: TEST10_S1
-            case self.StateId.TEST10_S1:
+            case Spec2Sm.StateId.TEST10_S1:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST10_S1_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST10_S1_ev3()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST10_S1_ev1()
-                    case self.EventId.EV10:
+                    case Spec2Sm.EventId.EV10:
                         self._TEST10_S1_ev10()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
             
             # STATE: TEST10_S4
-            case self.StateId.TEST10_S4:
+            case Spec2Sm.StateId.TEST10_S4:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST10_ROOT_ev5()
             
             # STATE: TEST2_REGULAR_EVENT_TESTING
-            case self.StateId.TEST2_REGULAR_EVENT_TESTING:
+            case Spec2Sm.StateId.TEST2_REGULAR_EVENT_TESTING:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST2_ROOT
-            case self.StateId.TEST2_ROOT:
+            case Spec2Sm.StateId.TEST2_ROOT:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST2_ROOT_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST2_ROOT_ev2()
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._TEST2_ROOT_do()
             
             # STATE: TEST2_S1
-            case self.StateId.TEST2_S1:
+            case Spec2Sm.StateId.TEST2_S1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._TEST2_ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST2_ROOT_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST2_ROOT_ev2()
             
             # STATE: TEST2_S1_1
-            case self.StateId.TEST2_S1_1:
+            case Spec2Sm.StateId.TEST2_S1_1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST2_S1_1_ev1()
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._TEST2_S1_1_do()
                     # Events not handled by this state:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST2_ROOT_ev2()
             
             # STATE: TEST2_S2
-            case self.StateId.TEST2_S2:
+            case Spec2Sm.StateId.TEST2_S2:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST2_S2_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST2_S2_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._TEST2_ROOT_do()
             
             # STATE: TEST3_BEHAVIOR_ORDERING
-            case self.StateId.TEST3_BEHAVIOR_ORDERING:
+            case Spec2Sm.StateId.TEST3_BEHAVIOR_ORDERING:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST3_ROOT
-            case self.StateId.TEST3_ROOT:
+            case Spec2Sm.StateId.TEST3_ROOT:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST3_ROOT_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST3_S1
-            case self.StateId.TEST3_S1:
+            case Spec2Sm.StateId.TEST3_S1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST3_S1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST3_S2
-            case self.StateId.TEST3_S2:
+            case Spec2Sm.StateId.TEST3_S2:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST3_S2_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST3_S3
-            case self.StateId.TEST3_S3:
+            case Spec2Sm.StateId.TEST3_S3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST3_ROOT_ev1()
             
             # STATE: TEST4_PARENT_CHILD_TRANSITIONS
-            case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
+            case Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4_B_AND_OTHERS
-            case self.StateId.TEST4_B_AND_OTHERS:
+            case Spec2Sm.StateId.TEST4_B_AND_OTHERS:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4B_LOCAL
-            case self.StateId.TEST4B_LOCAL:
+            case Spec2Sm.StateId.TEST4B_LOCAL:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4B_G
-            case self.StateId.TEST4B_G:
+            case Spec2Sm.StateId.TEST4B_G:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4B_G_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4B_G_1
-            case self.StateId.TEST4B_G_1:
+            case Spec2Sm.StateId.TEST4B_G_1:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4B_G_1_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4B_G_ev1()
             
             # STATE: TEST4C_LOCAL_TO_ALIAS
-            case self.StateId.TEST4C_LOCAL_TO_ALIAS:
+            case Spec2Sm.StateId.TEST4C_LOCAL_TO_ALIAS:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4C_G
-            case self.StateId.TEST4C_G:
+            case Spec2Sm.StateId.TEST4C_G:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4C_G_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4C_G_1
-            case self.StateId.TEST4C_G_1:
+            case Spec2Sm.StateId.TEST4C_G_1:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4C_G_1_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4C_G_ev1()
             
             # STATE: TEST4D_EXTERNAL
-            case self.StateId.TEST4D_EXTERNAL:
+            case Spec2Sm.StateId.TEST4D_EXTERNAL:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4D_G
-            case self.StateId.TEST4D_G:
+            case Spec2Sm.StateId.TEST4D_G:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4D_G_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4D_G_1
-            case self.StateId.TEST4D_G_1:
+            case Spec2Sm.StateId.TEST4D_G_1:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4D_G_1_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4D_G_ev1()
             
             # STATE: TEST4_DECIDE
-            case self.StateId.TEST4_DECIDE:
+            case Spec2Sm.StateId.TEST4_DECIDE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4_DECIDE_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_DECIDE_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_DECIDE_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_DECIDE_ev4()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4_ROOT
-            case self.StateId.TEST4_ROOT:
+            case Spec2Sm.StateId.TEST4_ROOT:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_ROOT_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_ROOT_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_ROOT_ev4()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST4_S1
-            case self.StateId.TEST4_S1:
+            case Spec2Sm.StateId.TEST4_S1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4_S1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_ROOT_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_ROOT_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_ROOT_ev4()
             
             # STATE: TEST4_S10
-            case self.StateId.TEST4_S10:
+            case Spec2Sm.StateId.TEST4_S10:
                 match eventId:
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_S10_ev4()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_ROOT_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_ROOT_ev3()
             
             # STATE: TEST4_S10_1
-            case self.StateId.TEST4_S10_1:
+            case Spec2Sm.StateId.TEST4_S10_1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_ROOT_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_ROOT_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_S10_ev4()
             
             # STATE: TEST4_S2
-            case self.StateId.TEST4_S2:
+            case Spec2Sm.StateId.TEST4_S2:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4_S2_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_ROOT_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_ROOT_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_ROOT_ev4()
             
             # STATE: TEST4_S20
-            case self.StateId.TEST4_S20:
+            case Spec2Sm.StateId.TEST4_S20:
                 match eventId:
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_S20_ev4()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_ROOT_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_ROOT_ev3()
             
             # STATE: TEST4_S20_1
-            case self.StateId.TEST4_S20_1:
+            case Spec2Sm.StateId.TEST4_S20_1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_ROOT_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_ROOT_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_S20_ev4()
             
             # STATE: TEST4_S3
-            case self.StateId.TEST4_S3:
+            case Spec2Sm.StateId.TEST4_S3:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST4_S3_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST4_ROOT_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST4_ROOT_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST4_ROOT_ev4()
             
             # STATE: TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
-            case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
+            case Spec2Sm.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST5_ROOT
-            case self.StateId.TEST5_ROOT:
+            case Spec2Sm.StateId.TEST5_ROOT:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST5_ROOT_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST5_S1
-            case self.StateId.TEST5_S1:
+            case Spec2Sm.StateId.TEST5_S1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST5_S1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST5_ROOT_ev2()
             
             # STATE: TEST5_S2
-            case self.StateId.TEST5_S2:
+            case Spec2Sm.StateId.TEST5_S2:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST5_S2_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST5_ROOT_ev2()
             
             # STATE: TEST5_S3
-            case self.StateId.TEST5_S3:
+            case Spec2Sm.StateId.TEST5_S3:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST5_S3_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST5_ROOT_ev2()
             
             # STATE: TEST6_VARS_EXPANSIONS
-            case self.StateId.TEST6_VARS_EXPANSIONS:
+            case Spec2Sm.StateId.TEST6_VARS_EXPANSIONS:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST6_ROOT
-            case self.StateId.TEST6_ROOT:
+            case Spec2Sm.StateId.TEST6_ROOT:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: AUTO_VAR_TEST
-            case self.StateId.AUTO_VAR_TEST:
+            case Spec2Sm.StateId.AUTO_VAR_TEST:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: AUTO_VAR_TEST__S1
-            case self.StateId.AUTO_VAR_TEST__S1:
+            case Spec2Sm.StateId.AUTO_VAR_TEST__S1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._AUTO_VAR_TEST__S1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: AUTO_VAR_TEST__S2
-            case self.StateId.AUTO_VAR_TEST__S2:
+            case Spec2Sm.StateId.AUTO_VAR_TEST__S2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: META_EXPANSIONS
-            case self.StateId.META_EXPANSIONS:
+            case Spec2Sm.StateId.META_EXPANSIONS:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: META_EXPANSIONS__S1
-            case self.StateId.META_EXPANSIONS__S1:
+            case Spec2Sm.StateId.META_EXPANSIONS__S1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._META_EXPANSIONS__S1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: META_EXPANSIONS__S2
-            case self.StateId.META_EXPANSIONS__S2:
+            case Spec2Sm.StateId.META_EXPANSIONS__S2:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._META_EXPANSIONS__S2_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._META_EXPANSIONS__S2_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: S3
-            case self.StateId.S3:
+            case Spec2Sm.StateId.S3:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._S3_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: S4
-            case self.StateId.S4:
+            case Spec2Sm.StateId.S4:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: S5
-            case self.StateId.S5:
+            case Spec2Sm.StateId.S5:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: NORMAL
-            case self.StateId.NORMAL:
+            case Spec2Sm.StateId.NORMAL:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: NORMAL__S1
-            case self.StateId.NORMAL__S1:
+            case Spec2Sm.StateId.NORMAL__S1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._NORMAL__S1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: NORMAL__S2
-            case self.StateId.NORMAL__S2:
+            case Spec2Sm.StateId.NORMAL__S2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST6_VARS_EXPANSIONS__DECIDE
-            case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE:
+            case Spec2Sm.StateId.TEST6_VARS_EXPANSIONS__DECIDE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST6_VARS_EXPANSIONS__DECIDE_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST6_VARS_EXPANSIONS__DECIDE_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST6_VARS_EXPANSIONS__DECIDE_ev3()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST7_INITIAL_OR_HISTORY
-            case self.StateId.TEST7_INITIAL_OR_HISTORY:
+            case Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST7
-            case self.StateId.TEST7:
+            case Spec2Sm.StateId.TEST7:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DEEP_HISTORY1
-            case self.StateId.T7__DEEP_HISTORY1:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DH1__SANTAS_WORKSHOP
-            case self.StateId.T7__DH1__SANTAS_WORKSHOP:
+            case Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DH1__ALIENS_DETECTED
-            case self.StateId.T7__DH1__ALIENS_DETECTED:
+            case Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED:
                 match eventId:
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DH1__GET_BACKUP
-            case self.StateId.T7__DH1__GET_BACKUP:
+            case Spec2Sm.StateId.T7__DH1__GET_BACKUP:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__HERO
-            case self.StateId.T7__DH1__HERO:
+            case Spec2Sm.StateId.T7__DH1__HERO:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__CALL_BATMAN
-            case self.StateId.T7__DH1__CALL_BATMAN:
+            case Spec2Sm.StateId.T7__DH1__CALL_BATMAN:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__CALL_BATMAN_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__CALL_THOR
-            case self.StateId.T7__DH1__CALL_THOR:
+            case Spec2Sm.StateId.T7__DH1__CALL_THOR:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__CALL_THOR_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__LOCAL_HELP
-            case self.StateId.T7__DH1__LOCAL_HELP:
+            case Spec2Sm.StateId.T7__DH1__LOCAL_HELP:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__BUDDY_ELF
-            case self.StateId.T7__DH1__BUDDY_ELF:
+            case Spec2Sm.StateId.T7__DH1__BUDDY_ELF:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__BUDDY_ELF_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__POLAR_BEARS
-            case self.StateId.T7__DH1__POLAR_BEARS:
+            case Spec2Sm.StateId.T7__DH1__POLAR_BEARS:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__GIVE_COOKIES
-            case self.StateId.T7__DH1__GIVE_COOKIES:
+            case Spec2Sm.StateId.T7__DH1__GIVE_COOKIES:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__GIVE_COOKIES_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__SNOWBALL_FIGHT
-            case self.StateId.T7__DH1__SNOWBALL_FIGHT:
+            case Spec2Sm.StateId.T7__DH1__SNOWBALL_FIGHT:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__SNOWBALL_FIGHT_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV8:
+                    case Spec2Sm.EventId.EV8:
                         self._T7__DH1__ALIENS_DETECTED_ev8()
             
             # STATE: T7__DH1__BUILD
-            case self.StateId.T7__DH1__BUILD:
+            case Spec2Sm.StateId.T7__DH1__BUILD:
                 match eventId:
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DH1__TOOL
-            case self.StateId.T7__DH1__TOOL:
+            case Spec2Sm.StateId.T7__DH1__TOOL:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._T7__DH1__TOOL_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__CIRCULAR_SAW
-            case self.StateId.T7__DH1__CIRCULAR_SAW:
+            case Spec2Sm.StateId.T7__DH1__CIRCULAR_SAW:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._T7__DH1__TOOL_ev2()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__IMPACT_DRILL
-            case self.StateId.T7__DH1__IMPACT_DRILL:
+            case Spec2Sm.StateId.T7__DH1__IMPACT_DRILL:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__IMPACT_DRILL_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._T7__DH1__TOOL_ev2()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__TOY
-            case self.StateId.T7__DH1__TOY:
+            case Spec2Sm.StateId.T7__DH1__TOY:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__TOY_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__GLOW_WORM
-            case self.StateId.T7__DH1__GLOW_WORM:
+            case Spec2Sm.StateId.T7__DH1__GLOW_WORM:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__GLOW_WORM_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__RACE_CAR
-            case self.StateId.T7__DH1__RACE_CAR:
+            case Spec2Sm.StateId.T7__DH1__RACE_CAR:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__RACE_CAR_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__ROBOT
-            case self.StateId.T7__DH1__ROBOT:
+            case Spec2Sm.StateId.T7__DH1__ROBOT:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__TOY_ev1()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__BATTLEBOT
-            case self.StateId.T7__DH1__BATTLEBOT:
+            case Spec2Sm.StateId.T7__DH1__BATTLEBOT:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__BATTLEBOT_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__WALL_E
-            case self.StateId.T7__DH1__WALL_E:
+            case Spec2Sm.StateId.T7__DH1__WALL_E:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__TOY_ev1()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DH1__TEDDY_BEAR
-            case self.StateId.T7__DH1__TEDDY_BEAR:
+            case Spec2Sm.StateId.T7__DH1__TEDDY_BEAR:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__DH1__TEDDY_BEAR_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__DH1__BUILD_ev6()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__DH1__BUILD_ev7()
             
             # STATE: T7__DEEP_HISTORY2
-            case self.StateId.T7__DEEP_HISTORY2:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DEEP_HISTORY2__T7__state_0
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0:
                 match eventId:
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DEEP_HISTORY2__T7__state_1
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_1:
                 match eventId:
-                    case self.EventId.EVSTEP:
+                    case Spec2Sm.EventId.EVSTEP:
                         self._T7__DEEP_HISTORY2__T7__STATE_1_evstep()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()
             
             # STATE: T7__DEEP_HISTORY2__T7__state_2
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2:
                 match eventId:
-                    case self.EventId.EVBACK:
+                    case Spec2Sm.EventId.EVBACK:
                         self._T7__DEEP_HISTORY2__T7__STATE_2_evback()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()
             
             # STATE: T7__DEEP_HISTORY2__T7__state_6
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_6:
                 match eventId:
-                    case self.EventId.EVSTEP:
+                    case Spec2Sm.EventId.EVSTEP:
                         self._T7__DEEP_HISTORY2__T7__STATE_6_evstep()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()
-                    case self.EventId.EVBACK:
+                    case Spec2Sm.EventId.EVBACK:
                         self._T7__DEEP_HISTORY2__T7__STATE_2_evback()
             
             # STATE: T7__DEEP_HISTORY2__T7__state_9
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY2__T7__STATE_0_evopen()
-                    case self.EventId.EVBACK:
+                    case Spec2Sm.EventId.EVBACK:
                         self._T7__DEEP_HISTORY2__T7__STATE_2_evback()
             
             # STATE: T7__DEEP_HISTORY2__T7__state_3
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_3:
                 match eventId:
-                    case self.EventId.EVCLOSE:
+                    case Spec2Sm.EventId.EVCLOSE:
                         self._T7__DEEP_HISTORY2__T7__STATE_3_evclose()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DEEP_HISTORY3
-            case self.StateId.T7__DEEP_HISTORY3:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DEEP_HISTORY3__T7__state_0
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0:
                 match eventId:
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__DEEP_HISTORY3__T7__state_1
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_1:
                 match eventId:
-                    case self.EventId.EVSTEP:
+                    case Spec2Sm.EventId.EVSTEP:
                         self._T7__DEEP_HISTORY3__T7__STATE_1_evstep()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()
             
             # STATE: T7__DEEP_HISTORY3__T7__state_2
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2:
                 match eventId:
-                    case self.EventId.EVBACK:
+                    case Spec2Sm.EventId.EVBACK:
                         self._T7__DEEP_HISTORY3__T7__STATE_2_evback()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()
             
             # STATE: T7__DEEP_HISTORY3__T7__state_6
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_6:
                 match eventId:
-                    case self.EventId.EVSTEP:
+                    case Spec2Sm.EventId.EVSTEP:
                         self._T7__DEEP_HISTORY3__T7__STATE_6_evstep()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()
-                    case self.EventId.EVBACK:
+                    case Spec2Sm.EventId.EVBACK:
                         self._T7__DEEP_HISTORY3__T7__STATE_2_evback()
             
             # STATE: T7__DEEP_HISTORY3__T7__state_9
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EVOPEN:
+                    case Spec2Sm.EventId.EVOPEN:
                         self._T7__DEEP_HISTORY3__T7__STATE_0_evopen()
-                    case self.EventId.EVBACK:
+                    case Spec2Sm.EventId.EVBACK:
                         self._T7__DEEP_HISTORY3__T7__STATE_2_evback()
             
             # STATE: T7__DEEP_HISTORY3__T7__state_3
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3:
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_3:
                 match eventId:
-                    case self.EventId.EVCLOSE:
+                    case Spec2Sm.EventId.EVCLOSE:
                         self._T7__DEEP_HISTORY3__T7__STATE_3_evclose()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__HISTORY1
-            case self.StateId.T7__HISTORY1:
+            case Spec2Sm.StateId.T7__HISTORY1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__H1__OFF
-            case self.StateId.T7__H1__OFF:
+            case Spec2Sm.StateId.T7__H1__OFF:
                 match eventId:
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._T7__H1__OFF_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._T7__H1__OFF_ev4()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__H1__OFF_ev7()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__H1__OFF1
-            case self.StateId.T7__H1__OFF1:
+            case Spec2Sm.StateId.T7__H1__OFF1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__H1__OFF1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._T7__H1__OFF_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._T7__H1__OFF_ev4()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__H1__OFF_ev7()
             
             # STATE: T7__H1__OFF2
-            case self.StateId.T7__H1__OFF2:
+            case Spec2Sm.StateId.T7__H1__OFF2:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__H1__OFF2_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._T7__H1__OFF_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._T7__H1__OFF_ev4()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__H1__OFF_ev7()
             
             # STATE: T7__H1__OFF3
-            case self.StateId.T7__H1__OFF3:
+            case Spec2Sm.StateId.T7__H1__OFF3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._T7__H1__OFF_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._T7__H1__OFF_ev4()
-                    case self.EventId.EV7:
+                    case Spec2Sm.EventId.EV7:
                         self._T7__H1__OFF_ev7()
             
             # STATE: T7__H1__ON
-            case self.StateId.T7__H1__ON:
+            case Spec2Sm.StateId.T7__H1__ON:
                 match eventId:
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__H1__ON_ev6()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__H1__ON1
-            case self.StateId.T7__H1__ON1:
+            case Spec2Sm.StateId.T7__H1__ON1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__H1__ON1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__H1__ON_ev6()
             
             # STATE: T7__H1__ON2
-            case self.StateId.T7__H1__ON2:
+            case Spec2Sm.StateId.T7__H1__ON2:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__H1__ON2_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__H1__ON_ev6()
             
             # STATE: T7__H1__ON3
-            case self.StateId.T7__H1__ON3:
+            case Spec2Sm.StateId.T7__H1__ON3:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__H1__ON3_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._T7__H1__ON_ev6()
             
             # STATE: T7__INITIAL1
-            case self.StateId.T7__INITIAL1:
+            case Spec2Sm.StateId.T7__INITIAL1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__INITIAL1__PARENT
-            case self.StateId.T7__INITIAL1__PARENT:
+            case Spec2Sm.StateId.T7__INITIAL1__PARENT:
                 match eventId:
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._T7__INITIAL1__PARENT_ev5()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: T7__INITIAL1__G
-            case self.StateId.T7__INITIAL1__G:
+            case Spec2Sm.StateId.T7__INITIAL1__G:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._T7__INITIAL1__G_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._T7__INITIAL1__PARENT_ev5()
             
             # STATE: T7__INITIAL1__G_S1
-            case self.StateId.T7__INITIAL1__G_S1:
+            case Spec2Sm.StateId.T7__INITIAL1__G_S1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._T7__INITIAL1__G_ev2()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._T7__INITIAL1__PARENT_ev5()
             
             # STATE: T7__INITIAL1__G_S2
-            case self.StateId.T7__INITIAL1__G_S2:
+            case Spec2Sm.StateId.T7__INITIAL1__G_S2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._T7__INITIAL1__G_ev2()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._T7__INITIAL1__PARENT_ev5()
             
             # STATE: T7__INITIAL1__G_S3
-            case self.StateId.T7__INITIAL1__G_S3:
+            case Spec2Sm.StateId.T7__INITIAL1__G_S3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._T7__INITIAL1__G_ev2()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._T7__INITIAL1__PARENT_ev5()
             
             # STATE: T7__INITIAL1__S1
-            case self.StateId.T7__INITIAL1__S1:
+            case Spec2Sm.StateId.T7__INITIAL1__S1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._T7__INITIAL1__S1_ev1()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._T7__INITIAL1__S1_ev3()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._T7__INITIAL1__PARENT_ev5()
             
             # STATE: TEST7_DECIDE
-            case self.StateId.TEST7_DECIDE:
+            case Spec2Sm.StateId.TEST7_DECIDE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST7_DECIDE_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST7_DECIDE_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST7_DECIDE_ev3()
-                    case self.EventId.EV4:
+                    case Spec2Sm.EventId.EV4:
                         self._TEST7_DECIDE_ev4()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST7_DECIDE_ev5()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST8_ENTRY_CHOICE
-            case self.StateId.TEST8_ENTRY_CHOICE:
+            case Spec2Sm.StateId.TEST8_ENTRY_CHOICE:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST8_ROOT
-            case self.StateId.TEST8_ROOT:
+            case Spec2Sm.StateId.TEST8_ROOT:
                 match eventId:
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST8_ROOT_ev5()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST8_ROOT_ev3()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST8_G
-            case self.StateId.TEST8_G:
+            case Spec2Sm.StateId.TEST8_G:
                 match eventId:
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST8_G_ev2()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST8_ROOT_ev3()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST8_ROOT_ev5()
             
             # STATE: TEST8_G_S1
-            case self.StateId.TEST8_G_S1:
+            case Spec2Sm.StateId.TEST8_G_S1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST8_G_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST8_ROOT_ev3()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST8_ROOT_ev5()
             
             # STATE: TEST8_G_S2
-            case self.StateId.TEST8_G_S2:
+            case Spec2Sm.StateId.TEST8_G_S2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST8_G_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST8_ROOT_ev3()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST8_ROOT_ev5()
             
             # STATE: TEST8_G_S3
-            case self.StateId.TEST8_G_S3:
+            case Spec2Sm.StateId.TEST8_G_S3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST8_G_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST8_ROOT_ev3()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST8_ROOT_ev5()
             
             # STATE: TEST8_S1
-            case self.StateId.TEST8_S1:
+            case Spec2Sm.StateId.TEST8_S1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST8_S1_ev1()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST8_S1_ev3()
-                    case self.EventId.EV6:
+                    case Spec2Sm.EventId.EV6:
                         self._TEST8_S1_ev6()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST8_ROOT_ev5()
             
             # STATE: TEST9_EXIT_CHOICE
-            case self.StateId.TEST9_EXIT_CHOICE:
+            case Spec2Sm.StateId.TEST9_EXIT_CHOICE:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9_DECIDE
-            case self.StateId.TEST9_DECIDE:
+            case Spec2Sm.StateId.TEST9_DECIDE:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9_DECIDE_ev1()
-                    case self.EventId.EV2:
+                    case Spec2Sm.EventId.EV2:
                         self._TEST9_DECIDE_ev2()
-                    case self.EventId.EV3:
+                    case Spec2Sm.EventId.EV3:
                         self._TEST9_DECIDE_ev3()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9_ROOT
-            case self.StateId.TEST9_ROOT:
+            case Spec2Sm.StateId.TEST9_ROOT:
                 match eventId:
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST9_ROOT_ev5()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9_G_S1
-            case self.StateId.TEST9_G_S1:
+            case Spec2Sm.StateId.TEST9_G_S1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST9_ROOT_ev5()
             
             # STATE: TEST9_G_S2
-            case self.StateId.TEST9_G_S2:
+            case Spec2Sm.StateId.TEST9_G_S2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST9_ROOT_ev5()
             
             # STATE: TEST9_G_S3
-            case self.StateId.TEST9_G_S3:
+            case Spec2Sm.StateId.TEST9_G_S3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST9_ROOT_ev5()
             
             # STATE: TEST9_G_S4
-            case self.StateId.TEST9_G_S4:
+            case Spec2Sm.StateId.TEST9_G_S4:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST9_ROOT_ev5()
             
             # STATE: TEST9_S1
-            case self.StateId.TEST9_S1:
+            case Spec2Sm.StateId.TEST9_S1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST9_ROOT_ev5()
             
             # STATE: TEST9_S1_1
-            case self.StateId.TEST9_S1_1:
+            case Spec2Sm.StateId.TEST9_S1_1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9_S1_1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV5:
+                    case Spec2Sm.EventId.EV5:
                         self._TEST9_ROOT_ev5()
             
             # STATE: TEST9A_ROOT
-            case self.StateId.TEST9A_ROOT:
+            case Spec2Sm.StateId.TEST9A_ROOT:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9A_S1
-            case self.StateId.TEST9A_S1:
+            case Spec2Sm.StateId.TEST9A_S1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9A_S1_1
-            case self.StateId.TEST9A_S1_1:
+            case Spec2Sm.StateId.TEST9A_S1_1:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9A_S1_1_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9B_ROOT
-            case self.StateId.TEST9B_ROOT:
+            case Spec2Sm.StateId.TEST9B_ROOT:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9B_ROOT__A1
-            case self.StateId.TEST9B_ROOT__A1:
+            case Spec2Sm.StateId.TEST9B_ROOT__A1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
             
             # STATE: TEST9B_ROOT__A2
-            case self.StateId.TEST9B_ROOT__A2:
+            case Spec2Sm.StateId.TEST9B_ROOT__A2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
             
             # STATE: TEST9B_ROOT__A3
-            case self.StateId.TEST9B_ROOT__A3:
+            case Spec2Sm.StateId.TEST9B_ROOT__A3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
             
             # STATE: TEST9B_ROOT__A4
-            case self.StateId.TEST9B_ROOT__A4:
+            case Spec2Sm.StateId.TEST9B_ROOT__A4:
                 match eventId:
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT__A4_ev1()
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
             
             # STATE: TEST9B_ROOT__B1
-            case self.StateId.TEST9B_ROOT__B1:
+            case Spec2Sm.StateId.TEST9B_ROOT__B1:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
             
             # STATE: TEST9B_ROOT__B2
-            case self.StateId.TEST9B_ROOT__B2:
+            case Spec2Sm.StateId.TEST9B_ROOT__B2:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
             
             # STATE: TEST9B_ROOT__B3
-            case self.StateId.TEST9B_ROOT__B3:
+            case Spec2Sm.StateId.TEST9B_ROOT__B3:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
             
             # STATE: TEST9B_ROOT__B4
-            case self.StateId.TEST9B_ROOT__B4:
+            case Spec2Sm.StateId.TEST9B_ROOT__B4:
                 match eventId:
                     # Events not handled by this state:
-                    case self.EventId.DO:
+                    case Spec2Sm.EventId.DO:
                         self._ROOT_do()
-                    case self.EventId.EV1:
+                    case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
     
     # This function is used when StateSmith doesn't know what the active leaf state is at
@@ -2036,517 +2036,517 @@ class Spec2Sm(Spec2SmBase):
         while (self.stateId != desiredState):
 
             match self.stateId:
-                case self.StateId.PREFIXING:
+                case Spec2Sm.StateId.PREFIXING:
                     self._PREFIXING_exit()
                 
-                case self.StateId.PREFIXING__ORDER_MENU:
+                case Spec2Sm.StateId.PREFIXING__ORDER_MENU:
                     self._PREFIXING__ORDER_MENU_exit()
                 
-                case self.StateId.PREFIXING__OM__BEVERAGE:
+                case Spec2Sm.StateId.PREFIXING__OM__BEVERAGE:
                     self._PREFIXING__OM__BEVERAGE_exit()
                 
-                case self.StateId.PREFIXING__OM__BEV__NONE:
+                case Spec2Sm.StateId.PREFIXING__OM__BEV__NONE:
                     self._PREFIXING__OM__BEV__NONE_exit()
                 
-                case self.StateId.PREFIXING__OM__BEV__TEA:
+                case Spec2Sm.StateId.PREFIXING__OM__BEV__TEA:
                     self._PREFIXING__OM__BEV__TEA_exit()
                 
-                case self.StateId.PREFIXING__OM__BEV__WATER:
+                case Spec2Sm.StateId.PREFIXING__OM__BEV__WATER:
                     self._PREFIXING__OM__BEV__WATER_exit()
                 
-                case self.StateId.PREFIXING__OM__VEG:
+                case Spec2Sm.StateId.PREFIXING__OM__VEG:
                     self._PREFIXING__OM__VEG_exit()
                 
-                case self.StateId.PREFIXING__OM__VEG__NONE:
+                case Spec2Sm.StateId.PREFIXING__OM__VEG__NONE:
                     self._PREFIXING__OM__VEG__NONE_exit()
                 
-                case self.StateId.PREFIXING__OM__VEG__POTATO:
+                case Spec2Sm.StateId.PREFIXING__OM__VEG__POTATO:
                     self._PREFIXING__OM__VEG__POTATO_exit()
                 
-                case self.StateId.PREFIXING__OM__VEG__YAM:
+                case Spec2Sm.StateId.PREFIXING__OM__VEG__YAM:
                     self._PREFIXING__OM__VEG__YAM_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
                 
-                case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
+                case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM:
                     self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit()
                 
-                case self.StateId.SPEC2SM__DECIDE:
+                case Spec2Sm.StateId.SPEC2SM__DECIDE:
                     self._SPEC2SM__DECIDE_exit()
                 
-                case self.StateId.TEST1_DO_EVENT_TESTING:
+                case Spec2Sm.StateId.TEST1_DO_EVENT_TESTING:
                     self._TEST1_DO_EVENT_TESTING_exit()
                 
-                case self.StateId.TEST1_ROOT:
+                case Spec2Sm.StateId.TEST1_ROOT:
                     self._TEST1_ROOT_exit()
                 
-                case self.StateId.TEST1_S1:
+                case Spec2Sm.StateId.TEST1_S1:
                     self._TEST1_S1_exit()
                 
-                case self.StateId.TEST1_S1_1:
+                case Spec2Sm.StateId.TEST1_S1_1:
                     self._TEST1_S1_1_exit()
                 
-                case self.StateId.TEST1_S2:
+                case Spec2Sm.StateId.TEST1_S2:
                     self._TEST1_S2_exit()
                 
-                case self.StateId.TEST10_CHOICE_POINT:
+                case Spec2Sm.StateId.TEST10_CHOICE_POINT:
                     self._TEST10_CHOICE_POINT_exit()
                 
-                case self.StateId.TEST10_A:
+                case Spec2Sm.StateId.TEST10_A:
                     self._TEST10_A_exit()
                 
-                case self.StateId.TEST10_A_1:
+                case Spec2Sm.StateId.TEST10_A_1:
                     self._TEST10_A_1_exit()
                 
-                case self.StateId.TEST10_ROOT:
+                case Spec2Sm.StateId.TEST10_ROOT:
                     self._TEST10_ROOT_exit()
                 
-                case self.StateId.TEST10_G:
+                case Spec2Sm.StateId.TEST10_G:
                     self._TEST10_G_exit()
                 
-                case self.StateId.TEST10_G_S0:
+                case Spec2Sm.StateId.TEST10_G_S0:
                     self._TEST10_G_S0_exit()
                 
-                case self.StateId.TEST10_G_S1:
+                case Spec2Sm.StateId.TEST10_G_S1:
                     self._TEST10_G_S1_exit()
                 
-                case self.StateId.TEST10_G_S2:
+                case Spec2Sm.StateId.TEST10_G_S2:
                     self._TEST10_G_S2_exit()
                 
-                case self.StateId.TEST10_G_S3:
+                case Spec2Sm.StateId.TEST10_G_S3:
                     self._TEST10_G_S3_exit()
                 
-                case self.StateId.TEST10_S1:
+                case Spec2Sm.StateId.TEST10_S1:
                     self._TEST10_S1_exit()
                 
-                case self.StateId.TEST10_S4:
+                case Spec2Sm.StateId.TEST10_S4:
                     self._TEST10_S4_exit()
                 
-                case self.StateId.TEST2_REGULAR_EVENT_TESTING:
+                case Spec2Sm.StateId.TEST2_REGULAR_EVENT_TESTING:
                     self._TEST2_REGULAR_EVENT_TESTING_exit()
                 
-                case self.StateId.TEST2_ROOT:
+                case Spec2Sm.StateId.TEST2_ROOT:
                     self._TEST2_ROOT_exit()
                 
-                case self.StateId.TEST2_S1:
+                case Spec2Sm.StateId.TEST2_S1:
                     self._TEST2_S1_exit()
                 
-                case self.StateId.TEST2_S1_1:
+                case Spec2Sm.StateId.TEST2_S1_1:
                     self._TEST2_S1_1_exit()
                 
-                case self.StateId.TEST2_S2:
+                case Spec2Sm.StateId.TEST2_S2:
                     self._TEST2_S2_exit()
                 
-                case self.StateId.TEST3_BEHAVIOR_ORDERING:
+                case Spec2Sm.StateId.TEST3_BEHAVIOR_ORDERING:
                     self._TEST3_BEHAVIOR_ORDERING_exit()
                 
-                case self.StateId.TEST3_ROOT:
+                case Spec2Sm.StateId.TEST3_ROOT:
                     self._TEST3_ROOT_exit()
                 
-                case self.StateId.TEST3_S1:
+                case Spec2Sm.StateId.TEST3_S1:
                     self._TEST3_S1_exit()
                 
-                case self.StateId.TEST3_S2:
+                case Spec2Sm.StateId.TEST3_S2:
                     self._TEST3_S2_exit()
                 
-                case self.StateId.TEST3_S3:
+                case Spec2Sm.StateId.TEST3_S3:
                     self._TEST3_S3_exit()
                 
-                case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
+                case Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS:
                     self._TEST4_PARENT_CHILD_TRANSITIONS_exit()
                 
-                case self.StateId.TEST4_B_AND_OTHERS:
+                case Spec2Sm.StateId.TEST4_B_AND_OTHERS:
                     self._TEST4_B_AND_OTHERS_exit()
                 
-                case self.StateId.TEST4B_LOCAL:
+                case Spec2Sm.StateId.TEST4B_LOCAL:
                     self._TEST4B_LOCAL_exit()
                 
-                case self.StateId.TEST4B_G:
+                case Spec2Sm.StateId.TEST4B_G:
                     self._TEST4B_G_exit()
                 
-                case self.StateId.TEST4B_G_1:
+                case Spec2Sm.StateId.TEST4B_G_1:
                     self._TEST4B_G_1_exit()
                 
-                case self.StateId.TEST4C_LOCAL_TO_ALIAS:
+                case Spec2Sm.StateId.TEST4C_LOCAL_TO_ALIAS:
                     self._TEST4C_LOCAL_TO_ALIAS_exit()
                 
-                case self.StateId.TEST4C_G:
+                case Spec2Sm.StateId.TEST4C_G:
                     self._TEST4C_G_exit()
                 
-                case self.StateId.TEST4C_G_1:
+                case Spec2Sm.StateId.TEST4C_G_1:
                     self._TEST4C_G_1_exit()
                 
-                case self.StateId.TEST4D_EXTERNAL:
+                case Spec2Sm.StateId.TEST4D_EXTERNAL:
                     self._TEST4D_EXTERNAL_exit()
                 
-                case self.StateId.TEST4D_G:
+                case Spec2Sm.StateId.TEST4D_G:
                     self._TEST4D_G_exit()
                 
-                case self.StateId.TEST4D_G_1:
+                case Spec2Sm.StateId.TEST4D_G_1:
                     self._TEST4D_G_1_exit()
                 
-                case self.StateId.TEST4_DECIDE:
+                case Spec2Sm.StateId.TEST4_DECIDE:
                     self._TEST4_DECIDE_exit()
                 
-                case self.StateId.TEST4_ROOT:
+                case Spec2Sm.StateId.TEST4_ROOT:
                     self._TEST4_ROOT_exit()
                 
-                case self.StateId.TEST4_S1:
+                case Spec2Sm.StateId.TEST4_S1:
                     self._TEST4_S1_exit()
                 
-                case self.StateId.TEST4_S10:
+                case Spec2Sm.StateId.TEST4_S10:
                     self._TEST4_S10_exit()
                 
-                case self.StateId.TEST4_S10_1:
+                case Spec2Sm.StateId.TEST4_S10_1:
                     self._TEST4_S10_1_exit()
                 
-                case self.StateId.TEST4_S2:
+                case Spec2Sm.StateId.TEST4_S2:
                     self._TEST4_S2_exit()
                 
-                case self.StateId.TEST4_S20:
+                case Spec2Sm.StateId.TEST4_S20:
                     self._TEST4_S20_exit()
                 
-                case self.StateId.TEST4_S20_1:
+                case Spec2Sm.StateId.TEST4_S20_1:
                     self._TEST4_S20_1_exit()
                 
-                case self.StateId.TEST4_S3:
+                case Spec2Sm.StateId.TEST4_S3:
                     self._TEST4_S3_exit()
                 
-                case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
+                case Spec2Sm.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS:
                     self._TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit()
                 
-                case self.StateId.TEST5_ROOT:
+                case Spec2Sm.StateId.TEST5_ROOT:
                     self._TEST5_ROOT_exit()
                 
-                case self.StateId.TEST5_S1:
+                case Spec2Sm.StateId.TEST5_S1:
                     self._TEST5_S1_exit()
                 
-                case self.StateId.TEST5_S2:
+                case Spec2Sm.StateId.TEST5_S2:
                     self._TEST5_S2_exit()
                 
-                case self.StateId.TEST5_S3:
+                case Spec2Sm.StateId.TEST5_S3:
                     self._TEST5_S3_exit()
                 
-                case self.StateId.TEST6_VARS_EXPANSIONS:
+                case Spec2Sm.StateId.TEST6_VARS_EXPANSIONS:
                     self._TEST6_VARS_EXPANSIONS_exit()
                 
-                case self.StateId.TEST6_ROOT:
+                case Spec2Sm.StateId.TEST6_ROOT:
                     self._TEST6_ROOT_exit()
                 
-                case self.StateId.AUTO_VAR_TEST:
+                case Spec2Sm.StateId.AUTO_VAR_TEST:
                     self._AUTO_VAR_TEST_exit()
                 
-                case self.StateId.AUTO_VAR_TEST__S1:
+                case Spec2Sm.StateId.AUTO_VAR_TEST__S1:
                     self._AUTO_VAR_TEST__S1_exit()
                 
-                case self.StateId.AUTO_VAR_TEST__S2:
+                case Spec2Sm.StateId.AUTO_VAR_TEST__S2:
                     self._AUTO_VAR_TEST__S2_exit()
                 
-                case self.StateId.META_EXPANSIONS:
+                case Spec2Sm.StateId.META_EXPANSIONS:
                     self._META_EXPANSIONS_exit()
                 
-                case self.StateId.META_EXPANSIONS__S1:
+                case Spec2Sm.StateId.META_EXPANSIONS__S1:
                     self._META_EXPANSIONS__S1_exit()
                 
-                case self.StateId.META_EXPANSIONS__S2:
+                case Spec2Sm.StateId.META_EXPANSIONS__S2:
                     self._META_EXPANSIONS__S2_exit()
                 
-                case self.StateId.S3:
+                case Spec2Sm.StateId.S3:
                     self._S3_exit()
                 
-                case self.StateId.S4:
+                case Spec2Sm.StateId.S4:
                     self._S4_exit()
                 
-                case self.StateId.S5:
+                case Spec2Sm.StateId.S5:
                     self._S5_exit()
                 
-                case self.StateId.NORMAL:
+                case Spec2Sm.StateId.NORMAL:
                     self._NORMAL_exit()
                 
-                case self.StateId.NORMAL__S1:
+                case Spec2Sm.StateId.NORMAL__S1:
                     self._NORMAL__S1_exit()
                 
-                case self.StateId.NORMAL__S2:
+                case Spec2Sm.StateId.NORMAL__S2:
                     self._NORMAL__S2_exit()
                 
-                case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE:
+                case Spec2Sm.StateId.TEST6_VARS_EXPANSIONS__DECIDE:
                     self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
                 
-                case self.StateId.TEST7_INITIAL_OR_HISTORY:
+                case Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY:
                     self._TEST7_INITIAL_OR_HISTORY_exit()
                 
-                case self.StateId.TEST7:
+                case Spec2Sm.StateId.TEST7:
                     self._TEST7_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY1:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY1:
                     self._T7__DEEP_HISTORY1_exit()
                 
-                case self.StateId.T7__DH1__SANTAS_WORKSHOP:
+                case Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP:
                     self._T7__DH1__SANTAS_WORKSHOP_exit()
                 
-                case self.StateId.T7__DH1__ALIENS_DETECTED:
+                case Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED:
                     self._T7__DH1__ALIENS_DETECTED_exit()
                 
-                case self.StateId.T7__DH1__GET_BACKUP:
+                case Spec2Sm.StateId.T7__DH1__GET_BACKUP:
                     self._T7__DH1__GET_BACKUP_exit()
                 
-                case self.StateId.T7__DH1__HERO:
+                case Spec2Sm.StateId.T7__DH1__HERO:
                     self._T7__DH1__HERO_exit()
                 
-                case self.StateId.T7__DH1__CALL_BATMAN:
+                case Spec2Sm.StateId.T7__DH1__CALL_BATMAN:
                     self._T7__DH1__CALL_BATMAN_exit()
                 
-                case self.StateId.T7__DH1__CALL_THOR:
+                case Spec2Sm.StateId.T7__DH1__CALL_THOR:
                     self._T7__DH1__CALL_THOR_exit()
                 
-                case self.StateId.T7__DH1__LOCAL_HELP:
+                case Spec2Sm.StateId.T7__DH1__LOCAL_HELP:
                     self._T7__DH1__LOCAL_HELP_exit()
                 
-                case self.StateId.T7__DH1__BUDDY_ELF:
+                case Spec2Sm.StateId.T7__DH1__BUDDY_ELF:
                     self._T7__DH1__BUDDY_ELF_exit()
                 
-                case self.StateId.T7__DH1__POLAR_BEARS:
+                case Spec2Sm.StateId.T7__DH1__POLAR_BEARS:
                     self._T7__DH1__POLAR_BEARS_exit()
                 
-                case self.StateId.T7__DH1__GIVE_COOKIES:
+                case Spec2Sm.StateId.T7__DH1__GIVE_COOKIES:
                     self._T7__DH1__GIVE_COOKIES_exit()
                 
-                case self.StateId.T7__DH1__SNOWBALL_FIGHT:
+                case Spec2Sm.StateId.T7__DH1__SNOWBALL_FIGHT:
                     self._T7__DH1__SNOWBALL_FIGHT_exit()
                 
-                case self.StateId.T7__DH1__BUILD:
+                case Spec2Sm.StateId.T7__DH1__BUILD:
                     self._T7__DH1__BUILD_exit()
                 
-                case self.StateId.T7__DH1__TOOL:
+                case Spec2Sm.StateId.T7__DH1__TOOL:
                     self._T7__DH1__TOOL_exit()
                 
-                case self.StateId.T7__DH1__CIRCULAR_SAW:
+                case Spec2Sm.StateId.T7__DH1__CIRCULAR_SAW:
                     self._T7__DH1__CIRCULAR_SAW_exit()
                 
-                case self.StateId.T7__DH1__IMPACT_DRILL:
+                case Spec2Sm.StateId.T7__DH1__IMPACT_DRILL:
                     self._T7__DH1__IMPACT_DRILL_exit()
                 
-                case self.StateId.T7__DH1__TOY:
+                case Spec2Sm.StateId.T7__DH1__TOY:
                     self._T7__DH1__TOY_exit()
                 
-                case self.StateId.T7__DH1__GLOW_WORM:
+                case Spec2Sm.StateId.T7__DH1__GLOW_WORM:
                     self._T7__DH1__GLOW_WORM_exit()
                 
-                case self.StateId.T7__DH1__RACE_CAR:
+                case Spec2Sm.StateId.T7__DH1__RACE_CAR:
                     self._T7__DH1__RACE_CAR_exit()
                 
-                case self.StateId.T7__DH1__ROBOT:
+                case Spec2Sm.StateId.T7__DH1__ROBOT:
                     self._T7__DH1__ROBOT_exit()
                 
-                case self.StateId.T7__DH1__BATTLEBOT:
+                case Spec2Sm.StateId.T7__DH1__BATTLEBOT:
                     self._T7__DH1__BATTLEBOT_exit()
                 
-                case self.StateId.T7__DH1__WALL_E:
+                case Spec2Sm.StateId.T7__DH1__WALL_E:
                     self._T7__DH1__WALL_E_exit()
                 
-                case self.StateId.T7__DH1__TEDDY_BEAR:
+                case Spec2Sm.StateId.T7__DH1__TEDDY_BEAR:
                     self._T7__DH1__TEDDY_BEAR_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY2:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY2:
                     self._T7__DEEP_HISTORY2_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0:
                     self._T7__DEEP_HISTORY2__T7__STATE_0_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_1:
                     self._T7__DEEP_HISTORY2__T7__STATE_1_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2:
                     self._T7__DEEP_HISTORY2__T7__STATE_2_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_6:
                     self._T7__DEEP_HISTORY2__T7__STATE_6_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9:
                     self._T7__DEEP_HISTORY2__T7__STATE_9_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_3:
                     self._T7__DEEP_HISTORY2__T7__STATE_3_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY3:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY3:
                     self._T7__DEEP_HISTORY3_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0:
                     self._T7__DEEP_HISTORY3__T7__STATE_0_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_1:
                     self._T7__DEEP_HISTORY3__T7__STATE_1_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2:
                     self._T7__DEEP_HISTORY3__T7__STATE_2_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_6:
                     self._T7__DEEP_HISTORY3__T7__STATE_6_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_9:
                     self._T7__DEEP_HISTORY3__T7__STATE_9_exit()
                 
-                case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3:
+                case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_3:
                     self._T7__DEEP_HISTORY3__T7__STATE_3_exit()
                 
-                case self.StateId.T7__HISTORY1:
+                case Spec2Sm.StateId.T7__HISTORY1:
                     self._T7__HISTORY1_exit()
                 
-                case self.StateId.T7__H1__OFF:
+                case Spec2Sm.StateId.T7__H1__OFF:
                     self._T7__H1__OFF_exit()
                 
-                case self.StateId.T7__H1__OFF1:
+                case Spec2Sm.StateId.T7__H1__OFF1:
                     self._T7__H1__OFF1_exit()
                 
-                case self.StateId.T7__H1__OFF2:
+                case Spec2Sm.StateId.T7__H1__OFF2:
                     self._T7__H1__OFF2_exit()
                 
-                case self.StateId.T7__H1__OFF3:
+                case Spec2Sm.StateId.T7__H1__OFF3:
                     self._T7__H1__OFF3_exit()
                 
-                case self.StateId.T7__H1__ON:
+                case Spec2Sm.StateId.T7__H1__ON:
                     self._T7__H1__ON_exit()
                 
-                case self.StateId.T7__H1__ON1:
+                case Spec2Sm.StateId.T7__H1__ON1:
                     self._T7__H1__ON1_exit()
                 
-                case self.StateId.T7__H1__ON2:
+                case Spec2Sm.StateId.T7__H1__ON2:
                     self._T7__H1__ON2_exit()
                 
-                case self.StateId.T7__H1__ON3:
+                case Spec2Sm.StateId.T7__H1__ON3:
                     self._T7__H1__ON3_exit()
                 
-                case self.StateId.T7__INITIAL1:
+                case Spec2Sm.StateId.T7__INITIAL1:
                     self._T7__INITIAL1_exit()
                 
-                case self.StateId.T7__INITIAL1__PARENT:
+                case Spec2Sm.StateId.T7__INITIAL1__PARENT:
                     self._T7__INITIAL1__PARENT_exit()
                 
-                case self.StateId.T7__INITIAL1__G:
+                case Spec2Sm.StateId.T7__INITIAL1__G:
                     self._T7__INITIAL1__G_exit()
                 
-                case self.StateId.T7__INITIAL1__G_S1:
+                case Spec2Sm.StateId.T7__INITIAL1__G_S1:
                     self._T7__INITIAL1__G_S1_exit()
                 
-                case self.StateId.T7__INITIAL1__G_S2:
+                case Spec2Sm.StateId.T7__INITIAL1__G_S2:
                     self._T7__INITIAL1__G_S2_exit()
                 
-                case self.StateId.T7__INITIAL1__G_S3:
+                case Spec2Sm.StateId.T7__INITIAL1__G_S3:
                     self._T7__INITIAL1__G_S3_exit()
                 
-                case self.StateId.T7__INITIAL1__S1:
+                case Spec2Sm.StateId.T7__INITIAL1__S1:
                     self._T7__INITIAL1__S1_exit()
                 
-                case self.StateId.TEST7_DECIDE:
+                case Spec2Sm.StateId.TEST7_DECIDE:
                     self._TEST7_DECIDE_exit()
                 
-                case self.StateId.TEST8_ENTRY_CHOICE:
+                case Spec2Sm.StateId.TEST8_ENTRY_CHOICE:
                     self._TEST8_ENTRY_CHOICE_exit()
                 
-                case self.StateId.TEST8_ROOT:
+                case Spec2Sm.StateId.TEST8_ROOT:
                     self._TEST8_ROOT_exit()
                 
-                case self.StateId.TEST8_G:
+                case Spec2Sm.StateId.TEST8_G:
                     self._TEST8_G_exit()
                 
-                case self.StateId.TEST8_G_S1:
+                case Spec2Sm.StateId.TEST8_G_S1:
                     self._TEST8_G_S1_exit()
                 
-                case self.StateId.TEST8_G_S2:
+                case Spec2Sm.StateId.TEST8_G_S2:
                     self._TEST8_G_S2_exit()
                 
-                case self.StateId.TEST8_G_S3:
+                case Spec2Sm.StateId.TEST8_G_S3:
                     self._TEST8_G_S3_exit()
                 
-                case self.StateId.TEST8_S1:
+                case Spec2Sm.StateId.TEST8_S1:
                     self._TEST8_S1_exit()
                 
-                case self.StateId.TEST9_EXIT_CHOICE:
+                case Spec2Sm.StateId.TEST9_EXIT_CHOICE:
                     self._TEST9_EXIT_CHOICE_exit()
                 
-                case self.StateId.TEST9_DECIDE:
+                case Spec2Sm.StateId.TEST9_DECIDE:
                     self._TEST9_DECIDE_exit()
                 
-                case self.StateId.TEST9_ROOT:
+                case Spec2Sm.StateId.TEST9_ROOT:
                     self._TEST9_ROOT_exit()
                 
-                case self.StateId.TEST9_G_S1:
+                case Spec2Sm.StateId.TEST9_G_S1:
                     self._TEST9_G_S1_exit()
                 
-                case self.StateId.TEST9_G_S2:
+                case Spec2Sm.StateId.TEST9_G_S2:
                     self._TEST9_G_S2_exit()
                 
-                case self.StateId.TEST9_G_S3:
+                case Spec2Sm.StateId.TEST9_G_S3:
                     self._TEST9_G_S3_exit()
                 
-                case self.StateId.TEST9_G_S4:
+                case Spec2Sm.StateId.TEST9_G_S4:
                     self._TEST9_G_S4_exit()
                 
-                case self.StateId.TEST9_S1:
+                case Spec2Sm.StateId.TEST9_S1:
                     self._TEST9_S1_exit()
                 
-                case self.StateId.TEST9_S1_1:
+                case Spec2Sm.StateId.TEST9_S1_1:
                     self._TEST9_S1_1_exit()
                 
-                case self.StateId.TEST9A_ROOT:
+                case Spec2Sm.StateId.TEST9A_ROOT:
                     self._TEST9A_ROOT_exit()
                 
-                case self.StateId.TEST9A_S1:
+                case Spec2Sm.StateId.TEST9A_S1:
                     self._TEST9A_S1_exit()
                 
-                case self.StateId.TEST9A_S1_1:
+                case Spec2Sm.StateId.TEST9A_S1_1:
                     self._TEST9A_S1_1_exit()
                 
-                case self.StateId.TEST9B_ROOT:
+                case Spec2Sm.StateId.TEST9B_ROOT:
                     self._TEST9B_ROOT_exit()
                 
-                case self.StateId.TEST9B_ROOT__A1:
+                case Spec2Sm.StateId.TEST9B_ROOT__A1:
                     self._TEST9B_ROOT__A1_exit()
                 
-                case self.StateId.TEST9B_ROOT__A2:
+                case Spec2Sm.StateId.TEST9B_ROOT__A2:
                     self._TEST9B_ROOT__A2_exit()
                 
-                case self.StateId.TEST9B_ROOT__A3:
+                case Spec2Sm.StateId.TEST9B_ROOT__A3:
                     self._TEST9B_ROOT__A3_exit()
                 
-                case self.StateId.TEST9B_ROOT__A4:
+                case Spec2Sm.StateId.TEST9B_ROOT__A4:
                     self._TEST9B_ROOT__A4_exit()
                 
-                case self.StateId.TEST9B_ROOT__B1:
+                case Spec2Sm.StateId.TEST9B_ROOT__B1:
                     self._TEST9B_ROOT__B1_exit()
                 
-                case self.StateId.TEST9B_ROOT__B2:
+                case Spec2Sm.StateId.TEST9B_ROOT__B2:
                     self._TEST9B_ROOT__B2_exit()
                 
-                case self.StateId.TEST9B_ROOT__B3:
+                case Spec2Sm.StateId.TEST9B_ROOT__B3:
                     self._TEST9B_ROOT__B3_exit()
                 
-                case self.StateId.TEST9B_ROOT__B4:
+                case Spec2Sm.StateId.TEST9B_ROOT__B4:
                     self._TEST9B_ROOT__B4_exit()
                 
                 case _:
@@ -2558,7 +2558,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _ROOT_enter(self):
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
         
         # ROOT behavior
         # uml: enter / { trace("Enter Spec2Sm.") }
@@ -2580,7 +2580,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING_enter(self):
-        self.stateId = self.StateId.PREFIXING
+        self.stateId = Spec2Sm.StateId.PREFIXING
         
         # PREFIXING behavior
         # uml: enter / { trace("Enter PREFIXING.") }
@@ -2597,7 +2597,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING.")`
             Printer.trace("Exit PREFIXING.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -2605,7 +2605,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__ORDER_MENU_enter(self):
-        self.stateId = self.StateId.PREFIXING__ORDER_MENU
+        self.stateId = Spec2Sm.StateId.PREFIXING__ORDER_MENU
         
         # PREFIXING__ORDER_MENU behavior
         # uml: enter / { trace("Enter PREFIXING__ORDER_MENU.") }
@@ -2622,7 +2622,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.")`
             Printer.trace("Exit PREFIXING__ORDER_MENU.")
         
-        self.stateId = self.StateId.PREFIXING
+        self.stateId = Spec2Sm.StateId.PREFIXING
     
     
     ########################################
@@ -2630,7 +2630,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__OM__BEVERAGE_enter(self):
-        self.stateId = self.StateId.PREFIXING__OM__BEVERAGE
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEVERAGE
         
         # PREFIXING__OM__BEVERAGE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE.") }
@@ -2647,7 +2647,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.")`
             Printer.trace("Exit PREFIXING__OM__BEVERAGE.")
         
-        self.stateId = self.StateId.PREFIXING__ORDER_MENU
+        self.stateId = Spec2Sm.StateId.PREFIXING__ORDER_MENU
     
     def _PREFIXING__OM__BEVERAGE_ev2(self):
         # PREFIXING__OM__BEVERAGE behavior
@@ -2655,7 +2655,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", True):
 
             # Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.PREFIXING__ORDER_MENU)
+            self._exitUpToStateHandler(Spec2Sm.StateId.PREFIXING__ORDER_MENU)
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.")`.
             Printer.trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.")
@@ -2700,7 +2700,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__OM__BEV__NONE_enter(self):
-        self.stateId = self.StateId.PREFIXING__OM__BEV__NONE
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEV__NONE
         
         # PREFIXING__OM__BEV__NONE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE.") }
@@ -2717,7 +2717,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.")`
             Printer.trace("Exit PREFIXING__OM__BEV__NONE.")
         
-        self.stateId = self.StateId.PREFIXING__OM__BEVERAGE
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEVERAGE
     
     def _PREFIXING__OM__BEV__NONE_ev1(self):
         # PREFIXING__OM__BEV__NONE behavior
@@ -2742,7 +2742,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__OM__BEV__TEA_enter(self):
-        self.stateId = self.StateId.PREFIXING__OM__BEV__TEA
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEV__TEA
         
         # PREFIXING__OM__BEV__TEA behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA.") }
@@ -2759,7 +2759,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.")`
             Printer.trace("Exit PREFIXING__OM__BEV__TEA.")
         
-        self.stateId = self.StateId.PREFIXING__OM__BEVERAGE
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEVERAGE
     
     
     ########################################
@@ -2767,7 +2767,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__OM__BEV__WATER_enter(self):
-        self.stateId = self.StateId.PREFIXING__OM__BEV__WATER
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEV__WATER
         
         # PREFIXING__OM__BEV__WATER behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER.") }
@@ -2784,7 +2784,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.")`
             Printer.trace("Exit PREFIXING__OM__BEV__WATER.")
         
-        self.stateId = self.StateId.PREFIXING__OM__BEVERAGE
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEVERAGE
     
     def _PREFIXING__OM__BEV__WATER_ev1(self):
         # PREFIXING__OM__BEV__WATER behavior
@@ -2809,7 +2809,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__OM__VEG_enter(self):
-        self.stateId = self.StateId.PREFIXING__OM__VEG
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG
         
         # PREFIXING__OM__VEG behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG.") }
@@ -2826,7 +2826,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG.")`
             Printer.trace("Exit PREFIXING__OM__VEG.")
         
-        self.stateId = self.StateId.PREFIXING__ORDER_MENU
+        self.stateId = Spec2Sm.StateId.PREFIXING__ORDER_MENU
     
     def _PREFIXING__OM__VEG_ev2(self):
         # PREFIXING__OM__VEG behavior
@@ -2834,7 +2834,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", True):
 
             # Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.PREFIXING__ORDER_MENU)
+            self._exitUpToStateHandler(Spec2Sm.StateId.PREFIXING__ORDER_MENU)
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.")`.
             Printer.trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.")
@@ -2852,7 +2852,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__OM__VEG__NONE_enter(self):
-        self.stateId = self.StateId.PREFIXING__OM__VEG__NONE
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG__NONE
         
         # PREFIXING__OM__VEG__NONE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE.") }
@@ -2869,7 +2869,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.")`
             Printer.trace("Exit PREFIXING__OM__VEG__NONE.")
         
-        self.stateId = self.StateId.PREFIXING__OM__VEG
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG
     
     def _PREFIXING__OM__VEG__NONE_ev1(self):
         # PREFIXING__OM__VEG__NONE behavior
@@ -2894,7 +2894,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__OM__VEG__POTATO_enter(self):
-        self.stateId = self.StateId.PREFIXING__OM__VEG__POTATO
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG__POTATO
         
         # PREFIXING__OM__VEG__POTATO behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO.") }
@@ -2911,7 +2911,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.")`
             Printer.trace("Exit PREFIXING__OM__VEG__POTATO.")
         
-        self.stateId = self.StateId.PREFIXING__OM__VEG
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG
     
     def _PREFIXING__OM__VEG__POTATO_ev1(self):
         # PREFIXING__OM__VEG__POTATO behavior
@@ -2936,7 +2936,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__OM__VEG__YAM_enter(self):
-        self.stateId = self.StateId.PREFIXING__OM__VEG__YAM
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG__YAM
         
         # PREFIXING__OM__VEG__YAM behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM.") }
@@ -2953,7 +2953,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.")`
             Printer.trace("Exit PREFIXING__OM__VEG__YAM.")
         
-        self.stateId = self.StateId.PREFIXING__OM__VEG
+        self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG
     
     
     ########################################
@@ -2961,7 +2961,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX
         
         # PREFIXING__SHOWS_MANUAL_PREFIX behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.") }
@@ -2978,7 +2978,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")
         
-        self.stateId = self.StateId.PREFIXING
+        self.stateId = Spec2Sm.StateId.PREFIXING
     
     
     ########################################
@@ -2986,7 +2986,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.") }
@@ -3003,7 +3003,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX
     
     
     ########################################
@@ -3011,7 +3011,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") }
@@ -3028,7 +3028,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
@@ -3036,7 +3036,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", True):
 
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
+            self._exitUpToStateHandler(Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`.
             Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
@@ -3081,7 +3081,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") }
@@ -3098,7 +3098,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
@@ -3123,7 +3123,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") }
@@ -3140,7 +3140,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     
     
     ########################################
@@ -3148,7 +3148,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") }
@@ -3165,7 +3165,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
@@ -3190,7 +3190,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") }
@@ -3207,7 +3207,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
@@ -3215,7 +3215,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", True):
 
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
+            self._exitUpToStateHandler(Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`.
             Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
@@ -3233,7 +3233,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") }
@@ -3250,7 +3250,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
@@ -3275,7 +3275,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") }
@@ -3292,7 +3292,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
@@ -3317,7 +3317,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter(self):
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") }
@@ -3334,7 +3334,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
         
-        self.stateId = self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     
     
     ########################################
@@ -3342,7 +3342,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _SPEC2SM__DECIDE_enter(self):
-        self.stateId = self.StateId.SPEC2SM__DECIDE
+        self.stateId = Spec2Sm.StateId.SPEC2SM__DECIDE
         
         # Spec2Sm__DECIDE behavior
         # uml: enter / { trace("Enter Spec2Sm__DECIDE.") }
@@ -3359,7 +3359,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit Spec2Sm__DECIDE.")`
             Printer.trace("Exit Spec2Sm__DECIDE.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     def _SPEC2SM__DECIDE_ev1(self):
         # Spec2Sm__DECIDE behavior
@@ -3710,7 +3710,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST1_DO_EVENT_TESTING_enter(self):
-        self.stateId = self.StateId.TEST1_DO_EVENT_TESTING
+        self.stateId = Spec2Sm.StateId.TEST1_DO_EVENT_TESTING
         
         # TEST1_DO_EVENT_TESTING behavior
         # uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING.") }
@@ -3727,7 +3727,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.")`
             Printer.trace("Exit TEST1_DO_EVENT_TESTING.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -3735,7 +3735,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST1_ROOT_enter(self):
-        self.stateId = self.StateId.TEST1_ROOT
+        self.stateId = Spec2Sm.StateId.TEST1_ROOT
         
         # TEST1_ROOT behavior
         # uml: enter / { trace("Enter TEST1_ROOT.") }
@@ -3752,7 +3752,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST1_ROOT.")`
             Printer.trace("Exit TEST1_ROOT.")
         
-        self.stateId = self.StateId.TEST1_DO_EVENT_TESTING
+        self.stateId = Spec2Sm.StateId.TEST1_DO_EVENT_TESTING
     
     def _TEST1_ROOT_do(self):
         consume_event = False
@@ -3774,7 +3774,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST1_S1_enter(self):
-        self.stateId = self.StateId.TEST1_S1
+        self.stateId = Spec2Sm.StateId.TEST1_S1
         
         # TEST1_S1 behavior
         # uml: enter / { trace("Enter TEST1_S1.") }
@@ -3791,7 +3791,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST1_S1.")`
             Printer.trace("Exit TEST1_S1.")
         
-        self.stateId = self.StateId.TEST1_ROOT
+        self.stateId = Spec2Sm.StateId.TEST1_ROOT
     
     
     ########################################
@@ -3799,7 +3799,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST1_S1_1_enter(self):
-        self.stateId = self.StateId.TEST1_S1_1
+        self.stateId = Spec2Sm.StateId.TEST1_S1_1
         
         # TEST1_S1_1 behavior
         # uml: enter / { trace("Enter TEST1_S1_1.") }
@@ -3823,7 +3823,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST1_S1_1.")`
             Printer.trace("Exit TEST1_S1_1.")
         
-        self.stateId = self.StateId.TEST1_S1
+        self.stateId = Spec2Sm.StateId.TEST1_S1
     
     def _TEST1_S1_1_do(self):
         consume_event = False
@@ -3845,7 +3845,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", True):
 
             # Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST1_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST1_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST1_S1_1 to TEST1_S2.")`.
             Printer.trace("Transition action `` for TEST1_S1_1 to TEST1_S2.")
@@ -3862,7 +3862,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST1_S2_enter(self):
-        self.stateId = self.StateId.TEST1_S2
+        self.stateId = Spec2Sm.StateId.TEST1_S2
         
         # TEST1_S2 behavior
         # uml: enter / { trace("Enter TEST1_S2.") }
@@ -3879,7 +3879,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST1_S2.")`
             Printer.trace("Exit TEST1_S2.")
         
-        self.stateId = self.StateId.TEST1_ROOT
+        self.stateId = Spec2Sm.StateId.TEST1_ROOT
     
     def _TEST1_S2_do(self):
         consume_event = False
@@ -3903,7 +3903,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_CHOICE_POINT_enter(self):
-        self.stateId = self.StateId.TEST10_CHOICE_POINT
+        self.stateId = Spec2Sm.StateId.TEST10_CHOICE_POINT
         
         # TEST10_CHOICE_POINT behavior
         # uml: enter / { trace("Enter TEST10_CHOICE_POINT.") }
@@ -3920,7 +3920,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.")`
             Printer.trace("Exit TEST10_CHOICE_POINT.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -3928,7 +3928,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_A_enter(self):
-        self.stateId = self.StateId.TEST10_A
+        self.stateId = Spec2Sm.StateId.TEST10_A
         
         # TEST10_A behavior
         # uml: enter / { trace("Enter TEST10_A.") }
@@ -3945,7 +3945,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_A.")`
             Printer.trace("Exit TEST10_A.")
         
-        self.stateId = self.StateId.TEST10_CHOICE_POINT
+        self.stateId = Spec2Sm.StateId.TEST10_CHOICE_POINT
     
     def _TEST10_A_ChoicePoint__transition(self):
         # TEST10_A.<ChoicePoint>() behavior
@@ -4068,7 +4068,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_A_1_enter(self):
-        self.stateId = self.StateId.TEST10_A_1
+        self.stateId = Spec2Sm.StateId.TEST10_A_1
         
         # TEST10_A_1 behavior
         # uml: enter / { trace("Enter TEST10_A_1.") }
@@ -4085,7 +4085,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_A_1.")`
             Printer.trace("Exit TEST10_A_1.")
         
-        self.stateId = self.StateId.TEST10_A
+        self.stateId = Spec2Sm.StateId.TEST10_A
     
     
     ########################################
@@ -4093,7 +4093,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_ROOT_enter(self):
-        self.stateId = self.StateId.TEST10_ROOT
+        self.stateId = Spec2Sm.StateId.TEST10_ROOT
         
         # TEST10_ROOT behavior
         # uml: enter / { trace("Enter TEST10_ROOT.") }
@@ -4110,7 +4110,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_ROOT.")`
             Printer.trace("Exit TEST10_ROOT.")
         
-        self.stateId = self.StateId.TEST10_CHOICE_POINT
+        self.stateId = Spec2Sm.StateId.TEST10_CHOICE_POINT
     
     def _TEST10_ROOT_ev5(self):
         # TEST10_ROOT behavior
@@ -4126,7 +4126,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_G_enter(self):
-        self.stateId = self.StateId.TEST10_G
+        self.stateId = Spec2Sm.StateId.TEST10_G
         
         # TEST10_G behavior
         # uml: enter / { trace("Enter TEST10_G.") }
@@ -4143,7 +4143,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_G.")`
             Printer.trace("Exit TEST10_G.")
         
-        self.stateId = self.StateId.TEST10_ROOT
+        self.stateId = Spec2Sm.StateId.TEST10_ROOT
     
     def _TEST10_G_ChoicePoint__transition(self):
         # TEST10_G.<ChoicePoint>() behavior
@@ -4247,7 +4247,7 @@ class Spec2Sm(Spec2SmBase):
                 if True:
 
                     # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
-                    self._exitUpToStateHandler(self.StateId.TEST10_ROOT)
+                    self._exitUpToStateHandler(Spec2Sm.StateId.TEST10_ROOT)
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.")`.
                     Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.")
@@ -4264,7 +4264,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_G_S0_enter(self):
-        self.stateId = self.StateId.TEST10_G_S0
+        self.stateId = Spec2Sm.StateId.TEST10_G_S0
         
         # TEST10_G_S0 behavior
         # uml: enter / { trace("Enter TEST10_G_S0.") }
@@ -4281,7 +4281,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_G_S0.")`
             Printer.trace("Exit TEST10_G_S0.")
         
-        self.stateId = self.StateId.TEST10_G
+        self.stateId = Spec2Sm.StateId.TEST10_G
     
     
     ########################################
@@ -4289,7 +4289,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_G_S1_enter(self):
-        self.stateId = self.StateId.TEST10_G_S1
+        self.stateId = Spec2Sm.StateId.TEST10_G_S1
         
         # TEST10_G_S1 behavior
         # uml: enter / { trace("Enter TEST10_G_S1.") }
@@ -4306,7 +4306,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_G_S1.")`
             Printer.trace("Exit TEST10_G_S1.")
         
-        self.stateId = self.StateId.TEST10_G
+        self.stateId = Spec2Sm.StateId.TEST10_G
     
     
     ########################################
@@ -4314,7 +4314,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_G_S2_enter(self):
-        self.stateId = self.StateId.TEST10_G_S2
+        self.stateId = Spec2Sm.StateId.TEST10_G_S2
         
         # TEST10_G_S2 behavior
         # uml: enter / { trace("Enter TEST10_G_S2.") }
@@ -4331,7 +4331,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_G_S2.")`
             Printer.trace("Exit TEST10_G_S2.")
         
-        self.stateId = self.StateId.TEST10_G
+        self.stateId = Spec2Sm.StateId.TEST10_G
     
     
     ########################################
@@ -4339,7 +4339,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_G_S3_enter(self):
-        self.stateId = self.StateId.TEST10_G_S3
+        self.stateId = Spec2Sm.StateId.TEST10_G_S3
         
         # TEST10_G_S3 behavior
         # uml: enter / { trace("Enter TEST10_G_S3.") }
@@ -4356,7 +4356,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_G_S3.")`
             Printer.trace("Exit TEST10_G_S3.")
         
-        self.stateId = self.StateId.TEST10_G
+        self.stateId = Spec2Sm.StateId.TEST10_G
     
     
     ########################################
@@ -4364,7 +4364,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_S1_enter(self):
-        self.stateId = self.StateId.TEST10_S1
+        self.stateId = Spec2Sm.StateId.TEST10_S1
         
         # TEST10_S1 behavior
         # uml: enter / { trace("Enter TEST10_S1.") }
@@ -4388,7 +4388,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_S1.")`
             Printer.trace("Exit TEST10_S1.")
         
-        self.stateId = self.StateId.TEST10_ROOT
+        self.stateId = Spec2Sm.StateId.TEST10_ROOT
     
     def _TEST10_S1_ev1(self):
         # TEST10_S1 behavior
@@ -4427,7 +4427,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", True):
 
             # Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST10_CHOICE_POINT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST10_CHOICE_POINT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_A.")`.
             Printer.trace("Transition action `` for TEST10_S1 to TEST10_A.")
@@ -4539,7 +4539,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST10_S4_enter(self):
-        self.stateId = self.StateId.TEST10_S4
+        self.stateId = Spec2Sm.StateId.TEST10_S4
         
         # TEST10_S4 behavior
         # uml: enter / { trace("Enter TEST10_S4.") }
@@ -4556,7 +4556,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST10_S4.")`
             Printer.trace("Exit TEST10_S4.")
         
-        self.stateId = self.StateId.TEST10_ROOT
+        self.stateId = Spec2Sm.StateId.TEST10_ROOT
     
     
     ########################################
@@ -4564,7 +4564,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST2_REGULAR_EVENT_TESTING_enter(self):
-        self.stateId = self.StateId.TEST2_REGULAR_EVENT_TESTING
+        self.stateId = Spec2Sm.StateId.TEST2_REGULAR_EVENT_TESTING
         
         # TEST2_REGULAR_EVENT_TESTING behavior
         # uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING.") }
@@ -4581,7 +4581,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.")`
             Printer.trace("Exit TEST2_REGULAR_EVENT_TESTING.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -4589,7 +4589,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST2_ROOT_enter(self):
-        self.stateId = self.StateId.TEST2_ROOT
+        self.stateId = Spec2Sm.StateId.TEST2_ROOT
         
         # TEST2_ROOT behavior
         # uml: enter / { trace("Enter TEST2_ROOT.") }
@@ -4606,7 +4606,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST2_ROOT.")`
             Printer.trace("Exit TEST2_ROOT.")
         
-        self.stateId = self.StateId.TEST2_REGULAR_EVENT_TESTING
+        self.stateId = Spec2Sm.StateId.TEST2_REGULAR_EVENT_TESTING
     
     def _TEST2_ROOT_do(self):
         consume_event = False
@@ -4642,7 +4642,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST2_S1_enter(self):
-        self.stateId = self.StateId.TEST2_S1
+        self.stateId = Spec2Sm.StateId.TEST2_S1
         
         # TEST2_S1 behavior
         # uml: enter / { trace("Enter TEST2_S1.") }
@@ -4659,7 +4659,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST2_S1.")`
             Printer.trace("Exit TEST2_S1.")
         
-        self.stateId = self.StateId.TEST2_ROOT
+        self.stateId = Spec2Sm.StateId.TEST2_ROOT
     
     
     ########################################
@@ -4667,7 +4667,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST2_S1_1_enter(self):
-        self.stateId = self.StateId.TEST2_S1_1
+        self.stateId = Spec2Sm.StateId.TEST2_S1_1
         
         # TEST2_S1_1 behavior
         # uml: enter / { trace("Enter TEST2_S1_1.") }
@@ -4691,7 +4691,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST2_S1_1.")`
             Printer.trace("Exit TEST2_S1_1.")
         
-        self.stateId = self.StateId.TEST2_S1
+        self.stateId = Spec2Sm.StateId.TEST2_S1
     
     def _TEST2_S1_1_do(self):
         consume_event = False
@@ -4701,7 +4701,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", True):
 
             # Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST2_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST2_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST2_S1_1 to TEST2_S2.")`.
             Printer.trace("Transition action `` for TEST2_S1_1 to TEST2_S2.")
@@ -4738,7 +4738,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST2_S2_enter(self):
-        self.stateId = self.StateId.TEST2_S2
+        self.stateId = Spec2Sm.StateId.TEST2_S2
         
         # TEST2_S2 behavior
         # uml: enter / { trace("Enter TEST2_S2.") }
@@ -4761,7 +4761,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST2_S2.")`
             Printer.trace("Exit TEST2_S2.")
         
-        self.stateId = self.StateId.TEST2_ROOT
+        self.stateId = Spec2Sm.StateId.TEST2_ROOT
     
     def _TEST2_S2_ev1(self):
         consume_event = False
@@ -4810,7 +4810,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST3_BEHAVIOR_ORDERING_enter(self):
-        self.stateId = self.StateId.TEST3_BEHAVIOR_ORDERING
+        self.stateId = Spec2Sm.StateId.TEST3_BEHAVIOR_ORDERING
         
         # TEST3_BEHAVIOR_ORDERING behavior
         # uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING.") }
@@ -4827,7 +4827,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.")`
             Printer.trace("Exit TEST3_BEHAVIOR_ORDERING.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -4835,7 +4835,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST3_ROOT_enter(self):
-        self.stateId = self.StateId.TEST3_ROOT
+        self.stateId = Spec2Sm.StateId.TEST3_ROOT
         
         # TEST3_ROOT behavior
         # uml: enter / { trace("Enter TEST3_ROOT.") }
@@ -4852,7 +4852,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST3_ROOT.")`
             Printer.trace("Exit TEST3_ROOT.")
         
-        self.stateId = self.StateId.TEST3_BEHAVIOR_ORDERING
+        self.stateId = Spec2Sm.StateId.TEST3_BEHAVIOR_ORDERING
     
     def _TEST3_ROOT_ev1(self):
         # TEST3_ROOT behavior
@@ -4867,7 +4867,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST3_S1_enter(self):
-        self.stateId = self.StateId.TEST3_S1
+        self.stateId = Spec2Sm.StateId.TEST3_S1
         
         # TEST3_S1 behavior
         # uml: enter / { trace("Enter TEST3_S1.") }
@@ -4891,7 +4891,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST3_S1.")`
             Printer.trace("Exit TEST3_S1.")
         
-        self.stateId = self.StateId.TEST3_ROOT
+        self.stateId = Spec2Sm.StateId.TEST3_ROOT
     
     def _TEST3_S1_ev1(self):
         consume_event = False
@@ -4932,7 +4932,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST3_S2_enter(self):
-        self.stateId = self.StateId.TEST3_S2
+        self.stateId = Spec2Sm.StateId.TEST3_S2
         
         # TEST3_S2 behavior
         # uml: enter / { trace("Enter TEST3_S2.") }
@@ -4949,7 +4949,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST3_S2.")`
             Printer.trace("Exit TEST3_S2.")
         
-        self.stateId = self.StateId.TEST3_ROOT
+        self.stateId = Spec2Sm.StateId.TEST3_ROOT
     
     def _TEST3_S2_ev1(self):
         consume_event = False
@@ -5000,7 +5000,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST3_S3_enter(self):
-        self.stateId = self.StateId.TEST3_S3
+        self.stateId = Spec2Sm.StateId.TEST3_S3
         
         # TEST3_S3 behavior
         # uml: enter / { trace("Enter TEST3_S3.") }
@@ -5017,7 +5017,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST3_S3.")`
             Printer.trace("Exit TEST3_S3.")
         
-        self.stateId = self.StateId.TEST3_ROOT
+        self.stateId = Spec2Sm.StateId.TEST3_ROOT
     
     
     ########################################
@@ -5025,7 +5025,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_PARENT_CHILD_TRANSITIONS_enter(self):
-        self.stateId = self.StateId.TEST4_PARENT_CHILD_TRANSITIONS
+        self.stateId = Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS
         
         # TEST4_PARENT_CHILD_TRANSITIONS behavior
         # uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.") }
@@ -5042,7 +5042,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")`
             Printer.trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -5050,7 +5050,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_B_AND_OTHERS_enter(self):
-        self.stateId = self.StateId.TEST4_B_AND_OTHERS
+        self.stateId = Spec2Sm.StateId.TEST4_B_AND_OTHERS
         
         # TEST4_B_AND_OTHERS behavior
         # uml: enter / { trace("Enter TEST4_B_AND_OTHERS.") }
@@ -5074,7 +5074,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.")`
             Printer.trace("Exit TEST4_B_AND_OTHERS.")
         
-        self.stateId = self.StateId.TEST4_PARENT_CHILD_TRANSITIONS
+        self.stateId = Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS
     
     
     ########################################
@@ -5082,7 +5082,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4B_LOCAL_enter(self):
-        self.stateId = self.StateId.TEST4B_LOCAL
+        self.stateId = Spec2Sm.StateId.TEST4B_LOCAL
         
         # TEST4B_LOCAL behavior
         # uml: enter / { trace("Enter TEST4B_LOCAL.") }
@@ -5099,7 +5099,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4B_LOCAL.")`
             Printer.trace("Exit TEST4B_LOCAL.")
         
-        self.stateId = self.StateId.TEST4_B_AND_OTHERS
+        self.stateId = Spec2Sm.StateId.TEST4_B_AND_OTHERS
     
     
     ########################################
@@ -5107,7 +5107,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4B_G_enter(self):
-        self.stateId = self.StateId.TEST4B_G
+        self.stateId = Spec2Sm.StateId.TEST4B_G
         
         # TEST4B_G behavior
         # uml: enter / { trace("Enter TEST4B_G.") }
@@ -5124,7 +5124,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4B_G.")`
             Printer.trace("Exit TEST4B_G.")
         
-        self.stateId = self.StateId.TEST4B_LOCAL
+        self.stateId = Spec2Sm.StateId.TEST4B_LOCAL
     
     def _TEST4B_G_ev1(self):
         # TEST4B_G behavior
@@ -5132,7 +5132,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", True):
 
             # Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4B_G)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4B_G)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4B_G to TEST4B_G_1.")`.
             Printer.trace("Transition action `` for TEST4B_G to TEST4B_G_1.")
@@ -5149,7 +5149,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4B_G_1_enter(self):
-        self.stateId = self.StateId.TEST4B_G_1
+        self.stateId = Spec2Sm.StateId.TEST4B_G_1
         
         # TEST4B_G_1 behavior
         # uml: enter / { trace("Enter TEST4B_G_1.") }
@@ -5166,7 +5166,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4B_G_1.")`
             Printer.trace("Exit TEST4B_G_1.")
         
-        self.stateId = self.StateId.TEST4B_G
+        self.stateId = Spec2Sm.StateId.TEST4B_G
     
     def _TEST4B_G_1_ev2(self):
         # TEST4B_G_1 behavior
@@ -5190,7 +5190,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4C_LOCAL_TO_ALIAS_enter(self):
-        self.stateId = self.StateId.TEST4C_LOCAL_TO_ALIAS
+        self.stateId = Spec2Sm.StateId.TEST4C_LOCAL_TO_ALIAS
         
         # TEST4C_LOCAL_TO_ALIAS behavior
         # uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS.") }
@@ -5207,7 +5207,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.")`
             Printer.trace("Exit TEST4C_LOCAL_TO_ALIAS.")
         
-        self.stateId = self.StateId.TEST4_B_AND_OTHERS
+        self.stateId = Spec2Sm.StateId.TEST4_B_AND_OTHERS
     
     
     ########################################
@@ -5215,7 +5215,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4C_G_enter(self):
-        self.stateId = self.StateId.TEST4C_G
+        self.stateId = Spec2Sm.StateId.TEST4C_G
         
         # TEST4C_G behavior
         # uml: enter / { trace("Enter TEST4C_G.") }
@@ -5232,7 +5232,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4C_G.")`
             Printer.trace("Exit TEST4C_G.")
         
-        self.stateId = self.StateId.TEST4C_LOCAL_TO_ALIAS
+        self.stateId = Spec2Sm.StateId.TEST4C_LOCAL_TO_ALIAS
     
     def _TEST4C_G_ev1(self):
         # TEST4C_G behavior
@@ -5240,7 +5240,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", True):
 
             # Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4C_G)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4C_G)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4C_G to TEST4C_G_1.")`.
             Printer.trace("Transition action `` for TEST4C_G to TEST4C_G_1.")
@@ -5257,7 +5257,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4C_G_1_enter(self):
-        self.stateId = self.StateId.TEST4C_G_1
+        self.stateId = Spec2Sm.StateId.TEST4C_G_1
         
         # TEST4C_G_1 behavior
         # uml: enter / { trace("Enter TEST4C_G_1.") }
@@ -5274,7 +5274,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4C_G_1.")`
             Printer.trace("Exit TEST4C_G_1.")
         
-        self.stateId = self.StateId.TEST4C_G
+        self.stateId = Spec2Sm.StateId.TEST4C_G
     
     def _TEST4C_G_1_ev2(self):
         # TEST4C_G_1 behavior
@@ -5298,7 +5298,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4D_EXTERNAL_enter(self):
-        self.stateId = self.StateId.TEST4D_EXTERNAL
+        self.stateId = Spec2Sm.StateId.TEST4D_EXTERNAL
         
         # TEST4D_EXTERNAL behavior
         # uml: enter / { trace("Enter TEST4D_EXTERNAL.") }
@@ -5315,7 +5315,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4D_EXTERNAL.")`
             Printer.trace("Exit TEST4D_EXTERNAL.")
         
-        self.stateId = self.StateId.TEST4_B_AND_OTHERS
+        self.stateId = Spec2Sm.StateId.TEST4_B_AND_OTHERS
     
     
     ########################################
@@ -5323,7 +5323,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4D_G_enter(self):
-        self.stateId = self.StateId.TEST4D_G
+        self.stateId = Spec2Sm.StateId.TEST4D_G
         
         # TEST4D_G behavior
         # uml: enter / { trace("Enter TEST4D_G.") }
@@ -5340,7 +5340,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4D_G.")`
             Printer.trace("Exit TEST4D_G.")
         
-        self.stateId = self.StateId.TEST4D_EXTERNAL
+        self.stateId = Spec2Sm.StateId.TEST4D_EXTERNAL
     
     def _TEST4D_G_ev1(self):
         # TEST4D_G behavior
@@ -5348,7 +5348,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", True):
 
             # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4D_EXTERNAL)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4D_EXTERNAL)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().")`.
             Printer.trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().")
@@ -5378,7 +5378,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4D_G_1_enter(self):
-        self.stateId = self.StateId.TEST4D_G_1
+        self.stateId = Spec2Sm.StateId.TEST4D_G_1
         
         # TEST4D_G_1 behavior
         # uml: enter / { trace("Enter TEST4D_G_1.") }
@@ -5395,7 +5395,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4D_G_1.")`
             Printer.trace("Exit TEST4D_G_1.")
         
-        self.stateId = self.StateId.TEST4D_G
+        self.stateId = Spec2Sm.StateId.TEST4D_G
     
     def _TEST4D_G_1_ev2(self):
         # TEST4D_G_1 behavior
@@ -5403,7 +5403,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", True):
 
             # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4D_EXTERNAL)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4D_EXTERNAL)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().")`.
             Printer.trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().")
@@ -5432,7 +5432,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_DECIDE_enter(self):
-        self.stateId = self.StateId.TEST4_DECIDE
+        self.stateId = Spec2Sm.StateId.TEST4_DECIDE
         
         # TEST4_DECIDE behavior
         # uml: enter / { trace("Enter TEST4_DECIDE.") }
@@ -5449,7 +5449,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_DECIDE.")`
             Printer.trace("Exit TEST4_DECIDE.")
         
-        self.stateId = self.StateId.TEST4_PARENT_CHILD_TRANSITIONS
+        self.stateId = Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS
     
     def _TEST4_DECIDE_ev1(self):
         # TEST4_DECIDE behavior
@@ -5564,7 +5564,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_ROOT_enter(self):
-        self.stateId = self.StateId.TEST4_ROOT
+        self.stateId = Spec2Sm.StateId.TEST4_ROOT
         
         # TEST4_ROOT behavior
         # uml: enter / { trace("Enter TEST4_ROOT.") }
@@ -5588,7 +5588,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_ROOT.")`
             Printer.trace("Exit TEST4_ROOT.")
         
-        self.stateId = self.StateId.TEST4_PARENT_CHILD_TRANSITIONS
+        self.stateId = Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS
     
     def _TEST4_ROOT_ev2(self):
         # TEST4_ROOT behavior
@@ -5596,7 +5596,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", True):
 
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S1.")`.
             Printer.trace("Transition action `` for TEST4_ROOT to TEST4_S1.")
@@ -5613,7 +5613,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", True):
 
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.")`.
             Printer.trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.")
@@ -5631,7 +5631,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", True):
 
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S20.")`.
             Printer.trace("Transition action `` for TEST4_ROOT to TEST4_S20.")
@@ -5649,7 +5649,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_S1_enter(self):
-        self.stateId = self.StateId.TEST4_S1
+        self.stateId = Spec2Sm.StateId.TEST4_S1
         
         # TEST4_S1 behavior
         # uml: enter / { trace("Enter TEST4_S1.") }
@@ -5666,7 +5666,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_S1.")`
             Printer.trace("Exit TEST4_S1.")
         
-        self.stateId = self.StateId.TEST4_ROOT
+        self.stateId = Spec2Sm.StateId.TEST4_ROOT
     
     def _TEST4_S1_ev1(self):
         # TEST4_S1 behavior
@@ -5691,7 +5691,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_S10_enter(self):
-        self.stateId = self.StateId.TEST4_S10
+        self.stateId = Spec2Sm.StateId.TEST4_S10
         
         # TEST4_S10 behavior
         # uml: enter / { trace("Enter TEST4_S10.") }
@@ -5708,7 +5708,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_S10.")`
             Printer.trace("Exit TEST4_S10.")
         
-        self.stateId = self.StateId.TEST4_ROOT
+        self.stateId = Spec2Sm.StateId.TEST4_ROOT
     
     def _TEST4_S10_ev4(self):
         consume_event = False
@@ -5718,7 +5718,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", True):
 
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S10 to TEST4_S10.")`.
             Printer.trace("Transition action `` for TEST4_S10 to TEST4_S10.")
@@ -5740,7 +5740,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_S10_1_enter(self):
-        self.stateId = self.StateId.TEST4_S10_1
+        self.stateId = Spec2Sm.StateId.TEST4_S10_1
         
         # TEST4_S10_1 behavior
         # uml: enter / { trace("Enter TEST4_S10_1.") }
@@ -5757,7 +5757,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_S10_1.")`
             Printer.trace("Exit TEST4_S10_1.")
         
-        self.stateId = self.StateId.TEST4_S10
+        self.stateId = Spec2Sm.StateId.TEST4_S10
     
     
     ########################################
@@ -5765,7 +5765,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_S2_enter(self):
-        self.stateId = self.StateId.TEST4_S2
+        self.stateId = Spec2Sm.StateId.TEST4_S2
         
         # TEST4_S2 behavior
         # uml: enter / { trace("Enter TEST4_S2.") }
@@ -5782,7 +5782,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_S2.")`
             Printer.trace("Exit TEST4_S2.")
         
-        self.stateId = self.StateId.TEST4_ROOT
+        self.stateId = Spec2Sm.StateId.TEST4_ROOT
     
     def _TEST4_S2_ev1(self):
         # TEST4_S2 behavior
@@ -5807,7 +5807,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_S20_enter(self):
-        self.stateId = self.StateId.TEST4_S20
+        self.stateId = Spec2Sm.StateId.TEST4_S20
         
         # TEST4_S20 behavior
         # uml: enter / { trace("Enter TEST4_S20.") }
@@ -5824,7 +5824,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_S20.")`
             Printer.trace("Exit TEST4_S20.")
         
-        self.stateId = self.StateId.TEST4_ROOT
+        self.stateId = Spec2Sm.StateId.TEST4_ROOT
     
     def _TEST4_S20_ev4(self):
         consume_event = False
@@ -5834,7 +5834,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", True):
 
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST4_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S20 to TEST4_S20.")`.
             Printer.trace("Transition action `` for TEST4_S20 to TEST4_S20.")
@@ -5873,7 +5873,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_S20_1_enter(self):
-        self.stateId = self.StateId.TEST4_S20_1
+        self.stateId = Spec2Sm.StateId.TEST4_S20_1
         
         # TEST4_S20_1 behavior
         # uml: enter / { trace("Enter TEST4_S20_1.") }
@@ -5890,7 +5890,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_S20_1.")`
             Printer.trace("Exit TEST4_S20_1.")
         
-        self.stateId = self.StateId.TEST4_S20
+        self.stateId = Spec2Sm.StateId.TEST4_S20
     
     
     ########################################
@@ -5898,7 +5898,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST4_S3_enter(self):
-        self.stateId = self.StateId.TEST4_S3
+        self.stateId = Spec2Sm.StateId.TEST4_S3
         
         # TEST4_S3 behavior
         # uml: enter / { trace("Enter TEST4_S3.") }
@@ -5915,7 +5915,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST4_S3.")`
             Printer.trace("Exit TEST4_S3.")
         
-        self.stateId = self.StateId.TEST4_ROOT
+        self.stateId = Spec2Sm.StateId.TEST4_ROOT
     
     def _TEST4_S3_ev1(self):
         # TEST4_S3 behavior
@@ -5939,7 +5939,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter(self):
-        self.stateId = self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+        self.stateId = Spec2Sm.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         
         # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         # uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") }
@@ -5956,7 +5956,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
             Printer.trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -5964,7 +5964,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST5_ROOT_enter(self):
-        self.stateId = self.StateId.TEST5_ROOT
+        self.stateId = Spec2Sm.StateId.TEST5_ROOT
         
         # TEST5_ROOT behavior
         # uml: enter / { trace("Enter TEST5_ROOT.") }
@@ -5988,7 +5988,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST5_ROOT.")`
             Printer.trace("Exit TEST5_ROOT.")
         
-        self.stateId = self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+        self.stateId = Spec2Sm.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     
     def _TEST5_ROOT_ev2(self):
         # TEST5_ROOT behavior
@@ -5996,7 +5996,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", True):
 
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST5_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST5_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST5_ROOT to TEST5_S1.")`.
             Printer.trace("Transition action `` for TEST5_ROOT to TEST5_S1.")
@@ -6013,7 +6013,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST5_S1_enter(self):
-        self.stateId = self.StateId.TEST5_S1
+        self.stateId = Spec2Sm.StateId.TEST5_S1
         
         # TEST5_S1 behavior
         # uml: enter / { trace("Enter TEST5_S1.") }
@@ -6030,7 +6030,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST5_S1.")`
             Printer.trace("Exit TEST5_S1.")
         
-        self.stateId = self.StateId.TEST5_ROOT
+        self.stateId = Spec2Sm.StateId.TEST5_ROOT
     
     def _TEST5_S1_ev1(self):
         # TEST5_S1 behavior
@@ -6055,7 +6055,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST5_S2_enter(self):
-        self.stateId = self.StateId.TEST5_S2
+        self.stateId = Spec2Sm.StateId.TEST5_S2
         
         # TEST5_S2 behavior
         # uml: enter / { trace("Enter TEST5_S2.") }
@@ -6072,7 +6072,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST5_S2.")`
             Printer.trace("Exit TEST5_S2.")
         
-        self.stateId = self.StateId.TEST5_ROOT
+        self.stateId = Spec2Sm.StateId.TEST5_ROOT
     
     def _TEST5_S2_ev1(self):
         # TEST5_S2 behavior
@@ -6097,7 +6097,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST5_S3_enter(self):
-        self.stateId = self.StateId.TEST5_S3
+        self.stateId = Spec2Sm.StateId.TEST5_S3
         
         # TEST5_S3 behavior
         # uml: enter / { trace("Enter TEST5_S3.") }
@@ -6114,7 +6114,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST5_S3.")`
             Printer.trace("Exit TEST5_S3.")
         
-        self.stateId = self.StateId.TEST5_ROOT
+        self.stateId = Spec2Sm.StateId.TEST5_ROOT
     
     def _TEST5_S3_ev1(self):
         # TEST5_S3 behavior
@@ -6138,7 +6138,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST6_VARS_EXPANSIONS_enter(self):
-        self.stateId = self.StateId.TEST6_VARS_EXPANSIONS
+        self.stateId = Spec2Sm.StateId.TEST6_VARS_EXPANSIONS
         
         # TEST6_VARS_EXPANSIONS behavior
         # uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS.") }
@@ -6155,7 +6155,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS.")`
             Printer.trace("Exit TEST6_VARS_EXPANSIONS.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -6163,7 +6163,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST6_ROOT_enter(self):
-        self.stateId = self.StateId.TEST6_ROOT
+        self.stateId = Spec2Sm.StateId.TEST6_ROOT
         
         # TEST6_ROOT behavior
         # uml: enter / { trace("Enter TEST6_ROOT.") }
@@ -6180,7 +6180,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST6_ROOT.")`
             Printer.trace("Exit TEST6_ROOT.")
         
-        self.stateId = self.StateId.TEST6_VARS_EXPANSIONS
+        self.stateId = Spec2Sm.StateId.TEST6_VARS_EXPANSIONS
     
     
     ########################################
@@ -6188,7 +6188,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _AUTO_VAR_TEST_enter(self):
-        self.stateId = self.StateId.AUTO_VAR_TEST
+        self.stateId = Spec2Sm.StateId.AUTO_VAR_TEST
         
         # AUTO_VAR_TEST behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST.") }
@@ -6205,7 +6205,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST.")`
             Printer.trace("Exit AUTO_VAR_TEST.")
         
-        self.stateId = self.StateId.TEST6_ROOT
+        self.stateId = Spec2Sm.StateId.TEST6_ROOT
     
     
     ########################################
@@ -6213,7 +6213,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _AUTO_VAR_TEST__S1_enter(self):
-        self.stateId = self.StateId.AUTO_VAR_TEST__S1
+        self.stateId = Spec2Sm.StateId.AUTO_VAR_TEST__S1
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST__S1.") }
@@ -6237,7 +6237,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S1.")`
             Printer.trace("Exit AUTO_VAR_TEST__S1.")
         
-        self.stateId = self.StateId.AUTO_VAR_TEST
+        self.stateId = Spec2Sm.StateId.AUTO_VAR_TEST
     
     def _AUTO_VAR_TEST__S1_ev1(self):
         # AUTO_VAR_TEST__S1 behavior
@@ -6269,7 +6269,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _AUTO_VAR_TEST__S2_enter(self):
-        self.stateId = self.StateId.AUTO_VAR_TEST__S2
+        self.stateId = Spec2Sm.StateId.AUTO_VAR_TEST__S2
         
         # AUTO_VAR_TEST__S2 behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST__S2.") }
@@ -6286,7 +6286,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S2.")`
             Printer.trace("Exit AUTO_VAR_TEST__S2.")
         
-        self.stateId = self.StateId.AUTO_VAR_TEST
+        self.stateId = Spec2Sm.StateId.AUTO_VAR_TEST
     
     
     ########################################
@@ -6294,7 +6294,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _META_EXPANSIONS_enter(self):
-        self.stateId = self.StateId.META_EXPANSIONS
+        self.stateId = Spec2Sm.StateId.META_EXPANSIONS
         
         # META_EXPANSIONS behavior
         # uml: enter / { trace("Enter META_EXPANSIONS.") }
@@ -6311,7 +6311,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit META_EXPANSIONS.")`
             Printer.trace("Exit META_EXPANSIONS.")
         
-        self.stateId = self.StateId.TEST6_ROOT
+        self.stateId = Spec2Sm.StateId.TEST6_ROOT
     
     def _META_EXPANSIONS_ChoicePoint_2__transition(self):
         # META_EXPANSIONS.<ChoicePoint>(2) behavior
@@ -6336,7 +6336,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _META_EXPANSIONS__S1_enter(self):
-        self.stateId = self.StateId.META_EXPANSIONS__S1
+        self.stateId = Spec2Sm.StateId.META_EXPANSIONS__S1
         
         # META_EXPANSIONS__S1 behavior
         # uml: enter / { trace("Enter META_EXPANSIONS__S1.") }
@@ -6360,7 +6360,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit META_EXPANSIONS__S1.")`
             Printer.trace("Exit META_EXPANSIONS__S1.")
         
-        self.stateId = self.StateId.META_EXPANSIONS
+        self.stateId = Spec2Sm.StateId.META_EXPANSIONS
     
     def _META_EXPANSIONS__S1_ev1(self):
         # META_EXPANSIONS__S1 behavior
@@ -6386,7 +6386,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _META_EXPANSIONS__S2_enter(self):
-        self.stateId = self.StateId.META_EXPANSIONS__S2
+        self.stateId = Spec2Sm.StateId.META_EXPANSIONS__S2
         
         # META_EXPANSIONS__S2 behavior
         # uml: enter / { trace("Enter META_EXPANSIONS__S2.") }
@@ -6410,7 +6410,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit META_EXPANSIONS__S2.")`
             Printer.trace("Exit META_EXPANSIONS__S2.")
         
-        self.stateId = self.StateId.META_EXPANSIONS
+        self.stateId = Spec2Sm.StateId.META_EXPANSIONS
     
     def _META_EXPANSIONS__S2_ev1(self):
         # META_EXPANSIONS__S2 behavior
@@ -6467,7 +6467,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _S3_enter(self):
-        self.stateId = self.StateId.S3
+        self.stateId = Spec2Sm.StateId.S3
         
         # S3 behavior
         # uml: enter / { trace("Enter S3.") }
@@ -6484,7 +6484,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit S3.")`
             Printer.trace("Exit S3.")
         
-        self.stateId = self.StateId.META_EXPANSIONS
+        self.stateId = Spec2Sm.StateId.META_EXPANSIONS
     
     def _S3_ev1(self):
         # S3 behavior
@@ -6511,7 +6511,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _S4_enter(self):
-        self.stateId = self.StateId.S4
+        self.stateId = Spec2Sm.StateId.S4
         
         # S4 behavior
         # uml: enter / { trace("Enter S4.") }
@@ -6528,7 +6528,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit S4.")`
             Printer.trace("Exit S4.")
         
-        self.stateId = self.StateId.META_EXPANSIONS
+        self.stateId = Spec2Sm.StateId.META_EXPANSIONS
     
     
     ########################################
@@ -6536,7 +6536,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _S5_enter(self):
-        self.stateId = self.StateId.S5
+        self.stateId = Spec2Sm.StateId.S5
         
         # S5 behavior
         # uml: enter / { trace("Enter S5.") }
@@ -6553,7 +6553,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit S5.")`
             Printer.trace("Exit S5.")
         
-        self.stateId = self.StateId.META_EXPANSIONS
+        self.stateId = Spec2Sm.StateId.META_EXPANSIONS
     
     
     ########################################
@@ -6561,7 +6561,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _NORMAL_enter(self):
-        self.stateId = self.StateId.NORMAL
+        self.stateId = Spec2Sm.StateId.NORMAL
         
         # NORMAL behavior
         # uml: enter / { trace("Enter NORMAL.") }
@@ -6578,7 +6578,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit NORMAL.")`
             Printer.trace("Exit NORMAL.")
         
-        self.stateId = self.StateId.TEST6_ROOT
+        self.stateId = Spec2Sm.StateId.TEST6_ROOT
     
     
     ########################################
@@ -6586,7 +6586,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _NORMAL__S1_enter(self):
-        self.stateId = self.StateId.NORMAL__S1
+        self.stateId = Spec2Sm.StateId.NORMAL__S1
         
         # NORMAL__S1 behavior
         # uml: enter / { trace("Enter NORMAL__S1.") }
@@ -6610,7 +6610,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit NORMAL__S1.")`
             Printer.trace("Exit NORMAL__S1.")
         
-        self.stateId = self.StateId.NORMAL
+        self.stateId = Spec2Sm.StateId.NORMAL
     
     def _NORMAL__S1_ev1(self):
         # NORMAL__S1 behavior
@@ -6642,7 +6642,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _NORMAL__S2_enter(self):
-        self.stateId = self.StateId.NORMAL__S2
+        self.stateId = Spec2Sm.StateId.NORMAL__S2
         
         # NORMAL__S2 behavior
         # uml: enter / { trace("Enter NORMAL__S2.") }
@@ -6659,7 +6659,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit NORMAL__S2.")`
             Printer.trace("Exit NORMAL__S2.")
         
-        self.stateId = self.StateId.NORMAL
+        self.stateId = Spec2Sm.StateId.NORMAL
     
     
     ########################################
@@ -6667,7 +6667,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST6_VARS_EXPANSIONS__DECIDE_enter(self):
-        self.stateId = self.StateId.TEST6_VARS_EXPANSIONS__DECIDE
+        self.stateId = Spec2Sm.StateId.TEST6_VARS_EXPANSIONS__DECIDE
         
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.") }
@@ -6684,7 +6684,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")`
             Printer.trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")
         
-        self.stateId = self.StateId.TEST6_ROOT
+        self.stateId = Spec2Sm.StateId.TEST6_ROOT
     
     def _TEST6_VARS_EXPANSIONS__DECIDE_ev1(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
@@ -6779,7 +6779,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST7_INITIAL_OR_HISTORY_enter(self):
-        self.stateId = self.StateId.TEST7_INITIAL_OR_HISTORY
+        self.stateId = Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY
         
         # TEST7_INITIAL_OR_HISTORY behavior
         # uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY.") }
@@ -6796,7 +6796,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.")`
             Printer.trace("Exit TEST7_INITIAL_OR_HISTORY.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -6804,7 +6804,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST7_enter(self):
-        self.stateId = self.StateId.TEST7
+        self.stateId = Spec2Sm.StateId.TEST7
         
         # TEST7 behavior
         # uml: enter / { trace("Enter TEST7.") }
@@ -6828,7 +6828,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST7.")`
             Printer.trace("Exit TEST7.")
         
-        self.stateId = self.StateId.TEST7_INITIAL_OR_HISTORY
+        self.stateId = Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY
     
     
     ########################################
@@ -6836,7 +6836,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY1_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY1
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY1
         
         # T7__DEEP_HISTORY1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY1.") }
@@ -6853,7 +6853,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.")`
             Printer.trace("Exit T7__DEEP_HISTORY1.")
         
-        self.stateId = self.StateId.TEST7
+        self.stateId = Spec2Sm.StateId.TEST7
     
     
     ########################################
@@ -6861,7 +6861,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__SANTAS_WORKSHOP_enter(self):
-        self.stateId = self.StateId.T7__DH1__SANTAS_WORKSHOP
+        self.stateId = Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP
         
         # T7__DH1__SANTAS_WORKSHOP behavior
         # uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP.") }
@@ -6878,7 +6878,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.")`
             Printer.trace("Exit T7__DH1__SANTAS_WORKSHOP.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY1
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY1
     
     
     ########################################
@@ -6886,7 +6886,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__ALIENS_DETECTED_enter(self):
-        self.stateId = self.StateId.T7__DH1__ALIENS_DETECTED
+        self.stateId = Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED
         
         # T7__DH1__ALIENS_DETECTED behavior
         # uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED.") }
@@ -6903,7 +6903,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.")`
             Printer.trace("Exit T7__DH1__ALIENS_DETECTED.")
         
-        self.stateId = self.StateId.T7__DH1__SANTAS_WORKSHOP
+        self.stateId = Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP
     
     def _T7__DH1__ALIENS_DETECTED_ev8(self):
         # T7__DH1__ALIENS_DETECTED behavior
@@ -6911,7 +6911,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", True):
 
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DH1__SANTAS_WORKSHOP)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.")`.
             Printer.trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.")
@@ -6929,7 +6929,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__GET_BACKUP_enter(self):
-        self.stateId = self.StateId.T7__DH1__GET_BACKUP
+        self.stateId = Spec2Sm.StateId.T7__DH1__GET_BACKUP
         
         # T7__DH1__GET_BACKUP behavior
         # uml: enter / { trace("Enter T7__DH1__GET_BACKUP.") }
@@ -6946,7 +6946,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.")`
             Printer.trace("Exit T7__DH1__GET_BACKUP.")
         
-        self.stateId = self.StateId.T7__DH1__ALIENS_DETECTED
+        self.stateId = Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED
     
     
     ########################################
@@ -6954,7 +6954,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__HERO_enter(self):
-        self.stateId = self.StateId.T7__DH1__HERO
+        self.stateId = Spec2Sm.StateId.T7__DH1__HERO
         
         # T7__DH1__HERO behavior
         # uml: enter / { trace("Enter T7__DH1__HERO.") }
@@ -6968,14 +6968,14 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;)`
-            self.vars.T7__DH1__ALIENS_DETECTED_history = self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO
+            self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO
         
         # T7__DH1__HERO behavior
         # uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }
         if self.trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;)`
-            self.vars.T7__DH1__GET_BACKUP_history = self.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO
+            self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO
     
     def _T7__DH1__HERO_exit(self):
         # T7__DH1__HERO behavior
@@ -6985,7 +6985,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__HERO.")`
             Printer.trace("Exit T7__DH1__HERO.")
         
-        self.stateId = self.StateId.T7__DH1__GET_BACKUP
+        self.stateId = Spec2Sm.StateId.T7__DH1__GET_BACKUP
     
     def _T7__DH1__HERO_InitialState_transition(self):
         # T7__DH1__HERO.<InitialState> behavior
@@ -7009,7 +7009,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__CALL_BATMAN_enter(self):
-        self.stateId = self.StateId.T7__DH1__CALL_BATMAN
+        self.stateId = Spec2Sm.StateId.T7__DH1__CALL_BATMAN
         
         # T7__DH1__CALL_BATMAN behavior
         # uml: enter / { trace("Enter T7__DH1__CALL_BATMAN.") }
@@ -7026,7 +7026,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.")`
             Printer.trace("Exit T7__DH1__CALL_BATMAN.")
         
-        self.stateId = self.StateId.T7__DH1__HERO
+        self.stateId = Spec2Sm.StateId.T7__DH1__HERO
     
     def _T7__DH1__CALL_BATMAN_ev1(self):
         # T7__DH1__CALL_BATMAN behavior
@@ -7034,7 +7034,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", True):
 
             # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DH1__GET_BACKUP)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__GET_BACKUP)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.")`.
             Printer.trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.")
@@ -7052,7 +7052,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__CALL_THOR_enter(self):
-        self.stateId = self.StateId.T7__DH1__CALL_THOR
+        self.stateId = Spec2Sm.StateId.T7__DH1__CALL_THOR
         
         # T7__DH1__CALL_THOR behavior
         # uml: enter / { trace("Enter T7__DH1__CALL_THOR.") }
@@ -7069,7 +7069,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.")`
             Printer.trace("Exit T7__DH1__CALL_THOR.")
         
-        self.stateId = self.StateId.T7__DH1__HERO
+        self.stateId = Spec2Sm.StateId.T7__DH1__HERO
     
     def _T7__DH1__CALL_THOR_ev1(self):
         # T7__DH1__CALL_THOR behavior
@@ -7094,7 +7094,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__LOCAL_HELP_enter(self):
-        self.stateId = self.StateId.T7__DH1__LOCAL_HELP
+        self.stateId = Spec2Sm.StateId.T7__DH1__LOCAL_HELP
         
         # T7__DH1__LOCAL_HELP behavior
         # uml: enter / { trace("Enter T7__DH1__LOCAL_HELP.") }
@@ -7111,7 +7111,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.")`
             Printer.trace("Exit T7__DH1__LOCAL_HELP.")
         
-        self.stateId = self.StateId.T7__DH1__GET_BACKUP
+        self.stateId = Spec2Sm.StateId.T7__DH1__GET_BACKUP
     
     
     ########################################
@@ -7119,7 +7119,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__BUDDY_ELF_enter(self):
-        self.stateId = self.StateId.T7__DH1__BUDDY_ELF
+        self.stateId = Spec2Sm.StateId.T7__DH1__BUDDY_ELF
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter / { trace("Enter T7__DH1__BUDDY_ELF.") }
@@ -7133,14 +7133,14 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;)`
-            self.vars.T7__DH1__ALIENS_DETECTED_history = self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF
+            self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }
         if self.trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;)`
-            self.vars.T7__DH1__GET_BACKUP_history = self.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF
+            self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF
     
     def _T7__DH1__BUDDY_ELF_exit(self):
         # T7__DH1__BUDDY_ELF behavior
@@ -7150,7 +7150,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.")`
             Printer.trace("Exit T7__DH1__BUDDY_ELF.")
         
-        self.stateId = self.StateId.T7__DH1__LOCAL_HELP
+        self.stateId = Spec2Sm.StateId.T7__DH1__LOCAL_HELP
     
     def _T7__DH1__BUDDY_ELF_ev1(self):
         # T7__DH1__BUDDY_ELF behavior
@@ -7175,7 +7175,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__POLAR_BEARS_enter(self):
-        self.stateId = self.StateId.T7__DH1__POLAR_BEARS
+        self.stateId = Spec2Sm.StateId.T7__DH1__POLAR_BEARS
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter / { trace("Enter T7__DH1__POLAR_BEARS.") }
@@ -7189,14 +7189,14 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;)`
-            self.vars.T7__DH1__ALIENS_DETECTED_history = self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS
+            self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }
         if self.trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;)`
-            self.vars.T7__DH1__GET_BACKUP_history = self.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS
+            self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS
     
     def _T7__DH1__POLAR_BEARS_exit(self):
         # T7__DH1__POLAR_BEARS behavior
@@ -7206,7 +7206,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.")`
             Printer.trace("Exit T7__DH1__POLAR_BEARS.")
         
-        self.stateId = self.StateId.T7__DH1__LOCAL_HELP
+        self.stateId = Spec2Sm.StateId.T7__DH1__LOCAL_HELP
     
     
     ########################################
@@ -7214,7 +7214,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__GIVE_COOKIES_enter(self):
-        self.stateId = self.StateId.T7__DH1__GIVE_COOKIES
+        self.stateId = Spec2Sm.StateId.T7__DH1__GIVE_COOKIES
         
         # T7__DH1__GIVE_COOKIES behavior
         # uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES.") }
@@ -7228,7 +7228,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;)`
-            self.vars.T7__DH1__ALIENS_DETECTED_history = self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES
+            self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES
     
     def _T7__DH1__GIVE_COOKIES_exit(self):
         # T7__DH1__GIVE_COOKIES behavior
@@ -7238,7 +7238,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.")`
             Printer.trace("Exit T7__DH1__GIVE_COOKIES.")
         
-        self.stateId = self.StateId.T7__DH1__ALIENS_DETECTED
+        self.stateId = Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED
     
     def _T7__DH1__GIVE_COOKIES_ev1(self):
         # T7__DH1__GIVE_COOKIES behavior
@@ -7265,7 +7265,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__SNOWBALL_FIGHT_enter(self):
-        self.stateId = self.StateId.T7__DH1__SNOWBALL_FIGHT
+        self.stateId = Spec2Sm.StateId.T7__DH1__SNOWBALL_FIGHT
         
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT.") }
@@ -7279,7 +7279,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;)`
-            self.vars.T7__DH1__ALIENS_DETECTED_history = self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT
+            self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT
     
     def _T7__DH1__SNOWBALL_FIGHT_exit(self):
         # T7__DH1__SNOWBALL_FIGHT behavior
@@ -7289,7 +7289,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.")`
             Printer.trace("Exit T7__DH1__SNOWBALL_FIGHT.")
         
-        self.stateId = self.StateId.T7__DH1__ALIENS_DETECTED
+        self.stateId = Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED
     
     def _T7__DH1__SNOWBALL_FIGHT_ev1(self):
         # T7__DH1__SNOWBALL_FIGHT behavior
@@ -7314,7 +7314,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__BUILD_enter(self):
-        self.stateId = self.StateId.T7__DH1__BUILD
+        self.stateId = Spec2Sm.StateId.T7__DH1__BUILD
         
         # T7__DH1__BUILD behavior
         # uml: enter / { trace("Enter T7__DH1__BUILD.") }
@@ -7331,7 +7331,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__BUILD.")`
             Printer.trace("Exit T7__DH1__BUILD.")
         
-        self.stateId = self.StateId.T7__DH1__SANTAS_WORKSHOP
+        self.stateId = Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP
     
     def _T7__DH1__BUILD_ev6(self):
         # T7__DH1__BUILD behavior
@@ -7339,7 +7339,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", True):
 
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DH1__SANTAS_WORKSHOP)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.")`.
             Printer.trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.")
@@ -7361,7 +7361,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.") } TransitionTo(T7__DH1__GIVE_COOKIES)
-                if self.vars.T7__DH1__ALIENS_DETECTED_history == self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES:
+                if self.vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES:
 
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -7376,7 +7376,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
-                if self.vars.T7__DH1__ALIENS_DETECTED_history == self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO:
+                if self.vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO:
 
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -7393,7 +7393,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
-                if self.vars.T7__DH1__ALIENS_DETECTED_history == self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF:
+                if self.vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF:
 
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -7410,7 +7410,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
-                if self.vars.T7__DH1__ALIENS_DETECTED_history == self.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS:
+                if self.vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS:
 
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
@@ -7446,7 +7446,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", True):
 
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DH1__SANTAS_WORKSHOP)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.")`.
             Printer.trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.")
@@ -7458,7 +7458,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
-            if self.vars.T7__DH1__GET_BACKUP_history == self.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO:
+            if self.vars.T7__DH1__GET_BACKUP_history == Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO:
 
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7474,7 +7474,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
-            if self.vars.T7__DH1__GET_BACKUP_history == self.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF:
+            if self.vars.T7__DH1__GET_BACKUP_history == Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF:
 
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7490,7 +7490,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
-            if self.vars.T7__DH1__GET_BACKUP_history == self.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS:
+            if self.vars.T7__DH1__GET_BACKUP_history == Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS:
 
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7547,7 +7547,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.") } TransitionTo(T7__DH1__TOOL)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__TOOL:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TOOL:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7563,7 +7563,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.") } TransitionTo(T7__DH1__RACE_CAR)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7579,7 +7579,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.") } TransitionTo(T7__DH1__TEDDY_BEAR)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7595,7 +7595,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.") } TransitionTo(T7__DH1__GLOW_WORM)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7611,7 +7611,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.") } TransitionTo(T7__DH1__ROBOT)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7628,7 +7628,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.") } TransitionTo(T7__DH1__BATTLEBOT)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7645,7 +7645,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.") } TransitionTo(T7__DH1__WALL_E)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7662,7 +7662,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.") } TransitionTo(T7__DH1__IMPACT_DRILL)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7678,7 +7678,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.") } TransitionTo(T7__DH1__CIRCULAR_SAW)
-            if self.vars.T7__DH1__BUILD_history == self.T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW:
+            if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW:
 
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -7714,7 +7714,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__TOOL_enter(self):
-        self.stateId = self.StateId.T7__DH1__TOOL
+        self.stateId = Spec2Sm.StateId.T7__DH1__TOOL
         
         # T7__DH1__TOOL behavior
         # uml: enter / { trace("Enter T7__DH1__TOOL.") }
@@ -7728,7 +7728,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__TOOL
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TOOL
     
     def _T7__DH1__TOOL_exit(self):
         # T7__DH1__TOOL behavior
@@ -7738,7 +7738,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__TOOL.")`
             Printer.trace("Exit T7__DH1__TOOL.")
         
-        self.stateId = self.StateId.T7__DH1__BUILD
+        self.stateId = Spec2Sm.StateId.T7__DH1__BUILD
     
     def _T7__DH1__TOOL_ev2(self):
         # T7__DH1__TOOL behavior
@@ -7746,7 +7746,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", True):
 
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DH1__BUILD)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__BUILD)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.")`.
             Printer.trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.")
@@ -7780,7 +7780,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__CIRCULAR_SAW_enter(self):
-        self.stateId = self.StateId.T7__DH1__CIRCULAR_SAW
+        self.stateId = Spec2Sm.StateId.T7__DH1__CIRCULAR_SAW
         
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW.") }
@@ -7794,7 +7794,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW
     
     def _T7__DH1__CIRCULAR_SAW_exit(self):
         # T7__DH1__CIRCULAR_SAW behavior
@@ -7804,7 +7804,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.")`
             Printer.trace("Exit T7__DH1__CIRCULAR_SAW.")
         
-        self.stateId = self.StateId.T7__DH1__TOOL
+        self.stateId = Spec2Sm.StateId.T7__DH1__TOOL
     
     
     ########################################
@@ -7812,7 +7812,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__IMPACT_DRILL_enter(self):
-        self.stateId = self.StateId.T7__DH1__IMPACT_DRILL
+        self.stateId = Spec2Sm.StateId.T7__DH1__IMPACT_DRILL
         
         # T7__DH1__IMPACT_DRILL behavior
         # uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL.") }
@@ -7826,7 +7826,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL
     
     def _T7__DH1__IMPACT_DRILL_exit(self):
         # T7__DH1__IMPACT_DRILL behavior
@@ -7836,7 +7836,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.")`
             Printer.trace("Exit T7__DH1__IMPACT_DRILL.")
         
-        self.stateId = self.StateId.T7__DH1__TOOL
+        self.stateId = Spec2Sm.StateId.T7__DH1__TOOL
     
     def _T7__DH1__IMPACT_DRILL_ev1(self):
         # T7__DH1__IMPACT_DRILL behavior
@@ -7861,7 +7861,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__TOY_enter(self):
-        self.stateId = self.StateId.T7__DH1__TOY
+        self.stateId = Spec2Sm.StateId.T7__DH1__TOY
         
         # T7__DH1__TOY behavior
         # uml: enter / { trace("Enter T7__DH1__TOY.") }
@@ -7875,7 +7875,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__TOY
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TOY
     
     def _T7__DH1__TOY_exit(self):
         # T7__DH1__TOY behavior
@@ -7885,7 +7885,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__TOY.")`
             Printer.trace("Exit T7__DH1__TOY.")
         
-        self.stateId = self.StateId.T7__DH1__BUILD
+        self.stateId = Spec2Sm.StateId.T7__DH1__BUILD
     
     def _T7__DH1__TOY_ev1(self):
         # T7__DH1__TOY behavior
@@ -7893,7 +7893,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", True):
 
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DH1__BUILD)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__BUILD)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.")`.
             Printer.trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.")
@@ -7927,7 +7927,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__GLOW_WORM_enter(self):
-        self.stateId = self.StateId.T7__DH1__GLOW_WORM
+        self.stateId = Spec2Sm.StateId.T7__DH1__GLOW_WORM
         
         # T7__DH1__GLOW_WORM behavior
         # uml: enter / { trace("Enter T7__DH1__GLOW_WORM.") }
@@ -7941,7 +7941,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM
     
     def _T7__DH1__GLOW_WORM_exit(self):
         # T7__DH1__GLOW_WORM behavior
@@ -7951,7 +7951,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.")`
             Printer.trace("Exit T7__DH1__GLOW_WORM.")
         
-        self.stateId = self.StateId.T7__DH1__TOY
+        self.stateId = Spec2Sm.StateId.T7__DH1__TOY
     
     def _T7__DH1__GLOW_WORM_ev1(self):
         consume_event = False
@@ -7984,7 +7984,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__RACE_CAR_enter(self):
-        self.stateId = self.StateId.T7__DH1__RACE_CAR
+        self.stateId = Spec2Sm.StateId.T7__DH1__RACE_CAR
         
         # T7__DH1__RACE_CAR behavior
         # uml: enter / { trace("Enter T7__DH1__RACE_CAR.") }
@@ -7998,7 +7998,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR
     
     def _T7__DH1__RACE_CAR_exit(self):
         # T7__DH1__RACE_CAR behavior
@@ -8008,7 +8008,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.")`
             Printer.trace("Exit T7__DH1__RACE_CAR.")
         
-        self.stateId = self.StateId.T7__DH1__TOY
+        self.stateId = Spec2Sm.StateId.T7__DH1__TOY
     
     def _T7__DH1__RACE_CAR_ev1(self):
         consume_event = False
@@ -8040,7 +8040,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__ROBOT_enter(self):
-        self.stateId = self.StateId.T7__DH1__ROBOT
+        self.stateId = Spec2Sm.StateId.T7__DH1__ROBOT
         
         # T7__DH1__ROBOT behavior
         # uml: enter / { trace("Enter T7__DH1__ROBOT.") }
@@ -8054,7 +8054,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT
     
     def _T7__DH1__ROBOT_exit(self):
         # T7__DH1__ROBOT behavior
@@ -8064,7 +8064,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__ROBOT.")`
             Printer.trace("Exit T7__DH1__ROBOT.")
         
-        self.stateId = self.StateId.T7__DH1__TOY
+        self.stateId = Spec2Sm.StateId.T7__DH1__TOY
     
     def _T7__DH1__ROBOT_InitialState_transition(self):
         # T7__DH1__ROBOT.<InitialState> behavior
@@ -8088,7 +8088,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__BATTLEBOT_enter(self):
-        self.stateId = self.StateId.T7__DH1__BATTLEBOT
+        self.stateId = Spec2Sm.StateId.T7__DH1__BATTLEBOT
         
         # T7__DH1__BATTLEBOT behavior
         # uml: enter / { trace("Enter T7__DH1__BATTLEBOT.") }
@@ -8102,7 +8102,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT
     
     def _T7__DH1__BATTLEBOT_exit(self):
         # T7__DH1__BATTLEBOT behavior
@@ -8112,7 +8112,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.")`
             Printer.trace("Exit T7__DH1__BATTLEBOT.")
         
-        self.stateId = self.StateId.T7__DH1__ROBOT
+        self.stateId = Spec2Sm.StateId.T7__DH1__ROBOT
     
     def _T7__DH1__BATTLEBOT_ev1(self):
         consume_event = False
@@ -8144,7 +8144,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__WALL_E_enter(self):
-        self.stateId = self.StateId.T7__DH1__WALL_E
+        self.stateId = Spec2Sm.StateId.T7__DH1__WALL_E
         
         # T7__DH1__WALL_E behavior
         # uml: enter / { trace("Enter T7__DH1__WALL_E.") }
@@ -8158,7 +8158,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E
     
     def _T7__DH1__WALL_E_exit(self):
         # T7__DH1__WALL_E behavior
@@ -8168,7 +8168,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__WALL_E.")`
             Printer.trace("Exit T7__DH1__WALL_E.")
         
-        self.stateId = self.StateId.T7__DH1__ROBOT
+        self.stateId = Spec2Sm.StateId.T7__DH1__ROBOT
     
     
     ########################################
@@ -8176,7 +8176,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DH1__TEDDY_BEAR_enter(self):
-        self.stateId = self.StateId.T7__DH1__TEDDY_BEAR
+        self.stateId = Spec2Sm.StateId.T7__DH1__TEDDY_BEAR
         
         # T7__DH1__TEDDY_BEAR behavior
         # uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR.") }
@@ -8190,7 +8190,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;)`
-            self.vars.T7__DH1__BUILD_history = self.T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR
+            self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR
     
     def _T7__DH1__TEDDY_BEAR_exit(self):
         # T7__DH1__TEDDY_BEAR behavior
@@ -8200,7 +8200,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.")`
             Printer.trace("Exit T7__DH1__TEDDY_BEAR.")
         
-        self.stateId = self.StateId.T7__DH1__TOY
+        self.stateId = Spec2Sm.StateId.T7__DH1__TOY
     
     def _T7__DH1__TEDDY_BEAR_ev1(self):
         consume_event = False
@@ -8232,7 +8232,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY2_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2
         
         # T7__DEEP_HISTORY2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2.") }
@@ -8249,7 +8249,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.")`
             Printer.trace("Exit T7__DEEP_HISTORY2.")
         
-        self.stateId = self.StateId.TEST7
+        self.stateId = Spec2Sm.StateId.TEST7
     
     
     ########################################
@@ -8257,7 +8257,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY2__T7__STATE_0_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_0
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0
         
         # T7__DEEP_HISTORY2__T7__state_0 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_0.") }
@@ -8274,7 +8274,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_0.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_0.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2
     
     def _T7__DEEP_HISTORY2__T7__STATE_0_evopen(self):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
@@ -8282,7 +8282,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", True):
 
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DEEP_HISTORY2)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DEEP_HISTORY2)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.")`.
             Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.")
@@ -8308,7 +8308,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
-            if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == self.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2:
+            if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2:
 
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -8324,7 +8324,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
-            if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == self.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6:
+            if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6:
 
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -8340,7 +8340,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
-            if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == self.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9:
+            if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9:
 
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -8375,7 +8375,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY2__T7__STATE_1_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_1
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_1
         
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_1.") }
@@ -8389,7 +8389,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;)`
-            self.vars.T7__DEEP_HISTORY2__T7__state_0_history = self.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1
+            self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1
     
     def _T7__DEEP_HISTORY2__T7__STATE_1_exit(self):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
@@ -8399,7 +8399,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_1.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_1.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_0
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0
     
     def _T7__DEEP_HISTORY2__T7__STATE_1_evstep(self):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
@@ -8425,7 +8425,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY2__T7__STATE_2_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2
         
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_2.") }
@@ -8439,7 +8439,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;)`
-            self.vars.T7__DEEP_HISTORY2__T7__state_0_history = self.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2
+            self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2
     
     def _T7__DEEP_HISTORY2__T7__STATE_2_exit(self):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
@@ -8449,7 +8449,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_2.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_2.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_0
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0
     
     def _T7__DEEP_HISTORY2__T7__STATE_2_evback(self):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
@@ -8457,7 +8457,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", True):
 
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DEEP_HISTORY2__T7__STATE_0)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.")`.
             Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.")
@@ -8490,7 +8490,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY2__T7__STATE_6_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_6
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_6
         
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_6.") }
@@ -8504,7 +8504,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;)`
-            self.vars.T7__DEEP_HISTORY2__T7__state_0_history = self.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6
+            self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6
     
     def _T7__DEEP_HISTORY2__T7__STATE_6_exit(self):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
@@ -8514,7 +8514,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_6.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_6.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2
     
     def _T7__DEEP_HISTORY2__T7__STATE_6_evstep(self):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
@@ -8539,7 +8539,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY2__T7__STATE_9_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_9
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9
         
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_9.") }
@@ -8553,7 +8553,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;)`
-            self.vars.T7__DEEP_HISTORY2__T7__state_0_history = self.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9
+            self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9
     
     def _T7__DEEP_HISTORY2__T7__STATE_9_exit(self):
         # T7__DEEP_HISTORY2__T7__state_9 behavior
@@ -8563,7 +8563,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_9.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_9.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2
     
     
     ########################################
@@ -8571,7 +8571,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY2__T7__STATE_3_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY2__T7__STATE_3
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_3
         
         # T7__DEEP_HISTORY2__T7__state_3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_3.") }
@@ -8588,7 +8588,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_3.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_3.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2
     
     def _T7__DEEP_HISTORY2__T7__STATE_3_evclose(self):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
@@ -8614,7 +8614,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY3_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY3
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3
         
         # T7__DEEP_HISTORY3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3.") }
@@ -8631,7 +8631,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.")`
             Printer.trace("Exit T7__DEEP_HISTORY3.")
         
-        self.stateId = self.StateId.TEST7
+        self.stateId = Spec2Sm.StateId.TEST7
     
     
     ########################################
@@ -8639,7 +8639,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY3__T7__STATE_0_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_0
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0
         
         # T7__DEEP_HISTORY3__T7__state_0 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_0.") }
@@ -8656,7 +8656,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_0.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_0.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY3
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3
     
     def _T7__DEEP_HISTORY3__T7__STATE_0_evopen(self):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
@@ -8664,7 +8664,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", True):
 
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DEEP_HISTORY3)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DEEP_HISTORY3)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.")`.
             Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.")
@@ -8690,7 +8690,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__DEEP_HISTORY3__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
-            if self.vars.T7__DEEP_HISTORY3__T7__state_0_history == self.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2:
+            if self.vars.T7__DEEP_HISTORY3__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2:
 
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -8725,7 +8725,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY3__T7__STATE_1_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_1
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_1
         
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_1.") }
@@ -8739,7 +8739,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;)`
-            self.vars.T7__DEEP_HISTORY3__T7__state_0_history = self.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1
+            self.vars.T7__DEEP_HISTORY3__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1
     
     def _T7__DEEP_HISTORY3__T7__STATE_1_exit(self):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
@@ -8749,7 +8749,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_1.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_1.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_0
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0
     
     def _T7__DEEP_HISTORY3__T7__STATE_1_evstep(self):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
@@ -8775,7 +8775,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY3__T7__STATE_2_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2
         
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_2.") }
@@ -8789,7 +8789,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;)`
-            self.vars.T7__DEEP_HISTORY3__T7__state_0_history = self.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2
+            self.vars.T7__DEEP_HISTORY3__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2
     
     def _T7__DEEP_HISTORY3__T7__STATE_2_exit(self):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
@@ -8799,7 +8799,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_2.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_2.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_0
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0
     
     def _T7__DEEP_HISTORY3__T7__STATE_2_evback(self):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
@@ -8807,7 +8807,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", True):
 
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__DEEP_HISTORY3__T7__STATE_0)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.")`.
             Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.")
@@ -8840,7 +8840,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY3__T7__STATE_6_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_6
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_6
         
         # T7__DEEP_HISTORY3__T7__state_6 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_6.") }
@@ -8857,7 +8857,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_6.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_6.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2
     
     def _T7__DEEP_HISTORY3__T7__STATE_6_evstep(self):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
@@ -8882,7 +8882,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY3__T7__STATE_9_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_9
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_9
         
         # T7__DEEP_HISTORY3__T7__state_9 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_9.") }
@@ -8899,7 +8899,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_9.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_9.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_2
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2
     
     
     ########################################
@@ -8907,7 +8907,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__DEEP_HISTORY3__T7__STATE_3_enter(self):
-        self.stateId = self.StateId.T7__DEEP_HISTORY3__T7__STATE_3
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_3
         
         # T7__DEEP_HISTORY3__T7__state_3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_3.") }
@@ -8924,7 +8924,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_3.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_3.")
         
-        self.stateId = self.StateId.T7__DEEP_HISTORY3
+        self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3
     
     def _T7__DEEP_HISTORY3__T7__STATE_3_evclose(self):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
@@ -8950,7 +8950,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__HISTORY1_enter(self):
-        self.stateId = self.StateId.T7__HISTORY1
+        self.stateId = Spec2Sm.StateId.T7__HISTORY1
         
         # T7__HISTORY1 behavior
         # uml: enter / { trace("Enter T7__HISTORY1.") }
@@ -8967,7 +8967,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__HISTORY1.")`
             Printer.trace("Exit T7__HISTORY1.")
         
-        self.stateId = self.StateId.TEST7
+        self.stateId = Spec2Sm.StateId.TEST7
     
     
     ########################################
@@ -8975,7 +8975,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__H1__OFF_enter(self):
-        self.stateId = self.StateId.T7__H1__OFF
+        self.stateId = Spec2Sm.StateId.T7__H1__OFF
         
         # T7__H1__OFF behavior
         # uml: enter / { trace("Enter T7__H1__OFF.") }
@@ -8992,7 +8992,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__H1__OFF.")`
             Printer.trace("Exit T7__H1__OFF.")
         
-        self.stateId = self.StateId.T7__HISTORY1
+        self.stateId = Spec2Sm.StateId.T7__HISTORY1
     
     def _T7__H1__OFF_ev3(self):
         # T7__H1__OFF behavior
@@ -9000,7 +9000,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", True):
 
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__H1__OFF)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__H1__OFF)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.")`.
             Printer.trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.")
@@ -9017,7 +9017,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", True):
 
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__HISTORY1)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__HISTORY1)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.")`.
             Printer.trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.")
@@ -9035,7 +9035,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", True):
 
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__HISTORY1)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__HISTORY1)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__ON.")`.
             Printer.trace("Transition action `` for T7__H1__OFF to T7__H1__ON.")
@@ -9062,7 +9062,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__H1__OFF.<History> behavior
             # uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.") } TransitionTo(T7__H1__OFF2)
-            if self.vars.T7__H1__OFF_history == self.T7__H1__OFF_HistoryId.T7__H1__OFF2:
+            if self.vars.T7__H1__OFF_history == Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF2:
 
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -9077,7 +9077,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__H1__OFF.<History> behavior
             # uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.") } TransitionTo(T7__H1__OFF3)
-            if self.vars.T7__H1__OFF_history == self.T7__H1__OFF_HistoryId.T7__H1__OFF3:
+            if self.vars.T7__H1__OFF_history == Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF3:
 
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -9111,7 +9111,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__H1__OFF1_enter(self):
-        self.stateId = self.StateId.T7__H1__OFF1
+        self.stateId = Spec2Sm.StateId.T7__H1__OFF1
         
         # T7__H1__OFF1 behavior
         # uml: enter / { trace("Enter T7__H1__OFF1.") }
@@ -9125,7 +9125,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;)`
-            self.vars.T7__H1__OFF_history = self.T7__H1__OFF_HistoryId.T7__H1__OFF1
+            self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF1
     
     def _T7__H1__OFF1_exit(self):
         # T7__H1__OFF1 behavior
@@ -9135,7 +9135,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__H1__OFF1.")`
             Printer.trace("Exit T7__H1__OFF1.")
         
-        self.stateId = self.StateId.T7__H1__OFF
+        self.stateId = Spec2Sm.StateId.T7__H1__OFF
     
     def _T7__H1__OFF1_ev1(self):
         # T7__H1__OFF1 behavior
@@ -9160,7 +9160,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__H1__OFF2_enter(self):
-        self.stateId = self.StateId.T7__H1__OFF2
+        self.stateId = Spec2Sm.StateId.T7__H1__OFF2
         
         # T7__H1__OFF2 behavior
         # uml: enter / { trace("Enter T7__H1__OFF2.") }
@@ -9174,7 +9174,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;)`
-            self.vars.T7__H1__OFF_history = self.T7__H1__OFF_HistoryId.T7__H1__OFF2
+            self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF2
     
     def _T7__H1__OFF2_exit(self):
         # T7__H1__OFF2 behavior
@@ -9184,7 +9184,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__H1__OFF2.")`
             Printer.trace("Exit T7__H1__OFF2.")
         
-        self.stateId = self.StateId.T7__H1__OFF
+        self.stateId = Spec2Sm.StateId.T7__H1__OFF
     
     def _T7__H1__OFF2_ev1(self):
         # T7__H1__OFF2 behavior
@@ -9209,7 +9209,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__H1__OFF3_enter(self):
-        self.stateId = self.StateId.T7__H1__OFF3
+        self.stateId = Spec2Sm.StateId.T7__H1__OFF3
         
         # T7__H1__OFF3 behavior
         # uml: enter / { trace("Enter T7__H1__OFF3.") }
@@ -9223,7 +9223,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;)`
-            self.vars.T7__H1__OFF_history = self.T7__H1__OFF_HistoryId.T7__H1__OFF3
+            self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF3
     
     def _T7__H1__OFF3_exit(self):
         # T7__H1__OFF3 behavior
@@ -9233,7 +9233,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__H1__OFF3.")`
             Printer.trace("Exit T7__H1__OFF3.")
         
-        self.stateId = self.StateId.T7__H1__OFF
+        self.stateId = Spec2Sm.StateId.T7__H1__OFF
     
     
     ########################################
@@ -9241,7 +9241,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__H1__ON_enter(self):
-        self.stateId = self.StateId.T7__H1__ON
+        self.stateId = Spec2Sm.StateId.T7__H1__ON
         
         # T7__H1__ON behavior
         # uml: enter / { trace("Enter T7__H1__ON.") }
@@ -9258,7 +9258,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__H1__ON.")`
             Printer.trace("Exit T7__H1__ON.")
         
-        self.stateId = self.StateId.T7__HISTORY1
+        self.stateId = Spec2Sm.StateId.T7__HISTORY1
     
     def _T7__H1__ON_ev6(self):
         # T7__H1__ON behavior
@@ -9266,7 +9266,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", True):
 
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__HISTORY1)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__HISTORY1)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON to T7__H1__OFF.")`.
             Printer.trace("Transition action `` for T7__H1__ON to T7__H1__OFF.")
@@ -9293,7 +9293,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__H1__ON.<History> behavior
             # uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.") } TransitionTo(T7__H1__ON2)
-            if self.vars.T7__H1__ON_history == self.T7__H1__ON_HistoryId.T7__H1__ON2:
+            if self.vars.T7__H1__ON_history == Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON2:
 
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -9308,7 +9308,7 @@ class Spec2Sm(Spec2SmBase):
             
             # T7__H1__ON.<History> behavior
             # uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.") } TransitionTo(T7__H1__ON3)
-            if self.vars.T7__H1__ON_history == self.T7__H1__ON_HistoryId.T7__H1__ON3:
+            if self.vars.T7__H1__ON_history == Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON3:
 
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
@@ -9342,7 +9342,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__H1__ON1_enter(self):
-        self.stateId = self.StateId.T7__H1__ON1
+        self.stateId = Spec2Sm.StateId.T7__H1__ON1
         
         # T7__H1__ON1 behavior
         # uml: enter / { trace("Enter T7__H1__ON1.") }
@@ -9356,7 +9356,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;)`
-            self.vars.T7__H1__ON_history = self.T7__H1__ON_HistoryId.T7__H1__ON1
+            self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON1
     
     def _T7__H1__ON1_exit(self):
         # T7__H1__ON1 behavior
@@ -9366,7 +9366,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__H1__ON1.")`
             Printer.trace("Exit T7__H1__ON1.")
         
-        self.stateId = self.StateId.T7__H1__ON
+        self.stateId = Spec2Sm.StateId.T7__H1__ON
     
     def _T7__H1__ON1_ev1(self):
         # T7__H1__ON1 behavior
@@ -9391,7 +9391,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__H1__ON2_enter(self):
-        self.stateId = self.StateId.T7__H1__ON2
+        self.stateId = Spec2Sm.StateId.T7__H1__ON2
         
         # T7__H1__ON2 behavior
         # uml: enter / { trace("Enter T7__H1__ON2.") }
@@ -9405,7 +9405,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;)`
-            self.vars.T7__H1__ON_history = self.T7__H1__ON_HistoryId.T7__H1__ON2
+            self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON2
     
     def _T7__H1__ON2_exit(self):
         # T7__H1__ON2 behavior
@@ -9415,7 +9415,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__H1__ON2.")`
             Printer.trace("Exit T7__H1__ON2.")
         
-        self.stateId = self.StateId.T7__H1__ON
+        self.stateId = Spec2Sm.StateId.T7__H1__ON
     
     def _T7__H1__ON2_ev1(self):
         # T7__H1__ON2 behavior
@@ -9440,7 +9440,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__H1__ON3_enter(self):
-        self.stateId = self.StateId.T7__H1__ON3
+        self.stateId = Spec2Sm.StateId.T7__H1__ON3
         
         # T7__H1__ON3 behavior
         # uml: enter / { trace("Enter T7__H1__ON3.") }
@@ -9454,7 +9454,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", True):
 
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;)`
-            self.vars.T7__H1__ON_history = self.T7__H1__ON_HistoryId.T7__H1__ON3
+            self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON3
     
     def _T7__H1__ON3_exit(self):
         # T7__H1__ON3 behavior
@@ -9464,7 +9464,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__H1__ON3.")`
             Printer.trace("Exit T7__H1__ON3.")
         
-        self.stateId = self.StateId.T7__H1__ON
+        self.stateId = Spec2Sm.StateId.T7__H1__ON
     
     def _T7__H1__ON3_ev1(self):
         # T7__H1__ON3 behavior
@@ -9489,7 +9489,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__INITIAL1_enter(self):
-        self.stateId = self.StateId.T7__INITIAL1
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1
         
         # T7__INITIAL1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1.") }
@@ -9506,7 +9506,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__INITIAL1.")`
             Printer.trace("Exit T7__INITIAL1.")
         
-        self.stateId = self.StateId.TEST7
+        self.stateId = Spec2Sm.StateId.TEST7
     
     
     ########################################
@@ -9514,7 +9514,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__INITIAL1__PARENT_enter(self):
-        self.stateId = self.StateId.T7__INITIAL1__PARENT
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__PARENT
         
         # T7__INITIAL1__PARENT behavior
         # uml: enter / { trace("Enter T7__INITIAL1__PARENT.") }
@@ -9531,7 +9531,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.")`
             Printer.trace("Exit T7__INITIAL1__PARENT.")
         
-        self.stateId = self.StateId.T7__INITIAL1
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1
     
     def _T7__INITIAL1__PARENT_ev5(self):
         # T7__INITIAL1__PARENT behavior
@@ -9563,7 +9563,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__INITIAL1__G_enter(self):
-        self.stateId = self.StateId.T7__INITIAL1__G
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__G
         
         # T7__INITIAL1__G behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G.") }
@@ -9580,7 +9580,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__INITIAL1__G.")`
             Printer.trace("Exit T7__INITIAL1__G.")
         
-        self.stateId = self.StateId.T7__INITIAL1__PARENT
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__PARENT
     
     def _T7__INITIAL1__G_ev2(self):
         # T7__INITIAL1__G behavior
@@ -9588,7 +9588,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", True):
 
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.T7__INITIAL1__PARENT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.T7__INITIAL1__PARENT)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.")`.
             Printer.trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.")
@@ -9652,7 +9652,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__INITIAL1__G_S1_enter(self):
-        self.stateId = self.StateId.T7__INITIAL1__G_S1
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__G_S1
         
         # T7__INITIAL1__G_S1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S1.") }
@@ -9669,7 +9669,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.")`
             Printer.trace("Exit T7__INITIAL1__G_S1.")
         
-        self.stateId = self.StateId.T7__INITIAL1__G
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__G
     
     
     ########################################
@@ -9677,7 +9677,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__INITIAL1__G_S2_enter(self):
-        self.stateId = self.StateId.T7__INITIAL1__G_S2
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__G_S2
         
         # T7__INITIAL1__G_S2 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S2.") }
@@ -9694,7 +9694,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.")`
             Printer.trace("Exit T7__INITIAL1__G_S2.")
         
-        self.stateId = self.StateId.T7__INITIAL1__G
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__G
     
     
     ########################################
@@ -9702,7 +9702,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__INITIAL1__G_S3_enter(self):
-        self.stateId = self.StateId.T7__INITIAL1__G_S3
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__G_S3
         
         # T7__INITIAL1__G_S3 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S3.") }
@@ -9719,7 +9719,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.")`
             Printer.trace("Exit T7__INITIAL1__G_S3.")
         
-        self.stateId = self.StateId.T7__INITIAL1__G
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__G
     
     
     ########################################
@@ -9727,7 +9727,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _T7__INITIAL1__S1_enter(self):
-        self.stateId = self.StateId.T7__INITIAL1__S1
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__S1
         
         # T7__INITIAL1__S1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__S1.") }
@@ -9744,7 +9744,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit T7__INITIAL1__S1.")`
             Printer.trace("Exit T7__INITIAL1__S1.")
         
-        self.stateId = self.StateId.T7__INITIAL1__PARENT
+        self.stateId = Spec2Sm.StateId.T7__INITIAL1__PARENT
     
     def _T7__INITIAL1__S1_ev1(self):
         # T7__INITIAL1__S1 behavior
@@ -9789,7 +9789,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST7_DECIDE_enter(self):
-        self.stateId = self.StateId.TEST7_DECIDE
+        self.stateId = Spec2Sm.StateId.TEST7_DECIDE
         
         # TEST7_DECIDE behavior
         # uml: enter / { trace("Enter TEST7_DECIDE.") }
@@ -9813,7 +9813,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
         
-        self.stateId = self.StateId.TEST7_INITIAL_OR_HISTORY
+        self.stateId = Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY
     
     def _TEST7_DECIDE_ev1(self):
         # TEST7_DECIDE behavior
@@ -9977,7 +9977,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST8_ENTRY_CHOICE_enter(self):
-        self.stateId = self.StateId.TEST8_ENTRY_CHOICE
+        self.stateId = Spec2Sm.StateId.TEST8_ENTRY_CHOICE
         
         # TEST8_ENTRY_CHOICE behavior
         # uml: enter / { trace("Enter TEST8_ENTRY_CHOICE.") }
@@ -9994,7 +9994,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.")`
             Printer.trace("Exit TEST8_ENTRY_CHOICE.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -10002,7 +10002,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST8_ROOT_enter(self):
-        self.stateId = self.StateId.TEST8_ROOT
+        self.stateId = Spec2Sm.StateId.TEST8_ROOT
         
         # TEST8_ROOT behavior
         # uml: enter / { trace("Enter TEST8_ROOT.") }
@@ -10026,7 +10026,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST8_ROOT.")`
             Printer.trace("Exit TEST8_ROOT.")
         
-        self.stateId = self.StateId.TEST8_ENTRY_CHOICE
+        self.stateId = Spec2Sm.StateId.TEST8_ENTRY_CHOICE
     
     def _TEST8_ROOT_ev3(self):
         # TEST8_ROOT behavior
@@ -10065,7 +10065,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST8_G_enter(self):
-        self.stateId = self.StateId.TEST8_G
+        self.stateId = Spec2Sm.StateId.TEST8_G
         
         # TEST8_G behavior
         # uml: enter / { trace("Enter TEST8_G.") }
@@ -10082,7 +10082,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST8_G.")`
             Printer.trace("Exit TEST8_G.")
         
-        self.stateId = self.StateId.TEST8_ROOT
+        self.stateId = Spec2Sm.StateId.TEST8_ROOT
     
     def _TEST8_G_ev2(self):
         # TEST8_G behavior
@@ -10090,7 +10090,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", True):
 
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST8_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST8_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).")`.
             Printer.trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).")
@@ -10172,7 +10172,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST8_G_S1_enter(self):
-        self.stateId = self.StateId.TEST8_G_S1
+        self.stateId = Spec2Sm.StateId.TEST8_G_S1
         
         # TEST8_G_S1 behavior
         # uml: enter / { trace("Enter TEST8_G_S1.") }
@@ -10189,7 +10189,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST8_G_S1.")`
             Printer.trace("Exit TEST8_G_S1.")
         
-        self.stateId = self.StateId.TEST8_G
+        self.stateId = Spec2Sm.StateId.TEST8_G
     
     
     ########################################
@@ -10197,7 +10197,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST8_G_S2_enter(self):
-        self.stateId = self.StateId.TEST8_G_S2
+        self.stateId = Spec2Sm.StateId.TEST8_G_S2
         
         # TEST8_G_S2 behavior
         # uml: enter / { trace("Enter TEST8_G_S2.") }
@@ -10214,7 +10214,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST8_G_S2.")`
             Printer.trace("Exit TEST8_G_S2.")
         
-        self.stateId = self.StateId.TEST8_G
+        self.stateId = Spec2Sm.StateId.TEST8_G
     
     
     ########################################
@@ -10222,7 +10222,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST8_G_S3_enter(self):
-        self.stateId = self.StateId.TEST8_G_S3
+        self.stateId = Spec2Sm.StateId.TEST8_G_S3
         
         # TEST8_G_S3 behavior
         # uml: enter / { trace("Enter TEST8_G_S3.") }
@@ -10239,7 +10239,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST8_G_S3.")`
             Printer.trace("Exit TEST8_G_S3.")
         
-        self.stateId = self.StateId.TEST8_G
+        self.stateId = Spec2Sm.StateId.TEST8_G
     
     
     ########################################
@@ -10247,7 +10247,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST8_S1_enter(self):
-        self.stateId = self.StateId.TEST8_S1
+        self.stateId = Spec2Sm.StateId.TEST8_S1
         
         # TEST8_S1 behavior
         # uml: enter / { trace("Enter TEST8_S1.") }
@@ -10264,7 +10264,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST8_S1.")`
             Printer.trace("Exit TEST8_S1.")
         
-        self.stateId = self.StateId.TEST8_ROOT
+        self.stateId = Spec2Sm.StateId.TEST8_ROOT
     
     def _TEST8_S1_ev1(self):
         # TEST8_S1 behavior
@@ -10343,7 +10343,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_EXIT_CHOICE_enter(self):
-        self.stateId = self.StateId.TEST9_EXIT_CHOICE
+        self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
         
         # TEST9_EXIT_CHOICE behavior
         # uml: enter / { trace("Enter TEST9_EXIT_CHOICE.") }
@@ -10360,7 +10360,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.")`
             Printer.trace("Exit TEST9_EXIT_CHOICE.")
         
-        self.stateId = self.StateId.ROOT
+        self.stateId = Spec2Sm.StateId.ROOT
     
     
     ########################################
@@ -10368,7 +10368,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_DECIDE_enter(self):
-        self.stateId = self.StateId.TEST9_DECIDE
+        self.stateId = Spec2Sm.StateId.TEST9_DECIDE
         
         # TEST9_DECIDE behavior
         # uml: enter / { trace("Enter TEST9_DECIDE.") }
@@ -10385,7 +10385,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_DECIDE.")`
             Printer.trace("Exit TEST9_DECIDE.")
         
-        self.stateId = self.StateId.TEST9_EXIT_CHOICE
+        self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
     
     def _TEST9_DECIDE_ev1(self):
         # TEST9_DECIDE behavior
@@ -10482,7 +10482,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_ROOT_enter(self):
-        self.stateId = self.StateId.TEST9_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9_ROOT
         
         # TEST9_ROOT behavior
         # uml: enter / { trace("Enter TEST9_ROOT.") }
@@ -10499,7 +10499,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_ROOT.")`
             Printer.trace("Exit TEST9_ROOT.")
         
-        self.stateId = self.StateId.TEST9_EXIT_CHOICE
+        self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
     
     def _TEST9_ROOT_ev5(self):
         # TEST9_ROOT behavior
@@ -10515,7 +10515,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_G_S1_enter(self):
-        self.stateId = self.StateId.TEST9_G_S1
+        self.stateId = Spec2Sm.StateId.TEST9_G_S1
         
         # TEST9_G_S1 behavior
         # uml: enter / { trace("Enter TEST9_G_S1.") }
@@ -10532,7 +10532,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_G_S1.")`
             Printer.trace("Exit TEST9_G_S1.")
         
-        self.stateId = self.StateId.TEST9_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9_ROOT
     
     
     ########################################
@@ -10540,7 +10540,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_G_S2_enter(self):
-        self.stateId = self.StateId.TEST9_G_S2
+        self.stateId = Spec2Sm.StateId.TEST9_G_S2
         
         # TEST9_G_S2 behavior
         # uml: enter / { trace("Enter TEST9_G_S2.") }
@@ -10557,7 +10557,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_G_S2.")`
             Printer.trace("Exit TEST9_G_S2.")
         
-        self.stateId = self.StateId.TEST9_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9_ROOT
     
     
     ########################################
@@ -10565,7 +10565,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_G_S3_enter(self):
-        self.stateId = self.StateId.TEST9_G_S3
+        self.stateId = Spec2Sm.StateId.TEST9_G_S3
         
         # TEST9_G_S3 behavior
         # uml: enter / { trace("Enter TEST9_G_S3.") }
@@ -10582,7 +10582,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_G_S3.")`
             Printer.trace("Exit TEST9_G_S3.")
         
-        self.stateId = self.StateId.TEST9_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9_ROOT
     
     
     ########################################
@@ -10590,7 +10590,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_G_S4_enter(self):
-        self.stateId = self.StateId.TEST9_G_S4
+        self.stateId = Spec2Sm.StateId.TEST9_G_S4
         
         # TEST9_G_S4 behavior
         # uml: enter / { trace("Enter TEST9_G_S4.") }
@@ -10607,7 +10607,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_G_S4.")`
             Printer.trace("Exit TEST9_G_S4.")
         
-        self.stateId = self.StateId.TEST9_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9_ROOT
     
     
     ########################################
@@ -10615,7 +10615,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_S1_enter(self):
-        self.stateId = self.StateId.TEST9_S1
+        self.stateId = Spec2Sm.StateId.TEST9_S1
         
         # TEST9_S1 behavior
         # uml: enter / { trace("Enter TEST9_S1.") }
@@ -10632,7 +10632,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_S1.")`
             Printer.trace("Exit TEST9_S1.")
         
-        self.stateId = self.StateId.TEST9_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9_ROOT
     
     
     ########################################
@@ -10640,7 +10640,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9_S1_1_enter(self):
-        self.stateId = self.StateId.TEST9_S1_1
+        self.stateId = Spec2Sm.StateId.TEST9_S1_1
         
         # TEST9_S1_1 behavior
         # uml: enter / { trace("Enter TEST9_S1_1.") }
@@ -10664,7 +10664,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9_S1_1.")`
             Printer.trace("Exit TEST9_S1_1.")
         
-        self.stateId = self.StateId.TEST9_S1
+        self.stateId = Spec2Sm.StateId.TEST9_S1
     
     def _TEST9_S1_1_ev1(self):
         # TEST9_S1_1 behavior
@@ -10750,7 +10750,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9A_ROOT_enter(self):
-        self.stateId = self.StateId.TEST9A_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9A_ROOT
         
         # TEST9A_ROOT behavior
         # uml: enter / { trace("Enter TEST9A_ROOT.") }
@@ -10767,7 +10767,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9A_ROOT.")`
             Printer.trace("Exit TEST9A_ROOT.")
         
-        self.stateId = self.StateId.TEST9_EXIT_CHOICE
+        self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
     
     
     ########################################
@@ -10775,7 +10775,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9A_S1_enter(self):
-        self.stateId = self.StateId.TEST9A_S1
+        self.stateId = Spec2Sm.StateId.TEST9A_S1
         
         # TEST9A_S1 behavior
         # uml: enter / { trace("Enter TEST9A_S1.") }
@@ -10792,7 +10792,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9A_S1.")`
             Printer.trace("Exit TEST9A_S1.")
         
-        self.stateId = self.StateId.TEST9A_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9A_ROOT
     
     def _TEST9A_S1_InitialState_transition(self):
         # TEST9A_S1.<InitialState> behavior
@@ -10816,7 +10816,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9A_S1_1_enter(self):
-        self.stateId = self.StateId.TEST9A_S1_1
+        self.stateId = Spec2Sm.StateId.TEST9A_S1_1
         
         # TEST9A_S1_1 behavior
         # uml: enter / { trace("Enter TEST9A_S1_1.") }
@@ -10847,7 +10847,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `count = 100`
             self.vars.count = 100
         
-        self.stateId = self.StateId.TEST9A_S1
+        self.stateId = Spec2Sm.StateId.TEST9A_S1
     
     def _TEST9A_S1_1_ev1(self):
         # TEST9A_S1_1 behavior
@@ -10886,7 +10886,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT
         
         # TEST9B_ROOT behavior
         # uml: enter / { trace("Enter TEST9B_ROOT.") }
@@ -10910,7 +10910,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT.")`
             Printer.trace("Exit TEST9B_ROOT.")
         
-        self.stateId = self.StateId.TEST9_EXIT_CHOICE
+        self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
     
     def _TEST9B_ROOT_ev1(self):
         # TEST9B_ROOT behavior
@@ -10918,7 +10918,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", True):
 
             # Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
-            self._exitUpToStateHandler(self.StateId.TEST9B_ROOT)
+            self._exitUpToStateHandler(Spec2Sm.StateId.TEST9B_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.")`.
             Printer.trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.")
@@ -10938,7 +10938,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT__A1_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT__A1
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A1
         
         # TEST9B_ROOT__A1 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A1.") }
@@ -10955,7 +10955,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A1.")`
             Printer.trace("Exit TEST9B_ROOT__A1.")
         
-        self.stateId = self.StateId.TEST9B_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT
     
     
     ########################################
@@ -10963,7 +10963,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT__A2_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT__A2
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A2
         
         # TEST9B_ROOT__A2 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A2.") }
@@ -10980,7 +10980,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A2.")`
             Printer.trace("Exit TEST9B_ROOT__A2.")
         
-        self.stateId = self.StateId.TEST9B_ROOT__A1
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A1
     
     
     ########################################
@@ -10988,7 +10988,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT__A3_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT__A3
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A3
         
         # TEST9B_ROOT__A3 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A3.") }
@@ -11005,7 +11005,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A3.")`
             Printer.trace("Exit TEST9B_ROOT__A3.")
         
-        self.stateId = self.StateId.TEST9B_ROOT__A2
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A2
     
     
     ########################################
@@ -11013,7 +11013,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT__A4_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT__A4
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A4
         
         # TEST9B_ROOT__A4 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A4.") }
@@ -11030,7 +11030,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A4.")`
             Printer.trace("Exit TEST9B_ROOT__A4.")
         
-        self.stateId = self.StateId.TEST9B_ROOT__A3
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A3
     
     def _TEST9B_ROOT__A4_ev1(self):
         consume_event = False
@@ -11053,7 +11053,7 @@ class Spec2Sm(Spec2SmBase):
             if True:
 
                 # Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
-                self._exitUpToStateHandler(self.StateId.TEST9B_ROOT)
+                self._exitUpToStateHandler(Spec2Sm.StateId.TEST9B_ROOT)
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.")`.
                 Printer.trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.")
@@ -11078,7 +11078,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT__B1_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT__B1
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B1
         
         # TEST9B_ROOT__B1 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B1.") }
@@ -11095,7 +11095,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B1.")`
             Printer.trace("Exit TEST9B_ROOT__B1.")
         
-        self.stateId = self.StateId.TEST9B_ROOT
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT
     
     
     ########################################
@@ -11103,7 +11103,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT__B2_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT__B2
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B2
         
         # TEST9B_ROOT__B2 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B2.") }
@@ -11120,7 +11120,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B2.")`
             Printer.trace("Exit TEST9B_ROOT__B2.")
         
-        self.stateId = self.StateId.TEST9B_ROOT__B1
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B1
     
     
     ########################################
@@ -11128,7 +11128,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT__B3_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT__B3
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B3
         
         # TEST9B_ROOT__B3 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B3.") }
@@ -11145,7 +11145,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B3.")`
             Printer.trace("Exit TEST9B_ROOT__B3.")
         
-        self.stateId = self.StateId.TEST9B_ROOT__B2
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B2
     
     
     ########################################
@@ -11153,7 +11153,7 @@ class Spec2Sm(Spec2SmBase):
     ########################################
     
     def _TEST9B_ROOT__B4_enter(self):
-        self.stateId = self.StateId.TEST9B_ROOT__B4
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B4
         
         # TEST9B_ROOT__B4 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B4.") }
@@ -11170,203 +11170,203 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B4.")`
             Printer.trace("Exit TEST9B_ROOT__B4.")
         
-        self.stateId = self.StateId.TEST9B_ROOT__B3
+        self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B3
 @staticmethod
     
     # Thread safe.
     def stateIdToString(id):
         match id:
-            case self.StateId.ROOT: return "ROOT"
-            case self.StateId.PREFIXING: return "PREFIXING"
-            case self.StateId.PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU"
-            case self.StateId.PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE"
-            case self.StateId.PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE"
-            case self.StateId.PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA"
-            case self.StateId.PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER"
-            case self.StateId.PREFIXING__OM__VEG: return "PREFIXING__OM__VEG"
-            case self.StateId.PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE"
-            case self.StateId.PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO"
-            case self.StateId.PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO"
-            case self.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM"
-            case self.StateId.SPEC2SM__DECIDE: return "SPEC2SM__DECIDE"
-            case self.StateId.TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING"
-            case self.StateId.TEST1_ROOT: return "TEST1_ROOT"
-            case self.StateId.TEST1_S1: return "TEST1_S1"
-            case self.StateId.TEST1_S1_1: return "TEST1_S1_1"
-            case self.StateId.TEST1_S2: return "TEST1_S2"
-            case self.StateId.TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT"
-            case self.StateId.TEST10_A: return "TEST10_A"
-            case self.StateId.TEST10_A_1: return "TEST10_A_1"
-            case self.StateId.TEST10_ROOT: return "TEST10_ROOT"
-            case self.StateId.TEST10_G: return "TEST10_G"
-            case self.StateId.TEST10_G_S0: return "TEST10_G_S0"
-            case self.StateId.TEST10_G_S1: return "TEST10_G_S1"
-            case self.StateId.TEST10_G_S2: return "TEST10_G_S2"
-            case self.StateId.TEST10_G_S3: return "TEST10_G_S3"
-            case self.StateId.TEST10_S1: return "TEST10_S1"
-            case self.StateId.TEST10_S4: return "TEST10_S4"
-            case self.StateId.TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING"
-            case self.StateId.TEST2_ROOT: return "TEST2_ROOT"
-            case self.StateId.TEST2_S1: return "TEST2_S1"
-            case self.StateId.TEST2_S1_1: return "TEST2_S1_1"
-            case self.StateId.TEST2_S2: return "TEST2_S2"
-            case self.StateId.TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING"
-            case self.StateId.TEST3_ROOT: return "TEST3_ROOT"
-            case self.StateId.TEST3_S1: return "TEST3_S1"
-            case self.StateId.TEST3_S2: return "TEST3_S2"
-            case self.StateId.TEST3_S3: return "TEST3_S3"
-            case self.StateId.TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS"
-            case self.StateId.TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS"
-            case self.StateId.TEST4B_LOCAL: return "TEST4B_LOCAL"
-            case self.StateId.TEST4B_G: return "TEST4B_G"
-            case self.StateId.TEST4B_G_1: return "TEST4B_G_1"
-            case self.StateId.TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS"
-            case self.StateId.TEST4C_G: return "TEST4C_G"
-            case self.StateId.TEST4C_G_1: return "TEST4C_G_1"
-            case self.StateId.TEST4D_EXTERNAL: return "TEST4D_EXTERNAL"
-            case self.StateId.TEST4D_G: return "TEST4D_G"
-            case self.StateId.TEST4D_G_1: return "TEST4D_G_1"
-            case self.StateId.TEST4_DECIDE: return "TEST4_DECIDE"
-            case self.StateId.TEST4_ROOT: return "TEST4_ROOT"
-            case self.StateId.TEST4_S1: return "TEST4_S1"
-            case self.StateId.TEST4_S10: return "TEST4_S10"
-            case self.StateId.TEST4_S10_1: return "TEST4_S10_1"
-            case self.StateId.TEST4_S2: return "TEST4_S2"
-            case self.StateId.TEST4_S20: return "TEST4_S20"
-            case self.StateId.TEST4_S20_1: return "TEST4_S20_1"
-            case self.StateId.TEST4_S3: return "TEST4_S3"
-            case self.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS"
-            case self.StateId.TEST5_ROOT: return "TEST5_ROOT"
-            case self.StateId.TEST5_S1: return "TEST5_S1"
-            case self.StateId.TEST5_S2: return "TEST5_S2"
-            case self.StateId.TEST5_S3: return "TEST5_S3"
-            case self.StateId.TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS"
-            case self.StateId.TEST6_ROOT: return "TEST6_ROOT"
-            case self.StateId.AUTO_VAR_TEST: return "AUTO_VAR_TEST"
-            case self.StateId.AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1"
-            case self.StateId.AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2"
-            case self.StateId.META_EXPANSIONS: return "META_EXPANSIONS"
-            case self.StateId.META_EXPANSIONS__S1: return "META_EXPANSIONS__S1"
-            case self.StateId.META_EXPANSIONS__S2: return "META_EXPANSIONS__S2"
-            case self.StateId.S3: return "S3"
-            case self.StateId.S4: return "S4"
-            case self.StateId.S5: return "S5"
-            case self.StateId.NORMAL: return "NORMAL"
-            case self.StateId.NORMAL__S1: return "NORMAL__S1"
-            case self.StateId.NORMAL__S2: return "NORMAL__S2"
-            case self.StateId.TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE"
-            case self.StateId.TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY"
-            case self.StateId.TEST7: return "TEST7"
-            case self.StateId.T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1"
-            case self.StateId.T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP"
-            case self.StateId.T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED"
-            case self.StateId.T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP"
-            case self.StateId.T7__DH1__HERO: return "T7__DH1__HERO"
-            case self.StateId.T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN"
-            case self.StateId.T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR"
-            case self.StateId.T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP"
-            case self.StateId.T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF"
-            case self.StateId.T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS"
-            case self.StateId.T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES"
-            case self.StateId.T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT"
-            case self.StateId.T7__DH1__BUILD: return "T7__DH1__BUILD"
-            case self.StateId.T7__DH1__TOOL: return "T7__DH1__TOOL"
-            case self.StateId.T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW"
-            case self.StateId.T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL"
-            case self.StateId.T7__DH1__TOY: return "T7__DH1__TOY"
-            case self.StateId.T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM"
-            case self.StateId.T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR"
-            case self.StateId.T7__DH1__ROBOT: return "T7__DH1__ROBOT"
-            case self.StateId.T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT"
-            case self.StateId.T7__DH1__WALL_E: return "T7__DH1__WALL_E"
-            case self.StateId.T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR"
-            case self.StateId.T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2"
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0"
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1"
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2"
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6"
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9"
-            case self.StateId.T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3"
-            case self.StateId.T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3"
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0"
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1"
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2"
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6"
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9"
-            case self.StateId.T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3"
-            case self.StateId.T7__HISTORY1: return "T7__HISTORY1"
-            case self.StateId.T7__H1__OFF: return "T7__H1__OFF"
-            case self.StateId.T7__H1__OFF1: return "T7__H1__OFF1"
-            case self.StateId.T7__H1__OFF2: return "T7__H1__OFF2"
-            case self.StateId.T7__H1__OFF3: return "T7__H1__OFF3"
-            case self.StateId.T7__H1__ON: return "T7__H1__ON"
-            case self.StateId.T7__H1__ON1: return "T7__H1__ON1"
-            case self.StateId.T7__H1__ON2: return "T7__H1__ON2"
-            case self.StateId.T7__H1__ON3: return "T7__H1__ON3"
-            case self.StateId.T7__INITIAL1: return "T7__INITIAL1"
-            case self.StateId.T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT"
-            case self.StateId.T7__INITIAL1__G: return "T7__INITIAL1__G"
-            case self.StateId.T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1"
-            case self.StateId.T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2"
-            case self.StateId.T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3"
-            case self.StateId.T7__INITIAL1__S1: return "T7__INITIAL1__S1"
-            case self.StateId.TEST7_DECIDE: return "TEST7_DECIDE"
-            case self.StateId.TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE"
-            case self.StateId.TEST8_ROOT: return "TEST8_ROOT"
-            case self.StateId.TEST8_G: return "TEST8_G"
-            case self.StateId.TEST8_G_S1: return "TEST8_G_S1"
-            case self.StateId.TEST8_G_S2: return "TEST8_G_S2"
-            case self.StateId.TEST8_G_S3: return "TEST8_G_S3"
-            case self.StateId.TEST8_S1: return "TEST8_S1"
-            case self.StateId.TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE"
-            case self.StateId.TEST9_DECIDE: return "TEST9_DECIDE"
-            case self.StateId.TEST9_ROOT: return "TEST9_ROOT"
-            case self.StateId.TEST9_G_S1: return "TEST9_G_S1"
-            case self.StateId.TEST9_G_S2: return "TEST9_G_S2"
-            case self.StateId.TEST9_G_S3: return "TEST9_G_S3"
-            case self.StateId.TEST9_G_S4: return "TEST9_G_S4"
-            case self.StateId.TEST9_S1: return "TEST9_S1"
-            case self.StateId.TEST9_S1_1: return "TEST9_S1_1"
-            case self.StateId.TEST9A_ROOT: return "TEST9A_ROOT"
-            case self.StateId.TEST9A_S1: return "TEST9A_S1"
-            case self.StateId.TEST9A_S1_1: return "TEST9A_S1_1"
-            case self.StateId.TEST9B_ROOT: return "TEST9B_ROOT"
-            case self.StateId.TEST9B_ROOT__A1: return "TEST9B_ROOT__A1"
-            case self.StateId.TEST9B_ROOT__A2: return "TEST9B_ROOT__A2"
-            case self.StateId.TEST9B_ROOT__A3: return "TEST9B_ROOT__A3"
-            case self.StateId.TEST9B_ROOT__A4: return "TEST9B_ROOT__A4"
-            case self.StateId.TEST9B_ROOT__B1: return "TEST9B_ROOT__B1"
-            case self.StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2"
-            case self.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3"
-            case self.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4"
+            case Spec2Sm.StateId.ROOT: return "ROOT"
+            case Spec2Sm.StateId.PREFIXING: return "PREFIXING"
+            case Spec2Sm.StateId.PREFIXING__ORDER_MENU: return "PREFIXING__ORDER_MENU"
+            case Spec2Sm.StateId.PREFIXING__OM__BEVERAGE: return "PREFIXING__OM__BEVERAGE"
+            case Spec2Sm.StateId.PREFIXING__OM__BEV__NONE: return "PREFIXING__OM__BEV__NONE"
+            case Spec2Sm.StateId.PREFIXING__OM__BEV__TEA: return "PREFIXING__OM__BEV__TEA"
+            case Spec2Sm.StateId.PREFIXING__OM__BEV__WATER: return "PREFIXING__OM__BEV__WATER"
+            case Spec2Sm.StateId.PREFIXING__OM__VEG: return "PREFIXING__OM__VEG"
+            case Spec2Sm.StateId.PREFIXING__OM__VEG__NONE: return "PREFIXING__OM__VEG__NONE"
+            case Spec2Sm.StateId.PREFIXING__OM__VEG__POTATO: return "PREFIXING__OM__VEG__POTATO"
+            case Spec2Sm.StateId.PREFIXING__OM__VEG__YAM: return "PREFIXING__OM__VEG__YAM"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX: return "PREFIXING__SHOWS_MANUAL_PREFIX"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU: return "PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO"
+            case Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM: return "PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM"
+            case Spec2Sm.StateId.SPEC2SM__DECIDE: return "SPEC2SM__DECIDE"
+            case Spec2Sm.StateId.TEST1_DO_EVENT_TESTING: return "TEST1_DO_EVENT_TESTING"
+            case Spec2Sm.StateId.TEST1_ROOT: return "TEST1_ROOT"
+            case Spec2Sm.StateId.TEST1_S1: return "TEST1_S1"
+            case Spec2Sm.StateId.TEST1_S1_1: return "TEST1_S1_1"
+            case Spec2Sm.StateId.TEST1_S2: return "TEST1_S2"
+            case Spec2Sm.StateId.TEST10_CHOICE_POINT: return "TEST10_CHOICE_POINT"
+            case Spec2Sm.StateId.TEST10_A: return "TEST10_A"
+            case Spec2Sm.StateId.TEST10_A_1: return "TEST10_A_1"
+            case Spec2Sm.StateId.TEST10_ROOT: return "TEST10_ROOT"
+            case Spec2Sm.StateId.TEST10_G: return "TEST10_G"
+            case Spec2Sm.StateId.TEST10_G_S0: return "TEST10_G_S0"
+            case Spec2Sm.StateId.TEST10_G_S1: return "TEST10_G_S1"
+            case Spec2Sm.StateId.TEST10_G_S2: return "TEST10_G_S2"
+            case Spec2Sm.StateId.TEST10_G_S3: return "TEST10_G_S3"
+            case Spec2Sm.StateId.TEST10_S1: return "TEST10_S1"
+            case Spec2Sm.StateId.TEST10_S4: return "TEST10_S4"
+            case Spec2Sm.StateId.TEST2_REGULAR_EVENT_TESTING: return "TEST2_REGULAR_EVENT_TESTING"
+            case Spec2Sm.StateId.TEST2_ROOT: return "TEST2_ROOT"
+            case Spec2Sm.StateId.TEST2_S1: return "TEST2_S1"
+            case Spec2Sm.StateId.TEST2_S1_1: return "TEST2_S1_1"
+            case Spec2Sm.StateId.TEST2_S2: return "TEST2_S2"
+            case Spec2Sm.StateId.TEST3_BEHAVIOR_ORDERING: return "TEST3_BEHAVIOR_ORDERING"
+            case Spec2Sm.StateId.TEST3_ROOT: return "TEST3_ROOT"
+            case Spec2Sm.StateId.TEST3_S1: return "TEST3_S1"
+            case Spec2Sm.StateId.TEST3_S2: return "TEST3_S2"
+            case Spec2Sm.StateId.TEST3_S3: return "TEST3_S3"
+            case Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS: return "TEST4_PARENT_CHILD_TRANSITIONS"
+            case Spec2Sm.StateId.TEST4_B_AND_OTHERS: return "TEST4_B_AND_OTHERS"
+            case Spec2Sm.StateId.TEST4B_LOCAL: return "TEST4B_LOCAL"
+            case Spec2Sm.StateId.TEST4B_G: return "TEST4B_G"
+            case Spec2Sm.StateId.TEST4B_G_1: return "TEST4B_G_1"
+            case Spec2Sm.StateId.TEST4C_LOCAL_TO_ALIAS: return "TEST4C_LOCAL_TO_ALIAS"
+            case Spec2Sm.StateId.TEST4C_G: return "TEST4C_G"
+            case Spec2Sm.StateId.TEST4C_G_1: return "TEST4C_G_1"
+            case Spec2Sm.StateId.TEST4D_EXTERNAL: return "TEST4D_EXTERNAL"
+            case Spec2Sm.StateId.TEST4D_G: return "TEST4D_G"
+            case Spec2Sm.StateId.TEST4D_G_1: return "TEST4D_G_1"
+            case Spec2Sm.StateId.TEST4_DECIDE: return "TEST4_DECIDE"
+            case Spec2Sm.StateId.TEST4_ROOT: return "TEST4_ROOT"
+            case Spec2Sm.StateId.TEST4_S1: return "TEST4_S1"
+            case Spec2Sm.StateId.TEST4_S10: return "TEST4_S10"
+            case Spec2Sm.StateId.TEST4_S10_1: return "TEST4_S10_1"
+            case Spec2Sm.StateId.TEST4_S2: return "TEST4_S2"
+            case Spec2Sm.StateId.TEST4_S20: return "TEST4_S20"
+            case Spec2Sm.StateId.TEST4_S20_1: return "TEST4_S20_1"
+            case Spec2Sm.StateId.TEST4_S3: return "TEST4_S3"
+            case Spec2Sm.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS: return "TEST5_PARENT_CHILD_TRANSITIONS_ALIAS"
+            case Spec2Sm.StateId.TEST5_ROOT: return "TEST5_ROOT"
+            case Spec2Sm.StateId.TEST5_S1: return "TEST5_S1"
+            case Spec2Sm.StateId.TEST5_S2: return "TEST5_S2"
+            case Spec2Sm.StateId.TEST5_S3: return "TEST5_S3"
+            case Spec2Sm.StateId.TEST6_VARS_EXPANSIONS: return "TEST6_VARS_EXPANSIONS"
+            case Spec2Sm.StateId.TEST6_ROOT: return "TEST6_ROOT"
+            case Spec2Sm.StateId.AUTO_VAR_TEST: return "AUTO_VAR_TEST"
+            case Spec2Sm.StateId.AUTO_VAR_TEST__S1: return "AUTO_VAR_TEST__S1"
+            case Spec2Sm.StateId.AUTO_VAR_TEST__S2: return "AUTO_VAR_TEST__S2"
+            case Spec2Sm.StateId.META_EXPANSIONS: return "META_EXPANSIONS"
+            case Spec2Sm.StateId.META_EXPANSIONS__S1: return "META_EXPANSIONS__S1"
+            case Spec2Sm.StateId.META_EXPANSIONS__S2: return "META_EXPANSIONS__S2"
+            case Spec2Sm.StateId.S3: return "S3"
+            case Spec2Sm.StateId.S4: return "S4"
+            case Spec2Sm.StateId.S5: return "S5"
+            case Spec2Sm.StateId.NORMAL: return "NORMAL"
+            case Spec2Sm.StateId.NORMAL__S1: return "NORMAL__S1"
+            case Spec2Sm.StateId.NORMAL__S2: return "NORMAL__S2"
+            case Spec2Sm.StateId.TEST6_VARS_EXPANSIONS__DECIDE: return "TEST6_VARS_EXPANSIONS__DECIDE"
+            case Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY: return "TEST7_INITIAL_OR_HISTORY"
+            case Spec2Sm.StateId.TEST7: return "TEST7"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY1: return "T7__DEEP_HISTORY1"
+            case Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP: return "T7__DH1__SANTAS_WORKSHOP"
+            case Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED: return "T7__DH1__ALIENS_DETECTED"
+            case Spec2Sm.StateId.T7__DH1__GET_BACKUP: return "T7__DH1__GET_BACKUP"
+            case Spec2Sm.StateId.T7__DH1__HERO: return "T7__DH1__HERO"
+            case Spec2Sm.StateId.T7__DH1__CALL_BATMAN: return "T7__DH1__CALL_BATMAN"
+            case Spec2Sm.StateId.T7__DH1__CALL_THOR: return "T7__DH1__CALL_THOR"
+            case Spec2Sm.StateId.T7__DH1__LOCAL_HELP: return "T7__DH1__LOCAL_HELP"
+            case Spec2Sm.StateId.T7__DH1__BUDDY_ELF: return "T7__DH1__BUDDY_ELF"
+            case Spec2Sm.StateId.T7__DH1__POLAR_BEARS: return "T7__DH1__POLAR_BEARS"
+            case Spec2Sm.StateId.T7__DH1__GIVE_COOKIES: return "T7__DH1__GIVE_COOKIES"
+            case Spec2Sm.StateId.T7__DH1__SNOWBALL_FIGHT: return "T7__DH1__SNOWBALL_FIGHT"
+            case Spec2Sm.StateId.T7__DH1__BUILD: return "T7__DH1__BUILD"
+            case Spec2Sm.StateId.T7__DH1__TOOL: return "T7__DH1__TOOL"
+            case Spec2Sm.StateId.T7__DH1__CIRCULAR_SAW: return "T7__DH1__CIRCULAR_SAW"
+            case Spec2Sm.StateId.T7__DH1__IMPACT_DRILL: return "T7__DH1__IMPACT_DRILL"
+            case Spec2Sm.StateId.T7__DH1__TOY: return "T7__DH1__TOY"
+            case Spec2Sm.StateId.T7__DH1__GLOW_WORM: return "T7__DH1__GLOW_WORM"
+            case Spec2Sm.StateId.T7__DH1__RACE_CAR: return "T7__DH1__RACE_CAR"
+            case Spec2Sm.StateId.T7__DH1__ROBOT: return "T7__DH1__ROBOT"
+            case Spec2Sm.StateId.T7__DH1__BATTLEBOT: return "T7__DH1__BATTLEBOT"
+            case Spec2Sm.StateId.T7__DH1__WALL_E: return "T7__DH1__WALL_E"
+            case Spec2Sm.StateId.T7__DH1__TEDDY_BEAR: return "T7__DH1__TEDDY_BEAR"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2: return "T7__DEEP_HISTORY2"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0: return "T7__DEEP_HISTORY2__T7__STATE_0"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_1: return "T7__DEEP_HISTORY2__T7__STATE_1"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2: return "T7__DEEP_HISTORY2__T7__STATE_2"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_6: return "T7__DEEP_HISTORY2__T7__STATE_6"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_9: return "T7__DEEP_HISTORY2__T7__STATE_9"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_3: return "T7__DEEP_HISTORY2__T7__STATE_3"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3: return "T7__DEEP_HISTORY3"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0: return "T7__DEEP_HISTORY3__T7__STATE_0"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_1: return "T7__DEEP_HISTORY3__T7__STATE_1"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2: return "T7__DEEP_HISTORY3__T7__STATE_2"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_6: return "T7__DEEP_HISTORY3__T7__STATE_6"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_9: return "T7__DEEP_HISTORY3__T7__STATE_9"
+            case Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_3: return "T7__DEEP_HISTORY3__T7__STATE_3"
+            case Spec2Sm.StateId.T7__HISTORY1: return "T7__HISTORY1"
+            case Spec2Sm.StateId.T7__H1__OFF: return "T7__H1__OFF"
+            case Spec2Sm.StateId.T7__H1__OFF1: return "T7__H1__OFF1"
+            case Spec2Sm.StateId.T7__H1__OFF2: return "T7__H1__OFF2"
+            case Spec2Sm.StateId.T7__H1__OFF3: return "T7__H1__OFF3"
+            case Spec2Sm.StateId.T7__H1__ON: return "T7__H1__ON"
+            case Spec2Sm.StateId.T7__H1__ON1: return "T7__H1__ON1"
+            case Spec2Sm.StateId.T7__H1__ON2: return "T7__H1__ON2"
+            case Spec2Sm.StateId.T7__H1__ON3: return "T7__H1__ON3"
+            case Spec2Sm.StateId.T7__INITIAL1: return "T7__INITIAL1"
+            case Spec2Sm.StateId.T7__INITIAL1__PARENT: return "T7__INITIAL1__PARENT"
+            case Spec2Sm.StateId.T7__INITIAL1__G: return "T7__INITIAL1__G"
+            case Spec2Sm.StateId.T7__INITIAL1__G_S1: return "T7__INITIAL1__G_S1"
+            case Spec2Sm.StateId.T7__INITIAL1__G_S2: return "T7__INITIAL1__G_S2"
+            case Spec2Sm.StateId.T7__INITIAL1__G_S3: return "T7__INITIAL1__G_S3"
+            case Spec2Sm.StateId.T7__INITIAL1__S1: return "T7__INITIAL1__S1"
+            case Spec2Sm.StateId.TEST7_DECIDE: return "TEST7_DECIDE"
+            case Spec2Sm.StateId.TEST8_ENTRY_CHOICE: return "TEST8_ENTRY_CHOICE"
+            case Spec2Sm.StateId.TEST8_ROOT: return "TEST8_ROOT"
+            case Spec2Sm.StateId.TEST8_G: return "TEST8_G"
+            case Spec2Sm.StateId.TEST8_G_S1: return "TEST8_G_S1"
+            case Spec2Sm.StateId.TEST8_G_S2: return "TEST8_G_S2"
+            case Spec2Sm.StateId.TEST8_G_S3: return "TEST8_G_S3"
+            case Spec2Sm.StateId.TEST8_S1: return "TEST8_S1"
+            case Spec2Sm.StateId.TEST9_EXIT_CHOICE: return "TEST9_EXIT_CHOICE"
+            case Spec2Sm.StateId.TEST9_DECIDE: return "TEST9_DECIDE"
+            case Spec2Sm.StateId.TEST9_ROOT: return "TEST9_ROOT"
+            case Spec2Sm.StateId.TEST9_G_S1: return "TEST9_G_S1"
+            case Spec2Sm.StateId.TEST9_G_S2: return "TEST9_G_S2"
+            case Spec2Sm.StateId.TEST9_G_S3: return "TEST9_G_S3"
+            case Spec2Sm.StateId.TEST9_G_S4: return "TEST9_G_S4"
+            case Spec2Sm.StateId.TEST9_S1: return "TEST9_S1"
+            case Spec2Sm.StateId.TEST9_S1_1: return "TEST9_S1_1"
+            case Spec2Sm.StateId.TEST9A_ROOT: return "TEST9A_ROOT"
+            case Spec2Sm.StateId.TEST9A_S1: return "TEST9A_S1"
+            case Spec2Sm.StateId.TEST9A_S1_1: return "TEST9A_S1_1"
+            case Spec2Sm.StateId.TEST9B_ROOT: return "TEST9B_ROOT"
+            case Spec2Sm.StateId.TEST9B_ROOT__A1: return "TEST9B_ROOT__A1"
+            case Spec2Sm.StateId.TEST9B_ROOT__A2: return "TEST9B_ROOT__A2"
+            case Spec2Sm.StateId.TEST9B_ROOT__A3: return "TEST9B_ROOT__A3"
+            case Spec2Sm.StateId.TEST9B_ROOT__A4: return "TEST9B_ROOT__A4"
+            case Spec2Sm.StateId.TEST9B_ROOT__B1: return "TEST9B_ROOT__B1"
+            case Spec2Sm.StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2"
+            case Spec2Sm.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3"
+            case Spec2Sm.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4"
             case _: return "?"
 @staticmethod
     
     # Thread safe.
     def eventIdToString(id):
         match id:
-            case self.EventId.DO: return "DO"
-            case self.EventId.EV1: return "EV1"
-            case self.EventId.EV10: return "EV10"
-            case self.EventId.EV2: return "EV2"
-            case self.EventId.EV3: return "EV3"
-            case self.EventId.EV4: return "EV4"
-            case self.EventId.EV5: return "EV5"
-            case self.EventId.EV6: return "EV6"
-            case self.EventId.EV7: return "EV7"
-            case self.EventId.EV8: return "EV8"
-            case self.EventId.EV9: return "EV9"
-            case self.EventId.EVBACK: return "EVBACK"
-            case self.EventId.EVCLOSE: return "EVCLOSE"
-            case self.EventId.EVOPEN: return "EVOPEN"
-            case self.EventId.EVSTEP: return "EVSTEP"
+            case Spec2Sm.EventId.DO: return "DO"
+            case Spec2Sm.EventId.EV1: return "EV1"
+            case Spec2Sm.EventId.EV10: return "EV10"
+            case Spec2Sm.EventId.EV2: return "EV2"
+            case Spec2Sm.EventId.EV3: return "EV3"
+            case Spec2Sm.EventId.EV4: return "EV4"
+            case Spec2Sm.EventId.EV5: return "EV5"
+            case Spec2Sm.EventId.EV6: return "EV6"
+            case Spec2Sm.EventId.EV7: return "EV7"
+            case Spec2Sm.EventId.EV8: return "EV8"
+            case Spec2Sm.EventId.EV9: return "EV9"
+            case Spec2Sm.EventId.EVBACK: return "EVBACK"
+            case Spec2Sm.EventId.EVCLOSE: return "EVCLOSE"
+            case Spec2Sm.EventId.EVOPEN: return "EVOPEN"
+            case Spec2Sm.EventId.EVSTEP: return "EVSTEP"
             case _: return "?"
