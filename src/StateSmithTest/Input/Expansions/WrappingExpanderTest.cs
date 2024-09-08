@@ -38,14 +38,14 @@ public class WrappingExpanderTest
     public void ActionCodeBesideGil()
     {
         var code = ExpandWrapActionCode("var_a = 33; $gil(var_a = 45;) var_a++;");
-        code.Should().Be($"""{GilCreationHelper.GilEchoStringVoidReturnFuncName}("expanded_var_a = 33; ");var_a = 45;{GilCreationHelper.GilEchoStringVoidReturnFuncName}(" expanded_var_a++;");""");
+        code.Should().Be($"""{GilCreationHelper.GilFuncName_EchoStringStatement}("expanded_var_a = 33; ");var_a = 45;{GilCreationHelper.GilFuncName_EchoStringStatement}(" expanded_var_a++;");""");
     }
 
     [Fact]
     public void ActionCodeWrappingGil()
     {
         var code = ExpandWrapActionCode("print($gil(var_a = 45;))");
-        code.Should().Be($"""{GilCreationHelper.GilEchoStringVoidReturnFuncName}("some_printer(\"");var_a = 45;{GilCreationHelper.GilEchoStringVoidReturnFuncName}("\")");""");
+        code.Should().Be($"""{GilCreationHelper.GilFuncName_EchoStringStatement}("some_printer(\"");var_a = 45;{GilCreationHelper.GilFuncName_EchoStringStatement}("\")");""");
     }
 
     [Fact]
@@ -53,8 +53,8 @@ public class WrappingExpanderTest
     {
         var code = ExpandWrapActionCode("    var_a = 33;\n    var_a++;");
         code.Should().Be($"""
-            {GilCreationHelper.GilEchoStringVoidReturnFuncName}("    expanded_var_a = 33;");
-            {GilCreationHelper.GilEchoStringVoidReturnFuncName}("    expanded_var_a++;");
+            {GilCreationHelper.GilFuncName_EchoStringStatement}("    expanded_var_a = 33;");
+            {GilCreationHelper.GilFuncName_EchoStringStatement}("    expanded_var_a++;");
             """.ConvertLineEndingsToN());
     }
 
@@ -62,7 +62,7 @@ public class WrappingExpanderTest
     public void GuardCodeBeside()
     {
         var code = ExpandWrapGuardCode("var_a == \"255\"\n || $gil(var_a == 45) || var_a<25");
-        code.Should().Be($"""{GilCreationHelper.GilVisitVarArgsBoolReturnFuncName}({GilCreationHelper.WrapRawCodeWithBoolReturn("expanded_var_a == \"255\"\n || ")},var_a == 45,{GilCreationHelper.WrapRawCodeWithBoolReturn(" || expanded_var_a<25")})""");
+        code.Should().Be($"""{GilCreationHelper.GilFuncName_VarArgsToBool}({GilCreationHelper.WrapRawCodeWithBoolReturn("expanded_var_a == \"255\"\n || ")},var_a == 45,{GilCreationHelper.WrapRawCodeWithBoolReturn(" || expanded_var_a<25")})""");
         code.Should().Be("""____GilNoEmit_VarArgsToBool(____GilNoEmit_EchoStringBool("expanded_var_a == \"255\"\n || "),var_a == 45,____GilNoEmit_EchoStringBool(" || expanded_var_a<25"))""");
     }
 
@@ -70,7 +70,7 @@ public class WrappingExpanderTest
     public void GuardCodeWrappingGil()
     {
         var code = ExpandWrapGuardCode("""print2("Result: " + $gil(var_a == 45))""");
-        code.Should().Be($"""{GilCreationHelper.GilVisitVarArgsBoolReturnFuncName}({GilCreationHelper.WrapRawCodeWithBoolReturn("""some_printer2("Result: " + """)},var_a == 45,{GilCreationHelper.WrapRawCodeWithBoolReturn(")")})""");
+        code.Should().Be($"""{GilCreationHelper.GilFuncName_VarArgsToBool}({GilCreationHelper.WrapRawCodeWithBoolReturn("""some_printer2("Result: " + """)},var_a == 45,{GilCreationHelper.WrapRawCodeWithBoolReturn(")")})""");
         code.Should().Be("""____GilNoEmit_VarArgsToBool(____GilNoEmit_EchoStringBool("some_printer2(\"Result: \" + "),var_a == 45,____GilNoEmit_EchoStringBool(")"))""");
     }
 

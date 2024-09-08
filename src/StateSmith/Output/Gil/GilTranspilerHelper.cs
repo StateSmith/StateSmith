@@ -63,7 +63,7 @@ public class GilTranspilerHelper
 
     public static bool IsGilFileTopClass(ClassDeclarationSyntax classDeclarationSyntax)
     {
-        return classDeclarationSyntax.Identifier.Text == GilCreationHelper.GilFileTopClassName;
+        return classDeclarationSyntax.Identifier.Text == GilCreationHelper.GilClassName_FileTop;
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ public class GilTranspilerHelper
         {
             if (ies.Expression is IdentifierNameSyntax ins)
             {
-                if (ins.Identifier.Text == GilCreationHelper.GilEchoStringVoidReturnFuncName)
+                if (ins.Identifier.Text == GilCreationHelper.GilFuncName_EchoStringStatement)
                 {
                     this.transpilerWalker.VisitLeadingTrivia(ies.GetFirstToken());
                     gilEmitMethodFoundAndHandled = true;
@@ -99,12 +99,12 @@ public class GilTranspilerHelper
 
         if (node.Expression is IdentifierNameSyntax ins)
         {
-            if (ins.Identifier.Text == GilCreationHelper.GilEchoStringBoolReturnFuncName)
+            if (ins.Identifier.Text == GilCreationHelper.GilFuncName_EchoStringBool)
             {
                 gilEmitMethodFoundAndHandled = true;
                 ProcessGilEchoInvocations(sb, node);
             }
-            else if (ins.Identifier.Text == GilCreationHelper.GilVisitVarArgsBoolReturnFuncName)
+            else if (ins.Identifier.Text == GilCreationHelper.GilFuncName_VarArgsToBool)
             {
                 gilEmitMethodFoundAndHandled = true;
                 foreach (var arg in node.ArgumentList.Arguments)
@@ -136,7 +136,7 @@ public class GilTranspilerHelper
 
         if (node.Expression is IdentifierNameSyntax ins)
         {
-            if (ins.Identifier.Text == GilCreationHelper.GilUnusedVarFuncName)
+            if (ins.Identifier.Text == GilCreationHelper.GilFuncName_UnusedVar)
             {
                 gilMethodFoundAndHandled = true;
                 ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();

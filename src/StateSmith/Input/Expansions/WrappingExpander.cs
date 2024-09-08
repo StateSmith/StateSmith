@@ -95,7 +95,7 @@ public class WrappingExpander
             return partResult;
         });
 
-        var result = GilCreationHelper.GilVisitVarArgsBoolReturnFuncName + "(" + wrappedArgs + ")";
+        var result = GilCreationHelper.GilFuncName_VarArgsToBool + "(" + wrappedArgs + ")";
         return result;
     }
 

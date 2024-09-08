@@ -43,6 +43,6 @@ public class CurrentExpansionsTests
         userExpansionScriptBases.UpdateCurrentTrigger("enter");
 
         var code = wrappingExpander.ExpandWrapActionCode(behavior);
-        code.Should().Be($"""{GilCreationHelper.GilEchoStringVoidReturnFuncName}("log(\"State: S1, trigger: enter\");");""");
+        code.Should().Be($"""{GilCreationHelper.GilFuncName_EchoStringStatement}("log(\"State: S1, trigger: enter\");");""");
     }
 }
