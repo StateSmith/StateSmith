@@ -7,7 +7,8 @@ public class PseudoStateValidator
 {
     public static bool IsSuitableForDefaultTransition(Behavior b)
     {
-        return b.HasTransition() && (b.HasGuardCode() == false || b.guardCode.Trim() == "true");
+        // TODO fix - determine code for true based on selected transpiler https://github.com/StateSmith/StateSmith/issues/399
+        return b.HasTransition() && (b.HasGuardCode() == false || b.guardCode.Trim() == "true" || b.guardCode.Trim() == "True");
     }
 
     public static void ValidateEnteringBehaviors(PseudoStateVertex state)
