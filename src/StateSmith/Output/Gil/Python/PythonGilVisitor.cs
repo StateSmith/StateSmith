@@ -437,6 +437,26 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         }
     }
 
+    public override void VisitVariableDeclaration(VariableDeclarationSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        Visit(node.Variables.Single());
+    }
+
+    // override logical not expression to use `not` instead of `!`
+    public override void VisitPrefixUnaryExpression(PrefixUnaryExpressionSyntax node)
+    {
+        if (node.IsKind(SyntaxKind.LogicalNotExpression))
+        {
+            sb.Append("not ");
+            Visit(node.Operand);
+        }
+        else
+        {
+            base.VisitPrefixUnaryExpression(node);
+        }
+    }
+
     // kinda like: https://sourceroslyn.io/#Microsoft.CodeAnalysis.CSharp/Syntax/InternalSyntax/SyntaxToken.cs,516c0eb61810c3ef,references
     public override void VisitToken(SyntaxToken token)
     {

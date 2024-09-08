@@ -3755,7 +3755,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST1_DO_EVENT_TESTING
     
     def _TEST1_ROOT_do(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST1_ROOT behavior
         # uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", True)]
@@ -3764,7 +3764,7 @@ class Spec2Sm(Spec2SmBase):
             pass
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._ROOT_do()
     
@@ -3826,7 +3826,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST1_S1
     
     def _TEST1_S1_1_do(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST1_S1_1 behavior
         # uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", True)]
@@ -3835,7 +3835,7 @@ class Spec2Sm(Spec2SmBase):
             pass
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST1_ROOT_do()
     
@@ -3882,7 +3882,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST1_ROOT
     
     def _TEST1_S2_do(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST1_S2 behavior
         # uml: do [trace_guard("State TEST1_S2: check behavior `do / { consume_event = True }`.", True)] / { consume_event = True }
@@ -3893,7 +3893,7 @@ class Spec2Sm(Spec2SmBase):
             consume_event = True
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST1_ROOT_do()
     
@@ -4609,7 +4609,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST2_REGULAR_EVENT_TESTING
     
     def _TEST2_ROOT_do(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST2_ROOT behavior
         # uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", True)]
@@ -4618,7 +4618,7 @@ class Spec2Sm(Spec2SmBase):
             pass
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._ROOT_do()
     
@@ -4694,7 +4694,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST2_S1
     
     def _TEST2_S1_1_do(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST2_S1_1 behavior
         # uml: do [trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", True)] / { trace("Transition action `` for TEST2_S1_1 to TEST2_S2.") } TransitionTo(TEST2_S2)
@@ -4713,12 +4713,12 @@ class Spec2Sm(Spec2SmBase):
             return
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST2_ROOT_do()
     
     def _TEST2_S1_1_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST2_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST2_S1_1: check behavior `EV1`.", True)]
@@ -4728,7 +4728,7 @@ class Spec2Sm(Spec2SmBase):
             consume_event = True
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST2_ROOT_ev1()
     
@@ -4764,7 +4764,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST2_ROOT
     
     def _TEST2_S2_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST2_S2 behavior
         # uml: ev1 [trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = False }`.", True)] / { consume_event = False }
@@ -4776,12 +4776,12 @@ class Spec2Sm(Spec2SmBase):
             consume_event = False
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST2_ROOT_ev1()
     
     def _TEST2_S2_ev2(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST2_S2 behavior
         # uml: ev2 [trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", True)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2.") } TransitionTo(TEST2_S2)
@@ -4800,7 +4800,7 @@ class Spec2Sm(Spec2SmBase):
             return
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST2_ROOT_ev2()
     
@@ -4894,7 +4894,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST3_ROOT
     
     def _TEST3_S1_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST3_S1 behavior
         # uml: 1. EV1 [trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", True)] / { trace("Transition action `` for TEST3_S1 to TEST3_S2.") } TransitionTo(TEST3_S2)
@@ -4922,7 +4922,7 @@ class Spec2Sm(Spec2SmBase):
             Printer.trace("failed")
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST3_ROOT_ev1()
     
@@ -4952,7 +4952,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST3_ROOT
     
     def _TEST3_S2_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST3_S2 behavior
         # uml: 1. EV1 [trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\") }`.", True)] / { trace("1 woot!") }
@@ -4990,7 +4990,7 @@ class Spec2Sm(Spec2SmBase):
             return
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST3_ROOT_ev1()
     
@@ -5711,7 +5711,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST4_ROOT
     
     def _TEST4_S10_ev4(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST4_S10 behavior
         # uml: EV4 [trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", True)] / { trace("Transition action `` for TEST4_S10 to TEST4_S10.") } TransitionTo(TEST4_S10)
@@ -5730,7 +5730,7 @@ class Spec2Sm(Spec2SmBase):
             return
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST4_ROOT_ev4()
     
@@ -5827,7 +5827,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST4_ROOT
     
     def _TEST4_S20_ev4(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST4_S20 behavior
         # uml: EV4 [trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", True)] / { trace("Transition action `` for TEST4_S20 to TEST4_S20.") } TransitionTo(TEST4_S20)
@@ -5847,7 +5847,7 @@ class Spec2Sm(Spec2SmBase):
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST4_ROOT_ev4()
     
@@ -7954,7 +7954,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.T7__DH1__TOY
     
     def _T7__DH1__GLOW_WORM_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # T7__DH1__GLOW_WORM behavior
         # uml: EV1 [trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", True)] / { trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.") } TransitionTo(T7__DH1__ROBOT)
@@ -7974,7 +7974,7 @@ class Spec2Sm(Spec2SmBase):
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._T7__DH1__TOY_ev1()
     
@@ -8011,7 +8011,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.T7__DH1__TOY
     
     def _T7__DH1__RACE_CAR_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # T7__DH1__RACE_CAR behavior
         # uml: EV1 [trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", True)] / { trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.") } TransitionTo(T7__DH1__TEDDY_BEAR)
@@ -8030,7 +8030,7 @@ class Spec2Sm(Spec2SmBase):
             return
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._T7__DH1__TOY_ev1()
     
@@ -8115,7 +8115,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.T7__DH1__ROBOT
     
     def _T7__DH1__BATTLEBOT_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # T7__DH1__BATTLEBOT behavior
         # uml: EV1 [trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", True)] / { trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.") } TransitionTo(T7__DH1__WALL_E)
@@ -8134,7 +8134,7 @@ class Spec2Sm(Spec2SmBase):
             return
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._T7__DH1__TOY_ev1()
     
@@ -8203,7 +8203,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.T7__DH1__TOY
     
     def _T7__DH1__TEDDY_BEAR_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # T7__DH1__TEDDY_BEAR behavior
         # uml: EV1 [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", True)] / { trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.") } TransitionTo(T7__DH1__GLOW_WORM)
@@ -8222,7 +8222,7 @@ class Spec2Sm(Spec2SmBase):
             return
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._T7__DH1__TOY_ev1()
     
@@ -10293,7 +10293,7 @@ class Spec2Sm(Spec2SmBase):
             self.vars.count += 1 
     
     def _TEST8_S1_ev3(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST8_S1 behavior
         # uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", True)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).") } TransitionTo(TEST8_G.<EntryPoint>(3))
@@ -10314,7 +10314,7 @@ class Spec2Sm(Spec2SmBase):
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST8_ROOT_ev3()
     
@@ -11033,7 +11033,7 @@ class Spec2Sm(Spec2SmBase):
         self.stateId = self.StateId.TEST9B_ROOT__A3
     
     def _TEST9B_ROOT__A4_ev1(self):
-        bool consume_event = False
+        consume_event = False
         
         # TEST9B_ROOT__A4 behavior
         # uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", True)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1).") } TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))
@@ -11068,7 +11068,7 @@ class Spec2Sm(Spec2SmBase):
                 return
         
         # Check if event has been consumed before calling ancestor handler.
-        if !consume_event:
+        if not consume_event:
 
             self._TEST9B_ROOT_ev1()
     
