@@ -79,6 +79,7 @@ public class TestHelper
             SmRunner smRunner = new(outputDirectory: outputDir, diagramPath: tempFilePath, transpilerId: transpilerId, algorithmId: algorithmId);
             smRunner.Settings.outputStateSmithVersionInfo = false; // too much git noise
             smRunner.Settings.propagateExceptions = true;
+            //smRunner.Settings.outputGilCodeAlways = true;
             smRunner.Run();
         }
         finally

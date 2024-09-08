@@ -39,7 +39,7 @@ public class AlgoBalanced1Settings
     internal bool allowSingleLineSwitchCase = true;
 
     /// <summary>
-    /// set to false for python
+    /// set to true for python
     /// </summary>
     internal bool omitBlankEventCase = false;
 

@@ -193,6 +193,16 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         return captured;
     }
 
+    private string CaptureLeadingTrivia(SyntaxNode node)
+    {
+        var leadingTrivia = CaptureStringBuf(() =>
+        {
+            VisitLeadingTrivia(node.GetFirstToken());
+        });
+
+        return leadingTrivia;
+    }
+
     public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
     {
         if (node.Initializer == null)
@@ -406,6 +416,12 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
     public override void VisitSwitchStatement(SwitchStatementSyntax node)
     {
+        // skip if this switch does nothing
+        if (HasAnyUsefulStatements(node) == false)
+        {
+            return;
+        }
+
         VisitLeadingTrivia(node.GetFirstToken());
         sb.Append("match ");
         Visit(node.Expression);
@@ -415,6 +431,22 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         {
             Visit(arm);
         }
+
+        if (node.Sections.Count == 0)
+        {
+            AddIndent(1);
+            sb.AppendLine("pass");
+        }
+    }
+
+    /// <summary>
+    /// Meant to skip empty switch sections like `case EventId.DO: break;`
+    /// </summary>
+    /// <param name="node"></param>
+    /// <returns></returns>
+    private static bool HasAnyUsefulStatements(SyntaxNode node)
+    {
+        return node.DescendantNodes().Where(n => n is ExpressionStatementSyntax || n is ReturnStatementSyntax).Any();
     }
 
     // a section is like: `case EventId.DO: ROOT_do(); break;`
@@ -422,15 +454,22 @@ public class PythonGilVisitor : CSharpSyntaxWalker
     {
         SwitchLabelSyntax label = node.Labels.Single(); // must be a single label for now
 
+        var leadingTrivia = CaptureLeadingTrivia(node);
+        var lastIndent = StringUtils.FindLastIndent(new StringBuilder(leadingTrivia));
+
         Visit(label);
 
-        foreach (var statement in node.Statements)
+        if (HasAnyUsefulStatements(node) == false)
         {
-            if (statement is BreakStatementSyntax)
-            {
-                // ignore break statements
-            }
-            else
+            sb.Append(lastIndent);
+            sb.Append(Indent);
+            sb.AppendLine("pass");
+        }
+        else
+        {
+            IEnumerable<StatementSyntax> statements = node.Statements.Where(s => s is not BreakStatementSyntax);
+
+            foreach (var statement in statements)
             {
                 Visit(statement);
             }
