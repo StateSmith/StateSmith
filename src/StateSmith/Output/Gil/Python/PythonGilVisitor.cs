@@ -131,6 +131,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         sb.Append("if ");
         Visit(node.Condition);
         sb.AppendLine(":");
+        sb.AppendLine(PostProcessor.trimBlankLinesMarker);
         Visit(node.Statement);
 
         bool isEmpty = node.Statement.DescendantNodes().Where(descendant => descendant is not BlockSyntax).Any() == false;

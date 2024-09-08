@@ -280,7 +280,6 @@ class Spec2Sm(Spec2SmBase):
         # ROOT behavior
         # uml: TransitionTo(ROOT.<InitialState>)
         if True:
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: ``.
@@ -291,7 +290,6 @@ class Spec2Sm(Spec2SmBase):
             # ROOT.<InitialState> behavior
             # uml: / { trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.") } TransitionTo(Spec2Sm__DECIDE)
             if True:
-
                 # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.")`.
@@ -2563,7 +2561,6 @@ class Spec2Sm(Spec2SmBase):
         # ROOT behavior
         # uml: enter / { trace("Enter Spec2Sm.") }
         if True:
-
             # Step 1: execute action `trace("Enter Spec2Sm.")`
             Printer.trace("Enter Spec2Sm.")
     
@@ -2571,7 +2568,6 @@ class Spec2Sm(Spec2SmBase):
         # ROOT behavior
         # uml: do [trace_guard("State Spec2Sm: check behavior `do`.", True)]
         if self.trace_guard("State Spec2Sm: check behavior `do`.", True):
-
             pass
     
     
@@ -2585,7 +2581,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING behavior
         # uml: enter / { trace("Enter PREFIXING.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING.")`
             Printer.trace("Enter PREFIXING.")
     
@@ -2593,7 +2588,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING behavior
         # uml: exit / { trace("Exit PREFIXING.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING.")`
             Printer.trace("Exit PREFIXING.")
         
@@ -2610,7 +2604,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__ORDER_MENU behavior
         # uml: enter / { trace("Enter PREFIXING__ORDER_MENU.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.")`
             Printer.trace("Enter PREFIXING__ORDER_MENU.")
     
@@ -2618,7 +2611,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__ORDER_MENU behavior
         # uml: exit / { trace("Exit PREFIXING__ORDER_MENU.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.")`
             Printer.trace("Exit PREFIXING__ORDER_MENU.")
         
@@ -2635,7 +2627,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEVERAGE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.")`
             Printer.trace("Enter PREFIXING__OM__BEVERAGE.")
     
@@ -2643,7 +2634,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEVERAGE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.")`
             Printer.trace("Exit PREFIXING__OM__BEVERAGE.")
         
@@ -2653,7 +2643,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEVERAGE behavior
         # uml: EV2 [trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", True)] / { trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.") } TransitionTo(PREFIXING__OM__VEG)
         if self.trace_guard("State PREFIXING__OM__BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__OM__VEG)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.PREFIXING__ORDER_MENU)
             
@@ -2666,7 +2655,6 @@ class Spec2Sm(Spec2SmBase):
             # PREFIXING__OM__VEG.<InitialState> behavior
             # uml: / { trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.") } TransitionTo(PREFIXING__OM__VEG__NONE)
             if True:
-
                 # Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.")`.
@@ -2682,7 +2670,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEVERAGE.<InitialState> behavior
         # uml: / { trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.") } TransitionTo(PREFIXING__OM__BEV__NONE)
         if True:
-
             # Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.")`.
@@ -2705,7 +2692,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEV__NONE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.")`
             Printer.trace("Enter PREFIXING__OM__BEV__NONE.")
     
@@ -2713,7 +2699,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEV__NONE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.")`
             Printer.trace("Exit PREFIXING__OM__BEV__NONE.")
         
@@ -2723,7 +2708,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEV__NONE behavior
         # uml: EV1 [trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", True)] / { trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.") } TransitionTo(PREFIXING__OM__BEV__WATER)
         if self.trace_guard("State PREFIXING__OM__BEV__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__WATER)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition).
             self._PREFIXING__OM__BEV__NONE_exit()
             
@@ -2747,7 +2731,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEV__TEA behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.")`
             Printer.trace("Enter PREFIXING__OM__BEV__TEA.")
     
@@ -2755,7 +2738,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEV__TEA behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.")`
             Printer.trace("Exit PREFIXING__OM__BEV__TEA.")
         
@@ -2772,7 +2754,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEV__WATER behavior
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.")`
             Printer.trace("Enter PREFIXING__OM__BEV__WATER.")
     
@@ -2780,7 +2761,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEV__WATER behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.")`
             Printer.trace("Exit PREFIXING__OM__BEV__WATER.")
         
@@ -2790,7 +2770,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__BEV__WATER behavior
         # uml: EV1 [trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", True)] / { trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.") } TransitionTo(PREFIXING__OM__BEV__TEA)
         if self.trace_guard("State PREFIXING__OM__BEV__WATER: check behavior `EV1 TransitionTo(PREFIXING__OM__BEV__TEA)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition).
             self._PREFIXING__OM__BEV__WATER_exit()
             
@@ -2814,7 +2793,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__OM__VEG.")`
             Printer.trace("Enter PREFIXING__OM__VEG.")
     
@@ -2822,7 +2800,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG.")`
             Printer.trace("Exit PREFIXING__OM__VEG.")
         
@@ -2832,7 +2809,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG behavior
         # uml: EV2 [trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", True)] / { trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.") } TransitionTo(PREFIXING__OM__BEVERAGE)
         if self.trace_guard("State PREFIXING__OM__VEG: check behavior `EV2 TransitionTo(PREFIXING__OM__BEVERAGE)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__ORDER_MENU` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.PREFIXING__ORDER_MENU)
             
@@ -2857,7 +2833,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG__NONE behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.")`
             Printer.trace("Enter PREFIXING__OM__VEG__NONE.")
     
@@ -2865,7 +2840,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG__NONE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.")`
             Printer.trace("Exit PREFIXING__OM__VEG__NONE.")
         
@@ -2875,7 +2849,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG__NONE behavior
         # uml: EV1 [trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", True)] / { trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.") } TransitionTo(PREFIXING__OM__VEG__POTATO)
         if self.trace_guard("State PREFIXING__OM__VEG__NONE: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__POTATO)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition).
             self._PREFIXING__OM__VEG__NONE_exit()
             
@@ -2899,7 +2872,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG__POTATO behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.")`
             Printer.trace("Enter PREFIXING__OM__VEG__POTATO.")
     
@@ -2907,7 +2879,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG__POTATO behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.")`
             Printer.trace("Exit PREFIXING__OM__VEG__POTATO.")
         
@@ -2917,7 +2888,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG__POTATO behavior
         # uml: EV1 [trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", True)] / { trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.") } TransitionTo(PREFIXING__OM__VEG__YAM)
         if self.trace_guard("State PREFIXING__OM__VEG__POTATO: check behavior `EV1 TransitionTo(PREFIXING__OM__VEG__YAM)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition).
             self._PREFIXING__OM__VEG__POTATO_exit()
             
@@ -2941,7 +2911,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG__YAM behavior
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.")`
             Printer.trace("Enter PREFIXING__OM__VEG__YAM.")
     
@@ -2949,7 +2918,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__OM__VEG__YAM behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.")`
             Printer.trace("Exit PREFIXING__OM__VEG__YAM.")
         
@@ -2966,7 +2934,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")
     
@@ -2974,7 +2941,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")
         
@@ -2991,7 +2957,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
     
@@ -2999,7 +2964,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
         
@@ -3016,7 +2980,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
     
@@ -3024,7 +2987,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
         
@@ -3034,7 +2996,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         # uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", True)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)
         if self.trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
             
@@ -3047,7 +3008,6 @@ class Spec2Sm(Spec2SmBase):
             # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> behavior
             # uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE)
             if True:
-
                 # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`.
@@ -3063,7 +3023,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> behavior
         # uml: / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE)
         if True:
-
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`.
@@ -3086,7 +3045,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
     
@@ -3094,7 +3052,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
         
@@ -3104,7 +3061,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         # uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", True)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)
         if self.trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition).
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
             
@@ -3128,7 +3084,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
     
@@ -3136,7 +3091,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
         
@@ -3153,7 +3107,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
     
@@ -3161,7 +3114,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
         
@@ -3171,7 +3123,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         # uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", True)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)
         if self.trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition).
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
             
@@ -3195,7 +3146,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
     
@@ -3203,7 +3153,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
         
@@ -3213,7 +3162,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         # uml: EV2 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", True)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)
         if self.trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG: check behavior `EV2 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
             
@@ -3238,7 +3186,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
     
@@ -3246,7 +3193,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
         
@@ -3256,7 +3202,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         # uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", True)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)
         if self.trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition).
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
             
@@ -3280,7 +3225,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
     
@@ -3288,7 +3232,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
         
@@ -3298,7 +3241,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         # uml: EV1 [trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", True)] / { trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") } TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)
         if self.trace_guard("State PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO: check behavior `EV1 TransitionTo(PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM)`.", True):
-
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition).
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
             
@@ -3322,7 +3264,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") }
         if True:
-
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
     
@@ -3330,7 +3271,6 @@ class Spec2Sm(Spec2SmBase):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") }
         if True:
-
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
         
@@ -3347,7 +3287,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: enter / { trace("Enter Spec2Sm__DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Enter Spec2Sm__DECIDE.")`
             Printer.trace("Enter Spec2Sm__DECIDE.")
     
@@ -3355,7 +3294,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: exit / { trace("Exit Spec2Sm__DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Exit Spec2Sm__DECIDE.")`
             Printer.trace("Exit Spec2Sm__DECIDE.")
         
@@ -3365,7 +3303,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING.") } TransitionTo(TEST1_DO_EVENT_TESTING)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3378,7 +3315,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST1_DO_EVENT_TESTING.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.") } TransitionTo(TEST1_ROOT)
             if True:
-
                 # Step 1: Exit states until we reach `TEST1_DO_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.")`.
@@ -3390,7 +3326,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST1_ROOT.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.") } TransitionTo(TEST1_S1_1)
                 if True:
-
                     # Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.")`.
@@ -3407,7 +3342,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV10 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV10 TransitionTo(TEST10_CHOICE_POINT)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST10_CHOICE_POINT.") } TransitionTo(TEST10_CHOICE_POINT)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV10 TransitionTo(TEST10_CHOICE_POINT)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3420,7 +3354,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_CHOICE_POINT.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.") } TransitionTo(TEST10_S1)
             if True:
-
                 # Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.")`.
@@ -3437,7 +3370,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV2 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST2_REGULAR_EVENT_TESTING.") } TransitionTo(TEST2_REGULAR_EVENT_TESTING)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV2 TransitionTo(TEST2_REGULAR_EVENT_TESTING)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3450,7 +3382,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST2_REGULAR_EVENT_TESTING.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.") } TransitionTo(TEST2_ROOT)
             if True:
-
                 # Step 1: Exit states until we reach `TEST2_REGULAR_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.")`.
@@ -3462,7 +3393,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST2_ROOT.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.") } TransitionTo(TEST2_S1_1)
                 if True:
-
                     # Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.")`.
@@ -3479,7 +3409,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV3 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST3_BEHAVIOR_ORDERING.") } TransitionTo(TEST3_BEHAVIOR_ORDERING)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV3 TransitionTo(TEST3_BEHAVIOR_ORDERING)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3492,7 +3421,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST3_BEHAVIOR_ORDERING.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.") } TransitionTo(TEST3_ROOT)
             if True:
-
                 # Step 1: Exit states until we reach `TEST3_BEHAVIOR_ORDERING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.")`.
@@ -3504,7 +3432,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST3_ROOT.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.") } TransitionTo(TEST3_S1)
                 if True:
-
                     # Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.")`.
@@ -3520,7 +3447,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV4 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.") } TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV4 TransitionTo(TEST4_PARENT_CHILD_TRANSITIONS)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3533,7 +3459,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.") } TransitionTo(TEST4_DECIDE)
             if True:
-
                 # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.")`.
@@ -3549,7 +3474,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV5 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") } TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV5 TransitionTo(TEST5_PARENT_CHILD_TRANSITIONS_ALIAS)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3562,7 +3486,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.") } TransitionTo(TEST5_ROOT)
             if True:
-
                 # Step 1: Exit states until we reach `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.")`.
@@ -3578,7 +3501,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV6 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARS_EXPANSIONS)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS.") } TransitionTo(TEST6_VARS_EXPANSIONS)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV6 TransitionTo(TEST6_VARS_EXPANSIONS)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3591,7 +3513,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST6_VARS_EXPANSIONS.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.") } TransitionTo(TEST6_ROOT)
             if True:
-
                 # Step 1: Exit states until we reach `TEST6_VARS_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.")`.
@@ -3603,7 +3524,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST6_ROOT.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.") } TransitionTo(TEST6_VARS_EXPANSIONS__DECIDE)
                 if True:
-
                     # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.")`.
@@ -3619,7 +3539,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV7 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_OR_HISTORY)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST7_INITIAL_OR_HISTORY.") } TransitionTo(TEST7_INITIAL_OR_HISTORY)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV7 TransitionTo(TEST7_INITIAL_OR_HISTORY)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3632,7 +3551,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST7_INITIAL_OR_HISTORY.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.") } TransitionTo(TEST7_DECIDE)
             if True:
-
                 # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.")`.
@@ -3648,7 +3566,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV8 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV8 TransitionTo(TEST8_ENTRY_CHOICE)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST8_ENTRY_CHOICE.") } TransitionTo(TEST8_ENTRY_CHOICE)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV8 TransitionTo(TEST8_ENTRY_CHOICE)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3661,7 +3578,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST8_ENTRY_CHOICE.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).") } TransitionTo(TEST8_ROOT.<EntryPoint>(1))
             if True:
-
                 # Step 1: Exit states until we reach `TEST8_ENTRY_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).")`.
@@ -3679,7 +3595,6 @@ class Spec2Sm(Spec2SmBase):
         # Spec2Sm__DECIDE behavior
         # uml: EV9 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV9 TransitionTo(TEST9_EXIT_CHOICE)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST9_EXIT_CHOICE.") } TransitionTo(TEST9_EXIT_CHOICE)
         if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV9 TransitionTo(TEST9_EXIT_CHOICE)`.", True):
-
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3692,7 +3607,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_EXIT_CHOICE.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.") } TransitionTo(TEST9_DECIDE)
             if True:
-
                 # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.")`.
@@ -3715,7 +3629,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_DO_EVENT_TESTING behavior
         # uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.")`
             Printer.trace("Enter TEST1_DO_EVENT_TESTING.")
     
@@ -3723,7 +3636,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_DO_EVENT_TESTING behavior
         # uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.")`
             Printer.trace("Exit TEST1_DO_EVENT_TESTING.")
         
@@ -3740,7 +3652,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_ROOT behavior
         # uml: enter / { trace("Enter TEST1_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST1_ROOT.")`
             Printer.trace("Enter TEST1_ROOT.")
     
@@ -3748,7 +3659,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_ROOT behavior
         # uml: exit / { trace("Exit TEST1_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST1_ROOT.")`
             Printer.trace("Exit TEST1_ROOT.")
         
@@ -3760,12 +3670,10 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_ROOT behavior
         # uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", True)]
         if self.trace_guard("State TEST1_ROOT: check behavior `do`.", True):
-
             pass
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._ROOT_do()
     
     
@@ -3779,7 +3687,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S1 behavior
         # uml: enter / { trace("Enter TEST1_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST1_S1.")`
             Printer.trace("Enter TEST1_S1.")
     
@@ -3787,7 +3694,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S1 behavior
         # uml: exit / { trace("Exit TEST1_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST1_S1.")`
             Printer.trace("Exit TEST1_S1.")
         
@@ -3804,14 +3710,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S1_1 behavior
         # uml: enter / { trace("Enter TEST1_S1_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST1_S1_1.")`
             Printer.trace("Enter TEST1_S1_1.")
         
         # TEST1_S1_1 behavior
         # uml: enter [trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -3819,7 +3723,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S1_1 behavior
         # uml: exit / { trace("Exit TEST1_S1_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST1_S1_1.")`
             Printer.trace("Exit TEST1_S1_1.")
         
@@ -3831,19 +3734,16 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S1_1 behavior
         # uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", True)]
         if self.trace_guard("State TEST1_S1_1: check behavior `do`.", True):
-
             pass
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST1_ROOT_do()
     
     def _TEST1_S1_1_ev1(self):
         # TEST1_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", True)] / { trace("Transition action `` for TEST1_S1_1 to TEST1_S2.") } TransitionTo(TEST1_S2)
         if self.trace_guard("State TEST1_S1_1: check behavior `EV1 TransitionTo(TEST1_S2)`.", True):
-
             # Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST1_ROOT)
             
@@ -3867,7 +3767,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S2 behavior
         # uml: enter / { trace("Enter TEST1_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST1_S2.")`
             Printer.trace("Enter TEST1_S2.")
     
@@ -3875,7 +3774,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S2 behavior
         # uml: exit / { trace("Exit TEST1_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST1_S2.")`
             Printer.trace("Exit TEST1_S2.")
         
@@ -3887,14 +3785,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S2 behavior
         # uml: do [trace_guard("State TEST1_S2: check behavior `do / { consume_event = True }`.", True)] / { consume_event = True }
         if self.trace_guard("State TEST1_S2: check behavior `do / { consume_event = True }`.", True):
-
             # `do` events are not normally consumed.
             # Step 1: execute action `consume_event = True`
             consume_event = True
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST1_ROOT_do()
     
     
@@ -3908,7 +3804,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_CHOICE_POINT behavior
         # uml: enter / { trace("Enter TEST10_CHOICE_POINT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.")`
             Printer.trace("Enter TEST10_CHOICE_POINT.")
     
@@ -3916,7 +3811,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_CHOICE_POINT behavior
         # uml: exit / { trace("Exit TEST10_CHOICE_POINT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.")`
             Printer.trace("Exit TEST10_CHOICE_POINT.")
         
@@ -3933,7 +3827,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A behavior
         # uml: enter / { trace("Enter TEST10_A.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_A.")`
             Printer.trace("Enter TEST10_A.")
     
@@ -3941,7 +3834,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A behavior
         # uml: exit / { trace("Exit TEST10_A.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_A.")`
             Printer.trace("Exit TEST10_A.")
         
@@ -3951,7 +3843,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A.<ChoicePoint>() behavior
         # uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
         if self.vars.count == 1:
-
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")`.
@@ -3967,7 +3858,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A.<ChoicePoint>() behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
         if True:
-
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")`.
@@ -3984,7 +3874,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A.<ChoicePoint>() behavior
         # uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
         if self.vars.count == 1:
-
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")`.
@@ -4000,7 +3889,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A.<ChoicePoint>() behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
         if True:
-
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")`.
@@ -4017,7 +3905,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A.<ChoicePoint>(a) behavior
         # uml: [count == 1] / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
         if self.vars.count == 1:
-
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")`.
@@ -4033,7 +3920,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A.<ChoicePoint>(a) behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
         if True:
-
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")`.
@@ -4050,7 +3936,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A.<ChoicePoint>(a) behavior
         # uml: / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.") } TransitionTo(TEST10_A_1)
         if True:
-
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.")`.
@@ -4073,7 +3958,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A_1 behavior
         # uml: enter / { trace("Enter TEST10_A_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_A_1.")`
             Printer.trace("Enter TEST10_A_1.")
     
@@ -4081,7 +3965,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_A_1 behavior
         # uml: exit / { trace("Exit TEST10_A_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_A_1.")`
             Printer.trace("Exit TEST10_A_1.")
         
@@ -4098,7 +3981,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_ROOT behavior
         # uml: enter / { trace("Enter TEST10_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_ROOT.")`
             Printer.trace("Enter TEST10_ROOT.")
     
@@ -4106,7 +3988,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_ROOT behavior
         # uml: exit / { trace("Exit TEST10_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_ROOT.")`
             Printer.trace("Exit TEST10_ROOT.")
         
@@ -4116,7 +3997,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_ROOT behavior
         # uml: EV5 [trace_guard("State TEST10_ROOT: check behavior `EV5 / { count += 1 }`.", True)] / { count += 1 }
         if self.trace_guard("State TEST10_ROOT: check behavior `EV5 / { count += 1 }`.", True):
-
             # Step 1: execute action `count += 1`
             self.vars.count += 1
     
@@ -4131,7 +4011,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G behavior
         # uml: enter / { trace("Enter TEST10_G.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_G.")`
             Printer.trace("Enter TEST10_G.")
     
@@ -4139,7 +4018,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G behavior
         # uml: exit / { trace("Exit TEST10_G.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_G.")`
             Printer.trace("Exit TEST10_G.")
         
@@ -4149,7 +4027,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G.<ChoicePoint>() behavior
         # uml: / { trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).") } TransitionTo(TEST10_G.<ChoicePoint>(1))
         if True:
-
             # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).")`.
@@ -4161,7 +4038,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_G.<ChoicePoint>(1) behavior
             # uml: 1. [count <= 0] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.") } TransitionTo(TEST10_G_S0)
             if self.vars.count <= 0:
-
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.")`.
@@ -4176,7 +4052,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_G.<ChoicePoint>(1) behavior
             # uml: [count <= 2] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).") } TransitionTo(TEST10_G.<ChoicePoint>(lower))
             if self.vars.count <= 2:
-
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).")`.
@@ -4188,7 +4063,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST10_G.<ChoicePoint>(lower) behavior
                 # uml: [count <=1] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.") } TransitionTo(TEST10_G_S1)
                 if self.vars.count <=1:
-
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.")`.
@@ -4203,7 +4077,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST10_G.<ChoicePoint>(lower) behavior
                 # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.") } TransitionTo(TEST10_G_S2)
                 if True:
-
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.")`.
@@ -4218,7 +4091,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_G.<ChoicePoint>(1) behavior
             # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).") } TransitionTo(TEST10_G.<ChoicePoint>(upper))
             if True:
-
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).")`.
@@ -4230,7 +4102,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST10_G.<ChoicePoint>(upper) behavior
                 # uml: [count <= 3] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.") } TransitionTo(TEST10_G_S3)
                 if self.vars.count <= 3:
-
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.")`.
@@ -4245,7 +4116,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST10_G.<ChoicePoint>(upper) behavior
                 # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.") } TransitionTo(TEST10_S4)
                 if True:
-
                     # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
                     self._exitUpToStateHandler(Spec2Sm.StateId.TEST10_ROOT)
                     
@@ -4269,7 +4139,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G_S0 behavior
         # uml: enter / { trace("Enter TEST10_G_S0.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_G_S0.")`
             Printer.trace("Enter TEST10_G_S0.")
     
@@ -4277,7 +4146,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G_S0 behavior
         # uml: exit / { trace("Exit TEST10_G_S0.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_G_S0.")`
             Printer.trace("Exit TEST10_G_S0.")
         
@@ -4294,7 +4162,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G_S1 behavior
         # uml: enter / { trace("Enter TEST10_G_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_G_S1.")`
             Printer.trace("Enter TEST10_G_S1.")
     
@@ -4302,7 +4169,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G_S1 behavior
         # uml: exit / { trace("Exit TEST10_G_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_G_S1.")`
             Printer.trace("Exit TEST10_G_S1.")
         
@@ -4319,7 +4185,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G_S2 behavior
         # uml: enter / { trace("Enter TEST10_G_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_G_S2.")`
             Printer.trace("Enter TEST10_G_S2.")
     
@@ -4327,7 +4192,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G_S2 behavior
         # uml: exit / { trace("Exit TEST10_G_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_G_S2.")`
             Printer.trace("Exit TEST10_G_S2.")
         
@@ -4344,7 +4208,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G_S3 behavior
         # uml: enter / { trace("Enter TEST10_G_S3.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_G_S3.")`
             Printer.trace("Enter TEST10_G_S3.")
     
@@ -4352,7 +4215,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_G_S3 behavior
         # uml: exit / { trace("Exit TEST10_G_S3.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_G_S3.")`
             Printer.trace("Exit TEST10_G_S3.")
         
@@ -4369,14 +4231,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_S1 behavior
         # uml: enter / { trace("Enter TEST10_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_S1.")`
             Printer.trace("Enter TEST10_S1.")
         
         # TEST10_S1 behavior
         # uml: enter [trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -4384,7 +4244,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_S1 behavior
         # uml: exit / { trace("Exit TEST10_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_S1.")`
             Printer.trace("Exit TEST10_S1.")
         
@@ -4394,7 +4253,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_S1 behavior
         # uml: EV1 [trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`.", True)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).") } TransitionTo(TEST10_G.<EntryPoint>(1))
         if self.trace_guard("State TEST10_S1: check behavior `EV1 TransitionTo(TEST10_G.<EntryPoint>(1))`.", True):
-
             # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
             self._TEST10_S1_exit()
             
@@ -4408,7 +4266,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_G.<EntryPoint>(1) behavior
             # uml: / { trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().") } TransitionTo(TEST10_G.<ChoicePoint>())
             if True:
-
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().")`.
@@ -4425,7 +4282,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_S1 behavior
         # uml: EV10 [trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", True)] / { trace("Transition action `` for TEST10_S1 to TEST10_A.") } TransitionTo(TEST10_A)
         if self.trace_guard("State TEST10_S1: check behavior `EV10 TransitionTo(TEST10_A)`.", True):
-
             # Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST10_CHOICE_POINT)
             
@@ -4438,7 +4294,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_A.<InitialState> behavior
             # uml: [count == 1] / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
             if self.vars.count == 1:
-
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")`.
@@ -4454,7 +4309,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_A.<InitialState> behavior
             # uml: [count == 0] / { trace("Transition action `count += 1` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")\ncount += 1 } TransitionTo(TEST10_A.<ChoicePoint>())
             if self.vars.count == 0:
-
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `count += 1` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")\ncount += 1`.
@@ -4471,7 +4325,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_A.<InitialState> behavior
             # uml: else / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
             if True:
-
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")`.
@@ -4488,7 +4341,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_S1 behavior
         # uml: EV2 [trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`.", True)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().") } TransitionTo(TEST10_G.<ChoicePoint>())
         if self.trace_guard("State TEST10_S1: check behavior `EV2 TransitionTo(TEST10_G.<ChoicePoint>())`.", True):
-
             # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
             self._TEST10_S1_exit()
             
@@ -4507,7 +4359,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_S1 behavior
         # uml: EV3 [trace_guard("State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`.", True)] / { trace("Transition action `` for TEST10_S1 to TEST10_G.") } TransitionTo(TEST10_G)
         if self.trace_guard("State TEST10_S1: check behavior `EV3 TransitionTo(TEST10_G)`.", True):
-
             # Step 1: Exit states until we reach `TEST10_ROOT` state (Least Common Ancestor for transition).
             self._TEST10_S1_exit()
             
@@ -4520,7 +4371,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST10_G.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().") } TransitionTo(TEST10_G.<ChoicePoint>())
             if True:
-
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().")`.
@@ -4544,7 +4394,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_S4 behavior
         # uml: enter / { trace("Enter TEST10_S4.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST10_S4.")`
             Printer.trace("Enter TEST10_S4.")
     
@@ -4552,7 +4401,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST10_S4 behavior
         # uml: exit / { trace("Exit TEST10_S4.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST10_S4.")`
             Printer.trace("Exit TEST10_S4.")
         
@@ -4569,7 +4417,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_REGULAR_EVENT_TESTING behavior
         # uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.")`
             Printer.trace("Enter TEST2_REGULAR_EVENT_TESTING.")
     
@@ -4577,7 +4424,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_REGULAR_EVENT_TESTING behavior
         # uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.")`
             Printer.trace("Exit TEST2_REGULAR_EVENT_TESTING.")
         
@@ -4594,7 +4440,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_ROOT behavior
         # uml: enter / { trace("Enter TEST2_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST2_ROOT.")`
             Printer.trace("Enter TEST2_ROOT.")
     
@@ -4602,7 +4447,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_ROOT behavior
         # uml: exit / { trace("Exit TEST2_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST2_ROOT.")`
             Printer.trace("Exit TEST2_ROOT.")
         
@@ -4614,26 +4458,22 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_ROOT behavior
         # uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", True)]
         if self.trace_guard("State TEST2_ROOT: check behavior `do`.", True):
-
             pass
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._ROOT_do()
     
     def _TEST2_ROOT_ev1(self):
         # TEST2_ROOT behavior
         # uml: EV1 [trace_guard("State TEST2_ROOT: check behavior `EV1`.", True)]
         if self.trace_guard("State TEST2_ROOT: check behavior `EV1`.", True):
-
             pass
     
     def _TEST2_ROOT_ev2(self):
         # TEST2_ROOT behavior
         # uml: EV2 [trace_guard("State TEST2_ROOT: check behavior `EV2`.", True)]
         if self.trace_guard("State TEST2_ROOT: check behavior `EV2`.", True):
-
             pass
     
     
@@ -4647,7 +4487,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S1 behavior
         # uml: enter / { trace("Enter TEST2_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST2_S1.")`
             Printer.trace("Enter TEST2_S1.")
     
@@ -4655,7 +4494,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S1 behavior
         # uml: exit / { trace("Exit TEST2_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST2_S1.")`
             Printer.trace("Exit TEST2_S1.")
         
@@ -4672,14 +4510,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S1_1 behavior
         # uml: enter / { trace("Enter TEST2_S1_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST2_S1_1.")`
             Printer.trace("Enter TEST2_S1_1.")
         
         # TEST2_S1_1 behavior
         # uml: enter [trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -4687,7 +4523,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S1_1 behavior
         # uml: exit / { trace("Exit TEST2_S1_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST2_S1_1.")`
             Printer.trace("Exit TEST2_S1_1.")
         
@@ -4699,7 +4534,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S1_1 behavior
         # uml: do [trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", True)] / { trace("Transition action `` for TEST2_S1_1 to TEST2_S2.") } TransitionTo(TEST2_S2)
         if self.trace_guard("State TEST2_S1_1: check behavior `do TransitionTo(TEST2_S2)`.", True):
-
             # Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST2_ROOT)
             
@@ -4714,7 +4548,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST2_ROOT_do()
     
     def _TEST2_S1_1_ev1(self):
@@ -4723,13 +4556,11 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST2_S1_1: check behavior `EV1`.", True)]
         if self.trace_guard("State TEST2_S1_1: check behavior `EV1`.", True):
-
             # Consume event `ev1`.
             consume_event = True
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST2_ROOT_ev1()
     
     
@@ -4743,21 +4574,18 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S2 behavior
         # uml: enter / { trace("Enter TEST2_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST2_S2.")`
             Printer.trace("Enter TEST2_S2.")
         
         # TEST2_S2 behavior
         # uml: enter [trace_guard("State TEST2_S2: check behavior `en`.", True)]
         if self.trace_guard("State TEST2_S2: check behavior `en`.", True):
-
             pass
     
     def _TEST2_S2_exit(self):
         # TEST2_S2 behavior
         # uml: exit / { trace("Exit TEST2_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST2_S2.")`
             Printer.trace("Exit TEST2_S2.")
         
@@ -4769,7 +4597,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S2 behavior
         # uml: ev1 [trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = False }`.", True)] / { consume_event = False }
         if self.trace_guard("State TEST2_S2: check behavior `ev1 / { consume_event = False }`.", True):
-
             # Consume event `ev1`.
             consume_event = True
             # Step 1: execute action `consume_event = False`
@@ -4777,7 +4604,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST2_ROOT_ev1()
     
     def _TEST2_S2_ev2(self):
@@ -4786,7 +4612,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_S2 behavior
         # uml: ev2 [trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", True)] / { trace("Transition action `` for TEST2_S2 to TEST2_S2.") } TransitionTo(TEST2_S2)
         if self.trace_guard("State TEST2_S2: check behavior `ev2 TransitionTo(TEST2_S2)`.", True):
-
             # Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition).
             self._TEST2_S2_exit()
             
@@ -4801,7 +4626,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST2_ROOT_ev2()
     
     
@@ -4815,7 +4639,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_BEHAVIOR_ORDERING behavior
         # uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.")`
             Printer.trace("Enter TEST3_BEHAVIOR_ORDERING.")
     
@@ -4823,7 +4646,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_BEHAVIOR_ORDERING behavior
         # uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.")`
             Printer.trace("Exit TEST3_BEHAVIOR_ORDERING.")
         
@@ -4840,7 +4662,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_ROOT behavior
         # uml: enter / { trace("Enter TEST3_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST3_ROOT.")`
             Printer.trace("Enter TEST3_ROOT.")
     
@@ -4848,7 +4669,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_ROOT behavior
         # uml: exit / { trace("Exit TEST3_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST3_ROOT.")`
             Printer.trace("Exit TEST3_ROOT.")
         
@@ -4858,7 +4678,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_ROOT behavior
         # uml: EV1 [trace_guard("State TEST3_ROOT: check behavior `EV1`.", True)]
         if self.trace_guard("State TEST3_ROOT: check behavior `EV1`.", True):
-
             pass
     
     
@@ -4872,14 +4691,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S1 behavior
         # uml: enter / { trace("Enter TEST3_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST3_S1.")`
             Printer.trace("Enter TEST3_S1.")
         
         # TEST3_S1 behavior
         # uml: enter [trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -4887,7 +4704,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S1 behavior
         # uml: exit / { trace("Exit TEST3_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST3_S1.")`
             Printer.trace("Exit TEST3_S1.")
         
@@ -4899,7 +4715,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S1 behavior
         # uml: 1. EV1 [trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", True)] / { trace("Transition action `` for TEST3_S1 to TEST3_S2.") } TransitionTo(TEST3_S2)
         if self.trace_guard("State TEST3_S1: check behavior `1. EV1 TransitionTo(TEST3_S2)`.", True):
-
             # Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition).
             self._TEST3_S1_exit()
             
@@ -4915,7 +4730,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S1 behavior
         # uml: 2. EV1 [trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\") }`.", True)] / { trace("failed") }
         if self.trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\") }`.", True):
-
             # Consume event `ev1`.
             consume_event = True
             # Step 1: execute action `trace("failed")`
@@ -4923,7 +4737,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST3_ROOT_ev1()
     
     
@@ -4937,7 +4750,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S2 behavior
         # uml: enter / { trace("Enter TEST3_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST3_S2.")`
             Printer.trace("Enter TEST3_S2.")
     
@@ -4945,7 +4757,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S2 behavior
         # uml: exit / { trace("Exit TEST3_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST3_S2.")`
             Printer.trace("Exit TEST3_S2.")
         
@@ -4957,7 +4768,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S2 behavior
         # uml: 1. EV1 [trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\") }`.", True)] / { trace("1 woot!") }
         if self.trace_guard("State TEST3_S2: check behavior `1. EV1 / { trace(\"1 woot!\") }`.", True):
-
             # Consume event `ev1`.
             consume_event = True
             # Step 1: execute action `trace("1 woot!")`
@@ -4966,7 +4776,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S2 behavior
         # uml: 1.1. EV1 [trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\") }`.", True)] / { trace("2 woot!") }
         if self.trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\") }`.", True):
-
             # Consume event `ev1`.
             consume_event = True
             # Step 1: execute action `trace("2 woot!")`
@@ -4975,7 +4784,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S2 behavior
         # uml: 2. EV1 [trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\") } TransitionTo(TEST3_S3)`.", True)] / { trace("Transition action `trace(\"3 woot!\")` for TEST3_S2 to TEST3_S3.")\ntrace("3 woot!") } TransitionTo(TEST3_S3)
         if self.trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\") } TransitionTo(TEST3_S3)`.", True):
-
             # Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition).
             self._TEST3_S2_exit()
             
@@ -4991,7 +4799,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST3_ROOT_ev1()
     
     
@@ -5005,7 +4812,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S3 behavior
         # uml: enter / { trace("Enter TEST3_S3.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST3_S3.")`
             Printer.trace("Enter TEST3_S3.")
     
@@ -5013,7 +4819,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST3_S3 behavior
         # uml: exit / { trace("Exit TEST3_S3.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST3_S3.")`
             Printer.trace("Exit TEST3_S3.")
         
@@ -5030,7 +4835,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_PARENT_CHILD_TRANSITIONS behavior
         # uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")`
             Printer.trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")
     
@@ -5038,7 +4842,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_PARENT_CHILD_TRANSITIONS behavior
         # uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")`
             Printer.trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")
         
@@ -5055,14 +4858,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_B_AND_OTHERS behavior
         # uml: enter / { trace("Enter TEST4_B_AND_OTHERS.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.")`
             Printer.trace("Enter TEST4_B_AND_OTHERS.")
         
         # TEST4_B_AND_OTHERS behavior
         # uml: enter [trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", True)] / { clear_dispatch_output() }
         if self.trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", True):
-
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
     
@@ -5070,7 +4871,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_B_AND_OTHERS behavior
         # uml: exit / { trace("Exit TEST4_B_AND_OTHERS.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.")`
             Printer.trace("Exit TEST4_B_AND_OTHERS.")
         
@@ -5087,7 +4887,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4B_LOCAL behavior
         # uml: enter / { trace("Enter TEST4B_LOCAL.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4B_LOCAL.")`
             Printer.trace("Enter TEST4B_LOCAL.")
     
@@ -5095,7 +4894,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4B_LOCAL behavior
         # uml: exit / { trace("Exit TEST4B_LOCAL.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4B_LOCAL.")`
             Printer.trace("Exit TEST4B_LOCAL.")
         
@@ -5112,7 +4910,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4B_G behavior
         # uml: enter / { trace("Enter TEST4B_G.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4B_G.")`
             Printer.trace("Enter TEST4B_G.")
     
@@ -5120,7 +4917,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4B_G behavior
         # uml: exit / { trace("Exit TEST4B_G.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4B_G.")`
             Printer.trace("Exit TEST4B_G.")
         
@@ -5130,7 +4926,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4B_G behavior
         # uml: EV1 [trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", True)] / { trace("Transition action `` for TEST4B_G to TEST4B_G_1.") } TransitionTo(TEST4B_G_1)
         if self.trace_guard("State TEST4B_G: check behavior `EV1 TransitionTo(TEST4B_G_1)`.", True):
-
             # Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4B_G)
             
@@ -5154,7 +4949,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4B_G_1 behavior
         # uml: enter / { trace("Enter TEST4B_G_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4B_G_1.")`
             Printer.trace("Enter TEST4B_G_1.")
     
@@ -5162,7 +4956,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4B_G_1 behavior
         # uml: exit / { trace("Exit TEST4B_G_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4B_G_1.")`
             Printer.trace("Exit TEST4B_G_1.")
         
@@ -5172,7 +4965,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4B_G_1 behavior
         # uml: EV2 [trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", True)] / { trace("Transition action `` for TEST4B_G_1 to TEST4B_G.") } TransitionTo(TEST4B_G)
         if self.trace_guard("State TEST4B_G_1: check behavior `EV2 TransitionTo(TEST4B_G)`.", True):
-
             # Step 1: Exit states until we reach `TEST4B_G` state (Least Common Ancestor for transition).
             self._TEST4B_G_1_exit()
             
@@ -5195,7 +4987,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4C_LOCAL_TO_ALIAS behavior
         # uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.")`
             Printer.trace("Enter TEST4C_LOCAL_TO_ALIAS.")
     
@@ -5203,7 +4994,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4C_LOCAL_TO_ALIAS behavior
         # uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.")`
             Printer.trace("Exit TEST4C_LOCAL_TO_ALIAS.")
         
@@ -5220,7 +5010,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4C_G behavior
         # uml: enter / { trace("Enter TEST4C_G.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4C_G.")`
             Printer.trace("Enter TEST4C_G.")
     
@@ -5228,7 +5017,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4C_G behavior
         # uml: exit / { trace("Exit TEST4C_G.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4C_G.")`
             Printer.trace("Exit TEST4C_G.")
         
@@ -5238,7 +5026,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4C_G behavior
         # uml: EV1 [trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", True)] / { trace("Transition action `` for TEST4C_G to TEST4C_G_1.") } TransitionTo(TEST4C_G_1)
         if self.trace_guard("State TEST4C_G: check behavior `EV1 TransitionTo(TEST4C_G_1)`.", True):
-
             # Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4C_G)
             
@@ -5262,7 +5049,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4C_G_1 behavior
         # uml: enter / { trace("Enter TEST4C_G_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4C_G_1.")`
             Printer.trace("Enter TEST4C_G_1.")
     
@@ -5270,7 +5056,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4C_G_1 behavior
         # uml: exit / { trace("Exit TEST4C_G_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4C_G_1.")`
             Printer.trace("Exit TEST4C_G_1.")
         
@@ -5280,7 +5065,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4C_G_1 behavior
         # uml: EV2 [trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", True)] / { trace("Transition action `` for TEST4C_G_1 to TEST4C_G.") } TransitionTo(TEST4C_G)
         if self.trace_guard("State TEST4C_G_1: check behavior `EV2 TransitionTo(TEST4C_G)`.", True):
-
             # Step 1: Exit states until we reach `TEST4C_G` state (Least Common Ancestor for transition).
             self._TEST4C_G_1_exit()
             
@@ -5303,7 +5087,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4D_EXTERNAL behavior
         # uml: enter / { trace("Enter TEST4D_EXTERNAL.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4D_EXTERNAL.")`
             Printer.trace("Enter TEST4D_EXTERNAL.")
     
@@ -5311,7 +5094,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4D_EXTERNAL behavior
         # uml: exit / { trace("Exit TEST4D_EXTERNAL.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4D_EXTERNAL.")`
             Printer.trace("Exit TEST4D_EXTERNAL.")
         
@@ -5328,7 +5110,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4D_G behavior
         # uml: enter / { trace("Enter TEST4D_G.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4D_G.")`
             Printer.trace("Enter TEST4D_G.")
     
@@ -5336,7 +5117,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4D_G behavior
         # uml: exit / { trace("Exit TEST4D_G.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4D_G.")`
             Printer.trace("Exit TEST4D_G.")
         
@@ -5346,7 +5126,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4D_G behavior
         # uml: EV1 [trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", True)] / { trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().") } TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())
         if self.trace_guard("State TEST4D_G: check behavior `EV1 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", True):
-
             # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4D_EXTERNAL)
             
@@ -5359,7 +5138,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST4D_EXTERNAL.<ChoicePoint>() behavior
             # uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.") } TransitionTo(TEST4D_G_1)
             if True:
-
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.")`.
@@ -5383,7 +5161,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4D_G_1 behavior
         # uml: enter / { trace("Enter TEST4D_G_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4D_G_1.")`
             Printer.trace("Enter TEST4D_G_1.")
     
@@ -5391,7 +5168,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4D_G_1 behavior
         # uml: exit / { trace("Exit TEST4D_G_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4D_G_1.")`
             Printer.trace("Exit TEST4D_G_1.")
         
@@ -5401,7 +5177,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4D_G_1 behavior
         # uml: EV2 [trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", True)] / { trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().") } TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())
         if self.trace_guard("State TEST4D_G_1: check behavior `EV2 TransitionTo(TEST4D_EXTERNAL.<ChoicePoint>())`.", True):
-
             # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4D_EXTERNAL)
             
@@ -5414,7 +5189,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST4D_EXTERNAL.<ChoicePoint>() behavior
             # uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.") } TransitionTo(TEST4D_G)
             if True:
-
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.")`.
@@ -5437,7 +5211,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_DECIDE behavior
         # uml: enter / { trace("Enter TEST4_DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_DECIDE.")`
             Printer.trace("Enter TEST4_DECIDE.")
     
@@ -5445,7 +5218,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_DECIDE behavior
         # uml: exit / { trace("Exit TEST4_DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_DECIDE.")`
             Printer.trace("Exit TEST4_DECIDE.")
         
@@ -5455,7 +5227,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_DECIDE behavior
         # uml: EV1 [trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", True)] / { trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.") } TransitionTo(TEST4_ROOT)
         if self.trace_guard("State TEST4_DECIDE: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
             self._TEST4_DECIDE_exit()
             
@@ -5472,7 +5243,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_DECIDE behavior
         # uml: EV2 [trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", True)] / { trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.") } TransitionTo(TEST4B_LOCAL)
         if self.trace_guard("State TEST4_DECIDE: check behavior `EV2 TransitionTo(TEST4B_LOCAL)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
             self._TEST4_DECIDE_exit()
             
@@ -5486,7 +5256,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST4B_LOCAL.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.") } TransitionTo(TEST4B_G)
             if True:
-
                 # Step 1: Exit states until we reach `TEST4B_LOCAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.")`.
@@ -5502,7 +5271,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_DECIDE behavior
         # uml: EV3 [trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", True)] / { trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.") } TransitionTo(TEST4C_LOCAL_TO_ALIAS)
         if self.trace_guard("State TEST4_DECIDE: check behavior `EV3 TransitionTo(TEST4C_LOCAL_TO_ALIAS)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
             self._TEST4_DECIDE_exit()
             
@@ -5516,7 +5284,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST4C_LOCAL_TO_ALIAS.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.") } TransitionTo(TEST4C_G)
             if True:
-
                 # Step 1: Exit states until we reach `TEST4C_LOCAL_TO_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.")`.
@@ -5532,7 +5299,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_DECIDE behavior
         # uml: EV4 [trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", True)] / { trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.") } TransitionTo(TEST4D_EXTERNAL)
         if self.trace_guard("State TEST4_DECIDE: check behavior `EV4 TransitionTo(TEST4D_EXTERNAL)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition).
             self._TEST4_DECIDE_exit()
             
@@ -5546,7 +5312,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST4D_EXTERNAL.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.") } TransitionTo(TEST4D_G)
             if True:
-
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.")`.
@@ -5569,14 +5334,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_ROOT behavior
         # uml: enter / { trace("Enter TEST4_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_ROOT.")`
             Printer.trace("Enter TEST4_ROOT.")
         
         # TEST4_ROOT behavior
         # uml: enter [trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -5584,7 +5347,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_ROOT behavior
         # uml: exit / { trace("Exit TEST4_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_ROOT.")`
             Printer.trace("Exit TEST4_ROOT.")
         
@@ -5594,7 +5356,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_ROOT behavior
         # uml: EV2 [trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", True)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S1.") } TransitionTo(TEST4_S1)
         if self.trace_guard("State TEST4_ROOT: check behavior `EV2 TransitionTo(TEST4_S1)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
@@ -5611,7 +5372,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_ROOT behavior
         # uml: EV3 [trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", True)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.") } TransitionTo(TEST4_S10_1)
         if self.trace_guard("State TEST4_ROOT: check behavior `EV3 TransitionTo(TEST4_S10_1)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
@@ -5629,7 +5389,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_ROOT behavior
         # uml: EV4 [trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", True)] / { trace("Transition action `` for TEST4_ROOT to TEST4_S20.") } TransitionTo(TEST4_S20)
         if self.trace_guard("State TEST4_ROOT: check behavior `EV4 TransitionTo(TEST4_S20)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
@@ -5654,7 +5413,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S1 behavior
         # uml: enter / { trace("Enter TEST4_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_S1.")`
             Printer.trace("Enter TEST4_S1.")
     
@@ -5662,7 +5420,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S1 behavior
         # uml: exit / { trace("Exit TEST4_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_S1.")`
             Printer.trace("Exit TEST4_S1.")
         
@@ -5672,7 +5429,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S1 behavior
         # uml: EV1 [trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", True)] / { trace("Transition action `` for TEST4_S1 to TEST4_S2.") } TransitionTo(TEST4_S2)
         if self.trace_guard("State TEST4_S1: check behavior `EV1 TransitionTo(TEST4_S2)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._TEST4_S1_exit()
             
@@ -5696,7 +5452,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S10 behavior
         # uml: enter / { trace("Enter TEST4_S10.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_S10.")`
             Printer.trace("Enter TEST4_S10.")
     
@@ -5704,7 +5459,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S10 behavior
         # uml: exit / { trace("Exit TEST4_S10.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_S10.")`
             Printer.trace("Exit TEST4_S10.")
         
@@ -5716,7 +5470,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S10 behavior
         # uml: EV4 [trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", True)] / { trace("Transition action `` for TEST4_S10 to TEST4_S10.") } TransitionTo(TEST4_S10)
         if self.trace_guard("State TEST4_S10: check behavior `EV4 TransitionTo(TEST4_S10)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
@@ -5731,7 +5484,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST4_ROOT_ev4()
     
     
@@ -5745,7 +5497,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S10_1 behavior
         # uml: enter / { trace("Enter TEST4_S10_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_S10_1.")`
             Printer.trace("Enter TEST4_S10_1.")
     
@@ -5753,7 +5504,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S10_1 behavior
         # uml: exit / { trace("Exit TEST4_S10_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_S10_1.")`
             Printer.trace("Exit TEST4_S10_1.")
         
@@ -5770,7 +5520,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S2 behavior
         # uml: enter / { trace("Enter TEST4_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_S2.")`
             Printer.trace("Enter TEST4_S2.")
     
@@ -5778,7 +5527,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S2 behavior
         # uml: exit / { trace("Exit TEST4_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_S2.")`
             Printer.trace("Exit TEST4_S2.")
         
@@ -5788,7 +5536,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S2 behavior
         # uml: EV1 [trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", True)] / { trace("Transition action `` for TEST4_S2 to TEST4_S3.") } TransitionTo(TEST4_S3)
         if self.trace_guard("State TEST4_S2: check behavior `EV1 TransitionTo(TEST4_S3)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._TEST4_S2_exit()
             
@@ -5812,7 +5559,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S20 behavior
         # uml: enter / { trace("Enter TEST4_S20.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_S20.")`
             Printer.trace("Enter TEST4_S20.")
     
@@ -5820,7 +5566,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S20 behavior
         # uml: exit / { trace("Exit TEST4_S20.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_S20.")`
             Printer.trace("Exit TEST4_S20.")
         
@@ -5832,7 +5577,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S20 behavior
         # uml: EV4 [trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", True)] / { trace("Transition action `` for TEST4_S20 to TEST4_S20.") } TransitionTo(TEST4_S20)
         if self.trace_guard("State TEST4_S20: check behavior `EV4 TransitionTo(TEST4_S20)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST4_ROOT)
             
@@ -5848,14 +5592,12 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST4_ROOT_ev4()
     
     def _TEST4_S20_InitialState_transition(self):
         # TEST4_S20.<InitialState> behavior
         # uml: / { trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.") } TransitionTo(TEST4_S20_1)
         if True:
-
             # Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.")`.
@@ -5878,7 +5620,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S20_1 behavior
         # uml: enter / { trace("Enter TEST4_S20_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_S20_1.")`
             Printer.trace("Enter TEST4_S20_1.")
     
@@ -5886,7 +5627,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S20_1 behavior
         # uml: exit / { trace("Exit TEST4_S20_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_S20_1.")`
             Printer.trace("Exit TEST4_S20_1.")
         
@@ -5903,7 +5643,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S3 behavior
         # uml: enter / { trace("Enter TEST4_S3.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST4_S3.")`
             Printer.trace("Enter TEST4_S3.")
     
@@ -5911,7 +5650,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S3 behavior
         # uml: exit / { trace("Exit TEST4_S3.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST4_S3.")`
             Printer.trace("Exit TEST4_S3.")
         
@@ -5921,7 +5659,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST4_S3 behavior
         # uml: EV1 [trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", True)] / { trace("Transition action `` for TEST4_S3 to TEST4_ROOT.") } TransitionTo(TEST4_ROOT)
         if self.trace_guard("State TEST4_S3: check behavior `EV1 TransitionTo(TEST4_ROOT)`.", True):
-
             # Step 1: Exit states until we reach `TEST4_ROOT` state (Least Common Ancestor for transition).
             self._TEST4_S3_exit()
             
@@ -5944,7 +5681,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         # uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
             Printer.trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
     
@@ -5952,7 +5688,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         # uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
             Printer.trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
         
@@ -5969,14 +5704,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_ROOT behavior
         # uml: enter / { trace("Enter TEST5_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST5_ROOT.")`
             Printer.trace("Enter TEST5_ROOT.")
         
         # TEST5_ROOT behavior
         # uml: enter [trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -5984,7 +5717,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_ROOT behavior
         # uml: exit / { trace("Exit TEST5_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST5_ROOT.")`
             Printer.trace("Exit TEST5_ROOT.")
         
@@ -5994,7 +5726,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_ROOT behavior
         # uml: EV2 [trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", True)] / { trace("Transition action `` for TEST5_ROOT to TEST5_S1.") } TransitionTo(TEST5_S1)
         if self.trace_guard("State TEST5_ROOT: check behavior `EV2 TransitionTo(TEST5_S1)`.", True):
-
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST5_ROOT)
             
@@ -6018,7 +5749,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S1 behavior
         # uml: enter / { trace("Enter TEST5_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST5_S1.")`
             Printer.trace("Enter TEST5_S1.")
     
@@ -6026,7 +5756,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S1 behavior
         # uml: exit / { trace("Exit TEST5_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST5_S1.")`
             Printer.trace("Exit TEST5_S1.")
         
@@ -6036,7 +5765,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S1 behavior
         # uml: EV1 [trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", True)] / { trace("Transition action `` for TEST5_S1 to TEST5_S2.") } TransitionTo(TEST5_S2)
         if self.trace_guard("State TEST5_S1: check behavior `EV1 TransitionTo(TEST5_S2)`.", True):
-
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
             self._TEST5_S1_exit()
             
@@ -6060,7 +5788,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S2 behavior
         # uml: enter / { trace("Enter TEST5_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST5_S2.")`
             Printer.trace("Enter TEST5_S2.")
     
@@ -6068,7 +5795,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S2 behavior
         # uml: exit / { trace("Exit TEST5_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST5_S2.")`
             Printer.trace("Exit TEST5_S2.")
         
@@ -6078,7 +5804,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S2 behavior
         # uml: EV1 [trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", True)] / { trace("Transition action `` for TEST5_S2 to TEST5_S3.") } TransitionTo(TEST5_S3)
         if self.trace_guard("State TEST5_S2: check behavior `EV1 TransitionTo(TEST5_S3)`.", True):
-
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
             self._TEST5_S2_exit()
             
@@ -6102,7 +5827,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S3 behavior
         # uml: enter / { trace("Enter TEST5_S3.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST5_S3.")`
             Printer.trace("Enter TEST5_S3.")
     
@@ -6110,7 +5834,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S3 behavior
         # uml: exit / { trace("Exit TEST5_S3.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST5_S3.")`
             Printer.trace("Exit TEST5_S3.")
         
@@ -6120,7 +5843,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST5_S3 behavior
         # uml: EV1 [trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", True)] / { trace("Transition action `` for TEST5_S3 to TEST5_ROOT.") } TransitionTo(TEST5_ROOT)
         if self.trace_guard("State TEST5_S3: check behavior `EV1 TransitionTo(TEST5_ROOT)`.", True):
-
             # Step 1: Exit states until we reach `TEST5_ROOT` state (Least Common Ancestor for transition).
             self._TEST5_S3_exit()
             
@@ -6143,7 +5865,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_VARS_EXPANSIONS behavior
         # uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS.")`
             Printer.trace("Enter TEST6_VARS_EXPANSIONS.")
     
@@ -6151,7 +5872,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_VARS_EXPANSIONS behavior
         # uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS.")`
             Printer.trace("Exit TEST6_VARS_EXPANSIONS.")
         
@@ -6168,7 +5888,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_ROOT behavior
         # uml: enter / { trace("Enter TEST6_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST6_ROOT.")`
             Printer.trace("Enter TEST6_ROOT.")
     
@@ -6176,7 +5895,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_ROOT behavior
         # uml: exit / { trace("Exit TEST6_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST6_ROOT.")`
             Printer.trace("Exit TEST6_ROOT.")
         
@@ -6193,7 +5911,6 @@ class Spec2Sm(Spec2SmBase):
         # AUTO_VAR_TEST behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST.") }
         if True:
-
             # Step 1: execute action `trace("Enter AUTO_VAR_TEST.")`
             Printer.trace("Enter AUTO_VAR_TEST.")
     
@@ -6201,7 +5918,6 @@ class Spec2Sm(Spec2SmBase):
         # AUTO_VAR_TEST behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST.") }
         if True:
-
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST.")`
             Printer.trace("Exit AUTO_VAR_TEST.")
         
@@ -6218,14 +5934,12 @@ class Spec2Sm(Spec2SmBase):
         # AUTO_VAR_TEST__S1 behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST__S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter AUTO_VAR_TEST__S1.")`
             Printer.trace("Enter AUTO_VAR_TEST__S1.")
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: enter [trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -6233,7 +5947,6 @@ class Spec2Sm(Spec2SmBase):
         # AUTO_VAR_TEST__S1 behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST__S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S1.")`
             Printer.trace("Exit AUTO_VAR_TEST__S1.")
         
@@ -6243,14 +5956,12 @@ class Spec2Sm(Spec2SmBase):
         # AUTO_VAR_TEST__S1 behavior
         # uml: 1. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.", True)] / { auto_var_1 += 1 }
         if self.trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.", True):
-
             # Step 1: execute action `auto_var_1 += 1`
             self.vars.auto_var_1 += 1
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: 2. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2)] / { trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.") } TransitionTo(AUTO_VAR_TEST__S2)
         if self.trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", self.vars.auto_var_1 == 2):
-
             # Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition).
             self._AUTO_VAR_TEST__S1_exit()
             
@@ -6274,7 +5985,6 @@ class Spec2Sm(Spec2SmBase):
         # AUTO_VAR_TEST__S2 behavior
         # uml: enter / { trace("Enter AUTO_VAR_TEST__S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter AUTO_VAR_TEST__S2.")`
             Printer.trace("Enter AUTO_VAR_TEST__S2.")
     
@@ -6282,7 +5992,6 @@ class Spec2Sm(Spec2SmBase):
         # AUTO_VAR_TEST__S2 behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST__S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S2.")`
             Printer.trace("Exit AUTO_VAR_TEST__S2.")
         
@@ -6299,7 +6008,6 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS behavior
         # uml: enter / { trace("Enter META_EXPANSIONS.") }
         if True:
-
             # Step 1: execute action `trace("Enter META_EXPANSIONS.")`
             Printer.trace("Enter META_EXPANSIONS.")
     
@@ -6307,7 +6015,6 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS behavior
         # uml: exit / { trace("Exit META_EXPANSIONS.") }
         if True:
-
             # Step 1: execute action `trace("Exit META_EXPANSIONS.")`
             Printer.trace("Exit META_EXPANSIONS.")
         
@@ -6317,7 +6024,6 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS.<ChoicePoint>(2) behavior
         # uml: / { trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S5.")\ntrace_meta() } TransitionTo(S5)
         if True:
-
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S5.")\ntrace_meta()`.
@@ -6341,14 +6047,12 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS__S1 behavior
         # uml: enter / { trace("Enter META_EXPANSIONS__S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter META_EXPANSIONS__S1.")`
             Printer.trace("Enter META_EXPANSIONS__S1.")
         
         # META_EXPANSIONS__S1 behavior
         # uml: enter [trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -6356,7 +6060,6 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS__S1 behavior
         # uml: exit / { trace("Exit META_EXPANSIONS__S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit META_EXPANSIONS__S1.")`
             Printer.trace("Exit META_EXPANSIONS__S1.")
         
@@ -6366,7 +6069,6 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS__S1 behavior
         # uml: EV1 [trace_guard("State META_EXPANSIONS__S1: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS__S2)`.", True)] / { trace("Transition action `trace_meta()` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.")\ntrace_meta() } TransitionTo(META_EXPANSIONS__S2)
         if self.trace_guard("State META_EXPANSIONS__S1: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS__S2)`.", True):
-
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
             self._META_EXPANSIONS__S1_exit()
             
@@ -6391,14 +6093,12 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS__S2 behavior
         # uml: enter / { trace("Enter META_EXPANSIONS__S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter META_EXPANSIONS__S2.")`
             Printer.trace("Enter META_EXPANSIONS__S2.")
         
         # META_EXPANSIONS__S2 behavior
         # uml: enter [trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", True)] / { trace_meta() }
         if self.trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", True):
-
             # Step 1: execute action `trace_meta()`
             Printer.trace("META: State: META_EXPANSIONS__S2, trigger: enter, behavior vertex: META_EXPANSIONS__S2")
     
@@ -6406,7 +6106,6 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS__S2 behavior
         # uml: exit / { trace("Exit META_EXPANSIONS__S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit META_EXPANSIONS__S2.")`
             Printer.trace("Exit META_EXPANSIONS__S2.")
         
@@ -6416,7 +6115,6 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS__S2 behavior
         # uml: EV1 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`.", True)] / { trace("Transition action `trace_meta()` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).")\ntrace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))
         if self.trace_guard("State META_EXPANSIONS__S2: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(1))`.", True):
-
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
             self._META_EXPANSIONS__S2_exit()
             
@@ -6430,7 +6128,6 @@ class Spec2Sm(Spec2SmBase):
             # META_EXPANSIONS.<ChoicePoint>(1) behavior
             # uml: / { trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S3.")\ntrace_meta() } TransitionTo(S3)
             if True:
-
                 # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S3.")\ntrace_meta()`.
@@ -6447,7 +6144,6 @@ class Spec2Sm(Spec2SmBase):
         # META_EXPANSIONS__S2 behavior
         # uml: EV2 [trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", True)] / { trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2).") } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))
         if self.trace_guard("State META_EXPANSIONS__S2: check behavior `EV2 TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", True):
-
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
             self._META_EXPANSIONS__S2_exit()
             
@@ -6472,7 +6168,6 @@ class Spec2Sm(Spec2SmBase):
         # S3 behavior
         # uml: enter / { trace("Enter S3.") }
         if True:
-
             # Step 1: execute action `trace("Enter S3.")`
             Printer.trace("Enter S3.")
     
@@ -6480,7 +6175,6 @@ class Spec2Sm(Spec2SmBase):
         # S3 behavior
         # uml: exit / { trace("Exit S3.") }
         if True:
-
             # Step 1: execute action `trace("Exit S3.")`
             Printer.trace("Exit S3.")
         
@@ -6490,7 +6184,6 @@ class Spec2Sm(Spec2SmBase):
         # S3 behavior
         # uml: EV1 [trace_guard("State S3: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", True)] / { trace("Transition action `trace_meta()` for S3 to META_EXPANSIONS.<ChoicePoint>(2).")\ntrace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))
         if self.trace_guard("State S3: check behavior `EV1 / { trace_meta() } TransitionTo(META_EXPANSIONS.<ChoicePoint>(2))`.", True):
-
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition).
             self._S3_exit()
             
@@ -6516,7 +6209,6 @@ class Spec2Sm(Spec2SmBase):
         # S4 behavior
         # uml: enter / { trace("Enter S4.") }
         if True:
-
             # Step 1: execute action `trace("Enter S4.")`
             Printer.trace("Enter S4.")
     
@@ -6524,7 +6216,6 @@ class Spec2Sm(Spec2SmBase):
         # S4 behavior
         # uml: exit / { trace("Exit S4.") }
         if True:
-
             # Step 1: execute action `trace("Exit S4.")`
             Printer.trace("Exit S4.")
         
@@ -6541,7 +6232,6 @@ class Spec2Sm(Spec2SmBase):
         # S5 behavior
         # uml: enter / { trace("Enter S5.") }
         if True:
-
             # Step 1: execute action `trace("Enter S5.")`
             Printer.trace("Enter S5.")
     
@@ -6549,7 +6239,6 @@ class Spec2Sm(Spec2SmBase):
         # S5 behavior
         # uml: exit / { trace("Exit S5.") }
         if True:
-
             # Step 1: execute action `trace("Exit S5.")`
             Printer.trace("Exit S5.")
         
@@ -6566,7 +6255,6 @@ class Spec2Sm(Spec2SmBase):
         # NORMAL behavior
         # uml: enter / { trace("Enter NORMAL.") }
         if True:
-
             # Step 1: execute action `trace("Enter NORMAL.")`
             Printer.trace("Enter NORMAL.")
     
@@ -6574,7 +6262,6 @@ class Spec2Sm(Spec2SmBase):
         # NORMAL behavior
         # uml: exit / { trace("Exit NORMAL.") }
         if True:
-
             # Step 1: execute action `trace("Exit NORMAL.")`
             Printer.trace("Exit NORMAL.")
         
@@ -6591,14 +6278,12 @@ class Spec2Sm(Spec2SmBase):
         # NORMAL__S1 behavior
         # uml: enter / { trace("Enter NORMAL__S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter NORMAL__S1.")`
             Printer.trace("Enter NORMAL__S1.")
         
         # NORMAL__S1 behavior
         # uml: enter [trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -6606,7 +6291,6 @@ class Spec2Sm(Spec2SmBase):
         # NORMAL__S1 behavior
         # uml: exit / { trace("Exit NORMAL__S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit NORMAL__S1.")`
             Printer.trace("Exit NORMAL__S1.")
         
@@ -6616,14 +6300,12 @@ class Spec2Sm(Spec2SmBase):
         # NORMAL__S1 behavior
         # uml: 1. EV1 [trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count += 1 }`.", True)] / { count += 1 }
         if self.trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count += 1 }`.", True):
-
             # Step 1: execute action `count += 1`
             self.vars.count += 1
         
         # NORMAL__S1 behavior
         # uml: 2. EV1 [trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", count >= 2)] / { trace("Transition action `` for NORMAL__S1 to NORMAL__S2.") } TransitionTo(NORMAL__S2)
         if self.trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", self.vars.count >= 2):
-
             # Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition).
             self._NORMAL__S1_exit()
             
@@ -6647,7 +6329,6 @@ class Spec2Sm(Spec2SmBase):
         # NORMAL__S2 behavior
         # uml: enter / { trace("Enter NORMAL__S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter NORMAL__S2.")`
             Printer.trace("Enter NORMAL__S2.")
     
@@ -6655,7 +6336,6 @@ class Spec2Sm(Spec2SmBase):
         # NORMAL__S2 behavior
         # uml: exit / { trace("Exit NORMAL__S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit NORMAL__S2.")`
             Printer.trace("Exit NORMAL__S2.")
         
@@ -6672,7 +6352,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")`
             Printer.trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")
     
@@ -6680,7 +6359,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")`
             Printer.trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")
         
@@ -6690,7 +6368,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: EV1 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", True)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL.") } TransitionTo(NORMAL)
         if self.trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV1 TransitionTo(NORMAL)`.", True):
-
             # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
@@ -6703,7 +6380,6 @@ class Spec2Sm(Spec2SmBase):
             # NORMAL.<InitialState> behavior
             # uml: / { trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.") } TransitionTo(NORMAL__S1)
             if True:
-
                 # Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.")`.
@@ -6719,7 +6395,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: EV2 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", True)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST.") } TransitionTo(AUTO_VAR_TEST)
         if self.trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV2 TransitionTo(AUTO_VAR_TEST)`.", True):
-
             # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
@@ -6732,7 +6407,6 @@ class Spec2Sm(Spec2SmBase):
             # AUTO_VAR_TEST.<InitialState> behavior
             # uml: / { trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.") } TransitionTo(AUTO_VAR_TEST__S1)
             if True:
-
                 # Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.")`.
@@ -6748,7 +6422,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: EV3 [trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV3 TransitionTo(META_EXPANSIONS)`.", True)] / { trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS.") } TransitionTo(META_EXPANSIONS)
         if self.trace_guard("State TEST6_VARS_EXPANSIONS__DECIDE: check behavior `EV3 TransitionTo(META_EXPANSIONS)`.", True):
-
             # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition).
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
@@ -6761,7 +6434,6 @@ class Spec2Sm(Spec2SmBase):
             # META_EXPANSIONS.<InitialState> behavior
             # uml: / { trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.") } TransitionTo(META_EXPANSIONS__S1)
             if True:
-
                 # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.")`.
@@ -6784,7 +6456,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_INITIAL_OR_HISTORY behavior
         # uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST7_INITIAL_OR_HISTORY.")`
             Printer.trace("Enter TEST7_INITIAL_OR_HISTORY.")
     
@@ -6792,7 +6463,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_INITIAL_OR_HISTORY behavior
         # uml: exit / { trace("Exit TEST7_INITIAL_OR_HISTORY.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.")`
             Printer.trace("Exit TEST7_INITIAL_OR_HISTORY.")
         
@@ -6809,14 +6479,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST7 behavior
         # uml: enter / { trace("Enter TEST7.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST7.")`
             Printer.trace("Enter TEST7.")
         
         # TEST7 behavior
         # uml: enter [trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", True)] / { clear_dispatch_output() }
         if self.trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", True):
-
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
     
@@ -6824,7 +6492,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7 behavior
         # uml: exit / { trace("Exit TEST7.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST7.")`
             Printer.trace("Exit TEST7.")
         
@@ -6841,7 +6508,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY1.")`
             Printer.trace("Enter T7__DEEP_HISTORY1.")
     
@@ -6849,7 +6515,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY1 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.")`
             Printer.trace("Exit T7__DEEP_HISTORY1.")
         
@@ -6866,7 +6531,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__SANTAS_WORKSHOP behavior
         # uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__SANTAS_WORKSHOP.")`
             Printer.trace("Enter T7__DH1__SANTAS_WORKSHOP.")
     
@@ -6874,7 +6538,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__SANTAS_WORKSHOP behavior
         # uml: exit / { trace("Exit T7__DH1__SANTAS_WORKSHOP.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.")`
             Printer.trace("Exit T7__DH1__SANTAS_WORKSHOP.")
         
@@ -6891,7 +6554,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__ALIENS_DETECTED behavior
         # uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__ALIENS_DETECTED.")`
             Printer.trace("Enter T7__DH1__ALIENS_DETECTED.")
     
@@ -6899,7 +6561,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__ALIENS_DETECTED behavior
         # uml: exit / { trace("Exit T7__DH1__ALIENS_DETECTED.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.")`
             Printer.trace("Exit T7__DH1__ALIENS_DETECTED.")
         
@@ -6909,7 +6570,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__ALIENS_DETECTED behavior
         # uml: EV8 [trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", True)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.") } TransitionTo(T7__DH1__BUILD)
         if self.trace_guard("State T7__DH1__ALIENS_DETECTED: check behavior `EV8 TransitionTo(T7__DH1__BUILD)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP)
             
@@ -6934,7 +6594,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__GET_BACKUP behavior
         # uml: enter / { trace("Enter T7__DH1__GET_BACKUP.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.")`
             Printer.trace("Enter T7__DH1__GET_BACKUP.")
     
@@ -6942,7 +6601,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__GET_BACKUP behavior
         # uml: exit / { trace("Exit T7__DH1__GET_BACKUP.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.")`
             Printer.trace("Exit T7__DH1__GET_BACKUP.")
         
@@ -6959,21 +6617,18 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__HERO behavior
         # uml: enter / { trace("Enter T7__DH1__HERO.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__HERO.")`
             Printer.trace("Enter T7__DH1__HERO.")
         
         # T7__DH1__HERO behavior
         # uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }
         if self.trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO
         
         # T7__DH1__HERO behavior
         # uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }
         if self.trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;)`
             self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO
     
@@ -6981,7 +6636,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__HERO behavior
         # uml: exit / { trace("Exit T7__DH1__HERO.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__HERO.")`
             Printer.trace("Exit T7__DH1__HERO.")
         
@@ -6991,7 +6645,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__HERO.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.") } TransitionTo(T7__DH1__CALL_THOR)
         if True:
-
             # Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.")`.
@@ -7014,7 +6667,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__CALL_BATMAN behavior
         # uml: enter / { trace("Enter T7__DH1__CALL_BATMAN.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__CALL_BATMAN.")`
             Printer.trace("Enter T7__DH1__CALL_BATMAN.")
     
@@ -7022,7 +6674,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__CALL_BATMAN behavior
         # uml: exit / { trace("Exit T7__DH1__CALL_BATMAN.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.")`
             Printer.trace("Exit T7__DH1__CALL_BATMAN.")
         
@@ -7032,7 +6683,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__CALL_BATMAN behavior
         # uml: EV1 [trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", True)] / { trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
         if self.trace_guard("State T7__DH1__CALL_BATMAN: check behavior `EV1 TransitionTo(T7__DH1__BUDDY_ELF)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__GET_BACKUP)
             
@@ -7057,7 +6707,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__CALL_THOR behavior
         # uml: enter / { trace("Enter T7__DH1__CALL_THOR.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__CALL_THOR.")`
             Printer.trace("Enter T7__DH1__CALL_THOR.")
     
@@ -7065,7 +6714,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__CALL_THOR behavior
         # uml: exit / { trace("Exit T7__DH1__CALL_THOR.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.")`
             Printer.trace("Exit T7__DH1__CALL_THOR.")
         
@@ -7075,7 +6723,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__CALL_THOR behavior
         # uml: EV1 [trace_guard("State T7__DH1__CALL_THOR: check behavior `EV1 TransitionTo(T7__DH1__CALL_BATMAN)`.", True)] / { trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.") } TransitionTo(T7__DH1__CALL_BATMAN)
         if self.trace_guard("State T7__DH1__CALL_THOR: check behavior `EV1 TransitionTo(T7__DH1__CALL_BATMAN)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition).
             self._T7__DH1__CALL_THOR_exit()
             
@@ -7099,7 +6746,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__LOCAL_HELP behavior
         # uml: enter / { trace("Enter T7__DH1__LOCAL_HELP.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.")`
             Printer.trace("Enter T7__DH1__LOCAL_HELP.")
     
@@ -7107,7 +6753,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__LOCAL_HELP behavior
         # uml: exit / { trace("Exit T7__DH1__LOCAL_HELP.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.")`
             Printer.trace("Exit T7__DH1__LOCAL_HELP.")
         
@@ -7124,21 +6769,18 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter / { trace("Enter T7__DH1__BUDDY_ELF.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__BUDDY_ELF.")`
             Printer.trace("Enter T7__DH1__BUDDY_ELF.")
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }
         if self.trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }
         if self.trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;)`
             self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF
     
@@ -7146,7 +6788,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BUDDY_ELF behavior
         # uml: exit / { trace("Exit T7__DH1__BUDDY_ELF.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.")`
             Printer.trace("Exit T7__DH1__BUDDY_ELF.")
         
@@ -7156,7 +6797,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BUDDY_ELF behavior
         # uml: EV1 [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `EV1 TransitionTo(T7__DH1__POLAR_BEARS)`.", True)] / { trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
         if self.trace_guard("State T7__DH1__BUDDY_ELF: check behavior `EV1 TransitionTo(T7__DH1__POLAR_BEARS)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__LOCAL_HELP` state (Least Common Ancestor for transition).
             self._T7__DH1__BUDDY_ELF_exit()
             
@@ -7180,21 +6820,18 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter / { trace("Enter T7__DH1__POLAR_BEARS.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__POLAR_BEARS.")`
             Printer.trace("Enter T7__DH1__POLAR_BEARS.")
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }
         if self.trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }
         if self.trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;)`
             self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS
     
@@ -7202,7 +6839,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__POLAR_BEARS behavior
         # uml: exit / { trace("Exit T7__DH1__POLAR_BEARS.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.")`
             Printer.trace("Exit T7__DH1__POLAR_BEARS.")
         
@@ -7219,14 +6855,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__GIVE_COOKIES behavior
         # uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__GIVE_COOKIES.")`
             Printer.trace("Enter T7__DH1__GIVE_COOKIES.")
         
         # T7__DH1__GIVE_COOKIES behavior
         # uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }
         if self.trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES
     
@@ -7234,7 +6868,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__GIVE_COOKIES behavior
         # uml: exit / { trace("Exit T7__DH1__GIVE_COOKIES.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.")`
             Printer.trace("Exit T7__DH1__GIVE_COOKIES.")
         
@@ -7244,7 +6877,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__GIVE_COOKIES behavior
         # uml: EV1 [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `EV1 TransitionTo(T7__DH1__CALL_THOR)`.", True)] / { trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.") } TransitionTo(T7__DH1__CALL_THOR)
         if self.trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `EV1 TransitionTo(T7__DH1__CALL_THOR)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
             self._T7__DH1__GIVE_COOKIES_exit()
             
@@ -7270,14 +6902,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__SNOWBALL_FIGHT.")`
             Printer.trace("Enter T7__DH1__SNOWBALL_FIGHT.")
         
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }
         if self.trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT
     
@@ -7285,7 +6915,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: exit / { trace("Exit T7__DH1__SNOWBALL_FIGHT.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.")`
             Printer.trace("Exit T7__DH1__SNOWBALL_FIGHT.")
         
@@ -7295,7 +6924,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: EV1 [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(T7__DH1__GIVE_COOKIES)`.", True)] / { trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.") } TransitionTo(T7__DH1__GIVE_COOKIES)
         if self.trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `EV1 TransitionTo(T7__DH1__GIVE_COOKIES)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition).
             self._T7__DH1__SNOWBALL_FIGHT_exit()
             
@@ -7319,7 +6947,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BUILD behavior
         # uml: enter / { trace("Enter T7__DH1__BUILD.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__BUILD.")`
             Printer.trace("Enter T7__DH1__BUILD.")
     
@@ -7327,7 +6954,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BUILD behavior
         # uml: exit / { trace("Exit T7__DH1__BUILD.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__BUILD.")`
             Printer.trace("Exit T7__DH1__BUILD.")
         
@@ -7337,7 +6963,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BUILD behavior
         # uml: EV6 [trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", True)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.") } TransitionTo(T7__DH1__ALIENS_DETECTED)
         if self.trace_guard("State T7__DH1__BUILD: check behavior `EV6 TransitionTo(T7__DH1__ALIENS_DETECTED)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP)
             
@@ -7350,7 +6975,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__ALIENS_DETECTED.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.") } TransitionTo(T7__DH1__ALIENS_DETECTED.<History>)
             if True:
-
                 # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.")`.
@@ -7362,7 +6986,6 @@ class Spec2Sm(Spec2SmBase):
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.") } TransitionTo(T7__DH1__GIVE_COOKIES)
                 if self.vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES:
-
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.")`.
@@ -7377,7 +7000,6 @@ class Spec2Sm(Spec2SmBase):
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
                 if self.vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO:
-
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.")`.
@@ -7394,7 +7016,6 @@ class Spec2Sm(Spec2SmBase):
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
                 if self.vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF:
-
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.")`.
@@ -7411,7 +7032,6 @@ class Spec2Sm(Spec2SmBase):
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
                 if self.vars.T7__DH1__ALIENS_DETECTED_history == Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS:
-
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.")`.
@@ -7428,7 +7048,6 @@ class Spec2Sm(Spec2SmBase):
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: else / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.") } TransitionTo(T7__DH1__SNOWBALL_FIGHT)
                 if True:
-
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.")`.
@@ -7444,7 +7063,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BUILD behavior
         # uml: EV7 [trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", True)] / { trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.") } TransitionTo(T7__DH1__GET_BACKUP.<History>)
         if self.trace_guard("State T7__DH1__BUILD: check behavior `EV7 TransitionTo(T7__DH1__GET_BACKUP.<History>)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__SANTAS_WORKSHOP` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP)
             
@@ -7459,7 +7077,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
             if self.vars.T7__DH1__GET_BACKUP_history == Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO:
-
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.")`.
@@ -7475,7 +7092,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
             if self.vars.T7__DH1__GET_BACKUP_history == Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF:
-
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.")`.
@@ -7491,7 +7107,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
             if self.vars.T7__DH1__GET_BACKUP_history == Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS:
-
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.")`.
@@ -7507,7 +7122,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().") } TransitionTo(T7__DH1__GET_BACKUP.<ChoicePoint>())
             if True:
-
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().")`.
@@ -7519,7 +7133,6 @@ class Spec2Sm(Spec2SmBase):
                 # T7__DH1__GET_BACKUP.<ChoicePoint>() behavior
                 # uml: / { trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
                 if True:
-
                     # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.")`.
@@ -7536,7 +7149,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BUILD.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.") } TransitionTo(T7__DH1__BUILD.<History>)
         if True:
-
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.")`.
@@ -7548,7 +7160,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TOOL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.") } TransitionTo(T7__DH1__TOOL)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TOOL:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.")`.
@@ -7564,7 +7175,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.") } TransitionTo(T7__DH1__RACE_CAR)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.")`.
@@ -7580,7 +7190,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.") } TransitionTo(T7__DH1__TEDDY_BEAR)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.")`.
@@ -7596,7 +7205,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.") } TransitionTo(T7__DH1__GLOW_WORM)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.")`.
@@ -7612,7 +7220,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.") } TransitionTo(T7__DH1__ROBOT)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.")`.
@@ -7629,7 +7236,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.") } TransitionTo(T7__DH1__BATTLEBOT)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.")`.
@@ -7646,7 +7252,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.") } TransitionTo(T7__DH1__WALL_E)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.")`.
@@ -7663,7 +7268,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.") } TransitionTo(T7__DH1__IMPACT_DRILL)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.")`.
@@ -7679,7 +7283,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.") } TransitionTo(T7__DH1__CIRCULAR_SAW)
             if self.vars.T7__DH1__BUILD_history == Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.")`.
@@ -7695,7 +7298,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DH1__BUILD.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.") } TransitionTo(T7__DH1__TOY)
             if True:
-
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.")`.
@@ -7719,14 +7321,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TOOL behavior
         # uml: enter / { trace("Enter T7__DH1__TOOL.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__TOOL.")`
             Printer.trace("Enter T7__DH1__TOOL.")
         
         # T7__DH1__TOOL behavior
         # uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }
         if self.trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TOOL
     
@@ -7734,7 +7334,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TOOL behavior
         # uml: exit / { trace("Exit T7__DH1__TOOL.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__TOOL.")`
             Printer.trace("Exit T7__DH1__TOOL.")
         
@@ -7744,7 +7343,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TOOL behavior
         # uml: EV2 [trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", True)] / { trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.") } TransitionTo(T7__DH1__TOY)
         if self.trace_guard("State T7__DH1__TOOL: check behavior `EV2 TransitionTo(T7__DH1__TOY)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__BUILD)
             
@@ -7762,7 +7360,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TOOL.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.") } TransitionTo(T7__DH1__IMPACT_DRILL)
         if True:
-
             # Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.")`.
@@ -7785,14 +7382,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__CIRCULAR_SAW.")`
             Printer.trace("Enter T7__DH1__CIRCULAR_SAW.")
         
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }
         if self.trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW
     
@@ -7800,7 +7395,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: exit / { trace("Exit T7__DH1__CIRCULAR_SAW.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.")`
             Printer.trace("Exit T7__DH1__CIRCULAR_SAW.")
         
@@ -7817,14 +7411,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__IMPACT_DRILL behavior
         # uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__IMPACT_DRILL.")`
             Printer.trace("Enter T7__DH1__IMPACT_DRILL.")
         
         # T7__DH1__IMPACT_DRILL behavior
         # uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }
         if self.trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL
     
@@ -7832,7 +7424,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__IMPACT_DRILL behavior
         # uml: exit / { trace("Exit T7__DH1__IMPACT_DRILL.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.")`
             Printer.trace("Exit T7__DH1__IMPACT_DRILL.")
         
@@ -7842,7 +7433,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__IMPACT_DRILL behavior
         # uml: EV1 [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `EV1 TransitionTo(T7__DH1__CIRCULAR_SAW)`.", True)] / { trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.") } TransitionTo(T7__DH1__CIRCULAR_SAW)
         if self.trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `EV1 TransitionTo(T7__DH1__CIRCULAR_SAW)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition).
             self._T7__DH1__IMPACT_DRILL_exit()
             
@@ -7866,14 +7456,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TOY behavior
         # uml: enter / { trace("Enter T7__DH1__TOY.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__TOY.")`
             Printer.trace("Enter T7__DH1__TOY.")
         
         # T7__DH1__TOY behavior
         # uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }
         if self.trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TOY
     
@@ -7881,7 +7469,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TOY behavior
         # uml: exit / { trace("Exit T7__DH1__TOY.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__TOY.")`
             Printer.trace("Exit T7__DH1__TOY.")
         
@@ -7891,7 +7478,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TOY behavior
         # uml: EV1 [trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", True)] / { trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.") } TransitionTo(T7__DH1__TOOL)
         if self.trace_guard("State T7__DH1__TOY: check behavior `EV1 TransitionTo(T7__DH1__TOOL)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DH1__BUILD)
             
@@ -7909,7 +7495,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TOY.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.") } TransitionTo(T7__DH1__RACE_CAR)
         if True:
-
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.")`.
@@ -7932,14 +7517,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__GLOW_WORM behavior
         # uml: enter / { trace("Enter T7__DH1__GLOW_WORM.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__GLOW_WORM.")`
             Printer.trace("Enter T7__DH1__GLOW_WORM.")
         
         # T7__DH1__GLOW_WORM behavior
         # uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }
         if self.trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM
     
@@ -7947,7 +7530,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__GLOW_WORM behavior
         # uml: exit / { trace("Exit T7__DH1__GLOW_WORM.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.")`
             Printer.trace("Exit T7__DH1__GLOW_WORM.")
         
@@ -7959,7 +7541,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__GLOW_WORM behavior
         # uml: EV1 [trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", True)] / { trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.") } TransitionTo(T7__DH1__ROBOT)
         if self.trace_guard("State T7__DH1__GLOW_WORM: check behavior `EV1 TransitionTo(T7__DH1__ROBOT)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
             self._T7__DH1__GLOW_WORM_exit()
             
@@ -7975,7 +7556,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._T7__DH1__TOY_ev1()
     
     
@@ -7989,14 +7569,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__RACE_CAR behavior
         # uml: enter / { trace("Enter T7__DH1__RACE_CAR.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__RACE_CAR.")`
             Printer.trace("Enter T7__DH1__RACE_CAR.")
         
         # T7__DH1__RACE_CAR behavior
         # uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }
         if self.trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR
     
@@ -8004,7 +7582,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__RACE_CAR behavior
         # uml: exit / { trace("Exit T7__DH1__RACE_CAR.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.")`
             Printer.trace("Exit T7__DH1__RACE_CAR.")
         
@@ -8016,7 +7593,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__RACE_CAR behavior
         # uml: EV1 [trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", True)] / { trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.") } TransitionTo(T7__DH1__TEDDY_BEAR)
         if self.trace_guard("State T7__DH1__RACE_CAR: check behavior `EV1 TransitionTo(T7__DH1__TEDDY_BEAR)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
             self._T7__DH1__RACE_CAR_exit()
             
@@ -8031,7 +7607,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._T7__DH1__TOY_ev1()
     
     
@@ -8045,14 +7620,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__ROBOT behavior
         # uml: enter / { trace("Enter T7__DH1__ROBOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__ROBOT.")`
             Printer.trace("Enter T7__DH1__ROBOT.")
         
         # T7__DH1__ROBOT behavior
         # uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }
         if self.trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT
     
@@ -8060,7 +7633,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__ROBOT behavior
         # uml: exit / { trace("Exit T7__DH1__ROBOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__ROBOT.")`
             Printer.trace("Exit T7__DH1__ROBOT.")
         
@@ -8070,7 +7642,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__ROBOT.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.") } TransitionTo(T7__DH1__BATTLEBOT)
         if True:
-
             # Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.")`.
@@ -8093,14 +7664,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BATTLEBOT behavior
         # uml: enter / { trace("Enter T7__DH1__BATTLEBOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__BATTLEBOT.")`
             Printer.trace("Enter T7__DH1__BATTLEBOT.")
         
         # T7__DH1__BATTLEBOT behavior
         # uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }
         if self.trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT
     
@@ -8108,7 +7677,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BATTLEBOT behavior
         # uml: exit / { trace("Exit T7__DH1__BATTLEBOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.")`
             Printer.trace("Exit T7__DH1__BATTLEBOT.")
         
@@ -8120,7 +7688,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__BATTLEBOT behavior
         # uml: EV1 [trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", True)] / { trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.") } TransitionTo(T7__DH1__WALL_E)
         if self.trace_guard("State T7__DH1__BATTLEBOT: check behavior `EV1 TransitionTo(T7__DH1__WALL_E)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition).
             self._T7__DH1__BATTLEBOT_exit()
             
@@ -8135,7 +7702,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._T7__DH1__TOY_ev1()
     
     
@@ -8149,14 +7715,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__WALL_E behavior
         # uml: enter / { trace("Enter T7__DH1__WALL_E.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__WALL_E.")`
             Printer.trace("Enter T7__DH1__WALL_E.")
         
         # T7__DH1__WALL_E behavior
         # uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }
         if self.trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E
     
@@ -8164,7 +7728,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__WALL_E behavior
         # uml: exit / { trace("Exit T7__DH1__WALL_E.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__WALL_E.")`
             Printer.trace("Exit T7__DH1__WALL_E.")
         
@@ -8181,14 +7744,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TEDDY_BEAR behavior
         # uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DH1__TEDDY_BEAR.")`
             Printer.trace("Enter T7__DH1__TEDDY_BEAR.")
         
         # T7__DH1__TEDDY_BEAR behavior
         # uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }
         if self.trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR
     
@@ -8196,7 +7757,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TEDDY_BEAR behavior
         # uml: exit / { trace("Exit T7__DH1__TEDDY_BEAR.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.")`
             Printer.trace("Exit T7__DH1__TEDDY_BEAR.")
         
@@ -8208,7 +7768,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DH1__TEDDY_BEAR behavior
         # uml: EV1 [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", True)] / { trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.") } TransitionTo(T7__DH1__GLOW_WORM)
         if self.trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `EV1 TransitionTo(T7__DH1__GLOW_WORM)`.", True):
-
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition).
             self._T7__DH1__TEDDY_BEAR_exit()
             
@@ -8223,7 +7782,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._T7__DH1__TOY_ev1()
     
     
@@ -8237,7 +7795,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2.")`
             Printer.trace("Enter T7__DEEP_HISTORY2.")
     
@@ -8245,7 +7802,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.")`
             Printer.trace("Exit T7__DEEP_HISTORY2.")
         
@@ -8262,7 +7818,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_0.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_0.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_0.")
     
@@ -8270,7 +7825,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_0.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_0.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_0.")
         
@@ -8280,7 +7834,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
         # uml: evOpen [trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_3)
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY2__T7__state_3)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DEEP_HISTORY2)
             
@@ -8297,7 +7850,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_0.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_0.<History>)
         if True:
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.")`.
@@ -8309,7 +7861,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
             if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.")`.
@@ -8325,7 +7876,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
             if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.")`.
@@ -8341,7 +7891,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
             if self.vars.T7__DEEP_HISTORY2__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.")`.
@@ -8357,7 +7906,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
             if True:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.")`.
@@ -8380,14 +7928,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_1.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_1.")
         
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1
     
@@ -8395,7 +7941,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_1.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_1.")
         
@@ -8405,7 +7950,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: evStep [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_2)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_2)
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_2)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY2__T7__STATE_1_exit()
             
@@ -8430,14 +7974,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_2.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_2.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_2.")
         
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2
     
@@ -8445,7 +7987,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_2.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_2.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_2.")
         
@@ -8455,7 +7996,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: evBack [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY2__T7__state_1)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0)
             
@@ -8472,7 +8012,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_2.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
         if True:
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.")`.
@@ -8495,14 +8034,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_6.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_6.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_6.")
         
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6
     
@@ -8510,7 +8047,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_6.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_6.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_6.")
         
@@ -8520,7 +8056,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: evStep [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_9)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY2__T7__state_9)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY2__T7__STATE_6_exit()
             
@@ -8544,14 +8079,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_9.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_9.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_9.")
         
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9
     
@@ -8559,7 +8092,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_9.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_9.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_9.")
         
@@ -8576,7 +8108,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_3.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_3.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_3.")
     
@@ -8584,7 +8115,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_3.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_3.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_3.")
         
@@ -8594,7 +8124,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
         # uml: evClose [trace_guard("State T7__DEEP_HISTORY2__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY2__T7__state_0)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY2__T7__state_0)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY2__T7__STATE_3_exit()
             
@@ -8619,7 +8148,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3.")`
             Printer.trace("Enter T7__DEEP_HISTORY3.")
     
@@ -8627,7 +8155,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.")`
             Printer.trace("Exit T7__DEEP_HISTORY3.")
         
@@ -8644,7 +8171,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_0.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_0.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_0.")
     
@@ -8652,7 +8178,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_0.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_0.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_0.")
         
@@ -8662,7 +8187,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
         # uml: evOpen [trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_3)
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_0: check behavior `evOpen TransitionTo(T7__DEEP_HISTORY3__T7__state_3)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DEEP_HISTORY3)
             
@@ -8679,7 +8203,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_0.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_0.<History>)
         if True:
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.")`.
@@ -8691,7 +8214,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY3__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history == T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
             if self.vars.T7__DEEP_HISTORY3__T7__state_0_history == Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.")`.
@@ -8707,7 +8229,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY3__T7__state_0.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
             if True:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.")`.
@@ -8730,14 +8251,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_1.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_1.")
         
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;)`
             self.vars.T7__DEEP_HISTORY3__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1
     
@@ -8745,7 +8264,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_1.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_1.")
         
@@ -8755,7 +8273,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: evStep [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_2)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_2)
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_2)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY3__T7__STATE_1_exit()
             
@@ -8780,14 +8297,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_2.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_2.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_2.")
         
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;)`
             self.vars.T7__DEEP_HISTORY3__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2
     
@@ -8795,7 +8310,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_2.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_2.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_2.")
         
@@ -8805,7 +8319,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: evBack [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `evBack TransitionTo(T7__DEEP_HISTORY3__T7__state_1)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0)
             
@@ -8822,7 +8335,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_2.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_6)
         if True:
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.")`.
@@ -8845,7 +8357,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_6.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_6.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_6.")
     
@@ -8853,7 +8364,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_6.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_6.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_6.")
         
@@ -8863,7 +8373,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
         # uml: evStep [trace_guard("State T7__DEEP_HISTORY3__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_9)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_9)
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_6: check behavior `evStep TransitionTo(T7__DEEP_HISTORY3__T7__state_9)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY3__T7__STATE_6_exit()
             
@@ -8887,7 +8396,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_9 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_9.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_9.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_9.")
     
@@ -8895,7 +8403,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_9 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_9.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_9.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_9.")
         
@@ -8912,7 +8419,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_3.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_3.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_3.")
     
@@ -8920,7 +8426,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_3.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_3.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_3.")
         
@@ -8930,7 +8435,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
         # uml: evClose [trace_guard("State T7__DEEP_HISTORY3__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY3__T7__state_0)`.", True)] / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_3: check behavior `evClose TransitionTo(T7__DEEP_HISTORY3__T7__state_0)`.", True):
-
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition).
             self._T7__DEEP_HISTORY3__T7__STATE_3_exit()
             
@@ -8955,7 +8459,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__HISTORY1 behavior
         # uml: enter / { trace("Enter T7__HISTORY1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__HISTORY1.")`
             Printer.trace("Enter T7__HISTORY1.")
     
@@ -8963,7 +8466,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__HISTORY1 behavior
         # uml: exit / { trace("Exit T7__HISTORY1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__HISTORY1.")`
             Printer.trace("Exit T7__HISTORY1.")
         
@@ -8980,7 +8482,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF behavior
         # uml: enter / { trace("Enter T7__H1__OFF.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__H1__OFF.")`
             Printer.trace("Enter T7__H1__OFF.")
     
@@ -8988,7 +8489,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF behavior
         # uml: exit / { trace("Exit T7__H1__OFF.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__H1__OFF.")`
             Printer.trace("Exit T7__H1__OFF.")
         
@@ -8998,7 +8498,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF behavior
         # uml: EV3 [trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", True)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.") } TransitionTo(T7__H1__OFF3)
         if self.trace_guard("State T7__H1__OFF: check behavior `EV3 TransitionTo(T7__H1__OFF3)`.", True):
-
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__H1__OFF)
             
@@ -9015,7 +8514,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF behavior
         # uml: EV4 [trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", True)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.") } TransitionTo(T7__H1__OFF)
         if self.trace_guard("State T7__H1__OFF: check behavior `EV4 TransitionTo(T7__H1__OFF)`.", True):
-
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__HISTORY1)
             
@@ -9033,7 +8531,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF behavior
         # uml: EV7 [trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", True)] / { trace("Transition action `` for T7__H1__OFF to T7__H1__ON.") } TransitionTo(T7__H1__ON)
         if self.trace_guard("State T7__H1__OFF: check behavior `EV7 TransitionTo(T7__H1__ON)`.", True):
-
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__HISTORY1)
             
@@ -9051,7 +8548,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.") } TransitionTo(T7__H1__OFF.<History>)
         if True:
-
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.")`.
@@ -9063,7 +8559,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__H1__OFF.<History> behavior
             # uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF2)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.") } TransitionTo(T7__H1__OFF2)
             if self.vars.T7__H1__OFF_history == Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF2:
-
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.")`.
@@ -9078,7 +8573,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__H1__OFF.<History> behavior
             # uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.") } TransitionTo(T7__H1__OFF3)
             if self.vars.T7__H1__OFF_history == Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF3:
-
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.")`.
@@ -9093,7 +8587,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__H1__OFF.<History> behavior
             # uml: else / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.") } TransitionTo(T7__H1__OFF1)
             if True:
-
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.")`.
@@ -9116,14 +8609,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF1 behavior
         # uml: enter / { trace("Enter T7__H1__OFF1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__H1__OFF1.")`
             Printer.trace("Enter T7__H1__OFF1.")
         
         # T7__H1__OFF1 behavior
         # uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", True)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }
         if self.trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;)`
             self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF1
     
@@ -9131,7 +8622,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF1 behavior
         # uml: exit / { trace("Exit T7__H1__OFF1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__H1__OFF1.")`
             Printer.trace("Exit T7__H1__OFF1.")
         
@@ -9141,7 +8631,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF1 behavior
         # uml: EV1 [trace_guard("State T7__H1__OFF1: check behavior `EV1 TransitionTo(T7__H1__OFF2)`.", True)] / { trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.") } TransitionTo(T7__H1__OFF2)
         if self.trace_guard("State T7__H1__OFF1: check behavior `EV1 TransitionTo(T7__H1__OFF2)`.", True):
-
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
             self._T7__H1__OFF1_exit()
             
@@ -9165,14 +8654,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF2 behavior
         # uml: enter / { trace("Enter T7__H1__OFF2.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__H1__OFF2.")`
             Printer.trace("Enter T7__H1__OFF2.")
         
         # T7__H1__OFF2 behavior
         # uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", True)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }
         if self.trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;)`
             self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF2
     
@@ -9180,7 +8667,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF2 behavior
         # uml: exit / { trace("Exit T7__H1__OFF2.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__H1__OFF2.")`
             Printer.trace("Exit T7__H1__OFF2.")
         
@@ -9190,7 +8676,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF2 behavior
         # uml: EV1 [trace_guard("State T7__H1__OFF2: check behavior `EV1 TransitionTo(T7__H1__OFF3)`.", True)] / { trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.") } TransitionTo(T7__H1__OFF3)
         if self.trace_guard("State T7__H1__OFF2: check behavior `EV1 TransitionTo(T7__H1__OFF3)`.", True):
-
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition).
             self._T7__H1__OFF2_exit()
             
@@ -9214,14 +8699,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF3 behavior
         # uml: enter / { trace("Enter T7__H1__OFF3.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__H1__OFF3.")`
             Printer.trace("Enter T7__H1__OFF3.")
         
         # T7__H1__OFF3 behavior
         # uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", True)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }
         if self.trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;)`
             self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF3
     
@@ -9229,7 +8712,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__OFF3 behavior
         # uml: exit / { trace("Exit T7__H1__OFF3.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__H1__OFF3.")`
             Printer.trace("Exit T7__H1__OFF3.")
         
@@ -9246,7 +8728,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON behavior
         # uml: enter / { trace("Enter T7__H1__ON.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__H1__ON.")`
             Printer.trace("Enter T7__H1__ON.")
     
@@ -9254,7 +8735,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON behavior
         # uml: exit / { trace("Exit T7__H1__ON.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__H1__ON.")`
             Printer.trace("Exit T7__H1__ON.")
         
@@ -9264,7 +8744,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON behavior
         # uml: EV6 [trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", True)] / { trace("Transition action `` for T7__H1__ON to T7__H1__OFF.") } TransitionTo(T7__H1__OFF)
         if self.trace_guard("State T7__H1__ON: check behavior `EV6 TransitionTo(T7__H1__OFF)`.", True):
-
             # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__HISTORY1)
             
@@ -9282,7 +8761,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.") } TransitionTo(T7__H1__ON.<History>)
         if True:
-
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.")`.
@@ -9294,7 +8772,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__H1__ON.<History> behavior
             # uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON2)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.") } TransitionTo(T7__H1__ON2)
             if self.vars.T7__H1__ON_history == Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON2:
-
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.")`.
@@ -9309,7 +8786,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__H1__ON.<History> behavior
             # uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.") } TransitionTo(T7__H1__ON3)
             if self.vars.T7__H1__ON_history == Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON3:
-
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.")`.
@@ -9324,7 +8800,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__H1__ON.<History> behavior
             # uml: else / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.") } TransitionTo(T7__H1__ON1)
             if True:
-
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.")`.
@@ -9347,14 +8822,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON1 behavior
         # uml: enter / { trace("Enter T7__H1__ON1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__H1__ON1.")`
             Printer.trace("Enter T7__H1__ON1.")
         
         # T7__H1__ON1 behavior
         # uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", True)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }
         if self.trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;)`
             self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON1
     
@@ -9362,7 +8835,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON1 behavior
         # uml: exit / { trace("Exit T7__H1__ON1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__H1__ON1.")`
             Printer.trace("Exit T7__H1__ON1.")
         
@@ -9372,7 +8844,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON1 behavior
         # uml: EV1 [trace_guard("State T7__H1__ON1: check behavior `EV1 TransitionTo(T7__H1__ON2)`.", True)] / { trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.") } TransitionTo(T7__H1__ON2)
         if self.trace_guard("State T7__H1__ON1: check behavior `EV1 TransitionTo(T7__H1__ON2)`.", True):
-
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
             self._T7__H1__ON1_exit()
             
@@ -9396,14 +8867,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON2 behavior
         # uml: enter / { trace("Enter T7__H1__ON2.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__H1__ON2.")`
             Printer.trace("Enter T7__H1__ON2.")
         
         # T7__H1__ON2 behavior
         # uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", True)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }
         if self.trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;)`
             self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON2
     
@@ -9411,7 +8880,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON2 behavior
         # uml: exit / { trace("Exit T7__H1__ON2.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__H1__ON2.")`
             Printer.trace("Exit T7__H1__ON2.")
         
@@ -9421,7 +8889,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON2 behavior
         # uml: EV1 [trace_guard("State T7__H1__ON2: check behavior `EV1 TransitionTo(T7__H1__ON3)`.", True)] / { trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.") } TransitionTo(T7__H1__ON3)
         if self.trace_guard("State T7__H1__ON2: check behavior `EV1 TransitionTo(T7__H1__ON3)`.", True):
-
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
             self._T7__H1__ON2_exit()
             
@@ -9445,14 +8912,12 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON3 behavior
         # uml: enter / { trace("Enter T7__H1__ON3.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__H1__ON3.")`
             Printer.trace("Enter T7__H1__ON3.")
         
         # T7__H1__ON3 behavior
         # uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", True)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }
         if self.trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", True):
-
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;)`
             self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON3
     
@@ -9460,7 +8925,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON3 behavior
         # uml: exit / { trace("Exit T7__H1__ON3.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__H1__ON3.")`
             Printer.trace("Exit T7__H1__ON3.")
         
@@ -9470,7 +8934,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__H1__ON3 behavior
         # uml: EV1 [trace_guard("State T7__H1__ON3: check behavior `EV1 TransitionTo(T7__H1__ON1)`.", True)] / { trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.") } TransitionTo(T7__H1__ON1)
         if self.trace_guard("State T7__H1__ON3: check behavior `EV1 TransitionTo(T7__H1__ON1)`.", True):
-
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition).
             self._T7__H1__ON3_exit()
             
@@ -9494,7 +8957,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__INITIAL1.")`
             Printer.trace("Enter T7__INITIAL1.")
     
@@ -9502,7 +8964,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__INITIAL1.")`
             Printer.trace("Exit T7__INITIAL1.")
         
@@ -9519,7 +8980,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__PARENT behavior
         # uml: enter / { trace("Enter T7__INITIAL1__PARENT.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__INITIAL1__PARENT.")`
             Printer.trace("Enter T7__INITIAL1__PARENT.")
     
@@ -9527,7 +8987,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__PARENT behavior
         # uml: exit / { trace("Exit T7__INITIAL1__PARENT.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.")`
             Printer.trace("Exit T7__INITIAL1__PARENT.")
         
@@ -9537,7 +8996,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__PARENT behavior
         # uml: EV5 [trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count += 1 }`.", True)] / { count += 1 }
         if self.trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count += 1 }`.", True):
-
             # Step 1: execute action `count += 1`
             self.vars.count += 1
     
@@ -9545,7 +9003,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__PARENT.<InitialState> behavior
         # uml: / { trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.") } TransitionTo(T7__INITIAL1__S1)
         if True:
-
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.")`.
@@ -9568,7 +9025,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__INITIAL1__G.")`
             Printer.trace("Enter T7__INITIAL1__G.")
     
@@ -9576,7 +9032,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__INITIAL1__G.")`
             Printer.trace("Exit T7__INITIAL1__G.")
         
@@ -9586,7 +9041,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G behavior
         # uml: EV2 [trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", True)] / { trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.") } TransitionTo(T7__INITIAL1__PARENT.<InitialState>)
         if self.trace_guard("State T7__INITIAL1__G: check behavior `EV2 TransitionTo(T7__INITIAL1__PARENT.<InitialState>)`.", True):
-
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.T7__INITIAL1__PARENT)
             
@@ -9604,7 +9058,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G.<InitialState> behavior
         # uml: [count == 1] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.") } TransitionTo(T7__INITIAL1__G_S1)
         if self.vars.count == 1:
-
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.")`.
@@ -9619,7 +9072,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G.<InitialState> behavior
         # uml: [count == 2] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.") } TransitionTo(T7__INITIAL1__G_S2)
         if self.vars.count == 2:
-
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.")`.
@@ -9634,7 +9086,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G.<InitialState> behavior
         # uml: else / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.") } TransitionTo(T7__INITIAL1__G_S3)
         if True:
-
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.")`.
@@ -9657,7 +9108,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G_S1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__INITIAL1__G_S1.")`
             Printer.trace("Enter T7__INITIAL1__G_S1.")
     
@@ -9665,7 +9115,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G_S1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.")`
             Printer.trace("Exit T7__INITIAL1__G_S1.")
         
@@ -9682,7 +9131,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G_S2 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__INITIAL1__G_S2.")`
             Printer.trace("Enter T7__INITIAL1__G_S2.")
     
@@ -9690,7 +9138,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G_S2 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.")`
             Printer.trace("Exit T7__INITIAL1__G_S2.")
         
@@ -9707,7 +9154,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G_S3 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__G_S3.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__INITIAL1__G_S3.")`
             Printer.trace("Enter T7__INITIAL1__G_S3.")
     
@@ -9715,7 +9161,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__G_S3 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S3.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.")`
             Printer.trace("Exit T7__INITIAL1__G_S3.")
         
@@ -9732,7 +9177,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__S1 behavior
         # uml: enter / { trace("Enter T7__INITIAL1__S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter T7__INITIAL1__S1.")`
             Printer.trace("Enter T7__INITIAL1__S1.")
     
@@ -9740,7 +9184,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__S1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit T7__INITIAL1__S1.")`
             Printer.trace("Exit T7__INITIAL1__S1.")
         
@@ -9750,7 +9193,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__S1 behavior
         # uml: EV1 [trace_guard("State T7__INITIAL1__S1: check behavior `EV1 TransitionTo(T7__INITIAL1__G)`.", True)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.") } TransitionTo(T7__INITIAL1__G)
         if self.trace_guard("State T7__INITIAL1__S1: check behavior `EV1 TransitionTo(T7__INITIAL1__G)`.", True):
-
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
             self._T7__INITIAL1__S1_exit()
             
@@ -9768,7 +9210,6 @@ class Spec2Sm(Spec2SmBase):
         # T7__INITIAL1__S1 behavior
         # uml: EV3 [trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.<InitialState>)`.", True)] / { trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>.") } TransitionTo(T7__INITIAL1__G.<InitialState>)
         if self.trace_guard("State T7__INITIAL1__S1: check behavior `EV3 TransitionTo(T7__INITIAL1__G.<InitialState>)`.", True):
-
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition).
             self._T7__INITIAL1__S1_exit()
             
@@ -9794,7 +9235,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_DECIDE behavior
         # uml: enter / { trace("Enter TEST7_DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST7_DECIDE.")`
             Printer.trace("Enter TEST7_DECIDE.")
     
@@ -9802,14 +9242,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_DECIDE behavior
         # uml: exit / { trace("Exit TEST7_DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST7_DECIDE.")`
             Printer.trace("Exit TEST7_DECIDE.")
         
         # TEST7_DECIDE behavior
         # uml: exit [trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", True)] / { clear_dispatch_output() }
         if self.trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", True):
-
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
         
@@ -9819,7 +9257,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_DECIDE behavior
         # uml: EV1 [trace_guard("State TEST7_DECIDE: check behavior `EV1 TransitionTo(T7__INITIAL1)`.", True)] / { trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.") } TransitionTo(T7__INITIAL1)
         if self.trace_guard("State TEST7_DECIDE: check behavior `EV1 TransitionTo(T7__INITIAL1)`.", True):
-
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -9833,7 +9270,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__INITIAL1.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.") } TransitionTo(T7__INITIAL1__PARENT)
             if True:
-
                 # Step 1: Exit states until we reach `T7__INITIAL1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.")`.
@@ -9850,7 +9286,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_DECIDE behavior
         # uml: EV2 [trace_guard("State TEST7_DECIDE: check behavior `EV2 TransitionTo(T7__HISTORY1)`.", True)] / { trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.") } TransitionTo(T7__HISTORY1)
         if self.trace_guard("State TEST7_DECIDE: check behavior `EV2 TransitionTo(T7__HISTORY1)`.", True):
-
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -9864,7 +9299,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__HISTORY1.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.") } TransitionTo(T7__H1__ON)
             if True:
-
                 # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.")`.
@@ -9881,7 +9315,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_DECIDE behavior
         # uml: EV3 [trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(T7__DEEP_HISTORY1)`.", True)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.") } TransitionTo(T7__DEEP_HISTORY1)
         if self.trace_guard("State TEST7_DECIDE: check behavior `EV3 TransitionTo(T7__DEEP_HISTORY1)`.", True):
-
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -9895,7 +9328,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY1.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.") } TransitionTo(T7__DH1__BUILD)
             if True:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.")`.
@@ -9913,7 +9345,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_DECIDE behavior
         # uml: EV4 [trace_guard("State TEST7_DECIDE: check behavior `EV4 TransitionTo(T7__DEEP_HISTORY2)`.", True)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.") } TransitionTo(T7__DEEP_HISTORY2)
         if self.trace_guard("State TEST7_DECIDE: check behavior `EV4 TransitionTo(T7__DEEP_HISTORY2)`.", True):
-
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -9927,7 +9358,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY2.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_0)
             if True:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.")`.
@@ -9944,7 +9374,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST7_DECIDE behavior
         # uml: EV5 [trace_guard("State TEST7_DECIDE: check behavior `EV5 TransitionTo(T7__DEEP_HISTORY3)`.", True)] / { trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.") } TransitionTo(T7__DEEP_HISTORY3)
         if self.trace_guard("State TEST7_DECIDE: check behavior `EV5 TransitionTo(T7__DEEP_HISTORY3)`.", True):
-
             # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition).
             self._TEST7_DECIDE_exit()
             
@@ -9958,7 +9387,6 @@ class Spec2Sm(Spec2SmBase):
             # T7__DEEP_HISTORY3.<InitialState> behavior
             # uml: / { trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_0)
             if True:
-
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.")`.
@@ -9982,7 +9410,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_ENTRY_CHOICE behavior
         # uml: enter / { trace("Enter TEST8_ENTRY_CHOICE.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.")`
             Printer.trace("Enter TEST8_ENTRY_CHOICE.")
     
@@ -9990,7 +9417,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_ENTRY_CHOICE behavior
         # uml: exit / { trace("Exit TEST8_ENTRY_CHOICE.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.")`
             Printer.trace("Exit TEST8_ENTRY_CHOICE.")
         
@@ -10007,14 +9433,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_ROOT behavior
         # uml: enter / { trace("Enter TEST8_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST8_ROOT.")`
             Printer.trace("Enter TEST8_ROOT.")
         
         # TEST8_ROOT behavior
         # uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", True)] / { clear_dispatch_output() }
         if self.trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", True):
-
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
     
@@ -10022,7 +9446,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_ROOT behavior
         # uml: exit / { trace("Exit TEST8_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST8_ROOT.")`
             Printer.trace("Exit TEST8_ROOT.")
         
@@ -10032,14 +9455,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_ROOT behavior
         # uml: EV3 [trace_guard("State TEST8_ROOT: check behavior `EV3`.", True)]
         if self.trace_guard("State TEST8_ROOT: check behavior `EV3`.", True):
-
             pass
     
     def _TEST8_ROOT_ev5(self):
         # TEST8_ROOT behavior
         # uml: EV5 [trace_guard("State TEST8_ROOT: check behavior `EV5 / { count += 1 }`.", True)] / { count += 1 }
         if self.trace_guard("State TEST8_ROOT: check behavior `EV5 / { count += 1 }`.", True):
-
             # Step 1: execute action `count += 1`
             self.vars.count += 1
     
@@ -10047,7 +9468,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_ROOT.<EntryPoint>(1) behavior
         # uml: / { trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.") } TransitionTo(TEST8_S1)
         if True:
-
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.")`.
@@ -10070,7 +9490,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G behavior
         # uml: enter / { trace("Enter TEST8_G.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST8_G.")`
             Printer.trace("Enter TEST8_G.")
     
@@ -10078,7 +9497,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G behavior
         # uml: exit / { trace("Exit TEST8_G.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST8_G.")`
             Printer.trace("Exit TEST8_G.")
         
@@ -10088,7 +9506,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G behavior
         # uml: EV2 [trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", True)] / { trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).") } TransitionTo(TEST8_ROOT.<EntryPoint>(1))
         if self.trace_guard("State TEST8_G: check behavior `EV2 TransitionTo(TEST8_ROOT.<EntryPoint>(1))`.", True):
-
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST8_ROOT)
             
@@ -10106,7 +9523,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G.<EntryPoint>(1) behavior
         # uml: [count == 1] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.") } TransitionTo(TEST8_G_S1)
         if self.vars.count == 1:
-
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.")`.
@@ -10121,7 +9537,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G.<EntryPoint>(1) behavior
         # uml: [count == 2] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.") } TransitionTo(TEST8_G_S2)
         if self.vars.count == 2:
-
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.")`.
@@ -10136,7 +9551,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G.<EntryPoint>(1) behavior
         # uml: else / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.") } TransitionTo(TEST8_G_S3)
         if True:
-
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.")`.
@@ -10152,7 +9566,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G.<EntryPoint>(3) behavior
         # uml: / { trace("Transition action `count += 0` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).")\ncount += 0 } TransitionTo(TEST8_G.<EntryPoint>(1))
         if True:
-
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `count += 0` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).")\ncount += 0`.
@@ -10177,7 +9590,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G_S1 behavior
         # uml: enter / { trace("Enter TEST8_G_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST8_G_S1.")`
             Printer.trace("Enter TEST8_G_S1.")
     
@@ -10185,7 +9597,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G_S1 behavior
         # uml: exit / { trace("Exit TEST8_G_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST8_G_S1.")`
             Printer.trace("Exit TEST8_G_S1.")
         
@@ -10202,7 +9613,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G_S2 behavior
         # uml: enter / { trace("Enter TEST8_G_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST8_G_S2.")`
             Printer.trace("Enter TEST8_G_S2.")
     
@@ -10210,7 +9620,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G_S2 behavior
         # uml: exit / { trace("Exit TEST8_G_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST8_G_S2.")`
             Printer.trace("Exit TEST8_G_S2.")
         
@@ -10227,7 +9636,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G_S3 behavior
         # uml: enter / { trace("Enter TEST8_G_S3.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST8_G_S3.")`
             Printer.trace("Enter TEST8_G_S3.")
     
@@ -10235,7 +9643,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_G_S3 behavior
         # uml: exit / { trace("Exit TEST8_G_S3.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST8_G_S3.")`
             Printer.trace("Exit TEST8_G_S3.")
         
@@ -10252,7 +9659,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_S1 behavior
         # uml: enter / { trace("Enter TEST8_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST8_S1.")`
             Printer.trace("Enter TEST8_S1.")
     
@@ -10260,7 +9666,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_S1 behavior
         # uml: exit / { trace("Exit TEST8_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST8_S1.")`
             Printer.trace("Exit TEST8_S1.")
         
@@ -10270,7 +9675,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_S1 behavior
         # uml: 1. EV1 [trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`.", True)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).") } TransitionTo(TEST8_G.<EntryPoint>(1))
         if self.trace_guard("State TEST8_S1: check behavior `1. EV1 TransitionTo(TEST8_G.<EntryPoint>(1))`.", True):
-
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
             self._TEST8_S1_exit()
             
@@ -10288,7 +9692,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_S1 behavior
         # uml: 2. EV1 [trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", True)] / { count += 1 # shouldn't run */ }
         if self.trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", True):
-
             # Step 1: execute action `count += 1 # shouldn't run */`
             self.vars.count += 1 
     
@@ -10298,7 +9701,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST8_S1 behavior
         # uml: EV3 [trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", True)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).") } TransitionTo(TEST8_G.<EntryPoint>(3))
         if self.trace_guard("State TEST8_S1: check behavior `EV3 TransitionTo(TEST8_G.<EntryPoint>(3))`.", True):
-
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
             self._TEST8_S1_exit()
             
@@ -10315,14 +9717,12 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST8_ROOT_ev3()
     
     def _TEST8_S1_ev6(self):
         # TEST8_S1 behavior
         # uml: EV6 [trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`.", True)] / { trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).") } TransitionTo(TEST8_G.<EntryPoint>(3))
         if self.trace_guard("State TEST8_S1: check behavior `EV6 TransitionTo(TEST8_G.<EntryPoint>(3))`.", True):
-
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition).
             self._TEST8_S1_exit()
             
@@ -10348,7 +9748,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_EXIT_CHOICE behavior
         # uml: enter / { trace("Enter TEST9_EXIT_CHOICE.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.")`
             Printer.trace("Enter TEST9_EXIT_CHOICE.")
     
@@ -10356,7 +9755,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_EXIT_CHOICE behavior
         # uml: exit / { trace("Exit TEST9_EXIT_CHOICE.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.")`
             Printer.trace("Exit TEST9_EXIT_CHOICE.")
         
@@ -10373,7 +9771,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_DECIDE behavior
         # uml: enter / { trace("Enter TEST9_DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_DECIDE.")`
             Printer.trace("Enter TEST9_DECIDE.")
     
@@ -10381,7 +9778,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_DECIDE behavior
         # uml: exit / { trace("Exit TEST9_DECIDE.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_DECIDE.")`
             Printer.trace("Exit TEST9_DECIDE.")
         
@@ -10391,7 +9787,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_DECIDE behavior
         # uml: EV1 [trace_guard("State TEST9_DECIDE: check behavior `EV1 TransitionTo(TEST9_ROOT)`.", True)] / { trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.") } TransitionTo(TEST9_ROOT)
         if self.trace_guard("State TEST9_DECIDE: check behavior `EV1 TransitionTo(TEST9_ROOT)`.", True):
-
             # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
             self._TEST9_DECIDE_exit()
             
@@ -10404,7 +9799,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_ROOT.<InitialState> behavior
             # uml: / { trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.") } TransitionTo(TEST9_S1)
             if True:
-
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.")`.
@@ -10416,7 +9810,6 @@ class Spec2Sm(Spec2SmBase):
                 # TEST9_S1.<InitialState> behavior
                 # uml: / { trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.") } TransitionTo(TEST9_S1_1)
                 if True:
-
                     # Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.")`.
@@ -10432,7 +9825,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_DECIDE behavior
         # uml: EV2 [trace_guard("State TEST9_DECIDE: check behavior `EV2 TransitionTo(TEST9A_ROOT)`.", True)] / { trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.") } TransitionTo(TEST9A_ROOT)
         if self.trace_guard("State TEST9_DECIDE: check behavior `EV2 TransitionTo(TEST9A_ROOT)`.", True):
-
             # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
             self._TEST9_DECIDE_exit()
             
@@ -10445,7 +9837,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9A_ROOT.<InitialState> behavior
             # uml: / { trace("Transition action `count = 0` for TEST9A_ROOT.<InitialState> to TEST9A_S1.")\ncount = 0 } TransitionTo(TEST9A_S1)
             if True:
-
                 # Step 1: Exit states until we reach `TEST9A_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `count = 0` for TEST9A_ROOT.<InitialState> to TEST9A_S1.")\ncount = 0`.
@@ -10463,7 +9854,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_DECIDE behavior
         # uml: EV3 [trace_guard("State TEST9_DECIDE: check behavior `EV3 TransitionTo(TEST9B_ROOT)`.", True)] / { trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT.") } TransitionTo(TEST9B_ROOT)
         if self.trace_guard("State TEST9_DECIDE: check behavior `EV3 TransitionTo(TEST9B_ROOT)`.", True):
-
             # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition).
             self._TEST9_DECIDE_exit()
             
@@ -10487,7 +9877,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_ROOT behavior
         # uml: enter / { trace("Enter TEST9_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_ROOT.")`
             Printer.trace("Enter TEST9_ROOT.")
     
@@ -10495,7 +9884,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_ROOT behavior
         # uml: exit / { trace("Exit TEST9_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_ROOT.")`
             Printer.trace("Exit TEST9_ROOT.")
         
@@ -10505,7 +9893,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_ROOT behavior
         # uml: EV5 [trace_guard("State TEST9_ROOT: check behavior `EV5 / { count += 1 }`.", True)] / { count += 1 }
         if self.trace_guard("State TEST9_ROOT: check behavior `EV5 / { count += 1 }`.", True):
-
             # Step 1: execute action `count += 1`
             self.vars.count += 1
     
@@ -10520,7 +9907,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_G_S1 behavior
         # uml: enter / { trace("Enter TEST9_G_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_G_S1.")`
             Printer.trace("Enter TEST9_G_S1.")
     
@@ -10528,7 +9914,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_G_S1 behavior
         # uml: exit / { trace("Exit TEST9_G_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_G_S1.")`
             Printer.trace("Exit TEST9_G_S1.")
         
@@ -10545,7 +9930,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_G_S2 behavior
         # uml: enter / { trace("Enter TEST9_G_S2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_G_S2.")`
             Printer.trace("Enter TEST9_G_S2.")
     
@@ -10553,7 +9937,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_G_S2 behavior
         # uml: exit / { trace("Exit TEST9_G_S2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_G_S2.")`
             Printer.trace("Exit TEST9_G_S2.")
         
@@ -10570,7 +9953,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_G_S3 behavior
         # uml: enter / { trace("Enter TEST9_G_S3.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_G_S3.")`
             Printer.trace("Enter TEST9_G_S3.")
     
@@ -10578,7 +9960,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_G_S3 behavior
         # uml: exit / { trace("Exit TEST9_G_S3.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_G_S3.")`
             Printer.trace("Exit TEST9_G_S3.")
         
@@ -10595,7 +9976,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_G_S4 behavior
         # uml: enter / { trace("Enter TEST9_G_S4.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_G_S4.")`
             Printer.trace("Enter TEST9_G_S4.")
     
@@ -10603,7 +9983,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_G_S4 behavior
         # uml: exit / { trace("Exit TEST9_G_S4.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_G_S4.")`
             Printer.trace("Exit TEST9_G_S4.")
         
@@ -10620,7 +9999,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_S1 behavior
         # uml: enter / { trace("Enter TEST9_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_S1.")`
             Printer.trace("Enter TEST9_S1.")
     
@@ -10628,7 +10006,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_S1 behavior
         # uml: exit / { trace("Exit TEST9_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_S1.")`
             Printer.trace("Exit TEST9_S1.")
         
@@ -10645,14 +10022,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_S1_1 behavior
         # uml: enter / { trace("Enter TEST9_S1_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9_S1_1.")`
             Printer.trace("Enter TEST9_S1_1.")
         
         # TEST9_S1_1 behavior
         # uml: enter [trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -10660,7 +10035,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_S1_1 behavior
         # uml: exit / { trace("Exit TEST9_S1_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9_S1_1.")`
             Printer.trace("Exit TEST9_S1_1.")
         
@@ -10670,7 +10044,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`.", True)] / { trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).") } TransitionTo(TEST9_S1.<ExitPoint>(1))
         if self.trace_guard("State TEST9_S1_1: check behavior `EV1 TransitionTo(TEST9_S1.<ExitPoint>(1))`.", True):
-
             # Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition).
             self._TEST9_S1_1_exit()
             
@@ -10683,7 +10056,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: [count == 4] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4.") } TransitionTo(TEST9_G_S4)
             if self.vars.count == 4:
-
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 self._TEST9_S1_exit()
                 
@@ -10699,7 +10071,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: [count == 1] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1.") } TransitionTo(TEST9_G_S1)
             if self.vars.count == 1:
-
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 self._TEST9_S1_exit()
                 
@@ -10715,7 +10086,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: [count == 2] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2.") } TransitionTo(TEST9_G_S2)
             if self.vars.count == 2:
-
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 self._TEST9_S1_exit()
                 
@@ -10731,7 +10101,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: else / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3.") } TransitionTo(TEST9_G_S3)
             if True:
-
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition).
                 self._TEST9_S1_exit()
                 
@@ -10755,7 +10124,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9A_ROOT behavior
         # uml: enter / { trace("Enter TEST9A_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9A_ROOT.")`
             Printer.trace("Enter TEST9A_ROOT.")
     
@@ -10763,7 +10131,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9A_ROOT behavior
         # uml: exit / { trace("Exit TEST9A_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9A_ROOT.")`
             Printer.trace("Exit TEST9A_ROOT.")
         
@@ -10780,7 +10147,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9A_S1 behavior
         # uml: enter / { trace("Enter TEST9A_S1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9A_S1.")`
             Printer.trace("Enter TEST9A_S1.")
     
@@ -10788,7 +10154,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9A_S1 behavior
         # uml: exit / { trace("Exit TEST9A_S1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9A_S1.")`
             Printer.trace("Exit TEST9A_S1.")
         
@@ -10798,7 +10163,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9A_S1.<InitialState> behavior
         # uml: / { trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.") } TransitionTo(TEST9A_S1_1)
         if True:
-
             # Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.")`.
@@ -10821,14 +10185,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST9A_S1_1 behavior
         # uml: enter / { trace("Enter TEST9A_S1_1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9A_S1_1.")`
             Printer.trace("Enter TEST9A_S1_1.")
         
         # TEST9A_S1_1 behavior
         # uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", count == 0)] / { clear_output() }
         if self.trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", self.vars.count == 0):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -10836,14 +10198,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST9A_S1_1 behavior
         # uml: exit / { trace("Exit TEST9A_S1_1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9A_S1_1.")`
             Printer.trace("Exit TEST9A_S1_1.")
         
         # TEST9A_S1_1 behavior
         # uml: exit [trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", True)] / { count = 100 }
         if self.trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", True):
-
             # Step 1: execute action `count = 100`
             self.vars.count = 100
         
@@ -10853,7 +10213,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9A_S1_1 behavior
         # uml: EV1 [trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`.", True)] / { trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).") } TransitionTo(TEST9A_S1.<ExitPoint>(1))
         if self.trace_guard("State TEST9A_S1_1: check behavior `EV1 TransitionTo(TEST9A_S1.<ExitPoint>(1))`.", True):
-
             # Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
             self._TEST9A_S1_1_exit()
             
@@ -10866,7 +10225,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9A_S1.<ExitPoint>(1) behavior
             # uml: [True] / { trace("Transition action `count += 1` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.")\ncount += 1 } TransitionTo(TEST9A_S1)
             if True:
-
                 # Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition).
                 self._TEST9A_S1_exit()
                 
@@ -10891,14 +10249,12 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT behavior
         # uml: enter / { trace("Enter TEST9B_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT.")`
             Printer.trace("Enter TEST9B_ROOT.")
         
         # TEST9B_ROOT behavior
         # uml: enter [trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", True):
-
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
@@ -10906,7 +10262,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT behavior
         # uml: exit / { trace("Exit TEST9B_ROOT.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT.")`
             Printer.trace("Exit TEST9B_ROOT.")
         
@@ -10916,7 +10271,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT behavior
         # uml: EV1 [trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", True)] / { trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.") } TransitionTo(TEST9B_ROOT__A4)
         if self.trace_guard("State TEST9B_ROOT: check behavior `EV1 TransitionTo(TEST9B_ROOT__A4)`.", True):
-
             # Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
             self._exitUpToStateHandler(Spec2Sm.StateId.TEST9B_ROOT)
             
@@ -10943,7 +10297,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A1 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT__A1.")`
             Printer.trace("Enter TEST9B_ROOT__A1.")
     
@@ -10951,7 +10304,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A1 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A1.")`
             Printer.trace("Exit TEST9B_ROOT__A1.")
         
@@ -10968,7 +10320,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A2 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT__A2.")`
             Printer.trace("Enter TEST9B_ROOT__A2.")
     
@@ -10976,7 +10327,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A2 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A2.")`
             Printer.trace("Exit TEST9B_ROOT__A2.")
         
@@ -10993,7 +10343,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A3 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A3.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT__A3.")`
             Printer.trace("Enter TEST9B_ROOT__A3.")
     
@@ -11001,7 +10350,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A3 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A3.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A3.")`
             Printer.trace("Exit TEST9B_ROOT__A3.")
         
@@ -11018,7 +10366,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A4 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__A4.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT__A4.")`
             Printer.trace("Enter TEST9B_ROOT__A4.")
     
@@ -11026,7 +10373,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A4 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A4.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A4.")`
             Printer.trace("Exit TEST9B_ROOT__A4.")
         
@@ -11038,7 +10384,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__A4 behavior
         # uml: EV1 [trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", True)] / { trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1).") } TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))
         if self.trace_guard("State TEST9B_ROOT__A4: check behavior `EV1 TransitionTo(TEST9B_ROOT__A3.<ExitPoint>(1))`.", True):
-
             # Step 1: Exit states until we reach `TEST9B_ROOT__A3` state (Least Common Ancestor for transition).
             self._TEST9B_ROOT__A4_exit()
             
@@ -11051,7 +10396,6 @@ class Spec2Sm(Spec2SmBase):
             # TEST9B_ROOT__A3.<ExitPoint>(1) behavior
             # uml: / { trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.") } TransitionTo(TEST9B_ROOT__B4)
             if True:
-
                 # Step 1: Exit states until we reach `TEST9B_ROOT` state (Least Common Ancestor for transition).
                 self._exitUpToStateHandler(Spec2Sm.StateId.TEST9B_ROOT)
                 
@@ -11069,7 +10413,6 @@ class Spec2Sm(Spec2SmBase):
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
-
             self._TEST9B_ROOT_ev1()
     
     
@@ -11083,7 +10426,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__B1 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B1.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT__B1.")`
             Printer.trace("Enter TEST9B_ROOT__B1.")
     
@@ -11091,7 +10433,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__B1 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B1.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B1.")`
             Printer.trace("Exit TEST9B_ROOT__B1.")
         
@@ -11108,7 +10449,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__B2 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B2.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT__B2.")`
             Printer.trace("Enter TEST9B_ROOT__B2.")
     
@@ -11116,7 +10456,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__B2 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B2.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B2.")`
             Printer.trace("Exit TEST9B_ROOT__B2.")
         
@@ -11133,7 +10472,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__B3 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B3.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT__B3.")`
             Printer.trace("Enter TEST9B_ROOT__B3.")
     
@@ -11141,7 +10479,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__B3 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B3.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B3.")`
             Printer.trace("Exit TEST9B_ROOT__B3.")
         
@@ -11158,7 +10495,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__B4 behavior
         # uml: enter / { trace("Enter TEST9B_ROOT__B4.") }
         if True:
-
             # Step 1: execute action `trace("Enter TEST9B_ROOT__B4.")`
             Printer.trace("Enter TEST9B_ROOT__B4.")
     
@@ -11166,7 +10502,6 @@ class Spec2Sm(Spec2SmBase):
         # TEST9B_ROOT__B4 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B4.") }
         if True:
-
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B4.")`
             Printer.trace("Exit TEST9B_ROOT__B4.")
         
