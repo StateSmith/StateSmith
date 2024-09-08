@@ -20,7 +20,7 @@ namespace StateSmith.Output.Gil.Python;
 /// </summary>
 public class PythonGilVisitor : CSharpSyntaxWalker
 {
-    public readonly StringBuilder sb;
+    private StringBuilder sb;
     private readonly RenderConfigPythonVars renderConfigPython;
     private readonly GilTranspilerHelper transpilerHelper;
     private readonly RenderConfigBaseVars renderConfig;
@@ -75,6 +75,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         {
             AddIndent(1);
             sb.AppendLine("def __init__(self):");
+            sb.AppendLine(PostProcessor.trimBlankLinesMarker);
 
             foreach (var member in node.Members)
             {
@@ -166,17 +167,29 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         }
     }
 
-
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
     {
         if (transpilerHelper.HandleGilSpecialFieldDeclarations(node, sb, Indent))
             return;
 
-        VisitLeadingTrivia(node.GetFirstToken());   // FIXME - this needs to be indented correctly
-        sb.Append(Indent);
+        // capture to fix indentation
+        string captured = CaptureStringBuf(() => VisitLeadingTrivia(node.GetFirstToken()));
+        captured = StringUtils.Indent(captured, Indent);
+        sb.Append(captured);
+
         sb.Append("self.");
         Visit(node.Declaration.Variables.Single());
         sb.AppendLine();
+    }
+
+    private string CaptureStringBuf(Action action)
+    {
+        var originalSb = sb;
+        sb = new StringBuilder();
+        action();
+        var captured = sb.ToString();
+        sb = originalSb;
+        return captured;
     }
 
     public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
@@ -221,6 +234,7 @@ public class PythonGilVisitor : CSharpSyntaxWalker
 
         //AddIndent(1);
         sb.AppendLine("def __init__(self):");
+        sb.AppendLine(PostProcessor.trimBlankLinesMarker);
 
         // get class fields
         var fields = node.Ancestors().OfType<ClassDeclarationSyntax>().First().ChildNodes().OfType<FieldDeclarationSyntax>();

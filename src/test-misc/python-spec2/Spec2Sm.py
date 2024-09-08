@@ -268,12 +268,10 @@ class Spec2Sm(Spec2SmBase):
     
     # State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
     def __init__(self):
-
-    
-    # Used internally by state machine. Feel free to inspect, but don't modify.
+        # Used internally by state machine. Feel free to inspect, but don't modify.
         self.stateId = None
-    
-    # Variables. Can be used for inputs, outputs, user variables...
+        
+        # Variables. Can be used for inputs, outputs, user variables...
         self.vars = self.Vars()
     
     # Starts the state machine. Must be called before dispatching events. Not thread safe.
