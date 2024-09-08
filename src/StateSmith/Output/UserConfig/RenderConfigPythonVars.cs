@@ -1,4 +1,4 @@
-﻿namespace StateSmith.Output.UserConfig;
+namespace StateSmith.Output.UserConfig;
 
 public class RenderConfigPythonVars
 {

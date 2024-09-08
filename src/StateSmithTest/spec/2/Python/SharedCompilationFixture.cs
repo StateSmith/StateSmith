@@ -82,6 +82,11 @@ public class SharedCompilationFixture
             from Printer import Printer
             ";
 
+        string IRenderConfigPython.ClassCode => """
+            def user_code(self):
+                pass
+            """;
+
         public class Expansions : Spec2GenericVarExpansions
         {
             public override string trace(string message) => $"Printer.trace({message})"; // this isn't actually needed, but helps ensure expansions are working

@@ -65,10 +65,24 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         sb.Append("class ");
         sb.Append(node.Identifier.Text);
 
-        sb.Append($"({renderConfigPython.Extends.Trim()}):");
-        VisitTrailingTrivia(node.Identifier);
+        if (node.Ancestors().OfType<ClassDeclarationSyntax>().Any())
+        {
+            // this is a nested class. It doesn't have extends or class code
+            sb.Append($"():");
+            VisitTrailingTrivia(node.Identifier);
+        }
+        else
+        {
+            // this is main state machine class. It has extends and class code.
+            sb.Append($"({renderConfigPython.Extends.Trim()}):");
+            VisitTrailingTrivia(node.Identifier);
 
-        sb.AppendLineIfNotBlank(renderConfigPython.ClassCode);
+            if (!string.IsNullOrWhiteSpace(renderConfigPython.ClassCode))
+            {
+                sb.AppendLine(StringUtils.Indent(renderConfigPython.ClassCode, Indent));
+                sb.AppendLine();
+            }
+        }
 
         // if class doesn't have a constructor, add a default one
         if (!node.ChildNodes().OfType<ConstructorDeclarationSyntax>().Any())

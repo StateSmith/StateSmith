@@ -8,6 +8,9 @@ from Printer import Printer
 
 # Generated state machine
 class Spec2Sm(Spec2SmBase):
+    def user_code(self):
+        pass
+
     class EventId(enum.Enum):
         DO = 0
         EV1 = 1
@@ -255,7 +258,7 @@ class Spec2Sm(Spec2SmBase):
         T7__DEEP_HISTORY3__T7__STATE_2 = 1
     
     # State machine variables. Can be used for inputs, outputs, user variables...
-    class Vars(Spec2SmBase):
+    class Vars():
         def __init__(self):
             self.T7__H1__ON_history = None
             self.T7__H1__OFF_history = None
