@@ -56,6 +56,10 @@ class RocketSm():
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for group.<InitialState>
+            # end of behavior for ROOT.<InitialState>
+        # end of behavior for ROOT
+    
     
     # Dispatches an event to the state machine. Not thread safe.
     # Note! This function assumes that the `eventId` parameter is valid.
@@ -88,6 +92,8 @@ class RocketSm():
             # STATE: s1
             case RocketSm.StateId.S1:
                 pass
+        
+    
     
     # This function is used when StateSmith doesn't know what the active leaf state is at
     # compile time due to sub states or when multiple states need to be exited.
@@ -109,6 +115,8 @@ class RocketSm():
                 
                 case _:
                     return  # Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
+        
+    
     
     
     ########################################
@@ -119,6 +127,7 @@ class RocketSm():
         self.stateId = RocketSm.StateId.ROOT
     
     
+    
     ########################################
     # event handlers for state GROUP
     ########################################
@@ -126,8 +135,10 @@ class RocketSm():
     def _GROUP_enter(self):
         self.stateId = RocketSm.StateId.GROUP
     
+    
     def _GROUP_exit(self):
         self.stateId = RocketSm.StateId.ROOT
+    
     
     def _GROUP_ev1(self):
         # group behavior
@@ -143,6 +154,10 @@ class RocketSm():
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for group
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -152,8 +167,10 @@ class RocketSm():
     def _G1_enter(self):
         self.stateId = RocketSm.StateId.G1
     
+    
     def _G1_exit(self):
         self.stateId = RocketSm.StateId.GROUP
+    
     
     def _G1_ev1(self):
         consume_event = False
@@ -171,10 +188,13 @@ class RocketSm():
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for g1
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._GROUP_ev1()
+        
+    
     
     
     ########################################
@@ -184,8 +204,10 @@ class RocketSm():
     def _G2_enter(self):
         self.stateId = RocketSm.StateId.G2
     
+    
     def _G2_exit(self):
         self.stateId = RocketSm.StateId.GROUP
+    
     
     def _G2_ev2(self):
         # g2 behavior
@@ -201,6 +223,10 @@ class RocketSm():
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for g2
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -210,8 +236,10 @@ class RocketSm():
     def _S1_enter(self):
         self.stateId = RocketSm.StateId.S1
     
+    
     def _S1_exit(self):
         self.stateId = RocketSm.StateId.ROOT
+    
     
     # Thread safe.
     @staticmethod
@@ -224,6 +252,7 @@ class RocketSm():
             case RocketSm.StateId.S1: return "S1"
             case _: return "?"
     
+    
     # Thread safe.
     @staticmethod
     def eventIdToString(id):
@@ -231,3 +260,4 @@ class RocketSm():
             case RocketSm.EventId.EV1: return "EV1"
             case RocketSm.EventId.EV2: return "EV2"
             case _: return "?"
+    

@@ -166,6 +166,14 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         {
             Visit(item);
         }
+        VisitLeadingTrivia(node.GetLastToken());
+
+        // skip trailing whitespace like in `} // end of block` so that we just output `// end of block`
+        SyntaxTriviaList trailingTrivia = node.GetLastToken().TrailingTrivia;
+        foreach (var item in trailingTrivia.SkipWhile(t => t.IsKind(SyntaxKind.WhitespaceTrivia)))
+        {
+            VisitTrivia(item);
+        };
     }
 
     public override void VisitFieldDeclaration(FieldDeclarationSyntax node)

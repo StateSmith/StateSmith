@@ -302,6 +302,9 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for ROOT.<InitialState>
+        # end of behavior for ROOT
+    
     
     # Dispatches an event to the state machine. Not thread safe.
     # Note! This function assumes that the `eventId` parameter is valid.
@@ -1874,6 +1877,8 @@ class Spec2Sm(Spec2SmBase):
                 match eventId:
                     case Spec2Sm.EventId.DO:
                         self._ROOT_do()
+        
+    
     
     # This function is used when StateSmith doesn't know what the active leaf state is at
     # compile time due to sub states or when multiple states need to be exited.
@@ -2402,6 +2407,8 @@ class Spec2Sm(Spec2SmBase):
                 
                 case _:
                     return  # Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
+        
+    
     
     
     ########################################
@@ -2416,12 +2423,19 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter Spec2Sm.")`
             Printer.trace("Enter Spec2Sm.")
+        # end of behavior for ROOT
+    
     
     def _ROOT_do(self):
         # ROOT behavior
         # uml: do [trace_guard("State Spec2Sm: check behavior `do`.", True)]
         if self.trace_guard("State Spec2Sm: check behavior `do`.", True):
+            # Step 1: execute action ``
+        # end of behavior for ROOT
             pass
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -2436,6 +2450,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING.")`
             Printer.trace("Enter PREFIXING.")
+        # end of behavior for PREFIXING
+    
     
     def _PREFIXING_exit(self):
         # PREFIXING behavior
@@ -2443,8 +2459,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING.")`
             Printer.trace("Exit PREFIXING.")
+        # end of behavior for PREFIXING
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -2459,6 +2477,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.")`
             Printer.trace("Enter PREFIXING__ORDER_MENU.")
+        # end of behavior for PREFIXING__ORDER_MENU
+    
     
     def _PREFIXING__ORDER_MENU_exit(self):
         # PREFIXING__ORDER_MENU behavior
@@ -2466,8 +2486,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.")`
             Printer.trace("Exit PREFIXING__ORDER_MENU.")
+        # end of behavior for PREFIXING__ORDER_MENU
         
         self.stateId = Spec2Sm.StateId.PREFIXING
+    
     
     
     ########################################
@@ -2482,6 +2504,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.")`
             Printer.trace("Enter PREFIXING__OM__BEVERAGE.")
+        # end of behavior for PREFIXING__OM__BEVERAGE
+    
     
     def _PREFIXING__OM__BEVERAGE_exit(self):
         # PREFIXING__OM__BEVERAGE behavior
@@ -2489,8 +2513,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.")`
             Printer.trace("Exit PREFIXING__OM__BEVERAGE.")
+        # end of behavior for PREFIXING__OM__BEVERAGE
         
         self.stateId = Spec2Sm.StateId.PREFIXING__ORDER_MENU
+    
     
     def _PREFIXING__OM__BEVERAGE_ev2(self):
         # PREFIXING__OM__BEVERAGE behavior
@@ -2518,6 +2544,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for PREFIXING__OM__VEG.<InitialState>
+        # end of behavior for PREFIXING__OM__BEVERAGE
+        
+        # No ancestor handles this event.
+    
     
     def _PREFIXING__OM__BEVERAGE_InitialState_transition(self):
         # PREFIXING__OM__BEVERAGE.<InitialState> behavior
@@ -2533,6 +2564,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__OM__BEVERAGE.<InitialState>
+    
     
     
     ########################################
@@ -2547,6 +2580,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.")`
             Printer.trace("Enter PREFIXING__OM__BEV__NONE.")
+        # end of behavior for PREFIXING__OM__BEV__NONE
+    
     
     def _PREFIXING__OM__BEV__NONE_exit(self):
         # PREFIXING__OM__BEV__NONE behavior
@@ -2554,8 +2589,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.")`
             Printer.trace("Exit PREFIXING__OM__BEV__NONE.")
+        # end of behavior for PREFIXING__OM__BEV__NONE
         
         self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEVERAGE
+    
     
     def _PREFIXING__OM__BEV__NONE_ev1(self):
         # PREFIXING__OM__BEV__NONE behavior
@@ -2572,6 +2609,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__OM__BEV__NONE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -2586,6 +2627,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.")`
             Printer.trace("Enter PREFIXING__OM__BEV__TEA.")
+        # end of behavior for PREFIXING__OM__BEV__TEA
+    
     
     def _PREFIXING__OM__BEV__TEA_exit(self):
         # PREFIXING__OM__BEV__TEA behavior
@@ -2593,8 +2636,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.")`
             Printer.trace("Exit PREFIXING__OM__BEV__TEA.")
+        # end of behavior for PREFIXING__OM__BEV__TEA
         
         self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEVERAGE
+    
     
     
     ########################################
@@ -2609,6 +2654,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.")`
             Printer.trace("Enter PREFIXING__OM__BEV__WATER.")
+        # end of behavior for PREFIXING__OM__BEV__WATER
+    
     
     def _PREFIXING__OM__BEV__WATER_exit(self):
         # PREFIXING__OM__BEV__WATER behavior
@@ -2616,8 +2663,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.")`
             Printer.trace("Exit PREFIXING__OM__BEV__WATER.")
+        # end of behavior for PREFIXING__OM__BEV__WATER
         
         self.stateId = Spec2Sm.StateId.PREFIXING__OM__BEVERAGE
+    
     
     def _PREFIXING__OM__BEV__WATER_ev1(self):
         # PREFIXING__OM__BEV__WATER behavior
@@ -2634,6 +2683,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__OM__BEV__WATER
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -2648,6 +2701,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__OM__VEG.")`
             Printer.trace("Enter PREFIXING__OM__VEG.")
+        # end of behavior for PREFIXING__OM__VEG
+    
     
     def _PREFIXING__OM__VEG_exit(self):
         # PREFIXING__OM__VEG behavior
@@ -2655,8 +2710,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG.")`
             Printer.trace("Exit PREFIXING__OM__VEG.")
+        # end of behavior for PREFIXING__OM__VEG
         
         self.stateId = Spec2Sm.StateId.PREFIXING__ORDER_MENU
+    
     
     def _PREFIXING__OM__VEG_ev2(self):
         # PREFIXING__OM__VEG behavior
@@ -2674,6 +2731,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._PREFIXING__OM__BEVERAGE_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for PREFIXING__OM__VEG
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -2688,6 +2749,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.")`
             Printer.trace("Enter PREFIXING__OM__VEG__NONE.")
+        # end of behavior for PREFIXING__OM__VEG__NONE
+    
     
     def _PREFIXING__OM__VEG__NONE_exit(self):
         # PREFIXING__OM__VEG__NONE behavior
@@ -2695,8 +2758,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.")`
             Printer.trace("Exit PREFIXING__OM__VEG__NONE.")
+        # end of behavior for PREFIXING__OM__VEG__NONE
         
         self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG
+    
     
     def _PREFIXING__OM__VEG__NONE_ev1(self):
         # PREFIXING__OM__VEG__NONE behavior
@@ -2713,6 +2778,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__OM__VEG__NONE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -2727,6 +2796,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.")`
             Printer.trace("Enter PREFIXING__OM__VEG__POTATO.")
+        # end of behavior for PREFIXING__OM__VEG__POTATO
+    
     
     def _PREFIXING__OM__VEG__POTATO_exit(self):
         # PREFIXING__OM__VEG__POTATO behavior
@@ -2734,8 +2805,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.")`
             Printer.trace("Exit PREFIXING__OM__VEG__POTATO.")
+        # end of behavior for PREFIXING__OM__VEG__POTATO
         
         self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG
+    
     
     def _PREFIXING__OM__VEG__POTATO_ev1(self):
         # PREFIXING__OM__VEG__POTATO behavior
@@ -2752,6 +2825,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__OM__VEG__POTATO
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -2766,6 +2843,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.")`
             Printer.trace("Enter PREFIXING__OM__VEG__YAM.")
+        # end of behavior for PREFIXING__OM__VEG__YAM
+    
     
     def _PREFIXING__OM__VEG__YAM_exit(self):
         # PREFIXING__OM__VEG__YAM behavior
@@ -2773,8 +2852,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.")`
             Printer.trace("Exit PREFIXING__OM__VEG__YAM.")
+        # end of behavior for PREFIXING__OM__VEG__YAM
         
         self.stateId = Spec2Sm.StateId.PREFIXING__OM__VEG
+    
     
     
     ########################################
@@ -2789,6 +2870,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX behavior
@@ -2796,8 +2879,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX
         
         self.stateId = Spec2Sm.StateId.PREFIXING
+    
     
     
     ########################################
@@ -2812,6 +2897,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
@@ -2819,8 +2906,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX
+    
     
     
     ########################################
@@ -2835,6 +2924,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
@@ -2842,8 +2933,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_ev2(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
@@ -2871,6 +2964,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState>
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+        
+        # No ancestor handles this event.
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> behavior
@@ -2886,6 +2984,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState>
+    
     
     
     ########################################
@@ -2900,6 +3000,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
@@ -2907,8 +3009,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
@@ -2925,6 +3029,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -2939,6 +3047,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
@@ -2946,8 +3056,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+    
     
     
     ########################################
@@ -2962,6 +3074,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
@@ -2969,8 +3083,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
@@ -2987,6 +3103,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -3001,6 +3121,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
@@ -3008,8 +3130,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_ev2(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
@@ -3027,6 +3151,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -3041,6 +3169,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
@@ -3048,8 +3178,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
@@ -3066,6 +3198,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -3080,6 +3216,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
@@ -3087,8 +3225,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_ev1(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
@@ -3105,6 +3245,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -3119,6 +3263,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
             Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
+    
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
@@ -3126,8 +3272,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
             Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
+        # end of behavior for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM
         
         self.stateId = Spec2Sm.StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
+    
     
     
     ########################################
@@ -3142,6 +3290,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter Spec2Sm__DECIDE.")`
             Printer.trace("Enter Spec2Sm__DECIDE.")
+        # end of behavior for Spec2Sm__DECIDE
+    
     
     def _SPEC2SM__DECIDE_exit(self):
         # Spec2Sm__DECIDE behavior
@@ -3149,8 +3299,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit Spec2Sm__DECIDE.")`
             Printer.trace("Exit Spec2Sm__DECIDE.")
+        # end of behavior for Spec2Sm__DECIDE
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     def _SPEC2SM__DECIDE_do(self):
         consume_event = False
@@ -3169,10 +3321,13 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for Spec2Sm__DECIDE
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._ROOT_do()
+        
+    
     
     def _SPEC2SM__DECIDE_ev1(self):
         # Spec2Sm__DECIDE behavior
@@ -3212,6 +3367,9 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST1_ROOT.<InitialState>
+            # end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
         
         # Spec2Sm__DECIDE behavior
         # uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.") } TransitionTo(UNREACHABLE)
@@ -3227,6 +3385,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev10(self):
         # Spec2Sm__DECIDE behavior
@@ -3255,6 +3417,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST10_CHOICE_POINT.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev2(self):
         # Spec2Sm__DECIDE behavior
@@ -3294,6 +3461,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST2_ROOT.<InitialState>
+            # end of behavior for TEST2_REGULAR_EVENT_TESTING.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev3(self):
         # Spec2Sm__DECIDE behavior
@@ -3332,6 +3505,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST3_ROOT.<InitialState>
+            # end of behavior for TEST3_BEHAVIOR_ORDERING.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev4(self):
         # Spec2Sm__DECIDE behavior
@@ -3359,6 +3538,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev5(self):
         # Spec2Sm__DECIDE behavior
@@ -3386,6 +3570,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev6(self):
         # Spec2Sm__DECIDE behavior
@@ -3424,6 +3613,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST6_ROOT.<InitialState>
+            # end of behavior for TEST6_VARS_EXPANSIONS.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev7(self):
         # Spec2Sm__DECIDE behavior
@@ -3451,6 +3646,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST7_INITIAL_OR_HISTORY.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev8(self):
         # Spec2Sm__DECIDE behavior
@@ -3480,6 +3680,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST8_ROOT_EntryPoint_1__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for TEST8_ENTRY_CHOICE.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _SPEC2SM__DECIDE_ev9(self):
         # Spec2Sm__DECIDE behavior
@@ -3507,6 +3712,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST9_EXIT_CHOICE.<InitialState>
+        # end of behavior for Spec2Sm__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -3521,6 +3731,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.")`
             Printer.trace("Enter TEST1_DO_EVENT_TESTING.")
+        # end of behavior for TEST1_DO_EVENT_TESTING
+    
     
     def _TEST1_DO_EVENT_TESTING_exit(self):
         # TEST1_DO_EVENT_TESTING behavior
@@ -3528,8 +3740,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.")`
             Printer.trace("Exit TEST1_DO_EVENT_TESTING.")
+        # end of behavior for TEST1_DO_EVENT_TESTING
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -3544,6 +3758,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST1_ROOT.")`
             Printer.trace("Enter TEST1_ROOT.")
+        # end of behavior for TEST1_ROOT
+    
     
     def _TEST1_ROOT_exit(self):
         # TEST1_ROOT behavior
@@ -3551,8 +3767,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST1_ROOT.")`
             Printer.trace("Exit TEST1_ROOT.")
+        # end of behavior for TEST1_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST1_DO_EVENT_TESTING
+    
     
     def _TEST1_ROOT_do(self):
         consume_event = False
@@ -3560,11 +3778,16 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_ROOT behavior
         # uml: do [trace_guard("State TEST1_ROOT: check behavior `do`.", True)]
         if self.trace_guard("State TEST1_ROOT: check behavior `do`.", True):
+            # `do` events are not normally consumed.
+            # Step 1: execute action ``
+        # end of behavior for TEST1_ROOT
             pass
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._ROOT_do()
+        
+    
     
     
     ########################################
@@ -3579,6 +3802,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST1_S1.")`
             Printer.trace("Enter TEST1_S1.")
+        # end of behavior for TEST1_S1
+    
     
     def _TEST1_S1_exit(self):
         # TEST1_S1 behavior
@@ -3586,8 +3811,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST1_S1.")`
             Printer.trace("Exit TEST1_S1.")
+        # end of behavior for TEST1_S1
         
         self.stateId = Spec2Sm.StateId.TEST1_ROOT
+    
     
     
     ########################################
@@ -3602,12 +3829,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST1_S1_1.")`
             Printer.trace("Enter TEST1_S1_1.")
+        # end of behavior for TEST1_S1_1
         
         # TEST1_S1_1 behavior
         # uml: enter [trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST1_S1_1
+    
     
     def _TEST1_S1_1_exit(self):
         # TEST1_S1_1 behavior
@@ -3615,8 +3845,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST1_S1_1.")`
             Printer.trace("Exit TEST1_S1_1.")
+        # end of behavior for TEST1_S1_1
         
         self.stateId = Spec2Sm.StateId.TEST1_S1
+    
     
     def _TEST1_S1_1_do(self):
         consume_event = False
@@ -3624,11 +3856,16 @@ class Spec2Sm(Spec2SmBase):
         # TEST1_S1_1 behavior
         # uml: do [trace_guard("State TEST1_S1_1: check behavior `do`.", True)]
         if self.trace_guard("State TEST1_S1_1: check behavior `do`.", True):
+            # `do` events are not normally consumed.
+            # Step 1: execute action ``
+        # end of behavior for TEST1_S1_1
             pass
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST1_ROOT_do()
+        
+    
     
     def _TEST1_S1_1_ev1(self):
         # TEST1_S1_1 behavior
@@ -3645,6 +3882,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST1_S1_1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -3659,6 +3900,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST1_S2.")`
             Printer.trace("Enter TEST1_S2.")
+        # end of behavior for TEST1_S2
+    
     
     def _TEST1_S2_exit(self):
         # TEST1_S2 behavior
@@ -3666,8 +3909,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST1_S2.")`
             Printer.trace("Exit TEST1_S2.")
+        # end of behavior for TEST1_S2
         
         self.stateId = Spec2Sm.StateId.TEST1_ROOT
+    
     
     def _TEST1_S2_do(self):
         consume_event = False
@@ -3678,10 +3923,13 @@ class Spec2Sm(Spec2SmBase):
             # `do` events are not normally consumed.
             # Step 1: execute action `consume_event = True`
             consume_event = True
+        # end of behavior for TEST1_S2
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST1_ROOT_do()
+        
+    
     
     
     ########################################
@@ -3696,6 +3944,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.")`
             Printer.trace("Enter TEST10_CHOICE_POINT.")
+        # end of behavior for TEST10_CHOICE_POINT
+    
     
     def _TEST10_CHOICE_POINT_exit(self):
         # TEST10_CHOICE_POINT behavior
@@ -3703,8 +3953,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.")`
             Printer.trace("Exit TEST10_CHOICE_POINT.")
+        # end of behavior for TEST10_CHOICE_POINT
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -3719,6 +3971,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_A.")`
             Printer.trace("Enter TEST10_A.")
+        # end of behavior for TEST10_A
+    
     
     def _TEST10_A_exit(self):
         # TEST10_A behavior
@@ -3726,8 +3980,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_A.")`
             Printer.trace("Exit TEST10_A.")
+        # end of behavior for TEST10_A
         
         self.stateId = Spec2Sm.StateId.TEST10_CHOICE_POINT
+    
     
     def _TEST10_A_ChoicePoint__transition(self):
         # TEST10_A.<ChoicePoint>() behavior
@@ -3744,6 +4000,7 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint__transition_kid_index3()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST10_A.<ChoicePoint>()
         
         # TEST10_A.<ChoicePoint>() behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
@@ -3759,6 +4016,8 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint__transition_kid_index3()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST10_A.<ChoicePoint>()
+    
     
     def _TEST10_A_ChoicePoint__transition_kid_index3(self):
         # TEST10_A.<ChoicePoint>() behavior
@@ -3775,6 +4034,7 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint_a__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST10_A.<ChoicePoint>()
         
         # TEST10_A.<ChoicePoint>() behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
@@ -3790,6 +4050,8 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint_a__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST10_A.<ChoicePoint>()
+    
     
     def _TEST10_A_ChoicePoint_a__transition(self):
         # TEST10_A.<ChoicePoint>(a) behavior
@@ -3806,6 +4068,7 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint_a__transition_kid_index5()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST10_A.<ChoicePoint>(a)
         
         # TEST10_A.<ChoicePoint>(a) behavior
         # uml: else / { trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).") } TransitionTo(TEST10_A.<ChoicePoint>(a))
@@ -3821,6 +4084,8 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_A_ChoicePoint_a__transition_kid_index5()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST10_A.<ChoicePoint>(a)
+    
     
     def _TEST10_A_ChoicePoint_a__transition_kid_index5(self):
         # TEST10_A.<ChoicePoint>(a) behavior
@@ -3836,6 +4101,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST10_A.<ChoicePoint>(a)
+    
     
     
     ########################################
@@ -3850,6 +4117,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_A_1.")`
             Printer.trace("Enter TEST10_A_1.")
+        # end of behavior for TEST10_A_1
+    
     
     def _TEST10_A_1_exit(self):
         # TEST10_A_1 behavior
@@ -3857,8 +4126,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_A_1.")`
             Printer.trace("Exit TEST10_A_1.")
+        # end of behavior for TEST10_A_1
         
         self.stateId = Spec2Sm.StateId.TEST10_A
+    
     
     
     ########################################
@@ -3873,6 +4144,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_ROOT.")`
             Printer.trace("Enter TEST10_ROOT.")
+        # end of behavior for TEST10_ROOT
+    
     
     def _TEST10_ROOT_exit(self):
         # TEST10_ROOT behavior
@@ -3880,8 +4153,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_ROOT.")`
             Printer.trace("Exit TEST10_ROOT.")
+        # end of behavior for TEST10_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST10_CHOICE_POINT
+    
     
     def _TEST10_ROOT_ev5(self):
         # TEST10_ROOT behavior
@@ -3889,6 +4164,10 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST10_ROOT: check behavior `EV5 / { count += 1 }`.", True):
             # Step 1: execute action `count += 1`
             self.vars.count += 1
+        # end of behavior for TEST10_ROOT
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -3903,6 +4182,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_G.")`
             Printer.trace("Enter TEST10_G.")
+        # end of behavior for TEST10_G
+    
     
     def _TEST10_G_exit(self):
         # TEST10_G behavior
@@ -3910,8 +4191,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_G.")`
             Printer.trace("Exit TEST10_G.")
+        # end of behavior for TEST10_G
         
         self.stateId = Spec2Sm.StateId.TEST10_ROOT
+    
     
     def _TEST10_G_ChoicePoint__transition(self):
         # TEST10_G.<ChoicePoint>() behavior
@@ -3938,6 +4221,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST10_G.<ChoicePoint>(1)
             
             # TEST10_G.<ChoicePoint>(1) behavior
             # uml: [count <= 2] / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).") } TransitionTo(TEST10_G.<ChoicePoint>(lower))
@@ -3963,6 +4247,7 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST10_G.<ChoicePoint>(lower)
                 
                 # TEST10_G.<ChoicePoint>(lower) behavior
                 # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.") } TransitionTo(TEST10_G_S2)
@@ -3977,6 +4262,8 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST10_G.<ChoicePoint>(lower)
+            # end of behavior for TEST10_G.<ChoicePoint>(1)
             
             # TEST10_G.<ChoicePoint>(1) behavior
             # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).") } TransitionTo(TEST10_G.<ChoicePoint>(upper))
@@ -4002,6 +4289,7 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST10_G.<ChoicePoint>(upper)
                 
                 # TEST10_G.<ChoicePoint>(upper) behavior
                 # uml: else / { trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.") } TransitionTo(TEST10_S4)
@@ -4017,6 +4305,10 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST10_G.<ChoicePoint>(upper)
+            # end of behavior for TEST10_G.<ChoicePoint>(1)
+        # end of behavior for TEST10_G.<ChoicePoint>()
+    
     
     
     ########################################
@@ -4031,6 +4323,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_G_S0.")`
             Printer.trace("Enter TEST10_G_S0.")
+        # end of behavior for TEST10_G_S0
+    
     
     def _TEST10_G_S0_exit(self):
         # TEST10_G_S0 behavior
@@ -4038,8 +4332,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_G_S0.")`
             Printer.trace("Exit TEST10_G_S0.")
+        # end of behavior for TEST10_G_S0
         
         self.stateId = Spec2Sm.StateId.TEST10_G
+    
     
     
     ########################################
@@ -4054,6 +4350,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_G_S1.")`
             Printer.trace("Enter TEST10_G_S1.")
+        # end of behavior for TEST10_G_S1
+    
     
     def _TEST10_G_S1_exit(self):
         # TEST10_G_S1 behavior
@@ -4061,8 +4359,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_G_S1.")`
             Printer.trace("Exit TEST10_G_S1.")
+        # end of behavior for TEST10_G_S1
         
         self.stateId = Spec2Sm.StateId.TEST10_G
+    
     
     
     ########################################
@@ -4077,6 +4377,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_G_S2.")`
             Printer.trace("Enter TEST10_G_S2.")
+        # end of behavior for TEST10_G_S2
+    
     
     def _TEST10_G_S2_exit(self):
         # TEST10_G_S2 behavior
@@ -4084,8 +4386,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_G_S2.")`
             Printer.trace("Exit TEST10_G_S2.")
+        # end of behavior for TEST10_G_S2
         
         self.stateId = Spec2Sm.StateId.TEST10_G
+    
     
     
     ########################################
@@ -4100,6 +4404,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_G_S3.")`
             Printer.trace("Enter TEST10_G_S3.")
+        # end of behavior for TEST10_G_S3
+    
     
     def _TEST10_G_S3_exit(self):
         # TEST10_G_S3 behavior
@@ -4107,8 +4413,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_G_S3.")`
             Printer.trace("Exit TEST10_G_S3.")
+        # end of behavior for TEST10_G_S3
         
         self.stateId = Spec2Sm.StateId.TEST10_G
+    
     
     
     ########################################
@@ -4123,12 +4431,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_S1.")`
             Printer.trace("Enter TEST10_S1.")
+        # end of behavior for TEST10_S1
         
         # TEST10_S1 behavior
         # uml: enter [trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST10_S1
+    
     
     def _TEST10_S1_exit(self):
         # TEST10_S1 behavior
@@ -4136,8 +4447,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_S1.")`
             Printer.trace("Exit TEST10_S1.")
+        # end of behavior for TEST10_S1
         
         self.stateId = Spec2Sm.StateId.TEST10_ROOT
+    
     
     def _TEST10_S1_ev1(self):
         # TEST10_S1 behavior
@@ -4167,6 +4480,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_G_ChoicePoint__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for TEST10_G.<EntryPoint>(1)
+        # end of behavior for TEST10_S1
+        
+        # No ancestor handles this event.
+    
     
     def _TEST10_S1_ev10(self):
         # TEST10_S1 behavior
@@ -4195,6 +4513,7 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_A_ChoicePoint__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for TEST10_A.<InitialState>
             
             # TEST10_A.<InitialState> behavior
             # uml: [count == 0] / { trace("Transition action `count += 1` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")\ncount += 1 } TransitionTo(TEST10_A.<ChoicePoint>())
@@ -4211,6 +4530,7 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_A_ChoicePoint__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for TEST10_A.<InitialState>
             
             # TEST10_A.<InitialState> behavior
             # uml: else / { trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().") } TransitionTo(TEST10_A.<ChoicePoint>())
@@ -4226,6 +4546,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_A_ChoicePoint__transition_kid_index3()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for TEST10_A.<InitialState>
+        # end of behavior for TEST10_S1
+        
+        # No ancestor handles this event.
+    
     
     def _TEST10_S1_ev2(self):
         # TEST10_S1 behavior
@@ -4244,6 +4569,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST10_G_ChoicePoint__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST10_S1
+        
+        # No ancestor handles this event.
+    
     
     def _TEST10_S1_ev3(self):
         # TEST10_S1 behavior
@@ -4272,6 +4601,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST10_G_ChoicePoint__transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for TEST10_G.<InitialState>
+        # end of behavior for TEST10_S1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -4286,6 +4620,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST10_S4.")`
             Printer.trace("Enter TEST10_S4.")
+        # end of behavior for TEST10_S4
+    
     
     def _TEST10_S4_exit(self):
         # TEST10_S4 behavior
@@ -4293,8 +4629,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST10_S4.")`
             Printer.trace("Exit TEST10_S4.")
+        # end of behavior for TEST10_S4
         
         self.stateId = Spec2Sm.StateId.TEST10_ROOT
+    
     
     
     ########################################
@@ -4309,6 +4647,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.")`
             Printer.trace("Enter TEST2_REGULAR_EVENT_TESTING.")
+        # end of behavior for TEST2_REGULAR_EVENT_TESTING
+    
     
     def _TEST2_REGULAR_EVENT_TESTING_exit(self):
         # TEST2_REGULAR_EVENT_TESTING behavior
@@ -4316,8 +4656,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.")`
             Printer.trace("Exit TEST2_REGULAR_EVENT_TESTING.")
+        # end of behavior for TEST2_REGULAR_EVENT_TESTING
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -4332,6 +4674,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST2_ROOT.")`
             Printer.trace("Enter TEST2_ROOT.")
+        # end of behavior for TEST2_ROOT
+    
     
     def _TEST2_ROOT_exit(self):
         # TEST2_ROOT behavior
@@ -4339,8 +4683,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST2_ROOT.")`
             Printer.trace("Exit TEST2_ROOT.")
+        # end of behavior for TEST2_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST2_REGULAR_EVENT_TESTING
+    
     
     def _TEST2_ROOT_do(self):
         consume_event = False
@@ -4348,23 +4694,38 @@ class Spec2Sm(Spec2SmBase):
         # TEST2_ROOT behavior
         # uml: do [trace_guard("State TEST2_ROOT: check behavior `do`.", True)]
         if self.trace_guard("State TEST2_ROOT: check behavior `do`.", True):
+            # `do` events are not normally consumed.
+            # Step 1: execute action ``
+        # end of behavior for TEST2_ROOT
             pass
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._ROOT_do()
+        
+    
     
     def _TEST2_ROOT_ev1(self):
         # TEST2_ROOT behavior
         # uml: EV1 [trace_guard("State TEST2_ROOT: check behavior `EV1`.", True)]
         if self.trace_guard("State TEST2_ROOT: check behavior `EV1`.", True):
+            # Step 1: execute action ``
+        # end of behavior for TEST2_ROOT
             pass
+        
+        # No ancestor handles this event.
+    
     
     def _TEST2_ROOT_ev2(self):
         # TEST2_ROOT behavior
         # uml: EV2 [trace_guard("State TEST2_ROOT: check behavior `EV2`.", True)]
         if self.trace_guard("State TEST2_ROOT: check behavior `EV2`.", True):
+            # Step 1: execute action ``
+        # end of behavior for TEST2_ROOT
             pass
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -4379,6 +4740,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST2_S1.")`
             Printer.trace("Enter TEST2_S1.")
+        # end of behavior for TEST2_S1
+    
     
     def _TEST2_S1_exit(self):
         # TEST2_S1 behavior
@@ -4386,8 +4749,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST2_S1.")`
             Printer.trace("Exit TEST2_S1.")
+        # end of behavior for TEST2_S1
         
         self.stateId = Spec2Sm.StateId.TEST2_ROOT
+    
     
     
     ########################################
@@ -4402,12 +4767,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST2_S1_1.")`
             Printer.trace("Enter TEST2_S1_1.")
+        # end of behavior for TEST2_S1_1
         
         # TEST2_S1_1 behavior
         # uml: enter [trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST2_S1_1
+    
     
     def _TEST2_S1_1_exit(self):
         # TEST2_S1_1 behavior
@@ -4415,8 +4783,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST2_S1_1.")`
             Printer.trace("Exit TEST2_S1_1.")
+        # end of behavior for TEST2_S1_1
         
         self.stateId = Spec2Sm.StateId.TEST2_S1
+    
     
     def _TEST2_S1_1_do(self):
         consume_event = False
@@ -4435,10 +4805,13 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST2_S1_1
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST2_ROOT_do()
+        
+    
     
     def _TEST2_S1_1_ev1(self):
         consume_event = False
@@ -4448,10 +4821,14 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST2_S1_1: check behavior `EV1`.", True):
             # Consume event `ev1`.
             consume_event = True
+            # Step 1: execute action ``
+        # end of behavior for TEST2_S1_1
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST2_ROOT_ev1()
+        
+    
     
     
     ########################################
@@ -4466,11 +4843,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST2_S2.")`
             Printer.trace("Enter TEST2_S2.")
+        # end of behavior for TEST2_S2
         
         # TEST2_S2 behavior
         # uml: enter [trace_guard("State TEST2_S2: check behavior `en`.", True)]
         if self.trace_guard("State TEST2_S2: check behavior `en`.", True):
+            # Step 1: execute action ``
+        # end of behavior for TEST2_S2
             pass
+    
     
     def _TEST2_S2_exit(self):
         # TEST2_S2 behavior
@@ -4478,8 +4859,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST2_S2.")`
             Printer.trace("Exit TEST2_S2.")
+        # end of behavior for TEST2_S2
         
         self.stateId = Spec2Sm.StateId.TEST2_ROOT
+    
     
     def _TEST2_S2_ev1(self):
         consume_event = False
@@ -4491,10 +4874,13 @@ class Spec2Sm(Spec2SmBase):
             consume_event = True
             # Step 1: execute action `consume_event = False`
             consume_event = False
+        # end of behavior for TEST2_S2
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST2_ROOT_ev1()
+        
+    
     
     def _TEST2_S2_ev2(self):
         consume_event = False
@@ -4513,10 +4899,13 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST2_S2
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST2_ROOT_ev2()
+        
+    
     
     
     ########################################
@@ -4531,6 +4920,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.")`
             Printer.trace("Enter TEST3_BEHAVIOR_ORDERING.")
+        # end of behavior for TEST3_BEHAVIOR_ORDERING
+    
     
     def _TEST3_BEHAVIOR_ORDERING_exit(self):
         # TEST3_BEHAVIOR_ORDERING behavior
@@ -4538,8 +4929,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.")`
             Printer.trace("Exit TEST3_BEHAVIOR_ORDERING.")
+        # end of behavior for TEST3_BEHAVIOR_ORDERING
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -4554,6 +4947,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST3_ROOT.")`
             Printer.trace("Enter TEST3_ROOT.")
+        # end of behavior for TEST3_ROOT
+    
     
     def _TEST3_ROOT_exit(self):
         # TEST3_ROOT behavior
@@ -4561,14 +4956,21 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST3_ROOT.")`
             Printer.trace("Exit TEST3_ROOT.")
+        # end of behavior for TEST3_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST3_BEHAVIOR_ORDERING
+    
     
     def _TEST3_ROOT_ev1(self):
         # TEST3_ROOT behavior
         # uml: EV1 [trace_guard("State TEST3_ROOT: check behavior `EV1`.", True)]
         if self.trace_guard("State TEST3_ROOT: check behavior `EV1`.", True):
+            # Step 1: execute action ``
+        # end of behavior for TEST3_ROOT
             pass
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -4583,12 +4985,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST3_S1.")`
             Printer.trace("Enter TEST3_S1.")
+        # end of behavior for TEST3_S1
         
         # TEST3_S1 behavior
         # uml: enter [trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST3_S1
+    
     
     def _TEST3_S1_exit(self):
         # TEST3_S1 behavior
@@ -4596,8 +5001,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST3_S1.")`
             Printer.trace("Exit TEST3_S1.")
+        # end of behavior for TEST3_S1
         
         self.stateId = Spec2Sm.StateId.TEST3_ROOT
+    
     
     def _TEST3_S1_ev1(self):
         consume_event = False
@@ -4616,6 +5023,7 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST3_S1
         
         # TEST3_S1 behavior
         # uml: 2. EV1 [trace_guard("State TEST3_S1: check behavior `2. EV1 / { trace(\"failed\") }`.", True)] / { trace("failed") }
@@ -4624,10 +5032,13 @@ class Spec2Sm(Spec2SmBase):
             consume_event = True
             # Step 1: execute action `trace("failed")`
             Printer.trace("failed")
+        # end of behavior for TEST3_S1
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST3_ROOT_ev1()
+        
+    
     
     
     ########################################
@@ -4642,6 +5053,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST3_S2.")`
             Printer.trace("Enter TEST3_S2.")
+        # end of behavior for TEST3_S2
+    
     
     def _TEST3_S2_exit(self):
         # TEST3_S2 behavior
@@ -4649,8 +5062,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST3_S2.")`
             Printer.trace("Exit TEST3_S2.")
+        # end of behavior for TEST3_S2
         
         self.stateId = Spec2Sm.StateId.TEST3_ROOT
+    
     
     def _TEST3_S2_ev1(self):
         consume_event = False
@@ -4662,6 +5077,7 @@ class Spec2Sm(Spec2SmBase):
             consume_event = True
             # Step 1: execute action `trace("1 woot!")`
             Printer.trace("1 woot!")
+        # end of behavior for TEST3_S2
         
         # TEST3_S2 behavior
         # uml: 1.1. EV1 [trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\") }`.", True)] / { trace("2 woot!") }
@@ -4670,6 +5086,7 @@ class Spec2Sm(Spec2SmBase):
             consume_event = True
             # Step 1: execute action `trace("2 woot!")`
             Printer.trace("2 woot!")
+        # end of behavior for TEST3_S2
         
         # TEST3_S2 behavior
         # uml: 2. EV1 [trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\") } TransitionTo(TEST3_S3)`.", True)] / { trace("Transition action `trace(\"3 woot!\")` for TEST3_S2 to TEST3_S3.")\ntrace("3 woot!") } TransitionTo(TEST3_S3)
@@ -4686,10 +5103,13 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST3_S2
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST3_ROOT_ev1()
+        
+    
     
     
     ########################################
@@ -4704,6 +5124,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST3_S3.")`
             Printer.trace("Enter TEST3_S3.")
+        # end of behavior for TEST3_S3
+    
     
     def _TEST3_S3_exit(self):
         # TEST3_S3 behavior
@@ -4711,8 +5133,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST3_S3.")`
             Printer.trace("Exit TEST3_S3.")
+        # end of behavior for TEST3_S3
         
         self.stateId = Spec2Sm.StateId.TEST3_ROOT
+    
     
     
     ########################################
@@ -4727,6 +5151,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")`
             Printer.trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")
+        # end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
+    
     
     def _TEST4_PARENT_CHILD_TRANSITIONS_exit(self):
         # TEST4_PARENT_CHILD_TRANSITIONS behavior
@@ -4734,8 +5160,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")`
             Printer.trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")
+        # end of behavior for TEST4_PARENT_CHILD_TRANSITIONS
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -4750,12 +5178,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.")`
             Printer.trace("Enter TEST4_B_AND_OTHERS.")
+        # end of behavior for TEST4_B_AND_OTHERS
         
         # TEST4_B_AND_OTHERS behavior
         # uml: enter [trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", True)] / { clear_dispatch_output() }
         if self.trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", True):
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
+        # end of behavior for TEST4_B_AND_OTHERS
+    
     
     def _TEST4_B_AND_OTHERS_exit(self):
         # TEST4_B_AND_OTHERS behavior
@@ -4763,8 +5194,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.")`
             Printer.trace("Exit TEST4_B_AND_OTHERS.")
+        # end of behavior for TEST4_B_AND_OTHERS
         
         self.stateId = Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS
+    
     
     
     ########################################
@@ -4779,6 +5212,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4B_LOCAL.")`
             Printer.trace("Enter TEST4B_LOCAL.")
+        # end of behavior for TEST4B_LOCAL
+    
     
     def _TEST4B_LOCAL_exit(self):
         # TEST4B_LOCAL behavior
@@ -4786,8 +5221,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4B_LOCAL.")`
             Printer.trace("Exit TEST4B_LOCAL.")
+        # end of behavior for TEST4B_LOCAL
         
         self.stateId = Spec2Sm.StateId.TEST4_B_AND_OTHERS
+    
     
     
     ########################################
@@ -4802,6 +5239,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4B_G.")`
             Printer.trace("Enter TEST4B_G.")
+        # end of behavior for TEST4B_G
+    
     
     def _TEST4B_G_exit(self):
         # TEST4B_G behavior
@@ -4809,8 +5248,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4B_G.")`
             Printer.trace("Exit TEST4B_G.")
+        # end of behavior for TEST4B_G
         
         self.stateId = Spec2Sm.StateId.TEST4B_LOCAL
+    
     
     def _TEST4B_G_ev1(self):
         # TEST4B_G behavior
@@ -4827,6 +5268,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4B_G
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -4841,6 +5286,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4B_G_1.")`
             Printer.trace("Enter TEST4B_G_1.")
+        # end of behavior for TEST4B_G_1
+    
     
     def _TEST4B_G_1_exit(self):
         # TEST4B_G_1 behavior
@@ -4848,8 +5295,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4B_G_1.")`
             Printer.trace("Exit TEST4B_G_1.")
+        # end of behavior for TEST4B_G_1
         
         self.stateId = Spec2Sm.StateId.TEST4B_G
+    
     
     def _TEST4B_G_1_ev2(self):
         # TEST4B_G_1 behavior
@@ -4865,6 +5314,10 @@ class Spec2Sm(Spec2SmBase):
             # Already in target. No entering required.
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4B_G_1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -4879,6 +5332,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.")`
             Printer.trace("Enter TEST4C_LOCAL_TO_ALIAS.")
+        # end of behavior for TEST4C_LOCAL_TO_ALIAS
+    
     
     def _TEST4C_LOCAL_TO_ALIAS_exit(self):
         # TEST4C_LOCAL_TO_ALIAS behavior
@@ -4886,8 +5341,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.")`
             Printer.trace("Exit TEST4C_LOCAL_TO_ALIAS.")
+        # end of behavior for TEST4C_LOCAL_TO_ALIAS
         
         self.stateId = Spec2Sm.StateId.TEST4_B_AND_OTHERS
+    
     
     
     ########################################
@@ -4902,6 +5359,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4C_G.")`
             Printer.trace("Enter TEST4C_G.")
+        # end of behavior for TEST4C_G
+    
     
     def _TEST4C_G_exit(self):
         # TEST4C_G behavior
@@ -4909,8 +5368,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4C_G.")`
             Printer.trace("Exit TEST4C_G.")
+        # end of behavior for TEST4C_G
         
         self.stateId = Spec2Sm.StateId.TEST4C_LOCAL_TO_ALIAS
+    
     
     def _TEST4C_G_ev1(self):
         # TEST4C_G behavior
@@ -4927,6 +5388,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4C_G
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -4941,6 +5406,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4C_G_1.")`
             Printer.trace("Enter TEST4C_G_1.")
+        # end of behavior for TEST4C_G_1
+    
     
     def _TEST4C_G_1_exit(self):
         # TEST4C_G_1 behavior
@@ -4948,8 +5415,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4C_G_1.")`
             Printer.trace("Exit TEST4C_G_1.")
+        # end of behavior for TEST4C_G_1
         
         self.stateId = Spec2Sm.StateId.TEST4C_G
+    
     
     def _TEST4C_G_1_ev2(self):
         # TEST4C_G_1 behavior
@@ -4965,6 +5434,10 @@ class Spec2Sm(Spec2SmBase):
             # Already in target. No entering required.
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4C_G_1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -4979,6 +5452,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4D_EXTERNAL.")`
             Printer.trace("Enter TEST4D_EXTERNAL.")
+        # end of behavior for TEST4D_EXTERNAL
+    
     
     def _TEST4D_EXTERNAL_exit(self):
         # TEST4D_EXTERNAL behavior
@@ -4986,8 +5461,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4D_EXTERNAL.")`
             Printer.trace("Exit TEST4D_EXTERNAL.")
+        # end of behavior for TEST4D_EXTERNAL
         
         self.stateId = Spec2Sm.StateId.TEST4_B_AND_OTHERS
+    
     
     
     ########################################
@@ -5002,6 +5479,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4D_G.")`
             Printer.trace("Enter TEST4D_G.")
+        # end of behavior for TEST4D_G
+    
     
     def _TEST4D_G_exit(self):
         # TEST4D_G behavior
@@ -5009,8 +5488,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4D_G.")`
             Printer.trace("Exit TEST4D_G.")
+        # end of behavior for TEST4D_G
         
         self.stateId = Spec2Sm.StateId.TEST4D_EXTERNAL
+    
     
     def _TEST4D_G_ev1(self):
         # TEST4D_G behavior
@@ -5039,6 +5520,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
+        # end of behavior for TEST4D_G
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5053,6 +5539,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4D_G_1.")`
             Printer.trace("Enter TEST4D_G_1.")
+        # end of behavior for TEST4D_G_1
+    
     
     def _TEST4D_G_1_exit(self):
         # TEST4D_G_1 behavior
@@ -5060,8 +5548,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4D_G_1.")`
             Printer.trace("Exit TEST4D_G_1.")
+        # end of behavior for TEST4D_G_1
         
         self.stateId = Spec2Sm.StateId.TEST4D_G
+    
     
     def _TEST4D_G_1_ev2(self):
         # TEST4D_G_1 behavior
@@ -5089,6 +5579,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST4D_EXTERNAL.<ChoicePoint>()
+        # end of behavior for TEST4D_G_1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5103,6 +5598,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_DECIDE.")`
             Printer.trace("Enter TEST4_DECIDE.")
+        # end of behavior for TEST4_DECIDE
+    
     
     def _TEST4_DECIDE_exit(self):
         # TEST4_DECIDE behavior
@@ -5110,8 +5607,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_DECIDE.")`
             Printer.trace("Exit TEST4_DECIDE.")
+        # end of behavior for TEST4_DECIDE
         
         self.stateId = Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS
+    
     
     def _TEST4_DECIDE_ev1(self):
         # TEST4_DECIDE behavior
@@ -5128,6 +5627,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST4_DECIDE_ev2(self):
         # TEST4_DECIDE behavior
@@ -5156,6 +5659,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST4B_LOCAL.<InitialState>
+        # end of behavior for TEST4_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST4_DECIDE_ev3(self):
         # TEST4_DECIDE behavior
@@ -5184,6 +5692,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST4C_LOCAL_TO_ALIAS.<InitialState>
+        # end of behavior for TEST4_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST4_DECIDE_ev4(self):
         # TEST4_DECIDE behavior
@@ -5212,6 +5725,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST4D_EXTERNAL.<InitialState>
+        # end of behavior for TEST4_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5226,12 +5744,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_ROOT.")`
             Printer.trace("Enter TEST4_ROOT.")
+        # end of behavior for TEST4_ROOT
         
         # TEST4_ROOT behavior
         # uml: enter [trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST4_ROOT
+    
     
     def _TEST4_ROOT_exit(self):
         # TEST4_ROOT behavior
@@ -5239,8 +5760,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_ROOT.")`
             Printer.trace("Exit TEST4_ROOT.")
+        # end of behavior for TEST4_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST4_PARENT_CHILD_TRANSITIONS
+    
     
     def _TEST4_ROOT_ev2(self):
         # TEST4_ROOT behavior
@@ -5257,6 +5780,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4_ROOT
+        
+        # No ancestor handles this event.
+    
     
     def _TEST4_ROOT_ev3(self):
         # TEST4_ROOT behavior
@@ -5274,6 +5801,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4_ROOT
+        
+        # No ancestor handles this event.
+    
     
     def _TEST4_ROOT_ev4(self):
         # TEST4_ROOT behavior
@@ -5291,6 +5822,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST4_S20_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST4_ROOT
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5305,6 +5840,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_S1.")`
             Printer.trace("Enter TEST4_S1.")
+        # end of behavior for TEST4_S1
+    
     
     def _TEST4_S1_exit(self):
         # TEST4_S1 behavior
@@ -5312,8 +5849,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_S1.")`
             Printer.trace("Exit TEST4_S1.")
+        # end of behavior for TEST4_S1
         
         self.stateId = Spec2Sm.StateId.TEST4_ROOT
+    
     
     def _TEST4_S1_ev1(self):
         # TEST4_S1 behavior
@@ -5330,6 +5869,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4_S1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5344,6 +5887,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_S10.")`
             Printer.trace("Enter TEST4_S10.")
+        # end of behavior for TEST4_S10
+    
     
     def _TEST4_S10_exit(self):
         # TEST4_S10 behavior
@@ -5351,8 +5896,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_S10.")`
             Printer.trace("Exit TEST4_S10.")
+        # end of behavior for TEST4_S10
         
         self.stateId = Spec2Sm.StateId.TEST4_ROOT
+    
     
     def _TEST4_S10_ev4(self):
         consume_event = False
@@ -5371,10 +5918,13 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4_S10
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST4_ROOT_ev4()
+        
+    
     
     
     ########################################
@@ -5389,6 +5939,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_S10_1.")`
             Printer.trace("Enter TEST4_S10_1.")
+        # end of behavior for TEST4_S10_1
+    
     
     def _TEST4_S10_1_exit(self):
         # TEST4_S10_1 behavior
@@ -5396,8 +5948,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_S10_1.")`
             Printer.trace("Exit TEST4_S10_1.")
+        # end of behavior for TEST4_S10_1
         
         self.stateId = Spec2Sm.StateId.TEST4_S10
+    
     
     
     ########################################
@@ -5412,6 +5966,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_S2.")`
             Printer.trace("Enter TEST4_S2.")
+        # end of behavior for TEST4_S2
+    
     
     def _TEST4_S2_exit(self):
         # TEST4_S2 behavior
@@ -5419,8 +5975,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_S2.")`
             Printer.trace("Exit TEST4_S2.")
+        # end of behavior for TEST4_S2
         
         self.stateId = Spec2Sm.StateId.TEST4_ROOT
+    
     
     def _TEST4_S2_ev1(self):
         # TEST4_S2 behavior
@@ -5437,6 +5995,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4_S2
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5451,6 +6013,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_S20.")`
             Printer.trace("Enter TEST4_S20.")
+        # end of behavior for TEST4_S20
+    
     
     def _TEST4_S20_exit(self):
         # TEST4_S20 behavior
@@ -5458,8 +6022,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_S20.")`
             Printer.trace("Exit TEST4_S20.")
+        # end of behavior for TEST4_S20
         
         self.stateId = Spec2Sm.StateId.TEST4_ROOT
+    
     
     def _TEST4_S20_ev4(self):
         consume_event = False
@@ -5479,10 +6045,13 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST4_S20_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST4_S20
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST4_ROOT_ev4()
+        
+    
     
     def _TEST4_S20_InitialState_transition(self):
         # TEST4_S20.<InitialState> behavior
@@ -5498,6 +6067,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4_S20.<InitialState>
+    
     
     
     ########################################
@@ -5512,6 +6083,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_S20_1.")`
             Printer.trace("Enter TEST4_S20_1.")
+        # end of behavior for TEST4_S20_1
+    
     
     def _TEST4_S20_1_exit(self):
         # TEST4_S20_1 behavior
@@ -5519,8 +6092,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_S20_1.")`
             Printer.trace("Exit TEST4_S20_1.")
+        # end of behavior for TEST4_S20_1
         
         self.stateId = Spec2Sm.StateId.TEST4_S20
+    
     
     
     ########################################
@@ -5535,6 +6110,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST4_S3.")`
             Printer.trace("Enter TEST4_S3.")
+        # end of behavior for TEST4_S3
+    
     
     def _TEST4_S3_exit(self):
         # TEST4_S3 behavior
@@ -5542,8 +6119,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST4_S3.")`
             Printer.trace("Exit TEST4_S3.")
+        # end of behavior for TEST4_S3
         
         self.stateId = Spec2Sm.StateId.TEST4_ROOT
+    
     
     def _TEST4_S3_ev1(self):
         # TEST4_S3 behavior
@@ -5559,6 +6138,10 @@ class Spec2Sm(Spec2SmBase):
             # Already in target. No entering required.
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST4_S3
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5573,6 +6156,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
             Printer.trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
+        # end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+    
     
     def _TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(self):
         # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
@@ -5580,8 +6165,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
             Printer.trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
+        # end of behavior for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -5596,12 +6183,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST5_ROOT.")`
             Printer.trace("Enter TEST5_ROOT.")
+        # end of behavior for TEST5_ROOT
         
         # TEST5_ROOT behavior
         # uml: enter [trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST5_ROOT
+    
     
     def _TEST5_ROOT_exit(self):
         # TEST5_ROOT behavior
@@ -5609,8 +6199,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST5_ROOT.")`
             Printer.trace("Exit TEST5_ROOT.")
+        # end of behavior for TEST5_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
+    
     
     def _TEST5_ROOT_ev2(self):
         # TEST5_ROOT behavior
@@ -5627,6 +6219,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST5_ROOT
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5641,6 +6237,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST5_S1.")`
             Printer.trace("Enter TEST5_S1.")
+        # end of behavior for TEST5_S1
+    
     
     def _TEST5_S1_exit(self):
         # TEST5_S1 behavior
@@ -5648,8 +6246,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST5_S1.")`
             Printer.trace("Exit TEST5_S1.")
+        # end of behavior for TEST5_S1
         
         self.stateId = Spec2Sm.StateId.TEST5_ROOT
+    
     
     def _TEST5_S1_ev1(self):
         # TEST5_S1 behavior
@@ -5666,6 +6266,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST5_S1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5680,6 +6284,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST5_S2.")`
             Printer.trace("Enter TEST5_S2.")
+        # end of behavior for TEST5_S2
+    
     
     def _TEST5_S2_exit(self):
         # TEST5_S2 behavior
@@ -5687,8 +6293,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST5_S2.")`
             Printer.trace("Exit TEST5_S2.")
+        # end of behavior for TEST5_S2
         
         self.stateId = Spec2Sm.StateId.TEST5_ROOT
+    
     
     def _TEST5_S2_ev1(self):
         # TEST5_S2 behavior
@@ -5705,6 +6313,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST5_S2
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5719,6 +6331,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST5_S3.")`
             Printer.trace("Enter TEST5_S3.")
+        # end of behavior for TEST5_S3
+    
     
     def _TEST5_S3_exit(self):
         # TEST5_S3 behavior
@@ -5726,8 +6340,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST5_S3.")`
             Printer.trace("Exit TEST5_S3.")
+        # end of behavior for TEST5_S3
         
         self.stateId = Spec2Sm.StateId.TEST5_ROOT
+    
     
     def _TEST5_S3_ev1(self):
         # TEST5_S3 behavior
@@ -5743,6 +6359,10 @@ class Spec2Sm(Spec2SmBase):
             # Already in target. No entering required.
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST5_S3
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5757,6 +6377,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS.")`
             Printer.trace("Enter TEST6_VARS_EXPANSIONS.")
+        # end of behavior for TEST6_VARS_EXPANSIONS
+    
     
     def _TEST6_VARS_EXPANSIONS_exit(self):
         # TEST6_VARS_EXPANSIONS behavior
@@ -5764,8 +6386,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS.")`
             Printer.trace("Exit TEST6_VARS_EXPANSIONS.")
+        # end of behavior for TEST6_VARS_EXPANSIONS
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -5780,6 +6404,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST6_ROOT.")`
             Printer.trace("Enter TEST6_ROOT.")
+        # end of behavior for TEST6_ROOT
+    
     
     def _TEST6_ROOT_exit(self):
         # TEST6_ROOT behavior
@@ -5787,8 +6413,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST6_ROOT.")`
             Printer.trace("Exit TEST6_ROOT.")
+        # end of behavior for TEST6_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST6_VARS_EXPANSIONS
+    
     
     
     ########################################
@@ -5803,6 +6431,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter AUTO_VAR_TEST.")`
             Printer.trace("Enter AUTO_VAR_TEST.")
+        # end of behavior for AUTO_VAR_TEST
+    
     
     def _AUTO_VAR_TEST_exit(self):
         # AUTO_VAR_TEST behavior
@@ -5810,8 +6440,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST.")`
             Printer.trace("Exit AUTO_VAR_TEST.")
+        # end of behavior for AUTO_VAR_TEST
         
         self.stateId = Spec2Sm.StateId.TEST6_ROOT
+    
     
     
     ########################################
@@ -5826,12 +6458,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter AUTO_VAR_TEST__S1.")`
             Printer.trace("Enter AUTO_VAR_TEST__S1.")
+        # end of behavior for AUTO_VAR_TEST__S1
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: enter [trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for AUTO_VAR_TEST__S1
+    
     
     def _AUTO_VAR_TEST__S1_exit(self):
         # AUTO_VAR_TEST__S1 behavior
@@ -5839,8 +6474,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S1.")`
             Printer.trace("Exit AUTO_VAR_TEST__S1.")
+        # end of behavior for AUTO_VAR_TEST__S1
         
         self.stateId = Spec2Sm.StateId.AUTO_VAR_TEST
+    
     
     def _AUTO_VAR_TEST__S1_ev1(self):
         # AUTO_VAR_TEST__S1 behavior
@@ -5848,6 +6485,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.", True):
             # Step 1: execute action `auto_var_1 += 1`
             self.vars.auto_var_1 += 1
+        # end of behavior for AUTO_VAR_TEST__S1
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: 2. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2)] / { trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.") } TransitionTo(AUTO_VAR_TEST__S2)
@@ -5863,6 +6501,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for AUTO_VAR_TEST__S1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5877,6 +6519,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter AUTO_VAR_TEST__S2.")`
             Printer.trace("Enter AUTO_VAR_TEST__S2.")
+        # end of behavior for AUTO_VAR_TEST__S2
+    
     
     def _AUTO_VAR_TEST__S2_exit(self):
         # AUTO_VAR_TEST__S2 behavior
@@ -5884,8 +6528,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S2.")`
             Printer.trace("Exit AUTO_VAR_TEST__S2.")
+        # end of behavior for AUTO_VAR_TEST__S2
         
         self.stateId = Spec2Sm.StateId.AUTO_VAR_TEST
+    
     
     
     ########################################
@@ -5900,6 +6546,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter META_EXPANSIONS.")`
             Printer.trace("Enter META_EXPANSIONS.")
+        # end of behavior for META_EXPANSIONS
+    
     
     def _META_EXPANSIONS_exit(self):
         # META_EXPANSIONS behavior
@@ -5907,8 +6555,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit META_EXPANSIONS.")`
             Printer.trace("Exit META_EXPANSIONS.")
+        # end of behavior for META_EXPANSIONS
         
         self.stateId = Spec2Sm.StateId.TEST6_ROOT
+    
     
     def _META_EXPANSIONS_ChoicePoint_2__transition(self):
         # META_EXPANSIONS.<ChoicePoint>(2) behavior
@@ -5925,6 +6575,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for META_EXPANSIONS.<ChoicePoint>(2)
+        
+        # unreachable behavior: `else / { trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S4.")\ntrace_meta() } TransitionTo(S4)` due to unconditional transition above
+    
     
     
     ########################################
@@ -5939,12 +6593,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter META_EXPANSIONS__S1.")`
             Printer.trace("Enter META_EXPANSIONS__S1.")
+        # end of behavior for META_EXPANSIONS__S1
         
         # META_EXPANSIONS__S1 behavior
         # uml: enter [trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for META_EXPANSIONS__S1
+    
     
     def _META_EXPANSIONS__S1_exit(self):
         # META_EXPANSIONS__S1 behavior
@@ -5952,8 +6609,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit META_EXPANSIONS__S1.")`
             Printer.trace("Exit META_EXPANSIONS__S1.")
+        # end of behavior for META_EXPANSIONS__S1
         
         self.stateId = Spec2Sm.StateId.META_EXPANSIONS
+    
     
     def _META_EXPANSIONS__S1_ev1(self):
         # META_EXPANSIONS__S1 behavior
@@ -5971,6 +6630,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for META_EXPANSIONS__S1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -5985,12 +6648,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter META_EXPANSIONS__S2.")`
             Printer.trace("Enter META_EXPANSIONS__S2.")
+        # end of behavior for META_EXPANSIONS__S2
         
         # META_EXPANSIONS__S2 behavior
         # uml: enter [trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", True)] / { trace_meta() }
         if self.trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", True):
             # Step 1: execute action `trace_meta()`
             Printer.trace("META: State: META_EXPANSIONS__S2, trigger: enter, behavior vertex: META_EXPANSIONS__S2")
+        # end of behavior for META_EXPANSIONS__S2
+    
     
     def _META_EXPANSIONS__S2_exit(self):
         # META_EXPANSIONS__S2 behavior
@@ -5998,8 +6664,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit META_EXPANSIONS__S2.")`
             Printer.trace("Exit META_EXPANSIONS__S2.")
+        # end of behavior for META_EXPANSIONS__S2
         
         self.stateId = Spec2Sm.StateId.META_EXPANSIONS
+    
     
     def _META_EXPANSIONS__S2_ev1(self):
         # META_EXPANSIONS__S2 behavior
@@ -6029,6 +6697,13 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for META_EXPANSIONS.<ChoicePoint>(1)
+            
+            # unreachable behavior: `else / { trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S4.")\ntrace_meta() } TransitionTo(S4)` due to unconditional transition above
+        # end of behavior for META_EXPANSIONS__S2
+        
+        # No ancestor handles this event.
+    
     
     def _META_EXPANSIONS__S2_ev2(self):
         # META_EXPANSIONS__S2 behavior
@@ -6046,6 +6721,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._META_EXPANSIONS_ChoicePoint_2__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for META_EXPANSIONS__S2
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6060,6 +6739,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter S3.")`
             Printer.trace("Enter S3.")
+        # end of behavior for S3
+    
     
     def _S3_exit(self):
         # S3 behavior
@@ -6067,8 +6748,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit S3.")`
             Printer.trace("Exit S3.")
+        # end of behavior for S3
         
         self.stateId = Spec2Sm.StateId.META_EXPANSIONS
+    
     
     def _S3_ev1(self):
         # S3 behavior
@@ -6087,6 +6770,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._META_EXPANSIONS_ChoicePoint_2__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for S3
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6101,6 +6788,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter S4.")`
             Printer.trace("Enter S4.")
+        # end of behavior for S4
+    
     
     def _S4_exit(self):
         # S4 behavior
@@ -6108,8 +6797,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit S4.")`
             Printer.trace("Exit S4.")
+        # end of behavior for S4
         
         self.stateId = Spec2Sm.StateId.META_EXPANSIONS
+    
     
     
     ########################################
@@ -6124,6 +6815,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter S5.")`
             Printer.trace("Enter S5.")
+        # end of behavior for S5
+    
     
     def _S5_exit(self):
         # S5 behavior
@@ -6131,8 +6824,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit S5.")`
             Printer.trace("Exit S5.")
+        # end of behavior for S5
         
         self.stateId = Spec2Sm.StateId.META_EXPANSIONS
+    
     
     
     ########################################
@@ -6147,6 +6842,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter NORMAL.")`
             Printer.trace("Enter NORMAL.")
+        # end of behavior for NORMAL
+    
     
     def _NORMAL_exit(self):
         # NORMAL behavior
@@ -6154,8 +6851,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit NORMAL.")`
             Printer.trace("Exit NORMAL.")
+        # end of behavior for NORMAL
         
         self.stateId = Spec2Sm.StateId.TEST6_ROOT
+    
     
     
     ########################################
@@ -6170,12 +6869,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter NORMAL__S1.")`
             Printer.trace("Enter NORMAL__S1.")
+        # end of behavior for NORMAL__S1
         
         # NORMAL__S1 behavior
         # uml: enter [trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for NORMAL__S1
+    
     
     def _NORMAL__S1_exit(self):
         # NORMAL__S1 behavior
@@ -6183,8 +6885,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit NORMAL__S1.")`
             Printer.trace("Exit NORMAL__S1.")
+        # end of behavior for NORMAL__S1
         
         self.stateId = Spec2Sm.StateId.NORMAL
+    
     
     def _NORMAL__S1_ev1(self):
         # NORMAL__S1 behavior
@@ -6192,6 +6896,7 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count += 1 }`.", True):
             # Step 1: execute action `count += 1`
             self.vars.count += 1
+        # end of behavior for NORMAL__S1
         
         # NORMAL__S1 behavior
         # uml: 2. EV1 [trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", count >= 2)] / { trace("Transition action `` for NORMAL__S1 to NORMAL__S2.") } TransitionTo(NORMAL__S2)
@@ -6207,6 +6912,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for NORMAL__S1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6221,6 +6930,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter NORMAL__S2.")`
             Printer.trace("Enter NORMAL__S2.")
+        # end of behavior for NORMAL__S2
+    
     
     def _NORMAL__S2_exit(self):
         # NORMAL__S2 behavior
@@ -6228,8 +6939,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit NORMAL__S2.")`
             Printer.trace("Exit NORMAL__S2.")
+        # end of behavior for NORMAL__S2
         
         self.stateId = Spec2Sm.StateId.NORMAL
+    
     
     
     ########################################
@@ -6244,6 +6957,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")`
             Printer.trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")
+        # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+    
     
     def _TEST6_VARS_EXPANSIONS__DECIDE_exit(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
@@ -6251,8 +6966,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")`
             Printer.trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")
+        # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
         
         self.stateId = Spec2Sm.StateId.TEST6_ROOT
+    
     
     def _TEST6_VARS_EXPANSIONS__DECIDE_ev1(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
@@ -6280,6 +6997,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for NORMAL.<InitialState>
+        # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST6_VARS_EXPANSIONS__DECIDE_ev2(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
@@ -6307,6 +7029,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for AUTO_VAR_TEST.<InitialState>
+        # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST6_VARS_EXPANSIONS__DECIDE_ev3(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
@@ -6334,6 +7061,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for META_EXPANSIONS.<InitialState>
+        # end of behavior for TEST6_VARS_EXPANSIONS__DECIDE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6348,6 +7080,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST7_INITIAL_OR_HISTORY.")`
             Printer.trace("Enter TEST7_INITIAL_OR_HISTORY.")
+        # end of behavior for TEST7_INITIAL_OR_HISTORY
+    
     
     def _TEST7_INITIAL_OR_HISTORY_exit(self):
         # TEST7_INITIAL_OR_HISTORY behavior
@@ -6355,8 +7089,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.")`
             Printer.trace("Exit TEST7_INITIAL_OR_HISTORY.")
+        # end of behavior for TEST7_INITIAL_OR_HISTORY
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -6371,12 +7107,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST7.")`
             Printer.trace("Enter TEST7.")
+        # end of behavior for TEST7
         
         # TEST7 behavior
         # uml: enter [trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", True)] / { clear_dispatch_output() }
         if self.trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", True):
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
+        # end of behavior for TEST7
+    
     
     def _TEST7_exit(self):
         # TEST7 behavior
@@ -6384,8 +7123,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST7.")`
             Printer.trace("Exit TEST7.")
+        # end of behavior for TEST7
         
         self.stateId = Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY
+    
     
     
     ########################################
@@ -6400,6 +7141,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY1.")`
             Printer.trace("Enter T7__DEEP_HISTORY1.")
+        # end of behavior for T7__DEEP_HISTORY1
+    
     
     def _T7__DEEP_HISTORY1_exit(self):
         # T7__DEEP_HISTORY1 behavior
@@ -6407,8 +7150,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.")`
             Printer.trace("Exit T7__DEEP_HISTORY1.")
+        # end of behavior for T7__DEEP_HISTORY1
         
         self.stateId = Spec2Sm.StateId.TEST7
+    
     
     
     ########################################
@@ -6423,6 +7168,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__SANTAS_WORKSHOP.")`
             Printer.trace("Enter T7__DH1__SANTAS_WORKSHOP.")
+        # end of behavior for T7__DH1__SANTAS_WORKSHOP
+    
     
     def _T7__DH1__SANTAS_WORKSHOP_exit(self):
         # T7__DH1__SANTAS_WORKSHOP behavior
@@ -6430,8 +7177,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.")`
             Printer.trace("Exit T7__DH1__SANTAS_WORKSHOP.")
+        # end of behavior for T7__DH1__SANTAS_WORKSHOP
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY1
+    
     
     
     ########################################
@@ -6446,6 +7195,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__ALIENS_DETECTED.")`
             Printer.trace("Enter T7__DH1__ALIENS_DETECTED.")
+        # end of behavior for T7__DH1__ALIENS_DETECTED
+    
     
     def _T7__DH1__ALIENS_DETECTED_exit(self):
         # T7__DH1__ALIENS_DETECTED behavior
@@ -6453,8 +7204,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.")`
             Printer.trace("Exit T7__DH1__ALIENS_DETECTED.")
+        # end of behavior for T7__DH1__ALIENS_DETECTED
         
         self.stateId = Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP
+    
     
     def _T7__DH1__ALIENS_DETECTED_ev8(self):
         # T7__DH1__ALIENS_DETECTED behavior
@@ -6472,6 +7225,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DH1__BUILD_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__DH1__ALIENS_DETECTED
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6486,6 +7243,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.")`
             Printer.trace("Enter T7__DH1__GET_BACKUP.")
+        # end of behavior for T7__DH1__GET_BACKUP
+    
     
     def _T7__DH1__GET_BACKUP_exit(self):
         # T7__DH1__GET_BACKUP behavior
@@ -6493,8 +7252,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.")`
             Printer.trace("Exit T7__DH1__GET_BACKUP.")
+        # end of behavior for T7__DH1__GET_BACKUP
         
         self.stateId = Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED
+    
     
     
     ########################################
@@ -6509,18 +7270,22 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__HERO.")`
             Printer.trace("Enter T7__DH1__HERO.")
+        # end of behavior for T7__DH1__HERO
         
         # T7__DH1__HERO behavior
         # uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }
         if self.trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO
+        # end of behavior for T7__DH1__HERO
         
         # T7__DH1__HERO behavior
         # uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }
         if self.trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO;)`
             self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__HERO
+        # end of behavior for T7__DH1__HERO
+    
     
     def _T7__DH1__HERO_exit(self):
         # T7__DH1__HERO behavior
@@ -6528,8 +7293,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__HERO.")`
             Printer.trace("Exit T7__DH1__HERO.")
+        # end of behavior for T7__DH1__HERO
         
         self.stateId = Spec2Sm.StateId.T7__DH1__GET_BACKUP
+    
     
     def _T7__DH1__HERO_InitialState_transition(self):
         # T7__DH1__HERO.<InitialState> behavior
@@ -6545,6 +7312,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__HERO.<InitialState>
+    
     
     
     ########################################
@@ -6559,6 +7328,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__CALL_BATMAN.")`
             Printer.trace("Enter T7__DH1__CALL_BATMAN.")
+        # end of behavior for T7__DH1__CALL_BATMAN
+    
     
     def _T7__DH1__CALL_BATMAN_exit(self):
         # T7__DH1__CALL_BATMAN behavior
@@ -6566,8 +7337,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.")`
             Printer.trace("Exit T7__DH1__CALL_BATMAN.")
+        # end of behavior for T7__DH1__CALL_BATMAN
         
         self.stateId = Spec2Sm.StateId.T7__DH1__HERO
+    
     
     def _T7__DH1__CALL_BATMAN_ev1(self):
         # T7__DH1__CALL_BATMAN behavior
@@ -6585,6 +7358,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__CALL_BATMAN
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6599,6 +7376,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__CALL_THOR.")`
             Printer.trace("Enter T7__DH1__CALL_THOR.")
+        # end of behavior for T7__DH1__CALL_THOR
+    
     
     def _T7__DH1__CALL_THOR_exit(self):
         # T7__DH1__CALL_THOR behavior
@@ -6606,8 +7385,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.")`
             Printer.trace("Exit T7__DH1__CALL_THOR.")
+        # end of behavior for T7__DH1__CALL_THOR
         
         self.stateId = Spec2Sm.StateId.T7__DH1__HERO
+    
     
     def _T7__DH1__CALL_THOR_ev1(self):
         # T7__DH1__CALL_THOR behavior
@@ -6624,6 +7405,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__CALL_THOR
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6638,6 +7423,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.")`
             Printer.trace("Enter T7__DH1__LOCAL_HELP.")
+        # end of behavior for T7__DH1__LOCAL_HELP
+    
     
     def _T7__DH1__LOCAL_HELP_exit(self):
         # T7__DH1__LOCAL_HELP behavior
@@ -6645,8 +7432,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.")`
             Printer.trace("Exit T7__DH1__LOCAL_HELP.")
+        # end of behavior for T7__DH1__LOCAL_HELP
         
         self.stateId = Spec2Sm.StateId.T7__DH1__GET_BACKUP
+    
     
     
     ########################################
@@ -6661,18 +7450,22 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__BUDDY_ELF.")`
             Printer.trace("Enter T7__DH1__BUDDY_ELF.")
+        # end of behavior for T7__DH1__BUDDY_ELF
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }
         if self.trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF
+        # end of behavior for T7__DH1__BUDDY_ELF
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }
         if self.trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF;)`
             self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF
+        # end of behavior for T7__DH1__BUDDY_ELF
+    
     
     def _T7__DH1__BUDDY_ELF_exit(self):
         # T7__DH1__BUDDY_ELF behavior
@@ -6680,8 +7473,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.")`
             Printer.trace("Exit T7__DH1__BUDDY_ELF.")
+        # end of behavior for T7__DH1__BUDDY_ELF
         
         self.stateId = Spec2Sm.StateId.T7__DH1__LOCAL_HELP
+    
     
     def _T7__DH1__BUDDY_ELF_ev1(self):
         # T7__DH1__BUDDY_ELF behavior
@@ -6698,6 +7493,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__BUDDY_ELF
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6712,18 +7511,22 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__POLAR_BEARS.")`
             Printer.trace("Enter T7__DH1__POLAR_BEARS.")
+        # end of behavior for T7__DH1__POLAR_BEARS
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }
         if self.trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS
+        # end of behavior for T7__DH1__POLAR_BEARS
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True)] / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }
         if self.trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__GET_BACKUP_history = T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS;)`
             self.vars.T7__DH1__GET_BACKUP_history = Spec2Sm.T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS
+        # end of behavior for T7__DH1__POLAR_BEARS
+    
     
     def _T7__DH1__POLAR_BEARS_exit(self):
         # T7__DH1__POLAR_BEARS behavior
@@ -6731,8 +7534,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.")`
             Printer.trace("Exit T7__DH1__POLAR_BEARS.")
+        # end of behavior for T7__DH1__POLAR_BEARS
         
         self.stateId = Spec2Sm.StateId.T7__DH1__LOCAL_HELP
+    
     
     
     ########################################
@@ -6747,12 +7552,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__GIVE_COOKIES.")`
             Printer.trace("Enter T7__DH1__GIVE_COOKIES.")
+        # end of behavior for T7__DH1__GIVE_COOKIES
         
         # T7__DH1__GIVE_COOKIES behavior
         # uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }
         if self.trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES
+        # end of behavior for T7__DH1__GIVE_COOKIES
+    
     
     def _T7__DH1__GIVE_COOKIES_exit(self):
         # T7__DH1__GIVE_COOKIES behavior
@@ -6760,8 +7568,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.")`
             Printer.trace("Exit T7__DH1__GIVE_COOKIES.")
+        # end of behavior for T7__DH1__GIVE_COOKIES
         
         self.stateId = Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED
+    
     
     def _T7__DH1__GIVE_COOKIES_ev1(self):
         # T7__DH1__GIVE_COOKIES behavior
@@ -6780,6 +7590,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__GIVE_COOKIES
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6794,12 +7608,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__SNOWBALL_FIGHT.")`
             Printer.trace("Enter T7__DH1__SNOWBALL_FIGHT.")
+        # end of behavior for T7__DH1__SNOWBALL_FIGHT
         
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", True)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }
         if self.trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;)`
             self.vars.T7__DH1__ALIENS_DETECTED_history = Spec2Sm.T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT
+        # end of behavior for T7__DH1__SNOWBALL_FIGHT
+    
     
     def _T7__DH1__SNOWBALL_FIGHT_exit(self):
         # T7__DH1__SNOWBALL_FIGHT behavior
@@ -6807,8 +7624,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.")`
             Printer.trace("Exit T7__DH1__SNOWBALL_FIGHT.")
+        # end of behavior for T7__DH1__SNOWBALL_FIGHT
         
         self.stateId = Spec2Sm.StateId.T7__DH1__ALIENS_DETECTED
+    
     
     def _T7__DH1__SNOWBALL_FIGHT_ev1(self):
         # T7__DH1__SNOWBALL_FIGHT behavior
@@ -6825,6 +7644,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__SNOWBALL_FIGHT
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -6839,6 +7662,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__BUILD.")`
             Printer.trace("Enter T7__DH1__BUILD.")
+        # end of behavior for T7__DH1__BUILD
+    
     
     def _T7__DH1__BUILD_exit(self):
         # T7__DH1__BUILD behavior
@@ -6846,8 +7671,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__BUILD.")`
             Printer.trace("Exit T7__DH1__BUILD.")
+        # end of behavior for T7__DH1__BUILD
         
         self.stateId = Spec2Sm.StateId.T7__DH1__SANTAS_WORKSHOP
+    
     
     def _T7__DH1__BUILD_ev6(self):
         # T7__DH1__BUILD behavior
@@ -6886,6 +7713,7 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.") } TransitionTo(T7__DH1__HERO)
@@ -6902,6 +7730,7 @@ class Spec2Sm(Spec2SmBase):
                     # Finish transition by calling pseudo state transition function.
                     self._T7__DH1__HERO_InitialState_transition()
                     return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
@@ -6918,6 +7747,7 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: [$gil(this.vars.T7__DH1__ALIENS_DETECTED_history == T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
@@ -6934,6 +7764,7 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
                 
                 # T7__DH1__ALIENS_DETECTED.<History> behavior
                 # uml: else / { trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.") } TransitionTo(T7__DH1__SNOWBALL_FIGHT)
@@ -6948,6 +7779,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for T7__DH1__ALIENS_DETECTED.<History>
+            # end of behavior for T7__DH1__ALIENS_DETECTED.<InitialState>
+        # end of behavior for T7__DH1__BUILD
+        
+        # No ancestor handles this event.
+    
     
     def _T7__DH1__BUILD_ev7(self):
         # T7__DH1__BUILD behavior
@@ -6978,6 +7815,7 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__HERO_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DH1__GET_BACKUP.<History>
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__BUDDY_ELF)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.") } TransitionTo(T7__DH1__BUDDY_ELF)
@@ -6993,6 +7831,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__GET_BACKUP.<History>
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__GET_BACKUP_history == T7__DH1__GET_BACKUP_HistoryId.T7__DH1__POLAR_BEARS)] / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.") } TransitionTo(T7__DH1__POLAR_BEARS)
@@ -7008,6 +7847,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__GET_BACKUP.<History>
             
             # T7__DH1__GET_BACKUP.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().") } TransitionTo(T7__DH1__GET_BACKUP.<ChoicePoint>())
@@ -7034,6 +7874,12 @@ class Spec2Sm(Spec2SmBase):
                     # Finish transition by calling pseudo state transition function.
                     self._T7__DH1__HERO_InitialState_transition()
                     return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+                # end of behavior for T7__DH1__GET_BACKUP.<ChoicePoint>()
+            # end of behavior for T7__DH1__GET_BACKUP.<History>
+        # end of behavior for T7__DH1__BUILD
+        
+        # No ancestor handles this event.
+    
     
     def _T7__DH1__BUILD_InitialState_transition(self):
         # T7__DH1__BUILD.<InitialState> behavior
@@ -7061,6 +7907,7 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__TOOL_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.") } TransitionTo(T7__DH1__RACE_CAR)
@@ -7076,6 +7923,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.") } TransitionTo(T7__DH1__TEDDY_BEAR)
@@ -7091,6 +7939,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.") } TransitionTo(T7__DH1__GLOW_WORM)
@@ -7106,6 +7955,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.") } TransitionTo(T7__DH1__ROBOT)
@@ -7122,6 +7972,7 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__ROBOT_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.") } TransitionTo(T7__DH1__BATTLEBOT)
@@ -7138,6 +7989,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.") } TransitionTo(T7__DH1__WALL_E)
@@ -7154,6 +8006,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.") } TransitionTo(T7__DH1__IMPACT_DRILL)
@@ -7169,6 +8022,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: [$gil(this.vars.T7__DH1__BUILD_history == T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW)] / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.") } TransitionTo(T7__DH1__CIRCULAR_SAW)
@@ -7184,6 +8038,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DH1__BUILD.<History>
             
             # T7__DH1__BUILD.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.") } TransitionTo(T7__DH1__TOY)
@@ -7199,6 +8054,9 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__TOY_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DH1__BUILD.<History>
+        # end of behavior for T7__DH1__BUILD.<InitialState>
+    
     
     
     ########################################
@@ -7213,12 +8071,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__TOOL.")`
             Printer.trace("Enter T7__DH1__TOOL.")
+        # end of behavior for T7__DH1__TOOL
         
         # T7__DH1__TOOL behavior
         # uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }
         if self.trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TOOL
+        # end of behavior for T7__DH1__TOOL
+    
     
     def _T7__DH1__TOOL_exit(self):
         # T7__DH1__TOOL behavior
@@ -7226,8 +8087,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__TOOL.")`
             Printer.trace("Exit T7__DH1__TOOL.")
+        # end of behavior for T7__DH1__TOOL
         
         self.stateId = Spec2Sm.StateId.T7__DH1__BUILD
+    
     
     def _T7__DH1__TOOL_ev2(self):
         # T7__DH1__TOOL behavior
@@ -7245,6 +8108,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DH1__TOY_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__DH1__TOOL
+        
+        # No ancestor handles this event.
+    
     
     def _T7__DH1__TOOL_InitialState_transition(self):
         # T7__DH1__TOOL.<InitialState> behavior
@@ -7260,6 +8127,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__TOOL.<InitialState>
+    
     
     
     ########################################
@@ -7274,12 +8143,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__CIRCULAR_SAW.")`
             Printer.trace("Enter T7__DH1__CIRCULAR_SAW.")
+        # end of behavior for T7__DH1__CIRCULAR_SAW
         
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }
         if self.trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW
+        # end of behavior for T7__DH1__CIRCULAR_SAW
+    
     
     def _T7__DH1__CIRCULAR_SAW_exit(self):
         # T7__DH1__CIRCULAR_SAW behavior
@@ -7287,8 +8159,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.")`
             Printer.trace("Exit T7__DH1__CIRCULAR_SAW.")
+        # end of behavior for T7__DH1__CIRCULAR_SAW
         
         self.stateId = Spec2Sm.StateId.T7__DH1__TOOL
+    
     
     
     ########################################
@@ -7303,12 +8177,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__IMPACT_DRILL.")`
             Printer.trace("Enter T7__DH1__IMPACT_DRILL.")
+        # end of behavior for T7__DH1__IMPACT_DRILL
         
         # T7__DH1__IMPACT_DRILL behavior
         # uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }
         if self.trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL
+        # end of behavior for T7__DH1__IMPACT_DRILL
+    
     
     def _T7__DH1__IMPACT_DRILL_exit(self):
         # T7__DH1__IMPACT_DRILL behavior
@@ -7316,8 +8193,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.")`
             Printer.trace("Exit T7__DH1__IMPACT_DRILL.")
+        # end of behavior for T7__DH1__IMPACT_DRILL
         
         self.stateId = Spec2Sm.StateId.T7__DH1__TOOL
+    
     
     def _T7__DH1__IMPACT_DRILL_ev1(self):
         # T7__DH1__IMPACT_DRILL behavior
@@ -7334,6 +8213,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__IMPACT_DRILL
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -7348,12 +8231,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__TOY.")`
             Printer.trace("Enter T7__DH1__TOY.")
+        # end of behavior for T7__DH1__TOY
         
         # T7__DH1__TOY behavior
         # uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }
         if self.trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TOY
+        # end of behavior for T7__DH1__TOY
+    
     
     def _T7__DH1__TOY_exit(self):
         # T7__DH1__TOY behavior
@@ -7361,8 +8247,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__TOY.")`
             Printer.trace("Exit T7__DH1__TOY.")
+        # end of behavior for T7__DH1__TOY
         
         self.stateId = Spec2Sm.StateId.T7__DH1__BUILD
+    
     
     def _T7__DH1__TOY_ev1(self):
         # T7__DH1__TOY behavior
@@ -7380,6 +8268,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DH1__TOOL_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__DH1__TOY
+        
+        # No ancestor handles this event.
+    
     
     def _T7__DH1__TOY_InitialState_transition(self):
         # T7__DH1__TOY.<InitialState> behavior
@@ -7395,6 +8287,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__TOY.<InitialState>
+    
     
     
     ########################################
@@ -7409,12 +8303,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__GLOW_WORM.")`
             Printer.trace("Enter T7__DH1__GLOW_WORM.")
+        # end of behavior for T7__DH1__GLOW_WORM
         
         # T7__DH1__GLOW_WORM behavior
         # uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }
         if self.trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM
+        # end of behavior for T7__DH1__GLOW_WORM
+    
     
     def _T7__DH1__GLOW_WORM_exit(self):
         # T7__DH1__GLOW_WORM behavior
@@ -7422,8 +8319,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.")`
             Printer.trace("Exit T7__DH1__GLOW_WORM.")
+        # end of behavior for T7__DH1__GLOW_WORM
         
         self.stateId = Spec2Sm.StateId.T7__DH1__TOY
+    
     
     def _T7__DH1__GLOW_WORM_ev1(self):
         consume_event = False
@@ -7443,10 +8342,13 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DH1__ROBOT_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__DH1__GLOW_WORM
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._T7__DH1__TOY_ev1()
+        
+    
     
     
     ########################################
@@ -7461,12 +8363,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__RACE_CAR.")`
             Printer.trace("Enter T7__DH1__RACE_CAR.")
+        # end of behavior for T7__DH1__RACE_CAR
         
         # T7__DH1__RACE_CAR behavior
         # uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }
         if self.trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR
+        # end of behavior for T7__DH1__RACE_CAR
+    
     
     def _T7__DH1__RACE_CAR_exit(self):
         # T7__DH1__RACE_CAR behavior
@@ -7474,8 +8379,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.")`
             Printer.trace("Exit T7__DH1__RACE_CAR.")
+        # end of behavior for T7__DH1__RACE_CAR
         
         self.stateId = Spec2Sm.StateId.T7__DH1__TOY
+    
     
     def _T7__DH1__RACE_CAR_ev1(self):
         consume_event = False
@@ -7494,10 +8401,13 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__RACE_CAR
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._T7__DH1__TOY_ev1()
+        
+    
     
     
     ########################################
@@ -7512,12 +8422,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__ROBOT.")`
             Printer.trace("Enter T7__DH1__ROBOT.")
+        # end of behavior for T7__DH1__ROBOT
         
         # T7__DH1__ROBOT behavior
         # uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }
         if self.trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT
+        # end of behavior for T7__DH1__ROBOT
+    
     
     def _T7__DH1__ROBOT_exit(self):
         # T7__DH1__ROBOT behavior
@@ -7525,8 +8438,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__ROBOT.")`
             Printer.trace("Exit T7__DH1__ROBOT.")
+        # end of behavior for T7__DH1__ROBOT
         
         self.stateId = Spec2Sm.StateId.T7__DH1__TOY
+    
     
     def _T7__DH1__ROBOT_InitialState_transition(self):
         # T7__DH1__ROBOT.<InitialState> behavior
@@ -7542,6 +8457,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__ROBOT.<InitialState>
+    
     
     
     ########################################
@@ -7556,12 +8473,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__BATTLEBOT.")`
             Printer.trace("Enter T7__DH1__BATTLEBOT.")
+        # end of behavior for T7__DH1__BATTLEBOT
         
         # T7__DH1__BATTLEBOT behavior
         # uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }
         if self.trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT
+        # end of behavior for T7__DH1__BATTLEBOT
+    
     
     def _T7__DH1__BATTLEBOT_exit(self):
         # T7__DH1__BATTLEBOT behavior
@@ -7569,8 +8489,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.")`
             Printer.trace("Exit T7__DH1__BATTLEBOT.")
+        # end of behavior for T7__DH1__BATTLEBOT
         
         self.stateId = Spec2Sm.StateId.T7__DH1__ROBOT
+    
     
     def _T7__DH1__BATTLEBOT_ev1(self):
         consume_event = False
@@ -7589,10 +8511,13 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__BATTLEBOT
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._T7__DH1__TOY_ev1()
+        
+    
     
     
     ########################################
@@ -7607,12 +8532,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__WALL_E.")`
             Printer.trace("Enter T7__DH1__WALL_E.")
+        # end of behavior for T7__DH1__WALL_E
         
         # T7__DH1__WALL_E behavior
         # uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }
         if self.trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E
+        # end of behavior for T7__DH1__WALL_E
+    
     
     def _T7__DH1__WALL_E_exit(self):
         # T7__DH1__WALL_E behavior
@@ -7620,8 +8548,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__WALL_E.")`
             Printer.trace("Exit T7__DH1__WALL_E.")
+        # end of behavior for T7__DH1__WALL_E
         
         self.stateId = Spec2Sm.StateId.T7__DH1__ROBOT
+    
     
     
     ########################################
@@ -7636,12 +8566,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DH1__TEDDY_BEAR.")`
             Printer.trace("Enter T7__DH1__TEDDY_BEAR.")
+        # end of behavior for T7__DH1__TEDDY_BEAR
         
         # T7__DH1__TEDDY_BEAR behavior
         # uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", True)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }
         if self.trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;)`
             self.vars.T7__DH1__BUILD_history = Spec2Sm.T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR
+        # end of behavior for T7__DH1__TEDDY_BEAR
+    
     
     def _T7__DH1__TEDDY_BEAR_exit(self):
         # T7__DH1__TEDDY_BEAR behavior
@@ -7649,8 +8582,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.")`
             Printer.trace("Exit T7__DH1__TEDDY_BEAR.")
+        # end of behavior for T7__DH1__TEDDY_BEAR
         
         self.stateId = Spec2Sm.StateId.T7__DH1__TOY
+    
     
     def _T7__DH1__TEDDY_BEAR_ev1(self):
         consume_event = False
@@ -7669,10 +8604,13 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DH1__TEDDY_BEAR
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._T7__DH1__TOY_ev1()
+        
+    
     
     
     ########################################
@@ -7687,6 +8625,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2.")`
             Printer.trace("Enter T7__DEEP_HISTORY2.")
+        # end of behavior for T7__DEEP_HISTORY2
+    
     
     def _T7__DEEP_HISTORY2_exit(self):
         # T7__DEEP_HISTORY2 behavior
@@ -7694,8 +8634,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.")`
             Printer.trace("Exit T7__DEEP_HISTORY2.")
+        # end of behavior for T7__DEEP_HISTORY2
         
         self.stateId = Spec2Sm.StateId.TEST7
+    
     
     
     ########################################
@@ -7710,6 +8652,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_0.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_0.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_0
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_0_exit(self):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
@@ -7717,8 +8661,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_0.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_0.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_0
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_0_evopen(self):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
@@ -7735,6 +8681,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_0
+        
+        # No ancestor handles this event.
+    
     
     def _T7__DEEP_HISTORY2__T7__state_0_InitialState_transition(self):
         # T7__DEEP_HISTORY2__T7__state_0.<InitialState> behavior
@@ -7762,6 +8712,7 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_6)
@@ -7777,6 +8728,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: [$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history == T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9)] / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_9)
@@ -7792,6 +8744,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
             
             # T7__DEEP_HISTORY2__T7__state_0.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY2__T7__state_1)
@@ -7806,6 +8759,9 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<History>
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_0.<InitialState>
+    
     
     
     ########################################
@@ -7820,12 +8776,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_1.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_1.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_1
         
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_1
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_1_exit(self):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
@@ -7833,8 +8792,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_1.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_1.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_1
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_1_evstep(self):
         # T7__DEEP_HISTORY2__T7__state_1 behavior
@@ -7852,6 +8813,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DEEP_HISTORY2__T7__state_2_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -7866,12 +8831,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_2.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_2.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_2
         
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_2
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_2_exit(self):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
@@ -7879,8 +8847,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_2.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_2.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_2
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_0
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_2_evback(self):
         # T7__DEEP_HISTORY2__T7__state_2 behavior
@@ -7897,6 +8867,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_2
+        
+        # No ancestor handles this event.
+    
     
     def _T7__DEEP_HISTORY2__T7__state_2_InitialState_transition(self):
         # T7__DEEP_HISTORY2__T7__state_2.<InitialState> behavior
@@ -7912,6 +8886,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_2.<InitialState>
+    
     
     
     ########################################
@@ -7926,12 +8902,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_6.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_6.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_6
         
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_6
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_6_exit(self):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
@@ -7939,8 +8918,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_6.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_6.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_6
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_6_evstep(self):
         # T7__DEEP_HISTORY2__T7__state_6 behavior
@@ -7957,6 +8938,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_6
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -7971,12 +8956,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_9.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_9.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_9
         
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }
         if self.trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;)`
             self.vars.T7__DEEP_HISTORY2__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_9
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_9_exit(self):
         # T7__DEEP_HISTORY2__T7__state_9 behavior
@@ -7984,8 +8972,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_9.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_9.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_9
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2__T7__STATE_2
+    
     
     
     ########################################
@@ -8000,6 +8990,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_3.")`
             Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_3.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_3
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_3_exit(self):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
@@ -8007,8 +8999,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_3.")`
             Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_3.")
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_3
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY2
+    
     
     def _T7__DEEP_HISTORY2__T7__STATE_3_evclose(self):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
@@ -8026,6 +9020,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__DEEP_HISTORY2__T7__state_3
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8040,6 +9038,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3.")`
             Printer.trace("Enter T7__DEEP_HISTORY3.")
+        # end of behavior for T7__DEEP_HISTORY3
+    
     
     def _T7__DEEP_HISTORY3_exit(self):
         # T7__DEEP_HISTORY3 behavior
@@ -8047,8 +9047,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.")`
             Printer.trace("Exit T7__DEEP_HISTORY3.")
+        # end of behavior for T7__DEEP_HISTORY3
         
         self.stateId = Spec2Sm.StateId.TEST7
+    
     
     
     ########################################
@@ -8063,6 +9065,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_0.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_0.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_0
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_0_exit(self):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
@@ -8070,8 +9074,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_0.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_0.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_0
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_0_evopen(self):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
@@ -8088,6 +9094,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_0
+        
+        # No ancestor handles this event.
+    
     
     def _T7__DEEP_HISTORY3__T7__state_0_InitialState_transition(self):
         # T7__DEEP_HISTORY3__T7__state_0.<InitialState> behavior
@@ -8115,6 +9125,7 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
             
             # T7__DEEP_HISTORY3__T7__state_0.<History> behavior
             # uml: else / { trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.") } TransitionTo(T7__DEEP_HISTORY3__T7__state_1)
@@ -8129,6 +9140,9 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__DEEP_HISTORY3__T7__state_0.<History>
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_0.<InitialState>
+    
     
     
     ########################################
@@ -8143,12 +9157,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_1.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_1.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_1
         
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;)`
             self.vars.T7__DEEP_HISTORY3__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_1
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_1_exit(self):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
@@ -8156,8 +9173,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_1.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_1.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_1
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_1_evstep(self):
         # T7__DEEP_HISTORY3__T7__state_1 behavior
@@ -8175,6 +9194,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DEEP_HISTORY3__T7__state_2_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8189,12 +9212,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_2.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_2.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_2
         
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", True)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }
         if self.trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;)`
             self.vars.T7__DEEP_HISTORY3__T7__state_0_history = Spec2Sm.T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_2
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_2_exit(self):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
@@ -8202,8 +9228,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_2.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_2.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_2
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_0
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_2_evback(self):
         # T7__DEEP_HISTORY3__T7__state_2 behavior
@@ -8220,6 +9248,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_2
+        
+        # No ancestor handles this event.
+    
     
     def _T7__DEEP_HISTORY3__T7__state_2_InitialState_transition(self):
         # T7__DEEP_HISTORY3__T7__state_2.<InitialState> behavior
@@ -8235,6 +9267,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_2.<InitialState>
+    
     
     
     ########################################
@@ -8249,6 +9283,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_6.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_6.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_6
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_6_exit(self):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
@@ -8256,8 +9292,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_6.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_6.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_6
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_6_evstep(self):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
@@ -8274,6 +9312,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_6
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8288,6 +9330,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_9.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_9.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_9
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_9_exit(self):
         # T7__DEEP_HISTORY3__T7__state_9 behavior
@@ -8295,8 +9339,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_9.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_9.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_9
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3__T7__STATE_2
+    
     
     
     ########################################
@@ -8311,6 +9357,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_3.")`
             Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_3.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_3
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_3_exit(self):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
@@ -8318,8 +9366,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_3.")`
             Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_3.")
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_3
         
         self.stateId = Spec2Sm.StateId.T7__DEEP_HISTORY3
+    
     
     def _T7__DEEP_HISTORY3__T7__STATE_3_evclose(self):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
@@ -8337,6 +9387,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__DEEP_HISTORY3__T7__state_3
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8351,6 +9405,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__HISTORY1.")`
             Printer.trace("Enter T7__HISTORY1.")
+        # end of behavior for T7__HISTORY1
+    
     
     def _T7__HISTORY1_exit(self):
         # T7__HISTORY1 behavior
@@ -8358,8 +9414,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__HISTORY1.")`
             Printer.trace("Exit T7__HISTORY1.")
+        # end of behavior for T7__HISTORY1
         
         self.stateId = Spec2Sm.StateId.TEST7
+    
     
     
     ########################################
@@ -8374,6 +9432,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__H1__OFF.")`
             Printer.trace("Enter T7__H1__OFF.")
+        # end of behavior for T7__H1__OFF
+    
     
     def _T7__H1__OFF_exit(self):
         # T7__H1__OFF behavior
@@ -8381,8 +9441,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__H1__OFF.")`
             Printer.trace("Exit T7__H1__OFF.")
+        # end of behavior for T7__H1__OFF
         
         self.stateId = Spec2Sm.StateId.T7__HISTORY1
+    
     
     def _T7__H1__OFF_ev3(self):
         # T7__H1__OFF behavior
@@ -8399,6 +9461,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__H1__OFF
+        
+        # No ancestor handles this event.
+    
     
     def _T7__H1__OFF_ev4(self):
         # T7__H1__OFF behavior
@@ -8416,6 +9482,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__H1__OFF_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__H1__OFF
+        
+        # No ancestor handles this event.
+    
     
     def _T7__H1__OFF_ev7(self):
         # T7__H1__OFF behavior
@@ -8433,6 +9503,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__H1__ON_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__H1__OFF
+        
+        # No ancestor handles this event.
+    
     
     def _T7__H1__OFF_InitialState_transition(self):
         # T7__H1__OFF.<InitialState> behavior
@@ -8459,6 +9533,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__H1__OFF.<History>
             
             # T7__H1__OFF.<History> behavior
             # uml: [$gil(this.vars.T7__H1__OFF_history == T7__H1__OFF_HistoryId.T7__H1__OFF3)] / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.") } TransitionTo(T7__H1__OFF3)
@@ -8473,6 +9548,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__H1__OFF.<History>
             
             # T7__H1__OFF.<History> behavior
             # uml: else / { trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.") } TransitionTo(T7__H1__OFF1)
@@ -8487,6 +9563,9 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__H1__OFF.<History>
+        # end of behavior for T7__H1__OFF.<InitialState>
+    
     
     
     ########################################
@@ -8501,12 +9580,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__H1__OFF1.")`
             Printer.trace("Enter T7__H1__OFF1.")
+        # end of behavior for T7__H1__OFF1
         
         # T7__H1__OFF1 behavior
         # uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", True)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }
         if self.trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;)`
             self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF1
+        # end of behavior for T7__H1__OFF1
+    
     
     def _T7__H1__OFF1_exit(self):
         # T7__H1__OFF1 behavior
@@ -8514,8 +9596,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__H1__OFF1.")`
             Printer.trace("Exit T7__H1__OFF1.")
+        # end of behavior for T7__H1__OFF1
         
         self.stateId = Spec2Sm.StateId.T7__H1__OFF
+    
     
     def _T7__H1__OFF1_ev1(self):
         # T7__H1__OFF1 behavior
@@ -8532,6 +9616,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__H1__OFF1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8546,12 +9634,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__H1__OFF2.")`
             Printer.trace("Enter T7__H1__OFF2.")
+        # end of behavior for T7__H1__OFF2
         
         # T7__H1__OFF2 behavior
         # uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", True)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }
         if self.trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;)`
             self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF2
+        # end of behavior for T7__H1__OFF2
+    
     
     def _T7__H1__OFF2_exit(self):
         # T7__H1__OFF2 behavior
@@ -8559,8 +9650,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__H1__OFF2.")`
             Printer.trace("Exit T7__H1__OFF2.")
+        # end of behavior for T7__H1__OFF2
         
         self.stateId = Spec2Sm.StateId.T7__H1__OFF
+    
     
     def _T7__H1__OFF2_ev1(self):
         # T7__H1__OFF2 behavior
@@ -8577,6 +9670,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__H1__OFF2
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8591,12 +9688,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__H1__OFF3.")`
             Printer.trace("Enter T7__H1__OFF3.")
+        # end of behavior for T7__H1__OFF3
         
         # T7__H1__OFF3 behavior
         # uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", True)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }
         if self.trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;)`
             self.vars.T7__H1__OFF_history = Spec2Sm.T7__H1__OFF_HistoryId.T7__H1__OFF3
+        # end of behavior for T7__H1__OFF3
+    
     
     def _T7__H1__OFF3_exit(self):
         # T7__H1__OFF3 behavior
@@ -8604,8 +9704,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__H1__OFF3.")`
             Printer.trace("Exit T7__H1__OFF3.")
+        # end of behavior for T7__H1__OFF3
         
         self.stateId = Spec2Sm.StateId.T7__H1__OFF
+    
     
     
     ########################################
@@ -8620,6 +9722,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__H1__ON.")`
             Printer.trace("Enter T7__H1__ON.")
+        # end of behavior for T7__H1__ON
+    
     
     def _T7__H1__ON_exit(self):
         # T7__H1__ON behavior
@@ -8627,8 +9731,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__H1__ON.")`
             Printer.trace("Exit T7__H1__ON.")
+        # end of behavior for T7__H1__ON
         
         self.stateId = Spec2Sm.StateId.T7__HISTORY1
+    
     
     def _T7__H1__ON_ev6(self):
         # T7__H1__ON behavior
@@ -8646,6 +9752,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__H1__OFF_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__H1__ON
+        
+        # No ancestor handles this event.
+    
     
     def _T7__H1__ON_InitialState_transition(self):
         # T7__H1__ON.<InitialState> behavior
@@ -8672,6 +9782,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__H1__ON.<History>
             
             # T7__H1__ON.<History> behavior
             # uml: [$gil(this.vars.T7__H1__ON_history == T7__H1__ON_HistoryId.T7__H1__ON3)] / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.") } TransitionTo(T7__H1__ON3)
@@ -8686,6 +9797,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__H1__ON.<History>
             
             # T7__H1__ON.<History> behavior
             # uml: else / { trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.") } TransitionTo(T7__H1__ON1)
@@ -8700,6 +9812,9 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for T7__H1__ON.<History>
+        # end of behavior for T7__H1__ON.<InitialState>
+    
     
     
     ########################################
@@ -8714,12 +9829,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__H1__ON1.")`
             Printer.trace("Enter T7__H1__ON1.")
+        # end of behavior for T7__H1__ON1
         
         # T7__H1__ON1 behavior
         # uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", True)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }
         if self.trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;)`
             self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON1
+        # end of behavior for T7__H1__ON1
+    
     
     def _T7__H1__ON1_exit(self):
         # T7__H1__ON1 behavior
@@ -8727,8 +9845,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__H1__ON1.")`
             Printer.trace("Exit T7__H1__ON1.")
+        # end of behavior for T7__H1__ON1
         
         self.stateId = Spec2Sm.StateId.T7__H1__ON
+    
     
     def _T7__H1__ON1_ev1(self):
         # T7__H1__ON1 behavior
@@ -8745,6 +9865,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__H1__ON1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8759,12 +9883,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__H1__ON2.")`
             Printer.trace("Enter T7__H1__ON2.")
+        # end of behavior for T7__H1__ON2
         
         # T7__H1__ON2 behavior
         # uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", True)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }
         if self.trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;)`
             self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON2
+        # end of behavior for T7__H1__ON2
+    
     
     def _T7__H1__ON2_exit(self):
         # T7__H1__ON2 behavior
@@ -8772,8 +9899,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__H1__ON2.")`
             Printer.trace("Exit T7__H1__ON2.")
+        # end of behavior for T7__H1__ON2
         
         self.stateId = Spec2Sm.StateId.T7__H1__ON
+    
     
     def _T7__H1__ON2_ev1(self):
         # T7__H1__ON2 behavior
@@ -8790,6 +9919,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__H1__ON2
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8804,12 +9937,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__H1__ON3.")`
             Printer.trace("Enter T7__H1__ON3.")
+        # end of behavior for T7__H1__ON3
         
         # T7__H1__ON3 behavior
         # uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", True)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }
         if self.trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", True):
             # Step 1: execute action `$gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;)`
             self.vars.T7__H1__ON_history = Spec2Sm.T7__H1__ON_HistoryId.T7__H1__ON3
+        # end of behavior for T7__H1__ON3
+    
     
     def _T7__H1__ON3_exit(self):
         # T7__H1__ON3 behavior
@@ -8817,8 +9953,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__H1__ON3.")`
             Printer.trace("Exit T7__H1__ON3.")
+        # end of behavior for T7__H1__ON3
         
         self.stateId = Spec2Sm.StateId.T7__H1__ON
+    
     
     def _T7__H1__ON3_ev1(self):
         # T7__H1__ON3 behavior
@@ -8835,6 +9973,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__H1__ON3
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -8849,6 +9991,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__INITIAL1.")`
             Printer.trace("Enter T7__INITIAL1.")
+        # end of behavior for T7__INITIAL1
+    
     
     def _T7__INITIAL1_exit(self):
         # T7__INITIAL1 behavior
@@ -8856,8 +10000,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__INITIAL1.")`
             Printer.trace("Exit T7__INITIAL1.")
+        # end of behavior for T7__INITIAL1
         
         self.stateId = Spec2Sm.StateId.TEST7
+    
     
     
     ########################################
@@ -8872,6 +10018,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__INITIAL1__PARENT.")`
             Printer.trace("Enter T7__INITIAL1__PARENT.")
+        # end of behavior for T7__INITIAL1__PARENT
+    
     
     def _T7__INITIAL1__PARENT_exit(self):
         # T7__INITIAL1__PARENT behavior
@@ -8879,8 +10027,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.")`
             Printer.trace("Exit T7__INITIAL1__PARENT.")
+        # end of behavior for T7__INITIAL1__PARENT
         
         self.stateId = Spec2Sm.StateId.T7__INITIAL1
+    
     
     def _T7__INITIAL1__PARENT_ev5(self):
         # T7__INITIAL1__PARENT behavior
@@ -8888,6 +10038,10 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count += 1 }`.", True):
             # Step 1: execute action `count += 1`
             self.vars.count += 1
+        # end of behavior for T7__INITIAL1__PARENT
+        
+        # No ancestor handles this event.
+    
     
     def _T7__INITIAL1__PARENT_InitialState_transition(self):
         # T7__INITIAL1__PARENT.<InitialState> behavior
@@ -8903,6 +10057,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__INITIAL1__PARENT.<InitialState>
+    
     
     
     ########################################
@@ -8917,6 +10073,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__INITIAL1__G.")`
             Printer.trace("Enter T7__INITIAL1__G.")
+        # end of behavior for T7__INITIAL1__G
+    
     
     def _T7__INITIAL1__G_exit(self):
         # T7__INITIAL1__G behavior
@@ -8924,8 +10082,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__INITIAL1__G.")`
             Printer.trace("Exit T7__INITIAL1__G.")
+        # end of behavior for T7__INITIAL1__G
         
         self.stateId = Spec2Sm.StateId.T7__INITIAL1__PARENT
+    
     
     def _T7__INITIAL1__G_ev2(self):
         # T7__INITIAL1__G behavior
@@ -8943,6 +10103,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__INITIAL1__PARENT_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__INITIAL1__G
+        
+        # No ancestor handles this event.
+    
     
     def _T7__INITIAL1__G_InitialState_transition(self):
         # T7__INITIAL1__G.<InitialState> behavior
@@ -8958,6 +10122,7 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__INITIAL1__G.<InitialState>
         
         # T7__INITIAL1__G.<InitialState> behavior
         # uml: [count == 2] / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.") } TransitionTo(T7__INITIAL1__G_S2)
@@ -8972,6 +10137,7 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__INITIAL1__G.<InitialState>
         
         # T7__INITIAL1__G.<InitialState> behavior
         # uml: else / { trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.") } TransitionTo(T7__INITIAL1__G_S3)
@@ -8986,6 +10152,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for T7__INITIAL1__G.<InitialState>
+    
     
     
     ########################################
@@ -9000,6 +10168,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__INITIAL1__G_S1.")`
             Printer.trace("Enter T7__INITIAL1__G_S1.")
+        # end of behavior for T7__INITIAL1__G_S1
+    
     
     def _T7__INITIAL1__G_S1_exit(self):
         # T7__INITIAL1__G_S1 behavior
@@ -9007,8 +10177,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.")`
             Printer.trace("Exit T7__INITIAL1__G_S1.")
+        # end of behavior for T7__INITIAL1__G_S1
         
         self.stateId = Spec2Sm.StateId.T7__INITIAL1__G
+    
     
     
     ########################################
@@ -9023,6 +10195,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__INITIAL1__G_S2.")`
             Printer.trace("Enter T7__INITIAL1__G_S2.")
+        # end of behavior for T7__INITIAL1__G_S2
+    
     
     def _T7__INITIAL1__G_S2_exit(self):
         # T7__INITIAL1__G_S2 behavior
@@ -9030,8 +10204,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.")`
             Printer.trace("Exit T7__INITIAL1__G_S2.")
+        # end of behavior for T7__INITIAL1__G_S2
         
         self.stateId = Spec2Sm.StateId.T7__INITIAL1__G
+    
     
     
     ########################################
@@ -9046,6 +10222,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__INITIAL1__G_S3.")`
             Printer.trace("Enter T7__INITIAL1__G_S3.")
+        # end of behavior for T7__INITIAL1__G_S3
+    
     
     def _T7__INITIAL1__G_S3_exit(self):
         # T7__INITIAL1__G_S3 behavior
@@ -9053,8 +10231,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.")`
             Printer.trace("Exit T7__INITIAL1__G_S3.")
+        # end of behavior for T7__INITIAL1__G_S3
         
         self.stateId = Spec2Sm.StateId.T7__INITIAL1__G
+    
     
     
     ########################################
@@ -9069,6 +10249,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter T7__INITIAL1__S1.")`
             Printer.trace("Enter T7__INITIAL1__S1.")
+        # end of behavior for T7__INITIAL1__S1
+    
     
     def _T7__INITIAL1__S1_exit(self):
         # T7__INITIAL1__S1 behavior
@@ -9076,8 +10258,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit T7__INITIAL1__S1.")`
             Printer.trace("Exit T7__INITIAL1__S1.")
+        # end of behavior for T7__INITIAL1__S1
         
         self.stateId = Spec2Sm.StateId.T7__INITIAL1__PARENT
+    
     
     def _T7__INITIAL1__S1_ev1(self):
         # T7__INITIAL1__S1 behavior
@@ -9095,6 +10279,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__INITIAL1__G_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__INITIAL1__S1
+        
+        # No ancestor handles this event.
+    
     
     def _T7__INITIAL1__S1_ev3(self):
         # T7__INITIAL1__S1 behavior
@@ -9113,6 +10301,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._T7__INITIAL1__G_InitialState_transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for T7__INITIAL1__S1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -9127,6 +10319,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST7_DECIDE.")`
             Printer.trace("Enter TEST7_DECIDE.")
+        # end of behavior for TEST7_DECIDE
+    
     
     def _TEST7_DECIDE_exit(self):
         # TEST7_DECIDE behavior
@@ -9134,14 +10328,17 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST7_DECIDE.")`
             Printer.trace("Exit TEST7_DECIDE.")
+        # end of behavior for TEST7_DECIDE
         
         # TEST7_DECIDE behavior
         # uml: exit [trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", True)] / { clear_dispatch_output() }
         if self.trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", True):
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
+        # end of behavior for TEST7_DECIDE
         
         self.stateId = Spec2Sm.StateId.TEST7_INITIAL_OR_HISTORY
+    
     
     def _TEST7_DECIDE_ev1(self):
         # TEST7_DECIDE behavior
@@ -9171,6 +10368,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__INITIAL1__PARENT_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__INITIAL1.<InitialState>
+        # end of behavior for TEST7_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST7_DECIDE_ev2(self):
         # TEST7_DECIDE behavior
@@ -9200,6 +10402,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__H1__ON_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__HISTORY1.<InitialState>
+        # end of behavior for TEST7_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST7_DECIDE_ev3(self):
         # TEST7_DECIDE behavior
@@ -9230,6 +10437,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DH1__BUILD_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DEEP_HISTORY1.<InitialState>
+        # end of behavior for TEST7_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST7_DECIDE_ev4(self):
         # TEST7_DECIDE behavior
@@ -9259,6 +10471,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DEEP_HISTORY2__T7__state_0_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DEEP_HISTORY2.<InitialState>
+        # end of behavior for TEST7_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST7_DECIDE_ev5(self):
         # TEST7_DECIDE behavior
@@ -9288,6 +10505,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._T7__DEEP_HISTORY3__T7__state_0_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for T7__DEEP_HISTORY3.<InitialState>
+        # end of behavior for TEST7_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -9302,6 +10524,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.")`
             Printer.trace("Enter TEST8_ENTRY_CHOICE.")
+        # end of behavior for TEST8_ENTRY_CHOICE
+    
     
     def _TEST8_ENTRY_CHOICE_exit(self):
         # TEST8_ENTRY_CHOICE behavior
@@ -9309,8 +10533,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.")`
             Printer.trace("Exit TEST8_ENTRY_CHOICE.")
+        # end of behavior for TEST8_ENTRY_CHOICE
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -9325,12 +10551,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST8_ROOT.")`
             Printer.trace("Enter TEST8_ROOT.")
+        # end of behavior for TEST8_ROOT
         
         # TEST8_ROOT behavior
         # uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", True)] / { clear_dispatch_output() }
         if self.trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", True):
             # Step 1: execute action `clear_dispatch_output()`
             Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
+        # end of behavior for TEST8_ROOT
+    
     
     def _TEST8_ROOT_exit(self):
         # TEST8_ROOT behavior
@@ -9338,14 +10567,21 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST8_ROOT.")`
             Printer.trace("Exit TEST8_ROOT.")
+        # end of behavior for TEST8_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST8_ENTRY_CHOICE
+    
     
     def _TEST8_ROOT_ev3(self):
         # TEST8_ROOT behavior
         # uml: EV3 [trace_guard("State TEST8_ROOT: check behavior `EV3`.", True)]
         if self.trace_guard("State TEST8_ROOT: check behavior `EV3`.", True):
+            # Step 1: execute action ``
+        # end of behavior for TEST8_ROOT
             pass
+        
+        # No ancestor handles this event.
+    
     
     def _TEST8_ROOT_ev5(self):
         # TEST8_ROOT behavior
@@ -9353,6 +10589,10 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST8_ROOT: check behavior `EV5 / { count += 1 }`.", True):
             # Step 1: execute action `count += 1`
             self.vars.count += 1
+        # end of behavior for TEST8_ROOT
+        
+        # No ancestor handles this event.
+    
     
     def _TEST8_ROOT_EntryPoint_1__transition(self):
         # TEST8_ROOT.<EntryPoint>(1) behavior
@@ -9368,6 +10608,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST8_ROOT.<EntryPoint>(1)
+    
     
     
     ########################################
@@ -9382,6 +10624,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST8_G.")`
             Printer.trace("Enter TEST8_G.")
+        # end of behavior for TEST8_G
+    
     
     def _TEST8_G_exit(self):
         # TEST8_G behavior
@@ -9389,8 +10633,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST8_G.")`
             Printer.trace("Exit TEST8_G.")
+        # end of behavior for TEST8_G
         
         self.stateId = Spec2Sm.StateId.TEST8_ROOT
+    
     
     def _TEST8_G_ev2(self):
         # TEST8_G behavior
@@ -9408,6 +10654,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_ROOT_EntryPoint_1__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST8_G
+        
+        # No ancestor handles this event.
+    
     
     def _TEST8_G_EntryPoint_1__transition(self):
         # TEST8_G.<EntryPoint>(1) behavior
@@ -9423,6 +10673,7 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST8_G.<EntryPoint>(1)
         
         # TEST8_G.<EntryPoint>(1) behavior
         # uml: [count == 2] / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.") } TransitionTo(TEST8_G_S2)
@@ -9437,6 +10688,7 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST8_G.<EntryPoint>(1)
         
         # TEST8_G.<EntryPoint>(1) behavior
         # uml: else / { trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.") } TransitionTo(TEST8_G_S3)
@@ -9451,6 +10703,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST8_G.<EntryPoint>(1)
+    
     
     def _TEST8_G_EntryPoint_3__transition(self):
         # TEST8_G.<EntryPoint>(3) behavior
@@ -9468,6 +10722,8 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_G_EntryPoint_1__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST8_G.<EntryPoint>(3)
+    
     
     
     ########################################
@@ -9482,6 +10738,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST8_G_S1.")`
             Printer.trace("Enter TEST8_G_S1.")
+        # end of behavior for TEST8_G_S1
+    
     
     def _TEST8_G_S1_exit(self):
         # TEST8_G_S1 behavior
@@ -9489,8 +10747,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST8_G_S1.")`
             Printer.trace("Exit TEST8_G_S1.")
+        # end of behavior for TEST8_G_S1
         
         self.stateId = Spec2Sm.StateId.TEST8_G
+    
     
     
     ########################################
@@ -9505,6 +10765,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST8_G_S2.")`
             Printer.trace("Enter TEST8_G_S2.")
+        # end of behavior for TEST8_G_S2
+    
     
     def _TEST8_G_S2_exit(self):
         # TEST8_G_S2 behavior
@@ -9512,8 +10774,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST8_G_S2.")`
             Printer.trace("Exit TEST8_G_S2.")
+        # end of behavior for TEST8_G_S2
         
         self.stateId = Spec2Sm.StateId.TEST8_G
+    
     
     
     ########################################
@@ -9528,6 +10792,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST8_G_S3.")`
             Printer.trace("Enter TEST8_G_S3.")
+        # end of behavior for TEST8_G_S3
+    
     
     def _TEST8_G_S3_exit(self):
         # TEST8_G_S3 behavior
@@ -9535,8 +10801,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST8_G_S3.")`
             Printer.trace("Exit TEST8_G_S3.")
+        # end of behavior for TEST8_G_S3
         
         self.stateId = Spec2Sm.StateId.TEST8_G
+    
     
     
     ########################################
@@ -9551,6 +10819,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST8_S1.")`
             Printer.trace("Enter TEST8_S1.")
+        # end of behavior for TEST8_S1
+    
     
     def _TEST8_S1_exit(self):
         # TEST8_S1 behavior
@@ -9558,8 +10828,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST8_S1.")`
             Printer.trace("Exit TEST8_S1.")
+        # end of behavior for TEST8_S1
         
         self.stateId = Spec2Sm.StateId.TEST8_ROOT
+    
     
     def _TEST8_S1_ev1(self):
         # TEST8_S1 behavior
@@ -9578,12 +10850,17 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_G_EntryPoint_1__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST8_S1
         
         # TEST8_S1 behavior
         # uml: 2. EV1 [trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", True)] / { count += 1 # shouldn't run */ }
         if self.trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", True):
             # Step 1: execute action `count += 1 # shouldn't run */`
             self.vars.count += 1 
+        # end of behavior for TEST8_S1
+        
+        # No ancestor handles this event.
+    
     
     def _TEST8_S1_ev3(self):
         consume_event = False
@@ -9604,10 +10881,13 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_G_EntryPoint_3__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST8_S1
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST8_ROOT_ev3()
+        
+    
     
     def _TEST8_S1_ev6(self):
         # TEST8_S1 behavior
@@ -9626,6 +10906,10 @@ class Spec2Sm(Spec2SmBase):
             # Finish transition by calling pseudo state transition function.
             self._TEST8_G_EntryPoint_3__transition()
             return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+        # end of behavior for TEST8_S1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -9640,6 +10924,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.")`
             Printer.trace("Enter TEST9_EXIT_CHOICE.")
+        # end of behavior for TEST9_EXIT_CHOICE
+    
     
     def _TEST9_EXIT_CHOICE_exit(self):
         # TEST9_EXIT_CHOICE behavior
@@ -9647,8 +10933,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.")`
             Printer.trace("Exit TEST9_EXIT_CHOICE.")
+        # end of behavior for TEST9_EXIT_CHOICE
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -9663,6 +10951,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_DECIDE.")`
             Printer.trace("Enter TEST9_DECIDE.")
+        # end of behavior for TEST9_DECIDE
+    
     
     def _TEST9_DECIDE_exit(self):
         # TEST9_DECIDE behavior
@@ -9670,8 +10960,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_DECIDE.")`
             Printer.trace("Exit TEST9_DECIDE.")
+        # end of behavior for TEST9_DECIDE
         
         self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
+    
     
     def _TEST9_DECIDE_ev1(self):
         # TEST9_DECIDE behavior
@@ -9710,6 +11002,12 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+                # end of behavior for TEST9_S1.<InitialState>
+            # end of behavior for TEST9_ROOT.<InitialState>
+        # end of behavior for TEST9_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST9_DECIDE_ev2(self):
         # TEST9_DECIDE behavior
@@ -9739,6 +11037,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST9A_S1_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for TEST9A_ROOT.<InitialState>
+        # end of behavior for TEST9_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     def _TEST9_DECIDE_ev3(self):
         # TEST9_DECIDE behavior
@@ -9755,6 +11058,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST9_DECIDE
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -9769,6 +11076,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_ROOT.")`
             Printer.trace("Enter TEST9_ROOT.")
+        # end of behavior for TEST9_ROOT
+    
     
     def _TEST9_ROOT_exit(self):
         # TEST9_ROOT behavior
@@ -9776,8 +11085,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_ROOT.")`
             Printer.trace("Exit TEST9_ROOT.")
+        # end of behavior for TEST9_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
+    
     
     def _TEST9_ROOT_ev5(self):
         # TEST9_ROOT behavior
@@ -9785,6 +11096,10 @@ class Spec2Sm(Spec2SmBase):
         if self.trace_guard("State TEST9_ROOT: check behavior `EV5 / { count += 1 }`.", True):
             # Step 1: execute action `count += 1`
             self.vars.count += 1
+        # end of behavior for TEST9_ROOT
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -9799,6 +11114,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_G_S1.")`
             Printer.trace("Enter TEST9_G_S1.")
+        # end of behavior for TEST9_G_S1
+    
     
     def _TEST9_G_S1_exit(self):
         # TEST9_G_S1 behavior
@@ -9806,8 +11123,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_G_S1.")`
             Printer.trace("Exit TEST9_G_S1.")
+        # end of behavior for TEST9_G_S1
         
         self.stateId = Spec2Sm.StateId.TEST9_ROOT
+    
     
     
     ########################################
@@ -9822,6 +11141,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_G_S2.")`
             Printer.trace("Enter TEST9_G_S2.")
+        # end of behavior for TEST9_G_S2
+    
     
     def _TEST9_G_S2_exit(self):
         # TEST9_G_S2 behavior
@@ -9829,8 +11150,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_G_S2.")`
             Printer.trace("Exit TEST9_G_S2.")
+        # end of behavior for TEST9_G_S2
         
         self.stateId = Spec2Sm.StateId.TEST9_ROOT
+    
     
     
     ########################################
@@ -9845,6 +11168,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_G_S3.")`
             Printer.trace("Enter TEST9_G_S3.")
+        # end of behavior for TEST9_G_S3
+    
     
     def _TEST9_G_S3_exit(self):
         # TEST9_G_S3 behavior
@@ -9852,8 +11177,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_G_S3.")`
             Printer.trace("Exit TEST9_G_S3.")
+        # end of behavior for TEST9_G_S3
         
         self.stateId = Spec2Sm.StateId.TEST9_ROOT
+    
     
     
     ########################################
@@ -9868,6 +11195,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_G_S4.")`
             Printer.trace("Enter TEST9_G_S4.")
+        # end of behavior for TEST9_G_S4
+    
     
     def _TEST9_G_S4_exit(self):
         # TEST9_G_S4 behavior
@@ -9875,8 +11204,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_G_S4.")`
             Printer.trace("Exit TEST9_G_S4.")
+        # end of behavior for TEST9_G_S4
         
         self.stateId = Spec2Sm.StateId.TEST9_ROOT
+    
     
     
     ########################################
@@ -9891,6 +11222,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_S1.")`
             Printer.trace("Enter TEST9_S1.")
+        # end of behavior for TEST9_S1
+    
     
     def _TEST9_S1_exit(self):
         # TEST9_S1 behavior
@@ -9898,8 +11231,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_S1.")`
             Printer.trace("Exit TEST9_S1.")
+        # end of behavior for TEST9_S1
         
         self.stateId = Spec2Sm.StateId.TEST9_ROOT
+    
     
     
     ########################################
@@ -9914,12 +11249,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9_S1_1.")`
             Printer.trace("Enter TEST9_S1_1.")
+        # end of behavior for TEST9_S1_1
         
         # TEST9_S1_1 behavior
         # uml: enter [trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST9_S1_1
+    
     
     def _TEST9_S1_1_exit(self):
         # TEST9_S1_1 behavior
@@ -9927,8 +11265,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9_S1_1.")`
             Printer.trace("Exit TEST9_S1_1.")
+        # end of behavior for TEST9_S1_1
         
         self.stateId = Spec2Sm.StateId.TEST9_S1
+    
     
     def _TEST9_S1_1_ev1(self):
         # TEST9_S1_1 behavior
@@ -9957,6 +11297,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST9_S1.<ExitPoint>(1)
             
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: [count == 1] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1.") } TransitionTo(TEST9_G_S1)
@@ -9972,6 +11313,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST9_S1.<ExitPoint>(1)
             
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: [count == 2] / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2.") } TransitionTo(TEST9_G_S2)
@@ -9987,6 +11329,7 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST9_S1.<ExitPoint>(1)
             
             # TEST9_S1.<ExitPoint>(1) behavior
             # uml: else / { trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3.") } TransitionTo(TEST9_G_S3)
@@ -10002,6 +11345,11 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST9_S1.<ExitPoint>(1)
+        # end of behavior for TEST9_S1_1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -10016,6 +11364,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9A_ROOT.")`
             Printer.trace("Enter TEST9A_ROOT.")
+        # end of behavior for TEST9A_ROOT
+    
     
     def _TEST9A_ROOT_exit(self):
         # TEST9A_ROOT behavior
@@ -10023,8 +11373,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9A_ROOT.")`
             Printer.trace("Exit TEST9A_ROOT.")
+        # end of behavior for TEST9A_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
+    
     
     
     ########################################
@@ -10039,6 +11391,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9A_S1.")`
             Printer.trace("Enter TEST9A_S1.")
+        # end of behavior for TEST9A_S1
+    
     
     def _TEST9A_S1_exit(self):
         # TEST9A_S1 behavior
@@ -10046,8 +11400,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9A_S1.")`
             Printer.trace("Exit TEST9A_S1.")
+        # end of behavior for TEST9A_S1
         
         self.stateId = Spec2Sm.StateId.TEST9A_ROOT
+    
     
     def _TEST9A_S1_InitialState_transition(self):
         # TEST9A_S1.<InitialState> behavior
@@ -10063,6 +11419,8 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST9A_S1.<InitialState>
+    
     
     
     ########################################
@@ -10077,12 +11435,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9A_S1_1.")`
             Printer.trace("Enter TEST9A_S1_1.")
+        # end of behavior for TEST9A_S1_1
         
         # TEST9A_S1_1 behavior
         # uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", count == 0)] / { clear_output() }
         if self.trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", self.vars.count == 0):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST9A_S1_1
+    
     
     def _TEST9A_S1_1_exit(self):
         # TEST9A_S1_1 behavior
@@ -10090,14 +11451,17 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9A_S1_1.")`
             Printer.trace("Exit TEST9A_S1_1.")
+        # end of behavior for TEST9A_S1_1
         
         # TEST9A_S1_1 behavior
         # uml: exit [trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", True)] / { count = 100 }
         if self.trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", True):
             # Step 1: execute action `count = 100`
             self.vars.count = 100
+        # end of behavior for TEST9A_S1_1
         
         self.stateId = Spec2Sm.StateId.TEST9A_S1
+    
     
     def _TEST9A_S1_1_ev1(self):
         # TEST9A_S1_1 behavior
@@ -10127,6 +11491,11 @@ class Spec2Sm(Spec2SmBase):
                 # Finish transition by calling pseudo state transition function.
                 self._TEST9A_S1_InitialState_transition()
                 return # event processing immediately stops when a transition finishes. No other behaviors for this state are checked.
+            # end of behavior for TEST9A_S1.<ExitPoint>(1)
+        # end of behavior for TEST9A_S1_1
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -10141,12 +11510,15 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT.")`
             Printer.trace("Enter TEST9B_ROOT.")
+        # end of behavior for TEST9B_ROOT
         
         # TEST9B_ROOT behavior
         # uml: enter [trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", True)] / { clear_output() }
         if self.trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", True):
             # Step 1: execute action `clear_output()`
             Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
+        # end of behavior for TEST9B_ROOT
+    
     
     def _TEST9B_ROOT_exit(self):
         # TEST9B_ROOT behavior
@@ -10154,8 +11526,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT.")`
             Printer.trace("Exit TEST9B_ROOT.")
+        # end of behavior for TEST9B_ROOT
         
         self.stateId = Spec2Sm.StateId.TEST9_EXIT_CHOICE
+    
     
     def _TEST9B_ROOT_ev1(self):
         # TEST9B_ROOT behavior
@@ -10175,6 +11549,10 @@ class Spec2Sm(Spec2SmBase):
             
             # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
             return
+        # end of behavior for TEST9B_ROOT
+        
+        # No ancestor handles this event.
+    
     
     
     ########################################
@@ -10189,6 +11567,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT__A1.")`
             Printer.trace("Enter TEST9B_ROOT__A1.")
+        # end of behavior for TEST9B_ROOT__A1
+    
     
     def _TEST9B_ROOT__A1_exit(self):
         # TEST9B_ROOT__A1 behavior
@@ -10196,8 +11576,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A1.")`
             Printer.trace("Exit TEST9B_ROOT__A1.")
+        # end of behavior for TEST9B_ROOT__A1
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT
+    
     
     
     ########################################
@@ -10212,6 +11594,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT__A2.")`
             Printer.trace("Enter TEST9B_ROOT__A2.")
+        # end of behavior for TEST9B_ROOT__A2
+    
     
     def _TEST9B_ROOT__A2_exit(self):
         # TEST9B_ROOT__A2 behavior
@@ -10219,8 +11603,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A2.")`
             Printer.trace("Exit TEST9B_ROOT__A2.")
+        # end of behavior for TEST9B_ROOT__A2
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A1
+    
     
     
     ########################################
@@ -10235,6 +11621,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT__A3.")`
             Printer.trace("Enter TEST9B_ROOT__A3.")
+        # end of behavior for TEST9B_ROOT__A3
+    
     
     def _TEST9B_ROOT__A3_exit(self):
         # TEST9B_ROOT__A3 behavior
@@ -10242,8 +11630,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A3.")`
             Printer.trace("Exit TEST9B_ROOT__A3.")
+        # end of behavior for TEST9B_ROOT__A3
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A2
+    
     
     
     ########################################
@@ -10258,6 +11648,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT__A4.")`
             Printer.trace("Enter TEST9B_ROOT__A4.")
+        # end of behavior for TEST9B_ROOT__A4
+    
     
     def _TEST9B_ROOT__A4_exit(self):
         # TEST9B_ROOT__A4 behavior
@@ -10265,8 +11657,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT__A4.")`
             Printer.trace("Exit TEST9B_ROOT__A4.")
+        # end of behavior for TEST9B_ROOT__A4
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT__A3
+    
     
     def _TEST9B_ROOT__A4_ev1(self):
         consume_event = False
@@ -10300,10 +11694,14 @@ class Spec2Sm(Spec2SmBase):
                 
                 # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                 return
+            # end of behavior for TEST9B_ROOT__A3.<ExitPoint>(1)
+        # end of behavior for TEST9B_ROOT__A4
         
         # Check if event has been consumed before calling ancestor handler.
         if not consume_event:
             self._TEST9B_ROOT_ev1()
+        
+    
     
     
     ########################################
@@ -10318,6 +11716,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT__B1.")`
             Printer.trace("Enter TEST9B_ROOT__B1.")
+        # end of behavior for TEST9B_ROOT__B1
+    
     
     def _TEST9B_ROOT__B1_exit(self):
         # TEST9B_ROOT__B1 behavior
@@ -10325,8 +11725,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B1.")`
             Printer.trace("Exit TEST9B_ROOT__B1.")
+        # end of behavior for TEST9B_ROOT__B1
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT
+    
     
     
     ########################################
@@ -10341,6 +11743,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT__B2.")`
             Printer.trace("Enter TEST9B_ROOT__B2.")
+        # end of behavior for TEST9B_ROOT__B2
+    
     
     def _TEST9B_ROOT__B2_exit(self):
         # TEST9B_ROOT__B2 behavior
@@ -10348,8 +11752,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B2.")`
             Printer.trace("Exit TEST9B_ROOT__B2.")
+        # end of behavior for TEST9B_ROOT__B2
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B1
+    
     
     
     ########################################
@@ -10364,6 +11770,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT__B3.")`
             Printer.trace("Enter TEST9B_ROOT__B3.")
+        # end of behavior for TEST9B_ROOT__B3
+    
     
     def _TEST9B_ROOT__B3_exit(self):
         # TEST9B_ROOT__B3 behavior
@@ -10371,8 +11779,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B3.")`
             Printer.trace("Exit TEST9B_ROOT__B3.")
+        # end of behavior for TEST9B_ROOT__B3
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B2
+    
     
     
     ########################################
@@ -10387,6 +11797,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter TEST9B_ROOT__B4.")`
             Printer.trace("Enter TEST9B_ROOT__B4.")
+        # end of behavior for TEST9B_ROOT__B4
+    
     
     def _TEST9B_ROOT__B4_exit(self):
         # TEST9B_ROOT__B4 behavior
@@ -10394,8 +11806,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit TEST9B_ROOT__B4.")`
             Printer.trace("Exit TEST9B_ROOT__B4.")
+        # end of behavior for TEST9B_ROOT__B4
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B3
+    
     
     
     ########################################
@@ -10410,6 +11824,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter UNREACHABLE.")`
             Printer.trace("Enter UNREACHABLE.")
+        # end of behavior for UNREACHABLE
+    
     
     def _UNREACHABLE_exit(self):
         # UNREACHABLE behavior
@@ -10417,8 +11833,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit UNREACHABLE.")`
             Printer.trace("Exit UNREACHABLE.")
+        # end of behavior for UNREACHABLE
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     
     ########################################
@@ -10433,6 +11851,8 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Enter USELESS.")`
             Printer.trace("Enter USELESS.")
+        # end of behavior for USELESS
+    
     
     def _USELESS_exit(self):
         # USELESS behavior
@@ -10440,8 +11860,10 @@ class Spec2Sm(Spec2SmBase):
         if True:
             # Step 1: execute action `trace("Exit USELESS.")`
             Printer.trace("Exit USELESS.")
+        # end of behavior for USELESS
         
         self.stateId = Spec2Sm.StateId.ROOT
+    
     
     # Thread safe.
     @staticmethod
@@ -10623,6 +12045,7 @@ class Spec2Sm(Spec2SmBase):
             case Spec2Sm.StateId.USELESS: return "USELESS"
             case _: return "?"
     
+    
     # Thread safe.
     @staticmethod
     def eventIdToString(id):
@@ -10643,3 +12066,4 @@ class Spec2Sm(Spec2SmBase):
             case Spec2Sm.EventId.EVOPEN: return "EVOPEN"
             case Spec2Sm.EventId.EVSTEP: return "EVSTEP"
             case _: return "?"
+    
