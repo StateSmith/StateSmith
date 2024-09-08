@@ -4,6 +4,7 @@
 # any text you put in IRenderConfig.FileTop (like this comment) will be written to the generated file
 import enum
 from Spec2SmBase import Spec2SmBase
+from Printer import Printer
 
 # Generated state machine
 class Spec2Sm(Spec2SmBase):
@@ -294,7 +295,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.")`.
-                MainClass.trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.")
+                Printer.trace("Transition action `` for ROOT.<InitialState> to Spec2Sm__DECIDE.")
                 
                 # Step 3: Enter/move towards transition target `Spec2Sm__DECIDE`.
                 self._SPEC2SM__DECIDE_enter()
@@ -2642,7 +2643,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.PREFIXING__ORDER_MENU)
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.")`.
-            MainClass.trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.")
+            Printer.trace("Transition action `` for PREFIXING__OM__BEVERAGE to PREFIXING__OM__VEG.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__OM__VEG`.
             self._PREFIXING__OM__VEG_enter()
@@ -2654,7 +2655,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `PREFIXING__OM__VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.")`.
-                MainClass.trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.")
+                Printer.trace("Transition action `` for PREFIXING__OM__VEG.<InitialState> to PREFIXING__OM__VEG__NONE.")
                 
                 # Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__NONE`.
                 self._PREFIXING__OM__VEG__NONE_enter()
@@ -2670,7 +2671,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `PREFIXING__OM__BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.")`.
-            MainClass.trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.")
+            Printer.trace("Transition action `` for PREFIXING__OM__BEVERAGE.<InitialState> to PREFIXING__OM__BEV__NONE.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__NONE`.
             self._PREFIXING__OM__BEV__NONE_enter()
@@ -2708,7 +2709,7 @@ class Spec2Sm(Spec2SmBase):
             self._PREFIXING__OM__BEV__NONE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.")`.
-            MainClass.trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.")
+            Printer.trace("Transition action `` for PREFIXING__OM__BEV__NONE to PREFIXING__OM__BEV__WATER.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__WATER`.
             self._PREFIXING__OM__BEV__WATER_enter()
@@ -2767,7 +2768,7 @@ class Spec2Sm(Spec2SmBase):
             self._PREFIXING__OM__BEV__WATER_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.")`.
-            MainClass.trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.")
+            Printer.trace("Transition action `` for PREFIXING__OM__BEV__WATER to PREFIXING__OM__BEV__TEA.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__OM__BEV__TEA`.
             self._PREFIXING__OM__BEV__TEA_enter()
@@ -2805,7 +2806,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.PREFIXING__ORDER_MENU)
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.")`.
-            MainClass.trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.")
+            Printer.trace("Transition action `` for PREFIXING__OM__VEG to PREFIXING__OM__BEVERAGE.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__OM__BEVERAGE`.
             self._PREFIXING__OM__BEVERAGE_enter()
@@ -2844,7 +2845,7 @@ class Spec2Sm(Spec2SmBase):
             self._PREFIXING__OM__VEG__NONE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.")`.
-            MainClass.trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.")
+            Printer.trace("Transition action `` for PREFIXING__OM__VEG__NONE to PREFIXING__OM__VEG__POTATO.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__POTATO`.
             self._PREFIXING__OM__VEG__POTATO_enter()
@@ -2882,7 +2883,7 @@ class Spec2Sm(Spec2SmBase):
             self._PREFIXING__OM__VEG__POTATO_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.")`.
-            MainClass.trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.")
+            Printer.trace("Transition action `` for PREFIXING__OM__VEG__POTATO to PREFIXING__OM__VEG__YAM.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__OM__VEG__YAM`.
             self._PREFIXING__OM__VEG__YAM_enter()
@@ -2983,7 +2984,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`.
-            MainClass.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
+            Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG`.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_enter()
@@ -2995,7 +2996,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`.
-                MainClass.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
+                Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
                 
                 # Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE`.
                 self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_enter()
@@ -3011,7 +3012,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`.
-            MainClass.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
+            Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.<InitialState> to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE`.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_enter()
@@ -3049,7 +3050,7 @@ class Spec2Sm(Spec2SmBase):
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`.
-            MainClass.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
+            Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER`.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_enter()
@@ -3108,7 +3109,7 @@ class Spec2Sm(Spec2SmBase):
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`.
-            MainClass.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
+            Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA`.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_enter()
@@ -3146,7 +3147,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU)
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`.
-            MainClass.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
+            Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG to PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE`.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_enter()
@@ -3185,7 +3186,7 @@ class Spec2Sm(Spec2SmBase):
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`.
-            MainClass.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
+            Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO`.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_enter()
@@ -3223,7 +3224,7 @@ class Spec2Sm(Spec2SmBase):
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`.
-            MainClass.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
+            Printer.trace("Transition action `` for PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO to PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
             
             # Step 3: Enter/move towards transition target `PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM`.
             self._PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_enter()
@@ -3282,7 +3283,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING.")
             
             # Step 3: Enter/move towards transition target `TEST1_DO_EVENT_TESTING`.
             self._TEST1_DO_EVENT_TESTING_enter()
@@ -3294,7 +3295,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST1_DO_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.")`.
-                MainClass.trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.")
+                Printer.trace("Transition action `` for TEST1_DO_EVENT_TESTING.<InitialState> to TEST1_ROOT.")
                 
                 # Step 3: Enter/move towards transition target `TEST1_ROOT`.
                 self._TEST1_ROOT_enter()
@@ -3306,7 +3307,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `TEST1_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.")`.
-                    MainClass.trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.")
+                    Printer.trace("Transition action `` for TEST1_ROOT.<InitialState> to TEST1_S1_1.")
                     
                     # Step 3: Enter/move towards transition target `TEST1_S1_1`.
                     self._TEST1_S1_enter()
@@ -3324,7 +3325,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST10_CHOICE_POINT.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST10_CHOICE_POINT.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST10_CHOICE_POINT.")
             
             # Step 3: Enter/move towards transition target `TEST10_CHOICE_POINT`.
             self._TEST10_CHOICE_POINT_enter()
@@ -3336,7 +3337,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_CHOICE_POINT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.")`.
-                MainClass.trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.")
+                Printer.trace("Transition action `` for TEST10_CHOICE_POINT.<InitialState> to TEST10_S1.")
                 
                 # Step 3: Enter/move towards transition target `TEST10_S1`.
                 self._TEST10_ROOT_enter()
@@ -3354,7 +3355,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST2_REGULAR_EVENT_TESTING.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST2_REGULAR_EVENT_TESTING.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST2_REGULAR_EVENT_TESTING.")
             
             # Step 3: Enter/move towards transition target `TEST2_REGULAR_EVENT_TESTING`.
             self._TEST2_REGULAR_EVENT_TESTING_enter()
@@ -3366,7 +3367,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST2_REGULAR_EVENT_TESTING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.")`.
-                MainClass.trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.")
+                Printer.trace("Transition action `` for TEST2_REGULAR_EVENT_TESTING.<InitialState> to TEST2_ROOT.")
                 
                 # Step 3: Enter/move towards transition target `TEST2_ROOT`.
                 self._TEST2_ROOT_enter()
@@ -3378,7 +3379,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `TEST2_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.")`.
-                    MainClass.trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.")
+                    Printer.trace("Transition action `` for TEST2_ROOT.<InitialState> to TEST2_S1_1.")
                     
                     # Step 3: Enter/move towards transition target `TEST2_S1_1`.
                     self._TEST2_S1_enter()
@@ -3396,7 +3397,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST3_BEHAVIOR_ORDERING.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST3_BEHAVIOR_ORDERING.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST3_BEHAVIOR_ORDERING.")
             
             # Step 3: Enter/move towards transition target `TEST3_BEHAVIOR_ORDERING`.
             self._TEST3_BEHAVIOR_ORDERING_enter()
@@ -3408,7 +3409,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST3_BEHAVIOR_ORDERING` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.")`.
-                MainClass.trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.")
+                Printer.trace("Transition action `` for TEST3_BEHAVIOR_ORDERING.<InitialState> to TEST3_ROOT.")
                 
                 # Step 3: Enter/move towards transition target `TEST3_ROOT`.
                 self._TEST3_ROOT_enter()
@@ -3420,7 +3421,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `TEST3_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.")`.
-                    MainClass.trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.")
+                    Printer.trace("Transition action `` for TEST3_ROOT.<InitialState> to TEST3_S1.")
                     
                     # Step 3: Enter/move towards transition target `TEST3_S1`.
                     self._TEST3_S1_enter()
@@ -3437,7 +3438,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST4_PARENT_CHILD_TRANSITIONS.")
             
             # Step 3: Enter/move towards transition target `TEST4_PARENT_CHILD_TRANSITIONS`.
             self._TEST4_PARENT_CHILD_TRANSITIONS_enter()
@@ -3449,7 +3450,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST4_PARENT_CHILD_TRANSITIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.")`.
-                MainClass.trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.")
+                Printer.trace("Transition action `` for TEST4_PARENT_CHILD_TRANSITIONS.<InitialState> to TEST4_DECIDE.")
                 
                 # Step 3: Enter/move towards transition target `TEST4_DECIDE`.
                 self._TEST4_DECIDE_enter()
@@ -3466,7 +3467,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
             
             # Step 3: Enter/move towards transition target `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS`.
             self._TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_enter()
@@ -3478,7 +3479,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST5_PARENT_CHILD_TRANSITIONS_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.")`.
-                MainClass.trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.")
+                Printer.trace("Transition action `` for TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.<InitialState> to TEST5_ROOT.")
                 
                 # Step 3: Enter/move towards transition target `TEST5_ROOT`.
                 self._TEST5_ROOT_enter()
@@ -3495,7 +3496,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST6_VARS_EXPANSIONS.")
             
             # Step 3: Enter/move towards transition target `TEST6_VARS_EXPANSIONS`.
             self._TEST6_VARS_EXPANSIONS_enter()
@@ -3507,7 +3508,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST6_VARS_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.")`.
-                MainClass.trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.")
+                Printer.trace("Transition action `` for TEST6_VARS_EXPANSIONS.<InitialState> to TEST6_ROOT.")
                 
                 # Step 3: Enter/move towards transition target `TEST6_ROOT`.
                 self._TEST6_ROOT_enter()
@@ -3519,7 +3520,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `TEST6_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.")`.
-                    MainClass.trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.")
+                    Printer.trace("Transition action `` for TEST6_ROOT.<InitialState> to TEST6_VARS_EXPANSIONS__DECIDE.")
                     
                     # Step 3: Enter/move towards transition target `TEST6_VARS_EXPANSIONS__DECIDE`.
                     self._TEST6_VARS_EXPANSIONS__DECIDE_enter()
@@ -3536,7 +3537,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST7_INITIAL_OR_HISTORY.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST7_INITIAL_OR_HISTORY.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST7_INITIAL_OR_HISTORY.")
             
             # Step 3: Enter/move towards transition target `TEST7_INITIAL_OR_HISTORY`.
             self._TEST7_INITIAL_OR_HISTORY_enter()
@@ -3548,7 +3549,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST7_INITIAL_OR_HISTORY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.")`.
-                MainClass.trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.")
+                Printer.trace("Transition action `` for TEST7_INITIAL_OR_HISTORY.<InitialState> to TEST7_DECIDE.")
                 
                 # Step 3: Enter/move towards transition target `TEST7_DECIDE`.
                 self._TEST7_DECIDE_enter()
@@ -3565,7 +3566,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST8_ENTRY_CHOICE.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST8_ENTRY_CHOICE.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST8_ENTRY_CHOICE.")
             
             # Step 3: Enter/move towards transition target `TEST8_ENTRY_CHOICE`.
             self._TEST8_ENTRY_CHOICE_enter()
@@ -3577,7 +3578,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST8_ENTRY_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).")`.
-                MainClass.trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).")
+                Printer.trace("Transition action `` for TEST8_ENTRY_CHOICE.<InitialState> to TEST8_ROOT.<EntryPoint>(1).")
                 
                 # Step 3: Enter/move towards transition target `TEST8_ROOT.<EntryPoint>(1)`.
                 self._TEST8_ROOT_enter()
@@ -3596,7 +3597,7 @@ class Spec2Sm(Spec2SmBase):
             self._SPEC2SM__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to TEST9_EXIT_CHOICE.")`.
-            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to TEST9_EXIT_CHOICE.")
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to TEST9_EXIT_CHOICE.")
             
             # Step 3: Enter/move towards transition target `TEST9_EXIT_CHOICE`.
             self._TEST9_EXIT_CHOICE_enter()
@@ -3608,7 +3609,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST9_EXIT_CHOICE` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.")`.
-                MainClass.trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.")
+                Printer.trace("Transition action `` for TEST9_EXIT_CHOICE.<InitialState> to TEST9_DECIDE.")
                 
                 # Step 3: Enter/move towards transition target `TEST9_DECIDE`.
                 self._TEST9_DECIDE_enter()
@@ -3740,7 +3741,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST1_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST1_S1_1 to TEST1_S2.")`.
-            MainClass.trace("Transition action `` for TEST1_S1_1 to TEST1_S2.")
+            Printer.trace("Transition action `` for TEST1_S1_1 to TEST1_S2.")
             
             # Step 3: Enter/move towards transition target `TEST1_S2`.
             self._TEST1_S2_enter()
@@ -3832,7 +3833,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")`.
-            MainClass.trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")
+            Printer.trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")
             
             # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
             # TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -3848,7 +3849,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")`.
-            MainClass.trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")
+            Printer.trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>().")
             
             # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
             # TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -3865,7 +3866,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")`.
-            MainClass.trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")
+            Printer.trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")
             
             # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>(a)`.
             # TEST10_A.<ChoicePoint>(a) is a pseudo state and cannot have an `enter` trigger.
@@ -3881,7 +3882,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")`.
-            MainClass.trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")
+            Printer.trace("Transition action `` for TEST10_A.<ChoicePoint>() to TEST10_A.<ChoicePoint>(a).")
             
             # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>(a)`.
             # TEST10_A.<ChoicePoint>(a) is a pseudo state and cannot have an `enter` trigger.
@@ -3898,7 +3899,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")`.
-            MainClass.trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")
+            Printer.trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")
             
             # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>(a)`.
             # TEST10_A.<ChoicePoint>(a) is a pseudo state and cannot have an `enter` trigger.
@@ -3914,7 +3915,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")`.
-            MainClass.trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")
+            Printer.trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A.<ChoicePoint>(a).")
             
             # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>(a)`.
             # TEST10_A.<ChoicePoint>(a) is a pseudo state and cannot have an `enter` trigger.
@@ -3931,7 +3932,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.")`.
-            MainClass.trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.")
+            Printer.trace("Transition action `` for TEST10_A.<ChoicePoint>(a) to TEST10_A_1.")
             
             # Step 3: Enter/move towards transition target `TEST10_A_1`.
             self._TEST10_A_1_enter()
@@ -4016,7 +4017,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).")`.
-            MainClass.trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).")
+            Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>() to TEST10_G.<ChoicePoint>(1).")
             
             # Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>(1)`.
             # TEST10_G.<ChoicePoint>(1) is a pseudo state and cannot have an `enter` trigger.
@@ -4028,7 +4029,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.")`.
-                MainClass.trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.")
+                Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G_S0.")
                 
                 # Step 3: Enter/move towards transition target `TEST10_G_S0`.
                 self._TEST10_G_S0_enter()
@@ -4043,7 +4044,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).")`.
-                MainClass.trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).")
+                Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(lower).")
                 
                 # Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>(lower)`.
                 # TEST10_G.<ChoicePoint>(lower) is a pseudo state and cannot have an `enter` trigger.
@@ -4055,7 +4056,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.")`.
-                    MainClass.trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.")
+                    Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S1.")
                     
                     # Step 3: Enter/move towards transition target `TEST10_G_S1`.
                     self._TEST10_G_S1_enter()
@@ -4070,7 +4071,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.")`.
-                    MainClass.trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.")
+                    Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>(lower) to TEST10_G_S2.")
                     
                     # Step 3: Enter/move towards transition target `TEST10_G_S2`.
                     self._TEST10_G_S2_enter()
@@ -4085,7 +4086,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).")`.
-                MainClass.trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).")
+                Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>(1) to TEST10_G.<ChoicePoint>(upper).")
                 
                 # Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>(upper)`.
                 # TEST10_G.<ChoicePoint>(upper) is a pseudo state and cannot have an `enter` trigger.
@@ -4097,7 +4098,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.")`.
-                    MainClass.trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.")
+                    Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_G_S3.")
                     
                     # Step 3: Enter/move towards transition target `TEST10_G_S3`.
                     self._TEST10_G_S3_enter()
@@ -4113,7 +4114,7 @@ class Spec2Sm(Spec2SmBase):
                     self._exitUpToStateHandler(StateId.TEST10_ROOT)
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.")`.
-                    MainClass.trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.")
+                    Printer.trace("Transition action `` for TEST10_G.<ChoicePoint>(upper) to TEST10_S4.")
                     
                     # Step 3: Enter/move towards transition target `TEST10_S4`.
                     self._TEST10_S4_enter()
@@ -4240,7 +4241,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST10_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).")`.
-            MainClass.trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).")
+            Printer.trace("Transition action `` for TEST10_S1 to TEST10_G.<EntryPoint>(1).")
             
             # Step 3: Enter/move towards transition target `TEST10_G.<EntryPoint>(1)`.
             self._TEST10_G_enter()
@@ -4253,7 +4254,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().")`.
-                MainClass.trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().")
+                Printer.trace("Transition action `` for TEST10_G.<EntryPoint>(1) to TEST10_G.<ChoicePoint>().")
                 
                 # Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>()`.
                 # TEST10_G.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -4271,7 +4272,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST10_CHOICE_POINT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_A.")`.
-            MainClass.trace("Transition action `` for TEST10_S1 to TEST10_A.")
+            Printer.trace("Transition action `` for TEST10_S1 to TEST10_A.")
             
             # Step 3: Enter/move towards transition target `TEST10_A`.
             self._TEST10_A_enter()
@@ -4283,7 +4284,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")`.
-                MainClass.trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")
+                Printer.trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")
                 
                 # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
                 # TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -4299,7 +4300,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `count += 1` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")\ncount += 1`.
-                MainClass.trace("Transition action `count += 1` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")
+                Printer.trace("Transition action `count += 1` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")
                 self.vars.count += 1
                 
                 # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
@@ -4316,7 +4317,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_A` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")`.
-                MainClass.trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")
+                Printer.trace("Transition action `` for TEST10_A.<InitialState> to TEST10_A.<ChoicePoint>().")
                 
                 # Step 3: Enter/move towards transition target `TEST10_A.<ChoicePoint>()`.
                 # TEST10_A.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -4334,7 +4335,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST10_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().")`.
-            MainClass.trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().")
+            Printer.trace("Transition action `` for TEST10_S1 to TEST10_G.<ChoicePoint>().")
             
             # Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>()`.
             self._TEST10_G_enter()
@@ -4353,7 +4354,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST10_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST10_S1 to TEST10_G.")`.
-            MainClass.trace("Transition action `` for TEST10_S1 to TEST10_G.")
+            Printer.trace("Transition action `` for TEST10_S1 to TEST10_G.")
             
             # Step 3: Enter/move towards transition target `TEST10_G`.
             self._TEST10_G_enter()
@@ -4365,7 +4366,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST10_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().")`.
-                MainClass.trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().")
+                Printer.trace("Transition action `` for TEST10_G.<InitialState> to TEST10_G.<ChoicePoint>().")
                 
                 # Step 3: Enter/move towards transition target `TEST10_G.<ChoicePoint>()`.
                 # TEST10_G.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -4520,7 +4521,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST2_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST2_S1_1 to TEST2_S2.")`.
-            MainClass.trace("Transition action `` for TEST2_S1_1 to TEST2_S2.")
+            Printer.trace("Transition action `` for TEST2_S1_1 to TEST2_S2.")
             
             # Step 3: Enter/move towards transition target `TEST2_S2`.
             self._TEST2_S2_enter()
@@ -4600,7 +4601,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST2_S2_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST2_S2 to TEST2_S2.")`.
-            MainClass.trace("Transition action `` for TEST2_S2 to TEST2_S2.")
+            Printer.trace("Transition action `` for TEST2_S2 to TEST2_S2.")
             
             # Step 3: Enter/move towards transition target `TEST2_S2`.
             self._TEST2_S2_enter()
@@ -4698,7 +4699,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST3_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST3_S1 to TEST3_S2.")`.
-            MainClass.trace("Transition action `` for TEST3_S1 to TEST3_S2.")
+            Printer.trace("Transition action `` for TEST3_S1 to TEST3_S2.")
             
             # Step 3: Enter/move towards transition target `TEST3_S2`.
             self._TEST3_S2_enter()
@@ -4764,8 +4765,8 @@ class Spec2Sm(Spec2SmBase):
             self._TEST3_S2_exit()
             
             # Step 2: Transition action: `trace("Transition action `trace(\"3 woot!\")` for TEST3_S2 to TEST3_S3.")\ntrace("3 woot!")`.
-            MainClass.trace("Transition action `trace(\"3 woot!\")` for TEST3_S2 to TEST3_S3.")
-            MainClass.trace("3 woot!")
+            Printer.trace("Transition action `trace(\"3 woot!\")` for TEST3_S2 to TEST3_S3.")
+            Printer.trace("3 woot!")
             
             # Step 3: Enter/move towards transition target `TEST3_S3`.
             self._TEST3_S3_enter()
@@ -4897,7 +4898,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4B_G)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4B_G to TEST4B_G_1.")`.
-            MainClass.trace("Transition action `` for TEST4B_G to TEST4B_G_1.")
+            Printer.trace("Transition action `` for TEST4B_G to TEST4B_G_1.")
             
             # Step 3: Enter/move towards transition target `TEST4B_G_1`.
             self._TEST4B_G_1_enter()
@@ -4935,7 +4936,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4B_G_1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4B_G_1 to TEST4B_G.")`.
-            MainClass.trace("Transition action `` for TEST4B_G_1 to TEST4B_G.")
+            Printer.trace("Transition action `` for TEST4B_G_1 to TEST4B_G.")
             
             # Step 3: Enter/move towards transition target `TEST4B_G`.
             # Already in target. No entering required.
@@ -4993,7 +4994,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4C_G)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4C_G to TEST4C_G_1.")`.
-            MainClass.trace("Transition action `` for TEST4C_G to TEST4C_G_1.")
+            Printer.trace("Transition action `` for TEST4C_G to TEST4C_G_1.")
             
             # Step 3: Enter/move towards transition target `TEST4C_G_1`.
             self._TEST4C_G_1_enter()
@@ -5031,7 +5032,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4C_G_1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4C_G_1 to TEST4C_G.")`.
-            MainClass.trace("Transition action `` for TEST4C_G_1 to TEST4C_G.")
+            Printer.trace("Transition action `` for TEST4C_G_1 to TEST4C_G.")
             
             # Step 3: Enter/move towards transition target `TEST4C_G`.
             # Already in target. No entering required.
@@ -5089,7 +5090,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4D_EXTERNAL)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().")`.
-            MainClass.trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().")
+            Printer.trace("Transition action `` for TEST4D_G to TEST4D_EXTERNAL.<ChoicePoint>().")
             
             # Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.<ChoicePoint>()`.
             # TEST4D_EXTERNAL.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -5101,7 +5102,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.")`.
-                MainClass.trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.")
+                Printer.trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G_1.")
                 
                 # Step 3: Enter/move towards transition target `TEST4D_G_1`.
                 self._TEST4D_G_enter()
@@ -5140,7 +5141,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4D_EXTERNAL)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().")`.
-            MainClass.trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().")
+            Printer.trace("Transition action `` for TEST4D_G_1 to TEST4D_EXTERNAL.<ChoicePoint>().")
             
             # Step 3: Enter/move towards transition target `TEST4D_EXTERNAL.<ChoicePoint>()`.
             # TEST4D_EXTERNAL.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -5152,7 +5153,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.")`.
-                MainClass.trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.")
+                Printer.trace("Transition action `` for TEST4D_EXTERNAL.<ChoicePoint>() to TEST4D_G.")
                 
                 # Step 3: Enter/move towards transition target `TEST4D_G`.
                 self._TEST4D_G_enter()
@@ -5190,7 +5191,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.")`.
-            MainClass.trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.")
+            Printer.trace("Transition action `` for TEST4_DECIDE to TEST4_ROOT.")
             
             # Step 3: Enter/move towards transition target `TEST4_ROOT`.
             self._TEST4_ROOT_enter()
@@ -5207,7 +5208,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.")`.
-            MainClass.trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.")
+            Printer.trace("Transition action `` for TEST4_DECIDE to TEST4B_LOCAL.")
             
             # Step 3: Enter/move towards transition target `TEST4B_LOCAL`.
             self._TEST4_B_AND_OTHERS_enter()
@@ -5220,7 +5221,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST4B_LOCAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.")`.
-                MainClass.trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.")
+                Printer.trace("Transition action `` for TEST4B_LOCAL.<InitialState> to TEST4B_G.")
                 
                 # Step 3: Enter/move towards transition target `TEST4B_G`.
                 self._TEST4B_G_enter()
@@ -5237,7 +5238,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.")`.
-            MainClass.trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.")
+            Printer.trace("Transition action `` for TEST4_DECIDE to TEST4C_LOCAL_TO_ALIAS.")
             
             # Step 3: Enter/move towards transition target `TEST4C_LOCAL_TO_ALIAS`.
             self._TEST4_B_AND_OTHERS_enter()
@@ -5250,7 +5251,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST4C_LOCAL_TO_ALIAS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.")`.
-                MainClass.trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.")
+                Printer.trace("Transition action `` for TEST4C_LOCAL_TO_ALIAS.<InitialState> to TEST4C_G.")
                 
                 # Step 3: Enter/move towards transition target `TEST4C_G`.
                 self._TEST4C_G_enter()
@@ -5267,7 +5268,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.")`.
-            MainClass.trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.")
+            Printer.trace("Transition action `` for TEST4_DECIDE to TEST4D_EXTERNAL.")
             
             # Step 3: Enter/move towards transition target `TEST4D_EXTERNAL`.
             self._TEST4_B_AND_OTHERS_enter()
@@ -5280,7 +5281,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST4D_EXTERNAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.")`.
-                MainClass.trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.")
+                Printer.trace("Transition action `` for TEST4D_EXTERNAL.<InitialState> to TEST4D_G.")
                 
                 # Step 3: Enter/move towards transition target `TEST4D_G`.
                 self._TEST4D_G_enter()
@@ -5323,7 +5324,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S1.")`.
-            MainClass.trace("Transition action `` for TEST4_ROOT to TEST4_S1.")
+            Printer.trace("Transition action `` for TEST4_ROOT to TEST4_S1.")
             
             # Step 3: Enter/move towards transition target `TEST4_S1`.
             self._TEST4_S1_enter()
@@ -5340,7 +5341,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.")`.
-            MainClass.trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.")
+            Printer.trace("Transition action `` for TEST4_ROOT to TEST4_S10_1.")
             
             # Step 3: Enter/move towards transition target `TEST4_S10_1`.
             self._TEST4_S10_enter()
@@ -5358,7 +5359,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_ROOT to TEST4_S20.")`.
-            MainClass.trace("Transition action `` for TEST4_ROOT to TEST4_S20.")
+            Printer.trace("Transition action `` for TEST4_ROOT to TEST4_S20.")
             
             # Step 3: Enter/move towards transition target `TEST4_S20`.
             self._TEST4_S20_enter()
@@ -5397,7 +5398,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S1 to TEST4_S2.")`.
-            MainClass.trace("Transition action `` for TEST4_S1 to TEST4_S2.")
+            Printer.trace("Transition action `` for TEST4_S1 to TEST4_S2.")
             
             # Step 3: Enter/move towards transition target `TEST4_S2`.
             self._TEST4_S2_enter()
@@ -5437,7 +5438,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S10 to TEST4_S10.")`.
-            MainClass.trace("Transition action `` for TEST4_S10 to TEST4_S10.")
+            Printer.trace("Transition action `` for TEST4_S10 to TEST4_S10.")
             
             # Step 3: Enter/move towards transition target `TEST4_S10`.
             self._TEST4_S10_enter()
@@ -5501,7 +5502,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4_S2_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S2 to TEST4_S3.")`.
-            MainClass.trace("Transition action `` for TEST4_S2 to TEST4_S3.")
+            Printer.trace("Transition action `` for TEST4_S2 to TEST4_S3.")
             
             # Step 3: Enter/move towards transition target `TEST4_S3`.
             self._TEST4_S3_enter()
@@ -5541,7 +5542,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST4_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S20 to TEST4_S20.")`.
-            MainClass.trace("Transition action `` for TEST4_S20 to TEST4_S20.")
+            Printer.trace("Transition action `` for TEST4_S20 to TEST4_S20.")
             
             # Step 3: Enter/move towards transition target `TEST4_S20`.
             self._TEST4_S20_enter()
@@ -5563,7 +5564,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST4_S20` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.")`.
-            MainClass.trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.")
+            Printer.trace("Transition action `` for TEST4_S20.<InitialState> to TEST4_S20_1.")
             
             # Step 3: Enter/move towards transition target `TEST4_S20_1`.
             self._TEST4_S20_1_enter()
@@ -5622,7 +5623,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST4_S3_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST4_S3 to TEST4_ROOT.")`.
-            MainClass.trace("Transition action `` for TEST4_S3 to TEST4_ROOT.")
+            Printer.trace("Transition action `` for TEST4_S3 to TEST4_ROOT.")
             
             # Step 3: Enter/move towards transition target `TEST4_ROOT`.
             # Already in target. No entering required.
@@ -5685,7 +5686,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST5_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST5_ROOT to TEST5_S1.")`.
-            MainClass.trace("Transition action `` for TEST5_ROOT to TEST5_S1.")
+            Printer.trace("Transition action `` for TEST5_ROOT to TEST5_S1.")
             
             # Step 3: Enter/move towards transition target `TEST5_S1`.
             self._TEST5_S1_enter()
@@ -5723,7 +5724,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST5_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST5_S1 to TEST5_S2.")`.
-            MainClass.trace("Transition action `` for TEST5_S1 to TEST5_S2.")
+            Printer.trace("Transition action `` for TEST5_S1 to TEST5_S2.")
             
             # Step 3: Enter/move towards transition target `TEST5_S2`.
             self._TEST5_S2_enter()
@@ -5761,7 +5762,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST5_S2_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST5_S2 to TEST5_S3.")`.
-            MainClass.trace("Transition action `` for TEST5_S2 to TEST5_S3.")
+            Printer.trace("Transition action `` for TEST5_S2 to TEST5_S3.")
             
             # Step 3: Enter/move towards transition target `TEST5_S3`.
             self._TEST5_S3_enter()
@@ -5799,7 +5800,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST5_S3_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST5_S3 to TEST5_ROOT.")`.
-            MainClass.trace("Transition action `` for TEST5_S3 to TEST5_ROOT.")
+            Printer.trace("Transition action `` for TEST5_S3 to TEST5_ROOT.")
             
             # Step 3: Enter/move towards transition target `TEST5_ROOT`.
             # Already in target. No entering required.
@@ -5909,7 +5910,7 @@ class Spec2Sm(Spec2SmBase):
             self._AUTO_VAR_TEST__S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.")`.
-            MainClass.trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.")
+            Printer.trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.")
             
             # Step 3: Enter/move towards transition target `AUTO_VAR_TEST__S2`.
             self._AUTO_VAR_TEST__S2_enter()
@@ -5967,8 +5968,8 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S5.")\ntrace_meta()`.
-            MainClass.trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S5.")
-            MainClass.trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.<ChoicePoint>(2)")
+            Printer.trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(2) to S5.")
+            Printer.trace("META: State: META_EXPANSIONS, trigger: , behavior vertex: META_EXPANSIONS.<ChoicePoint>(2)")
             
             # Step 3: Enter/move towards transition target `S5`.
             self._S5_enter()
@@ -6011,8 +6012,8 @@ class Spec2Sm(Spec2SmBase):
             self._META_EXPANSIONS__S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `trace_meta()` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.")\ntrace_meta()`.
-            MainClass.trace("Transition action `trace_meta()` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.")
-            MainClass.trace("META: State: META_EXPANSIONS__S1, trigger: ev1, behavior vertex: META_EXPANSIONS__S1")
+            Printer.trace("Transition action `trace_meta()` for META_EXPANSIONS__S1 to META_EXPANSIONS__S2.")
+            Printer.trace("META: State: META_EXPANSIONS__S1, trigger: ev1, behavior vertex: META_EXPANSIONS__S1")
             
             # Step 3: Enter/move towards transition target `META_EXPANSIONS__S2`.
             self._META_EXPANSIONS__S2_enter()
@@ -6055,8 +6056,8 @@ class Spec2Sm(Spec2SmBase):
             self._META_EXPANSIONS__S2_exit()
             
             # Step 2: Transition action: `trace("Transition action `trace_meta()` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).")\ntrace_meta()`.
-            MainClass.trace("Transition action `trace_meta()` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).")
-            MainClass.trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS__S2")
+            Printer.trace("Transition action `trace_meta()` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(1).")
+            Printer.trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS__S2")
             
             # Step 3: Enter/move towards transition target `META_EXPANSIONS.<ChoicePoint>(1)`.
             # META_EXPANSIONS.<ChoicePoint>(1) is a pseudo state and cannot have an `enter` trigger.
@@ -6068,8 +6069,8 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S3.")\ntrace_meta()`.
-                MainClass.trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S3.")
-                MainClass.trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.<ChoicePoint>(1)")
+                Printer.trace("Transition action `trace_meta()` for META_EXPANSIONS.<ChoicePoint>(1) to S3.")
+                Printer.trace("META: State: META_EXPANSIONS__S2, trigger: ev1, behavior vertex: META_EXPANSIONS.<ChoicePoint>(1)")
                 
                 # Step 3: Enter/move towards transition target `S3`.
                 self._S3_enter()
@@ -6086,7 +6087,7 @@ class Spec2Sm(Spec2SmBase):
             self._META_EXPANSIONS__S2_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2).")`.
-            MainClass.trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2).")
+            Printer.trace("Transition action `` for META_EXPANSIONS__S2 to META_EXPANSIONS.<ChoicePoint>(2).")
             
             # Step 3: Enter/move towards transition target `META_EXPANSIONS.<ChoicePoint>(2)`.
             # META_EXPANSIONS.<ChoicePoint>(2) is a pseudo state and cannot have an `enter` trigger.
@@ -6125,8 +6126,8 @@ class Spec2Sm(Spec2SmBase):
             self._S3_exit()
             
             # Step 2: Transition action: `trace("Transition action `trace_meta()` for S3 to META_EXPANSIONS.<ChoicePoint>(2).")\ntrace_meta()`.
-            MainClass.trace("Transition action `trace_meta()` for S3 to META_EXPANSIONS.<ChoicePoint>(2).")
-            MainClass.trace("META: State: S3, trigger: ev1, behavior vertex: S3")
+            Printer.trace("Transition action `trace_meta()` for S3 to META_EXPANSIONS.<ChoicePoint>(2).")
+            Printer.trace("META: State: S3, trigger: ev1, behavior vertex: S3")
             
             # Step 3: Enter/move towards transition target `META_EXPANSIONS.<ChoicePoint>(2)`.
             # META_EXPANSIONS.<ChoicePoint>(2) is a pseudo state and cannot have an `enter` trigger.
@@ -6238,7 +6239,7 @@ class Spec2Sm(Spec2SmBase):
             self._NORMAL__S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for NORMAL__S1 to NORMAL__S2.")`.
-            MainClass.trace("Transition action `` for NORMAL__S1 to NORMAL__S2.")
+            Printer.trace("Transition action `` for NORMAL__S1 to NORMAL__S2.")
             
             # Step 3: Enter/move towards transition target `NORMAL__S2`.
             self._NORMAL__S2_enter()
@@ -6297,7 +6298,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL.")`.
-            MainClass.trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL.")
+            Printer.trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to NORMAL.")
             
             # Step 3: Enter/move towards transition target `NORMAL`.
             self._NORMAL_enter()
@@ -6309,7 +6310,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `NORMAL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.")`.
-                MainClass.trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.")
+                Printer.trace("Transition action `` for NORMAL.<InitialState> to NORMAL__S1.")
                 
                 # Step 3: Enter/move towards transition target `NORMAL__S1`.
                 self._NORMAL__S1_enter()
@@ -6326,7 +6327,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST.")`.
-            MainClass.trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST.")
+            Printer.trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to AUTO_VAR_TEST.")
             
             # Step 3: Enter/move towards transition target `AUTO_VAR_TEST`.
             self._AUTO_VAR_TEST_enter()
@@ -6338,7 +6339,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `AUTO_VAR_TEST` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.")`.
-                MainClass.trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.")
+                Printer.trace("Transition action `` for AUTO_VAR_TEST.<InitialState> to AUTO_VAR_TEST__S1.")
                 
                 # Step 3: Enter/move towards transition target `AUTO_VAR_TEST__S1`.
                 self._AUTO_VAR_TEST__S1_enter()
@@ -6355,7 +6356,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST6_VARS_EXPANSIONS__DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS.")`.
-            MainClass.trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS.")
+            Printer.trace("Transition action `` for TEST6_VARS_EXPANSIONS__DECIDE to META_EXPANSIONS.")
             
             # Step 3: Enter/move towards transition target `META_EXPANSIONS`.
             self._META_EXPANSIONS_enter()
@@ -6367,7 +6368,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `META_EXPANSIONS` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.")`.
-                MainClass.trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.")
+                Printer.trace("Transition action `` for META_EXPANSIONS.<InitialState> to META_EXPANSIONS__S1.")
                 
                 # Step 3: Enter/move towards transition target `META_EXPANSIONS__S1`.
                 self._META_EXPANSIONS__S1_enter()
@@ -6494,7 +6495,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.")`.
-            MainClass.trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.")
+            Printer.trace("Transition action `` for T7__DH1__ALIENS_DETECTED to T7__DH1__BUILD.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
             self._T7__DH1__BUILD_enter()
@@ -6567,7 +6568,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DH1__HERO` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.")`.
-            MainClass.trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.")
+            Printer.trace("Transition action `` for T7__DH1__HERO.<InitialState> to T7__DH1__CALL_THOR.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
             self._T7__DH1__CALL_THOR_enter()
@@ -6605,7 +6606,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DH1__GET_BACKUP)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.")`.
-            MainClass.trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.")
+            Printer.trace("Transition action `` for T7__DH1__CALL_BATMAN to T7__DH1__BUDDY_ELF.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
             self._T7__DH1__LOCAL_HELP_enter()
@@ -6644,7 +6645,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__CALL_THOR_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.")`.
-            MainClass.trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.")
+            Printer.trace("Transition action `` for T7__DH1__CALL_THOR to T7__DH1__CALL_BATMAN.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__CALL_BATMAN`.
             self._T7__DH1__CALL_BATMAN_enter()
@@ -6717,7 +6718,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__BUDDY_ELF_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.")`.
-            MainClass.trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.")
+            Printer.trace("Transition action `` for T7__DH1__BUDDY_ELF to T7__DH1__POLAR_BEARS.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
             self._T7__DH1__POLAR_BEARS_enter()
@@ -6797,7 +6798,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__GIVE_COOKIES_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.")`.
-            MainClass.trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.")
+            Printer.trace("Transition action `` for T7__DH1__GIVE_COOKIES to T7__DH1__CALL_THOR.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__CALL_THOR`.
             self._T7__DH1__GET_BACKUP_enter()
@@ -6844,7 +6845,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__SNOWBALL_FIGHT_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.")`.
-            MainClass.trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.")
+            Printer.trace("Transition action `` for T7__DH1__SNOWBALL_FIGHT to T7__DH1__GIVE_COOKIES.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__GIVE_COOKIES`.
             self._T7__DH1__GIVE_COOKIES_enter()
@@ -6882,7 +6883,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.")`.
-            MainClass.trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.")
+            Printer.trace("Transition action `` for T7__DH1__BUILD to T7__DH1__ALIENS_DETECTED.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED`.
             self._T7__DH1__ALIENS_DETECTED_enter()
@@ -6894,7 +6895,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.")`.
-                MainClass.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.")
+                Printer.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<InitialState> to T7__DH1__ALIENS_DETECTED.<History>.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__ALIENS_DETECTED.<History>`.
                 # T7__DH1__ALIENS_DETECTED.<History> is a pseudo state and cannot have an `enter` trigger.
@@ -6906,7 +6907,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.")`.
-                    MainClass.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.")
+                    Printer.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__GIVE_COOKIES.")
                     
                     # Step 3: Enter/move towards transition target `T7__DH1__GIVE_COOKIES`.
                     self._T7__DH1__GIVE_COOKIES_enter()
@@ -6921,7 +6922,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.")`.
-                    MainClass.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.")
+                    Printer.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__HERO.")
                     
                     # Step 3: Enter/move towards transition target `T7__DH1__HERO`.
                     self._T7__DH1__GET_BACKUP_enter()
@@ -6938,7 +6939,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.")`.
-                    MainClass.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.")
+                    Printer.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__BUDDY_ELF.")
                     
                     # Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
                     self._T7__DH1__GET_BACKUP_enter()
@@ -6955,7 +6956,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.")`.
-                    MainClass.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.")
+                    Printer.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__POLAR_BEARS.")
                     
                     # Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
                     self._T7__DH1__GET_BACKUP_enter()
@@ -6972,7 +6973,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `T7__DH1__ALIENS_DETECTED` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.")`.
-                    MainClass.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.")
+                    Printer.trace("Transition action `` for T7__DH1__ALIENS_DETECTED.<History> to T7__DH1__SNOWBALL_FIGHT.")
                     
                     # Step 3: Enter/move towards transition target `T7__DH1__SNOWBALL_FIGHT`.
                     self._T7__DH1__SNOWBALL_FIGHT_enter()
@@ -6989,7 +6990,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DH1__SANTAS_WORKSHOP)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.")`.
-            MainClass.trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.")
+            Printer.trace("Transition action `` for T7__DH1__BUILD to T7__DH1__GET_BACKUP.<History>.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.<History>`.
             self._T7__DH1__ALIENS_DETECTED_enter()
@@ -7003,7 +7004,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.")`.
-                MainClass.trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.")
+                Printer.trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__HERO.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__HERO`.
                 self._T7__DH1__HERO_enter()
@@ -7019,7 +7020,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.")`.
-                MainClass.trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.")
+                Printer.trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__BUDDY_ELF.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__BUDDY_ELF`.
                 self._T7__DH1__LOCAL_HELP_enter()
@@ -7035,7 +7036,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.")`.
-                MainClass.trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.")
+                Printer.trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__POLAR_BEARS.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__POLAR_BEARS`.
                 self._T7__DH1__LOCAL_HELP_enter()
@@ -7051,7 +7052,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().")`.
-                MainClass.trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().")
+                Printer.trace("Transition action `` for T7__DH1__GET_BACKUP.<History> to T7__DH1__GET_BACKUP.<ChoicePoint>().")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__GET_BACKUP.<ChoicePoint>()`.
                 # T7__DH1__GET_BACKUP.<ChoicePoint>() is a pseudo state and cannot have an `enter` trigger.
@@ -7063,7 +7064,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `T7__DH1__GET_BACKUP` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.")`.
-                    MainClass.trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.")
+                    Printer.trace("Transition action `` for T7__DH1__GET_BACKUP.<ChoicePoint>() to T7__DH1__HERO.")
                     
                     # Step 3: Enter/move towards transition target `T7__DH1__HERO`.
                     self._T7__DH1__HERO_enter()
@@ -7080,7 +7081,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.")`.
-            MainClass.trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.")
+            Printer.trace("Transition action `` for T7__DH1__BUILD.<InitialState> to T7__DH1__BUILD.<History>.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__BUILD.<History>`.
             # T7__DH1__BUILD.<History> is a pseudo state and cannot have an `enter` trigger.
@@ -7092,7 +7093,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOOL.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__TOOL`.
                 self._T7__DH1__TOOL_enter()
@@ -7108,7 +7109,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__RACE_CAR.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
                 self._T7__DH1__TOY_enter()
@@ -7124,7 +7125,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TEDDY_BEAR.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__TEDDY_BEAR`.
                 self._T7__DH1__TOY_enter()
@@ -7140,7 +7141,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__GLOW_WORM.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__GLOW_WORM`.
                 self._T7__DH1__TOY_enter()
@@ -7156,7 +7157,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__ROBOT.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__ROBOT`.
                 self._T7__DH1__TOY_enter()
@@ -7173,7 +7174,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__BATTLEBOT.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
                 self._T7__DH1__TOY_enter()
@@ -7190,7 +7191,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__WALL_E.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__WALL_E`.
                 self._T7__DH1__TOY_enter()
@@ -7207,7 +7208,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__IMPACT_DRILL.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
                 self._T7__DH1__TOOL_enter()
@@ -7223,7 +7224,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__CIRCULAR_SAW.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__CIRCULAR_SAW`.
                 self._T7__DH1__TOOL_enter()
@@ -7239,7 +7240,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DH1__BUILD` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.")`.
-                MainClass.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.")
+                Printer.trace("Transition action `` for T7__DH1__BUILD.<History> to T7__DH1__TOY.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__TOY`.
                 self._T7__DH1__TOY_enter()
@@ -7285,7 +7286,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DH1__BUILD)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.")`.
-            MainClass.trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.")
+            Printer.trace("Transition action `` for T7__DH1__TOOL to T7__DH1__TOY.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__TOY`.
             self._T7__DH1__TOY_enter()
@@ -7302,7 +7303,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DH1__TOOL` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.")`.
-            MainClass.trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.")
+            Printer.trace("Transition action `` for T7__DH1__TOOL.<InitialState> to T7__DH1__IMPACT_DRILL.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__IMPACT_DRILL`.
             self._T7__DH1__IMPACT_DRILL_enter()
@@ -7375,7 +7376,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__IMPACT_DRILL_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.")`.
-            MainClass.trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.")
+            Printer.trace("Transition action `` for T7__DH1__IMPACT_DRILL to T7__DH1__CIRCULAR_SAW.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__CIRCULAR_SAW`.
             self._T7__DH1__CIRCULAR_SAW_enter()
@@ -7420,7 +7421,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DH1__BUILD)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.")`.
-            MainClass.trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.")
+            Printer.trace("Transition action `` for T7__DH1__TOY to T7__DH1__TOOL.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__TOOL`.
             self._T7__DH1__TOOL_enter()
@@ -7437,7 +7438,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DH1__TOY` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.")`.
-            MainClass.trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.")
+            Printer.trace("Transition action `` for T7__DH1__TOY.<InitialState> to T7__DH1__RACE_CAR.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__RACE_CAR`.
             self._T7__DH1__RACE_CAR_enter()
@@ -7484,7 +7485,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__GLOW_WORM_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.")`.
-            MainClass.trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.")
+            Printer.trace("Transition action `` for T7__DH1__GLOW_WORM to T7__DH1__ROBOT.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__ROBOT`.
             self._T7__DH1__ROBOT_enter()
@@ -7537,7 +7538,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__RACE_CAR_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.")`.
-            MainClass.trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.")
+            Printer.trace("Transition action `` for T7__DH1__RACE_CAR to T7__DH1__TEDDY_BEAR.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__TEDDY_BEAR`.
             self._T7__DH1__TEDDY_BEAR_enter()
@@ -7586,7 +7587,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DH1__ROBOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.")`.
-            MainClass.trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.")
+            Printer.trace("Transition action `` for T7__DH1__ROBOT.<InitialState> to T7__DH1__BATTLEBOT.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__BATTLEBOT`.
             self._T7__DH1__BATTLEBOT_enter()
@@ -7633,7 +7634,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__BATTLEBOT_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.")`.
-            MainClass.trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.")
+            Printer.trace("Transition action `` for T7__DH1__BATTLEBOT to T7__DH1__WALL_E.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__WALL_E`.
             self._T7__DH1__WALL_E_enter()
@@ -7713,7 +7714,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DH1__TEDDY_BEAR_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.")`.
-            MainClass.trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.")
+            Printer.trace("Transition action `` for T7__DH1__TEDDY_BEAR to T7__DH1__GLOW_WORM.")
             
             # Step 3: Enter/move towards transition target `T7__DH1__GLOW_WORM`.
             self._T7__DH1__GLOW_WORM_enter()
@@ -7777,7 +7778,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DEEP_HISTORY2)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0 to T7__DEEP_HISTORY2__T7__state_3.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_3`.
             self._T7__DEEP_HISTORY2__T7__STATE_3_enter()
@@ -7793,7 +7794,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.<History>.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0.<History>`.
             # T7__DEEP_HISTORY2__T7__state_0.<History> is a pseudo state and cannot have an `enter` trigger.
@@ -7805,7 +7806,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_2.")
                 
                 # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_2`.
                 self._T7__DEEP_HISTORY2__T7__STATE_2_enter()
@@ -7821,7 +7822,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_6.")
                 
                 # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_6`.
                 self._T7__DEEP_HISTORY2__T7__STATE_2_enter()
@@ -7837,7 +7838,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_9.")
                 
                 # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_9`.
                 self._T7__DEEP_HISTORY2__T7__STATE_2_enter()
@@ -7853,7 +7854,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_0.<History> to T7__DEEP_HISTORY2__T7__state_1.")
                 
                 # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_1`.
                 self._T7__DEEP_HISTORY2__T7__STATE_1_enter()
@@ -7898,7 +7899,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DEEP_HISTORY2__T7__STATE_1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_1 to T7__DEEP_HISTORY2__T7__state_2.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_2`.
             self._T7__DEEP_HISTORY2__T7__STATE_2_enter()
@@ -7944,7 +7945,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DEEP_HISTORY2__T7__STATE_0)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2 to T7__DEEP_HISTORY2__T7__state_1.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_1`.
             self._T7__DEEP_HISTORY2__T7__STATE_1_enter()
@@ -7960,7 +7961,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY2__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_2.<InitialState> to T7__DEEP_HISTORY2__T7__state_6.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_6`.
             self._T7__DEEP_HISTORY2__T7__STATE_6_enter()
@@ -8005,7 +8006,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DEEP_HISTORY2__T7__STATE_6_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_6 to T7__DEEP_HISTORY2__T7__state_9.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_9`.
             self._T7__DEEP_HISTORY2__T7__STATE_9_enter()
@@ -8071,7 +8072,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DEEP_HISTORY2__T7__STATE_3_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY2__T7__state_3 to T7__DEEP_HISTORY2__T7__state_0.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0`.
             self._T7__DEEP_HISTORY2__T7__STATE_0_enter()
@@ -8131,7 +8132,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DEEP_HISTORY3)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0 to T7__DEEP_HISTORY3__T7__state_3.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_3`.
             self._T7__DEEP_HISTORY3__T7__STATE_3_enter()
@@ -8147,7 +8148,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.<History>.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0.<History>`.
             # T7__DEEP_HISTORY3__T7__state_0.<History> is a pseudo state and cannot have an `enter` trigger.
@@ -8159,7 +8160,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_2.")
                 
                 # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_2`.
                 self._T7__DEEP_HISTORY3__T7__STATE_2_enter()
@@ -8175,7 +8176,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_0` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_0.<History> to T7__DEEP_HISTORY3__T7__state_1.")
                 
                 # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_1`.
                 self._T7__DEEP_HISTORY3__T7__STATE_1_enter()
@@ -8220,7 +8221,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DEEP_HISTORY3__T7__STATE_1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_1 to T7__DEEP_HISTORY3__T7__state_2.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_2`.
             self._T7__DEEP_HISTORY3__T7__STATE_2_enter()
@@ -8266,7 +8267,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__DEEP_HISTORY3__T7__STATE_0)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2 to T7__DEEP_HISTORY3__T7__state_1.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_1`.
             self._T7__DEEP_HISTORY3__T7__STATE_1_enter()
@@ -8282,7 +8283,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__DEEP_HISTORY3__T7__state_2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_2.<InitialState> to T7__DEEP_HISTORY3__T7__state_6.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_6`.
             self._T7__DEEP_HISTORY3__T7__STATE_6_enter()
@@ -8320,7 +8321,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DEEP_HISTORY3__T7__STATE_6_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_6 to T7__DEEP_HISTORY3__T7__state_9.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_9`.
             self._T7__DEEP_HISTORY3__T7__STATE_9_enter()
@@ -8379,7 +8380,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__DEEP_HISTORY3__T7__STATE_3_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0.")`.
-            MainClass.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0.")
+            Printer.trace("Transition action `` for T7__DEEP_HISTORY3__T7__state_3 to T7__DEEP_HISTORY3__T7__state_0.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0`.
             self._T7__DEEP_HISTORY3__T7__STATE_0_enter()
@@ -8439,7 +8440,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__H1__OFF)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.")`.
-            MainClass.trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.")
+            Printer.trace("Transition action `` for T7__H1__OFF to T7__H1__OFF3.")
             
             # Step 3: Enter/move towards transition target `T7__H1__OFF3`.
             self._T7__H1__OFF3_enter()
@@ -8456,7 +8457,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__HISTORY1)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.")`.
-            MainClass.trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.")
+            Printer.trace("Transition action `` for T7__H1__OFF to T7__H1__OFF.")
             
             # Step 3: Enter/move towards transition target `T7__H1__OFF`.
             self._T7__H1__OFF_enter()
@@ -8474,7 +8475,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__HISTORY1)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF to T7__H1__ON.")`.
-            MainClass.trace("Transition action `` for T7__H1__OFF to T7__H1__ON.")
+            Printer.trace("Transition action `` for T7__H1__OFF to T7__H1__ON.")
             
             # Step 3: Enter/move towards transition target `T7__H1__ON`.
             self._T7__H1__ON_enter()
@@ -8491,7 +8492,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.")`.
-            MainClass.trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.")
+            Printer.trace("Transition action `` for T7__H1__OFF.<InitialState> to T7__H1__OFF.<History>.")
             
             # Step 3: Enter/move towards transition target `T7__H1__OFF.<History>`.
             # T7__H1__OFF.<History> is a pseudo state and cannot have an `enter` trigger.
@@ -8503,7 +8504,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.")`.
-                MainClass.trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.")
+                Printer.trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF2.")
                 
                 # Step 3: Enter/move towards transition target `T7__H1__OFF2`.
                 self._T7__H1__OFF2_enter()
@@ -8518,7 +8519,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.")`.
-                MainClass.trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.")
+                Printer.trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF3.")
                 
                 # Step 3: Enter/move towards transition target `T7__H1__OFF3`.
                 self._T7__H1__OFF3_enter()
@@ -8533,7 +8534,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__H1__OFF` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.")`.
-                MainClass.trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.")
+                Printer.trace("Transition action `` for T7__H1__OFF.<History> to T7__H1__OFF1.")
                 
                 # Step 3: Enter/move towards transition target `T7__H1__OFF1`.
                 self._T7__H1__OFF1_enter()
@@ -8578,7 +8579,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__H1__OFF1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.")`.
-            MainClass.trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.")
+            Printer.trace("Transition action `` for T7__H1__OFF1 to T7__H1__OFF2.")
             
             # Step 3: Enter/move towards transition target `T7__H1__OFF2`.
             self._T7__H1__OFF2_enter()
@@ -8623,7 +8624,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__H1__OFF2_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.")`.
-            MainClass.trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.")
+            Printer.trace("Transition action `` for T7__H1__OFF2 to T7__H1__OFF3.")
             
             # Step 3: Enter/move towards transition target `T7__H1__OFF3`.
             self._T7__H1__OFF3_enter()
@@ -8689,7 +8690,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__HISTORY1)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON to T7__H1__OFF.")`.
-            MainClass.trace("Transition action `` for T7__H1__ON to T7__H1__OFF.")
+            Printer.trace("Transition action `` for T7__H1__ON to T7__H1__OFF.")
             
             # Step 3: Enter/move towards transition target `T7__H1__OFF`.
             self._T7__H1__OFF_enter()
@@ -8706,7 +8707,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.")`.
-            MainClass.trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.")
+            Printer.trace("Transition action `` for T7__H1__ON.<InitialState> to T7__H1__ON.<History>.")
             
             # Step 3: Enter/move towards transition target `T7__H1__ON.<History>`.
             # T7__H1__ON.<History> is a pseudo state and cannot have an `enter` trigger.
@@ -8718,7 +8719,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.")`.
-                MainClass.trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.")
+                Printer.trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON2.")
                 
                 # Step 3: Enter/move towards transition target `T7__H1__ON2`.
                 self._T7__H1__ON2_enter()
@@ -8733,7 +8734,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.")`.
-                MainClass.trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.")
+                Printer.trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON3.")
                 
                 # Step 3: Enter/move towards transition target `T7__H1__ON3`.
                 self._T7__H1__ON3_enter()
@@ -8748,7 +8749,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__H1__ON` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.")`.
-                MainClass.trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.")
+                Printer.trace("Transition action `` for T7__H1__ON.<History> to T7__H1__ON1.")
                 
                 # Step 3: Enter/move towards transition target `T7__H1__ON1`.
                 self._T7__H1__ON1_enter()
@@ -8793,7 +8794,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__H1__ON1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.")`.
-            MainClass.trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.")
+            Printer.trace("Transition action `` for T7__H1__ON1 to T7__H1__ON2.")
             
             # Step 3: Enter/move towards transition target `T7__H1__ON2`.
             self._T7__H1__ON2_enter()
@@ -8838,7 +8839,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__H1__ON2_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.")`.
-            MainClass.trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.")
+            Printer.trace("Transition action `` for T7__H1__ON2 to T7__H1__ON3.")
             
             # Step 3: Enter/move towards transition target `T7__H1__ON3`.
             self._T7__H1__ON3_enter()
@@ -8883,7 +8884,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__H1__ON3_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.")`.
-            MainClass.trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.")
+            Printer.trace("Transition action `` for T7__H1__ON3 to T7__H1__ON1.")
             
             # Step 3: Enter/move towards transition target `T7__H1__ON1`.
             self._T7__H1__ON1_enter()
@@ -8947,7 +8948,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__INITIAL1__PARENT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.")`.
-            MainClass.trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.")
+            Printer.trace("Transition action `` for T7__INITIAL1__PARENT.<InitialState> to T7__INITIAL1__S1.")
             
             # Step 3: Enter/move towards transition target `T7__INITIAL1__S1`.
             self._T7__INITIAL1__S1_enter()
@@ -8985,7 +8986,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.T7__INITIAL1__PARENT)
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.")`.
-            MainClass.trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.")
+            Printer.trace("Transition action `` for T7__INITIAL1__G to T7__INITIAL1__PARENT.<InitialState>.")
             
             # Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT.<InitialState>`.
             # T7__INITIAL1__PARENT.<InitialState> is a pseudo state and cannot have an `enter` trigger.
@@ -9002,7 +9003,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.")`.
-            MainClass.trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.")
+            Printer.trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S1.")
             
             # Step 3: Enter/move towards transition target `T7__INITIAL1__G_S1`.
             self._T7__INITIAL1__G_S1_enter()
@@ -9017,7 +9018,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.")`.
-            MainClass.trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.")
+            Printer.trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S2.")
             
             # Step 3: Enter/move towards transition target `T7__INITIAL1__G_S2`.
             self._T7__INITIAL1__G_S2_enter()
@@ -9032,7 +9033,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `T7__INITIAL1__G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.")`.
-            MainClass.trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.")
+            Printer.trace("Transition action `` for T7__INITIAL1__G.<InitialState> to T7__INITIAL1__G_S3.")
             
             # Step 3: Enter/move towards transition target `T7__INITIAL1__G_S3`.
             self._T7__INITIAL1__G_S3_enter()
@@ -9133,7 +9134,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__INITIAL1__S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.")`.
-            MainClass.trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.")
+            Printer.trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.")
             
             # Step 3: Enter/move towards transition target `T7__INITIAL1__G`.
             self._T7__INITIAL1__G_enter()
@@ -9151,7 +9152,7 @@ class Spec2Sm(Spec2SmBase):
             self._T7__INITIAL1__S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>.")`.
-            MainClass.trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>.")
+            Printer.trace("Transition action `` for T7__INITIAL1__S1 to T7__INITIAL1__G.<InitialState>.")
             
             # Step 3: Enter/move towards transition target `T7__INITIAL1__G.<InitialState>`.
             self._T7__INITIAL1__G_enter()
@@ -9196,7 +9197,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST7_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.")`.
-            MainClass.trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.")
+            Printer.trace("Transition action `` for TEST7_DECIDE to T7__INITIAL1.")
             
             # Step 3: Enter/move towards transition target `T7__INITIAL1`.
             self._TEST7_enter()
@@ -9209,7 +9210,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__INITIAL1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.")`.
-                MainClass.trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.")
+                Printer.trace("Transition action `` for T7__INITIAL1.<InitialState> to T7__INITIAL1__PARENT.")
                 
                 # Step 3: Enter/move towards transition target `T7__INITIAL1__PARENT`.
                 self._T7__INITIAL1__PARENT_enter()
@@ -9227,7 +9228,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST7_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.")`.
-            MainClass.trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.")
+            Printer.trace("Transition action `` for TEST7_DECIDE to T7__HISTORY1.")
             
             # Step 3: Enter/move towards transition target `T7__HISTORY1`.
             self._TEST7_enter()
@@ -9240,7 +9241,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.")`.
-                MainClass.trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.")
+                Printer.trace("Transition action `` for T7__HISTORY1.<InitialState> to T7__H1__ON.")
                 
                 # Step 3: Enter/move towards transition target `T7__H1__ON`.
                 self._T7__H1__ON_enter()
@@ -9258,7 +9259,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST7_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.")`.
-            MainClass.trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.")
+            Printer.trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY1.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY1`.
             self._TEST7_enter()
@@ -9271,7 +9272,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY1.<InitialState> to T7__DH1__BUILD.")
                 
                 # Step 3: Enter/move towards transition target `T7__DH1__BUILD`.
                 self._T7__DH1__SANTAS_WORKSHOP_enter()
@@ -9290,7 +9291,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST7_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.")`.
-            MainClass.trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.")
+            Printer.trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY2.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2`.
             self._TEST7_enter()
@@ -9303,7 +9304,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY2` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY2.<InitialState> to T7__DEEP_HISTORY2__T7__state_0.")
                 
                 # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY2__T7__state_0`.
                 self._T7__DEEP_HISTORY2__T7__STATE_0_enter()
@@ -9321,7 +9322,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST7_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.")`.
-            MainClass.trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.")
+            Printer.trace("Transition action `` for TEST7_DECIDE to T7__DEEP_HISTORY3.")
             
             # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3`.
             self._TEST7_enter()
@@ -9334,7 +9335,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `T7__DEEP_HISTORY3` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.")`.
-                MainClass.trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.")
+                Printer.trace("Transition action `` for T7__DEEP_HISTORY3.<InitialState> to T7__DEEP_HISTORY3__T7__state_0.")
                 
                 # Step 3: Enter/move towards transition target `T7__DEEP_HISTORY3__T7__state_0`.
                 self._T7__DEEP_HISTORY3__T7__STATE_0_enter()
@@ -9410,7 +9411,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST8_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.")`.
-            MainClass.trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.")
+            Printer.trace("Transition action `` for TEST8_ROOT.<EntryPoint>(1) to TEST8_S1.")
             
             # Step 3: Enter/move towards transition target `TEST8_S1`.
             self._TEST8_S1_enter()
@@ -9448,7 +9449,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST8_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).")`.
-            MainClass.trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).")
+            Printer.trace("Transition action `` for TEST8_G to TEST8_ROOT.<EntryPoint>(1).")
             
             # Step 3: Enter/move towards transition target `TEST8_ROOT.<EntryPoint>(1)`.
             # TEST8_ROOT.<EntryPoint>(1) is a pseudo state and cannot have an `enter` trigger.
@@ -9465,7 +9466,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.")`.
-            MainClass.trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.")
+            Printer.trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S1.")
             
             # Step 3: Enter/move towards transition target `TEST8_G_S1`.
             self._TEST8_G_S1_enter()
@@ -9480,7 +9481,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.")`.
-            MainClass.trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.")
+            Printer.trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S2.")
             
             # Step 3: Enter/move towards transition target `TEST8_G_S2`.
             self._TEST8_G_S2_enter()
@@ -9495,7 +9496,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.")`.
-            MainClass.trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.")
+            Printer.trace("Transition action `` for TEST8_G.<EntryPoint>(1) to TEST8_G_S3.")
             
             # Step 3: Enter/move towards transition target `TEST8_G_S3`.
             self._TEST8_G_S3_enter()
@@ -9511,7 +9512,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST8_G` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `count += 0` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).")\ncount += 0`.
-            MainClass.trace("Transition action `count += 0` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).")
+            Printer.trace("Transition action `count += 0` for TEST8_G.<EntryPoint>(3) to TEST8_G.<EntryPoint>(1).")
             self.vars.count += 0
             
             # Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(1)`.
@@ -9614,7 +9615,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST8_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).")`.
-            MainClass.trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).")
+            Printer.trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(1).")
             
             # Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(1)`.
             self._TEST8_G_enter()
@@ -9640,7 +9641,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST8_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).")`.
-            MainClass.trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).")
+            Printer.trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).")
             
             # Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(3)`.
             self._TEST8_G_enter()
@@ -9664,7 +9665,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST8_S1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).")`.
-            MainClass.trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).")
+            Printer.trace("Transition action `` for TEST8_S1 to TEST8_G.<EntryPoint>(3).")
             
             # Step 3: Enter/move towards transition target `TEST8_G.<EntryPoint>(3)`.
             self._TEST8_G_enter()
@@ -9725,7 +9726,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST9_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.")`.
-            MainClass.trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.")
+            Printer.trace("Transition action `` for TEST9_DECIDE to TEST9_ROOT.")
             
             # Step 3: Enter/move towards transition target `TEST9_ROOT`.
             self._TEST9_ROOT_enter()
@@ -9737,7 +9738,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST9_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.")`.
-                MainClass.trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.")
+                Printer.trace("Transition action `` for TEST9_ROOT.<InitialState> to TEST9_S1.")
                 
                 # Step 3: Enter/move towards transition target `TEST9_S1`.
                 self._TEST9_S1_enter()
@@ -9749,7 +9750,7 @@ class Spec2Sm(Spec2SmBase):
                     # Step 1: Exit states until we reach `TEST9_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                     
                     # Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.")`.
-                    MainClass.trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.")
+                    Printer.trace("Transition action `` for TEST9_S1.<InitialState> to TEST9_S1_1.")
                     
                     # Step 3: Enter/move towards transition target `TEST9_S1_1`.
                     self._TEST9_S1_1_enter()
@@ -9766,7 +9767,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST9_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.")`.
-            MainClass.trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.")
+            Printer.trace("Transition action `` for TEST9_DECIDE to TEST9A_ROOT.")
             
             # Step 3: Enter/move towards transition target `TEST9A_ROOT`.
             self._TEST9A_ROOT_enter()
@@ -9778,7 +9779,7 @@ class Spec2Sm(Spec2SmBase):
                 # Step 1: Exit states until we reach `TEST9A_ROOT` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
                 
                 # Step 2: Transition action: `trace("Transition action `count = 0` for TEST9A_ROOT.<InitialState> to TEST9A_S1.")\ncount = 0`.
-                MainClass.trace("Transition action `count = 0` for TEST9A_ROOT.<InitialState> to TEST9A_S1.")
+                Printer.trace("Transition action `count = 0` for TEST9A_ROOT.<InitialState> to TEST9A_S1.")
                 self.vars.count = 0
                 
                 # Step 3: Enter/move towards transition target `TEST9A_S1`.
@@ -9797,7 +9798,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST9_DECIDE_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT.")`.
-            MainClass.trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT.")
+            Printer.trace("Transition action `` for TEST9_DECIDE to TEST9B_ROOT.")
             
             # Step 3: Enter/move towards transition target `TEST9B_ROOT`.
             self._TEST9B_ROOT_enter()
@@ -9972,7 +9973,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST9_S1_1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).")`.
-            MainClass.trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).")
+            Printer.trace("Transition action `` for TEST9_S1_1 to TEST9_S1.<ExitPoint>(1).")
             
             # Step 3: Enter/move towards transition target `TEST9_S1.<ExitPoint>(1)`.
             # TEST9_S1.<ExitPoint>(1) is a pseudo state and cannot have an `enter` trigger.
@@ -9985,7 +9986,7 @@ class Spec2Sm(Spec2SmBase):
                 self._TEST9_S1_exit()
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4.")`.
-                MainClass.trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4.")
+                Printer.trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S4.")
                 
                 # Step 3: Enter/move towards transition target `TEST9_G_S4`.
                 self._TEST9_G_S4_enter()
@@ -10001,7 +10002,7 @@ class Spec2Sm(Spec2SmBase):
                 self._TEST9_S1_exit()
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1.")`.
-                MainClass.trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1.")
+                Printer.trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S1.")
                 
                 # Step 3: Enter/move towards transition target `TEST9_G_S1`.
                 self._TEST9_G_S1_enter()
@@ -10017,7 +10018,7 @@ class Spec2Sm(Spec2SmBase):
                 self._TEST9_S1_exit()
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2.")`.
-                MainClass.trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2.")
+                Printer.trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S2.")
                 
                 # Step 3: Enter/move towards transition target `TEST9_G_S2`.
                 self._TEST9_G_S2_enter()
@@ -10033,7 +10034,7 @@ class Spec2Sm(Spec2SmBase):
                 self._TEST9_S1_exit()
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3.")`.
-                MainClass.trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3.")
+                Printer.trace("Transition action `` for TEST9_S1.<ExitPoint>(1) to TEST9_G_S3.")
                 
                 # Step 3: Enter/move towards transition target `TEST9_G_S3`.
                 self._TEST9_G_S3_enter()
@@ -10091,7 +10092,7 @@ class Spec2Sm(Spec2SmBase):
             # Step 1: Exit states until we reach `TEST9A_S1` state (Least Common Ancestor for transition). Already at LCA, no exiting required.
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.")`.
-            MainClass.trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.")
+            Printer.trace("Transition action `` for TEST9A_S1.<InitialState> to TEST9A_S1_1.")
             
             # Step 3: Enter/move towards transition target `TEST9A_S1_1`.
             self._TEST9A_S1_1_enter()
@@ -10139,7 +10140,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST9A_S1_1_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).")`.
-            MainClass.trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).")
+            Printer.trace("Transition action `` for TEST9A_S1_1 to TEST9A_S1.<ExitPoint>(1).")
             
             # Step 3: Enter/move towards transition target `TEST9A_S1.<ExitPoint>(1)`.
             # TEST9A_S1.<ExitPoint>(1) is a pseudo state and cannot have an `enter` trigger.
@@ -10152,7 +10153,7 @@ class Spec2Sm(Spec2SmBase):
                 self._TEST9A_S1_exit()
                 
                 # Step 2: Transition action: `trace("Transition action `count += 1` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.")\ncount += 1`.
-                MainClass.trace("Transition action `count += 1` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.")
+                Printer.trace("Transition action `count += 1` for TEST9A_S1.<ExitPoint>(1) to TEST9A_S1.")
                 self.vars.count += 1
                 
                 # Step 3: Enter/move towards transition target `TEST9A_S1`.
@@ -10196,7 +10197,7 @@ class Spec2Sm(Spec2SmBase):
             self._exitUpToStateHandler(StateId.TEST9B_ROOT)
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.")`.
-            MainClass.trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.")
+            Printer.trace("Transition action `` for TEST9B_ROOT to TEST9B_ROOT__A4.")
             
             # Step 3: Enter/move towards transition target `TEST9B_ROOT__A4`.
             self._TEST9B_ROOT__A1_enter()
@@ -10302,7 +10303,7 @@ class Spec2Sm(Spec2SmBase):
             self._TEST9B_ROOT__A4_exit()
             
             # Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1).")`.
-            MainClass.trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1).")
+            Printer.trace("Transition action `` for TEST9B_ROOT__A4 to TEST9B_ROOT__A3.<ExitPoint>(1).")
             
             # Step 3: Enter/move towards transition target `TEST9B_ROOT__A3.<ExitPoint>(1)`.
             # TEST9B_ROOT__A3.<ExitPoint>(1) is a pseudo state and cannot have an `enter` trigger.
@@ -10315,7 +10316,7 @@ class Spec2Sm(Spec2SmBase):
                 self._exitUpToStateHandler(StateId.TEST9B_ROOT)
                 
                 # Step 2: Transition action: `trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.")`.
-                MainClass.trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.")
+                Printer.trace("Transition action `` for TEST9B_ROOT__A3.<ExitPoint>(1) to TEST9B_ROOT__B4.")
                 
                 # Step 3: Enter/move towards transition target `TEST9B_ROOT__B4`.
                 self._TEST9B_ROOT__B1_enter()

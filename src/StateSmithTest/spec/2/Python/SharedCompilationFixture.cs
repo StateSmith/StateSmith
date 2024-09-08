@@ -32,6 +32,7 @@ public class SharedCompilationFixture
                         behavior.actionCode = behavior.actionCode.Replace(";", "");
                         behavior.actionCode = behavior.actionCode.Replace("++", " += 1");
                         behavior.actionCode = behavior.actionCode.Replace("/*", "#");
+                        behavior.actionCode = behavior.actionCode.Replace("MainClass.", "Printer.");
                     }
                 });
             }));
@@ -68,12 +69,13 @@ public class SharedCompilationFixture
 
         string IRenderConfigPython.Imports => @"
             from Spec2SmBase import Spec2SmBase
+            from Printer import Printer
             ";
 
         public class Expansions : Spec2GenericVarExpansions
         {
             public override string SemiColon => "";
-            public override string trace(string message) => $"MainClass.trace({message})"; // this isn't actually needed, but helps ensure expansions are working
+            public override string trace(string message) => $"Printer.trace({message})"; // this isn't actually needed, but helps ensure expansions are working
         }
     }
 }
