@@ -403,6 +403,14 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         VisitTrailingTrivia(node.GetLastToken());
     }
 
+    public override void VisitExpressionStatement(ExpressionStatementSyntax node)
+    {
+        if (transpilerHelper.HandleGilSpecialExpressionStatements(node, sb))
+            return;
+
+        base.VisitExpressionStatement(node);
+    }
+
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
         bool done = false;

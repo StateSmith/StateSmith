@@ -6,6 +6,7 @@ using FluentAssertions;
 using StateSmith.Output.Gil;
 using StateSmith.SmGraph;
 using StateSmith.Output.UserConfig;
+using FluentAssertions.Execution;
 
 namespace StateSmithTest.Input.Expansions;
 
@@ -36,21 +37,25 @@ public class WrappingExpanderTest
     [Fact]
     public void ActionCodeBesideGil()
     {
-        var wrapFinalCode = PostProcessor.RmCommentOut;
         var code = ExpandWrapActionCode("var_a = 33; $gil(var_a = 45;) var_a++;");
-        code.Should().Be($"{wrapFinalCode("expanded_var_a = 33; ")}var_a = 45;{wrapFinalCode(" expanded_var_a++;")}");
-        string expectedBeforePostProcess = "/*<<<<<rm2<<<<<expanded_var_a = 33; >>>>>rm2>>>>>*/var_a = 45;/*<<<<<rm2<<<<< expanded_var_a++;>>>>>rm2>>>>>*/";  //same as above, just so we can easily see it.
-        code.Should().Be(expectedBeforePostProcess);
-        PostProcessor.PostProcess(expectedBeforePostProcess).Should().Be("expanded_var_a = 33; var_a = 45; expanded_var_a++;");
+        code.Should().Be($"""{GilCreationHelper.GilEchoStringVoidReturnFuncName}("expanded_var_a = 33; ");var_a = 45;{GilCreationHelper.GilEchoStringVoidReturnFuncName}(" expanded_var_a++;");""");
     }
 
     [Fact]
     public void ActionCodeWrappingGil()
     {
-        var wrapFinalCode = PostProcessor.RmCommentOut;
         var code = ExpandWrapActionCode("print($gil(var_a = 45;))");
-        code.Should().Be($"{wrapFinalCode("some_printer(\"")}var_a = 45;{wrapFinalCode("\")")}");
-        code.Should().Be("""/*<<<<<rm2<<<<<some_printer(">>>>>rm2>>>>>*/var_a = 45;/*<<<<<rm2<<<<<")>>>>>rm2>>>>>*/"""); //same as above, just so we can easily see it.
+        code.Should().Be($"""{GilCreationHelper.GilEchoStringVoidReturnFuncName}("some_printer(\"");var_a = 45;{GilCreationHelper.GilEchoStringVoidReturnFuncName}("\")");""");
+    }
+
+    [Fact]
+    public void ActionCodeWithNewLinesGil()
+    {
+        var code = ExpandWrapActionCode("    var_a = 33;\n    var_a++;");
+        code.Should().Be($"""
+            {GilCreationHelper.GilEchoStringVoidReturnFuncName}("    expanded_var_a = 33;");
+            {GilCreationHelper.GilEchoStringVoidReturnFuncName}("    expanded_var_a++;");
+            """.ConvertLineEndingsToN());
     }
 
     [Fact]

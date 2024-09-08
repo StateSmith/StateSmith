@@ -2564,6 +2564,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter Spec2Sm.") }
         if True:
 
+            # Step 1: execute action `trace("Enter Spec2Sm.")`
+            Printer.trace("Enter Spec2Sm.")
     
     def _ROOT_do(self):
         # ROOT behavior
@@ -2583,12 +2585,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING.")`
+            Printer.trace("Enter PREFIXING.")
     
     def _PREFIXING_exit(self):
         # PREFIXING behavior
         # uml: exit / { trace("Exit PREFIXING.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING.")`
+            Printer.trace("Exit PREFIXING.")
         
         self.stateId = StateId.ROOT
     
@@ -2604,12 +2610,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__ORDER_MENU.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__ORDER_MENU.")`
+            Printer.trace("Enter PREFIXING__ORDER_MENU.")
     
     def _PREFIXING__ORDER_MENU_exit(self):
         # PREFIXING__ORDER_MENU behavior
         # uml: exit / { trace("Exit PREFIXING__ORDER_MENU.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__ORDER_MENU.")`
+            Printer.trace("Exit PREFIXING__ORDER_MENU.")
         
         self.stateId = StateId.PREFIXING
     
@@ -2625,12 +2635,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__OM__BEVERAGE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__OM__BEVERAGE.")`
+            Printer.trace("Enter PREFIXING__OM__BEVERAGE.")
     
     def _PREFIXING__OM__BEVERAGE_exit(self):
         # PREFIXING__OM__BEVERAGE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEVERAGE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__OM__BEVERAGE.")`
+            Printer.trace("Exit PREFIXING__OM__BEVERAGE.")
         
         self.stateId = StateId.PREFIXING__ORDER_MENU
     
@@ -2691,12 +2705,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__NONE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__NONE.")`
+            Printer.trace("Enter PREFIXING__OM__BEV__NONE.")
     
     def _PREFIXING__OM__BEV__NONE_exit(self):
         # PREFIXING__OM__BEV__NONE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__NONE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__NONE.")`
+            Printer.trace("Exit PREFIXING__OM__BEV__NONE.")
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
     
@@ -2729,12 +2747,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__TEA.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__TEA.")`
+            Printer.trace("Enter PREFIXING__OM__BEV__TEA.")
     
     def _PREFIXING__OM__BEV__TEA_exit(self):
         # PREFIXING__OM__BEV__TEA behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__TEA.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__TEA.")`
+            Printer.trace("Exit PREFIXING__OM__BEV__TEA.")
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
     
@@ -2750,12 +2772,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__OM__BEV__WATER.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__OM__BEV__WATER.")`
+            Printer.trace("Enter PREFIXING__OM__BEV__WATER.")
     
     def _PREFIXING__OM__BEV__WATER_exit(self):
         # PREFIXING__OM__BEV__WATER behavior
         # uml: exit / { trace("Exit PREFIXING__OM__BEV__WATER.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__OM__BEV__WATER.")`
+            Printer.trace("Exit PREFIXING__OM__BEV__WATER.")
         
         self.stateId = StateId.PREFIXING__OM__BEVERAGE
     
@@ -2788,12 +2814,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__OM__VEG.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__OM__VEG.")`
+            Printer.trace("Enter PREFIXING__OM__VEG.")
     
     def _PREFIXING__OM__VEG_exit(self):
         # PREFIXING__OM__VEG behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__OM__VEG.")`
+            Printer.trace("Exit PREFIXING__OM__VEG.")
         
         self.stateId = StateId.PREFIXING__ORDER_MENU
     
@@ -2827,12 +2857,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__NONE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__NONE.")`
+            Printer.trace("Enter PREFIXING__OM__VEG__NONE.")
     
     def _PREFIXING__OM__VEG__NONE_exit(self):
         # PREFIXING__OM__VEG__NONE behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__NONE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__NONE.")`
+            Printer.trace("Exit PREFIXING__OM__VEG__NONE.")
         
         self.stateId = StateId.PREFIXING__OM__VEG
     
@@ -2865,12 +2899,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__POTATO.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__POTATO.")`
+            Printer.trace("Enter PREFIXING__OM__VEG__POTATO.")
     
     def _PREFIXING__OM__VEG__POTATO_exit(self):
         # PREFIXING__OM__VEG__POTATO behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__POTATO.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__POTATO.")`
+            Printer.trace("Exit PREFIXING__OM__VEG__POTATO.")
         
         self.stateId = StateId.PREFIXING__OM__VEG
     
@@ -2903,12 +2941,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__OM__VEG__YAM.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__OM__VEG__YAM.")`
+            Printer.trace("Enter PREFIXING__OM__VEG__YAM.")
     
     def _PREFIXING__OM__VEG__YAM_exit(self):
         # PREFIXING__OM__VEG__YAM behavior
         # uml: exit / { trace("Exit PREFIXING__OM__VEG__YAM.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__OM__VEG__YAM.")`
+            Printer.trace("Exit PREFIXING__OM__VEG__YAM.")
         
         self.stateId = StateId.PREFIXING__OM__VEG
     
@@ -2924,12 +2966,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX.")
         
         self.stateId = StateId.PREFIXING
     
@@ -2945,12 +2991,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX
     
@@ -2966,12 +3016,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     
@@ -3032,12 +3086,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_NONE.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     
@@ -3070,12 +3128,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_TEA.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     
@@ -3091,12 +3153,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEV_WATER.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_BEVERAGE
     
@@ -3129,12 +3195,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__ORDER_MENU
     
@@ -3168,12 +3238,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_NONE.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     
@@ -3206,12 +3280,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_POTATO.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     
@@ -3244,12 +3322,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") }
         if True:
 
+            # Step 1: execute action `trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
+            Printer.trace("Enter PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
     
     def _PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM_exit(self):
         # PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM behavior
         # uml: exit / { trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.") }
         if True:
 
+            # Step 1: execute action `trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")`
+            Printer.trace("Exit PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG_YAM.")
         
         self.stateId = StateId.PREFIXING__SHOWS_MANUAL_PREFIX__OM_VEG
     
@@ -3265,12 +3347,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter Spec2Sm__DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter Spec2Sm__DECIDE.")`
+            Printer.trace("Enter Spec2Sm__DECIDE.")
     
     def _SPEC2SM__DECIDE_exit(self):
         # Spec2Sm__DECIDE behavior
         # uml: exit / { trace("Exit Spec2Sm__DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit Spec2Sm__DECIDE.")`
+            Printer.trace("Exit Spec2Sm__DECIDE.")
         
         self.stateId = StateId.ROOT
     
@@ -3629,12 +3715,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST1_DO_EVENT_TESTING.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST1_DO_EVENT_TESTING.")`
+            Printer.trace("Enter TEST1_DO_EVENT_TESTING.")
     
     def _TEST1_DO_EVENT_TESTING_exit(self):
         # TEST1_DO_EVENT_TESTING behavior
         # uml: exit / { trace("Exit TEST1_DO_EVENT_TESTING.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST1_DO_EVENT_TESTING.")`
+            Printer.trace("Exit TEST1_DO_EVENT_TESTING.")
         
         self.stateId = StateId.ROOT
     
@@ -3650,12 +3740,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST1_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST1_ROOT.")`
+            Printer.trace("Enter TEST1_ROOT.")
     
     def _TEST1_ROOT_exit(self):
         # TEST1_ROOT behavior
         # uml: exit / { trace("Exit TEST1_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST1_ROOT.")`
+            Printer.trace("Exit TEST1_ROOT.")
         
         self.stateId = StateId.TEST1_DO_EVENT_TESTING
     
@@ -3684,12 +3778,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST1_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST1_S1.")`
+            Printer.trace("Enter TEST1_S1.")
     
     def _TEST1_S1_exit(self):
         # TEST1_S1 behavior
         # uml: exit / { trace("Exit TEST1_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST1_S1.")`
+            Printer.trace("Exit TEST1_S1.")
         
         self.stateId = StateId.TEST1_ROOT
     
@@ -3705,17 +3803,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST1_S1_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST1_S1_1.")`
+            Printer.trace("Enter TEST1_S1_1.")
         
         # TEST1_S1_1 behavior
         # uml: enter [trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST1_S1_1_exit(self):
         # TEST1_S1_1 behavior
         # uml: exit / { trace("Exit TEST1_S1_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST1_S1_1.")`
+            Printer.trace("Exit TEST1_S1_1.")
         
         self.stateId = StateId.TEST1_S1
     
@@ -3761,12 +3865,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST1_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST1_S2.")`
+            Printer.trace("Enter TEST1_S2.")
     
     def _TEST1_S2_exit(self):
         # TEST1_S2 behavior
         # uml: exit / { trace("Exit TEST1_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST1_S2.")`
+            Printer.trace("Exit TEST1_S2.")
         
         self.stateId = StateId.TEST1_ROOT
     
@@ -3777,6 +3885,9 @@ class Spec2Sm(Spec2SmBase):
         # uml: do [trace_guard("State TEST1_S2: check behavior `do / { consume_event = true }`.", true)] / { consume_event = true }
         if trace_guard("State TEST1_S2: check behavior `do / { consume_event = true }`.", true):
 
+            # `do` events are not normally consumed.
+            # Step 1: execute action `consume_event = true`
+            consume_event = true
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
@@ -3795,12 +3906,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_CHOICE_POINT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_CHOICE_POINT.")`
+            Printer.trace("Enter TEST10_CHOICE_POINT.")
     
     def _TEST10_CHOICE_POINT_exit(self):
         # TEST10_CHOICE_POINT behavior
         # uml: exit / { trace("Exit TEST10_CHOICE_POINT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_CHOICE_POINT.")`
+            Printer.trace("Exit TEST10_CHOICE_POINT.")
         
         self.stateId = StateId.ROOT
     
@@ -3816,12 +3931,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_A.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_A.")`
+            Printer.trace("Enter TEST10_A.")
     
     def _TEST10_A_exit(self):
         # TEST10_A behavior
         # uml: exit / { trace("Exit TEST10_A.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_A.")`
+            Printer.trace("Exit TEST10_A.")
         
         self.stateId = StateId.TEST10_CHOICE_POINT
     
@@ -3952,12 +4071,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_A_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_A_1.")`
+            Printer.trace("Enter TEST10_A_1.")
     
     def _TEST10_A_1_exit(self):
         # TEST10_A_1 behavior
         # uml: exit / { trace("Exit TEST10_A_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_A_1.")`
+            Printer.trace("Exit TEST10_A_1.")
         
         self.stateId = StateId.TEST10_A
     
@@ -3973,12 +4096,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_ROOT.")`
+            Printer.trace("Enter TEST10_ROOT.")
     
     def _TEST10_ROOT_exit(self):
         # TEST10_ROOT behavior
         # uml: exit / { trace("Exit TEST10_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_ROOT.")`
+            Printer.trace("Exit TEST10_ROOT.")
         
         self.stateId = StateId.TEST10_CHOICE_POINT
     
@@ -3987,6 +4114,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: EV5 [trace_guard("State TEST10_ROOT: check behavior `EV5 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State TEST10_ROOT: check behavior `EV5 / { count += 1 }`.", true):
 
+            # Step 1: execute action `count += 1`
+            self.vars.count += 1
     
     
     ########################################
@@ -4000,12 +4129,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_G.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_G.")`
+            Printer.trace("Enter TEST10_G.")
     
     def _TEST10_G_exit(self):
         # TEST10_G behavior
         # uml: exit / { trace("Exit TEST10_G.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_G.")`
+            Printer.trace("Exit TEST10_G.")
         
         self.stateId = StateId.TEST10_ROOT
     
@@ -4134,12 +4267,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_G_S0.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_G_S0.")`
+            Printer.trace("Enter TEST10_G_S0.")
     
     def _TEST10_G_S0_exit(self):
         # TEST10_G_S0 behavior
         # uml: exit / { trace("Exit TEST10_G_S0.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_G_S0.")`
+            Printer.trace("Exit TEST10_G_S0.")
         
         self.stateId = StateId.TEST10_G
     
@@ -4155,12 +4292,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_G_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_G_S1.")`
+            Printer.trace("Enter TEST10_G_S1.")
     
     def _TEST10_G_S1_exit(self):
         # TEST10_G_S1 behavior
         # uml: exit / { trace("Exit TEST10_G_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_G_S1.")`
+            Printer.trace("Exit TEST10_G_S1.")
         
         self.stateId = StateId.TEST10_G
     
@@ -4176,12 +4317,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_G_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_G_S2.")`
+            Printer.trace("Enter TEST10_G_S2.")
     
     def _TEST10_G_S2_exit(self):
         # TEST10_G_S2 behavior
         # uml: exit / { trace("Exit TEST10_G_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_G_S2.")`
+            Printer.trace("Exit TEST10_G_S2.")
         
         self.stateId = StateId.TEST10_G
     
@@ -4197,12 +4342,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_G_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_G_S3.")`
+            Printer.trace("Enter TEST10_G_S3.")
     
     def _TEST10_G_S3_exit(self):
         # TEST10_G_S3 behavior
         # uml: exit / { trace("Exit TEST10_G_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_G_S3.")`
+            Printer.trace("Exit TEST10_G_S3.")
         
         self.stateId = StateId.TEST10_G
     
@@ -4218,17 +4367,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_S1.")`
+            Printer.trace("Enter TEST10_S1.")
         
         # TEST10_S1 behavior
         # uml: enter [trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST10_S1: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST10_S1_exit(self):
         # TEST10_S1 behavior
         # uml: exit / { trace("Exit TEST10_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_S1.")`
+            Printer.trace("Exit TEST10_S1.")
         
         self.stateId = StateId.TEST10_ROOT
     
@@ -4387,12 +4542,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST10_S4.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST10_S4.")`
+            Printer.trace("Enter TEST10_S4.")
     
     def _TEST10_S4_exit(self):
         # TEST10_S4 behavior
         # uml: exit / { trace("Exit TEST10_S4.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST10_S4.")`
+            Printer.trace("Exit TEST10_S4.")
         
         self.stateId = StateId.TEST10_ROOT
     
@@ -4408,12 +4567,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST2_REGULAR_EVENT_TESTING.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST2_REGULAR_EVENT_TESTING.")`
+            Printer.trace("Enter TEST2_REGULAR_EVENT_TESTING.")
     
     def _TEST2_REGULAR_EVENT_TESTING_exit(self):
         # TEST2_REGULAR_EVENT_TESTING behavior
         # uml: exit / { trace("Exit TEST2_REGULAR_EVENT_TESTING.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST2_REGULAR_EVENT_TESTING.")`
+            Printer.trace("Exit TEST2_REGULAR_EVENT_TESTING.")
         
         self.stateId = StateId.ROOT
     
@@ -4429,12 +4592,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST2_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST2_ROOT.")`
+            Printer.trace("Enter TEST2_ROOT.")
     
     def _TEST2_ROOT_exit(self):
         # TEST2_ROOT behavior
         # uml: exit / { trace("Exit TEST2_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST2_ROOT.")`
+            Printer.trace("Exit TEST2_ROOT.")
         
         self.stateId = StateId.TEST2_REGULAR_EVENT_TESTING
     
@@ -4475,12 +4642,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST2_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST2_S1.")`
+            Printer.trace("Enter TEST2_S1.")
     
     def _TEST2_S1_exit(self):
         # TEST2_S1 behavior
         # uml: exit / { trace("Exit TEST2_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST2_S1.")`
+            Printer.trace("Exit TEST2_S1.")
         
         self.stateId = StateId.TEST2_ROOT
     
@@ -4496,17 +4667,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST2_S1_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST2_S1_1.")`
+            Printer.trace("Enter TEST2_S1_1.")
         
         # TEST2_S1_1 behavior
         # uml: enter [trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST2_S1_1_exit(self):
         # TEST2_S1_1 behavior
         # uml: exit / { trace("Exit TEST2_S1_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST2_S1_1.")`
+            Printer.trace("Exit TEST2_S1_1.")
         
         self.stateId = StateId.TEST2_S1
     
@@ -4561,6 +4738,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST2_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST2_S2.")`
+            Printer.trace("Enter TEST2_S2.")
         
         # TEST2_S2 behavior
         # uml: enter [trace_guard("State TEST2_S2: check behavior `en`.", true)]
@@ -4572,6 +4751,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit TEST2_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST2_S2.")`
+            Printer.trace("Exit TEST2_S2.")
         
         self.stateId = StateId.TEST2_ROOT
     
@@ -4584,6 +4765,8 @@ class Spec2Sm(Spec2SmBase):
 
             # Consume event `ev1`.
             consume_event = True
+            # Step 1: execute action `consume_event = false`
+            consume_event = false
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
@@ -4626,12 +4809,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST3_BEHAVIOR_ORDERING.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST3_BEHAVIOR_ORDERING.")`
+            Printer.trace("Enter TEST3_BEHAVIOR_ORDERING.")
     
     def _TEST3_BEHAVIOR_ORDERING_exit(self):
         # TEST3_BEHAVIOR_ORDERING behavior
         # uml: exit / { trace("Exit TEST3_BEHAVIOR_ORDERING.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST3_BEHAVIOR_ORDERING.")`
+            Printer.trace("Exit TEST3_BEHAVIOR_ORDERING.")
         
         self.stateId = StateId.ROOT
     
@@ -4647,12 +4834,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST3_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST3_ROOT.")`
+            Printer.trace("Enter TEST3_ROOT.")
     
     def _TEST3_ROOT_exit(self):
         # TEST3_ROOT behavior
         # uml: exit / { trace("Exit TEST3_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST3_ROOT.")`
+            Printer.trace("Exit TEST3_ROOT.")
         
         self.stateId = StateId.TEST3_BEHAVIOR_ORDERING
     
@@ -4674,17 +4865,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST3_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST3_S1.")`
+            Printer.trace("Enter TEST3_S1.")
         
         # TEST3_S1 behavior
         # uml: enter [trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST3_S1: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST3_S1_exit(self):
         # TEST3_S1 behavior
         # uml: exit / { trace("Exit TEST3_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST3_S1.")`
+            Printer.trace("Exit TEST3_S1.")
         
         self.stateId = StateId.TEST3_ROOT
     
@@ -4713,6 +4910,8 @@ class Spec2Sm(Spec2SmBase):
 
             # Consume event `ev1`.
             consume_event = True
+            # Step 1: execute action `trace("failed")`
+            Printer.trace("failed")
         
         # Check if event has been consumed before calling ancestor handler.
         if !consume_event:
@@ -4731,12 +4930,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST3_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST3_S2.")`
+            Printer.trace("Enter TEST3_S2.")
     
     def _TEST3_S2_exit(self):
         # TEST3_S2 behavior
         # uml: exit / { trace("Exit TEST3_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST3_S2.")`
+            Printer.trace("Exit TEST3_S2.")
         
         self.stateId = StateId.TEST3_ROOT
     
@@ -4749,6 +4952,8 @@ class Spec2Sm(Spec2SmBase):
 
             # Consume event `ev1`.
             consume_event = True
+            # Step 1: execute action `trace("1 woot!")`
+            Printer.trace("1 woot!")
         
         # TEST3_S2 behavior
         # uml: 1.1. EV1 [trace_guard("State TEST3_S2: check behavior `1.1. EV1 / { trace(\"2 woot!\") }`.", true)] / { trace("2 woot!") }
@@ -4756,6 +4961,8 @@ class Spec2Sm(Spec2SmBase):
 
             # Consume event `ev1`.
             consume_event = True
+            # Step 1: execute action `trace("2 woot!")`
+            Printer.trace("2 woot!")
         
         # TEST3_S2 behavior
         # uml: 2. EV1 [trace_guard("State TEST3_S2: check behavior `2. EV1 / { trace(\"3 woot!\") } TransitionTo(TEST3_S3)`.", true)] / { trace("Transition action `trace(\"3 woot!\")` for TEST3_S2 to TEST3_S3.")\ntrace("3 woot!") } TransitionTo(TEST3_S3)
@@ -4791,12 +4998,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST3_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST3_S3.")`
+            Printer.trace("Enter TEST3_S3.")
     
     def _TEST3_S3_exit(self):
         # TEST3_S3 behavior
         # uml: exit / { trace("Exit TEST3_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST3_S3.")`
+            Printer.trace("Exit TEST3_S3.")
         
         self.stateId = StateId.TEST3_ROOT
     
@@ -4812,12 +5023,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")`
+            Printer.trace("Enter TEST4_PARENT_CHILD_TRANSITIONS.")
     
     def _TEST4_PARENT_CHILD_TRANSITIONS_exit(self):
         # TEST4_PARENT_CHILD_TRANSITIONS behavior
         # uml: exit / { trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")`
+            Printer.trace("Exit TEST4_PARENT_CHILD_TRANSITIONS.")
         
         self.stateId = StateId.ROOT
     
@@ -4833,17 +5048,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_B_AND_OTHERS.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_B_AND_OTHERS.")`
+            Printer.trace("Enter TEST4_B_AND_OTHERS.")
         
         # TEST4_B_AND_OTHERS behavior
         # uml: enter [trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
         if trace_guard("State TEST4_B_AND_OTHERS: check behavior `enter / { clear_dispatch_output() }`.", true):
 
+            # Step 1: execute action `clear_dispatch_output()`
+            Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
     
     def _TEST4_B_AND_OTHERS_exit(self):
         # TEST4_B_AND_OTHERS behavior
         # uml: exit / { trace("Exit TEST4_B_AND_OTHERS.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_B_AND_OTHERS.")`
+            Printer.trace("Exit TEST4_B_AND_OTHERS.")
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     
@@ -4859,12 +5080,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4B_LOCAL.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4B_LOCAL.")`
+            Printer.trace("Enter TEST4B_LOCAL.")
     
     def _TEST4B_LOCAL_exit(self):
         # TEST4B_LOCAL behavior
         # uml: exit / { trace("Exit TEST4B_LOCAL.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4B_LOCAL.")`
+            Printer.trace("Exit TEST4B_LOCAL.")
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
     
@@ -4880,12 +5105,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4B_G.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4B_G.")`
+            Printer.trace("Enter TEST4B_G.")
     
     def _TEST4B_G_exit(self):
         # TEST4B_G behavior
         # uml: exit / { trace("Exit TEST4B_G.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4B_G.")`
+            Printer.trace("Exit TEST4B_G.")
         
         self.stateId = StateId.TEST4B_LOCAL
     
@@ -4918,12 +5147,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4B_G_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4B_G_1.")`
+            Printer.trace("Enter TEST4B_G_1.")
     
     def _TEST4B_G_1_exit(self):
         # TEST4B_G_1 behavior
         # uml: exit / { trace("Exit TEST4B_G_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4B_G_1.")`
+            Printer.trace("Exit TEST4B_G_1.")
         
         self.stateId = StateId.TEST4B_G
     
@@ -4955,12 +5188,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4C_LOCAL_TO_ALIAS.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4C_LOCAL_TO_ALIAS.")`
+            Printer.trace("Enter TEST4C_LOCAL_TO_ALIAS.")
     
     def _TEST4C_LOCAL_TO_ALIAS_exit(self):
         # TEST4C_LOCAL_TO_ALIAS behavior
         # uml: exit / { trace("Exit TEST4C_LOCAL_TO_ALIAS.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4C_LOCAL_TO_ALIAS.")`
+            Printer.trace("Exit TEST4C_LOCAL_TO_ALIAS.")
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
     
@@ -4976,12 +5213,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4C_G.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4C_G.")`
+            Printer.trace("Enter TEST4C_G.")
     
     def _TEST4C_G_exit(self):
         # TEST4C_G behavior
         # uml: exit / { trace("Exit TEST4C_G.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4C_G.")`
+            Printer.trace("Exit TEST4C_G.")
         
         self.stateId = StateId.TEST4C_LOCAL_TO_ALIAS
     
@@ -5014,12 +5255,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4C_G_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4C_G_1.")`
+            Printer.trace("Enter TEST4C_G_1.")
     
     def _TEST4C_G_1_exit(self):
         # TEST4C_G_1 behavior
         # uml: exit / { trace("Exit TEST4C_G_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4C_G_1.")`
+            Printer.trace("Exit TEST4C_G_1.")
         
         self.stateId = StateId.TEST4C_G
     
@@ -5051,12 +5296,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4D_EXTERNAL.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4D_EXTERNAL.")`
+            Printer.trace("Enter TEST4D_EXTERNAL.")
     
     def _TEST4D_EXTERNAL_exit(self):
         # TEST4D_EXTERNAL behavior
         # uml: exit / { trace("Exit TEST4D_EXTERNAL.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4D_EXTERNAL.")`
+            Printer.trace("Exit TEST4D_EXTERNAL.")
         
         self.stateId = StateId.TEST4_B_AND_OTHERS
     
@@ -5072,12 +5321,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4D_G.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4D_G.")`
+            Printer.trace("Enter TEST4D_G.")
     
     def _TEST4D_G_exit(self):
         # TEST4D_G behavior
         # uml: exit / { trace("Exit TEST4D_G.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4D_G.")`
+            Printer.trace("Exit TEST4D_G.")
         
         self.stateId = StateId.TEST4D_EXTERNAL
     
@@ -5123,12 +5376,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4D_G_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4D_G_1.")`
+            Printer.trace("Enter TEST4D_G_1.")
     
     def _TEST4D_G_1_exit(self):
         # TEST4D_G_1 behavior
         # uml: exit / { trace("Exit TEST4D_G_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4D_G_1.")`
+            Printer.trace("Exit TEST4D_G_1.")
         
         self.stateId = StateId.TEST4D_G
     
@@ -5173,12 +5430,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_DECIDE.")`
+            Printer.trace("Enter TEST4_DECIDE.")
     
     def _TEST4_DECIDE_exit(self):
         # TEST4_DECIDE behavior
         # uml: exit / { trace("Exit TEST4_DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_DECIDE.")`
+            Printer.trace("Exit TEST4_DECIDE.")
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     
@@ -5301,17 +5562,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_ROOT.")`
+            Printer.trace("Enter TEST4_ROOT.")
         
         # TEST4_ROOT behavior
         # uml: enter [trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST4_ROOT_exit(self):
         # TEST4_ROOT behavior
         # uml: exit / { trace("Exit TEST4_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_ROOT.")`
+            Printer.trace("Exit TEST4_ROOT.")
         
         self.stateId = StateId.TEST4_PARENT_CHILD_TRANSITIONS
     
@@ -5380,12 +5647,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_S1.")`
+            Printer.trace("Enter TEST4_S1.")
     
     def _TEST4_S1_exit(self):
         # TEST4_S1 behavior
         # uml: exit / { trace("Exit TEST4_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_S1.")`
+            Printer.trace("Exit TEST4_S1.")
         
         self.stateId = StateId.TEST4_ROOT
     
@@ -5418,12 +5689,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_S10.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_S10.")`
+            Printer.trace("Enter TEST4_S10.")
     
     def _TEST4_S10_exit(self):
         # TEST4_S10 behavior
         # uml: exit / { trace("Exit TEST4_S10.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_S10.")`
+            Printer.trace("Exit TEST4_S10.")
         
         self.stateId = StateId.TEST4_ROOT
     
@@ -5463,12 +5738,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_S10_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_S10_1.")`
+            Printer.trace("Enter TEST4_S10_1.")
     
     def _TEST4_S10_1_exit(self):
         # TEST4_S10_1 behavior
         # uml: exit / { trace("Exit TEST4_S10_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_S10_1.")`
+            Printer.trace("Exit TEST4_S10_1.")
         
         self.stateId = StateId.TEST4_S10
     
@@ -5484,12 +5763,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_S2.")`
+            Printer.trace("Enter TEST4_S2.")
     
     def _TEST4_S2_exit(self):
         # TEST4_S2 behavior
         # uml: exit / { trace("Exit TEST4_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_S2.")`
+            Printer.trace("Exit TEST4_S2.")
         
         self.stateId = StateId.TEST4_ROOT
     
@@ -5522,12 +5805,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_S20.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_S20.")`
+            Printer.trace("Enter TEST4_S20.")
     
     def _TEST4_S20_exit(self):
         # TEST4_S20 behavior
         # uml: exit / { trace("Exit TEST4_S20.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_S20.")`
+            Printer.trace("Exit TEST4_S20.")
         
         self.stateId = StateId.TEST4_ROOT
     
@@ -5584,12 +5871,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_S20_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_S20_1.")`
+            Printer.trace("Enter TEST4_S20_1.")
     
     def _TEST4_S20_1_exit(self):
         # TEST4_S20_1 behavior
         # uml: exit / { trace("Exit TEST4_S20_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_S20_1.")`
+            Printer.trace("Exit TEST4_S20_1.")
         
         self.stateId = StateId.TEST4_S20
     
@@ -5605,12 +5896,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST4_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST4_S3.")`
+            Printer.trace("Enter TEST4_S3.")
     
     def _TEST4_S3_exit(self):
         # TEST4_S3 behavior
         # uml: exit / { trace("Exit TEST4_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST4_S3.")`
+            Printer.trace("Exit TEST4_S3.")
         
         self.stateId = StateId.TEST4_ROOT
     
@@ -5642,12 +5937,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
+            Printer.trace("Enter TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
     
     def _TEST5_PARENT_CHILD_TRANSITIONS_ALIAS_exit(self):
         # TEST5_PARENT_CHILD_TRANSITIONS_ALIAS behavior
         # uml: exit / { trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")`
+            Printer.trace("Exit TEST5_PARENT_CHILD_TRANSITIONS_ALIAS.")
         
         self.stateId = StateId.ROOT
     
@@ -5663,17 +5962,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST5_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST5_ROOT.")`
+            Printer.trace("Enter TEST5_ROOT.")
         
         # TEST5_ROOT behavior
         # uml: enter [trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST5_ROOT_exit(self):
         # TEST5_ROOT behavior
         # uml: exit / { trace("Exit TEST5_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST5_ROOT.")`
+            Printer.trace("Exit TEST5_ROOT.")
         
         self.stateId = StateId.TEST5_PARENT_CHILD_TRANSITIONS_ALIAS
     
@@ -5706,12 +6011,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST5_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST5_S1.")`
+            Printer.trace("Enter TEST5_S1.")
     
     def _TEST5_S1_exit(self):
         # TEST5_S1 behavior
         # uml: exit / { trace("Exit TEST5_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST5_S1.")`
+            Printer.trace("Exit TEST5_S1.")
         
         self.stateId = StateId.TEST5_ROOT
     
@@ -5744,12 +6053,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST5_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST5_S2.")`
+            Printer.trace("Enter TEST5_S2.")
     
     def _TEST5_S2_exit(self):
         # TEST5_S2 behavior
         # uml: exit / { trace("Exit TEST5_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST5_S2.")`
+            Printer.trace("Exit TEST5_S2.")
         
         self.stateId = StateId.TEST5_ROOT
     
@@ -5782,12 +6095,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST5_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST5_S3.")`
+            Printer.trace("Enter TEST5_S3.")
     
     def _TEST5_S3_exit(self):
         # TEST5_S3 behavior
         # uml: exit / { trace("Exit TEST5_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST5_S3.")`
+            Printer.trace("Exit TEST5_S3.")
         
         self.stateId = StateId.TEST5_ROOT
     
@@ -5819,12 +6136,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS.")`
+            Printer.trace("Enter TEST6_VARS_EXPANSIONS.")
     
     def _TEST6_VARS_EXPANSIONS_exit(self):
         # TEST6_VARS_EXPANSIONS behavior
         # uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS.")`
+            Printer.trace("Exit TEST6_VARS_EXPANSIONS.")
         
         self.stateId = StateId.ROOT
     
@@ -5840,12 +6161,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST6_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST6_ROOT.")`
+            Printer.trace("Enter TEST6_ROOT.")
     
     def _TEST6_ROOT_exit(self):
         # TEST6_ROOT behavior
         # uml: exit / { trace("Exit TEST6_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST6_ROOT.")`
+            Printer.trace("Exit TEST6_ROOT.")
         
         self.stateId = StateId.TEST6_VARS_EXPANSIONS
     
@@ -5861,12 +6186,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter AUTO_VAR_TEST.") }
         if True:
 
+            # Step 1: execute action `trace("Enter AUTO_VAR_TEST.")`
+            Printer.trace("Enter AUTO_VAR_TEST.")
     
     def _AUTO_VAR_TEST_exit(self):
         # AUTO_VAR_TEST behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST.") }
         if True:
 
+            # Step 1: execute action `trace("Exit AUTO_VAR_TEST.")`
+            Printer.trace("Exit AUTO_VAR_TEST.")
         
         self.stateId = StateId.TEST6_ROOT
     
@@ -5882,17 +6211,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter AUTO_VAR_TEST__S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter AUTO_VAR_TEST__S1.")`
+            Printer.trace("Enter AUTO_VAR_TEST__S1.")
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: enter [trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _AUTO_VAR_TEST__S1_exit(self):
         # AUTO_VAR_TEST__S1 behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST__S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S1.")`
+            Printer.trace("Exit AUTO_VAR_TEST__S1.")
         
         self.stateId = StateId.AUTO_VAR_TEST
     
@@ -5901,6 +6236,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: 1. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.", true)] / { auto_var_1 += 1 }
         if trace_guard("State AUTO_VAR_TEST__S1: check behavior `1. EV1 / { auto_var_1 += 1 }`.", true):
 
+            # Step 1: execute action `auto_var_1 += 1`
+            auto_var_1 += 1
         
         # AUTO_VAR_TEST__S1 behavior
         # uml: 2. EV1 [trace_guard("State AUTO_VAR_TEST__S1: check behavior `2. EV1 [auto_var_1 == 2] TransitionTo(AUTO_VAR_TEST__S2)`.", auto_var_1 == 2)] / { trace("Transition action `` for AUTO_VAR_TEST__S1 to AUTO_VAR_TEST__S2.") } TransitionTo(AUTO_VAR_TEST__S2)
@@ -5930,12 +6267,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter AUTO_VAR_TEST__S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter AUTO_VAR_TEST__S2.")`
+            Printer.trace("Enter AUTO_VAR_TEST__S2.")
     
     def _AUTO_VAR_TEST__S2_exit(self):
         # AUTO_VAR_TEST__S2 behavior
         # uml: exit / { trace("Exit AUTO_VAR_TEST__S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit AUTO_VAR_TEST__S2.")`
+            Printer.trace("Exit AUTO_VAR_TEST__S2.")
         
         self.stateId = StateId.AUTO_VAR_TEST
     
@@ -5951,12 +6292,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter META_EXPANSIONS.") }
         if True:
 
+            # Step 1: execute action `trace("Enter META_EXPANSIONS.")`
+            Printer.trace("Enter META_EXPANSIONS.")
     
     def _META_EXPANSIONS_exit(self):
         # META_EXPANSIONS behavior
         # uml: exit / { trace("Exit META_EXPANSIONS.") }
         if True:
 
+            # Step 1: execute action `trace("Exit META_EXPANSIONS.")`
+            Printer.trace("Exit META_EXPANSIONS.")
         
         self.stateId = StateId.TEST6_ROOT
     
@@ -5989,17 +6334,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter META_EXPANSIONS__S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter META_EXPANSIONS__S1.")`
+            Printer.trace("Enter META_EXPANSIONS__S1.")
         
         # META_EXPANSIONS__S1 behavior
         # uml: enter [trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _META_EXPANSIONS__S1_exit(self):
         # META_EXPANSIONS__S1 behavior
         # uml: exit / { trace("Exit META_EXPANSIONS__S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit META_EXPANSIONS__S1.")`
+            Printer.trace("Exit META_EXPANSIONS__S1.")
         
         self.stateId = StateId.META_EXPANSIONS
     
@@ -6033,17 +6384,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter META_EXPANSIONS__S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter META_EXPANSIONS__S2.")`
+            Printer.trace("Enter META_EXPANSIONS__S2.")
         
         # META_EXPANSIONS__S2 behavior
         # uml: enter [trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", true)] / { trace_meta() }
         if trace_guard("State META_EXPANSIONS__S2: check behavior `enter / { trace_meta() }`.", true):
 
+            # Step 1: execute action `trace_meta()`
+            Printer.trace("META: State: META_EXPANSIONS__S2, trigger: enter, behavior vertex: META_EXPANSIONS__S2")
     
     def _META_EXPANSIONS__S2_exit(self):
         # META_EXPANSIONS__S2 behavior
         # uml: exit / { trace("Exit META_EXPANSIONS__S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit META_EXPANSIONS__S2.")`
+            Printer.trace("Exit META_EXPANSIONS__S2.")
         
         self.stateId = StateId.META_EXPANSIONS
     
@@ -6108,12 +6465,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter S3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter S3.")`
+            Printer.trace("Enter S3.")
     
     def _S3_exit(self):
         # S3 behavior
         # uml: exit / { trace("Exit S3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit S3.")`
+            Printer.trace("Exit S3.")
         
         self.stateId = StateId.META_EXPANSIONS
     
@@ -6148,12 +6509,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter S4.") }
         if True:
 
+            # Step 1: execute action `trace("Enter S4.")`
+            Printer.trace("Enter S4.")
     
     def _S4_exit(self):
         # S4 behavior
         # uml: exit / { trace("Exit S4.") }
         if True:
 
+            # Step 1: execute action `trace("Exit S4.")`
+            Printer.trace("Exit S4.")
         
         self.stateId = StateId.META_EXPANSIONS
     
@@ -6169,12 +6534,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter S5.") }
         if True:
 
+            # Step 1: execute action `trace("Enter S5.")`
+            Printer.trace("Enter S5.")
     
     def _S5_exit(self):
         # S5 behavior
         # uml: exit / { trace("Exit S5.") }
         if True:
 
+            # Step 1: execute action `trace("Exit S5.")`
+            Printer.trace("Exit S5.")
         
         self.stateId = StateId.META_EXPANSIONS
     
@@ -6190,12 +6559,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter NORMAL.") }
         if True:
 
+            # Step 1: execute action `trace("Enter NORMAL.")`
+            Printer.trace("Enter NORMAL.")
     
     def _NORMAL_exit(self):
         # NORMAL behavior
         # uml: exit / { trace("Exit NORMAL.") }
         if True:
 
+            # Step 1: execute action `trace("Exit NORMAL.")`
+            Printer.trace("Exit NORMAL.")
         
         self.stateId = StateId.TEST6_ROOT
     
@@ -6211,17 +6584,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter NORMAL__S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter NORMAL__S1.")`
+            Printer.trace("Enter NORMAL__S1.")
         
         # NORMAL__S1 behavior
         # uml: enter [trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State NORMAL__S1: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _NORMAL__S1_exit(self):
         # NORMAL__S1 behavior
         # uml: exit / { trace("Exit NORMAL__S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit NORMAL__S1.")`
+            Printer.trace("Exit NORMAL__S1.")
         
         self.stateId = StateId.NORMAL
     
@@ -6230,6 +6609,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: 1. EV1 [trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State NORMAL__S1: check behavior `1. EV1 / { count += 1 }`.", true):
 
+            # Step 1: execute action `count += 1`
+            self.vars.count += 1
         
         # NORMAL__S1 behavior
         # uml: 2. EV1 [trace_guard("State NORMAL__S1: check behavior `2. EV1 [count >= 2] TransitionTo(NORMAL__S2)`.", count >= 2)] / { trace("Transition action `` for NORMAL__S1 to NORMAL__S2.") } TransitionTo(NORMAL__S2)
@@ -6259,12 +6640,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter NORMAL__S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter NORMAL__S2.")`
+            Printer.trace("Enter NORMAL__S2.")
     
     def _NORMAL__S2_exit(self):
         # NORMAL__S2 behavior
         # uml: exit / { trace("Exit NORMAL__S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit NORMAL__S2.")`
+            Printer.trace("Exit NORMAL__S2.")
         
         self.stateId = StateId.NORMAL
     
@@ -6280,12 +6665,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")`
+            Printer.trace("Enter TEST6_VARS_EXPANSIONS__DECIDE.")
     
     def _TEST6_VARS_EXPANSIONS__DECIDE_exit(self):
         # TEST6_VARS_EXPANSIONS__DECIDE behavior
         # uml: exit / { trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")`
+            Printer.trace("Exit TEST6_VARS_EXPANSIONS__DECIDE.")
         
         self.stateId = StateId.TEST6_ROOT
     
@@ -6388,12 +6777,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST7_INITIAL_OR_HISTORY.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST7_INITIAL_OR_HISTORY.")`
+            Printer.trace("Enter TEST7_INITIAL_OR_HISTORY.")
     
     def _TEST7_INITIAL_OR_HISTORY_exit(self):
         # TEST7_INITIAL_OR_HISTORY behavior
         # uml: exit / { trace("Exit TEST7_INITIAL_OR_HISTORY.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST7_INITIAL_OR_HISTORY.")`
+            Printer.trace("Exit TEST7_INITIAL_OR_HISTORY.")
         
         self.stateId = StateId.ROOT
     
@@ -6409,17 +6802,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST7.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST7.")`
+            Printer.trace("Enter TEST7.")
         
         # TEST7 behavior
         # uml: enter [trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
         if trace_guard("State TEST7: check behavior `enter / { clear_dispatch_output() }`.", true):
 
+            # Step 1: execute action `clear_dispatch_output()`
+            Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
     
     def _TEST7_exit(self):
         # TEST7 behavior
         # uml: exit / { trace("Exit TEST7.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST7.")`
+            Printer.trace("Exit TEST7.")
         
         self.stateId = StateId.TEST7_INITIAL_OR_HISTORY
     
@@ -6435,12 +6834,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY1.")`
+            Printer.trace("Enter T7__DEEP_HISTORY1.")
     
     def _T7__DEEP_HISTORY1_exit(self):
         # T7__DEEP_HISTORY1 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY1.")`
+            Printer.trace("Exit T7__DEEP_HISTORY1.")
         
         self.stateId = StateId.TEST7
     
@@ -6456,12 +6859,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__SANTAS_WORKSHOP.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__SANTAS_WORKSHOP.")`
+            Printer.trace("Enter T7__DH1__SANTAS_WORKSHOP.")
     
     def _T7__DH1__SANTAS_WORKSHOP_exit(self):
         # T7__DH1__SANTAS_WORKSHOP behavior
         # uml: exit / { trace("Exit T7__DH1__SANTAS_WORKSHOP.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__SANTAS_WORKSHOP.")`
+            Printer.trace("Exit T7__DH1__SANTAS_WORKSHOP.")
         
         self.stateId = StateId.T7__DEEP_HISTORY1
     
@@ -6477,12 +6884,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__ALIENS_DETECTED.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__ALIENS_DETECTED.")`
+            Printer.trace("Enter T7__DH1__ALIENS_DETECTED.")
     
     def _T7__DH1__ALIENS_DETECTED_exit(self):
         # T7__DH1__ALIENS_DETECTED behavior
         # uml: exit / { trace("Exit T7__DH1__ALIENS_DETECTED.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__ALIENS_DETECTED.")`
+            Printer.trace("Exit T7__DH1__ALIENS_DETECTED.")
         
         self.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
     
@@ -6516,12 +6927,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__GET_BACKUP.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__GET_BACKUP.")`
+            Printer.trace("Enter T7__DH1__GET_BACKUP.")
     
     def _T7__DH1__GET_BACKUP_exit(self):
         # T7__DH1__GET_BACKUP behavior
         # uml: exit / { trace("Exit T7__DH1__GET_BACKUP.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__GET_BACKUP.")`
+            Printer.trace("Exit T7__DH1__GET_BACKUP.")
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
     
@@ -6537,6 +6952,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__HERO.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__HERO.")`
+            Printer.trace("Enter T7__DH1__HERO.")
         
         # T7__DH1__HERO behavior
         # uml: enter [trace_guard("State T7__DH1__HERO: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__HERO;) }
@@ -6557,6 +6974,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__HERO.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__HERO.")`
+            Printer.trace("Exit T7__DH1__HERO.")
         
         self.stateId = StateId.T7__DH1__GET_BACKUP
     
@@ -6588,12 +7007,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__CALL_BATMAN.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__CALL_BATMAN.")`
+            Printer.trace("Enter T7__DH1__CALL_BATMAN.")
     
     def _T7__DH1__CALL_BATMAN_exit(self):
         # T7__DH1__CALL_BATMAN behavior
         # uml: exit / { trace("Exit T7__DH1__CALL_BATMAN.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__CALL_BATMAN.")`
+            Printer.trace("Exit T7__DH1__CALL_BATMAN.")
         
         self.stateId = StateId.T7__DH1__HERO
     
@@ -6627,12 +7050,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__CALL_THOR.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__CALL_THOR.")`
+            Printer.trace("Enter T7__DH1__CALL_THOR.")
     
     def _T7__DH1__CALL_THOR_exit(self):
         # T7__DH1__CALL_THOR behavior
         # uml: exit / { trace("Exit T7__DH1__CALL_THOR.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__CALL_THOR.")`
+            Printer.trace("Exit T7__DH1__CALL_THOR.")
         
         self.stateId = StateId.T7__DH1__HERO
     
@@ -6665,12 +7092,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__LOCAL_HELP.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__LOCAL_HELP.")`
+            Printer.trace("Enter T7__DH1__LOCAL_HELP.")
     
     def _T7__DH1__LOCAL_HELP_exit(self):
         # T7__DH1__LOCAL_HELP behavior
         # uml: exit / { trace("Exit T7__DH1__LOCAL_HELP.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__LOCAL_HELP.")`
+            Printer.trace("Exit T7__DH1__LOCAL_HELP.")
         
         self.stateId = StateId.T7__DH1__GET_BACKUP
     
@@ -6686,6 +7117,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__BUDDY_ELF.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__BUDDY_ELF.")`
+            Printer.trace("Enter T7__DH1__BUDDY_ELF.")
         
         # T7__DH1__BUDDY_ELF behavior
         # uml: enter [trace_guard("State T7__DH1__BUDDY_ELF: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__BUDDY_ELF;) }
@@ -6706,6 +7139,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__BUDDY_ELF.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__BUDDY_ELF.")`
+            Printer.trace("Exit T7__DH1__BUDDY_ELF.")
         
         self.stateId = StateId.T7__DH1__LOCAL_HELP
     
@@ -6738,6 +7173,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__POLAR_BEARS.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__POLAR_BEARS.")`
+            Printer.trace("Enter T7__DH1__POLAR_BEARS.")
         
         # T7__DH1__POLAR_BEARS behavior
         # uml: enter [trace_guard("State T7__DH1__POLAR_BEARS: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__POLAR_BEARS;) }
@@ -6758,6 +7195,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__POLAR_BEARS.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__POLAR_BEARS.")`
+            Printer.trace("Exit T7__DH1__POLAR_BEARS.")
         
         self.stateId = StateId.T7__DH1__LOCAL_HELP
     
@@ -6773,6 +7212,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__GIVE_COOKIES.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__GIVE_COOKIES.")`
+            Printer.trace("Enter T7__DH1__GIVE_COOKIES.")
         
         # T7__DH1__GIVE_COOKIES behavior
         # uml: enter [trace_guard("State T7__DH1__GIVE_COOKIES: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__GIVE_COOKIES;) }
@@ -6786,6 +7227,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__GIVE_COOKIES.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__GIVE_COOKIES.")`
+            Printer.trace("Exit T7__DH1__GIVE_COOKIES.")
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
     
@@ -6820,6 +7263,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__SNOWBALL_FIGHT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__SNOWBALL_FIGHT.")`
+            Printer.trace("Enter T7__DH1__SNOWBALL_FIGHT.")
         
         # T7__DH1__SNOWBALL_FIGHT behavior
         # uml: enter [trace_guard("State T7__DH1__SNOWBALL_FIGHT: check behavior `enter / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }`.", true)] / { $gil(this.vars.T7__DH1__ALIENS_DETECTED_history = T7__DH1__ALIENS_DETECTED_HistoryId.T7__DH1__SNOWBALL_FIGHT;) }
@@ -6833,6 +7278,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__SNOWBALL_FIGHT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__SNOWBALL_FIGHT.")`
+            Printer.trace("Exit T7__DH1__SNOWBALL_FIGHT.")
         
         self.stateId = StateId.T7__DH1__ALIENS_DETECTED
     
@@ -6865,12 +7312,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__BUILD.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__BUILD.")`
+            Printer.trace("Enter T7__DH1__BUILD.")
     
     def _T7__DH1__BUILD_exit(self):
         # T7__DH1__BUILD behavior
         # uml: exit / { trace("Exit T7__DH1__BUILD.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__BUILD.")`
+            Printer.trace("Exit T7__DH1__BUILD.")
         
         self.stateId = StateId.T7__DH1__SANTAS_WORKSHOP
     
@@ -7261,6 +7712,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__TOOL.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__TOOL.")`
+            Printer.trace("Enter T7__DH1__TOOL.")
         
         # T7__DH1__TOOL behavior
         # uml: enter [trace_guard("State T7__DH1__TOOL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOOL;) }
@@ -7274,6 +7727,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__TOOL.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__TOOL.")`
+            Printer.trace("Exit T7__DH1__TOOL.")
         
         self.stateId = StateId.T7__DH1__BUILD
     
@@ -7323,6 +7778,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__CIRCULAR_SAW.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__CIRCULAR_SAW.")`
+            Printer.trace("Enter T7__DH1__CIRCULAR_SAW.")
         
         # T7__DH1__CIRCULAR_SAW behavior
         # uml: enter [trace_guard("State T7__DH1__CIRCULAR_SAW: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__CIRCULAR_SAW;) }
@@ -7336,6 +7793,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__CIRCULAR_SAW.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__CIRCULAR_SAW.")`
+            Printer.trace("Exit T7__DH1__CIRCULAR_SAW.")
         
         self.stateId = StateId.T7__DH1__TOOL
     
@@ -7351,6 +7810,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__IMPACT_DRILL.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__IMPACT_DRILL.")`
+            Printer.trace("Enter T7__DH1__IMPACT_DRILL.")
         
         # T7__DH1__IMPACT_DRILL behavior
         # uml: enter [trace_guard("State T7__DH1__IMPACT_DRILL: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__IMPACT_DRILL;) }
@@ -7364,6 +7825,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__IMPACT_DRILL.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__IMPACT_DRILL.")`
+            Printer.trace("Exit T7__DH1__IMPACT_DRILL.")
         
         self.stateId = StateId.T7__DH1__TOOL
     
@@ -7396,6 +7859,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__TOY.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__TOY.")`
+            Printer.trace("Enter T7__DH1__TOY.")
         
         # T7__DH1__TOY behavior
         # uml: enter [trace_guard("State T7__DH1__TOY: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TOY;) }
@@ -7409,6 +7874,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__TOY.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__TOY.")`
+            Printer.trace("Exit T7__DH1__TOY.")
         
         self.stateId = StateId.T7__DH1__BUILD
     
@@ -7458,6 +7925,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__GLOW_WORM.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__GLOW_WORM.")`
+            Printer.trace("Enter T7__DH1__GLOW_WORM.")
         
         # T7__DH1__GLOW_WORM behavior
         # uml: enter [trace_guard("State T7__DH1__GLOW_WORM: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__GLOW_WORM;) }
@@ -7471,6 +7940,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__GLOW_WORM.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__GLOW_WORM.")`
+            Printer.trace("Exit T7__DH1__GLOW_WORM.")
         
         self.stateId = StateId.T7__DH1__TOY
     
@@ -7511,6 +7982,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__RACE_CAR.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__RACE_CAR.")`
+            Printer.trace("Enter T7__DH1__RACE_CAR.")
         
         # T7__DH1__RACE_CAR behavior
         # uml: enter [trace_guard("State T7__DH1__RACE_CAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__RACE_CAR;) }
@@ -7524,6 +7997,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__RACE_CAR.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__RACE_CAR.")`
+            Printer.trace("Exit T7__DH1__RACE_CAR.")
         
         self.stateId = StateId.T7__DH1__TOY
     
@@ -7563,6 +8038,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__ROBOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__ROBOT.")`
+            Printer.trace("Enter T7__DH1__ROBOT.")
         
         # T7__DH1__ROBOT behavior
         # uml: enter [trace_guard("State T7__DH1__ROBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__ROBOT;) }
@@ -7576,6 +8053,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__ROBOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__ROBOT.")`
+            Printer.trace("Exit T7__DH1__ROBOT.")
         
         self.stateId = StateId.T7__DH1__TOY
     
@@ -7607,6 +8086,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__BATTLEBOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__BATTLEBOT.")`
+            Printer.trace("Enter T7__DH1__BATTLEBOT.")
         
         # T7__DH1__BATTLEBOT behavior
         # uml: enter [trace_guard("State T7__DH1__BATTLEBOT: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__BATTLEBOT;) }
@@ -7620,6 +8101,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__BATTLEBOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__BATTLEBOT.")`
+            Printer.trace("Exit T7__DH1__BATTLEBOT.")
         
         self.stateId = StateId.T7__DH1__ROBOT
     
@@ -7659,6 +8142,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__WALL_E.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__WALL_E.")`
+            Printer.trace("Enter T7__DH1__WALL_E.")
         
         # T7__DH1__WALL_E behavior
         # uml: enter [trace_guard("State T7__DH1__WALL_E: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__WALL_E;) }
@@ -7672,6 +8157,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__WALL_E.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__WALL_E.")`
+            Printer.trace("Exit T7__DH1__WALL_E.")
         
         self.stateId = StateId.T7__DH1__ROBOT
     
@@ -7687,6 +8174,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DH1__TEDDY_BEAR.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DH1__TEDDY_BEAR.")`
+            Printer.trace("Enter T7__DH1__TEDDY_BEAR.")
         
         # T7__DH1__TEDDY_BEAR behavior
         # uml: enter [trace_guard("State T7__DH1__TEDDY_BEAR: check behavior `enter / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }`.", true)] / { $gil(this.vars.T7__DH1__BUILD_history = T7__DH1__BUILD_HistoryId.T7__DH1__TEDDY_BEAR;) }
@@ -7700,6 +8189,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DH1__TEDDY_BEAR.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DH1__TEDDY_BEAR.")`
+            Printer.trace("Exit T7__DH1__TEDDY_BEAR.")
         
         self.stateId = StateId.T7__DH1__TOY
     
@@ -7739,12 +8230,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2.")`
+            Printer.trace("Enter T7__DEEP_HISTORY2.")
     
     def _T7__DEEP_HISTORY2_exit(self):
         # T7__DEEP_HISTORY2 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2.")`
+            Printer.trace("Exit T7__DEEP_HISTORY2.")
         
         self.stateId = StateId.TEST7
     
@@ -7760,12 +8255,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_0.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_0.")`
+            Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_0.")
     
     def _T7__DEEP_HISTORY2__T7__STATE_0_exit(self):
         # T7__DEEP_HISTORY2__T7__state_0 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_0.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_0.")`
+            Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_0.")
         
         self.stateId = StateId.T7__DEEP_HISTORY2
     
@@ -7874,6 +8373,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_1.")`
+            Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_1.")
         
         # T7__DEEP_HISTORY2__T7__state_1 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_1;) }
@@ -7887,6 +8388,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_1.")`
+            Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_1.")
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
     
@@ -7920,6 +8423,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_2.")`
+            Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_2.")
         
         # T7__DEEP_HISTORY2__T7__state_2 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_2;) }
@@ -7933,6 +8438,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_2.")`
+            Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_2.")
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_0
     
@@ -7981,6 +8488,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_6.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_6.")`
+            Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_6.")
         
         # T7__DEEP_HISTORY2__T7__state_6 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_6: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_6;) }
@@ -7994,6 +8503,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_6.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_6.")`
+            Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_6.")
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
     
@@ -8026,6 +8537,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_9.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_9.")`
+            Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_9.")
         
         # T7__DEEP_HISTORY2__T7__state_9 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY2__T7__state_9: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY2__T7__state_0_history = T7__DEEP_HISTORY2__T7__state_0_HistoryId.T7__DEEP_HISTORY2__T7__STATE_9;) }
@@ -8039,6 +8552,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_9.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_9.")`
+            Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_9.")
         
         self.stateId = StateId.T7__DEEP_HISTORY2__T7__STATE_2
     
@@ -8054,12 +8569,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY2__T7__state_3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY2__T7__state_3.")`
+            Printer.trace("Enter T7__DEEP_HISTORY2__T7__state_3.")
     
     def _T7__DEEP_HISTORY2__T7__STATE_3_exit(self):
         # T7__DEEP_HISTORY2__T7__state_3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY2__T7__state_3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY2__T7__state_3.")`
+            Printer.trace("Exit T7__DEEP_HISTORY2__T7__state_3.")
         
         self.stateId = StateId.T7__DEEP_HISTORY2
     
@@ -8093,12 +8612,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3.")`
+            Printer.trace("Enter T7__DEEP_HISTORY3.")
     
     def _T7__DEEP_HISTORY3_exit(self):
         # T7__DEEP_HISTORY3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3.")`
+            Printer.trace("Exit T7__DEEP_HISTORY3.")
         
         self.stateId = StateId.TEST7
     
@@ -8114,12 +8637,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_0.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_0.")`
+            Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_0.")
     
     def _T7__DEEP_HISTORY3__T7__STATE_0_exit(self):
         # T7__DEEP_HISTORY3__T7__state_0 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_0.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_0.")`
+            Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_0.")
         
         self.stateId = StateId.T7__DEEP_HISTORY3
     
@@ -8196,6 +8723,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_1.")`
+            Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_1.")
         
         # T7__DEEP_HISTORY3__T7__state_1 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_1: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_1;) }
@@ -8209,6 +8738,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_1.")`
+            Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_1.")
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
     
@@ -8242,6 +8773,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_2.")`
+            Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_2.")
         
         # T7__DEEP_HISTORY3__T7__state_2 behavior
         # uml: enter [trace_guard("State T7__DEEP_HISTORY3__T7__state_2: check behavior `enter / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }`.", true)] / { $gil(this.vars.T7__DEEP_HISTORY3__T7__state_0_history = T7__DEEP_HISTORY3__T7__state_0_HistoryId.T7__DEEP_HISTORY3__T7__STATE_2;) }
@@ -8255,6 +8788,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_2.")`
+            Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_2.")
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_0
     
@@ -8303,12 +8838,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_6.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_6.")`
+            Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_6.")
     
     def _T7__DEEP_HISTORY3__T7__STATE_6_exit(self):
         # T7__DEEP_HISTORY3__T7__state_6 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_6.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_6.")`
+            Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_6.")
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
     
@@ -8341,12 +8880,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_9.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_9.")`
+            Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_9.")
     
     def _T7__DEEP_HISTORY3__T7__STATE_9_exit(self):
         # T7__DEEP_HISTORY3__T7__state_9 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_9.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_9.")`
+            Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_9.")
         
         self.stateId = StateId.T7__DEEP_HISTORY3__T7__STATE_2
     
@@ -8362,12 +8905,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__DEEP_HISTORY3__T7__state_3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__DEEP_HISTORY3__T7__state_3.")`
+            Printer.trace("Enter T7__DEEP_HISTORY3__T7__state_3.")
     
     def _T7__DEEP_HISTORY3__T7__STATE_3_exit(self):
         # T7__DEEP_HISTORY3__T7__state_3 behavior
         # uml: exit / { trace("Exit T7__DEEP_HISTORY3__T7__state_3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__DEEP_HISTORY3__T7__state_3.")`
+            Printer.trace("Exit T7__DEEP_HISTORY3__T7__state_3.")
         
         self.stateId = StateId.T7__DEEP_HISTORY3
     
@@ -8401,12 +8948,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__HISTORY1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__HISTORY1.")`
+            Printer.trace("Enter T7__HISTORY1.")
     
     def _T7__HISTORY1_exit(self):
         # T7__HISTORY1 behavior
         # uml: exit / { trace("Exit T7__HISTORY1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__HISTORY1.")`
+            Printer.trace("Exit T7__HISTORY1.")
         
         self.stateId = StateId.TEST7
     
@@ -8422,12 +8973,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__H1__OFF.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__H1__OFF.")`
+            Printer.trace("Enter T7__H1__OFF.")
     
     def _T7__H1__OFF_exit(self):
         # T7__H1__OFF behavior
         # uml: exit / { trace("Exit T7__H1__OFF.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__H1__OFF.")`
+            Printer.trace("Exit T7__H1__OFF.")
         
         self.stateId = StateId.T7__HISTORY1
     
@@ -8554,6 +9109,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__H1__OFF1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__H1__OFF1.")`
+            Printer.trace("Enter T7__H1__OFF1.")
         
         # T7__H1__OFF1 behavior
         # uml: enter [trace_guard("State T7__H1__OFF1: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF1;) }
@@ -8567,6 +9124,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__H1__OFF1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__H1__OFF1.")`
+            Printer.trace("Exit T7__H1__OFF1.")
         
         self.stateId = StateId.T7__H1__OFF
     
@@ -8599,6 +9158,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__H1__OFF2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__H1__OFF2.")`
+            Printer.trace("Enter T7__H1__OFF2.")
         
         # T7__H1__OFF2 behavior
         # uml: enter [trace_guard("State T7__H1__OFF2: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF2;) }
@@ -8612,6 +9173,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__H1__OFF2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__H1__OFF2.")`
+            Printer.trace("Exit T7__H1__OFF2.")
         
         self.stateId = StateId.T7__H1__OFF
     
@@ -8644,6 +9207,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__H1__OFF3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__H1__OFF3.")`
+            Printer.trace("Enter T7__H1__OFF3.")
         
         # T7__H1__OFF3 behavior
         # uml: enter [trace_guard("State T7__H1__OFF3: check behavior `enter / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }`.", true)] / { $gil(this.vars.T7__H1__OFF_history = T7__H1__OFF_HistoryId.T7__H1__OFF3;) }
@@ -8657,6 +9222,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__H1__OFF3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__H1__OFF3.")`
+            Printer.trace("Exit T7__H1__OFF3.")
         
         self.stateId = StateId.T7__H1__OFF
     
@@ -8672,12 +9239,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__H1__ON.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__H1__ON.")`
+            Printer.trace("Enter T7__H1__ON.")
     
     def _T7__H1__ON_exit(self):
         # T7__H1__ON behavior
         # uml: exit / { trace("Exit T7__H1__ON.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__H1__ON.")`
+            Printer.trace("Exit T7__H1__ON.")
         
         self.stateId = StateId.T7__HISTORY1
     
@@ -8769,6 +9340,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__H1__ON1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__H1__ON1.")`
+            Printer.trace("Enter T7__H1__ON1.")
         
         # T7__H1__ON1 behavior
         # uml: enter [trace_guard("State T7__H1__ON1: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON1;) }
@@ -8782,6 +9355,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__H1__ON1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__H1__ON1.")`
+            Printer.trace("Exit T7__H1__ON1.")
         
         self.stateId = StateId.T7__H1__ON
     
@@ -8814,6 +9389,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__H1__ON2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__H1__ON2.")`
+            Printer.trace("Enter T7__H1__ON2.")
         
         # T7__H1__ON2 behavior
         # uml: enter [trace_guard("State T7__H1__ON2: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON2;) }
@@ -8827,6 +9404,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__H1__ON2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__H1__ON2.")`
+            Printer.trace("Exit T7__H1__ON2.")
         
         self.stateId = StateId.T7__H1__ON
     
@@ -8859,6 +9438,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__H1__ON3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__H1__ON3.")`
+            Printer.trace("Enter T7__H1__ON3.")
         
         # T7__H1__ON3 behavior
         # uml: enter [trace_guard("State T7__H1__ON3: check behavior `enter / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }`.", true)] / { $gil(this.vars.T7__H1__ON_history = T7__H1__ON_HistoryId.T7__H1__ON3;) }
@@ -8872,6 +9453,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: exit / { trace("Exit T7__H1__ON3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__H1__ON3.")`
+            Printer.trace("Exit T7__H1__ON3.")
         
         self.stateId = StateId.T7__H1__ON
     
@@ -8904,12 +9487,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__INITIAL1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__INITIAL1.")`
+            Printer.trace("Enter T7__INITIAL1.")
     
     def _T7__INITIAL1_exit(self):
         # T7__INITIAL1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__INITIAL1.")`
+            Printer.trace("Exit T7__INITIAL1.")
         
         self.stateId = StateId.TEST7
     
@@ -8925,12 +9512,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__INITIAL1__PARENT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__INITIAL1__PARENT.")`
+            Printer.trace("Enter T7__INITIAL1__PARENT.")
     
     def _T7__INITIAL1__PARENT_exit(self):
         # T7__INITIAL1__PARENT behavior
         # uml: exit / { trace("Exit T7__INITIAL1__PARENT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__INITIAL1__PARENT.")`
+            Printer.trace("Exit T7__INITIAL1__PARENT.")
         
         self.stateId = StateId.T7__INITIAL1
     
@@ -8939,6 +9530,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: EV5 [trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State T7__INITIAL1__PARENT: check behavior `EV5 / { count += 1 }`.", true):
 
+            # Step 1: execute action `count += 1`
+            self.vars.count += 1
     
     def _T7__INITIAL1__PARENT_InitialState_transition(self):
         # T7__INITIAL1__PARENT.<InitialState> behavior
@@ -8968,12 +9561,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__INITIAL1__G.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__INITIAL1__G.")`
+            Printer.trace("Enter T7__INITIAL1__G.")
     
     def _T7__INITIAL1__G_exit(self):
         # T7__INITIAL1__G behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__INITIAL1__G.")`
+            Printer.trace("Exit T7__INITIAL1__G.")
         
         self.stateId = StateId.T7__INITIAL1__PARENT
     
@@ -9053,12 +9650,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__INITIAL1__G_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__INITIAL1__G_S1.")`
+            Printer.trace("Enter T7__INITIAL1__G_S1.")
     
     def _T7__INITIAL1__G_S1_exit(self):
         # T7__INITIAL1__G_S1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__INITIAL1__G_S1.")`
+            Printer.trace("Exit T7__INITIAL1__G_S1.")
         
         self.stateId = StateId.T7__INITIAL1__G
     
@@ -9074,12 +9675,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__INITIAL1__G_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__INITIAL1__G_S2.")`
+            Printer.trace("Enter T7__INITIAL1__G_S2.")
     
     def _T7__INITIAL1__G_S2_exit(self):
         # T7__INITIAL1__G_S2 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__INITIAL1__G_S2.")`
+            Printer.trace("Exit T7__INITIAL1__G_S2.")
         
         self.stateId = StateId.T7__INITIAL1__G
     
@@ -9095,12 +9700,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__INITIAL1__G_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__INITIAL1__G_S3.")`
+            Printer.trace("Enter T7__INITIAL1__G_S3.")
     
     def _T7__INITIAL1__G_S3_exit(self):
         # T7__INITIAL1__G_S3 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__G_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__INITIAL1__G_S3.")`
+            Printer.trace("Exit T7__INITIAL1__G_S3.")
         
         self.stateId = StateId.T7__INITIAL1__G
     
@@ -9116,12 +9725,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter T7__INITIAL1__S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter T7__INITIAL1__S1.")`
+            Printer.trace("Enter T7__INITIAL1__S1.")
     
     def _T7__INITIAL1__S1_exit(self):
         # T7__INITIAL1__S1 behavior
         # uml: exit / { trace("Exit T7__INITIAL1__S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit T7__INITIAL1__S1.")`
+            Printer.trace("Exit T7__INITIAL1__S1.")
         
         self.stateId = StateId.T7__INITIAL1__PARENT
     
@@ -9174,17 +9787,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST7_DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST7_DECIDE.")`
+            Printer.trace("Enter TEST7_DECIDE.")
     
     def _TEST7_DECIDE_exit(self):
         # TEST7_DECIDE behavior
         # uml: exit / { trace("Exit TEST7_DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST7_DECIDE.")`
+            Printer.trace("Exit TEST7_DECIDE.")
         
         # TEST7_DECIDE behavior
         # uml: exit [trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
         if trace_guard("State TEST7_DECIDE: check behavior `exit / { clear_dispatch_output() }`.", true):
 
+            # Step 1: execute action `clear_dispatch_output()`
+            Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
         
         self.stateId = StateId.TEST7_INITIAL_OR_HISTORY
     
@@ -9356,12 +9975,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST8_ENTRY_CHOICE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST8_ENTRY_CHOICE.")`
+            Printer.trace("Enter TEST8_ENTRY_CHOICE.")
     
     def _TEST8_ENTRY_CHOICE_exit(self):
         # TEST8_ENTRY_CHOICE behavior
         # uml: exit / { trace("Exit TEST8_ENTRY_CHOICE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST8_ENTRY_CHOICE.")`
+            Printer.trace("Exit TEST8_ENTRY_CHOICE.")
         
         self.stateId = StateId.ROOT
     
@@ -9377,17 +10000,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST8_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST8_ROOT.")`
+            Printer.trace("Enter TEST8_ROOT.")
         
         # TEST8_ROOT behavior
         # uml: enter [trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", true)] / { clear_dispatch_output() }
         if trace_guard("State TEST8_ROOT: check behavior `enter / { clear_dispatch_output() }`.", true):
 
+            # Step 1: execute action `clear_dispatch_output()`
+            Printer.trace("CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH")
     
     def _TEST8_ROOT_exit(self):
         # TEST8_ROOT behavior
         # uml: exit / { trace("Exit TEST8_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST8_ROOT.")`
+            Printer.trace("Exit TEST8_ROOT.")
         
         self.stateId = StateId.TEST8_ENTRY_CHOICE
     
@@ -9402,6 +10031,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: EV5 [trace_guard("State TEST8_ROOT: check behavior `EV5 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State TEST8_ROOT: check behavior `EV5 / { count += 1 }`.", true):
 
+            # Step 1: execute action `count += 1`
+            self.vars.count += 1
     
     def _TEST8_ROOT_EntryPoint_1__transition(self):
         # TEST8_ROOT.<EntryPoint>(1) behavior
@@ -9431,12 +10062,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST8_G.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST8_G.")`
+            Printer.trace("Enter TEST8_G.")
     
     def _TEST8_G_exit(self):
         # TEST8_G behavior
         # uml: exit / { trace("Exit TEST8_G.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST8_G.")`
+            Printer.trace("Exit TEST8_G.")
         
         self.stateId = StateId.TEST8_ROOT
     
@@ -9534,12 +10169,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST8_G_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST8_G_S1.")`
+            Printer.trace("Enter TEST8_G_S1.")
     
     def _TEST8_G_S1_exit(self):
         # TEST8_G_S1 behavior
         # uml: exit / { trace("Exit TEST8_G_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST8_G_S1.")`
+            Printer.trace("Exit TEST8_G_S1.")
         
         self.stateId = StateId.TEST8_G
     
@@ -9555,12 +10194,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST8_G_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST8_G_S2.")`
+            Printer.trace("Enter TEST8_G_S2.")
     
     def _TEST8_G_S2_exit(self):
         # TEST8_G_S2 behavior
         # uml: exit / { trace("Exit TEST8_G_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST8_G_S2.")`
+            Printer.trace("Exit TEST8_G_S2.")
         
         self.stateId = StateId.TEST8_G
     
@@ -9576,12 +10219,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST8_G_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST8_G_S3.")`
+            Printer.trace("Enter TEST8_G_S3.")
     
     def _TEST8_G_S3_exit(self):
         # TEST8_G_S3 behavior
         # uml: exit / { trace("Exit TEST8_G_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST8_G_S3.")`
+            Printer.trace("Exit TEST8_G_S3.")
         
         self.stateId = StateId.TEST8_G
     
@@ -9597,12 +10244,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST8_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST8_S1.")`
+            Printer.trace("Enter TEST8_S1.")
     
     def _TEST8_S1_exit(self):
         # TEST8_S1 behavior
         # uml: exit / { trace("Exit TEST8_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST8_S1.")`
+            Printer.trace("Exit TEST8_S1.")
         
         self.stateId = StateId.TEST8_ROOT
     
@@ -9629,6 +10280,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: 2. EV1 [trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", true)] / { count += 1 # shouldn't run */ }
         if trace_guard("State TEST8_S1: check behavior `2. EV1 / { count += 1 # shouldn't run */ }`.", true):
 
+            # Step 1: execute action `count += 1 # shouldn't run */`
+            self.vars.count += 1 
     
     def _TEST8_S1_ev3(self):
         bool consume_event = False
@@ -9687,12 +10340,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_EXIT_CHOICE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_EXIT_CHOICE.")`
+            Printer.trace("Enter TEST9_EXIT_CHOICE.")
     
     def _TEST9_EXIT_CHOICE_exit(self):
         # TEST9_EXIT_CHOICE behavior
         # uml: exit / { trace("Exit TEST9_EXIT_CHOICE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_EXIT_CHOICE.")`
+            Printer.trace("Exit TEST9_EXIT_CHOICE.")
         
         self.stateId = StateId.ROOT
     
@@ -9708,12 +10365,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_DECIDE.")`
+            Printer.trace("Enter TEST9_DECIDE.")
     
     def _TEST9_DECIDE_exit(self):
         # TEST9_DECIDE behavior
         # uml: exit / { trace("Exit TEST9_DECIDE.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_DECIDE.")`
+            Printer.trace("Exit TEST9_DECIDE.")
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     
@@ -9818,12 +10479,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_ROOT.")`
+            Printer.trace("Enter TEST9_ROOT.")
     
     def _TEST9_ROOT_exit(self):
         # TEST9_ROOT behavior
         # uml: exit / { trace("Exit TEST9_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_ROOT.")`
+            Printer.trace("Exit TEST9_ROOT.")
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     
@@ -9832,6 +10497,8 @@ class Spec2Sm(Spec2SmBase):
         # uml: EV5 [trace_guard("State TEST9_ROOT: check behavior `EV5 / { count += 1 }`.", true)] / { count += 1 }
         if trace_guard("State TEST9_ROOT: check behavior `EV5 / { count += 1 }`.", true):
 
+            # Step 1: execute action `count += 1`
+            self.vars.count += 1
     
     
     ########################################
@@ -9845,12 +10512,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_G_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_G_S1.")`
+            Printer.trace("Enter TEST9_G_S1.")
     
     def _TEST9_G_S1_exit(self):
         # TEST9_G_S1 behavior
         # uml: exit / { trace("Exit TEST9_G_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_G_S1.")`
+            Printer.trace("Exit TEST9_G_S1.")
         
         self.stateId = StateId.TEST9_ROOT
     
@@ -9866,12 +10537,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_G_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_G_S2.")`
+            Printer.trace("Enter TEST9_G_S2.")
     
     def _TEST9_G_S2_exit(self):
         # TEST9_G_S2 behavior
         # uml: exit / { trace("Exit TEST9_G_S2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_G_S2.")`
+            Printer.trace("Exit TEST9_G_S2.")
         
         self.stateId = StateId.TEST9_ROOT
     
@@ -9887,12 +10562,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_G_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_G_S3.")`
+            Printer.trace("Enter TEST9_G_S3.")
     
     def _TEST9_G_S3_exit(self):
         # TEST9_G_S3 behavior
         # uml: exit / { trace("Exit TEST9_G_S3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_G_S3.")`
+            Printer.trace("Exit TEST9_G_S3.")
         
         self.stateId = StateId.TEST9_ROOT
     
@@ -9908,12 +10587,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_G_S4.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_G_S4.")`
+            Printer.trace("Enter TEST9_G_S4.")
     
     def _TEST9_G_S4_exit(self):
         # TEST9_G_S4 behavior
         # uml: exit / { trace("Exit TEST9_G_S4.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_G_S4.")`
+            Printer.trace("Exit TEST9_G_S4.")
         
         self.stateId = StateId.TEST9_ROOT
     
@@ -9929,12 +10612,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_S1.")`
+            Printer.trace("Enter TEST9_S1.")
     
     def _TEST9_S1_exit(self):
         # TEST9_S1 behavior
         # uml: exit / { trace("Exit TEST9_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_S1.")`
+            Printer.trace("Exit TEST9_S1.")
         
         self.stateId = StateId.TEST9_ROOT
     
@@ -9950,17 +10637,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9_S1_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9_S1_1.")`
+            Printer.trace("Enter TEST9_S1_1.")
         
         # TEST9_S1_1 behavior
         # uml: enter [trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST9_S1_1_exit(self):
         # TEST9_S1_1 behavior
         # uml: exit / { trace("Exit TEST9_S1_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9_S1_1.")`
+            Printer.trace("Exit TEST9_S1_1.")
         
         self.stateId = StateId.TEST9_S1
     
@@ -10054,12 +10747,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9A_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9A_ROOT.")`
+            Printer.trace("Enter TEST9A_ROOT.")
     
     def _TEST9A_ROOT_exit(self):
         # TEST9A_ROOT behavior
         # uml: exit / { trace("Exit TEST9A_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9A_ROOT.")`
+            Printer.trace("Exit TEST9A_ROOT.")
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     
@@ -10075,12 +10772,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9A_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9A_S1.")`
+            Printer.trace("Enter TEST9A_S1.")
     
     def _TEST9A_S1_exit(self):
         # TEST9A_S1 behavior
         # uml: exit / { trace("Exit TEST9A_S1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9A_S1.")`
+            Printer.trace("Exit TEST9A_S1.")
         
         self.stateId = StateId.TEST9A_ROOT
     
@@ -10112,22 +10813,30 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9A_S1_1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9A_S1_1.")`
+            Printer.trace("Enter TEST9A_S1_1.")
         
         # TEST9A_S1_1 behavior
         # uml: enter [trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", count == 0)] / { clear_output() }
         if trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output() }`.", self.vars.count == 0):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST9A_S1_1_exit(self):
         # TEST9A_S1_1 behavior
         # uml: exit / { trace("Exit TEST9A_S1_1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9A_S1_1.")`
+            Printer.trace("Exit TEST9A_S1_1.")
         
         # TEST9A_S1_1 behavior
         # uml: exit [trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", true)] / { count = 100 }
         if trace_guard("State TEST9A_S1_1: check behavior `exit / { count = 100 }`.", true):
 
+            # Step 1: execute action `count = 100`
+            self.vars.count = 100
         
         self.stateId = StateId.TEST9A_S1
     
@@ -10174,17 +10883,23 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT.")`
+            Printer.trace("Enter TEST9B_ROOT.")
         
         # TEST9B_ROOT behavior
         # uml: enter [trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", true)] / { clear_output() }
         if trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output() }`.", true):
 
+            # Step 1: execute action `clear_output()`
+            Printer.trace("IGNORE_OUTPUT_BEFORE_THIS")
     
     def _TEST9B_ROOT_exit(self):
         # TEST9B_ROOT behavior
         # uml: exit / { trace("Exit TEST9B_ROOT.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT.")`
+            Printer.trace("Exit TEST9B_ROOT.")
         
         self.stateId = StateId.TEST9_EXIT_CHOICE
     
@@ -10220,12 +10935,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT__A1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT__A1.")`
+            Printer.trace("Enter TEST9B_ROOT__A1.")
     
     def _TEST9B_ROOT__A1_exit(self):
         # TEST9B_ROOT__A1 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT__A1.")`
+            Printer.trace("Exit TEST9B_ROOT__A1.")
         
         self.stateId = StateId.TEST9B_ROOT
     
@@ -10241,12 +10960,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT__A2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT__A2.")`
+            Printer.trace("Enter TEST9B_ROOT__A2.")
     
     def _TEST9B_ROOT__A2_exit(self):
         # TEST9B_ROOT__A2 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT__A2.")`
+            Printer.trace("Exit TEST9B_ROOT__A2.")
         
         self.stateId = StateId.TEST9B_ROOT__A1
     
@@ -10262,12 +10985,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT__A3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT__A3.")`
+            Printer.trace("Enter TEST9B_ROOT__A3.")
     
     def _TEST9B_ROOT__A3_exit(self):
         # TEST9B_ROOT__A3 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT__A3.")`
+            Printer.trace("Exit TEST9B_ROOT__A3.")
         
         self.stateId = StateId.TEST9B_ROOT__A2
     
@@ -10283,12 +11010,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT__A4.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT__A4.")`
+            Printer.trace("Enter TEST9B_ROOT__A4.")
     
     def _TEST9B_ROOT__A4_exit(self):
         # TEST9B_ROOT__A4 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__A4.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT__A4.")`
+            Printer.trace("Exit TEST9B_ROOT__A4.")
         
         self.stateId = StateId.TEST9B_ROOT__A3
     
@@ -10344,12 +11075,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT__B1.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT__B1.")`
+            Printer.trace("Enter TEST9B_ROOT__B1.")
     
     def _TEST9B_ROOT__B1_exit(self):
         # TEST9B_ROOT__B1 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B1.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT__B1.")`
+            Printer.trace("Exit TEST9B_ROOT__B1.")
         
         self.stateId = StateId.TEST9B_ROOT
     
@@ -10365,12 +11100,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT__B2.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT__B2.")`
+            Printer.trace("Enter TEST9B_ROOT__B2.")
     
     def _TEST9B_ROOT__B2_exit(self):
         # TEST9B_ROOT__B2 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B2.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT__B2.")`
+            Printer.trace("Exit TEST9B_ROOT__B2.")
         
         self.stateId = StateId.TEST9B_ROOT__B1
     
@@ -10386,12 +11125,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT__B3.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT__B3.")`
+            Printer.trace("Enter TEST9B_ROOT__B3.")
     
     def _TEST9B_ROOT__B3_exit(self):
         # TEST9B_ROOT__B3 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B3.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT__B3.")`
+            Printer.trace("Exit TEST9B_ROOT__B3.")
         
         self.stateId = StateId.TEST9B_ROOT__B2
     
@@ -10407,12 +11150,16 @@ class Spec2Sm(Spec2SmBase):
         # uml: enter / { trace("Enter TEST9B_ROOT__B4.") }
         if True:
 
+            # Step 1: execute action `trace("Enter TEST9B_ROOT__B4.")`
+            Printer.trace("Enter TEST9B_ROOT__B4.")
     
     def _TEST9B_ROOT__B4_exit(self):
         # TEST9B_ROOT__B4 behavior
         # uml: exit / { trace("Exit TEST9B_ROOT__B4.") }
         if True:
 
+            # Step 1: execute action `trace("Exit TEST9B_ROOT__B4.")`
+            Printer.trace("Exit TEST9B_ROOT__B4.")
         
         self.stateId = StateId.TEST9B_ROOT__B3
 @staticmethod

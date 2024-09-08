@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System;
+using Antlr4.Runtime.Misc;
+using System.Net;
 
 namespace StateSmith.Output.Gil;
 
@@ -64,6 +66,36 @@ public class GilTranspilerHelper
         return classDeclarationSyntax.Identifier.Text == GilCreationHelper.GilFileTopClassName;
     }
 
+    /// <summary>
+    /// Some gil expressions need to be handled specially to avoid outputting additional semicolons.
+    /// </summary>
+    /// <param name="expressionNode"></param>
+    /// <param name="sb"></param>
+    /// <returns></returns>
+    public bool HandleGilSpecialExpressionStatements(ExpressionStatementSyntax expressionNode, StringBuilder sb)
+    {
+        bool gilEmitMethodFoundAndHandled = false;
+
+        if (expressionNode.Expression is InvocationExpressionSyntax ies)
+        {
+            if (ies.Expression is IdentifierNameSyntax ins)
+            {
+                if (ins.Identifier.Text == GilCreationHelper.GilEchoStringVoidReturnFuncName)
+                {
+                    this.transpilerWalker.VisitLeadingTrivia(ies.GetFirstToken());
+                    gilEmitMethodFoundAndHandled = true;
+                    ArgumentSyntax argumentSyntax = ies.ArgumentList.Arguments.Single();
+                    var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
+                    unescaped = unescaped[1..^1]; // remove surrounding quotes present because of gil wrapping
+                    sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
+                    this.transpilerWalker.VisitTrailingTrivia(expressionNode.GetLastToken());
+                }
+            }
+        }
+
+        return gilEmitMethodFoundAndHandled;
+    }
+
     public bool HandleGilSpecialInvocations(InvocationExpressionSyntax node, StringBuilder sb)
     {
         bool gilEmitMethodFoundAndHandled = false;
@@ -75,7 +107,7 @@ public class GilTranspilerHelper
                 gilEmitMethodFoundAndHandled = true;
                 ArgumentSyntax argumentSyntax = node.ArgumentList.Arguments.Single();
                 var unescaped = System.Text.RegularExpressions.Regex.Unescape(argumentSyntax.ToFullString());
-                unescaped = unescaped[1..^1]; // range operator
+                unescaped = unescaped[1..^1]; // remove surrounding quotes present because of gil wrapping
                 sb.Append(unescaped); // FIXME: this may not do everything we need. We need inverse of https://stackoverflow.com/a/58825732/7331858 
             }
             else if (ins.Identifier.Text == GilCreationHelper.GilVisitVarArgsBoolReturnFuncName)

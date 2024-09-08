@@ -52,13 +52,6 @@ public class PostProcessor
     public static string RmCommentStart => $"/*{PostProcessor.rmLeft2Marker}";
     public static string RmCommentEnd => $"{PostProcessor.rmRight2Marker}*/";
 
-    public static string RmCommentOut(string code)
-    {
-        code = code.Replace("*/", $"*{rmRight2Marker}##/");
-
-        return $"{RmCommentStart}{code}{RmCommentEnd}";
-    }
-
     public static string PostProcess(string str)
     {
         str = trimBlankLinesRegex.Replace(str, "");

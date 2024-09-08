@@ -51,9 +51,8 @@ public class SpecGenericVarExpansions : UserExpansionScriptBase
 #pragma warning disable IDE1006 // Naming Styles
     public virtual string trace(string message) => $"trace({message})";
     public virtual string trace_guard(string message, string guardCode) => $"trace_guard({message}, {guardCode})";
-    virtual public string SemiColon => ";";
 
-    public string clear_output() => $"{trace("\"IGNORE_OUTPUT_BEFORE_THIS\"")}{SemiColon}";
+    public string clear_output() => $"{trace("\"IGNORE_OUTPUT_BEFORE_THIS\"")}";
     public string clear_dispatch_output() => $"{trace("\"CLEAR_OUTPUT_BEFORE_THIS_AND_FOR_THIS_EVENT_DISPATCH\"")}"; // TODO - remove extra comma
 #pragma warning restore IDE1006 // Naming Styles
 }

@@ -74,7 +74,6 @@ public class SharedCompilationFixture
 
         public class Expansions : Spec2GenericVarExpansions
         {
-            public override string SemiColon => "";
             public override string trace(string message) => $"Printer.trace({message})"; // this isn't actually needed, but helps ensure expansions are working
         }
     }

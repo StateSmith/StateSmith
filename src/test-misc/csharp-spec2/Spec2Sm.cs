@@ -6138,7 +6138,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST1_S1_1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST1_S1_1
         }
 
@@ -6784,7 +6784,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST10_S1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST10_S1
         }
 
@@ -7145,7 +7145,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST2_S1_1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST2_S1_1
         }
 
@@ -7385,7 +7385,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST3_S1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST3_S1
         }
 
@@ -8205,7 +8205,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST4_ROOT: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST4_ROOT
         }
 
@@ -8682,7 +8682,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST5_ROOT: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST5_ROOT
         }
 
@@ -8980,7 +8980,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State AUTO_VAR_TEST__S1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for AUTO_VAR_TEST__S1
         }
 
@@ -9126,7 +9126,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State META_EXPANSIONS__S1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for META_EXPANSIONS__S1
         }
 
@@ -9424,7 +9424,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State NORMAL__S1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for NORMAL__S1
         }
 
@@ -14150,7 +14150,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST9_S1_1: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST9_S1_1
         }
 
@@ -14349,7 +14349,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST9A_S1_1: check behavior `enter [count == 0] / { clear_output(); }`.", this.vars.count == 0))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST9A_S1_1
         }
 
@@ -14431,7 +14431,7 @@ namespace Csharp.Spec2smTests
             if (trace_guard("State TEST9B_ROOT: check behavior `enter / { clear_output(); }`.", true))
             {
                 // Step 1: execute action `clear_output();`
-                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");;
+                MainClass.Trace("IGNORE_OUTPUT_BEFORE_THIS");
             } // end of behavior for TEST9B_ROOT
         }
 
