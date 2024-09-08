@@ -206,12 +206,14 @@ typedef enum Spec2Sm_StateId
     Spec2Sm_StateId_TEST9B_ROOT__B1 = 168,
     Spec2Sm_StateId_TEST9B_ROOT__B2 = 169,
     Spec2Sm_StateId_TEST9B_ROOT__B3 = 170,
-    Spec2Sm_StateId_TEST9B_ROOT__B4 = 171
+    Spec2Sm_StateId_TEST9B_ROOT__B4 = 171,
+    Spec2Sm_StateId_UNREACHABLE = 172,
+    Spec2Sm_StateId_USELESS = 173
 } Spec2Sm_StateId;
 
 enum
 {
-    Spec2Sm_StateIdCount = 172
+    Spec2Sm_StateIdCount = 174
 };
 
 typedef enum Spec2Sm_T7__H1__ON_HistoryId

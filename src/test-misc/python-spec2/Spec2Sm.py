@@ -199,6 +199,8 @@ class Spec2Sm(Spec2SmBase):
         TEST9B_ROOT__B2 = 169
         TEST9B_ROOT__B3 = 170
         TEST9B_ROOT__B4 = 171
+        UNREACHABLE = 172
+        USELESS = 173
     
     
     class T7__H1__ON_HistoryId(enum.Enum):
@@ -522,9 +524,8 @@ class Spec2Sm(Spec2SmBase):
                         self._SPEC2SM__DECIDE_ev9()
                     case Spec2Sm.EventId.EV10:
                         self._SPEC2SM__DECIDE_ev10()
-                    # Events not handled by this state:
                     case Spec2Sm.EventId.DO:
-                        self._ROOT_do()
+                        self._SPEC2SM__DECIDE_do()
             
             # STATE: TEST1_DO_EVENT_TESTING
             case Spec2Sm.StateId.TEST1_DO_EVENT_TESTING:
@@ -2027,6 +2028,20 @@ class Spec2Sm(Spec2SmBase):
                         self._ROOT_do()
                     case Spec2Sm.EventId.EV1:
                         self._TEST9B_ROOT_ev1()
+            
+            # STATE: UNREACHABLE
+            case Spec2Sm.StateId.UNREACHABLE:
+                match eventId:
+                    # Events not handled by this state:
+                    case Spec2Sm.EventId.DO:
+                        self._ROOT_do()
+            
+            # STATE: USELESS
+            case Spec2Sm.StateId.USELESS:
+                match eventId:
+                    # Events not handled by this state:
+                    case Spec2Sm.EventId.DO:
+                        self._ROOT_do()
     
     # This function is used when StateSmith doesn't know what the active leaf state is at
     # compile time due to sub states or when multiple states need to be exited.
@@ -2546,6 +2561,12 @@ class Spec2Sm(Spec2SmBase):
                 
                 case Spec2Sm.StateId.TEST9B_ROOT__B4:
                     self._TEST9B_ROOT__B4_exit()
+                
+                case Spec2Sm.StateId.UNREACHABLE:
+                    self._UNREACHABLE_exit()
+                
+                case Spec2Sm.StateId.USELESS:
+                    self._USELESS_exit()
                 
                 case _:
                     return  # Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
@@ -3299,10 +3320,32 @@ class Spec2Sm(Spec2SmBase):
         
         self.stateId = Spec2Sm.StateId.ROOT
     
+    def _SPEC2SM__DECIDE_do(self):
+        consume_event = False
+        
+        # Spec2Sm__DECIDE behavior
+        # uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS.") } TransitionTo(USELESS)
+        if self.trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", True):
+            # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            self._SPEC2SM__DECIDE_exit()
+            
+            # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to USELESS.")`.
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to USELESS.")
+            
+            # Step 3: Enter/move towards transition target `USELESS`.
+            self._USELESS_enter()
+            
+            # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return
+        
+        # Check if event has been consumed before calling ancestor handler.
+        if not consume_event:
+            self._ROOT_do()
+    
     def _SPEC2SM__DECIDE_ev1(self):
         # Spec2Sm__DECIDE behavior
-        # uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING.") } TransitionTo(TEST1_DO_EVENT_TESTING)
-        if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", True):
+        # uml: 1. EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING.") } TransitionTo(TEST1_DO_EVENT_TESTING)
+        if self.trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", True):
             # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             self._SPEC2SM__DECIDE_exit()
             
@@ -3337,6 +3380,21 @@ class Spec2Sm(Spec2SmBase):
                     
                     # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
                     return
+        
+        # Spec2Sm__DECIDE behavior
+        # uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", True)] / { trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.") } TransitionTo(UNREACHABLE)
+        if self.trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", True):
+            # Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            self._SPEC2SM__DECIDE_exit()
+            
+            # Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.")`.
+            Printer.trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.")
+            
+            # Step 3: Enter/move towards transition target `UNREACHABLE`.
+            self._UNREACHABLE_enter()
+            
+            # Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return
     
     def _SPEC2SM__DECIDE_ev10(self):
         # Spec2Sm__DECIDE behavior
@@ -10507,6 +10565,52 @@ class Spec2Sm(Spec2SmBase):
         
         self.stateId = Spec2Sm.StateId.TEST9B_ROOT__B3
     
+    
+    ########################################
+    # event handlers for state UNREACHABLE
+    ########################################
+    
+    def _UNREACHABLE_enter(self):
+        self.stateId = Spec2Sm.StateId.UNREACHABLE
+        
+        # UNREACHABLE behavior
+        # uml: enter / { trace("Enter UNREACHABLE.") }
+        if True:
+            # Step 1: execute action `trace("Enter UNREACHABLE.")`
+            Printer.trace("Enter UNREACHABLE.")
+    
+    def _UNREACHABLE_exit(self):
+        # UNREACHABLE behavior
+        # uml: exit / { trace("Exit UNREACHABLE.") }
+        if True:
+            # Step 1: execute action `trace("Exit UNREACHABLE.")`
+            Printer.trace("Exit UNREACHABLE.")
+        
+        self.stateId = Spec2Sm.StateId.ROOT
+    
+    
+    ########################################
+    # event handlers for state USELESS
+    ########################################
+    
+    def _USELESS_enter(self):
+        self.stateId = Spec2Sm.StateId.USELESS
+        
+        # USELESS behavior
+        # uml: enter / { trace("Enter USELESS.") }
+        if True:
+            # Step 1: execute action `trace("Enter USELESS.")`
+            Printer.trace("Enter USELESS.")
+    
+    def _USELESS_exit(self):
+        # USELESS behavior
+        # uml: exit / { trace("Exit USELESS.") }
+        if True:
+            # Step 1: execute action `trace("Exit USELESS.")`
+            Printer.trace("Exit USELESS.")
+        
+        self.stateId = Spec2Sm.StateId.ROOT
+    
     # Thread safe.
     @staticmethod
     def stateIdToString(id):
@@ -10683,6 +10787,8 @@ class Spec2Sm(Spec2SmBase):
             case Spec2Sm.StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2"
             case Spec2Sm.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3"
             case Spec2Sm.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4"
+            case Spec2Sm.StateId.UNREACHABLE: return "UNREACHABLE"
+            case Spec2Sm.StateId.USELESS: return "USELESS"
             case _: return "?"
     
     # Thread safe.

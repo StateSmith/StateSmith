@@ -208,9 +208,11 @@ namespace Csharp.Spec2smTests
             TEST9B_ROOT__B2 = 169,
             TEST9B_ROOT__B3 = 170,
             TEST9B_ROOT__B4 = 171,
+            UNREACHABLE = 172,
+            USELESS = 173,
         }
 
-        public const int StateIdCount = 172;
+        public const int StateIdCount = 174;
 
         public enum T7__H1__ON_HistoryId
         {
@@ -837,8 +839,8 @@ namespace Csharp.Spec2smTests
                         case EventId.EV8: SPEC2SM__DECIDE_ev8(); break;
                         case EventId.EV9: SPEC2SM__DECIDE_ev9(); break;
                         case EventId.EV10: SPEC2SM__DECIDE_ev10(); break;
+                        case EventId.DO: SPEC2SM__DECIDE_do(); break;
                         // Events not handled by this state:
-                        case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
                         case EventId.EVOPEN: break;
                         case EventId.EVSTEP: break;
                         case EventId.EVBACK: break;
@@ -4295,6 +4297,52 @@ namespace Csharp.Spec2smTests
                         case EventId.EVCLOSE: break;
                     }
                     break;
+
+                // STATE: UNREACHABLE
+                case StateId.UNREACHABLE:
+                    switch (eventId)
+                    {
+                        // Events not handled by this state:
+                        case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                        case EventId.EV1: break;
+                        case EventId.EV2: break;
+                        case EventId.EV3: break;
+                        case EventId.EV4: break;
+                        case EventId.EV5: break;
+                        case EventId.EV6: break;
+                        case EventId.EV7: break;
+                        case EventId.EV8: break;
+                        case EventId.EV9: break;
+                        case EventId.EV10: break;
+                        case EventId.EVOPEN: break;
+                        case EventId.EVSTEP: break;
+                        case EventId.EVBACK: break;
+                        case EventId.EVCLOSE: break;
+                    }
+                    break;
+
+                // STATE: USELESS
+                case StateId.USELESS:
+                    switch (eventId)
+                    {
+                        // Events not handled by this state:
+                        case EventId.DO: ROOT_do(); break; // First ancestor handler for this event
+                        case EventId.EV1: break;
+                        case EventId.EV2: break;
+                        case EventId.EV3: break;
+                        case EventId.EV4: break;
+                        case EventId.EV5: break;
+                        case EventId.EV6: break;
+                        case EventId.EV7: break;
+                        case EventId.EV8: break;
+                        case EventId.EV9: break;
+                        case EventId.EV10: break;
+                        case EventId.EVOPEN: break;
+                        case EventId.EVSTEP: break;
+                        case EventId.EVBACK: break;
+                        case EventId.EVCLOSE: break;
+                    }
+                    break;
             }
 
         }
@@ -4648,6 +4696,10 @@ namespace Csharp.Spec2smTests
                     case StateId.TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(); break;
 
                     case StateId.TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(); break;
+
+                    case StateId.UNREACHABLE: UNREACHABLE_exit(); break;
+
+                    case StateId.USELESS: USELESS_exit(); break;
 
                     default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
                 }
@@ -5618,11 +5670,39 @@ namespace Csharp.Spec2smTests
             this.stateId = StateId.ROOT;
         }
 
+        private void SPEC2SM__DECIDE_do()
+        {
+            bool consume_event = false;
+
+            // Spec2Sm__DECIDE behavior
+            // uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS."); } TransitionTo(USELESS)
+            if (trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true))
+            {
+                // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+                SPEC2SM__DECIDE_exit();
+
+                // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to USELESS.");`.
+                MainClass.Trace("Transition action `` for Spec2Sm__DECIDE to USELESS.");
+
+                // Step 3: Enter/move towards transition target `USELESS`.
+                USELESS_enter();
+
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                return;
+            } // end of behavior for Spec2Sm__DECIDE
+
+            // Check if event has been consumed before calling ancestor handler.
+            if (!consume_event)
+            {
+                ROOT_do();
+            }
+        }
+
         private void SPEC2SM__DECIDE_ev1()
         {
             // Spec2Sm__DECIDE behavior
-            // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
-            if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
+            // uml: 1. EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
+            if (trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
             {
                 // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
                 SPEC2SM__DECIDE_exit();
@@ -5660,6 +5740,23 @@ namespace Csharp.Spec2smTests
                         return;
                     } // end of behavior for TEST1_ROOT.<InitialState>
                 } // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
+            } // end of behavior for Spec2Sm__DECIDE
+
+            // Spec2Sm__DECIDE behavior
+            // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE."); } TransitionTo(UNREACHABLE)
+            if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true))
+            {
+                // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+                SPEC2SM__DECIDE_exit();
+
+                // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");`.
+                MainClass.Trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");
+
+                // Step 3: Enter/move towards transition target `UNREACHABLE`.
+                UNREACHABLE_enter();
+
+                // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+                return;
             } // end of behavior for Spec2Sm__DECIDE
 
             // No ancestor handles this event.
@@ -14748,6 +14845,64 @@ namespace Csharp.Spec2smTests
             this.stateId = StateId.TEST9B_ROOT__B3;
         }
 
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state UNREACHABLE
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void UNREACHABLE_enter()
+        {
+            this.stateId = StateId.UNREACHABLE;
+
+            // UNREACHABLE behavior
+            // uml: enter / { trace("Enter UNREACHABLE."); }
+            {
+                // Step 1: execute action `trace("Enter UNREACHABLE.");`
+                MainClass.Trace("Enter UNREACHABLE.");
+            } // end of behavior for UNREACHABLE
+        }
+
+        private void UNREACHABLE_exit()
+        {
+            // UNREACHABLE behavior
+            // uml: exit / { trace("Exit UNREACHABLE."); }
+            {
+                // Step 1: execute action `trace("Exit UNREACHABLE.");`
+                MainClass.Trace("Exit UNREACHABLE.");
+            } // end of behavior for UNREACHABLE
+
+            this.stateId = StateId.ROOT;
+        }
+
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // event handlers for state USELESS
+        ////////////////////////////////////////////////////////////////////////////////
+
+        private void USELESS_enter()
+        {
+            this.stateId = StateId.USELESS;
+
+            // USELESS behavior
+            // uml: enter / { trace("Enter USELESS."); }
+            {
+                // Step 1: execute action `trace("Enter USELESS.");`
+                MainClass.Trace("Enter USELESS.");
+            } // end of behavior for USELESS
+        }
+
+        private void USELESS_exit()
+        {
+            // USELESS behavior
+            // uml: exit / { trace("Exit USELESS."); }
+            {
+                // Step 1: execute action `trace("Exit USELESS.");`
+                MainClass.Trace("Exit USELESS.");
+            } // end of behavior for USELESS
+
+            this.stateId = StateId.ROOT;
+        }
+
         // Thread safe.
         public static string StateIdToString(StateId id)
         {
@@ -14925,6 +15080,8 @@ namespace Csharp.Spec2smTests
                 case StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
                 case StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
                 case StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
+                case StateId.UNREACHABLE: return "UNREACHABLE";
+                case StateId.USELESS: return "USELESS";
                 default: return "?";
             }
         }

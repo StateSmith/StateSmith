@@ -206,10 +206,12 @@ export class Spec2Sm
         TEST9B_ROOT__B2 : 169,
         TEST9B_ROOT__B3 : 170,
         TEST9B_ROOT__B4 : 171,
+        UNREACHABLE : 172,
+        USELESS : 173,
     }
     static { Object.freeze(this.StateId); }
     
-    static StateIdCount = 172;
+    static StateIdCount = 174;
     static { Object.freeze(this.StateIdCount); }
     
     static T7__H1__ON_HistoryId = 
@@ -835,8 +837,8 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EV8: this._SPEC2SM__DECIDE_ev8(); break;
                     case Spec2Sm.EventId.EV9: this._SPEC2SM__DECIDE_ev9(); break;
                     case Spec2Sm.EventId.EV10: this._SPEC2SM__DECIDE_ev10(); break;
+                    case Spec2Sm.EventId.DO: this._SPEC2SM__DECIDE_do(); break;
                     // Events not handled by this state:
-                    case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
                     case Spec2Sm.EventId.EVOPEN: break;
                     case Spec2Sm.EventId.EVSTEP: break;
                     case Spec2Sm.EventId.EVBACK: break;
@@ -4293,6 +4295,52 @@ export class Spec2Sm
                     case Spec2Sm.EventId.EVCLOSE: break;
                 }
                 break;
+            
+            // STATE: UNREACHABLE
+            case Spec2Sm.StateId.UNREACHABLE:
+                switch (eventId)
+                {
+                    // Events not handled by this state:
+                    case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
+                    case Spec2Sm.EventId.EV1: break;
+                    case Spec2Sm.EventId.EV2: break;
+                    case Spec2Sm.EventId.EV3: break;
+                    case Spec2Sm.EventId.EV4: break;
+                    case Spec2Sm.EventId.EV5: break;
+                    case Spec2Sm.EventId.EV6: break;
+                    case Spec2Sm.EventId.EV7: break;
+                    case Spec2Sm.EventId.EV8: break;
+                    case Spec2Sm.EventId.EV9: break;
+                    case Spec2Sm.EventId.EV10: break;
+                    case Spec2Sm.EventId.EVOPEN: break;
+                    case Spec2Sm.EventId.EVSTEP: break;
+                    case Spec2Sm.EventId.EVBACK: break;
+                    case Spec2Sm.EventId.EVCLOSE: break;
+                }
+                break;
+            
+            // STATE: USELESS
+            case Spec2Sm.StateId.USELESS:
+                switch (eventId)
+                {
+                    // Events not handled by this state:
+                    case Spec2Sm.EventId.DO: this._ROOT_do(); break; // First ancestor handler for this event
+                    case Spec2Sm.EventId.EV1: break;
+                    case Spec2Sm.EventId.EV2: break;
+                    case Spec2Sm.EventId.EV3: break;
+                    case Spec2Sm.EventId.EV4: break;
+                    case Spec2Sm.EventId.EV5: break;
+                    case Spec2Sm.EventId.EV6: break;
+                    case Spec2Sm.EventId.EV7: break;
+                    case Spec2Sm.EventId.EV8: break;
+                    case Spec2Sm.EventId.EV9: break;
+                    case Spec2Sm.EventId.EV10: break;
+                    case Spec2Sm.EventId.EVOPEN: break;
+                    case Spec2Sm.EventId.EVSTEP: break;
+                    case Spec2Sm.EventId.EVBACK: break;
+                    case Spec2Sm.EventId.EVCLOSE: break;
+                }
+                break;
         }
         
     }
@@ -4646,6 +4694,10 @@ export class Spec2Sm
                 case Spec2Sm.StateId.TEST9B_ROOT__B3: this._TEST9B_ROOT__B3_exit(); break;
                 
                 case Spec2Sm.StateId.TEST9B_ROOT__B4: this._TEST9B_ROOT__B4_exit(); break;
+                
+                case Spec2Sm.StateId.UNREACHABLE: this._UNREACHABLE_exit(); break;
+                
+                case Spec2Sm.StateId.USELESS: this._USELESS_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -5616,11 +5668,39 @@ export class Spec2Sm
         this.stateId = Spec2Sm.StateId.ROOT;
     }
     
+    _SPEC2SM__DECIDE_do()
+    {
+        let consume_event = false;
+        
+        // Spec2Sm__DECIDE behavior
+        // uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS."); } TransitionTo(USELESS)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true))
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            this._SPEC2SM__DECIDE_exit();
+            
+            // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to USELESS.");`.
+            console.log("Transition action `` for Spec2Sm__DECIDE to USELESS.");
+            
+            // Step 3: Enter/move towards transition target `USELESS`.
+            this._USELESS_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for Spec2Sm__DECIDE
+        
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            this._ROOT_do();
+        }
+    }
+    
     _SPEC2SM__DECIDE_ev1()
     {
         // Spec2Sm__DECIDE behavior
-        // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
-        if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
+        // uml: 1. EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             this._SPEC2SM__DECIDE_exit();
@@ -5658,6 +5738,23 @@ export class Spec2Sm
                     return;
                 } // end of behavior for TEST1_ROOT.<InitialState>
             } // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
+        } // end of behavior for Spec2Sm__DECIDE
+        
+        // Spec2Sm__DECIDE behavior
+        // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE."); } TransitionTo(UNREACHABLE)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true))
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            this._SPEC2SM__DECIDE_exit();
+            
+            // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");`.
+            console.log("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");
+            
+            // Step 3: Enter/move towards transition target `UNREACHABLE`.
+            this._UNREACHABLE_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
         } // end of behavior for Spec2Sm__DECIDE
         
         // No ancestor handles this event.
@@ -14746,6 +14843,64 @@ export class Spec2Sm
         this.stateId = Spec2Sm.StateId.TEST9B_ROOT__B3;
     }
     
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state UNREACHABLE
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    _UNREACHABLE_enter()
+    {
+        this.stateId = Spec2Sm.StateId.UNREACHABLE;
+        
+        // UNREACHABLE behavior
+        // uml: enter / { trace("Enter UNREACHABLE."); }
+        {
+            // Step 1: execute action `trace("Enter UNREACHABLE.");`
+            console.log("Enter UNREACHABLE.");
+        } // end of behavior for UNREACHABLE
+    }
+    
+    _UNREACHABLE_exit()
+    {
+        // UNREACHABLE behavior
+        // uml: exit / { trace("Exit UNREACHABLE."); }
+        {
+            // Step 1: execute action `trace("Exit UNREACHABLE.");`
+            console.log("Exit UNREACHABLE.");
+        } // end of behavior for UNREACHABLE
+        
+        this.stateId = Spec2Sm.StateId.ROOT;
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state USELESS
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    _USELESS_enter()
+    {
+        this.stateId = Spec2Sm.StateId.USELESS;
+        
+        // USELESS behavior
+        // uml: enter / { trace("Enter USELESS."); }
+        {
+            // Step 1: execute action `trace("Enter USELESS.");`
+            console.log("Enter USELESS.");
+        } // end of behavior for USELESS
+    }
+    
+    _USELESS_exit()
+    {
+        // USELESS behavior
+        // uml: exit / { trace("Exit USELESS."); }
+        {
+            // Step 1: execute action `trace("Exit USELESS.");`
+            console.log("Exit USELESS.");
+        } // end of behavior for USELESS
+        
+        this.stateId = Spec2Sm.StateId.ROOT;
+    }
+    
     // Thread safe.
     static stateIdToString(id)
     {
@@ -14923,6 +15078,8 @@ export class Spec2Sm
             case Spec2Sm.StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
             case Spec2Sm.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
             case Spec2Sm.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
+            case Spec2Sm.StateId.UNREACHABLE: return "UNREACHABLE";
+            case Spec2Sm.StateId.USELESS: return "USELESS";
             default: return "?";
         }
     }

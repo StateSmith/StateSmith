@@ -130,6 +130,8 @@ static void SPEC2SM__DECIDE_enter(Spec2Sm* sm);
 
 static void SPEC2SM__DECIDE_exit(Spec2Sm* sm);
 
+static void SPEC2SM__DECIDE_do(Spec2Sm* sm);
+
 static void SPEC2SM__DECIDE_ev1(Spec2Sm* sm);
 
 static void SPEC2SM__DECIDE_ev10(Spec2Sm* sm);
@@ -1012,6 +1014,14 @@ static void TEST9B_ROOT__B4_enter(Spec2Sm* sm);
 
 static void TEST9B_ROOT__B4_exit(Spec2Sm* sm);
 
+static void UNREACHABLE_enter(Spec2Sm* sm);
+
+static void UNREACHABLE_exit(Spec2Sm* sm);
+
+static void USELESS_enter(Spec2Sm* sm);
+
+static void USELESS_exit(Spec2Sm* sm);
+
 
 // State machine constructor. Must be called before start or dispatch event functions. Not thread safe.
 void Spec2Sm_ctor(Spec2Sm* sm)
@@ -1553,8 +1563,8 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EV8: SPEC2SM__DECIDE_ev8(sm); break;
                 case Spec2Sm_EventId_EV9: SPEC2SM__DECIDE_ev9(sm); break;
                 case Spec2Sm_EventId_EV10: SPEC2SM__DECIDE_ev10(sm); break;
+                case Spec2Sm_EventId_DO: SPEC2SM__DECIDE_do(sm); break;
                 // Events not handled by this state:
-                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
                 case Spec2Sm_EventId_EVOPEN: break;
                 case Spec2Sm_EventId_EVSTEP: break;
                 case Spec2Sm_EventId_EVBACK: break;
@@ -5011,6 +5021,52 @@ void Spec2Sm_dispatch_event(Spec2Sm* sm, Spec2Sm_EventId event_id)
                 case Spec2Sm_EventId_EVCLOSE: break;
             }
             break;
+        
+        // STATE: UNREACHABLE
+        case Spec2Sm_StateId_UNREACHABLE:
+            switch (event_id)
+            {
+                // Events not handled by this state:
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: break;
+                case Spec2Sm_EventId_EV2: break;
+                case Spec2Sm_EventId_EV3: break;
+                case Spec2Sm_EventId_EV4: break;
+                case Spec2Sm_EventId_EV5: break;
+                case Spec2Sm_EventId_EV6: break;
+                case Spec2Sm_EventId_EV7: break;
+                case Spec2Sm_EventId_EV8: break;
+                case Spec2Sm_EventId_EV9: break;
+                case Spec2Sm_EventId_EV10: break;
+                case Spec2Sm_EventId_EVOPEN: break;
+                case Spec2Sm_EventId_EVSTEP: break;
+                case Spec2Sm_EventId_EVBACK: break;
+                case Spec2Sm_EventId_EVCLOSE: break;
+            }
+            break;
+        
+        // STATE: USELESS
+        case Spec2Sm_StateId_USELESS:
+            switch (event_id)
+            {
+                // Events not handled by this state:
+                case Spec2Sm_EventId_DO: ROOT_do(sm); break; // First ancestor handler for this event
+                case Spec2Sm_EventId_EV1: break;
+                case Spec2Sm_EventId_EV2: break;
+                case Spec2Sm_EventId_EV3: break;
+                case Spec2Sm_EventId_EV4: break;
+                case Spec2Sm_EventId_EV5: break;
+                case Spec2Sm_EventId_EV6: break;
+                case Spec2Sm_EventId_EV7: break;
+                case Spec2Sm_EventId_EV8: break;
+                case Spec2Sm_EventId_EV9: break;
+                case Spec2Sm_EventId_EV10: break;
+                case Spec2Sm_EventId_EVOPEN: break;
+                case Spec2Sm_EventId_EVSTEP: break;
+                case Spec2Sm_EventId_EVBACK: break;
+                case Spec2Sm_EventId_EVCLOSE: break;
+            }
+            break;
     }
     
 }
@@ -5364,6 +5420,10 @@ static void exit_up_to_state_handler(Spec2Sm* sm, Spec2Sm_StateId desired_state)
             case Spec2Sm_StateId_TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(sm); break;
             
             case Spec2Sm_StateId_TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(sm); break;
+            
+            case Spec2Sm_StateId_UNREACHABLE: UNREACHABLE_exit(sm); break;
+            
+            case Spec2Sm_StateId_USELESS: USELESS_exit(sm); break;
             
             default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
         }
@@ -6334,11 +6394,39 @@ static void SPEC2SM__DECIDE_exit(Spec2Sm* sm)
     sm->state_id = Spec2Sm_StateId_ROOT;
 }
 
+static void SPEC2SM__DECIDE_do(Spec2Sm* sm)
+{
+    bool consume_event = false;
+    
+    // Spec2Sm__DECIDE behavior
+    // uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS."); } TransitionTo(USELESS)
+    if (trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true))
+    {
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        SPEC2SM__DECIDE_exit(sm);
+        
+        // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to USELESS.");`.
+        trace("Transition action `` for Spec2Sm__DECIDE to USELESS.");
+        
+        // Step 3: Enter/move towards transition target `USELESS`.
+        USELESS_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        return;
+    } // end of behavior for Spec2Sm__DECIDE
+    
+    // Check if event has been consumed before calling ancestor handler.
+    if (!consume_event)
+    {
+        ROOT_do(sm);
+    }
+}
+
 static void SPEC2SM__DECIDE_ev1(Spec2Sm* sm)
 {
     // Spec2Sm__DECIDE behavior
-    // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
-    if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
+    // uml: 1. EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
+    if (trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
     {
         // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
         SPEC2SM__DECIDE_exit(sm);
@@ -6376,6 +6464,23 @@ static void SPEC2SM__DECIDE_ev1(Spec2Sm* sm)
                 return;
             } // end of behavior for TEST1_ROOT.<InitialState>
         } // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
+    } // end of behavior for Spec2Sm__DECIDE
+    
+    // Spec2Sm__DECIDE behavior
+    // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE."); } TransitionTo(UNREACHABLE)
+    if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true))
+    {
+        // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+        SPEC2SM__DECIDE_exit(sm);
+        
+        // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");`.
+        trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");
+        
+        // Step 3: Enter/move towards transition target `UNREACHABLE`.
+        UNREACHABLE_enter(sm);
+        
+        // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+        return;
     } // end of behavior for Spec2Sm__DECIDE
     
     // No ancestor handles this event.
@@ -15464,6 +15569,64 @@ static void TEST9B_ROOT__B4_exit(Spec2Sm* sm)
     sm->state_id = Spec2Sm_StateId_TEST9B_ROOT__B3;
 }
 
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state UNREACHABLE
+////////////////////////////////////////////////////////////////////////////////
+
+static void UNREACHABLE_enter(Spec2Sm* sm)
+{
+    sm->state_id = Spec2Sm_StateId_UNREACHABLE;
+    
+    // UNREACHABLE behavior
+    // uml: enter / { trace("Enter UNREACHABLE."); }
+    {
+        // Step 1: execute action `trace("Enter UNREACHABLE.");`
+        trace("Enter UNREACHABLE.");
+    } // end of behavior for UNREACHABLE
+}
+
+static void UNREACHABLE_exit(Spec2Sm* sm)
+{
+    // UNREACHABLE behavior
+    // uml: exit / { trace("Exit UNREACHABLE."); }
+    {
+        // Step 1: execute action `trace("Exit UNREACHABLE.");`
+        trace("Exit UNREACHABLE.");
+    } // end of behavior for UNREACHABLE
+    
+    sm->state_id = Spec2Sm_StateId_ROOT;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// event handlers for state USELESS
+////////////////////////////////////////////////////////////////////////////////
+
+static void USELESS_enter(Spec2Sm* sm)
+{
+    sm->state_id = Spec2Sm_StateId_USELESS;
+    
+    // USELESS behavior
+    // uml: enter / { trace("Enter USELESS."); }
+    {
+        // Step 1: execute action `trace("Enter USELESS.");`
+        trace("Enter USELESS.");
+    } // end of behavior for USELESS
+}
+
+static void USELESS_exit(Spec2Sm* sm)
+{
+    // USELESS behavior
+    // uml: exit / { trace("Exit USELESS."); }
+    {
+        // Step 1: execute action `trace("Exit USELESS.");`
+        trace("Exit USELESS.");
+    } // end of behavior for USELESS
+    
+    sm->state_id = Spec2Sm_StateId_ROOT;
+}
+
 // Thread safe.
 char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
 {
@@ -15641,6 +15804,8 @@ char const * Spec2Sm_state_id_to_string(Spec2Sm_StateId id)
         case Spec2Sm_StateId_TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
         case Spec2Sm_StateId_TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
         case Spec2Sm_StateId_TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
+        case Spec2Sm_StateId_UNREACHABLE: return "UNREACHABLE";
+        case Spec2Sm_StateId_USELESS: return "USELESS";
         default: return "?";
     }
 }

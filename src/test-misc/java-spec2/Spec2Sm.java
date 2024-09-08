@@ -200,9 +200,11 @@ public class Spec2Sm extends Spec2SmBase
         TEST9B_ROOT__B2,
         TEST9B_ROOT__B3,
         TEST9B_ROOT__B4,
+        UNREACHABLE,
+        USELESS,
     }
     
-    public final int StateIdCount = 172;
+    public final int StateIdCount = 174;
     
     public enum T7__H1__ON_HistoryId
     {
@@ -829,8 +831,8 @@ public class Spec2Sm extends Spec2SmBase
                     case EV8: SPEC2SM__DECIDE_ev8(); break;
                     case EV9: SPEC2SM__DECIDE_ev9(); break;
                     case EV10: SPEC2SM__DECIDE_ev10(); break;
+                    case DO: SPEC2SM__DECIDE_do(); break;
                     // Events not handled by this state:
-                    case DO: ROOT_do(); break; // First ancestor handler for this event
                     case EVOPEN: break;
                     case EVSTEP: break;
                     case EVBACK: break;
@@ -4287,6 +4289,52 @@ public class Spec2Sm extends Spec2SmBase
                     case EVCLOSE: break;
                 }
                 break;
+            
+            // STATE: UNREACHABLE
+            case UNREACHABLE:
+                switch (eventId)
+                {
+                    // Events not handled by this state:
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
+                }
+                break;
+            
+            // STATE: USELESS
+            case USELESS:
+                switch (eventId)
+                {
+                    // Events not handled by this state:
+                    case DO: ROOT_do(); break; // First ancestor handler for this event
+                    case EV1: break;
+                    case EV2: break;
+                    case EV3: break;
+                    case EV4: break;
+                    case EV5: break;
+                    case EV6: break;
+                    case EV7: break;
+                    case EV8: break;
+                    case EV9: break;
+                    case EV10: break;
+                    case EVOPEN: break;
+                    case EVSTEP: break;
+                    case EVBACK: break;
+                    case EVCLOSE: break;
+                }
+                break;
         }
         
     }
@@ -4640,6 +4688,10 @@ public class Spec2Sm extends Spec2SmBase
                 case TEST9B_ROOT__B3: TEST9B_ROOT__B3_exit(); break;
                 
                 case TEST9B_ROOT__B4: TEST9B_ROOT__B4_exit(); break;
+                
+                case UNREACHABLE: UNREACHABLE_exit(); break;
+                
+                case USELESS: USELESS_exit(); break;
                 
                 default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
             }
@@ -5610,11 +5662,39 @@ public class Spec2Sm extends Spec2SmBase
         this.stateId = StateId.ROOT;
     }
     
+    private void SPEC2SM__DECIDE_do()
+    {
+        boolean consume_event = false;
+        
+        // Spec2Sm__DECIDE behavior
+        // uml: do [trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to USELESS."); } TransitionTo(USELESS)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `do TransitionTo(USELESS)`.", true))
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            SPEC2SM__DECIDE_exit();
+            
+            // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to USELESS.");`.
+            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to USELESS.");
+            
+            // Step 3: Enter/move towards transition target `USELESS`.
+            USELESS_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
+        } // end of behavior for Spec2Sm__DECIDE
+        
+        // Check if event has been consumed before calling ancestor handler.
+        if (!consume_event)
+        {
+            ROOT_do();
+        }
+    }
+    
     private void SPEC2SM__DECIDE_ev1()
     {
         // Spec2Sm__DECIDE behavior
-        // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
-        if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
+        // uml: 1. EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to TEST1_DO_EVENT_TESTING."); } TransitionTo(TEST1_DO_EVENT_TESTING)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `1. EV1 TransitionTo(TEST1_DO_EVENT_TESTING)`.", true))
         {
             // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
             SPEC2SM__DECIDE_exit();
@@ -5652,6 +5732,23 @@ public class Spec2Sm extends Spec2SmBase
                     return;
                 } // end of behavior for TEST1_ROOT.<InitialState>
             } // end of behavior for TEST1_DO_EVENT_TESTING.<InitialState>
+        } // end of behavior for Spec2Sm__DECIDE
+        
+        // Spec2Sm__DECIDE behavior
+        // uml: EV1 [trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true)] / { trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE."); } TransitionTo(UNREACHABLE)
+        if (trace_guard("State Spec2Sm__DECIDE: check behavior `EV1 TransitionTo(UNREACHABLE)`.", true))
+        {
+            // Step 1: Exit states until we reach `ROOT` state (Least Common Ancestor for transition).
+            SPEC2SM__DECIDE_exit();
+            
+            // Step 2: Transition action: `trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");`.
+            MainClass.trace("Transition action `` for Spec2Sm__DECIDE to UNREACHABLE.");
+            
+            // Step 3: Enter/move towards transition target `UNREACHABLE`.
+            UNREACHABLE_enter();
+            
+            // Step 4: complete transition. Ends event dispatch. No other behaviors are checked.
+            return;
         } // end of behavior for Spec2Sm__DECIDE
         
         // No ancestor handles this event.
@@ -14740,6 +14837,64 @@ public class Spec2Sm extends Spec2SmBase
         this.stateId = StateId.TEST9B_ROOT__B3;
     }
     
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state UNREACHABLE
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    private void UNREACHABLE_enter()
+    {
+        this.stateId = StateId.UNREACHABLE;
+        
+        // UNREACHABLE behavior
+        // uml: enter / { trace("Enter UNREACHABLE."); }
+        {
+            // Step 1: execute action `trace("Enter UNREACHABLE.");`
+            MainClass.trace("Enter UNREACHABLE.");
+        } // end of behavior for UNREACHABLE
+    }
+    
+    private void UNREACHABLE_exit()
+    {
+        // UNREACHABLE behavior
+        // uml: exit / { trace("Exit UNREACHABLE."); }
+        {
+            // Step 1: execute action `trace("Exit UNREACHABLE.");`
+            MainClass.trace("Exit UNREACHABLE.");
+        } // end of behavior for UNREACHABLE
+        
+        this.stateId = StateId.ROOT;
+    }
+    
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // event handlers for state USELESS
+    ////////////////////////////////////////////////////////////////////////////////
+    
+    private void USELESS_enter()
+    {
+        this.stateId = StateId.USELESS;
+        
+        // USELESS behavior
+        // uml: enter / { trace("Enter USELESS."); }
+        {
+            // Step 1: execute action `trace("Enter USELESS.");`
+            MainClass.trace("Enter USELESS.");
+        } // end of behavior for USELESS
+    }
+    
+    private void USELESS_exit()
+    {
+        // USELESS behavior
+        // uml: exit / { trace("Exit USELESS."); }
+        {
+            // Step 1: execute action `trace("Exit USELESS.");`
+            MainClass.trace("Exit USELESS.");
+        } // end of behavior for USELESS
+        
+        this.stateId = StateId.ROOT;
+    }
+    
     // Thread safe.
     public static String stateIdToString(StateId id)
     {
@@ -14917,6 +15072,8 @@ public class Spec2Sm extends Spec2SmBase
             case TEST9B_ROOT__B2: return "TEST9B_ROOT__B2";
             case TEST9B_ROOT__B3: return "TEST9B_ROOT__B3";
             case TEST9B_ROOT__B4: return "TEST9B_ROOT__B4";
+            case UNREACHABLE: return "UNREACHABLE";
+            case USELESS: return "USELESS";
             default: return "?";
         }
     }
