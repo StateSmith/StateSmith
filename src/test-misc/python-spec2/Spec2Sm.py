@@ -10591,7 +10591,7 @@ class Spec2Sm(Spec2SmBase):
             case self.StateId.TEST9B_ROOT__B2: return "TEST9B_ROOT__B2"
             case self.StateId.TEST9B_ROOT__B3: return "TEST9B_ROOT__B3"
             case self.StateId.TEST9B_ROOT__B4: return "TEST9B_ROOT__B4"
-            default: return "?"
+            case _: return "?"
 @staticmethod
     
     # Thread safe.
@@ -10612,4 +10612,4 @@ class Spec2Sm(Spec2SmBase):
             case self.EventId.EVCLOSE: return "EVCLOSE"
             case self.EventId.EVOPEN: return "EVOPEN"
             case self.EventId.EVSTEP: return "EVSTEP"
-            default: return "?"
+            case _: return "?"

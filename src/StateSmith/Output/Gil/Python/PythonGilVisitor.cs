@@ -396,6 +396,13 @@ public class PythonGilVisitor : CSharpSyntaxWalker
         VisitToken(node.ColonToken);
     }
 
+    public override void VisitDefaultSwitchLabel(DefaultSwitchLabelSyntax node)
+    {
+        VisitLeadingTrivia(node.GetFirstToken());
+        sb.Append("case _:");
+        VisitTrailingTrivia(node.GetLastToken());
+    }
+
     public override void VisitInvocationExpression(InvocationExpressionSyntax node)
     {
         bool done = false;

@@ -3705,7 +3705,9 @@ public class Spec2Sm
                     this.TEST9B_ROOT__B4_exit(); 
                     break;
                     
-                default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
+                default:
+                    return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.
+
             }
         }
     }

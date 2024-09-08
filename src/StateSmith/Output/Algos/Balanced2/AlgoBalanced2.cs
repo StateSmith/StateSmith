@@ -68,6 +68,8 @@ public class AlgoBalanced2 : AlgoBalanced1
             file.Append($"switch (this.{mangler.SmStateIdVarName})");
             file.StartCodeBlock();
             {
+                string SEP = settings.allowSingleLineSwitchCase ? " " : "\n" + file.GetIndent();
+
                 foreach (var namedVertex in Sm.GetNamedVerticesCopy())
                 {
 
@@ -99,7 +101,9 @@ public class AlgoBalanced2 : AlgoBalanced1
                     }
                 }
 
-                file.AppendLine($"default: return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.");
+
+                file.AppendDetectNewlines($"default:{SEP}return;  // Just to be safe. Prevents infinite loop if state ID memory is somehow corrupted.");
+                file.FinishLine();
             }
             file.FinishCodeBlock(forceNewLine: true);
         }

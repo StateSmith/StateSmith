@@ -190,4 +190,9 @@ public class OutputFile
     {
         return sb.Length;
     }
+
+    public string GetIndent()
+    {
+        return styler.Indent1;
+    }
 }
